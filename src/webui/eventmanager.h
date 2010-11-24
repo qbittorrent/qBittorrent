@@ -57,9 +57,9 @@ public:
   void setGlobalPreferences(QVariantMap m) const;
 
 public slots:
-  void addedTorrent(QTorrentHandle& h);
+  void addedTorrent(const QTorrentHandle& h);
   void deletedTorrent(QString hash);
-  void modifiedTorrent(QTorrentHandle h);
+  void modifiedTorrent(const QTorrentHandle& h);
 };
 
 #endif

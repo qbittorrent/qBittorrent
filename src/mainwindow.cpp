@@ -134,13 +134,13 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   toolBar->layout()->setSpacing(7);
   // Creating Bittorrent session
   BTSession = QBtSession::instance();
-  connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle&, QString)), this, SLOT(fullDiskError(QTorrentHandle&, QString)));
-  connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle&)), this, SLOT(finishedTorrent(QTorrentHandle&)));
-  connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle&)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
+  connect(BTSession, SIGNAL(finishedTorrent(QTorrentHandle)), this, SLOT(finishedTorrent(QTorrentHandle)));
+  connect(BTSession, SIGNAL(trackerAuthenticationRequired(QTorrentHandle)), this, SLOT(trackerAuthenticationRequired(QTorrentHandle)));
   connect(BTSession, SIGNAL(newDownloadedTorrent(QString, QString)), this, SLOT(processDownloadedFiles(QString, QString)));
   connect(BTSession, SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(BTSession, SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
-  connect(BTSession, SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle&)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle&)));
+  connect(BTSession, SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle)));
 #ifdef Q_WS_MAC
   connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
 #endif
@@ -448,13 +448,13 @@ void MainWindow::writeSettings() {
 }
 
 // called when a torrent has finished
-void MainWindow::finishedTorrent(QTorrentHandle& h) const {
+void MainWindow::finishedTorrent(const QTorrentHandle& h) const {
   if(!TorrentPersistentData::isSeed(h.hash()))
     showNotificationBaloon(tr("Download completion"), tr("%1 has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(h.name()));
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(QTorrentHandle& h, QString msg) const {
+void MainWindow::fullDiskError(const QTorrentHandle& h, QString msg) const {
   if(!h.is_valid()) return;
   showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
 }
@@ -529,7 +529,7 @@ void MainWindow::balloonClicked() {
   }
 }
 
-void MainWindow::askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h) {
+void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h) {
   Preferences pref;
   if(pref.recursiveDownloadDisabled()) return;
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
@@ -1005,7 +1005,7 @@ void MainWindow::addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &
 }
 
 // Called when a tracker requires authentication
-void MainWindow::trackerAuthenticationRequired(QTorrentHandle& h) {
+void MainWindow::trackerAuthenticationRequired(const QTorrentHandle& h) {
   if(unauthenticated_trackers.indexOf(QPair<QTorrentHandle,QString>(h, h.current_tracker())) < 0) {
     // Tracker login
     new trackerLogin(this, h);
@@ -1223,7 +1223,7 @@ void MainWindow::on_action_Import_Torrent_triggered()
 void MainWindow::on_actionDownload_from_URL_triggered() {
   if(!downloadFromURLDialog) {
     downloadFromURLDialog = new downloadFromURL(this);
-    connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(const QStringList&)), this, SLOT(downloadFromURLList(const QStringList&)));
+    connect(downloadFromURLDialog, SIGNAL(urlsReadyToBeDownloaded(QStringList)), this, SLOT(downloadFromURLList(QStringList)));
   }
 }
 

@@ -79,11 +79,11 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
   connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
-  connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle&)), this, SLOT(loadTorrentInfos(QTorrentHandle &)));
+  connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
-  connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle&)), this, SLOT(updateSavePath(QTorrentHandle&)));
-  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle&)), this, SLOT(updateTorrentInfos(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(savePathChanged(QTorrentHandle)), this, SLOT(updateSavePath(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), this, SLOT(updateTorrentInfos(QTorrentHandle)));
 
   // Downloaded pieces progress bar
   downloaded_pieces = new DownloadedPiecesBar(this);
@@ -199,7 +199,7 @@ QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
   return h;
 }
 
-void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
+void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
   if(h.is_valid() && h == _h) {
     QString p;
     if(h.has_metadata() && h.num_files() == 1) {
@@ -216,13 +216,13 @@ void PropertiesWidget::updateSavePath(QTorrentHandle& _h) {
   }
 }
 
-void PropertiesWidget::updateTorrentInfos(QTorrentHandle& _h) {
+void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
   if(h.is_valid() && h == _h) {
     loadTorrentInfos(h);
   }
 }
 
-void PropertiesWidget::loadTorrentInfos(QTorrentHandle &_h) {
+void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
   clear();
   h = _h;
   if(!h.is_valid()) {

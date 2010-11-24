@@ -97,7 +97,7 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
       manager->addedTorrent(h);
   }
   //connect QBtSession::instance() to manager
-  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle&)), manager, SLOT(addedTorrent(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), manager, SLOT(addedTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
   //set timer
   timer = new QTimer(this);

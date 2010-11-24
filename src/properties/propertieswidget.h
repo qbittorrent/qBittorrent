@@ -69,8 +69,8 @@ protected:
   bool applyPriorities();
 
 protected slots:
-  void loadTorrentInfos(QTorrentHandle &h);
-  void updateTorrentInfos(QTorrentHandle &h);
+  void loadTorrentInfos(const QTorrentHandle &h);
+  void updateTorrentInfos(const QTorrentHandle &h);
   void loadUrlSeeds();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
@@ -91,7 +91,7 @@ public slots:
   void saveSettings();
   void reloadPreferences();
   void openDoubleClickedFile(QModelIndex);
-  void updateSavePath(QTorrentHandle& h);
+  void updateSavePath(const QTorrentHandle& h);
 
 private:
   TransferListWidget *transferList;

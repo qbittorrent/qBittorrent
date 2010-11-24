@@ -381,13 +381,13 @@ void QTorrentHandle::downloading_pieces(bitfield &bf) const {
 // Setters
 //
 
-void QTorrentHandle::pause() {
+void QTorrentHandle::pause() const {
   torrent_handle::auto_managed(false);
   torrent_handle::pause();
   torrent_handle::save_resume_data();
 }
 
-void QTorrentHandle::resume() {
+void QTorrentHandle::resume() const {
   if(has_error()) torrent_handle::clear_error();
   const QString torrent_hash = hash();
   bool has_persistant_error = TorrentPersistentData::hasError(torrent_hash);
@@ -409,17 +409,17 @@ void QTorrentHandle::resume() {
   }
 }
 
-void QTorrentHandle::remove_url_seed(QString seed) {
+void QTorrentHandle::remove_url_seed(QString seed) const {
   torrent_handle::remove_url_seed(seed.toStdString());
 }
 
-void QTorrentHandle::add_url_seed(QString seed) {
+void QTorrentHandle::add_url_seed(QString seed) const {
   const std::string str_seed = seed.toStdString();
   qDebug("calling torrent_handle::add_url_seed(%s)", str_seed.c_str());
   torrent_handle::add_url_seed(str_seed);
 }
 
-void QTorrentHandle::prioritize_files(const std::vector<int> &v) {
+void QTorrentHandle::prioritize_files(const std::vector<int> &v) const {
   // Does not do anything for seeding torrents
   if(v.size() != (unsigned int)torrent_handle::get_torrent_info().num_files())
     return;
@@ -458,7 +458,7 @@ void QTorrentHandle::file_priority(int index, int priority) const {
   }
 }
 
-void QTorrentHandle::set_tracker_login(QString username, QString password) {
+void QTorrentHandle::set_tracker_login(QString username, QString password) const {
   torrent_handle::set_tracker_login(std::string(username.toLocal8Bit().constData()), std::string(password.toLocal8Bit().constData()));
 }
 
@@ -472,7 +472,7 @@ void QTorrentHandle::move_storage(QString new_path) const {
   torrent_handle::move_storage(new_path.toLocal8Bit().constData());
 }
 
-bool QTorrentHandle::save_torrent_file(QString path) {
+bool QTorrentHandle::save_torrent_file(QString path) const {
   if(!torrent_handle::has_metadata()) return false;
   QFile met_file(path);
   if(met_file.open(QIODevice::WriteOnly)) {
@@ -489,7 +489,7 @@ bool QTorrentHandle::save_torrent_file(QString path) {
   return false;
 }
 
-void QTorrentHandle::add_tracker(const announce_entry& url) {
+void QTorrentHandle::add_tracker(const announce_entry& url) const {
 #if LIBTORRENT_VERSION_MINOR > 14
   torrent_handle::add_tracker(url);
 #else
@@ -510,7 +510,7 @@ void QTorrentHandle::add_tracker(const announce_entry& url) {
 #endif
 }
 
-void QTorrentHandle::prioritize_first_last_piece(bool b) {
+void QTorrentHandle::prioritize_first_last_piece(bool b) const {
   // Detect main file
   int rank=0;
   int main_file_index = 0;
@@ -543,7 +543,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) {
   torrent_handle::piece_priority(last_piece, prio);
 }
 
-void QTorrentHandle::rename_file(int index, QString name) {
+void QTorrentHandle::rename_file(int index, QString name) const {
   torrent_handle::rename_file(index, std::string(name.toUtf8().constData()));
 }
 

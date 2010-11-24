@@ -74,7 +74,7 @@ public:
   PropertiesWidget *getProperties() const { return properties; }
 
 public slots:
-  void trackerAuthenticationRequired(QTorrentHandle& h);
+  void trackerAuthenticationRequired(const QTorrentHandle& h);
   void setTabText(int index, QString text) const;
   void showNotificationBaloon(QString title, QString msg) const;
   void downloadFromURLList(const QStringList& urls);
@@ -97,7 +97,7 @@ protected slots:
   void readSettings();
   void on_actionExit_triggered();
   void createTrayIcon();
-  void fullDiskError(QTorrentHandle& h, QString msg) const;
+  void fullDiskError(const QTorrentHandle& h, QString msg) const;
   void handleDownloadFromUrlFailure(QString, QString) const;
   void createSystrayDelayed();
   void tab_changed(int);
@@ -123,8 +123,8 @@ protected slots:
   void addTorrent(QString path);
   void addUnauthenticatedTracker(const QPair<QTorrentHandle,QString> &tracker);
   void processDownloadedFiles(QString path, QString url);
-  void finishedTorrent(QTorrentHandle& h) const;
-  void askRecursiveTorrentDownloadConfirmation(QTorrentHandle &h);
+  void finishedTorrent(const QTorrentHandle& h) const;
+  void askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h);
   // Options slots
   void on_actionOptions_triggered();
   void optionsSaved();

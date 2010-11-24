@@ -135,10 +135,10 @@ public slots:
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
-  void appendLabelToTorrentSavePath(QTorrentHandle &h);
-  void changeLabelInTorrentSavePath(QTorrentHandle &h, QString old_label, QString new_label);
+  void appendLabelToTorrentSavePath(const QTorrentHandle &h);
+  void changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label);
 #if LIBTORRENT_VERSION_MINOR > 14
-  void appendqBextensionToTorrent(QTorrentHandle &h, bool append);
+  void appendqBextensionToTorrent(const QTorrentHandle &h, bool append);
   void setAppendqBExtension(bool append);
 #endif
   void applyEncryptionSettings(libtorrent::pe_settings se);
@@ -186,21 +186,21 @@ signals:
   void addedTorrent(const QTorrentHandle& h);
   void deletedTorrent(QString hash);
   void torrentAboutToBeRemoved(const QTorrentHandle &h);
-  void pausedTorrent(QTorrentHandle& h);
-  void resumedTorrent(QTorrentHandle& h);
-  void finishedTorrent(QTorrentHandle& h);
-  void fullDiskError(QTorrentHandle& h, QString msg);
+  void pausedTorrent(const QTorrentHandle& h);
+  void resumedTorrent(const QTorrentHandle& h);
+  void finishedTorrent(const QTorrentHandle& h);
+  void fullDiskError(const QTorrentHandle& h, QString msg);
   void trackerError(QString hash, QString time, QString msg);
-  void trackerAuthenticationRequired(QTorrentHandle& h);
+  void trackerAuthenticationRequired(const QTorrentHandle& h);
   void newDownloadedTorrent(QString path, QString url);
   void updateFileSize(QString hash);
   void downloadFromUrlFailure(QString url, QString reason);
-  void torrentFinishedChecking(QTorrentHandle& h);
-  void metadataReceived(QTorrentHandle &h);
-  void savePathChanged(QTorrentHandle &h);
+  void torrentFinishedChecking(const QTorrentHandle& h);
+  void metadataReceived(const QTorrentHandle &h);
+  void savePathChanged(const QTorrentHandle &h);
   void newConsoleMessage(QString msg);
   void alternativeSpeedsModeChanged(bool alternative);
-  void recursiveTorrentDownloadPossible(QTorrentHandle &h);
+  void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
 
 private:
 #if LIBTORRENT_VERSION_MINOR < 15

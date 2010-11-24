@@ -365,7 +365,7 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   return data;
 }
 
-void EventManager::addedTorrent(QTorrentHandle& h)
+void EventManager::addedTorrent(const QTorrentHandle& h)
 {
   modifiedTorrent(h);
 }
@@ -375,7 +375,7 @@ void EventManager::deletedTorrent(QString hash)
   event_list.remove(hash);
 }
 
-void EventManager::modifiedTorrent(QTorrentHandle h)
+void EventManager::modifiedTorrent(const QTorrentHandle& h)
 {
   QString hash = h.hash();
   QVariantMap event;

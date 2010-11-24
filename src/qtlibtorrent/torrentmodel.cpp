@@ -210,11 +210,11 @@ void TorrentModel::populate() {
   connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), SLOT(removeTorrent(QString)));
-  connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
-  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
-  connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
-  connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
-  connect(QBtSession::instance(), SIGNAL(torrentFinishedChecking(QTorrentHandle&)), SLOT(handleTorrentUpdate(QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(torrentFinishedChecking(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
 }
 
 TorrentModel::~TorrentModel() {
@@ -356,7 +356,7 @@ void TorrentModel::endRemoveTorrent()
   endRemoveRows();
 }
 
-void TorrentModel::handleTorrentUpdate(QTorrentHandle &h)
+void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)
 {
   const int row = torrentRow(h.hash());
   if(row >= 0) {

@@ -115,18 +115,18 @@ class QTorrentHandle : public libtorrent::torrent_handle {
     //
     // Setters
     //
-    void pause();
-    void resume();
-    void remove_url_seed(QString seed);
-    void add_url_seed(QString seed);
-    void prioritize_files(const std::vector<int> &v);
+    void pause() const;
+    void resume() const;
+    void remove_url_seed(QString seed) const;
+    void add_url_seed(QString seed) const;
+    void prioritize_files(const std::vector<int> &v) const;
     void file_priority(int index, int priority) const;
-    void set_tracker_login(QString username, QString password);
+    void set_tracker_login(QString username, QString password) const;
     void move_storage(QString path) const;
-    void add_tracker(const libtorrent::announce_entry& url);
-    void prioritize_first_last_piece(bool b);
-    void rename_file(int index, QString name);
-    bool save_torrent_file(QString path);
+    void add_tracker(const libtorrent::announce_entry& url) const;
+    void prioritize_first_last_piece(bool b) const;
+    void rename_file(int index, QString name) const;
+    bool save_torrent_file(QString path) const;
 
     //
     // Operators

@@ -107,7 +107,7 @@ protected slots:
   void askNewLabelForSelection();
 
 signals:
-  void currentTorrentChanged(QTorrentHandle &h);
+  void currentTorrentChanged(const QTorrentHandle &h);
 
 private:
   TransferListDelegate *listDelegate;

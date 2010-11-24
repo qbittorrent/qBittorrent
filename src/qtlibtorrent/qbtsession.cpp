@@ -409,6 +409,7 @@ void QBtSession::configureSession() {
   sessionSettings.outgoing_ports = std::make_pair(pref.outgoingPortsMin(), pref.outgoingPortsMax());
   setSessionSettings(sessionSettings);
   // Ignore limits on LAN
+  qDebug() << "Ignore limits on LAN" << pref.ignoreLimitsOnLAN();
   sessionSettings.ignore_limits_on_local_network = pref.ignoreLimitsOnLAN();
   // Include overhead in transfer limits
   sessionSettings.rate_limit_ip_overhead = pref.includeOverheadInLimits();
@@ -1645,7 +1646,7 @@ void QBtSession::setDefaultTempPath(QString temppath) {
 }
 
 #if LIBTORRENT_VERSION_MINOR > 14
-void QBtSession::appendqBextensionToTorrent(QTorrentHandle &h, bool append) {
+void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {
   if(!h.is_valid() || !h.has_metadata()) return;
   std::vector<size_type> fp;
   h.file_progress(fp);
@@ -1673,7 +1674,7 @@ void QBtSession::appendqBextensionToTorrent(QTorrentHandle &h, bool append) {
 }
 #endif
 
-void QBtSession::changeLabelInTorrentSavePath(QTorrentHandle &h, QString old_label, QString new_label) {
+void QBtSession::changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label) {
   if(!h.is_valid()) return;
   if(!appendLabelToSavePath) return;
   QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
@@ -1687,7 +1688,7 @@ void QBtSession::changeLabelInTorrentSavePath(QTorrentHandle &h, QString old_lab
   }
 }
 
-void QBtSession::appendLabelToTorrentSavePath(QTorrentHandle& h) {
+void QBtSession::appendLabelToTorrentSavePath(const QTorrentHandle& h) {
   if(!h.is_valid()) return;
   const QString label = TorrentPersistentData::getLabel(h.hash());
   if(label.isEmpty()) return;
