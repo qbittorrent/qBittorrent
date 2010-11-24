@@ -182,17 +182,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="199"/>
         <source>Display program notification balloons</source>
-        <translation type="unfinished">Mostra fumetti di notifiche dei programmi</translation>
+        <translation>Mostra fumetti di notifiche dei programmi</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished">Abilita i tracker connessi</translation>
+        <translation>Abilita i tracker connessi</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="211"/>
         <source>Embedded tracker port</source>
-        <translation type="unfinished">Porte tracker collegate</translation>
+        <translation>Porte tracker collegate</translation>
     </message>
 </context>
 <context>
@@ -200,194 +200,194 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="14"/>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore download RSS automatico</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="26"/>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita il gestore automatico di download RSS</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="45"/>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Regole di download</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="128"/>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Definizione regole</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="140"/>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deve contenere:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="153"/>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Non deve contenere:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="166"/>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Assegna etichetta:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="183"/>
         <source>Save to a different directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva in una cartella differente</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="193"/>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva in:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="215"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="235"/>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica regola ai feed:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="264"/>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation>Collegamenti articoli RSS</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="296"/>
         <source>Import...</source>
-        <translation type="unfinished">Importa...</translation>
+        <translation>Importa...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="303"/>
         <source>Export...</source>
-        <translation type="unfinished">Esporta...</translation>
+        <translation>Esporta...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="266"/>
         <source>New rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo nome regola</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="266"/>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore inserisci il nome della nuova regola di download.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="270"/>
         <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>Rule name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflitto nel nome della regola</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="270"/>
         <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Una regola con questo nome esiste già, per favore scegli un altro nome.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="288"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro che vuoi rimuovere la regola di download di nome %1?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="290"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sei sicuro che vuoi rimuovere la regola di download selezionata?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="291"/>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Conferma cancellazione della regola</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="307"/>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di destinazione</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Azione non valida</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>La lista è vuota, non c&apos;è niente da esportare.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="319"/>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dove si vuole salvare la lista?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="319"/>
         <source>Rules list (*.rssrules)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista regole (*.rssrules)</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Errore I/O</translation>
+        <translation>Errore I/O</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>Creazione del file di destinazione fallita</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore indica il file della regola di download</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista regole (*.rssrules *.filters)</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa errore</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importazione del file della regola fallita</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="347"/>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi nuova regola...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina regola</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="355"/>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinomina regola...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Delete selected rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina regole selezionate</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Rule renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>Rinominazione regole</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>Per favore inserisci il nuovo nome della regola</translation>
     </message>
 </context>
 <context>
@@ -924,12 +924,12 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="41"/>
         <source>RSS feeds</source>
-        <translation type="unfinished">Feed Rss</translation>
+        <translation>Feed Rss</translation>
     </message>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation type="unfinished">Non letti</translation>
+        <translation>Non letti</translation>
     </message>
 </context>
 <context>
@@ -1680,7 +1680,7 @@ Non verranno emessi avvisi.</translation>
         <location filename="../mainwindow.ui" line="154"/>
         <location filename="../mainwindow.ui" line="157"/>
         <source>Exit</source>
-        <translation type="unfinished">Esci</translation>
+        <translation>Esci</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="192"/>
@@ -1752,13 +1752,13 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="362"/>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished">Chiudi qBittorrent quando i download sono completi</translation>
+        <translation>Chiudi qBittorrent quando i download sono completi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="371"/>
         <location filename="../mainwindow.ui" line="374"/>
         <source>Import torrent...</source>
-        <translation type="unfinished">Importa torrent...</translation>
+        <translation>Importa torrent...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="291"/>
@@ -1821,28 +1821,29 @@ Non verranno emessi avvisi.</translation>
         <location filename="../mainwindow.cpp" line="1197"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translatorcomment>p.esempio qBittorrent v0.x</translatorcomment>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="125"/>
         <source>Set the password...</source>
-        <translation type="unfinished">Seleziona la password...</translation>
+        <translation>Imposta la password...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="166"/>
         <source>Transfers</source>
-        <translation type="unfinished">Trasferimenti</translation>
+        <translation>Trasferimenti</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="249"/>
         <source>Torrent file association</source>
-        <translation type="unfinished">Associazione file torrent</translation>
+        <translation>Associazione file torrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished">qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di torrent e magnet links.
+        <translation>qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di torrent e magnet links.
 Vuoi associare qBittorrent ai file .torrent e ai magnet links?</translation>
     </message>
     <message>
@@ -1850,56 +1851,57 @@ Vuoi associare qBittorrent ai file .torrent e ai magnet links?</translation>
         <location filename="../mainwindow.cpp" line="361"/>
         <location filename="../mainwindow.cpp" line="612"/>
         <source>UI lock password</source>
-        <translation type="unfinished">Blocca password UI</translation>
+        <translation>Blocca password UI</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="346"/>
         <location filename="../mainwindow.cpp" line="361"/>
         <location filename="../mainwindow.cpp" line="612"/>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished">Per favore digita la password di blocco UI:</translation>
+        <translation>Per favore digita la password di blocco UI:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="351"/>
         <source>Password update</source>
-        <translation type="unfinished">Aggiorna password</translation>
+        <translation>Aggiorna password</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="351"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished">Il blocco password dell&apos;UI è stato attivato con successo</translation>
+        <translation>Il blocco password dell&apos;UI è stato attivato con successo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="377"/>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="395"/>
         <source>Search</source>
-        <translation type="unfinished">Ricerca</translation>
+        <translation>Ricerca</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="408"/>
         <source>Transfers (%1)</source>
-        <translation type="unfinished">Trasferimenti (%1)</translation>
+        <translation>Trasferimenti (%1)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>Download completion</source>
-        <translation type="unfinished">Completamento download</translation>
+        <translation>Completamento download</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished">%1 è stato scaricato.</translation>
+        <translatorcomment>p.esempio: xxx.avi ha terminato il download</translatorcomment>
+        <translation>%1 è stato scaricato.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">Errore I/O</translation>
+        <translation>Errore I/O</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
@@ -1907,168 +1909,168 @@ Vuoi associare qBittorrent ai file .torrent e ai magnet links?</translation>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished">Si è verificato un errore I/O per il torrent %1.
+        <translation>Si è verificato un errore I/O per il torrent %1.
 Motivo: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="466"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished">Alt+1</translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="468"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="470"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="472"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="535"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished">Conferma recursiva di download</translation>
+        <translation>Conferma recursiva di download</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="535"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished">Il torrent %1 contiene file torrent, vuoi procedere al download di qeusti file?</translation>
+        <translation>Il torrent %1 contiene file torrent, vuoi procedere al download di qeusti file?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <location filename="../mainwindow.cpp" line="697"/>
         <source>Yes</source>
-        <translation type="unfinished">Sì</translation>
+        <translation>Sì</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="537"/>
         <location filename="../mainwindow.cpp" line="696"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="538"/>
         <source>Never</source>
-        <translation type="unfinished">Mai</translation>
+        <translation>Mai</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="552"/>
         <source>Url download error</source>
-        <translation type="unfinished">Errore download da indirizzo web</translation>
+        <translation>Errore download da indirizzo web</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="552"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished">Impossibile scaricare il file all&apos;indirizzo: %1, motivo: %2.</translation>
+        <translation>Impossibile scaricare il file all&apos;indirizzo: %1, motivo: %2.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="558"/>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">Limite globale upload</translation>
+        <translation>Limite globale upload</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="580"/>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">Limite globale download</translation>
+        <translation>Limite globale download</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="625"/>
         <source>Invalid password</source>
-        <translation type="unfinished">Password non valida</translation>
+        <translation>Password non valida</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="625"/>
         <source>The password is invalid</source>
-        <translation type="unfinished">La password non è valida</translation>
+        <translation>La password non è valida</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="693"/>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">Uscire da qBittorrent</translation>
+        <translation>Uscire da qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="694"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished">Alcuni file sono ancora in trasferimento.
+        <translation>Alcuni file sono ancora in trasferimento.
 Sei sicuro di voler chiudere qBittorrent?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="698"/>
         <source>Always</source>
-        <translation type="unfinished">Sempre</translation>
+        <translation>Sempre</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="849"/>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">Apri file torrent</translation>
+        <translation>Apri file torrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="850"/>
         <source>Torrent Files</source>
-        <translation type="unfinished">File torrent</translation>
+        <translation>File torrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="929"/>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">Le opzioni sono state salvate.</translation>
+        <translation>Le opzioni sono state salvate.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1021"/>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1024"/>
         <location filename="../mainwindow.cpp" line="1031"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">Velocità DL: %1 KiB/s</translation>
+        <translation>Velocità DL: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1027"/>
         <location filename="../mainwindow.cpp" line="1033"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">Velocità UP: %1 KiB/s</translation>
+        <translation>Velocità UP: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1038"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
+        <translation>qBittorrent %1 (Down: %2/s, Up: %3/s)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1235"/>
         <source>A newer version is available</source>
-        <translation type="unfinished">Una nuova versione è disponibile</translation>
+        <translation>Una nuova versione è disponibile</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1236"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Una nuova versione di qBittorrent è disponibile su Sourceforge.
+        <translation>Una nuova versione di qBittorrent è disponibile su Sourceforge.
 Vuoi aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1251"/>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Impossibile aggiornare qBittorrent</translation>
+        <translation>Impossibile aggiornare qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1251"/>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent ha fallito l&apos;aggiornamento, ragioni: %1</translation>
+        <translation>qBittorrent ha fallito l&apos;aggiornamento, ragioni: %1</translation>
     </message>
 </context>
 <context>
@@ -2622,7 +2624,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1163"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server proxy</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1355"/>
@@ -2755,13 +2757,13 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../programupdater.cpp" line="176"/>
         <source>Could not create the file %1</source>
-        <translation type="unfinished">Il file non è stato creato %1</translation>
+        <translation>Il file non è stato creato %1</translation>
     </message>
     <message>
         <location filename="../programupdater.cpp" line="179"/>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished">Download dell&apos;update fallito al %1</translation>
+        <translation>Download dell&apos;update fallito al %1</translation>
     </message>
 </context>
 <context>
@@ -2784,7 +2786,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../properties/proplistdelegate.h" line="100"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mista</translation>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="103"/>
@@ -2804,27 +2806,27 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/proptabbar.cpp" line="54"/>
         <source>General</source>
-        <translation type="unfinished">Generali</translation>
+        <translation>Generali</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="61"/>
         <source>Trackers</source>
-        <translation type="unfinished">Tracker</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="67"/>
         <source>Peers</source>
-        <translation type="unfinished">Peer</translation>
+        <translation>Peer</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="73"/>
         <source>URL Seeds</source>
-        <translation type="unfinished">Seed da URL</translation>
+        <translation>Seed da URL</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="79"/>
         <source>Files</source>
-        <translation type="unfinished">File</translation>
+        <translation>File</translation>
     </message>
 </context>
 <context>
@@ -3086,146 +3088,146 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="201"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="207"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 ha raggiunto il rapporto massimo impostato.</translation>
+        <translation>%1 ha raggiunto il rapporto massimo impostato.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="202"/>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">Rimozione torrent %1...</translation>
+        <translation>Rimozione torrent %1...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="208"/>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">Torrent in pausa %1...</translation>
+        <translation>Torrent in pausa %1...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="296"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent è in ascolto sulla porta: TCP/%1</translation>
+        <translation>qBittorrent è in ascolto sulla porta: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="359"/>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">Supporto UPnP [ON]</translation>
+        <translation>Supporto UPnP [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="362"/>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">Supporto UPnP [OFF]</translation>
+        <translation>Supporto UPnP [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="367"/>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">Supporto NAT-PMP [ON]</translation>
+        <translation>Supporto NAT-PMP [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="370"/>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">Supporto NAT-PMP [OFF]</translation>
+        <translation>Supporto NAT-PMP [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="376"/>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">Lo user agent HTTP è %1</translation>
+        <translation>Lo user agent HTTP è %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="394"/>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">Cache disco in uso %1 MiB</translation>
+        <translation>Cache disco in uso %1 MiB</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="435"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">Supporto DHT [ON], porta: UDP/%1</translation>
+        <translation>Supporto DHT [ON], porta: UDP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="437"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="441"/>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">Supporto DHT [OFF]</translation>
+        <translation>Supporto DHT [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="445"/>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">Supporto PeX [ON]</translation>
+        <translation>Supporto PeX [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">Supporto PeX [OFF]</translation>
+        <translation>Supporto PeX [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="450"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">È richiesto il riavvio per modificare il supporto PeX</translation>
+        <translation>È richiesto il riavvio per modificare il supporto PeX</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="455"/>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">Supporto scoperta peer locali [ON]</translation>
+        <translation>Supporto scoperta peer locali [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="458"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">Supporto scoperta peer locali [OFF]</translation>
+        <translation>Supporto scoperta peer locali [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="470"/>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">Supporto cifratura [ON]</translation>
+        <translation>Supporto cifratura [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="475"/>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">Supporto cifratura [FORZATO]</translation>
+        <translation>Supporto cifratura [FORZATO]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="480"/>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">Supporto cifratura [OFF]</translation>
+        <translation>Supporto cifratura [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="546"/>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished">Tracker collegato [ON]</translation>
+        <translation>Tracker collegato [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="548"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished">Avvio fallito di collegamento al tracker!</translation>
+        <translation>Avvio fallito di collegamento al tracker!</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="551"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished">Tracker connesso</translation>
+        <translation>Tracker connesso</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="571"/>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">L&apos;interfaccia Web è in ascolto sulla porta %1</translation>
+        <translation>L&apos;interfaccia Web è in ascolto sulla porta %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="573"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished">Errore interfaccia web - Impossibile mettere l&apos;interfaccia web in ascolto sulla porta %1</translation>
+        <translation>Errore interfaccia web - Impossibile mettere l&apos;interfaccia web in ascolto sulla porta %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="748"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti e dal disco.</translation>
+        <translation>&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti e dal disco.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="750"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti.</translation>
+        <translation>&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="826"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; non è un URI magnetico valido.</translation>
+        <translation>&apos;%1&apos; non è un URI magnetico valido.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="842"/>
@@ -3233,7 +3235,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="976"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; è già nella lista dei download.</translation>
+        <translation>&apos;%1&apos; è già nella lista dei download.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="909"/>
@@ -3241,7 +3243,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1105"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; ripreso. (recupero veloce)</translation>
+        <translation>&apos;%1&apos; ripreso. (recupero veloce)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="911"/>
@@ -3249,151 +3251,151 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1107"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
+        <translation>&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="949"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="953"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Impossibile decifrare il file torrent: &apos;%1&apos;</translation>
+        <translation>Impossibile decifrare il file torrent: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="956"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">Questo file è corrotto o non è un torrent.</translation>
+        <translation>Questo file è corrotto o non è un torrent.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="989"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Errore.Il torrent %1 non contiene alcun file.</translation>
+        <translation>Errore.Il torrent %1 non contiene alcun file.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1230"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Nota: sono stati aggiunti nuovi tracker al torrent esistente.</translation>
+        <translation>Nota: sono stati aggiunti nuovi tracker al torrent esistente.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1243"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Nota: sono stati aggiunti nuovi URL al torrent esistente.</translation>
+        <translation>Nota: sono stati aggiunti nuovi URL al torrent esistente.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1578"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bloccato a causa dei tuoi filtri IP&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bloccato a causa dei tuoi filtri IP&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1580"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bannato a causa di parti corrotte&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;è stato bannato a causa di parti corrotte&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1746"/>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished">L&apos;interfaccia di rete definita non è valida: %1</translation>
+        <translation>L&apos;interfaccia di rete definita non è valida: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1747"/>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished">Si sta provando qualsiasi interfaccia di rete disponibile.</translation>
+        <translation>Si sta provando qualsiasi interfaccia di rete disponibile.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1761"/>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished">Si sta ascoltano l&apos;indirizzo IP %1 nell&apos;interfaccia di rete %2...</translation>
+        <translation>Si sta ascoltano l&apos;indirizzo IP %1 nell&apos;interfaccia di rete %2...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1764"/>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished">Fallito l&apos;ascolto sull&apos;interfaccia di rete %1</translation>
+        <translation>Fallito l&apos;ascolto sull&apos;interfaccia di rete %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1905"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">Download ricorsivo del file %1 incluso nel torrent %2</translation>
+        <translation>Download ricorsivo del file %1 incluso nel torrent %2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1915"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1994"/>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Impossibile decifrare il file torrent %1.</translation>
+        <translation>Impossibile decifrare il file torrent %1.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1948"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished">Nome del torrent %1</translation>
+        <translation>Nome del torrent %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished">Dimensione del torrent %1</translation>
+        <translation>Dimensione del torrent %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1950"/>
         <source>Save path: %1</source>
-        <translation type="unfinished">Salva percorso %1</translation>
+        <translation>Salva percorso %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1951"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Questo torrent è stato scaricato in %1.</translation>
+        <translation>Questo torrent è stato scaricato in %1.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1952"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">Grazie per aver usato qBittorrent.</translation>
+        <translation>Grazie per aver usato qBittorrent.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1954"/>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] %1 ha finito di scaricare</translation>
+        <translation>[qBittorrent] %1 ha finito di scaricare</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2191"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished">Si è verificato un errore I/O, %1 in pausa.</translation>
+        <translation>Si è verificato un errore I/O, %1 in pausa.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2192"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2314"/>
         <source>Reason: %1</source>
-        <translation type="unfinished">Ragioni: %1</translation>
+        <translation>Ragioni: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: mappatura porte fallita, messaggio: %1</translation>
+        <translation>UPnP/NAT-PMP: mappatura porte fallita, messaggio: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: mappatura porte riuscita, messaggio: %1</translation>
+        <translation>UPnP/NAT-PMP: mappatura porte riuscita, messaggio: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2309"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">La dimensione del file discorda con il torrent %1, è in pausa.</translation>
+        <translation>La dimensione del file discorda con il torrent %1, è in pausa.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2313"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
+        <translation>Il recupero veloce del torrent %1 è stato rifiutato, altro tentativo in corso...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2319"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Ricerca seed web fallita per l&apos;url: %1, messaggio: %2</translation>
+        <translation>Ricerca seed web fallita per l&apos;url: %1, messaggio: %2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2443"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">Download di &apos;%1&apos; in corso...</translation>
+        <translation>Download di &apos;%1&apos; in corso...</translation>
     </message>
 </context>
 <context>
@@ -3423,7 +3425,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../rss/rss.ui" line="95"/>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore download RSS...</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="102"/>
@@ -3642,7 +3644,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssarticle.cpp" line="295"/>
         <source>No description available</source>
-        <translation type="unfinished">Descrizione non disponibile</translation>
+        <translation>Descrizione non disponibile</translation>
     </message>
 </context>
 <context>
@@ -3650,7 +3652,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssfeed.cpp" line="305"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished">Download automatico del torrent %1 dal Feed RSS %2...</translation>
+        <translation>Download automatico del torrent %1 dal Feed RSS %2...</translation>
     </message>
 </context>
 <context>
@@ -3684,22 +3686,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished">Impostazioni lettore RSS</translation>
+        <translation>Impostazioni lettore RSS</translation>
     </message>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="47"/>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">Intervallo aggiornamento feed RSS:</translation>
+        <translation>Intervallo aggiornamento feed RSS:</translation>
     </message>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="70"/>
         <source>minutes</source>
-        <translation type="unfinished">minuti</translation>
+        <translation>minuti</translation>
     </message>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">Numero massimo di articoli per feed:</translation>
+        <translation>Numero massimo di articoli per feed:</translation>
     </message>
 </context>
 <context>
@@ -3979,7 +3981,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../statusbar.h" line="171"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished">qBittorrent è stato appena aggiornato e ha bisogno di riavviarsi per rendere effettive le modifiche.</translation>
+        <translation>qBittorrent è stato appena aggiornato e ha bisogno di riavviarsi per rendere effettive le modifiche.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="183"/>
@@ -4035,12 +4037,12 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="65"/>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">Seleziona una cartella da aggiungere al torrent</translation>
+        <translation>Seleziona una cartella da aggiungere al torrent</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="81"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">Selezionare un file da aggiungere al torrent</translation>
+        <translation>Selezionare un file da aggiungere al torrent</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -4062,44 +4064,44 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="104"/>
         <source>No input path set</source>
-        <translation type="unfinished">Nessun percorso da inserire definito</translation>
+        <translation>Nessun percorso da inserire definito</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="104"/>
         <source>Please type an input path first</source>
-        <translation type="unfinished">Per favore scegliere prima un percorso da inserire</translation>
+        <translation>Per favore scegliere prima un percorso da inserire</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="114"/>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">Selezionare il file torrent di destinazione</translation>
+        <translation>Selezionare il file torrent di destinazione</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="114"/>
         <source>Torrent Files</source>
-        <translation type="unfinished">File torrent</translation>
+        <translation>File torrent</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="141"/>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="157"/>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="172"/>
         <source>Torrent creation</source>
-        <translation type="unfinished">Creazione di un torrent</translation>
+        <translation>Creazione di un torrent</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="141"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">Creazione torrent fallita, motivo: %1</translation>
+        <translation>Creazione torrent fallita, motivo: %1</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="157"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">Il torrent creato non è valido. Non sarà aggiunto alla lista dei download.</translation>
+        <translation>Il torrent creato non è valido. Non sarà aggiunto alla lista dei download.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="172"/>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">Il torrent è stato creato correttamente:</translation>
+        <translation>Il torrent è stato creato correttamente:</translation>
     </message>
 </context>
 <context>
@@ -4130,75 +4132,75 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentimportdlg.ui" line="14"/>
         <source>Torrent Import</source>
-        <translation type="unfinished">Importazione torrent</translation>
+        <translation>Importazione torrent</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="41"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="unfinished">Questo assistente ti aiuterà a condividere un torrent che hai appena scaricato con qBittorrent.</translation>
+        <translation>Questo assistente ti aiuterà a condividere un torrent che hai appena scaricato con qBittorrent.</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="53"/>
         <source>Torrent file to import:</source>
-        <translation type="unfinished">File torrent da importare:</translation>
+        <translation>File torrent da importare:</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="69"/>
         <location filename="../torrentimportdlg.ui" line="97"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="78"/>
         <source>Content location:</source>
-        <translation type="unfinished">Locazione del contenuto:</translation>
+        <translation>Locazione del contenuto:</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="109"/>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="unfinished">Salta la fase di verifica dei dati e iniziare immediatamente il seeding</translation>
+        <translation>Salta la fase di verifica dei dati e iniziare immediatamente il seeding</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="119"/>
         <source>Import</source>
-        <translation type="unfinished">Importa</translation>
+        <translation>Importa</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="64"/>
         <source>Torrent file to import</source>
-        <translation type="unfinished">File torrent da importare</translation>
+        <translation>File torrent da importare</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="64"/>
         <source>Torrent files (*.torrent)</source>
-        <translation type="unfinished">File torrent (*.torrent)</translation>
+        <translation>File torrent (*.torrent)</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="85"/>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished">%1 File</translation>
+        <translation>%1 File</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="87"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished">Fornire la posizione di %1</translation>
+        <translation>Fornire la posizione di %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="124"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished">Si prega di scegliere il percorso del torrent: %1</translation>
+        <translation>Si prega di scegliere il percorso del torrent: %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="218"/>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>File torrent non valido</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="218"/>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo non è un file torrent valido.</translation>
     </message>
 </context>
 <context>
@@ -4207,107 +4209,107 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="231"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="233"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Dimensione</translation>
+        <translation>Dimensione</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="234"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">% Completo</translation>
+        <translation>% Completo</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="235"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="236"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Seeds</translation>
+        <translation>Seeds</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="237"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Peer</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="238"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Velocità download</translation>
+        <translation>Velocità download</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="239"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Velocità upload</translation>
+        <translation>Velocità upload</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="240"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Rapporto</translation>
+        <translation>Rapporto</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="241"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">ETA</translation>
+        <translation>ETA</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="242"/>
         <source>Label</source>
-        <translation type="unfinished">Etichetta</translation>
+        <translation>Etichetta</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="243"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Aggiunto il</translation>
+        <translation>Aggiunto il</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="244"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">Completato il</translation>
+        <translation>Completato il</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="245"/>
         <source>Tracker</source>
-        <translation type="unfinished">Tracker</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="246"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">Limite di download</translation>
+        <translation>Limite di download</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="247"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">Limiti di upload</translation>
+        <translation>Limiti di upload</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="248"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="249"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Quantità rimanente</translation>
     </message>
 </context>
 <context>
@@ -5126,17 +5128,17 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="91"/>
         <source>Tracker URLs:</source>
-        <translation type="unfinished">URL dei tracker:</translation>
+        <translation>URL dei tracker:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="101"/>
         <source>Web seeds urls:</source>
-        <translation type="unfinished">URL seed web:</translation>
+        <translation>URL seed web:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="111"/>
         <source>Comment:</source>
-        <translation type="unfinished">Commento:</translation>
+        <translation>Commento:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="158"/>
@@ -5186,7 +5188,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="218"/>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="243"/>
