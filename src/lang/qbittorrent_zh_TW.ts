@@ -150,171 +150,171 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示程式通知氣球</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用嵌入 tracker</translation>
     </message>
     <message>
         <source>Embedded tracker port</source>
-        <translation type="unfinished"></translation>
+        <translation>嵌入 tracker 埠</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Automated RSS Downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>自動 RSS 下載器</translation>
     </message>
     <message>
         <source>Enable the automated RSS downloader</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用自動 RSS 下載器</translation>
     </message>
     <message>
         <source>Download rules</source>
-        <translation type="unfinished"></translation>
+        <translation>下載規則</translation>
     </message>
     <message>
         <source>Rule definition</source>
-        <translation type="unfinished"></translation>
+        <translation>規則定義</translation>
     </message>
     <message>
         <source>Must contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>必須包含:</translation>
     </message>
     <message>
         <source>Must not contain:</source>
-        <translation type="unfinished"></translation>
+        <translation>必須不包含:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Assign label:</source>
-        <translation type="unfinished"></translation>
+        <translation>指定標籤:</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>套用規則到 feed:</translation>
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation type="unfinished"></translation>
+        <translation>配對 RSS 文章</translation>
     </message>
     <message>
         <source>Save to a different directory</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存到其他的目錄</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存至:</translation>
     </message>
     <message>
         <source>Import...</source>
-        <translation type="unfinished">匯入...</translation>
+        <translation>匯入...</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished">匯出...
+        <translation>匯出...
 </translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>新原則名稱</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>請輸入新下載規則的名稱。</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>原則名稱衝突</translation>
     </message>
     <message>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished"></translation>
+        <translation>此原則名稱已存在, 請選擇另一個名稱。</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>你確定要刪除下載原則 %1 嗎?</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"></translation>
+        <translation>你確定要移除所選的下載原則嗎?</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>規則刪除確認</translation>
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>目的地目錄</translation>
     </message>
     <message>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的行動</translation>
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>清單是空白的, 不會匯出任何東西。</translation>
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>你想要將清單儲存到哪裡?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
-        <translation type="unfinished"></translation>
+        <translation>規則清單 (*.rssrules)</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O 錯誤</translation>
+        <translation>I/O 錯誤</translation>
     </message>
     <message>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立目的檔案</translation>
     </message>
     <message>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>請指定 RSS 下載規則檔案</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished"></translation>
+        <translation>規則清單 (*.rssrules, *.filters)</translation>
     </message>
     <message>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入錯誤</translation>
     </message>
     <message>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入選擇的規則檔案失敗</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>增加新規則...</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除規則</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>重新命名規則...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除所選的規則</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>重新命名規則</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"></translation>
+        <translation>請輸入新規則檔案的名稱</translation>
     </message>
 </context>
 <context>
@@ -801,11 +801,11 @@ You should get this information from your Web browser preferences.</source>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished">RSS feeds</translation>
+        <translation>RSS feeds</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished">未讀</translation>
+        <translation>未讀</translation>
     </message>
 </context>
 <context>
@@ -991,6 +991,24 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <source>The password is invalid</source>
         <translation type="obsolete">密碼是無效的</translation>
+    </message>
+    <message>
+        <source>A newer version is available</source>
+        <translation type="obsolete">有新版本可以取得</translation>
+    </message>
+    <message>
+        <source>A newer version of qBittorrent is available on Sourceforge.
+Would you like to update qBittorrent to version %1?</source>
+        <translation type="obsolete">Sourceforge 上有 qBittorrent 的新版本。
+你想要更新 qBittorrent 的版本到 %1 嗎?</translation>
+    </message>
+    <message>
+        <source>Impossible to update qBittorrent</source>
+        <translation type="obsolete">不可能更新 qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent failed to update, reason: %1</source>
+        <translation type="obsolete">qBittorrent 更新失敗, 原因: %1</translation>
     </message>
 </context>
 <context>
@@ -1570,222 +1588,223 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>當下載完成後關閉 qBittorrent</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>離開</translation>
     </message>
     <message>
         <source>Import torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入 torrent...</translation>
     </message>
     <message>
         <source>Donate money</source>
-        <translation type="unfinished"></translation>
+        <translation>捐獻金錢</translation>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
-        <translation type="unfinished"></translation>
+        <translation>如果你喜歡 qBittorrent, 請捐款!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="unfinished">qBittorrent %1</translation>
+        <translation>qBittorrent %1</translation>
     </message>
     <message>
         <source>Set the password...</source>
-        <translation type="unfinished">設定密碼...</translation>
+        <translation>設定密碼...</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished">傳輸</translation>
+        <translation>傳輸</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation type="unfinished">Torrent 檔案關聯</translation>
+        <translation>Torrent 檔案關聯</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished">qBittorrent 不是你開啟 torrent 檔案或磁性連結的預設程式。
+        <translation>qBittorrent 不是你開啟 torrent 檔案或磁性連結的預設程式。
 你想要以 qBittorrent 開啟 torrent 檔案和磁性連結嗎?</translation>
     </message>
     <message>
         <source>UI lock password</source>
-        <translation type="unfinished">UI 鎖定密碼</translation>
+        <translation>UI 鎖定密碼</translation>
     </message>
     <message>
         <source>Please type the UI lock password:</source>
-        <translation type="unfinished">請輸入 UI 鎖定密碼:</translation>
+        <translation>請輸入 UI 鎖定密碼:</translation>
     </message>
     <message>
         <source>Password update</source>
-        <translation type="unfinished">更新密碼</translation>
+        <translation>更新密碼</translation>
     </message>
     <message>
         <source>The UI lock password has been successfully updated</source>
-        <translation type="unfinished">UI 鎖定密碼已經更新了</translation>
+        <translation>UI 鎖定密碼已經更新了</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished">RSS</translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">搜尋</translation>
+        <translation>搜尋</translation>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation type="unfinished">傳輸 (%1)</translation>
+        <translation>傳輸 (%1)</translation>
     </message>
     <message>
         <source>Download completion</source>
-        <translation type="unfinished">下載完成</translation>
+        <translation>下載完成</translation>
     </message>
     <message>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="unfinished">%1 已經下載完成。</translation>
+        <translation>%1 已經下載完成。</translation>
     </message>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished">I/O 錯誤</translation>
+        <translation>I/O 錯誤</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished">Torrent %1 發生了 I/O 錯誤。
+        <translation>Torrent %1 發生了 I/O 錯誤。
 原因: %2</translation>
     </message>
     <message>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation type="unfinished">Alt+1</translation>
+        <translation>Alt+1</translation>
     </message>
     <message>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation type="unfinished">Alt+2</translation>
+        <translation>Alt+2</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation type="unfinished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation type="unfinished">Alt+3</translation>
+        <translation>Alt+3</translation>
     </message>
     <message>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished">遞迴下載確認</translation>
+        <translation>遞迴下載確認</translation>
     </message>
     <message>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished">Torrent %1 包含 torrent 檔案, 你想要執行下載作業嗎?</translation>
+        <translation>Torrent %1 包含 torrent 檔案, 你想要執行下載作業嗎?</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">從不</translation>
+        <translation>從不</translation>
     </message>
     <message>
         <source>Url download error</source>
-        <translation type="unfinished">URL 下載錯誤</translation>
+        <translation>URL 下載錯誤</translation>
     </message>
     <message>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished">無法從 URL: %1 下載檔案, 原因: %2。</translation>
+        <translation>無法從 URL: %1 下載檔案, 原因: %2。</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished">全域上傳速度限制</translation>
+        <translation>全域上傳速度限制</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished">全域下載速度限制</translation>
+        <translation>全域下載速度限制</translation>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="unfinished">無效的密碼</translation>
+        <translation>無效的密碼</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="unfinished">密碼是無效的</translation>
+        <translation>密碼是無效的</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">退出 qBittorrent</translation>
+        <translation>退出 qBittorrent</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished">有些檔案還在傳輸中。
+        <translation>有些檔案還在傳輸中。
 你確定要退出 qBittorrent 嗎?</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished">總是</translation>
+        <translation>總是</translation>
     </message>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">開啟 torrent 檔案</translation>
+        <translation>開啟 torrent 檔案</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">torrent 檔案</translation>
+        <translation>torrent 檔案</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
-        <translation type="unfinished">選項儲存成功。</translation>
+        <translation>選項儲存成功。</translation>
     </message>
     <message>
         <source>qBittorrent</source>
-        <translation type="unfinished">qBittorrent</translation>
+        <translation>qBittorrent</translation>
     </message>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="unfinished">下載速度: %1 KiB/s</translation>
+        <translation>下載速度: %1 KiB/s</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="unfinished">上傳速度: %1 KiB/s</translation>
+        <translation>上傳速度: %1 KiB/s</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation type="unfinished">qBittorrent %1 (下載速度: %2/s, 上傳速度: %3/s)</translation>
+        <translation>qBittorrent %1 (下載速度: %2/s, 上傳速度: %3/s)</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">有新版本可以取得</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sourceforge 上有 qBittorrent 的新版本。
+你想要更新 qBittorrent 的版本到 %1 嗎?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不可能更新 qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">qBittorrent 更新失敗, 原因: %1</translation>
     </message>
 </context>
 <context>
@@ -2325,19 +2344,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>代理伺服器</translation>
     </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立檔案 %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
+        <translation>無法從 %1 下載更新擋</translation>
     </message>
 </context>
 <context>
@@ -2364,30 +2383,30 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished"></translation>
+        <translation>混和</translation>
     </message>
 </context>
 <context>
     <name>PropTabBar</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished">Trackers</translation>
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished">下載者</translation>
+        <translation>下載者</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>URL 種子</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished">檔案</translation>
+        <translation>檔案</translation>
     </message>
 </context>
 <context>
@@ -2597,247 +2616,247 @@ Would you like to update qBittorrent to version %1?</source>
     <name>QBtSession</name>
     <message>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation type="unfinished">%1 已經到達你設定的最大比率了。</translation>
+        <translation>%1 已經到達你設定的最大比率了。</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
-        <translation type="unfinished">移除 torrent %1...</translation>
+        <translation>移除 torrent %1...</translation>
     </message>
     <message>
         <source>Pausing torrent %1...</source>
-        <translation type="unfinished">暫停 torrent %1...</translation>
+        <translation>暫停 torrent %1...</translation>
     </message>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="unfinished">qBittorrent 綁定埠: TCP/%1</translation>
+        <translation>qBittorrent 綁定埠: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation type="unfinished">UPnP 支援 [開啟]</translation>
+        <translation>UPnP 支援 [開啟]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation type="unfinished">UPnP 支援 [關閉]</translation>
+        <translation>UPnP 支援 [關閉]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation type="unfinished">NAT-PMP 支援 [開啟]</translation>
+        <translation>NAT-PMP 支援 [開啟]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation type="unfinished">NAT-PMP 支援 [關閉]</translation>
+        <translation>NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP 使用者代理是: %1</translation>
+        <translation>HTTP 使用者代理是: %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">使用磁碟快取大小為 %1 MiB</translation>
+        <translation>使用磁碟快取大小為 %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="unfinished">DHT 支援 [開啟], 埠: UDP/%1</translation>
+        <translation>DHT 支援 [開啟], 埠: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">DHT 支援 [關閉]</translation>
+        <translation>DHT 支援 [關閉]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">PeX 支援 [開啟]</translation>
+        <translation>PeX 支援 [開啟]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">PeX 支援 [關閉]</translation>
+        <translation>PeX 支援 [關閉]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">切換 PeX 支援需重新啟動</translation>
+        <translation>切換 PeX 支援需重新啟動</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation type="unfinished">本地下載者搜尋 [開啟]</translation>
+        <translation>本地下載者搜尋 [開啟]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation type="unfinished">本地下載者搜尋支援 [關閉]</translation>
+        <translation>本地下載者搜尋支援 [關閉]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation type="unfinished">加密支援 [開啟]</translation>
+        <translation>加密支援 [開啟]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
-        <translation type="unfinished">加密支援 [強迫]</translation>
+        <translation>加密支援 [強迫]</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation type="unfinished">加密支援 [關閉]</translation>
+        <translation>加密支援 [關閉]</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>嵌入 tracker [開啟]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
-        <translation type="unfinished"></translation>
+        <translation>無法開始嵌入 tracker!</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>嵌入 tracker [關閉]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="unfinished">Web UI 監聽的埠為: %1</translation>
+        <translation>Web UI 監聽的埠為: %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="unfinished">Web UI 錯誤 - 無法綁定 Web UI 到埠 %1</translation>
+        <translation>Web UI 錯誤 - 無法綁定 Web UI 到埠 %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; 已經從傳輸清單和硬碟中刪除了。</translation>
+        <translation>&apos;%1&apos; 已經從傳輸清單和硬碟中刪除了。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="unfinished">&apos;%1&apos; 已經從傳輸清單中刪除了。</translation>
+        <translation>&apos;%1&apos; 已經從傳輸清單中刪除了。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="unfinished">&apos;%1&apos; 不是一個有效的磁性 URI。</translation>
+        <translation>&apos;%1&apos; 不是一個有效的磁性 URI。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; 已經在下載清單裡了。</translation>
+        <translation>&apos;%1&apos; 已經在下載清單裡了。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="unfinished">&apos;%1&apos; 已恢復下載。(快速恢復)</translation>
+        <translation>&apos;%1&apos; 已恢復下載。(快速恢復)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="unfinished">&apos;%1&apos; 已增加到下載清單。</translation>
+        <translation>&apos;%1&apos; 已增加到下載清單。</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">無法解碼 torrent 檔案: &apos;%1&apos;</translation>
+        <translation>無法解碼 torrent 檔案: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="unfinished">這個檔案不是損壞就是並非 torrent。</translation>
+        <translation>這個檔案不是損壞就是並非 torrent。</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">錯誤: Torrent %1 沒有包含任何檔案。</translation>
+        <translation>錯誤: Torrent %1 沒有包含任何檔案。</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">備註: 新 tracker 已增加到現有的 torrent 中。</translation>
+        <translation>備註: 新 tracker 已增加到現有的 torrent 中。</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">備註: URL 種子已增加到現有 torrent 中。</translation>
+        <translation>備註: URL 種子已增加到現有 torrent 中。</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為你的 IP 過濾器而被封鎖了&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為你的 IP 過濾器而被封鎖了&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為有損壞的分塊而被踢出&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;因為有損壞的分塊而被踢出&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="unfinished">遞迴下載在 torrent %2 裡的檔案 %1</translation>
+        <translation>遞迴下載在 torrent %2 裡的檔案 %1</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">無法解碼 torrent 檔案 %1 。</translation>
+        <translation>無法解碼 torrent 檔案 %1 。</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
-        <translation type="unfinished">Torrent 名稱: %1</translation>
+        <translation>Torrent 名稱: %1</translation>
     </message>
     <message>
         <source>Torrent size: %1</source>
-        <translation type="unfinished">Torrent 大小: %1</translation>
+        <translation>Torrent 大小: %1</translation>
     </message>
     <message>
         <source>Save path: %1</source>
-        <translation type="unfinished">儲存路徑: %1</translation>
+        <translation>儲存路徑: %1</translation>
     </message>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="unfinished">Torrent 已於 %1 下載完成。</translation>
+        <translation>Torrent 已於 %1 下載完成。</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished">感謝您使用 qBittorrent。</translation>
+        <translation>感謝您使用 qBittorrent。</translation>
     </message>
     <message>
         <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] 已下載完成 %1</translation>
+        <translation>[qBittorrent] 已下載完成 %1</translation>
     </message>
     <message>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished">發生 I/O 錯誤, &apos;%1&apos; 已暫停。</translation>
+        <translation>發生 I/O 錯誤, &apos;%1&apos; 已暫停。</translation>
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished">原因: %1</translation>
+        <translation>原因: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: 埠映射失敗, 訊息: %1</translation>
+        <translation>UPnP/NAT-PMP: 埠映射失敗, 訊息: %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: 埠映射成功, 訊息: %1</translation>
+        <translation>UPnP/NAT-PMP: 埠映射成功, 訊息: %1</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="unfinished">檔案大小和 torrent %1 不合, 暫停。</translation>
+        <translation>檔案大小和 torrent %1 不合, 暫停。</translation>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">快速恢復資料被 torrent %1 拒絕, 重新檢查...</translation>
+        <translation>快速恢復資料被 torrent %1 拒絕, 重新檢查...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">找不到 URL: %1 的 URL 種子, 訊息: %2</translation>
+        <translation>找不到 URL: %1 的 URL 種子, 訊息: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="unfinished">下載 &apos;%1&apos; 中, 請稍候...</translation>
+        <translation>下載 &apos;%1&apos; 中, 請稍候...</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>定義的網路介面是無效的: %1</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>嘗試其他可得的網路介面。</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished"></translation>
+        <translation>監聽網路介面 %2 的 IP 位置 %1...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished"></translation>
+        <translation>監聽網路介面 %1 失敗</translation>
     </message>
 </context>
 <context>
@@ -2940,7 +2959,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS 下載器...</translation>
     </message>
 </context>
 <context>
@@ -3035,14 +3054,14 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation type="unfinished">沒有可得的描述</translation>
+        <translation>沒有可得的描述</translation>
     </message>
 </context>
 <context>
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="unfinished">自動從 %2 RSS feed 下載 %1 torrent...</translation>
+        <translation>自動從 %2 RSS feed 下載 %1 torrent...</translation>
     </message>
 </context>
 <context>
@@ -3075,19 +3094,19 @@ p, li { white-space: pre-wrap; }
     <name>RssSettingsDlg</name>
     <message>
         <source>RSS Reader Settings</source>
-        <translation type="unfinished">RSS 閱讀器設定</translation>
+        <translation>RSS 閱讀器設定</translation>
     </message>
     <message>
         <source>RSS feeds refresh interval:</source>
-        <translation type="unfinished">RSS feed 更新間隔:</translation>
+        <translation>RSS feed 更新間隔:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished">分鐘</translation>
+        <translation>分鐘</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">每個 feed 的最大文章數:</translation>
+        <translation>每個 feed 的最大文章數:</translation>
     </message>
 </context>
 <context>
@@ -3345,22 +3364,22 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 需要重新啟動</translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 已經更新了並且需要重新啟動。</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">選擇要增加到 torrent 的資料夾</translation>
+        <translation>選擇要增加到 torrent 的資料夾</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">選擇要增加到 torrent 的檔案</translation>
+        <translation>選擇要增加到 torrent 的檔案</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -3381,35 +3400,35 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>No input path set</source>
-        <translation type="unfinished">沒有設定輸入路徑</translation>
+        <translation>沒有設定輸入路徑</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="unfinished">請先輸入輸入的路徑</translation>
+        <translation>請先輸入輸入的路徑</translation>
     </message>
     <message>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">選擇 torrent 檔案目的地</translation>
+        <translation>選擇 torrent 檔案目的地</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">torrent 檔案</translation>
+        <translation>torrent 檔案</translation>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation type="unfinished">產生 torrent</translation>
+        <translation>產生 torrent</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">建立 torrent 不成功, 原因: %1</translation>
+        <translation>建立 torrent 不成功, 原因: %1</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
+        <translation>建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">已經成功建立 torrent:</translation>
+        <translation>已經成功建立 torrent:</translation>
     </message>
 </context>
 <context>
@@ -3435,61 +3454,61 @@ Do you want to install it now?</source>
     <name>TorrentImportDlg</name>
     <message>
         <source>Torrent Import</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入 torrent</translation>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>這個助手會協助你將你已經下載完成的檔案使用 qBittorrent 來分享。</translation>
     </message>
     <message>
         <source>Torrent file to import:</source>
-        <translation type="unfinished"></translation>
+        <translation>要匯入的 torrent 檔案:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Content location:</source>
-        <translation type="unfinished"></translation>
+        <translation>內容位置:</translation>
     </message>
     <message>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>略過資料檢查並立即開始做種</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入</translation>
     </message>
     <message>
         <source>Torrent file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入 torrent 檔案</translation>
     </message>
     <message>
         <source>Torrent files (*.torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent 檔案 (*.torrent)</translation>
     </message>
     <message>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 檔案</translation>
     </message>
     <message>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"></translation>
+        <translation>請提供 %1 的位置</translation>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>請指定 torren %1 的位置</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的 torrent 檔案</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>這是一個無效的 torrent 檔案。</translation>
     </message>
 </context>
 <context>
@@ -3497,90 +3516,90 @@ Do you want to install it now?</source>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">大小</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation type="unfinished">完成</translation>
+        <translation>完成</translation>
     </message>
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">狀態</translation>
+        <translation>狀態</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">種子</translation>
+        <translation>種子</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">下載者</translation>
+        <translation>下載者</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">下載速度</translation>
+        <translation>下載速度</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">上傳速度</translation>
+        <translation>上傳速度</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">分享率</translation>
+        <translation>分享率</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">預估剩餘時間</translation>
+        <translation>預估剩餘時間</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">標籤</translation>
+        <translation>標籤</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">增加於</translation>
+        <translation>增加於</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">完成於</translation>
+        <translation>完成於</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">下載限制</translation>
+        <translation>下載限制</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">上傳限制</translation>
+        <translation>上傳限制</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>已下載量</translation>
     </message>
     <message>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>剩餘量</translation>
     </message>
 </context>
 <context>
@@ -4297,19 +4316,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker URL:</translation>
     </message>
     <message>
         <source>Web seeds urls:</source>
-        <translation type="unfinished"></translation>
+        <translation>網頁種子 URL:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">註解:</translation>
+        <translation>註解:</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>自動</translation>
     </message>
 </context>
 <context>
