@@ -328,14 +328,10 @@ MainWindow::~MainWindow() {
   delete switchSearchShortcut2;
   delete switchTransferShortcut;
   delete switchRSSShortcut;
-  // Delete BTSession objects
+  // Delete BTSession object
   qDebug("Deleting BTSession");
   QBtSession::drop();
   BTSession = 0;
-  // May freeze for a few seconds after the next line
-  // because the Bittorrent session proxy will
-  // actually be deleted now and destruction
-  // becomes synchronous
   qDebug("Exiting GUI destructor...");
 }
 

@@ -126,7 +126,7 @@ QBtSession::QBtSession()
     PeXEnabled = false;
   }
   s->add_extension(&create_smart_ban_plugin);
-  timerAlerts = new QTimer();
+  timerAlerts = new QTimer(this);
   connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
   timerAlerts->start(3000);
   connect(&resumeDataTimer, SIGNAL(timeout()), this, SLOT(saveTempFastResumeData()));
@@ -154,6 +154,9 @@ QBtSession::~QBtSession() {
 #endif
   saveSessionState();
   saveFastResumeData();
+  qDebug("Deleting the session");
+  delete s;
+  qDebug("Session deleted");
   // Delete our objects
   if(m_tracker)
     delete m_tracker;
@@ -170,9 +173,6 @@ QBtSession::~QBtSession() {
     delete httpServer;
   if(timerETA)
     delete timerETA;
-  // Delete session
-  qDebug("Deleting the session");
-  delete s;
   qDebug("BTSession destructor OUT");
 }
 
@@ -1777,6 +1777,7 @@ void QBtSession::setDownloadRateLimit(long rate) {
 // Set upload rate limit
 // -1 to disable
 void QBtSession::setUploadRateLimit(long rate) {
+  qDebug() << Q_FUNC_INFO << rate;
   Q_ASSERT(rate == -1 || rate >= 0);
   s->set_upload_rate_limit(rate);
 }
