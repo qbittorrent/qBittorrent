@@ -15,6 +15,8 @@
     - FEATURE: Download first/last pieces first when sequential download is
     enabled (Thanks Ahmad)
     - BUGFIX: Fix SOCKS5 proxy authentication in search engine(closes #680072)
+    - BUGFIX: Fix two advanced settings (ignore limits on LAN and protocol
+    overhead inclusion in rate limiter)
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
     - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
