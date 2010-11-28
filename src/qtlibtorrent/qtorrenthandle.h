@@ -82,6 +82,9 @@ class QTorrentHandle : public libtorrent::torrent_handle {
     bool is_queued() const;
     QString filename_at(unsigned int index) const;
     libtorrent::size_type filesize_at(unsigned int index) const;
+    QString filepath_at(unsigned int index) const;
+    QString orig_filepath_at(unsigned int index) const;
+    QString filepath(const libtorrent::file_entry &f) const;
     libtorrent::torrent_status::state_t state() const;
     QString creator() const;
     QString comment() const;

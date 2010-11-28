@@ -118,9 +118,7 @@ void GeoIPManager::loadDatabase(session *s) {
 #endif
   if(QFile::exists(geoipDBpath(false))) {
     qDebug("Loading GeoIP database from %s...", qPrintable(geoipDBpath(false)));
-    if(!s->load_country_db(geoipDBpath(false).toLocal8Bit().constData())) {
-      std::cerr << "Failed to load Geoip Database at " << qPrintable(geoipDBpath(false)) << std::endl;
-    }
+    s->load_country_db(geoipDBpath(false).toLocal8Bit().constData());
   } else {
     qDebug("ERROR: Impossible to find local Geoip Database");
   }

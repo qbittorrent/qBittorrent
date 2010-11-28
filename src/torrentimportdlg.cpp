@@ -73,9 +73,16 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+#if LIBTORRENT_VERSION_MINOR >= 16
+  file_storage fs = t->files();
+#endif
   if(t->num_files() == 1) {
     // Single file torrent
+#if LIBTORRENT_VERSION_MINOR >= 16
+    const QString file_name = misc::toQStringU(fs.file_path(t->file_at(0))).replace("\\", "/").split("/").last();
+#else
     const QString file_name = misc::toQStringU(t->file_at(0).path.leaf());
+#endif
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
     QString extension = misc::file_extension(file_name);
     qDebug("File extension is : %s", qPrintable(extension));
@@ -94,7 +101,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
     // Update display
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     ui->lineContent->setText(m_contentPath.replace("/", "\\"));
-    #else
+#else
     ui->lineContent->setText(m_contentPath);
 #endif
 #if LIBTORRENT_VERSION_MINOR >= 15
@@ -132,7 +139,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
     // Update the display
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     ui->lineContent->setText(m_contentPath.replace("/", "\\"));
-    #else
+#else
     ui->lineContent->setText(m_contentPath);
 #endif
 #if LIBTORRENT_VERSION_MINOR >= 15
@@ -141,11 +148,16 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
     // Check file sizes
     torrent_info::file_iterator it; t->begin_files();
     for(it = t->begin_files(); it != t->end_files(); it++) {
-      if(QFile(QDir::cleanPath(content_dir.absoluteFilePath(misc::toQStringU(it->path.string())))).size() != it->size) {
+#if LIBTORRENT_VERSION_MINOR >= 16
+      const QString rel_path = misc::toQStringU(fs.file_path(*it));
+#else
+      const QString rel_path = misc::toQStringU(it->path.string());
+#endif
+      if(QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size() != it->size) {
         qDebug("%s is %lld",
-               qPrintable(QDir::cleanPath(content_dir.absoluteFilePath(misc::toQStringU(it->path.string())))), (long long int) QFile(QDir::cleanPath(content_dir.absoluteFilePath(misc::toQStringU(it->path.string())))).size());
+               qPrintable(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))), (long long int) QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size());
         qDebug("%s is %lld",
-               it->path.string().c_str(), (long long int)it->size);
+               qPrintable(rel_path), (long long int)it->size);
         size_mismatch = true;
         break;
       }
@@ -236,8 +248,15 @@ void TorrentImportDlg::initializeFilesPath()
 {
   m_filesPath.clear();
   // Loads files path in the torrent
+#if LIBTORRENT_VERSION_MINOR >= 16
+  file_storage fs = t->files();
+#endif
   for(int i=0; i<t->num_files(); ++i) {
+#if LIBTORRENT_VERSION_MINOR >= 16
+    m_filesPath << misc::toQStringU(fs.file_path(t->file_at(i))).replace("\\", "/");
+#else
     m_filesPath << misc::toQStringU(t->file_at(i).path.string()).replace("\\", "/");
+#endif
   }
 }
 

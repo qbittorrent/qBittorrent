@@ -108,7 +108,7 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   int i=0;
   for(fi=t.begin_files(); fi != t.end_files(); fi++) {
     QVariantMap file;
-    QString path = QDir::cleanPath(misc::toQStringU(fi->path.string()));
+    QString path = h.filepath(*fi);
     QString name = path.split('/').last();
     file["name"] = name;
     file["size"] = misc::friendlyUnit((double)fi->size);

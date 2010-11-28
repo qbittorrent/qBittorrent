@@ -881,7 +881,7 @@ bool TransferListWidget::loadColWidthList() {
   if(line.isEmpty())
     return false;
   const QStringList width_list = line.split(" ");
-  const unsigned int listSize = width_list.size();
+  const int listSize = width_list.size();
   if(listSize != listModel->columnCount()) {
     qDebug("Corrupted values for transfer list columns sizes");
     return false;

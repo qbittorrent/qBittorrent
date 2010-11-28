@@ -35,6 +35,7 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
+#include <libtorrent/peer_info.hpp>
 #include "qtorrenthandle.h"
 #include "misc.h"
 

@@ -59,12 +59,17 @@ private:
 
 public:
   // File Construction
-  TreeItem(libtorrent::file_entry f, TreeItem *parent, int _file_index) {
+  TreeItem(const libtorrent::torrent_info &t, const libtorrent::file_entry &f, TreeItem *parent, int _file_index) {
     Q_ASSERT(parent);
     parentItem = parent;
     type = TFILE;
     file_index = _file_index;
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString name = misc::toQStringU(t.files().file_path(f)).replace("\\", "/").split("/").last();
+#else
+    Q_UNUSED(t);
     QString name = misc::toQStringU(f.path.string()).split("/").last();
+#endif
     // Do not display incomplete extensions
     if(name.endsWith(".!qB"))
       name.chop(4);
@@ -518,7 +523,7 @@ public:
     emit layoutChanged();
   }
 
-  void setupModelData(libtorrent::torrent_info const& t) {
+  void setupModelData(const libtorrent::torrent_info &t) {
     qDebug("setup model data called");
     if(t.num_files() == 0) return;
     // Initialize files_index array
@@ -526,25 +531,6 @@ public:
     files_index = new TreeItem*[t.num_files()];
 
     TreeItem *parent = this->rootItem;
-    /*if(t.num_files() == 1) {
-      // Create possible parent folder
-      QStringList path_parts = misc::toQStringU(t.file_at(0).path.string()).split("/", QString::SkipEmptyParts);
-      path_parts.removeLast();
-      foreach(const QString &part, path_parts) {
-        TreeItem *folder = new TreeItem(part, parent);
-        parent = folder;
-      }
-      TreeItem *f = new TreeItem(t.file_at(0), parent, 0);
-      //parent->appendChild(f);
-      files_index[0] = f;
-      emit layoutChanged();
-      return;
-    }*/
-    // Create parent folder
-    //QString root_name = misc::toQString(t.file_at(0).path.string()).split("/").first();
-    //TreeItem *current_parent = new TreeItem(root_name, parent);
-    //parent->appendChild(current_parent);
-    //TreeItem *root_folder = current_parent;
     TreeItem *root_folder = parent;
     TreeItem *current_parent;
 
@@ -553,7 +539,11 @@ public:
     libtorrent::torrent_info::file_iterator fi = t.begin_files();
     while(fi != t.end_files()) {
       current_parent = root_folder;
+#if LIBTORRENT_VERSION_MINOR >= 16
+      QString path = QDir::cleanPath(misc::toQStringU(t.files().file_path(*fi))).replace("\\", "/");
+#else
       QString path = QDir::cleanPath(misc::toQStringU(fi->path.string())).replace("\\", "/");
+#endif
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split("/");
       pathFolders.takeLast();
@@ -565,7 +555,7 @@ public:
         current_parent = new_parent;
       }
       // Actually create the file
-      TreeItem *f = new TreeItem(*fi, current_parent, i);
+      TreeItem *f = new TreeItem(t, *fi, current_parent, i);
       files_index[i] = f;
       fi++;
       ++i;

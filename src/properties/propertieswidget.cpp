@@ -436,7 +436,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if(PropListModel->getType(index) == TFILE) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
-    const QString filename = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+    const QString filename = h.filepath_at(i);
     const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
 #if LIBTORRENT_VERSION_MINOR > 14
@@ -545,7 +545,7 @@ void PropertiesWidget::renameSelectedFile() {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if(!h.is_valid() || !h.has_metadata()) return;
-      QString old_name = misc::toQStringU(h.get_torrent_info().file_at(file_index).path.string());
+      QString old_name = h.filepath_at(file_index);
       old_name = old_name.replace("\\", "/");
       if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
@@ -563,9 +563,9 @@ void PropertiesWidget::renameSelectedFile() {
       for(int i=0; i<h.num_files(); ++i) {
         if(i == file_index) continue;
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
-        if(misc::toQStringU(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseSensitive) == 0) {
+        if(h.filepath_at(i).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-          if(misc::toQStringU(h.get_torrent_info().file_at(i).path.string()).compare(new_name, Qt::CaseInsensitive) == 0) {
+          if(h.filepath_at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
             // Display error message
             QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -600,7 +600,7 @@ void PropertiesWidget::renameSelectedFile() {
         // Check for overwriting
         const int num_files = h.num_files();
         for(int i=0; i<num_files; ++i) {
-          const QString current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+          const QString current_name = h.filepath_at(i);
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
           if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
@@ -615,7 +615,7 @@ void PropertiesWidget::renameSelectedFile() {
           bool force_recheck = false;
           // Replace path in all files
           for(int i=0; i<num_files; ++i) {
-            const QString current_name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+            const QString current_name = h.filepath_at(i);
             if(current_name.startsWith(old_path)) {
               QString new_name = current_name;
               new_name.replace(0, old_path.length(), new_path);

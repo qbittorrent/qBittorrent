@@ -67,6 +67,11 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 #include <boost/filesystem/exception.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
+#if LIBTORRENT_VERSION_MINOR > 15
+    #include "libtorrent/error_code.hpp"
+#endif
 #include <queue>
 
 using namespace libtorrent;
@@ -91,7 +96,7 @@ QBtSession::QBtSession()
   Preferences pref;
   m_tracker = 0;
   // To avoid some exceptions
-  fs::path::default_name_check(fs::no_check);
+  boost::filesystem::path::default_name_check(boost::filesystem::no_check);
   // For backward compatibility
   // Move .qBittorrent content to XDG folder
   // TODO: Remove after some releases (introduced in v2.1.0)
@@ -1374,8 +1379,15 @@ void QBtSession::loadSessionState() {
   if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
   {
     lazy_entry e;
+#if LIBTORRENT_VERSION_MINOR > 15
+    error_code ec;
+    lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
+    if(!ec)
+      s->load_state(e);
+#else
     if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
       s->load_state(e);
+#endif
   }
 #else
   boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
@@ -1654,7 +1666,7 @@ void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append
     if(append) {
       const qulonglong file_size = h.filesize_at(i);
       if(file_size > 0 && (fp[i]/(double)file_size) < 1.) {
-        const QString name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+        const QString name = h.filepath_at(i);
         if(!name.endsWith(".!qB")) {
           const QString new_name = name+".!qB";
           qDebug("Renaming %s to %s", qPrintable(name), qPrintable(new_name));
@@ -1662,7 +1674,7 @@ void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append
         }
       }
     } else {
-      QString name = misc::toQStringU(h.get_torrent_info().file_at(i).path.string());
+      QString name = h.filepath_at(i);
       if(name.endsWith(".!qB")) {
         const QString old_name = name;
         name.chop(4);
@@ -1902,7 +1914,7 @@ void QBtSession::setProxySettings(const proxy_settings &proxySettings) {
 void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
   torrent_info::file_iterator it;
   for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++)  {
-    const QString torrent_relpath = misc::toQStringU(it->path.string());
+    const QString torrent_relpath = h.filepath(*it);
     if(torrent_relpath.endsWith(".torrent")) {
       addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
       const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
@@ -1978,8 +1990,8 @@ void QBtSession::readAlerts() {
           qDebug("Checking if the torrent contains torrent files to download");
           // Check if there are torrent files inside
           for(torrent_info::file_iterator it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++) {
-            qDebug("File path: %s", it->path.string().c_str());
-            const QString torrent_relpath = misc::toQStringU(it->path.string()).replace("\\", "/");
+            qDebug() << "File path:" << h.filepath(*it);
+            const QString torrent_relpath = h.filepath(*it).replace("\\", "/");
             if(torrent_relpath.endsWith(".torrent", Qt::CaseInsensitive)) {
               qDebug("Found possible recursive torrent download.");
               const QString torrent_fullpath = h.save_path()+"/"+torrent_relpath;
@@ -2070,7 +2082,7 @@ void QBtSession::readAlerts() {
       if(h.is_valid()) {
         if(h.num_files() > 1) {
           // Check if folders were renamed
-          QStringList old_path_parts = misc::toQStringU(h.get_torrent_info().orig_files().at(p->index).path.string()).split("/");
+          QStringList old_path_parts = h.orig_filepath_at(p->index).split("/");
           old_path_parts.removeLast();
           QString old_path = old_path_parts.join("/");
           QStringList new_path_parts = misc::toQStringU(p->name).split("/");
@@ -2205,7 +2217,7 @@ void QBtSession::readAlerts() {
       qDebug("A file completed download in torrent %s", qPrintable(h.name()));
       if(appendqBExtension) {
         qDebug("appendqBTExtension is true");
-        QString name = misc::toQStringU(h.get_torrent_info().file_at(p->index).path.string());
+        QString name = h.filepath_at(p->index);
         if(name.endsWith(".!qB")) {
           const QString old_name = name;
           name.chop(4);

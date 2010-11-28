@@ -88,9 +88,13 @@ void TorrentCreatorThread::run() {
   char const* creator_str = "qBittorrent "VERSION;
   try {
     file_storage fs;
-    path full_path = complete(path(input_path.toUtf8().constData()));
+#if LIBTORRENT_VERSION_MINOR >= 16
+    add_files(fs, input_path.toUtf8().constData(), file_filter);
+#else
     // Adding files to the torrent
+    path full_path = complete(path(input_path.toUtf8().constData()));
     add_files(fs, full_path, file_filter);
+#endif
     if(abort) return;
     create_torrent t(fs, piece_size);
 
@@ -103,7 +107,16 @@ void TorrentCreatorThread::run() {
     }
     if(abort) return;
     // calculate the hash for all pieces
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString parent_path = input_path.replace("\\", "/");
+    QStringList parts = parent_path.split("/");
+    parts.removeLast();
+    parent_path = parts.join("/");
+    set_piece_hashes(t, parent_path.toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
+#else
+    QString parent_path = misc::toQStringU(full_path.branch_path().string());
     set_piece_hashes(t, full_path.branch_path(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
+#endif
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str);
@@ -115,7 +128,7 @@ void TorrentCreatorThread::run() {
     ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
     bencode(std::ostream_iterator<char>(out), t.generate());
     emit updateProgress(100);
-    emit creationSuccess(save_path, QString::fromUtf8(full_path.branch_path().string().c_str()));
+    emit creationSuccess(save_path, parent_path);
   }
   catch (std::exception& e){
     emit creationFailure(QString::fromUtf8(e.what()));

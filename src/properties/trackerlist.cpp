@@ -35,7 +35,7 @@
 #include <QAction>
 #include <QColor>
 #include <libtorrent/version.hpp>
-
+#include <libtorrent/peer_info.hpp>
 #include "trackerlist.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"

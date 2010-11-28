@@ -268,10 +268,17 @@ void misc::shutdownComputer() {
 }
 
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
+#if LIBTORRENT_VERSION_MINOR >= 16
+  file_storage fs = t->files();
+#endif
   if(t->num_files() == 1) {
     // Single file torrent
     // Remove possible subfolders
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString path = toQStringU(fs.file_path(t->file_at(0)));
+#else
     QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     t->rename_file(0, path_parts.last().toUtf8().data());
     return QString::null;
@@ -279,7 +286,11 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
   QString root_folder;
   int i = 0;
   for(torrent_info::file_iterator it = t->begin_files(); it < t->end_files(); it++) {
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString path = toQStringU(fs.file_path(*it));
+#else
     QString path = QString::fromUtf8(it->path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
@@ -292,10 +303,17 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
 
 QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   torrent_info t = h.get_torrent_info();
+#if LIBTORRENT_VERSION_MINOR >= 16
+  file_storage fs = t.files();
+#endif
   if(t.num_files() == 1) {
     // Single file torrent
     // Remove possible subfolders
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString path = misc::toQStringU(fs.file_path(t.file_at(0)));
+#else
     QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     t.rename_file(0, path_parts.last().toUtf8().data());
     return QString::null;
@@ -303,7 +321,11 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   QString root_folder;
   int i = 0;
   for(torrent_info::file_iterator it = t.begin_files(); it < t.end_files(); it++) {
+#if LIBTORRENT_VERSION_MINOR >= 16
+    QString path = toQStringU(fs.file_path(*it));
+#else
     QString path = QString::fromUtf8(it->path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
@@ -627,7 +649,7 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   return hash;
 }
 
-QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime> boostDate) {
+QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime> &boostDate) {
   if(!boostDate || !boostDate.is_initialized() || boostDate->is_not_a_date_time()) return tr("Unknown");
   struct std::tm tm;
   try {
@@ -639,6 +661,14 @@ QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime>
   if(t < 0)
     return tr("Unknown");
   QDateTime dt = QDateTime::fromTime_t(t);
+  if(dt.isNull() || !dt.isValid())
+    return tr("Unknown");
+  return dt.toString(Qt::DefaultLocaleLongDate);
+}
+
+QString misc::time_tToQString(const boost::optional<time_t> &t) {
+  if(!t.is_initialized() || *t < 0) return tr("Unknown");
+  QDateTime dt = QDateTime::fromTime_t(*t);
   if(dt.isNull() || !dt.isValid())
     return tr("Unknown");
   return dt.toString(Qt::DefaultLocaleLongDate);
