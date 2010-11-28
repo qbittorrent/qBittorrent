@@ -2972,314 +2972,314 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>QBtSession</name>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="201"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="207"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="206"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="212"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation type="unfinished">%1 използва максималното разрешено от вас отношение.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="202"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="207"/>
         <source>Removing torrent %1...</source>
         <translation type="unfinished">Премахване торент %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="208"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="213"/>
         <source>Pausing torrent %1...</source>
         <translation type="unfinished">Пауза на торент %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="296"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="301"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation type="unfinished">qBittorrent се прехвърля на порт: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="359"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="364"/>
         <source>UPnP support [ON]</source>
         <translation type="unfinished">UPnP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="362"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="367"/>
         <source>UPnP support [OFF]</source>
         <translation type="unfinished">UPnP поддръжка [ИЗКЛ] </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="367"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="372"/>
         <source>NAT-PMP support [ON]</source>
         <translation type="unfinished">NAT-PMP поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="370"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="375"/>
         <source>NAT-PMP support [OFF]</source>
         <translation type="unfinished">NAT-PMP поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="376"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="381"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished">HTTP агент на клиета е %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="394"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="399"/>
         <source>Using a disk cache size of %1 MiB</source>
         <translation type="unfinished">Ползване на дисков кеш размер от %1 ΜιΒ</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="436"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="441"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished">DHT поддръжка [ВКЛ], порт: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="438"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="442"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="443"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">DHT поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="446"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">PeX поддръжка [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="448"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="453"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished">PeX поддръжка [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="456"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished">Рестарта изисква превключване на PeX поддръжката</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="456"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="461"/>
         <source>Local Peer Discovery [ON]</source>
         <translation type="unfinished">Търсене на локални връзки [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="459"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="464"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Търсене на локални връзки [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="471"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="476"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">Поддръжка кодиране [ВКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="476"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="481"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">Поддръжка кодиране [ФОРСИРАНА]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="481"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="486"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">Поддръжка кодиране [ИЗКЛ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="547"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
         <source>Embedded Tracker [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="549"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="554"/>
         <source>Failed to start the embedded tracker!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="557"/>
         <source>Embedded Tracker [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="572"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="577"/>
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished"> Интерфейс на Web Потребител прослушване на порт: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="574"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="579"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished">Грешка в Интерфейс на Web Потребител - Невъзможно прехърляне на интерфейса на порт %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="749"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="754"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">&apos;%1&apos; бе премахнат от списъка за прехвърляне и от твърдия диск.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="751"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="756"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">&apos;%1&apos; бе премахнат от списъка за прехвърляне.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="827"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="832"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished">&apos;%1&apos; е невалиден magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="843"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="975"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="977"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="848"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="980"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="982"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos; вече е в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="910"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1101"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="915"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1106"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1111"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos; бе възстановен. (бързо възстановяване)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="912"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="917"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1108"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1113"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos; добавен в листа за сваляне.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="950"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="954"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="955"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="959"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">Не мога да декодирам торент-файла: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="957"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="962"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">Този файла или е разрушен или не е торент.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="990"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="995"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation type="unfinished">Грешка: Торент %1 не съдържа никакъв файл.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1231"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1236"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished">Внимание: нови тракери бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1244"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1249"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished">Внимание: нови даващи URL бяха добавени към съществуващия торент.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1579"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1591"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе блокиран от вашия IP филтър&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1581"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1593"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;бе прекъснат поради разрушени части&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1747"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1759"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1748"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1760"/>
         <source>Trying any other network interface available instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1762"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1774"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1765"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1777"/>
         <source>Failed to listen on network interface %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1906"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Програмирано сваляне на файл %1 вмъкнато в торент %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1916"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1995"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1929"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2008"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Не мога да декодирам %1 торент-файла.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1962"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1950"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1963"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1951"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1964"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1952"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1965"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1966"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1955"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1968"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2192"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2205"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished">Намерена грешка В/И, &apos;%1&apos; е в пауза.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2193"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2315"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2206"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2328"/>
         <source>Reason: %1</source>
         <translation type="unfinished">Причина: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2282"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2295"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Грешка при следене на порт, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2287"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Следене на порт успешно, съобщение: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2310"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2323"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished">Размера на файла не съвпада за торент %1, в пауза.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2314"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2327"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Бърза пауза бе отхвърлена за торент %1, нова проверка...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2320"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2333"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url споделяне провалено за url: %1, съобщение: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2444"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2457"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Сваляне на &apos;%1&apos;, моля изчакайте...</translation>
@@ -3990,22 +3990,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="326"/>
+        <location filename="../torrentfilesmodel.h" line="331"/>
         <source>Name</source>
         <translation>Име</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="326"/>
+        <location filename="../torrentfilesmodel.h" line="331"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="326"/>
+        <location filename="../torrentfilesmodel.h" line="331"/>
         <source>Progress</source>
         <translation>Изпълнение</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="326"/>
+        <location filename="../torrentfilesmodel.h" line="331"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>
@@ -4059,29 +4059,29 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="85"/>
+        <location filename="../torrentimportdlg.cpp" line="92"/>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="87"/>
+        <location filename="../torrentimportdlg.cpp" line="94"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="124"/>
+        <location filename="../torrentimportdlg.cpp" line="131"/>
         <source>Please point to the location of the torrent: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="218"/>
+        <location filename="../torrentimportdlg.cpp" line="230"/>
         <source>Invalid torrent file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="218"/>
+        <location filename="../torrentimportdlg.cpp" line="230"/>
         <source>This is not a valid torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5512,57 +5512,59 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="507"/>
+        <location filename="../misc.cpp" line="529"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>Б</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="507"/>
+        <location filename="../misc.cpp" line="529"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>КБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="507"/>
+        <location filename="../misc.cpp" line="529"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="507"/>
+        <location filename="../misc.cpp" line="529"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>ГБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="507"/>
+        <location filename="../misc.cpp" line="529"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>ТБ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="683"/>
+        <location filename="../misc.cpp" line="713"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ч%2мин</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="688"/>
+        <location filename="../misc.cpp" line="718"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1д%2ч</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="631"/>
-        <location filename="../misc.cpp" line="636"/>
-        <location filename="../misc.cpp" line="640"/>
-        <location filename="../misc.cpp" line="643"/>
+        <location filename="../misc.cpp" line="653"/>
+        <location filename="../misc.cpp" line="658"/>
+        <location filename="../misc.cpp" line="662"/>
+        <location filename="../misc.cpp" line="665"/>
+        <location filename="../misc.cpp" line="670"/>
+        <location filename="../misc.cpp" line="673"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="506"/>
+        <location filename="../misc.cpp" line="528"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Неизвестен</translation>
@@ -5573,13 +5575,13 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="674"/>
+        <location filename="../misc.cpp" line="704"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1мин</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="678"/>
+        <location filename="../misc.cpp" line="708"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1мин</translation>
@@ -5765,9 +5767,9 @@ However, those plugins were disabled.</source>
         <translation>Не мога да декодирам торент-файла:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="506"/>
-        <location filename="../torrentadditiondlg.cpp" line="511"/>
-        <location filename="../torrentadditiondlg.cpp" line="513"/>
+        <location filename="../torrentadditiondlg.cpp" line="518"/>
+        <location filename="../torrentadditiondlg.cpp" line="523"/>
+        <location filename="../torrentadditiondlg.cpp" line="525"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
@@ -5782,106 +5784,106 @@ However, those plugins were disabled.</source>
         <translation>Връзка Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="329"/>
+        <location filename="../torrentadditiondlg.cpp" line="341"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="373"/>
+        <location filename="../torrentadditiondlg.cpp" line="385"/>
         <source>Rename the file</source>
         <translation>Преименувай файла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="374"/>
+        <location filename="../torrentadditiondlg.cpp" line="386"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="378"/>
-        <location filename="../torrentadditiondlg.cpp" line="408"/>
+        <location filename="../torrentadditiondlg.cpp" line="390"/>
+        <location filename="../torrentadditiondlg.cpp" line="420"/>
         <source>The file could not be renamed</source>
         <translation>Файла не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="379"/>
+        <location filename="../torrentadditiondlg.cpp" line="391"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Името на файла съдържа забранени символи, моля изберете различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="409"/>
-        <location filename="../torrentadditiondlg.cpp" line="443"/>
+        <location filename="../torrentadditiondlg.cpp" line="421"/>
+        <location filename="../torrentadditiondlg.cpp" line="455"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Това име вече съществува в тази папка. Моля, ползвайте различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="442"/>
+        <location filename="../torrentadditiondlg.cpp" line="454"/>
         <source>The folder could not be renamed</source>
         <translation>Папката не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="490"/>
+        <location filename="../torrentadditiondlg.cpp" line="502"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остават след сваляне на торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="493"/>
+        <location filename="../torrentadditiondlg.cpp" line="505"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(още %1 са необходими за свалянето)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="567"/>
+        <location filename="../torrentadditiondlg.cpp" line="579"/>
         <source>Empty save path</source>
         <translation>Празен път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="567"/>
+        <location filename="../torrentadditiondlg.cpp" line="579"/>
         <source>Please enter a save path</source>
         <translation>Моля въведете път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="640"/>
+        <location filename="../torrentadditiondlg.cpp" line="658"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="640"/>
+        <location filename="../torrentadditiondlg.cpp" line="658"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="588"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="588"/>
+        <location filename="../torrentadditiondlg.cpp" line="600"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="625"/>
+        <location filename="../torrentadditiondlg.cpp" line="643"/>
         <source>Seeding mode error</source>
         <translation>Грешка в режим даване</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="625"/>
+        <location filename="../torrentadditiondlg.cpp" line="643"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Избрахте прескачане на проверката. Обаче местните файлове изглежда не съществуват в папката получател. Моля изключете тази функция или обновете пътя за съхранение.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="632"/>
+        <location filename="../torrentadditiondlg.cpp" line="650"/>
         <source>Invalid file selection</source>
         <translation>Невалиден избор на файл</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="632"/>
+        <location filename="../torrentadditiondlg.cpp" line="650"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Трябва да изберете поне един файл в торента</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="333"/>
+        <location filename="../torrentadditiondlg.cpp" line="345"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>
