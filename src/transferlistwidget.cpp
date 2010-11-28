@@ -886,7 +886,7 @@ bool TransferListWidget::loadColWidthList() {
     qDebug("Corrupted values for transfer list columns sizes");
     return false;
   }
-  for(unsigned int i=0; i<listSize; ++i) {
+  for(int i=0; i<listSize; ++i) {
     header()->resizeSection(i, width_list.at(i).toInt());
   }
   const QList<int> visualIndexes = misc::intListfromStringList(settings.value(QString::fromUtf8("TransferListVisualIndexes")).toStringList());
