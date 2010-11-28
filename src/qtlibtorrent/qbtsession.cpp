@@ -70,7 +70,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #if LIBTORRENT_VERSION_MINOR > 15
-    #include "libtorrent/error_code.hpp"
+#include "libtorrent/error_code.hpp"
 #endif
 #include <queue>
 
@@ -393,8 +393,6 @@ void QBtSession::configureSession() {
   sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif
-  // To keep same behavior as in qBittorrent v1.2.0
-  sessionSettings.rate_limit_ip_overhead = false;
   sessionSettings.cache_size = pref.diskCacheSize()*64;
   addConsoleMessage(tr("Using a disk cache size of %1 MiB").arg(pref.diskCacheSize()));
   // Queueing System
@@ -412,12 +410,12 @@ void QBtSession::configureSession() {
   }
   // Outgoing ports
   sessionSettings.outgoing_ports = std::make_pair(pref.outgoingPortsMin(), pref.outgoingPortsMax());
-  setSessionSettings(sessionSettings);
   // Ignore limits on LAN
   qDebug() << "Ignore limits on LAN" << pref.ignoreLimitsOnLAN();
   sessionSettings.ignore_limits_on_local_network = pref.ignoreLimitsOnLAN();
   // Include overhead in transfer limits
   sessionSettings.rate_limit_ip_overhead = pref.includeOverheadInLimits();
+  setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max Half-open connections
   s->set_max_half_open_connections(pref.getMaxHalfOpenConnections());
@@ -1438,7 +1436,9 @@ bool QBtSession::enableDHT(bool b) {
       }
 #endif
       try {
+        qDebug() << "Starting DHT...";
 #if LIBTORRENT_VERSION_MINOR > 14
+        Q_ASSERT(!s->is_dht_running());
         s->start_dht();
 #else
         s->start_dht(dht_state);
