@@ -415,6 +415,10 @@ void QBtSession::configureSession() {
   sessionSettings.ignore_limits_on_local_network = pref.ignoreLimitsOnLAN();
   // Include overhead in transfer limits
   sessionSettings.rate_limit_ip_overhead = pref.includeOverheadInLimits();
+  // Super seeding
+#if LIBTORRENT_VERSION_MINOR > 14
+  sessionSettings.strict_super_seeding = pref.isSuperSeedingEnabled();
+#endif
   setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max Half-open connections
