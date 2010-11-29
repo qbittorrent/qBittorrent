@@ -163,7 +163,6 @@ public slots:
 
 protected:
   QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString::null, QString root_folder=QString::null);
-  bool initWebUi(QString username, QString password, int port);
   bool loadFastResumeData(QString hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle h);
   void loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet);
@@ -181,6 +180,7 @@ protected slots:
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void exportTorrentFile(QTorrentHandle h);
+  void initWebUi();
 
 signals:
   void addedTorrent(const QTorrentHandle& h);

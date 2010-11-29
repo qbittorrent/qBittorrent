@@ -146,7 +146,7 @@ QBtSession::QBtSession()
 #endif
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
-  QTimer::singleShot(0, this, SLOT(configureSession()));
+  configureSession();
   qDebug("* BTSession constructed");
 }
 
@@ -499,14 +499,8 @@ void QBtSession::configureSession() {
     disableIPFilter();
   }
   // Update Web UI
-  if (pref.isWebUiEnabled()) {
-    const quint16 port = pref.getWebUiPort();
-    const QString username = pref.getWebUiUsername();
-    const QString password = pref.getWebUiPassword();
-    initWebUi(username, password, port);
-  } else if(httpServer) {
-    delete httpServer;
-  }
+  // Use a QTimer because the function can be called from qBtSession constructor
+  QTimer::singleShot(0, this, SLOT(initWebUi()));
   // * Proxy settings
   proxy_settings proxySettings;
   if(pref.isProxyEnabled()) {
@@ -563,24 +557,31 @@ void QBtSession::configureSession() {
   qDebug("Session configured");
 }
 
-bool QBtSession::initWebUi(QString username, QString password, int port) {
-  if(httpServer) {
-    if(httpServer->serverPort() != port) {
-      httpServer->close();
+void QBtSession::initWebUi() {
+  Preferences pref;
+  if (pref.isWebUiEnabled()) {
+    const quint16 port = pref.getWebUiPort();
+    const QString username = pref.getWebUiUsername();
+    const QString password = pref.getWebUiPassword();
+
+    if(httpServer) {
+      if(httpServer->serverPort() != port) {
+        httpServer->close();
+      }
+    } else {
+      httpServer = new HttpServer(3000, this);
     }
-  } else {
-    httpServer = new HttpServer(3000, this);
+    httpServer->setAuthorization(username, password);
+    if(!httpServer->isListening()) {
+      bool success = httpServer->listen(QHostAddress::Any, port);
+      if (success)
+        addConsoleMessage(tr("The Web UI is listening on port %1").arg(port));
+      else
+        addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
+    }
+  } else if(httpServer) {
+    delete httpServer;
   }
-  httpServer->setAuthorization(username, password);
-  bool success = true;
-  if(!httpServer->isListening()) {
-    success = httpServer->listen(QHostAddress::Any, port);
-    if (success)
-      addConsoleMessage(tr("The Web UI is listening on port %1").arg(port));
-    else
-      addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
-  }
-  return success; 
 }
 
 void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
