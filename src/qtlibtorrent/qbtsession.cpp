@@ -854,17 +854,6 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
 
   add_torrent_params p = initializeAddTorrentParams(hash);
 
-  //Getting fast resume data if existing
-  bool fastResume = false;
-  std::vector<char> buf; // Needs to stay in the function scope
-  if(resumed) {
-    if(loadFastResumeData(hash, buf)) {
-      fastResume = true;
-      p.resume_data = &buf;
-      qDebug("Successfully loaded fast resume data");
-    }
-  }
-
   // Get save path
   QString torrent_name = misc::magnetUriToName(magnet_uri);
   const QString savePath(getSavePath(hash, false, QString::null, torrent_name));
@@ -909,15 +898,12 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   if(!resumed) {
     loadTorrentTempData(h, savePath, true);
   }
-  if(!fastResume && (!addInPause || (Preferences().useAdditionDialog()))) {
+  if(!addInPause || (Preferences().useAdditionDialog())) {
     // Start torrent because it was added in paused state
     h.resume();
   }
   // Send torrent addition signal
-  if(fastResume)
-    addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(magnet_uri));
-  else
-    addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
+  addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
   emit addedTorrent(h);
   return h;
 }
