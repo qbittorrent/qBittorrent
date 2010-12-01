@@ -18,7 +18,7 @@
     - BUGFIX: Fix two advanced settings (ignore limits on LAN and protocol
     overhead inclusion in rate limiter)
     - BUGFIX: Fix strict super seeding (was not working)
-    - BUGFIX: Improve magnet save path handling (clsoes #683395)
+    - BUGFIX: Improve magnet save path handling (closes #683395)
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
     - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
