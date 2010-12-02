@@ -123,9 +123,9 @@ public:
   static QString truncateRootFolder(boost::intrusive_ptr<libtorrent::torrent_info> t);
   static QString truncateRootFolder(libtorrent::torrent_handle h);
 
-  static QString updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label);
+  static QString updateLabelInSavePath(const QString& defaultSavePath, const QString &save_path, const QString &old_label, const QString &new_label);
 
-  static bool sameFiles(QString path1, QString path2);
+  static bool sameFiles(const QString &path1, const QString &path2);
   static void copyDir(QString src_path, QString dst_path);
   // Introduced in v2.1.0 for backward compatibility
   // Remove after some releases
@@ -171,6 +171,9 @@ public:
   static QList<bool> boolListfromStringList(const QStringList &l);
 
   static bool isValidTorrentFile(const QString &path);
+
+private:
+  static const QString units[5];
 };
 
 //  Trick to get a portable sleep() function

@@ -75,6 +75,8 @@ const int UNLEN = 256;
 
 using namespace libtorrent;
 
+const QString misc::units[5] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)"), tr("TiB", "tebibytes (1024 gibibytes)")};
+
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
   LPWSTR path=new WCHAR[256];
@@ -336,25 +338,24 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   return root_folder;
 }
 
-bool misc::sameFiles(QString path1, QString path2) {
-  QFile f1(path1);
-  if(!f1.exists()) return false;
-  QFile f2(path2);
-  if(!f2.exists()) return false;
-  QByteArray content1, content2;
-  if(f1.open(QIODevice::ReadOnly)) {
-    content1 = f1.readAll();
+bool misc::sameFiles(const QString &path1, const QString &path2) {
+  QFile f1(path1), f2(path2);
+  if(!f1.exists() || !f2.exists()) return false;
+  if(f1.size() != f2.size()) return false;
+  if(!f1.open(QIODevice::ReadOnly)) return false;
+  if(!f2.open(QIODevice::ReadOnly)) {
     f1.close();
-  } else {
     return false;
   }
-  if(f2.open(QIODevice::ReadOnly)) {
-    content1 = f2.readAll();
-    f2.close();
-  } else {
-    return false;
+  bool same = true;
+  while(!f1.atEnd() && !f2.atEnd()) {
+    if(f1.read(5) != f2.read(5)) {
+      same = false;
+      break;
+    }
   }
-  return content1 == content2;
+  f1.close(); f2.close();
+  return same;
 }
 
 void misc::copyDir(QString src_path, QString dst_path) {
@@ -401,11 +402,12 @@ void misc::chmod644(const QDir& folder) {
   }
 }
 
-QString misc::updateLabelInSavePath(const QString& defaultSavePath, QString save_path, const QString old_label, const QString new_label) {
+QString misc::updateLabelInSavePath(const QString& defaultSavePath, const QString &save_path, const QString &old_label, const QString &new_label) {
   if(old_label == new_label) return save_path;
   qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
   if(!save_path.startsWith(defaultSavePath)) return save_path;
-  QString new_save_path = save_path.replace(defaultSavePath, "");
+  QString new_save_path = save_path;
+  new_save_path.replace(defaultSavePath, "");
   QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
   if(path_parts.empty()) {
     if(!new_label.isEmpty())
@@ -526,13 +528,12 @@ QString misc::cacheLocation() {
 QString misc::friendlyUnit(double val) {
   if(val < 0)
     return tr("Unknown", "Unknown (size)");
-  const QString units[5] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)"), tr("TiB", "tebibytes (1024 gibibytes)")};
-  char i = 0;
+  int i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
   if(i == 0)
     return QString::number((long)val) + " " + units[0];
-  return QString::number(val, 'f', 1) + " " + units[(int)i];
+  return QString::number(val, 'f', 1) + " " + units[i];
 }
 
 bool misc::isPreviewable(QString extension){
@@ -657,10 +658,10 @@ QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime>
   } catch(std::exception e) {
     return tr("Unknown");
   }
-  time_t t = mktime(&tm);
+  const time_t t = mktime(&tm);
   if(t < 0)
     return tr("Unknown");
-  QDateTime dt = QDateTime::fromTime_t(t);
+  const QDateTime dt = QDateTime::fromTime_t(t);
   if(dt.isNull() || !dt.isValid())
     return tr("Unknown");
   return dt.toString(Qt::DefaultLocaleLongDate);
@@ -736,10 +737,7 @@ QString misc::getUserIDString() {
 QStringList misc::toStringList(const QList<bool> &l) {
   QStringList ret;
   foreach(const bool &b, l) {
-    if(b)
-      ret << "1";
-    else
-      ret << "0";
+    ret << (b ? "1" : "0");
   }
   return ret;
 }
@@ -755,10 +753,7 @@ QList<int> misc::intListfromStringList(const QStringList &l) {
 QList<bool> misc::boolListfromStringList(const QStringList &l) {
   QList<bool> ret;
   foreach(const QString &s, l) {
-    if(s == "1")
-      ret << true;
-    else
-      ret << false;
+    ret << (s=="1");
   }
   return ret;
 }
