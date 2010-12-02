@@ -41,33 +41,33 @@ class QNetworkAccessManager;
 class downloadThread : public QObject {
   Q_OBJECT
 
-private:
-  QNetworkAccessManager networkManager;
-  QHash<QString, QString> redirect_mapping;
+public:
+  downloadThread(QObject* parent = 0);
+  QNetworkReply* downloadUrl(QString url);
+  void downloadTorrentUrl(QString url);
+  //void setProxy(QString IP, int port, QString username, QString password);
 
 signals:
   void downloadFinished(QString url, QString file_path);
   void downloadFailure(QString url, QString reason);
 
-public:
-  downloadThread(QObject* parent);
-  QNetworkReply* downloadUrl(QString url);
-  void downloadTorrentUrl(QString url);
-  //void setProxy(QString IP, int port, QString username, QString password);
+private slots:
+  void processDlFinished(QNetworkReply* reply);
+  void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+#ifndef QT_NO_OPENSSL
+  void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
+#endif
 
-protected:
+private:
   QString errorCodeToString(QNetworkReply::NetworkError status);
   void applyProxySettings();
 #ifndef DISABLE_GUI
   void loadCookies(const QString &host_name, QString url);
 #endif
 
-protected slots:
-  void processDlFinished(QNetworkReply* reply);
-  void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
-#ifndef QT_NO_OPENSSL
-  void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
-#endif
+private:
+  QNetworkAccessManager m_networkManager;
+  QHash<QString, QString> m_redirectMapping;
 
 };
 
