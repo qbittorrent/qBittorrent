@@ -344,7 +344,7 @@ public:
   }
 
   int getGlobalDownloadLimit() const {
-    return value(QString::fromUtf8("Preferences/Connection/GlobalDLLimit"), -1).toInt();
+    return value("Preferences/Connection/GlobalDLLimit", -1).toInt();
   }
 
   void setGlobalDownloadLimit(int limit) {
@@ -353,7 +353,7 @@ public:
   }
 
   int getGlobalUploadLimit() const {
-    return value(QString::fromUtf8("Preferences/Connection/GlobalUPLimit"), 50).toInt();
+    return value("Preferences/Connection/GlobalUPLimit", 50).toInt();
   }
 
   void setGlobalUploadLimit(int limit) {

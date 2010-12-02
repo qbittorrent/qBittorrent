@@ -360,8 +360,9 @@ void options_imp::saveOptions(){
   pref.setSessionPort(getPort());
   pref.setUPnPEnabled(isUPnPEnabled());
   pref.setNATPMPEnabled(isNATPMPEnabled());
-  pref.setGlobalDownloadLimit(getGlobalBandwidthLimits().first);
-  pref.setGlobalUploadLimit(getGlobalBandwidthLimits().second);
+  const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
+  pref.setGlobalDownloadLimit(down_up_limit.first);
+  pref.setGlobalUploadLimit(down_up_limit.second);
   pref.setAltGlobalDownloadLimit(spinDownloadLimitAlt->value());
   pref.setAltGlobalUploadLimit(spinUploadLimitAlt->value());
   pref.setSchedulerEnabled(check_schedule->isChecked());
