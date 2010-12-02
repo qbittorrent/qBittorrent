@@ -589,25 +589,22 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
   Preferences pref;
   pref.setAltBandwidthEnabled(alternative);
   // Apply settings to the bittorrent session
-  if(alternative) {
-    s->set_download_rate_limit(pref.getAltGlobalDownloadLimit()*1024);
-    s->set_upload_rate_limit(pref.getAltGlobalUploadLimit()*1024);
+  int down_limit = alternative ? pref.getAltGlobalDownloadLimit() : pref.getGlobalDownloadLimit();
+  if(down_limit <= 0) {
+    down_limit = -1;
   } else {
-    int down_limit = pref.getGlobalDownloadLimit();
-    if(down_limit <= 0) {
-      down_limit = -1;
-    } else {
-      down_limit *= 1024;
-    }
-    s->set_download_rate_limit(down_limit);
-    int up_limit = pref.getGlobalUploadLimit();
-    if(up_limit <= 0) {
-      up_limit = -1;
-    } else {
-      up_limit *= 1024;
-    }
-    s->set_upload_rate_limit(up_limit);
+    down_limit *= 1024;
   }
+  setDownloadRateLimit(down_limit);
+  // Upload rate
+  int up_limit = alternative ? pref.getAltGlobalUploadLimit() : pref.getGlobalUploadLimit();
+  if(up_limit <= 0) {
+    up_limit = -1;
+  } else {
+    up_limit *= 1024;
+  }
+  setUploadRateLimit(up_limit);
+  // Notify
   emit alternativeSpeedsModeChanged(alternative);
 }
 
@@ -1771,8 +1768,8 @@ void QBtSession::setListeningPort(int port) {
 // Set download rate limit
 // -1 to disable
 void QBtSession::setDownloadRateLimit(long rate) {
+  qDebug() << Q_FUNC_INFO << rate;
   Q_ASSERT(rate == -1 || rate >= 0);
-  qDebug("Setting a global download rate limit at %ld", rate);
   s->set_download_rate_limit(rate);
 }
 
