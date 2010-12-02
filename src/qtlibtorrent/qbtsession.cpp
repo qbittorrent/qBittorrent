@@ -2375,7 +2375,7 @@ QHash<QString, TrackerInfos> QBtSession::getTrackersInfo(QString hash) const{
 }
 
 int QBtSession::getListenPort() const{
-  qDebug() << getListenPort() << s->listen_port();
+  qDebug() << Q_FUNC_INFO << s->listen_port();
   return s->listen_port();
 }
 

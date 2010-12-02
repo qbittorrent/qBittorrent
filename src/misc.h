@@ -55,29 +55,29 @@ private:
   misc(); // Forbidden
 
 public:
-  static inline QString toQString(std::string str) {
+  static inline QString toQString(const std::string &str) {
     return QString::fromLocal8Bit(str.c_str());
   }
 
-  static inline QString toQString(char* str) {
+  static inline QString toQString(const char* str) {
     return QString::fromLocal8Bit(str);
   }
 
-  static inline QString toQStringU(std::string str) {
+  static inline QString toQStringU(const std::string &str) {
     return QString::fromUtf8(str.c_str());
   }
 
-  static inline QString toQStringU(char* str) {
+  static inline QString toQStringU(const char* str) {
     return QString::fromUtf8(str);
   }
 
-  static inline QString toQString(libtorrent::sha1_hash hash) {
+  static inline QString toQString(const libtorrent::sha1_hash &hash) {
     std::ostringstream o;
     o << hash;
     return QString(o.str().c_str());
   }
 
-  static inline libtorrent::sha1_hash toSha1Hash(QString hash) {
+  static inline libtorrent::sha1_hash toSha1Hash(const QString &hash) {
     return libtorrent::sha1_hash(qPrintable(hash));
   }
 
