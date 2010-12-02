@@ -419,6 +419,7 @@ void QBtSession::configureSession() {
 #if LIBTORRENT_VERSION_MINOR > 14
   sessionSettings.strict_super_seeding = pref.isSuperSeedingEnabled();
 #endif
+  qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
   // * Max Half-open connections
@@ -585,6 +586,7 @@ void QBtSession::initWebUi() {
 }
 
 void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
+  qDebug() << Q_FUNC_INFO << alternative;
   // Save new state to remember it on startup
   Preferences pref;
   pref.setAltBandwidthEnabled(alternative);
@@ -1274,10 +1276,12 @@ void QBtSession::exportTorrentFiles(QString path) {
 
 // Set the maximum number of opened connections
 void QBtSession::setMaxConnections(int maxConnec) {
+  qDebug() << Q_FUNC_INFO << maxConnec;
   s->set_max_connections(maxConnec);
 }
 
 void QBtSession::setMaxConnectionsPerTorrent(int max) {
+  qDebug() << Q_FUNC_INFO << max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
   std::vector<torrent_handle>::const_iterator it;
@@ -1291,6 +1295,7 @@ void QBtSession::setMaxConnectionsPerTorrent(int max) {
 }
 
 void QBtSession::setMaxUploadsPerTorrent(int max) {
+  qDebug() << Q_FUNC_INFO << max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
   std::vector<torrent_handle>::const_iterator it;
@@ -1789,7 +1794,7 @@ void QBtSession::setMaxRatio(float ratio) {
     Q_ASSERT(!BigRatioTimer);
     BigRatioTimer = new QTimer(this);
     connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(processBigRatios()));
-    BigRatioTimer->start(5000);
+    BigRatioTimer->start(10000);
   } else {
     if(ratio_limit != -1 && ratio == -1) {
       delete BigRatioTimer;
