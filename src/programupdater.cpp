@@ -50,7 +50,7 @@ const QString FILE_EXT = "EXE";
 using namespace libtorrent;
 
 ProgramUpdater::ProgramUpdater(QObject *parent) :
-  QObject(parent)
+    QObject(parent)
 {
   mp_manager = new QNetworkAccessManager(this);
   Preferences pref;
@@ -148,13 +148,15 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
 void ProgramUpdater::updateProgram()
 {
   Q_ASSERT(!m_updateUrl.isEmpty());
-  connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
+  QDesktopServices::openUrl(m_updateUrl);
+  return;
+  /*connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(saveUpdate(QNetworkReply*)));
   // Send the request
-  mp_manager->get(QNetworkRequest(QUrl(m_updateUrl)));
+  mp_manager->get(QNetworkRequest(QUrl(m_updateUrl)));*/
 }
 
-void ProgramUpdater::saveUpdate(QNetworkReply *reply)
+/*void ProgramUpdater::saveUpdate(QNetworkReply *reply)
 {
   // Disconnect SIGNAL/SLOT
   disconnect(mp_manager, 0, this, 0);
@@ -180,17 +182,17 @@ void ProgramUpdater::saveUpdate(QNetworkReply *reply)
   }
   reply->deleteLater();
   deleteLater();
-}
+}*/
 
-void ProgramUpdater::installUpdate(QString update_path)
+/*void ProgramUpdater::installUpdate(QString update_path)
 {
-  qDebug("Installing the update...");
+  qDebug("Installing the update at %s...", qPrintable(update_path));
 #ifdef Q_WS_WIN
   QDesktopServices::openUrl(QUrl(QString("file:///")+update_path, QUrl::TolerantMode));
 #else
   QDesktopServices::openUrl(QUrl(QString("file://")+update_path, QUrl::TolerantMode));
 #endif
-}
+}*/
 
 // title on Windows: /qbittorrent-win32/qbittorrent-2.4.7/qbittorrent_2.4.7_setup.exe
 // title on Mac: /qbittorrent-mac/qbittorrent-2.4.4/qbittorrent-2.4.4.dmg
@@ -217,9 +219,6 @@ QString ProgramUpdater::extractVersionNumber(QString title) const
 
 bool ProgramUpdater::isVersionMoreRecent(QString new_version) const
 {
-  /*DEFINES += VERSION_MAJOR=2
-  DEFINES += VERSION_MINOR=5
-  DEFINES += VERSION_BUGFIX=0*/
   const QStringList parts = new_version.split(".");
   Q_ASSERT(parts.size() == 3);
   const int major = parts.at(0).toInt();

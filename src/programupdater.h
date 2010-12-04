@@ -52,8 +52,8 @@ protected:
 
 protected slots:
     void rssDownloadFinished(QNetworkReply* reply);
-    void installUpdate(QString update_path);
-    void saveUpdate(QNetworkReply* reply);
+    //void installUpdate(QString update_path);
+    //void saveUpdate(QNetworkReply* reply);
     void setUpdateUrl(QString title);
 
 signals:
