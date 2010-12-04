@@ -14,6 +14,8 @@
     - FEATURE: Optimized and improved the peer country resolution code
     - FEATURE: Download first/last pieces first when sequential download is
     enabled (Thanks Ahmad)
+    - FEATURE: Download first/last pieces first now applies to all media files
+    in the torrent (Thanks Ahmad)
     - BUGFIX: Fix SOCKS5 proxy authentication in search engine(closes #680072)
     - BUGFIX: Fix two advanced settings (ignore limits on LAN and protocol
     overhead inclusion in rate limiter)

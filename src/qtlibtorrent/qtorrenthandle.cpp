@@ -122,27 +122,23 @@ int QTorrentHandle::num_pieces() const {
 }
 
 bool QTorrentHandle::first_last_piece_first() const {
-  // Detect main file
-  int rank=0;
-  int main_file_index = 0;
-  file_entry main_file = torrent_handle::get_torrent_info().file_at(0);
-  torrent_info::file_iterator it = torrent_handle::get_torrent_info().begin_files();
-  it++; ++rank;
-  while(it != torrent_handle::get_torrent_info().end_files()) {
-    if(it->size > main_file.size) {
-      main_file = *it;
-      main_file_index = rank;
+  // Detect first media file
+  torrent_info::file_iterator it;
+  int index = 0;
+  for(it = get_torrent_info().begin_files(); it != get_torrent_info().end_files(); it++) {
+    const QString ext = misc::toQStringU(it->path.string()).split(".").last();
+    if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
+      break;
     }
-    it++;
-    ++rank;
+    ++index;
   }
-  qDebug() << "Main file in the torrent is" << filepath(main_file);
+  file_entry media_file = torrent_handle::get_torrent_info().file_at(index);
   int piece_size = torrent_handle::get_torrent_info().piece_length();
   Q_ASSERT(piece_size>0);
-  int first_piece = floor((main_file.offset+1)/(double)piece_size);
+  int first_piece = floor((media_file.offset+1)/(double)piece_size);
   Q_ASSERT(first_piece >= 0 && first_piece < torrent_handle::get_torrent_info().num_pieces());
   qDebug("First piece of the file is %d/%d", first_piece, torrent_handle::get_torrent_info().num_pieces()-1);
-  int num_pieces_in_file = ceil(main_file.size/(double)piece_size);
+  int num_pieces_in_file = ceil(media_file.size/(double)piece_size);
   int last_piece = first_piece+num_pieces_in_file-1;
   Q_ASSERT(last_piece >= 0 && last_piece < torrent_handle::get_torrent_info().num_pieces());
   qDebug("last piece of the file is %d/%d", last_piece, torrent_handle::get_torrent_info().num_pieces()-1);
@@ -550,37 +546,37 @@ void QTorrentHandle::add_tracker(const announce_entry& url) const {
 #endif
 }
 
-void QTorrentHandle::prioritize_first_last_piece(bool b) const {
-  // Detect main file
-  int rank=0;
-  int main_file_index = 0;
-  file_entry main_file = torrent_handle::get_torrent_info().file_at(0);
-  torrent_info::file_iterator it = torrent_handle::get_torrent_info().begin_files();
-  it++; ++rank;
-  while(it != torrent_handle::get_torrent_info().end_files()) {
-    if(it->size > main_file.size) {
-      main_file = *it;
-      main_file_index = rank;
-    }
-    it++;
-    ++rank;
-  }
-  qDebug() << "Main file in the torrent is" << filepath(main_file);
+void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {
   // Determine the priority to set
   int prio = 7; // MAX
-  if(!b) prio = torrent_handle::file_priority(main_file_index);
-  // Determine the first and last piece of the main file
+  if(!b) prio = torrent_handle::file_priority(file_index);
+  file_entry file = get_torrent_info().file_at(file_index);
+  // Determine the first and last piece of the file
   int piece_size = torrent_handle::get_torrent_info().piece_length();
   Q_ASSERT(piece_size>0);
-  int first_piece = floor((main_file.offset+1)/(double)piece_size);
+  int first_piece = floor((file.offset+1)/(double)piece_size);
   Q_ASSERT(first_piece >= 0 && first_piece < torrent_handle::get_torrent_info().num_pieces());
   qDebug("First piece of the file is %d/%d", first_piece, torrent_handle::get_torrent_info().num_pieces()-1);
-  int num_pieces_in_file = ceil(main_file.size/(double)piece_size);
+  int num_pieces_in_file = ceil(file.size/(double)piece_size);
   int last_piece = first_piece+num_pieces_in_file-1;
   Q_ASSERT(last_piece >= 0 && last_piece < torrent_handle::get_torrent_info().num_pieces());
   qDebug("last piece of the file is %d/%d", last_piece, torrent_handle::get_torrent_info().num_pieces()-1);
   torrent_handle::piece_priority(first_piece, prio);
   torrent_handle::piece_priority(last_piece, prio);
+}
+
+void QTorrentHandle::prioritize_first_last_piece(bool b) const {
+  // Download first and last pieces first for all media files in the torrent
+  torrent_info::file_iterator it;
+  int index = 0;
+  for(it = get_torrent_info().begin_files(); it != get_torrent_info().end_files(); it++) {
+    const QString ext = misc::toQStringU(it->path.string()).split(".").last();
+    if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
+      qDebug() << "File" << it->path.string().c_str() << "is previewable, toggle downloading of first/last pieces first";
+      prioritize_first_last_piece(index, b);
+    }
+    ++index;
+  }
 }
 
 void QTorrentHandle::rename_file(int index, QString name) const {
