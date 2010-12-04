@@ -1,57 +1,55 @@
-<ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>downloadFromURL</class>
- <widget class="QDialog" name="downloadFromURL" >
-  <property name="geometry" >
+ <widget class="QDialog" name="downloadFromURL">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
+    <width>482</width>
     <height>220</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Download from urls</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>6</number>
    </property>
+   <property name="margin">
+    <number>9</number>
+   </property>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>6</number>
      </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
      <item>
-      <widget class="QLabel" name="icon_lbl" >
-       <property name="minimumSize" >
+      <widget class="QLabel" name="icon_lbl">
+       <property name="minimumSize">
         <size>
          <width>32</width>
          <height>32</height>
         </size>
        </property>
-       <property name="maximumSize" >
+       <property name="maximumSize">
         <size>
          <width>32</width>
          <height>32</height>
         </size>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="downloadURL_lbl" >
-       <property name="font" >
+      <widget class="QLabel" name="downloadURL_lbl">
+       <property name="font">
         <font>
          <family>Sans Serif</family>
          <pointsize>12</pointsize>
@@ -62,7 +60,7 @@
          <strikeout>false</strikeout>
         </font>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>Download Torrents from URLs</string>
        </property>
       </widget>
@@ -70,21 +68,21 @@
     </layout>
    </item>
    <item>
-    <widget class="QTextEdit" name="textUrls" >
-     <property name="acceptRichText" >
+    <widget class="QTextEdit" name="textUrls">
+     <property name="acceptRichText">
       <bool>false</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_infos" >
-     <property name="maximumSize" >
+    <widget class="QLabel" name="label_infos">
+     <property name="maximumSize">
       <size>
        <width>16777215</width>
        <height>17</height>
       </size>
      </property>
-     <property name="font" >
+     <property name="font">
       <font>
        <family>Sans Serif</family>
        <pointsize>9</pointsize>
@@ -95,25 +93,25 @@
        <strikeout>false</strikeout>
       </font>
      </property>
-     <property name="text" >
+     <property name="text">
       <string>Only one URL per line</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>6</number>
+     </property>
+     <property name="margin">
+      <number>0</number>
      </property>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -122,25 +120,25 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="downloadButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="downloadButton">
+       <property name="text">
         <string>Download</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -152,7 +150,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections/>
 </ui>
