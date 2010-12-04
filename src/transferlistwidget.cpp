@@ -58,7 +58,6 @@
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
-  QIniSettings settings("qBittorrent", "qBittorrent");
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
   setItemDelegate(listDelegate);
@@ -87,7 +86,6 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
 
   setModel(nameFilterModel);
 
-
   // Visual settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
@@ -97,28 +95,31 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   setAutoScroll(true);
   setDragDropMode(QAbstractItemView::DragOnly);
 
-  hideColumn(TorrentModelItem::TR_PRIORITY);
-  loadHiddenColumns();
-  // Load last columns width for transfer list
-  if(!loadColWidthList()) {
-    header()->resizeSection(0, 200);
-  }
-  loadLastSortedColumn();
-  setContextMenuPolicy(Qt::CustomContextMenu);
+  // Default hidden columns
+  setColumnHidden(TorrentModelItem::TR_PRIORITY, true);
+  setColumnHidden(TorrentModelItem::TR_ADD_DATE, true);
+  setColumnHidden(TorrentModelItem::TR_SEED_DATE, true);
+  setColumnHidden(TorrentModelItem::TR_UPLIMIT, true);
+  setColumnHidden(TorrentModelItem::TR_DLLIMIT, true);
+  setColumnHidden(TorrentModelItem::TR_TRACKER, true);
+  setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
+  setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
 
+  setContextMenuPolicy(Qt::CustomContextMenu);
 
   // Listen for list events
   connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(torrentDoubleClicked(QModelIndex)));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
   header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
+
+  // Load settings
+  loadSettings();
 }
 
 TransferListWidget::~TransferListWidget() {
   // Save settings
-  saveLastSortedColumn();
-  saveColWidthList();
-  saveHiddenColumns();
+  saveSettings();
   // Clean up
   delete labelFilterModel;
   delete statusFilterModel;
@@ -473,51 +474,6 @@ void TransferListWidget::recheckSelectedTorrents() {
   }
 }
 
-// save the hidden columns in settings
-void TransferListWidget::saveHiddenColumns() const {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  QStringList ishidden_list;
-  const short nbColumns = listModel->columnCount()-1;//hash column is hidden
-
-  for(short i=0; i<nbColumns; ++i){
-    if(isColumnHidden(i)) {
-      //qDebug("Column named %s is hidden.", qPrintable(listModel->headerData(i, Qt::Horizontal).toString()));
-      ishidden_list << "0";
-    } else {
-      ishidden_list << "1";
-    }
-  }
-  settings.setValue("TransferListColsHoS", ishidden_list.join(" "));
-}
-
-// load the previous settings, and hide the columns
-bool TransferListWidget::loadHiddenColumns() {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  const QString line = settings.value("TransferListColsHoS", "").toString();
-  bool loaded = false;
-  const QStringList ishidden_list = line.split(' ');
-  const unsigned int nbCol = ishidden_list.size();
-  if(nbCol == (unsigned int)listModel->columnCount()-1) {
-    for(unsigned int i=0; i<nbCol; ++i){
-      if(ishidden_list.at(i) == "0") {
-        setColumnHidden(i, true);
-      }
-    }
-    loaded = true;
-  }
-  // As a default, hide less useful columns
-  if(!loaded) {
-    setColumnHidden(TorrentModelItem::TR_ADD_DATE, true);
-    setColumnHidden(TorrentModelItem::TR_SEED_DATE, true);
-    setColumnHidden(TorrentModelItem::TR_UPLIMIT, true);
-    setColumnHidden(TorrentModelItem::TR_DLLIMIT, true);
-    setColumnHidden(TorrentModelItem::TR_TRACKER, true);
-    setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
-    setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
-  }
-  return loaded;
-}
-
 // hide/show columns menu
 void TransferListWidget::displayDLHoSMenu(const QPoint&){
   QMenu hideshowColumn(this);
@@ -839,105 +795,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   }
 }
 
-// Save columns width in a file to remember them
-void TransferListWidget::saveColWidthList() {
-  qDebug("Saving columns width in transfer list");
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QStringList width_list;
-  QStringList new_width_list;
-  const short nbColumns = listModel->columnCount();
-  if(nbColumns <= 0) return;
-  const QString line = settings.value("TransferListColsWidth", QString()).toString();
-  if(!line.isEmpty()) {
-    width_list = line.split(' ');
-  }
-  for(short i=0; i<nbColumns; ++i){
-    if(columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
-      // load the former width
-      new_width_list << width_list.at(i);
-    } else if(columnWidth(i)>=1) {
-      // usual case, save the current width
-      new_width_list << QString::number(columnWidth(i));
-    } else {
-      // default width
-      resizeColumnToContents(i);
-      new_width_list << QString::number(columnWidth(i));
-    }
-  }
-  settings.setValue(QString::fromUtf8("TransferListColsWidth"), new_width_list.join(QString::fromUtf8(" ")));
-  QStringList visualIndexes;
-  for(int i=0; i<nbColumns; ++i) {
-    visualIndexes << QString::number(header()->visualIndex(i));
-  }
-  settings.setValue(QString::fromUtf8("TransferListVisualIndexes"), visualIndexes);
-  qDebug("Download list columns width saved");
-}
-
-// Load columns width in a file that were saved previously
-bool TransferListWidget::loadColWidthList() {
-  qDebug("Loading columns width for download list");
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString line = settings.value(QString::fromUtf8("TransferListColsWidth"), QString()).toString();
-  if(line.isEmpty())
-    return false;
-  const QStringList width_list = line.split(" ");
-  const int listSize = width_list.size();
-  if(listSize != listModel->columnCount()) {
-    qDebug("Corrupted values for transfer list columns sizes");
-    return false;
-  }
-  for(int i=0; i<listSize; ++i) {
-    header()->resizeSection(i, width_list.at(i).toInt());
-  }
-  const QList<int> visualIndexes = misc::intListfromStringList(settings.value(QString::fromUtf8("TransferListVisualIndexes")).toStringList());
-  if(visualIndexes.size() != listModel->columnCount()) {
-    qDebug("Corrupted values for transfer list columns indexes");
-    return false;
-  }
-  bool change = false;
-  do {
-    change = false;
-    for(int i=0;i<visualIndexes.size(); ++i) {
-      const int new_visual_index = visualIndexes.at(header()->logicalIndex(i));
-      if(i != new_visual_index) {
-        qDebug("Moving column from %d to %d", header()->logicalIndex(i), new_visual_index);
-        header()->moveSection(i, new_visual_index);
-        change = true;
-      }
-    }
-  }while(change);
-  qDebug("Transfer list columns width loaded");
-  return true;
-}
-
-void TransferListWidget::saveLastSortedColumn() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const Qt::SortOrder sortOrder = header()->sortIndicatorOrder();
-  QString sortOrderLetter;
-  if(sortOrder == Qt::AscendingOrder)
-    sortOrderLetter = QString::fromUtf8("a");
-  else
-    sortOrderLetter = QString::fromUtf8("d");
-  const int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TransferListSortedCol"), QVariant(QString::number(index)+sortOrderLetter));
-}
-
-void TransferListWidget::loadLastSortedColumn() {
-  // Loading last sorted column
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QString sortedCol = settings.value(QString::fromUtf8("TransferListSortedCol"), QString()).toString();
-  if(!sortedCol.isEmpty()) {
-    Qt::SortOrder sortOrder;
-    if(sortedCol.endsWith(QString::fromUtf8("d")))
-      sortOrder = Qt::DescendingOrder;
-    else
-      sortOrder = Qt::AscendingOrder;
-    sortedCol.chop(1);
-    const int index = sortedCol.toInt();
-    sortByColumn(index, sortOrder);
-  }
-}
-
 void TransferListWidget::currentChanged(const QModelIndex& current, const QModelIndex&) {
   qDebug("CURRENT CHANGED");
   QTorrentHandle h;
@@ -996,5 +853,18 @@ void TransferListWidget::applyStatusFilter(int f) {
     qDebug("Nothing is selected, selecting first row: %s", qPrintable(nameFilterModel->index(0, TorrentModelItem::TR_NAME).data().toString()));
     selectionModel()->setCurrentIndex(nameFilterModel->index(0, TorrentModelItem::TR_NAME), QItemSelectionModel::SelectCurrent|QItemSelectionModel::Rows);
   }
+}
+
+void TransferListWidget::saveSettings()
+{
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  settings.setValue("TransferList/HeaderState", header()->saveState());
+}
+
+void TransferListWidget::loadSettings()
+{
+  QIniSettings settings("qBittorrent", "qBittorrent");
+  header()->resizeSection(0, 200); // Default
+  header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
 }
 

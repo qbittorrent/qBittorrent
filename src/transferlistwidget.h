@@ -87,16 +87,12 @@ protected:
   QModelIndex mapToSource(const QModelIndex &index) const;
   QModelIndex mapFromSource(const QModelIndex &index) const;
   QStringList getCustomLabels() const;
-  void saveColWidthList();
-  bool loadColWidthList();
-  void saveLastSortedColumn();
-  void loadLastSortedColumn();
+  void saveSettings();
+  void loadSettings();
   QStringList getSelectedTorrentsHashes() const;
 
 protected slots:
   void torrentDoubleClicked(const QModelIndex& index);
-  bool loadHiddenColumns();
-  void saveHiddenColumns() const;
   void displayListMenu(const QPoint&);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
 #if LIBTORRENT_VERSION_MINOR > 14
