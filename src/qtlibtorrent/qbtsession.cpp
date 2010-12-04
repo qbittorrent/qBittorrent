@@ -92,15 +92,11 @@ QBtSession::QBtSession()
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
+  , m_tracker(0)
 {
   Preferences pref;
-  m_tracker = 0;
   // To avoid some exceptions
   boost::filesystem::path::default_name_check(boost::filesystem::no_check);
-  // For backward compatibility
-  // Move .qBittorrent content to XDG folder
-  // TODO: Remove after some releases (introduced in v2.1.0)
-  misc::moveToXDGFolders();
   // Creating Bittorrent session
   // Check if we should spoof utorrent
   QList<int> version;

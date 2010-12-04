@@ -432,33 +432,6 @@ QString misc::updateLabelInSavePath(const QString& defaultSavePath, const QStrin
   return new_save_path;
 }
 
-void misc::moveToXDGFolders() {
-  QDir old_qBtPath(QDir::homePath().replace("\\","/")+"/"+".qbittorrent");
-  if(old_qBtPath.exists()) {
-    // Copy BT_backup folder
-    const QString old_BTBackupPath = old_qBtPath.absoluteFilePath("BT_backup");
-    if(QDir(old_BTBackupPath).exists()) {
-      copyDir(old_BTBackupPath, BTBackupLocation());
-    }
-    // Copy search engine folder
-    const QString old_searchPath = old_qBtPath.absoluteFilePath("nova");
-    if(QDir(old_searchPath).exists()) {
-      copyDir(old_searchPath, searchEngineLocation());
-    }
-    // Copy *_state files
-    if(QFile::exists(old_qBtPath.absoluteFilePath("dht_state"))) {
-      QFile::copy(old_qBtPath.absoluteFilePath("dht_state"), QDir(cacheLocation()).absoluteFilePath("dht_state"));
-      safeRemove(old_qBtPath.absoluteFilePath("dht_state"));
-    }
-    if(QFile::exists(old_qBtPath.absoluteFilePath("ses_state"))) {
-      QFile::copy(old_qBtPath.absoluteFilePath("ses_state"), QDir(cacheLocation()).absoluteFilePath("ses_state"));
-      safeRemove(old_qBtPath.absoluteFilePath("ses_state"));
-    }
-    // Remove .qbittorrent folder if empty
-    QDir::home().rmdir(".qbittorrent");
-  }
-}
-
 QString misc::toValidFileSystemName(QString filename) {
   qDebug("toValidFSName: %s", qPrintable(filename));
   filename = filename.replace("\\", "/").trimmed();
