@@ -119,33 +119,15 @@ torrentAdditionDialog::~torrentAdditionDialog() {
 
 void torrentAdditionDialog::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  // Restore size and position
-  resize(settings.value(QString::fromUtf8("TorrentAdditionDlg/size"), size()).toSize());
-  move(settings.value(QString::fromUtf8("TorrentAdditionDlg/pos"), misc::screenCenter(this)).toPoint());
-  // Restore column width
-  const QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth")).toStringList());
-  if(contentColsWidths.empty()) {
-    torrentContentList->header()->resizeSection(0, 200);
-  } else {
-    for(int i=0; i<contentColsWidths.size(); ++i) {
-      torrentContentList->setColumnWidth(i, contentColsWidths.at(i));
-    }
-  }
+  restoreGeometry(settings.value("TorrentAdditionDlg/dimensions").toByteArray());
+  torrentContentList->header()->resizeSection(0, 200); //Default
+  torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/contentHeaderState").toByteArray());
 }
 
 void torrentAdditionDialog::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(!is_magnet && t.get() && t->is_valid() && t->num_files() > 1) {
-    QStringList contentColsWidths;
-    // -1 because we hid PROGRESS column
-    for(int i=0; i<PropListModel->columnCount()-1; ++i) {
-      contentColsWidths << QString::number(torrentContentList->columnWidth(i));
-    }
-    settings.setValue(QString::fromUtf8("TorrentAdditionDlg/filesColsWidth"), contentColsWidths);
-  }
-  settings.setValue("TorrentAdditionDlg/size", size()+QSize(0, hidden_height));
-  qDebug("pos: (%d, %d)", pos().x(), pos().y());
-  settings.setValue("TorrentAdditionDlg/pos", pos());
+  settings.setValue("TorrentAdditionDlg/dimensions", saveGeometry());
+  settings.setValue("TorrentAdditionDlg/contentHeaderState", torrentContentList->header()->saveState());
 }
 
 void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
