@@ -45,10 +45,9 @@ public:
     // Enable Web UI
     pref.setWebUiEnabled(true);
     // Instanciate Bittorrent Object
-    BTSession = QBtSession::instance();
-    connect(BTSession, SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
+    connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), this, SLOT(displayConsoleMessage(QString)));
     // Resume unfinished torrents
-    BTSession->startUpTorrents();
+    QBtSession::instance()->startUpTorrents();
     // Process command line parameters
     processParams(torrentCmdLine);
     // Display some information to the user
@@ -88,23 +87,20 @@ public slots:
     foreach(QString param, params) {
       param = param.trimmed();
       if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
-        BTSession->downloadFromUrl(param);
+        QBtSession::instance()->downloadFromUrl(param);
       }else{
         if(param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
           qDebug("Converting bc link to magnet link");
           param = misc::bcLinkToMagnet(param);
         }
         if(param.startsWith("magnet:", Qt::CaseInsensitive)) {
-          BTSession->addMagnetUri(param);
+          QBtSession::instance()->addMagnetUri(param);
         } else {
-          BTSession->addTorrent(param);
+          QBtSession::instance()->addTorrent(param);
         }
       }
     }
   }
-
-private:
-  QBtSession *BTSession;
 
 };
 

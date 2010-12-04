@@ -145,7 +145,6 @@ protected:
 private:
   QFileSystemWatcher *executable_watcher;
   // Bittorrent
-  QBtSession *BTSession;
   QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
   // GUI related
   QTimer *guiUpdater;
