@@ -38,6 +38,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QInputDialog>
+#include <QDebug>
 
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
@@ -112,9 +113,15 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
 }
 
 torrentAdditionDialog::~torrentAdditionDialog() {
-  saveSettings();
   delete PropDelegate;
   delete PropListModel;
+}
+
+void torrentAdditionDialog::closeEvent(QCloseEvent *event)
+{
+  qDebug() << Q_FUNC_INFO;
+  saveSettings();
+  QDialog::closeEvent(event);
 }
 
 void torrentAdditionDialog::readSettings() {

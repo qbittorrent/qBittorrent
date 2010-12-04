@@ -71,6 +71,9 @@ public slots:
   void updateSavePathCurrentText();
   void resetComboLabelIndex(QString text);
 
+protected:
+  void closeEvent(QCloseEvent *event);
+
 private:
   QString fileName;
   QString hash;

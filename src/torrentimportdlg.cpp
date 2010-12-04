@@ -30,6 +30,7 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
@@ -54,7 +55,6 @@ TorrentImportDlg::TorrentImportDlg(QWidget *parent) :
 
 TorrentImportDlg::~TorrentImportDlg()
 {
-  saveSettings();
   delete ui;
 }
 
@@ -180,7 +180,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 
 void TorrentImportDlg::on_importBtn_clicked()
 {
-  accept();
+  close();
 }
 
 QString TorrentImportDlg::getTorrentPath() const
@@ -283,11 +283,18 @@ bool TorrentImportDlg::skipFileChecking() const
 void TorrentImportDlg::loadSettings()
 {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentImportDlg/dimensions", saveGeometry());
+  restoreGeometry(settings.value("TorrentImportDlg/dimensions").toByteArray());
 }
 
 void TorrentImportDlg::saveSettings()
 {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  restoreGeometry(settings.value("TorrentImportDlg/dimensions").toByteArray());
+  settings.setValue("TorrentImportDlg/dimensions", saveGeometry());
+}
+
+void TorrentImportDlg::closeEvent(QCloseEvent *event)
+{
+  qDebug() << Q_FUNC_INFO;
+  saveSettings();
+  QDialog::closeEvent(event);
 }

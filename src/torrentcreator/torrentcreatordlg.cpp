@@ -51,6 +51,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorT
   loadTrackerList();
   // Piece sizes
   m_piece_sizes << 32 << 64 << 128 << 256 << 512 << 1024 << 2048 << 4096;
+  loadSettings();
   show();
 }
 
@@ -182,7 +183,7 @@ void TorrentCreatorDlg::on_cancelButton_clicked() {
     creatorThread->wait();
   }
   // Close the dialog
-  reject();
+  close();
 }
 
 void TorrentCreatorDlg::updateProgressBar(int progress) {
@@ -254,4 +255,23 @@ void TorrentCreatorDlg::loadTrackerList()
 {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   trackers_list->setPlainText(settings.value("CreateTorrent/TrackerList", "").toString());
+}
+
+void TorrentCreatorDlg::saveSettings()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("CreateTorrent/dimensions", saveGeometry());
+}
+
+void TorrentCreatorDlg::loadSettings()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  restoreGeometry(settings.value("CreateTorrent/dimensions").toByteArray());
+}
+
+void TorrentCreatorDlg::closeEvent(QCloseEvent *event)
+{
+  qDebug() << Q_FUNC_INFO;
+  saveSettings();
+  QDialog::closeEvent(event);
 }

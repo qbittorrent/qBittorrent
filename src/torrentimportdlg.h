@@ -69,6 +69,9 @@ private slots:
 
   void on_importBtn_clicked();
 
+protected:
+  void closeEvent(QCloseEvent *event);
+
 private:
   void loadSettings();
   void saveSettings();
