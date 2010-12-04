@@ -269,10 +269,8 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 void MainWindow::deleteBTSession() {
   guiUpdater->stop();
   status_bar->stopTimer();
-  if(BTSession) {
-    delete BTSession;
-    BTSession = 0;
-  }
+  QBtSession::drop();
+  BTSession = 0;
   QTimer::singleShot(0, this, SLOT(close()));
 }
 
