@@ -72,7 +72,8 @@ public:
     dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
     altSpeedsBtn = new QPushButton();
-    altSpeedsBtn->setFixedWidth(22);
+    altSpeedsBtn->setFixedWidth(32);
+    altSpeedsBtn->setIconSize(QSize(32,32));
     altSpeedsBtn->setFlat(true);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     altSpeedsBtn->setCursor(Qt::PointingHandCursor);

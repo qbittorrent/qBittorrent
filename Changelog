@@ -22,6 +22,7 @@
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
     - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
+    - COSMETIC: Use bigger alternative speed icon
     - OTHERS: Dropped support for Qt <= 4.4
 
 * Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
