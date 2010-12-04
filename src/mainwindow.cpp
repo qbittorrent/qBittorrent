@@ -436,11 +436,33 @@ void MainWindow::writeSettings() {
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   settings.setValue("geometry", saveGeometry());
   // Splitter size
-  QStringList sizes_str;
-  sizes_str << QString::number(vSplitter->sizes().first());
-  sizes_str << QString::number(vSplitter->sizes().last());
-  settings.setValue(QString::fromUtf8("vSplitterSizes"), sizes_str);
+  settings.setValue(QString::fromUtf8("vsplitterState"), vSplitter->saveState());
   settings.endGroup();
+}
+
+void MainWindow::readSettings() {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("MainWindow"));
+  restoreGeometry(settings.value("geometry").toByteArray());
+  const QByteArray splitterState = settings.value("vsplitterState").toByteArray();
+  if(splitterState.isEmpty()) {
+    // Default sizes
+    vSplitter->setSizes(QList<int>() << 120 << vSplitter->width()-120);
+  } else {
+    vSplitter->restoreState(splitterState);
+  }
+  settings.endGroup();
+}
+
+void MainWindow::balloonClicked() {
+  if(isHidden()) {
+    show();
+    if(isMinimized()) {
+      showNormal();
+    }
+    raise();
+    activateWindow();
+  }
 }
 
 // called when a torrent has finished
@@ -494,36 +516,6 @@ void MainWindow::displayRSSTab() const {
 }
 
 // End of keyboard shortcuts slots
-
-void MainWindow::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.beginGroup(QString::fromUtf8("MainWindow"));
-  restoreGeometry(settings.value("geometry").toByteArray());
-  const QStringList sizes_str = settings.value("vSplitterSizes", QStringList()).toStringList();
-  // Splitter size
-  QList<int> sizes;
-  if(sizes_str.size() == 2) {
-    sizes << sizes_str.first().toInt();
-    sizes << sizes_str.last().toInt();
-  } else {
-    qDebug("Default splitter size");
-    sizes << 120;
-    sizes << vSplitter->width()-120;
-  }
-  vSplitter->setSizes(sizes);
-  settings.endGroup();
-}
-
-void MainWindow::balloonClicked() {
-  if(isHidden()) {
-    show();
-    if(isMinimized()) {
-      showNormal();
-    }
-    raise();
-    activateWindow();
-  }
-}
 
 void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h) {
   Preferences pref;
@@ -1042,9 +1034,9 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
     NotifyNotification* notification;
 
     notification = notify_notification_new (qPrintable(title), qPrintable(msg), "qbittorrent"
-#if !defined(NOTIFY_VERSION_MINOR) || (NOTIFY_VERSION_MAJOR == 0 && NOTIFY_VERSION_MINOR < 7)
+                                        #if !defined(NOTIFY_VERSION_MINOR) || (NOTIFY_VERSION_MAJOR == 0 && NOTIFY_VERSION_MINOR < 7)
                                             , 0
-#endif
+                                        #endif
                                             );
     gboolean success = notify_notification_show (notification, NULL);
     g_object_unref(G_OBJECT(notification));
