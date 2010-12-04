@@ -50,9 +50,13 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   m_editedRule(0)
 {
   ui->setupUi(this);
+  // Ui Settings
   ui->listRules->setSortingEnabled(true);
   ui->listRules->setSelectionMode(QAbstractItemView::ExtendedSelection);
   ui->treeMatchingArticles->setSortingEnabled(true);
+  ui->hsplitter->setCollapsible(0, false);
+  ui->hsplitter->setCollapsible(1, false);
+  ui->hsplitter->setCollapsible(2, true); // Only the preview list is collapsible
 
   connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   m_ruleList = RssDownloadRuleList::instance();
@@ -84,6 +88,7 @@ void AutomatedRssDownloader::loadSettings()
   QIniSettings settings("qBittorrent", "qBittorrent");
   restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
   ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
+  ui->hsplitter->restoreState(settings.value("RssFeedDownloader/hsplitterSizes").toByteArray());
   // Display download rules
   loadRulesList();
 }
@@ -94,6 +99,7 @@ void AutomatedRssDownloader::saveSettings()
   // Save dialog geometry
   QIniSettings settings("qBittorrent", "qBittorrent");
   settings.setValue("RssFeedDownloader/geometry", saveGeometry());
+  settings.setValue("RssFeedDownloader/hsplitterSizes", ui->hsplitter->saveState());
 }
 
 void AutomatedRssDownloader::loadRulesList()
@@ -455,6 +461,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
   // If there is none, create it
   if(!treeFeedItem) {
     treeFeedItem = new QTreeWidgetItem(QStringList() << feed->getName());
+    treeFeedItem->setToolTip(0, feed->getName());
     QFont f = treeFeedItem->font(0);
     f.setBold(true);
     treeFeedItem->setFont(0, f);
@@ -465,6 +472,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
   // Insert the articles
   foreach(const QString &art, articles) {
     QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << art);
+    item->setToolTip(0, art);
     treeFeedItem->addChild(item);
   }
   ui->treeMatchingArticles->expandItem(treeFeedItem);
