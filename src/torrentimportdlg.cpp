@@ -49,10 +49,12 @@ TorrentImportDlg::TorrentImportDlg(QWidget *parent) :
 #if LIBTORRENT_VERSION_MINOR < 15
   ui->checkSkipCheck->setVisible(false);
 #endif
+  loadSettings();
 }
 
 TorrentImportDlg::~TorrentImportDlg()
 {
+  saveSettings();
   delete ui;
 }
 
@@ -277,3 +279,15 @@ bool TorrentImportDlg::skipFileChecking() const
   return ui->checkSkipCheck->isChecked();
 }
 #endif
+
+void TorrentImportDlg::loadSettings()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentImportDlg/dimensions", saveGeometry());
+}
+
+void TorrentImportDlg::saveSettings()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  restoreGeometry(settings.value("TorrentImportDlg/dimensions").toByteArray());
+}

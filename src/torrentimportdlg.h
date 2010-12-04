@@ -70,6 +70,10 @@ private slots:
   void on_importBtn_clicked();
 
 private:
+  void loadSettings();
+  void saveSettings();
+
+private:
   Ui::TorrentImportDlg *ui;
   boost::intrusive_ptr<libtorrent::torrent_info> t;
   QStringList m_filesPath;
