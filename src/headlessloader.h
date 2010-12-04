@@ -40,7 +40,7 @@ class HeadlessLoader: public QObject {
   Q_OBJECT
 
 public:
-  HeadlessLoader(QStringList torrentCmdLine) {
+  HeadlessLoader(const QStringList &torrentCmdLine) {
     Preferences pref;
     // Enable Web UI
     pref.setWebUiEnabled(true);
@@ -71,7 +71,7 @@ public slots:
     qApp->quit();
   }
 
-  void displayConsoleMessage(QString msg) {
+  void displayConsoleMessage(const QString &msg) {
     std::cout << qPrintable(msg) << std::endl;
   }
 
