@@ -504,7 +504,7 @@ void torrentAdditionDialog::on_browseButton_clicked(){
   Q_ASSERT(!is_magnet);
   QString new_path;
   if(t->num_files() == 1) {
-    new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText());
+    new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText(), QString(), 0, QFileDialog::DontConfirmOverwrite);
   } else {
     QString root_folder;
     QString truncated_path = getCurrentTruncatedSavePath(&root_folder);

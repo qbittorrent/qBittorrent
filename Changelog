@@ -19,6 +19,7 @@
     overhead inclusion in rate limiter)
     - BUGFIX: Fix strict super seeding (was not working)
     - BUGFIX: Improve magnet save path handling (closes #683395)
+    - BUGFIX: Disable overwrite confirmation in torrent addition dialog (closes # 685269)
     - COSMETIC: Replaced message box by on-screen notification for download errors
     - COSMETIC: Improved the torrent creation tool appearance
     - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
