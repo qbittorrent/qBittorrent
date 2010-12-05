@@ -449,7 +449,7 @@ void QBtSession::configureSession() {
   // * LSD
   if(pref.isLSDEnabled()) {
     enableLSD(true);
-    addConsoleMessage(tr("Local Peer Discovery [ON]"), QString::fromUtf8("blue"));
+    addConsoleMessage(tr("Local Peer Discovery support [ON]"), QString::fromUtf8("blue"));
   } else {
     enableLSD(false);
     addConsoleMessage(tr("Local Peer Discovery support [OFF]"), QString::fromUtf8("blue"));
@@ -1317,13 +1317,13 @@ void QBtSession::enableUPnP(bool b) {
 void QBtSession::enableLSD(bool b) {
   if(b) {
     if(!LSDEnabled) {
-      qDebug("Enabling LSD");
+      qDebug("Enabling Local Peer Discovery");
       s->start_lsd();
       LSDEnabled = true;
     }
   } else {
     if(LSDEnabled) {
-      qDebug("Disabling LSD");
+      qDebug("Disabling Local Peer Discovery");
       s->stop_lsd();
       LSDEnabled = false;
     }

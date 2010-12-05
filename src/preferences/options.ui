@@ -142,7 +142,7 @@
       </item>
       <item>
        <property name="text">
-        <string>Bittorrent</string>
+        <string>BitTorrent</string>
        </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -1399,8 +1399,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>423</width>
-             <height>334</height>
+             <width>524</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1796,7 +1796,7 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="AddBTFeaturesBox">
               <property name="title">
-               <string>Bittorrent features</string>
+               <string>BitTorrent features</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
@@ -1812,7 +1812,7 @@ QGroupBox {
 }</string>
                  </property>
                  <property name="title">
-                  <string>Enable DHT network (decentralized)</string>
+                  <string>Enable DHT (decentralized network) to find more peers</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -1834,7 +1834,7 @@ QGroupBox {
 }</string>
                     </property>
                     <property name="title">
-                     <string>Use a different port for DHT and Bittorrent</string>
+                     <string>Use a different port for DHT and BitTorrent</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
@@ -1898,7 +1898,7 @@ QGroupBox {
                   <string>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</string>
                  </property>
                  <property name="text">
-                  <string>Enable Peer Exchange / PeX (requires restart)</string>
+                  <string>Enable Peer Exchange (PeX) to find more peers</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -1911,7 +1911,7 @@ QGroupBox {
                   <string>Look for peers on your local network</string>
                  </property>
                  <property name="text">
-                  <string>Enable Local Peer Discovery</string>
+                  <string>Enable Local Peer Discovery to find more peers</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
