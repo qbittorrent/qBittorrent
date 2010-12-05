@@ -1,6 +1,6 @@
 /*
 -----BEGIN QCMOD-----
-name: libboost
+name: qtsingleapplication
 arg: with-qtsingleapplication=[system|shipped], Use the shipped qtsingleapplication library or the system one
 -----END QCMOD-----
 */
