@@ -214,6 +214,7 @@ public slots:
     } else {
       altSpeedsBtn->setIcon(QIcon(":/Icons/slow_off.png"));
       altSpeedsBtn->setToolTip(tr("Click to enable alternative speed limits"));
+      altSpeedsBtn->setDown(false);
     }
   }
 
