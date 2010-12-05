@@ -359,7 +359,7 @@
                     </property>
                     <item>
                      <property name="text">
-                      <string>Start / Stop</string>
+                      <string>Start / Stop Torrent</string>
                      </property>
                     </item>
                     <item>
@@ -385,7 +385,7 @@
                    <widget class="QComboBox" name="actionTorrentFnOnDblClBox">
                     <item>
                      <property name="text">
-                      <string>Start / Stop</string>
+                      <string>Start / Stop Torrent</string>
                      </property>
                     </item>
                     <item>
@@ -1787,7 +1787,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-25</y>
              <width>570</width>
              <height>422</height>
             </rect>
@@ -1796,7 +1796,7 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="AddBTFeaturesBox">
               <property name="title">
-               <string>BitTorrent features</string>
+               <string>Privacy</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
@@ -1923,7 +1923,7 @@ QGroupBox {
                  <item>
                   <widget class="QLabel" name="lbl_encryption">
                    <property name="text">
-                    <string>Protocol encryption:</string>
+                    <string>Encryption mode:</string>
                    </property>
                   </widget>
                  </item>
@@ -1931,17 +1931,17 @@ QGroupBox {
                   <widget class="QComboBox" name="comboEncryption">
                    <item>
                     <property name="text">
-                     <string>Enabled</string>
+                     <string>Prefer encryption</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>Forced</string>
+                     <string>Require encryption</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>Disabled</string>
+                     <string>Disable encryption</string>
                     </property>
                    </item>
                   </widget>
@@ -2171,8 +2171,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>396</width>
-             <height>229</height>
+             <width>524</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2334,8 +2334,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>524</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
