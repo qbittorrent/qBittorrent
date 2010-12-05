@@ -2308,12 +2308,12 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation type="unfinished">Nie można utworzyć pliku %1</translation>
+        <translation type="obsolete">Nie można utworzyć pliku %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation type="unfinished">Nie można pobrać aktualizacji z %1</translation>
+        <translation type="obsolete">Nie można pobrać aktualizacji z %1</translation>
     </message>
 </context>
 <context>

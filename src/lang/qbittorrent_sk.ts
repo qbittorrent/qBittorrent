@@ -2338,12 +2338,12 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Nepodarilo sa vytvoriť súbor %1</translation>
+        <translation type="obsolete">Nepodarilo sa vytvoriť súbor %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Nepodarilo sa stiahnuť aktualizáciu z %1</translation>
+        <translation type="obsolete">Nepodarilo sa stiahnuť aktualizáciu z %1</translation>
     </message>
 </context>
 <context>

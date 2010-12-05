@@ -1958,18 +1958,6 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
-    <name>ProgramUpdater</name>
-    <message>
-        <source>Could not create the file %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed to download the update at %1</source>
-        <comment>%1 is an URL</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>

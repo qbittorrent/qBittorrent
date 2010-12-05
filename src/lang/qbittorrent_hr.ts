@@ -2766,12 +2766,12 @@ QGroupBox {
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Nije moguće kreiratidatoteku %1</translation>
+        <translation type="obsolete">Nije moguće kreiratidatoteku %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Neuspješno preuzimanje ažuriranja s %1</translation>
+        <translation type="obsolete">Neuspješno preuzimanje ažuriranja s %1</translation>
     </message>
 </context>
 <context>

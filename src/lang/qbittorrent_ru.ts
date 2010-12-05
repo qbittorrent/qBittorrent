@@ -2387,12 +2387,12 @@ Would you like to update qBittorrent to version %1?</source>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Невозможно создать файл %1</translation>
+        <translation type="obsolete">Невозможно создать файл %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Не удалось скачать обновление с %1</translation>
+        <translation type="obsolete">Не удалось скачать обновление с %1</translation>
     </message>
 </context>
 <context>

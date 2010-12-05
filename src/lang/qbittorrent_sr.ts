@@ -2401,12 +2401,12 @@ Would you like to update qBittorrent to version %1?</source>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Није могуће креирати датотеку %1</translation>
+        <translation type="obsolete">Није могуће креирати датотеку %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Неуспешно преузимање ажурирања са %1</translation>
+        <translation type="obsolete">Неуспешно преузимање ажурирања са %1</translation>
     </message>
 </context>
 <context>

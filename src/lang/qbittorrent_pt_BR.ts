@@ -2343,12 +2343,12 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Não pude criar o arquivo %1</translation>
+        <translation type="obsolete">Não pude criar o arquivo %1</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Falha para baixar a atualização em %1</translation>
+        <translation type="obsolete">Falha para baixar a atualização em %1</translation>
     </message>
 </context>
 <context>

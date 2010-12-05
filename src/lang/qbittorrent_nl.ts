@@ -2137,12 +2137,12 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
-        <translation>Kon het bestand %1 niet maken</translation>
+        <translation type="obsolete">Kon het bestand %1 niet maken</translation>
     </message>
     <message>
         <source>Failed to download the update at %1</source>
         <comment>%1 is an URL</comment>
-        <translation>Mislukt om de update te downloaden van %1</translation>
+        <translation type="obsolete">Mislukt om de update te downloaden van %1</translation>
     </message>
 </context>
 <context>
