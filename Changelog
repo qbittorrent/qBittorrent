@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
+* Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
     - FEATURE: qBittorrent can now act as a tracker
     - FEATURE: New and improved RSS feed automated downloader
     - FEATURE: Added feature to shutdown qbittorrent on torrents completion
