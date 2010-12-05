@@ -46,7 +46,6 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
     downloadFromURL(QWidget *parent): QDialog(parent){
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
-      icon_lbl->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/url.png")));
       setModal(true);
       show();
       // Paste clipboard if there is an URL in it

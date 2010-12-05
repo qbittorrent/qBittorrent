@@ -29,25 +29,6 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QLabel" name="icon_lbl">
-       <property name="minimumSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLabel" name="downloadURL_lbl">
        <property name="font">
         <font>
