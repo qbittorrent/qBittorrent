@@ -61,7 +61,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Download Torrents from URLs</string>
+        <string>Add torrent links</string>
        </property>
       </widget>
      </item>
@@ -94,7 +94,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Only one URL per line</string>
+      <string>Both HTTP and Magnet links are supported</string>
      </property>
     </widget>
    </item>

@@ -146,7 +146,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
-    <string>&amp;Add File...</string>
+    <string>&amp;Add torrent file...</string>
    </property>
   </action>
   <action name="actionExit">
@@ -199,7 +199,7 @@
   </action>
   <action name="actionDownload_from_URL">
    <property name="text">
-    <string>Add &amp;URL...</string>
+    <string>Add &amp;link to torrent...</string>
    </property>
   </action>
   <action name="actionCreate_torrent">
@@ -249,7 +249,7 @@
   </action>
   <action name="actionDecreasePriority">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/skin/decrease.png</normaloff>:/Icons/skin/decrease.png</iconset>
    </property>
    <property name="text">
@@ -261,7 +261,7 @@
   </action>
   <action name="actionIncreasePriority">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/skin/increase.png</normaloff>:/Icons/skin/increase.png</iconset>
    </property>
    <property name="text">
@@ -273,7 +273,7 @@
   </action>
   <action name="actionShow_console">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/oxygen/log.png</normaloff>:/Icons/oxygen/log.png</iconset>
    </property>
    <property name="text">
@@ -364,11 +364,11 @@
   </action>
   <action name="action_Import_Torrent">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
    </property>
    <property name="text">
-    <string>Import torrent...</string>
+    <string>Import existing torrent...</string>
    </property>
    <property name="toolTip">
     <string>Import torrent...</string>
@@ -376,7 +376,7 @@
   </action>
   <action name="actionDonate_money">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset resource="icons.qrc">
      <normaloff>:/Icons/oxygen/emblem-favorite.png</normaloff>:/Icons/oxygen/emblem-favorite.png</iconset>
    </property>
    <property name="text">
@@ -388,7 +388,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../icons.qrc"/>
+  <include location="icons.qrc"/>
  </resources>
  <connections/>
 </ui>
