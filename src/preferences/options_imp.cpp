@@ -144,7 +144,6 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkNATPMP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinUploadLimit, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -359,7 +358,6 @@ void options_imp::saveOptions(){
   // Connection preferences
   pref.setSessionPort(getPort());
   pref.setUPnPEnabled(isUPnPEnabled());
-  pref.setNATPMPEnabled(isNATPMPEnabled());
   const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
   pref.setGlobalDownloadLimit(down_up_limit.first);
   pref.setGlobalUploadLimit(down_up_limit.second);
@@ -529,7 +527,6 @@ void options_imp::loadOptions(){
   // Connection preferences
   spinPort->setValue(pref.getSessionPort());
   checkUPnP->setChecked(pref.isUPnPEnabled());
-  checkNATPMP->setChecked(pref.isNATPMPEnabled());
   intValue = pref.getGlobalDownloadLimit();
   if(intValue > 0) {
     // Enabled
@@ -715,10 +712,6 @@ bool options_imp::isLSDEnabled() const{
 
 bool options_imp::isUPnPEnabled() const{
   return checkUPnP->isChecked();
-}
-
-bool options_imp::isNATPMPEnabled() const{
-  return checkNATPMP->isChecked();
 }
 
 // Return Download & Upload limits in kbps

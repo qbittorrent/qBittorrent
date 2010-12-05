@@ -145,7 +145,6 @@ public slots:
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
-  void enableNATPMP(bool b);
   void enableLSD(bool b);
   bool enableDHT(bool b);
 #ifdef DISABLE_GUI
@@ -232,7 +231,6 @@ private:
   float ratio_limit;
   int high_ratio_action;
   bool UPnPEnabled;
-  bool NATPMPEnabled;
   bool LSDEnabled;
   bool DHTEnabled;
   int current_dht_port;

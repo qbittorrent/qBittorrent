@@ -86,7 +86,7 @@ enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
     preAllocateAll(false), addInPause(false), ratio_limit(-1),
-    UPnPEnabled(false), NATPMPEnabled(false), LSDEnabled(false),
+    UPnPEnabled(false), LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
     torrentExport(false)
   #ifndef DISABLE_GUI
@@ -354,21 +354,13 @@ void QBtSession::configureSession() {
     }
   }
 #endif
-  // * UPnP
+  // * UPnP / NAT-PMP
   if(pref.isUPnPEnabled()) {
     enableUPnP(true);
-    addConsoleMessage(tr("UPnP support [ON]"), QString::fromUtf8("blue"));
+    addConsoleMessage(tr("UPnP / NAT-PMP support [ON]"), QString::fromUtf8("blue"));
   } else {
     enableUPnP(false);
-    addConsoleMessage(tr("UPnP support [OFF]"), QString::fromUtf8("blue"));
-  }
-  // * NAT-PMP
-  if(pref.isNATPMPEnabled()) {
-    enableNATPMP(true);
-    addConsoleMessage(tr("NAT-PMP support [ON]"), QString::fromUtf8("blue"));
-  } else {
-    enableNATPMP(false);
-    addConsoleMessage(tr("NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
+    addConsoleMessage(tr("UPnP / NAT-PMP support [OFF]"), QString::fromUtf8("blue"));
   }
   // * Session settings
   session_settings sessionSettings;
@@ -1307,31 +1299,17 @@ void QBtSession::setMaxUploadsPerTorrent(int max) {
 void QBtSession::enableUPnP(bool b) {
   if(b) {
     if(!UPnPEnabled) {
-      qDebug("Enabling UPnP");
+      qDebug("Enabling UPnP / NAT-PMP");
       s->start_upnp();
+      s->start_natpmp();
       UPnPEnabled = true;  
     }
   } else {
     if(UPnPEnabled) {
-      qDebug("Disabling UPnP");
+      qDebug("Disabling UPnP / NAT-PMP");
       s->stop_upnp();
-      UPnPEnabled = false;
-    }
-  }
-}
-
-void QBtSession::enableNATPMP(bool b) {
-  if(b) {
-    if(!NATPMPEnabled) {
-      qDebug("Enabling NAT-PMP");
-      s->start_natpmp();
-      NATPMPEnabled = true;
-    }
-  } else {
-    if(NATPMPEnabled) {
-      qDebug("Disabling NAT-PMP");
       s->stop_natpmp();
-      NATPMPEnabled = false;
+      UPnPEnabled = false;
     }
   }
 }

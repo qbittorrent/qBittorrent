@@ -114,7 +114,6 @@ private:
   // Connection options
   int getPort() const;
   bool isUPnPEnabled() const;
-  bool isNATPMPEnabled() const;
   QPair<int,int> getGlobalBandwidthLimits() const;
   // Bittorrent options
   int getMaxConnecs() const;

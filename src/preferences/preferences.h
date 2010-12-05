@@ -335,14 +335,6 @@ public:
     setValue(QString::fromUtf8("Preferences/Connection/UPnP"), enabled);
   }
 
-  bool isNATPMPEnabled() const {
-    return value(QString::fromUtf8("Preferences/Connection/NAT-PMP"), true).toBool();
-  }
-
-  void setNATPMPEnabled(bool enabled) {
-    setValue(QString::fromUtf8("Preferences/Connection/NAT-PMP"), enabled);
-  }
-
   int getGlobalDownloadLimit() const {
     return value("Preferences/Connection/GlobalDLLimit", -1).toInt();
   }
