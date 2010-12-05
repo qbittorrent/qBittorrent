@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.2
+    - BUGFIX: Fix alternative speed icon staying pressed when disabled
+
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.1
     - BUGFIX: Fix possible crash when right-clicking on a torrent
 
