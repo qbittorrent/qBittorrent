@@ -1,3 +1,6 @@
+* Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.1
+    - BUGFIX: Fix possible crash when right-clicking on a torrent
+
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
     - FEATURE: qBittorrent can now act as a tracker
     - FEATURE: New and improved RSS feed automated downloader

@@ -132,6 +132,7 @@ bool QTorrentHandle::first_last_piece_first() const {
     }
     ++index;
   }
+  if(index >= torrent_handle::get_torrent_info().num_files()) return false;
   file_entry media_file = torrent_handle::get_torrent_info().file_at(index);
   int piece_size = torrent_handle::get_torrent_info().piece_length();
   Q_ASSERT(piece_size>0);
