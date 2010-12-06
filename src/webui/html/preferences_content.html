@@ -7,10 +7,7 @@
   <br/>
   <table>
   <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="upnp_checkbox" style="margin-bottom: -2px;"/></td><td>_(Enable UPnP port mapping)</td>
-  </tr>
-  <tr>
-  <td style="vertical-align: bottom;"><input type="checkbox" id="natpmp_checkbox" style="margin-bottom: -2px;"/></td><td>_(Enable NAT-PMP port mapping)</td>
+  <td style="vertical-align: bottom;"><input type="checkbox" id="upnp_checkbox" style="margin-bottom: -2px;"/></td><td>_(Use UPnP / NAT-PMP port forwarding from my router)</td>
   </tr>
   </table>
   </div>
@@ -52,7 +49,7 @@
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="dht_checkbox"/></td><td>_(Enable DHT network (decentralized))</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="dht_checkbox"/></td><td>_(Enable DHT (decentralized network) to find more peers)</td>
   </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="DHTPortDiffThanBT_checkbox" onclick="updateDHTPortSettings();"/></td><td>_(Use a different port for DHT and Bittorrent)</td>
@@ -61,17 +58,17 @@
   <td style="vertical-align: bottom; text-align: right;">_(DHT port:)</td><td><input type="text" id="DHTPort_txt" value="6881"/></td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="pex_checkbox"/></td><td>_(Enable Peer Exchange / PeX (requires restart))</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="pex_checkbox"/></td><td>_(Enable Peer Exchange (PeX) to find more peers)</td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="lsd_checkbox"/></td><td>_(Enable Local Peer Discovery)</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="lsd_checkbox"/></td><td>_(Enable Local Peer Discovery to find more peers)</td>
   </tr>
   </table>
-  _(Encryption:)
+  _(Encryption mode:)
   <select id="encryption_select">
-    <option value="0">_(Enabled)</option>
-    <option value="1">_(Forced)</option>
-    <option value="2">_(Disabled)</option>
+    <option value="0">_(Prefer encryption)</option>
+    <option value="1">_(Require encryption)</option>
+    <option value="2">_(Disable encryption)</option>
   </select><br/>
   </div>
 </fieldset>
@@ -277,9 +274,6 @@
   var upnp = 0;
   if($defined($('upnp_checkbox').get('checked')) && $('upnp_checkbox').get('checked'))
     upnp = 1;
-  var natpmp = 0;
-  if($defined($('natpmp_checkbox').get('checked')) && $('natpmp_checkbox').get('checked'))
-    natpmp = 1;
     
   var dl_limit = -1;
   if($defined($('dl_limit_checkbox').get('checked')) && $('dl_limit_checkbox').get('checked')) {
@@ -429,7 +423,6 @@
   // Connection
   dict.set('listen_port', listen_port);
   dict.set('upnp', upnp);
-  dict.set('natpmp', natpmp);
   dict.set('up_limit', up_limit);
   dict.set('dl_limit', dl_limit);
   dict.set('max_connec', max_connec);
@@ -696,12 +689,6 @@ loadPreferences = function() {
                       $('upnp_checkbox').set('checked', 'checked');
                     } else {
                       $('upnp_checkbox').removeProperty('checked');
-                    }
-                    
-                    if(pref.natpmp) {
-                      $('natpmp_checkbox').set('checked', 'checked');
-                    } else {
-                      $('natpmp_checkbox').removeProperty('checked');
                     }
                     
                     var dl_limit = pref.dl_limit.toInt();

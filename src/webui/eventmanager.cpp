@@ -208,8 +208,6 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setSessionPort(m["listen_port"].toInt());
   if(m.contains("upnp"))
     pref.setUPnPEnabled(m["upnp"].toBool());
-  if(m.contains("natpmp"))
-    pref.setNATPMPEnabled(m["natpmp"].toBool());
   if(m.contains("dl_limit"))
     pref.setGlobalDownloadLimit(m["dl_limit"].toInt());
   if(m.contains("up_limit"))
@@ -296,7 +294,6 @@ QVariantMap EventManager::getGlobalPreferences() const {
   // Connection
   data["listen_port"] = pref.getSessionPort();
   data["upnp"] = pref.isUPnPEnabled();
-  data["natpmp"] = pref.isNATPMPEnabled();
   data["dl_limit"] = pref.getGlobalDownloadLimit();
   data["up_limit"] = pref.getGlobalUploadLimit();
   data["max_connec"] = pref.getMaxConnecs();
