@@ -3896,12 +3896,12 @@ Asenna se itse.</translation>
         <translation>Napsauta ottaaksesi vaihtoehtoinen nopeusrajoitus käyttöön</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Yleinen latausnopeusrajoitus</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Yleinen lähetysnopeusrajoitus</translation>
     </message>

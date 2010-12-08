@@ -3990,12 +3990,12 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Kliknutí zapne alternativní limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Celkový limit rychlosti nahrávání</translation>
     </message>

@@ -3564,12 +3564,12 @@ Please install it manually.</source>
         <translation>설정한 속도 제한을 사용하기</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>전체 업로드 속도 제한</translation>
     </message>

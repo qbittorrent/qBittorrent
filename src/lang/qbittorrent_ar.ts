@@ -3986,12 +3986,12 @@ Please install it manually.</source>
         <translation>اضغط هنا لتشغيل حد السرعة البديل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>حد سرعة التحميل العامة</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>حد سرعة الرفع العامة</translation>
     </message>

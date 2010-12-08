@@ -3883,12 +3883,12 @@ Please install it manually.</source>
         <translation>Klicken um alternative Geschwindigkeitsbegrenzungen zu aktivieren</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Begrenzung der globalen DL-Rate</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Begrenzung der globalen UL-Rate</translation>
     </message>

@@ -3758,12 +3758,12 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Click per activar els límits de velocitat alternativa</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Velocitat límit global de descàrrega</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Velocitat límit global de pujada</translation>
     </message>

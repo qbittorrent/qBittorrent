@@ -3933,12 +3933,12 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>Alternatív sebesség korlátok engedélyezéséhez kattints ide</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Teljes letöltési sebesség korlát</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Teljes feltöltési sebesség korlát</translation>
     </message>

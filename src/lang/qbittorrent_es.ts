@@ -3762,12 +3762,12 @@ Por favor, instálelo de forma manual.</translation>
         <translation>Click para activar los límites de velocidad alternativa</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="226"/>
+        <location filename="../statusbar.h" line="227"/>
         <source>Global Download Speed Limit</source>
         <translation>Velocidad límite global de descarga</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="246"/>
+        <location filename="../statusbar.h" line="247"/>
         <source>Global Upload Speed Limit</source>
         <translation>Velocidad límite global de subida</translation>
     </message>
