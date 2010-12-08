@@ -1627,7 +1627,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation>Dod&amp;aj datoteku ...</translation>
+        <translation type="obsolete">Dod&amp;aj datoteku ...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1639,7 +1639,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation>Dodaj &amp;URL ...</translation>
+        <translation type="obsolete">Dodaj &amp;URL ...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1973,6 +1973,18 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished">Ažuriranje qBittorrenta nije uspjelo. Razlog: %1</translation>
     </message>
+    <message>
+        <source>&amp;Add torrent file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;link to torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import existing torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2126,7 +2138,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation>Bittorrent</translation>
+        <translation type="obsolete">Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -2338,11 +2350,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation>Omogući UPnP mapiranje porta</translation>
+        <translation type="obsolete">Omogući UPnP mapiranje porta</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>Omogući NAT-PMP mapiranje porta</translation>
+        <translation type="obsolete">Omogući NAT-PMP mapiranje porta</translation>
     </message>
     <message>
         <source>Connections limit</source>
@@ -2407,15 +2419,15 @@ QGroupBox {
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation>Bittorrent značajke</translation>
+        <translation type="obsolete">Bittorrent značajke</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation>Omogući DHT mrežu (decentralizirano)</translation>
+        <translation type="obsolete">Omogući DHT mrežu (decentralizirano)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation>Koristi drugi port za DHT i Bittorrent</translation>
+        <translation type="obsolete">Koristi drugi port za DHT i Bittorrent</translation>
     </message>
     <message>
         <source>DHT port:</source>
@@ -2423,11 +2435,11 @@ QGroupBox {
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation>Omogući razmjenu peerova/PeX (zahtjeva ponovno pokretanje)</translation>
+        <translation type="obsolete">Omogući razmjenu peerova/PeX (zahtjeva ponovno pokretanje)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation>Omogući lokalno otkrivanje peerova</translation>
+        <translation type="obsolete">Omogući lokalno otkrivanje peerova</translation>
     </message>
     <message>
         <source>Encryption:</source>
@@ -2435,15 +2447,15 @@ QGroupBox {
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Omogućeno</translation>
+        <translation type="obsolete">Omogućeno</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation>Prisilno</translation>
+        <translation type="obsolete">Prisilno</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Onemogućeno</translation>
+        <translation type="obsolete">Onemogućeno</translation>
     </message>
     <message>
         <source>KTorrent</source>
@@ -2616,7 +2628,7 @@ QGroupBox {
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation>Započni/Zaustavi</translation>
+        <translation type="obsolete">Započni/Zaustavi</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2707,7 +2719,7 @@ QGroupBox {
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation>Protokol kriptiranja:</translation>
+        <translation type="obsolete">Protokol kriptiranja:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -2760,6 +2772,54 @@ QGroupBox {
     <message>
         <source>Proxy server</source>
         <translation>Proxy poslužitelj</translation>
+    </message>
+    <message>
+        <source>BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different port for DHT and BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Require encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable encryption</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3064,19 +3124,19 @@ QGroupBox {
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Podrška za UPnP [UKLJUČENO]</translation>
+        <translation type="obsolete">Podrška za UPnP [UKLJUČENO]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Podrška za UPnP [ISKLJUČENO]</translation>
+        <translation type="obsolete">Podrška za UPnP [ISKLJUČENO]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Podrška za NAT-PMP [UKLJUČENO]</translation>
+        <translation type="obsolete">Podrška za NAT-PMP [UKLJUČENO]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Podrška za NAT-PMP [ISKLJUČENO]</translation>
+        <translation type="obsolete">Podrška za NAT-PMP [ISKLJUČENO]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -3108,7 +3168,7 @@ QGroupBox {
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Otkrivanje lokalnih peerova [UKLJUČENO]</translation>
+        <translation type="obsolete">Otkrivanje lokalnih peerova [UKLJUČENO]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -3288,6 +3348,18 @@ QGroupBox {
     <message>
         <source>Failed to listen on network interface %1</source>
         <translation>Nije uspjelo osluškivanje na mrežnom sučelju %1</translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4877,11 +4949,11 @@ Do you want to install it now?</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation>Preuzmi torrente s URL-ova</translation>
+        <translation type="obsolete">Preuzmi torrente s URL-ova</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation>Samo jedan URL po liniji</translation>
+        <translation type="obsolete">Samo jedan URL po liniji</translation>
     </message>
     <message>
         <source>Download</source>
@@ -4902,6 +4974,14 @@ Do you want to install it now?</source>
     <message>
         <source>Please type at least one URL.</source>
         <translation>Upišite bar jedan URL.</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Both HTTP and Magnet links are supported</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

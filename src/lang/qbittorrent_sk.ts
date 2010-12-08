@@ -1455,7 +1455,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation>Prid&amp;ať súbor...</translation>
+        <translation type="obsolete">Prid&amp;ať súbor...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1467,7 +1467,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation>Pridať &amp;URL...</translation>
+        <translation type="obsolete">Pridať &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1793,6 +1793,18 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished">qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
+    <message>
+        <source>&amp;Add torrent file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;link to torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import existing torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1926,7 +1938,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation>Bittorrent</translation>
+        <translation type="obsolete">Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -1999,11 +2011,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation>Zapnúť mapovanie portov UPnP</translation>
+        <translation type="obsolete">Zapnúť mapovanie portov UPnP</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>Zapnúť mapovanie portov NAT-PMP</translation>
+        <translation type="obsolete">Zapnúť mapovanie portov NAT-PMP</translation>
     </message>
     <message>
         <source>Connections limit</source>
@@ -2035,15 +2047,15 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation>Možnosti siete Bittorrent</translation>
+        <translation type="obsolete">Možnosti siete Bittorrent</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation>Zapnúť sieť DHT (decentralizovaná)</translation>
+        <translation type="obsolete">Zapnúť sieť DHT (decentralizovaná)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation>Používať odlišný port pre DHT a Bittorrent</translation>
+        <translation type="obsolete">Používať odlišný port pre DHT a Bittorrent</translation>
     </message>
     <message>
         <source>DHT port:</source>
@@ -2051,23 +2063,23 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation>Zapnúť Peer eXchange / PeX (vyžaduje reštart)</translation>
+        <translation type="obsolete">Zapnúť Peer eXchange / PeX (vyžaduje reštart)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation>Zapnúť Local Peer Discovery</translation>
+        <translation type="obsolete">Zapnúť Local Peer Discovery</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Zapnuté</translation>
+        <translation type="obsolete">Zapnuté</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation>Vynútené</translation>
+        <translation type="obsolete">Vynútené</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Vypnuté</translation>
+        <translation type="obsolete">Vypnuté</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -2188,7 +2200,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation>Spustiť/zastaviť</translation>
+        <translation type="obsolete">Spustiť/zastaviť</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2279,7 +2291,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation>Šifrovanie protokolu:</translation>
+        <translation type="obsolete">Šifrovanie protokolu:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -2332,6 +2344,54 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Proxy server</source>
         <translation>Proxy server</translation>
+    </message>
+    <message>
+        <source>BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different port for DHT and BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Require encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable encryption</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2620,19 +2680,19 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>Podpora UPnP [zapnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [zapnutá]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>Podpora UPnP [vypnutá]</translation>
+        <translation type="obsolete">Podpora UPnP [vypnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>Podpora NAT-PMP [zapnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>Podpora NAT-PMP [vypnutá]</translation>
+        <translation type="obsolete">Podpora NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -2664,7 +2724,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Local Peer Discovery [zapnutá]</translation>
+        <translation type="obsolete">Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -2844,6 +2904,18 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Failed to listen on network interface %1</source>
         <translation>Nepodarilo sa spustiť počúvanie na sieťovom rozhraní %1</translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4387,11 +4459,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation>Stiahnuť torrenty z viacerých URL</translation>
+        <translation type="obsolete">Stiahnuť torrenty z viacerých URL</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation>Iba jeden URL na riadok</translation>
+        <translation type="obsolete">Iba jeden URL na riadok</translation>
     </message>
     <message>
         <source>Download</source>
@@ -4408,6 +4480,14 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Please type at least one URL.</source>
         <translation>Prosím, napíšte aspoň jedno URL.</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Both HTTP and Magnet links are supported</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

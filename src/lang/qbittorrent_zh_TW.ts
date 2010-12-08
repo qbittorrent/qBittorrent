@@ -1468,7 +1468,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation>增加檔案 (&amp;A)...</translation>
+        <translation type="obsolete">增加檔案 (&amp;A)...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1480,7 +1480,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation>增加 &amp;URL...</translation>
+        <translation type="obsolete">增加 &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1806,6 +1806,18 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished">qBittorrent 更新失敗, 原因: %1</translation>
     </message>
+    <message>
+        <source>&amp;Add torrent file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;link to torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import existing torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1939,7 +1951,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation>Bittorrent</translation>
+        <translation type="obsolete">Bittorrent</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -2012,11 +2024,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation>啟用 UPnP 埠映射</translation>
+        <translation type="obsolete">啟用 UPnP 埠映射</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>啟用 NAT-PMP 埠映射</translation>
+        <translation type="obsolete">啟用 NAT-PMP 埠映射</translation>
     </message>
     <message>
         <source>Connections limit</source>
@@ -2048,15 +2060,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation>Bittorrent 特性</translation>
+        <translation type="obsolete">Bittorrent 特性</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation>啟用 DHT 網路 (分散式)</translation>
+        <translation type="obsolete">啟用 DHT 網路 (分散式)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation>DHT 和 Bittorrent 使用不同的埠</translation>
+        <translation type="obsolete">DHT 和 Bittorrent 使用不同的埠</translation>
     </message>
     <message>
         <source>DHT port:</source>
@@ -2064,23 +2076,23 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation>啟用 PeX (需要重新啟動)</translation>
+        <translation type="obsolete">啟用 PeX (需要重新啟動)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation>啟用本地下載者搜尋</translation>
+        <translation type="obsolete">啟用本地下載者搜尋</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>啟用</translation>
+        <translation type="obsolete">啟用</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation>強迫</translation>
+        <translation type="obsolete">強迫</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>停用</translation>
+        <translation type="obsolete">停用</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -2201,7 +2213,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation>開始 / 停止</translation>
+        <translation type="obsolete">開始 / 停止</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2292,7 +2304,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation>協定加密:</translation>
+        <translation type="obsolete">協定加密:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -2345,6 +2357,54 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Proxy server</source>
         <translation>代理伺服器</translation>
+    </message>
+    <message>
+        <source>BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different port for DHT and BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Require encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable encryption</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2633,19 +2693,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP 支援 [開啟]</translation>
+        <translation type="obsolete">UPnP 支援 [開啟]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP 支援 [關閉]</translation>
+        <translation type="obsolete">UPnP 支援 [關閉]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP 支援 [開啟]</translation>
+        <translation type="obsolete">NAT-PMP 支援 [開啟]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP 支援 [關閉]</translation>
+        <translation type="obsolete">NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -2677,7 +2737,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>本地下載者搜尋 [開啟]</translation>
+        <translation type="obsolete">本地下載者搜尋 [開啟]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -2857,6 +2917,18 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Failed to listen on network interface %1</source>
         <translation>監聽網路介面 %1 失敗</translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4395,11 +4467,11 @@ Do you want to install it now?</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download Torrents from URLs</source>
-        <translation>從 URL 下載 torrent</translation>
+        <translation type="obsolete">從 URL 下載 torrent</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
-        <translation>每條線僅一個 URL</translation>
+        <translation type="obsolete">每條線僅一個 URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -4420,6 +4492,14 @@ Do you want to install it now?</source>
     <message>
         <source>Please type at least one URL.</source>
         <translation>請輸入至少一個 URL。</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Both HTTP and Magnet links are supported</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

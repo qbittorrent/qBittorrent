@@ -1505,7 +1505,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Add File...</source>
-        <translation>&amp;Додај фајл...</translation>
+        <translation type="obsolete">&amp;Додај фајл...</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -1517,7 +1517,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Add &amp;URL...</source>
-        <translation>Додај &amp;URL...</translation>
+        <translation type="obsolete">Додај &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1844,6 +1844,18 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished">qBittorrent грешка при ажурирању, разлог: %1</translation>
     </message>
+    <message>
+        <source>&amp;Add torrent file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;link to torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import existing torrent...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1986,7 +1998,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bittorrent</source>
-        <translation>Бит-торент</translation>
+        <translation type="obsolete">Бит-торент</translation>
     </message>
     <message>
         <source>Proxy</source>
@@ -2069,11 +2081,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Enable UPnP port mapping</source>
-        <translation>Омогући UPnP мапирање порта</translation>
+        <translation type="obsolete">Омогући UPnP мапирање порта</translation>
     </message>
     <message>
         <source>Enable NAT-PMP port mapping</source>
-        <translation>Омогући NAT-PMP мапирање порта</translation>
+        <translation type="obsolete">Омогући NAT-PMP мапирање порта</translation>
     </message>
     <message>
         <source>Connections limit</source>
@@ -2130,15 +2142,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bittorrent features</source>
-        <translation>Бит-торент карактеристике</translation>
+        <translation type="obsolete">Бит-торент карактеристике</translation>
     </message>
     <message>
         <source>Enable DHT network (decentralized)</source>
-        <translation>Омогући DHT мрежу (децентализовано)</translation>
+        <translation type="obsolete">Омогући DHT мрежу (децентализовано)</translation>
     </message>
     <message>
         <source>Use a different port for DHT and Bittorrent</source>
-        <translation>Користи различит порт за DHT и Бит-торент</translation>
+        <translation type="obsolete">Користи различит порт за DHT и Бит-торент</translation>
     </message>
     <message>
         <source>DHT port:</source>
@@ -2147,23 +2159,23 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Enable Peer Exchange / PeX (requires restart)</source>
         <translatorcomment>Рестарт је потребан за старт PeX подршке</translatorcomment>
-        <translation>Омогући Peer Exchange / PeX (захтева рестарт)</translation>
+        <translation type="obsolete">Омогући Peer Exchange / PeX (захтева рестарт)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery</source>
-        <translation>Омогући откривање локалних веза Peer (учесника)</translation>
+        <translation type="obsolete">Омогући откривање локалних веза Peer (учесника)</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Омогући</translation>
+        <translation type="obsolete">Омогући</translation>
     </message>
     <message>
         <source>Forced</source>
-        <translation>Форсирано</translation>
+        <translation type="obsolete">Форсирано</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Онемогући</translation>
+        <translation type="obsolete">Онемогући</translation>
     </message>
     <message>
         <source>HTTP Communications (trackers, Web seeds, search engine)</source>
@@ -2249,7 +2261,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Start / Stop</source>
-        <translation>Старт/Стоп</translation>
+        <translation type="obsolete">Старт/Стоп</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2342,7 +2354,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Protocol encryption:</source>
-        <translation>Протокол шифровања:</translation>
+        <translation type="obsolete">Протокол шифровања:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -2395,6 +2407,54 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Proxy server</source>
         <translation>Прокси сервер</translation>
+    </message>
+    <message>
+        <source>BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start / Stop Torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable DHT (decentralized network) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a different port for DHT and BitTorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Peer Exchange (PeX) to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Local Peer Discovery to find more peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefer encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Require encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable encryption</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2688,19 +2748,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UPnP support [ON]</source>
-        <translation>UPnP подршка [Укључена]</translation>
+        <translation type="obsolete">UPnP подршка [Укључена]</translation>
     </message>
     <message>
         <source>UPnP support [OFF]</source>
-        <translation>UPnP подршка [Искључена]</translation>
+        <translation type="obsolete">UPnP подршка [Искључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [ON]</source>
-        <translation>NAT-PMP подршка [Укључена]</translation>
+        <translation type="obsolete">NAT-PMP подршка [Укључена]</translation>
     </message>
     <message>
         <source>NAT-PMP support [OFF]</source>
-        <translation>NAT-PMP подршка [Искључена]</translation>
+        <translation type="obsolete">NAT-PMP подршка [Искључена]</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -2732,7 +2792,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
-        <translation>Претраживање локалних веза [Укључено]</translation>
+        <translation type="obsolete">Претраживање локалних веза [Укључено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -2912,6 +2972,18 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Failed to listen on network interface %1</source>
         <translation>Грешка при надгледању мрежног интрфејса %1</translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4483,12 +4555,12 @@ Do you want to install it now?</source>
     <message>
         <source>Download Torrents from URLs</source>
         <translatorcomment>URL-интенет адреса</translatorcomment>
-        <translation>Преузимање Торента са URL-а</translation>
+        <translation type="obsolete">Преузимање Торента са URL-а</translation>
     </message>
     <message>
         <source>Only one URL per line</source>
         <translatorcomment>URL-интенет адреса</translatorcomment>
-        <translation>Само један URL по линији</translation>
+        <translation type="obsolete">Само један URL по линији</translation>
     </message>
     <message>
         <source>Download</source>
@@ -4512,6 +4584,14 @@ Do you want to install it now?</source>
         <source>Please type at least one URL.</source>
         <translatorcomment>URL-интенет адреса</translatorcomment>
         <translation>Молим упишите најмање један URL.</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Both HTTP and Magnet links are supported</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
