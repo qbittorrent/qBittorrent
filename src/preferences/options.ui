@@ -566,7 +566,7 @@
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
@@ -642,7 +642,7 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
@@ -706,7 +706,7 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
@@ -806,7 +806,7 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
@@ -939,7 +939,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-51</y>
              <width>507</width>
              <height>485</height>
             </rect>
@@ -1797,7 +1797,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-25</y>
              <width>570</width>
              <height>422</height>
             </rect>
@@ -1814,7 +1814,7 @@ QGroupBox {
                  <property name="styleSheet">
                   <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
@@ -1836,7 +1836,7 @@ QGroupBox {
                     <property name="styleSheet">
                      <string notr="true">QGroupBox::title {
 font-weight: normal;
-margin-left: 10px;
+margin-left: 0px;
 margin-top: 5px;
 }
 QGroupBox {
