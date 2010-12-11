@@ -1045,7 +1045,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   TorrentPersistentData::setRootFolder(hash, root_folder);
 
   // If temp path is enabled, move torrent
-  if(!defaultTempPath.isEmpty() && !resumed) {
+  // XXX: The torrent is moved after the torrent_checked_alert
+  // is received to make sure we don't move a completed torrent (#602938)
+  /*if(!defaultTempPath.isEmpty() && !resumed) {
     qDebug("Temp folder is enabled, moving new torrent to temp folder");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     if(!root_folder.isEmpty()) {
@@ -1053,7 +1055,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       torrent_tmp_path += root_folder;
     }
     h.move_storage(torrent_tmp_path);
-  }
+  }*/
 
   loadTorrentSettings(h);
 
@@ -2332,6 +2334,7 @@ void QBtSession::readAlerts() {
           const QDir current_dir(h.save_path());
           const QDir save_dir(getSavePath(h.hash()));
           if(current_dir == save_dir) {
+            qDebug("Moving the torrent to the temp directory...");
             QString root_folder = TorrentPersistentData::getRootFolder(hash);
             QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
             if(!root_folder.isEmpty()) {

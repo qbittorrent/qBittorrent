@@ -2,6 +2,8 @@
     - BUGFIX: Fix alternative speed icon staying pressed when disabled
     - BUGFIX: Fix slot warning on startup
     - BUGFIX: Fix alignment issues in program preferences
+    - BUGFIX: Make sure we don't move completed torrent to the temp directory
+    for checking (closes #602938)
 
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.1
     - BUGFIX: Fix possible crash when right-clicking on a torrent
