@@ -36,8 +36,6 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="actionStart_All"/>
-    <addaction name="actionPause_All"/>
     <addaction name="separator"/>
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
@@ -132,11 +130,8 @@
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
    <addaction name="separator"/>
-   <addaction name="actionStart_All"/>
-   <addaction name="actionPause_All"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
-   <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="separator"/>
    <addaction name="actionExit"/>
@@ -182,17 +177,11 @@
     <string>&amp;Delete</string>
    </property>
   </action>
-  <action name="actionPause_All">
-   <property name="text">
-    <string>P&amp;ause All</string>
-   </property>
-  </action>
-  <action name="actionStart_All">
-   <property name="text">
-    <string>R&amp;esume All</string>
-   </property>
-  </action>
   <action name="actionWebsite">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/Icons/skin/qbittorrent32.png</normaloff>:/Icons/skin/qbittorrent32.png</iconset>
+   </property>
    <property name="text">
     <string>Visit &amp;Website</string>
    </property>
@@ -205,16 +194,6 @@
   <action name="actionCreate_torrent">
    <property name="text">
     <string>Torrent &amp;creator</string>
-   </property>
-  </action>
-  <action name="actionPreview_file">
-   <property name="text">
-    <string>Preview file</string>
-   </property>
-  </action>
-  <action name="actionClearLog">
-   <property name="text">
-    <string>Clear log</string>
    </property>
   </action>
   <action name="actionBugReport">
@@ -248,10 +227,6 @@
    </property>
   </action>
   <action name="actionDecreasePriority">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/Icons/skin/decrease.png</normaloff>:/Icons/skin/decrease.png</iconset>
-   </property>
    <property name="text">
     <string>Decrease priority</string>
    </property>
@@ -260,10 +235,6 @@
    </property>
   </action>
   <action name="actionIncreasePriority">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/Icons/skin/increase.png</normaloff>:/Icons/skin/increase.png</iconset>
-   </property>
    <property name="text">
     <string>Increase priority</string>
    </property>
@@ -272,10 +243,6 @@
    </property>
   </action>
   <action name="actionShow_console">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/Icons/oxygen/log.png</normaloff>:/Icons/oxygen/log.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Log viewer...</string>
    </property>
@@ -363,10 +330,6 @@
    </property>
   </action>
   <action name="action_Import_Torrent">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
-   </property>
    <property name="text">
     <string>Import existing torrent...</string>
    </property>
@@ -375,15 +338,21 @@
    </property>
   </action>
   <action name="actionDonate_money">
-   <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/Icons/oxygen/emblem-favorite.png</normaloff>:/Icons/oxygen/emblem-favorite.png</iconset>
-   </property>
    <property name="text">
     <string>Donate money</string>
    </property>
    <property name="toolTip">
     <string>If you like qBittorrent, please donate!</string>
+   </property>
+  </action>
+  <action name="actionStart_All">
+   <property name="text">
+    <string>R&amp;esume All</string>
+   </property>
+  </action>
+  <action name="actionPause_All">
+   <property name="text">
+    <string>P&amp;ause All</string>
    </property>
   </action>
  </widget>

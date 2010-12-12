@@ -2,8 +2,6 @@
 <qresource>
   <file>Icons/url.png</file>
   <file>Icons/loading.png</file>
-  <file>Icons/rss16.png</file>
-  <file>Icons/rss32.png</file>
   <file>Icons/3-state-checkbox.gif</file>
   <file>Icons/uparrow.png</file>
   <file>Icons/sphere.png</file>
@@ -304,59 +302,63 @@
   <file>Icons/flags/tk.png</file>
   <file>Icons/flags/bg.png</file>
   <file>Icons/flags/wf.png</file>
-  <file>Icons/oxygen/peer.png</file>
+  <file>Icons/oxygen/preferences-system.png</file>
   <file>Icons/oxygen/unavailable.png</file>
-  <file>Icons/oxygen/subscribe.png</file>
+  <file>Icons/oxygen/document-edit-verify.png</file>
   <file>Icons/oxygen/list-remove.png</file>
   <file>Icons/oxygen/dialog-warning.png</file>
   <file>Icons/oxygen/mail-folder-inbox.png</file>
-  <file>Icons/oxygen/folder.png</file>
+  <file>Icons/oxygen/edit-clear-history.png</file>
   <file>Icons/oxygen/edit-copy.png</file>
   <file>Icons/oxygen/folder-documents.png</file>
-  <file>Icons/oxygen/urlseed.png</file>
+  <file>Icons/oxygen/network-wired.png</file>
+  <file>Icons/oxygen/mail-mark-read.png</file>
   <file>Icons/oxygen/go-up.png</file>
+  <file>Icons/oxygen/application-exit.png</file>
+  <file>Icons/oxygen/edit-rename.png</file>
   <file>Icons/oxygen/edit-cut.png</file>
   <file>Icons/oxygen/gear32.png</file>
-  <file>Icons/oxygen/go-bottom.png</file>
+  <file>Icons/oxygen/media-playback-start.png</file>
   <file>Icons/oxygen/user-group-delete.png</file>
-  <file>Icons/oxygen/unsubscribe.png</file>
+  <file>Icons/oxygen/edit-find-user.png</file>
+  <file>Icons/oxygen/media-playback-pause.png</file>
   <file>Icons/oxygen/tab-close.png</file>
-  <file>Icons/oxygen/file.png</file>
+  <file>Icons/oxygen/inode-directory.png</file>
+  <file>Icons/oxygen/tools-report-bug.png</file>
+  <file>Icons/oxygen/view-filter.png</file>
   <file>Icons/oxygen/services.png</file>
+  <file>Icons/oxygen/view-preview.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
-  <file>Icons/oxygen/feed-subscribe.png</file>
-  <file>Icons/oxygen/remove.png</file>
+  <file>Icons/oxygen/text-plain.png</file>
+  <file>Icons/oxygen/edit-delete.png</file>
   <file>Icons/oxygen/chronometer.png</file>
-  <file>Icons/oxygen/filter.png</file>
-  <file>Icons/oxygen/run-build.png</file>
-  <file>Icons/oxygen/button_ok.png</file>
+  <file>Icons/oxygen/dialog-cancel.png</file>
+  <file>Icons/oxygen/preferences-system-network.png</file>
+  <file>Icons/oxygen/document-properties.png</file>
   <file>Icons/oxygen/user-group-new.png</file>
-  <file>Icons/oxygen/cookies.png</file>
   <file>Icons/oxygen/network-server.png</file>
-  <file>Icons/oxygen/unsubscribe16.png</file>
-  <file>Icons/oxygen/encrypted32.png</file>
+  <file>Icons/oxygen/preferences-web-browser-cookies.png</file>
   <file>Icons/oxygen/list-add.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
   <file>Icons/oxygen/folder-remote.png</file>
   <file>Icons/oxygen/help-about.png</file>
-  <file>Icons/oxygen/encrypted.png</file>
-  <file>Icons/oxygen/folder-remote16.png</file>
-  <file>Icons/oxygen/go-top.png</file>
+  <file>Icons/oxygen/document-save.png</file>
   <file>Icons/oxygen/emblem-favorite.png</file>
-  <file>Icons/oxygen/edit_clear.png</file>
-  <file>Icons/oxygen/bug.png</file>
   <file>Icons/oxygen/gear.png</file>
-  <file>Icons/oxygen/connection.png</file>
+  <file>Icons/oxygen/view-categories.png</file>
+  <file>Icons/oxygen/emblem-locked.png</file>
   <file>Icons/oxygen/document-new.png</file>
-  <file>Icons/oxygen/browse.png</file>
-  <file>Icons/oxygen/proxy.png</file>
-  <file>Icons/oxygen/button_cancel.png</file>
+  <file>Icons/oxygen/dialog-information.png</file>
+  <file>Icons/oxygen/preferences-other.png</file>
+  <file>Icons/oxygen/view-calendar-journal.png</file>
+  <file>Icons/oxygen/application-rss+xml.png</file>
+  <file>Icons/oxygen/document-encrypt.png</file>
+  <file>Icons/oxygen/help-contents.png</file>
   <file>Icons/oxygen/preferences-desktop.png</file>
-  <file>Icons/oxygen/bt_settings.png</file>
+  <file>Icons/oxygen/application-x-mswinurl.png</file>
   <file>Icons/oxygen/go-down.png</file>
-  <file>Icons/oxygen/subscribe16.png</file>
+  <file>Icons/oxygen/document-import.png</file>
   <file>Icons/oxygen/download.png</file>
-  <file>Icons/oxygen/log.png</file>
   <file>Icons/oxygen/edit-find.png</file>
   <file>Icons/oxygen/edit-clear.png</file>
   <file>Icons/oxygen/webui.png</file>

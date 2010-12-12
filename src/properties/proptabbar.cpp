@@ -34,6 +34,7 @@
 #include <QKeySequence>
 
 #include "proptabbar.h"
+#include "misc.h"
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 8px; margin-right: 8px;}"
@@ -51,32 +52,32 @@ PropTabBar::PropTabBar(QWidget *parent) :
   m_btnGroup = new QButtonGroup(this);
   setContentsMargins(5, 4, 5, 2);
   // General tab
-  QPushButton *main_infos_button = new QPushButton(QIcon(":/Icons/oxygen/help-about.png"), tr("General"), parent);
+  QPushButton *main_infos_button = new QPushButton(misc::getIcon("document-properties"), tr("General"), parent);
   main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
   main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   main_infos_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(main_infos_button);
   m_btnGroup->addButton(main_infos_button, MAIN_TAB);
   // Trackers tab
-  QPushButton *trackers_button = new QPushButton(QIcon(":/Icons/oxygen/network-server.png"), tr("Trackers"), parent);
+  QPushButton *trackers_button = new QPushButton(misc::getIcon("network-server"), tr("Trackers"), parent);
   trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   trackers_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(trackers_button);
   m_btnGroup->addButton(trackers_button, TRACKERS_TAB);
   // Peers tab
-  QPushButton *peers_button = new QPushButton(QIcon(":/Icons/oxygen/peer.png"), tr("Peers"), parent);
+  QPushButton *peers_button = new QPushButton(misc::getIcon("edit-find-user"), tr("Peers"), parent);
   peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   peers_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(peers_button);
   m_btnGroup->addButton(peers_button, PEERS_TAB);
   // URL seeds tab
-  QPushButton *urlseeds_button = new QPushButton(QIcon(":/Icons/oxygen/urlseed.png"), tr("URL Seeds"), parent);
+  QPushButton *urlseeds_button = new QPushButton(misc::getIcon("network-server"), tr("HTTP Sources"), parent);
   urlseeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   urlseeds_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(urlseeds_button);
   m_btnGroup->addButton(urlseeds_button, URLSEEDS_TAB);
   // Files tab
-  QPushButton *files_button = new QPushButton(QIcon(":/Icons/oxygen/folder.png"), tr("Files"), parent);
+  QPushButton *files_button = new QPushButton(misc::getIcon("inode-directory"), tr("Content"), parent);
   files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
   files_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(files_button);

@@ -42,6 +42,8 @@ class AdvancedSettings;
 
 class options_imp : public QDialog, private Ui_Preferences {
   Q_OBJECT
+private:
+  enum Tabs {TAB_UI, TAB_DOWNLOADS, TAB_CONNECTION, TAB_SPEED, TAB_BITTORRENT, TAB_WEBUI, TAB_ADVANCED};
 
 public:
   // Contructor / Destructor

@@ -24,10 +24,6 @@
        <property name="text">
         <string>New subscription</string>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/subscribe.png</normaloff>:/Icons/oxygen/subscribe.png</iconset>
-       </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
@@ -37,10 +33,6 @@
       <widget class="QToolButton" name="markReadButton">
        <property name="text">
         <string>Mark items read</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -60,10 +52,6 @@
        </property>
        <property name="text">
         <string>Update all</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -187,10 +175,6 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
   <action name="actionDelete">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/remove.png</normaloff>:/Icons/oxygen/remove.png</iconset>
-   </property>
    <property name="text">
     <string>Delete</string>
    </property>
@@ -199,10 +183,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionRename">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/edit_clear.png</normaloff>:/Icons/oxygen/edit_clear.png</iconset>
-   </property>
    <property name="text">
     <string>Rename...</string>
    </property>
@@ -211,10 +191,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionUpdate">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
-   </property>
    <property name="text">
     <string>Update</string>
    </property>
@@ -223,19 +199,11 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionNew_subscription">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/subscribe16.png</normaloff>:/Icons/oxygen/subscribe16.png</iconset>
-   </property>
    <property name="text">
     <string>New subscription...</string>
    </property>
   </action>
   <action name="actionUpdate_all_feeds">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/view-refresh.png</normaloff>:/Icons/oxygen/view-refresh.png</iconset>
-   </property>
    <property name="text">
     <string>Update all feeds</string>
    </property>
@@ -244,10 +212,6 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionMark_items_read">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/button_ok.png</normaloff>:/Icons/oxygen/button_ok.png</iconset>
-   </property>
    <property name="text">
     <string>Mark items read</string>
    </property>
@@ -256,53 +220,31 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionDownload_torrent">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
-   </property>
    <property name="text">
     <string>Download torrent</string>
    </property>
   </action>
   <action name="actionOpen_news_URL">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/url.png</normaloff>:/Icons/url.png</iconset>
-   </property>
    <property name="text">
     <string>Open news URL</string>
    </property>
   </action>
   <action name="actionCopy_feed_URL">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/edit-copy.png</normaloff>:/Icons/oxygen/edit-copy.png</iconset>
-   </property>
    <property name="text">
     <string>Copy feed URL</string>
    </property>
   </action>
   <action name="actionNew_folder">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
-   </property>
    <property name="text">
     <string>New folder...</string>
    </property>
   </action>
   <action name="actionManage_cookies">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/Icons/oxygen/cookies.png</normaloff>:/Icons/oxygen/cookies.png</iconset>
-   </property>
    <property name="text">
     <string>Manage cookies...</string>
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

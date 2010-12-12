@@ -88,14 +88,13 @@
       </property>
       <item>
        <property name="text">
-        <string>UI</string>
+        <string extracomment="User Interface">UI</string>
+       </property>
+       <property name="toolTip">
+        <string>User Interface</string>
        </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/preferences-desktop.png</normaloff>:/Icons/oxygen/preferences-desktop.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -108,10 +107,6 @@
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/download.png</normaloff>:/Icons/oxygen/download.png</iconset>
-       </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
@@ -123,10 +118,6 @@
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/connection.png</normaloff>:/Icons/oxygen/connection.png</iconset>
-       </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
@@ -135,10 +126,6 @@
        <property name="text">
         <string>Speed</string>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/chronometer.png</normaloff>:/Icons/oxygen/chronometer.png</iconset>
-       </property>
       </item>
       <item>
        <property name="text">
@@ -146,10 +133,6 @@
        </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/bt_settings.png</normaloff>:/Icons/oxygen/bt_settings.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -162,10 +145,6 @@
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/webui.png</normaloff>:/Icons/oxygen/webui.png</iconset>
-       </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
@@ -173,10 +152,6 @@
       <item>
        <property name="text">
         <string>Advanced</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/gear32.png</normaloff>:/Icons/oxygen/gear32.png</iconset>
        </property>
       </item>
      </widget>
@@ -202,7 +177,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>507</width>
+             <width>506</width>
              <height>430</height>
             </rect>
            </property>
@@ -506,7 +481,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>507</width>
+             <width>506</width>
              <height>698</height>
             </rect>
            </property>
@@ -612,9 +587,8 @@ QGroupBox {
                         <height>27</height>
                        </size>
                       </property>
-                      <property name="icon">
-                       <iconset resource="../icons.qrc">
-                        <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                      <property name="text">
+                       <string notr="true">...</string>
                       </property>
                      </widget>
                     </item>
@@ -685,9 +659,8 @@ QGroupBox {
                       <height>27</height>
                      </size>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../icons.qrc">
-                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                    <property name="text">
+                     <string notr="true">...</string>
                     </property>
                    </widget>
                   </item>
@@ -849,9 +822,8 @@ QGroupBox {
                       <height>27</height>
                      </size>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../icons.qrc">
-                      <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                    <property name="text">
+                     <string notr="true">...</string>
                     </property>
                    </widget>
                   </item>
@@ -951,8 +923,8 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-51</y>
-             <width>507</width>
+             <y>0</y>
+             <width>506</width>
              <height>457</height>
             </rect>
            </property>
@@ -1381,9 +1353,8 @@ QGroupBox {
                    <height>22</height>
                   </size>
                  </property>
-                 <property name="icon">
-                  <iconset resource="../icons.qrc">
-                   <normaloff>:/Icons/oxygen/browse.png</normaloff>:/Icons/oxygen/browse.png</iconset>
+                 <property name="text">
+                  <string notr="true">...</string>
                  </property>
                 </widget>
                </item>
@@ -1799,8 +1770,8 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-25</y>
-             <width>570</width>
+             <y>-7</y>
+             <width>581</width>
              <height>422</height>
             </rect>
            </property>

@@ -61,6 +61,12 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   QWidget(parent), transferList(transferList), main_window(main_window) {
 
   setupUi(this);
+  // Icons
+  deleteWS_button->setIcon(misc::getIcon("list-remove"));
+  addWS_button->setIcon(misc::getIcon("list-add"));
+  trackerUpButton->setIcon(misc::getIcon("go-up"));
+  trackerDownButton->setIcon(misc::getIcon("go-down"));
+
   state = VISIBLE;
   setEnabled(false);
 
@@ -486,7 +492,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1) {
-    actRename = myFilesLlistMenu.addAction(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."));
+    actRename = myFilesLlistMenu.addAction(misc::getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;

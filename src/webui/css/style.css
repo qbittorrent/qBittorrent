@@ -203,10 +203,10 @@ a.propButton img {
 #contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }
 #contextmenu li a.uploadLimit	{ background-image:url(../images/skin/seeding.png); }
 #contextmenu li a.downloadLimit	{ background-image:url(../images/skin/download.png); }
-#contextmenu li a.prioTop	{ background-image:url(../images/oxygen/go-top.png); }
-#contextmenu li a.prioUp	{ background-image:url(../images/oxygen/go-up.png); }
-#contextmenu li a.prioDown	{ background-image:url(../images/oxygen/go-down.png); }
-#contextmenu li a.prioBottom	{ background-image:url(../images/oxygen/go-bottom.png); }
+#contextmenu li a.prioTop	{ background-image:url(../images/oxygen/go-top22.png); }
+#contextmenu li a.prioUp	{ background-image:url(../images/oxygen/go-up22.png); }
+#contextmenu li a.prioDown	{ background-image:url(../images/oxygen/go-down22.png); }
+#contextmenu li a.prioBottom	{ background-image:url(../images/oxygen/go-bottom22.png); }
 
 /* Sliders */
 

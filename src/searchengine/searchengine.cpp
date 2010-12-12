@@ -61,16 +61,20 @@
 /*SEARCH ENGINE START*/
 SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(parent) {
   setupUi(this);
+  // Icons
+  search_button->setIcon(misc::getIcon("edit-find"));
+  download_button->setIcon(misc::getIcon("download"));
+  enginesButton->setIcon(misc::getIcon("preferences-system-network"));
   // new qCompleter to the search pattern
   startSearchHistory();
   createCompleter();
-#if QT_VERSION >= 0x040500
+#if (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
   tabWidget->setTabsClosable(true);
   connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 #else
   // Add close tab button
   closeTab_button = new QPushButton();
-  closeTab_button->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/tab-close.png")));
+  closeTab_button->setIcon(misc::getIcon("tab-close"));
   closeTab_button->setFlat(true);
   tabWidget->setCornerWidget(closeTab_button);
   connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
@@ -199,11 +203,11 @@ SearchEngine::~SearchEngine(){
 
 void SearchEngine::displayPatternContextMenu(QPoint) {
   QMenu myMenu(this);
-  QAction cutAct(QIcon(":/Icons/oxygen/edit-cut.png"), tr("Cut"), &myMenu);
-  QAction copyAct(QIcon(":/Icons/oxygen/edit-copy.png"), tr("Copy"), &myMenu);
-  QAction pasteAct(QIcon(":/Icons/oxygen/edit-paste.png"), tr("Paste"), &myMenu);
-  QAction clearAct(QIcon(":/Icons/oxygen/edit_clear.png"), tr("Clear field"), &myMenu);
-  QAction clearHistoryAct(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Clear completion history"), &myMenu);
+  QAction cutAct(misc::getIcon("edit-cut"), tr("Cut"), &myMenu);
+  QAction copyAct(misc::getIcon("edit-copy"), tr("Copy"), &myMenu);
+  QAction pasteAct(misc::getIcon("edit-paste"), tr("Paste"), &myMenu);
+  QAction clearAct(misc::getIcon("edit-clear"), tr("Clear field"), &myMenu);
+  QAction clearHistoryAct(misc::getIcon("edit-clear-history"), tr("Clear completion history"), &myMenu);
   bool hasCopyAct = false;
   if(search_pattern->hasSelectedText()) {
     myMenu.addAction(&cutAct);

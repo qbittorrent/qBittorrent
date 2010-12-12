@@ -33,6 +33,7 @@
 
 #include "qbtsession.h"
 #include "ui_console.h"
+#include "misc.h"
 
 class consoleDlg : public QDialog, private Ui_ConsoleDlg{
   Q_OBJECT
@@ -42,6 +43,8 @@ class consoleDlg : public QDialog, private Ui_ConsoleDlg{
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       setModal(true);
+      tabConsole->setTabIcon(0, misc::getIcon("view-calendar-journal"));
+      tabConsole->setTabIcon(1, misc::getIcon("view-filter"));
       textConsole->setHtml(QBtSession::instance()->getConsoleMessages().join("<br>"));
       textBannedPeers->setHtml(QBtSession::instance()->getPeerBanMessages().join("<br>"));
       show();

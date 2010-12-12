@@ -101,27 +101,37 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
-  actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png")));
-  actionExit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/exit.png")));
-  actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png")));
-  actionOptions->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/settings.png")));
-  actionAbout->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/info.png")));
-  actionWebsite->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
-  actionBugReport->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/bug.png")));
-  actionStart->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play.png")));
-  actionPause->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")));
-  actionDelete->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
-  actionPause_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/pause_all.png")));
-  actionStart_All->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/play_all.png")));
-  actionClearLog->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")));
-  actionPreview_file->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")));
+  actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png"))); // FIXME
+  actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png"))); // FIXME
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
-  actionDocumentation->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/qb_question.png")));
-  actionLock_qBittorrent->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/encrypted32.png")));
-  lockMenu = new QMenu();
+  actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
+  actionAbout->setIcon(misc::getIcon("help-about"));
+  actionBugReport->setIcon(misc::getIcon("tools-report-bug"));
+  actionDecreasePriority->setIcon(misc::getIcon("go-down"));
+  actionDelete->setIcon(misc::getIcon("edit-delete"));
+  actionDocumentation->setIcon(misc::getIcon("help-contents"));
+  actionDonate_money->setIcon(misc::getIcon("emblem-favorite"));
+  actionExit->setIcon(misc::getIcon("application-exit"));
+  actionIncreasePriority->setIcon(misc::getIcon("go-up"));
+  actionLock_qBittorrent->setIcon(misc::getIcon("emblem-locked"));
+  actionOptions->setIcon(misc::getIcon("preferences-system"));
+  actionPause->setIcon(misc::getIcon("media-playback-pause"));
+  actionPause_All->setIcon(misc::getIcon("media-playback-pause"));
+  actionStart->setIcon(misc::getIcon("media-playback-start"));
+  actionStart_All->setIcon(misc::getIcon("media-playback-start"));
+  action_Import_Torrent->setIcon(misc::getIcon("list-add"));
+  actionShow_console->setIcon(misc::getIcon("view-calendar-journal"));
+
+  QMenu *startAllMenu = new QMenu(this);
+  startAllMenu->addAction(actionStart_All);
+  actionStart->setMenu(startAllMenu);
+  QMenu *pauseAllMenu = new QMenu(this);
+  pauseAllMenu->addAction(actionPause_All);
+  actionPause->setMenu(pauseAllMenu);
+  QMenu *lockMenu = new QMenu(this);
   QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
   connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
   actionLock_qBittorrent->setMenu(lockMenu);
@@ -129,7 +139,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
   prioSeparator->setVisible(false);
   prioSeparator2->setVisible(false);
-  actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(7);
   // Creating Bittorrent session
@@ -162,7 +171,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   vSplitter->addWidget(hSplitter);
   vSplitter->setCollapsible(0, true);
   vSplitter->setCollapsible(1, false);
-  tabs->addTab(vSplitter, QIcon(QString::fromUtf8(":/Icons/oxygen/folder-remote.png")), tr("Transfers"));
+  tabs->addTab(vSplitter, misc::getIcon("folder-remote"), tr("Transfers"));
   connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
   connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
@@ -290,7 +299,6 @@ MainWindow::~MainWindow() {
   delete search_filter;
   delete transferList;
   delete guiUpdater;
-  delete lockMenu;
   if(createTorrentDlg)
     delete createTorrentDlg;
   if(console)
@@ -366,7 +374,7 @@ void MainWindow::displayRSSTab(bool enable) {
     if(!rssWidget) {
       rssWidget = new RSSImp(tabs);
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
-      tabs->setTabIcon(index_tab, QIcon(QString::fromUtf8(":/Icons/rss32.png")));
+      tabs->setTabIcon(index_tab, misc::getIcon("application-rss+xml"));
     }
     tabs->showTabBar(true);
   } else {
@@ -383,7 +391,7 @@ void MainWindow::displaySearchTab(bool enable) {
     // RSS tab
     if(!searchEngine) {
       searchEngine = new SearchEngine(this);
-      tabs->insertTab(1, searchEngine, QIcon(QString::fromUtf8(":/Icons/oxygen/edit-find.png")), tr("Search"));
+      tabs->insertTab(1, searchEngine, misc::getIcon("edit-find"), tr("Search"));
     }
     tabs->showTabBar(true);
   } else {

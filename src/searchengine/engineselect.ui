@@ -112,13 +112,11 @@
    </item>
   </layout>
   <action name="actionEnable">
-   <property name="text">
-    <string>Enable</string>
+   <property name="checkable">
+    <bool>true</bool>
    </property>
-  </action>
-  <action name="actionDisable">
    <property name="text">
-    <string>Disable</string>
+    <string>Enabled</string>
    </property>
   </action>
   <action name="actionUninstall">

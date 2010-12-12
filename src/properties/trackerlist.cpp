@@ -344,13 +344,13 @@ void TrackerList::showTrackerListMenu(QPoint) {
   //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
   QMenu menu;
   // Add actions
-  QAction *addAct = menu.addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("Add a new tracker..."));
+  QAction *addAct = menu.addAction(misc::getIcon("list-add"), tr("Add a new tracker..."));
   QAction *delAct = 0;
   if(!getSelectedTrackerItems().isEmpty()) {
-    delAct = menu.addAction(QIcon(":/Icons/oxygen/list-remove.png"), tr("Remove tracker"));
+    delAct = menu.addAction(misc::getIcon("list-remove"), tr("Remove tracker"));
   }
   menu.addSeparator();
-  QAction *reannounceAct = menu.addAction(QIcon(":/Icons/oxygen/run-build.png"), tr("Force reannounce"));
+  QAction *reannounceAct = menu.addAction(misc::getIcon("view-refresh"), tr("Force reannounce"));
   QAction *act = menu.exec(QCursor::pos());
   if(act == 0) return;
   if(act == addAct) {

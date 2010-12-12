@@ -597,42 +597,40 @@ void TransferListWidget::removeLabelFromRows(QString label) {
 
 void TransferListWidget::displayListMenu(const QPoint&) {
   // Create actions
-  QAction actionStart(QIcon(QString::fromUtf8(":/Icons/skin/play.png")), tr("Resume", "Resume/start the torrent"), 0);
+  QAction actionStart(misc::getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
   connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
-  QAction actionPause(QIcon(QString::fromUtf8(":/Icons/skin/pause.png")), tr("Pause", "Pause the torrent"), 0);
+  QAction actionPause(misc::getIcon("media-playback-pause"), tr("Pause", "Pause the torrent"), 0);
   connect(&actionPause, SIGNAL(triggered()), this, SLOT(pauseSelectedTorrents()));
-  QAction actionDelete(QIcon(QString::fromUtf8(":/Icons/skin/delete.png")), tr("Delete", "Delete the torrent"), 0);
+  QAction actionDelete(misc::getIcon("edit-delete"), tr("Delete", "Delete the torrent"), 0);
   connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
-  QAction actionPreview_file(QIcon(QString::fromUtf8(":/Icons/skin/preview.png")), tr("Preview file..."), 0);
+  QAction actionPreview_file(misc::getIcon("view-preview"), tr("Preview file..."), 0);
   connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
   QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Limit upload rate..."), 0);
   connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
   QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/download.png")), tr("Limit download rate..."), 0);
   connect(&actionSet_download_limit, SIGNAL(triggered()), this, SLOT(setDlLimitSelectedTorrents()));
-  QAction actionOpen_destination_folder(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png")), tr("Open destination folder"), 0);
+  QAction actionOpen_destination_folder(misc::getIcon("inode-directory"), tr("Open destination folder"), 0);
   connect(&actionOpen_destination_folder, SIGNAL(triggered()), this, SLOT(openSelectedTorrentsFolder()));
-  //QAction actionBuy_it(QIcon(QString::fromUtf8(":/Icons/oxygen/wallet.png")), tr("Buy it"), 0);
-  //connect(&actionBuy_it, SIGNAL(triggered()), this, SLOT(buySelectedTorrents()));
-  QAction actionIncreasePriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-up.png")), tr("Move up", "i.e. move up in the queue"), 0);
+  QAction actionIncreasePriority(misc::getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), 0);
   connect(&actionIncreasePriority, SIGNAL(triggered()), this, SLOT(increasePrioSelectedTorrents()));
-  QAction actionDecreasePriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-down.png")), tr("Move down", "i.e. Move down in the queue"), 0);
+  QAction actionDecreasePriority(misc::getIcon("go-down"), tr("Move down", "i.e. Move down in the queue"), 0);
   connect(&actionDecreasePriority, SIGNAL(triggered()), this, SLOT(decreasePrioSelectedTorrents()));
-  QAction actionTopPriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-top.png")), tr("Move to top", "i.e. Move to top of the queue"), 0);
+  QAction actionTopPriority(misc::getIcon("go-top"), tr("Move to top", "i.e. Move to top of the queue"), 0);
   connect(&actionTopPriority, SIGNAL(triggered()), this, SLOT(topPrioSelectedTorrents()));
-  QAction actionBottomPriority(QIcon(QString::fromUtf8(":/Icons/oxygen/go-bottom.png")), tr("Move to bottom", "i.e. Move to bottom of the queue"), 0);
+  QAction actionBottomPriority(misc::getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), 0);
   connect(&actionBottomPriority, SIGNAL(triggered()), this, SLOT(bottomPrioSelectedTorrents()));
-  QAction actionSetTorrentPath(QIcon(QString::fromUtf8(":/Icons/skin/folder.png")), tr("Set location..."), 0);
+  QAction actionSetTorrentPath(misc::getIcon("inode-directory"), tr("Set location..."), 0);
   connect(&actionSetTorrentPath, SIGNAL(triggered()), this, SLOT(setSelectedTorrentsLocation()));
-  QAction actionForce_recheck(QIcon(QString::fromUtf8(":/Icons/oxygen/gear.png")), tr("Force recheck"), 0);
+  QAction actionForce_recheck(misc::getIcon("document-edit-verify"), tr("Force recheck"), 0);
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
-  QAction actionCopy_magnet_link(QIcon(QString::fromUtf8(":/Icons/magnet.png")), tr("Copy magnet link"), 0);
+  QAction actionCopy_magnet_link(QIcon(":/Icons/magnet.png"), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
 #if LIBTORRENT_VERSION_MINOR > 14
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   actionSuper_seeding_mode.setCheckable(true);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
 #endif
-  QAction actionRename(QIcon(QString::fromUtf8(":/Icons/oxygen/edit_clear.png")), tr("Rename..."), 0);
+  QAction actionRename(misc::getIcon("edit-rename"), tr("Rename..."), 0);
   connect(&actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedTorrent()));
   QAction actionSequential_download(tr("Download in sequential order"), 0);
   actionSequential_download.setCheckable(true);
@@ -719,12 +717,12 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   QStringList customLabels = getCustomLabels();
   customLabels.sort();
   QList<QAction*> labelActions;
-  QMenu *labelMenu = listMenu.addMenu(QIcon(":/Icons/oxygen/feed-subscribe.png"), tr("Label"));
-  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/list-add.png"), tr("New...", "New label..."));
-  labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/edit-clear.png"), tr("Reset", "Reset label"));
+  QMenu *labelMenu = listMenu.addMenu(misc::getIcon("view-categories"), tr("Label"));
+  labelActions << labelMenu->addAction(misc::getIcon("list-add"), tr("New...", "New label..."));
+  labelActions << labelMenu->addAction(misc::getIcon("edit-clear"), tr("Reset", "Reset label"));
   labelMenu->addSeparator();
   foreach(const QString &label, customLabels) {
-    labelActions << labelMenu->addAction(QIcon(":/Icons/oxygen/folder.png"), label);
+    labelActions << labelMenu->addAction(misc::getIcon("inode-directory"), label);
   }
   listMenu.addSeparator();
   if(one_not_seed)
@@ -772,7 +770,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addSeparator();
   if(one_has_metadata)
     listMenu.addAction(&actionCopy_magnet_link);
-  //listMenu.addAction(&actionBuy_it);
   // Call menu
   QAction *act = 0;
   act = listMenu.exec(QCursor::pos());

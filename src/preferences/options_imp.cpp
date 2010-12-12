@@ -55,10 +55,18 @@ using namespace libtorrent;
 // Constructor
 options_imp::options_imp(QWidget *parent):QDialog(parent){
   qDebug("-> Constructing Options");
+  setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
+  // Icons
+  tabSelection->item(TAB_UI)->setIcon(misc::getIcon("preferences-desktop"));
+  tabSelection->item(TAB_BITTORRENT)->setIcon(misc::getIcon("preferences-system-network"));
+  tabSelection->item(TAB_CONNECTION)->setIcon(misc::getIcon("network-wired"));
+  tabSelection->item(TAB_DOWNLOADS)->setIcon(misc::getIcon("download"));
+  tabSelection->item(TAB_SPEED)->setIcon(misc::getIcon("chronometer"));
+  tabSelection->item(TAB_WEBUI)->setIcon(misc::getIcon("network-server"));
+  tabSelection->item(TAB_ADVANCED)->setIcon(misc::getIcon("preferences-other"));
 
-  setupUi(this);
   hsplitter->setCollapsible(0, false);
   hsplitter->setCollapsible(1, false);
   // Get apply button in button box

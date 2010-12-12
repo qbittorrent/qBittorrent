@@ -434,9 +434,9 @@ public:
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
     if(index.column() == 0 && role == Qt::DecorationRole) {
       if(item->isFolder())
-        return QIcon(":/Icons/oxygen/folder.png");
+        return misc::getIcon("inode-directory");
       else
-        return QIcon(":/Icons/oxygen/file.png");
+        return misc::getIcon("text-plain");
     }
     if(index.column() == 0 && role == Qt::CheckStateRole) {
       if(item->data(TreeItem::COL_PRIO).toInt() == IGNORED)

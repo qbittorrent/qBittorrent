@@ -50,6 +50,8 @@ private:
 public:
   TrackersAdditionDlg(QTorrentHandle h, QWidget *parent=0): QDialog(parent), h(h) {
     setupUi(this);
+    // Icons
+    uTorrentListButton->setIcon(misc::getIcon("download"));
     // As a default, use torrentz.com link
     list_url->setText("http://www.torrentz.com/announce_"+h.hash());
     list_url->setCursorPosition(0);

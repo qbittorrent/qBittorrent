@@ -148,7 +148,7 @@ void RSSImp::askNewFolder() {
     listStreams->itemAdded(folder_item, new_folder);
     // Set Text
     folder_item->setText(0, new_folder->getName() + QString::fromUtf8("  (0)"));
-    folder_item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/oxygen/folder.png")));
+    folder_item->setData(0,Qt::DecorationRole, QVariant(misc::getIcon("inode-directory")));
     // Expand parent folder to display new folder
     if(parent_item)
       parent_item->setExpanded(true);
@@ -423,7 +423,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, RssFolder *rss_parent) {
     if(rss_child->getType() == RssFile::FEED) {
       item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
     } else {
-      item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/oxygen/folder.png"))));
+      item->setData(0,Qt::DecorationRole, QVariant(misc::getIcon("inode-directory")));
       // Recurvive call to load sub folders/files
       fillFeedsList(item, (RssFolder*)rss_child);
     }
@@ -581,6 +581,23 @@ void RSSImp::updateRefreshInterval(unsigned int val) {
 
 RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
   setupUi(this);
+  // Icons
+  actionCopy_feed_URL->setIcon(misc::getIcon("edit-copy"));
+  actionDelete->setIcon(misc::getIcon("edit-delete"));
+  actionDownload_torrent->setIcon(misc::getIcon("download"));
+  actionManage_cookies->setIcon(misc::getIcon("preferences-web-browser-cookies"));
+  actionMark_items_read->setIcon(misc::getIcon("mail-mark-read"));
+  actionNew_folder->setIcon(misc::getIcon("folder-new"));
+  actionNew_subscription->setIcon(misc::getIcon("list-add"));
+  actionOpen_news_URL->setIcon(misc::getIcon("application-x-mswinurl"));
+  actionRename->setIcon(misc::getIcon("edit-rename"));
+  actionUpdate->setIcon(misc::getIcon("view-refresh"));
+  actionUpdate_all_feeds->setIcon(misc::getIcon("view-refresh"));
+  newFeedButton->setIcon(misc::getIcon("list-add"));
+  markReadButton->setIcon(misc::getIcon("mail-mark-read"));
+  updateAllButton->setIcon(misc::getIcon("view-refresh"));
+  rssDownloaderBtn->setIcon(misc::getIcon("download"));
+  settingsButton->setIcon(misc::getIcon("preferences-system"));
 
   rssmanager = RssManager::instance();
 

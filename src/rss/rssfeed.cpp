@@ -37,7 +37,7 @@
 #include "misc.h"
 #include "rssdownloadrulelist.h"
 
-RssFeed::RssFeed(RssFolder* parent, QString _url): parent(parent), alias(""), iconPath(":/Icons/rss16.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
+RssFeed::RssFeed(RssFolder* parent, QString _url): parent(parent), alias(""), iconPath(":/Icons/oxygen/application-rss+xml.png"), refreshed(false), downloadFailure(false), currently_loading(false) {
   qDebug("RSSStream constructed");
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   url = QUrl(_url).toString();

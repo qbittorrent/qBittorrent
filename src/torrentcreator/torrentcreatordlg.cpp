@@ -45,6 +45,12 @@ using namespace libtorrent;
 
 TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorThread(0) {
   setupUi(this);
+  // Icons
+  addFile_button->setIcon(misc::getIcon("document-new"));
+  addFolder_button->setIcon(misc::getIcon("folder-new"));
+  createButton->setIcon(misc::getIcon("document-save"));
+  cancelButton->setIcon(misc::getIcon("dialog-cancel"));
+
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
   showProgressBar(false);

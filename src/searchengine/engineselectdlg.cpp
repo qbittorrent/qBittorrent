@@ -52,11 +52,8 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
   pluginsTree->header()->resizeSection(0, 170);
   pluginsTree->header()->resizeSection(1, 220);
   pluginsTree->hideColumn(ENGINE_ID);
-  actionEnable->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_ok.png")));
-  actionDisable->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/button_cancel.png")));
-  actionUninstall->setIcon(QIcon(QString::fromUtf8(":/Icons/oxygen/list-remove.png")));
-  connect(actionEnable, SIGNAL(triggered()), this, SLOT(enableSelection()));
-  connect(actionDisable, SIGNAL(triggered()), this, SLOT(disableSelection()));
+  actionUninstall->setIcon(misc::getIcon("list-remove"));
+  connect(actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
   connect(pluginsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContextMenu(const QPoint&)));
   downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
@@ -132,20 +129,10 @@ void engineSelectDlg::displayContextMenu(const QPoint&) {
   QMenu myContextMenu(this);
   // Enable/disable pause/start action given the DL state
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
-  bool has_enable = false, has_disable = false;
-  QTreeWidgetItem *item;
-  foreach(item, items) {
-    QString id = item->text(ENGINE_ID);
-    if(supported_engines->value(id)->isEnabled() && !has_disable) {
-      myContextMenu.addAction(actionDisable);
-      has_disable = true;
-    }
-    if(!supported_engines->value(id)->isEnabled() && !has_enable) {
-      myContextMenu.addAction(actionEnable);
-      has_enable = true;
-    }
-    if(has_enable && has_disable) break;
-  }
+  if(items.isEmpty()) return;
+  QString first_id = items.first()->text(ENGINE_ID);
+  actionEnable->setChecked(supported_engines->value(first_id)->isEnabled());
+  myContextMenu.addAction(actionEnable);
   myContextMenu.addSeparator();
   myContextMenu.addAction(actionUninstall);
   myContextMenu.exec(QCursor::pos());
@@ -194,29 +181,21 @@ void engineSelectDlg::on_actionUninstall_triggered() {
     QMessageBox::information(0, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
 
-void engineSelectDlg::enableSelection() {
+void engineSelectDlg::enableSelection(bool enable) {
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
   QTreeWidgetItem *item;
   foreach(item, items) {
     int index = pluginsTree->indexOfTopLevelItem(item);
     Q_ASSERT(index != -1);
     QString id = item->text(ENGINE_ID);
-    supported_engines->value(id)->setEnabled(true);
-    item->setText(ENGINE_STATE, tr("Yes"));
-    setRowColor(index, "green");
-  }
-}
-
-void engineSelectDlg::disableSelection() {
-  QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
-  QTreeWidgetItem *item;
-  foreach(item, items) {
-    int index = pluginsTree->indexOfTopLevelItem(item);
-    Q_ASSERT(index != -1);
-    QString id = item->text(ENGINE_ID);
-    supported_engines->value(id)->setEnabled(false);
-    item->setText(ENGINE_STATE, tr("No"));
-    setRowColor(index, "red");
+    supported_engines->value(id)->setEnabled(enable);
+    if(enable) {
+      item->setText(ENGINE_STATE, tr("Yes"));
+      setRowColor(index, "green");
+    } else {
+      item->setText(ENGINE_STATE, tr("No"));
+      setRowColor(index, "red");
+    }
   }
 }
 

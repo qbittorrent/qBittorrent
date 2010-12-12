@@ -46,6 +46,10 @@ TorrentImportDlg::TorrentImportDlg(QWidget *parent) :
   ui(new Ui::TorrentImportDlg)
 {
   ui->setupUi(this);
+  // Icons
+  ui->lbl_info->setPixmap(misc::getIcon("dialog-information").pixmap(ui->lbl_info->height()));
+  ui->lbl_info->setFixedWidth(ui->lbl_info->height());
+  ui->importBtn->setIcon(misc::getIcon("document-import"));
   // Libtorrent < 0.15 does not support skipping file checking
 #if LIBTORRENT_VERSION_MINOR < 15
   ui->checkSkipCheck->setVisible(false);

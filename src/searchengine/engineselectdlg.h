@@ -66,8 +66,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
     void processDownloadedFile(QString url, QString filePath);
     void handleDownloadFailure(QString url, QString reason);
     void displayContextMenu(const QPoint& pos);
-    void enableSelection();
-    void disableSelection();
+    void enableSelection(bool enable);
     void on_actionUninstall_triggered();
     void on_updateButton_clicked();
     void on_installButton_clicked();

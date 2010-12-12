@@ -64,20 +64,12 @@
        <property name="text">
         <string>Add file</string>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/document-new.png</normaloff>:/Icons/oxygen/document-new.png</iconset>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="addFolder_button">
        <property name="text">
         <string>Add folder</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/folder-new.png</normaloff>:/Icons/oxygen/folder-new.png</iconset>
        </property>
       </widget>
      </item>
@@ -317,8 +309,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

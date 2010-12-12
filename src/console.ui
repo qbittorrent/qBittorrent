@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>qBittorrent log viewer</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../icons.qrc">
-    <normaloff>:/Icons/oxygen/log.png</normaloff>:/Icons/oxygen/log.png</iconset>
-  </property>
   <layout class="QVBoxLayout">
    <item>
     <widget class="QTabWidget" name="tabConsole">
@@ -24,10 +20,6 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
-      <attribute name="icon">
-       <iconset resource="../icons.qrc">
-        <normaloff>:/Icons/oxygen/log.png</normaloff>:/Icons/oxygen/log.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>General</string>
       </attribute>
@@ -38,10 +30,6 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
-      <attribute name="icon">
-       <iconset resource="../icons.qrc">
-        <normaloff>:/Icons/oxygen/filter.png</normaloff>:/Icons/oxygen/filter.png</iconset>
-      </attribute>
       <attribute name="title">
        <string>Blocked IPs</string>
       </attribute>
@@ -55,8 +43,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

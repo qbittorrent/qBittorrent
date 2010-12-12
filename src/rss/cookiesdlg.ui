@@ -33,12 +33,12 @@
      </attribute>
      <column>
       <property name="text">
-       <string>Key</string>
+       <string extracomment="As in Key/Value pair">Key</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Value</string>
+       <string extracomment="As in Key/Value pair">Value</string>
       </property>
      </column>
     </widget>
@@ -62,10 +62,6 @@
       <widget class="QToolButton" name="add_btn">
        <property name="text">
         <string notr="true"/>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/list-add.png</normaloff>:/Icons/oxygen/list-add.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -95,10 +91,6 @@
       <widget class="QToolButton" name="del_btn">
        <property name="text">
         <string notr="true"/>
-       </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/list-remove.png</normaloff>:/Icons/oxygen/list-remove.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -142,9 +134,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

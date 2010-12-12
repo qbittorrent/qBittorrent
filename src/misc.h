@@ -42,6 +42,10 @@
 #include <QFile>
 #include <QDir>
 
+#ifndef DISABLE_GUI
+#include <QIcon>
+#endif
+
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
@@ -80,6 +84,18 @@ public:
   static inline libtorrent::sha1_hash toSha1Hash(const QString &hash) {
     return libtorrent::sha1_hash(qPrintable(hash));
   }
+
+#ifndef DISABLE_GUI
+  static inline QIcon getIcon(const QString& id) {
+#if (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+    const QIcon icon = QIcon::fromTheme(id, QIcon(":/Icons/oxygen/"+id+".png"));
+#else
+    const QIcon icon(":/Icons/oxygen/"+id+".png");
+#endif
+    Q_ASSERT(!icon.isNull());
+    return icon;
+  }
+#endif
 
   static void chmod644(const QDir& folder);
 

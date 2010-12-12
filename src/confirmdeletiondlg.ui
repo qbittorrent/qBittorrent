@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>463</width>
-    <height>152</height>
+    <height>128</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,18 +23,15 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lbl_warn">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../icons.qrc">:/Icons/oxygen/dialog-warning.png</pixmap>
        </property>
       </widget>
      </item>
@@ -72,14 +69,10 @@
        <property name="text">
         <string notr="true"/>
        </property>
-       <property name="icon">
-        <iconset resource="../icons.qrc">
-         <normaloff>:/Icons/oxygen/encrypted.png</normaloff>:/Icons/oxygen/encrypted.png</iconset>
-       </property>
        <property name="iconSize">
         <size>
-         <width>20</width>
-         <height>18</height>
+         <width>24</width>
+         <height>24</height>
         </size>
        </property>
       </widget>
@@ -122,9 +115,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../icons.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
