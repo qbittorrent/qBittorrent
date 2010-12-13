@@ -164,7 +164,7 @@ a.propButton img {
 #contextmenu	{ border:1px solid #999; padding:0; background:#eee; list-style-type:none; display:none; width: 164px;}
 #contextmenu .separator	{ border-top:1px solid #999; }
 #contextmenu li	{ margin:0; padding:0;}
-#contextmenu li a { display:block; padding:5px 10px 5px 35px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; background-position:8px 2px; background-repeat:no-repeat; }
+#contextmenu li a { display:block; padding:5px 10px 5px 5px; font-size:12px; text-decoration:none; font-family:tahoma,arial,sans-serif; color:#000; }
 #contextmenu li a:hover	{ background-color:#ddd; }
 #contextmenu li a.disabled { color:#ccc; font-style:italic; }
 #contextmenu li a.disabled:hover { background-color:#eee; }
@@ -195,18 +195,12 @@ a.propButton img {
 	left: auto;
 }
 
-/* context menu items */
-#contextmenu li a.pause	{ background-image:url(../images/skin/pause22.png); }
-#contextmenu li a.start	{ background-image:url(../images/skin/play22.png); }
-#contextmenu li a.recheck	{ background-image:url(../images/oxygen/gear.png); }
-#contextmenu li a.delete	{ background-image:url(../images/skin/delete22.png); }
-#contextmenu li a.deleteHD	{ background-image:url(../images/skin/delete_perm22.png); }
-#contextmenu li a.uploadLimit	{ background-image:url(../images/skin/seeding.png); }
-#contextmenu li a.downloadLimit	{ background-image:url(../images/skin/download.png); }
-#contextmenu li a.prioTop	{ background-image:url(../images/oxygen/go-top22.png); }
-#contextmenu li a.prioUp	{ background-image:url(../images/oxygen/go-up22.png); }
-#contextmenu li a.prioDown	{ background-image:url(../images/oxygen/go-down22.png); }
-#contextmenu li a.prioBottom	{ background-image:url(../images/oxygen/go-bottom22.png); }
+#contextmenu li img {
+  width: 16px;
+  height: 16px;
+  margin-bottom: -4px;
+  -ms-interpolation-mode : bicubic;
+}
 
 /* Sliders */
 

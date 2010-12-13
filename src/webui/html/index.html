@@ -43,28 +43,28 @@
 					<li>
 						<a class="returnFalse">_(Edit)</a>
 						<ul>
-							<li><a id="resumeAllLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/play_all.png" width="16" height="16" onload="fixPNG(this)"/>_(S&tart All)</a></li>
-							<li><a id="pauseAllLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/pause_all.png" width="16" height="16" onload="fixPNG(this)"/>_(P&ause All)</a></li>
-							<li class="divider"><a id="resumeLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/play.png" width="16" height="16" onload="fixPNG(this)"/>_(&Start)</a></li>
-							<li><a id="pauseLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/pause.png" width="16" height="16" onload="fixPNG(this)"/>_(&Pause)</a></li>
-							<li><a id="recheckLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/oxygen/gear.png" width="16" height="16" onload="fixPNG(this)"/>_(Force recheck)</a></li>
-							<li class="divider"><a id="deleteLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/delete.png" width="16" height="16" onload="fixPNG(this)"/>_(&Delete)</a></li>
-							<li><a id="deletePermLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/delete_perm.png" width="16" height="16" onload="fixPNG(this)"/>_(Delete from HD)</a></li>
+							<li><a id="resumeAllLink"><img class="MyMenuIcon" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(S&tart All)</a></li>
+							<li><a id="pauseAllLink"><img class="MyMenuIcon" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>_(P&ause All)</a></li>
+							<li class="divider"><a id="resumeLink"><img class="MyMenuIcon" src="theme/media-playback-start" width="16" height="16" onload="fixPNG(this)"/>_(&Start)</a></li>
+							<li><a id="pauseLink"><img class="MyMenuIcon" src="theme/media-playback-pause" width="16" height="16" onload="fixPNG(this)"/>_(&Pause)</a></li>
+							<li><a id="recheckLink"><img class="MyMenuIcon" src="theme/document-edit-verify" width="16" height="16" onload="fixPNG(this)"/>_(Force recheck)</a></li>
+							<li class="divider"><a id="deleteLink"><img class="MyMenuIcon" src="theme/edit-delete" width="16" height="16" onload="fixPNG(this)"/>_(&Delete)</a></li>
+							<li><a id="deletePermLink"><img class="MyMenuIcon" src="theme/edit-delete" width="16" height="16" onload="fixPNG(this)"/>_(Delete from HD)</a></li>
 						</ul>
 					</li>
 					<li>
 						<a class="returnFalse">_(&Tools)</a>
 						<ul>
-							<li><a id="preferencesLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/settings.png" width="16" height="16" onload="fixPNG(this)"/>_(&Options...)</a></li>
+							<li><a id="preferencesLink"><img class="MyMenuIcon" src="theme/preferences-system" width="16" height="16" onload="fixPNG(this)"/>_(&Options...)</a></li>
 						</ul>
 					</li>
 					<li>
 						<a class="returnFalse">_(&Help)</a>
 						<ul>
-							<li><a id="bugLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/oxygen/bug.png" width="16" height="16" onload="fixPNG(this)"/>_(Report a &bug)</a></li>
-							<li><a id="siteLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/qbittorrent16.png" width="16" height="16" onload="fixPNG(this)"/>_(Visit &Website)</a></li>
-							<li><a id="docsLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/qb_question.png" width="16" height="16" onload="fixPNG(this)"/>_(&Documentation)</a></li>
-							<li><a id="aboutLink"><img class="MyMenuIcon" alt="_(Download local torrent)" src="images/skin/info.png" width="16" height="16" onload="fixPNG(this)"/>_(&About)</a></li>
+							<li><a id="bugLink"><img class="MyMenuIcon" src="theme/tools-report-bug" width="16" height="16" onload="fixPNG(this)"/>_(Report a &bug)</a></li>
+							<li><a id="siteLink"><img class="MyMenuIcon" src="images/skin/qbittorrent16.png" width="16" height="16" onload="fixPNG(this)"/>_(Visit &Website)</a></li>
+							<li><a id="docsLink"><img class="MyMenuIcon" src="theme/help-contents" width="16" height="16" onload="fixPNG(this)"/>_(&Documentation)</a></li>
+							<li><a id="aboutLink"><img class="MyMenuIcon" src="theme/help-about" width="16" height="16" onload="fixPNG(this)"/>_(&About)</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -72,38 +72,36 @@
 			<div id="mochaToolbar">
 				<a id="uploadButton"><img class="mochaToolButton" title="_(Download local torrent)" src="images/skin/open.png" width="32" height="32" onload="fixPNG(this)"/></a>
 				<a id="downloadButton"><img class="mochaToolButton" title="_(Download from URL)" src="images/skin/url.png" width="32" height="32" onload="fixPNG(this)"/></a>
-			  <a id="deleteButton" class="divider"><img class="mochaToolButton" title="_(Delete)" src="images/skin/delete.png" width="32" height="32" onload="fixPNG(this)"/></a>
+			  <a id="deleteButton" class="divider"><img class="mochaToolButton" title="_(Delete)" src="theme/edit-delete" width="32" height="32" onload="fixPNG(this)"/></a>
 			  <a id="deletePermButton"><img class="mochaToolButton" title="_(Delete from HD)" src="images/skin/delete_perm.png" width="32" height="32" onload="fixPNG(this)"/></a>
-				<a id="resumeButton" class="divider"><img class="mochaToolButton" title="_(Start)" src="images/skin/play.png" width="32" height="32" onload="fixPNG(this)"/></a>
-				<a id="pauseButton"><img class="mochaToolButton" title="_(Pause)" src="images/skin/pause.png" width="32" height="32" onload="fixPNG(this)"/></a>
-				<a id="resumeAllButton" class="divider"><img class="mochaToolButton" title="_(Start All)" src="images/skin/play_all.png" width="32" height="32" onload="fixPNG(this)"/></a>
-				<a id="pauseAllButton"><img class="mochaToolButton" title="_(Pause All)" src="images/skin/pause_all.png" width="32" height="32" onload="fixPNG(this)"/></a>
+				<a id="resumeButton" class="divider"><img class="mochaToolButton" title="_(Start)" src="theme/media-playback-start" width="32" height="32" onload="fixPNG(this)"/></a>
+				<a id="pauseButton"><img class="mochaToolButton" title="_(Pause)" src="theme/media-playback-pause" width="32" height="32" onload="fixPNG(this)"/></a>
 				<span id="queueingButtons">
-				<a id="decreasePrioButton" class="divider"><img class="mochaToolButton" title="_(Decrease priority)" src="images/skin/decrease.png" width="32" height="32" onload="fixPNG(this)"/></a>
-				<a id="increasePrioButton"><img class="mochaToolButton" title="_(Increase priority)" src="images/skin/increase.png" width="32" height="32" onload="fixPNG(this)"/></a>
+				<a id="decreasePrioButton" class="divider"><img class="mochaToolButton" title="_(Decrease priority)" src="theme/go-down" width="32" height="32" onload="fixPNG(this)"/></a>
+				<a id="increasePrioButton"><img class="mochaToolButton" title="_(Increase priority)" src="theme/go-up" width="32" height="32" onload="fixPNG(this)"/></a>
 				</span>
-				<a id="preferencesButton" class="divider"><img class="mochaToolButton" title="_(Preferences)" src="images/skin/settings.png" width="32" height="32" onload="fixPNG(this)"/></a>
+				<a id="preferencesButton" class="divider"><img class="mochaToolButton" title="_(Preferences)" src="theme/preferences-system" width="32" height="32" onload="fixPNG(this)"/></a>
 			</div>
 		</div>
 		<div id="pageWrapper"><span id="error_div"></span>
 		</div>
 	</div>
 <ul id="contextmenu">
-	<li><a href="#Start" class="start">_(Start)</a></li>
-        <li><a href="#Pause" class="pause">_(Pause)</a></li>
-	<li class="separator"><a href="#Delete" class="delete">_(Delete)</a></li>
-        <li><a href="#DeleteHD" class="deleteHD">_(Delete from HD)</a></li>
-	<li class="separator"><a href="#priority" class="priority arrow-right">_(Priority)</a>
+	<li><a href="#Start"><img src="theme/media-playback-start"/> _(Start)</a></li>
+        <li><a href="#Pause"><img src="theme/media-playback-pause"/> _(Pause)</a></li>
+	<li class="separator"><a href="#Delete""><img src="theme/edit-delete"/> _(Delete)</a></li>
+        <li><a href="#DeleteHD"><img src="theme/edit-delete"/> _(Delete from HD)</a></li>
+	<li class="separator"><a href="#priority" class="arrow-right">_(Priority)</a>
 	<ul>
-		<li><a href="#prioTop" class="prioTop">_(Move to top)</a></li>
-		<li><a href="#prioUp" class="prioUp">_(Move up)</a></li>
-		<li><a href="#prioDown" class="prioDown">_(Move down)</a></li>
-		<li><a href="#prioBottom" class="prioBottom">_(Move to bottom)</a></li>
+		<li><a href="#prioTop""><img src="theme/go-top"/> _(Move to top)</a></li>
+		<li><a href="#prioUp"><img src="theme/go-up"/> _(Move up)</a></li>
+		<li><a href="#prioDown"><img src="theme/go-down"/> _(Move down)</a></li>
+		<li><a href="#prioBottom"><img src="theme/go-bottom"/> _(Move to bottom)</a></li>
 	</ul>
 	</li>
-	<li class="separator"><a href="#DownloadLimit" class="downloadLimit">_(Limit download rate)</a></li>
-	<li><a href="#UploadLimit" class="uploadLimit">_(Limit upload rate)</a></li>
-	<li class="separator"><a href="#ForceRecheck" class="recheck">_(Force recheck)</a></li>
+	<li class="separator"><a href="#DownloadLimit"><img src="images/skin/download.png"/> _(Limit download rate)</a></li>
+	<li><a href="#UploadLimit"><img src="images/skin/seeding.png"/> _(Limit upload rate)</a></li>
+	<li class="separator"><a href="#ForceRecheck"><img src="theme/document-edit-verify"/>  _(Force recheck)</a></li>
 </ul>
 <div id="desktopFooterWrapper">
                 <div id="desktopFooter">

@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
+    - FEATURE: Use system icons (Linux, Qt >= 4.6)
     - FEATURE: Simplify program preferences
 
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.0

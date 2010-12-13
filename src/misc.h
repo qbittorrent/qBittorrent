@@ -41,10 +41,7 @@
 #include <QPoint>
 #include <QFile>
 #include <QDir>
-
-#ifndef DISABLE_GUI
 #include <QIcon>
-#endif
 
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
@@ -85,17 +82,30 @@ public:
     return libtorrent::sha1_hash(qPrintable(hash));
   }
 
-#ifndef DISABLE_GUI
-  static inline QIcon getIcon(const QString& id) {
+  static inline QIcon getIcon(const QString& iconId) {
 #if (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
-    const QIcon icon = QIcon::fromTheme(id, QIcon(":/Icons/oxygen/"+id+".png"));
+    const QIcon icon = QIcon::fromTheme(iconId, QIcon(":/Icons/oxygen/"+iconId+".png"));
 #else
-    const QIcon icon(":/Icons/oxygen/"+id+".png");
+    const QIcon icon(":/Icons/oxygen/"+iconId+".png");
 #endif
     Q_ASSERT(!icon.isNull());
     return icon;
   }
+
+  static QString getIconPath(const QString &iconId) {
+#if (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+    QString path = QDir::temp().absoluteFilePath(iconId+".png");
+    if(!QFile::exists(path)) {
+      const QIcon icon = QIcon::fromTheme(iconId);
+      if(icon.isNull()) return ":/Icons/oxygen/"+iconId+".png";
+      QPixmap px = icon.pixmap(32);
+      px.save(path);
+    }
+    return path;
+#else
+    return ":/Icons/oxygen/"+iconId+".png";
 #endif
+  }
 
   static void chmod644(const QDir& folder);
 
