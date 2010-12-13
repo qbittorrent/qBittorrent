@@ -217,9 +217,11 @@ void HttpConnection::respond() {
       } else {
         if(list[1] == "preferences") {
           respondPreferencesJson();
+          return;
         } else {
           if(list[1] == "transferInfo") {
             respondGlobalTransferInfoJson();
+            return;
           }
         }
       }

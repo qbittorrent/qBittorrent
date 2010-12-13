@@ -4,6 +4,7 @@
     - BUGFIX: Fix alignment issues in program preferences
     - BUGFIX: Make sure we don't move completed torrent to the temp directory
     for checking (closes #602938)
+    - BUGFIX: Fix some 'File Not found' warning in the Web UI
 
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.1
     - BUGFIX: Fix possible crash when right-clicking on a torrent
