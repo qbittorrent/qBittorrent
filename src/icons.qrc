@@ -14,34 +14,21 @@
   <file>Icons/skin/delete_perm22.png</file>
   <file>Icons/skin/seeding.png</file>
   <file>Icons/skin/splash.png</file>
-  <file>Icons/skin/preview.png</file>
   <file>Icons/skin/tabs.gif</file>
-  <file>Icons/skin/delete.png</file>
-  <file>Icons/skin/increase.png</file>
   <file>Icons/skin/qbittorrent16.png</file>
   <file>Icons/skin/connected.png</file>
   <file>Icons/skin/url.png</file>
   <file>Icons/skin/qbittorrent22.png</file>
   <file>Icons/skin/disconnected.png</file>
   <file>Icons/skin/mascot.png</file>
-  <file>Icons/skin/info.png</file>
-  <file>Icons/skin/paused.png</file>
   <file>Icons/skin/slider-area.gif</file>
-  <file>Icons/skin/pause22.png</file>
   <file>Icons/skin/stalledDL.png</file>
-  <file>Icons/skin/play.png</file>
-  <file>Icons/skin/delete_all.png</file>
   <file>Icons/skin/delete_perm.png</file>
-  <file>Icons/skin/qb_question.png</file>
   <file>Icons/skin/error.png</file>
-  <file>Icons/skin/settings.png</file>
   <file>Icons/skin/handle-icon-horizontal.gif</file>
-  <file>Icons/skin/pause.png</file>
   <file>Icons/skin/qbittorrent32.png</file>
-  <file>Icons/skin/exit.png</file>
   <file>Icons/skin/knob.gif</file>
   <file>Icons/skin/open.png</file>
-  <file>Icons/skin/pause_all.png</file>
   <file>Icons/skin/filterall.png</file>
   <file>Icons/skin/uploading.png</file>
   <file>Icons/skin/queued.png</file>
@@ -49,13 +36,9 @@
   <file>Icons/skin/handle-icon.gif</file>
   <file>Icons/skin/arrow-right.gif</file>
   <file>Icons/skin/filterinactive.png</file>
-  <file>Icons/skin/decrease.png</file>
-  <file>Icons/skin/play22.png</file>
   <file>Icons/skin/firewalled.png</file>
-  <file>Icons/skin/delete22.png</file>
   <file>Icons/skin/new.png</file>
   <file>Icons/skin/downloading.png</file>
-  <file>Icons/skin/play_all.png</file>
   <file>Icons/skin/toolbox-divider.gif</file>
   <file>Icons/skin/stalledUP.png</file>
   <file>Icons/skin/filteractive.png</file>
