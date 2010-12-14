@@ -320,19 +320,19 @@
   <file>Icons/oxygen/document-properties.png</file>
   <file>Icons/oxygen/user-group-new.png</file>
   <file>Icons/oxygen/network-server.png</file>
+  <file>Icons/oxygen/wallet-open.png</file>
   <file>Icons/oxygen/preferences-web-browser-cookies.png</file>
   <file>Icons/oxygen/list-add.png</file>
   <file>Icons/oxygen/edit-paste.png</file>
   <file>Icons/oxygen/folder-remote.png</file>
   <file>Icons/oxygen/help-about.png</file>
   <file>Icons/oxygen/document-save.png</file>
-  <file>Icons/oxygen/emblem-favorite.png</file>
   <file>Icons/oxygen/gear.png</file>
   <file>Icons/oxygen/view-categories.png</file>
-  <file>Icons/oxygen/emblem-locked.png</file>
   <file>Icons/oxygen/document-new.png</file>
   <file>Icons/oxygen/dialog-information.png</file>
   <file>Icons/oxygen/preferences-other.png</file>
+  <file>Icons/oxygen/object-locked.png</file>
   <file>Icons/oxygen/view-calendar-journal.png</file>
   <file>Icons/oxygen/application-rss+xml.png</file>
   <file>Icons/oxygen/document-encrypt.png</file>

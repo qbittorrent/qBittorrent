@@ -45,7 +45,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     // Icons
     lbl_warn->setPixmap(misc::getIcon("dialog-warning").pixmap(lbl_warn->height()));
     lbl_warn->setFixedWidth(lbl_warn->height());
-    rememberBtn->setIcon(misc::getIcon("emblem-locked"));
+    rememberBtn->setIcon(misc::getIcon("object-locked"));
 
     move(misc::screenCenter(this));
     checkPermDelete->setChecked(Preferences().deleteTorrentFilesAsDefault());

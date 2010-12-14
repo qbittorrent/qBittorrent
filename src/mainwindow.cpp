@@ -113,10 +113,10 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionDecreasePriority->setIcon(misc::getIcon("go-down"));
   actionDelete->setIcon(misc::getIcon("edit-delete"));
   actionDocumentation->setIcon(misc::getIcon("help-contents"));
-  actionDonate_money->setIcon(misc::getIcon("emblem-favorite"));
+  actionDonate_money->setIcon(misc::getIcon("wallet-open"));
   actionExit->setIcon(misc::getIcon("application-exit"));
   actionIncreasePriority->setIcon(misc::getIcon("go-up"));
-  actionLock_qBittorrent->setIcon(misc::getIcon("emblem-locked"));
+  actionLock_qBittorrent->setIcon(misc::getIcon("object-locked"));
   actionOptions->setIcon(misc::getIcon("preferences-system"));
   actionPause->setIcon(misc::getIcon("media-playback-pause"));
   actionPause_All->setIcon(misc::getIcon("media-playback-pause"));
