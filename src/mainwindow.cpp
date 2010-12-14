@@ -107,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
-  actionCreate_torrent->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/new.png")));
+  actionCreate_torrent->setIcon(misc::getIcon("document-edit"));
   actionAbout->setIcon(misc::getIcon("help-about"));
   actionBugReport->setIcon(misc::getIcon("tools-report-bug"));
   actionDecreasePriority->setIcon(misc::getIcon("go-down"));
