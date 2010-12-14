@@ -111,7 +111,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionAbout->setIcon(misc::getIcon("help-about"));
   actionBugReport->setIcon(misc::getIcon("tools-report-bug"));
   actionDecreasePriority->setIcon(misc::getIcon("go-down"));
-  actionDelete->setIcon(misc::getIcon("edit-delete"));
+  actionDelete->setIcon(misc::getIcon("list-remove"));
   actionDocumentation->setIcon(misc::getIcon("help-contents"));
   actionDonate_money->setIcon(misc::getIcon("wallet-open"));
   actionExit->setIcon(misc::getIcon("application-exit"));

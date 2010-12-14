@@ -123,7 +123,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
-   <addaction name="separator"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
@@ -132,8 +131,6 @@
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
    <addaction name="actionOptions"/>
-   <addaction name="separator"/>
-   <addaction name="actionExit"/>
    <addaction name="separator"/>
    <addaction name="actionLock_qBittorrent"/>
   </widget>
