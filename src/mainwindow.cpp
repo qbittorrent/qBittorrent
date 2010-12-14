@@ -101,8 +101,8 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
-  actionOpen->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/open.png"))); // FIXME
-  actionDownload_from_URL->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/url.png"))); // FIXME
+  actionOpen->setIcon(misc::getIcon("list-add"));
+  actionDownload_from_URL->setIcon(misc::getIcon("insert-link"));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
@@ -122,7 +122,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionPause_All->setIcon(misc::getIcon("media-playback-pause"));
   actionStart->setIcon(misc::getIcon("media-playback-start"));
   actionStart_All->setIcon(misc::getIcon("media-playback-start"));
-  action_Import_Torrent->setIcon(misc::getIcon("list-add"));
+  action_Import_Torrent->setIcon(misc::getIcon("document-import"));
   actionShow_console->setIcon(misc::getIcon("view-calendar-journal"));
 
   QMenu *startAllMenu = new QMenu(this);

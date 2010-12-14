@@ -17,7 +17,6 @@
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/qbittorrent16.png</file>
   <file>Icons/skin/connected.png</file>
-  <file>Icons/skin/url.png</file>
   <file>Icons/skin/qbittorrent22.png</file>
   <file>Icons/skin/disconnected.png</file>
   <file>Icons/skin/mascot.png</file>
@@ -29,7 +28,6 @@
   <file>Icons/skin/handle-icon-horizontal.gif</file>
   <file>Icons/skin/qbittorrent32.png</file>
   <file>Icons/skin/knob.gif</file>
-  <file>Icons/skin/open.png</file>
   <file>Icons/skin/filterall.png</file>
   <file>Icons/skin/uploading.png</file>
   <file>Icons/skin/queued.png</file>
@@ -295,6 +293,7 @@
   <file>Icons/oxygen/edit-clear-history.png</file>
   <file>Icons/oxygen/edit-copy.png</file>
   <file>Icons/oxygen/folder-documents.png</file>
+  <file>Icons/oxygen/insert-link.png</file>
   <file>Icons/oxygen/network-wired.png</file>
   <file>Icons/oxygen/mail-mark-read.png</file>
   <file>Icons/oxygen/go-up.png</file>
