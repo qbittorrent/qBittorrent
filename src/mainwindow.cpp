@@ -1122,7 +1122,7 @@ QMenu* MainWindow::getTrayIconMenu() {
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
   myTrayIconMenu->addAction(actionOpen);
-  myTrayIconMenu->addAction(actionDownload_from_URL);
+  //myTrayIconMenu->addAction(actionDownload_from_URL);
   myTrayIconMenu->addSeparator();
   const bool isAltBWEnabled = Preferences().isAltBandwidthEnabled();
   updateAltSpeedsBtn(isAltBWEnabled);
