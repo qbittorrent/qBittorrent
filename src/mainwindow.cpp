@@ -83,6 +83,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
+#define TOOLBAR_SPACING 10
 
 /*****************************************************
  *                                                   *
@@ -140,7 +141,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   prioSeparator->setVisible(false);
   prioSeparator2->setVisible(false);
   // Fix Tool bar layout
-  toolBar->layout()->setSpacing(7);
+  toolBar->layout()->setSpacing(TOOLBAR_SPACING);
   // Creating Bittorrent session
   connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
   connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), this, SLOT(finishedTorrent(QTorrentHandle)));
@@ -176,13 +177,15 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
   vboxLayout->addWidget(tabs);
-
   // Name filter
   search_filter = new LineEdit();
-  QAction *separatorBFSearch = toolBar->insertSeparator(actionLock_qBittorrent);
-  toolBar->insertWidget(separatorBFSearch, search_filter);
+  toolBar->insertWidget(actionLock_qBittorrent, search_filter);
   search_filter->setFixedWidth(200);
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
+
+  QWidget *spacer = new QWidget(this);
+  spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  toolBar->insertWidget(actionLock_qBittorrent, spacer);
 
   // Transfer list slots
   connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
@@ -946,7 +949,7 @@ void MainWindow::loadPreferences(bool configure_session) {
   // General
   if(pref.isToolbarDisplayed()) {
     toolBar->setVisible(true);
-    toolBar->layout()->setSpacing(7);
+    toolBar->layout()->setSpacing(TOOLBAR_SPACING);
   } else {
     // Clear search filter before hiding the top toolbar
     search_filter->clear();
@@ -966,7 +969,7 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionIncreasePriority->setVisible(true);
       prioSeparator->setVisible(true);
       prioSeparator2->setVisible(true);
-      toolBar->layout()->setSpacing(7);
+      toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   } else {
     if(actionDecreasePriority->isVisible()) {
@@ -975,7 +978,7 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionIncreasePriority->setVisible(false);
       prioSeparator->setVisible(false);
       prioSeparator2->setVisible(false);
-      toolBar->layout()->setSpacing(7);
+      toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   }
 
