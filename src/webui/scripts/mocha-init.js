@@ -150,32 +150,31 @@ initializeWindows = function(){
 	
 	deleteFN = function() {
 		var h = myTable.selectedIds();
-		if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
+		/*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
 			h.each(function(item, index){
 				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
 			});
-		}	
+		}*/
+		if(h.length) {
+                	new MochaUI.Window({
+				id: 'confirmDeletionPage',
+				title: "_(Deletion confirmation - qBittorrent)",
+				loadMethod: 'iframe',
+				contentURL:'confirmdeletion.html?hashes='+JSON.encode(h),
+				scrollbars: false,
+				resizable: false,
+				maximizable: false,
+				padding: 10,
+				width: 424,
+				height: 140
+			});
+                }
 	};
 
 	addClickEvent('delete', function(e){
 		new Event(e).stop();
 		deleteFN();
 	});
-	
-	deleteHDFN = function() {
-		var h = myTable.selectedIds();
-                if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list and hard disk?)')) {
-                        h.each(function(item, index){
-                                new Request({url: '/command/deletePerm', method: 'post', data: {hash: item}}).send();
-                        });
-                }
-	};
-	
-
-	addClickEvent('deletePerm', function(e){
-                new Event(e).stop();
-		deleteHDFN();
-        });
 	
 	pauseFN = function() {
 		var h = myTable.selectedIds();
@@ -274,7 +273,8 @@ initializeWindows = function(){
 			loadMethod: 'iframe',
 			contentURL: 'about.html',
 			width: 650,
-			height: 400
+			height: 400,
+			padding: 10
 		});
 	});
 	

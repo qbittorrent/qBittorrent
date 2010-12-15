@@ -16,6 +16,7 @@
   <file>html/downloadlimit.html</file>
   <file>html/preferences.html</file>
   <file>html/preferences_content.html</file>
+  <file>html/confirmdeletion.html</file>
   <file>css/Core.css</file>
   <file>css/Layout.css</file>
   <file>css/Window.css</file>
