@@ -41,7 +41,9 @@
 #include <QPoint>
 #include <QFile>
 #include <QDir>
+#ifndef DISABLE_GUI
 #include <QIcon>
+#endif
 
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
@@ -82,6 +84,7 @@ public:
     return libtorrent::sha1_hash(qPrintable(hash));
   }
 
+#ifndef DISABLE_GUI
   static inline QIcon getIcon(const QString& iconId) {
 #if (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
     const QIcon icon = QIcon::fromTheme(iconId, QIcon(":/Icons/oxygen/"+iconId+".png"));
@@ -91,9 +94,10 @@ public:
     Q_ASSERT(!icon.isNull());
     return icon;
   }
+#endif
 
   static QString getIconPath(const QString &iconId) {
-#if (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if !defined(DISABLE_GUI) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
     QString path = QDir::temp().absoluteFilePath(iconId+".png");
     if(!QFile::exists(path)) {
       const QIcon icon = QIcon::fromTheme(iconId);
