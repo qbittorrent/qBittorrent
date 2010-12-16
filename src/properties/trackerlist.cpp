@@ -321,18 +321,15 @@ void TrackerList::deleteSelectedTrackers(){
     delete item;
   }
   // Iterate of trackers and remove selected ones
+  std::vector<announce_entry> remaining_trackers;
   std::vector<announce_entry> trackers = h.trackers();
-  std::vector<announce_entry>::iterator it = trackers.begin();
-  while(it != trackers.end()) {
-    int index = urls_to_remove.indexOf(misc::toQString((*it).url));
-    if(index >= 0) {
-      trackers.erase(it);
-      urls_to_remove.removeAt(index);
-    } else {
-      it++;
+  std::vector<announce_entry>::iterator it;
+  for(it = trackers.begin(); it != trackers.end(); it++) {
+    if(!urls_to_remove.contains(misc::toQString((*it).url))) {
+      remaining_trackers.push_back(*it);
     }
   }
-  h.replace_trackers(trackers);
+  h.replace_trackers(remaining_trackers);
   h.force_reannounce();
   // Reload Trackers
   loadTrackers();
