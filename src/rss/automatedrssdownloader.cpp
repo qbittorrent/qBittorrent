@@ -131,10 +131,16 @@ void AutomatedRssDownloader::loadFeedList()
   const RssSettings settings;
   const QStringList feed_aliases = settings.getRssFeedsAliases();
   const QStringList feed_urls = settings.getRssFeedsUrls();
+  QStringList existing_urls;
   for(int i=0; i<feed_aliases.size(); ++i) {
+    QString feed_url = feed_urls.at(i);
+    feed_url = feed_url.split("\\").last();
+    qDebug() << Q_FUNC_INFO << feed_url;
+    if(existing_urls.contains(feed_url)) continue;
     QListWidgetItem *item = new QListWidgetItem(feed_aliases.at(i), ui->listFeeds);
-    item->setData(Qt::UserRole, feed_urls.at(i));
+    item->setData(Qt::UserRole, feed_url);
     item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
+    existing_urls << feed_url;
   }
 }
 
@@ -443,8 +449,12 @@ void AutomatedRssDownloader::updateMatchingArticles()
     RssDownloadRule rule = m_ruleList->getRule(rule_item->text());
     if(!rule.isValid()) continue;
     foreach(const QString &feed_url, rule.rssFeeds()) {
+      qDebug() << Q_FUNC_INFO << feed_url;
       Q_ASSERT(all_feeds.contains(feed_url));
+      if(!all_feeds.contains(feed_url)) continue;
       const RssFeed *feed = all_feeds.value(feed_url);
+      Q_ASSERT(feed);
+      if(!feed) continue;
       const QStringList matching_articles = rule.findMatchingArticles(feed);
       if(!matching_articles.isEmpty())
         addFeedArticlesToTree(feed, matching_articles);
