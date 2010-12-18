@@ -1286,7 +1286,7 @@ void QBtSession::loadSessionState() {
   }
 #if LIBTORRENT_VERSION_MINOR > 14
   std::vector<char> in;
-  if (load_file(state_path.toLocal8Bit().constData(), in) == 0)
+  if (load_file(state_path.toUtf8().constData(), in) == 0)
   {
     lazy_entry e;
 #if LIBTORRENT_VERSION_MINOR > 15
@@ -1300,7 +1300,7 @@ void QBtSession::loadSessionState() {
 #endif
   }
 #else
-  boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
+  boost::filesystem::ifstream ses_state_file(state_path.toUtf8().constData()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
   s->load_state(bdecode(
@@ -1319,13 +1319,13 @@ void QBtSession::saveSessionState() {
   bencode(std::back_inserter(out), session_state);
   file f;
   error_code ec;
-  if (!f.open(state_path.toLocal8Bit().constData(), file::write_only, ec)) return;
+  if (!f.open(state_path.toUtf8().constData(), file::write_only, ec)) return;
   if (ec) return;
   file::iovec_t b = {&out[0], out.size()};
   f.writev(0, &b, 1, ec);
 #else
   entry session_state = s->state();
-  boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
+  boost::filesystem::ofstream out(state_path.toUtf8().constData()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
   bencode(std::ostream_iterator<char>(out), session_state);
@@ -1340,7 +1340,7 @@ bool QBtSession::enableDHT(bool b) {
       entry dht_state;
       const QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_state_path)) {
-        boost::filesystem::ifstream dht_state_file(dht_state_path.toLocal8Bit().constData(), std::ios_base::binary);
+        boost::filesystem::ifstream dht_state_file(dht_state_path.toUtf8().constData(), std::ios_base::binary);
         dht_state_file.unsetf(std::ios_base::skipws);
         try{
           dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
