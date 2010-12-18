@@ -59,6 +59,7 @@ class FilterParserThread;
 class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
+class TorrentSpeedMonitor;
 
 class QBtSession : public QObject {
   Q_OBJECT
@@ -86,7 +87,6 @@ public:
   //int getMaximumActiveDownloads() const;
   //int getMaximumActiveTorrents() const;
   int loadTorrentPriority(QString hash);
-  qlonglong getETA(QString hash);
   inline QStringList getConsoleMessages() const { return consoleMessages; }
   inline QStringList getPeerBanMessages() const { return peerBanMessages; }
   inline libtorrent::session* getSession() const { return s; }
@@ -108,6 +108,7 @@ public slots:
   void startUpTorrents();
   void recheckTorrent(QString hash);
   void useAlternativeSpeedsLimit(bool alternative);
+  qlonglong getETA(const QString& hash) const;
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(QString hash);
@@ -171,7 +172,6 @@ protected slots:
   void addTorrentsFromScanFolder(QStringList&);
   void readAlerts();
   void processBigRatios();
-  void takeETASamples();
   void exportTorrentFiles(QString path);
   void saveTempFastResumeData();
   void sendNotificationEmail(QTorrentHandle h);
@@ -243,9 +243,6 @@ private:
 #endif
   QString defaultSavePath;
   QString defaultTempPath;
-  // ETA Computation
-  QPointer<QTimer> timerETA;
-  QHash<QString, QList<int> > ETA_samples;
   // IP filtering
   QPointer<FilterParserThread> filterParser;
   QString filterPath;
@@ -259,6 +256,7 @@ private:
 #endif
   // Tracker
   QPointer<QTracker> m_tracker;
+  TorrentSpeedMonitor *m_speedMonitor;
 
 };
 

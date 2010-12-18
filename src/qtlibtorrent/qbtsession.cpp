@@ -39,6 +39,7 @@
 
 #include "smtp.h"
 #include "filesystemwatcher.h"
+#include "torrentspeedmonitor.h"
 #include "qbtsession.h"
 #include "misc.h"
 #include "downloadthread.h"
@@ -143,12 +144,17 @@ QBtSession::QBtSession()
   connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
   configureSession();
+  // Torrent speed monitor
+  m_speedMonitor = new TorrentSpeedMonitor(this);
+  m_speedMonitor->start();
   qDebug("* BTSession constructed");
 }
 
 // Main destructor
 QBtSession::~QBtSession() {
   qDebug("BTSession destructor IN");
+  delete m_speedMonitor;
+  qDebug("Deleted the torrent speed monitor");
   // Do some BT related saving
 #if LIBTORRENT_VERSION_MINOR < 15
   saveDHTEntry();
@@ -172,8 +178,6 @@ QBtSession::~QBtSession() {
   // HTTP Server
   if(httpServer)
     delete httpServer;
-  if(timerETA)
-    delete timerETA;
   qDebug("BTSession destructor OUT");
 }
 
@@ -596,66 +600,6 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
   setUploadRateLimit(up_limit);
   // Notify
   emit alternativeSpeedsModeChanged(alternative);
-}
-
-void QBtSession::takeETASamples() {
-  bool change = false;;
-  foreach(const QString &hash, ETA_samples.keys()) {
-    const QTorrentHandle h = getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_paused() && !h.is_seed()) {
-      QList<int> samples = ETA_samples.value(h.hash(), QList<int>());
-      if(samples.size() >= MAX_SAMPLES)
-        samples.removeFirst();
-      samples.append(h.download_payload_rate());
-      ETA_samples[h.hash()] = samples;
-      change = true;
-    } else {
-      ETA_samples.remove(hash);
-    }
-  }
-  if(!change && timerETA) {
-    delete timerETA;
-  }
-}
-
-// This algorithm was inspired from KTorrent - http://www.ktorrent.org
-// Calculate the ETA using a combination of several algorithms:
-// GASA: Global Average Speed Algorithm
-// CSA: Current Speed Algorithm
-// WINX: Window of X Algorithm
-qlonglong QBtSession::getETA(QString hash) {
-  const QTorrentHandle h = getTorrentHandle(hash);
-  if(!h.is_valid() || h.state() != torrent_status::downloading || !h.active_time())
-    return -1;
-  // See if the torrent is going to be completed soon
-  const qulonglong bytes_left = h.actual_size() - h.total_wanted_done();
-  if(h.actual_size() > 10485760L) { // Size > 10MiB
-    if(h.progress() >= (float)0.99 && bytes_left < 10485760L) { // Progress>99% but less than 10MB left.
-      // Compute by taking samples
-      if(!ETA_samples.contains(h.hash())) {
-        ETA_samples[h.hash()] = QList<int>();
-      }
-      if(!timerETA) {
-        timerETA = new QTimer(this);
-        connect(timerETA, SIGNAL(timeout()), this, SLOT(takeETASamples()));
-        timerETA->start();
-      } else {
-        const QList<int> samples = ETA_samples.value(h.hash(), QList<int>());
-        const int nb_samples = samples.size();
-        if(nb_samples > 3) {
-          long sum_samples = 0;
-          foreach(const int val, samples) {
-            sum_samples += val;
-          }
-          // Use WINX
-          return (qlonglong)(((double)bytes_left) / (((double)sum_samples) / ((double)nb_samples)));
-        }
-      }
-    }
-  }
-  // Normal case: Use GASA
-  double avg_speed = (double)h.all_time_download() / h.active_time();
-  return (qlonglong) floor((double) (bytes_left) / avg_speed);
 }
 
 // Return the torrent handle, given its hash
@@ -2592,4 +2536,9 @@ void QBtSession::drop()
     delete m_instance;
     m_instance = 0;
   }
+}
+
+qlonglong QBtSession::getETA(const QString &hash) const
+{
+  return m_speedMonitor->getETA(hash);
 }
