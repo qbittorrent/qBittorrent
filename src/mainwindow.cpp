@@ -515,7 +515,14 @@ void MainWindow::displayRSSTab() const {
 void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h) {
   Preferences pref;
   if(pref.recursiveDownloadDisabled()) return;
-  QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(h.name()));
+  // Get Torrent name
+  QString torrent_name;
+  try {
+    torrent_name = h.name();
+  } catch(invalid_handle&){
+    return;
+  }
+  QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(torrent_name));
   QPushButton *yes = confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
   /*QPushButton *no = */confirmBox.addButton(tr("No"), QMessageBox::NoRole);
   QPushButton *never = confirmBox.addButton(tr("Never"), QMessageBox::NoRole);
