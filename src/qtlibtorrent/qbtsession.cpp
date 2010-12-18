@@ -1880,23 +1880,23 @@ void QBtSession::setProxySettings(const proxy_settings &proxySettings) {
 }
 
 void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
-  torrent_info::file_iterator it;
-  for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++)  {
-    const QString torrent_relpath = h.filepath(*it);
-    if(torrent_relpath.endsWith(".torrent")) {
-      addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
-      const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
-      try {
+  try {
+    torrent_info::file_iterator it;
+    for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++)  {
+      const QString torrent_relpath = h.filepath(*it);
+      if(torrent_relpath.endsWith(".torrent")) {
+        addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
+        const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
+
         boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toUtf8().constData());
         const QString sub_hash = misc::toQString(t->info_hash());
         // Passing the save path along to the sub torrent file
         TorrentTempData::setSavePath(sub_hash, h.save_path());
         addTorrent(torrent_fullpath);
-      } catch(std::exception&) {
-        qDebug("Caught error loading torrent");
-        addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
       }
     }
+  } catch(std::exception&) {
+    qDebug("Caught error loading torrent");
   }
 }
 
