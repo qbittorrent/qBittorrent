@@ -7,6 +7,7 @@
     - BUGFIX: Fix some 'File Not found' warning in the Web UI
     - BUGFIX: Fix dangerous usage of vector iterator
     - BUGFIX: No longer expand the first folder in the torrent content list
+    - BUGFIX: Fixes possible crash in the RSS Downloader dialog (closes #691426)
 
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.1
     - BUGFIX: Fix possible crash when right-clicking on a torrent

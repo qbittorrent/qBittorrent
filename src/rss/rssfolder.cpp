@@ -268,7 +268,9 @@ QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
   QHash<QString, RssFeed*> ret;
   foreach(RssFile *item, this->values()) {
     if(item->getType() == RssFile::FEED) {
-      RssFeed* feed = static_cast<RssFeed*>(item);
+      RssFeed* feed = dynamic_cast<RssFeed*>(item);
+      Q_ASSERT(feed);
+      qDebug() << Q_FUNC_INFO << feed->getUrl();
       ret[feed->getUrl()] = feed;
     } else {
       ret.unite(static_cast<RssFolder*>(item)->getAllFeedsAsHash());
