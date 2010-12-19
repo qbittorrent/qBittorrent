@@ -67,6 +67,9 @@ protected slots:
   void handleDownloadFailure(QString, QString);
   void recheckTorrent(QString hash);
   void recheckAllTorrents();
+  void decreaseTorrentsPriority(const QStringList& hashes);
+  void increaseTorrentsPriority(const QStringList& hashes);
+
 
 public:
   HttpConnection(QTcpSocket *socket, HttpServer *httpserver);
