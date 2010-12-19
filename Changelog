@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
+    - BUGFIX: Fix priority up/down for multiple torrents at the same time (closes #692184)
+
 * Sun Dec 19 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.2
     - BUGFIX: Fix alternative speed icon staying pressed when disabled
     - BUGFIX: Fix slot warning on startup

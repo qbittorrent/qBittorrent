@@ -53,8 +53,11 @@
 #include <QRegExp>
 #include <QFileDialog>
 #include <vector>
+#include <queue>
 
 #include "qinisettings.h"
+
+using namespace libtorrent;
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
@@ -312,24 +315,50 @@ void TransferListWidget::deleteVisibleTorrents() {
 }
 
 void TransferListWidget::increasePrioSelectedTorrents() {
+  qDebug() << Q_FUNC_INFO;
   if(main_window->getCurrentTabWidget() != this) return;
   const QStringList hashes = getSelectedTorrentsHashes();
+  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::greater<QPair<int, QTorrentHandle> > > torrent_queue;
+  // Sort torrents by priority
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_seed()) {
+    try {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(!h.is_seed()) {
+        torrent_queue.push(qMakePair(h.queue_position(), h));
+      }
+    }catch(invalid_handle&){}
+  }
+  // Increase torrents priority (starting with the ones with highest priority)
+  while(!torrent_queue.empty()) {
+    QTorrentHandle h = torrent_queue.top().second;
+    try {
       h.queue_position_up();
-    }
+    } catch(invalid_handle& h) {}
+    torrent_queue.pop();
   }
 }
 
 void TransferListWidget::decreasePrioSelectedTorrents() {
+  qDebug() << Q_FUNC_INFO;
   if(main_window->getCurrentTabWidget() != this) return;
   const QStringList hashes = getSelectedTorrentsHashes();
+  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::less<QPair<int, QTorrentHandle> > > torrent_queue;
+  // Sort torrents by priority
   foreach(const QString &hash, hashes) {
-    QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if(h.is_valid() && !h.is_seed()) {
+    try {
+      QTorrentHandle h = BTSession->getTorrentHandle(hash);
+      if(!h.is_seed()) {
+        torrent_queue.push(qMakePair(h.queue_position(), h));
+      }
+    }catch(invalid_handle&){}
+  }
+  // Decrease torrents priority (starting with the ones with lowest priority)
+  while(!torrent_queue.empty()) {
+    QTorrentHandle h = torrent_queue.top().second;
+    try {
       h.queue_position_down();
-    }
+    } catch(invalid_handle& h) {}
+    torrent_queue.pop();
   }
 }
 

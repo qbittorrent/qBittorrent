@@ -45,6 +45,8 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QTemporaryFile>
+#include <queue>
+#include <vector>
 
 using namespace libtorrent;
 
@@ -498,23 +500,25 @@ void HttpConnection::respondCommand(QString command)
     return;
   }
   if(command == "increasePrio") {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(parser.post("hash"));
-    if(h.is_valid()) h.queue_position_up();
+    increaseTorrentsPriority(parser.post("hashes").split("|"));
     return;
   }
   if(command == "decreasePrio") {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(parser.post("hash"));
-    if(h.is_valid()) h.queue_position_down();
+    decreaseTorrentsPriority(parser.post("hashes").split("|"));
     return;
   }
   if(command == "topPrio") {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(parser.post("hash"));
-    if(h.is_valid()) h.queue_position_top();
+    foreach(const QString &hash, parser.post("hashes").split("|")) {
+      QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+      if(h.is_valid()) h.queue_position_top();
+    }
     return;
   }
   if(command == "bottomPrio") {
-    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(parser.post("hash"));
-    if(h.is_valid()) h.queue_position_bottom();
+    foreach(const QString &hash, parser.post("hashes").split("|")) {
+      QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+      if(h.is_valid()) h.queue_position_bottom();
+    }
     return;
   }
   if(command == "recheck"){
@@ -541,5 +545,51 @@ void HttpConnection::recheckAllTorrents() {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if(h.is_valid())
       QBtSession::instance()->recheckTorrent(h.hash());
+  }
+}
+
+void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes)
+{
+  qDebug() << Q_FUNC_INFO << hashes;
+  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::less<QPair<int, QTorrentHandle> > > torrent_queue;
+  // Sort torrents by priority
+  foreach(const QString &hash, hashes) {
+    try {
+      QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+      if(!h.is_seed()) {
+        torrent_queue.push(qMakePair(h.queue_position(), h));
+      }
+    }catch(invalid_handle&){}
+  }
+  // Decrease torrents priority (starting with the ones with lowest priority)
+  while(!torrent_queue.empty()) {
+    QTorrentHandle h = torrent_queue.top().second;
+    try {
+      h.queue_position_down();
+    } catch(invalid_handle& h) {}
+    torrent_queue.pop();
+  }
+}
+
+void HttpConnection::increaseTorrentsPriority(const QStringList &hashes)
+{
+  qDebug() << Q_FUNC_INFO << hashes;
+  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::greater<QPair<int, QTorrentHandle> > > torrent_queue;
+  // Sort torrents by priority
+  foreach(const QString &hash, hashes) {
+    try {
+      QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+      if(!h.is_seed()) {
+        torrent_queue.push(qMakePair(h.queue_position(), h));
+      }
+    }catch(invalid_handle&){}
+  }
+  // Increase torrents priority (starting with the ones with highest priority)
+  while(!torrent_queue.empty()) {
+    QTorrentHandle h = torrent_queue.top().second;
+    try {
+      h.queue_position_up();
+    } catch(invalid_handle& h) {}
+    torrent_queue.pop();
   }
 }

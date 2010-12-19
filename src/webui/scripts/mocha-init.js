@@ -204,7 +204,7 @@ initializeWindows = function(){
 		}
 	};
 
-	['pause','resume','decreasePrio','increasePrio', 'topPrio', 'bottomPrio', 'recheck'].each(function(item) {
+	['pause','resume', 'recheck'].each(function(item) {
 		addClickEvent(item, function(e){
 			new Event(e).stop();
 			var h = myTable.selectedIds();
@@ -220,13 +220,18 @@ initializeWindows = function(){
 			new Request({url: '/command/'+item+'all'}).send();
 		});
 	});
+
+	['decreasePrio','increasePrio', 'topPrio', 'bottomPrio'].each(function(item) {
+		addClickEvent(item, function(e){
+			new Event(e).stop();
+			setPriorityFN(item);
+		});
+	});
 	
 	setPriorityFN = function(cmd) {
 		var h = myTable.selectedIds();
-		if(h.length){
-			h.each(function(hash, index){
-				  new Request({url: '/command/'+cmd, method: 'post', data: {hash: hash}}).send();
-				});
+		if(h.length) {
+			new Request({url: '/command/'+cmd, method: 'post', data: {hashes: h.join("|")}}).send();
 		}
 	}
 	
