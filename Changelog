@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.2
+* Sun Dec 19 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.2
     - BUGFIX: Fix alternative speed icon staying pressed when disabled
     - BUGFIX: Fix slot warning on startup
     - BUGFIX: Fix alignment issues in program preferences
