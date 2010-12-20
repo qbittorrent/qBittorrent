@@ -172,7 +172,7 @@ private:
   QShortcut *switchRSSShortcut;
   // Widgets
   QAction *prioSeparator;
-  QAction *prioSeparator2;
+  QAction *prioSeparatorMenu;
   QSplitter *hSplitter;
   QSplitter *vSplitter;
   // Search

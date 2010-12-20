@@ -135,10 +135,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
   connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
   actionLock_qBittorrent->setMenu(lockMenu);
-  prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
-  prioSeparator2 = menu_Edit->insertSeparator(actionDecreasePriority);
-  prioSeparator->setVisible(false);
-  prioSeparator2->setVisible(false);
   // Fix Tool bar layout
   toolBar->layout()->setSpacing(TOOLBAR_SPACING);
   // Creating Bittorrent session
@@ -185,6 +181,9 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
   toolBar->insertWidget(actionLock_qBittorrent, spacer);
+
+  prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
+  prioSeparatorMenu = menu_Edit->insertSeparator(actionDecreasePriority);
 
   // Transfer list slots
   connect(actionStart, SIGNAL(triggered()), transferList, SLOT(startSelectedTorrents()));
@@ -968,7 +967,7 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionDecreasePriority->setVisible(true);
       actionIncreasePriority->setVisible(true);
       prioSeparator->setVisible(true);
-      prioSeparator2->setVisible(true);
+      prioSeparatorMenu->setVisible(true);
       toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   } else {
@@ -977,7 +976,7 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionDecreasePriority->setVisible(false);
       actionIncreasePriority->setVisible(false);
       prioSeparator->setVisible(false);
-      prioSeparator2->setVisible(false);
+      prioSeparatorMenu->setVisible(false);
       toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   }

@@ -40,8 +40,8 @@
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionDelete"/>
+    <addaction name="separator"/>
     <addaction name="actionDecreasePriority"/>
     <addaction name="actionIncreasePriority"/>
    </widget>
@@ -127,9 +127,9 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionPause"/>
-   <addaction name="separator"/>
    <addaction name="actionDecreasePriority"/>
    <addaction name="actionIncreasePriority"/>
+   <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="separator"/>
    <addaction name="actionLock_qBittorrent"/>
@@ -227,7 +227,7 @@
     <string>Decrease priority</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionIncreasePriority">
@@ -235,7 +235,7 @@
     <string>Increase priority</string>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionUse_alternative_speed_limits">
