@@ -121,7 +121,6 @@ nox {
               deletionconfirmationdlg.h \
               statusbar.h \
               reverseresolution.h \
-              console_imp.h \
               ico.h \
               speedlimitdlg.h \
               about_imp.h \
@@ -132,14 +131,16 @@ nox {
               trackerlogin.h \
               hidabletabwidget.h \
               sessionapplication.h \
-              torrentimportdlg.h
+              torrentimportdlg.h \
+              executionlog.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
-             torrentimportdlg.cpp
+             torrentimportdlg.cpp \
+             executionlog.cpp
 
   win32 {
     HEADERS += programupdater.h
@@ -161,9 +162,9 @@ nox {
            downloadfromurldlg.ui \
            torrentadditiondlg.ui \
            bandwidth_limit.ui \
-           console.ui \
            confirmdeletiondlg.ui \
-           torrentimportdlg.ui
+           torrentimportdlg.ui \
+           executionlog.ui
 }
 
 DESTDIR = .

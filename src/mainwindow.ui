@@ -59,7 +59,6 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <addaction name="actionShow_console"/>
     <addaction name="actionCreate_torrent"/>
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
@@ -85,6 +84,7 @@
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
+    <addaction name="actionExecution_Logs"/>
     <addaction name="separator"/>
     <addaction name="actionLock_qBittorrent"/>
    </widget>
@@ -238,14 +238,6 @@
     <bool>false</bool>
    </property>
   </action>
-  <action name="actionShow_console">
-   <property name="text">
-    <string>&amp;Log viewer...</string>
-   </property>
-   <property name="toolTip">
-    <string>Log viewer</string>
-   </property>
-  </action>
   <action name="actionUse_alternative_speed_limits">
    <property name="checkable">
     <bool>true</bool>
@@ -349,6 +341,17 @@
   <action name="actionPause_All">
    <property name="text">
     <string>P&amp;ause All</string>
+   </property>
+  </action>
+  <action name="actionExecution_Logs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Execution &amp;Log</string>
+   </property>
+   <property name="toolTip">
+    <string>Execution Log</string>
    </property>
   </action>
  </widget>

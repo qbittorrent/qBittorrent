@@ -197,7 +197,8 @@ signals:
   void torrentFinishedChecking(const QTorrentHandle& h);
   void metadataReceived(const QTorrentHandle &h);
   void savePathChanged(const QTorrentHandle &h);
-  void newConsoleMessage(QString msg);
+  void newConsoleMessage(const QString &msg);
+  void newBanMessage(const QString &msg);
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
 

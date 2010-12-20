@@ -4,6 +4,7 @@
     - FEATURE: Simplify program preferences
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
+    - COSMETIC: Display execution log as a tab instead of a modal window
 
 * Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
     - FEATURE: qBittorrent can now act as a tracker

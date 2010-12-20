@@ -1482,27 +1482,32 @@ void QBtSession::saveFastResumeData() {
 
 #ifdef DISABLE_GUI
 void QBtSession::addConsoleMessage(QString msg, QString) {
+  emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);
 #else
 void QBtSession::addConsoleMessage(QString msg, QColor color) {
   if(consoleMessages.size() > 100) {
-    consoleMessages.removeFirst();
+    consoleMessages.removeLast();
   }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   msg = msg.replace("/", "\\");
 #endif
-  consoleMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - <font color='") + color.name() +QString::fromUtf8("'><i>") + msg + QString::fromUtf8("</i></font>"));
+  msg = "<font color='grey'>"+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - <font color='" + color.name() + "'><i>" + msg + "</i></font>";
+  consoleMessages.prepend(msg);
+  emit newConsoleMessage(msg);
 #endif
-  emit newConsoleMessage(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss") + " - " + msg);
 }
 
 void QBtSession::addPeerBanMessage(QString ip, bool from_ipfilter) {
   if(peerBanMessages.size() > 100) {
-    peerBanMessages.removeFirst();
+    peerBanMessages.removeLast();
   }
+  QString msg;
   if(from_ipfilter)
-    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip));
+    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip);
   else
-    peerBanMessages.append(QString::fromUtf8("<font color='grey'>")+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + QString::fromUtf8("</font> - ")+tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip));
+    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip);
+  peerBanMessages.prepend(msg);
+  emit newBanMessage(msg);
 }
 
 bool QBtSession::isFilePreviewPossible(QString hash) const{

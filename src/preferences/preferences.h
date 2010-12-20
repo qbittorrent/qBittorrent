@@ -600,6 +600,16 @@ public:
     setValue(QString::fromUtf8("Preferences/Search/SearchEnabled"), enabled);
   }
 
+  // Execution Log
+
+  bool isExecutionLogEnabled() const {
+    return value(QString::fromUtf8("Preferences/ExecutionLog/enabled"), false).toBool();
+  }
+
+  void setExecutionLogEnabled(bool b) {
+    setValue(QString::fromUtf8("Preferences/ExecutionLog/enabled"), b);
+  }
+
   // Queueing system
   bool isQueueingSystemEnabled() const {
     return value("Preferences/Queueing/QueueingEnabled", false).toBool();

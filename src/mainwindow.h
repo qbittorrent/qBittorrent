@@ -59,6 +59,7 @@ class downloadFromURL;
 class HidableTabWidget;
 class LineEdit;
 class QFileSystemWatcher;
+class ExecutionLog;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -91,7 +92,6 @@ protected slots:
   void on_actionCreate_torrent_triggered();
   void on_actionWebsite_triggered() const;
   void on_actionBugReport_triggered() const;
-  void on_actionShow_console_triggered();
   void balloonClicked();
   void writeSettings();
   void readSettings();
@@ -179,6 +179,8 @@ private:
   QPointer<SearchEngine> searchEngine;
   // RSS
   QPointer<RSSImp> rssWidget;
+  // Execution Log
+  QPointer<ExecutionLog> m_executionLog;
 
 private slots:
     void on_actionSearch_engine_triggered();
@@ -189,6 +191,7 @@ private slots:
     void on_actionShutdown_qBittorrent_when_downloads_complete_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();
+    void on_actionExecution_Logs_triggered(bool checked);
 };
 
 #endif

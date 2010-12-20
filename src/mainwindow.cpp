@@ -58,7 +58,6 @@
 #include "options_imp.h"
 #include "speedlimitdlg.h"
 #include "preferences.h"
-#include "console_imp.h"
 #include "trackerlist.h"
 #include "peerlistwidget.h"
 #include "torrentpersistentdata.h"
@@ -70,6 +69,7 @@
 #include "torrentimportdlg.h"
 #include "rsssettings.h"
 #include "torrentmodel.h"
+#include "executionlog.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -124,7 +124,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionStart->setIcon(misc::getIcon("media-playback-start"));
   actionStart_All->setIcon(misc::getIcon("media-playback-start"));
   action_Import_Torrent->setIcon(misc::getIcon("document-import"));
-  actionShow_console->setIcon(misc::getIcon("view-calendar-journal"));
 
   QMenu *startAllMenu = new QMenu(this);
   startAllMenu->addAction(actionStart_All);
@@ -220,8 +219,10 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionSpeed_in_title_bar->setChecked(pref.speedInTitleBar());
   actionRSS_Reader->setChecked(RssSettings().isRSSEnabled());
   actionSearch_engine->setChecked(pref.isSearchEnabled());
+  actionExecution_Logs->setChecked(pref.isExecutionLogEnabled());
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
+  on_actionExecution_Logs_triggered(actionExecution_Logs->isChecked());
   actionShutdown_when_downloads_complete->setChecked(pref.shutdownWhenDownloadsComplete());
   actionShutdown_qBittorrent_when_downloads_complete->setChecked(pref.shutdownqBTWhenDownloadsComplete());
 
@@ -304,8 +305,8 @@ MainWindow::~MainWindow() {
   delete guiUpdater;
   if(createTorrentDlg)
     delete createTorrentDlg;
-  if(console)
-    delete console;
+  if(m_executionLog)
+    delete m_executionLog;
   if(aboutDlg)
     delete aboutDlg;
   if(options)
@@ -564,14 +565,6 @@ void MainWindow::on_actionSet_global_upload_limit_triggered() {
       Preferences().setGlobalUploadLimit(-1);
     else
       Preferences().setGlobalUploadLimit(new_limit/1024.);
-  }
-}
-
-void MainWindow::on_actionShow_console_triggered() {
-  if(!console) {
-    console = new consoleDlg(this);
-  } else {
-    console->setFocus();
   }
 }
 
@@ -1264,4 +1257,18 @@ void MainWindow::showConnectionSettings()
 {
   on_actionOptions_triggered();
   options->showConnectionTab();
+}
+
+void MainWindow::on_actionExecution_Logs_triggered(bool checked)
+{
+    if(checked) {
+      Q_ASSERT(!m_executionLog);
+      m_executionLog = new ExecutionLog(tabs);
+      int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
+      tabs->setTabIcon(index_tab, misc::getIcon("view-calendar-journal"));
+    } else {
+      Q_ASSERT(m_executionLog);
+      delete m_executionLog;
+    }
+    Preferences().setExecutionLogEnabled(checked);
 }

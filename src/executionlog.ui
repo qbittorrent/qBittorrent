@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConsoleDlg</class>
- <widget class="QDialog" name="ConsoleDlg">
+ <class>ExecutionLog</class>
+ <widget class="QWidget" name="ExecutionLog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>497</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>qBittorrent log viewer</string>
+   <string>Form</string>
   </property>
-  <layout class="QVBoxLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabConsole">
+     <property name="tabPosition">
+      <enum>QTabWidget::East</enum>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -33,7 +36,7 @@
       <attribute name="title">
        <string>Blocked IPs</string>
       </attribute>
-      <layout class="QVBoxLayout">
+      <layout class="QVBoxLayout" name="_2">
        <item>
         <widget class="QTextBrowser" name="textBannedPeers"/>
        </item>
