@@ -978,7 +978,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/trackerPort"), port);
   }
 
-#if defined(Q_WS_WIN) || define(Q_WS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   bool isUpdateCheckEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/updateCheck"), true).toBool();
   }

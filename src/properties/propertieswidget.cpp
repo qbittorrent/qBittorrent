@@ -177,6 +177,7 @@ void PropertiesWidget::clear() {
   qDebug("Clearing torrent properties");
   save_path->clear();
   lbl_creationDate->clear();
+  pieceSize_lbl->clear();
   hash_lbl->clear();
   comment_text->clear();
   progress_lbl->clear();
@@ -247,6 +248,8 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
     if(h.has_metadata()) {
       // Creation date
       lbl_creationDate->setText(h.creation_date());
+      // Pieces size
+      pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
       // Comment
       comment_text->setHtml(h.comment());
       // URL seeds

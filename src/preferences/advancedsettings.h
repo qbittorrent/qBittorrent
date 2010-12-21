@@ -12,7 +12,7 @@
 
 enum AdvSettingsCols {PROPERTY, VALUE};
 enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
-                    #if defined(Q_WS_WIN) || define(Q_WS_MAC)
+                    #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
                       ROW_COUNT };
@@ -24,7 +24,7 @@ private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen, *spin_tracker_port;
   QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications, *cb_tracker_status;
   QComboBox *combo_iface;
-#if defined(Q_WS_WIN) || define(Q_WS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox *cb_update_check;
 #endif
 
@@ -61,7 +61,7 @@ public:
     delete cb_program_notifications;
     delete spin_tracker_port;
     delete cb_tracker_status;
-#if defined(Q_WS_WIN) || define(Q_WS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     delete cb_update_check;
 #endif
   }
@@ -103,7 +103,7 @@ public slots:
     // Tracker
     pref.setTrackerEnabled(cb_tracker_status->isChecked());
     pref.setTrackerPort(spin_tracker_port->value());
-#if defined(Q_WS_WIN) || define(Q_WS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     pref.setUpdateCheckEnabled(cb_update_check->isChecked());
 #endif
   }
@@ -228,7 +228,7 @@ protected slots:
     spin_tracker_port->setMaximum(65535);
     spin_tracker_port->setValue(pref.getTrackerPort());
     setCellWidget(TRACKER_PORT, VALUE, spin_tracker_port);
-#if defined(Q_WS_WIN) || define(Q_WS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     setItem(UPDATE_CHECK, PROPERTY, new QTableWidgetItem(tr("Check for software updates")));
     cb_update_check = new QCheckBox();
     connect(cb_update_check, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
