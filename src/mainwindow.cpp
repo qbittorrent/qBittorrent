@@ -271,9 +271,11 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 #endif
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   // Check for update
-  ProgramUpdater *updater = new ProgramUpdater(this);
-  connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
-  updater->checkForUpdates();
+  if(pref.isUpdateCheckEnabled()) {
+    ProgramUpdater *updater = new ProgramUpdater(this);
+    connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
+    updater->checkForUpdates();
+  }
 #endif
 }
 
@@ -1260,14 +1262,14 @@ void MainWindow::showConnectionSettings()
 
 void MainWindow::on_actionExecution_Logs_triggered(bool checked)
 {
-    if(checked) {
-      Q_ASSERT(!m_executionLog);
-      m_executionLog = new ExecutionLog(tabs);
-      int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
-      tabs->setTabIcon(index_tab, misc::getIcon("view-calendar-journal"));
-    } else {
-      Q_ASSERT(m_executionLog);
-      delete m_executionLog;
-    }
-    Preferences().setExecutionLogEnabled(checked);
+  if(checked) {
+    Q_ASSERT(!m_executionLog);
+    m_executionLog = new ExecutionLog(tabs);
+    int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
+    tabs->setTabIcon(index_tab, misc::getIcon("view-calendar-journal"));
+  } else {
+    Q_ASSERT(m_executionLog);
+    delete m_executionLog;
+  }
+  Preferences().setExecutionLogEnabled(checked);
 }

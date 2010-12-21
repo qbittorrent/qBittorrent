@@ -2,6 +2,7 @@
     - FEATURE: Use system icons (Linux, Qt >= 4.6)
     - FEATURE: Improved ETA calculation
     - FEATURE: Simplify program preferences
+    - FEATURE: Software update check can now be disabled (Mac OS X / Windows)
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
     - COSMETIC: Display execution log as a tab instead of a modal window
