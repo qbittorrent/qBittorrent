@@ -1268,8 +1268,8 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
     int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
     tabs->setTabIcon(index_tab, misc::getIcon("view-calendar-journal"));
   } else {
-    Q_ASSERT(m_executionLog);
-    delete m_executionLog;
+    if(m_executionLog)
+      delete m_executionLog;
   }
   Preferences().setExecutionLogEnabled(checked);
 }

@@ -53,7 +53,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-92</y>
+            <y>0</y>
             <width>520</width>
             <height>377</height>
            </rect>
@@ -293,7 +293,7 @@
               <item row="2" column="2">
                <widget class="QLabel" name="label_7">
                 <property name="text">
-                 <string>Time elapsed:</string>
+                 <string extracomment="Time (duration) the torrent is active (not paused)">Time active:</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

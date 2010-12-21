@@ -184,6 +184,8 @@ QVariant TorrentModelItem::data(int column, int role) const
     return static_cast<qlonglong>(m_torrent.total_wanted_done());
   case TR_AMOUNT_LEFT:
     return static_cast<qlonglong>(m_torrent.total_wanted() - m_torrent.total_wanted_done());
+  case TR_TIME_ELAPSED:
+    return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
   default:
     return QVariant();
   }
@@ -247,6 +249,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
       case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
       case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
+      case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
       default:
         return QVariant();
       }

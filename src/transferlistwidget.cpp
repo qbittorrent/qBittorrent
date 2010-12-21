@@ -107,6 +107,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   setColumnHidden(TorrentModelItem::TR_TRACKER, true);
   setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
   setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
+  setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
 
   setContextMenuPolicy(Qt::CustomContextMenu);
 

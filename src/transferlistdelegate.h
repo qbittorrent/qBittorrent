@@ -137,6 +137,15 @@ public:
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
       break;
     }
+    case TorrentModelItem::TR_TIME_ELAPSED: {
+      QItemDelegate::drawBackground(painter, opt, index);
+      QString txt = misc::userFriendlyDuration(index.data().toLongLong());
+      qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
+      if(seeding_time > 0)
+        txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(seeding_time))+")";
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
+      break;
+    }
     case TorrentModelItem::TR_ADD_DATE:
     case TorrentModelItem::TR_SEED_DATE:
       QItemDelegate::drawBackground(painter, opt, index);
