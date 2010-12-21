@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>嵌入 tracker 埠</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -540,15 +544,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="obsolete">一般</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>被封鎖的 IP</translation>
+        <translation type="obsolete">被封鎖的 IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>qBittorrent 紀錄檢視器</translation>
+        <translation type="obsolete">qBittorrent 紀錄檢視器</translation>
     </message>
 </context>
 <context>
@@ -559,10 +563,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>值</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>值</translation>
     </message>
     <message>
@@ -613,6 +619,21 @@ You should get this information from your Web browser preferences.</source>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>最大 %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">被封鎖的 IP</translation>
     </message>
 </context>
 <context>
@@ -1444,11 +1465,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>預覽檔案</translation>
+        <translation type="obsolete">預覽檔案</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>清除紀錄</translation>
+        <translation type="obsolete">清除紀錄</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1504,7 +1525,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>紀錄檢視器 (&amp;L)...</translation>
+        <translation type="obsolete">紀錄檢視器 (&amp;L)...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1564,7 +1585,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>紀錄檢視器</translation>
+        <translation type="obsolete">紀錄檢視器</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1818,6 +1839,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1939,6 +1968,7 @@ Would you like to update qBittorrent to version %1?</source>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>使用者介面</translation>
     </message>
     <message>
@@ -2406,6 +2436,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2462,11 +2496,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL 種子</translation>
+        <translation type="obsolete">URL 種子</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>檔案</translation>
+        <translation type="obsolete">檔案</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2670,6 +2712,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not download</source>
         <translation>不要下載</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4633,11 +4679,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Enable</source>
-        <translation>啟用</translation>
+        <translation type="obsolete">啟用</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>停用</translation>
+        <translation type="obsolete">停用</translation>
     </message>
     <message>
         <source>Uninstall</source>

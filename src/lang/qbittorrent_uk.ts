@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Порт вбудованого трекера</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -539,15 +543,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Загальні</translation>
+        <translation type="obsolete">Загальні</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Заблоковані IP</translation>
+        <translation type="obsolete">Заблоковані IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>Журнал подій qBittorrent</translation>
+        <translation type="obsolete">Журнал подій qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -558,10 +562,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Ключ</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Значення</translation>
     </message>
     <message>
@@ -612,6 +618,21 @@ You should get this information from your Web browser preferences.</source>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>максимально %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Загальні</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Заблоковані IP</translation>
     </message>
 </context>
 <context>
@@ -1432,11 +1453,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Файл перегляду</translation>
+        <translation type="obsolete">Файл перегляду</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Очистити лог</translation>
+        <translation type="obsolete">Очистити лог</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1492,7 +1513,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>Показати &amp;журнал подій...</translation>
+        <translation type="obsolete">Показати &amp;журнал подій...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1552,7 +1573,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Журнал подій</translation>
+        <translation type="obsolete">Журнал подій</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1806,6 +1827,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1927,6 +1956,7 @@ Would you like to update qBittorrent to version %1?</source>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Інтерфейс</translation>
     </message>
     <message>
@@ -2394,6 +2424,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2450,11 +2484,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL-сіди</translation>
+        <translation type="obsolete">URL-сіди</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Файли</translation>
+        <translation type="obsolete">Файли</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2658,6 +2700,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not download</source>
         <translation>Не завантажувати</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4621,11 +4667,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Дозволити</translation>
+        <translation type="obsolete">Дозволити</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Заборонити</translation>
+        <translation type="obsolete">Заборонити</translation>
     </message>
     <message>
         <source>Uninstall</source>

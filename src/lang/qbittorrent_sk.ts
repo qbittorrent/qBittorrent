@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Port zabudovaného trackera</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -535,15 +539,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Všeobecné</translation>
+        <translation type="obsolete">Všeobecné</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Zablokované IP</translation>
+        <translation type="obsolete">Zablokované IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>Prehliadač záznamov qBittorrent</translation>
+        <translation type="obsolete">Prehliadač záznamov qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -554,10 +558,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Kľúč</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Hodnota</translation>
     </message>
     <message>
@@ -608,6 +614,21 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>max %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Všeobecné</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Zablokované IP</translation>
     </message>
 </context>
 <context>
@@ -1431,11 +1452,11 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Náhľad súboru</translation>
+        <translation type="obsolete">Náhľad súboru</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Vyčistiť záznam</translation>
+        <translation type="obsolete">Vyčistiť záznam</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1491,7 +1512,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>Preh&amp;liadač záznamov...</translation>
+        <translation type="obsolete">Preh&amp;liadač záznamov...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1548,10 +1569,6 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <source>Search &amp;engine</source>
         <translation>&amp;Vyhľadávač</translation>
-    </message>
-    <message>
-        <source>Log viewer</source>
-        <translation></translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1805,6 +1822,14 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1926,6 +1951,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Rozhranie</translation>
     </message>
     <message>
@@ -2393,6 +2419,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2449,11 +2479,19 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL seedy</translation>
+        <translation type="obsolete">URL seedy</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Súbory</translation>
+        <translation type="obsolete">Súbory</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2657,6 +2695,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Do not download</source>
         <translation>Nesťahovať</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4621,11 +4663,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Zapnúť</translation>
+        <translation type="obsolete">Zapnúť</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Vypnúť</translation>
+        <translation type="obsolete">Vypnúť</translation>
     </message>
     <message>
         <source>Uninstall</source>

@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Порт встроенного трекера</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -538,15 +542,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation type="obsolete">Общие</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Заблокированные IP</translation>
+        <translation type="obsolete">Заблокированные IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>Просмотрщик журнала qBittorrent</translation>
+        <translation type="obsolete">Просмотрщик журнала qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -557,10 +561,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Ключ</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Значение</translation>
     </message>
     <message>
@@ -612,6 +618,21 @@ You should get this information from your Web browser preferences.</source>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 макс</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Общие</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Заблокированные IP</translation>
     </message>
 </context>
 <context>
@@ -1455,11 +1476,11 @@ No further notices will be issued.</source>
     <message>
         <source>Preview file</source>
         <translatorcomment>Имхо правильнее чем файл предпросмотра</translatorcomment>
-        <translation>Предпросмотр файла</translation>
+        <translation type="obsolete">Предпросмотр файла</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Очистить лог</translation>
+        <translation type="obsolete">Очистить лог</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1517,7 +1538,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>&amp;Просмотрщик лога...</translation>
+        <translation type="obsolete">&amp;Просмотрщик лога...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1582,7 +1603,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Просмотрщик лога</translation>
+        <translation type="obsolete">Просмотрщик лога</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1836,6 +1857,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1960,6 +1989,7 @@ Would you like to update qBittorrent to version %1?</source>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Интерфейс</translation>
     </message>
     <message>
@@ -2442,6 +2472,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2498,11 +2532,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL раздающих</translation>
+        <translation type="obsolete">URL раздающих</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Файлы</translation>
+        <translation type="obsolete">Файлы</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2706,6 +2748,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not download</source>
         <translation>Не загружать</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4680,11 +4726,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Включить</translation>
+        <translation type="obsolete">Включить</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Отключить</translation>
+        <translation type="obsolete">Отключить</translation>
     </message>
     <message>
         <source>Uninstall</source>

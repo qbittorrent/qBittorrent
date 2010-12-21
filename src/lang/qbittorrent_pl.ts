@@ -157,6 +157,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Port wbudowanego trackera</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -516,15 +520,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Główne</translation>
+        <translation type="obsolete">Główne</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Zablokowane IP</translation>
+        <translation type="obsolete">Zablokowane IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>Przeglądarka dziennika qBittorrent</translation>
+        <translation type="obsolete">Przeglądarka dziennika qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -535,10 +539,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Klucz</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Wartość</translation>
     </message>
     <message>
@@ -589,6 +595,21 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>max %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Główne</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Zablokowane IP</translation>
     </message>
 </context>
 <context>
@@ -1408,11 +1429,11 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Podgląd pliku</translation>
+        <translation type="obsolete">Podgląd pliku</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Wyczyść dziennik</translation>
+        <translation type="obsolete">Wyczyść dziennik</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1468,7 +1489,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>Przeg&amp;lądanie dziennika...</translation>
+        <translation type="obsolete">Przeg&amp;lądanie dziennika...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1528,7 +1549,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Przeglądarka dziennika</translation>
+        <translation type="obsolete">Przeglądarka dziennika</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1782,6 +1803,14 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1903,6 +1932,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Wygląd</translation>
     </message>
     <message>
@@ -2370,6 +2400,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2426,11 +2460,19 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>Seedy www</translation>
+        <translation type="obsolete">Seedy www</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Pliki</translation>
+        <translation type="obsolete">Pliki</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2634,6 +2676,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>Do not download</source>
         <translation>Nie pobieraj</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4607,11 +4653,11 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Włącz</translation>
+        <translation type="obsolete">Włącz</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Wyłącz</translation>
+        <translation type="obsolete">Wyłącz</translation>
     </message>
     <message>
         <source>Uninstall</source>

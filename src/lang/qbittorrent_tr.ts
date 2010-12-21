@@ -152,6 +152,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -506,15 +510,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Genel</translation>
+        <translation type="obsolete">Genel</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Engellenmiş IP&apos;ler</translation>
+        <translation type="obsolete">Engellenmiş IP&apos;ler</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>qBittorrent kayıt görüntüleyici</translation>
+        <translation type="obsolete">qBittorrent kayıt görüntüleyici</translation>
     </message>
 </context>
 <context>
@@ -525,10 +529,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Anahtar</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Değer</translation>
     </message>
     <message>
@@ -579,6 +585,21 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>azami: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Genel</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Engellenmiş IP&apos;ler</translation>
     </message>
 </context>
 <context>
@@ -1367,11 +1388,11 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Dosya önizleme</translation>
+        <translation type="obsolete">Dosya önizleme</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Günlüğü temizle</translation>
+        <translation type="obsolete">Günlüğü temizle</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1427,7 +1448,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>&amp;Kayıt görüntüleyici...</translation>
+        <translation type="obsolete">&amp;Kayıt görüntüleyici...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1487,7 +1508,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Kayıt görüntüleyici</translation>
+        <translation type="obsolete">Kayıt görüntüleyici</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1740,6 +1761,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1862,6 +1891,7 @@ Would you like to update qBittorrent to version %1?</source>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Arayüz</translation>
     </message>
     <message>
@@ -2333,6 +2363,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -2379,12 +2413,16 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>URL Seeds</source>
+        <source>Files</source>
+        <translation type="obsolete">Dosyalar</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files</source>
-        <translation type="unfinished">Dosyalar</translation>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2588,6 +2626,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not download</source>
         <translation>İndirme</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4556,11 +4598,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Etkinleştir</translation>
+        <translation type="obsolete">Etkinleştir</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Etkisizleştir</translation>
+        <translation type="obsolete">Etkisizleştir</translation>
     </message>
     <message>
         <source>Uninstall</source>

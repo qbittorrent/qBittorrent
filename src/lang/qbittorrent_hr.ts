@@ -198,6 +198,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Port ugrađenog trackera</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -581,15 +585,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>General</source>
-        <translation>Općenito</translation>
+        <translation type="obsolete">Općenito</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Blokirani IP-ovi</translation>
+        <translation type="obsolete">Blokirani IP-ovi</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>qBittorrentov preglednik dnevnika</translation>
+        <translation type="obsolete">qBittorrentov preglednik dnevnika</translation>
     </message>
 </context>
 <context>
@@ -600,10 +604,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Ključ</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Vrijednost</translation>
     </message>
     <message>
@@ -654,6 +660,21 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Općenito</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Blokirani IP-ovi</translation>
     </message>
 </context>
 <context>
@@ -1559,11 +1580,11 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Pregledaj datoteku</translation>
+        <translation type="obsolete">Pregledaj datoteku</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Izbriši zapis</translation>
+        <translation type="obsolete">Izbriši zapis</translation>
     </message>
     <message>
         <source>Log Window</source>
@@ -1663,7 +1684,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>Preg&amp;lednik zapisa</translation>
+        <translation type="obsolete">Preg&amp;lednik zapisa</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1735,7 +1756,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Preglednik zapisa</translation>
+        <translation type="obsolete">Preglednik zapisa</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1985,6 +2006,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -2122,6 +2151,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Korisničko sučelje </translation>
     </message>
     <message>
@@ -2821,6 +2851,10 @@ QGroupBox {
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2877,11 +2911,19 @@ QGroupBox {
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL seedovi</translation>
+        <translation type="obsolete">URL seedovi</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Datoteke</translation>
+        <translation type="obsolete">Datoteke</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3101,6 +3143,10 @@ QGroupBox {
     <message>
         <source>Do not download</source>
         <translation>Ne preuzimaj</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5119,11 +5165,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Omogući</translation>
+        <translation type="obsolete">Omogući</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Onemogući</translation>
+        <translation type="obsolete">Onemogući</translation>
     </message>
     <message>
         <source>Uninstall</source>

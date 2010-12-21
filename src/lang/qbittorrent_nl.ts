@@ -156,6 +156,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation>Embedded trackerpoort</translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -440,15 +444,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Algemeen</translation>
+        <translation type="obsolete">Algemeen</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Geblokkeerde IP&apos;s</translation>
+        <translation type="obsolete">Geblokkeerde IP&apos;s</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>qBittorrent log viewer</translation>
+        <translation type="obsolete">qBittorrent log viewer</translation>
     </message>
 </context>
 <context>
@@ -459,10 +463,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Sleutel</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Waarde</translation>
     </message>
     <message>
@@ -513,6 +519,21 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Algemeen</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Geblokkeerde IP&apos;s</translation>
     </message>
 </context>
 <context>
@@ -1235,11 +1256,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Kijk vooruit op bestand</translation>
+        <translation type="obsolete">Kijk vooruit op bestand</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Wist log</translation>
+        <translation type="obsolete">Wist log</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1291,7 +1312,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>&amp;Log viewer...</translation>
+        <translation type="obsolete">&amp;Log viewer...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1351,7 +1372,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Log viewer</translation>
+        <translation type="obsolete">Log viewer</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1604,6 +1625,14 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1725,6 +1754,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>UI</translation>
     </message>
     <message>
@@ -2192,6 +2222,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2248,11 +2282,19 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>URL Seeds</source>
-        <translation>URL Seeds</translation>
+        <translation type="obsolete">URL Seeds</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Bestanden</translation>
+        <translation type="obsolete">Bestanden</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2444,6 +2486,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Do not download</source>
         <translation>Download niet</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4352,11 +4398,11 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Inschakelen</translation>
+        <translation type="obsolete">Inschakelen</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Uitschakelen</translation>
+        <translation type="obsolete">Uitschakelen</translation>
     </message>
     <message>
         <source>Uninstall</source>

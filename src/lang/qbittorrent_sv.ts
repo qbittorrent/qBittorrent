@@ -150,6 +150,10 @@ p, li { white-space: pre-wrap; }
         <source>Embedded tracker port</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Check for software updates</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -504,15 +508,15 @@ p, li { white-space: pre-wrap; }
     <name>ConsoleDlg</name>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="obsolete">Allmänt</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Blockerade IP</translation>
+        <translation type="obsolete">Blockerade IP</translation>
     </message>
     <message>
         <source>qBittorrent log viewer</source>
-        <translation>Loggvisare för qBittorrent</translation>
+        <translation type="obsolete">Loggvisare för qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -523,10 +527,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Key</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Nyckel</translation>
     </message>
     <message>
         <source>Value</source>
+        <extracomment>As in Key/Value pair</extracomment>
         <translation>Värde</translation>
     </message>
     <message>
@@ -577,6 +583,21 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLog</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished">Allmänt</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished">Blockerade IP</translation>
     </message>
 </context>
 <context>
@@ -1361,11 +1382,11 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Preview file</source>
-        <translation>Förhandsvisa fil</translation>
+        <translation type="obsolete">Förhandsvisa fil</translation>
     </message>
     <message>
         <source>Clear log</source>
-        <translation>Töm logg</translation>
+        <translation type="obsolete">Töm logg</translation>
     </message>
     <message>
         <source>Decrease priority</source>
@@ -1421,7 +1442,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
-        <translation>&amp;Loggvisare...</translation>
+        <translation type="obsolete">&amp;Loggvisare...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1481,7 +1502,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <source>Log viewer</source>
-        <translation>Loggvisare</translation>
+        <translation type="obsolete">Loggvisare</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1734,6 +1755,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Execution &amp;Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
@@ -1855,6 +1884,7 @@ Would you like to update qBittorrent to version %1?</source>
     <name>Preferences</name>
     <message>
         <source>UI</source>
+        <extracomment>User Interface</extracomment>
         <translation>Användargränssnitt</translation>
     </message>
     <message>
@@ -2318,6 +2348,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -2361,12 +2395,16 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Klienter</translation>
     </message>
     <message>
-        <source>URL Seeds</source>
+        <source>Files</source>
+        <translation type="obsolete">Filer</translation>
+    </message>
+    <message>
+        <source>HTTP Sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files</source>
-        <translation type="unfinished">Filer</translation>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2570,6 +2608,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not download</source>
         <translation type="unfinished">Hämta inte</translation>
+    </message>
+    <message>
+        <source>Pieces size:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4525,11 +4567,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Enable</source>
-        <translation>Aktivera</translation>
+        <translation type="obsolete">Aktivera</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Inaktivera</translation>
+        <translation type="obsolete">Inaktivera</translation>
     </message>
     <message>
         <source>Uninstall</source>
