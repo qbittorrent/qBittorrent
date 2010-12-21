@@ -333,6 +333,8 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["save_path"] = p;
     // Creation date
     data["creation_date"] = h.creation_date();
+    // Piece size
+    data["piece_size"] = misc::friendlyUnit(h.piece_length());
     // Comment
     data["comment"] = h.comment();
     data["total_wasted"] = QVariant(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));

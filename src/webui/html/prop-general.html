@@ -12,6 +12,7 @@
     <table>
     <tr><td style="text-align:right; padding: 4px;">_(Save path:)</td><td id="save_path">xxx</td></tr>
   <tr><td style="text-align:right; padding: 4px;">_(Created on:)</td><td id="creation_date">xxx</td></tr>
+  <tr><td style="text-align:right; padding: 4px;">_(Pieces size:)</td><td id="piece_size">xxx</td></tr>
   <tr><td style="text-align:right; padding: 4px;">_(Torrent hash:)</td><td id="torrent_hash">xxx</td></tr>
 <tr><td style="vertical-align: top;  padding: 4px; text-align:right;">
     <br/>
@@ -39,6 +40,7 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
       $('torrent_hash').set('html', '');
       $('save_path').set('html', '');
       $('creation_date').set('html', '');
+      $('piece_size').set('html', '');
       $('comment').set('html', '');
       $('total_uploaded').set('html', '');
       $('total_downloaded').set('html', '');
@@ -81,6 +83,7 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
                           // Update Torrent data
                           $('save_path').set('html', data.save_path);
                           $('creation_date').set('html', data.creation_date);
+                          $('piece_size').set('html', data.piece_size);
                           $('comment').set('html', data.comment);
                           $('total_uploaded').set('html', data.total_uploaded);
                           $('total_downloaded').set('html', data.total_downloaded);
