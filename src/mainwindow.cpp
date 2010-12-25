@@ -168,8 +168,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   vSplitter->setCollapsible(0, true);
   vSplitter->setCollapsible(1, false);
   tabs->addTab(vSplitter, misc::getIcon("folder-remote"), tr("Transfers"));
-  connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
-  connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
   vboxLayout->addWidget(tabs);
   // Name filter
@@ -277,6 +275,11 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
     updater->checkForUpdates();
   }
 #endif
+
+  // Update the number of torrents (tab)
+  updateNbTorrents();
+  connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+  connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 }
 
 void MainWindow::deleteBTSession() {
