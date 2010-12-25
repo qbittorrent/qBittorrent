@@ -385,13 +385,10 @@ void MainWindow::displayRSSTab(bool enable) {
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
       tabs->setTabIcon(index_tab, misc::getIcon("application-rss+xml"));
     }
-    tabs->showTabBar(true);
   } else {
     if(rssWidget) {
       delete rssWidget;
     }
-    if(!searchEngine)
-      tabs->showTabBar(false);
   }
 }
 
@@ -402,13 +399,10 @@ void MainWindow::displaySearchTab(bool enable) {
       searchEngine = new SearchEngine(this);
       tabs->insertTab(1, searchEngine, misc::getIcon("edit-find"), tr("Search"));
     }
-    tabs->showTabBar(true);
   } else {
     if(searchEngine) {
       delete searchEngine;
     }
-    if(!rssWidget)
-      tabs->showTabBar(false);
   }
 }
 

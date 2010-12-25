@@ -36,8 +36,28 @@
 
 class HidableTabWidget : public QTabWidget {
 public:
+
   void showTabBar(bool show) {
     tabBar()->setVisible(show);
+  }
+
+protected:
+  void tabInserted(int index) {
+    QTabWidget::tabInserted(index);
+    if(count() == 1) {
+      showTabBar(false);
+    } else {
+      showTabBar(true);
+    }
+  }
+
+  void tabRemoved(int index) {
+    QTabWidget::tabInserted(index);
+    if(count() == 1) {
+      showTabBar(false);
+    } else {
+      showTabBar(true);
+    }
   }
 };
 
