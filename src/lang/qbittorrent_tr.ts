@@ -2367,6 +2367,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reload the filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -2518,7 +2522,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Time elapsed:</source>
-        <translation>Geçen zaman:</translation>
+        <translation type="obsolete">Geçen zaman:</translation>
     </message>
     <message>
         <source>Connections:</source>
@@ -2631,6 +2635,11 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Pieces size:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Time active:</source>
+        <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -2673,7 +2682,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation type="unfinished">%1 MB&apos;lık disk önbelleği kullanılıyor</translation>
+        <translation type="obsolete">%1 MB&apos;lık disk önbelleği kullanılıyor</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
@@ -2888,6 +2897,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3633,6 +3651,11 @@ Do you want to install it now?</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Time Active</source>
+        <comment>Time (duration) the torrent is active (not paused)</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackerList</name>
@@ -3780,6 +3803,11 @@ Do you want to install it now?</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translatorcomment>KB/saniye (örn. saniye başı)</translatorcomment>
         <translation>KB/s</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4812,6 +4840,23 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Tarama Klasörü &apos;%1&apos; ekleme başarısız: %2</translation>
+    </message>
+    <message>
+        <source>Parsing error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse the provided IP filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Succesfully refreshed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

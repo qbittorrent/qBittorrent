@@ -2490,6 +2490,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reload the filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ProgramUpdater</name>
@@ -2608,7 +2612,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Time elapsed:</source>
-        <translation>Протекло време:</translation>
+        <translation type="obsolete">Протекло време:</translation>
     </message>
     <message>
         <source>Connections:</source>
@@ -2772,6 +2776,11 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Pieces size:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Time active:</source>
+        <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -2814,7 +2823,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
-        <translation>Користи кеш диска величине %1 MiB</translation>
+        <translation type="obsolete">Користи кеш диска величине %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
@@ -3029,6 +3038,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3790,6 +3808,11 @@ Do you want to install it now?</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Преостали износ</translation>
     </message>
+    <message>
+        <source>Time Active</source>
+        <comment>Time (duration) the torrent is active (not paused)</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackerList</name>
@@ -3937,6 +3960,11 @@ Do you want to install it now?</source>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KiB/s</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished">Донирано за %1</translation>
     </message>
 </context>
 <context>
@@ -4998,6 +5026,23 @@ However, those plugins were disabled.</source>
     <message>
         <source>Filters</source>
         <translation>Филтери</translation>
+    </message>
+    <message>
+        <source>Parsing error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse the provided IP filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Succesfully refreshed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
