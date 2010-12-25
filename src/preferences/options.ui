@@ -923,7 +923,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-51</y>
              <width>506</width>
              <height>457</height>
             </rect>
@@ -1349,12 +1349,34 @@ QGroupBox {
                 <widget class="QToolButton" name="browseFilterButton">
                  <property name="minimumSize">
                   <size>
-                   <width>22</width>
-                   <height>22</height>
+                   <width>28</width>
+                   <height>27</height>
                   </size>
                  </property>
                  <property name="text">
                   <string notr="true">...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QToolButton" name="IpFilterRefreshBtn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>28</width>
+                   <height>27</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Reload the filter</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
                  </property>
                 </widget>
                </item>
@@ -1770,7 +1792,7 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-7</y>
+             <y>0</y>
              <width>581</width>
              <height>422</height>
             </rect>
@@ -2154,8 +2176,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>414</height>
+             <width>377</width>
+             <height>229</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2317,8 +2339,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>414</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

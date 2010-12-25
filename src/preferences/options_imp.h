@@ -80,6 +80,8 @@ protected slots:
   void on_addScanFolderButton_clicked();
   void on_removeScanFolderButton_clicked();
   void handleScanFolderViewSelectionChanged();
+  void on_IpFilterRefreshBtn_clicked();
+  void handleIPFilterParsed(bool error, int ruleCount);
 
 public slots:
   void setLocale(QString locale);
@@ -138,6 +140,7 @@ private:
   // IP Filter
   bool isFilteringEnabled() const;
   QString getFilter() const;
+  bool m_refreshingIpFilter;
   // Queueing system
   bool isQueueingSystemEnabled() const;
   int getMaxActiveDownloads() const;

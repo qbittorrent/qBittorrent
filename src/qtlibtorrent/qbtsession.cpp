@@ -1745,16 +1745,16 @@ void QBtSession::setDHTPort(int dht_port) {
 }
 
 // Enable IP Filtering
-void QBtSession::enableIPFilter(QString filter) {
+void QBtSession::enableIPFilter(const QString &filter_path, bool force) {
   qDebug("Enabling IPFiler");
   if(!filterParser) {
     filterParser = new FilterParserThread(this, s);
     connect(filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
     connect(filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
   }
-  if(filterPath.isEmpty() || filterPath != filter) {
-    filterPath = filter;
-    filterParser->processFilterFile(filter);
+  if(filterPath.isEmpty() || filterPath != filter_path || force) {
+    filterPath = filter_path;
+    filterParser->processFilterFile(filter_path);
   }
 }
 
@@ -2554,9 +2554,11 @@ qlonglong QBtSession::getETA(const QString &hash) const
 void QBtSession::handleIPFilterParsed(int ruleCount)
 {
   addConsoleMessage(tr("Successfuly parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+  emit ipFilterParsed(false, ruleCount);
 }
 
 void QBtSession::handleIPFilterError()
 {
   addConsoleMessage(tr("Error: Failed to parse the provided IP filter."), "red");
+  emit ipFilterParsed(true, 0);
 }

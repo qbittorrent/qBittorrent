@@ -49,11 +49,13 @@
 #include "advancedsettings.h"
 #include "scannedfoldersmodel.h"
 #include "qinisettings.h"
+#include "qbtsession.h"
 
 using namespace libtorrent;
 
 // Constructor
-options_imp::options_imp(QWidget *parent):QDialog(parent){
+options_imp::options_imp(QWidget *parent):
+  QDialog(parent), m_refreshingIpFilter(false) {
   qDebug("-> Constructing Options");
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
@@ -66,6 +68,7 @@ options_imp::options_imp(QWidget *parent):QDialog(parent){
   tabSelection->item(TAB_SPEED)->setIcon(misc::getIcon("chronometer"));
   tabSelection->item(TAB_WEBUI)->setIcon(misc::getIcon("network-server"));
   tabSelection->item(TAB_ADVANCED)->setIcon(misc::getIcon("preferences-other"));
+  IpFilterRefreshBtn->setIcon(misc::getIcon("view-refresh"));
 
   hsplitter->setCollapsible(0, false);
   hsplitter->setCollapsible(1, false);
@@ -1146,3 +1149,27 @@ void options_imp::showConnectionTab()
   tabSelection->setCurrentRow(2);
 }
 
+void options_imp::on_IpFilterRefreshBtn_clicked() {
+  if(m_refreshingIpFilter) return;
+  m_refreshingIpFilter = true;
+  // Updating program preferences
+  Preferences pref;
+  pref.setFilteringEnabled(true);
+  pref.setFilter(getFilter());
+  // Force refresh
+  connect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), SLOT(handleIPFilterParsed(bool, int)));
+  setCursor(QCursor(Qt::WaitCursor));
+  QBtSession::instance()->enableIPFilter(getFilter(), true);
+}
+
+void options_imp::handleIPFilterParsed(bool error, int ruleCount)
+{
+  setCursor(QCursor(Qt::ArrowCursor));
+  if(error) {
+    QMessageBox::warning(this, tr("Parsing error"), tr("Failed to parse the provided IP filter"));
+  } else {
+    QMessageBox::information(this, tr("Succesfully refreshed"), tr("Successfuly parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+  }
+  m_refreshingIpFilter = false;
+  disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+}

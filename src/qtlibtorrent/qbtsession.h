@@ -117,7 +117,7 @@ public slots:
   /* End Web UI */
   void preAllocateAllFiles(bool b);
   void saveFastResumeData();
-  void enableIPFilter(QString filter);
+  void enableIPFilter(const QString &filter_path, bool force=false);
   void disableIPFilter();
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
@@ -203,6 +203,7 @@ signals:
   void newBanMessage(const QString &msg);
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
+  void ipFilterParsed(bool error, int ruleCount);
 
 private:
 #if LIBTORRENT_VERSION_MINOR < 15
