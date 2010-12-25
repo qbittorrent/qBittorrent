@@ -54,44 +54,6 @@ using namespace std;
 class FilterParserThread : public QThread  {
   Q_OBJECT
 
-private:
-  libtorrent::session *s;
-  libtorrent::ip_filter filter;
-  bool abort;
-  QString filePath;
-
-protected:
-  QString cleanupIPAddress(QString _ip) {
-    QHostAddress ip(_ip.trimmed());
-    if(ip.isNull()) {
-      return QString();
-    }
-    return ip.toString();
-  }
-
-  void run(){
-    qDebug("Processing filter file");
-    if(filePath.endsWith(".dat", Qt::CaseInsensitive)) {
-      // eMule DAT file
-      parseDATFilterFile(filePath);
-    } else {
-      if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
-        // PeerGuardian p2p file
-        parseP2PFilterFile(filePath);
-      } else {
-        if(filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
-          // PeerGuardian p2b file
-          parseP2BFilterFile(filePath);
-        } else {
-          // Default: eMule DAT format
-          parseDATFilterFile(filePath);
-        }
-      }
-    }
-    s->set_ip_filter(filter);
-    qDebug("IP Filter thread: finished parsing, filter applied");
-  }
-
 public:
   FilterParserThread(QObject* parent, libtorrent::session *s) : QThread(parent), s(s), abort(false) {
 
@@ -103,12 +65,13 @@ public:
   }
 
   // Parser for eMule ip filter in DAT format
-  void parseDATFilterFile(QString filePath) {
+  int parseDATFilterFile(QString filePath) {
+    int ruleCount = 0;
     QFile file(filePath);
     if (file.exists()){
       if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
-        return;
+        return ruleCount;
       }
       unsigned int nbLine = 0;
       while (!file.atEnd() && !abort) {
@@ -177,22 +140,24 @@ public:
         // Now Add to the filter
         try {
           filter.add_rule(startAddr, endAddr, libtorrent::ip_filter::blocked);
+          ++ruleCount;
         }catch(exception){
           qDebug("Bad line in filter file, avoided crash...");
         }
       }
       file.close();
     }
+    return ruleCount;
   }
 
   // Parser for PeerGuardian ip filter in p2p format
-  void parseP2PFilterFile(QString filePath) {
+  int parseP2PFilterFile(QString filePath) {
+    int ruleCount = 0;
     QFile file(filePath);
-    QStringList IP;
     if (file.exists()){
       if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
-        return;
+        return ruleCount;
       }
       unsigned int nbLine = 0;
       while (!file.atEnd() && !abort) {
@@ -246,6 +211,7 @@ public:
         }
         try {
           filter.add_rule(startAddr, endAddr, libtorrent::ip_filter::blocked);
+          ++ruleCount;
         } catch(std::exception&) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Line was: %s", line.constData());
@@ -254,6 +220,7 @@ public:
       }
       file.close();
     }
+    return ruleCount;
   }
 
   int getlineInStream(QDataStream& stream, string& name, char delim) {
@@ -276,12 +243,13 @@ public:
   }
 
   // Parser for PeerGuardian ip filter in p2p format
-  void parseP2BFilterFile(QString filePath) {
+  int parseP2BFilterFile(QString filePath) {
+    int ruleCount = 0;
     QFile file(filePath);
     if (file.exists()){
       if(!file.open(QIODevice::ReadOnly)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
-        return;
+        return ruleCount;
       }
       QDataStream stream(&file);
       // Read header
@@ -293,7 +261,7 @@ public:
           !stream.readRawData((char*)&version, sizeof(version))
           ) {
         std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-        return;
+        return ruleCount;
       }
 
       if(version==1 || version==2) {
@@ -307,7 +275,7 @@ public:
               !stream.readRawData((char*)&end, sizeof(end))
               ) {
             std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-            return;
+            return ruleCount;
           }
           // Network byte order to Host byte order
           // asio address_v4 contructor expects it
@@ -315,7 +283,10 @@ public:
           libtorrent::address_v4 first(ntohl(start));
           libtorrent::address_v4 last(ntohl(end));
           // Apply to bittorrent session
-          filter.add_rule(first, last, libtorrent::ip_filter::blocked);
+          try {
+            filter.add_rule(first, last, libtorrent::ip_filter::blocked);
+            ++ruleCount;
+          } catch(std::exception&) {}
         }
       }
       else if(version==3) {
@@ -323,7 +294,7 @@ public:
         unsigned int namecount;
         if(!stream.readRawData((char*)&namecount, sizeof(namecount))) {
           std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-          return;
+          return ruleCount;
         }
         namecount=ntohl(namecount);
         // Reading names although, we don't really care about them
@@ -331,15 +302,15 @@ public:
           string name;
           if(!getlineInStream(stream, name, '\0')) {
             std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-            return;
+            return ruleCount;
           }
-          if(abort) return;
+          if(abort) return ruleCount;
         }
         // Reading the ranges
         unsigned int rangecount;
         if(!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
           std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-          return;
+          return ruleCount;
         }
         rangecount=ntohl(rangecount);
 
@@ -352,7 +323,7 @@ public:
               !stream.readRawData((char*)&end, sizeof(end))
               ) {
             std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-            return;
+            return ruleCount;
           }
           // Network byte order to Host byte order
           // asio address_v4 contructor expects it
@@ -360,15 +331,19 @@ public:
           libtorrent::address_v4 first(ntohl(start));
           libtorrent::address_v4 last(ntohl(end));
           // Apply to bittorrent session
-          filter.add_rule(first, last, libtorrent::ip_filter::blocked);
-          if(abort) return;
+          try {
+            filter.add_rule(first, last, libtorrent::ip_filter::blocked);
+            ++ruleCount;
+          } catch(std::exception&) {}
+          if(abort) return ruleCount;
         }
       } else {
         std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
-        return;
+        return ruleCount;
       }
       file.close();
     }
+    return ruleCount;
   }
 
   // Process ip filter file
@@ -403,6 +378,49 @@ public:
     }
     s->set_ip_filter(filter);
   }
+
+signals:
+  void IPFilterParsed(int ruleCount);
+  void IPFilterError();
+
+protected:
+  QString cleanupIPAddress(QString _ip) {
+    QHostAddress ip(_ip.trimmed());
+    if(ip.isNull()) {
+      return QString();
+    }
+    return ip.toString();
+  }
+
+  void run(){
+    qDebug("Processing filter file");
+    int ruleCount = 0;
+    if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
+      // PeerGuardian p2p file
+      ruleCount = parseP2PFilterFile(filePath);
+    } else {
+      if(filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
+        // PeerGuardian p2b file
+        ruleCount = parseP2BFilterFile(filePath);
+      } else {
+        // Default: eMule DAT format
+        ruleCount = parseDATFilterFile(filePath);
+      }
+    }
+    try {
+      s->set_ip_filter(filter);
+      emit IPFilterParsed(ruleCount);
+    } catch(std::exception&){
+      emit IPFilterError();
+    }
+    qDebug("IP Filter thread: finished parsing, filter applied");
+  }
+
+private:
+  libtorrent::session *s;
+  libtorrent::ip_filter filter;
+  bool abort;
+  QString filePath;
 
 };
 
