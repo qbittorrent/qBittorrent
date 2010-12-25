@@ -4,11 +4,12 @@ HEADERS += $$PWD/qbtsession.h \
            $$PWD/qtorrenthandle.h \
            $$PWD/bandwidthscheduler.h \
            $$PWD/trackerinfos.h \
-    qtlibtorrent/torrentspeedmonitor.h
+           $$PWD/torrentspeedmonitor.h \
+           $$PWD/filterparserthread.h \
 
 SOURCES += $$PWD/qbtsession.cpp \
            $$PWD/qtorrenthandle.cpp \
-    qtlibtorrent/torrentspeedmonitor.cpp
+           $$PWD/torrentspeedmonitor.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
   HEADERS += $$PWD/torrentmodel.h

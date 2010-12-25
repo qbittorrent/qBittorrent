@@ -96,7 +96,6 @@ include (preferences/preferences.pri)
 
 HEADERS += misc.h \
            downloadthread.h \
-           filterparserthread.h \
            stacktrace.h \
            torrentpersistentdata.h \
            filesystemwatcher.h \
