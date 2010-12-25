@@ -240,6 +240,11 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   // Populate the transfer list
   transferList->getSourceModel()->populate();
 
+  // Update the number of torrents (tab)
+  updateNbTorrents();
+  connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+  connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
+
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
   if(!pref.neverCheckFileAssoc() && !Preferences::isFileAssocOk()) {
@@ -262,10 +267,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   updater->checkForUpdates();
 #endif
 
-  // Update the number of torrents (tab)
-  updateNbTorrents();
-  connect(transferList->getSourceModel(), SIGNAL(rowsInserted(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
-  connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 }
 
 void MainWindow::deleteBTSession() {
