@@ -161,14 +161,14 @@ public slots:
   void banIP(QString ip);
   void recursiveTorrentDownload(const QTorrentHandle &h);
 
-protected:
+private:
   QString getSavePath(QString hash, bool fromScanDir = false, QString filePath = QString::null, QString root_folder=QString::null);
   bool loadFastResumeData(QString hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle h);
   void loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet);
   libtorrent::add_torrent_params initializeAddTorrentParams(QString hash);
 
-protected slots:
+private slots:
   void addTorrentsFromScanFolder(QStringList&);
   void readAlerts();
   void processBigRatios();
@@ -180,6 +180,8 @@ protected slots:
   void mergeTorrents(QTorrentHandle h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void exportTorrentFile(QTorrentHandle h);
   void initWebUi();
+  void handleIPFilterParsed(int ruleCount);
+  void handleIPFilterError();
 
 signals:
   void addedTorrent(const QTorrentHandle& h);

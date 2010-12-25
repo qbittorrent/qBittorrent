@@ -5,6 +5,7 @@
     - FEATURE: Software update check can now be disabled (Mac OS X / Windows)
     - FEATURE: Display pieces size in torrent properties
     - FEATURE: Added "Time Active/Seeded" column to transfer list
+    - FEATURE: Give feedback regarding the IP filter parsing
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
     - COSMETIC: Display execution log as a tab instead of a modal window

@@ -386,7 +386,7 @@ void QBtSession::configureSession() {
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif
   sessionSettings.cache_size = pref.diskCacheSize()*64;
-  addConsoleMessage(tr("Using a disk cache size of %1 MiB").arg(pref.diskCacheSize()));
+  qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
   // Queueing System
   if(pref.isQueueingSystemEnabled()) {
     sessionSettings.active_downloads = pref.getMaxActiveDownloads();
@@ -1749,6 +1749,8 @@ void QBtSession::enableIPFilter(QString filter) {
   qDebug("Enabling IPFiler");
   if(!filterParser) {
     filterParser = new FilterParserThread(this, s);
+    connect(filterParser.data(), SIGNAL(IPFilterParsed(int)), SLOT(handleIPFilterParsed(int)));
+    connect(filterParser.data(), SIGNAL(IPFilterError()), SLOT(handleIPFilterError()));
   }
   if(filterPath.isEmpty() || filterPath != filter) {
     filterPath = filter;
@@ -1761,6 +1763,7 @@ void QBtSession::disableIPFilter() {
   qDebug("Disabling IPFilter");
   s->set_ip_filter(ip_filter());
   if(filterParser) {
+    disconnect(filterParser.data(), 0, this, 0);
     delete filterParser;
   }
   filterPath = "";
@@ -2546,4 +2549,14 @@ void QBtSession::drop()
 qlonglong QBtSession::getETA(const QString &hash) const
 {
   return m_speedMonitor->getETA(hash);
+}
+
+void QBtSession::handleIPFilterParsed(int ruleCount)
+{
+  addConsoleMessage(tr("Successfuly parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+}
+
+void QBtSession::handleIPFilterError()
+{
+  addConsoleMessage(tr("Error: Failed to parse the provided IP filter."), "red");
 }
