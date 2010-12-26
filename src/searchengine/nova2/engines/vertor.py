@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -62,6 +62,7 @@ class vertor(object):
         self.current_item['link']=params['href'].strip()
       elif self.td_counter == 0 and params.has_key('href') and params['href'].startswith("/torrents/") \
       and not self.current_item.has_key('name'):
+        self.current_item['desc_link']='http://www.vertor.com'+params['href'].strip()
 	self.in_name = True
         
     def end_a(self):
