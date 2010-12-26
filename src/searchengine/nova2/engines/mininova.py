@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.50
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -54,10 +54,13 @@ class mininova(object):
     def start_a(self, attr):
       params = dict(attr)
       #print params
-      if params.has_key('href') and params['href'].startswith("/get/"):
-        self.current_item = {}
-        self.td_counter = 0
-        self.current_item['link']=self.url+params['href'].strip()
+      if params.has_key('href'):
+        if params['href'].startswith("/get/"):
+          self.current_item = {}
+          self.td_counter = 0
+          self.current_item['link']=self.url+params['href'].strip()
+        elif params['href'].startswith("/tor/"):
+          self.current_item['desc_link']=self.url+params['href'].strip()
     
     def handle_data(self, data):
       if self.td_counter == 0:
