@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.3
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -53,6 +53,8 @@ class torrentreactor(object):
 				self.current_item = {}
 				self.td_counter = 0
 				self.current_item['link'] = params['href'].strip()
+			elif params['href'].startswith('/torrents/'):
+				self.current_item['desc_link'] = 'http://www.torrentreactor.net'+params['href'].strip()
 
 		def handle_data(self, data):
 			if self.td_counter == 0:
