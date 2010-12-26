@@ -137,6 +137,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="goToDescBtn">
+         <property name="text">
+          <string>Go to description page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>

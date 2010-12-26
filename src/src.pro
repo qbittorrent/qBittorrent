@@ -139,7 +139,8 @@ nox {
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \
-             executionlog.cpp
+             executionlog.cpp \
+             previewselect.cpp
 
   win32 {
     HEADERS += programupdater.h

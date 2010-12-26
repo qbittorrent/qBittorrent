@@ -1,4 +1,4 @@
-#VERSION: 2.23
+#VERSION: 2.31
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -54,10 +54,13 @@ class btjunkie(object):
     def start_a(self, attr):
       params = dict(attr)
       #print params
-      if params.has_key('href') and params['href'].startswith("http://dl.btjunkie.org/torrent"):
-        self.current_item = {}
-        self.th_counter = 0
-        self.current_item['link']=params['href'].strip()
+      if params.has_key('href'):
+        if params['href'].startswith("http://dl.btjunkie.org/torrent"):
+          self.current_item = {}
+          self.th_counter = 0
+          self.current_item['link']=params['href'].strip()
+        elif self.th_counter == 0 and params['href'].startswith("/torrent/") and params['href'].find('/files/') == -1:
+          self.current_item['desc_link'] = 'http://btjunkie.org'+params['href'].strip()
     
     def handle_data(self, data):
       if self.th_counter == 0:

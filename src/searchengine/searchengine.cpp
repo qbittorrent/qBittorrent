@@ -42,6 +42,7 @@
 #include <QMimeData>
 #include <QSortFilterProxyModel>
 #include <QFileDialog>
+#include <QDesktopServices>
 
 #ifdef Q_WS_WIN
 #include <stdlib.h>
@@ -64,6 +65,7 @@ SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(
   // Icons
   search_button->setIcon(misc::getIcon("edit-find"));
   download_button->setIcon(misc::getIcon("download"));
+  goToDescBtn->setIcon(misc::getIcon("application-x-mswinurl"));
   enginesButton->setIcon(misc::getIcon("preferences-system-network"));
   // new qCompleter to the search pattern
   startSearchHistory();
@@ -253,8 +255,10 @@ void SearchEngine::tab_changed(int t)
   {//-1 = no more tab
     if(all_tab.at(tabWidget->currentIndex())->getCurrentSearchListModel()->rowCount()) {
       download_button->setEnabled(true);
+      goToDescBtn->setEnabled(true);
     } else {
       download_button->setEnabled(false);
+      goToDescBtn->setEnabled(false);
     }
   }
 }
@@ -487,39 +491,39 @@ void SearchEngine::updateNova() {
   package_file2.close();
   // Copy search plugin files (if necessary)
   QString filePath = search_dir.absoluteFilePath("nova2.py");
-  if(getPluginVersion(":/nova/nova2.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova2/nova2.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)) {
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova/nova2.py", filePath);
+    QFile::copy(":/nova2/nova2.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("nova2dl.py");
-  if(getPluginVersion(":/nova/nova2dl.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova2/nova2dl.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova/nova2dl.py", filePath);
+    QFile::copy(":/nova2/nova2dl.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("novaprinter.py");
-  if(getPluginVersion(":/nova/novaprinter.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova2/novaprinter.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova/novaprinter.py", filePath);
+    QFile::copy(":/nova2/novaprinter.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("helpers.py");
-  if(getPluginVersion(":/nova/helpers.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova2/helpers.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova/helpers.py", filePath);
+    QFile::copy(":/nova2/helpers.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("socks.py");
@@ -527,9 +531,9 @@ void SearchEngine::updateNova() {
     misc::safeRemove(filePath);
     misc::safeRemove(filePath+"c");
   }
-  QFile::copy(":/nova/socks.py", filePath);
+  QFile::copy(":/nova2/socks.py", filePath);
   QDir destDir(QDir(misc::searchEngineLocation()).absoluteFilePath("engines"));
-  QDir shipped_subDir(":/nova/engines/");
+  QDir shipped_subDir(":/nova2/engines/");
   QStringList files = shipped_subDir.entryList();
   foreach(const QString &file, files){
     QString shipped_file = shipped_subDir.absoluteFilePath(file);
@@ -598,7 +602,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
 // SLOT to append one line to search results list
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-void SearchEngine::appendSearchResult(QString line){
+void SearchEngine::appendSearchResult(const QString &line){
   if(!currentSearchTab) {
     if(searchProcess->state() != QProcess::NotRunning){
       searchProcess->terminate();
@@ -609,8 +613,9 @@ void SearchEngine::appendSearchResult(QString line){
     search_stopped = true;
     return;
   }
-  QStringList parts = line.split("|");
-  if(parts.size() != 6){
+  const QStringList parts = line.split("|");
+  const int nb_fields = parts.size();
+  if(nb_fields < NB_PLUGIN_COLUMNS-1){ //-1 because desc_link is optional
     return;
   }
   Q_ASSERT(currentSearchTab);
@@ -620,28 +625,32 @@ void SearchEngine::appendSearchResult(QString line){
   int row = cur_model->rowCount();
   cur_model->insertRow(row);
 
-  cur_model->setData(cur_model->index(row, 5), parts.at(0).trimmed()); // download URL
-  cur_model->setData(cur_model->index(row, 0), parts.at(1).trimmed()); // Name
-  cur_model->setData(cur_model->index(row, 1), parts.at(2).trimmed().toLongLong()); // Size
+  cur_model->setData(cur_model->index(row, DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
+  cur_model->setData(cur_model->index(row, NAME), parts.at(PL_NAME).trimmed()); // Name
+  cur_model->setData(cur_model->index(row, SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
   bool ok = false;
-  qlonglong nb_seeders = parts.at(3).trimmed().toLongLong(&ok);
+  qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
   if(!ok || nb_seeders < 0) {
-    cur_model->setData(cur_model->index(row, 2), tr("Unknown")); // Seeders
+    cur_model->setData(cur_model->index(row, SEEDS), tr("Unknown")); // Seeders
   } else {
-    cur_model->setData(cur_model->index(row, 2), nb_seeders); // Seeders
+    cur_model->setData(cur_model->index(row, SEEDS), nb_seeders); // Seeders
   }
-  qlonglong nb_leechers = parts.at(4).trimmed().toLongLong(&ok);
+  qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
   if(!ok || nb_leechers < 0) {
-    cur_model->setData(cur_model->index(row, 3), tr("Unknown")); // Leechers
+    cur_model->setData(cur_model->index(row, LEECHS), tr("Unknown")); // Leechers
   } else {
-    cur_model->setData(cur_model->index(row, 3), nb_leechers); // Leechers
+    cur_model->setData(cur_model->index(row, LEECHS), nb_leechers); // Leechers
   }
-  cur_model->setData(cur_model->index(row, 4), parts.at(5).trimmed()); // Engine URL
+  cur_model->setData(cur_model->index(row, ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
+  // Description Link
+  if(nb_fields == NB_PLUGIN_COLUMNS)
+    cur_model->setData(cur_model->index(row, DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
 
   no_search_results = false;
   ++nb_search_results;
   // Enable clear & download buttons
   download_button->setEnabled(true);
+  goToDescBtn->setEnabled(true);
 }
 
 #if QT_VERSION >= 0x040500
@@ -660,6 +669,7 @@ void SearchEngine::closeTab(int index) {
   delete all_tab.takeAt(index);
   if(!all_tab.size()) {
     download_button->setEnabled(false);
+    goToDescBtn->setEnabled(false);
   }
 }
 #else
@@ -700,6 +710,19 @@ void SearchEngine::on_download_button_clicked(){
       QString engine_url = model->data(model->index(index.row(), ENGINE_URL_COLUMN)).toString();
       downloadTorrent(engine_url, torrent_url);
       all_tab.at(tabWidget->currentIndex())->setRowColor(index.row(), "red");
+    }
+  }
+}
+
+void SearchEngine::on_goToDescBtn_clicked()
+{
+  QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
+  foreach(const QModelIndex &index, selectedIndexes){
+    if(index.column() == NAME) {
+      QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
+      const QString desc_url = model->data(model->index(index.row(), DESC_LINK)).toString();
+      if(!desc_url.isEmpty())
+        QDesktopServices::openUrl(QUrl(desc_url));
     }
   }
 }

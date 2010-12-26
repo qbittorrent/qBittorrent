@@ -28,6 +28,23 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QStandardItemModel>
+#include <QSortFilterProxyModel>
+#include <QDesktopServices>
+#include <QTimer>
+#include <QClipboard>
+#include <QInputDialog>
+#include <QColor>
+#include <QUrl>
+#include <QMenu>
+#include <QRegExp>
+#include <QFileDialog>
+#include <QMessageBox>
+
+#include <libtorrent/version.hpp>
+#include <vector>
+#include <queue>
+
 #include "transferlistwidget.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
@@ -40,21 +57,6 @@
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
-#include <libtorrent/version.hpp>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
-#include <QDesktopServices>
-#include <QTimer>
-#include <QClipboard>
-#include <QInputDialog>
-#include <QColor>
-#include <QUrl>
-#include <QMenu>
-#include <QRegExp>
-#include <QFileDialog>
-#include <vector>
-#include <queue>
-
 #include "qinisettings.h"
 
 using namespace libtorrent;
@@ -426,7 +428,7 @@ void TransferListWidget::previewSelectedTorrents() {
   foreach(const QString &hash, hashes) {
     const QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if(h.is_valid() && h.has_metadata()) {
-      new previewSelect(this, h);
+      new PreviewSelect(this, h);
     }
   }
 }

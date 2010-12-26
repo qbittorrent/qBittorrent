@@ -39,11 +39,7 @@
 #include <QProgressBar>
 #include <QApplication>
 #include "misc.h"
-
-// Defines for properties list columns
-#define NAME 0
-#define SIZE 1
-#define PROGRESS 2
+#include "previewselect.h"
 
 class PreviewListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -58,11 +54,11 @@ class PreviewListDelegate: public QItemDelegate {
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
 
       switch(index.column()){
-        case SIZE:
+        case PreviewSelect::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
-        case PROGRESS:{
+        case PreviewSelect::PROGRESS:{
           float progress = index.data().toDouble()*100.;
           QStyleOptionProgressBarV2 newopt;
           newopt.rect = opt.rect;

@@ -7,6 +7,7 @@
     - FEATURE: Added "Time Active/Seeded" column to transfer list
     - FEATURE: Give feedback regarding the IP filter parsing
     - FEATURE: Added a button to reload the IP filter
+    - FEATURE: Search engine results can now be opened in a Web browser
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
     - COSMETIC: Display execution log as a tab instead of a modal window

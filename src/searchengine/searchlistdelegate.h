@@ -38,13 +38,7 @@
 #include <QPainter>
 #include <QProgressBar>
 #include "misc.h"
-
-// Defines for search results list columns
-#define NAME 0
-#define SIZE 1
-#define SEEDERS 2
-#define LEECHERS 3
-#define ENGINE 4
+#include "searchengine.h"
 
 class SearchListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -58,7 +52,7 @@ class SearchListDelegate: public QItemDelegate {
       painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()){
-        case SIZE:
+        case SearchEngine::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
