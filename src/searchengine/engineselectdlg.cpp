@@ -44,7 +44,7 @@
 #include <QTemporaryFile>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
-#define UPDATE_URL "http://qbittorrent.svn.sourceforge.net/viewvc/qbittorrent/trunk/src/searchengine/nova/engines/"
+#define UPDATE_URL "http://qbittorrent.svn.sourceforge.net/viewvc/qbittorrent/trunk/src/searchengine/nova2/engines/"
 
 engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_engines) : QDialog(parent), supported_engines(supported_engines) {
   setupUi(this);
