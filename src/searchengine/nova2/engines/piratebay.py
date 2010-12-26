@@ -1,4 +1,4 @@
-#VERSION: 1.30
+#VERSION: 1.40
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -58,6 +58,7 @@ class piratebay(object):
 				self.current_item = {}
 				self.td_counter = 0
 				self.code = params['href'].split('/')[2]
+				self.current_item['desc_link'] = 'http://thepiratebay.org'+params['href'].strip()
 				self.in_name = True
 			elif params['href'].startswith('http://torrents.thepiratebay.org/%s'%self.code):
 				self.current_item['link']=params['href'].strip()
