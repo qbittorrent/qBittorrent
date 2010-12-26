@@ -21,5 +21,7 @@
   <file>nova2/engines/vertor.py</file>
   <file>nova2/engines/extratorrent.py</file>
   <file>nova2/engines/extratorrent.png</file>
+  <file>nova2/engines/kickasstorrents.png</file>
+  <file>nova2/engines/kickasstorrents.png</file>
 </qresource>
 </RCC>

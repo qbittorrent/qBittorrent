@@ -6,3 +6,4 @@ piratebay: 1.40
 vertor: 1.2
 torrentdownloads: 1.1
 extratorrent: 1.1
+kickasstorrents: 1.1
