@@ -491,39 +491,39 @@ void SearchEngine::updateNova() {
   package_file2.close();
   // Copy search plugin files (if necessary)
   QString filePath = search_dir.absoluteFilePath("nova2.py");
-  if(getPluginVersion(":/nova2/nova2.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova/nova2.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)) {
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova2/nova2.py", filePath);
+    QFile::copy(":/nova/nova2.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("nova2dl.py");
-  if(getPluginVersion(":/nova2/nova2dl.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova/nova2dl.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova2/nova2dl.py", filePath);
+    QFile::copy(":/nova/nova2dl.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("novaprinter.py");
-  if(getPluginVersion(":/nova2/novaprinter.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova/novaprinter.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova2/novaprinter.py", filePath);
+    QFile::copy(":/nova/novaprinter.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("helpers.py");
-  if(getPluginVersion(":/nova2/helpers.py") > getPluginVersion(filePath)) {
+  if(getPluginVersion(":/nova/helpers.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
       misc::safeRemove(filePath);
       misc::safeRemove(filePath+"c");
     }
-    QFile::copy(":/nova2/helpers.py", filePath);
+    QFile::copy(":/nova/helpers.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("socks.py");
@@ -531,9 +531,9 @@ void SearchEngine::updateNova() {
     misc::safeRemove(filePath);
     misc::safeRemove(filePath+"c");
   }
-  QFile::copy(":/nova2/socks.py", filePath);
+  QFile::copy(":/nova/socks.py", filePath);
   QDir destDir(QDir(misc::searchEngineLocation()).absoluteFilePath("engines"));
-  QDir shipped_subDir(":/nova2/engines/");
+  QDir shipped_subDir(":/nova/engines/");
   QStringList files = shipped_subDir.entryList();
   foreach(const QString &file, files){
     QString shipped_file = shipped_subDir.absoluteFilePath(file);
