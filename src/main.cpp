@@ -296,6 +296,8 @@ int main(int argc, char *argv[]){
   torrentCmdLine.removeFirst();
 #ifndef DISABLE_GUI
   MainWindow window(0, torrentCmdLine);
+  if(!no_splash)
+    QObject::connect(splash, SIGNAL(destroyed()), &window, SLOT(raise()));
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);

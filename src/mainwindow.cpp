@@ -237,6 +237,8 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   } else {
     if(pref.startMinimized())
       showMinimized();
+    else
+      setFocus();
   }
 
   // Start watching the executable for updates
