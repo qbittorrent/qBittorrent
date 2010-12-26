@@ -91,7 +91,7 @@ protected slots:
 #else
   void closeTab(int index);
 #endif
-  void appendSearchResult(QString line);
+  void appendSearchResult(const QString& line);
   void searchFinished(int exitcode,QProcess::ExitStatus);
   void readSearchOutput();
   void searchStarted();

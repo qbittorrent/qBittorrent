@@ -594,7 +594,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
 // SLOT to append one line to search results list
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-void SearchEngine::appendSearchResult(QString line){
+void SearchEngine::appendSearchResult(const QString &line){
   if(!currentSearchTab) {
     if(searchProcess->state() != QProcess::NotRunning){
       searchProcess->terminate();
@@ -606,7 +606,7 @@ void SearchEngine::appendSearchResult(QString line){
     return;
   }
   QStringList parts = line.split("|");
-  if(parts.size() != 6){
+  if(parts.size() < 6){
     return;
   }
   Q_ASSERT(currentSearchTab);
