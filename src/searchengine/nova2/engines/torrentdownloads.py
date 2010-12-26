@@ -1,4 +1,4 @@
-#VERSION: 1.06
+#VERSION: 1.1
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -81,6 +81,7 @@ class torrentdownloads(object):
       if params.has_key('href') and params['href'].startswith("http://www.torrentdownloads.net/torrent/"):
         self.current_item = {}
         self.li_counter = 0
+        self.current_item['desc_link'] = params['href'].strip()
         self.current_item['link']=params['href'].strip().replace('/torrent', '/download', 1)
     
     def handle_data(self, data):

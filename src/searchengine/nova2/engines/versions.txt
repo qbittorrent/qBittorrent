@@ -4,4 +4,4 @@ btjunkie: 2.31
 mininova: 1.40
 piratebay: 1.40
 vertor: 1.2
-torrentdownloads: 1.06
+torrentdownloads: 1.1
