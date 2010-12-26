@@ -19,5 +19,7 @@
   <file>nova2/engines/btjunkie.py</file>
   <file>nova2/engines/piratebay.png</file>
   <file>nova2/engines/vertor.py</file>
+  <file>nova2/engines/extratorrent.py</file>
+  <file>nova2/engines/extratorrent.png</file>
 </qresource>
 </RCC>

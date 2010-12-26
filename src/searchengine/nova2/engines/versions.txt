@@ -5,3 +5,4 @@ mininova: 1.50
 piratebay: 1.40
 vertor: 1.2
 torrentdownloads: 1.1
+extratorrent: 1.1
