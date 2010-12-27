@@ -351,7 +351,7 @@ void options_imp::saveOptions(){
   pref.preAllocateAllFiles(preAllocateAllFiles());
   pref.useAdditionDialog(useAdditionDialog());
   pref.addTorrentsInPause(addTorrentsInPause());
-  ScanFoldersModel::instance()->makePersistent(pref);
+  ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
   QString export_dir = getExportDir();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)

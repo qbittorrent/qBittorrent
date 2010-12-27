@@ -29,7 +29,7 @@
  */
 
 #include "scannedfoldersmodel.h"
-
+#include "preferences.h"
 #include "filesystemwatcher.h"
 
 #include <QDir>
@@ -189,15 +189,16 @@ int ScanFoldersModel::findPathData(const QString &path) const {
   return -1;
 }
 
-void ScanFoldersModel::makePersistent(QIniSettings &settings) {
+void ScanFoldersModel::makePersistent() {
+  Preferences pref;
   QStringList paths;
   QList<bool> downloadInFolderInfo;
   foreach (const PathData* pathData, m_pathList) {
     paths << pathData->path;
     downloadInFolderInfo << pathData->downloadAtPath;
   }
-  settings.setValue(QString::fromUtf8("ScanDirs"), paths);
-  settings.setValue(QString::fromUtf8("DownloadInScanDirs"), misc::toStringList(downloadInFolderInfo));
+  pref.setScanDirs(paths);
+  pref.setDownloadInScanDirs(downloadInFolderInfo);
 }
 
 ScanFoldersModel *ScanFoldersModel::m_instance = 0;

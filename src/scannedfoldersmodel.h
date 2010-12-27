@@ -61,7 +61,7 @@ public:
   PathStatus setDownloadAtPath(int row, bool downloadAtPath);
 
   bool downloadInTorrentFolder(const QString &filePath) const;
-  void makePersistent(QIniSettings &settings);
+  void makePersistent();
 
 signals:
   // The absolute paths of new torrent files in the scanned directories.

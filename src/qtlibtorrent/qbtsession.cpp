@@ -280,7 +280,8 @@ void QBtSession::configureSession() {
   }
   int i = 0;
   foreach (const QString &dir, scan_dirs) {
-    m_scanFolders->addPath(dir, downloadInDirList.at(i));
+    qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i);
+    ScanFoldersModel::PathStatus ret = m_scanFolders->addPath(dir, downloadInDirList.at(i));
     ++i;
   }
   // * Export Dir
