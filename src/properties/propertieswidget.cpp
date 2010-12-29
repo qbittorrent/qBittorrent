@@ -631,7 +631,8 @@ void PropertiesWidget::renameSelectedFile() {
       // Remove old folder
       const QDir old_folder(h.save_path()+"/"+old_path);
       int timeout = 10;
-      while(!misc::removeEmptyTree(old_folder.absolutePath()) && timeout > 0) {
+      while(!QDir().rmpath(old_folder.absolutePath()) && timeout > 0) {
+        // XXX: We should not sleep here (freezes the UI for 1 second)
         SleeperThread::msleep(100);
         --timeout;
       }

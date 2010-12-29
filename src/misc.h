@@ -149,7 +149,7 @@ public:
   // value must be given in bytes
   static QString friendlyUnit(double val);
   static bool isPreviewable(QString extension);
-  static bool removeEmptyTree(QString path);
+  static QString branchPath(QString file_path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
   static QString bcLinkToMagnet(QString bc_link);
