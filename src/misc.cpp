@@ -557,19 +557,6 @@ bool misc::isPreviewable(QString extension){
   return false;
 }
 
-bool misc::removeEmptyTree(QString path) {
-  QDir dir(path);
-  foreach(const QString &child, dir.entryList(QDir::AllDirs)) {
-    if(child == "." || child == "..") continue;
-    return removeEmptyTree(dir.absoluteFilePath(child));
-  }
-  const QString dir_name = dir.dirName();
-  if(dir.cdUp()) {
-    return dir.rmdir(dir_name);
-  }
-  return false;
-}
-
 QString misc::bcLinkToMagnet(QString bc_link) {
   QByteArray raw_bc = bc_link.toUtf8();
   raw_bc = raw_bc.mid(8); // skip bc://bt/
@@ -758,4 +745,10 @@ bool misc::isValidTorrentFile(const QString &torrent_path) {
     return false;
   }
   return true;
+}
+
+QString misc::branchPath(QString file_path)
+{
+  file_path.replace("\\", "/");
+  return file_path.left(file_path.lastIndexOf('/'));
 }

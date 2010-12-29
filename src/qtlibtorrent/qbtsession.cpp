@@ -281,7 +281,7 @@ void QBtSession::configureSession() {
   int i = 0;
   foreach (const QString &dir, scan_dirs) {
     qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i);
-    ScanFoldersModel::PathStatus ret = m_scanFolders->addPath(dir, downloadInDirList.at(i));
+    m_scanFolders->addPath(dir, downloadInDirList.at(i));
     ++i;
   }
   // * Export Dir
@@ -672,6 +672,9 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     foreach(const QString &uneeded_file, uneeded_files) {
       qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));
       misc::safeRemove(uneeded_file);
+      const QString parent_folder = misc::branchPath(uneeded_file);
+      qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
+      QDir().rmpath(parent_folder);
     }
   }
   // Remove it from torrent backup directory
@@ -2037,14 +2040,14 @@ void QBtSession::readAlerts() {
 #endif
       if(!hash.isEmpty()) {
         if(savePathsToRemove.contains(hash)) {
-          misc::removeEmptyTree(savePathsToRemove.take(hash));
+          QDir().rmpath(savePathsToRemove.take(hash));
         }
       } else {
         // XXX: Fallback
         QStringList hashes_deleted;
         foreach(const QString& key, savePathsToRemove.keys()) {
           // Attempt to delete
-          misc::removeEmptyTree(savePathsToRemove[key]);
+          QDir().rmpath(savePathsToRemove[key]);
           if(!QDir(savePathsToRemove[key]).exists()) {
             hashes_deleted << key;
           }
@@ -2065,7 +2068,7 @@ void QBtSession::readAlerts() {
         QDir old_save_dir(old_save_path);
         if(old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath)) {
           qDebug("Attempting to remove %s", qPrintable(old_save_path));
-          misc::removeEmptyTree(old_save_path);
+          QDir().rmpath(old_save_path);
         }
         if(defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
           qDebug("Storage has been moved, updating save path to %s", qPrintable(new_save_path));
