@@ -2446,6 +2446,29 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">大小</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">進度</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">不可預覽</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">抱歉, 我們無法預覽這個檔案</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -4986,23 +5009,23 @@ However, those plugins were disabled.</source>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>不可預覽</translation>
+        <translation type="obsolete">不可預覽</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>抱歉, 我們無法預覽這個檔案</translation>
+        <translation type="obsolete">抱歉, 我們無法預覽這個檔案</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名稱</translation>
+        <translation type="obsolete">名稱</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="obsolete">大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>進度</translation>
+        <translation type="obsolete">進度</translation>
     </message>
 </context>
 <context>
@@ -5026,6 +5049,10 @@ However, those plugins were disabled.</source>
     <message>
         <source>Search engines...</source>
         <translation>搜尋引擎...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

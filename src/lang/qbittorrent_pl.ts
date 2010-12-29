@@ -2410,6 +2410,29 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nazwa</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Rozmiar</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Postęp</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Nie ma możliwości podglądu</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Przepraszamy, podgląd pliku jest niedostępny</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -4960,23 +4983,23 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Nie ma możliwości podglądu</translation>
+        <translation type="obsolete">Nie ma możliwości podglądu</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Przepraszamy, podgląd pliku jest niedostępny</translation>
+        <translation type="obsolete">Przepraszamy, podgląd pliku jest niedostępny</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
 </context>
 <context>
@@ -5000,6 +5023,10 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Wtyczki wyszukiwania...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

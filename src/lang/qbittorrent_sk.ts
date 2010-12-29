@@ -2429,6 +2429,29 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Názov</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Veľkosť</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Náhľad nemožný</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -4970,23 +4993,23 @@ Tieto moduly však boli vypnuté.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Náhľad nemožný</translation>
+        <translation type="obsolete">Náhľad nemožný</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
+        <translation type="obsolete">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
 </context>
 <context>
@@ -5010,6 +5033,10 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Vyhľadávače...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

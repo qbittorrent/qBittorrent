@@ -2358,6 +2358,29 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Namn</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Storlek</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Förlopp</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Förhandsvisning inte möjlig</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Tyvärr, vi kan inte förhandsvisa den här filen</translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -4874,23 +4897,23 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Förhandsvisning inte möjlig</translation>
+        <translation type="obsolete">Förhandsvisning inte möjlig</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Tyvärr, vi kan inte förhandsvisa den här filen</translation>
+        <translation type="obsolete">Tyvärr, vi kan inte förhandsvisa den här filen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Namn</translation>
+        <translation type="obsolete">Namn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Storlek</translation>
+        <translation type="obsolete">Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Förlopp</translation>
+        <translation type="obsolete">Förlopp</translation>
     </message>
 </context>
 <context>
@@ -4914,6 +4937,10 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Sökmotorer...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

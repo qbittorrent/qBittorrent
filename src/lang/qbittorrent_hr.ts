@@ -2861,6 +2861,29 @@ QGroupBox {
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Ime</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Veličina</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Napredak</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Pregled nije moguć</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Oprostite, nije moguće pregledati datoteku</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -5482,23 +5505,23 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Pregled nije moguć</translation>
+        <translation type="obsolete">Pregled nije moguć</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Oprostite, nije moguće pregledati datoteku</translation>
+        <translation type="obsolete">Oprostite, nije moguće pregledati datoteku</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Ime</translation>
+        <translation type="obsolete">Ime</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veličina</translation>
+        <translation type="obsolete">Veličina</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Napredak</translation>
+        <translation type="obsolete">Napredak</translation>
     </message>
 </context>
 <context>
@@ -5522,6 +5545,10 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Tražilice ...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2496,6 +2496,29 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Име</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Величина</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Напредак</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Приказ немогућ</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Жалим не могу да прикажем овај фајл</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -5093,23 +5116,23 @@ However, those plugins were disabled.</source>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Приказ немогућ</translation>
+        <translation type="obsolete">Приказ немогућ</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Жалим не могу да прикажем овај фајл</translation>
+        <translation type="obsolete">Жалим не могу да прикажем овај фајл</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Име</translation>
+        <translation type="obsolete">Име</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Величина</translation>
+        <translation type="obsolete">Величина</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Напредак</translation>
+        <translation type="obsolete">Напредак</translation>
     </message>
 </context>
 <context>
@@ -5133,6 +5156,10 @@ However, those plugins were disabled.</source>
     <message>
         <source>Search engines...</source>
         <translation>Претраживачки модули...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

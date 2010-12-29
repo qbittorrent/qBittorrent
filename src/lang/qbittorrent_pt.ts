@@ -2438,6 +2438,29 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Tamanho</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Progresso</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Pré-visualização impossível</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Arquivo sem possível pré-visualização</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -4978,23 +5001,23 @@ Portanto os plugins foram desabilitados.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Pré-visualização impossível</translation>
+        <translation type="obsolete">Pré-visualização impossível</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Arquivo sem possível pré-visualização</translation>
+        <translation type="obsolete">Arquivo sem possível pré-visualização</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="obsolete">Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Tamanho</translation>
+        <translation type="obsolete">Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progresso</translation>
+        <translation type="obsolete">Progresso</translation>
     </message>
 </context>
 <context>
@@ -5018,6 +5041,10 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Máquinas de busca...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

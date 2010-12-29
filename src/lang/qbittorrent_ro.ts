@@ -2028,6 +2028,29 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nume</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Capacitate</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Progress</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Preview imposibil</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Nu putem face preview pentru acest fişier</translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -4507,23 +4530,23 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Preview imposibil</translation>
+        <translation type="obsolete">Preview imposibil</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Nu putem face preview pentru acest fişier</translation>
+        <translation type="obsolete">Nu putem face preview pentru acest fişier</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nume</translation>
+        <translation type="obsolete">Nume</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Capacitate</translation>
+        <translation type="obsolete">Capacitate</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progress</translation>
+        <translation type="obsolete">Progress</translation>
     </message>
 </context>
 <context>
@@ -4547,6 +4570,10 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     <message>
         <source>Search engines...</source>
         <translation>Motoare de căutare...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

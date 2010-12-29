@@ -2232,6 +2232,29 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Naam</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Grootte</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Voortgang</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Vooruitkijken onmogelijk</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
+    </message>
+</context>
+<context>
     <name>ProgramUpdater</name>
     <message>
         <source>Could not create the file %1</source>
@@ -4706,23 +4729,23 @@ selecteer alstublieft een er van:</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Vooruitkijken onmogelijk</translation>
+        <translation type="obsolete">Vooruitkijken onmogelijk</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
+        <translation type="obsolete">Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
 </context>
 <context>
@@ -4746,6 +4769,10 @@ selecteer alstublieft een er van:</translation>
     <message>
         <source>Search engines...</source>
         <translation>Zoekmachines...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

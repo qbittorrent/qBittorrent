@@ -2373,6 +2373,29 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
 </context>
 <context>
+    <name>PreviewSelect</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Ad</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Boyut</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">İlerleme</translation>
+    </message>
+    <message>
+        <source>Preview impossible</source>
+        <translation type="unfinished">Önizleme yapılamıyor</translation>
+    </message>
+    <message>
+        <source>Sorry, we can&apos;t preview this file</source>
+        <translation type="unfinished">Üzgünüz, bu dosyanın önizlemesi yapılamıyor</translation>
+    </message>
+</context>
+<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -4905,23 +4928,23 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <name>previewSelect</name>
     <message>
         <source>Preview impossible</source>
-        <translation>Önizleme yapılamıyor</translation>
+        <translation type="obsolete">Önizleme yapılamıyor</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation>Üzgünüz, bu dosyanın önizlemesi yapılamıyor</translation>
+        <translation type="obsolete">Üzgünüz, bu dosyanın önizlemesi yapılamıyor</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Ad</translation>
+        <translation type="obsolete">Ad</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Boyut</translation>
+        <translation type="obsolete">Boyut</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>İlerleme</translation>
+        <translation type="obsolete">İlerleme</translation>
     </message>
 </context>
 <context>
@@ -4945,6 +4968,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>Search engines...</source>
         <translation>Arama motorları...</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
