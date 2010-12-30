@@ -779,9 +779,12 @@ void MainWindow::dropEvent(QDropEvent *event) {
   if(event->mimeData()->hasUrls()) {
     const QList<QUrl> urls = event->mimeData()->urls();
     foreach(const QUrl &url, urls) {
-      const QString tmp = url.toString().trimmed();
-      if(!tmp.isEmpty())
-        files << url.toString();
+      if(!url.isEmpty()) {
+        if(url.scheme().compare("file", Qt::CaseInsensitive) == 0)
+          files << url.toLocalFile();
+        else
+          files << url.toString();
+      }
     }
   } else {
     files = event->mimeData()->text().split(QString::fromUtf8("\n"));
@@ -790,13 +793,8 @@ void MainWindow::dropEvent(QDropEvent *event) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString file, files) {
-#ifdef Q_WS_WIN
-    file = file.trimmed().replace(QString::fromUtf8("file:///"), QString::fromUtf8(""), Qt::CaseInsensitive);
-#else
-    file = file.trimmed().replace(QString::fromUtf8("file://"), QString::fromUtf8(""), Qt::CaseInsensitive);
-#endif
-    qDebug("Dropped file %s on download list", file.toLocal8Bit().data());
-    if(file.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || file.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
+    qDebug("Dropped file %s on download list", qPrintable(file));
+    if(misc::isUrl(file)) {
       QBtSession::instance()->downloadFromUrl(file);
       continue;
     }
@@ -874,7 +872,7 @@ void MainWindow::processParams(const QStringList& params) {
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach(QString param, params) {
     param = param.trimmed();
-    if(param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
+    if(misc::isUrl(param)) {
       QBtSession::instance()->downloadFromUrl(param);
     }else{
       if(param.startsWith("bc://bt/", Qt::CaseInsensitive)) {

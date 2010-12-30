@@ -156,6 +156,7 @@ public:
   static QString updateLabelInSavePath(const QString& defaultSavePath, const QString &save_path, const QString &old_label, const QString &new_label);
 
   static bool sameFiles(const QString &path1, const QString &path2);
+  static bool isUrl(const QString &s);
   static void copyDir(QString src_path, QString dst_path);
   static QString toValidFileSystemName(QString filename);
   static bool isValidFileSystemName(QString filename);
@@ -180,6 +181,7 @@ public:
   static QString friendlyUnit(double val);
   static bool isPreviewable(QString extension);
   static QString branchPath(QString file_path);
+  static QString fileName(QString file_path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
   static QString bcLinkToMagnet(QString bc_link);

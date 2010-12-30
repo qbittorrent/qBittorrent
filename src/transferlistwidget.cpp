@@ -139,11 +139,7 @@ TorrentModel* TransferListWidget::getSourceModel() const {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
-#ifdef Q_WS_WIN
-  QDesktopServices::openUrl(QUrl(QString("file:///")+filePath));
-#else
-  QDesktopServices::openUrl(QUrl(QString("file://")+filePath));
-#endif
+  QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
 }
 
 void TransferListWidget::setRefreshInterval(int t) {
@@ -201,11 +197,7 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     }
     break;
   case OPEN_DEST:
-#ifdef Q_WS_WIN
-    QDesktopServices::openUrl(QUrl("file:///" + h.save_path()));
-#else
-    QDesktopServices::openUrl(QUrl("file://" + h.save_path()));
-#endif
+    QDesktopServices::openUrl(QUrl::fromLocalFile(h.save_path()));
     break;
   }
 }
@@ -413,11 +405,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
       qDebug("Opening path at %s", qPrintable(savePath));
       if(!pathsList.contains(savePath)) {
         pathsList.append(savePath);
-#ifdef Q_WS_WIN
-        QDesktopServices::openUrl(QUrl(QString("file:///")+savePath));
-#else
-        QDesktopServices::openUrl(QUrl(QString("file://")+savePath));
-#endif
+        QDesktopServices::openUrl(QUrl::fromLocalFile(savePath));
       }
     }
   }

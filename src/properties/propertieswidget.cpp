@@ -451,11 +451,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     h.flush_cache();
 #endif
     if(QFile::exists(file_path)) {
-#ifdef Q_WS_WIN
-      QDesktopServices::openUrl(QUrl("file:///"+file_path));
-#else
-      QDesktopServices::openUrl(QUrl("file://"+file_path));
-#endif
+      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
     }
@@ -477,11 +473,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     h.flush_cache();
 #endif
     if(QFile::exists(file_path)) {
-#ifdef Q_WS_WIN
-      QDesktopServices::openUrl(QUrl("file:///"+file_path));
-#else
-      QDesktopServices::openUrl(QUrl("file://"+file_path));
-#endif
+      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
     }

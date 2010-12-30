@@ -75,22 +75,18 @@ engineSelectDlg::~engineSelectDlg() {
 void engineSelectDlg::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
   QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
-  QString file;
-  foreach(file, files) {
+  foreach(QString file, files) {
     qDebug("dropped %s", qPrintable(file));
-#ifdef Q_WS_WIN
-    file = file.replace("file:///", "");
-#else
-    file = file.replace("file://", "");
-#endif
-    if(file.startsWith("http://", Qt::CaseInsensitive) || file.startsWith("https://", Qt::CaseInsensitive) || file.startsWith("ftp://", Qt::CaseInsensitive)) {
+    if(misc::isUrl(file)) {
       setCursor(QCursor(Qt::WaitCursor));
       downloader->downloadUrl(file);
       continue;
     }
     if(file.endsWith(".py", Qt::CaseInsensitive)) {
-      QString plugin_name = file.split(QDir::separator()).last();
-      plugin_name.replace(".py", "");
+      if(file.startsWith("file:", Qt::CaseInsensitive))
+        file = QUrl(file).toLocalFile();
+      QString plugin_name = misc::fileName(file);
+      plugin_name.chop(3); // Remove extension
       installPlugin(file, plugin_name);
     }
   }

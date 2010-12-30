@@ -856,36 +856,32 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if(!path.endsWith(".torrent"))
     if(QFile::rename(path, path+".torrent")) path += ".torrent";
 #endif
-#ifdef Q_WS_WIN
-  const QString file = path.trimmed().replace("file:///", "", Qt::CaseInsensitive);
-#else
-  const QString file = path.trimmed().replace("file://", "", Qt::CaseInsensitive);
-#endif
-  if(file.isEmpty()) return h;
+  if(path.startsWith("file:", Qt::CaseInsensitive))
+    path = QUrl(path).toLocalFile();
+  if(path.isEmpty()) return h;
 
-  Q_ASSERT(!file.startsWith("http://", Qt::CaseInsensitive) && !file.startsWith("https://", Qt::CaseInsensitive)
-           && !file.startsWith("ftp://", Qt::CaseInsensitive));
+  Q_ASSERT(!misc::isUrl(path));
 
-  qDebug("Adding %s to download list", qPrintable(file));
+  qDebug("Adding %s to download list", qPrintable(path));
   boost::intrusive_ptr<torrent_info> t;
   try {
     // Getting torrent file informations
-    t = new torrent_info(file.toUtf8().constData());
+    t = new torrent_info(path.toUtf8().constData());
     if(!t->is_valid())
       throw std::exception();
   } catch(std::exception&) {
     if(!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
       //emit invalidTorrent(from_url);
-      misc::safeRemove(file);
+      misc::safeRemove(path);
     }else{
-      addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(file), QString::fromUtf8("red"));
-      //emit invalidTorrent(file);
+      addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(path), QString::fromUtf8("red"));
+      //emit invalidTorrent(path);
     }
     addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
     if(fromScanDir) {
       // Remove file
-      misc::safeRemove(file);
+      misc::safeRemove(path);
     }
     return h;
   }
@@ -902,14 +898,14 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) {
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
     }else{
-      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(file));
+      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(path));
     }
     // Check if the torrent contains trackers or url seeds we don't know about
     // and add them
     mergeTorrents(getTorrentHandle(hash), t);
 
     // Delete file if temporary
-    if(!from_url.isNull() || fromScanDir) misc::safeRemove(file);
+    if(!from_url.isNull() || fromScanDir) misc::safeRemove(path);
     return h;
   }
 
@@ -917,7 +913,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if(t->num_files() < 1) {
     addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
     // Delete file if temporary
-    if(!from_url.isNull() || fromScanDir) misc::safeRemove(file);
+    if(!from_url.isNull() || fromScanDir) misc::safeRemove(path);
     return h;
   }
 
@@ -978,7 +974,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   // Check if it worked
   if(!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
-    if(!from_url.isNull()) misc::safeRemove(file);
+    if(!from_url.isNull()) misc::safeRemove(path);
     return h;
   }
   // Remember root folder
@@ -1010,8 +1006,8 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 #endif
     // Backup torrent file
     const QString newFile = torrentBackup.absoluteFilePath(hash + ".torrent");
-    if(file != newFile)
-      QFile::copy(file, newFile);
+    if(path != newFile)
+      QFile::copy(path, newFile);
     // Copy the torrent file to the export folder
     if(torrentExport)
       exportTorrentFile(h);
@@ -1023,7 +1019,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   }
 
   // If temporary file, remove it
-  if(!from_url.isNull() || fromScanDir) misc::safeRemove(file);
+  if(!from_url.isNull() || fromScanDir) misc::safeRemove(path);
 
   // Display console message
   if(!from_url.isNull()) {
@@ -1033,9 +1029,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
     if(fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(file));
+      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(file));
+      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(path));
   }
 
   // Send torrent addition signal

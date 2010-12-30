@@ -752,3 +752,19 @@ QString misc::branchPath(QString file_path)
   file_path.replace("\\", "/");
   return file_path.left(file_path.lastIndexOf('/'));
 }
+
+bool misc::isUrl(const QString &s)
+{
+  const QString scheme = QUrl(s).scheme();
+  QRegExp is_url("http[s]?|ftp", Qt::CaseInsensitive);
+  return is_url.exactMatch(scheme);
+}
+
+QString misc::fileName(QString file_path)
+{
+  file_path.replace("\\", "/");
+  const int slash_index = file_path.lastIndexOf('/');
+  if(slash_index == -1)
+    return file_path;
+  return file_path.mid(slash_index);
+}
