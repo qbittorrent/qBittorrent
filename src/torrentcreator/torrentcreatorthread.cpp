@@ -109,7 +109,7 @@ void TorrentCreatorThread::run() {
     // calculate the hash for all pieces
 #if LIBTORRENT_VERSION_MINOR >= 16
     QString parent_path = input_path.replace("\\", "/");
-    QStringList parts = parent_path.split("/");
+    QStringList parts = parent_path.split("/"/*, QString::SkipEmptyParts*/);
     parts.removeLast();
     parent_path = parts.join("/");
     set_piece_hashes(t, parent_path.toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));

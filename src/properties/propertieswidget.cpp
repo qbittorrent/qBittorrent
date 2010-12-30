@@ -711,9 +711,7 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
     QString save_path_dir = new_path.replace("\\", "/");
     QString new_file_name;
     if(h.has_metadata() && h.num_files() == 1) {
-      QStringList parts = save_path_dir.split("/");
-      new_file_name = parts.takeLast(); // Skip file name
-      save_path_dir = parts.join("/");
+      save_path_dir = misc::branchPath(save_path_dir, true); // Skip file name
     }
     QDir savePath(misc::expandPath(save_path_dir));
     // Actually move storage

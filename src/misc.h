@@ -180,7 +180,7 @@ public:
   // value must be given in bytes
   static QString friendlyUnit(double val);
   static bool isPreviewable(QString extension);
-  static QString branchPath(QString file_path);
+  static QString branchPath(QString file_path, bool uses_slashes=false);
   static QString fileName(QString file_path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);

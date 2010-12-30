@@ -281,8 +281,7 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
 #else
     QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
 #endif
-    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    t->rename_file(0, path_parts.last().toUtf8().data());
+    t->rename_file(0, fileName(path).toUtf8().data());
     return QString::null;
   }
   QString root_folder;
@@ -316,8 +315,7 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
 #else
     QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
 #endif
-    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    t.rename_file(0, path_parts.last().toUtf8().data());
+    t.rename_file(0, fileName(path).toUtf8().data());
     return QString::null;
   }
   QString root_folder;
@@ -747,9 +745,10 @@ bool misc::isValidTorrentFile(const QString &torrent_path) {
   return true;
 }
 
-QString misc::branchPath(QString file_path)
+QString misc::branchPath(QString file_path, bool uses_slashes)
 {
-  file_path.replace("\\", "/");
+  if(!uses_slashes)
+    file_path.replace("\\", "/");
   return file_path.left(file_path.lastIndexOf('/'));
 }
 

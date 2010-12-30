@@ -65,10 +65,10 @@ public:
     type = TFILE;
     file_index = _file_index;
 #if LIBTORRENT_VERSION_MINOR >= 16
-    QString name = misc::toQStringU(t.files().file_path(f)).replace("\\", "/").split("/").last();
+    QString name = misc::fileName(misc::toQStringU(t.files().file_path(f)));
 #else
     Q_UNUSED(t);
-    QString name = misc::toQStringU(f.path.string()).split("/").last();
+    QString name = misc::toQStringU(f.path.filename());
 #endif
     // Do not display incomplete extensions
     if(name.endsWith(".!qB"))

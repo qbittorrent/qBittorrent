@@ -430,8 +430,8 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
     return;
   }
   if(url.endsWith(".py", Qt::CaseInsensitive)) {
-    QString plugin_name = url.split('/').last();
-    plugin_name.replace(".py", "");
+    QString plugin_name = misc::fileName(url);
+    plugin_name.chop(3); // Remove extension
     installPlugin(filePath, plugin_name);
     misc::safeRemove(filePath);
     return;

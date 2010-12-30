@@ -85,9 +85,9 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
   if(t->num_files() == 1) {
     // Single file torrent
 #if LIBTORRENT_VERSION_MINOR >= 16
-    const QString file_name = misc::toQStringU(fs.file_path(t->file_at(0))).replace("\\", "/").split("/").last();
+    const QString file_name = misc::fileName(misc::toQStringU(fs.file_path(t->file_at(0)));
 #else
-    const QString file_name = misc::toQStringU(t->file_at(0).path.leaf());
+    const QString file_name = misc::toQStringU(t->file_at(0).path.filename());
 #endif
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
     QString extension = misc::file_extension(file_name);

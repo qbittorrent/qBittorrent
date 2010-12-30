@@ -221,7 +221,7 @@ int QTorrentHandle::num_files() const {
 QString QTorrentHandle::filename_at(unsigned int index) const {
   Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
 #if LIBTORRENT_VERSION_MINOR > 15
-  return filepath_at(index).replace("\\", "/").split("/").last();
+  return misc::fileName(filepath_at(index));
 #else
   return misc::toQStringU(torrent_handle::get_torrent_info().file_at(index).path.leaf());
 #endif
