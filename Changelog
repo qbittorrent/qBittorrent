@@ -4,6 +4,7 @@
     - BUGFIX: Fix scan directories saving (closes #694768)
     - BUGFIX: Remove empty folders on torrent soft deletion (closes #695174)
     - BUGFIX: Make sure the main window has focus on startup
+    - BUGFIX: Fix ampersand display in search tabs (closes #695715)
 
 * Sun Dec 19 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.2
     - BUGFIX: Fix alternative speed icon staying pressed when disabled
