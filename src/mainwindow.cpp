@@ -798,17 +798,25 @@ void MainWindow::dropEvent(QDropEvent *event) {
       QBtSession::instance()->downloadFromUrl(file);
       continue;
     }
+    // Bitcomet or Magnet link
     if(file.startsWith("bc://bt/", Qt::CaseInsensitive)) {
       qDebug("Converting bc link to magnet link");
       file = misc::bcLinkToMagnet(file);
     }
     if(file.startsWith("magnet:", Qt::CaseInsensitive)) {
-      // FIXME: Possibly skipped torrent addition dialog
-      QBtSession::instance()->addMagnetUri(file);
+      if(useTorrentAdditionDialog) {
+        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
+        dialog->showLoadMagnetURI(file);
+      } else {
+        QBtSession::instance()->addMagnetUri(file);
+      }
       continue;
     }
+    // Local file
     if(useTorrentAdditionDialog) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
+      if(file.startsWith("file:", Qt::CaseInsensitive))
+        file = QUrl(file).toLocalFile();
       dialog->showLoad(file);
     }else{
       QBtSession::instance()->addTorrent(file);
