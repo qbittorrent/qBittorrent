@@ -10,6 +10,7 @@
     - FEATURE: Search engine results can now be opened in a Web browser
     - FEATURE: Added a search engine plugin to extratorrent.com
     - FEATURE: Added a search engine plugin for kickasstorrents.com
+    - FEATURE: Added auto-suspend upon downloads completion feature
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
     - COSMETIC: Display execution log as a tab instead of a modal window

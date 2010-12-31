@@ -1950,8 +1950,10 @@ void QBtSession::readAlerts() {
           qDebug("Emitting finishedTorrent() signal");
           emit finishedTorrent(h);
           qDebug("Received finished alert for %s", qPrintable(h.name()));
-          bool will_shutdown = (pref.shutdownWhenDownloadsComplete() || pref.shutdownqBTWhenDownloadsComplete())
-              && !hasDownloadingTorrents();
+          bool will_shutdown = (pref.shutdownWhenDownloadsComplete() ||
+                                pref.shutdownqBTWhenDownloadsComplete() ||
+                                pref.suspendWhenDownloadsComplete())
+                                && !hasDownloadingTorrents();
           // AutoRun program
           if(pref.isAutoRunEnabled())
             autoRunExternalProgram(h, will_shutdown);
@@ -1960,10 +1962,13 @@ void QBtSession::readAlerts() {
             sendNotificationEmail(h);
           // Auto-Shutdown
           if(will_shutdown) {
-            if(pref.shutdownWhenDownloadsComplete()) {
+            bool suspend = pref.suspendWhenDownloadsComplete();
+            bool shutdown = pref.shutdownWhenDownloadsComplete();
+            if(suspend || shutdown) {
               qDebug("Preparing for auto-shutdown because all downloads are complete!");
               // Disabling it for next time
               pref.setShutdownWhenDownloadsComplete(false);
+              pref.setSuspendWhenDownloadsComplete(false);
 #if LIBTORRENT_VERSION_MINOR < 15
               saveDHTEntry();
 #endif
@@ -1971,8 +1976,8 @@ void QBtSession::readAlerts() {
               saveSessionState();
               qDebug("Saving fast resume data");
               saveFastResumeData();
-              qDebug("Sending computer shutdown signal");
-              misc::shutdownComputer();
+              qDebug("Sending computer shutdown/suspend signal");
+              misc::shutdownComputer(suspend);
             }
             qDebug("Exiting the application");
             qApp->exit();

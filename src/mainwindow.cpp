@@ -124,6 +124,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   actionStart->setIcon(misc::getIcon("media-playback-start"));
   actionStart_All->setIcon(misc::getIcon("media-playback-start"));
   action_Import_Torrent->setIcon(misc::getIcon("document-import"));
+  menuAuto_Shutdown_on_downloads_completion->setIcon(misc::getIcon("application-exit"));
 
   QMenu *startAllMenu = new QMenu(this);
   startAllMenu->addAction(actionStart_All);
@@ -220,8 +221,19 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   displaySearchTab(actionSearch_engine->isChecked());
   displayRSSTab(actionRSS_Reader->isChecked());
   on_actionExecution_Logs_triggered(actionExecution_Logs->isChecked());
-  actionShutdown_when_downloads_complete->setChecked(pref.shutdownWhenDownloadsComplete());
-  actionShutdown_qBittorrent_when_downloads_complete->setChecked(pref.shutdownqBTWhenDownloadsComplete());
+
+  // Auto shutdown actions
+  QActionGroup * autoShutdownGroup = new QActionGroup(this);
+  autoShutdownGroup->setExclusive(true);
+  autoShutdownGroup->addAction(actionAutoShutdown_Disabled);
+  autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
+  autoShutdownGroup->addAction(actionAutoShutdown_system);
+  autoShutdownGroup->addAction(actionAutoSuspend_system);
+  actionAutoExit_qBittorrent->setChecked(pref.shutdownqBTWhenDownloadsComplete());
+  actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
+  actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
+  if(!autoShutdownGroup->checkedAction())
+    actionAutoShutdown_Disabled->setChecked(true);
 
   show();
 
@@ -1179,16 +1191,6 @@ void MainWindow::on_actionTop_tool_bar_triggered() {
   Preferences().setToolbarDisplayed(is_visible);
 }
 
-void MainWindow::on_actionShutdown_when_downloads_complete_triggered() {
-  bool is_checked = static_cast<QAction*>(sender())->isChecked();
-  Preferences().setShutdownWhenDownloadsComplete(is_checked);
-}
-
-void MainWindow::on_actionShutdown_qBittorrent_when_downloads_complete_triggered() {
-  bool is_checked = static_cast<QAction*>(sender())->isChecked();
-  Preferences().setShutdownqBTWhenDownloadsComplete(is_checked);
-}
-
 void MainWindow::on_actionSpeed_in_title_bar_triggered() {
   displaySpeedInTitle = static_cast<QAction*>(sender())->isChecked();
   Preferences().showSpeedInTitleBar(displaySpeedInTitle);
@@ -1278,4 +1280,22 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
       delete m_executionLog;
   }
   Preferences().setExecutionLogEnabled(checked);
+}
+
+void MainWindow::on_actionAutoExit_qBittorrent_toggled(bool enabled)
+{
+  qDebug() << Q_FUNC_INFO << enabled;
+  Preferences().setShutdownqBTWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoSuspend_system_toggled(bool enabled)
+{
+  qDebug() << Q_FUNC_INFO << enabled;
+  Preferences().setSuspendWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
+{
+  qDebug() << Q_FUNC_INFO << enabled;
+  Preferences().setShutdownWhenDownloadsComplete(enabled);
 }

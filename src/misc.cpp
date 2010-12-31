@@ -46,6 +46,7 @@
 #ifdef Q_WS_WIN
 #include <shlobj.h>
 #include <windows.h>
+#include <PowrProf.h>
 const int UNLEN = 256;
 #else
 #include <unistd.h>
@@ -194,15 +195,34 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 #endif
 }
 
-void misc::shutdownComputer() {
+void suspendComputer() {
 #ifdef Q_WS_X11
   // Use dbus to power off the system
   // dbus-send --print-reply --system --dest=org.freedesktop.Hal /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown
   QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());
-  computer.call("Shutdown");
+  computer.call("Suspend", 5);
 #endif
 #ifdef Q_WS_MAC
-  AEEventID EventToSend = kAEShutDown;
+
+#endif
+}
+
+void misc::shutdownComputer(bool sleep) {
+#ifdef Q_WS_X11
+  // Use dbus to power off the system
+  // dbus-send --print-reply --system --dest=org.freedesktop.Hal /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown
+  QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());
+  if(sleep)
+    computer.call("Suspend", 5);
+  else
+    computer.call("Shutdown");
+#endif
+#ifdef Q_WS_MAC
+  AEEventID EventToSend;
+  if(sleep)
+    EventToSend = kAESleep;
+  else
+    EventToSend = kAEShutDown;
   AEAddressDesc targetDesc;
   static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
   AppleEvent eventReply = {typeNull, NULL};
@@ -259,8 +279,11 @@ void misc::shutdownComputer() {
 
   if (GetLastError() != ERROR_SUCCESS)
     return;
-  bool ret = InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
-  qDebug("ret: %d", (int)ret);
+  bool ret;
+  if(sleep)
+    SetSuspendState(false, false, false);
+  else
+    InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
 
   // Disable shutdown privilege.
   tkp.Privileges[0].Attributes = 0;

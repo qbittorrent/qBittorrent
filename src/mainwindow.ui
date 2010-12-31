@@ -59,12 +59,20 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <widget class="QMenu" name="menuAuto_Shutdown_on_downloads_completion">
+     <property name="title">
+      <string>Auto-Shutdown on downloads completion</string>
+     </property>
+     <addaction name="actionAutoShutdown_Disabled"/>
+     <addaction name="actionAutoExit_qBittorrent"/>
+     <addaction name="actionAutoSuspend_system"/>
+     <addaction name="actionAutoShutdown_system"/>
+    </widget>
     <addaction name="actionCreate_torrent"/>
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
-    <addaction name="actionShutdown_when_downloads_complete"/>
-    <addaction name="actionShutdown_qBittorrent_when_downloads_complete"/>
+    <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
    </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
@@ -287,17 +295,6 @@
     <string>Search &amp;engine</string>
    </property>
   </action>
-  <action name="actionShutdown_when_downloads_complete">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Shutdown computer when downloads complete</string>
-   </property>
-   <property name="toolTip">
-    <string>Shutdown computer when downloads complete</string>
-   </property>
-  </action>
   <action name="actionLock_qBittorrent">
    <property name="text">
     <string>Lock qBittorrent</string>
@@ -307,14 +304,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
-   </property>
-  </action>
-  <action name="actionShutdown_qBittorrent_when_downloads_complete">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Shutdown qBittorrent when downloads complete</string>
    </property>
   </action>
   <action name="action_Import_Torrent">
@@ -352,6 +341,38 @@
    </property>
    <property name="toolTip">
     <string>Execution Log</string>
+   </property>
+  </action>
+  <action name="actionAutoExit_qBittorrent">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Exit qBittorrent</string>
+   </property>
+  </action>
+  <action name="actionAutoSuspend_system">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Suspend system</string>
+   </property>
+  </action>
+  <action name="actionAutoShutdown_system">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Shutdown system</string>
+   </property>
+  </action>
+  <action name="actionAutoShutdown_Disabled">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Disabled</string>
    </property>
   </action>
  </widget>

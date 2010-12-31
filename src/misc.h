@@ -137,7 +137,7 @@ public:
     return extension;
   }
 
-  static void shutdownComputer();
+  static void shutdownComputer(bool sleep=false);
 
   static bool safeRemove(QString file_path) {
     QFile MyFile(file_path);

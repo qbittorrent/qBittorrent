@@ -49,6 +49,7 @@ debug {
 
 LIBS += advapi32.lib shell32.lib
 LIBS += libeay32MD.lib ssleay32MD.lib
+LIBS += PowrProf.lib
 
 DEFINES += WITH_GEOIP_EMBEDDED
 message("On Windows, GeoIP database must be embedded.")
