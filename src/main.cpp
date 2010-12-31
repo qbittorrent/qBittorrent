@@ -263,9 +263,9 @@ int main(int argc, char *argv[]){
     painter.setFont(QFont("Arial", 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
     splash = new QSplashScreen(splash_img, Qt::WindowStaysOnTopHint);
+    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
     splash->show();
     app.processEvents();
-    QTimer::singleShot(2000, splash, SLOT(deleteLater()));
   }
 #endif
   // Set environment variable
@@ -297,7 +297,7 @@ int main(int argc, char *argv[]){
 #ifndef DISABLE_GUI
   MainWindow window(0, torrentCmdLine);
   if(!no_splash)
-    QObject::connect(splash, SIGNAL(destroyed()), &window, SLOT(raise()));
+    window.raise();
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
