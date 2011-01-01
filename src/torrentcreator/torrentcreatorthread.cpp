@@ -92,7 +92,7 @@ void TorrentCreatorThread::run() {
     add_files(fs, input_path.toUtf8().constData(), file_filter);
 #else
     // Adding files to the torrent
-    path full_path = complete(path(input_path.toUtf8().constData()));
+    path full_path = path(input_path.toUtf8().constData());
     add_files(fs, full_path, file_filter);
 #endif
     if(abort) return;
@@ -125,12 +125,19 @@ void TorrentCreatorThread::run() {
     t.set_priv(is_private);
     if(abort) return;
     // create the torrent and print it to out
-    ofstream out(complete(path((const char*)save_path.toUtf8())), std::ios_base::binary);
-    bencode(std::ostream_iterator<char>(out), t.generate());
-    emit updateProgress(100);
-    emit creationSuccess(save_path, parent_path);
-  }
-  catch (std::exception& e){
-    emit creationFailure(QString::fromUtf8(e.what()));
+    qDebug("Saving to %s", qPrintable(save_path));
+    std::vector<char> torrent;
+    bencode(back_inserter(torrent), t.generate());
+    QFile outfile(save_path);
+    if(outfile.open(QIODevice::WriteOnly)) {
+      outfile.write(&torrent[0], torrent.size());
+      outfile.close();
+      emit updateProgress(100);
+      emit creationSuccess(save_path, parent_path);
+    } else {
+      throw std::exception(tr("Cannot write the output file").toLocal8Bit().constData());
+    }
+  } catch (std::exception& e){
+    emit creationFailure(QString::fromLocal8Bit(e.what()));
   }
 }
