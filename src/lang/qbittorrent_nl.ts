@@ -160,6 +160,10 @@ p, li { white-space: pre-wrap; }
         <source>Check for software updates</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use system icon theme</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
