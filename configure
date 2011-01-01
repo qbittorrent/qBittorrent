@@ -21,6 +21,7 @@ Dependency options:
   --disable-gui                                   Disable qBittorrent
                                                  Graphical user interface for
                                                  headless running
+  --enable-debug                                  Enable debug mode
   --with-libboost-inc=[path]                      Path to libboost include
                                                  files
   --with-libboost-lib=[path]                      Path to libboost library
@@ -158,6 +159,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--enable-debug)
+			QC_ENABLE_DEBUG="Y"
+			shift
+			;;
+
 		--with-libboost-inc=*)
 			QC_WITH_LIBBOOST_INC=$optarg
 			shift
@@ -215,6 +221,7 @@ echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_DISABLE_GUI=$QC_DISABLE_GUI
+echo QC_ENABLE_DEBUG=$QC_ENABLE_DEBUG
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBBOOST_LIB=$QC_WITH_LIBBOOST_LIB
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
@@ -328,6 +335,7 @@ cat >$1/modules.cpp <<EOT
 -----BEGIN QCMOD-----
 name: Qt >= 4.5
 arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
+arg: enable-debug, Enable debug mode
 -----END QCMOD-----
 */
 class qc_qt4 : public ConfObj
@@ -338,9 +346,14 @@ public:
 	QString shortname() const { return "Qt 4.5"; }
 	bool exec()
 	{
+                // NOX mode
 		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
 			conf->addExtra("CONFIG += nox");
-		}	
+		}
+                // Debug mode
+                if(!conf->getenv("QC_ENABLE_DEBUG").isEmpty()) {
+                  conf->addExtra("CONFIG += debug");
+                }
 		return(QT_VERSION >= 0x040500);
 	}
 };
@@ -1604,6 +1617,7 @@ export BINDIR
 export DATADIR
 export EX_QTDIR
 export QC_DISABLE_GUI
+export QC_ENABLE_DEBUG
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBBOOST_LIB
 export QC_DISABLE_libnotify
