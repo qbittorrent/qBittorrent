@@ -39,7 +39,7 @@
 #include <QDir>
 #include <libtorrent/torrent_info.hpp>
 #include "proplistdelegate.h"
-#include "misc.h"
+#include "iconprovider.h"
 
 enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
 enum TreeItemType {TFILE, FOLDER, ROOT};
@@ -434,9 +434,9 @@ public:
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
     if(index.column() == 0 && role == Qt::DecorationRole) {
       if(item->isFolder())
-        return misc::getIcon("inode-directory");
+        return IconProvider::instance()->getIcon("inode-directory");
       else
-        return misc::getIcon("text-plain");
+        return IconProvider::instance()->getIcon("text-plain");
     }
     if(index.column() == 0 && role == Qt::CheckStateRole) {
       if(item->data(TreeItem::COL_PRIO).toInt() == IGNORED)

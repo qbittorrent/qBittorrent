@@ -131,7 +131,8 @@ nox {
               hidabletabwidget.h \
               sessionapplication.h \
               torrentimportdlg.h \
-              executionlog.h
+              executionlog.h \
+              iconprovider.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -140,7 +141,8 @@ nox {
              sessionapplication.cpp \
              torrentimportdlg.cpp \
              executionlog.cpp \
-             previewselect.cpp
+             previewselect.cpp \
+             iconprovider.cpp
 
   win32 {
     HEADERS += programupdater.h

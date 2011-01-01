@@ -54,6 +54,7 @@
 #include "pieceavailabilitybar.h"
 #include "qinisettings.h"
 #include "proptabbar.h"
+#include "iconprovider.h"
 
 using namespace libtorrent;
 
@@ -62,10 +63,10 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 
   setupUi(this);
   // Icons
-  deleteWS_button->setIcon(misc::getIcon("list-remove"));
-  addWS_button->setIcon(misc::getIcon("list-add"));
-  trackerUpButton->setIcon(misc::getIcon("go-up"));
-  trackerDownButton->setIcon(misc::getIcon("go-down"));
+  deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
+  addWS_button->setIcon(IconProvider::instance()->getIcon("list-add"));
+  trackerUpButton->setIcon(IconProvider::instance()->getIcon("go-up"));
+  trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
 
   state = VISIBLE;
   setEnabled(false);
@@ -485,7 +486,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1) {
-    actRename = myFilesLlistMenu.addAction(misc::getIcon("edit-rename"), tr("Rename..."));
+    actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;

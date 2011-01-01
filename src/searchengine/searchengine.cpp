@@ -56,6 +56,7 @@
 #include "searchlistdelegate.h"
 #include "qinisettings.h"
 #include "mainwindow.h"
+#include "iconprovider.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 
@@ -63,10 +64,10 @@
 SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(parent) {
   setupUi(this);
   // Icons
-  search_button->setIcon(misc::getIcon("edit-find"));
-  download_button->setIcon(misc::getIcon("download"));
-  goToDescBtn->setIcon(misc::getIcon("application-x-mswinurl"));
-  enginesButton->setIcon(misc::getIcon("preferences-system-network"));
+  search_button->setIcon(IconProvider::instance()->getIcon("edit-find"));
+  download_button->setIcon(IconProvider::instance()->getIcon("download"));
+  goToDescBtn->setIcon(IconProvider::instance()->getIcon("application-x-mswinurl"));
+  enginesButton->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
   // new qCompleter to the search pattern
   startSearchHistory();
   createCompleter();
@@ -76,7 +77,7 @@ SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(
 #else
   // Add close tab button
   closeTab_button = new QPushButton();
-  closeTab_button->setIcon(misc::getIcon("tab-close"));
+  closeTab_button->setIcon(IconProvider::instance()->getIcon("tab-close"));
   closeTab_button->setFlat(true);
   tabWidget->setCornerWidget(closeTab_button);
   connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
@@ -205,11 +206,11 @@ SearchEngine::~SearchEngine(){
 
 void SearchEngine::displayPatternContextMenu(QPoint) {
   QMenu myMenu(this);
-  QAction cutAct(misc::getIcon("edit-cut"), tr("Cut"), &myMenu);
-  QAction copyAct(misc::getIcon("edit-copy"), tr("Copy"), &myMenu);
-  QAction pasteAct(misc::getIcon("edit-paste"), tr("Paste"), &myMenu);
-  QAction clearAct(misc::getIcon("edit-clear"), tr("Clear field"), &myMenu);
-  QAction clearHistoryAct(misc::getIcon("edit-clear-history"), tr("Clear completion history"), &myMenu);
+  QAction cutAct(IconProvider::instance()->getIcon("edit-cut"), tr("Cut"), &myMenu);
+  QAction copyAct(IconProvider::instance()->getIcon("edit-copy"), tr("Copy"), &myMenu);
+  QAction pasteAct(IconProvider::instance()->getIcon("edit-paste"), tr("Paste"), &myMenu);
+  QAction clearAct(IconProvider::instance()->getIcon("edit-clear"), tr("Clear field"), &myMenu);
+  QAction clearHistoryAct(IconProvider::instance()->getIcon("edit-clear-history"), tr("Clear completion history"), &myMenu);
   bool hasCopyAct = false;
   if(search_pattern->hasSelectedText()) {
     myMenu.addAction(&cutAct);

@@ -48,6 +48,7 @@
 #include "preferences.h"
 #include "qinisettings.h"
 #include "torrentmodel.h"
+#include "iconprovider.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -137,11 +138,11 @@ protected:
   void setItemHover(bool hover) {
     Q_ASSERT(itemHover);
     if(hover) {
-      itemHover->setData(Qt::DecorationRole, misc::getIcon("folder-documents.png"));
+      itemHover->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("folder-documents.png"));
       itemHover->setSelected(true);
       //setCurrentItem(itemHover);
     } else {
-      itemHover->setData(Qt::DecorationRole, misc::getIcon("inode-directory.png"));
+      itemHover->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory.png"));
       //itemHover->setSelected(false);
       itemHover = 0;
     }
@@ -247,10 +248,10 @@ public:
     // Add Label filters
     QListWidgetItem *allLabels = new QListWidgetItem(labelFilters);
     allLabels->setData(Qt::DisplayRole, QVariant(tr("All labels") + " (0)"));
-    allLabels->setData(Qt::DecorationRole, misc::getIcon("inode-directory"));
+    allLabels->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
     QListWidgetItem *noLabel = new QListWidgetItem(labelFilters);
     noLabel->setData(Qt::DisplayRole, QVariant(tr("Unlabeled") + " (0)"));
-    noLabel->setData(Qt::DecorationRole, misc::getIcon("inode-directory"));
+    noLabel->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
 
     // Load settings
     loadSettings();
@@ -291,7 +292,7 @@ public:
       qDebug("Creating label QListWidgetItem: %s", qPrintable(label));
       QListWidgetItem *newLabel = new QListWidgetItem();
       newLabel->setText(label + " (0)");
-      newLabel->setData(Qt::DecorationRole, misc::getIcon("inode-directory"));
+      newLabel->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
       labelFilters->addItem(newLabel);
     }
   }
@@ -321,7 +322,7 @@ protected slots:
     if(label.isEmpty() || customLabels.contains(label)) return;
     QListWidgetItem *newLabel = new QListWidgetItem();
     newLabel->setText(label + " (0)");
-    newLabel->setData(Qt::DecorationRole, misc::getIcon("inode-directory"));
+    newLabel->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
     labelFilters->addItem(newLabel);
     customLabels.insert(label, 0);
     Preferences().addTorrentLabel(label);
@@ -331,12 +332,12 @@ protected slots:
     QMenu labelMenu(labelFilters);
     QAction *removeAct = 0;
     if(!labelFilters->selectedItems().empty() && labelFilters->row(labelFilters->selectedItems().first()) > 1)
-      removeAct = labelMenu.addAction(misc::getIcon("list-remove"), tr("Remove label"));
-    QAction *addAct = labelMenu.addAction(misc::getIcon("list-add"), tr("Add label..."));
+      removeAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove label"));
+    QAction *addAct = labelMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add label..."));
     labelMenu.addSeparator();
-    QAction *startAct = labelMenu.addAction(misc::getIcon("media-playback-start"), tr("Resume torrents"));
-    QAction *pauseAct = labelMenu.addAction(misc::getIcon("media-playback-pause"), tr("Pause torrents"));
-    QAction *deleteTorrentsAct = labelMenu.addAction(misc::getIcon("edit-delete"), tr("Delete torrents"));
+    QAction *startAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
+    QAction *pauseAct = labelMenu.addAction(IconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
+    QAction *deleteTorrentsAct = labelMenu.addAction(IconProvider::instance()->getIcon("edit-delete"), tr("Delete torrents"));
     QAction *act = 0;
     act = labelMenu.exec(QCursor::pos());
     if(act) {

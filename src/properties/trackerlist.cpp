@@ -39,9 +39,10 @@
 #include "trackerlist.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
-#include "misc.h"
+#include "iconprovider.h"
 #include "qbtsession.h"
 #include "qinisettings.h"
+#include "misc.h"
 
 using namespace libtorrent;
 
@@ -341,13 +342,13 @@ void TrackerList::showTrackerListMenu(QPoint) {
   //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
   QMenu menu;
   // Add actions
-  QAction *addAct = menu.addAction(misc::getIcon("list-add"), tr("Add a new tracker..."));
+  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
   QAction *delAct = 0;
   if(!getSelectedTrackerItems().isEmpty()) {
-    delAct = menu.addAction(misc::getIcon("list-remove"), tr("Remove tracker"));
+    delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
   }
   menu.addSeparator();
-  QAction *reannounceAct = menu.addAction(misc::getIcon("view-refresh"), tr("Force reannounce"));
+  QAction *reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce"));
   QAction *act = menu.exec(QCursor::pos());
   if(act == 0) return;
   if(act == addAct) {

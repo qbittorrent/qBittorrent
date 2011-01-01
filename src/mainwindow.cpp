@@ -70,6 +70,7 @@
 #include "rsssettings.h"
 #include "torrentmodel.h"
 #include "executionlog.h"
+#include "iconprovider.h"
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -102,29 +103,29 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
   // Setting icons
   this->setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
-  actionOpen->setIcon(misc::getIcon("list-add"));
-  actionDownload_from_URL->setIcon(misc::getIcon("insert-link"));
+  actionOpen->setIcon(IconProvider::instance()->getIcon("list-add"));
+  actionDownload_from_URL->setIcon(IconProvider::instance()->getIcon("insert-link"));
   actionSet_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionSet_global_upload_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")));
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
-  actionCreate_torrent->setIcon(misc::getIcon("document-edit"));
-  actionAbout->setIcon(misc::getIcon("help-about"));
-  actionBugReport->setIcon(misc::getIcon("tools-report-bug"));
-  actionDecreasePriority->setIcon(misc::getIcon("go-down"));
-  actionDelete->setIcon(misc::getIcon("list-remove"));
-  actionDocumentation->setIcon(misc::getIcon("help-contents"));
-  actionDonate_money->setIcon(misc::getIcon("wallet-open"));
-  actionExit->setIcon(misc::getIcon("application-exit"));
-  actionIncreasePriority->setIcon(misc::getIcon("go-up"));
-  actionLock_qBittorrent->setIcon(misc::getIcon("object-locked"));
-  actionOptions->setIcon(misc::getIcon("preferences-system"));
-  actionPause->setIcon(misc::getIcon("media-playback-pause"));
-  actionPause_All->setIcon(misc::getIcon("media-playback-pause"));
-  actionStart->setIcon(misc::getIcon("media-playback-start"));
-  actionStart_All->setIcon(misc::getIcon("media-playback-start"));
-  action_Import_Torrent->setIcon(misc::getIcon("document-import"));
-  menuAuto_Shutdown_on_downloads_completion->setIcon(misc::getIcon("application-exit"));
+  actionCreate_torrent->setIcon(IconProvider::instance()->getIcon("document-edit"));
+  actionAbout->setIcon(IconProvider::instance()->getIcon("help-about"));
+  actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
+  actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
+  actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
+  actionDocumentation->setIcon(IconProvider::instance()->getIcon("help-contents"));
+  actionDonate_money->setIcon(IconProvider::instance()->getIcon("wallet-open"));
+  actionExit->setIcon(IconProvider::instance()->getIcon("application-exit"));
+  actionIncreasePriority->setIcon(IconProvider::instance()->getIcon("go-up"));
+  actionLock_qBittorrent->setIcon(IconProvider::instance()->getIcon("object-locked"));
+  actionOptions->setIcon(IconProvider::instance()->getIcon("preferences-system"));
+  actionPause->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
+  actionPause_All->setIcon(IconProvider::instance()->getIcon("media-playback-pause"));
+  actionStart->setIcon(IconProvider::instance()->getIcon("media-playback-start"));
+  actionStart_All->setIcon(IconProvider::instance()->getIcon("media-playback-start"));
+  action_Import_Torrent->setIcon(IconProvider::instance()->getIcon("document-import"));
+  menuAuto_Shutdown_on_downloads_completion->setIcon(IconProvider::instance()->getIcon("application-exit"));
 
   QMenu *startAllMenu = new QMenu(this);
   startAllMenu->addAction(actionStart_All);
@@ -168,7 +169,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   vSplitter->addWidget(hSplitter);
   vSplitter->setCollapsible(0, true);
   vSplitter->setCollapsible(1, false);
-  tabs->addTab(vSplitter, misc::getIcon("folder-remote"), tr("Transfers"));
+  tabs->addTab(vSplitter, IconProvider::instance()->getIcon("folder-remote"), tr("Transfers"));
 
   vboxLayout->addWidget(tabs);
   // Name filter
@@ -355,6 +356,7 @@ MainWindow::~MainWindow() {
   delete switchSearchShortcut2;
   delete switchTransferShortcut;
   delete switchRSSShortcut;
+  IconProvider::drop();
   // Delete QBtSession::instance() object
   qDebug("Deleting QBtSession::instance()");
   QBtSession::drop();
@@ -397,7 +399,7 @@ void MainWindow::displayRSSTab(bool enable) {
     if(!rssWidget) {
       rssWidget = new RSSImp(tabs);
       int index_tab = tabs->addTab(rssWidget, tr("RSS"));
-      tabs->setTabIcon(index_tab, misc::getIcon("application-rss+xml"));
+      tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("application-rss+xml"));
     }
   } else {
     if(rssWidget) {
@@ -411,7 +413,7 @@ void MainWindow::displaySearchTab(bool enable) {
     // RSS tab
     if(!searchEngine) {
       searchEngine = new SearchEngine(this);
-      tabs->insertTab(1, searchEngine, misc::getIcon("edit-find"), tr("Search"));
+      tabs->insertTab(1, searchEngine, IconProvider::instance()->getIcon("edit-find"), tr("Search"));
     }
   } else {
     if(searchEngine) {
@@ -1004,6 +1006,11 @@ void MainWindow::loadPreferences(bool configure_session) {
   // Torrent properties
   properties->reloadPreferences();
 
+  // Icon provider
+#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+  IconProvider::instance()->useSystemIconTheme(pref.useSystemIconTheme());
+#endif
+
   if(configure_session)
     QBtSession::instance()->configureSession();
 
@@ -1274,7 +1281,7 @@ void MainWindow::on_actionExecution_Logs_triggered(bool checked)
     Q_ASSERT(!m_executionLog);
     m_executionLog = new ExecutionLog(tabs);
     int index_tab = tabs->addTab(m_executionLog, tr("Execution Log"));
-    tabs->setTabIcon(index_tab, misc::getIcon("view-calendar-journal"));
+    tabs->setTabIcon(index_tab, IconProvider::instance()->getIcon("view-calendar-journal"));
   } else {
     if(m_executionLog)
       delete m_executionLog;

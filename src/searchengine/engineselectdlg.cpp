@@ -34,6 +34,7 @@
 #include "ico.h"
 #include "searchengine.h"
 #include "pluginsource.h"
+#include "iconprovider.h"
 #include <QProcess>
 #include <QHeaderView>
 #include <QMenu>
@@ -52,7 +53,7 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
   pluginsTree->header()->resizeSection(0, 170);
   pluginsTree->header()->resizeSection(1, 220);
   pluginsTree->hideColumn(ENGINE_ID);
-  actionUninstall->setIcon(misc::getIcon("list-remove"));
+  actionUninstall->setIcon(IconProvider::instance()->getIcon("list-remove"));
   connect(actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
   connect(pluginsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContextMenu(const QPoint&)));
   downloader = new downloadThread(this);

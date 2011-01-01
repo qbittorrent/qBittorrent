@@ -52,7 +52,7 @@
 #include "misc.h"
 #include "proplistdelegate.h"
 #include "torrentpersistentdata.h"
-
+#include "iconprovider.h"
 #include "torrentadditiondlg.h"
 
 using namespace libtorrent;
@@ -63,8 +63,8 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   // Icons
-  CancelButton->setIcon(misc::getIcon("dialog-cancel"));
-  OkButton->setIcon(misc::getIcon("list-add"));
+  CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
+  OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
   // Set Properties list model
   PropListModel = new TorrentFilesModel();
   connect(PropListModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabels()));
@@ -326,7 +326,7 @@ void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
   const QModelIndexList selectedRows = torrentContentList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
   if(selectedRows.size() == 1 && t->num_files() > 1) {
-    actRename = myFilesLlistMenu.addAction(misc::getIcon("edit-rename"), tr("Rename..."));
+    actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;

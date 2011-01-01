@@ -36,6 +36,9 @@
 #include "json.h"
 #include "qbtsession.h"
 #include "misc.h"
+#ifndef DISABLE_GUI
+#include "iconprovider.h"
+#endif
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
@@ -240,7 +243,11 @@ void HttpConnection::respond() {
   // Icons from theme
   qDebug() << "list[0]" << list[0];
   if(list[0] == "theme" && list.size() == 2) {
-    url = misc::getIconPath(list[1]);
+#ifdef DISABLE_GUI
+    url = ":/Icons/oxygen/"+list[1]+".png";
+#else
+    url = IconProvider::instance()->getIconPath(list[1]);
+#endif
     qDebug() << "There icon:" << url;
   } else {
     if (list[0] == "images") {

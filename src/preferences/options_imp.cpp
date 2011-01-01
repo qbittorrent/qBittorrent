@@ -50,6 +50,7 @@
 #include "scannedfoldersmodel.h"
 #include "qinisettings.h"
 #include "qbtsession.h"
+#include "iconprovider.h"
 
 using namespace libtorrent;
 
@@ -61,14 +62,14 @@ options_imp::options_imp(QWidget *parent):
   setAttribute(Qt::WA_DeleteOnClose);
   setModal(true);
   // Icons
-  tabSelection->item(TAB_UI)->setIcon(misc::getIcon("preferences-desktop"));
-  tabSelection->item(TAB_BITTORRENT)->setIcon(misc::getIcon("preferences-system-network"));
-  tabSelection->item(TAB_CONNECTION)->setIcon(misc::getIcon("network-wired"));
-  tabSelection->item(TAB_DOWNLOADS)->setIcon(misc::getIcon("download"));
-  tabSelection->item(TAB_SPEED)->setIcon(misc::getIcon("chronometer"));
-  tabSelection->item(TAB_WEBUI)->setIcon(misc::getIcon("network-server"));
-  tabSelection->item(TAB_ADVANCED)->setIcon(misc::getIcon("preferences-other"));
-  IpFilterRefreshBtn->setIcon(misc::getIcon("view-refresh"));
+  tabSelection->item(TAB_UI)->setIcon(IconProvider::instance()->getIcon("preferences-desktop"));
+  tabSelection->item(TAB_BITTORRENT)->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
+  tabSelection->item(TAB_CONNECTION)->setIcon(IconProvider::instance()->getIcon("network-wired"));
+  tabSelection->item(TAB_DOWNLOADS)->setIcon(IconProvider::instance()->getIcon("download"));
+  tabSelection->item(TAB_SPEED)->setIcon(IconProvider::instance()->getIcon("chronometer"));
+  tabSelection->item(TAB_WEBUI)->setIcon(IconProvider::instance()->getIcon("network-server"));
+  tabSelection->item(TAB_ADVANCED)->setIcon(IconProvider::instance()->getIcon("preferences-other"));
+  IpFilterRefreshBtn->setIcon(IconProvider::instance()->getIcon("view-refresh"));
 
   hsplitter->setCollapsible(0, false);
   hsplitter->setCollapsible(1, false);

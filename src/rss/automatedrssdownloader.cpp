@@ -43,7 +43,7 @@
 #include "qinisettings.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
-#include "misc.h"
+#include "iconprovider.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   QDialog(parent),
@@ -52,8 +52,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
 {
   ui->setupUi(this);
   // Icons
-  ui->removeRuleBtn->setIcon(misc::getIcon("list-remove"));
-  ui->addRuleBtn->setIcon(misc::getIcon("list-add"));
+  ui->removeRuleBtn->setIcon(IconProvider::instance()->getIcon("list-remove"));
+  ui->addRuleBtn->setIcon(IconProvider::instance()->getIcon("list-add"));
 
   // Ui Settings
   ui->listRules->setSortingEnabled(true);
@@ -361,17 +361,17 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
 {
   Q_UNUSED(pos);
   QMenu menu;
-  QAction *addAct = menu.addAction(misc::getIcon("list-add"), tr("Add new rule..."));
+  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
   QAction *delAct = 0;
   QAction *renameAct = 0;
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
   if(!selection.isEmpty()) {
     if(selection.count() == 1) {
-      delAct = menu.addAction(misc::getIcon("list-remove"), tr("Delete rule"));
+      delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
       menu.addSeparator();
-      renameAct = menu.addAction(misc::getIcon("edit-rename"), tr("Rename rule..."));
+      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
     } else {
-      delAct = menu.addAction(misc::getIcon("list-remove"), tr("Delete selected rules"));
+      delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
     }
   }
   QAction *act = menu.exec(QCursor::pos());
@@ -480,7 +480,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
     QFont f = treeFeedItem->font(0);
     f.setBold(true);
     treeFeedItem->setFont(0, f);
-    treeFeedItem->setData(0, Qt::DecorationRole, misc::getIcon("inode-directory"));
+    treeFeedItem->setData(0, Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
     treeFeedItem->setData(0, Qt::UserRole, feed->getUrl());
     ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
   }

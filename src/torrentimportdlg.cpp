@@ -37,7 +37,7 @@
 #include "qinisettings.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
-#include "misc.h"
+#include "iconprovider.h"
 
 using namespace libtorrent;
 
@@ -47,9 +47,9 @@ TorrentImportDlg::TorrentImportDlg(QWidget *parent) :
 {
   ui->setupUi(this);
   // Icons
-  ui->lbl_info->setPixmap(misc::getIcon("dialog-information").pixmap(ui->lbl_info->height()));
+  ui->lbl_info->setPixmap(IconProvider::instance()->getIcon("dialog-information").pixmap(ui->lbl_info->height()));
   ui->lbl_info->setFixedWidth(ui->lbl_info->height());
-  ui->importBtn->setIcon(misc::getIcon("document-import"));
+  ui->importBtn->setIcon(IconProvider::instance()->getIcon("document-import"));
   // Libtorrent < 0.15 does not support skipping file checking
 #if LIBTORRENT_VERSION_MINOR < 15
   ui->checkSkipCheck->setVisible(false);
