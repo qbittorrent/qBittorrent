@@ -1,4 +1,4 @@
-* Sat Jan 1 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
+* Sat Jan 1 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
     - BUGFIX: Fix priority up/down for multiple torrents at the same time (closes #692184)
     - BUGFIX: Make sure the number of torrents is properly set on startup (closes #694135)
     - BUGFIX: Fix scan directories saving (closes #694768)
