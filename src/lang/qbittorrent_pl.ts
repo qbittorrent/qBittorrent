@@ -1561,7 +1561,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished">Wyłącz komputer po zakończeniu pobierań</translation>
+        <translation type="obsolete">Wyłącz komputer po zakończeniu pobierań</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1573,7 +1573,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="unfinished">Zamknij qBittorrent po zakończeniu pobierań</translation>
+        <translation type="obsolete">Zamknij qBittorrent po zakończeniu pobierań</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1810,6 +1810,26 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished">Wyłączone</translation>
     </message>
 </context>
 <context>
@@ -3633,11 +3653,11 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>Nieprawidłowy plik torrent</translation>
+        <translation type="obsolete">Nieprawidłowy plik torrent</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>To nie jest prawidłowy plik torrent.</translation>
+        <translation type="obsolete">To nie jest prawidłowy plik torrent.</translation>
     </message>
 </context>
 <context>

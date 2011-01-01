@@ -1384,7 +1384,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Sluit de computer af wanneer de downloads voltooid zijn</translation>
+        <translation type="obsolete">Sluit de computer af wanneer de downloads voltooid zijn</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1396,7 +1396,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>Sluit qBittorrent af wanneer de downloads voltooid zijn</translation>
+        <translation type="obsolete">Sluit qBittorrent af wanneer de downloads voltooid zijn</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1632,6 +1632,26 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished">Uitgeschakeld</translation>
     </message>
 </context>
 <context>
@@ -3422,11 +3442,11 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>Ongeldig torrentbestand</translation>
+        <translation type="obsolete">Ongeldig torrentbestand</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>Dit is geen geldig torrentbestand.</translation>
+        <translation type="obsolete">Dit is geen geldig torrentbestand.</translation>
     </message>
 </context>
 <context>

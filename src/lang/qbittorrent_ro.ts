@@ -1188,19 +1188,11 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Shutdown computer when downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shutdown qBittorrent when downloads complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1435,6 +1427,26 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3200,14 +3212,6 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is not a valid torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

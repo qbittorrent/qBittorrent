@@ -1580,7 +1580,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Vypnúť počítač po dokončení sťahovaní</translation>
+        <translation type="obsolete">Vypnúť počítač po dokončení sťahovaní</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1592,7 +1592,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>Vypnúť qBittorrent po dokončení sťahovaní</translation>
+        <translation type="obsolete">Vypnúť qBittorrent po dokončení sťahovaní</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1829,6 +1829,26 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished">Vypnuté</translation>
     </message>
 </context>
 <context>
@@ -3647,11 +3667,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>Neplatný torrent</translation>
+        <translation type="obsolete">Neplatný torrent</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>Toto nie je platný torrent.</translation>
+        <translation type="obsolete">Toto nie je platný torrent.</translation>
     </message>
 </context>
 <context>

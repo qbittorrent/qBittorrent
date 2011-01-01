@@ -1597,7 +1597,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation>當下載結束後將電腦關機</translation>
+        <translation type="obsolete">當下載結束後將電腦關機</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1609,7 +1609,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>當下載完成後關閉 qBittorrent</translation>
+        <translation type="obsolete">當下載完成後關閉 qBittorrent</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1845,6 +1845,26 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Execution Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3663,11 +3683,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>無效的 torrent 檔案</translation>
+        <translation type="obsolete">無效的 torrent 檔案</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>這是一個無效的 torrent 檔案。</translation>
+        <translation type="obsolete">這是一個無效的 torrent 檔案。</translation>
     </message>
 </context>
 <context>

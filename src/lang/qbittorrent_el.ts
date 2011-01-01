@@ -1544,7 +1544,7 @@ No further notices will be issued.</source>
         <translation>&amp;Eργαλεία</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="71"/>
+        <location filename="../mainwindow.ui" line="79"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
@@ -1554,7 +1554,7 @@ No further notices will be issued.</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="80"/>
+        <location filename="../mainwindow.ui" line="88"/>
         <source>&amp;View</source>
         <translation>&amp;Προβολή</translation>
     </message>
@@ -1567,7 +1567,7 @@ No further notices will be issued.</source>
         <translation type="obsolete">Έ&amp;ξοδος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="153"/>
+        <location filename="../mainwindow.ui" line="161"/>
         <source>&amp;Options...</source>
         <translation>&amp;Ρυθμίσεις...</translation>
     </message>
@@ -1576,90 +1576,115 @@ No further notices will be issued.</source>
         <translation type="obsolete">Προσθήκη &amp;URL...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="192"/>
+        <location filename="../mainwindow.ui" line="200"/>
         <source>Torrent &amp;creator</source>
         <translation>Δημιουργός &amp;τόρεντ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="202"/>
+        <location filename="../mainwindow.ui" line="210"/>
         <source>Set upload limit...</source>
         <translation>Ρύθμιση ορίου αποστολής...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="207"/>
+        <location filename="../mainwindow.ui" line="215"/>
         <source>Set download limit...</source>
         <translation>Ρύθμιση ορίου λήψης...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="158"/>
+        <location filename="../mainwindow.ui" line="166"/>
         <source>&amp;About</source>
         <translation>&amp;Σχετικά</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="168"/>
+        <location filename="../mainwindow.ui" line="176"/>
         <source>&amp;Pause</source>
         <translation>&amp;Παύση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="173"/>
+        <location filename="../mainwindow.ui" line="181"/>
         <source>&amp;Delete</source>
         <translation>&amp;Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="343"/>
+        <location filename="../mainwindow.ui" line="332"/>
         <source>P&amp;ause All</source>
         <translation>Π&amp;αύση Όλων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="163"/>
+        <location filename="../mainwindow.ui" line="171"/>
         <source>&amp;Resume</source>
         <translation>&amp;Συνέχιση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="140"/>
+        <location filename="../mainwindow.ui" line="148"/>
         <source>&amp;Add torrent file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="145"/>
-        <location filename="../mainwindow.ui" line="148"/>
+        <location filename="../mainwindow.ui" line="153"/>
+        <location filename="../mainwindow.ui" line="156"/>
         <source>Exit</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="338"/>
+        <location filename="../mainwindow.ui" line="327"/>
         <source>R&amp;esume All</source>
         <translation>Σ&amp;υνέχιση Όλων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="182"/>
+        <location filename="../mainwindow.ui" line="190"/>
         <source>Visit &amp;Website</source>
         <translation>Επίσκεψη &amp;Ιστοσελίδας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="187"/>
+        <location filename="../mainwindow.ui" line="64"/>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="195"/>
         <source>Add &amp;link to torrent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="197"/>
+        <location filename="../mainwindow.ui" line="205"/>
         <source>Report a &amp;bug</source>
         <translation>Αναφορά &amp;Σφάλματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="212"/>
+        <location filename="../mainwindow.ui" line="220"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Έγγραφα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="217"/>
+        <location filename="../mainwindow.ui" line="225"/>
         <source>Set global download limit...</source>
         <translation>Ρύθμιση συνολικού ορίου λήψης...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="222"/>
+        <location filename="../mainwindow.ui" line="230"/>
         <source>Set global upload limit...</source>
         <translation>Ρύθμιση συνολικού ορίου αποστολής...</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="351"/>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="359"/>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="367"/>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="375"/>
+        <source>Disabled</source>
+        <translation type="unfinished">Απενεργοποιημένο</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
@@ -1670,91 +1695,88 @@ No further notices will be issued.</source>
         <translation type="obsolete">Καταγραφή γεγονότων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="295"/>
-        <location filename="../mainwindow.ui" line="298"/>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Αναστολή λειτουργίας υπολογιστή μετά την ολοκλήρωση των κατεβασμάτων</translation>
+        <translation type="obsolete">Αναστολή λειτουργίας υπολογιστή μετά την ολοκλήρωση των κατεβασμάτων</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="300"/>
         <location filename="../mainwindow.ui" line="303"/>
-        <location filename="../mainwindow.ui" line="306"/>
         <source>Lock qBittorrent</source>
         <translation>Κλείδωμα του qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="309"/>
+        <location filename="../mainwindow.ui" line="306"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="317"/>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>Έξοδος από το qBittorrent μετά την ολοκλήρωση των κατεβασμάτων</translation>
+        <translation type="obsolete">Έξοδος από το qBittorrent μετά την ολοκλήρωση των κατεβασμάτων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="322"/>
+        <location filename="../mainwindow.ui" line="311"/>
         <source>Import existing torrent...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="325"/>
+        <location filename="../mainwindow.ui" line="314"/>
         <source>Import torrent...</source>
         <translation>Εισαγωγή τόρεντ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="330"/>
+        <location filename="../mainwindow.ui" line="319"/>
         <source>Donate money</source>
         <translation>Κάντε μια δωρεά</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="333"/>
+        <location filename="../mainwindow.ui" line="322"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Αν σας άρεσε το qBittorrentq, σας παρακαλούμε κάντε μια δωρεά!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="351"/>
+        <location filename="../mainwindow.ui" line="340"/>
         <source>Execution &amp;Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="354"/>
-        <location filename="../mainwindow.cpp" line="1268"/>
+        <location filename="../mainwindow.ui" line="343"/>
+        <location filename="../mainwindow.cpp" line="1276"/>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="246"/>
-        <location filename="../mainwindow.ui" line="249"/>
+        <location filename="../mainwindow.ui" line="254"/>
+        <location filename="../mainwindow.ui" line="257"/>
         <source>Alternative speed limits</source>
         <translation>Εναλλακτικά όρια ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="279"/>
+        <location filename="../mainwindow.ui" line="287"/>
         <source>&amp;RSS reader</source>
         <translation>&amp;RSS αναγβώστης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="287"/>
+        <location filename="../mainwindow.ui" line="295"/>
         <source>Search &amp;engine</source>
         <translation>Μηχανή &amp;αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="257"/>
+        <location filename="../mainwindow.ui" line="265"/>
         <source>Top &amp;tool bar</source>
         <translation>Άνω μπάρα &amp;εργαλείων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="260"/>
+        <location filename="../mainwindow.ui" line="268"/>
         <source>Display top tool bar</source>
         <translation>Εμφάνιση άνω μπάρας εργαλείων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="268"/>
+        <location filename="../mainwindow.ui" line="276"/>
         <source>&amp;Speed in title bar</source>
         <translation>&amp;Ταχύτητα στην μπάρα τίτλου</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="271"/>
+        <location filename="../mainwindow.ui" line="279"/>
         <source>Show transfer speed in title bar</source>
         <translation>Ένδειξη ταχύτητας μεταφορών στην μπάρα τίτλου</translation>
     </message>
@@ -1767,102 +1789,102 @@ No further notices will be issued.</source>
         <translation type="obsolete">Εκκαθάριση καταγραφών</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="227"/>
+        <location filename="../mainwindow.ui" line="235"/>
         <source>Decrease priority</source>
         <translation>Μείωσε προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="235"/>
+        <location filename="../mainwindow.ui" line="243"/>
         <source>Increase priority</source>
         <translation>Αύξησε προτεραιότητα</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="99"/>
-        <location filename="../mainwindow.cpp" line="1192"/>
+        <location filename="../mainwindow.cpp" line="1200"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="136"/>
         <source>Set the password...</source>
         <translation>Καθορίστε τον κωδικό...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="170"/>
+        <location filename="../mainwindow.cpp" line="171"/>
         <source>Transfers</source>
         <translation>Μεταφορές</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="277"/>
         <source>Torrent file association</source>
         <translation>Συσχετισμός με αρχεία τόρεντ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="278"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>Το qBittorrent δεν είναι η προεπιλεγμένη εφαρμογή για το άνοιγμα αρχείων τόρεντ και Magnet link.
 Θέλετε να συσχετίσετε το qBittorrent με τα αρχεία τόρεντ και Magnet link?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <location filename="../mainwindow.cpp" line="607"/>
+        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>UI lock password</source>
         <translation>Κωδικός κλειδώματος UI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <location filename="../mainwindow.cpp" line="607"/>
+        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>Please type the UI lock password:</source>
         <translation>Παρακαλώ εισάγετε τον κωδικό κλειδώματος του UI:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="373"/>
         <source>Password update</source>
         <translation>Ανανέωση κωδικού</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="373"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Η ανανέωση του κωδικού για το UI πραγματοποιήθηκε επιτυχώς</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="387"/>
+        <location filename="../mainwindow.cpp" line="399"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
+        <location filename="../mainwindow.cpp" line="414"/>
         <source>Search</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="424"/>
         <source>Transfers (%1)</source>
         <translation>Μεταφορές (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="479"/>
+        <location filename="../mainwindow.cpp" line="491"/>
         <source>Download completion</source>
         <translation>Ολοκλήρωση λήψης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="479"/>
+        <location filename="../mainwindow.cpp" line="491"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Έχει τελειώσει η λήψη του &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="485"/>
+        <location filename="../mainwindow.cpp" line="497"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Σφάλμα I/O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="485"/>
+        <location filename="../mainwindow.cpp" line="497"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1871,162 +1893,162 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Αιτία: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="492"/>
+        <location filename="../mainwindow.cpp" line="504"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="494"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="496"/>
+        <location filename="../mainwindow.cpp" line="508"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="510"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="550"/>
         <source>Recursive download confirmation</source>
         <translation>Επιβεβαίωση σχετικού (recursive) κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="550"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Το τόρεντ %1 περιέχει άλλα αρχεία τόρεντ, θέλετε να συνεχίσετε και να τα κατεβάσετε?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="539"/>
-        <location filename="../mainwindow.cpp" line="692"/>
+        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="704"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
-        <location filename="../mainwindow.cpp" line="691"/>
+        <location filename="../mainwindow.cpp" line="552"/>
+        <location filename="../mainwindow.cpp" line="703"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="553"/>
         <source>Never</source>
         <translation>Ποτέ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="555"/>
+        <location filename="../mainwindow.cpp" line="567"/>
         <source>Url download error</source>
         <translation>Σφάλμα λήψης url</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="555"/>
+        <location filename="../mainwindow.cpp" line="567"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Αδυναμία λήψης αρχείου από το url: %1,αιτία: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="561"/>
+        <location filename="../mainwindow.cpp" line="573"/>
         <source>Global Upload Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Αποστολής</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="575"/>
+        <location filename="../mainwindow.cpp" line="587"/>
         <source>Global Download Speed Limit</source>
         <translation>Συνολικό Όριο Ταχύτητας Λήψης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="632"/>
         <source>Invalid password</source>
         <translation>Άκυρος κωδικός</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="632"/>
         <source>The password is invalid</source>
         <translation>Αυτός ο κωδικός είναι άκυρος</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="688"/>
+        <location filename="../mainwindow.cpp" line="700"/>
         <source>Exiting qBittorrent</source>
         <translation>Έξοδος από το qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="689"/>
+        <location filename="../mainwindow.cpp" line="701"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Μερικά αρχεία μεταφέρονται τώρα.
 Είστε σίγουρος οτι θέλετε να κλείσετε το qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="693"/>
+        <location filename="../mainwindow.cpp" line="705"/>
         <source>Always</source>
         <translation>Πάντα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="862"/>
         <source>Open Torrent Files</source>
         <translation>Άνοιγμα Αρχείων torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="845"/>
+        <location filename="../mainwindow.cpp" line="863"/>
         <source>Torrent Files</source>
         <translation>Αρχεία torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="924"/>
+        <location filename="../mainwindow.cpp" line="942"/>
         <source>Options were saved successfully.</source>
         <translation>Οι επιλογές αποθηκεύτηκαν επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1016"/>
+        <location filename="../mainwindow.cpp" line="1034"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1019"/>
-        <location filename="../mainwindow.cpp" line="1026"/>
+        <location filename="../mainwindow.cpp" line="1037"/>
+        <location filename="../mainwindow.cpp" line="1044"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Λήψης: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1022"/>
-        <location filename="../mainwindow.cpp" line="1028"/>
+        <location filename="../mainwindow.cpp" line="1040"/>
+        <location filename="../mainwindow.cpp" line="1046"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Ταχύτητα Αποστολής: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1033"/>
+        <location filename="../mainwindow.cpp" line="1051"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Κάτ.: %2/s, Αν.: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1230"/>
+        <location filename="../mainwindow.cpp" line="1238"/>
         <source>A newer version is available</source>
         <translation type="unfinished">Μια νεότερη έκδοση είναι διαθέσιμη</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1231"/>
+        <location filename="../mainwindow.cpp" line="1239"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Μια νεότερη έκδοση του qBittorrent είναι διαθέσιμη στο Sourceforge.
 Θα θέλατε να αναβαθμίσετε το QBittorrent στην έκδοση %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1246"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>Impossible to update qBittorrent</source>
         <translation type="unfinished">Αδυναμία ανανέωσης του qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1246"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished">Το qBittorrent απέτυχε να κάνει ανανέωση, αιτία: %1</translation>
     </message>
@@ -3014,7 +3036,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Αρχεία</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="500"/>
+        <location filename="../properties/propertieswidget.cpp" line="492"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
@@ -3059,82 +3081,82 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>μέγιστο %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="460"/>
-        <location filename="../properties/propertieswidget.cpp" line="486"/>
+        <location filename="../properties/propertieswidget.cpp" line="456"/>
+        <location filename="../properties/propertieswidget.cpp" line="478"/>
         <source>I/O Error</source>
         <translation>I/O Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="460"/>
+        <location filename="../properties/propertieswidget.cpp" line="456"/>
         <source>This file does not exist yet.</source>
         <translation>Αυτό το αρχείο δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="486"/>
+        <location filename="../properties/propertieswidget.cpp" line="478"/>
         <source>This folder does not exist yet.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="496"/>
+        <location filename="../properties/propertieswidget.cpp" line="488"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="541"/>
+        <location filename="../properties/propertieswidget.cpp" line="533"/>
         <source>Rename the file</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
+        <location filename="../properties/propertieswidget.cpp" line="534"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="546"/>
-        <location filename="../properties/propertieswidget.cpp" line="578"/>
+        <location filename="../properties/propertieswidget.cpp" line="538"/>
+        <location filename="../properties/propertieswidget.cpp" line="570"/>
         <source>The file could not be renamed</source>
         <translation>Αυτό το αρχείο δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="547"/>
+        <location filename="../properties/propertieswidget.cpp" line="539"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Αυτό το όνομα αρχείου περιέχει απαγορευμένους χαρακτήρες, παρακαλώ επιλέξτε ένα διαφορετικό.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="579"/>
-        <location filename="../properties/propertieswidget.cpp" line="617"/>
+        <location filename="../properties/propertieswidget.cpp" line="571"/>
+        <location filename="../properties/propertieswidget.cpp" line="609"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται σ&apos;αυτό το φάκελο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="616"/>
+        <location filename="../properties/propertieswidget.cpp" line="608"/>
         <source>The folder could not be renamed</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="654"/>
+        <location filename="../properties/propertieswidget.cpp" line="647"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="655"/>
+        <location filename="../properties/propertieswidget.cpp" line="648"/>
         <source>New url seed:</source>
         <translation>Νέο url διαμοιρασμού:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="660"/>
+        <location filename="../properties/propertieswidget.cpp" line="653"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="661"/>
+        <location filename="../properties/propertieswidget.cpp" line="654"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url διαμοιρασμού είναι ήδη στη λίστα.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="703"/>
-        <location filename="../properties/propertieswidget.cpp" line="706"/>
+        <location filename="../properties/propertieswidget.cpp" line="696"/>
+        <location filename="../properties/propertieswidget.cpp" line="699"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -3272,41 +3294,41 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Σφάλμα Web User Interface - Αδύνατο να συνδεθεί το Web UI στην θύρα %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="692"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>To &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων και τον σκληρό δίσκο.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="691"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="694"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>Το &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="767"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="770"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>Το &apos;%1&apos; δεν είναι ένα έγκυρο magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="783"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="900"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="902"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="786"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="901"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>Το &apos;%1&apos; είναι ήδη στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1028"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1027"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1032"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="837"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1030"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1035"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="840"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1029"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1034"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα των λαμβανόμενων.</translation>
@@ -3327,155 +3349,155 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="875"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="879"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="874"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="878"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="882"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="881"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="915"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="914"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Σφάλμα: Το τόρεντ %1 δεν περιέχει κανένα αρχείο.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1158"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1157"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι trackers προστέθηκαν στο υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1171"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1170"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι διαμοιραστές μέσω URL προστέθηκαν στο ήδη υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1507"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1506"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1509"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1508"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1677"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1676"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Το δικτυακό interface που ορίσατε είναι άκυρο: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1678"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1677"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Δοκιμή κάθε άλλου δικτυακού interface.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1692"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Αναμονή στην διεύθυνση ΙΡ %1 στο interface δικτύου %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1695"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1694"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Αποτυχία αναμονής στο interface δικτύου %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1841"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1840"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1929"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1928"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2557"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2563"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2567"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1883"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1882"/>
         <source>Torrent name: %1</source>
         <translation>Όνομα τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1884"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1883"/>
         <source>Torrent size: %1</source>
         <translation>Μέγεθος τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1885"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1884"/>
         <source>Save path: %1</source>
         <translation>Διαδρομή αποθήκευσης: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1886"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1885"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Το τόρεντ κατέβηκε σε %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1887"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1886"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Σας ευχαριστούμε που χρησιμοποιείτε το qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1889"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1888"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>Το κατέβασμα του [qBittorrent] %1 τελείωσε</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2128"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2125"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2218"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2219"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2223"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Τα μεγέθη των αρχείων δεν είναι σε αντιστοιχία για το τόρεντ %1, γίνεται παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2256"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2377"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2381"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -3869,13 +3891,13 @@ p, li { white-space: pre-wrap; }
         <translation>Παρακαλώ εισάγετε ένα σχέδιο εύρεσης πρώτα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="363"/>
-        <location filename="../searchengine/searchengine.cpp" line="459"/>
+        <location filename="../searchengine/searchengine.cpp" line="365"/>
+        <location filename="../searchengine/searchengine.cpp" line="461"/>
         <source>Results</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="438"/>
+        <location filename="../searchengine/searchengine.cpp" line="440"/>
         <source>Searching...</source>
         <translation>Αναζήτηση...</translation>
     </message>
@@ -3934,24 +3956,24 @@ Do you want to install it now?</source>
 Θέλετε να το εγκαταστήσετε τώρα?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="578"/>
+        <location filename="../searchengine/searchengine.cpp" line="580"/>
         <source>Search Engine</source>
         <translation>Μηχανή Αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="578"/>
-        <location filename="../searchengine/searchengine.cpp" line="593"/>
+        <location filename="../searchengine/searchengine.cpp" line="580"/>
+        <location filename="../searchengine/searchengine.cpp" line="595"/>
         <source>Search has finished</source>
         <translation>Η αναζήτηση τελείωσε</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="584"/>
+        <location filename="../searchengine/searchengine.cpp" line="586"/>
         <source>An error occured during search...</source>
         <translation>Σφάλμα κατά την εύρεση...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="582"/>
-        <location filename="../searchengine/searchengine.cpp" line="588"/>
+        <location filename="../searchengine/searchengine.cpp" line="584"/>
+        <location filename="../searchengine/searchengine.cpp" line="590"/>
         <source>Search aborted</source>
         <translation>Αναζήτηση διεκόπη</translation>
     </message>
@@ -3968,19 +3990,19 @@ Please install it manually.</source>
 Παρακαλώ εγκαταστήστε το χειροκίνητα.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="591"/>
+        <location filename="../searchengine/searchengine.cpp" line="593"/>
         <source>Search returned no results</source>
         <translation>Η αναζήτηση δεν έφερε αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="598"/>
+        <location filename="../searchengine/searchengine.cpp" line="600"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="634"/>
-        <location filename="../searchengine/searchengine.cpp" line="640"/>
+        <location filename="../searchengine/searchengine.cpp" line="636"/>
+        <location filename="../searchengine/searchengine.cpp" line="642"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -4277,14 +4299,12 @@ Please install it manually.</source>
         <translation>Παρακαλώ εισάγετε την τοποθεσία του τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="236"/>
         <source>Invalid torrent file</source>
-        <translation>Άκυρο αρχείο τόρεντ</translation>
+        <translation type="obsolete">Άκυρο αρχείο τόρεντ</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="236"/>
         <source>This is not a valid torrent file.</source>
-        <translation>Αυτό δεν είναι ένα έγκυρο αρχείο τόρεντ.</translation>
+        <translation type="obsolete">Αυτό δεν είναι ένα έγκυρο αρχείο τόρεντ.</translation>
     </message>
 </context>
 <context>
@@ -4710,7 +4730,7 @@ Please install it manually.</source>
         <translation type="obsolete">Χρόνος που απομένει</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="512"/>
+        <location filename="../transferlistwidget.cpp" line="500"/>
         <source>Column visibility</source>
         <translation>Εμφανισημότητα Κολώνας</translation>
     </message>
@@ -4750,7 +4770,7 @@ Please install it manually.</source>
         <translation type="obsolete">Αναλογία</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="752"/>
+        <location filename="../transferlistwidget.cpp" line="740"/>
         <source>Label</source>
         <translation>Ετικέτα</translation>
     </message>
@@ -4775,7 +4795,7 @@ Please install it manually.</source>
         <translation type="obsolete">Όριο ανεβάσματος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="228"/>
+        <location filename="../transferlistwidget.cpp" line="220"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
@@ -4788,155 +4808,155 @@ Please install it manually.</source>
         <translation type="obsolete">Αδύνατη η δημιουργία διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="460"/>
+        <location filename="../transferlistwidget.cpp" line="448"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Περιορισμός Ταχύτητας Λήψης torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="493"/>
+        <location filename="../transferlistwidget.cpp" line="481"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Περιορισμός Ταχύτητας Αποστολής torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="577"/>
+        <location filename="../transferlistwidget.cpp" line="565"/>
         <source>New Label</source>
         <translation>Νέα Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="577"/>
+        <location filename="../transferlistwidget.cpp" line="565"/>
         <source>Label:</source>
         <translation>Ετικέτα:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="582"/>
+        <location filename="../transferlistwidget.cpp" line="570"/>
         <source>Invalid label name</source>
         <translation>Άκυρο όνομα ετικέτας</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="582"/>
+        <location filename="../transferlistwidget.cpp" line="570"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Παρακαλώ μην χρισιμοποιείτε ειδικούς χαρακτήρες στο όνομα της ετικέτας.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="598"/>
+        <location filename="../transferlistwidget.cpp" line="586"/>
         <source>Rename</source>
         <translation>Μετονομασία</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="598"/>
+        <location filename="../transferlistwidget.cpp" line="586"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="632"/>
+        <location filename="../transferlistwidget.cpp" line="620"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Συνέχιση</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="634"/>
+        <location filename="../transferlistwidget.cpp" line="622"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Παύση</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="636"/>
+        <location filename="../transferlistwidget.cpp" line="624"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="638"/>
+        <location filename="../transferlistwidget.cpp" line="626"/>
         <source>Preview file...</source>
         <translation>Προεπισκόπηση αρχείου...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="640"/>
+        <location filename="../transferlistwidget.cpp" line="628"/>
         <source>Limit upload rate...</source>
         <translation>Όριο ταχύτητας αποστολής...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="642"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>Limit download rate...</source>
         <translation>Όριο ταχύτητας λήψης...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="796"/>
+        <location filename="../transferlistwidget.cpp" line="784"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="644"/>
+        <location filename="../transferlistwidget.cpp" line="632"/>
         <source>Open destination folder</source>
         <translation>Άνοιγμα φακέλου προορισμού</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="646"/>
+        <location filename="../transferlistwidget.cpp" line="634"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Μετακίνηση επάνω</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="636"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Μετακίνηση κάτω</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="638"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Μετακίνηση στην κορυφή</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="640"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Μετακίνηση στο τέλος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="642"/>
         <source>Set location...</source>
         <translation>Ρύθμιση τοποθεσίας...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="656"/>
+        <location filename="../transferlistwidget.cpp" line="644"/>
         <source>Force recheck</source>
         <translation>Αναγκαστικός επανέλεγχος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="658"/>
+        <location filename="../transferlistwidget.cpp" line="646"/>
         <source>Copy magnet link</source>
         <translation>Αντιγραφή magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="661"/>
+        <location filename="../transferlistwidget.cpp" line="649"/>
         <source>Super seeding mode</source>
         <translation>Λειτουργία ενισχυμένου διαμοιράσματος</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="665"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="667"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
         <source>Download in sequential order</source>
         <translation>Κατέβασμα σε συνεχή σειρά</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="670"/>
+        <location filename="../transferlistwidget.cpp" line="658"/>
         <source>Download first and last piece first</source>
         <translation>Κατέβασμα πρώτου και τελευταίου κομματιού στην αρχή</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="753"/>
+        <location filename="../transferlistwidget.cpp" line="741"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Νέα...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="754"/>
+        <location filename="../transferlistwidget.cpp" line="742"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Επαναφορά</translation>
@@ -5594,12 +5614,12 @@ Please install it manually.</source>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="179"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="175"/>
         <source>Uninstall warning</source>
         <translation>Προειδοποίηση απεγκατάστασης</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="179"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="175"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -5608,124 +5628,124 @@ However, those plugins were disabled.</source>
 Ωστόσο, αυτά τα plugin απενεργοποιήθηκαν.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="181"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="177"/>
         <source>Uninstall success</source>
         <translation>Επιτυχής απεγκατάσταση</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="345"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="341"/>
         <source>Select search plugins</source>
         <translation>Επιλέξτε plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="346"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="342"/>
         <source>qBittorrent search plugins</source>
         <translation>plugin αναζήτησης του qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="242"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="272"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="277"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="280"/>
         <source>Search plugin install</source>
         <translation>Εγκατάσταση plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="120"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="193"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="304"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="116"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="189"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="300"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="123"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="158"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="196"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="307"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="119"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="154"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="192"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="303"/>
         <source>No</source>
         <translation>Όχι</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="242"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="272"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="398"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="431"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="452"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="459"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="277"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="280"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="394"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="427"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="455"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="242"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Μια πιο πρόσφατη έκδοση plugin αναζήτησης %1 έχει ήδη εγκατασταθεί.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="398"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="431"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="452"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="459"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="394"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="427"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="455"/>
         <source>Search plugin update</source>
         <translation>Αναβάθμιση plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="431"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="452"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="427"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Λυπούμαστε, ο εξυπηρετητής αναβάθμισης δεν είναι προσωρινά διαθέσιμος.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="398"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="394"/>
         <source>All your plugins are already up to date.</source>
         <translation>Όλα τα plugin σας είναι ήδη αναβαθμισμένα.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="181"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="177"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Όλα τα επιλεγμένα plugin απεγκαταστάθηκαν επιτυχώς</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 δεν ήταν δυνατό να αναβαθμιστεί, παραμένει η παλιά έκδοση.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="272"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 δεν ήταν δυνατό να εγκατασταθεί.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="277"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 αναβαθμίστηκε επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="284"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="280"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Το plugin αναζήτησης %1 εγκαταστάθηκε επιτυχώς.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="459"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="455"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Λυπούμαστε, η εγκατάσταση του plugin αναζήτησης %1 απέτυχε.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="334"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="330"/>
         <source>New search engine plugin URL</source>
         <translation>Νέο URL plugin αναζήτησης</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="335"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="331"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -5733,76 +5753,76 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="262"/>
+        <location filename="../misc.cpp" line="286"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>Το qBittorrent θα απενεργοποιήσει τον υπολογιστή τώρα καθώς έχουν ολοκληρωθεί όλα τα κατεβάσματα.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="78"/>
+        <location filename="../misc.cpp" line="79"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="78"/>
+        <location filename="../misc.cpp" line="79"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="78"/>
+        <location filename="../misc.cpp" line="79"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="78"/>
+        <location filename="../misc.cpp" line="79"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="78"/>
+        <location filename="../misc.cpp" line="79"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="687"/>
+        <location filename="../misc.cpp" line="695"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1ώ %2λ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="692"/>
+        <location filename="../misc.cpp" line="700"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1μ %2ώ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="627"/>
-        <location filename="../misc.cpp" line="632"/>
-        <location filename="../misc.cpp" line="636"/>
-        <location filename="../misc.cpp" line="639"/>
+        <location filename="../misc.cpp" line="635"/>
+        <location filename="../misc.cpp" line="640"/>
         <location filename="../misc.cpp" line="644"/>
         <location filename="../misc.cpp" line="647"/>
+        <location filename="../misc.cpp" line="652"/>
+        <location filename="../misc.cpp" line="655"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="503"/>
+        <location filename="../misc.cpp" line="524"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="678"/>
+        <location filename="../misc.cpp" line="686"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1λ</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="682"/>
+        <location filename="../misc.cpp" line="690"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1λ</translation>
@@ -5999,129 +6019,129 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="233"/>
-        <location filename="../torrentadditiondlg.cpp" line="236"/>
+        <location filename="../torrentadditiondlg.cpp" line="229"/>
+        <location filename="../torrentadditiondlg.cpp" line="232"/>
         <source>Unable to decode torrent file:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="510"/>
-        <location filename="../torrentadditiondlg.cpp" line="515"/>
-        <location filename="../torrentadditiondlg.cpp" line="517"/>
+        <location filename="../torrentadditiondlg.cpp" line="506"/>
+        <location filename="../torrentadditiondlg.cpp" line="511"/>
+        <location filename="../torrentadditiondlg.cpp" line="513"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="198"/>
+        <location filename="../torrentadditiondlg.cpp" line="194"/>
         <source>Unable to decode magnet link:</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το magnet link:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="204"/>
+        <location filename="../torrentadditiondlg.cpp" line="200"/>
         <source>Magnet Link</source>
         <translation>Magnet Link</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="333"/>
+        <location filename="../torrentadditiondlg.cpp" line="329"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="377"/>
+        <location filename="../torrentadditiondlg.cpp" line="373"/>
         <source>Rename the file</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="378"/>
+        <location filename="../torrentadditiondlg.cpp" line="374"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="382"/>
-        <location filename="../torrentadditiondlg.cpp" line="412"/>
+        <location filename="../torrentadditiondlg.cpp" line="378"/>
+        <location filename="../torrentadditiondlg.cpp" line="408"/>
         <source>The file could not be renamed</source>
         <translation>Αυτό το αρχείο δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="383"/>
+        <location filename="../torrentadditiondlg.cpp" line="379"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Αυτό το όνομα αρχείου περιέχει απαγορευμένους χαρακτήρες, παρακαλώ επιλέξτε ένα διαφορετικό.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="413"/>
-        <location filename="../torrentadditiondlg.cpp" line="447"/>
+        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="443"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται σ&apos;αυτό το φάκελο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="446"/>
+        <location filename="../torrentadditiondlg.cpp" line="442"/>
         <source>The folder could not be renamed</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="494"/>
+        <location filename="../torrentadditiondlg.cpp" line="490"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 απομένουν μετά από το λήψη του torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="497"/>
+        <location filename="../torrentadditiondlg.cpp" line="493"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 επιπλέον απαιτούνται για τη λήψη)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="571"/>
+        <location filename="../torrentadditiondlg.cpp" line="567"/>
         <source>Empty save path</source>
         <translation>Κενή διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="571"/>
+        <location filename="../torrentadditiondlg.cpp" line="567"/>
         <source>Please enter a save path</source>
         <translation>Παρακαλώ εισάγετε μία διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="650"/>
+        <location filename="../torrentadditiondlg.cpp" line="646"/>
         <source>Save path creation error</source>
         <translation>Σφάλμα δημιουργίας διαδρομής αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="650"/>
+        <location filename="../torrentadditiondlg.cpp" line="646"/>
         <source>Could not create the save path</source>
         <translation>Δεν μπόρεσε να δημιουργηθεί η διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="588"/>
         <source>Invalid label name</source>
         <translation>Άκυρο όνομα ετικέτας</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="592"/>
+        <location filename="../torrentadditiondlg.cpp" line="588"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Παρακαλώ μην χρισιμοποιείτε ειδικούς χαρακτήρες στο όνομα της ετικέτας.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="635"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Seeding mode error</source>
         <translation>Σφάλμα λειτουργίας μοιράσματος</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="635"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Επιλέξατε προσπέλαση του ελέγχου αρχείων. Ωστόσο, τα τοπικά αρχεία δεν φαίνεται να υπάρχουν στον τρέχον φάκελο προορισμού. Παρακαλούμε απενεργοποιήστε αυτή τη λειτουργία ή ανανεώστε την διαδρομή αποθήκευσης.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="642"/>
+        <location filename="../torrentadditiondlg.cpp" line="638"/>
         <source>Invalid file selection</source>
         <translation>Άκυρη επιλογή αρχείου</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="642"/>
+        <location filename="../torrentadditiondlg.cpp" line="638"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Πρέπει να επιλέξετε τουλάχιστο ένα αρχείο του torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="337"/>
+        <location filename="../torrentadditiondlg.cpp" line="333"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>

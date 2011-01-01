@@ -1615,7 +1615,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Выключить компьютер когда закачки будут завершены</translation>
+        <translation type="obsolete">Выключить компьютер когда закачки будут завершены</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1627,7 +1627,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>Выключить qBittorrent когда загрузки будут завершены</translation>
+        <translation type="obsolete">Выключить qBittorrent когда загрузки будут завершены</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1864,6 +1864,26 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Execution Log</source>
         <translation>Лог выполнения</translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished">Выключено</translation>
     </message>
 </context>
 <context>
@@ -3704,11 +3724,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>Неправильный торрент файл</translation>
+        <translation type="obsolete">Неправильный торрент файл</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>Это не правильный торрент файл.</translation>
+        <translation type="obsolete">Это не правильный торрент файл.</translation>
     </message>
 </context>
 <context>

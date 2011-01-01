@@ -1768,7 +1768,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Shutdown computer when downloads complete</source>
-        <translation>Isključi računalo kada preuzimanja završe</translation>
+        <translation type="obsolete">Isključi računalo kada preuzimanja završe</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
@@ -1780,7 +1780,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Shutdown qBittorrent when downloads complete</source>
-        <translation>Ugasi qBittorrent kada je preuzimanje gotovo</translation>
+        <translation type="obsolete">Ugasi qBittorrent kada je preuzimanje gotovo</translation>
     </message>
     <message>
         <source>Import torrent...</source>
@@ -2013,6 +2013,26 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit qBittorrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suspend system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shutdown system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished">Onemogućeno</translation>
     </message>
 </context>
 <context>
@@ -4085,11 +4105,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation>Neispravna torrent datoteka</translation>
+        <translation type="obsolete">Neispravna torrent datoteka</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>Ovo nije ispravna torrent datoteka.</translation>
+        <translation type="obsolete">Ovo nije ispravna torrent datoteka.</translation>
     </message>
 </context>
 <context>
