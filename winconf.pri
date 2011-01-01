@@ -27,7 +27,7 @@ DEFINES += _WIN32_WINNT=0x0500
 DEFINES += __USE_W32_SOCKETS
 DEFINES += WITH_SHIPPED_GEOIP_H
 
-debug {
+CONFIG(debug, debug|release) {
   DEFINES += TORRENT_DEBUG
 } else {
   DEFINES += NDEBUG
@@ -35,7 +35,7 @@ debug {
 
 RC_FILE = qbittorrent.rc
 
-debug {
+CONFIG(debug, debug|release) {
   LIBS += libtorrentd.lib \
           libboost_system-vc90-mt-gd.lib \
           libboost_filesystem-vc90-mt-gd.lib \
