@@ -247,8 +247,6 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
     }
     ++i;
   }while(i<m_piece_sizes.size());
-  qDebug("ASSERT value %d <= %d", (int)(torrent_size/(m_piece_sizes.at(i)*1024.)), NB_PIECES_MIN);
-  Q_ASSERT((double)torrent_size/(m_piece_sizes.at(i)*1024.) > NB_PIECES_MIN);
   comboPieceSize->setCurrentIndex(i);
 }
 
