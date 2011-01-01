@@ -18,7 +18,9 @@
   <dep type='libnotify'>
   </dep>
   <dep type='geoip-database'>
+    <required/>
   </dep>
   <dep type='qtsingleapplication'>
+    <required/>
   </dep>
 </qconf>

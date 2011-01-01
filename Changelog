@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.5.4
+    - BUGFIX: Added --enable-debug parameter to the configure script
+
 * Sat Jan 1 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
     - BUGFIX: Fix priority up/down for multiple torrents at the same time (closes #692184)
     - BUGFIX: Make sure the number of torrents is properly set on startup (closes #694135)
