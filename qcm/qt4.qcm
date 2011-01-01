@@ -1,8 +1,8 @@
 /*
 -----BEGIN QCMOD-----
 name: Qt >= 4.5
-arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 arg: enable-debug, Enable debug mode
+arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 -----END QCMOD-----
 */
 class qc_qt4 : public ConfObj
