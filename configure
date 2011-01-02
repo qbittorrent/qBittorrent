@@ -28,6 +28,7 @@ Dependency options:
   --with-libboost-lib=[path]                      Path to libboost library
                                                  files
   --disable-libnotify                            Disable use of libnotify
+  --disable-geoip-database                       Disable use of geoip-database
   --with-geoip-database-embedded                  Geoip Database will be
                                                  embedded in qBittorrent
                                                  executable (please follow
@@ -182,6 +183,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--disable-geoip-database)
+			QC_DISABLE_geoip_database="Y"
+			shift
+			;;
+
 		--with-geoip-database-embedded)
 			QC_WITH_GEOIP_DATABASE_EMBEDDED="Y"
 			shift
@@ -219,6 +225,7 @@ echo QC_ENABLE_DEBUG=$QC_ENABLE_DEBUG
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBBOOST_LIB=$QC_WITH_LIBBOOST_LIB
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
+echo QC_DISABLE_geoip_database=$QC_DISABLE_geoip_database
 echo QC_WITH_GEOIP_DATABASE_EMBEDDED=$QC_WITH_GEOIP_DATABASE_EMBEDDED
 echo QC_WITH_QTSINGLEAPPLICATION=$QC_WITH_QTSINGLEAPPLICATION
 echo
@@ -659,7 +666,7 @@ cat >$1/modules_new.cpp <<EOT
     o->required = false;
     o->disabled = false;
     o = new qc_geoip_database(conf);
-    o->required = true;
+    o->required = false;
     o->disabled = false;
     o = new qc_qtsingleapplication(conf);
     o->required = true;
@@ -1615,6 +1622,7 @@ export QC_ENABLE_DEBUG
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBBOOST_LIB
 export QC_DISABLE_libnotify
+export QC_DISABLE_geoip_database
 export QC_WITH_GEOIP_DATABASE_EMBEDDED
 export QC_WITH_QTSINGLEAPPLICATION
 export QC_VERBOSE
