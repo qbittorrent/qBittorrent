@@ -2,6 +2,7 @@
     - BUGFIX: Added --enable-debug parameter to the configure script
     - BUGFIX: Prioritize first and last pieces when sequential download is enabled
     - BUGFIX: Some encoding fixes (Windows)
+    - BUGFIX: Display default password on stdout when using nox
 
 * Sat Jan 1 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
     - BUGFIX: Fix priority up/down for multiple torrents at the same time (closes #692184)
