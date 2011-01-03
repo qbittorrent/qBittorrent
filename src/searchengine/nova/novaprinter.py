@@ -1,4 +1,4 @@
-#VERSION: 1.33
+#VERSION: 1.34
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -35,7 +35,7 @@ def prettyPrinter(dictionary):
 		if isinstance(dictionary[key], str):
 			dictionary[key] = unicode(dictionary[key], 'utf-8')
 	dictionary['size'] = anySizeToBytes(dictionary['size'])
-	print u"%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'],dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
+	print u"%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'].replace('|', ''),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
 
 def anySizeToBytes(size_string):
 	"""
