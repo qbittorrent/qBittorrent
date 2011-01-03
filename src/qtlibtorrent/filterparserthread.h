@@ -407,6 +407,8 @@ protected:
         ruleCount = parseDATFilterFile(filePath);
       }
     }
+    if(abort)
+      return;
     try {
       s->set_ip_filter(filter);
       emit IPFilterParsed(ruleCount);
