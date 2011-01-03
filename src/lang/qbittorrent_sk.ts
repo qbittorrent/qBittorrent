@@ -162,11 +162,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Skontrolovať aktualizácie softvéru</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Používať vzhľad ikon systému</translation>
     </message>
 </context>
 <context>
@@ -623,12 +623,16 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Formulár</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">Všeobecné</translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Zablokované IP</translation>
+        <translation>Zablokované IP</translation>
     </message>
 </context>
 <context>
@@ -1794,61 +1798,61 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Je dostupná novšia verzia</translation>
+        <translation>Je dostupná novšia verzia</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">qBittorrent má novú verziu dostupnú zo Sourceforge.
+        <translation>qBittorrent má novú verziu dostupnú na Sourceforge.
 Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Nie je možné aktualizovať qBittorrent</translation>
+        <translation>Nie je možné aktualizovať qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
+        <translation>qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prid&amp;ať súbor torrent...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať &amp;odkaz na torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať existujúci torrent...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Záznam spustení</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam spustení</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť počítač po dokončení sťahovaní</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukončiť qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspať systém</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť systém</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Vypnuté</translation>
+        <translation>Vypnuté</translation>
     </message>
 </context>
 <context>
@@ -2393,82 +2397,82 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť/zastaviť torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť presmerovanie portov UPnP/NAT-PMP z môjho smerovača</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Súkromie</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť DHT (decentralizovaná sieť) - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Používať odlišný port pre DHT a Bittorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť Peer eXchange (PeX) - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť Local Peer Discovery - umožní nájsť viac rovesníkov</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Uprednostňovať šifrovanie</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžadovať šifrovanie</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnúť šifrovanie</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Používateľské rozhranie</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu načítať filter</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Veľkosť</translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Náhľad nemožný</translation>
+        <translation>Náhľad nie je možný</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
+        <translation>Prepáčte, tento súbor sa nedá otvoriť ako náhľad</translation>
     </message>
 </context>
 <context>
@@ -2534,11 +2538,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP zdroje</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsah</translation>
     </message>
 </context>
 <context>
@@ -2745,12 +2749,12 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť častí:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Čas aktivity:</translation>
     </message>
 </context>
 <context>
@@ -3001,24 +3005,24 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora UPnP/NAT-PMP [zapnutá]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora UPnP/NAT-PMP [vypnutá]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podpora Local Peer Discovery [zapnutá]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba: Nepodarilo sa spracovať poskytnutý filter IP.</translation>
     </message>
 </context>
 <context>
@@ -3767,7 +3771,7 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Čas aktivity</translation>
     </message>
 </context>
 <context>
@@ -3919,7 +3923,7 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seedovanie trvalo %1</translation>
     </message>
 </context>
 <context>
@@ -4596,11 +4600,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať odkazy na torrent</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Sú podporované odkazy HTTP aj Magnet</translation>
     </message>
 </context>
 <context>
@@ -4951,20 +4955,20 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba pri spracovaní</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa spracovať poskytnutý filter IP</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnovenie prebehlo úspešne</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
 </context>
 <context>
@@ -5056,7 +5060,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejsť na stránku popisu</translation>
     </message>
 </context>
 <context>
