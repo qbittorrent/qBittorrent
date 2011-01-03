@@ -1,4 +1,4 @@
-#VERSION: 1.41
+#VERSION: 1.43
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -36,9 +36,9 @@ def prettyPrinter(dictionary):
 			dictionary[key] = unicode(dictionary[key], 'utf-8')
 	dictionary['size'] = anySizeToBytes(dictionary['size'])
 	if dictionary.has_key('desc_link'):
-		print u"%s|%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'],dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'],dictionary['desc_link'])
+		print u"%s|%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'],dictionary['desc_link'])
 	else:
-		print u"%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'],dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
+		print u"%s|%s|%s|%s|%s|%s"%(dictionary['link'],dictionary['name'].replace('|',' '),dictionary['size'],dictionary['seeds'],dictionary['leech'],dictionary['engine_url'])
 
 def anySizeToBytes(size_string):
 	"""
