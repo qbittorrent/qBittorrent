@@ -155,9 +155,6 @@ QBtSession::~QBtSession() {
 #endif
   saveSessionState();
   saveFastResumeData();
-  qDebug("Deleting the session");
-  delete s;
-  qDebug("Session deleted");
   // Delete our objects
   if(m_tracker)
     delete m_tracker;
@@ -174,6 +171,8 @@ QBtSession::~QBtSession() {
     delete httpServer;
   if(timerETA)
     delete timerETA;
+  qDebug("Deleting the session");
+  delete s;
   qDebug("BTSession destructor OUT");
 }
 

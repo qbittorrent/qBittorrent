@@ -88,6 +88,7 @@ protected:
         }
       }
     }
+    if(abort) return;
     s->set_ip_filter(filter);
     qDebug("IP Filter thread: finished parsing, filter applied");
   }

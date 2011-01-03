@@ -4,6 +4,7 @@
     - BUGFIX: Some encoding fixes (Windows)
     - BUGFIX: Display default password on stdout when using nox
     - BUGFIX: Fix issues when search engines results contain a '|'
+    - BUGFIX: Avoid possible crash on exit when the IP filter is enabled (closes #695945)
 
 * Sat Jan 1 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.3
     - BUGFIX: Fix priority up/down for multiple torrents at the same time (closes #692184)
