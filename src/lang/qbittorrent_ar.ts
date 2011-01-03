@@ -183,12 +183,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>البحث عن التحديثات</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="252"/>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>استخدام أيقونات النظام</translation>
     </message>
     <message>
         <source>Display program notification baloons</source>
@@ -722,14 +722,18 @@ You should get this information from your Web browser preferences.</translation>
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">اللائحة</translation>
+    </message>
+    <message>
         <location filename="../executionlog.ui" line="27"/>
         <source>General</source>
-        <translation type="unfinished">عام</translation>
+        <translation>عام</translation>
     </message>
     <message>
         <location filename="../executionlog.ui" line="37"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">الاي بي المحجوب</translation>
+        <translation>الاي بي المحجوب</translation>
     </message>
 </context>
 <context>
@@ -1669,7 +1673,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="64"/>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف الكمبيوتر بعد انهاء التحميل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="176"/>
@@ -1694,7 +1698,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="148"/>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;فتح ملف تورنت...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="153"/>
@@ -1715,7 +1719,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>فتح &amp;رابط تورنت...</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -1758,22 +1762,22 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="351"/>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>اطفاء البرنامج</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="359"/>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف مؤقت للنظام</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="367"/>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>ايقاف النظام</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="375"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>معطل</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
@@ -1801,7 +1805,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="311"/>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>استيراد ملف التورنت...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="314"/>
@@ -1821,13 +1825,13 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="340"/>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;السجل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <location filename="../mainwindow.cpp" line="1283"/>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>السجل</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="287"/>
@@ -2084,23 +2088,23 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../mainwindow.cpp" line="1245"/>
         <source>A newer version is available</source>
-        <translation type="unfinished">إصدار أحدث متوفر</translation>
+        <translation>إصدار أحدث متوفر</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1246"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">هناك اصدار جديد %1, هل ترغب في التحديث؟</translation>
+        <translation>هناك اصدار جديد %1, هل ترغب في التحديث؟</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">من المستحيل تحديث qBittorrent</translation>
+        <translation>من المستحيل تحديث qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">لا يمكن تحديث البرنامج,السبب %1</translation>
+        <translation>لا يمكن تحديث البرنامج,السبب %1</translation>
     </message>
 </context>
 <context>
@@ -2316,7 +2320,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="337"/>
         <location filename="../preferences/options.ui" line="363"/>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>تشغيل / إيقاف التورنت</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="347"/>
@@ -2337,27 +2341,27 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1919"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>ايجاد القرناء المحليين</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1931"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>نظام التشفير:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1939"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>تفضيل التشفير</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1944"/>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>طلب التشفير</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1949"/>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>تعطيل التشفير</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1975"/>
@@ -2688,7 +2692,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="987"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Use UPnP / NAT-PMP port forwarding from my router</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1137"/>
@@ -2703,7 +2707,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1370"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديث المنقيات</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1636"/>
@@ -2724,22 +2728,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1804"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>الخصوصية</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1820"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>تفعيل DHT لإيجاد قرناء أكثر</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1842"/>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Use a different port for DHT and BitTorrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1906"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable Peer Exchange (PeX) to find more peers</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1916"/>
@@ -2783,12 +2787,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="94"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>واجهة المستخدم</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="132"/>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1168"/>
@@ -2845,31 +2849,31 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../previewselect.cpp" line="18"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>الاسم</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="19"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>الحجم</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="20"/>
         <source>Progress</source>
-        <translation type="unfinished">الحالة</translation>
+        <translation>الحالة</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">لايمكن الاستعراض</translation>
+        <translation>لايمكن الاستعراض</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">نأسف لاكن لا يمكن اسعراض الملف</translation>
+        <translation>نأسف لكن لا يمكن استعراض الملف</translation>
     </message>
 </context>
 <context>
@@ -2939,12 +2943,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="74"/>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>مصادر HTTP</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="80"/>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>المحتوى</translation>
     </message>
     <message>
         <source>URL Seeds</source>
@@ -3021,7 +3025,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="296"/>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>مدة النشاط:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="313"/>
@@ -3041,7 +3045,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="502"/>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>حجم القطعة:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="545"/>
@@ -3385,17 +3389,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="365"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP support [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="368"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP support [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="457"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Local Peer Discovery support [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="874"/>
@@ -3471,12 +3475,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Successfuly parsed the provided IP filter: %1 rules were applied.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2568"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: Failed to parse the provided IP filter.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1883"/>
@@ -4467,7 +4471,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="252"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>مدة النشاط</translation>
     </message>
 </context>
 <context>
@@ -4661,7 +4665,7 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="145"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>تم رفعه %1</translation>
     </message>
 </context>
 <context>
@@ -5448,12 +5452,12 @@ Please install it manually.</source>
     <message>
         <location filename="../downloadfromurldlg.ui" line="45"/>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>فتح روابط تورنت</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="78"/>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Both HTTP and Magnet links are supported</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="106"/>
@@ -5945,23 +5949,23 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Parsing error</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to parse the provided IP filter</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>التحديث ناجح</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Successfuly parsed the provided IP filter: %1 rules were applied.</translation>
     </message>
 </context>
 <context>
@@ -6064,7 +6068,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/search.ui" line="142"/>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>الذهاب الى صفحة الوصف</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="162"/>
