@@ -1705,17 +1705,17 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="359"/>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre le système en veille</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="367"/>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter le système</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="375"/>
         <source>Disabled</source>
-        <translation type="unfinished">Désactivé</translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
@@ -1747,7 +1747,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="311"/>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer un torrent existant...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="314"/>
@@ -1767,13 +1767,13 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="340"/>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Journa&amp;l d&apos;exécution</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <location filename="../mainwindow.cpp" line="1283"/>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Journal d&apos;exécution</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="254"/>
@@ -1799,12 +1799,12 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="64"/>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Extinction auto en fin de téléchargement</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter &amp;lien vers un torrent...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="268"/>
@@ -2074,24 +2074,24 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1245"/>
         <source>A newer version is available</source>
-        <translation type="unfinished">Une nouvelle version est disponible</translation>
+        <translation>Une nouvelle version est disponible</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1246"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Une nouvelle version de qBittorrent est disponible sur Sourceforge.
+        <translation>Une nouvelle version de qBittorrent est disponible sur Sourceforge.
 Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Impossible de mettre à jour qBittorrent</translation>
+        <translation>Impossible de mettre à jour qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent n&apos;a pas pu être mis à jour, raison : %1</translation>
+        <translation>qBittorrent n&apos;a pas pu être mis à jour, raison : %1</translation>
     </message>
 </context>
 <context>
@@ -2307,7 +2307,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <location filename="../preferences/options.ui" line="337"/>
         <location filename="../preferences/options.ui" line="363"/>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer / Stopper torrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="347"/>
@@ -2328,32 +2328,32 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1906"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;échange de sources (PeX) avec les autres utilisateurs</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1919"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer la découverte de sources sur le réseau local</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1931"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode de chiffrement :</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1939"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiffrement préféré</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1944"/>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiffrement requis</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1949"/>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiffrement désactivé</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1975"/>
@@ -2520,7 +2520,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="987"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser la redirection de port sur mon routeur via UPnP / NAT-PMP</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1137"/>
@@ -2535,7 +2535,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1370"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger le filtre</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1636"/>
@@ -2556,17 +2556,17 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1804"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Vie privée</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1820"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le DHT (réseau décentralisé) pour trouver plus de sources</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1842"/>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un port différent pour le DHT et BitTorrent</translation>
     </message>
     <message utf8="true">
         <location filename="../preferences/options.ui" line="1903"/>
@@ -2673,12 +2673,12 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="94"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface utilisateur</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="132"/>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1415"/>
@@ -2836,31 +2836,31 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../previewselect.cpp" line="18"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="19"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="20"/>
         <source>Progress</source>
-        <translation type="unfinished">Progression</translation>
+        <translation>Avancement</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Prévisualisation impossible</translation>
+        <translation>Prévisualisation impossible</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Désolé, il est impossible de prévisualiser ce fichier</translation>
+        <translation>Désolé, il est impossible de prévisualiser ce fichier</translation>
     </message>
 </context>
 <context>
@@ -2930,12 +2930,12 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../properties/proptabbar.cpp" line="74"/>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Sources HTTP</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="80"/>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenu</translation>
     </message>
     <message>
         <source>URL Seeds</source>
@@ -2998,12 +2998,12 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <location filename="../properties/propertieswidget.ui" line="296"/>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Actif pendant : </translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="502"/>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille des morceaux :</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="795"/>
@@ -3231,7 +3231,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="302"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent écoute sur le port : TCP/%1</translation>
+        <translation>qBittorrent est associé au port : TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -3261,23 +3261,23 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="437"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Support DHT [ON], port : UDP/%1</translation>
+        <translation>Prise en charge DHT [ON], port : UDP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="439"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="443"/>
         <source>DHT support [OFF]</source>
-        <translation>Support DHT [OFF]</translation>
+        <translation>Prise en charge DHT [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
         <source>PeX support [ON]</source>
-        <translation>Support PeX [ON]</translation>
+        <translation>Echange des sources avec les autres clients (PeX) [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="449"/>
         <source>PeX support [OFF]</source>
-        <translation>Support PeX [OFF]</translation>
+        <translation>Echange des sources avec les autres clients (PeX) [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="452"/>
@@ -3296,17 +3296,17 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="472"/>
         <source>Encryption support [ON]</source>
-        <translation>Support cryptage [ON]</translation>
+        <translation>Brouillage de protocôle [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="477"/>
         <source>Encryption support [FORCED]</source>
-        <translation>Support cryptage [Forcé]</translation>
+        <translation>Brouillage de protocole [Forcé]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="482"/>
         <source>Encryption support [OFF]</source>
-        <translation>Support cryptage [OFF]</translation>
+        <translation>Brouillage de protocole [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="542"/>
@@ -3326,7 +3326,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="572"/>
         <source>The Web UI is listening on port %1</source>
-        <translation>L&apos;interface Web ecoute sur le port %1</translation>
+        <translation>L&apos;interface Web est associée au port %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="574"/>
@@ -3376,17 +3376,17 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="365"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Prise en charge UPnP / NAT-PMP [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="368"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Prise en charge UPnP / NAT-PMP [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="457"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Découverte de sources sur le réseau local [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="874"/>
@@ -3462,12 +3462,12 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Le filtre IP a été correctement chargé : %1 règles ont été appliquées.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2568"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur : Impossible de charge le filtre IP fourni.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1883"/>
@@ -4458,7 +4458,7 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="252"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Actif pendant</translation>
     </message>
 </context>
 <context>
@@ -4652,7 +4652,7 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../transferlistdelegate.h" line="145"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Complet depuis %1</translation>
+        <translation>Complet depuis %1</translation>
     </message>
 </context>
 <context>
@@ -5435,12 +5435,12 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="45"/>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajout de liens vers des torrents</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="78"/>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Les liens HTTP et Magnet sont pris en charge</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="106"/>
@@ -5915,23 +5915,23 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de traitement</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger le filtre IP fourni</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Correctement rechargé</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Le filtre IP fourni a été correctement chargé : %1 règles ont été appliquées.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1074"/>
@@ -6046,7 +6046,7 @@ Cependant, les greffons en question ont été désactivés.</translation>
     <message>
         <location filename="../searchengine/search.ui" line="142"/>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la page de description</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="162"/>
