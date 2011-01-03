@@ -621,10 +621,6 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>

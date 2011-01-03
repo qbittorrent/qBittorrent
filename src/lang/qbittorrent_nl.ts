@@ -528,10 +528,6 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished">Algemeen</translation>
     </message>

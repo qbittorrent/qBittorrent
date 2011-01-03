@@ -722,11 +722,6 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
 <context>
     <name>ExecutionLog</name>
     <message>
-        <location filename="../executionlog.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../executionlog.ui" line="27"/>
         <source>General</source>
         <translation type="unfinished">Obecné</translation>

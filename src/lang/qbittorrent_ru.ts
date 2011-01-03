@@ -628,7 +628,7 @@ You should get this information from your Web browser preferences.</source>
     <name>ExecutionLog</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="obsolete">Форма</translation>
     </message>
     <message>
         <source>General</source>

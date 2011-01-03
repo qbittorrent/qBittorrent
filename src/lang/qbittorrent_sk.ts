@@ -623,10 +623,6 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished">Všeobecné</translation>
     </message>

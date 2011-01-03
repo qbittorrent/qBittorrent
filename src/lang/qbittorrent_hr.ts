@@ -669,10 +669,6 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished">Općenito</translation>
     </message>

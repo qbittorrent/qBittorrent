@@ -183,12 +183,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier la disponibilité de mises à jour</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="252"/>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser le thème d&apos;icônes du système</translation>
     </message>
     <message>
         <source>Display program notification baloons</source>
@@ -722,19 +722,14 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
 <context>
     <name>ExecutionLog</name>
     <message>
-        <location filename="../executionlog.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../executionlog.ui" line="27"/>
         <source>General</source>
-        <translation type="unfinished">Général</translation>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="../executionlog.ui" line="37"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">IPs bloquées</translation>
+        <translation>IPs bloquées</translation>
     </message>
 </context>
 <context>
@@ -1645,7 +1640,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="148"/>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter un fichier torrent...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="153"/>
@@ -1705,7 +1700,7 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="351"/>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Quitter qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="359"/>

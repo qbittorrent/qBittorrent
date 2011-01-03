@@ -604,10 +604,6 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished">Główne</translation>
     </message>

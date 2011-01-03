@@ -592,10 +592,6 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished">Allmänt</translation>
     </message>

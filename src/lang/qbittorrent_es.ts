@@ -726,9 +726,8 @@ Debe obtener esta información de las preferencias de su navegador Web.</transla
 <context>
     <name>ExecutionLog</name>
     <message>
-        <location filename="../executionlog.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulario</translation>
+        <translation type="obsolete">Formulario</translation>
     </message>
     <message>
         <location filename="../executionlog.ui" line="27"/>
