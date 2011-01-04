@@ -489,13 +489,15 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
-  QMenu subMenu;
-  subMenu.setTitle(tr("Priority"));
-  subMenu.addAction(actionNot_downloaded);
-  subMenu.addAction(actionNormal);
-  subMenu.addAction(actionHigh);
-  subMenu.addAction(actionMaximum);
-  myFilesLlistMenu.addMenu(&subMenu);
+  if(static_cast<torrent_handle>(h).is_seed()) {
+    QMenu subMenu;
+    subMenu.setTitle(tr("Priority"));
+    subMenu.addAction(actionNot_downloaded);
+    subMenu.addAction(actionNormal);
+    subMenu.addAction(actionHigh);
+    subMenu.addAction(actionMaximum);
+    myFilesLlistMenu.addMenu(&subMenu);
+  }
   // Call menu
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
   if(act) {
