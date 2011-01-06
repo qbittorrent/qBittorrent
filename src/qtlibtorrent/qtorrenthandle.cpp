@@ -45,6 +45,10 @@
 #include <libtorrent/entry.hpp>
 #include <boost/filesystem/fstream.hpp>
 
+#ifdef Q_WS_WIN
+  #include <Windows.h>
+#endif
+
 using namespace libtorrent;
 using namespace std;
 
@@ -509,7 +513,14 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
       QString old_name = filename_at(i);
       QDir parent_path(misc::branchPath(old_path));
       if(parent_path.dirName() != ".unwanted") {
-        parent_path.mkdir(".unwanted");
+        bool created = parent_path.mkdir(".unwanted");
+#ifdef Q_WS_WIN
+        // Hide the folder on Windows
+        DWORD dwAttrs = GetFileAttributes(parent_path.absolutePath().toLocal8Bit().data());
+        SetFileAttributes(parent_path.absolutePath().toLocal8Bit().data(), dwAttrs|FILE_ATTRIBUTE_HIDDEN);
+#else
+        Q_UNUSED(created);
+#endif
         rename_file(i, parent_path.filePath(".unwanted/"+old_name));
       }
     }
