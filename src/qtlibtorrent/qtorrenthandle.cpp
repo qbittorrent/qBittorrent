@@ -46,6 +46,7 @@
 #include <boost/filesystem/fstream.hpp>
 
 using namespace libtorrent;
+using namespace std;
 
 QTorrentHandle::QTorrentHandle(torrent_handle h): torrent_handle(h) {}
 
@@ -456,45 +457,6 @@ void QTorrentHandle::add_url_seed(QString seed) const {
   torrent_handle::add_url_seed(str_seed);
 }
 
-void QTorrentHandle::prioritize_files(const std::vector<int> &v) const {
-  // Does not do anything for seeding torrents
-  if(v.size() != (unsigned int)torrent_handle::get_torrent_info().num_files())
-    return;
-  bool was_seed = is_seed();
-  torrent_handle::prioritize_files(v);
-  if(was_seed && !is_seed()) {
-    // Reset seed status
-    TorrentPersistentData::saveSeedStatus(*this);
-    // Move to temp folder if necessary
-    const Preferences pref;
-    if(pref.isTempPathEnabled()) {
-      QString tmp_path = pref.getTempPath();
-      QString root_folder = TorrentPersistentData::getRootFolder(hash());
-      if(!root_folder.isEmpty())
-        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
-      move_storage(tmp_path);
-    }
-  }
-}
-
-void QTorrentHandle::file_priority(int index, int priority) const {
-  bool was_seed = is_seed();
-  torrent_handle::file_priority(index, priority);
-  if(was_seed && !is_seed()) {
-    // Save seed status
-    TorrentPersistentData::saveSeedStatus(*this);
-    // Move to temp folder if necessary
-    const Preferences pref;
-    if(pref.isTempPathEnabled()) {
-      QString tmp_path = pref.getTempPath();
-      QString root_folder = TorrentPersistentData::getRootFolder(hash());
-      if(!root_folder.isEmpty())
-        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
-      move_storage(tmp_path);
-    }
-  }
-}
-
 void QTorrentHandle::set_tracker_login(QString username, QString password) const {
   torrent_handle::set_tracker_login(std::string(username.toLocal8Bit().constData()), std::string(password.toLocal8Bit().constData()));
 }
@@ -524,6 +486,59 @@ bool QTorrentHandle::save_torrent_file(QString path) const {
     return true;
   }
   return false;
+}
+
+void QTorrentHandle::file_priority(int index, int priority) const {
+  vector<int> priorities = torrent_handle::file_priorities();
+  if(priorities[index] != priority) {
+    priorities[index] = priority;
+    prioritize_files(priorities);
+  }
+}
+
+// TODO: Also hide the folder on Windows
+void QTorrentHandle::prioritize_files(const vector<int> &files) const {
+  if((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
+  const vector<int> prev_priorities = torrent_handle::file_priorities();
+  bool was_seed = is_seed();
+  torrent_handle::prioritize_files(files);
+  for(uint i=0; i<files.size(); ++i) {
+    // Move unwanted files to a .unwanted subfolder
+    if(prev_priorities[i] > 0 && files[i] == 0) {
+      QString old_path = filepath_at(i);
+      QString old_name = filename_at(i);
+      QDir parent_path(misc::branchPath(old_path));
+      if(parent_path.dirName() != ".unwanted") {
+        parent_path.mkdir(".unwanted");
+        rename_file(i, parent_path.filePath(".unwanted/"+old_name));
+      }
+    }
+    // Move wanted files back to their original folder
+    if(prev_priorities[i] == 0 && files[i] > 0) {
+      QString old_path = filepath_at(i);
+      QString old_name = filename_at(i);
+      QDir parent_path(misc::branchPath(old_path));
+      if(parent_path.dirName() == ".unwanted") {
+        QDir new_path(misc::branchPath(parent_path.path()));
+        rename_file(i, new_path.filePath(old_name));
+        // Remove .unwanted directory if empty
+       new_path.rmdir(".unwanted");
+      }
+    }
+  }
+  if(was_seed && !is_seed()) {
+    // Save seed status
+    TorrentPersistentData::saveSeedStatus(*this);
+    // Move to temp folder if necessary
+    const Preferences pref;
+    if(pref.isTempPathEnabled()) {
+      QString tmp_path = pref.getTempPath();
+      QString root_folder = TorrentPersistentData::getRootFolder(hash());
+      if(!root_folder.isEmpty())
+        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
+      move_storage(tmp_path);
+    }
+  }
 }
 
 void QTorrentHandle::add_tracker(const announce_entry& url) const {

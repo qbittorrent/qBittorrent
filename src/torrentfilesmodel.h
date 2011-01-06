@@ -546,6 +546,7 @@ public:
 #endif
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split("/");
+      pathFolders.removeAll(".unwanted");
       pathFolders.takeLast();
       foreach(const QString &pathPart, pathFolders) {
         TreeItem *new_parent = current_parent->childWithName(pathPart);

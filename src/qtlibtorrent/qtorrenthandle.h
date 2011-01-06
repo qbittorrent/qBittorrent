@@ -122,14 +122,14 @@ public:
   void resume() const;
   void remove_url_seed(QString seed) const;
   void add_url_seed(QString seed) const;
-  void prioritize_files(const std::vector<int> &v) const;
-  void file_priority(int index, int priority) const;
   void set_tracker_login(QString username, QString password) const;
   void move_storage(QString path) const;
   void add_tracker(const libtorrent::announce_entry& url) const;
   void prioritize_first_last_piece(bool b) const;
   void rename_file(int index, QString name) const;
   bool save_torrent_file(QString path) const;
+  void prioritize_files(const std::vector<int> &files) const;
+  void file_priority(int index, int priority) const;
 
   //
   // Operators

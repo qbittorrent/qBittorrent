@@ -35,6 +35,7 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QByteArray>
+#include <QDebug>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -772,7 +773,13 @@ QString misc::branchPath(QString file_path, bool uses_slashes)
 {
   if(!uses_slashes)
     file_path.replace("\\", "/");
-  return file_path.left(file_path.lastIndexOf('/'));
+  Q_ASSERT(!file_path.contains("\\"));
+  if(file_path.endsWith("/"))
+    file_path.chop(1); // Remove trailing slash
+  qDebug() << Q_FUNC_INFO << "before:" << file_path;
+  if(file_path.contains("/"))
+    return file_path.left(file_path.lastIndexOf('/'));
+  return "";
 }
 
 bool misc::isUrl(const QString &s)

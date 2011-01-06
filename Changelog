@@ -11,6 +11,7 @@
     - FEATURE: Added a search engine plugin to extratorrent.com
     - FEATURE: Added a search engine plugin for kickasstorrents.com
     - FEATURE: Added auto-suspend upon downloads completion feature
+    - BUGFIX: Hide unwanted files that have to be partly downloaded
     - I18N: Added Galician translation
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar
