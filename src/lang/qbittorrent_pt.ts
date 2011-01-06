@@ -156,11 +156,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar atualizações</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar tema de ícone do sistema</translation>
     </message>
 </context>
 <context>
@@ -621,12 +621,16 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Formulário</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">IPs bloqueados</translation>
+        <translation>IPs bloqueados</translation>
     </message>
 </context>
 <context>
@@ -1803,61 +1807,61 @@ Quer mesmo sair do qBittorrent?</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Uma nova versão está disponível</translation>
+        <translation>Uma nova versão está disponível</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Uma nova versão do qBittorrent está disponível no Souceforge.
+        <translation>Uma nova versão do qBittorrent está disponível no Souceforge.
 Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Impossível atualizar qBittorrent</translation>
+        <translation>Impossível atualizar qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent falhou para atualizar, motivo: %1</translation>
+        <translation>qBittorrent falhou para atualizar, motivo: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adicionar arquivo torrent...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar &amp;link para torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar torrent existente...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Execução &amp;Log</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Execução Log</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Desligar automaticamente quando completar os downloads</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Sair do qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspender o sistema</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Desligar o sistema</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Desabilitado</translation>
+        <translation>Desabilitado</translation>
     </message>
 </context>
 <context>
@@ -2402,82 +2406,82 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / Parar Torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>User UPnP / NAT-PMP redirecionamento de porta do meu roteador</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Privacidade</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar DHT (rede decentralizada) para encontrar mais peers</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar uma porta diferente para DHT e BitTorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar Peer Exchange (PeX) para encontrar mais peers</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar Local Peer Discovery para encontrar mais peers</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de encriptação:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Encriptação escolhida</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Encriptação requerida</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar encriptação</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface de usuário</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar o filtro</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Progresso</translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Pré-visualização impossível</translation>
+        <translation>Pré-visualização impossível</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Arquivo sem possível pré-visualização</translation>
+        <translation>Desculpe, não é possível pré-visualizar esse arquivo</translation>
     </message>
 </context>
 <context>
@@ -2543,11 +2547,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Fontes HTTP</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Conteúdo</translation>
     </message>
 </context>
 <context>
@@ -2754,12 +2758,12 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho dos pedaços:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tempo ativo:</translation>
     </message>
 </context>
 <context>
@@ -3010,24 +3014,24 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte a UPnp / NAT-PMP [ON]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte a UPnp / NAT-PMP [OFF]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte a Local Peer Discovery [ON]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Analisado com sucesso o filtro de IP enviado: %1 regras foram aplicadas.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Falha ao analisar o filtro de IP.</translation>
     </message>
 </context>
 <context>
@@ -3775,7 +3779,7 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tempo Ativo</translation>
     </message>
 </context>
 <context>
@@ -3927,7 +3931,7 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Seeded pelo %1</translation>
+        <translation>Seeded pelo %1</translation>
     </message>
 </context>
 <context>
@@ -4604,11 +4608,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar links torrent</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambos HTTP e links magnéticos são suportados</translation>
     </message>
 </context>
 <context>
@@ -4959,20 +4963,20 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Análise de Erro </translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao analisar o filtro de IP enviado</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizado com sucesso</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Analisado com sucesso o filtro de IP : %1 regras foram aplicadas.</translation>
     </message>
 </context>
 <context>
@@ -5064,7 +5068,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para a página de descrição</translation>
     </message>
 </context>
 <context>
