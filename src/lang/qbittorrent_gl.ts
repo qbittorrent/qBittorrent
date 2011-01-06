@@ -3875,7 +3875,7 @@ Instálea manualmente.</translation>
         <translation>Desexo dar as grazas ás persoas seguintes que como voluntarios traduciron o qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Contacte comigo se desexa traducir o qBittorrent ao seu idioma.</translation>
     </message>

@@ -4462,7 +4462,7 @@ Please install it manually.</source>
         <translation>Jeg vil gerne takke disse personer, som meldte sig frivilligt til at oversætte qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontakt mig venligst hvis du kunne tænke dig og oversætte qBittorrent til dit eget sprog.</translation>
     </message>

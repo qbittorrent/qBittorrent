@@ -4946,7 +4946,7 @@ Asenna se itse.</translation>
         <translation>Haluan kiittää seuraavia henkilöitä, jotka ovat vapaaehtoisesti kääntäneet qBittorrentin:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Ota yhteyttä minuun, jos haluat kääntää qBittorentin omalle kielellesi.</translation>
     </message>

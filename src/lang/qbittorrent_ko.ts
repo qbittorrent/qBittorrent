@@ -4582,7 +4582,7 @@ Please install it manually.</source>
         <translation>큐비토런트를 번역하는데 도움을 주신 다음 분들에게 다시 한번 감사드립니다:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>큐비토런트를 자신이 사용하는 언어로 번역하는데 관심이 있으시가면 제게 연락을 주십시오.</translation>
     </message>

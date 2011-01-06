@@ -4828,7 +4828,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Vull agrair a les següents persones que voluntàriament van traduir qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Si us plau contacta&apos;m si vols traduir qBittorrent al teu propi idioma.</translation>
     </message>

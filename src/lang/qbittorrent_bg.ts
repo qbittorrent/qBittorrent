@@ -4997,7 +4997,7 @@ Please install it manually.</source>
         <translation>Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
     </message>

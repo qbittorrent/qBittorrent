@@ -5064,7 +5064,7 @@ Please install it manually.</source>
         <translation>اريد شكر المتوعون في ترجمة هذا البرنامج:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="90"/>
+        <location filename="../about_imp.h" line="91"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>الرجاء الإتصل بي اذا اردت ترجمة البرنامج الى لغتك.</translation>
     </message>
