@@ -48,10 +48,14 @@ window.addEvent('domready', function(){
 		var cmd = '/command/delete';
                 if($('deleteFromDiskCB').get('checked'))
 			 cmd = '/command/deletePerm';
-		hashes.each(function(item, index){
-                                new Request({url: cmd, method: 'post', data: {hash: item}}).send();
-                        });
-		window.parent.document.getElementById('confirmDeletionPage').parentNode.removeChild(window.parent.document.getElementById('confirmDeletionPage'));
+                new Request({url: cmd, 
+                             method: 'post', 
+                             data: {hashes: hashes.join('|')},
+                             onComplete: function() {
+				window.parent.document.getElementById('confirmDeletionPage').parentNode.removeChild(window.parent.document.getElementById('confirmDeletionPage'));
+			     }
+                            }).send();
+		
 	});
 });
 </script>

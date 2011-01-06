@@ -506,11 +506,17 @@ void HttpConnection::respondCommand(QString command)
     return;
   }
   if(command == "delete") {
-    emit deleteTorrent(parser.post("hash"), false);
+    QStringList hashes = parser.post("hashes").split("|");
+    foreach(const QString &hash, hashes) {
+      emit deleteTorrent(hash, false);
+    }
     return;
   }
   if(command == "deletePerm") {
-    emit deleteTorrent(parser.post("hash"), true);
+    QStringList hashes = parser.post("hashes").split("|");
+    foreach(const QString &hash, hashes) {
+      emit deleteTorrent(hash, true);
+    }
     return;
   }
   if(command == "increasePrio") {
