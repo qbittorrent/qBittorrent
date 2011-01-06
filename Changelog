@@ -1,4 +1,4 @@
-* Thu Jan 6 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.4
+* Thu Jan 6 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.5.5
     - BUGFIX: Added --enable-debug parameter to the configure script
     - BUGFIX: Prioritize first and last pieces when sequential download is enabled
     - BUGFIX: Some encoding fixes (Windows)

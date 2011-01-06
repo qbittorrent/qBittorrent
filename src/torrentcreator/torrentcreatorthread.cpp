@@ -135,7 +135,7 @@ void TorrentCreatorThread::run() {
       emit updateProgress(100);
       emit creationSuccess(save_path, parent_path);
     } else {
-      throw std::exception(tr("Cannot write the output file").toLocal8Bit().constData());
+      throw std::exception();
     }
   } catch (std::exception& e){
     emit creationFailure(QString::fromLocal8Bit(e.what()));
