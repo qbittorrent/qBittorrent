@@ -165,11 +165,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверите за надоградњу софтвера</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи тему системских икона</translation>
     </message>
 </context>
 <context>
@@ -644,12 +644,16 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Образац</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">Опште</translation>
+        <translation>Опште</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Блокирани IP-и</translation>
+        <translation>Блокирани IP-и</translation>
     </message>
 </context>
 <context>
@@ -1849,61 +1853,61 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Нова верзија је доступна</translation>
+        <translation>Нова верзија је доступна</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Нова верзија qBittorrent-а је доступна на Sourceforge-u.
+        <translation>Нова верзија qBittorrent-а је доступна на Sourceforge-u.
 Да ли желите да ажурирате qBittorrent на верзију %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Није могуће ажурирање qBittorrent-а</translation>
+        <translation>Није могуће ажурирање qBittorrent-а</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent грешка при ажурирању, разлог: %1</translation>
+        <translation>qBittorrent грешка при ажурирању, разлог: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Додај торент фајл...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај &amp;линк у торент...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Увези постојећи торент...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Дешавања &amp;Дневник</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Дневник догађаја</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Ауто-Искључење по комплетном преузимању</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Изађи из qBittorrent-а</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Суспендуј рачунар</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Искључи рачунар</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Онемогућено</translation>
     </message>
 </context>
 <context>
@@ -2460,82 +2464,82 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Бит-торент</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Старт / Стоп Торент</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи UPnP / NAT-PMP преусмерење порта са мог рутера</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Приватност</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући DHT (децентализовану мрежу) за налажење додатних учесника</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи различит порт за DHT и Бит-торент</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући Peer Exchange (PeX) за налажење додатних учесника</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући откривање локалних веза за налажење додатних учесника</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим шифровања:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Предложи шифровање</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Захтевај шифровање</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Онемогући шифровање</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Кориснички интерфејс</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Поново учитај филтер</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Име</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Величина</translation>
+        <translation>Величина</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Напредак</translation>
+        <translation>Напредак</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Приказ немогућ</translation>
+        <translation>Приказ немогућ</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Жалим не могу да прикажем овај фајл</translation>
+        <translation>Жалим не могу да прикажем овај фајл</translation>
     </message>
 </context>
 <context>
@@ -2601,11 +2605,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP извори</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Садржај</translation>
     </message>
 </context>
 <context>
@@ -2817,12 +2821,12 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Делови величине:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Протекло време:</translation>
     </message>
 </context>
 <context>
@@ -3073,24 +3077,24 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP подршка [Укључена]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP подршка [Искључена]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Претраживање локалних веза подршка [Укључено]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Успешна анализа датог IP филтера: %1 правила су примењена.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка: Неспешна анализа датог IP филтера.</translation>
     </message>
 </context>
 <context>
@@ -3854,7 +3858,7 @@ Do you want to install it now?</source>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Протекло време</translation>
     </message>
 </context>
 <context>
@@ -4007,7 +4011,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Донирано за %1</translation>
+        <translation>Донирано за %1</translation>
     </message>
 </context>
 <context>
@@ -4704,11 +4708,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај торент линкове</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Оба, HTTP и Magnet линкови су подржани</translation>
     </message>
 </context>
 <context>
@@ -5072,20 +5076,20 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Анализа грешака</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Неспешна анализа датог IP филтера</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно обновљени</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Успешна анализа датог IP филтера: %1 правила су примењена.</translation>
     </message>
 </context>
 <context>
@@ -5179,7 +5183,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Иди на веб страну са описом</translation>
     </message>
 </context>
 <context>
