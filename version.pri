@@ -1,7 +1,7 @@
 os2 {
-    DEFINES += VERSION=\'\"v2.6.0rc1\"\'
+    DEFINES += VERSION=\'\"v2.6.0rc2\"\'
 } else {
-    DEFINES += VERSION=\\\"v2.6.0rc1\\\"
+    DEFINES += VERSION=\\\"v2.6.0rc2\\\"
 }
 DEFINES += VERSION_MAJOR=2
 DEFINES += VERSION_MINOR=6
