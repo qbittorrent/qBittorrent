@@ -46,7 +46,7 @@
 #include <boost/filesystem/fstream.hpp>
 
 #ifdef Q_WS_WIN
-  #include <Windows.h>
+#include <Windows.h>
 #endif
 
 using namespace libtorrent;
@@ -511,17 +511,27 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     if(prev_priorities[i] > 0 && files[i] == 0) {
       QString old_path = filepath_at(i);
       QString old_name = filename_at(i);
-      QDir parent_path(misc::branchPath(old_path));
-      if(parent_path.dirName() != ".unwanted") {
-        bool created = parent_path.mkdir(".unwanted");
+      QString parent_path = misc::branchPath(old_path);
+      if(parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
+        QString unwanted_abspath = QDir::cleanPath(save_path()+"/"+parent_path+"/.unwanted");
+        qDebug() << "Unwanted path is" << unwanted_abspath;
+        bool created = QDir().mkpath(unwanted_abspath);
 #ifdef Q_WS_WIN
-        // Hide the folder on Windows
-        DWORD dwAttrs = GetFileAttributes(parent_path.absolutePath().toLocal8Bit().data());
-        SetFileAttributes(parent_path.absolutePath().toLocal8Bit().data(), dwAttrs|FILE_ATTRIBUTE_HIDDEN);
+        qDebug() << "unwanted folder was created:" << created;
+        if(created) {
+          // Hide the folder on Windows
+          qDebug() << "Hiding folder (Windows)";
+          wstring win_path =  unwanted_abspath.replace("/","\\").toStdWString();
+          DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
+          bool ret = SetFileAttributesW(win_path.c_str(), dwAttrs|FILE_ATTRIBUTE_HIDDEN);
+          Q_ASSERT(ret != 0); Q_UNUSED(ret);
+        }
 #else
         Q_UNUSED(created);
 #endif
-        rename_file(i, parent_path.filePath(".unwanted/"+old_name));
+        if(!parent_path.isEmpty() && !parent_path.endsWith("/"))
+          parent_path += "/";
+        rename_file(i, parent_path+".unwanted/"+old_name);
       }
     }
     // Move wanted files back to their original folder
@@ -533,7 +543,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
         QDir new_path(misc::branchPath(parent_path.path()));
         rename_file(i, new_path.filePath(old_name));
         // Remove .unwanted directory if empty
-       new_path.rmdir(".unwanted");
+        new_path.rmdir(".unwanted");
       }
     }
   }
@@ -607,6 +617,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) const {
 }
 
 void QTorrentHandle::rename_file(int index, QString name) const {
+  qDebug() << Q_FUNC_INFO << index << name;
   torrent_handle::rename_file(index, std::string(name.toUtf8().constData()));
 }
 

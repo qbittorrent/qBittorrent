@@ -169,6 +169,7 @@ public:
   }
 
   void setProgress(qulonglong done) {
+    if(getPriority() == 0) return;
     total_done = done;
     qulonglong size = getSize();
     Q_ASSERT(total_done <= size);
@@ -188,6 +189,8 @@ public:
   }
 
   float getProgress() const {
+    if(getPriority() == 0)
+      return 0.;
     qulonglong size = getSize();
     if(size > 0)
       return total_done/(float)getSize();
@@ -216,6 +219,11 @@ public:
     const int old_prio = getPriority();
     if(old_prio == new_prio) return;
     qDebug("setPriority(%s, %d)", qPrintable(getName()), new_prio);
+    // Reset progress if priority is 0
+    if(new_prio == 0) {
+      setProgress(0);
+    }
+
     itemData.replace(COL_PRIO, new_prio);
 
     // Update parent
