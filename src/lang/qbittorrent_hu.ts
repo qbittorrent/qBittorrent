@@ -4208,22 +4208,22 @@ Kérlek telepítsd manuálisan.</translation>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Progress</source>
         <translation>Állapot</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Priority</source>
         <translation>Elsőbbség</translation>
     </message>

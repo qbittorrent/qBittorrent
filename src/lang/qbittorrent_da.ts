@@ -3710,22 +3710,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Name</source>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Size</source>
         <translation>Størrelse</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Progress</source>
         <translation>Hentet</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
     </message>

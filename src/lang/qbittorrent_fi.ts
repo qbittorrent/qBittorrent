@@ -4159,22 +4159,22 @@ Asenna se itse.</translation>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Size</source>
         <translation>Koko</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Progress</source>
         <translation>Edistyminen</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Priority</source>
         <translation>Prioriteetti</translation>
     </message>

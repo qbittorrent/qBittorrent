@@ -193,12 +193,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Software-Updates prüfen</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="252"/>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>System-Icon-Theme benutzen</translation>
     </message>
 </context>
 <context>
@@ -695,12 +695,12 @@ Sie sollten diese Information aus den Voreinstellungen Ihres Webbrowsers erhalte
     <message>
         <location filename="../executionlog.ui" line="27"/>
         <source>General</source>
-        <translation type="unfinished">Allgemein</translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../executionlog.ui" line="37"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Geblockte IP&apos;s</translation>
+        <translation>Geblockte IPs</translation>
     </message>
 </context>
 <context>
@@ -1581,7 +1581,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../mainwindow.ui" line="148"/>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-Datei &amp;hinzufügen...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="153"/>
@@ -1602,12 +1602,12 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../mainwindow.ui" line="64"/>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisches herunterfahren wenn Dowloads vollständig sind</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Link zu Torrent hinzufügen...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
@@ -1655,7 +1655,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../mainwindow.ui" line="311"/>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Existierendes Torrent importieren...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="314"/>
@@ -1675,33 +1675,33 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     <message>
         <location filename="../mainwindow.ui" line="340"/>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausführungs-&amp;Log</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <location filename="../mainwindow.cpp" line="1283"/>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausführungs-Log</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="351"/>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Beende qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="359"/>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>System anhalten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="367"/>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>System herunterfahren</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="375"/>
         <source>Disabled</source>
-        <translation type="unfinished">Deaktiviert</translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="254"/>
@@ -1991,23 +1991,23 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1245"/>
         <source>A newer version is available</source>
-        <translation type="unfinished">Eine neuere Version ist erhältlich</translation>
+        <translation>Eine neuere Version ist erhältlich</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1246"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Eine neuere Version von qBittorrent ist auf Sourceforge erhätlich. Möchten Sie qBittorent auf die Version %1 aktualisieren?</translation>
+        <translation>Eine neuere Version von qBittorrent ist auf Sourceforge erhätlich. Möchten Sie qBittorent auf die Version %1 aktualisieren?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Aktuialisierung von qBittorrent nicht möglich</translation>
+        <translation>Aktuialisierung von qBittorrent nicht möglich</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1261"/>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent konnte nicht aktualisiert werden, Begründung: %1</translation>
+        <translation>qBittorrent konnte nicht aktualisiert werden, Begründung: %1</translation>
     </message>
 </context>
 <context>
@@ -2214,27 +2214,27 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1919"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokale Peer Auffindung aktivieren um mehr peers zu finden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1931"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschlüsselungsmodus:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1939"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschlüsselung bevorzugen</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1944"/>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschlüsselung verlangen</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1949"/>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschlüsselng deaktiviere</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1975"/>
@@ -2506,18 +2506,18 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="94"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerschnittstelle</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="132"/>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="337"/>
         <location filename="../preferences/options.ui" line="363"/>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="552"/>
@@ -2582,7 +2582,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="987"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP Port Wieterleitung meines Routers verwenden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1137"/>
@@ -2597,7 +2597,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1370"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter neu laden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1636"/>
@@ -2633,22 +2633,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1804"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Privatsphäre</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1820"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT (dezentralisiertes Netzwerk) aktivieren um mehr Peers zu finden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1842"/>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterschiedliche Ports für DHT und BitTorrent verwenden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1906"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Peer Exchange (PeX) aktivieren um mehr Peers zu finden</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1916"/>
@@ -2744,31 +2744,31 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../previewselect.cpp" line="18"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="19"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="20"/>
         <source>Progress</source>
-        <translation type="unfinished">Fortschritt</translation>
+        <translation>Fortschritt</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Preview impossible</source>
-        <translation type="unfinished">Vorschau unmöglich</translation>
+        <translation>Vorschau nicht möglich</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="45"/>
         <location filename="../previewselect.cpp" line="80"/>
         <location filename="../previewselect.cpp" line="86"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Bedauere, wir können keine Vorschau für diese Datei erstellen</translation>
+        <translation>Bedauere, es kann keine Vorschau für diese Datei erstellen werden</translation>
     </message>
 </context>
 <context>
@@ -2838,12 +2838,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="74"/>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Quellen</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="80"/>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhalt</translation>
     </message>
     <message>
         <source>Files</source>
@@ -2902,12 +2902,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="296"/>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Aktiv seit:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="502"/>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe der Teile:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="795"/>
@@ -3276,17 +3276,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="364"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP Unterstützung [EIN]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="367"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP Unterstützung [AUS]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="456"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokale Peers finden [EIN]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="873"/>
@@ -3362,12 +3362,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>IP-Filter erfolgreich geparsed: %1 Regeln wurden angewandt.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2567"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler: IP-Filter konnte nicht geparsed werden.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1882"/>
@@ -4150,22 +4150,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Progress</source>
         <translation>Fortschritt</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="331"/>
+        <location filename="../torrentfilesmodel.h" line="339"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
@@ -4356,7 +4356,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="252"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aktiv seit</translation>
     </message>
 </context>
 <context>
@@ -4550,7 +4550,7 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="145"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Geseeded seit %1</translation>
+        <translation>Geseeded seit %1</translation>
     </message>
 </context>
 <context>
@@ -5323,12 +5323,12 @@ Please install it manually.</source>
     <message>
         <location filename="../downloadfromurldlg.ui" line="45"/>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-Links hinzufügen</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="78"/>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP und Magnet-Links werden unterstützt</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="106"/>
@@ -5815,23 +5815,23 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim parsen</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim parsen der IP-Filter</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Erfolgreich aktualisiert</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>IP-Filter erfolgreich geparsed: %1 Regeln wurden angewandt.</translation>
     </message>
 </context>
 <context>
@@ -5934,7 +5934,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
     <message>
         <location filename="../searchengine/search.ui" line="145"/>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Beschreibungsseite wechseln</translation>
     </message>
     <message>
         <location filename="../searchengine/search.ui" line="165"/>
