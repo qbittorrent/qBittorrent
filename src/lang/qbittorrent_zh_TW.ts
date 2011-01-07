@@ -162,11 +162,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查軟體更新</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>使用系統圖示佈景</translation>
     </message>
 </context>
 <context>
@@ -628,12 +628,16 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">形式</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">被封鎖的 IP</translation>
+        <translation>被封鎖的 IP</translation>
     </message>
 </context>
 <context>
@@ -1811,61 +1815,61 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">有新版本可以取得</translation>
+        <translation>有新版本可以取得</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Sourceforge 上有 qBittorrent 的新版本。
+        <translation>Sourceforge 上有 qBittorrent 的新版本。
 你想要更新 qBittorrent 的版本到 %1 嗎?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">不可能更新 qBittorrent</translation>
+        <translation>不可更新 qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent 更新失敗, 原因: %1</translation>
+        <translation>qBittorrent 更新失敗, 原因: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>增加 torrent 檔案 (&amp;A)...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>增加連結到 torrent (&amp;L)...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入已存在的 torrent...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>執行紀錄 (&amp;L)</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>執行紀錄</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>當下載結束後將電腦關機</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>退出 qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>暫停系統</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>關機</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已停用</translation>
     </message>
 </context>
 <context>
@@ -2410,82 +2414,82 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>開始 / 停止 torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>從我的路由器使用 UPnP/NAT-PMP: 埠映射</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>隱私</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用 DHT (分散式網路) 來尋找更多下載者</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT 和 BitTorrent 使用不同的埠</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用下載者交換 (PeX) 來尋找更多下載者</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用本地下載者搜尋來尋找更多下載者</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>加密模式:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>偏好加密</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>要求加密</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>停用加密</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者介面</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>重讀過濾器</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">大小</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">進度</translation>
+        <translation>進度</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">不可預覽</translation>
+        <translation>不可預覽</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">抱歉, 我們無法預覽這個檔案</translation>
+        <translation>抱歉, 我們無法預覽這個檔案</translation>
     </message>
 </context>
 <context>
@@ -2551,11 +2555,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP 來源</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>內容</translation>
     </message>
 </context>
 <context>
@@ -2762,12 +2766,12 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>分塊大小:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>經過時間:</translation>
     </message>
 </context>
 <context>
@@ -3018,24 +3022,24 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-PMP 支援 [開啟]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>NAT-PMP 支援 [關閉]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>本地下載者搜尋支援 [開啟]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>分析 IP 過濾檔案成功: 已套用 %1 個規則。</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤: IP 過濾檔案分析失敗。</translation>
     </message>
 </context>
 <context>
@@ -3783,7 +3787,7 @@ Do you want to install it now?</source>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>經過時間</translation>
     </message>
 </context>
 <context>
@@ -3935,7 +3939,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">已做種 %1</translation>
+        <translation>已做種 %1</translation>
     </message>
 </context>
 <context>
@@ -4612,11 +4616,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>增加 torrent 連結</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP 和磁性連結皆支援</translation>
     </message>
 </context>
 <context>
@@ -4967,20 +4971,20 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>分析錯誤</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>IP 過濾檔案分析失敗</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>重新更新成功</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>分析 IP 過濾檔案成功: 已套用 %1 個規則。</translation>
     </message>
 </context>
 <context>
@@ -5072,7 +5076,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>到描述頁</translation>
     </message>
 </context>
 <context>
