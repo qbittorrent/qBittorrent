@@ -15,6 +15,7 @@
 #ifdef Q_WS_MAC
 #include <sys/param.h>
 #include <sys/mount.h>
+#include <string.h>
 #else
 #include <sys/vfs.h>
 #endif
@@ -28,6 +29,10 @@
 
 #ifndef NFS_SUPER_MAGIC
 #define NFS_SUPER_MAGIC 0x6969
+#endif
+
+#ifndef SMB_SUPER_MAGIC
+#define SMB_SUPER_MAGIC 0x517B
 #endif
 
 const int WATCH_INTERVAL = 10000; // 10 sec
@@ -59,7 +64,12 @@ private:
     file += ".";
     struct statfs buf;
     if(!statfs(file.toLocal8Bit().constData(), &buf)) {
-      return (buf.f_type == (long)CIFS_MAGIC_NUMBER || buf.f_type == (long)NFS_SUPER_MAGIC);
+#ifdef Q_WS_MAC
+      // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
+      return (strcmp(buf.f_fstypename, "nfs") == 0 || strcmp(buf.f_fstypename, "cifs") == 0 || strcmp(buf.f_fstypename, "smbfs") == 0);
+#else
+      return (buf.f_type == (long)CIFS_MAGIC_NUMBER || buf.f_type == (long)NFS_SUPER_MAGIC || buf.f_type == (long)SMB_SUPER_MAGIC);
+#endif
     } else {
       std::cerr << "Error: statfs() call failed for " << qPrintable(file) << ". Supposing it is a local folder..." << std::endl;
       switch(errno) {
