@@ -158,11 +158,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Controleer op software updates</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik systeem iconen thema</translation>
     </message>
 </context>
 <context>
@@ -528,12 +528,16 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Formulier</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">Algemeen</translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Geblokkeerde IP&apos;s</translation>
+        <translation>Geblokkeerde IP&apos;s</translation>
     </message>
 </context>
 <context>
@@ -1316,11 +1320,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation>Top &amp;toolbalk</translation>
+        <translation>Bovenste &amp;werkbalk</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
-        <translation>Toon top toolbalk</translation>
+        <translation>Toon bovenste werkbalk</translation>
     </message>
     <message>
         <source>&amp;Speed in title bar</source>
@@ -1597,61 +1601,61 @@ Weet u zeker dat u qBittorrent wilt afsluiten?</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Er is een nieuwere versie beschikbaar</translation>
+        <translation>Er is een nieuwere versie beschikbaar</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Er is een nieuwere versie van qBittorrent beschikbaar op Sourceforge.
+        <translation>Er is een nieuwere versie van qBittorrent beschikbaar op Sourceforge.
 Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Onmogelijk om qBittorrent up te daten</translation>
+        <translation>Onmogelijk om qBittorrent up te daten</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">qBittorrent slaagde er niet in om up te daten, reason: %1</translation>
+        <translation>qBittorrent slaagde er niet in om up te daten, reason: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Voeg torrent bestand toe...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Voeg &amp;link toe aan torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importeer bestaande torrent...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitvoerings&amp;log</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitvoeringslog</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Autmatisch aflsuiten als de downloads volledig zijn</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Schors systeem</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit het systeem af</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Uitgeschakeld</translation>
+        <translation>Uitgeschakeld</translation>
     </message>
 </context>
 <context>
@@ -2192,86 +2196,86 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy server</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Start / Stop Torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik UPnP / NAT-PMP port forwarding van mijn router</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Privacy</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel DHT (decentralized network) in om andere peers te vinden</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik een verschillende poort voor DHT en BitTorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Peer Exchange (PeX) in om peers te vinden</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Local Peer Discovery in om meer peers te vinden</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Encryptiemodus:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkies encryptie</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Vereis encryptie</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel encryptie uit</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersinterface</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Herlaad de filter</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Voortgang</translation>
+        <translation>Voortgang</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Vooruitkijken onmogelijk</translation>
+        <translation>Vooruitkijken onmogelijk</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
+        <translation>Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
     </message>
 </context>
 <context>
@@ -2337,11 +2341,11 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Bronnen</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhoud</translation>
     </message>
 </context>
 <context>
@@ -2536,12 +2540,12 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delen grootte:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Tijd actief:</translation>
     </message>
 </context>
 <context>
@@ -2792,24 +2796,24 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP support [AAN]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>UPnP / NAT-PMP support [UIT]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Local Peer Discovery support [AAN]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: Mislukt om de opgegeven IP filter te ontleden.</translation>
     </message>
 </context>
 <context>
@@ -3542,7 +3546,7 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tijd actief</translation>
     </message>
 </context>
 <context>
@@ -3694,7 +3698,7 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Geseed voor %1</translation>
+        <translation>Geseed voor %1</translation>
     </message>
 </context>
 <context>
@@ -4331,11 +4335,11 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Voeg torrent links toe</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Zowel HTTP als Magnet links worden ondersteund</translation>
     </message>
 </context>
 <context>
@@ -4686,20 +4690,20 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ontledings error</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Mislukt om de opgegeven IP filter te ontleden</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Succesvol vernieuwd</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
     </message>
 </context>
 <context>
@@ -4792,7 +4796,7 @@ selecteer alstublieft een er van:</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ga naar de beschrijvingspagina</translation>
     </message>
 </context>
 <context>
