@@ -325,12 +325,12 @@ QStringList QTorrentHandle::uneeded_files_path() const {
   QDir saveDir(save_path());
   QStringList res;
   std::vector<int> fp = torrent_handle::file_priorities();
-  vector<float> progress;
+  vector<size_type> progress;
   torrent_handle::file_progress(progress);
   torrent_info::file_iterator fi = torrent_handle::get_torrent_info().begin_files();
   int i = 0;
   while(fi != torrent_handle::get_torrent_info().end_files()) {
-    if(fp[i] == 0 && progress[i] < 1.)
+    if(fp[i] == 0 && progress[i] < filesize_at(i))
       res << QDir::cleanPath(saveDir.absoluteFilePath(filepath(*fi)));
     fi++;
     ++i;
@@ -506,10 +506,12 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   if((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
   qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
+  vector<size_type> progress;
+  torrent_handle::file_progress(progress);
   torrent_handle::prioritize_files(files);
   for(uint i=0; i<files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
-    if(files[i] == 0) {
+    if(files[i] == 0 && progress[i] < filesize_at(i)) {
       QString old_path = filepath_at(i);
       QString old_name = filename_at(i);
       QString parent_path = misc::branchPath(old_path);
