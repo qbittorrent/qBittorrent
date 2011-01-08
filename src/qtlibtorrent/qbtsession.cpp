@@ -667,15 +667,14 @@ void QBtSession::deleteTorrent(QString hash, bool delete_local_files) {
     if(h.has_metadata())
       uneeded_files = h.uneeded_files_path();
     s->remove_torrent(h);
-    // Remove unneeded files
-    // XXX: Disabled this now that uneeded files are hidden
-    /*foreach(const QString &uneeded_file, uneeded_files) {
+    // Remove unneeded and incomplete files
+    foreach(const QString &uneeded_file, uneeded_files) {
       qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));
       misc::safeRemove(uneeded_file);
       const QString parent_folder = misc::branchPath(uneeded_file);
       qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
       QDir().rmpath(parent_folder);
-    }*/
+    }
   }
   // Remove it from torrent backup directory
   QDir torrentBackup(misc::BTBackupLocation());
