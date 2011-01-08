@@ -12,6 +12,7 @@
     - FEATURE: Added a search engine plugin for kickasstorrents.com
     - FEATURE: Added auto-suspend upon downloads completion feature
     - BUGFIX: Hide unwanted files that have to be partly downloaded
+    - BUGFIX: Do not allocate space for unwanted files (preallocation mode)
     - I18N: Added Galician translation
     - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
     - COSMETIC: Simplified the top toolbar

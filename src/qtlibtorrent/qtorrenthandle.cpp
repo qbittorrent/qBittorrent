@@ -500,15 +500,14 @@ void QTorrentHandle::file_priority(int index, int priority) const {
   }
 }
 
-// TODO: Also hide the folder on Windows
 void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   if((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
-  const vector<int> prev_priorities = torrent_handle::file_priorities();
+  qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
   torrent_handle::prioritize_files(files);
   for(uint i=0; i<files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
-    if(prev_priorities[i] > 0 && files[i] == 0) {
+    if(files[i] == 0) {
       QString old_path = filepath_at(i);
       QString old_name = filename_at(i);
       QString parent_path = misc::branchPath(old_path);
@@ -535,7 +534,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
       }
     }
     // Move wanted files back to their original folder
-    if(prev_priorities[i] == 0 && files[i] > 0) {
+    if(files[i] > 0) {
       QString old_path = filepath_at(i);
       QString old_name = filename_at(i);
       QDir parent_path(misc::branchPath(old_path));

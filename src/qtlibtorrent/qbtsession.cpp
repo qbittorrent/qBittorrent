@@ -932,7 +932,20 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       p.resume_data = &buf;
       qDebug("Successfully loaded fast resume data");
     }
+  } else {
+    // Generate fake resume data to make sure unwanted files
+    // are not allocated
+    if(preAllocateAll) {
+      vector<int> fp;
+      TorrentTempData::getFilesPriority(hash, fp);
+      if((int)fp.size() == t->num_files()) {
+        entry rd = generateFilePriorityResumeData(t, fp);
+        bencode(std::back_inserter(buf), rd);
+        p.resume_data = &buf;
+      }
+    }
   }
+
   QString savePath;
   if(!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toLocal8Bit()))) {
     // Enforcing the save path defined before URL download (from RSS for example)
@@ -1953,7 +1966,7 @@ void QBtSession::readAlerts() {
           bool will_shutdown = (pref.shutdownWhenDownloadsComplete() ||
                                 pref.shutdownqBTWhenDownloadsComplete() ||
                                 pref.suspendWhenDownloadsComplete())
-                                && !hasDownloadingTorrents();
+              && !hasDownloadingTorrents();
           // AutoRun program
           if(pref.isAutoRunEnabled())
             autoRunExternalProgram(h, will_shutdown);
@@ -2566,4 +2579,46 @@ void QBtSession::handleIPFilterError()
 {
   addConsoleMessage(tr("Error: Failed to parse the provided IP filter."), "red");
   emit ipFilterParsed(true, 0);
+}
+
+entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_info> t, const std::vector<int> &fp)
+{
+  entry::dictionary_type rd;
+  rd["file-format"] = "libtorrent resume file";
+  rd["file-version"] = 1;
+  rd["libtorrent-version"] = LIBTORRENT_VERSION;
+  rd["allocation"] = "full";
+  sha1_hash info_hash = t->info_hash();
+  rd["info-hash"] = std::string((char*)info_hash.begin(), (char*)info_hash.end());
+  // Priorities
+  entry::list_type priorities;
+  priorities.resize(fp.size());
+  for(uint i=0; i<fp.size(); ++i) {
+    priorities.push_back(entry(fp[i]));
+  }
+  rd["file_priority"] = entry(priorities);
+  // files sizes (useless but required)
+  entry::list_type sizes;
+  for(int i=0; i<t->num_files(); ++i) {
+    entry::list_type p;
+    p.push_back(entry(0));
+    p.push_back(entry(0));
+    sizes.push_back(entry(p));
+  }
+  rd["file sizes"] = entry(sizes);
+  // Slots
+  entry::list_type tslots;
+
+  for(int i=0; i<t->num_pieces(); ++i) {
+    tslots.push_back(-1);
+  }
+  rd["slots"] = entry(tslots);
+
+  entry::string_type pieces;
+  std::memset(&pieces[0], 0, t->num_pieces());
+  rd["pieces"] = entry(pieces);
+
+  entry ret(rd);
+  Q_ASSERT(ret.type() == entry::dictionary_t);
+  return ret;
 }
