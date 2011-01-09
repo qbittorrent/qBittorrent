@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
+* Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
     - FEATURE: Use system icons (Linux, Qt >= 4.6)
     - FEATURE: Improved ETA calculation
     - FEATURE: Simplify program preferences
