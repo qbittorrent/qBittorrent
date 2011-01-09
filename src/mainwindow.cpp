@@ -804,8 +804,8 @@ void MainWindow::dropEvent(QDropEvent *event) {
     files = event->mimeData()->text().split(QString::fromUtf8("\n"));
   }
   // Add file to download list
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
+  Preferences pref;
+  const bool useTorrentAdditionDialog = pref.useAdditionDialog();
   foreach(QString file, files) {
     qDebug("Dropped file %s on download list", qPrintable(file));
     if(misc::isUrl(file)) {
@@ -857,6 +857,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 // Display a dialog to allow user to add
 // torrents to download list
 void MainWindow::on_actionOpen_triggered() {
+  Preferences pref;
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Open File Open Dialog
   // Note: it is possible to select more than one file
@@ -864,7 +865,7 @@ void MainWindow::on_actionOpen_triggered() {
                                                               tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!pathsList.empty()) {
-    const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
+    const bool useTorrentAdditionDialog = pref.useAdditionDialog();
     const uint listSize = pathsList.size();
     for(uint i=0; i<listSize; ++i) {
       if(useTorrentAdditionDialog) {
