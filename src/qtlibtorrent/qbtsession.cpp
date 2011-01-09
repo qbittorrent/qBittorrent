@@ -99,7 +99,6 @@ QBtSession::QBtSession()
   // To avoid some exceptions
   boost::filesystem::path::default_name_check(boost::filesystem::no_check);
   // Creating Bittorrent session
-  // Check if we should spoof utorrent
   QList<int> version;
   version << VERSION_MAJOR;
   version << VERSION_MINOR;
