@@ -2,6 +2,7 @@
     - BUGFIX: Really disable torrent addition dialog by default
     - BUGFIX: Fix some missing icons in the Web UI
     - COSMETIC: Use 24px size for toolbar icons
+    - COSMETIC: Move transfer list filter on the right side of the toolbar
 
 * Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
     - FEATURE: Use system icons (Linux, Qt >= 4.6)
