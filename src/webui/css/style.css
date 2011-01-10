@@ -262,8 +262,11 @@ a.propButton img {
 
 /* Mocha Customization */
 #mochaToolbar .divider {
-        background: url(../images/skin/toolbox-divider.gif) left center no-repeat;
-        padding: 25px 0 0 14px;
+	background-image: url(../images/skin/toolbox-divider.gif);
+	background-repeat: no-repeat;
+        background-position: left center;
+        padding-left: 14px;
+	padding-top: 15px;
 }
 
 .MyMenuIcon {
