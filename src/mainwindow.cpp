@@ -84,7 +84,7 @@ void qt_mac_set_dock_menu(QMenu *menu);
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
-#define TOOLBAR_SPACING 10
+#define TOOLBAR_SPACING 0
 
 /*****************************************************
  *                                                   *
@@ -175,8 +175,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   // Name filter
   search_filter = new LineEdit();
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
-  QAction *searchSeparatorAct = toolBar->insertSeparator(actionLock_qBittorrent);
-  QAction *searchFilterAct = toolBar->insertWidget(searchSeparatorAct, search_filter);
+  QAction *searchFilterAct = toolBar->insertWidget(actionLock_qBittorrent, search_filter);
   search_filter->setFixedWidth(200);
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
