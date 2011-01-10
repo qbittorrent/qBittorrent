@@ -142,7 +142,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   if(role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();
   switch(column) {
   case TR_NAME:
-    return m_name;
+    return m_name.isEmpty()? m_torrent.name() : m_name;
   case TR_PRIORITY:
     return m_torrent.queue_position();
   case TR_SIZE:

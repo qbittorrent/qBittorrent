@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.1
     - BUGFIX: Really disable torrent addition dialog by default
     - BUGFIX: Fix some missing icons in the Web UI
+    - BUGFIX: Fix magnet torrent name update problem
     - COSMETIC: Use 24px size for toolbar icons
     - COSMETIC: Move transfer list filter on the right side of the toolbar
 

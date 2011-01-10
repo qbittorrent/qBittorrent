@@ -294,6 +294,12 @@ int main(int argc, char *argv[]){
   QStringList torrentCmdLine = app.arguments();
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
+#ifndef QT_NO_DEBUG_OUTPUT
+  foreach(const QString &argument, torrentCmdLine) {
+    qDebug() << "Command line argument:" << argument;
+  }
+#endif
+
 #ifndef DISABLE_GUI
   MainWindow window(0, torrentCmdLine);
   if(!no_splash)
