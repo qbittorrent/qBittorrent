@@ -133,7 +133,6 @@
    <addaction name="actionIncreasePriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
-   <addaction name="separator"/>
    <addaction name="actionLock_qBittorrent"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

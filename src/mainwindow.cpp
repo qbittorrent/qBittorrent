@@ -174,13 +174,14 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   vboxLayout->addWidget(tabs);
   // Name filter
   search_filter = new LineEdit();
-  toolBar->insertWidget(actionLock_qBittorrent, search_filter);
-  search_filter->setFixedWidth(200);
   connect(search_filter, SIGNAL(textChanged(QString)), transferList, SLOT(applyNameFilter(QString)));
-
+  QAction *searchSeparatorAct = toolBar->insertSeparator(actionLock_qBittorrent);
+  QAction *searchFilterAct = toolBar->insertWidget(searchSeparatorAct, search_filter);
+  search_filter->setFixedWidth(200);
   QWidget *spacer = new QWidget(this);
   spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-  toolBar->insertWidget(actionLock_qBittorrent, spacer);
+  toolBar->insertWidget(searchFilterAct, spacer);
+
 
   prioSeparator = toolBar->insertSeparator(actionDecreasePriority);
   prioSeparatorMenu = menu_Edit->insertSeparator(actionDecreasePriority);
