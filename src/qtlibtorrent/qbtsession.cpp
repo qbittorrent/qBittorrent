@@ -119,7 +119,7 @@ QBtSession::QBtSession()
   //s->add_extension(&create_metadata_plugin);
   s->add_extension(&create_ut_metadata_plugin);
 #if LIBTORRENT_VERSION_MINOR > 14
-  s->add_extension(create_lt_trackers_plugin);
+  s->add_extension(&create_lt_trackers_plugin);
 #endif
   if(pref.isPeXEnabled()) {
     PeXEnabled = true;
