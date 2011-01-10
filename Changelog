@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.2
+    - BUGFIX: Do not report PeX as being disabled when DHT is
+
 * Mon Jan 10 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.1
     - BUGFIX: Really disable torrent addition dialog by default
     - BUGFIX: Fix some missing icons in the Web UI

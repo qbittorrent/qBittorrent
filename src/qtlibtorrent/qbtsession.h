@@ -1,4 +1,4 @@
-/*
+e/*
  * Bittorrent Client using Qt4 and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
@@ -95,7 +95,7 @@ public:
   inline ScanFoldersModel* getScanFoldersModel() const {  return m_scanFolders; }
   inline bool isDHTEnabled() const { return DHTEnabled; }
   inline bool isLSDEnabled() const { return LSDEnabled; }
-  inline bool isPexEnabled() const { return DHTEnabled; }
+  inline bool isPexEnabled() const { return PeXEnabled; }
   inline bool isQueueingEnabled() const { return queueingEnabled; }
 
 public slots:
