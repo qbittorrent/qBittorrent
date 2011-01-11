@@ -229,9 +229,9 @@ void options_imp::initializeLanguageCombo()
     QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
     localeStr.chop(3); // Remove ".qm"
     QLocale locale(localeStr);
-    const QString country = locale.name().split("_").last().toLower();
+    //const QString country = locale.name().split("_").last().toLower();
     QString language_name = QLocale::languageToString(locale.language());
-    comboI18n->addItem(QIcon(":/Icons/flags/"+country+".png"), language_name, locale.name());
+    comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
     qDebug() << "Supported locale:" << locale.name();
   }
 }
