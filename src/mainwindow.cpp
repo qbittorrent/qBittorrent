@@ -84,7 +84,6 @@ void qt_mac_set_dock_menu(QMenu *menu);
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
-#define TOOLBAR_SPACING 0
 
 /*****************************************************
  *                                                   *
@@ -137,8 +136,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
   connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
   actionLock_qBittorrent->setMenu(lockMenu);
-  // Fix Tool bar layout
-  toolBar->layout()->setSpacing(TOOLBAR_SPACING);
   // Creating Bittorrent session
   connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
   connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), this, SLOT(finishedTorrent(QTorrentHandle)));
@@ -971,7 +968,6 @@ void MainWindow::loadPreferences(bool configure_session) {
   // General
   if(pref.isToolbarDisplayed()) {
     toolBar->setVisible(true);
-    toolBar->layout()->setSpacing(TOOLBAR_SPACING);
   } else {
     // Clear search filter before hiding the top toolbar
     search_filter->clear();
@@ -991,7 +987,6 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionIncreasePriority->setVisible(true);
       prioSeparator->setVisible(true);
       prioSeparatorMenu->setVisible(true);
-      toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   } else {
     if(actionDecreasePriority->isVisible()) {
@@ -1000,7 +995,6 @@ void MainWindow::loadPreferences(bool configure_session) {
       actionIncreasePriority->setVisible(false);
       prioSeparator->setVisible(false);
       prioSeparatorMenu->setVisible(false);
-      toolBar->layout()->setSpacing(TOOLBAR_SPACING);
     }
   }
 
