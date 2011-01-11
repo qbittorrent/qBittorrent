@@ -1,4 +1,4 @@
-e/*
+/*
  * Bittorrent Client using Qt4 and libtorrent.
  * Copyright (C) 2006  Christophe Dumez
  *
