@@ -200,4 +200,5 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_sr.ts \
                $$LANG_PATH/qbittorrent_ar.ts \
                $$LANG_PATH/qbittorrent_hr.ts \
-               $$LANG_PATH/qbittorrent_gl.ts
+               $$LANG_PATH/qbittorrent_gl.ts \
+               $$LANG_PATH/qbittorrent_hy.ts

@@ -31,5 +31,6 @@
   <file>lang/qbittorrent_en.qm</file>
   <file>lang/qbittorrent_hr.qm</file>
   <file>lang/qbittorrent_ro.qm</file>
+  <file>lang/qbittorrent_hy.qm</file>
 </qresource>
 </RCC>
