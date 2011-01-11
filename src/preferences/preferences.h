@@ -908,12 +908,16 @@ public:
         return path;
       }
     }
+    if(QFile::exists("C:/Python27/python.exe")) {
+      reg_python.setValue("2.7/InstallPath/Default", "C:\\Python27");
+      return "C:\\Python27";
+    }
     if(QFile::exists("C:/Python26/python.exe")) {
       reg_python.setValue("2.6/InstallPath/Default", "C:\\Python26");
       return "C:\\Python26";
     }
     if(QFile::exists("C:/Python25/python.exe")) {
-      reg_python.setValue("2.5/InstallPath/Default", "C:\\Python26");
+      reg_python.setValue("2.5/InstallPath/Default", "C:\\Python25");
       return "C:\\Python25";
     }
     return QString::null;
