@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.2
     - BUGFIX: Do not report PeX as being disabled when DHT is
+    - I18N: Updated Greek and Bulgarian translations
 
 * Mon Jan 10 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.1
     - BUGFIX: Really disable torrent addition dialog by default
