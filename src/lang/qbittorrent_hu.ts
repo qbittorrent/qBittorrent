@@ -1568,53 +1568,53 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="161"/>
+        <location filename="../mainwindow.ui" line="154"/>
         <source>&amp;Options...</source>
         <translation>Beállítás&amp;ok...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="166"/>
+        <location filename="../mainwindow.ui" line="159"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="176"/>
+        <location filename="../mainwindow.ui" line="169"/>
         <source>&amp;Pause</source>
         <translation>&amp;Szünet</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="181"/>
+        <location filename="../mainwindow.ui" line="174"/>
         <source>&amp;Delete</source>
         <translation>&amp;Törlés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="332"/>
+        <location filename="../mainwindow.ui" line="325"/>
         <source>P&amp;ause All</source>
         <translation>Összes le&amp;állítása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="171"/>
+        <location filename="../mainwindow.ui" line="164"/>
         <source>&amp;Resume</source>
         <translation>&amp;Folytatás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="148"/>
+        <location filename="../mainwindow.ui" line="141"/>
         <source>&amp;Add torrent file...</source>
         <translation>Torrent hozzá&amp;adása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="153"/>
-        <location filename="../mainwindow.ui" line="156"/>
+        <location filename="../mainwindow.ui" line="146"/>
+        <location filename="../mainwindow.ui" line="149"/>
         <source>Exit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="327"/>
+        <location filename="../mainwindow.ui" line="320"/>
         <source>R&amp;esume All</source>
         <translation>Összes &amp;folytatása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="190"/>
+        <location filename="../mainwindow.ui" line="183"/>
         <source>Visit &amp;Website</source>
         <translation>Irány a &amp;weboldal</translation>
     </message>
@@ -1623,57 +1623,57 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">&amp;URL hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="200"/>
+        <location filename="../mainwindow.ui" line="193"/>
         <source>Torrent &amp;creator</source>
         <translation>Torrent &amp;készítő</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="205"/>
+        <location filename="../mainwindow.ui" line="198"/>
         <source>Report a &amp;bug</source>
         <translation>&amp;Hibajelentés</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="210"/>
+        <location filename="../mainwindow.ui" line="203"/>
         <source>Set upload limit...</source>
         <translation>Feltöltési korlát megadása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="215"/>
+        <location filename="../mainwindow.ui" line="208"/>
         <source>Set download limit...</source>
         <translation>Letöltési korlát megadása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="220"/>
+        <location filename="../mainwindow.ui" line="213"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Dokumentáció</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="225"/>
+        <location filename="../mainwindow.ui" line="218"/>
         <source>Set global download limit...</source>
         <translation>Letöltési sebességkorlát...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="230"/>
+        <location filename="../mainwindow.ui" line="223"/>
         <source>Set global upload limit...</source>
         <translation>Feltöltési sebességkorlát...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="351"/>
+        <location filename="../mainwindow.ui" line="344"/>
         <source>Exit qBittorrent</source>
         <translation>qBittorrent bezárása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="359"/>
+        <location filename="../mainwindow.ui" line="352"/>
         <source>Suspend system</source>
         <translation>Számítógép felfüggesztése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="367"/>
+        <location filename="../mainwindow.ui" line="360"/>
         <source>Shutdown system</source>
         <translation>Számítógép leállítása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="375"/>
+        <location filename="../mainwindow.ui" line="368"/>
         <source>Disabled</source>
         <translation>Kikapcsolva</translation>
     </message>
@@ -1690,13 +1690,13 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">Számbítógép leállítása a letöltések végén</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="300"/>
-        <location filename="../mainwindow.ui" line="303"/>
+        <location filename="../mainwindow.ui" line="293"/>
+        <location filename="../mainwindow.ui" line="296"/>
         <source>Lock qBittorrent</source>
         <translation>qBittorrent zárolása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="306"/>
+        <location filename="../mainwindow.ui" line="299"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
@@ -1705,54 +1705,54 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">qBittorrent leállítása a letöltések végén</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="311"/>
+        <location filename="../mainwindow.ui" line="304"/>
         <source>Import existing torrent...</source>
         <translation>Létező torrent importálása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="314"/>
+        <location filename="../mainwindow.ui" line="307"/>
         <source>Import torrent...</source>
         <translation>Torrent importálása...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="319"/>
+        <location filename="../mainwindow.ui" line="312"/>
         <source>Donate money</source>
         <translation>Adomány</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="322"/>
+        <location filename="../mainwindow.ui" line="315"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Ha kedveled a qBittorrentet, kélek támogasd!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="340"/>
+        <location filename="../mainwindow.ui" line="333"/>
         <source>Execution &amp;Log</source>
         <translation>Folyamat nap&amp;ló</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="343"/>
-        <location filename="../mainwindow.cpp" line="1283"/>
+        <location filename="../mainwindow.ui" line="336"/>
+        <location filename="../mainwindow.cpp" line="1284"/>
         <source>Execution Log</source>
         <translation>Napló</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="254"/>
-        <location filename="../mainwindow.ui" line="257"/>
+        <location filename="../mainwindow.ui" line="247"/>
+        <location filename="../mainwindow.ui" line="250"/>
         <source>Alternative speed limits</source>
         <translation>Alternatív sebességkorlát</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="287"/>
+        <location filename="../mainwindow.ui" line="280"/>
         <source>&amp;RSS reader</source>
         <translation>&amp;RSS olvasó</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="295"/>
+        <location filename="../mainwindow.ui" line="288"/>
         <source>Search &amp;engine</source>
         <translation>&amp;Keresőmotor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="265"/>
+        <location filename="../mainwindow.ui" line="258"/>
         <source>Top &amp;tool bar</source>
         <translation>Felső &amp;eszköz panel</translation>
     </message>
@@ -1762,22 +1762,22 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation>Automatikus leállítás a letöltés végén</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="195"/>
+        <location filename="../mainwindow.ui" line="188"/>
         <source>Add &amp;link to torrent...</source>
         <translation>&amp;Link hozzáadása torrenthez...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="268"/>
+        <location filename="../mainwindow.ui" line="261"/>
         <source>Display top tool bar</source>
         <translation>Eszközsor megjelenítése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="276"/>
+        <location filename="../mainwindow.ui" line="269"/>
         <source>&amp;Speed in title bar</source>
         <translation>&amp;Sebesség a címsoron</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="279"/>
+        <location filename="../mainwindow.ui" line="272"/>
         <source>Show transfer speed in title bar</source>
         <translation>Sebesség megjelenítése a címsoron</translation>
     </message>
@@ -1790,18 +1790,18 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <translation type="obsolete">Napló kiürítése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="235"/>
+        <location filename="../mainwindow.ui" line="228"/>
         <source>Decrease priority</source>
         <translation>Elsőbbség csökkentése</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
+        <location filename="../mainwindow.ui" line="236"/>
         <source>Increase priority</source>
         <translation>Elsőbbség fokozása</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="100"/>
-        <location filename="../mainwindow.cpp" line="1207"/>
+        <location filename="../mainwindow.cpp" line="1208"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1992,64 +1992,64 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <translation>Mindig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="864"/>
+        <location filename="../mainwindow.cpp" line="865"/>
         <source>Open Torrent Files</source>
         <translation>Megnyitás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="865"/>
+        <location filename="../mainwindow.cpp" line="866"/>
         <source>Torrent Files</source>
         <translation>Torrentek</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="944"/>
+        <location filename="../mainwindow.cpp" line="945"/>
         <source>Options were saved successfully.</source>
         <translation>Beállítások sikeresen elmentve.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1041"/>
+        <location filename="../mainwindow.cpp" line="1042"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1044"/>
-        <location filename="../mainwindow.cpp" line="1051"/>
+        <location filename="../mainwindow.cpp" line="1045"/>
+        <location filename="../mainwindow.cpp" line="1052"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Letöltés: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1047"/>
-        <location filename="../mainwindow.cpp" line="1053"/>
+        <location filename="../mainwindow.cpp" line="1048"/>
+        <location filename="../mainwindow.cpp" line="1054"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Feltöltés: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="1059"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Letöltés: %2/s, Feltöltés: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1245"/>
+        <location filename="../mainwindow.cpp" line="1246"/>
         <source>A newer version is available</source>
         <translation>Elérhető új verzió</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1246"/>
+        <location filename="../mainwindow.cpp" line="1247"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>A qBittorrent egy újabb verziója érhető el a Soruceforge oldalon.
 Szeretnéd most frissíteni a %1 verzióra?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1261"/>
+        <location filename="../mainwindow.cpp" line="1262"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Frissítés sikertelen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1261"/>
+        <location filename="../mainwindow.cpp" line="1262"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>A qBittorrent frissítése meghiúsult, mert: %1</translation>
     </message>
@@ -3172,23 +3172,23 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
 <context>
     <name>QBtSession</name>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="205"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="211"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="204"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="210"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 elérte a megengedett arányt.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="206"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="205"/>
         <source>Removing torrent %1...</source>
         <translation>Torrent eltávolítása %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="211"/>
         <source>Pausing torrent %1...</source>
         <translation>Torrent leállítása %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="301"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="300"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent ezen a porton figyel: TCP/%1</translation>
@@ -3210,7 +3210,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation type="obsolete">NAT-PMP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="373"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="372"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP user agent %1</translation>
     </message>
@@ -3219,28 +3219,28 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation type="obsolete">Lemez gyorsítótár: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="436"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="435"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT támogatás [ON], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="438"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="442"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="437"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="441"/>
         <source>DHT support [OFF]</source>
         <translation>DHT funkció [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="446"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="445"/>
         <source>PeX support [ON]</source>
         <translation>PeX [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="448"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
         <source>PeX support [OFF]</source>
         <translation>PeX támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="450"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>A PeX támogatás bekapcsolása újraindítást igényel</translation>
     </message>
@@ -3249,255 +3249,255 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation type="obsolete">Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="459"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="458"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Local Peer Discovery támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="471"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="470"/>
         <source>Encryption support [ON]</source>
         <translation>Titkosítás [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="476"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="475"/>
         <source>Encryption support [FORCED]</source>
         <translation>Titkosítás [KÉNYSZERÍTVE]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="481"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="480"/>
         <source>Encryption support [OFF]</source>
         <translation>Titkosítás [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="541"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="540"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Beágyazott tracker [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="542"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Beágyazott tracker indítása sikertelen!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="546"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="545"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Beágyazott tracker [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="571"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="570"/>
         <source>The Web UI is listening on port %1</source>
         <translation>A Web UI ezen a porton figyel: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="573"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="572"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Webes felület hiba - port használata sikertelen: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="691"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="690"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="693"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="692"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="769"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="768"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="785"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="898"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="900"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="784"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="899"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1039"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1044"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1038"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1043"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="839"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1041"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1046"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="838"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1040"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1045"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="364"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="363"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>UPnP / NAT-PMP támogatás [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="367"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="366"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>UPnP / NAT-PMP támogatás [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="456"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="455"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="873"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="877"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="872"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="876"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="880"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="879"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ez a fájl sérült, vagy nem is torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="913"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="912"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Hiba: A %1 torrent nem tartalmaz fájlokat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1170"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1169"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Megjegyzés: új tracker hozzáadva a torrenthez.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1182"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Megjegyzés: új URL seed hozzáadva a torrenthez.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1518"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;letiltva IP szűrés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1521"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1520"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;kitiltva hibás adatküldés miatt&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1688"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>A megadott hálózati csatoló hasznavehetetlen: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1690"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1689"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Másik elérhető hálózati csatoló használata.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1703"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>IP cím: %1 hálózati csatoló: %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1706"/>
         <source>Failed to listen on network interface %1</source>
         <translation>A hálózati csatoló használata sikertelen: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1853"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1852"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Fájl ismételt letöltése %1 beágyazva a torrentbe %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1940"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2574"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2573"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP szűrő sikeresen megnyitva: %1 elfogadva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2580"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2579"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Hiba: az IP szűrő megnyitása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
         <source>Torrent name: %1</source>
         <translation>Torrent neve: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
         <source>Torrent size: %1</source>
         <translation>Torrent mérete: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
         <source>Save path: %1</source>
         <translation>Mentés helye: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>A torrent letöltve %1 alatt.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Köszönjük, hogy a qBittorentet használod.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 letöltése befejeződött</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2140"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>I/O hiba történt, &apos;%1&apos; megállítva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
         <source>Reason: %1</source>
         <translation>Mivel: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2231"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2230"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2259"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2258"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>A fájl mérete nem megfelelő ennél a torrentnél: %1, leállítva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2262"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2269"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2268"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2394"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2393"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
