@@ -5,7 +5,7 @@ HEADERS += $$PWD/qbtsession.h \
            $$PWD/bandwidthscheduler.h \
            $$PWD/trackerinfos.h \
            $$PWD/torrentspeedmonitor.h \
-           $$PWD/filterparserthread.h \
+           $$PWD/filterparserthread.h
 
 SOURCES += $$PWD/qbtsession.cpp \
            $$PWD/qtorrenthandle.cpp \
