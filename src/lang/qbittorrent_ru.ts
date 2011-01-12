@@ -166,7 +166,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать системные иконки</translation>
     </message>
 </context>
 <context>
@@ -1819,12 +1819,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Скач.: %1 KiB/с</translation>
+        <translation>Скач.: %1 КиБ/с</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Отдача.: %1 KiB/с</translation>
+        <translation>Отдача.: %1 КиБ/с</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -1833,7 +1833,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation>Новая версия доступна</translation>
+        <translation>Доступна новая версия</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
@@ -1871,23 +1871,23 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключение по завершении загрузок</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Выйти из qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти в спящий режим</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключить компьютер</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Выключено</translation>
+        <translation>Выключено</translation>
     </message>
 </context>
 <context>
@@ -2509,23 +2509,23 @@ Would you like to update qBittorrent to version %1?</source>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Предпросмотр невозможен</translation>
+        <translation>Предпросмотр невозможен</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Извините, предпросмотр этого файла невозможен</translation>
+        <translation>Извините, предпросмотр этого файла невозможен</translation>
     </message>
 </context>
 <context>
@@ -3818,12 +3818,12 @@ Do you want to install it now?</source>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Объем скачан</translation>
+        <translation>Загружено</translation>
     </message>
     <message>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Объем остался</translation>
+        <translation>Осталось</translation>
     </message>
     <message>
         <source>Time Active</source>
@@ -5123,7 +5123,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти на страницу описания</translation>
     </message>
 </context>
 <context>
