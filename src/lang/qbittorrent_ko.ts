@@ -391,195 +391,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
-    <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">&apos;%1&apos; 는 설정된 최대 공유 비율에 도달했습니다.</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="obsolete">큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnp 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>HTTP user agent is %1</source>
-        <translation type="obsolete">HTTP 사용자 에이전트: %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">사용중인 디스크 케쉬 용량: %1 MiB</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>Restart is required to toggle PeX support</source>
-        <translation type="obsolete">Pex 기능을 재설정하기 위해서 프로그램을 다시 시작해야 합니다</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">암호화 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">암호화 지원 [강제사용]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">암호화 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">웹 사용자 인터페이스는 포트 %1 를 사용하고 있습니다</translation>
-    </message>
-    <message>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
-    </message>
-    <message>
-        <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="obsolete">참고: 새 트렉커가 토렌트에 추가 되었습니다.</translation>
-    </message>
-    <message>
-        <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="obsolete">참고: 새 URL 완전체 공유자가 토렌트에 추가 되었습니다.</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">%1 토렌트를 해독할수 없습니다.</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete"> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
-    </message>
-    <message>
-        <source>Reason: %1</source>
-        <translation type="obsolete">이유: %1</translation>
-    </message>
-    <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">I/O 에러가 있습니다, &apos;%1&apos; 정지.</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
-    </message>
-</context>
-<context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">일반</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">접속이 금지된 IP</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
@@ -677,187 +488,6 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>FeedDownloader</name>
-    <message>
-        <source>RSS Feed downloader</source>
-        <translation type="obsolete">RSS 피드 다운로더</translation>
-    </message>
-    <message>
-        <source>RSS feed:</source>
-        <translation type="obsolete">RSS 피드:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translation type="obsolete">피드 이름</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">이 피드에서 자동으로 다운하기</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">다운로트 필터</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">필터:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">필터 설정사항</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">해당:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">해당하지 않음:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">저장 폴더:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">필터 시험</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">토렌트 이름:</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">결과:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">시험</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">가져오기...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">내보내기...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">필터 이름 바꾸기</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">필터 지우기</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">필터 추가</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">새 필터</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete">이 필터 이름을 고르세요</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">필터 이름:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">부적당한 필터 이름</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">필터 이름을 꼭 입력하셔야 합니다.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">이 필터 이름은 벌써 사용되고 있습니다.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">저장 경로 선택</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">핕터 테스트 오류</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">시험용 토렌트 이름을 입력하세요.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">해당</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">해당하지 않음</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">가져올 파일을 선택하세요</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">필터 파일</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">가져오기 성공</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">필터 가져오기가 성공적으로 이루어졌습니다.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">가져오기 실패</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">I/O 에러에 의하여 필터를 가져 올수 없었습니다.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">저장경로를 선택하세요</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">내보내기 성공</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">핕터 내보내기가 성공적으로 이루어졌습니다.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">내보내기 실패</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">I/O 에러에 의하여 필터 내보내기가 실패하였습니다.</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">안 읽음</translation>
-    </message>
-</context>
-<context>
     <name>FeedListWidget</name>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="41"/>
@@ -868,115 +498,6 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
         <translation type="unfinished">안 읽음</translation>
-    </message>
-</context>
-<context>
-    <name>GUI</name>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">토런트  파일 열기</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">토런트 파일</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">큐비토런트</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">전송</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">큐비토런트 %1</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="obsolete">다운로딩 속도: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="obsolete">업로딩 속도: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="obsolete">%1가 다운로드를 완료하였습니다.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation type="obsolete">I/O 에러</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">검색</translation>
-    </message>
-    <message>
-        <source>Download completion</source>
-        <translation type="obsolete">다운 완료</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation type="obsolete">다음 파일에서 IO오류가 발생하였습니다 (%1).
- 이유: %2</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">큐비토렌트 %1 (다운:%2/초, 업:%3/초)</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Url 다운로드 오류</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">다음 주소(Url)에서 파일을 다운로드할수 없습니다: %1, 이유:%2.</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">예</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">아니오</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">전혀 사용안함</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="obsolete">전체 업로드 속도 제한</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="obsolete">전체 다운 속도 제한</translation>
-    </message>
-    <message>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">현재 몇몇 파일은 아직 전송 중에 있습니다. 큐비토렌트를 종료하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">설정이 성공적으로 저장되었습니다.</translation>
-    </message>
-</context>
-<context>
-    <name>GeoIP</name>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">프랑스</translation>
     </message>
 </context>
 <context>
@@ -1414,14 +935,6 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">미리보기</translation>
-    </message>
-    <message>
-        <source>Clear log</source>
-        <translation type="obsolete">로그 지우기</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="222"/>
         <source>Decrease priority</source>
         <translation>우선순위(priority)를 낮추기</translation>
@@ -1849,14 +1362,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>속도</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">비트토렌트</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">프럭시 (Proxy)</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="143"/>
         <source>Web UI</source>
         <translation>웹 유저 인터페이스</translation>
@@ -2188,14 +1693,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>무작위</translation>
     </message>
     <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">UPnP 포트 맵핑 사용하기</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">NAT-PMP 포트 맵핑 사용하기</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1002"/>
         <source>Connections limit</source>
         <translation>연결 제한</translation>
@@ -2272,54 +1769,14 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>주말</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">비토렌트 기능</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">DHT 네트웍크 사용하기  (Decentralized)</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">비토렌트와 DHT에 다른 포트 사용하기</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1862"/>
         <source>DHT port:</source>
         <translation>DHT 포트:</translation>
     </message>
     <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">피어 익스체인지(Pex) 사용하기(재시작해야함)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">로컬 네트웍크내 공유자 찾기 (Local Peer Discovery) 사용하기</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">사용하기</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">강제</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">사용하지 않기</translation>
-    </message>
-    <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP 통신(트렉커, 웹 시드, 검색엔진)</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1179"/>
         <source>Host:</source>
         <translation>호스트:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">사용자간 대화</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1158"/>
@@ -2506,10 +1963,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Content</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">파일</translation>
-    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
@@ -2597,10 +2050,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>다운로드 제한:</translation>
     </message>
     <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">지나간 시간:</translation>
-    </message>
-    <message>
         <location filename="../properties/propertieswidget.ui" line="262"/>
         <source>Connections:</source>
         <translation>연결:</translation>
@@ -2619,26 +2068,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="413"/>
         <source>Created on:</source>
         <translation>만든 날:</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">일반</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">트렉커(Trackers)</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="obsolete">공유자(Peers)</translation>
-    </message>
-    <message>
-        <source>URL seeds</source>
-        <translation type="obsolete">웹 완전체(Url Seeds)</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">파일</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="494"/>
@@ -2765,14 +2194,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">저장 경로에 설정 오류</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">저장 경로를 생성할수가 없습니다</translation>
-    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -2799,29 +2220,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">큐비토런트는 다음 포트을  사용하고 있습니다: TCP/%1</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnp 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP 지원 [사용안함]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP 지원 [사용]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP 지원 [사용안함]</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="373"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished">HTTP 사용자 에이전트: %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">사용중인 디스크 케쉬 용량: %1 MiB</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="436"/>
@@ -2848,10 +2249,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished">Pex 기능을 재설정하기 위해서 프로그램을 다시 시작해야 합니다</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="459"/>
@@ -2971,138 +2368,138 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1170"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1172"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished">참고: 새 트렉커가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished">참고: 새 URL 완전체 공유자가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1521"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1521"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1523"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1690"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1692"/>
         <source>Trying any other network interface available instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1706"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
         <source>Failed to listen on network interface %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1853"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1855"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">%1 토렌트를 해독할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2574"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2576"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2580"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2582"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1903"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished">I/O 에러가 있습니다, &apos;%1&apos; 정지.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2144"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2266"/>
         <source>Reason: %1</source>
         <translation type="unfinished">이유: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2231"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2233"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2259"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2269"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2394"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2396"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -3167,10 +2564,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../rss/rss.ui" line="244"/>
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RSS feeds</source>
-        <translation type="obsolete">RSS 피드</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="112"/>
@@ -3362,20 +2755,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">관련 자료가 없습니다</translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">분</translation>
-    </message>
-</context>
-<context>
     <name>RssSettingsDlg</name>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="14"/>
@@ -3396,13 +2775,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rsssettingsdlg.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RssStream</name>
-    <message>
-        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="obsolete">RSS 피드(%2)에서 자동으로 자료(%1) 다운하기...</translation>
     </message>
 </context>
 <context>
@@ -3735,23 +3107,6 @@ Please install it manually.</source>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="89"/>
         <source>Select a file to add to the torrent</source>
         <translation type="unfinished">토렌트에 추가할 파일을 선택하십시오</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">발표되는 주소(announce URL)를 입력해 주십시오</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">발표 되는 url(Tracker 주소):</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">웹에 있는 완전체의 주소(web seed url)를 입력해 주십시오</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">웹 시드 주소 (Web Seed URL):</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
@@ -4293,59 +3648,9 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">다운로드 속도</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">업로드 속도</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">남은시간</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="501"/>
         <source>Column visibility</source>
         <translation>세로행 숨기기</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">토렌트 이름</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">크기</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="obsolete">완료</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">상태</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">완전체</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="obsolete">공유자(Peers)</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">비율</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="741"/>
@@ -4353,33 +3658,9 @@ Please install it manually.</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="obsolete">추가됨</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="obsolete">완료됨</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="obsolete">다운 제한</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="obsolete">업 제한</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="221"/>
         <source>Choose save path</source>
         <translation type="unfinished">저장 경로 선택</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="449"/>
@@ -4785,18 +4066,6 @@ Please install it manually.</source>
         <translation>토렌트 파일 만들기</translation>
     </message>
     <message>
-        <source>Announce urls (trackers):</source>
-        <translation type="obsolete">발표 되는 url(Tracker 주소):</translation>
-    </message>
-    <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">의견(옵션):</translation>
-    </message>
-    <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">웹시드(Web seeds) url (옵션사항):</translation>
-    </message>
-    <message>
         <location filename="../torrentcreator/createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>토렌트를 추가할 파일 또는 폴더:</translation>
@@ -4898,75 +4167,7 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>createtorrent</name>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">토렌트 파일을 저장할 위치 지정</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">토런트 파일</translation>
-    </message>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">변환할 파일 경로가 설정되지 않았습니다</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">파일 경로를 설정해 주십시오</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">토렌트 생성</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">토렌트가 성공적으로 생성되었습니다:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">토텐트를 추가할 폴더를 지정해 주십시오</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">발표되는 주소(announce URL)를 입력해 주십시오</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">토렌트 생성이 실패하였습니다, 이유: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">발표 되는 url(Tracker 주소):</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">웹에 있는 완전체의 주소(web seed url)를 입력해 주십시오</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">웹 시드 주소 (Web Seed URL):</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">토렌트에 추가할 파일을 선택하십시오</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">토렌트 파일 목록 생성하기(다운로드 목록에 추가하지 않음).</translation>
-    </message>
-</context>
-<context>
     <name>downloadFromURL</name>
-    <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">URL에서 토렌트를 다운받기 </translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">한줄 당 하나의 URL을 쓰십시오</translation>
-    </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="45"/>
         <source>Add torrent links</source>
@@ -5171,14 +4372,6 @@ Please install it manually.</source>
         <location filename="../searchengine/engineselect.ui" line="107"/>
         <source>Close</source>
         <translation>닫기</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">사용하기</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">사용하지 않기</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="124"/>
@@ -5534,29 +4727,6 @@ However, those plugins were disabled.</source>
         <location filename="../preview.ui" line="108"/>
         <source>Cancel</source>
         <translation>취소</translation>
-    </message>
-</context>
-<context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">미리보기 불가</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">파일 이름</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">크기</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">진행상황</translation>
     </message>
 </context>
 <context>

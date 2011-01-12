@@ -321,145 +321,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
-    <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">%1 heeft de maximum ingestelde verhouding bereikt.</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="obsolete">qBittorrent is verbonden met poort: TCP/%1</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT ondersteuning [AAN], poort: UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery [AAN]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">Local Peer Discovery ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">Encryptie ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">Encryptie ondersteuning [GEFORCEERD]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">Encryptie ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&apos;%1&apos; is geen juiste magnet URI.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; staat al in de downloadlijst.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&apos;%1&apos; hervat. (snelle hervatting)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&apos;%1&apos; toegevoegd aan de downloadlijst.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Torrentbestand kan niet worden gedecodeerd: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is geblokkeerd door de IP filter&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;is verbannen door onjuiste stukjes&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">Recursieve download van bestand %1 in torrent %2</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">Kon torrentbestand %1 niet decoderen.</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Port mapping fout, bericht: %1</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Port mapping succesvol, bericht: %1</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Url seed raadpleging mislukt voor url: %1, bericht: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Bezig met downloaden van &apos;%1&apos;, even geduld alstublieft...</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX ondersteuning [UIT]</translation>
-    </message>
-</context>
-<context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Algemeen</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Geblokkeerde IP&apos;s</translation>
-    </message>
-    <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">qBittorrent log viewer</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
@@ -528,197 +389,12 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulier</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Algemeen</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
         <translation>Geblokkeerde IP&apos;s</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloader</name>
-    <message>
-        <source>RSS Feed downloader</source>
-        <translation type="obsolete">RSS Feed downloader</translation>
-    </message>
-    <message>
-        <source>RSS feed:</source>
-        <translation type="obsolete">RSS feed:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translation type="obsolete">Feed naam</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">Automatisch torrents downloaden van deze feed</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">Download filters</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">Filters:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">Filterinstellingen</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">Resultaten:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">Komt niet overeen:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">Doelmap:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">Filter testen</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">Torrent titel:</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">Resultaat:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">Test</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">Importeer...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">Exporteer...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">Hernoem filter</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">Verwijder filter</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">Voeg filter toe</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">Nieuwe filter</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete">Kies alstublieft een naam voor de filter</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">Filternaam:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">Onjuiste filternaam</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">De filternaam kan niet leeg blijven.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">Deze filternaam is al gebruikt.</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">Filtertest fout</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">Specificeer een testtorrentnaam.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">resultaten</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">komt niet overeen</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">Selecteer bestand om te importeren</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">Filtert bestanden</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">Importeren gelukt</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">Filters importeren gelukt.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">Fout tijdens importeren</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">Filters konden niet worden geïmporteerd door een I/O fout.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">Selecteer doelbestand</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">Exporteren gelukt</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">Filters exporteren gelukt.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">Fout tijdens exporteren</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">Filters konden niet worden geëxporteerd door een I/O fout.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Kies opslag pad</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">Ongelezen</translation>
     </message>
 </context>
 <context>
@@ -730,346 +406,6 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <message>
         <source>Unread</source>
         <translation>Ongelezen</translation>
-    </message>
-</context>
-<context>
-    <name>GUI</name>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">Open Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">Overdrachten</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="obsolete">DL snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="obsolete">UP snelheid: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="obsolete">%1 is klaar met downloaden.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation type="obsolete">I/O Fout</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Zoeken</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation type="obsolete">Een I/O fout trad op voor torrent %1. Reden: %2</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Url download fout</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">Kon bestand niet downloaden vanaf url: %1, reden: %2.</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Opties zijn succesvol opgeslagen.</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Nee</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">Nooit</translation>
-    </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation type="obsolete">Er is een nieuwere versie beschikbaar</translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation type="obsolete">Er is een nieuwere versie van qBittorrent beschikbaar op Sourceforge.
-Wil u qBittorrent updaten naar versie %1?</translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation type="obsolete">Onmogelijk om qBittorrent up te daten</translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="obsolete">qBittorrent slaagde er niet in om up te daten, reason: %1</translation>
-    </message>
-</context>
-<context>
-    <name>GeoIP</name>
-    <message>
-        <source>Australia</source>
-        <translation type="obsolete">Australië</translation>
-    </message>
-    <message>
-        <source>Argentina</source>
-        <translation type="obsolete">Argentinië</translation>
-    </message>
-    <message>
-        <source>Austria</source>
-        <translation type="obsolete">Oostenrijk</translation>
-    </message>
-    <message>
-        <source>United Arab Emirates</source>
-        <translation type="obsolete">Verenigde Arabische Emiraten</translation>
-    </message>
-    <message>
-        <source>Brazil</source>
-        <translation type="obsolete">Brazilië</translation>
-    </message>
-    <message>
-        <source>Bulgaria</source>
-        <translation type="obsolete">Bulgarije</translation>
-    </message>
-    <message>
-        <source>Belarus</source>
-        <translation type="obsolete">Wit-Rusland</translation>
-    </message>
-    <message>
-        <source>Belgium</source>
-        <translation type="obsolete">België</translation>
-    </message>
-    <message>
-        <source>Bosnia</source>
-        <translation type="obsolete">Bosnië</translation>
-    </message>
-    <message>
-        <source>Canada</source>
-        <translation type="obsolete">Canada</translation>
-    </message>
-    <message>
-        <source>Czech Republic</source>
-        <translation type="obsolete">Tsjechische Republiek</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="obsolete">China</translation>
-    </message>
-    <message>
-        <source>Costa Rica</source>
-        <translation type="obsolete">Costa Rica</translation>
-    </message>
-    <message>
-        <source>Switzerland</source>
-        <translation type="obsolete">Zwitserland</translation>
-    </message>
-    <message>
-        <source>Germany</source>
-        <translation type="obsolete">Duitsland</translation>
-    </message>
-    <message>
-        <source>Denmark</source>
-        <translation type="obsolete">Denemarken</translation>
-    </message>
-    <message>
-        <source>Algeria</source>
-        <translation type="obsolete">Algerije</translation>
-    </message>
-    <message>
-        <source>Spain</source>
-        <translation type="obsolete">Spanje</translation>
-    </message>
-    <message>
-        <source>Egypt</source>
-        <translation type="obsolete">Egypte</translation>
-    </message>
-    <message>
-        <source>Finland</source>
-        <translation type="obsolete">Finland</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">Frankrijk</translation>
-    </message>
-    <message>
-        <source>United Kingdom</source>
-        <translation type="obsolete">Verenigd Koninkrijk</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="obsolete">Griekenland</translation>
-    </message>
-    <message>
-        <source>Georgia</source>
-        <translation type="obsolete">Georgië</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="obsolete">Hongarije</translation>
-    </message>
-    <message>
-        <source>Croatia</source>
-        <translation type="obsolete">Kroatië</translation>
-    </message>
-    <message>
-        <source>Italy</source>
-        <translation type="obsolete">Italië</translation>
-    </message>
-    <message>
-        <source>India</source>
-        <translation type="obsolete">India</translation>
-    </message>
-    <message>
-        <source>Israel</source>
-        <translation type="obsolete">Israël</translation>
-    </message>
-    <message>
-        <source>Ireland</source>
-        <translation type="obsolete">Ierland</translation>
-    </message>
-    <message>
-        <source>Iceland</source>
-        <translation type="obsolete">Ijsland</translation>
-    </message>
-    <message>
-        <source>Indonesia</source>
-        <translation type="obsolete">Indonesië</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="obsolete">Japan</translation>
-    </message>
-    <message>
-        <source>South Korea</source>
-        <translation type="obsolete">Zuid-Korea</translation>
-    </message>
-    <message>
-        <source>Luxembourg</source>
-        <translation type="obsolete">Luxemburg</translation>
-    </message>
-    <message>
-        <source>Mexico</source>
-        <translation type="obsolete">Mexico</translation>
-    </message>
-    <message>
-        <source>Netherlands</source>
-        <translation type="obsolete">Nederland</translation>
-    </message>
-    <message>
-        <source>Norway</source>
-        <translation type="obsolete">Noorwegen</translation>
-    </message>
-    <message>
-        <source>New Zealand</source>
-        <translation type="obsolete">Nieuw-Zeeland</translation>
-    </message>
-    <message>
-        <source>Portugal</source>
-        <translation type="obsolete">Portugal</translation>
-    </message>
-    <message>
-        <source>Poland</source>
-        <translation type="obsolete">Polen</translation>
-    </message>
-    <message>
-        <source>Pakistan</source>
-        <translation type="obsolete">Pakistan</translation>
-    </message>
-    <message>
-        <source>Russia</source>
-        <translation type="obsolete">Rusland</translation>
-    </message>
-    <message>
-        <source>Sweden</source>
-        <translation type="obsolete">Zweden</translation>
-    </message>
-    <message>
-        <source>Slovakia</source>
-        <translation type="obsolete">Slovakije</translation>
-    </message>
-    <message>
-        <source>Singapore</source>
-        <translation type="obsolete">Singapore</translation>
-    </message>
-    <message>
-        <source>Slovenia</source>
-        <translation type="obsolete">Slovenië</translation>
-    </message>
-    <message>
-        <source>Taiwan</source>
-        <translation type="obsolete">Taiwan</translation>
-    </message>
-    <message>
-        <source>Turkey</source>
-        <translation type="obsolete">Turkije</translation>
-    </message>
-    <message>
-        <source>Thailand</source>
-        <translation type="obsolete">Thailand</translation>
-    </message>
-    <message>
-        <source>USA</source>
-        <translation type="obsolete">VSA</translation>
-    </message>
-    <message>
-        <source>Ukraine</source>
-        <translation type="obsolete">Oekraine</translation>
-    </message>
-    <message>
-        <source>South Africa</source>
-        <translation type="obsolete">Zuid-Afrika</translation>
-    </message>
-    <message>
-        <source>Saudi Arabia</source>
-        <translation type="obsolete">Saudi-Arabië</translation>
     </message>
 </context>
 <context>
@@ -1259,14 +595,6 @@ No further notices will be issued.</source>
         <translation>&amp;Bewerken</translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Kijk vooruit op bestand</translation>
-    </message>
-    <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Wist log</translation>
-    </message>
-    <message>
         <source>Decrease priority</source>
         <translation>Prioriteit verlagen</translation>
     </message>
@@ -1283,16 +611,8 @@ No further notices will be issued.</source>
         <translation>&amp;Weergave</translation>
     </message>
     <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Voeg Bestand toe...</translation>
-    </message>
-    <message>
         <source>&amp;Options...</source>
         <translation>&amp;Opties...</translation>
-    </message>
-    <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Voeg &amp;URL toe...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1313,10 +633,6 @@ No further notices will be issued.</source>
     <message>
         <source>Set global upload limit...</source>
         <translation>Stel globale uploadlimiet in...</translation>
-    </message>
-    <message>
-        <source>&amp;Log viewer...</source>
-        <translation type="obsolete">&amp;Log viewer...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1375,10 +691,6 @@ No further notices will be issued.</source>
         <translation>Zoek &amp;machine</translation>
     </message>
     <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Log viewer</translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation>Vergrendel qBittorrent</translation>
     </message>
@@ -1387,20 +699,12 @@ No further notices will be issued.</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Shutdown computer when downloads complete</source>
-        <translation type="obsolete">Sluit de computer af wanneer de downloads voltooid zijn</translation>
-    </message>
-    <message>
         <source>&amp;Resume</source>
         <translation>&amp;Herneem</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
         <translation>H&amp;erneem alles</translation>
-    </message>
-    <message>
-        <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="obsolete">Sluit qBittorrent af wanneer de downloads voltooid zijn</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1790,14 +1094,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Verbinding</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Proxy</translation>
-    </message>
-    <message>
         <source>Web UI</source>
         <translation>Web UI</translation>
     </message>
@@ -1863,14 +1159,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Willekeurig</translation>
     </message>
     <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">UPnP port mapping inschakelen</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">NAT-PMP port mapping inschakelen</translation>
-    </message>
-    <message>
         <source>Connections limit</source>
         <translation>Verbindingslimiet</translation>
     </message>
@@ -1899,40 +1187,8 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Bittorrent features</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">DHT (gedecentraliseerd) netwerk inschakelen</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Gebruik een andere poort voor DHT en Bittorrent</translation>
-    </message>
-    <message>
         <source>DHT port:</source>
         <translation>DHT poort:</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">Schakel Peer Exchange in / PeX (herstart vereist)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Local Peer Discovery inschakelen</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Ingeschakeld</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Geforceerd</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Uitgeschakeld</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -1975,16 +1231,8 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Filter pad (.dat, p2p, p2b):</translation>
     </message>
     <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP Communicaties (trackers, Web seeds, zoekmachine)</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Host:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">Peer communicaties</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2050,10 +1298,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Downloading torrents:</source>
         <translation>Download torrents:</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Start / Stop</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2141,10 +1385,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Look for peers on your local network</source>
         <translation>Zoek naar peers in u lokaal netwerk</translation>
-    </message>
-    <message>
-        <source>Protocol encryption:</source>
-        <translation type="obsolete">Protocol encryptie:</translation>
     </message>
     <message>
         <source>Enable Web User Interface (Remote control)</source>
@@ -2279,18 +1519,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
 </context>
 <context>
-    <name>ProgramUpdater</name>
-    <message>
-        <source>Could not create the file %1</source>
-        <translation type="obsolete">Kon het bestand %1 niet maken</translation>
-    </message>
-    <message>
-        <source>Failed to download the update at %1</source>
-        <comment>%1 is an URL</comment>
-        <translation type="obsolete">Mislukt om de update te downloaden van %1</translation>
-    </message>
-</context>
-<context>
     <name>PropListDelegate</name>
     <message>
         <source>Normal</source>
@@ -2332,14 +1560,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Peers</translation>
     </message>
     <message>
-        <source>URL Seeds</source>
-        <translation type="obsolete">URL Seeds</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Bestanden</translation>
-    </message>
-    <message>
         <source>HTTP Sources</source>
         <translation>HTTP Bronnen</translation>
     </message>
@@ -2367,14 +1587,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Deelratio:</translation>
     </message>
     <message>
-        <source>General</source>
-        <translation type="obsolete">Algemeen</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">Trackers</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Prioriteit</translation>
     </message>
@@ -2400,14 +1612,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Kies opslag pad</translation>
     </message>
     <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Opslag pad aanmaak fout</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
-    </message>
-    <message>
         <source>Downloaded:</source>
         <translation>Gedownload:</translation>
     </message>
@@ -2430,10 +1634,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>DL limit:</source>
         <translation>DL limiet:</translation>
-    </message>
-    <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Tijd verstreken:</translation>
     </message>
     <message>
         <source>Connections:</source>
@@ -2568,28 +1768,8 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>qBittorrent is verbonden met poort: TCP/%1</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP ondersteuning [UIT]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [AAN]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP ondersteuning [UIT]</translation>
-    </message>
-    <message>
         <source>HTTP user agent is %1</source>
         <translation>HTTP user agent is %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Gebruikt een disk cache grootte van %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
@@ -2610,10 +1790,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Restart is required to toggle PeX support</source>
         <translation>Herstart is vereist om Pex supporten om te wisselen</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Local Peer Discovery [AAN]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -2843,10 +2019,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Updaten</translation>
     </message>
     <message>
-        <source>RSS feeds</source>
-        <translation type="obsolete">RSS feeds</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -3015,28 +2187,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Download automatisch %1 torrent van %2 RSS feed...</translation>
-    </message>
-</context>
-<context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Geen omschrijving beschikbaar</translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS feeds vernieuwingsinterval:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuten</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maximum aantal artikelen per feed:</translation>
     </message>
 </context>
 <context>
@@ -3324,23 +2474,6 @@ Wilt u het nu installeren?</translation>
         <translation>Selecteer een bestand om toe te voegen aan de torrent</translation>
     </message>
     <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Type een announce URL</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Announce URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Type een web seed url</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Web seed URL:</translation>
-    </message>
-    <message>
         <source>No input path set</source>
         <translation>Geen bron pad gekozen</translation>
     </message>
@@ -3443,14 +2576,6 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Please point to the location of the torrent: %1</source>
         <translation>Gelieve de locatie op te geven van de torrent: %1</translation>
-    </message>
-    <message>
-        <source>Invalid torrent file</source>
-        <translation type="obsolete">Ongeldig torrentbestand</translation>
-    </message>
-    <message>
-        <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Dit is geen geldig torrentbestand.</translation>
     </message>
 </context>
 <context>
@@ -3775,11 +2900,6 @@ Wilt u het nu installeren?</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Geschatte resterende tijd</translation>
-    </message>
-    <message>
         <source>Column visibility</source>
         <translation>Kolom zichtbaarheid</translation>
     </message>
@@ -3794,31 +2914,6 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Copy magnet link</source>
         <translation>Kopieer magnet link</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">Grootte</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Uploaders</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">Verhouding</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
@@ -3885,14 +2980,6 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Choose save path</source>
         <translation>Kies opslag pad</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Opslag pad aanmaak fout</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -4151,18 +3238,6 @@ Wilt u het nu installeren?</translation>
         <translation>Torrentbestand maken</translation>
     </message>
     <message>
-        <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Announce urls (trackers):</translation>
-    </message>
-    <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">Commentaar (optioneel):</translation>
-    </message>
-    <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">Web seeds urls (optioneel):</translation>
-    </message>
-    <message>
         <source>File or folder to add to the torrent:</source>
         <translation>Bestand of map om toe te voegen aan de torrent:</translation>
     </message>
@@ -4244,75 +3319,7 @@ Wilt u het nu installeren?</translation>
     </message>
 </context>
 <context>
-    <name>createtorrent</name>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">Kies torrent doelbestand</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent bestanden</translation>
-    </message>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">Geen bron pad gekozen</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">Geef alstublieft eerst een doel pad</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">Torrent maken</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">Torrent was succesvol gemaakt:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">Selecteer een map om toe te voegen aan de torrent</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Type een announce URL</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">Fout tijdens het maken van torrent, reden: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Announce URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Type een web seed url</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Web seed URL:</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">Selecteer een bestand om toe te voegen aan de torrent</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Gecreëerd torrent bestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
-    </message>
-</context>
-<context>
     <name>downloadFromURL</name>
-    <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">Download Torrents via URLs</translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">1 url per lijn</translation>
-    </message>
     <message>
         <source>Download</source>
         <translation>Download</translation>
@@ -4470,14 +3477,6 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Close</source>
         <translation>Sluiten</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Inschakelen</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Uitschakelen</translation>
     </message>
     <message>
         <source>Uninstall</source>
@@ -4747,29 +3746,6 @@ selecteer alstublieft een er van:</translation>
     <message>
         <source>Cancel</source>
         <translation>Annuleren</translation>
-    </message>
-</context>
-<context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Vooruitkijken onmogelijk</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Sorry, we kunnen dit bestand niet vooruit bekijken</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Grootte</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Voortgang</translation>
     </message>
 </context>
 <context>

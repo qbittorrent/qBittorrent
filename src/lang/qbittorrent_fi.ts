@@ -391,215 +391,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
-    <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">%1 on saavuttanut asetetun jakosuhdeluvun.</translation>
-    </message>
-    <message>
-        <source>Removing torrent %1...</source>
-        <translation type="obsolete">Poistetaan torrent %1...</translation>
-    </message>
-    <message>
-        <source>Pausing torrent %1...</source>
-        <translation type="obsolete">Keskeytetään torrent %1...</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="obsolete">qBittorrent käyttää porttia: TCP/%1</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP-tuki [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP-tuki [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>HTTP user agent is %1</source>
-        <translation type="obsolete">HTTP-agentti on %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Käytetään %1 MiB levyvälimuistia</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT-tuki [KÄYTÖSSÄ], portti: UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX-tuki [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>Restart is required to toggle PeX support</source>
-        <translation type="obsolete">PeX-tuen tilan muuttaminen vaatii uudelleenkäynnistyksen</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Paikallinen käyttäjien löytäminen [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">Paikallinen käyttäjien löytäminen [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">Salaus [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">Salaus [PAKOTETTU]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">Salaus [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">Web-käyttöliittymä kuuntelee porttia %1</translation>
-    </message>
-    <message>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">Web-käyttöliittymävirhe - web-liittymää ei voitu liittää porttiin %1</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">”%1” poistettiin siirrettävien listalta ja kovalevyltä.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">”%1” poistettiin siirrettävien listalta.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">”%1” ei kelpaa magnet-URI:ksi.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">”%1” on jo latauslistalla.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">Torrentin &quot;%1” latausta jatkettiin. (nopea palautuminen)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">”%1” lisättiin latauslistalle.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Viallinen torrent-tiedosto: ”%1”</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Tiedosto on joko rikkonainen tai se ei ole torrent-tiedosto.</translation>
-    </message>
-    <message>
-        <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="obsolete">Huomaa: torrenttiin lisättiin uusia seurantapalvelimia.</translation>
-    </message>
-    <message>
-        <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="obsolete">Huomaa: torrenttiin lisättiin uusia URL-syötteitä.</translation>
-    </message>
-    <message>
-        <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="obsolete">Virhe: torrentissa %1 ei ole tiedostoja.</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;i&gt;IP-suodatin on estänyt osoitteen&lt;/i&gt; &lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">Torrent-tiedostoa %1 ei voitu tulkita.</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
-    </message>
-    <message>
-        <source>Reason: %1</source>
-        <translation type="obsolete">Syy: %1</translation>
-    </message>
-    <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">Tapahtui I/O-virhe, ”%1” pysäytettiin.</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="obsolete">Torrentin %1 tiedostokoot eivät täsmää, keskeytetään.</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Ladataan torrenttia ”%1”. Odota...</translation>
-    </message>
-</context>
-<context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">qBittorrentin lokin katselu</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Yleistä tietoa</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Estetyt IP-osoitteet</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
@@ -698,187 +489,6 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     </message>
 </context>
 <context>
-    <name>FeedDownloader</name>
-    <message>
-        <source>RSS Feed downloader</source>
-        <translation type="obsolete">RSS-lataaja</translation>
-    </message>
-    <message>
-        <source>RSS feed:</source>
-        <translation type="obsolete">RSS-syöte:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translation type="obsolete">Syötteen nimi</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">Lataa tämän syötteen torrentit automaattisesti</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">Lataussuodattimet</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">Suodattimet:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">Suodatusasetukset</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">Sopii:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">Ei sovi:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">Kohdekansio:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">Suotimen testaus</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">Torrentin nimike:</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">Tulos:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">Testaa</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">Tuo...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">Vie...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">Nimeä suodatin</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">Poista suodatin</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">Lisää suodatin</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">Uusi suodatin</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete"> Nimeä suodatin</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">Suodattimen nimi:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">Virheellinen suodattimen nimi</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">Nimeä ei voi jättää tyhjäksi.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">Suodatinnimi on jo käytössä.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Valitse tallennuskansio</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">Suodattimen testausvirhe</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">Anna testitorrentin nimi.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">sopii</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">ei sovi</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">Valitse tuotava tiedosto</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">Suodatintiedostot</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">Tuonti onnistui</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">Suodattimien tuonti onnistui.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">Tuonti epäonnistui</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">Suodattimia ei voitu tuoda I/O-virheen vuoksi.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">Valitse kohdetiedosto</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">Vienti onnistui</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">Suodattimien viesti onnistui.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">Vientivirhe</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">Suodattimia ei voitu viedä I/O-virheen vuoksi.</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">Lukematon</translation>
-    </message>
-</context>
-<context>
     <name>FeedListWidget</name>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="41"/>
@@ -889,406 +499,6 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
         <translation type="unfinished">Lukematon</translation>
-    </message>
-</context>
-<context>
-    <name>GUI</name>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">Avaa torrent-tiedostoja</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent-tiedostot</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">Siirrot</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete"> qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
-        <source>Recursive download confirmation</source>
-        <translation type="obsolete">Vahvistus rekursiiviseen lataukseen</translation>
-    </message>
-    <message>
-        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="obsolete">Torentti %1 sisältää torrent-tiedostoja, jatketaanko latausta?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Kyllä</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Ei</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">Ei koskaan</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="obsolete">Yleinen lähetysnopeusrajoitus</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="obsolete">Yleinen latausnopeusrajoitus</translation>
-    </message>
-    <message>
-        <source>Exiting qBittorrent</source>
-        <translation type="obsolete">Lopetetaan qBittorrent</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete"> qBittorrent</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="obsolete">Aina</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="obsolete">Latausnopeus: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="obsolete">Lähetysnopeus: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Lataus: %2/s, lähetys: %3/s)</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="obsolete">Lataus ”%1” tuli valmiiksi.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation type="obsolete">I/O-virhe</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Etsi</translation>
-    </message>
-    <message>
-        <source>Torrent file association</source>
-        <translation type="obsolete">Torrent-tiedoston liittäminen</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Download completion</source>
-        <translation type="obsolete">Latauksen valmistuminen</translation>
-    </message>
-    <message>
-        <source>qBittorrent is not the default application to open torrent files or Magnet links.
-Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="obsolete">qBittorrent ei ole torrent-tiedostojen tai Magnet-linkkien oletusohjelmisto.
-Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="obsolete">Siirrot (%1)</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation type="obsolete">Torrentissa %1 tapahtui I/O-virhe.
- Syy: %2</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Latausvirhe</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">Tiedoston lataaminen osoitteesta %1 epäonnistui: %2.</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">Tiedostoja on siirrotta.
-Haluatko varmasti lopettaa qBittorrentin?</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Valinnat tallennettiin.</translation>
-    </message>
-</context>
-<context>
-    <name>GeoIP</name>
-    <message>
-        <source>Australia</source>
-        <translation type="obsolete">Austraalia</translation>
-    </message>
-    <message>
-        <source>Argentina</source>
-        <translation type="obsolete">Argentiina</translation>
-    </message>
-    <message>
-        <source>Austria</source>
-        <translation type="obsolete">Itävalta</translation>
-    </message>
-    <message>
-        <source>United Arab Emirates</source>
-        <translation type="obsolete">Yhdistyneet Arabiemiraatit</translation>
-    </message>
-    <message>
-        <source>Brazil</source>
-        <translation type="obsolete">Brasilia</translation>
-    </message>
-    <message>
-        <source>Bulgaria</source>
-        <translation type="obsolete">Bulgaaria</translation>
-    </message>
-    <message>
-        <source>Belarus</source>
-        <translation type="obsolete">Valko-Venäjä</translation>
-    </message>
-    <message>
-        <source>Belgium</source>
-        <translation type="obsolete">Belgia</translation>
-    </message>
-    <message>
-        <source>Bosnia</source>
-        <translation type="obsolete">Bosnia</translation>
-    </message>
-    <message>
-        <source>Canada</source>
-        <translation type="obsolete">Kanada</translation>
-    </message>
-    <message>
-        <source>Czech Republic</source>
-        <translation type="obsolete">Tšekki</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="obsolete">Kiina</translation>
-    </message>
-    <message>
-        <source>Costa Rica</source>
-        <translation type="obsolete">Costa Rica</translation>
-    </message>
-    <message>
-        <source>Switzerland</source>
-        <translation type="obsolete">Sveitsi</translation>
-    </message>
-    <message>
-        <source>Germany</source>
-        <translation type="obsolete">Saksa</translation>
-    </message>
-    <message>
-        <source>Denmark</source>
-        <translation type="obsolete">Tanska</translation>
-    </message>
-    <message>
-        <source>Algeria</source>
-        <translation type="obsolete">Algeria</translation>
-    </message>
-    <message>
-        <source>Spain</source>
-        <translation type="obsolete">Espanja</translation>
-    </message>
-    <message>
-        <source>Egypt</source>
-        <translation type="obsolete">Egypti</translation>
-    </message>
-    <message>
-        <source>Finland</source>
-        <translation type="obsolete">Suomi</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">Ranska</translation>
-    </message>
-    <message>
-        <source>United Kingdom</source>
-        <translation type="obsolete">Yhdistynyt kuningaskunta</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="obsolete">Kreikka</translation>
-    </message>
-    <message>
-        <source>Georgia</source>
-        <translation type="obsolete">Georgia</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="obsolete">Unkari</translation>
-    </message>
-    <message>
-        <source>Croatia</source>
-        <translation type="obsolete">Kroatia</translation>
-    </message>
-    <message>
-        <source>Italy</source>
-        <translation type="obsolete">Italia</translation>
-    </message>
-    <message>
-        <source>India</source>
-        <translation type="obsolete">Intia</translation>
-    </message>
-    <message>
-        <source>Israel</source>
-        <translation type="obsolete">Israel</translation>
-    </message>
-    <message>
-        <source>Ireland</source>
-        <translation type="obsolete">Irlanti</translation>
-    </message>
-    <message>
-        <source>Iceland</source>
-        <translation type="obsolete">Islanti</translation>
-    </message>
-    <message>
-        <source>Indonesia</source>
-        <translation type="obsolete">Indonesia</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="obsolete">Japani</translation>
-    </message>
-    <message>
-        <source>South Korea</source>
-        <translation type="obsolete">Etelä-Korea</translation>
-    </message>
-    <message>
-        <source>Luxembourg</source>
-        <translation type="obsolete">Luxemburg</translation>
-    </message>
-    <message>
-        <source>Malaysia</source>
-        <translation type="obsolete">Malesia</translation>
-    </message>
-    <message>
-        <source>Mexico</source>
-        <translation type="obsolete">Meksiko</translation>
-    </message>
-    <message>
-        <source>Serbia</source>
-        <translation type="obsolete">Serbia</translation>
-    </message>
-    <message>
-        <source>Morocco</source>
-        <translation type="obsolete">Marokko</translation>
-    </message>
-    <message>
-        <source>Netherlands</source>
-        <translation type="obsolete">Alankomaat</translation>
-    </message>
-    <message>
-        <source>Norway</source>
-        <translation type="obsolete">Norja</translation>
-    </message>
-    <message>
-        <source>New Zealand</source>
-        <translation type="obsolete">Uusi-Seelanti</translation>
-    </message>
-    <message>
-        <source>Portugal</source>
-        <translation type="obsolete">Portugali</translation>
-    </message>
-    <message>
-        <source>Poland</source>
-        <translation type="obsolete">Puola</translation>
-    </message>
-    <message>
-        <source>Pakistan</source>
-        <translation type="obsolete">Pakistani</translation>
-    </message>
-    <message>
-        <source>Philippines</source>
-        <translation type="obsolete">Filippiinit</translation>
-    </message>
-    <message>
-        <source>Russia</source>
-        <translation type="obsolete">Venäjä</translation>
-    </message>
-    <message>
-        <source>Romania</source>
-        <translation type="obsolete">Romania</translation>
-    </message>
-    <message>
-        <source>France (Reunion Island)</source>
-        <translation type="obsolete">Ranska (Reunion-saari)</translation>
-    </message>
-    <message>
-        <source>Saudi Arabia</source>
-        <translation type="obsolete">Saudi-Arabia</translation>
-    </message>
-    <message>
-        <source>Sweden</source>
-        <translation type="obsolete">Ruotsi</translation>
-    </message>
-    <message>
-        <source>Slovakia</source>
-        <translation type="obsolete">Slovakia</translation>
-    </message>
-    <message>
-        <source>Singapore</source>
-        <translation type="obsolete">Singapore</translation>
-    </message>
-    <message>
-        <source>Slovenia</source>
-        <translation type="obsolete">Slovenia</translation>
-    </message>
-    <message>
-        <source>Taiwan</source>
-        <translation type="obsolete">Taiwan</translation>
-    </message>
-    <message>
-        <source>Turkey</source>
-        <translation type="obsolete">Turkki</translation>
-    </message>
-    <message>
-        <source>Thailand</source>
-        <translation type="obsolete">Thaimaa</translation>
-    </message>
-    <message>
-        <source>USA</source>
-        <translation type="obsolete">USA</translation>
-    </message>
-    <message>
-        <source>Ukraine</source>
-        <translation type="obsolete">Ukraina</translation>
-    </message>
-    <message>
-        <source>South Africa</source>
-        <translation type="obsolete">Etelä-Afrikka</translation>
     </message>
 </context>
 <context>
@@ -1507,10 +717,6 @@ Muita varoituksia ei anneta.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Tyhjennä loki</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
         <translation>&amp;Muokkaa</translation>
@@ -1531,10 +737,6 @@ Muita varoituksia ei anneta.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Esikatsele</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
         <translation>&amp;Työkalut</translation>
@@ -1543,14 +745,6 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../mainwindow.ui" line="88"/>
         <source>&amp;View</source>
         <translation>&amp;Näytä</translation>
-    </message>
-    <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Lisää tiedosto...</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="obsolete">&amp;Poistu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="148"/>
@@ -1607,10 +801,6 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../mainwindow.ui" line="177"/>
         <source>Visit &amp;Website</source>
         <translation>Käy &amp;web-sivustolla</translation>
-    </message>
-    <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Lisää &amp;Url...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="187"/>
@@ -1676,14 +866,6 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../mainwindow.ui" line="362"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Log viewer...</source>
-        <translation type="obsolete">&amp;Lokin katselu...</translation>
-    </message>
-    <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Lokin katselu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="241"/>
@@ -2183,14 +1365,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Nopeus</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Välityspalvelin</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="143"/>
         <source>Web UI</source>
         <translation>Web-käyttöliittymä</translation>
@@ -2292,10 +1466,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="320"/>
         <source>Downloading torrents:</source>
         <translation>Ladataan torrentteja:</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Aloita / lopeta</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="342"/>
@@ -2521,14 +1691,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Satunnainen</translation>
     </message>
     <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">Käytä UPnP-porttivarausta</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">Käytä NAT-PMP-porttivarausta</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1002"/>
         <source>Connections limit</source>
         <translation>Yhteyksien enimmäismäärä</translation>
@@ -2610,54 +1772,14 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Viikonloppuisin</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Bittorrent-piirteet</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">Käytä hajautettua DHT-verkkoa</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Käytä eri porttia DHT:lle ja Bittorrentille</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1862"/>
         <source>DHT port:</source>
         <translation>DHT-portti:</translation>
     </message>
     <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">Ota PeX käyttöön (vaatii uudelleenkäynnistyksen)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Käytä paikallista käyttäjien löytämistä</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Käytössä</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Pakotettu</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Poistettu käytöstä</translation>
-    </message>
-    <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP-yhteydet (seurantapalvelimet, web-syötteet, hakukone)</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1179"/>
         <source>Host:</source>
         <translation>Isäntä:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">Asiakastietoliikenne</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1158"/>
@@ -2699,10 +1821,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="1916"/>
         <source>Look for peers on your local network</source>
         <translation>Etsi asiakkaita paikallisverkostasi</translation>
-    </message>
-    <message>
-        <source>Protocol encryption:</source>
-        <translation type="obsolete">Protokollan salaus:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1153"/>
@@ -2848,10 +1966,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Content</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Tiedostot</translation>
-    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
@@ -2939,10 +2053,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Latausraja:</translation>
     </message>
     <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Aikaa kulunut:</translation>
-    </message>
-    <message>
         <location filename="../properties/propertieswidget.ui" line="262"/>
         <source>Connections:</source>
         <translation>Yhteydet:</translation>
@@ -2961,26 +2071,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="413"/>
         <source>Created on:</source>
         <translation>Luotu:</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Yleistä</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">Seurantapalvelimet</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="obsolete">Asiakkaat</translation>
-    </message>
-    <message>
-        <source>URL seeds</source>
-        <translation type="obsolete">URL-jaot</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Tiedostot</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="494"/>
@@ -3107,14 +2197,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
     </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Tallennuskansion luominen epäonnistui</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Tallennuskansion luominen epäonnistui</translation>
-    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -3141,29 +2223,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">qBittorrent käyttää porttia: TCP/%1</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP-tuki [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP-tuki [KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP-tuki [EI KÄYTÖSSÄ]</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="373"/>
         <source>HTTP user agent is %1</source>
         <translation type="unfinished">HTTP-agentti on %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Käytetään %1 MiB levyvälimuistia</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="436"/>
@@ -3190,10 +2252,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished">PeX-tuen tilan muuttaminen vaatii uudelleenkäynnistyksen</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Paikallinen käyttäjien löytäminen [KÄYTÖSSÄ]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="459"/>
@@ -3313,138 +2371,138 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Virhe: torrentissa %1 ei ole tiedostoja.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1170"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1172"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished">Huomaa: torrenttiin lisättiin uusia seurantapalvelimia.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished">Huomaa: torrenttiin lisättiin uusia URL-syötteitä.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1521"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;i&gt;IP-suodatin on estänyt osoitteen&lt;/i&gt; &lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1521"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1523"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;on estetty korruptuneiden osien takia&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1690"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1692"/>
         <source>Trying any other network interface available instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1706"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
         <source>Failed to listen on network interface %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1853"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1855"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">Rekursiivinen tiedoston %1 lataus torrentissa %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">Torrent-tiedostoa %1 ei voitu tulkita.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2574"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2576"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2580"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2582"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1903"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished">Tapahtui I/O-virhe, ”%1” pysäytettiin.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2144"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2266"/>
         <source>Reason: %1</source>
         <translation type="unfinished">Syy: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2231"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2233"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2259"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished">Torrentin %1 tiedostokoot eivät täsmää, keskeytetään.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2269"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2394"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2396"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Ladataan torrenttia ”%1”. Odota...</translation>
@@ -3485,10 +2543,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Asetukset...</translation>
     </message>
     <message>
-        <source>RSS feed downloader...</source>
-        <translation type="obsolete">RSS-lataaja...</translation>
-    </message>
-    <message>
         <location filename="../rss/rss.ui" line="239"/>
         <source>New folder...</source>
         <translation>Uusi kansio...</translation>
@@ -3513,10 +2567,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../rss/rss.ui" line="198"/>
         <source>Update</source>
         <translation>Päivitä</translation>
-    </message>
-    <message>
-        <source>RSS feeds</source>
-        <translation type="obsolete">RSS-syötteet</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="112"/>
@@ -3708,32 +2758,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Ei kuvausta</translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>RSS Reader Settings</source>
-        <translation type="obsolete">RSS-lukijan asetukset</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS-syötteen päivitystiheys:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuuttia</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Artikkeleiden enimmäismäärä syötettä kohden:</translation>
-    </message>
-</context>
-<context>
     <name>RssSettingsDlg</name>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="14"/>
@@ -3754,13 +2778,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rsssettingsdlg.ui" line="77"/>
         <source>Maximum number of articles per feed:</source>
         <translation type="unfinished">Artikkeleiden enimmäismäärä syötettä kohden:</translation>
-    </message>
-</context>
-<context>
-    <name>RssStream</name>
-    <message>
-        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="obsolete">Ladataan automaattisesti %1 torrentti RSS-syötteestä %2...</translation>
     </message>
 </context>
 <context>
@@ -4095,23 +3112,6 @@ Asenna se itse.</translation>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="89"/>
         <source>Select a file to add to the torrent</source>
         <translation type="unfinished">Valitse torrentiin lisättävä tiedosto</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Anna julkaisusoite</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Julkaisuosoite:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Anna verkkojako-osoite</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Verkkojako-osoite:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
@@ -4653,59 +3653,9 @@ Asenna se itse.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">Latausnopeus</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">Lähetysnopeus</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Aikaa jäljellä</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="501"/>
         <source>Column visibility</source>
         <translation>Sarakkeen näkyvyys</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">Nimi</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">Koko</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="obsolete">Valmis</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">Tila</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Jakajia</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="obsolete">Asiakkaita</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">Jakosuhde</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="741"/>
@@ -4713,37 +3663,9 @@ Asenna se itse.</translation>
         <translation>Nimike</translation>
     </message>
     <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Lisätty</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Valmistui</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="obsolete">Latausraja</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="obsolete">Lähetysraja</translation>
-    </message>
-    <message>
         <location filename="../transferlistwidget.cpp" line="221"/>
         <source>Choose save path</source>
         <translation>Valitse tallennuskansio</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Tallennuskansion luominen epäonnistui</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Tallennuskansion luominen epäonnistui</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="449"/>
@@ -5159,18 +4081,6 @@ Asenna se itse.</translation>
         <translation>Lisää kansio</translation>
     </message>
     <message>
-        <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Julkaisuosoitteet (seurantapalvelimet):</translation>
-    </message>
-    <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">Kommentti (valinnainen):</translation>
-    </message>
-    <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">Verkkojako-osoitteet (valinnainen):</translation>
-    </message>
-    <message>
         <location filename="../torrentcreator/createtorrent.ui" line="53"/>
         <source>File or folder to add to the torrent:</source>
         <translation>Torrentiin lisättävä tiedosto tai kansio:</translation>
@@ -5262,66 +4172,6 @@ Asenna se itse.</translation>
     </message>
 </context>
 <context>
-    <name>createtorrent</name>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">Lähdekansiota ei ole asetettu</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">Anna ensin lähdekansio</translation>
-    </message>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">Valitse kohde-torrent-tiedosto</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">Torrentin luominen</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent-tiedostot</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">Torrent luotiin:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">Valitse kohdekansio</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Anna julkaisusoite</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">Torrentin luominen epäonnistui: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Julkaisuosoite:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Anna verkkojako-osoite</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Verkkojako-osoite:</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">Valitse torrentiin lisättävä tiedosto</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Luotu torrentti ei kelpaa. Sitä ei lisätä latauslistaan.</translation>
-    </message>
-</context>
-<context>
     <name>downloadFromURL</name>
     <message>
         <location filename="../downloadfromurldlg.ui" line="113"/>
@@ -5347,14 +4197,6 @@ Asenna se itse.</translation>
         <location filename="../downloadfromurldlg.ui" line="78"/>
         <source>Both HTTP and Magnet links are supported</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">Lataa torrentteja URL-osoitteista</translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">Yksi URL riville</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.h" line="78"/>
@@ -5533,14 +4375,6 @@ Asenna se itse.</translation>
         <location filename="../searchengine/engineselect.ui" line="107"/>
         <source>Close</source>
         <translation>Sulje</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Käytä</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Älä käytä</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="124"/>
@@ -5894,29 +4728,6 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <location filename="../preview.ui" line="67"/>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
         <translation>Seuraavia tiedostoja voi esiketsella, &lt;br&gt;valitse yksi seuraavista:</translation>
-    </message>
-</context>
-<context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Esikatselu ei ole mahdollista</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Tätä tiedostoa ei voi esikatsella</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nimi</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Koko</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Edistyminen</translation>
     </message>
 </context>
 <context>
