@@ -184,7 +184,10 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 
 void TorrentImportDlg::on_importBtn_clicked()
 {
-  close();
+  saveSettings();
+  // Has to be accept() and not close()
+  // or the torrent won't be imported
+  accept();
 }
 
 QString TorrentImportDlg::getTorrentPath() const
@@ -199,15 +202,21 @@ QString TorrentImportDlg::getContentPath() const
 
 void TorrentImportDlg::importTorrent()
 {
+  qDebug() << Q_FUNC_INFO << "ENTER";
   TorrentImportDlg dlg;
   if(dlg.exec()) {
+    qDebug() << "Loading the torrent file...";
     boost::intrusive_ptr<libtorrent::torrent_info> t = dlg.torrent();
     if(!t->is_valid())
       return;
     QString torrent_path = dlg.getTorrentPath();
     QString content_path = dlg.getContentPath();
-    if(torrent_path.isEmpty() || content_path.isEmpty() || !QFile(torrent_path).exists()) return;
+    if(torrent_path.isEmpty() || content_path.isEmpty() || !QFile(torrent_path).exists()) {
+      qWarning() << "Incorrect input, aborting." << torrent_path << content_path;
+      return;
+    }
     const QString hash = misc::toQString(t->info_hash());
+    qDebug() << "Torrent hash is" << hash;
     TorrentTempData::setSavePath(hash, content_path);
 #if LIBTORRENT_VERSION_MINOR >= 15
     TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
@@ -220,6 +229,7 @@ void TorrentImportDlg::importTorrent()
     settings.setValue("TorrentImport/LastContentDir", content_path);
     return;
   }
+  qDebug() << Q_FUNC_INFO << "EXIT";
   return;
 }
 
