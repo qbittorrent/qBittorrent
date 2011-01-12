@@ -5,6 +5,7 @@
     - I18N: Updated Greek, Croatian, Unkrainian and Bulgarian translations
     - I18N: Added Armenian translation
     - I18N: Remove country flags from program preferences (language selection)
+    - I18N: Translate locale names (language selection)
 
 * Mon Jan 10 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.1
     - BUGFIX: Really disable torrent addition dialog by default

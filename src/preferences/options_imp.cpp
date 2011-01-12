@@ -229,9 +229,9 @@ void options_imp::initializeLanguageCombo()
     QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
     localeStr.chop(3); // Remove ".qm"
     QLocale locale(localeStr);
-    //const QString country = locale.name().split("_").last().toLower();
-    QString language_name = QLocale::languageToString(locale.language());
-    comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
+    const QString country = locale.name().split("_").last().toLower();
+    QString language_name = languageToLocalizedString(locale.language(), country);
+        comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
     qDebug() << "Supported locale:" << locale.name();
   }
 }
@@ -1173,4 +1173,55 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
   }
   m_refreshingIpFilter = false;
   disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
+}
+
+QString options_imp::languageToLocalizedString(QLocale::Language language, const QString& country)
+{
+  switch(language) {
+  case QLocale::English: return "English";
+  case QLocale::French: return QString::fromUtf8("Français");
+  case QLocale::German: return QString::fromUtf8("Deutsch");
+  case QLocale::Hungarian: return QString::fromUtf8("Magyar");
+  case QLocale::Italian: return QString::fromUtf8("Italiano");
+  case QLocale::Dutch: return QString::fromUtf8("Nederlands");
+  case QLocale::Spanish: return QString::fromUtf8("Español");
+  case QLocale::Catalan: return QString::fromUtf8("Català");
+  case QLocale::Galician: return QString::fromUtf8("Galego");
+  case QLocale::Portuguese: {
+    if(country == "br")
+      return QString::fromUtf8("Português brasileiro");
+    return QString::fromUtf8("Português");
+  }
+  case QLocale::Polish: return QString::fromUtf8("Polski");
+  case QLocale::Czech: return QString::fromUtf8("Čeština");
+  case QLocale::Slovak: return QString::fromUtf8("Slovenčina");
+  case QLocale::Serbian: return QString::fromUtf8("Српски");
+  case QLocale::Croatian: return QString::fromUtf8("Hrvatski");
+  case QLocale::Armenian: return QString::fromUtf8("Հայերեն");
+  case QLocale::Romanian: return QString::fromUtf8("Română");
+  case QLocale::Turkish: return QString::fromUtf8("Türkçe");
+  case QLocale::Greek: return QString::fromUtf8("Ελληνικά");
+  case QLocale::Swedish: return QString::fromUtf8("Svenska");
+  case QLocale::Finnish: return QString::fromUtf8("Suomi");
+  case QLocale::Norwegian: return QString::fromUtf8("Norsk");
+  case QLocale::Danish: return QString::fromUtf8("Dansk");
+  case QLocale::Bulgarian: return QString::fromUtf8("Български");
+  case QLocale::Ukrainian: return QString::fromUtf8("Українська");
+  case QLocale::Russian: return QString::fromUtf8("Русский");
+  case QLocale::Japanese: return QString::fromUtf8("日本語");
+  case QLocale::Arabic: return QString::fromUtf8("عربي");
+  case QLocale::Chinese: {
+    if(country == "cn")
+      return QString::fromUtf8("中文 (简体)");
+    return QString::fromUtf8("中文 (繁體)");
+  }
+  case QLocale::Korean: return QString::fromUtf8("한글");
+  default: {
+    // Fallback to English
+    const QString eng_lang = QLocale::languageToString(language);
+    qWarning() << "Unrecognized language name: " << eng_lang;
+    return eng_lang;
+  }
+  }
+
 }
