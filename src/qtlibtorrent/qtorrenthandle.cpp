@@ -606,10 +606,12 @@ void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {
 }
 
 void QTorrentHandle::prioritize_first_last_piece(bool b) const {
+  if(!torrent_handle::has_metadata()) return;
   // Download first and last pieces first for all media files in the torrent
   torrent_info::file_iterator it;
   int index = 0;
-  for(it = get_torrent_info().begin_files(); it != get_torrent_info().end_files(); it++) {
+  torrent_info t = get_torrent_info();
+  for(it = t.begin_files(); it != t.end_files(); it++) {
     const QString ext = misc::toQStringU(it->path.string()).split(".").last();
     if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
       qDebug() << "File" << it->path.string().c_str() << "is previewable, toggle downloading of first/last pieces first";
