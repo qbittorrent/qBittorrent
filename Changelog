@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.2
     - BUGFIX: Do not report PeX as being disabled when DHT is
+    - BUGFIX: Fix possible crash on adding magnet links
     - I18N: Updated Greek, Croatian, Unkrainian and Bulgarian translations
     - I18N: Added Armenian translation
     - I18N: Remove country flags from program preferences (language selection)

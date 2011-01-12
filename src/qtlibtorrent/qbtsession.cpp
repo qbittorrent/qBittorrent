@@ -1101,7 +1101,6 @@ void QBtSession::loadTorrentTempData(QTorrentHandle h, QString savePath, bool ma
   if(TorrentTempData::hasTempData(hash)) {
     // sequential download
     h.set_sequential_download(TorrentTempData::isSequential(hash));
-    h.prioritize_first_last_piece(TorrentTempData::isSequential(hash));
 
     // The following is useless for newly added magnet
     if(!magnet) {
@@ -1109,6 +1108,9 @@ void QBtSession::loadTorrentTempData(QTorrentHandle h, QString savePath, bool ma
       vector<int> fp;
       TorrentTempData::getFilesPriority(hash, fp);
       h.prioritize_files(fp);
+
+      // Prioritize first/last piece
+      h.prioritize_first_last_piece(TorrentTempData::isSequential(hash));
 
       // Update file names
       const QStringList files_path = TorrentTempData::getFilesPath(hash);
