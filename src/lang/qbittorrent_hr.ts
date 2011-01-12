@@ -200,11 +200,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Provjeri softverska ažuriranja</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi teme ikona sustava</translation>
     </message>
 </context>
 <context>
@@ -669,12 +669,16 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Oblik</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">Općenito</translation>
+        <translation>Općenito</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Blokirani IP-ovi</translation>
+        <translation>Blokirani IP-ovi</translation>
     </message>
 </context>
 <context>
@@ -1978,61 +1982,61 @@ Jeste li sigurni da želite zatvoriti qBittorrent?</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="unfinished">Dostupna je novija verzija</translation>
+        <translation>Dostupna je novija verzija</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished">Na Sourceforge dostupna je novija verzija qBittorrenta.
+        <translation>Na Sourceforge-u dostupna je novija verzija qBittorrenta.
 Želite li ažurirati qBittorrent na verziju %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
-        <translation type="unfinished">Nije moguće ažurirati qBittorrent</translation>
+        <translation>Nije moguće ažurirati qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="unfinished">Ažuriranje qBittorrenta nije uspjelo. Razlog: %1</translation>
+        <translation>Ažuriranje qBittorrenta nije uspjelo. Razlog: %1</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dod&amp;aj torrent datoteku ...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj &amp;link torrentu ...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uvezi postojeći torrent ...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Dnevnik izvršavanja</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Dnevnik izvršavanja</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Samostalno isključivanje računala kada preuzimanja završe</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Izlaz iz qBittorrenta</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspendiraj sustav</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation>Isključi sustav</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Onemogućeno</translation>
+        <translation>Onemogućeno</translation>
     </message>
 </context>
 <context>
@@ -2825,82 +2829,82 @@ QGroupBox {
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Započni / Zaustavi torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi UPnP / NAT-PMP port prosljeđivanje  s mojeg routera</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>Privatnost</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Omogući DHT (decentralizirana mreža) kako bi se našlo još peerova</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi drugi port za DHT i Bittorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Omogući razmjenu peerova (PeX) kako bi se našlo još peerova</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Omogući lokalno otkrivanje peerova</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Način kriptiranja:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferiraj kriptiranje</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Zahtjevaj kriptiranje</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Onemogući kriptiranje</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Korisničko sučelje</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponovno učitaj filter</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Ime</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Veličina</translation>
+        <translation>Veličina</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Napredak</translation>
+        <translation>Napredak</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Pregled nije moguć</translation>
+        <translation>Pregled nije moguć</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished">Oprostite, nije moguće pregledati datoteku</translation>
+        <translation>Oprostite, nije moguće pregledati datoteku</translation>
     </message>
 </context>
 <context>
@@ -2966,11 +2970,11 @@ QGroupBox {
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP izvori</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Sadržaj</translation>
     </message>
 </context>
 <context>
@@ -3193,12 +3197,12 @@ QGroupBox {
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veličina djelića:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Aktivno:</translation>
     </message>
 </context>
 <context>
@@ -3449,24 +3453,24 @@ QGroupBox {
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrška za UPnP / NAT-PMP [UKLJUČENA]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrška za UPnP / NAT-PMP [ISKLJUČENA]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrška za lokalno otkrivanje peerova [UKLJUČENA]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška: Razrješavanje danog IP filtera nije uspjelo.</translation>
     </message>
 </context>
 <context>
@@ -4205,7 +4209,7 @@ Do you want to install it now?</source>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vrijeme aktivnosti</translation>
     </message>
 </context>
 <context>
@@ -4361,7 +4365,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Seedano za %1</translation>
+        <translation>Seedano za %1</translation>
     </message>
 </context>
 <context>
@@ -5094,11 +5098,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj linkove torrenta</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Podržani su HTTP i Magnet linkovi</translation>
     </message>
 </context>
 <context>
@@ -5463,20 +5467,20 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška razrješavanja</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Razrješavanje danog IP filtera nije uspjelo</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno obnovljeno</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
 </context>
 <context>
@@ -5568,7 +5572,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation>Idi na stranicu opisa</translation>
     </message>
 </context>
 <context>
