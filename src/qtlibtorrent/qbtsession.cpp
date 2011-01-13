@@ -2582,7 +2582,7 @@ void QBtSession::handleIPFilterError()
   emit ipFilterParsed(true, 0);
 }
 
-entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_info> t, const std::vector<int> &fp)
+entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_info> &t, const std::vector<int> &fp)
 {
   entry::dictionary_type rd;
   rd["file-format"] = "libtorrent resume file";
@@ -2600,6 +2600,7 @@ entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_in
   rd["file_priority"] = entry(priorities);
   // files sizes (useless but required)
   entry::list_type sizes;
+  sizes.resize(t->num_files());
   for(int i=0; i<t->num_files(); ++i) {
     entry::list_type p;
     p.push_back(entry(0));
@@ -2616,7 +2617,8 @@ entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_in
   rd["slots"] = entry(tslots);
 
   entry::string_type pieces;
-  std::memset(&pieces[0], 0, t->num_pieces());
+  pieces.resize(t->num_pieces());
+  std::memset(&pieces[0], 0, pieces.size());
   rd["pieces"] = entry(pieces);
 
   entry ret(rd);
