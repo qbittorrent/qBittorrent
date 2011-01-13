@@ -167,7 +167,7 @@ private:
   void loadTorrentSettings(QTorrentHandle h);
   void loadTorrentTempData(QTorrentHandle h, QString savePath, bool magnet);
   libtorrent::add_torrent_params initializeAddTorrentParams(QString hash);
-  libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> t, const std::vector<int> &fp);
+  libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> &t, const std::vector<int> &fp);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
