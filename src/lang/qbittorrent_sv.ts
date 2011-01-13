@@ -321,215 +321,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
-    <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">%1 har nått maximalt angivet förhållande.</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation type="obsolete">qBittorrent är bunden till port: TCP/%1</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP-stöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP-stöd [AV]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP-stöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP-stöd [AV]</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT-stöd [PÅ], port: UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT-stöd [AV]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX-stöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Identifiering av lokala klienter [PÅ]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translation type="obsolete">Stöd för identifiering av lokala klienter [AV]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">Krypteringsstöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">Krypteringsstöd [TVINGAD]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">Krypteringsstöd [AV]</translation>
-    </message>
-    <message>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">Fel i webbgränssnitt - Kunde inte binda webbgränssnittet till port %1</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">&quot;%1&quot; togs bort från överföringslistan och hårddisken.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation type="obsolete">&quot;%1&quot; togs bort från överföringslistan.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&quot;%1&quot; är inte en giltig magnet-URI.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation type="obsolete">&quot;%1&quot; finns redan i hämtningslistan.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation type="obsolete">&quot;%1&quot; återupptogs. (snabbt läge)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation type="obsolete">&quot;%1&quot; lades till i hämtningslistan.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="obsolete">Kunde inte avkoda torrent-fil: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Denna fil är antingen skadad eller så är den inte en torrent-fil.</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blockerades på grund av ditt IP-filter&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;har bannlysts på grund av skadade delar&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">Rekursiv hämtning av filen %1 inbäddad i torrentfilen %2</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">Kunde inte avkoda torrentfilen %1.</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Fel i portmappning, meddelande: %1</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">Snabb återupptagning av data nekades för torrent-filen %1, kontrollerar igen...</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Uppslag av distributions-url misslyckades för: %1, meddelande: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation type="obsolete">Hämtar &quot;%1&quot;, vänta...</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Använder en diskcachestorlek på %1 MiB</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX-stöd [AV]</translation>
-    </message>
-    <message>
-        <source>Restart is required to toggle PeX support</source>
-        <translation type="obsolete">Omstart krävs för att växla PeX-stöd</translation>
-    </message>
-    <message>
-        <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">Webbgränssnittet lyssnar på port %1</translation>
-    </message>
-    <message>
-        <source>HTTP user agent is %1</source>
-        <translation type="obsolete">HTTP-användaragent är %1</translation>
-    </message>
-    <message>
-        <source>Reason: %1</source>
-        <translation type="obsolete">Anledning: %1</translation>
-    </message>
-    <message>
-        <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="obsolete">Observera: nya bevakare lades till i den befintliga torrentfilen.</translation>
-    </message>
-    <message>
-        <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="obsolete">Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
-    </message>
-    <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
-    </message>
-    <message>
-        <source>Removing torrent %1...</source>
-        <translation type="obsolete">Tar bort torrentfilen %1...</translation>
-    </message>
-    <message>
-        <source>Pausing torrent %1...</source>
-        <translation type="obsolete">Pausar torrentfilen %1...</translation>
-    </message>
-    <message>
-        <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="obsolete">Fel: Torrentfilen %1 innehåller inte någon fil.</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="obsolete">Filstorleken stämmer inte för torrentfilen %1, pausar den.</translation>
-    </message>
-</context>
-<context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Allmänt</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Blockerade IP</translation>
-    </message>
-    <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">Loggvisare för qBittorrent</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
@@ -598,197 +389,12 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
 <context>
     <name>ExecutionLog</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulär</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Allmänt</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
         <translation>Blockerade IP</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloader</name>
-    <message>
-        <source>RSS Feed downloader</source>
-        <translation type="obsolete">Hämta RSS-kanal</translation>
-    </message>
-    <message>
-        <source>RSS feed:</source>
-        <translation type="obsolete">RSS-kanal:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translation type="obsolete">Kanalnamn</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">Hämta automatiskt torrentfiler från denna kanal</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">Hämtningsfilter</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">Filter:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">Filterinställningar</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">Matchar:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">Matchar inte:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">Målmapp:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">Testa filter</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">Torrent-titel:</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">Resultat:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">Testa</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">Importera...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">Exportera...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">Byt namn på filter</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">Ta bort filter</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">Lägg till filter</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">Nytt filter</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete">Välj ett namn för detta filter</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">Filternamn:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">Ogiltigt filternamn</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">Filternamnet får inte lämnas tomt.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">Detta filternamn används redan.</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">Fel vid test av filter</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">Ange ett torrentnamn för test.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">matchar</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">matchar inte</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">Välj en fil att importera</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">Filtrerar filer</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">Import lyckades</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">Filterimport lyckades.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">Importfel</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">Filter kunde inte importeras på grund av ett in-/ut-fel.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">Välj målfil</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">Export lyckades</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">Filterexport lyckades.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">Fel vid export</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">Filter kunde inte exporteras på grund av ett in-/ut-fel.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Välj sökväg att spara i</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">Oläst</translation>
     </message>
 </context>
 <context>
@@ -800,406 +406,6 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <message>
         <source>Unread</source>
         <translation>Oläst</translation>
-    </message>
-</context>
-<context>
-    <name>GUI</name>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">Öppna Torrent-filer</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent-filer</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation type="obsolete">Hämtning: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation type="obsolete">Sändning: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation type="obsolete">%1 har hämtats färdigt.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translation type="obsolete">In/Ut-fel</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Sök</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Fel vid url-hämtning</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">Kunde inte hämta fil från url:en: %1, anledning: %2.</translation>
-    </message>
-    <message>
-        <source>An I/O error occured for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translation type="obsolete">Ett in-/ut-fel inträffade för torrentfilen %1.
- Anledning: %2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Inställningarna sparades.</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translation type="obsolete">Överföringar</translation>
-    </message>
-    <message>
-        <source>Download completion</source>
-        <translation type="obsolete">Hämtningen är färdig</translation>
-    </message>
-    <message>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">Ett antal filer håller fortfarande på att överföras.
-Är du säker på att du vill avsluta qBittorrent?</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="obsolete">Allmän hastighetsgräns för sändning</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="obsolete">Allmän hastighetsgräns för hämtning</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Ned: %2/s, Upp: %3/s)</translation>
-    </message>
-    <message>
-        <source>Recursive download confirmation</source>
-        <translation type="obsolete">Bekräfta rekursiv hämtning</translation>
-    </message>
-    <message>
-        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="obsolete">Torrentfilen %1 innehåller flera torrentfiler. Vill du fortsätta med att hämta ner dem?</translation>
-    </message>
-    <message>
-        <source>Torrent file association</source>
-        <translation type="obsolete">Associering av torrentfiler</translation>
-    </message>
-    <message>
-        <source>qBittorrent is not the default application to open torrent files or Magnet links.
-Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="obsolete">qBittorrent är inte standardprogrammet för att öppna torrentfiler eller Magnet-länkar.
-Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="obsolete">Överföringar (%1)</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Nej</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">Aldrig</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="obsolete">Alltid</translation>
-    </message>
-    <message>
-        <source>Exiting qBittorrent</source>
-        <translation type="obsolete">Avslutar qBittorrent</translation>
-    </message>
-</context>
-<context>
-    <name>GeoIP</name>
-    <message>
-        <source>Australia</source>
-        <translation type="obsolete">Australien</translation>
-    </message>
-    <message>
-        <source>Argentina</source>
-        <translation type="obsolete">Argentina</translation>
-    </message>
-    <message>
-        <source>Austria</source>
-        <translation type="obsolete">Österrike</translation>
-    </message>
-    <message>
-        <source>United Arab Emirates</source>
-        <translation type="obsolete">Förenade arabemiraten</translation>
-    </message>
-    <message>
-        <source>Brazil</source>
-        <translation type="obsolete">Brasilien</translation>
-    </message>
-    <message>
-        <source>Bulgaria</source>
-        <translation type="obsolete">Bulgarien</translation>
-    </message>
-    <message>
-        <source>Belarus</source>
-        <translation type="obsolete">Vitryssland</translation>
-    </message>
-    <message>
-        <source>Belgium</source>
-        <translation type="obsolete">Belgien</translation>
-    </message>
-    <message>
-        <source>Bosnia</source>
-        <translation type="obsolete">Bosnien</translation>
-    </message>
-    <message>
-        <source>Canada</source>
-        <translation type="obsolete">Kanada</translation>
-    </message>
-    <message>
-        <source>Czech Republic</source>
-        <translation type="obsolete">Tjeckien</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="obsolete">Kina</translation>
-    </message>
-    <message>
-        <source>Costa Rica</source>
-        <translation type="obsolete">Costa Rica</translation>
-    </message>
-    <message>
-        <source>Switzerland</source>
-        <translation type="obsolete">Schweiz</translation>
-    </message>
-    <message>
-        <source>Germany</source>
-        <translation type="obsolete">Tyskland</translation>
-    </message>
-    <message>
-        <source>Denmark</source>
-        <translation type="obsolete">Danmark</translation>
-    </message>
-    <message>
-        <source>Algeria</source>
-        <translation type="obsolete">Algeriet</translation>
-    </message>
-    <message>
-        <source>Spain</source>
-        <translation type="obsolete">Spanien</translation>
-    </message>
-    <message>
-        <source>Egypt</source>
-        <translation type="obsolete">Egypten</translation>
-    </message>
-    <message>
-        <source>Finland</source>
-        <translation type="obsolete">Finland</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">Frankrike</translation>
-    </message>
-    <message>
-        <source>United Kingdom</source>
-        <translation type="obsolete">Storbritannien</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="obsolete">Grekland</translation>
-    </message>
-    <message>
-        <source>Georgia</source>
-        <translation type="obsolete">Georgien</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="obsolete">Ungern</translation>
-    </message>
-    <message>
-        <source>Croatia</source>
-        <translation type="obsolete">Kroatien</translation>
-    </message>
-    <message>
-        <source>Italy</source>
-        <translation type="obsolete">Italien</translation>
-    </message>
-    <message>
-        <source>India</source>
-        <translation type="obsolete">Indien</translation>
-    </message>
-    <message>
-        <source>Israel</source>
-        <translation type="obsolete">Israel</translation>
-    </message>
-    <message>
-        <source>Ireland</source>
-        <translation type="obsolete">Irland</translation>
-    </message>
-    <message>
-        <source>Iceland</source>
-        <translation type="obsolete">Island</translation>
-    </message>
-    <message>
-        <source>Indonesia</source>
-        <translation type="obsolete">Indonesien</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="obsolete">Japan</translation>
-    </message>
-    <message>
-        <source>South Korea</source>
-        <translation type="obsolete">Sydkorea</translation>
-    </message>
-    <message>
-        <source>Luxembourg</source>
-        <translation type="obsolete">Luxemburg</translation>
-    </message>
-    <message>
-        <source>Malaysia</source>
-        <translation type="obsolete">Malaysia</translation>
-    </message>
-    <message>
-        <source>Mexico</source>
-        <translation type="obsolete">Mexiko</translation>
-    </message>
-    <message>
-        <source>Serbia</source>
-        <translation type="obsolete">Serbien</translation>
-    </message>
-    <message>
-        <source>Morocco</source>
-        <translation type="obsolete">Marocko</translation>
-    </message>
-    <message>
-        <source>Netherlands</source>
-        <translation type="obsolete">Nederländerna</translation>
-    </message>
-    <message>
-        <source>Norway</source>
-        <translation type="obsolete">Norge</translation>
-    </message>
-    <message>
-        <source>New Zealand</source>
-        <translation type="obsolete">Nya Zealand</translation>
-    </message>
-    <message>
-        <source>Portugal</source>
-        <translation type="obsolete">Portugal</translation>
-    </message>
-    <message>
-        <source>Poland</source>
-        <translation type="obsolete">Polen</translation>
-    </message>
-    <message>
-        <source>Pakistan</source>
-        <translation type="obsolete">Pakistan</translation>
-    </message>
-    <message>
-        <source>Philippines</source>
-        <translation type="obsolete">Filippinerna</translation>
-    </message>
-    <message>
-        <source>Russia</source>
-        <translation type="obsolete">Ryssland</translation>
-    </message>
-    <message>
-        <source>Romania</source>
-        <translation type="obsolete">Rumänien</translation>
-    </message>
-    <message>
-        <source>France (Reunion Island)</source>
-        <translation type="obsolete">Frankrike (Reunion Island)</translation>
-    </message>
-    <message>
-        <source>Sweden</source>
-        <translation type="obsolete">Sverige</translation>
-    </message>
-    <message>
-        <source>Slovakia</source>
-        <translation type="obsolete">Slovakien</translation>
-    </message>
-    <message>
-        <source>Singapore</source>
-        <translation type="obsolete">Singapore</translation>
-    </message>
-    <message>
-        <source>Slovenia</source>
-        <translation type="obsolete">Slovenien</translation>
-    </message>
-    <message>
-        <source>Taiwan</source>
-        <translation type="obsolete">Taiwan</translation>
-    </message>
-    <message>
-        <source>Turkey</source>
-        <translation type="obsolete">Turkiet</translation>
-    </message>
-    <message>
-        <source>Thailand</source>
-        <translation type="obsolete">Thailand</translation>
-    </message>
-    <message>
-        <source>USA</source>
-        <translation type="obsolete">USA</translation>
-    </message>
-    <message>
-        <source>Ukraine</source>
-        <translation type="obsolete">Ukraina</translation>
-    </message>
-    <message>
-        <source>South Africa</source>
-        <translation type="obsolete">Sydafrika</translation>
-    </message>
-    <message>
-        <source>Saudi Arabia</source>
-        <translation type="obsolete">Saudiarabien</translation>
     </message>
 </context>
 <context>
@@ -1391,14 +597,6 @@ Detta meddelande kommer inte att visas igen.</translation>
         <translation>&amp;Hjälp</translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Förhandsvisa fil</translation>
-    </message>
-    <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Töm logg</translation>
-    </message>
-    <message>
         <source>Decrease priority</source>
         <translation>Sänk prioriteten</translation>
     </message>
@@ -1415,20 +613,8 @@ Detta meddelande kommer inte att visas igen.</translation>
         <translation>&amp;Visa</translation>
     </message>
     <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Lägg till fil...</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="obsolete">A&amp;vsluta</translation>
-    </message>
-    <message>
         <source>&amp;Options...</source>
         <translation>A&amp;lternativ...</translation>
-    </message>
-    <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Lägg till &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1449,10 +635,6 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <source>Set global upload limit...</source>
         <translation>Ställ in allmän sändningsgräns...</translation>
-    </message>
-    <message>
-        <source>&amp;Log viewer...</source>
-        <translation type="obsolete">&amp;Loggvisare...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -1509,10 +691,6 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <source>Search &amp;engine</source>
         <translation>Sök&amp;motor</translation>
-    </message>
-    <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Loggvisare</translation>
     </message>
     <message>
         <source>Lock qBittorrent</source>
@@ -1919,14 +1097,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Anslutning</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Proxyserver</translation>
-    </message>
-    <message>
         <source>Web UI</source>
         <translation>Webbgränssnitt</translation>
     </message>
@@ -1992,14 +1162,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Slumpmässig</translation>
     </message>
     <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">Aktivera UPnP-portmappning</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">Aktivera NAT-PMP-portmappning</translation>
-    </message>
-    <message>
         <source>Connections limit</source>
         <translation>Anslutningsgräns</translation>
     </message>
@@ -2028,40 +1190,8 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Bittorrent-funktioner</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">Aktivera DHT-nätverk (decentraliserat)</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Använd en annan port för DHT och Bittorrent</translation>
-    </message>
-    <message>
         <source>DHT port:</source>
         <translation>DHT-port:</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">Aktivera Peer Exchange / PeX (kräver omstart)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Aktivera identifiering av lokala klienter</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Aktiverad</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Tvingad</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Inaktiverad</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -2104,16 +1234,8 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Filtersökväg (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP-kommunikation (bevakare, webbdistribution, sökmotor)</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Värd:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">Klientanslutningar</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2179,10 +1301,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Downloading torrents:</source>
         <translation>Hämtning av torrentfiler:</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Starta / Stoppa</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2445,10 +1563,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Klienter</translation>
     </message>
     <message>
-        <source>Files</source>
-        <translation type="obsolete">Filer</translation>
-    </message>
-    <message>
         <source>HTTP Sources</source>
         <translation>HTTP-källor</translation>
     </message>
@@ -2476,22 +1590,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Utdelningsförhållande:</translation>
     </message>
     <message>
-        <source>General</source>
-        <translation type="obsolete">Allmänt</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translation type="obsolete">Bevakare</translation>
-    </message>
-    <message>
-        <source>URL seeds</source>
-        <translation type="obsolete">URL-distributörer</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Filer</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
@@ -2515,14 +1613,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Choose save path</source>
         <translation>Välj sökväg att spara i</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Downloaded:</source>
@@ -2549,10 +1639,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Hämtgräns:</translation>
     </message>
     <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Tid förfluten:</translation>
-    </message>
-    <message>
         <source>Connections:</source>
         <translation>Anslutningar:</translation>
     </message>
@@ -2563,10 +1649,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Created on:</source>
         <translation>Skapades den:</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="obsolete">Klienter</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -2689,28 +1771,8 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>qBittorrent är bunden till port: TCP/%1</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP-stöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP-stöd [AV]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP-stöd [PÅ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP-stöd [AV]</translation>
-    </message>
-    <message>
         <source>HTTP user agent is %1</source>
         <translation>HTTP-användaragent är %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Använder en diskcachestorlek på %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
@@ -2731,10 +1793,6 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Restart is required to toggle PeX support</source>
         <translation>Omstart krävs för att växla PeX-stöd</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Identifiering av lokala klienter [PÅ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -2996,10 +2054,6 @@ p, li { white-space: pre-wrap; }
         <translation>Uppdatera alla kanaler</translation>
     </message>
     <message>
-        <source>RSS feeds</source>
-        <translation type="obsolete">RSS-kanaler</translation>
-    </message>
-    <message>
         <source>Update</source>
         <translation>Uppdatera</translation>
     </message>
@@ -3139,28 +2193,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Ingen beskrivning tillgänglig</translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">Uppdateringsintervall för RSS-kanaler:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">minuter</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Maximalt antal inlägg per RSS-kanal:</translation>
-    </message>
-</context>
-<context>
     <name>RssSettingsDlg</name>
     <message>
         <source>RSS Reader Settings</source>
@@ -3177,13 +2209,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Maximum number of articles per feed:</source>
         <translation>Maximalt antal inlägg per RSS-kanal:</translation>
-    </message>
-</context>
-<context>
-    <name>RssStream</name>
-    <message>
-        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation type="obsolete">Hämtar automatiskt torrentfilen %1 från RSS-kanalen %2...</translation>
     </message>
 </context>
 <context>
@@ -3450,23 +2475,6 @@ Vill du installera den nu?</translation>
     <message>
         <source>Select a file to add to the torrent</source>
         <translation>Välj en fil att lägga till i torrent-filen</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Ange en annonserings-url</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Annonserings-url:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Ange en url för webbdistribution</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Url för webbdistribution:</translation>
     </message>
     <message>
         <source>No input path set</source>
@@ -3895,11 +2903,6 @@ Vill du installera den nu?</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="obsolete">Färdig om</translation>
-    </message>
-    <message>
         <source>Column visibility</source>
         <translation>Kolumnsynlighet</translation>
     </message>
@@ -3914,51 +2917,6 @@ Vill du installera den nu?</translation>
     <message>
         <source>Copy magnet link</source>
         <translation>Kopiera magnetlänk</translation>
-    </message>
-    <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">Hämtningshastighet</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">Sändningshastighet</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">Namn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">Storlek</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="obsolete">Färdig</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">Status</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Distributörer</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="obsolete">Klienter</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">Förhållande</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
@@ -4023,36 +2981,8 @@ Vill du installera den nu?</translation>
         <translation>Använd inte några specialtecken i etikettnamnet.</translation>
     </message>
     <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Lades till</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Färdigställdes</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="obsolete">Hämtningsgräns</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="obsolete">Sändningsgräns</translation>
-    </message>
-    <message>
         <source>Choose save path</source>
         <translation>Välj sökväg att spara i</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -4311,18 +3241,6 @@ Vill du installera den nu?</translation>
         <translation>Skapa torrent-fil</translation>
     </message>
     <message>
-        <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Annonserings-url:er (bevakare):</translation>
-    </message>
-    <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">Kommentar (valfritt):</translation>
-    </message>
-    <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">Url:er för webbdistribution (valfritt):</translation>
-    </message>
-    <message>
         <source>File or folder to add to the torrent:</source>
         <translation>Fil eller mapp att lägga till i torrent:</translation>
     </message>
@@ -4404,78 +3322,10 @@ Vill du installera den nu?</translation>
     </message>
 </context>
 <context>
-    <name>createtorrent</name>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">Välj mål för torrent-fil</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Torrent-filer</translation>
-    </message>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">Ingen sökväg inställd för indata</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">Ange en sökväg för indata först</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">Skapa torrent</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">Torrentfilen skapades:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">Välj en mapp att lägga till i torrent-filen</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Ange en annonserings-url</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">Skapandet av torrent-fil misslyckades, anledning: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Annonserings-url:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Ange en url för webbdistribution</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">Url för webbdistribution:</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">Välj en fil att lägga till i torrent</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Skapad torrentfil är ogiltig. Den kommer inte att läggas till i hämtningslistan.</translation>
-    </message>
-</context>
-<context>
     <name>downloadFromURL</name>
     <message>
         <source>Download from urls</source>
         <translation>Hämta från url:er</translation>
-    </message>
-    <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">Hämta torrent-filer från url:er</translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">Endast en url per rad</translation>
     </message>
     <message>
         <source>Download</source>
@@ -4630,14 +3480,6 @@ Vill du installera den nu?</translation>
     <message>
         <source>Close</source>
         <translation>Stäng</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Aktivera</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Inaktivera</translation>
     </message>
     <message>
         <source>Uninstall</source>
@@ -4906,29 +3748,6 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>Cancel</source>
         <translation>Avbryt</translation>
-    </message>
-</context>
-<context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Förhandsvisning inte möjlig</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Tyvärr, vi kan inte förhandsvisa den här filen</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Namn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Storlek</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Förlopp</translation>
     </message>
 </context>
 <context>
