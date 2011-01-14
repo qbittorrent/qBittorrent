@@ -1,5 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.3
    - BUGFIX: Fix possible crashes in full allocation mode
+   - BUGFIX: Fix icon size issues (Linux, icon theme)
+   - I18N: Updated Polish translation
 
 * Wed Jan 12 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.2
     - BUGFIX: Do not report PeX as being disabled when DHT is

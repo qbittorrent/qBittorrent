@@ -53,6 +53,9 @@ public:
   void useSystemIconTheme(bool enable);
 
 private:
+  QIcon generateDifferentSizes(const QIcon& icon);
+
+private:
   bool m_useSystemTheme;
 #endif
 };
