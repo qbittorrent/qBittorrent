@@ -111,7 +111,7 @@ void HttpConnection::write()
 }
 
 QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel", "PropTabBar", "TorrentModel"};
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel", "PropTabBar", "TorrentModel", "downloadFromURL"};
   int i=0;
   bool found = false;
   do {
@@ -126,7 +126,7 @@ QString HttpConnection::translateDocument(QString data) {
       do {
         translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().constData(), 0, QCoreApplication::UnicodeUTF8, 1);
         ++context_index;
-      }while(translation == word && context_index < 14);
+      }while(translation == word && context_index < 15);
       // Remove keyboard shortcuts
       translation = translation.replace("&", "");
       //qDebug("Translation is %s", translation.toUtf8().data());
