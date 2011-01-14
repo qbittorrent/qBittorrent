@@ -127,6 +127,7 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   a = tr("The Web UI username must be at least 3 characters long.");
   a = tr("The Web UI password must be at least 3 characters long.");
   a = tr("Save");
+  a = tr("qBittorrent client is not reachable");
 }
 
 HttpServer::~HttpServer()
