@@ -465,7 +465,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Удалить с жесткого диска</translation>
+        <translation type="obsolete">Удалить с жесткого диска</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -543,6 +543,14 @@ You should get this information from your Web browser preferences.</source>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Скачано</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

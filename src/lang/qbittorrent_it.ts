@@ -573,105 +573,114 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
         <translation>Aiuto</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="110"/>
         <source>Delete from HD</source>
-        <translation>Cancella dal disco</translation>
+        <translation type="obsolete">Cancella dal disco</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="111"/>
+        <location filename="../webui/httpserver.cpp" line="110"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Scarica torrent da indirizzo web o link magnetico</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="112"/>
+        <location filename="../webui/httpserver.cpp" line="111"/>
         <source>Only one link per line</source>
         <translation>Solo un link per riga</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="113"/>
+        <location filename="../webui/httpserver.cpp" line="112"/>
         <source>Download local torrent</source>
         <translation>Scarica torrent locale</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="114"/>
+        <location filename="../webui/httpserver.cpp" line="113"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torrent aggiunti correttamente alla lista dei download.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="115"/>
+        <location filename="../webui/httpserver.cpp" line="114"/>
         <source>Point to torrent file</source>
         <translation>Indirizza al file torrent</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="116"/>
+        <location filename="../webui/httpserver.cpp" line="115"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="117"/>
+        <location filename="../webui/httpserver.cpp" line="116"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Sei sicuro di voler cancellare i torrent selezionati dalla lista dei trasferimenti e dal disco?</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="118"/>
+        <location filename="../webui/httpserver.cpp" line="117"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Il limite di download deve essere maggiore di 0 o disattivato.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="119"/>
+        <location filename="../webui/httpserver.cpp" line="118"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Il limite di upload deve essere maggiore di 0 o disattivato.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Il limite per il numero massimo di connessioni deve essere 0 o disattivato.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="120"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Il limite per il numero di connessioni per torrent deve essere 0 o disattivato.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="121"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Il numero massimo di slot in upload deve essere 0 o disattivato.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="122"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="123"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="124"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Scaricato</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="125"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>La porta in uso per le connessioni in entrata deve essere compresa tra 1024 e 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="126"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>La porta in uso per l&apos;interfaccia Web deve essere compresa tra 1024 e 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="127"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Il nome utente per l&apos;interfaccia Web deve essere di almeno 3 caratteri.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>La password per l&apos;interfaccia Web deve essere di almeno 3 caratteri.</translation>
+    </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="129"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="130"/>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

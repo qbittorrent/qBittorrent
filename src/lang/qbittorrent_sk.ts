@@ -465,7 +465,7 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Zmazať z disku</translation>
+        <translation type="obsolete">Zmazať z disku</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -543,6 +543,14 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Stiahnuté</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

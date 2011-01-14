@@ -464,7 +464,7 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Izbriši sa čvrstog diska</translation>
+        <translation type="obsolete">Izbriši sa čvrstog diska</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -542,6 +542,14 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <message>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Lozinka web sučelja mora imati najmanje 3 znaka.</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -86,14 +86,11 @@ QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
       if(pixoff.height() > size.height())
         pixoff = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
       new_icon.addPixmap(pixoff, mode, QIcon::Off);
-      Q_ASSERT(pixoff.height() <= size.height());
       QPixmap pixon = icon.pixmap(size, mode, QIcon::On);
       if(pixon.height() > size.height())
         pixon = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
       new_icon.addPixmap(pixon, mode, QIcon::On);
-      Q_ASSERT(pixon.height() <= size.height());
     }
-    Q_ASSERT(new_icon.availableSizes().contains(size));
   }
   return new_icon;
 }

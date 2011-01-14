@@ -462,7 +462,7 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Sabit diskten sil</translation>
+        <translation type="obsolete">Sabit diskten sil</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -541,6 +541,14 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
         <comment>Is the file downloaded or not?</comment>
         <translatorcomment>Dosya indirildi mi indirilmedi mi?</translatorcomment>
         <translation>İndirilen</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

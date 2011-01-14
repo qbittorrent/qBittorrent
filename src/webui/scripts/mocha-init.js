@@ -23,7 +23,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		new MochaUI.Window({
 			id: 'downloadPage',
-			title: "_(Download from URL)",
+			title: "_(Download from urls)",
 			loadMethod: 'iframe',
 			contentURL:'download.html',
 			scrollbars: true,

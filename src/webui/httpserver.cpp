@@ -107,7 +107,6 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   QString a = tr("File");
   a = tr("Edit");
   a = tr("Help");
-  a = tr("Delete from HD");
   a = tr("Download Torrents from their URL or Magnet link");
   a = tr("Only one link per line");
   a = tr("Download local torrent");
@@ -127,6 +126,8 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   a = tr("The port used for the Web UI must be greater than 1024 and less than 65535.");
   a = tr("The Web UI username must be at least 3 characters long.");
   a = tr("The Web UI password must be at least 3 characters long.");
+  a = tr("Save");
+  a = tr("qBittorrent client is not reachable");
 }
 
 HttpServer::~HttpServer()

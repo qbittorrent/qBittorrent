@@ -212,7 +212,7 @@ window.addEvent('load', function(){
                     noCache: true,
                     method: 'get',
                     onFailure: function() {
-                      $('error_div').set('html', 'qBittorrent client is not reachable');
+                      $('error_div').set('html', '_(qBittorrent client is not reachable)');
                       waitingTrInfo=false;
                       loadTransferInfo.delay(4000);
                     },
