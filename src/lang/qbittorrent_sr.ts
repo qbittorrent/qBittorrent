@@ -1369,7 +1369,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Обриши са HD-а (хард диск-а)</translation>
+        <translation type="obsolete">Обриши са HD-а (хард диск-а)</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1447,6 +1447,14 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Веб КИ лозинка мора имати најмање 3 карактера.</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

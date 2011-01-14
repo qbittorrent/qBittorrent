@@ -945,7 +945,7 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Șterge de pe Hard Disc</translation>
+        <translation type="obsolete">Șterge de pe Hard Disc</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1023,6 +1023,14 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Descărcat</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1258,7 +1258,7 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Ta bort från hårddisk</translation>
+        <translation type="obsolete">Ta bort från hårddisk</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1336,6 +1336,14 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Hämtad</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

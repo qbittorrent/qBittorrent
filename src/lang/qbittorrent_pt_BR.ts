@@ -1327,7 +1327,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Deletar do HD</translation>
+        <translation type="obsolete">Deletar do HD</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1405,6 +1405,14 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Baixado</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

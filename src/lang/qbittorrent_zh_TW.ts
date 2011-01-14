@@ -1335,7 +1335,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>從硬碟刪除</translation>
+        <translation type="obsolete">從硬碟刪除</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1413,6 +1413,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>已下載</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

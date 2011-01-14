@@ -1128,7 +1128,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Delete from HD</source>
-        <translation>Verwijder van HD</translation>
+        <translation type="obsolete">Verwijder van HD</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1206,6 +1206,14 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Gedownload</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent client is not reachable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
