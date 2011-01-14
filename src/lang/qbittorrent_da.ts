@@ -1099,12 +1099,12 @@ Begrundelse: %2</translation>
     <message>
         <location filename="../mainwindow.cpp" line="572"/>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Global begrænsning af upload hastighed</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="586"/>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Global begrænsning af downloadhastighed</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="631"/>
@@ -3278,13 +3278,13 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="240"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Down hastighed</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="241"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Up hastighed</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="242"/>

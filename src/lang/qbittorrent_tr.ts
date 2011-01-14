@@ -269,7 +269,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Girdi/Çıktı Hatası</translation>
     </message>
     <message>
         <source>Failed to create the destination file</source>
@@ -786,7 +786,7 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
     <message>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Girdi/Çıktı Hatası</translation>
     </message>
     <message>
         <source>An I/O error occured for torrent %1.
@@ -1566,7 +1566,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kaynak</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -2617,7 +2617,7 @@ Do you want to install it now?</source>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kaynak</translation>
     </message>
     <message>
         <source>Down Speed</source>

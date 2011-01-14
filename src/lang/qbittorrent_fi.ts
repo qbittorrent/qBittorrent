@@ -865,7 +865,7 @@ Muita varoituksia ei anneta.</translation>
     <message>
         <location filename="../mainwindow.ui" line="362"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ei käytössä</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="241"/>
@@ -1954,7 +1954,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="68"/>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Asiakkaat</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="74"/>
@@ -3281,7 +3281,7 @@ Asenna se itse.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="239"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Asiakkaat</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="240"/>

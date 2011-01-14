@@ -398,7 +398,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recitit</translation>
     </message>
 </context>
 <context>
@@ -837,11 +837,11 @@ Motivul : %2</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Limita globală de încărcare</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Limita globală de descărcare</translation>
     </message>
     <message>
         <source>Invalid password</source>
@@ -951,7 +951,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dezactivată</translation>
     </message>
 </context>
 <context>
@@ -2608,7 +2608,7 @@ Do you want to install it now?</source>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">VIteza de încărcare</translation>
     </message>
     <message>
         <source>Ratio</source>

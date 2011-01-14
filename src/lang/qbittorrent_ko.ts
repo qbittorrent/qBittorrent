@@ -1951,7 +1951,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="68"/>
         <source>Peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">공유자</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="74"/>
@@ -3276,7 +3276,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="239"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">공유자</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="240"/>
