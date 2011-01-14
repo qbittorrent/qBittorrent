@@ -73,6 +73,10 @@ void IconProvider::useSystemIconTheme(bool enable)
   m_useSystemTheme = enable;
 }
 
+// Makes sure the icon is at least available in 16px and 24px size
+// It scales the icon from the theme if necessary
+// Otherwise, the UI looks broken if the icon is not available
+// in the correct size.
 QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
 {
   QIcon new_icon;
