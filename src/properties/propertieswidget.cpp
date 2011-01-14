@@ -489,8 +489,8 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
-  if(static_cast<torrent_handle>(h).is_seed()) {
-    QMenu subMenu;
+  QMenu subMenu;
+  if(!static_cast<torrent_handle>(h).is_seed()) {
     subMenu.setTitle(tr("Priority"));
     subMenu.addAction(actionNot_downloaded);
     subMenu.addAction(actionNormal);

@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.3
    - BUGFIX: Fix possible crashes in full allocation mode
    - BUGFIX: Fix icon size issues (Linux, icon theme)
+   - BUGFIX: Fixed file priority context menu
    - I18N: Improve Web UI translation
    - I18N: Updated Polish translation
 
