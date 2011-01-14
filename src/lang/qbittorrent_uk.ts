@@ -4967,12 +4967,16 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Успішно оновлено</translation>
+        <translation type="obsolete">Успішно оновлено</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Успішно розібрано даний фільтр IP: було застосовано %1 правил.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

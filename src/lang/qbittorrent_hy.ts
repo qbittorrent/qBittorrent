@@ -11,7 +11,7 @@
     <message>
         <location filename="../about.ui" line="83"/>
         <source>About</source>
-        <translation type="unfinished">Ծրագրի մասին</translation>
+        <translation>Ծրագրի մասին</translation>
     </message>
     <message>
         <location filename="../about.ui" line="134"/>
@@ -686,7 +686,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="129"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Web UI-ի օգտագործողի ծածկագիրը պետք է պարունակի գոնե 3 նիշ։</translation>
+        <translation>Օգտագործողի ծածկագիրը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
 </context>
 <context>
@@ -813,7 +813,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
         <source>&amp;Speed in title bar</source>
-        <translation>&amp;Արագ-ը անունների վահանակում</translation>
+        <translation>&amp;Արագ-ը պատուհանի վերին մասում</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="266"/>
@@ -1008,7 +1008,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.cpp" line="136"/>
         <source>Set the password...</source>
-        <translation>Նշեք գաղտնաբառը...</translation>
+        <translation>Նշեք ծածկագիրը...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="169"/>
@@ -1032,7 +1032,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="382"/>
         <location filename="../mainwindow.cpp" line="618"/>
         <source>UI lock password</source>
-        <translation>UI կողփման ծածկագիրը</translation>
+        <translation>Ծրագրի կողփման ծածկագիրը</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="367"/>
@@ -1166,12 +1166,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="631"/>
         <source>Invalid password</source>
-        <translation>Սխալ գաղտնաբառ</translation>
+        <translation>Ծածկագիրը սխալ է</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="631"/>
         <source>The password is invalid</source>
-        <translation>Գաղտնաբառը սխալ է</translation>
+        <translation>Ծածկագիրը սխալ է</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="699"/>
@@ -1183,7 +1183,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Այս պահին որոշ ֆայլեր փախանցվում են։
-Այնուհանդերձ դուրս գա՞լ qBittorrent-ից։</translation>
+Այնուհանդերձ դու՞րս գալ qBittorrent-ից։</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="704"/>
@@ -1336,7 +1336,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="150"/>
         <source>Limit upload rate...</source>
-        <translation>Փոխանցման սահ-ը…</translation>
+        <translation>Փոխանցման սահմանափակումը…</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="152"/>
@@ -1401,7 +1401,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="91"/>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>UI</translation>
+        <translation>Արտացոլումը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="105"/>
@@ -1411,7 +1411,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="116"/>
         <source>Connection</source>
-        <translation>Միացումներ</translation>
+        <translation>Միացումը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="127"/>
@@ -1561,7 +1561,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1002"/>
         <source>Connections limit</source>
-        <translation>Միացումների սահ-ում</translation>
+        <translation>Միացումների սահմանափակումներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1013"/>
@@ -1601,7 +1601,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1415"/>
         <source>Global speed limits</source>
-        <translation>Արագ-ան սահմանափակումներ</translation>
+        <translation>Արագության սահմանափակումներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="753"/>
@@ -1611,13 +1611,13 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1520"/>
         <source>Alternative global speed limits</source>
-        <translation>Արագ-ան այլընտրանքային սահմանափակումներ</translation>
+        <translation>Արագության այլընտրանքային սահմանափակումներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1677"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>-ը</translation>
+        <translation>մինչև</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1729"/>
@@ -1729,7 +1729,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="400"/>
         <source>Desktop</source>
-        <translation>Աշխատաշրջան</translation>
+        <translation>Աշխատանքը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="409"/>
@@ -1739,23 +1739,23 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="419"/>
         <source>Start qBittorrent minimized</source>
-        <translation>Բացել qBittorrent-ը իջեցված</translation>
+        <translation>Բացել qBittorrent-ը թաքնված վիճակում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="426"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation>Ցուցադրել qBittorrent-ի պատկերը իրազերկման գոտում</translation>
+        <translation>Ցուցադրել qBittorrent-ի պատկերը իրազեկման գոտում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="436"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Իջեցնել qBittorrent-ը իրազերկման գոտի</translation>
+        <translation>Թաքցնել qBittorrent-ը իրազեկման գոտում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="446"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Թաքցնել qBittorrent-ը իրազերկման գոտում</translation>
+        <translation>qBittorrent-ը փակելիս թաքցնել իրազեկման գոտում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="517"/>
@@ -1776,7 +1776,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="610"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Բոլոր ֆայլերի համար առանձնացնել անհրժ. ծավալ պնակի վրա</translation>
+        <translation>Բոլոր ֆայլերի համար առանձնացնել անհրաժեշտ չափով տեղ պնակի վրա</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="627"/>
@@ -1801,7 +1801,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="852"/>
         <source>Email notification upon download completion</source>
-        <translation>Բեռնումները ավարտելիս տեղեկացնել էլ. փոստին</translation>
+        <translation>Բեռնումները ավարտելիս տեղեկացնել էլ. փոստով</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="864"/>
@@ -1836,7 +1836,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1329"/>
         <source>IP Filtering</source>
-        <translation>IP ֆիլտրում</translation>
+        <translation>Ֆիլտրում IP-ով</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1370"/>
@@ -1846,13 +1846,13 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1636"/>
         <source>Schedule the use of alternative speed limits</source>
-        <translation>Նշեք արագ-ան այլընտրանքային սահ-եր</translation>
+        <translation>Նշեք արագության այլընտրանքային սահմանափակում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1653"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>-ից</translation>
+        <translation>Ժ.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1721"/>
@@ -1896,12 +1896,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2077"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Փոխանցել torrent-ները մինչև սահ-ը</translation>
+        <translation>Փոխանցել torrent-ները մինչև սահ-ը կհասնի</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2109"/>
         <source>then</source>
-        <translation>քան</translation>
+        <translation>ապա</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2120"/>
@@ -1916,7 +1916,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1153"/>
         <source>(None)</source>
-        <translation>(Ոչ մի)</translation>
+        <translation>(Չկա)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="94"/>
@@ -1955,7 +1955,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="1286"/>
         <location filename="../preferences/options.ui" line="2256"/>
         <source>Password:</source>
-        <translation>Գաղտնաբառը.</translation>
+        <translation>Ծածկագիրը.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2187"/>
@@ -1970,7 +1970,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1341"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Ֆիլտրի տեսակը (.dat, .p2p, .p2b).</translation>
+        <translation>Ֆիլտրերի ճանապարհը (.dat, .p2p, .p2b).</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2199"/>
@@ -2015,7 +2015,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proplistdelegate.h" line="103"/>
         <source>Not downloaded</source>
-        <translation>Չի բեռնվել</translation>
+        <translation>Չի բեռնվելու</translation>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="112"/>
@@ -2259,7 +2259,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="536"/>
         <source>Rename the file</source>
-        <translation>Անվանափոխել ֆայլը</translation>
+        <translation>Անվանափոխել</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="537"/>
@@ -2513,138 +2513,138 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Սխալ. %1 torrent-ը չի պարունակում ֆայլեր։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1169"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1171"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Նշում. նոր ուղղորդիչները ավելացվել են ընթացիկ torrent-ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1182"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1184"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Նշում. նոր հղումները ավելացվել են ընթացիկ torrent-ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1518"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1520"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1-ը&lt;/font&gt; &lt;i&gt;կողփվել է Ձեր IP ֆիլտրի կողմից&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1520"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1522"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;-ը արգելված է, քանզի հատվածները վնասված են&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1688"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1690"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Հասանելի է այլ ցանցային միջներես։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1703"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1705"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Ստանում է %1 IP հասցեից՝ հետևյալ ցանցում՝ %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1706"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1708"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Սխալ՝ %1 ցանցային միջներեսից ստանալիս</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1852"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1854"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>%1 ֆայլի ձեռադիր բեռնումը արգելված է %2 ֆայլում</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1940"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1942"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2573"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2575"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2579"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2581"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
         <source>Torrent name: %1</source>
         <translation>Torrent-ի անունը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>Torrent size: %1</source>
         <translation>Torrent-ի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
         <source>Save path: %1</source>
         <translation>Պահպանելու տեղը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent-ը բեռնվել է  %1ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1898"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Շնորհակալություն qBittorrent-ը օգտագործելու համար։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1902"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1-ի բեռնումը ավարտվեց</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2140"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ն/Ա սխալ, &apos;%1&apos; դադարի մեջ է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
         <source>Reason: %1</source>
         <translation>Պատճառը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2230"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2232"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը ձախողվեց, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը հաջող էր, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2258"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2260"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Ֆայլի չափը չի համապատասխանում %1 torrent-ին, դադարեցվում է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2262"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Վերսկսումը մերժվել է %1 torrent-ի համար, նորից է սկսվում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2268"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2270"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Հղման փոխանցումը ձախողվեց %1 հղումների համար, հաղորդագրությունը՝ %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2393"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2395"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
@@ -2682,7 +2682,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../rss/rss.ui" line="90"/>
         <source>Settings...</source>
-        <translation>Կարդավորումներ…</translation>
+        <translation>Կարգավորումներ…</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="112"/>
@@ -2927,7 +2927,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="103"/>
         <source>Watched Folder</source>
-        <translation>Դիտելոիժւ թղթապանակը</translation>
+        <translation>Հետևելու թղթապանակը</translation>
     </message>
     <message>
         <location filename="../scannedfoldersmodel.cpp" line="104"/>
@@ -3036,7 +3036,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="298"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Պահանջվում է Python 2.x՝ օգտագործելու համար փնտրման հնար-ը, բայց կարծես թե այն տեղակայված չէ։
+        <translation>Պահանջվում է Python 2.x՝ օգտագործելու համար փնտրման հնարավորությունը, բայց կարծես թե այն տեղակայված չէ։
 Տեղակայե՞լ։</translation>
     </message>
     <message>
@@ -3413,7 +3413,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="236"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Պատրաստ է</translation>
+        <translation>-ը բեռնվել է</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="237"/>
@@ -3659,13 +3659,13 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistdelegate.h" line="97"/>
         <source>Paused</source>
-        <translation>Դադարի մեջ</translation>
+        <translation>Դադարի մեջ է</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="101"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>Հերթում</translation>
+        <translation>Հերթում է</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="105"/>
@@ -3746,7 +3746,7 @@ Please install it manually.</source>
         <location filename="../transferlistfilterswidget.h" line="250"/>
         <location filename="../transferlistfilterswidget.h" line="485"/>
         <source>All labels</source>
-        <translation>Բոլոր նիշերը</translation>
+        <translation>Նշանագրվածները</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="253"/>
@@ -3883,7 +3883,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="629"/>
         <source>Limit upload rate...</source>
-        <translation>Փոխանցման սահ-ը…</translation>
+        <translation>Փոխանցման սահմանափակումը…</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="631"/>
@@ -3922,7 +3922,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="643"/>
         <source>Set location...</source>
-        <translation>Նշել տեղը...</translation>
+        <translation>Բեռնման տեղը...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="785"/>
@@ -4046,7 +4046,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentadditiondlg.ui" line="14"/>
         <source>Torrent addition dialog</source>
-        <translation>Torrent ավելացնելու պատուհանը</translation>
+        <translation>Torrent ավելացնելու պատուհան</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.ui" line="42"/>
@@ -4107,7 +4107,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentadditiondlg.ui" line="260"/>
         <source>Add to download list in paused state</source>
-        <translation>Ավելացնել բեռնումների ցանցին ՚դադարի մեջ՚ եղանակով</translation>
+        <translation>Ավելացնել բեռնումների ցանկին ՚դադարի մեջ՚ եղանակով</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.ui" line="288"/>
@@ -4167,7 +4167,7 @@ Please install it manually.</source>
     <message>
         <location filename="../login.ui" line="176"/>
         <source>Password:</source>
-        <translation>Գաղտնաբառը.Գաղտնաբառը.</translation>
+        <translation>Ծածկագիրը.</translation>
     </message>
     <message>
         <location filename="../login.ui" line="219"/>
@@ -4835,7 +4835,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1172"/>
-        <source>Succesfully refreshed</source>
+        <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

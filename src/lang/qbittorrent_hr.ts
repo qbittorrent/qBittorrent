@@ -5475,12 +5475,16 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Uspješno obnovljeno</translation>
+        <translation type="obsolete">Uspješno obnovljeno</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

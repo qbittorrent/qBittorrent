@@ -4698,12 +4698,16 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Succesvol vernieuwd</translation>
+        <translation type="obsolete">Succesvol vernieuwd</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -4963,12 +4963,16 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Obnovenie prebehlo úspešne</translation>
+        <translation type="obsolete">Obnovenie prebehlo úspešne</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

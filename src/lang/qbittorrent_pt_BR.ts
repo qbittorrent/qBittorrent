@@ -4971,12 +4971,16 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Atualizado com sucesso</translation>
+        <translation type="obsolete">Atualizado com sucesso</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analisado com sucesso o filtro de IP : %1 regras foram aplicadas.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

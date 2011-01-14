@@ -4971,12 +4971,16 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>刷新成功</translation>
+        <translation type="obsolete">刷新成功</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>解析提供的IP过滤器成功: %1 规则被应用</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

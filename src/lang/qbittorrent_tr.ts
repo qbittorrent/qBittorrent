@@ -4877,12 +4877,12 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Succesfully refreshed</source>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
+        <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

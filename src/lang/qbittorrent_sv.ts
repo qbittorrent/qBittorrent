@@ -4858,12 +4858,16 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
-        <translation>Uppdateringen lyckades</translation>
+        <translation type="obsolete">Uppdateringen lyckades</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Tolkningen av angivet IP-filter lyckades: %1 regler har tillämpats.</translation>
+    </message>
+    <message>
+        <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
