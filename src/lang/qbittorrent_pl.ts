@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation type="unfinished">Limit pół-otwartych połączeń  [0: Bez limitu]</translation>
+        <translation>Limit pół-otwartych połączeń  [0: Bez limitu]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
@@ -159,11 +159,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Check for software updates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sprawdź aktualizację programu</translation>
     </message>
     <message>
         <source>Use system icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj systemowego zestawu ikon</translation>
     </message>
 </context>
 <context>
@@ -206,7 +206,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Apply rule to feeds:</source>
-        <translation type="unfinished">Zastosuj regułę do kanałów:</translation>
+        <translation>Zastosuj regułę do kanałów:</translation>
     </message>
     <message>
         <source>Matching RSS articles</source>
@@ -214,11 +214,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save to a different directory</source>
-        <translation type="unfinished">Zapisz do innego katalogu</translation>
+        <translation>Pobierz do innego katalogu</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished">Zapisz do:</translation>
+        <translation>Pobierz do:</translation>
     </message>
     <message>
         <source>Import...</source>
@@ -234,15 +234,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Należy podać nazwę dla tworzonej reguły.</translation>
+        <translation>Wprowadź nazwę dla tworzonej reguły.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
-        <translation type="unfinished">Konflikt nazw reguł</translation>
+        <translation>Konflikt nazw reguł</translation>
     </message>
     <message>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation type="unfinished">Reguła o wybranej nazwie już istnieje, należy wybrać inną.</translation>
+        <translation>Reguła o wybranej nazwie już istnieje, należy wybrać inną.</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the download rule named %1?</source>
@@ -254,7 +254,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished">Usuwanie reguły</translation>
+        <translation>Usuwanie reguły</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Invalid action</source>
-        <translation type="unfinished">Nieprawidłowa operacja</translation>
+        <translation>Nieprawidłowa operacja</translation>
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
@@ -271,7 +271,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished">Gdzie zapisać listę?</translation>
+        <translation type="unfinished">Wskaż położenie pliku gdzie zostanie wyeksportowana lista?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
@@ -283,11 +283,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Failed to create the destination file</source>
-        <translation type="unfinished">Błąd podczas tworzenia pliku docelowego</translation>
+        <translation>Błąd podczas tworzenia pliku docelowego</translation>
     </message>
     <message>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished">Należy wskazać położenie pliku reguł pobierania</translation>
+        <translation>Wskaż położenie pliku reguł do zaimportowania</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules *.filters)</source>
@@ -295,11 +295,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Import Error</source>
-        <translation type="unfinished">Błąd podczas importowania</translation>
+        <translation>Błąd podczas importowania</translation>
     </message>
     <message>
         <source>Failed to import the selected rules file</source>
-        <translation type="unfinished">Nie udało się zaimportować wybranego pliku reguł</translation>
+        <translation>Nie udało się zaimportować wybranego pliku reguł</translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -323,7 +323,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished">Należy podać nową nazwę reguły</translation>
+        <translation>Podaj nową nazwę reguły</translation>
     </message>
 </context>
 <context>
@@ -604,12 +604,16 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
 <context>
     <name>ExecutionLog</name>
     <message>
+        <source>Form</source>
+        <translation type="obsolete">Formularz</translation>
+    </message>
+    <message>
         <source>General</source>
-        <translation type="unfinished">Główne</translation>
+        <translation>Główny</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished">Zablokowane IP</translation>
+        <translation>Zablokowane IP</translation>
     </message>
 </context>
 <context>
@@ -1372,7 +1376,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
-        <translation type="unfinished">Pobieranie</translation>
+        <translation type="unfinished">Pobrany</translation>
     </message>
 </context>
 <context>
@@ -1509,7 +1513,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished">Alternatywne limity prędkości</translation>
+        <translation>Alternatywne limity prędkości</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -1730,7 +1734,7 @@ Powód: %2</translation>
     </message>
     <message>
         <source>Exiting qBittorrent</source>
-        <translation type="unfinished">Zamykanie qBittorrent</translation>
+        <translation>Zamykanie qBittorrent</translation>
     </message>
     <message>
         <source>Some files are currently transferring.
@@ -1744,11 +1748,11 @@ Czy na pewno zamknąć qBittorrent?</translation>
     </message>
     <message>
         <source>Open Torrent Files</source>
-        <translation type="unfinished">Otwórz pliki torrent</translation>
+        <translation>Otwórz pliki torrent</translation>
     </message>
     <message>
         <source>Torrent Files</source>
-        <translation type="unfinished">Pliki .torrent</translation>
+        <translation>Pliki .torrent</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
@@ -1793,43 +1797,43 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Otwórz plik torrent...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Dodaj odnośnik do plikiem torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Importuj plik torrent...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Dziennik programu</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dziennik programu</translation>
     </message>
     <message>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zamykanie po ukończeniu pobierania</translation>
     </message>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ qBittorrent</translation>
     </message>
     <message>
         <source>Suspend system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wstrzymaj system</translation>
     </message>
     <message>
         <source>Shutdown system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zamknij system</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished">Wyłączone</translation>
+        <translation>Wyłączone</translation>
     </message>
 </context>
 <context>
@@ -2374,78 +2378,78 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wznów / Wstrzymaj pobieranie</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj UPnP / NAT-PMP do przekierowania portów na routerze</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prywatność</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz sieć DHT (sieć rozproszona) w celu odnajdywania partnerów</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj innego portu dla DHT i BitTorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz wymianę partnerów (PeX)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz wykrywanie partnerów w sieci lokalnej (LPD)</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tryb szyfrowania:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preferuj szyfrowanie</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wymagaj szyfrowania</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wyłącz szyfrowanie</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Interfejs użytkownika</translation>
     </message>
     <message>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeładuj filtr</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelect</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Rozmiar</translation>
+        <translation>Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Postęp</translation>
+        <translation>Postęp</translation>
     </message>
     <message>
         <source>Preview impossible</source>
-        <translation type="unfinished">Nie ma możliwości podglądu</translation>
+        <translation>Nie ma możliwości podglądu</translation>
     </message>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
@@ -2515,11 +2519,11 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Źródła HTTP</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawartość</translation>
     </message>
 </context>
 <context>
@@ -2726,12 +2730,12 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Pieces size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar części:</translation>
     </message>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Pobierany przez:</translation>
     </message>
 </context>
 <context>
@@ -2869,7 +2873,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translation type="unfinished">Nie można otworzyć pliku torrent: &apos;%1&apos;</translation>
+        <translation>Nie można otworzyć pliku torrent: &apos;%1&apos;</translation>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
@@ -2877,25 +2881,25 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="unfinished">Błąd: Torrent %1 nie zawiera żadnego pliku.</translation>
+        <translation>Błąd: Torrent %1 nie zawiera żadnego pliku.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
+        <translation>Uwaga: nowe trackery zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
+        <translation>Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany przez filtr IP&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany przez filtr IP&lt;/i&gt;</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany z powodu uszkodzonych części&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zablokowany z powodu uszkodzonych części&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
@@ -2904,7 +2908,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
-        <translation type="unfinished">Nie można odczytać pliku torrent: &apos;%1&apos;.</translation>
+        <translation>Nie można odczytać pliku torrent: &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Torrent name: %1</source>
@@ -2970,36 +2974,36 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="unfinished">Testowanie innego interfejsu sieciowego.</translation>
+        <translation>Testowanie innego interfejsu sieciowego.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation type="unfinished">Nasłuchiwanie na adresie IP %1 interfejsu sieciowego %2...</translation>
+        <translation>Nasłuchiwanie na adresie IP %1 interfejsu sieciowego %2...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation type="unfinished">Błąd nasłuchiwania na interfejsie %1</translation>
+        <translation>Błąd nasłuchiwania na interfejsie %1</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Wsparcie UPnP / NAT-PMP [WŁ]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Wsparcie UPnP / NAT-PMP [WYŁ]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykrywanie partnerów w sieci lokalnej (LPD) [WŁ]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd: Nie udało się przetworzyć podanego filtra IP.</translation>
     </message>
 </context>
 <context>
@@ -3512,10 +3516,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translatorcomment>This message should be much shorter, but I don&apos;t have any other ideas.
-
-teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
-        <translation type="unfinished">qBittorrent został zaktualizowany i konieczne jest jego ponowne uruchomienie.</translation>
+        <translation>qBittorrent został zaktualizowany i konieczne jest jego ponowne uruchomienie.</translation>
     </message>
 </context>
 <context>
@@ -3685,27 +3686,27 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">Pełnych</translation>
+        <translation>Pełnych</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Częściowych</translation>
+        <translation>Częściowych</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Pobieranie</translation>
+        <translation>Pobieranie</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Wysyłanie</translation>
+        <translation>Wysyłanie</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">Udział</translation>
+        <translation>Udział</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -3753,7 +3754,7 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Czas pobierania</translation>
     </message>
 </context>
 <context>
@@ -3905,7 +3906,7 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wysyłany przez %1</translation>
     </message>
 </context>
 <context>
@@ -4586,11 +4587,11 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dodaj odnośniki do plików torrent</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wspierane są zarówno odnośniki HTTP jak i Magnet</translation>
     </message>
 </context>
 <context>
@@ -4637,11 +4638,11 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Przkroczono czas oczekiwania na połączenie z serwerm proxy lub serwer nie odpowiedział na czas</translation>
+        <translation>Przkroczono czas oczekiwania na połączenie z serwerm proxy lub serwer nie odpowiedział na czas</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Serwer proxy wymaga uwierzytelnienia aby zaakceptować żadanie lecz oferowane dane uwierzytelnienia zostały odrzucone</translation>
+        <translation>Serwer proxy wymaga uwierzytelnienia aby zaakceptować żądanie lecz oferowane dane uwierzytelnienia zostały odrzucone</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
@@ -4649,7 +4650,7 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Żądana operacja na zdalnym zasobie nie jest dozwolona</translation>
+        <translation>Żądana operacja na zdalnym zasobie nie jest dozwolona</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
@@ -4657,7 +4658,7 @@ teraz krócej, imho wystarczająco dokładnie.</translatorcomment>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Zdalny serwer wymaga uwierzytelnienia w celu dostępu do zasobu lecz dane uwierzytelniające nie zostały zaakceptowane</translation>
+        <translation>Zdalny serwer wymaga uwierzytelnienia w celu dostępu do zasobu lecz dane uwierzytelniające nie zostały zaakceptowane</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
@@ -4941,16 +4942,20 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd przetwarzania</translation>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć podanego filtra IP</translation>
+    </message>
+    <message>
+        <source>Succesfully refreshed</source>
+        <translation type="obsolete">Przeładowano pomyślnie</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5046,7 +5051,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Otwórz stronę z opisem</translation>
     </message>
 </context>
 <context>
