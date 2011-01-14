@@ -52,7 +52,7 @@
   <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="dht_checkbox"/></td><td>_(Enable DHT (decentralized network) to find more peers)</td>
   </tr>
   <tr>
-  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="DHTPortDiffThanBT_checkbox" onclick="updateDHTPortSettings();"/></td><td>_(Use a different port for DHT and Bittorrent)</td>
+  <td style="vertical-align: bottom; text-align: right;"><input type="checkbox" id="DHTPortDiffThanBT_checkbox" onclick="updateDHTPortSettings();"/></td><td>_(Use a different port for DHT and BitTorrent)</td>
   </tr>
   <tr>
   <td style="vertical-align: bottom; text-align: right;">_(DHT port:)</td><td><input type="text" id="DHTPort_txt" value="6881"/></td>
@@ -260,7 +260,7 @@
 </div>
 
 <br/>
-<center><input type="button" value="_(Apply)" onclick="applyPreferences();"/></center>
+<center><input type="button" value="_(Save)" onclick="applyPreferences();"/></center>
 
 <script type="text/javascript">
   var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
