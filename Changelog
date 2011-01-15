@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.4
+   - BUGFIX: Added unicode support to email notification
+   - BUGFIX: Improved compatibility with various SMTP servers
+
 * Sat Jan 15 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.3
    - BUGFIX: Fix possible crashes in full allocation mode
    - BUGFIX: Fix icon size issues (Linux, icon theme)
