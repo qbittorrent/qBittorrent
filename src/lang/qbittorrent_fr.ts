@@ -3468,13 +3468,13 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2575"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2581"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Le filtre IP a été correctement chargé : %1 règles ont été appliquées.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2581"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2587"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Erreur : Impossible de charge le filtre IP fourni.</translation>
     </message>
@@ -3510,43 +3510,43 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation>[qBittorrent] Le téléchargement de %1 est terminé</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2148"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
         <source>Reason: %1</source>
         <translation>Raison : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2232"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Impossible de rediriger le port sur le routeur, message : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2243"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : La redirection du port sur le routeur a réussi, message : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2260"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2266"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Les tailles de fichiers ne correspondent pas pour le torrent %1, mise en pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2270"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2270"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2276"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2395"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2401"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
@@ -5800,76 +5800,76 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="287"/>
+        <location filename="../misc.cpp" line="278"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent va maintenant éteindre l&apos;ordinateur car tous les téléchargements sont terminés.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="80"/>
+        <location filename="../misc.cpp" line="82"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>o</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="80"/>
+        <location filename="../misc.cpp" line="82"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>Ko</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="80"/>
+        <location filename="../misc.cpp" line="82"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>Mo</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="80"/>
+        <location filename="../misc.cpp" line="82"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>Go</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="80"/>
+        <location filename="../misc.cpp" line="82"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>To</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="696"/>
+        <location filename="../misc.cpp" line="688"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="701"/>
+        <location filename="../misc.cpp" line="693"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1j %2h</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="636"/>
-        <location filename="../misc.cpp" line="641"/>
+        <location filename="../misc.cpp" line="628"/>
+        <location filename="../misc.cpp" line="633"/>
+        <location filename="../misc.cpp" line="637"/>
+        <location filename="../misc.cpp" line="640"/>
         <location filename="../misc.cpp" line="645"/>
         <location filename="../misc.cpp" line="648"/>
-        <location filename="../misc.cpp" line="653"/>
-        <location filename="../misc.cpp" line="656"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="525"/>
+        <location filename="../misc.cpp" line="517"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Inconnue</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="687"/>
+        <location filename="../misc.cpp" line="679"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1min</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="691"/>
+        <location filename="../misc.cpp" line="683"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1min</translation>

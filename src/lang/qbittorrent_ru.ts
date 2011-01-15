@@ -2010,7 +2010,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Limit upload rate...</source>
         <translatorcomment>Хоть в предыдущем и &apos;сотношение раздачи&apos;, но мимо _этого_ я пройти просто не могу! Ratio - соотношение, Rate - скорость!</translatorcomment>
-        <translation>Ограниченить скорость раздачи...</translation>
+        <translation>ограничить скорость раздачи...</translation>
     </message>
     <message>
         <source>Copy IP</source>
@@ -4236,7 +4236,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>Ограниченить скорость раздачи...</translation>
+        <translation>ограничить скорость раздачи...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
