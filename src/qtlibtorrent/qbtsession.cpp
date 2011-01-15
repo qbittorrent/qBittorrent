@@ -1965,16 +1965,21 @@ void QBtSession::readAlerts() {
           qDebug("Emitting finishedTorrent() signal");
           emit finishedTorrent(h);
           qDebug("Received finished alert for %s", qPrintable(h.name()));
+#ifndef DISABLE_GUI
           bool will_shutdown = (pref.shutdownWhenDownloadsComplete() ||
                                 pref.shutdownqBTWhenDownloadsComplete() ||
                                 pref.suspendWhenDownloadsComplete())
               && !hasDownloadingTorrents();
+#else
+          bool will_shutdown = false;
+#endif
           // AutoRun program
           if(pref.isAutoRunEnabled())
             autoRunExternalProgram(h, will_shutdown);
           // Mail notification
           if(pref.isMailNotificationEnabled())
             sendNotificationEmail(h);
+#ifndef DISABLE_GUI
           // Auto-Shutdown
           if(will_shutdown) {
             bool suspend = pref.suspendWhenDownloadsComplete();
@@ -1998,6 +2003,7 @@ void QBtSession::readAlerts() {
             qApp->exit();
             return;
           }
+#endif // DISABLE_GUI
         }
       }
     }
