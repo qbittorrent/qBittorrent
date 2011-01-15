@@ -19,7 +19,8 @@ nox {
 } else {
     man.files = ../doc/qbittorrent.1
 }
-man.path = $$PREFIX/share/man/man1/
+
+man.path = $$MANPREFIX/man/man1/
 INSTALLS += man
 
 # Menu Icon
