@@ -2,7 +2,9 @@
 include(conf.pri)
 
 # COMPILATION SPECIFIC
-QT += dbus
+!nox {
+  QT += dbus
+}
 QMAKE_LFLAGS_APP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
