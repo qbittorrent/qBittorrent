@@ -12,7 +12,7 @@
 #include <QSet>
 #include <iostream>
 #include <errno.h>
-#ifdef Q_WS_MAC
+#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #include <string.h>

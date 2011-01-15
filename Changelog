@@ -3,6 +3,7 @@
    - BUGFIX: Fix icon size issues (Linux, icon theme)
    - BUGFIX: Fixed file priority context menu
    - BUGFIX: Remove dbus dependency in nox mode
+   - BUGFIX: Fix compilation on FreeBSD
    - I18N: Improve Web UI translation
    - I18N: Updated Polish translation
 

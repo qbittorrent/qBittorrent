@@ -60,7 +60,7 @@ const int UNLEN = 256;
 #endif
 
 #ifndef Q_WS_WIN
-#ifdef Q_WS_MAC
+#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #else
