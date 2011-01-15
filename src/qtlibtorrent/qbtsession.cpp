@@ -2422,8 +2422,7 @@ void QBtSession::addMagnetSkipAddDlg(QString uri) {
 void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label) {
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
-  if(!save_path.isEmpty())
-    savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
+  savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadUrl(url);
