@@ -110,7 +110,9 @@ public:
     return extension;
   }
 
+#ifndef DISABLE_GUI
   static void shutdownComputer(bool sleep=false);
+#endif
 
   static bool safeRemove(QString file_path) {
     QFile MyFile(file_path);

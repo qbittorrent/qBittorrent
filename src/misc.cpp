@@ -70,10 +70,12 @@ const int UNLEN = 256;
 #include <winbase.h>
 #endif
 
+#ifndef DISABLE_GUI
 #ifdef Q_WS_X11
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
+#endif // DISABLE_GUI
 
 using namespace libtorrent;
 
@@ -208,6 +210,7 @@ void suspendComputer() {
 #endif
 }
 
+#ifndef DISABLE_GUI
 void misc::shutdownComputer(bool sleep) {
 #ifdef Q_WS_X11
   // Use dbus to power off the system
@@ -325,6 +328,7 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
   }
   return root_folder;
 }
+#endif // DISABLE_GUI
 
 QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   torrent_info t = h.get_torrent_info();
