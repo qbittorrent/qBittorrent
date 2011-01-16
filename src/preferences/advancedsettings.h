@@ -18,14 +18,15 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                     #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
                       USE_ICON_THEME,
                     #endif
-                      ROW_COUNT };
+                      CONFIRM_DELETE_TORRENT,
+                      ROW_COUNT};
 
 class AdvancedSettings: public QTableWidget {
   Q_OBJECT
 
 private:
   QSpinBox *spin_cache, *outgoing_ports_min, *outgoing_ports_max, *spin_list_refresh, *spin_maxhalfopen, *spin_tracker_port;
-  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications, *cb_tracker_status;
+  QCheckBox *cb_ignore_limits_lan, *cb_count_overhead, *cb_recheck_completed, *cb_resolve_countries, *cb_resolve_hosts, *cb_super_seeding, *cb_program_notifications, *cb_tracker_status, *cb_confirm_torrent_deletion;
   QComboBox *combo_iface;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox *cb_update_check;
@@ -67,6 +68,7 @@ public:
     delete cb_program_notifications;
     delete spin_tracker_port;
     delete cb_tracker_status;
+    delete cb_confirm_torrent_deletion;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     delete cb_update_check;
 #endif
@@ -119,6 +121,7 @@ public slots:
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
     pref.useSystemIconTheme(cb_use_icon_theme->isChecked());
 #endif
+    pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion->isChecked());
   }
 
 protected slots:
@@ -255,6 +258,12 @@ protected slots:
     cb_use_icon_theme->setChecked(pref.useSystemIconTheme());
     setCellWidget(USE_ICON_THEME, VALUE, cb_use_icon_theme);
 #endif
+    // Torrent deletion confirmation
+    setItem(CONFIRM_DELETE_TORRENT, PROPERTY, new QTableWidgetItem(tr("Confirm torrent deletion")));
+    cb_confirm_torrent_deletion = new QCheckBox();
+    connect(cb_confirm_torrent_deletion, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
+    cb_confirm_torrent_deletion->setChecked(pref.confirmTorrentDeletion());
+    setCellWidget(CONFIRM_DELETE_TORRENT, VALUE, cb_confirm_torrent_deletion);
   }
 
   void emitSettingsChanged() {

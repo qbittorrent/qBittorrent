@@ -1009,6 +1009,12 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/updateCheck"), enabled);
   }
 #endif
+  bool confirmTorrentDeletion() const {
+    return value(QString::fromUtf8("Preferences/Advanced/confirmTorrentDeletion"), true).toBool();
+  }
+  void setConfirmTorrentDeletion(bool enabled) {
+    setValue(QString::fromUtf8("Preferences/Advanced/confirmTorrentDeletion"), enabled);
+  }
 };
 
 #endif // PREFERENCES_H

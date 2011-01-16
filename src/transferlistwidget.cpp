@@ -285,28 +285,29 @@ void TransferListWidget::pauseVisibleTorrents() {
 void TransferListWidget::deleteSelectedTorrents() {
   if(main_window->getCurrentTabWidget() != this) return;
   const QStringList& hashes = getSelectedTorrentsHashes();
-  if(!hashes.empty()) {
-    bool delete_local_files = false;
-    if(DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files)) {
-      foreach(const QString &hash, hashes) {
-        BTSession->deleteTorrent(hash, delete_local_files);
-      }
-    }
+  if(hashes.empty()) return;
+  bool delete_local_files = false;
+  if(Preferences().confirmTorrentDeletion() &&
+      !DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files))
+    return;
+  foreach(const QString &hash, hashes) {
+    BTSession->deleteTorrent(hash, delete_local_files);
   }
 }
 
 void TransferListWidget::deleteVisibleTorrents() {
   if(nameFilterModel->rowCount() <= 0) return;
   bool delete_local_files = false;
-  if(DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files)) {
-    QStringList hashes;
-    for(int i=0; i<nameFilterModel->rowCount(); ++i) {
-      const int row = mapToSource(nameFilterModel->index(i, 0)).row();
-      hashes << getHashFromRow(row);
-    }
-    foreach(const QString &hash, hashes) {
-      BTSession->deleteTorrent(hash, delete_local_files);
-    }
+  if(Preferences().confirmTorrentDeletion() &&
+      !DeletionConfirmationDlg::askForDeletionConfirmation(&delete_local_files))
+    return;
+  QStringList hashes;
+  for(int i=0; i<nameFilterModel->rowCount(); ++i) {
+    const int row = mapToSource(nameFilterModel->index(i, 0)).row();
+    hashes << getHashFromRow(row);
+  }
+  foreach(const QString &hash, hashes) {
+    BTSession->deleteTorrent(hash, delete_local_files);
   }
 }
 
