@@ -271,7 +271,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation type="unfinished">Wskaż położenie pliku gdzie zostanie wyeksportowana lista?</translation>
+        <translation type="unfinished">Wskaż położenie pliku gdzie zostanie wyeksportowana lista</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
@@ -1809,7 +1809,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation type="unfinished">&amp;Dodaj odnośnik do plikiem torrent...</translation>
+        <translation type="unfinished">&amp;Dodaj odnośnik do pliku torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
@@ -1882,12 +1882,12 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Prędkość DL</translation>
+        <translation>Pobieranie</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Prędkość UP</translation>
+        <translation>Wysyłanie</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -2259,11 +2259,11 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Start qBittorrent minimized</source>
-        <translation>Uruchom qBittorrent zminimalizowany</translation>
+        <translation>Uruchamiaj qBittorrent zminimalizowany</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation>Pokaż ikonę qBittorrent w obszarze powiadomień</translation>
+        <translation>Pokazuj ikonę qBittorrent w obszarze powiadomień</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
@@ -2953,11 +2953,11 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Błąd mapowania portu, wiadomość %1</translation>
+        <translation>UPnP/NAT-PMP: Błąd mapowania portu, komunikat %1</translation>
     </message>
     <message>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Udane mapowanie portu, wiadomość %1</translation>
+        <translation>UPnP/NAT-PMP: Udane mapowanie portu, komunikat %1</translation>
     </message>
     <message>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
@@ -2969,7 +2969,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Błąd wyszukiwania url partnera dla adresu:%1, wiadomość: %2</translation>
+        <translation type="unfinished">Błąd wyszukiwania url partnera dla adresu:%1, komunikat: %2</translation>
     </message>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
@@ -3781,7 +3781,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Message</source>
-        <translation>Wiadomość</translation>
+        <translation>Komunikat</translation>
     </message>
     <message>
         <source>[DHT]</source>
@@ -3889,7 +3889,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation>Rozsiewanie</translation>
+        <translation>Wysyłanie</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -4327,7 +4327,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Pomiń sprawdzanie danych i natychmiast rozpocznij rozsiewanie</translation>
+        <translation>Pomiń sprawdzanie danych i natychmiast rozpocznij wysyłanie</translation>
     </message>
     <message>
         <source>Label:</source>
@@ -4476,7 +4476,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Start seeding after creation</source>
-        <translation>Uruchom rozsiewanie po utworzeniu</translation>
+        <translation>Uruchom wysyłanie po utworzeniu</translation>
     </message>
     <message>
         <source>Create and save...</source>
