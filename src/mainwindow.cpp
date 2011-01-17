@@ -233,8 +233,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   if(!autoShutdownGroup->checkedAction())
     actionAutoShutdown_Disabled->setChecked(true);
 
-  show();
-
   // Load Window state and sizes
   readSettings();
   properties->readSettings();
@@ -242,13 +240,14 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   // Limit status filters list height
   transferListFilters->getStatusFilters()->updateHeight();
 
-  if(ui_locked) {
-    hide();
-  } else {
+  if(!ui_locked) {
     if(pref.startMinimized())
       showMinimized();
-    else
-      setFocus();
+    else {
+      show();
+      activateWindow();
+      raise();
+    }
   }
 
   // Start watching the executable for updates
