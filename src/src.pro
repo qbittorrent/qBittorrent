@@ -52,6 +52,8 @@ DEFINES += QT_NO_CAST_TO_ASCII
 # Fast concatenation (Qt >= 4.6)
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
+INCLUDEPATH += $$PWD
+
 
 # Resource files
 RESOURCES += icons.qrc \

@@ -1,5 +1,3 @@
-INCLUDEPATH += $$PWD
-
 exists(conf.pri) {
     # to the conf.pri goes all system dependent stuff
     include(conf.pri)
