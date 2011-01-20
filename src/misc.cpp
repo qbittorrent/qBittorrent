@@ -79,7 +79,13 @@ const int UNLEN = 256;
 
 using namespace libtorrent;
 
-const QString misc::units[5] = {tr("B", "bytes"), tr("KiB", "kibibytes (1024 bytes)"), tr("MiB", "mebibytes (1024 kibibytes)"), tr("GiB", "gibibytes (1024 mibibytes)"), tr("TiB", "tebibytes (1024 gibibytes)")};
+static struct { const char *source; const char *comment; } units[] = {
+    QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
+    QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
+    QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
+    QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
+    QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
+    };
 
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
@@ -519,8 +525,8 @@ QString misc::friendlyUnit(double val) {
   while(val >= 1024. && i++<6)
     val /= 1024.;
   if(i == 0)
-    return QString::number((long)val) + " " + units[0];
-  return QString::number(val, 'f', 1) + " " + units[i];
+    return QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
+  return QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
 }
 
 bool misc::isPreviewable(QString extension){
