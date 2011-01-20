@@ -23,7 +23,7 @@ Smtp::Smtp(const QString &from, const QString &to, const QString &subject, const
   connect( socket, SIGNAL( readyRead() ), this, SLOT( readyRead() ) );
   QTextCodec* latin1 = QTextCodec::codecForName("latin1");
   message = "";
-  message += encode_mime_header("Date", QDateTime::currentDateTimeUtc().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
+  message += encode_mime_header("Date", QDateTime::currentDateTime().toUTC().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
   message += encode_mime_header("From", from, latin1);
   message += encode_mime_header("Subject", subject, latin1);
   message += encode_mime_header("To", to, latin1);
