@@ -175,9 +175,6 @@ public:
   static QList<bool> boolListfromStringList(const QStringList &l);
 
   static bool isValidTorrentFile(const QString &path);
-
-private:
-  static const QString units[5];
 };
 
 //  Trick to get a portable sleep() function
