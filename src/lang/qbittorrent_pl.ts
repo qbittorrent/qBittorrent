@@ -165,6 +165,10 @@ p, li { white-space: pre-wrap; }
         <source>Use system icon theme</source>
         <translation>Używaj systemowego zestawu ikon</translation>
     </message>
+    <message>
+        <source>Confirm torrent deletion</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>

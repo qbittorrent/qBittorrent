@@ -168,6 +168,10 @@ p, li { white-space: pre-wrap; }
         <source>Use system icon theme</source>
         <translation>Использовать системные иконки</translation>
     </message>
+    <message>
+        <source>Confirm torrent deletion</source>
+        <translation>Подтверждать удаление торрента</translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -1426,11 +1430,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Клиент qBittorrent не доступен</translation>
     </message>
 </context>
 <context>
@@ -5043,7 +5047,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно обновлен</translation>
     </message>
 </context>
 <context>
