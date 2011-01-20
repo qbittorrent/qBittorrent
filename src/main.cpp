@@ -31,6 +31,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QFile>
+#include <QLibraryInfo>
 
 #ifndef DISABLE_GUI
 #include <QMessageBox>
@@ -196,11 +197,20 @@ int main(int argc, char *argv[]){
 
   // Load translation
   locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
+  QTranslator qtTranslator;
   QTranslator translator;
   if(locale.isEmpty()){
     locale = QLocale::system().name();
     settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
+  if(qtTranslator.load(
+          QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)
+                                                                    )){
+    qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
+  }else{
+    qDebug("Qt %s locale unrecognized, using default (en_GB).", qPrintable(locale));
+  }
+  app.installTranslator(&qtTranslator);
   if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
     qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
