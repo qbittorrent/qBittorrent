@@ -237,9 +237,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   readSettings();
   properties->readSettings();
 
-  // Limit status filters list height
-  transferListFilters->getStatusFilters()->updateHeight();
-
   if(!ui_locked) {
     if(pref.startMinimized())
       showMinimized();
@@ -676,6 +673,10 @@ void MainWindow::on_actionAbout_triggered() {
 
 void MainWindow::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
+
+  // Update status filters list height
+  transferListFilters->getStatusFilters()->updateHeight();
+
   if(getCurrentTabWidget() == transferList) {
     properties->loadDynamicData();
   }
