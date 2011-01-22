@@ -4,6 +4,7 @@
    - BUGFIX: Fix Labeling in RSS downloader
    - BUGFIX: Avoid main window flashing on startup (closes #703984)
    - BUGFIX: Improved hostname resolution code
+   - BUGFIX: Dropped dependency on libboost-thread
    - I18N: More dialog buttons are now translated (by Vladimir Golovnev)
    - I18N: Fix translation of size units (by Vladimir Golovnev)
 
