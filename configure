@@ -451,9 +451,6 @@ public:
 			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
 				return false;
       			}
-			if(!conf->checkHeader(s, "boost/thread.hpp")) {
-				return false;
-      			}
 		}else{
 			QStringList sl;
 			sl << "/usr/include";
@@ -474,9 +471,6 @@ public:
 			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
 				return false;
       			}
-			if(!conf->checkHeader(s, "boost/thread.hpp")) {
-				return false;
-      			}
 		}
 		conf->addIncludePath(s);
 		// Find library
@@ -487,7 +481,7 @@ public:
 #endif
     if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
       // Not required by nox
-      required_libs << "filesystem" << "thread";
+      required_libs << "filesystem" ;
     }
     QStringList libDirs;
     libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
