@@ -283,11 +283,11 @@ void PropertiesWidget::readSettings() {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
+  const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
+  m_tabBar->setCurrentIndex(current_tab);
   if(!settings.value("TorrentProperties/Visible", false).toBool()) {
     setVisibility(false);
   }
-  const int current_tab = settings.value("TorrentProperties/CurrentTab", PropTabBar::MAIN_TAB).toInt();
-  m_tabBar->setCurrentIndex(current_tab);
 }
 
 void PropertiesWidget::saveSettings() {
