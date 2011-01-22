@@ -106,6 +106,8 @@ public:
     msgBox.setWindowTitle(tr("Legal notice"));
     msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
     QAbstractButton *agree_button = msgBox.addButton(tr("I Agree"), QMessageBox::AcceptRole);
+    msgBox.show(); // Need to be shown or to moveToCenter does not work
+    msgBox.move(misc::screenCenter(&msgBox));
     msgBox.exec();
     if(msgBox.clickedButton() == agree_button) {
       // Save the answer
