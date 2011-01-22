@@ -53,6 +53,7 @@
 #include "headlessloader.h"
 #endif
 
+#include "preferences.h"
 #include "qinisettings.h"
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
 #include <signal.h>
@@ -189,19 +190,18 @@ int main(int argc, char *argv[]){
     return 0;
   }
 
-  QString locale;
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  Preferences pref;
 #ifndef DISABLE_GUI
   bool no_splash = false;
 #endif
 
   // Load translation
-  locale = settings.value(QString::fromUtf8("Preferences/General/Locale"), QString()).toString();
+  QString locale = pref.getLocale();
   QTranslator qtTranslator;
   QTranslator translator;
   if(locale.isEmpty()){
     locale = QLocale::system().name();
-    settings.setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
+    pref.setLocale(locale);
   }
   if(qtTranslator.load(
           QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)
@@ -261,7 +261,7 @@ int main(int argc, char *argv[]){
   }
 
 #ifndef DISABLE_GUI
-  if(settings.value(QString::fromUtf8("Preferences/General/NoSplashScreen"), false).toBool()) {
+  if(pref.isSlashScreenDisabled()) {
     no_splash = true;
   }
   QSplashScreen *splash = 0;
@@ -284,7 +284,7 @@ int main(int argc, char *argv[]){
   }
 
 #ifndef DISABLE_GUI
-  useStyle(settings.value("Preferences/General/Style", "").toString());
+  useStyle(pref.getStyle());
   app.setStyleSheet("QStatusBar::item { border-width: 0; }");
 #endif
 
