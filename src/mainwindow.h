@@ -147,6 +147,7 @@ private:
   // Bittorrent
   QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?
   // GUI related
+  bool m_posInitialized;
   QTimer *guiUpdater;
   HidableTabWidget *tabs;
   StatusBar *status_bar;
