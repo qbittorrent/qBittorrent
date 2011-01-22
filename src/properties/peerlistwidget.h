@@ -65,7 +65,7 @@ public slots:
   void loadPeers(const QTorrentHandle &h, bool force_hostname_resolution=false);
   QStandardItem*  addPeer(QString ip, libtorrent::peer_info peer);
   void updatePeer(QString ip, libtorrent::peer_info peer);
-  void handleResolved(QString ip, QString hostname);
+  void handleResolved(const QString &ip, const QString &hostname);
   void updatePeerHostNameResolutionState();
   void updatePeerCountryResolutionState();
   void clear();
