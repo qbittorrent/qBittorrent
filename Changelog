@@ -3,6 +3,7 @@
    - BUGFIX: Improved compatibility with various SMTP servers
    - BUGFIX: Fix Labeling in RSS downloader
    - BUGFIX: Avoid main window flashing on startup (closes #703984)
+   - BUGFIX: Improved hostname resolution code
    - I18N: More dialog buttons are now translated (by Vladimir Golovnev)
    - I18N: Fix translation of size units (by Vladimir Golovnev)
 

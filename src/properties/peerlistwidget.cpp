@@ -100,12 +100,12 @@ void PeerListWidget::updatePeerHostNameResolutionState() {
     if(!resolver) {
       resolver = new ReverseResolution(this);
       connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
-      resolver->start();
       loadPeers(properties->getCurrentTorrent(), true);
     }
   } else {
-    if(resolver)
-      resolver->asyncDelete();
+    if(resolver) {
+      delete resolver;
+    }
   }
 }
 
@@ -315,7 +315,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
       old_peers_set.remove(peer_ip);
       if(force_hostname_resolution) {
         if(resolver) {
-          QString host = resolver->getHostFromCache(peer.ip);
+          const QString host = resolver->getHostFromCache(peer.ip);
           if(host.isNull()) {
             resolver->resolve(peer.ip);
           } else {
@@ -396,12 +396,12 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   listModel->setData(listModel->index(row, TOT_UP), (qulonglong)peer.total_upload);
 }
 
-void PeerListWidget::handleResolved(QString ip, QString hostname) {
+void PeerListWidget::handleResolved(const QString &ip, const QString &hostname) {
   QStandardItem *item = peerItems.value(ip, 0);
   if(item) {
     qDebug("Resolved %s -> %s", qPrintable(ip), qPrintable(hostname));
-    item->setData(hostname);
-    //listModel->setData(listModel->index(item->row(), IP), hostname);
+    item->setData(hostname, Qt::DisplayRole);
+    //listModel->setData(listModel->index(item->row(), IP), hostname, Qt::DisplayRole);
   }
 }
 
