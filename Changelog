@@ -1,4 +1,4 @@
-* Sat Jan 22 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.4
+* Sun Jan 23 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.4
    - BUGFIX: Added unicode support to email notification
    - BUGFIX: Improved compatibility with various SMTP servers
    - BUGFIX: Fix Labeling in RSS downloader
