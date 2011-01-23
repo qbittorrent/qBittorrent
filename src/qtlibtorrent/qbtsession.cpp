@@ -74,6 +74,7 @@
 #include "libtorrent/error_code.hpp"
 #endif
 #include <queue>
+#include <string.h>
 
 using namespace libtorrent;
 
@@ -747,7 +748,13 @@ void QBtSession::resumeTorrent(QString hash) {
 bool QBtSession::loadFastResumeData(QString hash, std::vector<char> &buf) {
   const QString fastresume_path = QDir(misc::BTBackupLocation()).absoluteFilePath(hash+QString(".fastresume"));
   qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
-  return (load_file(qPrintable(fastresume_path), buf) == 0);
+  QFile fastresume_file(fastresume_path);
+  if(!fastresume_file.open(QIODevice::ReadOnly)) return false;
+  const QByteArray content = fastresume_file.readAll();
+  const int content_size = content.size();
+  buf.resize(content_size);
+  memcpy(&buf[0], content.data(), content_size);
+  return true;
 }
 
 void QBtSession::loadTorrentSettings(QTorrentHandle h) {
@@ -1300,20 +1307,17 @@ void QBtSession::loadSessionState() {
     return;
   }
 #if LIBTORRENT_VERSION_MINOR > 14
+  QFile state_file(state_path);
+  if(!state_file.open(QIODevice::ReadOnly)) return;
   std::vector<char> in;
-  if (load_file(state_path.toUtf8().constData(), in) == 0)
-  {
-    lazy_entry e;
-#if LIBTORRENT_VERSION_MINOR > 15
-    error_code ec;
-    lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
-    if(!ec)
-      s->load_state(e);
-#else
-    if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
-      s->load_state(e);
-#endif
-  }
+  const QByteArray content = state_file.readAll();
+  const int content_size = content.size();
+  in.resize(content_size);
+  memcpy(&in[0], content.data(), content_size);
+  // bdecode
+  lazy_entry e;
+  if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
+    s->load_state(e);
 #else
   boost::filesystem::ifstream ses_state_file(state_path.toUtf8().constData()
                                              , std::ios_base::binary);
