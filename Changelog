@@ -6,6 +6,7 @@
    - BUGFIX: Improved hostname resolution code
    - BUGFIX: Dropped dependency on libboost-thread
    - BUGFIX: Display legal notice on screen center
+   - BUGFIX: Fix renaming of single-file torrents (by Vladimir Golovnev)
    - I18N: More dialog buttons are now translated (by Vladimir Golovnev)
    - I18N: Fix translation of size units (by Vladimir Golovnev)
 

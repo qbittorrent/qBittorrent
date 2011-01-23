@@ -793,5 +793,5 @@ QString misc::fileName(QString file_path)
   const int slash_index = file_path.lastIndexOf('/');
   if(slash_index == -1)
     return file_path;
-  return file_path.mid(slash_index);
+  return file_path.mid(slash_index+1);
 }
