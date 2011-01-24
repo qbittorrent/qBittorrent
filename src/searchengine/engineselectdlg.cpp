@@ -56,7 +56,7 @@ engineSelectDlg::engineSelectDlg(QWidget *parent, SupportedEngines *supported_en
   actionUninstall->setIcon(IconProvider::instance()->getIcon("list-remove"));
   connect(actionEnable, SIGNAL(toggled(bool)), this, SLOT(enableSelection(bool)));
   connect(pluginsTree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContextMenu(const QPoint&)));
-  downloader = new downloadThread(this);
+  downloader = new DownloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   loadSupportedSearchEngines();

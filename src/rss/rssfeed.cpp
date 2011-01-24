@@ -313,11 +313,11 @@ short RssFeed::readDoc(QIODevice* device) {
 }
 
 void RssFeed::resizeList() {
-  unsigned int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
-  unsigned int nb_articles = this->size();
+  const unsigned int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
+  const unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
     QList<RssArticle*> listItem = RssManager::sortNewsList(this->values());
-    int excess = nb_articles - max_articles;
+    const int excess = nb_articles - max_articles;
     for(int i=0; i<excess; ++i){
       RssArticle *lastItem = listItem.takeLast();
       delete this->take(lastItem->getId());

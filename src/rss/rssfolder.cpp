@@ -38,7 +38,7 @@
 #include "rssfeed.h"
 
 RssFolder::RssFolder(RssFolder *parent, QString name): parent(parent), name(name) {
-  downloader = new downloadThread(this);
+  downloader = new DownloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
 }

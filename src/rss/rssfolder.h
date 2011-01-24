@@ -36,7 +36,7 @@
 #include "rssfile.h"
 
 class RssArticle;
-class downloadThread;
+class DownloadThread;
 class RssFeed;
 
 class RssFolder: public RssFile, public QHash<QString, RssFile*> {
@@ -77,7 +77,7 @@ public slots:
 
 private:
   RssFolder *parent;
-  downloadThread *downloader;
+  DownloadThread *downloader;
   QString name;
 };
 
