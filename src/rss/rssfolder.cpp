@@ -179,8 +179,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
     QImage fileIcon;
     if(fileIcon.load(path)) {
       QList<RssFeed*> res = findFeedsWithIcon(url);
-      RssFeed* stream;
-      foreach(stream, res){
+      foreach(RssFeed* stream, res){
         stream->setIconPath(path);
         if(!stream->isLoading())
           RssManager::instance()->forwardFeedIconChanged(stream->getUrl(), stream->getIconPath());
@@ -190,7 +189,7 @@ void RssFolder::processFinishedDownload(QString url, QString path) {
     }
     return;
   }
-  RssFeed *stream = (RssFeed*)this->value(url, 0);
+  RssFeed *stream = static_cast<RssFeed*>(this->value(url, 0));
   if(!stream){
     qDebug("This rss stream was deleted in the meantime, nothing to update");
     return;
@@ -213,7 +212,7 @@ void RssFolder::handleDownloadFailure(QString url, QString reason) {
     qDebug("Could not download icon at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
     return;
   }
-  RssFeed *stream = (RssFeed*)this->value(url, 0);
+  RssFeed *stream = static_cast<RssFeed*>(this->value(url, 0));
   if(!stream){
     qDebug("This rss stream was deleted in the meantime, nothing to update");
     return;
