@@ -134,7 +134,7 @@ QBtSession::QBtSession()
   connect(&resumeDataTimer, SIGNAL(timeout()), this, SLOT(saveTempFastResumeData()));
   resumeDataTimer.start(180000); // 3min
   // To download from urls
-  downloader = new downloadThread(this);
+  downloader = new DownloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   appendLabelToSavePath = pref.appendTorrentLabel();
@@ -2428,7 +2428,7 @@ void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QStrin
   savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
-  downloader->downloadUrl(url);
+  downloader->downloadTorrentUrl(url);
 }
 
 // Add to Bittorrent session the downloaded torrent file
