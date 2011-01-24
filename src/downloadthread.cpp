@@ -38,7 +38,7 @@
 #include "downloadthread.h"
 #include "preferences.h"
 #ifndef DISABLE_GUI
-  #include "rsssettings.h"
+#include "rsssettings.h"
 #endif
 #include "qinisettings.h"
 
@@ -54,48 +54,46 @@ downloadThread::downloadThread(QObject* parent) : QObject(parent) {
 void downloadThread::processDlFinished(QNetworkReply* reply) {
   QString url = reply->url().toString();
   qDebug("Download finished: %s", qPrintable(url));
+  // Check if the request was successful
   if(reply->error() != QNetworkReply::NoError) {
     // Failure
     qDebug("Download failure (%s), reason: %s", qPrintable(url), qPrintable(errorCodeToString(reply->error())));
     emit downloadFailure(url, errorCodeToString(reply->error()));
-  } else {
-    QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if(redirection.isValid()) {
-      // We should redirect
-      qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(redirection.toUrl().toString()));
-      m_redirectMapping.insert(redirection.toUrl().toString(), url);
-      downloadUrl(redirection.toUrl().toString());
-      return;
-    }
-    // Checking if it was redirecting, restoring initial URL
-    if(m_redirectMapping.contains(url)) {
-      url = m_redirectMapping.take(url);
-    }
-    // Success
-    QString filePath;
-    QTemporaryFile *tmpfile = new QTemporaryFile;
-    tmpfile->setAutoRemove(false);
-    if (tmpfile->open()) {
-      filePath = tmpfile->fileName();
-      qDebug("Temporary filename is: %s", qPrintable(filePath));
-      if(reply->open(QIODevice::ReadOnly)) {
-        // TODO: Support GZIP compression
-        tmpfile->write(reply->readAll());
-        reply->close();
-        tmpfile->close();
-        delete tmpfile;
-        // Send finished signal
-        emit downloadFinished(url, filePath);
-      } else {
-        // Error when reading the request
-        tmpfile->close();
-        delete tmpfile;
-        emit downloadFailure(url, tr("I/O Error"));
-      }
+    reply->deleteLater();
+    return;
+  }
+  // Check if the server ask us to redirect somewhere lese
+  const QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+  if(redirection.isValid()) {
+    // We should redirect
+    qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(redirection.toUrl().toString()));
+    m_redirectMapping.insert(redirection.toUrl().toString(), url);
+    downloadUrl(redirection.toUrl().toString());
+    reply->deleteLater();
+    return;
+  }
+  // Checking if it was redirected, restoring initial URL
+  if(m_redirectMapping.contains(url)) {
+    url = m_redirectMapping.take(url);
+  }
+  // Success
+  QTemporaryFile tmpfile;
+  tmpfile.setAutoRemove(false);
+  if (tmpfile.open()) {
+    QString filePath = tmpfile.fileName();
+    qDebug("Temporary filename is: %s", qPrintable(filePath));
+    if(reply->isOpen() || reply->open(QIODevice::ReadOnly)) {
+      // TODO: Support GZIP compression
+      tmpfile.write(reply->readAll());
+      tmpfile.close();
+      // Send finished signal
+      emit downloadFinished(url, filePath);
     } else {
-      delete tmpfile;
+      // Error when reading the request
       emit downloadFailure(url, tr("I/O Error"));
     }
+  } else {
+    emit downloadFailure(url, tr("I/O Error"));
   }
   // Clean up
   reply->deleteLater();
@@ -119,7 +117,7 @@ void downloadThread::loadCookies(const QString &host_name, QString url) {
 }
 #endif
 
-void downloadThread::downloadTorrentUrl(QString url) {
+void downloadThread::downloadTorrentUrl(const QString &url) {
 #ifndef DISABLE_GUI
   // Load cookies
   QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
@@ -131,12 +129,12 @@ void downloadThread::downloadTorrentUrl(QString url) {
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
 }
 
-QNetworkReply* downloadThread::downloadUrl(QString url){
+QNetworkReply* downloadThread::downloadUrl(const QString &url){
   // Update proxy settings
   applyProxySettings();
 #ifndef DISABLE_GUI
   // Load cookies
-  QString host_name = QUrl::fromEncoded(url.toLocal8Bit()).host();
+  QString host_name = QUrl::fromEncoded(url.toUtf8()).host();
   if(!host_name.isEmpty())
     loadCookies(host_name, url);
 #endif
@@ -157,20 +155,21 @@ QNetworkReply* downloadThread::downloadUrl(QString url){
 }
 
 void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) {
+  QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
   if(bytesTotal > 0) {
-    QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
     // Total number of bytes is available
     if(bytesTotal > 1048576) {
       // More than 1MB, this is probably not a torrent file, aborting...
       reply->abort();
+      reply->deleteLater();
     } else {
       disconnect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
     }
   } else {
     if(bytesReceived  > 1048576) {
       // More than 1MB, this is probably not a torrent file, aborting...
-      QNetworkReply *reply = static_cast<QNetworkReply*>(sender());
       reply->abort();
+      reply->deleteLater();
     }
   }
 }
@@ -253,7 +252,7 @@ QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
 }
 
 #ifndef QT_NO_OPENSSL
-void downloadThread::ignoreSslErrors(QNetworkReply* reply,QList<QSslError> errors) {
+void downloadThread::ignoreSslErrors(QNetworkReply* reply, const QList<QSslError> &errors) {
   Q_UNUSED(errors)
   // Ignore all SSL errors
   reply->ignoreSslErrors();

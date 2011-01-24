@@ -43,19 +43,19 @@ class downloadThread : public QObject {
 
 public:
   downloadThread(QObject* parent = 0);
-  QNetworkReply* downloadUrl(QString url);
-  void downloadTorrentUrl(QString url);
+  QNetworkReply* downloadUrl(const QString &url);
+  void downloadTorrentUrl(const QString &url);
   //void setProxy(QString IP, int port, QString username, QString password);
 
 signals:
-  void downloadFinished(QString url, QString file_path);
-  void downloadFailure(QString url, QString reason);
+  void downloadFinished(const QString &url, const QString &file_path);
+  void downloadFailure(const QString &url, const QString &reason);
 
 private slots:
   void processDlFinished(QNetworkReply* reply);
   void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
 #ifndef QT_NO_OPENSSL
-  void ignoreSslErrors(QNetworkReply*,QList<QSslError>);
+  void ignoreSslErrors(QNetworkReply*,const QList<QSslError>&);
 #endif
 
 private:
