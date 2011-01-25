@@ -42,15 +42,13 @@ RssFeed::RssFeed(RssFolder* parent, QString _url): parent(parent), alias(""), ic
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   url = QUrl(_url).toString();
   QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-  QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
+  const QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
   qDebug("Loading %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
   foreach(const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
-    RssArticle *rss_item = RssArticle::fromHash(this, item);
-    if(rss_item->isValid()) {
-      (*this)[rss_item->getId()] = rss_item;
-    } else {
-      delete rss_item;
+    RssArticle *rss_item = hashToRssArticle(this, item);
+    if(rss_item) {
+      insert(rss_item->guid(), rss_item);
     }
   }
 }
@@ -184,7 +182,7 @@ unsigned int RssFeed::getNbNews() const{
 
 void RssFeed::markAllAsRead() {
   foreach(RssArticle *item, this->values()){
-    item->setRead();
+    item->markAsRead();
   }
   RssManager::instance()->forwardFeedInfosChanged(url, getName(), 0);
 }
@@ -275,8 +273,8 @@ short RssFeed::readDoc(QIODevice* device) {
             }
             else if(xml.name() == "item") {
               RssArticle * item = new RssArticle(this, xml);
-              if(item->isValid() && !itemAlreadyExists(item->getId())) {
-                this->insert(item->getId(), item);
+              if(item->isValid() && !itemAlreadyExists(item->guid())) {
+                this->insert(item->guid(), item);
               } else {
                 delete item;
               }
@@ -294,18 +292,18 @@ short RssFeed::readDoc(QIODevice* device) {
     foreach(RssArticle* item, values()) {
       if(item->isRead()) continue;
       QString torrent_url;
-      if(item->has_attachment())
-        torrent_url = item->getTorrentUrl();
+      if(item->hasAttachment())
+        torrent_url = item->torrentUrl();
       else
-        torrent_url = item->getLink();
+        torrent_url = item->link();
       // Check if the item should be automatically downloaded
-      const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
+      const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->title());
       if(matching_rule.isValid()) {
         // Download the torrent
-        QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+        QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->title()).arg(getName()));
         QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
         // Item was downloaded, consider it as Read
-        item->setRead();
+        item->markAsRead();
       }
     }
   }
@@ -320,7 +318,7 @@ void RssFeed::resizeList() {
     const int excess = nb_articles - max_articles;
     for(int i=0; i<excess; ++i){
       RssArticle *lastItem = listItem.takeLast();
-      delete this->take(lastItem->getId());
+      delete this->take(lastItem->guid());
     }
   }
 }

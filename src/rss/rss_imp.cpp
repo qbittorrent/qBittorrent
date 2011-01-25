@@ -99,7 +99,7 @@ void RSSImp::displayItemsListMenu(const QPoint&){
     foreach(QTreeWidgetItem *item, selectedItems) {
       qDebug("text(3) URL: %s", qPrintable(item->text(NEWS_URL_COL)));
       qDebug("text(2) TITLE: %s", qPrintable(item->text(NEWS_TITLE_COL)));
-      if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID))->has_attachment()) {
+      if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID))->hasAttachment()) {
         has_attachment = true;
         break;
       }
@@ -309,10 +309,10 @@ void RSSImp::downloadTorrent() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
     RssArticle* article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
-    if(article->has_attachment()) {
-      QBtSession::instance()->downloadFromUrl(article->getTorrentUrl());
+    if(article->hasAttachment()) {
+      QBtSession::instance()->downloadFromUrl(article->torrentUrl());
     } else {
-      QBtSession::instance()->downloadFromUrl(article->getLink());
+      QBtSession::instance()->downloadFromUrl(article->link());
     }
   }
 }
@@ -322,7 +322,7 @@ void RSSImp::openNewsUrl() {
   QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
   foreach(const QTreeWidgetItem* item, selected_items) {
     RssArticle* news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
-    QString link = news->getLink();
+    QString link = news->link();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
   }
@@ -454,9 +454,9 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   qDebug("Got the list of news");
   foreach(RssArticle* article, news){
     QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
-    it->setText(NEWS_TITLE_COL, article->getTitle());
-    it->setText(NEWS_URL_COL, article->getParent()->getUrl());
-    it->setText(NEWS_ID, article->getId());
+    it->setText(NEWS_TITLE_COL, article->title());
+    it->setText(NEWS_URL_COL, article->parent()->getUrl());
+    it->setText(NEWS_ID, article->guid());
     if(article->isRead()){
       it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
       it->setData(NEWS_ICON, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
@@ -492,17 +492,17 @@ void RSSImp::refreshTextBrowser() {
   RssArticle* article = stream->getItem(item->text(NEWS_ID));
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
-  html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->getTitle() + "</div>";
-  if(article->getDate().isValid()) {
-    html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article->getDate().toLocalTime().toString(Qt::SystemLocaleLongDate)+"</div>";
+  html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->title() + "</div>";
+  if(article->date().isValid()) {
+    html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article->date().toLocalTime().toString(Qt::SystemLocaleLongDate)+"</div>";
   }
-  if(!article->getAuthor().isEmpty()) {
-    html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->getAuthor()+"</div>";
+  if(!article->author().isEmpty()) {
+    html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->author()+"</div>";
   }
   html += "</div>";
-  html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->getDescription()+"</div>";
+  html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->description()+"</div>";
   textBrowser->setHtml(html);
-  article->setRead();
+  article->markAsRead();
   item->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
   item->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
   // Decrement feed nb unread news

@@ -128,7 +128,7 @@ void RssManager::saveStreamList(){
 
 void RssManager::insertSortElem(QList<RssArticle*> &list, RssArticle *item) {
   int i = 0;
-  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+  while(i < list.size() && item->date() < list.at(i)->date()) {
     ++i;
   }
   list.insert(i, item);
