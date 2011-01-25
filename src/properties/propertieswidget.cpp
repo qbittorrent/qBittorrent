@@ -412,8 +412,8 @@ void PropertiesWidget::selectAllFiles() {
   // Update torrent properties
   std::vector<int> prio = h.file_priorities();
   for(std::vector<int>::iterator it = prio.begin(); it != prio.end(); it++) {
-    if(*it == IGNORED) {
-      *it = NORMAL;
+    if(*it == prio::IGNORED) {
+      *it = prio::NORMAL;
     }
   }
   h.prioritize_files(prio);
@@ -424,7 +424,7 @@ void PropertiesWidget::selectAllFiles() {
 void PropertiesWidget::selectNoneFiles() {
   // Update torrent properties
   std::vector<int> prio;
-  prio.assign(h.num_files(), IGNORED);
+  prio.assign(h.num_files(), prio::IGNORED);
   h.prioritize_files(prio);
   // Update model
   PropListModel->selectNone();
@@ -444,7 +444,7 @@ void PropertiesWidget::loadUrlSeeds(){
 void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if(!index.isValid()) return;
   if(!h.is_valid() || !h.has_metadata()) return;
-  if(PropListModel->getType(index) == TFILE) {
+  if(PropListModel->getType(index) == TorrentFileItem::TFILE) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
     const QString filename = h.filepath_at(i);
@@ -509,13 +509,13 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
     } else {
       int prio = 1;
       if(act == actionHigh) {
-        prio = HIGH;
+        prio = prio::HIGH;
       } else {
         if(act == actionMaximum) {
-          prio = MAXIMUM;
+          prio = prio::MAXIMUM;
         } else {
           if(act == actionNot_downloaded) {
-            prio = IGNORED;
+            prio = prio::IGNORED;
           }
         }
       }
@@ -546,7 +546,7 @@ void PropertiesWidget::renameSelectedFile() {
                            QMessageBox::Ok);
       return;
     }
-    if(PropListModel->getType(index)==TFILE) {
+    if(PropListModel->getType(index) == TorrentFileItem::TFILE) {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if(!h.is_valid() || !h.has_metadata()) return;

@@ -41,28 +41,30 @@
 #include "proplistdelegate.h"
 #include "iconprovider.h"
 
+namespace prio {
 enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
-enum TreeItemType {TFILE, FOLDER, ROOT};
+}
 
-class TreeItem {
+class TorrentFileItem {
 
 public:
   enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO};
+  enum FileType {TFILE, FOLDER, ROOT};
 
 private:
-  QList<TreeItem*> childItems;
+  QList<TorrentFileItem*> childItems;
   QList<QVariant> itemData;
-  TreeItem *parentItem;
-  TreeItemType type;
+  TorrentFileItem *parentItem;
+  FileType m_type;
   qulonglong total_done;
   int file_index;
 
 public:
   // File Construction
-  TreeItem(const libtorrent::torrent_info &t, const libtorrent::file_entry &f, TreeItem *parent, int _file_index) {
+  TorrentFileItem(const libtorrent::torrent_info &t, const libtorrent::file_entry &f, TorrentFileItem *parent, int _file_index) {
     Q_ASSERT(parent);
     parentItem = parent;
-    type = TFILE;
+    m_type = TFILE;
     file_index = _file_index;
 #if LIBTORRENT_VERSION_MINOR >= 16
     QString name = misc::fileName(misc::toQStringU(t.files().file_path(f)));
@@ -79,7 +81,7 @@ public:
     itemData << QVariant((qulonglong)f.size);
     total_done = 0;
     itemData << 0.; // Progress;
-    itemData << NORMAL; // Priority
+    itemData << prio::NORMAL; // Priority
     if(parent) {
       parent->appendChild(this);
       parent->updateSize();
@@ -87,9 +89,9 @@ public:
   }
 
   // Folder constructor
-  TreeItem(QString name, TreeItem *parent=0) {
+  TorrentFileItem(QString name, TorrentFileItem *parent=0) {
     parentItem = parent;
-    type = FOLDER;
+    m_type = FOLDER;
     // Do not display incomplete extensions
     if(name.endsWith(".!qB"))
       name.chop(4);
@@ -97,42 +99,42 @@ public:
     itemData << 0.; // Size
     itemData << 0.; // Progress;
     total_done = 0;
-    itemData << NORMAL; // Priority
+    itemData << prio::NORMAL; // Priority
     if(parent) {
       parent->appendChild(this);
     }
   }
 
-  TreeItem(QList<QVariant> data) {
+  TorrentFileItem(QList<QVariant> data) {
     parentItem = 0;
-    type = ROOT;
+    m_type = ROOT;
     Q_ASSERT(data.size() == 4);
     itemData = data;
     total_done = 0;
   }
 
-  ~TreeItem() {
+  ~TorrentFileItem() {
     qDebug("Deleting item: %s", qPrintable(getName()));
     qDeleteAll(childItems);
   }
 
-  TreeItemType getType() const {
-    return type;
+  FileType getType() const {
+    return m_type;
   }
 
   int getFileIndex() const {
-    Q_ASSERT(type ==TFILE);
+    Q_ASSERT(m_type ==TFILE);
     return file_index;
   }
 
   void deleteAllChildren() {
-    Q_ASSERT(type==ROOT);
+    Q_ASSERT(m_type==ROOT);
     qDeleteAll(childItems);
     childItems.clear();
     Q_ASSERT(childItems.empty());
   }
 
-  QList<TreeItem*> children() const {
+  QList<TorrentFileItem*> children() const {
     return childItems;
   }
 
@@ -142,7 +144,7 @@ public:
   }
 
   void setName(QString name) {
-    Q_ASSERT(type != ROOT);
+    Q_ASSERT(m_type != ROOT);
     itemData.replace(COL_NAME, name);
   }
 
@@ -158,11 +160,11 @@ public:
   }
 
   void updateSize() {
-    if(type == ROOT) return;
-    Q_ASSERT(type == FOLDER);
+    if(m_type == ROOT) return;
+    Q_ASSERT(m_type == FOLDER);
     qulonglong size = 0;
-    foreach(TreeItem* child, childItems) {
-      if(child->getPriority() != IGNORED)
+    foreach(TorrentFileItem* child, childItems) {
+      if(child->getPriority() != prio::IGNORED)
         size += child->getSize();
     }
     setSize(size);
@@ -198,10 +200,10 @@ public:
   }
 
   void updateProgress() {
-    if(type == ROOT) return;
-    Q_ASSERT(type == FOLDER);
+    if(m_type == ROOT) return;
+    Q_ASSERT(m_type == FOLDER);
     total_done = 0;
-    foreach(TreeItem* child, childItems) {
+    foreach(TorrentFileItem* child, childItems) {
       if(child->getPriority() > 0)
         total_done += child->getTotalDone();
     }
@@ -215,7 +217,7 @@ public:
   }
 
   void setPriority(int new_prio, bool update_parent=true) {
-    Q_ASSERT(new_prio != PARTIAL || type == FOLDER); // PARTIAL only applies to folders
+    Q_ASSERT(new_prio != prio::PARTIAL || m_type == FOLDER); // PARTIAL only applies to folders
     const int old_prio = getPriority();
     if(old_prio == new_prio) return;
     qDebug("setPriority(%s, %d)", qPrintable(getName()), new_prio);
@@ -235,15 +237,15 @@ public:
     }
 
     // Update children
-    if(new_prio != PARTIAL && !childItems.empty()) {
+    if(new_prio != prio::PARTIAL && !childItems.empty()) {
       qDebug("Updating children items");
-      foreach(TreeItem* child, childItems) {
+      foreach(TorrentFileItem* child, childItems) {
         // Do not update the parent since
         // the parent is causing the update
         child->setPriority(new_prio, false);
       }
     }
-    if(type == FOLDER) {
+    if(m_type == FOLDER) {
       updateSize();
       updateProgress();
     }
@@ -251,8 +253,8 @@ public:
 
   // Only non-root folders use this function
   void updatePriority() {
-    if(type == ROOT) return;
-    Q_ASSERT(type == FOLDER);
+    if(m_type == ROOT) return;
+    Q_ASSERT(m_type == FOLDER);
     if(childItems.isEmpty()) return;
     // If all children have the same priority
     // then the folder should have the same
@@ -260,7 +262,7 @@ public:
     const int prio = childItems.first()->getPriority();
     for(int i=1; i<childItems.size(); ++i) {
       if(childItems.at(i)->getPriority() != prio) {
-        setPriority(PARTIAL);
+        setPriority(prio::PARTIAL);
         return;
       }
     }
@@ -270,21 +272,21 @@ public:
       setPriority(prio);
   }
 
-  TreeItem* childWithName(QString name) const {
-    foreach(TreeItem *child, childItems) {
+  TorrentFileItem* childWithName(QString name) const {
+    foreach(TorrentFileItem *child, childItems) {
       if(child->getName() == name) return child;
     }
     return 0;
   }
 
   bool isFolder() const {
-    return (type==FOLDER);
+    return (m_type==FOLDER);
   }
 
-  void appendChild(TreeItem *item) {
+  void appendChild(TorrentFileItem *item) {
     Q_ASSERT(item);
     //Q_ASSERT(!childWithName(item->getName()));
-    Q_ASSERT(type != TFILE);
+    Q_ASSERT(m_type != TFILE);
     int i=0;
     for(i=0; i<childItems.size(); ++i) {
       QString newchild_name = item->getName();
@@ -295,7 +297,7 @@ public:
     //Q_ASSERT(type != ROOT || childItems.size() == 1);
   }
 
-  TreeItem *child(int row) {
+  TorrentFileItem *child(int row) {
     //Q_ASSERT(row >= 0 && row < childItems.size());
     return childItems.value(row, 0);
   }
@@ -314,12 +316,12 @@ public:
 
   int row() const {
     if (parentItem) {
-      return parentItem->children().indexOf(const_cast<TreeItem*>(this));
+      return parentItem->children().indexOf(const_cast<TorrentFileItem*>(this));
     }
     return 0;
   }
 
-  TreeItem *parent() {
+  TorrentFileItem *parent() {
     return parentItem;
   }
 };
@@ -329,15 +331,15 @@ class TorrentFilesModel:  public QAbstractItemModel {
   Q_OBJECT
 
 private:
-  TreeItem *rootItem;
-  TreeItem **files_index;
+  TorrentFileItem *rootItem;
+  TorrentFileItem **files_index;
 
 public:
   TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
     files_index = 0;
     QList<QVariant> rootData;
     rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
-    rootItem = new TreeItem(rootData);
+    rootItem = new TorrentFileItem(rootData);
   }
 
   ~TorrentFilesModel() {
@@ -372,7 +374,7 @@ public:
 
   bool allFiltered() const {
     for(int i=0; i<rootItem->childCount(); ++i) {
-      if(rootItem->child(i)->getPriority() != IGNORED)
+      if(rootItem->child(i)->getPriority() != prio::IGNORED)
         return false;
     }
     return true;
@@ -380,7 +382,7 @@ public:
 
   int columnCount(const QModelIndex &parent=QModelIndex()) const {
     if (parent.isValid())
-      return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
+      return static_cast<TorrentFileItem*>(parent.internalPointer())->columnCount();
     else
       return rootItem->columnCount();
   }
@@ -388,33 +390,33 @@ public:
   bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole) {
     if(!index.isValid()) return false;
     if (index.column() == 0 && role == Qt::CheckStateRole) {
-      TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+      TorrentFileItem *item = static_cast<TorrentFileItem*>(index.internalPointer());
       qDebug("setData(%s, %d", qPrintable(item->getName()), value.toInt());
       if(item->getPriority() != value.toInt()) {
         if(value.toInt() == Qt::PartiallyChecked)
-          item->setPriority(PARTIAL);
+          item->setPriority(prio::PARTIAL);
         else if (value.toInt() == Qt::Unchecked)
-          item->setPriority(IGNORED);
+          item->setPriority(prio::IGNORED);
         else
-          item->setPriority(NORMAL);
+          item->setPriority(prio::NORMAL);
         emit filteredFilesChanged();
         emit dataChanged(this->index(0,0), this->index(rowCount(), 0));
       }
       return true;
     }
     if (role == Qt::EditRole) {
-      TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+      TorrentFileItem *item = static_cast<TorrentFileItem*>(index.internalPointer());
       switch(index.column()) {
-      case 0:
+      case TorrentFileItem::COL_NAME:
         item->setName(value.toString());
         break;
-      case 1:
+      case TorrentFileItem::COL_SIZE:
         item->setSize(value.toULongLong());
         break;
-      case 2:
+      case TorrentFileItem::COL_PROGRESS:
         item->setProgress(value.toDouble());
         break;
-      case 3:
+      case TorrentFileItem::COL_PRIO:
         item->setPriority(value.toInt());
         break;
       default:
@@ -426,20 +428,20 @@ public:
     return false;
   }
 
-  TreeItemType getType(const QModelIndex &index) const {
-    const TreeItem *item = static_cast<const TreeItem*>(index.internalPointer());
+  TorrentFileItem::FileType getType(const QModelIndex &index) const {
+    const TorrentFileItem *item = static_cast<const TorrentFileItem*>(index.internalPointer());
     return item->getType();
   }
 
   int getFileIndex(const QModelIndex &index) {
-    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    TorrentFileItem *item = static_cast<TorrentFileItem*>(index.internalPointer());
     return item->getFileIndex();
   }
 
   QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const {
     if (!index.isValid())
       return QVariant();
-    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    TorrentFileItem *item = static_cast<TorrentFileItem*>(index.internalPointer());
     if(index.column() == 0 && role == Qt::DecorationRole) {
       if(item->isFolder())
         return IconProvider::instance()->getIcon("inode-directory");
@@ -447,9 +449,9 @@ public:
         return IconProvider::instance()->getIcon("text-plain");
     }
     if(index.column() == 0 && role == Qt::CheckStateRole) {
-      if(item->data(TreeItem::COL_PRIO).toInt() == IGNORED)
+      if(item->data(TorrentFileItem::COL_PRIO).toInt() == prio::IGNORED)
         return Qt::Unchecked;
-      if(item->data(TreeItem::COL_PRIO).toInt() == PARTIAL)
+      if(item->data(TorrentFileItem::COL_PRIO).toInt() == prio::PARTIAL)
         return Qt::PartiallyChecked;
       return Qt::Checked;
     }
@@ -462,7 +464,7 @@ public:
   Qt::ItemFlags flags(const QModelIndex &index) const {
     if (!index.isValid())
       return 0;
-    if(getType(index) == FOLDER)
+    if(getType(index) == TorrentFileItem::FOLDER)
       return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
     return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
   }
@@ -478,14 +480,14 @@ public:
     if (parent.isValid() && parent.column() != 0)
       return QModelIndex();
 
-    TreeItem *parentItem;
+    TorrentFileItem *parentItem;
 
     if (!parent.isValid())
       parentItem = rootItem;
     else
-      parentItem = static_cast<TreeItem*>(parent.internalPointer());
+      parentItem = static_cast<TorrentFileItem*>(parent.internalPointer());
 
-    TreeItem *childItem = parentItem->child(row);
+    TorrentFileItem *childItem = parentItem->child(row);
     if (childItem) {
       return createIndex(row, column, childItem);
     } else {
@@ -497,8 +499,8 @@ public:
     if (!index.isValid())
       return QModelIndex();
 
-    TreeItem *childItem = static_cast<TreeItem*>(index.internalPointer());
-    TreeItem *parentItem = childItem->parent();
+    TorrentFileItem *childItem = static_cast<TorrentFileItem*>(index.internalPointer());
+    TorrentFileItem *parentItem = childItem->parent();
 
     if (parentItem == rootItem)
       return QModelIndex();
@@ -507,7 +509,7 @@ public:
   }
 
   int rowCount(const QModelIndex &parent=QModelIndex()) const {
-    TreeItem *parentItem;
+    TorrentFileItem *parentItem;
 
     if (parent.column() > 0)
       return 0;
@@ -515,7 +517,7 @@ public:
     if (!parent.isValid())
       parentItem = rootItem;
     else
-      parentItem = static_cast<TreeItem*>(parent.internalPointer());
+      parentItem = static_cast<TorrentFileItem*>(parent.internalPointer());
 
     return parentItem->childCount();
   }
@@ -536,11 +538,11 @@ public:
     if(t.num_files() == 0) return;
     // Initialize files_index array
     qDebug("Torrent contains %d files", t.num_files());
-    files_index = new TreeItem*[t.num_files()];
+    files_index = new TorrentFileItem*[t.num_files()];
 
-    TreeItem *parent = this->rootItem;
-    TreeItem *root_folder = parent;
-    TreeItem *current_parent;
+    TorrentFileItem *parent = this->rootItem;
+    TorrentFileItem *root_folder = parent;
+    TorrentFileItem *current_parent;
 
     // Iterate over files
     int i = 0;
@@ -557,14 +559,14 @@ public:
       pathFolders.removeAll(".unwanted");
       pathFolders.takeLast();
       foreach(const QString &pathPart, pathFolders) {
-        TreeItem *new_parent = current_parent->childWithName(pathPart);
+        TorrentFileItem *new_parent = current_parent->childWithName(pathPart);
         if(!new_parent) {
-          new_parent = new TreeItem(pathPart, current_parent);
+          new_parent = new TorrentFileItem(pathPart, current_parent);
         }
         current_parent = new_parent;
       }
       // Actually create the file
-      TreeItem *f = new TreeItem(t, *fi, current_parent, i);
+      TorrentFileItem *f = new TorrentFileItem(t, *fi, current_parent, i);
       files_index[i] = f;
       fi++;
       ++i;
@@ -575,21 +577,20 @@ public:
 public slots:
   void selectAll() {
     for(int i=0; i<rootItem->childCount(); ++i) {
-      TreeItem *child = rootItem->child(i);
-      if(child->getPriority() == IGNORED)
-        child->setPriority(NORMAL);
+      TorrentFileItem *child = rootItem->child(i);
+      if(child->getPriority() == prio::IGNORED)
+        child->setPriority(prio::NORMAL);
     }
     emit layoutChanged();
   }
 
   void selectNone() {
     for(int i=0; i<rootItem->childCount(); ++i) {
-      rootItem->child(i)->setPriority(IGNORED);
+      rootItem->child(i)->setPriority(prio::IGNORED);
     }
     emit layoutChanged();
   }
 
-public:
 signals:
   void filteredFilesChanged();
 };
