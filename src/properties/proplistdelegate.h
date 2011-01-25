@@ -75,7 +75,7 @@ public:
       break;
     case PROGRESS:{
         QStyleOptionProgressBarV2 newopt;
-        float progress = index.data().toDouble()*100.;
+        qreal progress = index.data().toDouble()*100.;
         newopt.rect = opt.rect;
         // We don't want to display 100% unless
         // the torrent is really complete

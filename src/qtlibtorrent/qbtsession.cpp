@@ -81,7 +81,7 @@ using namespace libtorrent;
 QBtSession* QBtSession::m_instance = 0;
 
 const int MAX_TRACKER_ERRORS = 2;
-const float MAX_RATIO = 100.;
+const qreal MAX_RATIO = 100.;
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
@@ -198,7 +198,7 @@ void QBtSession::processBigRatios() {
     if(!h.is_valid()) continue;
     if(h.is_seed()) {
       const QString hash = h.hash();
-      const float ratio = getRealRatio(hash);
+      const qreal ratio = getRealRatio(hash);
       qDebug("Ratio: %f (limit: %f)", ratio, ratio_limit);
       if(ratio <= MAX_RATIO && ratio >= ratio_limit) {
         if(high_ratio_action == REMOVE_ACTION) {
@@ -1395,7 +1395,7 @@ bool QBtSession::enableDHT(bool b) {
   return true;
 }
 
-float QBtSession::getRealRatio(QString hash) const{
+qreal QBtSession::getRealRatio(QString hash) const{
   QTorrentHandle h = getTorrentHandle(hash);
   if(!h.is_valid()) {
     return 0.;
@@ -1407,7 +1407,7 @@ float QBtSession::getRealRatio(QString hash) const{
       return 0;
     return 101;
   }
-  float ratio = (float)h.all_time_upload()/(float)h.total_done();
+  qreal ratio = (float)h.all_time_upload()/(float)h.total_done();
   Q_ASSERT(ratio >= 0.);
   if(ratio > 100.)
     ratio = 100.;
@@ -1731,7 +1731,7 @@ void QBtSession::setUploadRateLimit(long rate) {
 
 // Torrents will a ratio superior to the given value will
 // be automatically deleted
-void QBtSession::setMaxRatio(float ratio) {
+void QBtSession::setMaxRatio(qreal ratio) {
   if(ratio < 0) ratio = -1.;
   if(ratio_limit == -1 && ratio != -1) {
     Q_ASSERT(!BigRatioTimer);
@@ -2459,14 +2459,14 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
 // Return current download rate for the BT
 // session. Payload means that it only take into
 // account "useful" part of the rate
-float QBtSession::getPayloadDownloadRate() const{
+qreal QBtSession::getPayloadDownloadRate() const{
   return s->status().payload_download_rate;
 }
 
 // Return current upload rate for the BT
 // session. Payload means that it only take into
 // account "useful" part of the rate
-float QBtSession::getPayloadUploadRate() const{
+qreal QBtSession::getPayloadUploadRate() const{
   return s->status().payload_upload_rate;
 }
 

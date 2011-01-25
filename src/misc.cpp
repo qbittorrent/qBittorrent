@@ -518,7 +518,7 @@ QString misc::cacheLocation() {
 // use Binary prefix standards from IEC 60027-2
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
-QString misc::friendlyUnit(double val) {
+QString misc::friendlyUnit(qreal val) {
   if(val < 0)
     return tr("Unknown", "Unknown (size)");
   int i = 0;

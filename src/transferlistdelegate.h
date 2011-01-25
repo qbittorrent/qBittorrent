@@ -154,7 +154,7 @@ public:
     case TorrentModelItem::TR_RATIO:{
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
-        const double ratio = index.data().toDouble();
+        const qreal ratio = index.data().toDouble();
         if(ratio > 100.)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
         else
