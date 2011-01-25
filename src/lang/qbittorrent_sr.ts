@@ -602,6 +602,101 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">И/О Грешка</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Име удаљеног домаћина није пронађено (неважеће hostname)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Операција је отказана</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS управљање неуспешно</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Удаљени сервер не прихвата конекцију</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Конекција на прокси сервер је одбијена</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Прокси сервер је превремено затворио конекцију</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Назив прокси сервера није пронађен</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Приступ удаљеном садржају је одбијен (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Захтевана операција за удаљеним садржајем се не одобрава</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Захтевани садржај, није пронађен на серверу (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Захтевана операција је погрешна за овај протокол</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Непозната грешка у вези са мрежом је откривена</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Непозната грешка у вези са прокси-јем је откривена</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Непозната грешка у вези са удаљеним садржајем је откривена</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Детектован је проблем са протоколом</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Непозната грешка</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>Working</source>
@@ -3312,7 +3407,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>Нема доступних описа</translation>
+        <translation type="obsolete">Нема доступних описа</translation>
     </message>
 </context>
 <context>
@@ -4731,95 +4826,95 @@ Do you want to install it now?</source>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>И/О Грешка</translation>
+        <translation type="obsolete">И/О Грешка</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Име удаљеног домаћина није пронађено (неважеће hostname)</translation>
+        <translation type="obsolete">Име удаљеног домаћина није пронађено (неважеће hostname)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>Операција је отказана</translation>
+        <translation type="obsolete">Операција је отказана</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
+        <translation type="obsolete">Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
+        <translation type="obsolete">Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS управљање неуспешно</translation>
+        <translation type="obsolete">SSL/TLS управљање неуспешно</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Удаљени сервер не прихвата конекцију</translation>
+        <translation type="obsolete">Удаљени сервер не прихвата конекцију</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Конекција на прокси сервер је одбијена</translation>
+        <translation type="obsolete">Конекција на прокси сервер је одбијена</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Прокси сервер је превремено затворио конекцију</translation>
+        <translation type="obsolete">Прокси сервер је превремено затворио конекцију</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>Назив прокси сервера није пронађен</translation>
+        <translation type="obsolete">Назив прокси сервера није пронађен</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
+        <translation type="obsolete">Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
+        <translation type="obsolete">Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Приступ удаљеном садржају је одбијен (401)</translation>
+        <translation type="obsolete">Приступ удаљеном садржају је одбијен (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Захтевана операција за удаљеним садржајем се не одобрава</translation>
+        <translation type="obsolete">Захтевана операција за удаљеним садржајем се не одобрава</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Захтевани садржај, није пронађен на серверу (404)</translation>
+        <translation type="obsolete">Захтевани садржај, није пронађен на серверу (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
+        <translation type="obsolete">Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
+        <translation type="obsolete">Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Захтевана операција је погрешна за овај протокол</translation>
+        <translation type="obsolete">Захтевана операција је погрешна за овај протокол</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Непозната грешка у вези са мрежом је откривена</translation>
+        <translation type="obsolete">Непозната грешка у вези са мрежом је откривена</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Непозната грешка у вези са прокси-јем је откривена</translation>
+        <translation type="obsolete">Непозната грешка у вези са прокси-јем је откривена</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Непозната грешка у вези са удаљеним садржајем је откривена</translation>
+        <translation type="obsolete">Непозната грешка у вези са удаљеним садржајем је откривена</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Детектован је проблем са протоколом</translation>
+        <translation type="obsolete">Детектован је проблем са протоколом</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Непозната грешка</translation>
+        <translation type="obsolete">Непозната грешка</translation>
     </message>
 </context>
 <context>

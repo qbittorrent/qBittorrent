@@ -587,6 +587,101 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O 錯誤</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">找不到遠端主機的名稱 (無效的主機名)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">操作已取消</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">在回應被接收及處理之前遠端伺服器已永遠關閉連線</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">連線到遠端伺服器逾時</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS 握手失敗</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">遠端伺服器拒絕連線</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">連線到代理伺服器被拒絕</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">代理伺服器永遠關閉連線</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">找不到代理伺服器主機名</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">為了執行要求, 代理伺服器需要認證但是不接受任何提供的憑證</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">存取遠端內容被拒絕 (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">對遠端內容要求的操作不被允許</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">遠端內容在伺服器上找不到 (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">為了提供內容, 遠端代理伺服器需要認證, 但是不接受所提供的憑證</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">因為未知的協定, 網路存取 API 無法執行要求</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">要求的操作對於此協定是無效的</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">偵測到一個未知的網路相關錯誤</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">偵測到一個未知的代理伺服器相關錯誤</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">偵測到一個未知的遠端內容相關錯誤</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">偵測到一個協定錯誤</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">未知的錯誤</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>%1/s</source>
@@ -3249,7 +3344,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>沒有可得的描述</translation>
+        <translation type="obsolete">沒有可得的描述</translation>
     </message>
 </context>
 <context>
@@ -4639,95 +4734,95 @@ Do you want to install it now?</source>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>I/O 錯誤</translation>
+        <translation type="obsolete">I/O 錯誤</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>找不到遠端主機的名稱 (無效的主機名)</translation>
+        <translation type="obsolete">找不到遠端主機的名稱 (無效的主機名)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>操作已取消</translation>
+        <translation type="obsolete">操作已取消</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>在回應被接收及處理之前遠端伺服器已永遠關閉連線</translation>
+        <translation type="obsolete">在回應被接收及處理之前遠端伺服器已永遠關閉連線</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>連線到遠端伺服器逾時</translation>
+        <translation type="obsolete">連線到遠端伺服器逾時</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS 握手失敗</translation>
+        <translation type="obsolete">SSL/TLS 握手失敗</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>遠端伺服器拒絕連線</translation>
+        <translation type="obsolete">遠端伺服器拒絕連線</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>連線到代理伺服器被拒絕</translation>
+        <translation type="obsolete">連線到代理伺服器被拒絕</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>代理伺服器永遠關閉連線</translation>
+        <translation type="obsolete">代理伺服器永遠關閉連線</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>找不到代理伺服器主機名</translation>
+        <translation type="obsolete">找不到代理伺服器主機名</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
+        <translation type="obsolete">連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>為了執行要求, 代理伺服器需要認證但是不接受任何提供的憑證</translation>
+        <translation type="obsolete">為了執行要求, 代理伺服器需要認證但是不接受任何提供的憑證</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>存取遠端內容被拒絕 (401)</translation>
+        <translation type="obsolete">存取遠端內容被拒絕 (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>對遠端內容要求的操作不被允許</translation>
+        <translation type="obsolete">對遠端內容要求的操作不被允許</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>遠端內容在伺服器上找不到 (404)</translation>
+        <translation type="obsolete">遠端內容在伺服器上找不到 (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>為了提供內容, 遠端代理伺服器需要認證, 但是不接受所提供的憑證</translation>
+        <translation type="obsolete">為了提供內容, 遠端代理伺服器需要認證, 但是不接受所提供的憑證</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>因為未知的協定, 網路存取 API 無法執行要求</translation>
+        <translation type="obsolete">因為未知的協定, 網路存取 API 無法執行要求</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>要求的操作對於此協定是無效的</translation>
+        <translation type="obsolete">要求的操作對於此協定是無效的</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>偵測到一個未知的網路相關錯誤</translation>
+        <translation type="obsolete">偵測到一個未知的網路相關錯誤</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>偵測到一個未知的代理伺服器相關錯誤</translation>
+        <translation type="obsolete">偵測到一個未知的代理伺服器相關錯誤</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>偵測到一個未知的遠端內容相關錯誤</translation>
+        <translation type="obsolete">偵測到一個未知的遠端內容相關錯誤</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>偵測到一個協定錯誤</translation>
+        <translation type="obsolete">偵測到一個協定錯誤</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>未知的錯誤</translation>
+        <translation type="obsolete">未知的錯誤</translation>
     </message>
 </context>
 <context>
