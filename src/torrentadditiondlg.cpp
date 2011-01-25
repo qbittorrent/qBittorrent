@@ -344,13 +344,13 @@ void torrentAdditionDialog::displayContentListMenu(const QPoint&) {
     } else {
       int prio = 1;
       if(act == actionHigh) {
-        prio = HIGH;
+        prio = prio::HIGH;
       } else {
         if(act == actionMaximum) {
-          prio = MAXIMUM;
+          prio = prio::MAXIMUM;
         } else {
           if(act == actionNot_downloaded) {
-            prio = IGNORED;
+            prio = prio::IGNORED;
           }
         }
       }
@@ -380,7 +380,7 @@ void torrentAdditionDialog::renameSelectedFile() {
                            QMessageBox::Ok);
       return;
     }
-    if(PropListModel->getType(index)==TFILE) {
+    if(PropListModel->getType(index) == TorrentFileItem::TFILE) {
       // File renaming
       const uint file_index = PropListModel->getFileIndex(index);
       QString old_name = files_path.at(file_index);
