@@ -348,7 +348,7 @@ void PropertiesWidget::loadDynamicData() {
       // Update next announce time
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
-      const double ratio = QBtSession::instance()->getRealRatio(h.hash());
+      const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
       if(ratio > 100.)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
@@ -370,7 +370,7 @@ void PropertiesWidget::loadDynamicData() {
           showPiecesAvailability(false);
         }
         // Progress
-        float progress = h.progress()*100.;
+        qreal progress = h.progress()*100.;
         if(progress > 99.94 && progress < 100.)
           progress = 99.9;
         progress_lbl->setText(QString::number(progress, 'f', 1)+"%");

@@ -59,7 +59,7 @@ class PreviewListDelegate: public QItemDelegate {
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
         case PreviewSelect::PROGRESS:{
-          float progress = index.data().toDouble()*100.;
+          qreal progress = index.data().toDouble()*100.;
           QStyleOptionProgressBarV2 newopt;
           newopt.rect = opt.rect;
           newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");

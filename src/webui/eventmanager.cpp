@@ -355,7 +355,7 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["time_elapsed"] = elapsed_txt;
     data["nb_connections"] = QVariant(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
     // Update ratio info
-    double ratio = QBtSession::instance()->getRealRatio(h.hash());
+    qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
     if(ratio > 100.)
       data["share_ratio"] = QString::fromUtf8("∞");
     else
@@ -451,7 +451,7 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   event["num_leechs"] = QVariant(leechs);
   event["seed"] = QVariant(h.is_seed());
-  double ratio = QBtSession::instance()->getRealRatio(hash);
+  qreal ratio = QBtSession::instance()->getRealRatio(hash);
   if(ratio > 100.)
     event["ratio"] = QString::fromUtf8("∞");
   else

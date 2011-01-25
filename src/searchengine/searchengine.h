@@ -60,7 +60,7 @@ public:
   ~SearchEngine();
   QString selectedCategory() const;
 
-  static float getPluginVersion(QString filePath) {
+  static qreal getPluginVersion(QString filePath) {
     QFile plugin(filePath);
     if(!plugin.exists()){
       qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
@@ -69,7 +69,7 @@ public:
     if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
       return 0.0;
     }
-    float version = 0.0;
+    qreal version = 0.0;
     while (!plugin.atEnd()){
       QByteArray line = plugin.readLine();
       if(line.startsWith("#VERSION: ")){

@@ -224,15 +224,15 @@ QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id){
   return 0;
 }
 
-bool engineSelectDlg::isUpdateNeeded(QString plugin_name, float new_version) const {
-  float old_version = SearchEngine::getPluginVersion(misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
+bool engineSelectDlg::isUpdateNeeded(QString plugin_name, qreal new_version) const {
+  qreal old_version = SearchEngine::getPluginVersion(misc::searchEngineLocation()+QDir::separator()+"engines"+QDir::separator()+plugin_name+".py");
   qDebug("IsUpdate needed? tobeinstalled: %.2f, alreadyinstalled: %.2f", new_version, old_version);
   return (new_version > old_version);
 }
 
 void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Asked to install plugin at %s", qPrintable(path));
-  float new_version = SearchEngine::getPluginVersion(path);
+  qreal new_version = SearchEngine::getPluginVersion(path);
   qDebug("Version to be installed: %.2f", new_version);
   if(!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
@@ -372,7 +372,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
     if(!plugin_name.endsWith(":")) continue;
     plugin_name.chop(1); // remove trailing ':'
     bool ok;
-    float version = list.last().toFloat(&ok);
+    qreal version = list.last().toFloat(&ok);
     qDebug("read line %s: %.2f", qPrintable(plugin_name), version);
     if(!ok) continue;
     file_correct = true;

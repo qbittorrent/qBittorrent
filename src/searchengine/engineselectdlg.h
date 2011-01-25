@@ -52,7 +52,7 @@ class engineSelectDlg : public QDialog, public Ui::engineSelect{
 
   protected:
     bool parseVersionsFile(QString versions_file);
-    bool isUpdateNeeded(QString plugin_name, float new_version) const;
+    bool isUpdateNeeded(QString plugin_name, qreal new_version) const;
 
   signals:
     void enginesChanged();

@@ -188,7 +188,7 @@ SearchEngine::~SearchEngine(){
   searchProcess->waitForFinished();
   foreach(QProcess *downloader, downloaders) {
     // Make sure we disconnect the SIGNAL/SLOT first
-    // To avoid double free
+    // To avoid qreal free
     downloader->disconnect();
     downloader->kill();
     downloader->waitForFinished();
