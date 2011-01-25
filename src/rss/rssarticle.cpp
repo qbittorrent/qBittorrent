@@ -251,19 +251,19 @@ QVariantHash RssArticle::toHash() const {
   return item;
 }
 
-RssArticle* hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
+RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
   const QString guid = h.value("id").toString();
-  if(guid.isEmpty()) return 0;
-  RssArticle *art = new RssArticle(parent, guid);
-  art->m_title = h.value("title", "").toString();
-  art->m_torrentUrl = h.value("torrent_url", "").toString();
-  art->m_link = h.value("news_link", "").toString();
-  art->m_description = h.value("description").toString();
-  art->m_date = h.value("date").toDateTime();
-  art->m_author = h.value("author").toString();
-  art->m_read = h.value("read").toBool();
+  if(guid.isEmpty()) return RssArticle();
+  RssArticle art(parent, guid);
+  art.m_title = h.value("title", "").toString();
+  art.m_torrentUrl = h.value("torrent_url", "").toString();
+  art.m_link = h.value("news_link", "").toString();
+  art.m_description = h.value("description").toString();
+  art.m_date = h.value("date").toDateTime();
+  art.m_author = h.value("author").toString();
+  art.m_read = h.value("read").toBool();
 
-  Q_ASSERT(art->isValid());
+  Q_ASSERT(art.isValid());
   return art;
 }
 
@@ -288,8 +288,8 @@ QString RssArticle::link() const {
 }
 
 QString RssArticle::description() const{
-  if(m_description.isEmpty())
-    return tr("No description available");
+  if(m_description.isNull())
+    return "";
   return m_description;
 }
 

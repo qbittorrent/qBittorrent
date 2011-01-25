@@ -59,8 +59,8 @@ public:
   QString getName() const;
   QString getID() const;
   bool hasChild(QString ID);
-  QList<RssArticle*> getNewsList() const;
-  QList<RssArticle*> getUnreadNewsList() const;
+  QList<RssArticle> getNewsList() const;
+  QList<RssArticle> getUnreadNewsList() const;
   void removeAllSettings();
   void removeAllItems();
 

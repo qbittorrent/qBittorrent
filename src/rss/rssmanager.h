@@ -45,8 +45,8 @@ public:
   static RssManager* instance();
   static void drop();
   ~RssManager();
-  static void insertSortElem(QList<RssArticle*> &list, RssArticle *item);
-  static QList<RssArticle*> sortNewsList(const QList<RssArticle*>& news_list);
+  static void insertSortElem(QList<RssArticle> &list, const RssArticle &item);
+  static QList<RssArticle> sortNewsList(const QList<RssArticle>& news_list);
 
 public slots:
   void loadStreamList();

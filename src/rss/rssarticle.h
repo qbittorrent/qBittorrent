@@ -38,12 +38,11 @@
 class RssFeed;
 
 // Item of a rss stream, single information
-class RssArticle: public QObject {
-  Q_OBJECT
+class RssArticle {
 
 public:
   RssArticle(RssFeed* parent, QXmlStreamReader& xml);
-  RssArticle(RssFeed* parent, const QString &guid);
+  RssArticle(RssFeed* parent = 0, const QString &guid = QString());
   ~RssArticle();
   // Accessors
   bool isValid() const;
@@ -61,7 +60,7 @@ public:
   void markAsRead();
   // Serialization
   QVariantHash toHash() const;
-  friend RssArticle* hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
+  friend RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 protected:
   QDateTime parseDate(const QString &string);

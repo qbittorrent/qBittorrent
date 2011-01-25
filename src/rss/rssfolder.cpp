@@ -89,7 +89,6 @@ void RssFolder::removeFile(QString ID) {
   if(this->contains(ID)) {
     RssFile* child = this->take(ID);
     child->removeAllSettings();
-    child->removeAllItems();
     delete child;
   }
 }
@@ -124,17 +123,17 @@ void RssFolder::refresh() {
   }
 }
 
-QList<RssArticle*> RssFolder::getNewsList() const {
-  QList<RssArticle*> news;
-  foreach(RssFile *child, this->values()) {
+QList<RssArticle> RssFolder::getNewsList() const {
+  QList<RssArticle> news;
+  foreach(const RssFile *child, this->values()) {
     news << child->getNewsList();
   }
   return news;
 }
 
-QList<RssArticle*> RssFolder::getUnreadNewsList() const {
-  QList<RssArticle*> unread_news;
-  foreach(RssFile *child, this->values()) {
+QList<RssArticle> RssFolder::getUnreadNewsList() const {
+  QList<RssArticle> unread_news;
+  foreach(const RssFile *child, this->values()) {
     unread_news << child->getUnreadNewsList();
   }
   return unread_news;
@@ -295,9 +294,6 @@ void RssFolder::addFile(RssFile * item) {
 }
 
 void RssFolder::removeAllItems() {
-  foreach(RssFile* child, values()) {
-    child->removeAllItems();
-  }
   qDeleteAll(values());
   clear();
 }

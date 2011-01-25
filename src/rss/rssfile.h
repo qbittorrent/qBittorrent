@@ -50,15 +50,14 @@ public:
   virtual FileType getType() const = 0;
   virtual QString getName() const = 0;
   virtual QString getID() const = 0;
-  virtual void removeAllItems() = 0;
   virtual void rename(QString new_name) = 0;
   virtual void markAllAsRead() = 0;
   virtual RssFolder* getParent() const = 0;
   virtual void setParent(RssFolder*) = 0;
   virtual void refresh() = 0;
   virtual void removeAllSettings() = 0;
-  virtual QList<RssArticle*> getNewsList() const = 0;
-  virtual QList<RssArticle*> getUnreadNewsList() const = 0;
+  virtual QList<RssArticle> getNewsList() const = 0;
+  virtual QList<RssArticle> getUnreadNewsList() const = 0;
   QStringList getPath() const {
     QStringList path;
     if(getParent()) {
