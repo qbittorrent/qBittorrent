@@ -33,50 +33,50 @@
 
 #include <QXmlStreamReader>
 #include <QDateTime>
-#include <QHash>
+#include <QVariantHash>
 
 class RssFeed;
 
 // Item of a rss stream, single information
-class RssArticle: public QObject {
-  Q_OBJECT
+class RssArticle {
 
 public:
   RssArticle(RssFeed* parent, QXmlStreamReader& xml);
-  RssArticle(RssFeed* parent, QString _id, QString _title,
-             QString _torrent_url, QString _news_link, QString _description,
-             QDateTime _date, QString _author, bool _read);
+  RssArticle(RssFeed* parent = 0, const QString &guid = QString());
   ~RssArticle();
-  bool has_attachment() const;
-  inline QString getId() const { return id; }
-  QHash<QString, QVariant> toHash() const;
-  static RssArticle* fromHash(RssFeed* parent, const QHash<QString, QVariant> &h);
-  RssFeed* getParent() const;
+  // Accessors
   bool isValid() const;
-  inline QString getTitle() const { return title; }
-  QString getAuthor() const;
-  QString getTorrentUrl() const;
-  QString getLink() const;
-  QString getDescription() const;
-  QDateTime getDate() const;
+  bool hasAttachment() const;
+  inline QString guid() const { return m_guid; }
+  RssFeed* parent() const;
+  inline QString title() const { return m_title; }
+  QString author() const;
+  QString torrentUrl() const;
+  QString link() const;
+  QString description() const;
+  QDateTime date() const;
   bool isRead() const;
-  void setRead();
+  // Setters
+  void markAsRead();
+  // Serialization
+  QVariantHash toHash() const;
+  friend RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 protected:
   QDateTime parseDate(const QString &string);
 
 private:
-  RssFeed* parent;
-  QString id;
-  QString title;
-  QString torrent_url;
-  QString news_link;
-  QString description;
-  QDateTime date;
-  QString author;
-  bool is_valid;
-  bool read;
+  RssFeed* m_parent;
+  QString m_guid;
+  QString m_title;
+  QString m_torrentUrl;
+  QString m_link;
+  QString m_description;
+  QDateTime m_date;
+  QString m_author;
+  bool m_read;
 };
 
+RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 #endif // RSSARTICLE_H

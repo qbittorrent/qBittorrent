@@ -126,17 +126,17 @@ void RssManager::saveStreamList(){
   settings.setRssFeedsAliases(aliases);
 }
 
-void RssManager::insertSortElem(QList<RssArticle*> &list, RssArticle *item) {
+void RssManager::insertSortElem(QList<RssArticle> &list, const RssArticle &item) {
   int i = 0;
-  while(i < list.size() && item->getDate() < list.at(i)->getDate()) {
+  while(i < list.size() && item.date() < list.at(i).date()) {
     ++i;
   }
   list.insert(i, item);
 }
 
-QList<RssArticle*> RssManager::sortNewsList(const QList<RssArticle*>& news_list) {
-  QList<RssArticle*> new_list;
-  foreach(RssArticle *item, news_list) {
+QList<RssArticle> RssManager::sortNewsList(const QList<RssArticle>& news_list) {
+  QList<RssArticle> new_list;
+  foreach(const RssArticle &item, news_list) {
     insertSortElem(new_list, item);
   }
   return new_list;

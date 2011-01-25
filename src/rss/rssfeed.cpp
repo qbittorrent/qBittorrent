@@ -42,15 +42,13 @@ RssFeed::RssFeed(RssFolder* parent, QString _url): parent(parent), alias(""), ic
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   url = QUrl(_url).toString();
   QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-  QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
+  const QVariantList old_items = all_old_items.value(url, QVariantList()).toList();
   qDebug("Loading %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
   foreach(const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
-    RssArticle *rss_item = RssArticle::fromHash(this, item);
-    if(rss_item->isValid()) {
-      (*this)[rss_item->getId()] = rss_item;
-    } else {
-      delete rss_item;
+    const RssArticle rss_item = hashToRssArticle(this, item);
+    if(rss_item.isValid()) {
+      insert(rss_item.guid(), rss_item);
     }
   }
 }
@@ -60,16 +58,14 @@ RssFeed::~RssFeed(){
   if(refreshed) {
     QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
     QVariantList old_items;
-    foreach(RssArticle *item, this->values()) {
-      old_items << item->toHash();
+    foreach(const RssArticle &item, this->values()) {
+      old_items << item.toHash();
     }
     qDebug("Saving %d old items for feed %s", old_items.size(), getName().toLocal8Bit().data());
     QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
     all_old_items[url] = old_items;
     qBTRSS.setValue("old_items", all_old_items);
   }
-  qDebug("Removing all item from feed");
-  removeAllItems();
   qDebug("All items were removed");
   if(QFile::exists(filePath))
     misc::safeRemove(filePath);
@@ -83,12 +79,6 @@ RssFile::FileType RssFeed::getType() const {
 
 void RssFeed::refresh() {
   parent->refreshStream(url);
-}
-
-// delete all the items saved
-void RssFeed::removeAllItems() {
-  qDeleteAll(this->values());
-  this->clear();
 }
 
 void RssFeed::removeAllSettings() {
@@ -174,8 +164,8 @@ void RssFeed::setIconPath(QString path) {
   iconPath = path;
 }
 
-RssArticle* RssFeed::getItem(QString id) const{
-  return this->value(id);
+RssArticle& RssFeed::getItem(QString id) {
+  return (*this)[id];
 }
 
 unsigned int RssFeed::getNbNews() const{
@@ -183,29 +173,30 @@ unsigned int RssFeed::getNbNews() const{
 }
 
 void RssFeed::markAllAsRead() {
-  foreach(RssArticle *item, this->values()){
-    item->setRead();
+  QHash<QString, RssArticle>::iterator it;
+  for(it = this->begin(); it != this->end(); it++) {
+    it.value().markAsRead();
   }
   RssManager::instance()->forwardFeedInfosChanged(url, getName(), 0);
 }
 
 unsigned int RssFeed::getNbUnRead() const{
   unsigned int nbUnread=0;
-  foreach(RssArticle *item, this->values()) {
-    if(!item->isRead())
+  foreach(const RssArticle &item, this->values()) {
+    if(!item.isRead())
       ++nbUnread;
   }
   return nbUnread;
 }
 
-QList<RssArticle*> RssFeed::getNewsList() const{
+QList<RssArticle> RssFeed::getNewsList() const{
   return this->values();
 }
 
-QList<RssArticle*> RssFeed::getUnreadNewsList() const {
-  QList<RssArticle*> unread_news;
-  foreach(RssArticle *item, this->values()) {
-    if(!item->isRead())
+QList<RssArticle> RssFeed::getUnreadNewsList() const {
+  QList<RssArticle> unread_news;
+  foreach(const RssArticle &item, this->values()) {
+    if(!item.isRead())
       unread_news << item;
   }
   return unread_news;
@@ -274,11 +265,9 @@ short RssFeed::readDoc(QIODevice* device) {
               image = xml.attributes().value("url").toString();
             }
             else if(xml.name() == "item") {
-              RssArticle * item = new RssArticle(this, xml);
-              if(item->isValid() && !itemAlreadyExists(item->getId())) {
-                this->insert(item->getId(), item);
-              } else {
-                delete item;
+              RssArticle item(this, xml);
+              if(item.isValid() && !itemAlreadyExists(item.guid())) {
+                this->insert(item.guid(), item);
               }
             }
           }
@@ -291,21 +280,23 @@ short RssFeed::readDoc(QIODevice* device) {
 
   // RSS Feed Downloader
   if(RssSettings().isRssDownloadingEnabled()) {
-    foreach(RssArticle* item, values()) {
-      if(item->isRead()) continue;
+    QHash<QString, RssArticle>::iterator it;
+    for(it = this->begin(); it != this->end(); it++) {
+      RssArticle &item = it.value();
+      if(item.isRead()) continue;
       QString torrent_url;
-      if(item->has_attachment())
-        torrent_url = item->getTorrentUrl();
+      if(item.hasAttachment())
+        torrent_url = item.torrentUrl();
       else
-        torrent_url = item->getLink();
+        torrent_url = item.link();
       // Check if the item should be automatically downloaded
-      const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item->getTitle());
+      const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(url, item.title());
       if(matching_rule.isValid()) {
         // Download the torrent
-        QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->getTitle()).arg(getName()));
+        QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item.title()).arg(getName()));
         QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
         // Item was downloaded, consider it as Read
-        item->setRead();
+        item.markAsRead();
       }
     }
   }
@@ -316,11 +307,10 @@ void RssFeed::resizeList() {
   const unsigned int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   const unsigned int nb_articles = this->size();
   if(nb_articles > max_articles) {
-    QList<RssArticle*> listItem = RssManager::sortNewsList(this->values());
+    const QList<RssArticle> listItem = RssManager::sortNewsList(this->values());
     const int excess = nb_articles - max_articles;
-    for(int i=0; i<excess; ++i){
-      RssArticle *lastItem = listItem.takeLast();
-      delete this->take(lastItem->getId());
+    for(uint i=nb_articles-excess; i<nb_articles; ++i){
+      this->remove(listItem.at(i).guid());
     }
   }
 }
