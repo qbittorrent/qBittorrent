@@ -43,7 +43,7 @@ class SpeedSample {
 public:
   SpeedSample(){}
   void addSample(int s);
-  float average() const;
+  qreal average() const;
   void clear();
 
 private:
@@ -83,7 +83,7 @@ void SpeedSample::addSample(int s)
     m_speedSamples.removeFirst();
 }
 
-float SpeedSample::average() const
+qreal SpeedSample::average() const
 {
   if(m_speedSamples.empty()) return 0;
   qlonglong sum = 0;
@@ -114,7 +114,7 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
   QMutexLocker locker(&m_mutex);
   QTorrentHandle h = m_session->getTorrentHandle(hash);
   if(h.is_paused() || !m_samples.contains(hash)) return -1;
-  const float speed_average = m_samples.value(hash).average();
+  const qreal speed_average = m_samples.value(hash).average();
   if(speed_average == 0) return -1;
   return (h.total_wanted() - h.total_done()) / speed_average;
 }

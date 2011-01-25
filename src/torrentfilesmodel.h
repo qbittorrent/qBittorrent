@@ -173,7 +173,7 @@ public:
     total_done = done;
     qulonglong size = getSize();
     Q_ASSERT(total_done <= size);
-    float progress;
+    qreal progress;
     if(size > 0)
       progress = total_done/(float)size;
     else
@@ -188,7 +188,7 @@ public:
     return total_done;
   }
 
-  float getProgress() const {
+  qreal getProgress() const {
     if(getPriority() == 0)
       return 0.;
     qulonglong size = getSize();

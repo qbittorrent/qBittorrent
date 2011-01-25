@@ -88,12 +88,12 @@ qlonglong QTorrentHandle::next_announce_s() const {
   return torrent_handle::status().next_announce.total_seconds();
 }
 
-float QTorrentHandle::progress() const {
+qreal QTorrentHandle::progress() const {
   if(!torrent_handle::status().total_wanted)
     return 0.;
   if (torrent_handle::status().total_wanted_done == torrent_handle::status().total_wanted)
     return 1.;
-  float progress = (float)torrent_handle::status().total_wanted_done/(float)torrent_handle::status().total_wanted;
+  qreal progress = (float)torrent_handle::status().total_wanted_done/(float)torrent_handle::status().total_wanted;
   Q_ASSERT(progress >= 0. && progress <= 1.);
   return progress;
 }
@@ -159,11 +159,11 @@ size_type QTorrentHandle::total_wanted() const {
   return torrent_handle::status().total_wanted;
 }
 
-float QTorrentHandle::download_payload_rate() const {
+qreal QTorrentHandle::download_payload_rate() const {
   return torrent_handle::status().download_payload_rate;
 }
 
-float QTorrentHandle::upload_payload_rate() const {
+qreal QTorrentHandle::upload_payload_rate() const {
   return torrent_handle::status().upload_payload_rate;
 }
 

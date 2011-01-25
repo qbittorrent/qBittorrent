@@ -56,7 +56,7 @@ public:
   //
   QString hash() const;
   QString name() const;
-  float progress() const;
+  qreal progress() const;
   libtorrent::bitfield pieces() const;
   QString current_tracker() const;
   bool is_paused() const;
@@ -66,8 +66,8 @@ public:
   int num_pieces() const;
   libtorrent::size_type total_wanted_done() const;
   libtorrent::size_type total_wanted() const;
-  float download_payload_rate() const;
-  float upload_payload_rate() const;
+  qreal download_payload_rate() const;
+  qreal upload_payload_rate() const;
   int num_connections() const;
   int connections_limit() const;
   int num_peers() const;

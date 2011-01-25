@@ -76,11 +76,11 @@ public:
   QTorrentHandle getTorrentHandle(QString hash) const;
   std::vector<libtorrent::torrent_handle> getTorrents() const;
   bool isFilePreviewPossible(QString fileHash) const;
-  float getPayloadDownloadRate() const;
-  float getPayloadUploadRate() const;
+  qreal getPayloadDownloadRate() const;
+  qreal getPayloadUploadRate() const;
   libtorrent::session_status getSessionStatus() const;
   int getListenPort() const;
-  float getRealRatio(QString hash) const;
+  qreal getRealRatio(QString hash) const;
   QHash<QString, TrackerInfos> getTrackersInfo(QString hash) const;
   bool hasActiveTorrents() const;
   bool hasDownloadingTorrents() const;
@@ -129,7 +129,7 @@ public slots:
   void setMaxUploadsPerTorrent(int max);
   void setDownloadRateLimit(long rate);
   void setUploadRateLimit(long rate);
-  void setMaxRatio(float ratio);
+  void setMaxRatio(qreal ratio);
   void setDHTPort(int dht_port);
   void setProxySettings(const libtorrent::proxy_settings &proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
@@ -233,7 +233,7 @@ private:
   // Settings
   bool preAllocateAll;
   bool addInPause;
-  float ratio_limit;
+  qreal ratio_limit;
   int high_ratio_action;
   bool UPnPEnabled;
   bool LSDEnabled;

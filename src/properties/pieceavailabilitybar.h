@@ -53,7 +53,7 @@ public:
   }
 
   void setAvailability(const std::vector<int>& avail) {
-    double average = 0;
+    qreal average = 0;
     if(avail.empty()) {
       // Empty bar
       QPixmap pix = QPixmap(1, 1);
@@ -114,10 +114,10 @@ protected:
     painter.drawPixmap(rect(), pixmap);
   }
 
-  QColor getPieceColor(int avail, double average) {
+  QColor getPieceColor(int avail, qreal average) {
     if(!avail) return Qt::white;
     //qDebug("avail: %d/%d", avail, max_avail);
-    double fraction = 100.*average/avail;
+    qreal fraction = 100.*average/avail;
     if(fraction < 100)
       fraction *= 0.8;
     else

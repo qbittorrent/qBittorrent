@@ -129,7 +129,7 @@ private:
   int getDHTPort() const;
   bool isLSDEnabled() const;
   int getEncryptionSetting() const;
-  float getMaxRatio() const;
+  qreal getMaxRatio() const;
   // Proxy options
   bool isProxyEnabled() const;
   bool isProxyAuthEnabled() const;

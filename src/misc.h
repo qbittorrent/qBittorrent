@@ -153,7 +153,7 @@ public:
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
-  static QString friendlyUnit(double val);
+  static QString friendlyUnit(qreal val);
   static bool isPreviewable(QString extension);
   static QString branchPath(QString file_path, bool uses_slashes=false);
   static QString fileName(QString file_path);

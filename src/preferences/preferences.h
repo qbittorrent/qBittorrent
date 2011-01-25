@@ -546,11 +546,11 @@ public:
     setValue(QString::fromUtf8("Preferences/Bittorrent/Encryption"), val);
   }
 
-  float getMaxRatio() const {
+  qreal getMaxRatio() const {
     return value(QString::fromUtf8("Preferences/Bittorrent/MaxRatio"), -1).toDouble();
   }
 
-  void setMaxRatio(float ratio) {
+  void setMaxRatio(qreal ratio) {
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxRatio"), ratio);
   }
 

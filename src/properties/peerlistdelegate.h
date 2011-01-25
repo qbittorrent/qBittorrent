@@ -57,14 +57,14 @@ public:
     case DOWN_SPEED:
     case UP_SPEED:{
         QItemDelegate::drawBackground(painter, opt, index);
-        double speed = index.data().toDouble();
+        qreal speed = index.data().toDouble();
         if (speed > 0.0)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
         break;
       }
     case PROGRESS:{
         QItemDelegate::drawBackground(painter, opt, index);
-        double progress = index.data().toDouble();
+        qreal progress = index.data().toDouble();
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
         break;
       }

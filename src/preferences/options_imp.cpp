@@ -467,7 +467,7 @@ void options_imp::setStyle(QString style) {
 
 void options_imp::loadOptions(){
   int intValue;
-  float floatValue;
+  qreal floatValue;
   QString strValue;
   // General preferences
   const Preferences pref;
@@ -754,7 +754,7 @@ int options_imp::getDHTPort() const {
 }
 
 // Return Share ratio
-float options_imp::getMaxRatio() const{
+qreal options_imp::getMaxRatio() const{
   if(checkMaxRatio->isChecked()){
     return spinMaxRatio->value();
   }
