@@ -77,4 +77,6 @@ private:
   bool m_read;
 };
 
+RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
+
 #endif // RSSARTICLE_H
