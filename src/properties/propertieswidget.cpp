@@ -370,7 +370,10 @@ void PropertiesWidget::loadDynamicData() {
           showPiecesAvailability(false);
         }
         // Progress
-        progress_lbl->setText(QString::number(h.progress()*100., 'f', 1)+"%");
+        float progress = h.progress()*100.;
+        if(progress > 99.94 && progress < 100.)
+          progress = 99.9;
+        progress_lbl->setText(QString::number(progress, 'f', 1)+"%");
       } else {
         showPiecesAvailability(false);
         showPiecesDownloaded(false);
