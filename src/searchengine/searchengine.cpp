@@ -137,7 +137,7 @@ bool SearchEngine::addPythonPathToEnv() {
 void SearchEngine::installPython() {
   setCursor(QCursor(Qt::WaitCursor));
   // Download python
-  downloadThread *pydownloader = new downloadThread(this);
+  DownloadThread *pydownloader = new DownloadThread(this);
   connect(pydownloader, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
   connect(pydownloader, SIGNAL(downloadFailure(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
   pydownloader->downloadUrl("http://python.org/ftp/python/2.6.5/python-2.6.5.msi");
