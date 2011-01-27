@@ -46,24 +46,23 @@ public:
   RssFile(): QObject() {}
   virtual ~RssFile() {}
 
-  virtual unsigned int getNbUnRead() const = 0;
-  virtual FileType getType() const = 0;
-  virtual QString getName() const = 0;
-  virtual QString getID() const = 0;
-  virtual void rename(QString new_name) = 0;
-  virtual void markAllAsRead() = 0;
-  virtual RssFolder* getParent() const = 0;
-  virtual void setParent(RssFolder*) = 0;
+  virtual unsigned int unreadCount() const = 0;
+  virtual FileType type() const = 0;
+  virtual QString displayName() const = 0;
+  virtual QString id() const = 0;
+  virtual void setAlias(const QString &new_name) = 0;
+  virtual void markAsRead() = 0;
+  virtual RssFolder* parent() const = 0;
+  virtual void setParent(RssFolder* parent) = 0;
   virtual void refresh() = 0;
   virtual void removeAllSettings() = 0;
-  virtual QList<RssArticle> getNewsList() const = 0;
-  virtual QList<RssArticle> getUnreadNewsList() const = 0;
-  QStringList getPath() const {
+  virtual QList<RssArticle> articleList() const = 0;
+  virtual QList<RssArticle> unreadArticleList() const = 0;
+  QStringList pathHierarchy() const {
     QStringList path;
-    if(getParent()) {
-      path = ((RssFile*)getParent())->getPath();
-      path.append(getID());
-    }
+    if(parent())
+      path << ((RssFile*)parent())->pathHierarchy();
+    path << id();
     return path;
   }
 };

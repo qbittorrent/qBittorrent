@@ -45,40 +45,34 @@ class RssFolder: public RssFile, public QHash<QString, RssFile*> {
 public:
   RssFolder(RssFolder *parent = 0, QString name = QString());
   ~RssFolder();
-  RssFolder* getParent() const { return parent; }
-  void setParent(RssFolder* _parent) { parent = _parent; }
-  unsigned int getNbUnRead() const;
-  FileType getType() const;
+  RssFolder* parent() const { return m_parent; }
+  void setParent(RssFolder* parent) { m_parent = parent; }
+  unsigned int unreadCount() const;
+  FileType type() const;
   RssFeed* addStream(QString url);
   RssFolder* addFolder(QString name);
-  QList<RssFeed*> findFeedsWithIcon(QString icon_url) const;
   unsigned int getNbFeeds() const;
   QList<RssFile*> getContent() const;
   QList<RssFeed*> getAllFeeds() const;
   QHash<QString, RssFeed*> getAllFeedsAsHash() const;
-  QString getName() const;
-  QString getID() const;
+  QString displayName() const;
+  QString id() const;
   bool hasChild(QString ID);
-  QList<RssArticle> getNewsList() const;
-  QList<RssArticle> getUnreadNewsList() const;
+  QList<RssArticle> articleList() const;
+  QList<RssArticle> unreadArticleList() const;
   void removeAllSettings();
   void removeAllItems();
 
 public slots:
-  void refreshAll();
+  void refresh();
   void addFile(RssFile * item);
   void removeFile(QString ID);
-  void refresh();
-  void refreshStream(QString url);
-  void processFinishedDownload(QString url, QString path);
-  void handleDownloadFailure(QString url, QString reason);
-  void rename(QString new_name);
-  void markAllAsRead();
+  void setAlias(const QString &new_name);
+  void markAsRead();
 
 private:
-  RssFolder *parent;
-  DownloadThread *downloader;
-  QString name;
+  RssFolder *m_parent;
+  QString m_name;
 };
 
 #endif // RSSFOLDER_H

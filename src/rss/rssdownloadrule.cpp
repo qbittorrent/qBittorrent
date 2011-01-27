@@ -129,7 +129,7 @@ void RssDownloadRule::setSavePath(const QString &save_path)
 QStringList RssDownloadRule::findMatchingArticles(const RssFeed *feed) const
 {
   QStringList ret;
-  foreach(const RssArticle &art, feed->values()) {
+  foreach(const RssArticle &art, feed->articleList()) {
     if(matches(art.title()))
       ret << art.title();
   }

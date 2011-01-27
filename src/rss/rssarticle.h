@@ -62,8 +62,8 @@ public:
   QVariantHash toHash() const;
   friend RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
-protected:
-  QDateTime parseDate(const QString &string);
+private:
+  static QDateTime parseDate(const QString &string);
 
 private:
   RssFeed* m_parent;

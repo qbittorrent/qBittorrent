@@ -37,63 +37,61 @@
 
 class RssManager;
 
-class RssFeed: public RssFile, public QHash<QString, RssArticle> {
+class RssFeed: public RssFile {
   Q_OBJECT
 
 public:
-  RssFeed(RssFolder* parent, QString _url);
+  RssFeed(RssFolder* m_parent, const QString &url);
   ~RssFeed();
-  RssFolder* getParent() const { return parent; }
-  void setParent(RssFolder* _parent) { parent = _parent; }
-  FileType getType() const;
+  inline RssFolder* parent() const { return m_parent; }
+  void setParent(RssFolder* parent) { m_parent = parent; }
+  FileType type() const;
   void refresh();
-  QString getID() const { return url; }
+  QString id() const { return m_url; }
   void removeAllSettings();
-  bool itemAlreadyExists(QString hash);
+  bool itemAlreadyExists(const QString &hash) const;
   void setLoading(bool val);
-  bool isLoading();
-  QString getTitle() const;
-  void rename(QString _alias);
-  QString getName() const;
-  QString getLink() const;
-  QString getUrl() const;
-  QString getDescription() const;
-  QString getImage() const;
-  QString getFilePath() const;
-  QString getIconPath() const;
+  bool isLoading() const;
+  QString title() const;
+  void setAlias(const QString &alias);
+  QString displayName() const;
+  QString url() const;
+  QString icon() const;
   bool hasCustomIcon() const;
-  void setIconPath(QString path);
-  RssArticle& getItem(QString name);
+  void setIconPath(const QString &pathHierarchy);
+  RssArticle& getItem(const QString &name);
   unsigned int getNbNews() const;
-  void markAllAsRead();
-  unsigned int getNbUnRead() const;
-  QList<RssArticle> getNewsList() const;
-  QList<RssArticle> getUnreadNewsList() const;
-  QString getIconUrl();
+  void markAsRead();
+  unsigned int unreadCount() const;
+  QList<RssArticle> articleList() const;
+  QList<RssArticle> unreadArticleList() const;
 
-public slots:
-  void processDownloadedFile(QString file_path);
-  void setDownloadFailed();
+signals:
+  void iconUpdated(const QString &icon);
+
+private slots:
+  void handleFinishedDownload(const QString& url, const QString &file_path);
+  void handleDownloadFailure(const QString &url, const QString& error);
 
 private:
-  short readDoc(QIODevice* device);
+  bool parseRSS(QIODevice* device);
   void resizeList();
-  short openRss();
+  bool parseXmlFile(const QString &file_path);
+  void downloadMatchingArticleTorrents();
+  QString iconUrl() const;
 
 private:
-  RssFolder *parent;
-  QString title;
-  QString link;
-  QString description;
-  QString image;
-  QString url;
-  QString alias;
-  QString filePath;
-  QString iconPath;
-  bool read;
-  bool refreshed;
-  bool downloadFailure;
-  bool currently_loading;
+  QHash<QString, RssArticle> m_articles;
+  RssFolder *m_parent;
+  QString m_title;
+  QString m_url;
+  QString m_alias;
+  QString m_icon;
+  QString m_iconUrl;
+  bool m_read;
+  bool m_refreshed;
+  bool m_downloadFailure;
+  bool m_loading;
 
 };
 

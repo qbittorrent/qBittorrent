@@ -35,6 +35,8 @@
 
 #include "rssfolder.h"
 
+class DownloadThread;
+
 class RssManager: public RssFolder {
   Q_OBJECT
 private:
@@ -45,6 +47,7 @@ public:
   static RssManager* instance();
   static void drop();
   ~RssManager();
+  inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
   static void insertSortElem(QList<RssArticle> &list, const RssArticle &item);
   static QList<RssArticle> sortNewsList(const QList<RssArticle>& news_list);
 
@@ -63,6 +66,7 @@ signals:
 private:
   QTimer newsRefresher;
   unsigned int refreshInterval;
+  DownloadThread *m_rssDownloader;
 
 };
 

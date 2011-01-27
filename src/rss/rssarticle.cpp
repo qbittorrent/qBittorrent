@@ -60,7 +60,7 @@ static const char longMonth[][10] = {
 
 // Ported to Qt4 from KDElibs4
 QDateTime RssArticle::parseDate(const QString &string) {
-  QString str = string.trimmed();
+  const QString str = string.trimmed();
   if (str.isEmpty())
     return QDateTime::currentDateTime();
 
@@ -228,7 +228,7 @@ RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml): m_parent(parent)
 }
 
 RssArticle::RssArticle(RssFeed* parent, const QString &guid):
-  m_parent(parent), m_guid(guid) {
+  m_parent(parent), m_guid(guid), m_read(false) {
 }
 
 RssArticle::~RssArticle(){
