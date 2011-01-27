@@ -53,7 +53,7 @@ public:
   void setLoading(bool val);
   bool isLoading() const;
   QString title() const;
-  void setAlias(const QString &alias);
+  void rename(const QString &alias);
   QString displayName() const;
   QString url() const;
   QString icon() const;
