@@ -702,15 +702,8 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
     new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"),  h.firstFileSavePath());
   } else {
     const QDir saveDir(TorrentPersistentData::getSavePath(h.hash()));
-    QFileDialog dlg(this, tr("Choose save path"), saveDir.absolutePath());
-    dlg.setConfirmOverwrite(false);
-    dlg.setFileMode(QFileDialog::Directory);
-    dlg.setOption(QFileDialog::ShowDirsOnly, true);
-    dlg.setFilter(QDir::AllDirs);
-    dlg.setAcceptMode(QFileDialog::AcceptSave);
-    dlg.setNameFilterDetailsVisible(false);
-    if(dlg.exec())
-      new_path = dlg.selectedFiles().first();
+    new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
+                                                 QFileDialog::DontConfirmOverwrite|QFileDialog::ShowDirsOnly|QFileDialog::HideNameFilterDetails);
   }
   if(!new_path.isEmpty()){
     // Check if savePath exists
