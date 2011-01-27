@@ -87,7 +87,7 @@ void RssManager::loadStreamList() {
     RssFeed *stream = feed_parent->addStream(feed_url);
     const QString alias = aliases.at(i);
     if(!alias.isEmpty()) {
-      stream->setAlias(alias);
+      stream->rename(alias);
     }
     ++i;
   }
@@ -105,10 +105,10 @@ void RssManager::forwardFeedIconChanged(QString url, QString icon_path) {
 void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
   RssFolder* src_folder = file->parent();
   if(dest_folder != src_folder) {
-    // Copy to new Folder
-    dest_folder->addFile(file);
     // Remove reference in old folder
-    src_folder->remove(file->id());
+    src_folder->takeChild(file->id());
+    // add to new Folder
+    dest_folder->addFile(file);
   } else {
     qDebug("Nothing to move, same destination folder");
   }

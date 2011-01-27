@@ -33,21 +33,20 @@
 #include "rssfolder.h"
 #include "rssarticle.h"
 #include "qbtsession.h"
-#include "downloadthread.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 
-RssFolder::RssFolder(RssFolder *parent, QString name): m_parent(parent), m_name(name) {
+RssFolder::RssFolder(RssFolder *parent, const QString &name): m_parent(parent), m_name(name) {
 }
 
 RssFolder::~RssFolder() {
   qDebug("Deleting a RSS folder, removing elements");
-  qDeleteAll(this->values());
+  qDeleteAll(m_children.values());
 }
 
 unsigned int RssFolder::unreadCount() const {
   unsigned int nb_unread = 0;
-  foreach(RssFile *file, this->values()) {
+  foreach(const RssFile *file, m_children.values()) {
     nb_unread += file->unreadCount();
   }
   return nb_unread;
@@ -57,43 +56,43 @@ RssFile::FileType RssFolder::type() const {
   return RssFile::FOLDER;
 }
 
-void RssFolder::removeFile(QString ID) {
-  if(this->contains(ID)) {
-    RssFile* child = this->take(ID);
+void RssFolder::removeChild(const QString &childId) {
+  if(m_children.contains(childId)) {
+    RssFile* child = m_children.take(childId);
     child->removeAllSettings();
     delete child;
   }
 }
 
-RssFolder* RssFolder::addFolder(QString name) {
+RssFolder* RssFolder::addFolder(const QString &name) {
   RssFolder *subfolder;
-  if(!this->contains(name)) {
+  if(!m_children.contains(name)) {
     subfolder = new RssFolder(this, name);
-    (*this)[name] = subfolder;
+    m_children[name] = subfolder;
   } else {
-    subfolder = (RssFolder*)this->value(name);
+    subfolder = dynamic_cast<RssFolder*>(m_children.value(name));
   }
   return subfolder;
 }
 
-RssFeed* RssFolder::addStream(QString url) {
+RssFeed* RssFolder::addStream(const QString &url) {
   RssFeed* stream = new RssFeed(this, url);
-  Q_ASSERT(!this->contains(stream->url()));
-  (*this)[stream->url()] = stream;
+  Q_ASSERT(!m_children.contains(stream->url()));
+  m_children[stream->url()] = stream;
   stream->refresh();
   return stream;
 }
 
 // Refresh All Children
 void RssFolder::refresh() {
-  foreach(RssFile *child, this->values()) {
+  foreach(RssFile *child, m_children.values()) {
       child->refresh();
   }
 }
 
 QList<RssArticle> RssFolder::articleList() const {
   QList<RssArticle> news;
-  foreach(const RssFile *child, this->values()) {
+  foreach(const RssFile *child, m_children.values()) {
     news << child->articleList();
   }
   return news;
@@ -101,19 +100,19 @@ QList<RssArticle> RssFolder::articleList() const {
 
 QList<RssArticle> RssFolder::unreadArticleList() const {
   QList<RssArticle> unread_news;
-  foreach(const RssFile *child, this->values()) {
+  foreach(const RssFile *child, m_children.values()) {
     unread_news << child->unreadArticleList();
   }
   return unread_news;
 }
 
 QList<RssFile*> RssFolder::getContent() const {
-  return this->values();
+  return m_children.values();
 }
 
 unsigned int RssFolder::getNbFeeds() const {
   unsigned int nbFeeds = 0;
-  foreach(RssFile* item, this->values()) {
+  foreach(RssFile* item, m_children.values()) {
     if(item->type() == RssFile::FOLDER)
       nbFeeds += ((RssFolder*)item)->getNbFeeds();
     else
@@ -126,25 +125,26 @@ QString RssFolder::displayName() const {
   return m_name;
 }
 
-void RssFolder::setAlias(const QString &new_name) {
-  Q_ASSERT(!m_parent->contains(new_name));
-  if(!m_parent->contains(new_name)) {
+void RssFolder::rename(const QString &new_name) {
+  if(m_name == new_name) return;
+  Q_ASSERT(!m_parent->hasChild(new_name));
+  if(!m_parent->hasChild(new_name)) {
     // Update parent
-    (*m_parent)[new_name] = m_parent->take(m_name);
+    m_parent->renameChildFolder(m_name, new_name);
     // Actually rename
     m_name = new_name;
   }
 }
 
 void RssFolder::markAsRead() {
-  foreach(RssFile *item, this->values()) {
+  foreach(RssFile *item, m_children.values()) {
     item->markAsRead();
   }
 }
 
 QList<RssFeed*> RssFolder::getAllFeeds() const {
   QList<RssFeed*> streams;
-  foreach(RssFile *item, this->values()) {
+  foreach(RssFile *item, m_children.values()) {
     if(item->type() == RssFile::FEED) {
       streams << static_cast<RssFeed*>(item);
     } else {
@@ -156,7 +156,7 @@ QList<RssFeed*> RssFolder::getAllFeeds() const {
 
 QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
   QHash<QString, RssFeed*> ret;
-  foreach(RssFile *item, this->values()) {
+  foreach(RssFile *item, m_children.values()) {
     if(item->type() == RssFile::FEED) {
       RssFeed* feed = dynamic_cast<RssFeed*>(item);
       Q_ASSERT(feed);
@@ -171,25 +171,27 @@ QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
 
 void RssFolder::addFile(RssFile * item) {
   if(item->type() == RssFile::FEED) {
-    Q_ASSERT(!this->contains(((RssFeed*)item)->url()));
-    (*this)[((RssFeed*)item)->url()] = item;
-    qDebug("Added feed %s to folder ./%s", ((RssFeed*)item)->url().toLocal8Bit().data(), m_name.toLocal8Bit().data());
+    RssFeed* feedItem = dynamic_cast<RssFeed*>(item);
+    Q_ASSERT(!m_children.contains(feedItem->url()));
+    m_children[feedItem->url()] = item;
+    qDebug("Added feed %s to folder ./%s", qPrintable(feedItem->url()), qPrintable(m_name));
   } else {
-    Q_ASSERT(!this->contains(((RssFolder*)item)->displayName()));
-    (*this)[((RssFolder*)item)->displayName()] = item;
-    qDebug("Added folder %s to folder ./%s", ((RssFolder*)item)->displayName().toLocal8Bit().data(), m_name.toLocal8Bit().data());
+    RssFolder* folderItem = dynamic_cast<RssFolder*>(item);
+    Q_ASSERT(!m_children.contains(folderItem->displayName()));
+    m_children[folderItem->displayName()] = item;
+    qDebug("Added folder %s to folder ./%s", qPrintable(folderItem->displayName()), qPrintable(m_name));
   }
   // Update parent
   item->setParent(this);
 }
 
 void RssFolder::removeAllItems() {
-  qDeleteAll(values());
-  clear();
+  qDeleteAll(m_children.values());
+  m_children.clear();
 }
 
 void RssFolder::removeAllSettings() {
-  foreach(RssFile* child, values()) {
+  foreach(RssFile* child, m_children.values()) {
     child->removeAllSettings();
   }
 }
@@ -198,6 +200,18 @@ QString RssFolder::id() const {
   return m_name;
 }
 
-bool RssFolder::hasChild(QString ID) {
-  return this->contains(ID);
+bool RssFolder::hasChild(const QString &childId) {
+  return m_children.contains(childId);
+}
+
+void RssFolder::renameChildFolder(const QString &old_name, const QString &new_name)
+{
+  Q_ASSERT(m_children.contains(old_name));
+  RssFile *folder = m_children.take(old_name);
+  m_children[new_name] = folder;
+}
+
+RssFile * RssFolder::takeChild(const QString &childId)
+{
+  return m_children.take(childId);
 }

@@ -50,7 +50,7 @@ public:
   virtual FileType type() const = 0;
   virtual QString displayName() const = 0;
   virtual QString id() const = 0;
-  virtual void setAlias(const QString &new_name) = 0;
+  virtual void rename(const QString &new_name) = 0;
   virtual void markAsRead() = 0;
   virtual RssFolder* parent() const = 0;
   virtual void setParent(RssFolder* parent) = 0;

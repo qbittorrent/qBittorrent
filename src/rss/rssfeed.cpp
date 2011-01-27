@@ -119,7 +119,7 @@ QString RssFeed::title() const{
   return m_title;
 }
 
-void RssFeed::setAlias(const QString &new_name){
+void RssFeed::rename(const QString &new_name){
   qDebug() << "Renaming stream to" << new_name;
   m_alias = new_name;
 }
@@ -245,7 +245,7 @@ bool RssFeed::parseRSS(QIODevice* device) {
       if(xml.name() == "title") {
         m_title = xml.readElementText();
         if(m_alias == url())
-          setAlias(m_title);
+          rename(m_title);
       }
       else if(xml.name() == "image") {
         QString icon_path = xml.attributes().value("url").toString();

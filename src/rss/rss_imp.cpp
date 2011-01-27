@@ -243,7 +243,7 @@ void RSSImp::deleteSelectedItems() {
       // Notify TreeWidget
       listStreams->itemAboutToBeRemoved(item);
       // Actually delete the item
-      rss_item->parent()->removeFile(rss_item->id());
+      rss_item->parent()->removeChild(rss_item->id());
       delete item;
     }
     rssmanager->saveStreamList();
@@ -340,7 +340,7 @@ void RSSImp::renameFiles() {
     newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, listStreams->getRSSItem(item)->displayName(), &ok);
     // Check if name is already taken
     if(ok) {
-      if(rss_item->parent()->contains(newName)) {
+      if(rss_item->parent()->hasChild(newName)) {
         QMessageBox::warning(0, tr("Name already in use"), tr("This name is already used by another item, please choose another one."));
         ok = false;
       }
@@ -349,7 +349,7 @@ void RSSImp::renameFiles() {
     }
   }while(!ok);
   // Rename item
-  rss_item->setAlias(newName);
+  rss_item->rename(newName);
   // Update TreeWidget
   updateItemInfos(item);
 }
