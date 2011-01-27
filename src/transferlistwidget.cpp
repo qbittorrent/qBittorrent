@@ -218,15 +218,8 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   QString dir;
   const QDir saveDir(TorrentPersistentData::getSavePath(hashes.first()));
   qDebug("Old save path is %s", qPrintable(saveDir.absolutePath()));
-  QFileDialog dlg(this, tr("Choose save path"), saveDir.absolutePath());
-  dlg.setConfirmOverwrite(false);
-  dlg.setFileMode(QFileDialog::Directory);
-  dlg.setOption(QFileDialog::ShowDirsOnly, true);
-  dlg.setFilter(QDir::AllDirs);
-  dlg.setAcceptMode(QFileDialog::AcceptSave);
-  dlg.setNameFilterDetailsVisible(false);
-  if(dlg.exec())
-    dir = dlg.selectedFiles().first();
+  dir = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
+                                          QFileDialog::DontConfirmOverwrite|QFileDialog::ShowDirsOnly|QFileDialog::HideNameFilterDetails);
   if(!dir.isNull()) {
     qDebug("New path is %s", qPrintable(dir));
     // Check if savePath exists
