@@ -53,19 +53,19 @@ public:
 
 public slots:
   void loadStreamList();
-  void saveStreamList();
-  void forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
-  void forwardFeedIconChanged(QString url, QString icon_path);
+  void saveStreamList() const;
+  void forwardFeedInfosChanged(const QString &url, const QString &aliasOrUrl, uint nbUnread);
+  void forwardFeedIconChanged(const QString &url, const QString &icon_path);
   void moveFile(RssFile* file, RssFolder* dest_folder);
-  void updateRefreshInterval(unsigned int val);
+  void updateRefreshInterval(uint val);
 
 signals:
-  void feedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread);
-  void feedIconChanged(QString url, QString icon_path);
+  void feedInfosChanged(const QString &url, const QString &display_name, uint nbUnread);
+  void feedIconChanged(const QString &url, const QString &icon_path);
 
 private:
-  QTimer newsRefresher;
-  unsigned int refreshInterval;
+  QTimer m_refreshTimer;
+  uint m_refreshInterval;
   DownloadThread *m_rssDownloader;
 
 };
