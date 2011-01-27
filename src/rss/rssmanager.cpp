@@ -40,9 +40,9 @@ RssManager* RssManager::m_instance = 0;
 
 RssManager::RssManager(): RssFolder() {
   m_rssDownloader = new DownloadThread(this);
-  connect(&newsRefresher, SIGNAL(timeout()), this, SLOT(refresh()));
-  refreshInterval = RssSettings().getRSSRefreshInterval();
-  newsRefresher.start(refreshInterval*60000);
+  connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
+  m_refreshInterval = RssSettings().getRSSRefreshInterval();
+  m_refreshTimer.start(m_refreshInterval*60000);
 }
 
 RssManager::~RssManager(){
@@ -53,11 +53,11 @@ RssManager::~RssManager(){
   qDebug("RSSManager deleted");
 }
 
-void RssManager::updateRefreshInterval(unsigned int val){
-  if(refreshInterval != val) {
-    refreshInterval = val;
-    newsRefresher.start(refreshInterval*60000);
-    qDebug("New RSS refresh interval is now every %dmin", refreshInterval);
+void RssManager::updateRefreshInterval(uint val){
+  if(m_refreshInterval != val) {
+    m_refreshInterval = val;
+    m_refreshTimer.start(m_refreshInterval*60000);
+    qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
   }
 }
 
@@ -94,11 +94,11 @@ void RssManager::loadStreamList() {
   qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
-void RssManager::forwardFeedInfosChanged(QString url, QString aliasOrUrl, unsigned int nbUnread) {
-  emit feedInfosChanged(url, aliasOrUrl, nbUnread);
+void RssManager::forwardFeedInfosChanged(const QString &url, const QString &display_name, uint nbUnread) {
+  emit feedInfosChanged(url, display_name, nbUnread);
 }
 
-void RssManager::forwardFeedIconChanged(QString url, QString icon_path) {
+void RssManager::forwardFeedIconChanged(const QString &url, const QString &icon_path) {
   emit feedIconChanged(url, icon_path);
 }
 
@@ -114,7 +114,7 @@ void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
   }
 }
 
-void RssManager::saveStreamList(){
+void RssManager::saveStreamList() const {
   QStringList streamsUrl;
   QStringList aliases;
   const QList<RssFeed*> streams = getAllFeeds();
