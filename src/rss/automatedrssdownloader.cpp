@@ -468,20 +468,20 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
   QTreeWidgetItem *treeFeedItem = 0;
   for(int i=0; i<ui->treeMatchingArticles->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = ui->treeMatchingArticles->topLevelItem(i);
-    if(item->data(0, Qt::UserRole).toString() == feed->getUrl()) {
+    if(item->data(0, Qt::UserRole).toString() == feed->url()) {
       treeFeedItem = item;
       break;
     }
   }
   // If there is none, create it
   if(!treeFeedItem) {
-    treeFeedItem = new QTreeWidgetItem(QStringList() << feed->getName());
-    treeFeedItem->setToolTip(0, feed->getName());
+    treeFeedItem = new QTreeWidgetItem(QStringList() << feed->displayName());
+    treeFeedItem->setToolTip(0, feed->displayName());
     QFont f = treeFeedItem->font(0);
     f.setBold(true);
     treeFeedItem->setFont(0, f);
     treeFeedItem->setData(0, Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
-    treeFeedItem->setData(0, Qt::UserRole, feed->getUrl());
+    treeFeedItem->setData(0, Qt::UserRole, feed->url());
     ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
   }
   // Insert the articles

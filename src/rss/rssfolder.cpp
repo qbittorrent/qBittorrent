@@ -37,52 +37,24 @@
 #include "rssmanager.h"
 #include "rssfeed.h"
 
-RssFolder::RssFolder(RssFolder *parent, QString name): parent(parent), name(name) {
-  downloader = new DownloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processFinishedDownload(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+RssFolder::RssFolder(RssFolder *parent, QString name): m_parent(parent), m_name(name) {
 }
 
 RssFolder::~RssFolder() {
   qDebug("Deleting a RSS folder, removing elements");
   qDeleteAll(this->values());
-  qDebug("Deleting downloader thread");
-  delete downloader;
-  qDebug("Downloader thread removed");
 }
 
-unsigned int RssFolder::getNbUnRead() const {
+unsigned int RssFolder::unreadCount() const {
   unsigned int nb_unread = 0;
   foreach(RssFile *file, this->values()) {
-    nb_unread += file->getNbUnRead();
+    nb_unread += file->unreadCount();
   }
   return nb_unread;
 }
 
-RssFile::FileType RssFolder::getType() const {
+RssFile::FileType RssFolder::type() const {
   return RssFile::FOLDER;
-}
-
-void RssFolder::refreshAll(){
-  qDebug("Refreshing all rss feeds");
-  const QList<RssFile*> items = this->values();
-  for(int i=0; i<items.size(); ++i) {
-    //foreach(RssFile *item, *this){
-    RssFile *item = items.at(i);
-    if(item->getType() == RssFile::FEED) {
-      RssFeed* stream = (RssFeed*) item;
-      QString url = stream->getUrl();
-      if(stream->isLoading()) return;
-      stream->setLoading(true);
-      downloader->downloadUrl(url);
-      if(!stream->hasCustomIcon()){
-        downloader->downloadUrl(stream->getIconUrl());
-      }
-    } else {
-      RssFolder *folder = (RssFolder*)item;
-      folder->refreshAll();
-    }
-  }
 }
 
 void RssFolder::removeFile(QString ID) {
@@ -106,55 +78,33 @@ RssFolder* RssFolder::addFolder(QString name) {
 
 RssFeed* RssFolder::addStream(QString url) {
   RssFeed* stream = new RssFeed(this, url);
-  Q_ASSERT(!this->contains(stream->getUrl()));
-  (*this)[stream->getUrl()] = stream;
-  refreshStream(stream->getUrl());
+  Q_ASSERT(!this->contains(stream->url()));
+  (*this)[stream->url()] = stream;
+  stream->refresh();
   return stream;
 }
 
 // Refresh All Children
 void RssFolder::refresh() {
   foreach(RssFile *child, this->values()) {
-    // Little optimization child->refresh() would work too
-    if(child->getType() == RssFile::FEED)
-      refreshStream(child->getID());
-    else
       child->refresh();
   }
 }
 
-QList<RssArticle> RssFolder::getNewsList() const {
+QList<RssArticle> RssFolder::articleList() const {
   QList<RssArticle> news;
   foreach(const RssFile *child, this->values()) {
-    news << child->getNewsList();
+    news << child->articleList();
   }
   return news;
 }
 
-QList<RssArticle> RssFolder::getUnreadNewsList() const {
+QList<RssArticle> RssFolder::unreadArticleList() const {
   QList<RssArticle> unread_news;
   foreach(const RssFile *child, this->values()) {
-    unread_news << child->getUnreadNewsList();
+    unread_news << child->unreadArticleList();
   }
   return unread_news;
-}
-
-void RssFolder::refreshStream(QString url) {
-  qDebug("Refreshing feed: %s", url.toLocal8Bit().data());
-  Q_ASSERT(this->contains(url));
-  RssFeed *stream = (RssFeed*)this->value(url);
-  if(stream->isLoading()) {
-    qDebug("Stream %s is already being loaded...", stream->getUrl().toLocal8Bit().data());
-    return;
-  }
-  stream->setLoading(true);
-  qDebug("stream %s : loaded=true", stream->getUrl().toLocal8Bit().data());
-  downloader->downloadUrl(url);
-  if(!stream->hasCustomIcon()){
-    downloader->downloadUrl(stream->getIconUrl());
-  }else{
-    qDebug("No need to download this feed's icon, it was already downloaded");
-  }
 }
 
 QList<RssFile*> RssFolder::getContent() const {
@@ -164,7 +114,7 @@ QList<RssFile*> RssFolder::getContent() const {
 unsigned int RssFolder::getNbFeeds() const {
   unsigned int nbFeeds = 0;
   foreach(RssFile* item, this->values()) {
-    if(item->getType() == RssFile::FOLDER)
+    if(item->type() == RssFile::FOLDER)
       nbFeeds += ((RssFolder*)item)->getNbFeeds();
     else
       nbFeeds += 1;
@@ -172,90 +122,30 @@ unsigned int RssFolder::getNbFeeds() const {
   return nbFeeds;
 }
 
-void RssFolder::processFinishedDownload(QString url, QString path) {
-  if(url.endsWith("favicon.ico")){
-    // Icon downloaded
-    QImage fileIcon;
-    if(fileIcon.load(path)) {
-      QList<RssFeed*> res = findFeedsWithIcon(url);
-      foreach(RssFeed* stream, res){
-        stream->setIconPath(path);
-        if(!stream->isLoading())
-          RssManager::instance()->forwardFeedIconChanged(stream->getUrl(), stream->getIconPath());
-      }
-    }else{
-      qDebug("Unsupported icon format at %s", (const char*)url.toLocal8Bit());
-    }
-    return;
-  }
-  RssFeed *stream = static_cast<RssFeed*>(this->value(url, 0));
-  if(!stream){
-    qDebug("This rss stream was deleted in the meantime, nothing to update");
-    return;
-  }
-  stream->processDownloadedFile(path);
-  stream->setLoading(false);
-  qDebug("stream %s : loaded=false", stream->getUrl().toLocal8Bit().data());
-  // If the feed has no alias, then we use the title as Alias
-  // this is more user friendly
-  if(stream->getName().isEmpty()){
-    if(!stream->getTitle().isEmpty())
-      stream->rename(stream->getTitle());
-  }
-  RssManager::instance()->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
+QString RssFolder::displayName() const {
+  return m_name;
 }
 
-void RssFolder::handleDownloadFailure(QString url, QString reason) {
-  if(url.endsWith("favicon.ico")){
-    // Icon download failure
-    qDebug("Could not download icon at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
-    return;
-  }
-  RssFeed *stream = static_cast<RssFeed*>(this->value(url, 0));
-  if(!stream){
-    qDebug("This rss stream was deleted in the meantime, nothing to update");
-    return;
-  }
-  stream->setLoading(false);
-  qDebug("Could not download Rss at %s, reason: %s", (const char*)url.toLocal8Bit(), (const char*)reason.toLocal8Bit());
-  stream->setDownloadFailed();
-  RssManager::instance()->forwardFeedInfosChanged(url, stream->getName(), stream->getNbUnRead());
-}
-
-QList<RssFeed*> RssFolder::findFeedsWithIcon(QString icon_url) const {
-  QList<RssFeed*> res;
-  RssFile* item;
-  foreach(item, this->values()){
-    if(item->getType() == RssFile::FEED && ((RssFeed*)item)->getIconUrl() == icon_url)
-      res << (RssFeed*)item;
-  }
-  return res;
-}
-
-QString RssFolder::getName() const {
-  return name;
-}
-
-void RssFolder::rename(QString new_name) {
-  Q_ASSERT(!parent->contains(new_name));
-  if(!parent->contains(new_name)) {
+void RssFolder::setAlias(const QString &new_name) {
+  Q_ASSERT(!m_parent->contains(new_name));
+  if(!m_parent->contains(new_name)) {
     // Update parent
-    (*parent)[new_name] = parent->take(name);
+    (*m_parent)[new_name] = m_parent->take(m_name);
     // Actually rename
-    name = new_name;
+    m_name = new_name;
   }
 }
 
-void RssFolder::markAllAsRead() {
+void RssFolder::markAsRead() {
   foreach(RssFile *item, this->values()) {
-    item->markAllAsRead();
+    item->markAsRead();
   }
 }
 
 QList<RssFeed*> RssFolder::getAllFeeds() const {
   QList<RssFeed*> streams;
   foreach(RssFile *item, this->values()) {
-    if(item->getType() == RssFile::FEED) {
+    if(item->type() == RssFile::FEED) {
       streams << static_cast<RssFeed*>(item);
     } else {
       streams << static_cast<RssFolder*>(item)->getAllFeeds();
@@ -267,11 +157,11 @@ QList<RssFeed*> RssFolder::getAllFeeds() const {
 QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
   QHash<QString, RssFeed*> ret;
   foreach(RssFile *item, this->values()) {
-    if(item->getType() == RssFile::FEED) {
+    if(item->type() == RssFile::FEED) {
       RssFeed* feed = dynamic_cast<RssFeed*>(item);
       Q_ASSERT(feed);
-      qDebug() << Q_FUNC_INFO << feed->getUrl();
-      ret[feed->getUrl()] = feed;
+      qDebug() << Q_FUNC_INFO << feed->url();
+      ret[feed->url()] = feed;
     } else {
       ret.unite(static_cast<RssFolder*>(item)->getAllFeedsAsHash());
     }
@@ -280,14 +170,14 @@ QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
 }
 
 void RssFolder::addFile(RssFile * item) {
-  if(item->getType() == RssFile::FEED) {
-    Q_ASSERT(!this->contains(((RssFeed*)item)->getUrl()));
-    (*this)[((RssFeed*)item)->getUrl()] = item;
-    qDebug("Added feed %s to folder ./%s", ((RssFeed*)item)->getUrl().toLocal8Bit().data(), name.toLocal8Bit().data());
+  if(item->type() == RssFile::FEED) {
+    Q_ASSERT(!this->contains(((RssFeed*)item)->url()));
+    (*this)[((RssFeed*)item)->url()] = item;
+    qDebug("Added feed %s to folder ./%s", ((RssFeed*)item)->url().toLocal8Bit().data(), m_name.toLocal8Bit().data());
   } else {
-    Q_ASSERT(!this->contains(((RssFolder*)item)->getName()));
-    (*this)[((RssFolder*)item)->getName()] = item;
-    qDebug("Added folder %s to folder ./%s", ((RssFolder*)item)->getName().toLocal8Bit().data(), name.toLocal8Bit().data());
+    Q_ASSERT(!this->contains(((RssFolder*)item)->displayName()));
+    (*this)[((RssFolder*)item)->displayName()] = item;
+    qDebug("Added folder %s to folder ./%s", ((RssFolder*)item)->displayName().toLocal8Bit().data(), m_name.toLocal8Bit().data());
   }
   // Update parent
   item->setParent(this);
@@ -304,8 +194,8 @@ void RssFolder::removeAllSettings() {
   }
 }
 
-QString RssFolder::getID() const {
-  return name;
+QString RssFolder::id() const {
+  return m_name;
 }
 
 bool RssFolder::hasChild(QString ID) {
