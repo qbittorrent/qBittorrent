@@ -474,7 +474,7 @@ void QTorrentHandle::move_storage(QString new_path) const {
   // or move_storage() will fail...
   QDir().mkpath(new_path);
   // Actually move the storage
-  torrent_handle::move_storage(new_path.toLocal8Bit().constData());
+  torrent_handle::move_storage(new_path.toUtf8().constData());
 }
 
 bool QTorrentHandle::save_torrent_file(QString path) const {
