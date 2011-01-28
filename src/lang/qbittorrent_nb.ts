@@ -458,120 +458,92 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
-        <source>I/O Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
+        <translation type="obsolete">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operasjonen ble avbrutt</translation>
+        <translation type="obsolete">Operasjonen ble avbrutt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
+        <translation type="obsolete">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
+        <translation type="obsolete">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS håndtrykk mislyktes</translation>
+        <translation type="obsolete">SSL/TLS håndtrykk mislyktes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Den eksterne tjeneren nektet tilkoblingen</translation>
+        <translation type="obsolete">Den eksterne tjeneren nektet tilkoblingen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren ble nektet</translation>
+        <translation type="obsolete">Tilkoblingen til mellomtjeneren ble nektet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
+        <translation type="obsolete">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Mellomtjenerens vertsnavn ble ikke funnet</translation>
+        <translation type="obsolete">Mellomtjenerens vertsnavn ble ikke funnet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
+        <translation type="obsolete">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
+        <translation type="obsolete">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
+        <translation type="obsolete">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
+        <translation type="obsolete">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
+        <translation type="obsolete">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
+        <translation type="obsolete">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
+        <translation type="obsolete">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
+        <translation type="obsolete">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">En ukjent nettverksrelatert feil ble oppdaget</translation>
+        <translation type="obsolete">En ukjent nettverksrelatert feil ble oppdaget</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
+        <translation type="obsolete">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
+        <translation type="obsolete">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">En driftstans i protokollen ble oppdaget</translation>
+        <translation type="obsolete">En driftstans i protokollen ble oppdaget</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ukjent feil</translation>
+        <translation type="obsolete">Ukjent feil</translation>
     </message>
 </context>
 <context>
@@ -4532,96 +4504,120 @@ Vennligst installer det manuelt.</translation>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">Inn/ut-operasjonsfeil</translation>
+        <translation type="unfinished">Inn/ut-operasjonsfeil</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
+        <translation type="unfinished">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Operasjonen ble avbrutt</translation>
+        <translation type="unfinished">Operasjonen ble avbrutt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
+        <translation type="unfinished">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
+        <translation type="unfinished">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS håndtrykk mislyktes</translation>
+        <translation type="unfinished">SSL/TLS håndtrykk mislyktes</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Den eksterne tjeneren nektet tilkoblingen</translation>
+        <translation type="unfinished">Den eksterne tjeneren nektet tilkoblingen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Tilkoblingen til mellomtjeneren ble nektet</translation>
+        <translation type="unfinished">Tilkoblingen til mellomtjeneren ble nektet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
+        <translation type="unfinished">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Mellomtjenerens vertsnavn ble ikke funnet</translation>
+        <translation type="unfinished">Mellomtjenerens vertsnavn ble ikke funnet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
+        <translation type="unfinished">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
+        <translation type="unfinished">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
+        <translation type="unfinished">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
+        <translation type="unfinished">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
+        <translation type="unfinished">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
+        <translation type="unfinished">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
+        <translation type="unfinished">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
+        <translation type="unfinished">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">En ukjent nettverksrelatert feil ble oppdaget</translation>
+        <translation type="unfinished">En ukjent nettverksrelatert feil ble oppdaget</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
+        <translation type="unfinished">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
+        <translation type="unfinished">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">En driftstans i protokollen ble oppdaget</translation>
+        <translation type="unfinished">En driftstans i protokollen ble oppdaget</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Ukjent feil</translation>
+        <translation type="unfinished">Ukjent feil</translation>
     </message>
 </context>
 <context>

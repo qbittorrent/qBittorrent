@@ -419,120 +419,96 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Fejl</translation>
+        <translation type="obsolete">I/O Fejl</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Remote hostname blev ikke funder (ugyldigt hostname)</translation>
+        <translation type="obsolete">Remote hostname blev ikke funder (ugyldigt hostname)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Handlingen blev annulleret</translation>
+        <translation type="obsolete">Handlingen blev annulleret</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
+        <translation type="obsolete">Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Forbindelsen til serveren fik time-out</translation>
+        <translation type="obsolete">Forbindelsen til serveren fik time-out</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS handshake mislykkedes</translation>
+        <translation type="obsolete">SSL/TLS handshake mislykkedes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Serveren nægtede at oprette forbindelse</translation>
+        <translation type="obsolete">Serveren nægtede at oprette forbindelse</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
+        <translation type="obsolete">Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Proxy--serveren lukkede forbindelsen for tidligt</translation>
+        <translation type="obsolete">Proxy--serveren lukkede forbindelsen for tidligt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Proxy hostname ikke fundet</translation>
+        <translation type="obsolete">Proxy hostname ikke fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
+        <translation type="obsolete">Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
+        <translation type="obsolete">Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Adgang til indholdet blev nægtet (401)</translation>
+        <translation type="obsolete">Adgang til indholdet blev nægtet (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
+        <translation type="obsolete">Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Indholdet blev ikke fundet på serveren (404)</translation>
+        <translation type="obsolete">Indholdet blev ikke fundet på serveren (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
+        <translation type="obsolete">Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
+        <translation type="obsolete">Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Den anmodede handling er ugyldig for denne protokol</translation>
+        <translation type="obsolete">Den anmodede handling er ugyldig for denne protokol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">En ukendt netværksrelateret fejl blev fundet</translation>
+        <translation type="obsolete">En ukendt netværksrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">En ukendt proxyrelateret fejl blev fundet</translation>
+        <translation type="obsolete">En ukendt proxyrelateret fejl blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">En ukendt fejl relateret til indholdet blev fundet</translation>
+        <translation type="obsolete">En ukendt fejl relateret til indholdet blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Et nedbrud i protokollen blev fundet</translation>
+        <translation type="obsolete">Et nedbrud i protokollen blev fundet</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ukendt fejl</translation>
+        <translation type="obsolete">Ukendt fejl</translation>
     </message>
 </context>
 <context>
@@ -4330,96 +4306,120 @@ Please install it manually.</source>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O Fejl</translation>
+        <translation type="unfinished">I/O Fejl</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Remote hostname blev ikke funder (ugyldigt hostname)</translation>
+        <translation type="unfinished">Remote hostname blev ikke funder (ugyldigt hostname)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Handlingen blev annulleret</translation>
+        <translation type="unfinished">Handlingen blev annulleret</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
+        <translation type="unfinished">Servern lukkede forbindelsen for tidligt, før hele svaret var modtaget og behandlet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Forbindelsen til serveren fik time-out</translation>
+        <translation type="unfinished">Forbindelsen til serveren fik time-out</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS handshake mislykkedes</translation>
+        <translation type="unfinished">SSL/TLS handshake mislykkedes</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Serveren nægtede at oprette forbindelse</translation>
+        <translation type="unfinished">Serveren nægtede at oprette forbindelse</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
+        <translation type="unfinished">Der blev nægtet at oprette forbindelse til proxy-serveren</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Proxy--serveren lukkede forbindelsen for tidligt</translation>
+        <translation type="unfinished">Proxy--serveren lukkede forbindelsen for tidligt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Proxy hostname ikke fundet</translation>
+        <translation type="unfinished">Proxy hostname ikke fundet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
+        <translation type="unfinished">Forbindelsen til proxy fik timeout eller også nåede proxy ikke at svare i tide</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
+        <translation type="unfinished">Denne proxy kræve autenticering for at acceptere anmodningen, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Adgang til indholdet blev nægtet (401)</translation>
+        <translation type="unfinished">Adgang til indholdet blev nægtet (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
+        <translation type="unfinished">Handlingen der bliver efterspurgt på det fjerne indhold er ikke tilladt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Indholdet blev ikke fundet på serveren (404)</translation>
+        <translation type="unfinished">Indholdet blev ikke fundet på serveren (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
+        <translation type="unfinished">Denne server kræve autenticering for at vise indholdet, men tog ikke imod nogen af de credentials den blev tilbudt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
+        <translation type="unfinished">Network Access API kan ikke udføre forespørgslen fordi protokollen ikke kan genkendes</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Den anmodede handling er ugyldig for denne protokol</translation>
+        <translation type="unfinished">Den anmodede handling er ugyldig for denne protokol</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">En ukendt netværksrelateret fejl blev fundet</translation>
+        <translation type="unfinished">En ukendt netværksrelateret fejl blev fundet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">En ukendt proxyrelateret fejl blev fundet</translation>
+        <translation type="unfinished">En ukendt proxyrelateret fejl blev fundet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">En ukendt fejl relateret til indholdet blev fundet</translation>
+        <translation type="unfinished">En ukendt fejl relateret til indholdet blev fundet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Et nedbrud i protokollen blev fundet</translation>
+        <translation type="unfinished">Et nedbrud i protokollen blev fundet</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Ukendt fejl</translation>
+        <translation type="unfinished">Ukendt fejl</translation>
     </message>
 </context>
 <context>

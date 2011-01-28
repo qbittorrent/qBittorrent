@@ -426,120 +426,92 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
-        <source>I/O Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Името на приемащия не бе намерено (невалидно име)</translation>
+        <translation type="obsolete">Името на приемащия не бе намерено (невалидно име)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Действието бе прекъснато</translation>
+        <translation type="obsolete">Действието бе прекъснато</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
+        <translation type="obsolete">Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Връзката с приемащия сървър затвори поради изтичане на времето</translation>
+        <translation type="obsolete">Връзката с приемащия сървър затвори поради изтичане на времето</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">Прекъсване на скачването SSL/TLS</translation>
+        <translation type="obsolete">Прекъсване на скачването SSL/TLS</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Приемащия сървър отхвърли връзката</translation>
+        <translation type="obsolete">Приемащия сървър отхвърли връзката</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Връзката с прокси сървъра бе отхвърлена</translation>
+        <translation type="obsolete">Връзката с прокси сървъра бе отхвърлена</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Прокси сървъра затвори връзката едностранно</translation>
+        <translation type="obsolete">Прокси сървъра затвори връзката едностранно</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Името на приемащия прокси не бе намерено</translation>
+        <translation type="obsolete">Името на приемащия прокси не бе намерено</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
+        <translation type="obsolete">Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation type="obsolete">Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Достъпа бе отхвърлен (401)</translation>
+        <translation type="obsolete">Достъпа бе отхвърлен (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Поисканото действие не е разрешено </translation>
+        <translation type="obsolete">Поисканото действие не е разрешено </translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Поисканото не бе намерено на сървъра (404)</translation>
+        <translation type="obsolete">Поисканото не бе намерено на сървъра (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation type="obsolete">Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
+        <translation type="obsolete">Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Поисканото действие е невалидно за този протокол</translation>
+        <translation type="obsolete">Поисканото действие е невалидно за този протокол</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана с мрежата</translation>
+        <translation type="obsolete">Установена е неизвестна грешка свързана с мрежата</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана с проксито</translation>
+        <translation type="obsolete">Установена е неизвестна грешка свързана с проксито</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана със съдържанието</translation>
+        <translation type="obsolete">Установена е неизвестна грешка свързана със съдържанието</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Установено е прекъсване в протокола</translation>
+        <translation type="obsolete">Установено е прекъсване в протокола</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Неизвестна грешка</translation>
+        <translation type="obsolete">Неизвестна грешка</translation>
     </message>
 </context>
 <context>
@@ -4341,96 +4313,120 @@ Please install it manually.</source>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">В/И Грешка</translation>
+        <translation type="unfinished">В/И Грешка</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Името на приемащия не бе намерено (невалидно име)</translation>
+        <translation type="unfinished">Името на приемащия не бе намерено (невалидно име)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Действието бе прекъснато</translation>
+        <translation type="unfinished">Действието бе прекъснато</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
+        <translation type="unfinished">Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Връзката с приемащия сървър затвори поради изтичане на времето</translation>
+        <translation type="unfinished">Връзката с приемащия сървър затвори поради изтичане на времето</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">Прекъсване на скачването SSL/TLS</translation>
+        <translation type="unfinished">Прекъсване на скачването SSL/TLS</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Приемащия сървър отхвърли връзката</translation>
+        <translation type="unfinished">Приемащия сървър отхвърли връзката</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Връзката с прокси сървъра бе отхвърлена</translation>
+        <translation type="unfinished">Връзката с прокси сървъра бе отхвърлена</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Прокси сървъра затвори връзката едностранно</translation>
+        <translation type="unfinished">Прокси сървъра затвори връзката едностранно</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Името на приемащия прокси не бе намерено</translation>
+        <translation type="unfinished">Името на приемащия прокси не бе намерено</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
+        <translation type="unfinished">Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation type="unfinished">Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Достъпа бе отхвърлен (401)</translation>
+        <translation type="unfinished">Достъпа бе отхвърлен (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Поисканото действие не е разрешено </translation>
+        <translation type="unfinished">Поисканото действие не е разрешено </translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Поисканото не бе намерено на сървъра (404)</translation>
+        <translation type="unfinished">Поисканото не бе намерено на сървъра (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation type="unfinished">Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
+        <translation type="unfinished">Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Поисканото действие е невалидно за този протокол</translation>
+        <translation type="unfinished">Поисканото действие е невалидно за този протокол</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Установена е неизвестна грешка свързана с мрежата</translation>
+        <translation type="unfinished">Установена е неизвестна грешка свързана с мрежата</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Установена е неизвестна грешка свързана с проксито</translation>
+        <translation type="unfinished">Установена е неизвестна грешка свързана с проксито</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Установена е неизвестна грешка свързана със съдържанието</translation>
+        <translation type="unfinished">Установена е неизвестна грешка свързана със съдържанието</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Установено е прекъсване в протокола</translation>
+        <translation type="unfinished">Установено е прекъсване в протокола</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Неизвестна грешка</translation>
+        <translation type="unfinished">Неизвестна грешка</translation>
     </message>
 </context>
 <context>

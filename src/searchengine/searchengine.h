@@ -41,7 +41,7 @@
 #include "searchtab.h"
 #include "supportedengines.h"
 
-class DownloadThread;
+class downloadThread;
 class QTimer;
 class SearchEngine;
 class MainWindow;

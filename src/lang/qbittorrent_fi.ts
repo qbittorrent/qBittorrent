@@ -420,120 +420,96 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O-virhe</translation>
+        <translation type="obsolete">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Kohdekoneen nimeä ei löytynyt (epäkelpo palvelinnimi)</translation>
+        <translation type="obsolete">Kohdekoneen nimeä ei löytynyt (epäkelpo palvelinnimi)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Toiminto peruttiin</translation>
+        <translation type="obsolete">Toiminto peruttiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Vastapää katkaisi yhteyden ennenaikaisesti, ennenkuin vastaus saatiin eheänä ja käsiteltiin</translation>
+        <translation type="obsolete">Vastapää katkaisi yhteyden ennenaikaisesti, ennenkuin vastaus saatiin eheänä ja käsiteltiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Yhteys vastapäähän aikakatkaistiin</translation>
+        <translation type="obsolete">Yhteys vastapäähän aikakatkaistiin</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS-kättely epäonnistui</translation>
+        <translation type="obsolete">SSL/TLS-kättely epäonnistui</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Vastapää ei hyväksynyt yhteyttä</translation>
+        <translation type="obsolete">Vastapää ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Välityspalvelin ei hyväksynyt yhteyttä</translation>
+        <translation type="obsolete">Välityspalvelin ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Välityspalvelin sulki yhteyden ennenaikaisesti</translation>
+        <translation type="obsolete">Välityspalvelin sulki yhteyden ennenaikaisesti</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Välityspalvelimen nimeä ei voitu ratkaista</translation>
+        <translation type="obsolete">Välityspalvelimen nimeä ei voitu ratkaista</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Yhteys välityspalvelimeen aikakatkaistiin tai välityspalvlein ei vastannut ajoissa lähetettyyn pyyntöön</translation>
+        <translation type="obsolete">Yhteys välityspalvelimeen aikakatkaistiin tai välityspalvlein ei vastannut ajoissa lähetettyyn pyyntöön</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Välityspalvelin vaatii autentikoinnin vastatakseen pyyntöön mutta ei hyväksynyt annettuja tietoja</translation>
+        <translation type="obsolete">Välityspalvelin vaatii autentikoinnin vastatakseen pyyntöön mutta ei hyväksynyt annettuja tietoja</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Pääsy sisältöön estettiin (401)</translation>
+        <translation type="obsolete">Pääsy sisältöön estettiin (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Sisältöön pyydetty toiminto ei ole sallittu</translation>
+        <translation type="obsolete">Sisältöön pyydetty toiminto ei ole sallittu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Sisältöä ei löytynyt palvelimelta (404)</translation>
+        <translation type="obsolete">Sisältöä ei löytynyt palvelimelta (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Palvelin vaatii autentikoinnin tarjotakseen sisältöä mutta annettuja tietoja ei hyyväksytty</translation>
+        <translation type="obsolete">Palvelin vaatii autentikoinnin tarjotakseen sisältöä mutta annettuja tietoja ei hyyväksytty</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Verkkoyhteys-API ei palvele koska yhteyskäytäntöä ei tunneta</translation>
+        <translation type="obsolete">Verkkoyhteys-API ei palvele koska yhteyskäytäntöä ei tunneta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Pyydetty toiminto ei käy tällä yhteyskäytännöllä</translation>
+        <translation type="obsolete">Pyydetty toiminto ei käy tällä yhteyskäytännöllä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Tuntematon verkko-ongelma</translation>
+        <translation type="obsolete">Tuntematon verkko-ongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Tuntematon välityspalvelinongelma</translation>
+        <translation type="obsolete">Tuntematon välityspalvelinongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Tuntematon sisältöongelma</translation>
+        <translation type="obsolete">Tuntematon sisältöongelma</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Virhe yhteyskäytännössä</translation>
+        <translation type="obsolete">Virhe yhteyskäytännössä</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Tuntematon virhe</translation>
+        <translation type="obsolete">Tuntematon virhe</translation>
     </message>
 </context>
 <context>
@@ -4339,96 +4315,120 @@ Asenna se itse.</translation>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O-virhe</translation>
+        <translation type="unfinished">I/O-virhe</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Kohdekoneen nimeä ei löytynyt (epäkelpo palvelinnimi)</translation>
+        <translation type="unfinished">Kohdekoneen nimeä ei löytynyt (epäkelpo palvelinnimi)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Toiminto peruttiin</translation>
+        <translation type="unfinished">Toiminto peruttiin</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Vastapää katkaisi yhteyden ennenaikaisesti, ennenkuin vastaus saatiin eheänä ja käsiteltiin</translation>
+        <translation type="unfinished">Vastapää katkaisi yhteyden ennenaikaisesti, ennenkuin vastaus saatiin eheänä ja käsiteltiin</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Yhteys vastapäähän aikakatkaistiin</translation>
+        <translation type="unfinished">Yhteys vastapäähän aikakatkaistiin</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS-kättely epäonnistui</translation>
+        <translation type="unfinished">SSL/TLS-kättely epäonnistui</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Vastapää ei hyväksynyt yhteyttä</translation>
+        <translation type="unfinished">Vastapää ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Välityspalvelin ei hyväksynyt yhteyttä</translation>
+        <translation type="unfinished">Välityspalvelin ei hyväksynyt yhteyttä</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Välityspalvelin sulki yhteyden ennenaikaisesti</translation>
+        <translation type="unfinished">Välityspalvelin sulki yhteyden ennenaikaisesti</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Välityspalvelimen nimeä ei voitu ratkaista</translation>
+        <translation type="unfinished">Välityspalvelimen nimeä ei voitu ratkaista</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Yhteys välityspalvelimeen aikakatkaistiin tai välityspalvlein ei vastannut ajoissa lähetettyyn pyyntöön</translation>
+        <translation type="unfinished">Yhteys välityspalvelimeen aikakatkaistiin tai välityspalvlein ei vastannut ajoissa lähetettyyn pyyntöön</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Välityspalvelin vaatii autentikoinnin vastatakseen pyyntöön mutta ei hyväksynyt annettuja tietoja</translation>
+        <translation type="unfinished">Välityspalvelin vaatii autentikoinnin vastatakseen pyyntöön mutta ei hyväksynyt annettuja tietoja</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Pääsy sisältöön estettiin (401)</translation>
+        <translation type="unfinished">Pääsy sisältöön estettiin (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Sisältöön pyydetty toiminto ei ole sallittu</translation>
+        <translation type="unfinished">Sisältöön pyydetty toiminto ei ole sallittu</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Sisältöä ei löytynyt palvelimelta (404)</translation>
+        <translation type="unfinished">Sisältöä ei löytynyt palvelimelta (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Palvelin vaatii autentikoinnin tarjotakseen sisältöä mutta annettuja tietoja ei hyyväksytty</translation>
+        <translation type="unfinished">Palvelin vaatii autentikoinnin tarjotakseen sisältöä mutta annettuja tietoja ei hyyväksytty</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Verkkoyhteys-API ei palvele koska yhteyskäytäntöä ei tunneta</translation>
+        <translation type="unfinished">Verkkoyhteys-API ei palvele koska yhteyskäytäntöä ei tunneta</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Pyydetty toiminto ei käy tällä yhteyskäytännöllä</translation>
+        <translation type="unfinished">Pyydetty toiminto ei käy tällä yhteyskäytännöllä</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Tuntematon verkko-ongelma</translation>
+        <translation type="unfinished">Tuntematon verkko-ongelma</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Tuntematon välityspalvelinongelma</translation>
+        <translation type="unfinished">Tuntematon välityspalvelinongelma</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Tuntematon sisältöongelma</translation>
+        <translation type="unfinished">Tuntematon sisältöongelma</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Virhe yhteyskäytännössä</translation>
+        <translation type="unfinished">Virhe yhteyskäytännössä</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Tuntematon virhe</translation>
+        <translation type="unfinished">Tuntematon virhe</translation>
     </message>
 </context>
 <context>

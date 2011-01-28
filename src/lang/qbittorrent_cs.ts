@@ -426,120 +426,96 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Chyba I/O</translation>
+        <translation type="obsolete">Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
+        <translation type="obsolete">Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operace byla zrušena</translation>
+        <translation type="obsolete">Operace byla zrušena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
+        <translation type="obsolete">Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Připojení k vzdálenému serveru vypršelo</translation>
+        <translation type="obsolete">Připojení k vzdálenému serveru vypršelo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS handshake selhalo</translation>
+        <translation type="obsolete">SSL/TLS handshake selhalo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Vzdálený server odmítl připojení</translation>
+        <translation type="obsolete">Vzdálený server odmítl připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Připojení k proxy serveru bylo odmítnuto</translation>
+        <translation type="obsolete">Připojení k proxy serveru bylo odmítnuto</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Proxy server předčasně ukončil připojení</translation>
+        <translation type="obsolete">Proxy server předčasně ukončil připojení</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Název proxy serveru nebyl nalezen</translation>
+        <translation type="obsolete">Název proxy serveru nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
+        <translation type="obsolete">Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
+        <translation type="obsolete">Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
+        <translation type="obsolete">Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Požadovaná operace na vzdáleném obsahu není dovolena</translation>
+        <translation type="obsolete">Požadovaná operace na vzdáleném obsahu není dovolena</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Vzdálený obsah nebyl na serveru nalezen (404)</translation>
+        <translation type="obsolete">Vzdálený obsah nebyl na serveru nalezen (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
+        <translation type="obsolete">Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
+        <translation type="obsolete">API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Požadovaná operace není pro tento protokol platná</translation>
+        <translation type="obsolete">Požadovaná operace není pro tento protokol platná</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Byla detekována neznámá chyba sítě</translation>
+        <translation type="obsolete">Byla detekována neznámá chyba sítě</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Byla detekována neznámá chyba související s proxy</translation>
+        <translation type="obsolete">Byla detekována neznámá chyba související s proxy</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
+        <translation type="obsolete">Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Byla detekována chyba v protokolu</translation>
+        <translation type="obsolete">Byla detekována chyba v protokolu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Neznámá chyba</translation>
+        <translation type="obsolete">Neznámá chyba</translation>
     </message>
 </context>
 <context>
@@ -4346,96 +4322,120 @@ Nainstalujte jej prosím ručně.</translation>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">Chyba I/O</translation>
+        <translation type="unfinished">Chyba I/O</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
+        <translation type="unfinished">Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Operace byla zrušena</translation>
+        <translation type="unfinished">Operace byla zrušena</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
+        <translation type="unfinished">Vzdálený server předčasně ukončil připojení, dříve než byla celá odpověď přijata a zpracována</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Připojení k vzdálenému serveru vypršelo</translation>
+        <translation type="unfinished">Připojení k vzdálenému serveru vypršelo</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS handshake selhalo</translation>
+        <translation type="unfinished">SSL/TLS handshake selhalo</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Vzdálený server odmítl připojení</translation>
+        <translation type="unfinished">Vzdálený server odmítl připojení</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Připojení k proxy serveru bylo odmítnuto</translation>
+        <translation type="unfinished">Připojení k proxy serveru bylo odmítnuto</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Proxy server předčasně ukončil připojení</translation>
+        <translation type="unfinished">Proxy server předčasně ukončil připojení</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Název proxy serveru nebyl nalezen</translation>
+        <translation type="unfinished">Název proxy serveru nebyl nalezen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
+        <translation type="unfinished">Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
+        <translation type="unfinished">Proxy vyžaduje ověření, ale neakceptovala žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
+        <translation type="unfinished">Přístup ke vzdálenému obsahu byl odepřen (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Požadovaná operace na vzdáleném obsahu není dovolena</translation>
+        <translation type="unfinished">Požadovaná operace na vzdáleném obsahu není dovolena</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Vzdálený obsah nebyl na serveru nalezen (404)</translation>
+        <translation type="unfinished">Vzdálený obsah nebyl na serveru nalezen (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
+        <translation type="unfinished">Vzdálený server vyžaduje ověření, ale neakceptoval žádné z nabízených přihlašovacích údajů</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
+        <translation type="unfinished">API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Požadovaná operace není pro tento protokol platná</translation>
+        <translation type="unfinished">Požadovaná operace není pro tento protokol platná</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Byla detekována neznámá chyba sítě</translation>
+        <translation type="unfinished">Byla detekována neznámá chyba sítě</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Byla detekována neznámá chyba související s proxy</translation>
+        <translation type="unfinished">Byla detekována neznámá chyba související s proxy</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
+        <translation type="unfinished">Byla detekována neznámá chyba související se vzdáleným obsahem</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Byla detekována chyba v protokolu</translation>
+        <translation type="unfinished">Byla detekována chyba v protokolu</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Neznámá chyba</translation>
+        <translation type="unfinished">Neznámá chyba</translation>
     </message>
 </context>
 <context>

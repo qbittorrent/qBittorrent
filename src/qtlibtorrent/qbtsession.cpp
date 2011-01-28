@@ -135,7 +135,7 @@ QBtSession::QBtSession()
   connect(&resumeDataTimer, SIGNAL(timeout()), this, SLOT(saveTempFastResumeData()));
   resumeDataTimer.start(180000); // 3min
   // To download from urls
-  downloader = new DownloadThread(this);
+  downloader = new downloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
   connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
   appendLabelToSavePath = pref.appendTorrentLabel();

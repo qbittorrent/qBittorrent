@@ -53,7 +53,7 @@
 
 #define MAX_SAMPLES 20
 
-class DownloadThread;
+class downloadThread;
 class QTimer;
 class FilterParserThread;
 class HttpServer;
@@ -224,7 +224,7 @@ private:
   // Ratio
   QPointer<QTimer> BigRatioTimer;
   // HTTP
-  DownloadThread* downloader;
+  downloadThread* downloader;
   // File System
   ScanFoldersModel *m_scanFolders;
   // Console / Log

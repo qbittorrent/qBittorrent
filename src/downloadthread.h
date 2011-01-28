@@ -38,11 +38,11 @@
 
 class QNetworkAccessManager;
 
-class DownloadThread : public QObject {
+class downloadThread : public QObject {
   Q_OBJECT
 
 public:
-  DownloadThread(QObject* parent = 0);
+  downloadThread(QObject* parent = 0);
   QNetworkReply* downloadUrl(const QString &url);
   void downloadTorrentUrl(const QString &url);
   //void setProxy(QString IP, int port, QString username, QString password);

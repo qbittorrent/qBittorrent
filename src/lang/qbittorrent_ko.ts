@@ -419,120 +419,96 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O 에러</translation>
+        <translation type="obsolete">I/O 에러</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
+        <translation type="obsolete">리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">작업 취소됨</translation>
+        <translation type="obsolete">작업 취소됨</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
+        <translation type="obsolete">리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">리모트 서버(Remote Server) 연결 타임아웃</translation>
+        <translation type="obsolete">리모트 서버(Remote Server) 연결 타임아웃</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
+        <translation type="obsolete">SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">리모트 서버(Remote Server) 연결 거부</translation>
+        <translation type="obsolete">리모트 서버(Remote Server) 연결 거부</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">프락시 서버가 연결을 거부하였음</translation>
+        <translation type="obsolete">프락시 서버가 연결을 거부하였음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">프락시 서버 연결을 영구적으로 제한하였음</translation>
+        <translation type="obsolete">프락시 서버 연결을 영구적으로 제한하였음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">프락시 서버 이름을 찾을 수 없음</translation>
+        <translation type="obsolete">프락시 서버 이름을 찾을 수 없음</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
+        <translation type="obsolete">프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="obsolete">요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">리모트 자료(Remote content) 접속이 거부됨(401)</translation>
+        <translation type="obsolete">리모트 자료(Remote content) 접속이 거부됨(401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
+        <translation type="obsolete">리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
+        <translation type="obsolete">리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="obsolete">자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
+        <translation type="obsolete">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
+        <translation type="obsolete">요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">네트웍크 관련 오류가 감지 되었습니다</translation>
+        <translation type="obsolete">네트웍크 관련 오류가 감지 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">프락시 관련 오류가 감지되었습니다</translation>
+        <translation type="obsolete">프락시 관련 오류가 감지되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
+        <translation type="obsolete">리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">프로토콜 파손이 감지 되었습니다</translation>
+        <translation type="obsolete">프로토콜 파손이 감지 되었습니다</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">알수 없는 오류</translation>
+        <translation type="obsolete">알수 없는 오류</translation>
     </message>
 </context>
 <context>
@@ -4334,98 +4310,122 @@ Please install it manually.</source>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O 에러</translation>
+        <translation type="unfinished">I/O 에러</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
+        <translation type="unfinished">리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">작업 취소됨</translation>
+        <translation type="unfinished">작업 취소됨</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
+        <translation type="unfinished">리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">리모트 서버(Remote Server) 연결 타임아웃</translation>
+        <translation type="unfinished">리모트 서버(Remote Server) 연결 타임아웃</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
         <translatorcomment>I don&apos;t know how to translate handshake in korean.</translatorcomment>
-        <translation type="obsolete">SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
+        <translation type="unfinished">SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">리모트 서버(Remote Server) 연결 거부</translation>
+        <translation type="unfinished">리모트 서버(Remote Server) 연결 거부</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">프락시 서버가 연결을 거부하였음</translation>
+        <translation type="unfinished">프락시 서버가 연결을 거부하였음</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">프락시 서버 연결을 영구적으로 제한하였음</translation>
+        <translation type="unfinished">프락시 서버 연결을 영구적으로 제한하였음</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">프락시 서버 이름을 찾을 수 없음</translation>
+        <translation type="unfinished">프락시 서버 이름을 찾을 수 없음</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
+        <translation type="unfinished">프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="unfinished">요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">리모트 자료(Remote content) 접속이 거부됨(401)</translation>
+        <translation type="unfinished">리모트 자료(Remote content) 접속이 거부됨(401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
+        <translation type="unfinished">리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
+        <translation type="unfinished">리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="unfinished">자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
+        <translation type="unfinished">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
+        <translation type="unfinished">요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">네트웍크 관련 오류가 감지 되었습니다</translation>
+        <translation type="unfinished">네트웍크 관련 오류가 감지 되었습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">프락시 관련 오류가 감지되었습니다</translation>
+        <translation type="unfinished">프락시 관련 오류가 감지되었습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
         <translatorcomment>I am not sure what &apos;remote content&apos; means. I translated it as file located in other side.</translatorcomment>
-        <translation type="obsolete">리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
+        <translation type="unfinished">리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">프로토콜 파손이 감지 되었습니다</translation>
+        <translation type="unfinished">프로토콜 파손이 감지 되었습니다</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">알수 없는 오류</translation>
+        <translation type="unfinished">알수 없는 오류</translation>
     </message>
 </context>
 <context>

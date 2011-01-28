@@ -426,120 +426,96 @@ Podeu obtenir aquesta informació de les preferències del seu navegador web.</t
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Error d&apos;Entrada/Sortida</translation>
+        <translation type="obsolete">Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
+        <translation type="obsolete">El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">L&apos;operació va ser cancel-lada</translation>
+        <translation type="obsolete">L&apos;operació va ser cancel-lada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
+        <translation type="obsolete">El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
+        <translation type="obsolete">Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS handshake fallida</translation>
+        <translation type="obsolete">SSL/TLS handshake fallida</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">El servidor remot va rebutjar la connexió</translation>
+        <translation type="obsolete">El servidor remot va rebutjar la connexió</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">La connexió amb el servidor proxy va ser rebutjada</translation>
+        <translation type="obsolete">La connexió amb el servidor proxy va ser rebutjada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Connexió tancada abans de temps pel servidor proxy</translation>
+        <translation type="obsolete">Connexió tancada abans de temps pel servidor proxy</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">El nom host del proxy  no s&apos;ha trobat</translation>
+        <translation type="obsolete">El nom host del proxy  no s&apos;ha trobat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
+        <translation type="obsolete">La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
+        <translation type="obsolete">El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
+        <translation type="obsolete">L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
+        <translation type="obsolete">L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">El contingut remot no es troba al servidor (404)</translation>
+        <translation type="obsolete">El contingut remot no es troba al servidor (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
+        <translation type="obsolete">El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Protocol desconegut</translation>
+        <translation type="obsolete">Protocol desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
+        <translation type="obsolete">L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Error de Xarxa desconegut</translation>
+        <translation type="obsolete">Error de Xarxa desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Error de Proxy desconegut</translation>
+        <translation type="obsolete">Error de Proxy desconegut</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Error desconegut al servidor remot</translation>
+        <translation type="obsolete">Error desconegut al servidor remot</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Error de protocol</translation>
+        <translation type="obsolete">Error de protocol</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Error desconegut</translation>
+        <translation type="obsolete">Error desconegut</translation>
     </message>
 </context>
 <context>
@@ -4346,96 +4322,120 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">Error d&apos;Entrada/Sortida</translation>
+        <translation type="unfinished">Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
+        <translation type="unfinished">El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">L&apos;operació va ser cancel-lada</translation>
+        <translation type="unfinished">L&apos;operació va ser cancel-lada</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
+        <translation type="unfinished">El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
+        <translation type="unfinished">Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS handshake fallida</translation>
+        <translation type="unfinished">SSL/TLS handshake fallida</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">El servidor remot va rebutjar la connexió</translation>
+        <translation type="unfinished">El servidor remot va rebutjar la connexió</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">La connexió amb el servidor proxy va ser rebutjada</translation>
+        <translation type="unfinished">La connexió amb el servidor proxy va ser rebutjada</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Connexió tancada abans de temps pel servidor proxy</translation>
+        <translation type="unfinished">Connexió tancada abans de temps pel servidor proxy</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">El nom host del proxy  no s&apos;ha trobat</translation>
+        <translation type="unfinished">El nom host del proxy  no s&apos;ha trobat</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
+        <translation type="unfinished">La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
+        <translation type="unfinished">El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
+        <translation type="unfinished">L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
+        <translation type="unfinished">L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">El contingut remot no es troba al servidor (404)</translation>
+        <translation type="unfinished">El contingut remot no es troba al servidor (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
+        <translation type="unfinished">El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Protocol desconegut</translation>
+        <translation type="unfinished">Protocol desconegut</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
+        <translation type="unfinished">L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Error de Xarxa desconegut</translation>
+        <translation type="unfinished">Error de Xarxa desconegut</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Error de Proxy desconegut</translation>
+        <translation type="unfinished">Error de Proxy desconegut</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Error desconegut al servidor remot</translation>
+        <translation type="unfinished">Error desconegut al servidor remot</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Error de protocol</translation>
+        <translation type="unfinished">Error de protocol</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Error desconegut</translation>
+        <translation type="unfinished">Error desconegut</translation>
     </message>
 </context>
 <context>

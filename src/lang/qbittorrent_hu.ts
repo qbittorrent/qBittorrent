@@ -426,120 +426,96 @@ Ez megtudható a  böngésző beállításaiból.</translation>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Hiba</translation>
+        <translation type="obsolete">I/O Hiba</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">A távoli hosztnév nem található (érvénytelen hosztnév)</translation>
+        <translation type="obsolete">A távoli hosztnév nem található (érvénytelen hosztnév)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">A művelet megszakítva</translation>
+        <translation type="obsolete">A művelet megszakítva</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">A távoli szerver lezárta a kapcsolatot, a teljes válasz elküldése és feldolgozása előtt</translation>
+        <translation type="obsolete">A távoli szerver lezárta a kapcsolatot, a teljes válasz elküldése és feldolgozása előtt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Időtúllépés a szervehez való kapcsolódás közben</translation>
+        <translation type="obsolete">Időtúllépés a szervehez való kapcsolódás közben</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS kapcsolódás sikertelen</translation>
+        <translation type="obsolete">SSL/TLS kapcsolódás sikertelen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">A szerver visszautasította a kapcsolódást</translation>
+        <translation type="obsolete">A szerver visszautasította a kapcsolódást</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Kapcsolódás a proxy szerverhez sikertelen</translation>
+        <translation type="obsolete">Kapcsolódás a proxy szerverhez sikertelen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">A proxy szerver idő előtt bontotta a kapcsolatot</translation>
+        <translation type="obsolete">A proxy szerver idő előtt bontotta a kapcsolatot</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Proxy szerver név ismeretlen</translation>
+        <translation type="obsolete">Proxy szerver név ismeretlen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
+        <translation type="obsolete">Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation type="obsolete">A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
+        <translation type="obsolete">Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">A kért művelet nem engedélyezett a távoli eszközön</translation>
+        <translation type="obsolete">A kért művelet nem engedélyezett a távoli eszközön</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">A távoli tartalom nem található a szeveren (404)</translation>
+        <translation type="obsolete">A távoli tartalom nem található a szeveren (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation type="obsolete">A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">A Network Access API nem teljesíti a kérést, mivel a protokol ismeretlen</translation>
+        <translation type="obsolete">A Network Access API nem teljesíti a kérést, mivel a protokol ismeretlen</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">A kért művelet ismeretlen ebben a protokollban</translation>
+        <translation type="obsolete">A kért művelet ismeretlen ebben a protokollban</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Ismeretlen hálózati hiba történt</translation>
+        <translation type="obsolete">Ismeretlen hálózati hiba történt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Ismeretlen proxy hiba történt</translation>
+        <translation type="obsolete">Ismeretlen proxy hiba történt</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Ismeretlen hiba a távoli tartalomban</translation>
+        <translation type="obsolete">Ismeretlen hiba a távoli tartalomban</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Hiba a protokollban</translation>
+        <translation type="obsolete">Hiba a protokollban</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ismeretlen hiba</translation>
+        <translation type="obsolete">Ismeretlen hiba</translation>
     </message>
 </context>
 <context>
@@ -4346,96 +4322,120 @@ Kérlek telepítsd manuálisan.</translation>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O Hiba</translation>
+        <translation type="unfinished">I/O Hiba</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">A távoli hosztnév nem található (érvénytelen hosztnév)</translation>
+        <translation type="unfinished">A távoli hosztnév nem található (érvénytelen hosztnév)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">A művelet megszakítva</translation>
+        <translation type="unfinished">A művelet megszakítva</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">A távoli szerver lezárta a kapcsolatot, a teljes válasz elküldése és feldolgozása előtt</translation>
+        <translation type="unfinished">A távoli szerver lezárta a kapcsolatot, a teljes válasz elküldése és feldolgozása előtt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Időtúllépés a szervehez való kapcsolódás közben</translation>
+        <translation type="unfinished">Időtúllépés a szervehez való kapcsolódás közben</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS kapcsolódás sikertelen</translation>
+        <translation type="unfinished">SSL/TLS kapcsolódás sikertelen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">A szerver visszautasította a kapcsolódást</translation>
+        <translation type="unfinished">A szerver visszautasította a kapcsolódást</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Kapcsolódás a proxy szerverhez sikertelen</translation>
+        <translation type="unfinished">Kapcsolódás a proxy szerverhez sikertelen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">A proxy szerver idő előtt bontotta a kapcsolatot</translation>
+        <translation type="unfinished">A proxy szerver idő előtt bontotta a kapcsolatot</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Proxy szerver név ismeretlen</translation>
+        <translation type="unfinished">Proxy szerver név ismeretlen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
+        <translation type="unfinished">Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation type="unfinished">A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
+        <translation type="unfinished">Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">A kért művelet nem engedélyezett a távoli eszközön</translation>
+        <translation type="unfinished">A kért művelet nem engedélyezett a távoli eszközön</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">A távoli tartalom nem található a szeveren (404)</translation>
+        <translation type="unfinished">A távoli tartalom nem található a szeveren (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation type="unfinished">A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">A Network Access API nem teljesíti a kérést, mivel a protokol ismeretlen</translation>
+        <translation type="unfinished">A Network Access API nem teljesíti a kérést, mivel a protokol ismeretlen</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">A kért művelet ismeretlen ebben a protokollban</translation>
+        <translation type="unfinished">A kért művelet ismeretlen ebben a protokollban</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Ismeretlen hálózati hiba történt</translation>
+        <translation type="unfinished">Ismeretlen hálózati hiba történt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Ismeretlen proxy hiba történt</translation>
+        <translation type="unfinished">Ismeretlen proxy hiba történt</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Ismeretlen hiba a távoli tartalomban</translation>
+        <translation type="unfinished">Ismeretlen hiba a távoli tartalomban</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Hiba a protokollban</translation>
+        <translation type="unfinished">Hiba a protokollban</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Ismeretlen hiba</translation>
+        <translation type="unfinished">Ismeretlen hiba</translation>
     </message>
 </context>
 <context>

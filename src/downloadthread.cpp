@@ -44,14 +44,14 @@
 
 /** Download Thread **/
 
-DownloadThread::DownloadThread(QObject* parent) : QObject(parent) {
+downloadThread::downloadThread(QObject* parent) : QObject(parent) {
   connect(&m_networkManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(processDlFinished(QNetworkReply*)));
 #ifndef QT_NO_OPENSSL
   connect(&m_networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
 }
 
-void DownloadThread::processDlFinished(QNetworkReply* reply) {
+void downloadThread::processDlFinished(QNetworkReply* reply) {
   QString url = reply->url().toString();
   qDebug("Download finished: %s", qPrintable(url));
   // Check if the request was successful
@@ -100,7 +100,7 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
 }
 
 #ifndef DISABLE_GUI
-void DownloadThread::loadCookies(const QString &host_name, QString url) {
+void downloadThread::loadCookies(const QString &host_name, QString url) {
   const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(host_name);
   QNetworkCookieJar *cookie_jar = m_networkManager.cookieJar();
   QList<QNetworkCookie> cookies;
@@ -117,13 +117,13 @@ void DownloadThread::loadCookies(const QString &host_name, QString url) {
 }
 #endif
 
-void DownloadThread::downloadTorrentUrl(const QString &url) {
+void downloadThread::downloadTorrentUrl(const QString &url) {
   // Process request
   QNetworkReply *reply = downloadUrl(url);
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
 }
 
-QNetworkReply* DownloadThread::downloadUrl(const QString &url){
+QNetworkReply* downloadThread::downloadUrl(const QString &url){
   // Update proxy settings
   applyProxySettings();
 #ifndef DISABLE_GUI
@@ -148,7 +148,7 @@ QNetworkReply* DownloadThread::downloadUrl(const QString &url){
   return m_networkManager.get(request);
 }
 
-void DownloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) {
+void downloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) {
   QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
   if(!reply) return;
   if(bytesTotal > 0) {
@@ -169,7 +169,7 @@ void DownloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
   }
 }
 
-void DownloadThread::applyProxySettings() {
+void downloadThread::applyProxySettings() {
   QNetworkProxy proxy;
   const Preferences pref;
   if(pref.isProxyEnabled()) {
@@ -197,7 +197,7 @@ void DownloadThread::applyProxySettings() {
   m_networkManager.setProxy(proxy);
 }
 
-QString DownloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
+QString downloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
   switch(status){
   case QNetworkReply::HostNotFoundError:
     return tr("The remote host name was not found (invalid hostname)");
@@ -247,7 +247,7 @@ QString DownloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
 }
 
 #ifndef QT_NO_OPENSSL
-void DownloadThread::ignoreSslErrors(QNetworkReply* reply, const QList<QSslError> &errors) {
+void downloadThread::ignoreSslErrors(QNetworkReply* reply, const QList<QSslError> &errors) {
   Q_UNUSED(errors)
   // Ignore all SSL errors
   reply->ignoreSslErrors();

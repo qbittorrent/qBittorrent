@@ -34,14 +34,14 @@
 #include "ui_engineselect.h"
 #include "supportedengines.h"
 
-class DownloadThread;
+class downloadThread;
 class QDropEvent;
 
 class engineSelectDlg : public QDialog, public Ui::engineSelect{
   Q_OBJECT
 
   private:
-    DownloadThread *downloader;
+    downloadThread *downloader;
     SupportedEngines *supported_engines;
 
   public:

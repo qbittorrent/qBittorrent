@@ -347,95 +347,95 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Fout</translation>
+        <translation type="obsolete">I/O Fout</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
+        <translation type="obsolete">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">De operatie werd geannuleerd</translation>
+        <translation type="obsolete">De operatie werd geannuleerd</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
+        <translation type="obsolete">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">De verbinding naar de remote server timede out</translation>
+        <translation type="obsolete">De verbinding naar de remote server timede out</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/T|S handshake mislukt</translation>
+        <translation type="obsolete">SSL/T|S handshake mislukt</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">De remote server weigerde de verbinding</translation>
+        <translation type="obsolete">De remote server weigerde de verbinding</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">De verbinding naar de proxy server werd geweigerd</translation>
+        <translation type="obsolete">De verbinding naar de proxy server werd geweigerd</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">De proxy server sloot de verbinding permanent</translation>
+        <translation type="obsolete">De proxy server sloot de verbinding permanent</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">De proxy host name werd niet gevonden</translation>
+        <translation type="obsolete">De proxy host name werd niet gevonden</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
+        <translation type="obsolete">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
+        <translation type="obsolete">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">De toegang tot de remote content werd genegeerd (401)</translation>
+        <translation type="obsolete">De toegang tot de remote content werd genegeerd (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">De gevraagde operatie op de remote content is niet toegestaan</translation>
+        <translation type="obsolete">De gevraagde operatie op de remote content is niet toegestaan</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">De remote content werd niet gevonden op de server (404)</translation>
+        <translation type="obsolete">De remote content werd niet gevonden op de server (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
+        <translation type="obsolete">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
+        <translation type="obsolete">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">De verzochte operatie is niet geldig voor dit protocol</translation>
+        <translation type="obsolete">De verzochte operatie is niet geldig voor dit protocol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
+        <translation type="obsolete">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
+        <translation type="obsolete">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
+        <translation type="obsolete">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Een storing in het protocol werd gedetecteerd</translation>
+        <translation type="obsolete">Een storing in het protocol werd gedetecteerd</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Onbekende fout</translation>
+        <translation type="obsolete">Onbekende fout</translation>
     </message>
 </context>
 <context>
@@ -3456,95 +3456,95 @@ Wilt u het nu installeren?</translation>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O Fout</translation>
+        <translation type="unfinished">I/O Fout</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
+        <translation type="unfinished">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="obsolete">De operatie werd geannuleerd</translation>
+        <translation type="unfinished">De operatie werd geannuleerd</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
+        <translation type="unfinished">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">De verbinding naar de remote server timede out</translation>
+        <translation type="unfinished">De verbinding naar de remote server timede out</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/T|S handshake mislukt</translation>
+        <translation type="unfinished">SSL/T|S handshake mislukt</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">De remote server weigerde de verbinding</translation>
+        <translation type="unfinished">De remote server weigerde de verbinding</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">De verbinding naar de proxy server werd geweigerd</translation>
+        <translation type="unfinished">De verbinding naar de proxy server werd geweigerd</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">De proxy server sloot de verbinding permanent</translation>
+        <translation type="unfinished">De proxy server sloot de verbinding permanent</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">De proxy host name werd niet gevonden</translation>
+        <translation type="unfinished">De proxy host name werd niet gevonden</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
+        <translation type="unfinished">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
+        <translation type="unfinished">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">De toegang tot de remote content werd genegeerd (401)</translation>
+        <translation type="unfinished">De toegang tot de remote content werd genegeerd (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">De gevraagde operatie op de remote content is niet toegestaan</translation>
+        <translation type="unfinished">De gevraagde operatie op de remote content is niet toegestaan</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">De remote content werd niet gevonden op de server (404)</translation>
+        <translation type="unfinished">De remote content werd niet gevonden op de server (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
+        <translation type="unfinished">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
+        <translation type="unfinished">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">De verzochte operatie is niet geldig voor dit protocol</translation>
+        <translation type="unfinished">De verzochte operatie is niet geldig voor dit protocol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
+        <translation type="unfinished">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
+        <translation type="unfinished">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
+        <translation type="unfinished">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Een storing in het protocol werd gedetecteerd</translation>
+        <translation type="unfinished">Een storing in het protocol werd gedetecteerd</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="obsolete">Onbekende fout</translation>
+        <translation type="unfinished">Onbekende fout</translation>
     </message>
 </context>
 <context>

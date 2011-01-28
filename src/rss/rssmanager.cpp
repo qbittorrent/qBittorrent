@@ -39,7 +39,7 @@
 RssManager* RssManager::m_instance = 0;
 
 RssManager::RssManager(): RssFolder() {
-  m_rssDownloader = new DownloadThread(this);
+  m_rssDownloader = new downloadThread(this);
   connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
   m_refreshTimer.start(m_refreshInterval*60000);

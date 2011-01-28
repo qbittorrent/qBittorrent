@@ -441,120 +441,92 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
-        <source>I/O Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
+        <translation type="obsolete">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Գործողությունը ընդհատվել է</translation>
+        <translation type="obsolete">Գործողությունը ընդհատվել է</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
+        <translation type="obsolete">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
+        <translation type="obsolete">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS փոխլրացումը ձախողվեց</translation>
+        <translation type="obsolete">SSL/TLS փոխլրացումը ձախողվեց</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
+        <translation type="obsolete">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
+        <translation type="obsolete">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Միջնորդ սպասարկիչը փակել է միացումը</translation>
+        <translation type="obsolete">Միջնորդ սպասարկիչը փակել է միացումը</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Չի գտնվել միջնորդի հոսթի անունը</translation>
+        <translation type="obsolete">Չի գտնվել միջնորդի հոսթի անունը</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
+        <translation type="obsolete">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Միջնորդը պահանջում է ներկայացում</translation>
+        <translation type="obsolete">Միջնորդը պահանջում է ներկայացում</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
+        <translation type="obsolete">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
+        <translation type="obsolete">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
+        <translation type="obsolete">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
+        <translation type="obsolete">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
+        <translation type="obsolete">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
+        <translation type="obsolete">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Անհայտ սխալ</translation>
+        <translation type="obsolete">Անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Միջնորդի անհայտ սխալ</translation>
+        <translation type="obsolete">Միջնորդի անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Հեռադիր բովանդակության անհայտ սխալ</translation>
+        <translation type="obsolete">Հեռադիր բովանդակության անհայտ սխալ</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Անհաջողություն արձանագրությունում</translation>
+        <translation type="obsolete">Անհաջողություն արձանագրությունում</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Անհայտ սխալ</translation>
+        <translation type="obsolete">Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
@@ -4497,96 +4469,120 @@ Please install it manually.</source>
 <context>
     <name>downloadThread</name>
     <message>
+        <location filename="../downloadthread.cpp" line="93"/>
+        <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="obsolete">I/O սխալ</translation>
+        <translation type="unfinished">I/O սխալ</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
+        <translation type="unfinished">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="obsolete">Գործողությունը ընդհատվել է</translation>
+        <translation type="unfinished">Գործողությունը ընդհատվել է</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS փոխլրացումը ձախողվեց</translation>
+        <translation type="unfinished">SSL/TLS փոխլրացումը ձախողվեց</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
+        <translation type="unfinished">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Միջնորդ սպասարկիչը փակել է միացումը</translation>
+        <translation type="unfinished">Միջնորդ սպասարկիչը փակել է միացումը</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="obsolete">Չի գտնվել միջնորդի հոսթի անունը</translation>
+        <translation type="unfinished">Չի գտնվել միջնորդի հոսթի անունը</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
+        <translation type="unfinished">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Միջնորդը պահանջում է ներկայացում</translation>
+        <translation type="unfinished">Միջնորդը պահանջում է ներկայացում</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
+        <translation type="unfinished">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
+        <translation type="unfinished">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
+        <translation type="unfinished">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
+        <translation type="unfinished">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
+        <translation type="unfinished">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
+        <translation type="unfinished">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Անհայտ սխալ</translation>
+        <translation type="unfinished">Անհայտ սխալ</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Միջնորդի անհայտ սխալ</translation>
+        <translation type="unfinished">Միջնորդի անհայտ սխալ</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Հեռադիր բովանդակության անհայտ սխալ</translation>
+        <translation type="unfinished">Հեռադիր բովանդակության անհայտ սխալ</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Անհաջողություն արձանագրությունում</translation>
+        <translation type="unfinished">Անհաջողություն արձանագրությունում</translation>
     </message>
     <message>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="obsolete">Անհայտ սխալ</translation>
+        <translation type="unfinished">Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
