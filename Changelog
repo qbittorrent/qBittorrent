@@ -2,6 +2,7 @@
    - BUGFIX: Make sure the progress is not 100% unless the file is complete
    - BUGFIX: Fix memory leak in HTTP torrent downloader
    - BUGFIX: Use native file dialogs (by Vladimir Golovnev)
+   - BUGFIX: Fix encoding problem in torrent moving code (by Vladimir Golovnev)
    - BUGFIX: Performance improvement on ARM
 
 * Sun Jan 23 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.4
