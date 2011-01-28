@@ -344,6 +344,101 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Názov vzdialeného počítača nebol zistený (neplatný názov)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Operácia bola zrušená</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Čas spojenia so vzdialeným serverom vypršal</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS handshake zlyhal</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Vzdialený server odmietol spojenie</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Spojenie s proxy serverom bolo odmietnuté</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Proxy server predčasne zatvoril spojenie</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Názov proxy servera nebol nájdený</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Vzdialený obsah nebol nájdený na serveri (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, , ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Požadovaná operácia nie je platná pre tento protokol</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa siete</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa proxy</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Bola zistená porucha v protokole</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Neznáma chyba</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>%1/s</source>
@@ -2191,7 +2286,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>Popis nie je dostupný</translation>
+        <translation type="obsolete">Popis nie je dostupný</translation>
     </message>
 </context>
 <context>
@@ -3365,95 +3460,95 @@ Chcete ho nainštalovať teraz?</translation>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>V/V Chyba</translation>
+        <translation type="obsolete">V/V Chyba</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Názov vzdialeného počítača nebol zistený (neplatný názov)</translation>
+        <translation type="obsolete">Názov vzdialeného počítača nebol zistený (neplatný názov)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>Operácia bola zrušená</translation>
+        <translation type="obsolete">Operácia bola zrušená</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
+        <translation type="obsolete">Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Čas spojenia so vzdialeným serverom vypršal</translation>
+        <translation type="obsolete">Čas spojenia so vzdialeným serverom vypršal</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS handshake zlyhal</translation>
+        <translation type="obsolete">SSL/TLS handshake zlyhal</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Vzdialený server odmietol spojenie</translation>
+        <translation type="obsolete">Vzdialený server odmietol spojenie</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Spojenie s proxy serverom bolo odmietnuté</translation>
+        <translation type="obsolete">Spojenie s proxy serverom bolo odmietnuté</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Proxy server predčasne zatvoril spojenie</translation>
+        <translation type="obsolete">Proxy server predčasne zatvoril spojenie</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>Názov proxy servera nebol nájdený</translation>
+        <translation type="obsolete">Názov proxy servera nebol nájdený</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
+        <translation type="obsolete">Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+        <translation type="obsolete">Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
+        <translation type="obsolete">Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
+        <translation type="obsolete">Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Vzdialený obsah nebol nájdený na serveri (404)</translation>
+        <translation type="obsolete">Vzdialený obsah nebol nájdený na serveri (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, , ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+        <translation type="obsolete">Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, , ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
+        <translation type="obsolete">Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Požadovaná operácia nie je platná pre tento protokol</translation>
+        <translation type="obsolete">Požadovaná operácia nie je platná pre tento protokol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Bola zistená neznáma chyba týkajúca sa siete</translation>
+        <translation type="obsolete">Bola zistená neznáma chyba týkajúca sa siete</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Bola zistená neznáma chyba týkajúca sa proxy</translation>
+        <translation type="obsolete">Bola zistená neznáma chyba týkajúca sa proxy</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
+        <translation type="obsolete">Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Bola zistená porucha v protokole</translation>
+        <translation type="obsolete">Bola zistená porucha v protokole</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Neznáma chyba</translation>
+        <translation type="obsolete">Neznáma chyba</translation>
     </message>
 </context>
 <context>

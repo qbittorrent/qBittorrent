@@ -4,6 +4,7 @@
    - BUGFIX: Use native file dialogs (by Vladimir Golovnev)
    - BUGFIX: Fix encoding problem in torrent moving code (by Vladimir Golovnev)
    - BUGFIX: Performance improvement on ARM
+   - I18N: Updated Norwegian translation (Tomaso)
 
 * Sun Jan 23 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.4
    - BUGFIX: Added unicode support to email notification

@@ -344,6 +344,101 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O greška</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Ime udaljenog računala nije nađeno (neispravno ime računala)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Operacija je otkazana</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Udaljeni poslužitelj je prerano prekinuo spajanje, prije nego je primljen i obrađen cijeli odgovor</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Spajanje s udaljenim poslužiteljem je isteklo</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS usklađivanje nije uspjelo</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Udaljeni poslužitelj odbija spajanje</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Spajanje s proxy poslužiteljem je odbijeno</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Proxy server je prerano prekinuo spajanje</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Ime proxy računala nije nađeno</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Spajanje prema proxyju je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Proxy zahtjeva ovjeru kako bi prihvatio zahtjev, ali nije prihvatio ponuđene vjerodajnice</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Pristup udaljenom sadržaju je odbijen (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Tražena operacija nad udaljenim sadržajem nije dopuštena</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Udaljeni sadržaj nije nađen na poslužitelju (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Udaljeni poslužitelj zahtjeva ovjeru kako bi dostavio sadržaj, ali pružene vjerodajnice nisu prihvaćene</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">Network Access API ne može prihvatiti zahtjev jer protokol nije poznat</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Tražena operacija je neispravna za ovaj protokol</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Otkrivena je nepoznata greška vezana za mrežu</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Otkrivena je nepoznata greška vezana za proxy</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Otkrivena je nepoznata greška vezana za udaljeni sadržaj </translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Otkriven je kvar u protokolu</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Nepoznata greška</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>Working</source>
@@ -2190,7 +2285,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>Opis nije dostupan</translation>
+        <translation type="obsolete">Opis nije dostupan</translation>
     </message>
 </context>
 <context>
@@ -3364,95 +3459,95 @@ Do you want to install it now?</source>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>I/O greška</translation>
+        <translation type="obsolete">I/O greška</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Ime udaljenog računala nije nađeno (neispravno ime računala)</translation>
+        <translation type="obsolete">Ime udaljenog računala nije nađeno (neispravno ime računala)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>Operacija je otkazana</translation>
+        <translation type="obsolete">Operacija je otkazana</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Udaljeni poslužitelj je prerano prekinuo spajanje, prije nego je primljen i obrađen cijeli odgovor</translation>
+        <translation type="obsolete">Udaljeni poslužitelj je prerano prekinuo spajanje, prije nego je primljen i obrađen cijeli odgovor</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Spajanje s udaljenim poslužiteljem je isteklo</translation>
+        <translation type="obsolete">Spajanje s udaljenim poslužiteljem je isteklo</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS usklađivanje nije uspjelo</translation>
+        <translation type="obsolete">SSL/TLS usklađivanje nije uspjelo</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Udaljeni poslužitelj odbija spajanje</translation>
+        <translation type="obsolete">Udaljeni poslužitelj odbija spajanje</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Spajanje s proxy poslužiteljem je odbijeno</translation>
+        <translation type="obsolete">Spajanje s proxy poslužiteljem je odbijeno</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Proxy server je prerano prekinuo spajanje</translation>
+        <translation type="obsolete">Proxy server je prerano prekinuo spajanje</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>Ime proxy računala nije nađeno</translation>
+        <translation type="obsolete">Ime proxy računala nije nađeno</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Spajanje prema proxyju je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
+        <translation type="obsolete">Spajanje prema proxyju je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Proxy zahtjeva ovjeru kako bi prihvatio zahtjev, ali nije prihvatio ponuđene vjerodajnice</translation>
+        <translation type="obsolete">Proxy zahtjeva ovjeru kako bi prihvatio zahtjev, ali nije prihvatio ponuđene vjerodajnice</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Pristup udaljenom sadržaju je odbijen (401)</translation>
+        <translation type="obsolete">Pristup udaljenom sadržaju je odbijen (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Tražena operacija nad udaljenim sadržajem nije dopuštena</translation>
+        <translation type="obsolete">Tražena operacija nad udaljenim sadržajem nije dopuštena</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Udaljeni sadržaj nije nađen na poslužitelju (404)</translation>
+        <translation type="obsolete">Udaljeni sadržaj nije nađen na poslužitelju (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Udaljeni poslužitelj zahtjeva ovjeru kako bi dostavio sadržaj, ali pružene vjerodajnice nisu prihvaćene</translation>
+        <translation type="obsolete">Udaljeni poslužitelj zahtjeva ovjeru kako bi dostavio sadržaj, ali pružene vjerodajnice nisu prihvaćene</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Network Access API ne može prihvatiti zahtjev jer protokol nije poznat</translation>
+        <translation type="obsolete">Network Access API ne može prihvatiti zahtjev jer protokol nije poznat</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Tražena operacija je neispravna za ovaj protokol</translation>
+        <translation type="obsolete">Tražena operacija je neispravna za ovaj protokol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Otkrivena je nepoznata greška vezana za mrežu</translation>
+        <translation type="obsolete">Otkrivena je nepoznata greška vezana za mrežu</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Otkrivena je nepoznata greška vezana za proxy</translation>
+        <translation type="obsolete">Otkrivena je nepoznata greška vezana za proxy</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Otkrivena je nepoznata greška vezana za udaljeni sadržaj </translation>
+        <translation type="obsolete">Otkrivena je nepoznata greška vezana za udaljeni sadržaj </translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Otkriven je kvar u protokolu</translation>
+        <translation type="obsolete">Otkriven je kvar u protokolu</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Nepoznata greška</translation>
+        <translation type="obsolete">Nepoznata greška</translation>
     </message>
 </context>
 <context>

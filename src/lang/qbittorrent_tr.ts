@@ -340,6 +340,101 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">Girdi/Çıktı Hatası</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Uzak makina adı bulunamadı (geçersiz makina adı)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">İşlem iptal edildi</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Uzak sunucu, yanıt alınmadan ve işlenmeden bağlantıyı kapattı</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Uzak sunucuya bağlantı zaman aşımına uğradı</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS başarısız</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Uzak sunucu bağlantıyı reddetti</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Vekil sunucuya bağlantı reddedildi</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Vekil sunucu bağlantıyı beklenmeyen şekilde kapattı</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Vekil makina adı bulunamadı</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Vekille olan bağlantı zaman aşımına uğradı ya da vekil gönderilen isteğe zamanında yanıt vermedi</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Vekil, isteği gerçekleştirmek için yetkilendirme gerektiriyor ancak sunulan kimliklerin hiçbirini kabul etmedi</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Uzak içeriğe giriş reddedildi (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Uzak içerikteki işlem isteğine izin verilmedi</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Uzak içerik sunucuda bulunamadı (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Uzak sunucu, içeriğin uygunluğu için yetkilendirme istiyor ancak istenen kimlik kabul edilmedi</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">Ağ Girişi API isteği gerçekleştiremedi çünkü protokol bilinmiyor</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">İstenen işlem bu protokol için geçersiz</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Bilinmeyen ağla ilgili bir hata belirlendi</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Bilinmeyen vekille ilgili bir hata belirlendi</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Bilinmeyen uzak içerikle ilgili bir hata belirlendi</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Protokolde bir hata belirlendi</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Bilinmeyen hata</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>%1/s</source>
@@ -2196,7 +2291,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation type="unfinished">Kullanılır betimleme yok</translation>
+        <translation type="obsolete">Kullanılır betimleme yok</translation>
     </message>
 </context>
 <context>
@@ -3373,95 +3468,95 @@ Do you want to install it now?</source>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>Girdi/Çıktı Hatası</translation>
+        <translation type="obsolete">Girdi/Çıktı Hatası</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Uzak makina adı bulunamadı (geçersiz makina adı)</translation>
+        <translation type="obsolete">Uzak makina adı bulunamadı (geçersiz makina adı)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>İşlem iptal edildi</translation>
+        <translation type="obsolete">İşlem iptal edildi</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Uzak sunucu, yanıt alınmadan ve işlenmeden bağlantıyı kapattı</translation>
+        <translation type="obsolete">Uzak sunucu, yanıt alınmadan ve işlenmeden bağlantıyı kapattı</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Uzak sunucuya bağlantı zaman aşımına uğradı</translation>
+        <translation type="obsolete">Uzak sunucuya bağlantı zaman aşımına uğradı</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS başarısız</translation>
+        <translation type="obsolete">SSL/TLS başarısız</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Uzak sunucu bağlantıyı reddetti</translation>
+        <translation type="obsolete">Uzak sunucu bağlantıyı reddetti</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Vekil sunucuya bağlantı reddedildi</translation>
+        <translation type="obsolete">Vekil sunucuya bağlantı reddedildi</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Vekil sunucu bağlantıyı beklenmeyen şekilde kapattı</translation>
+        <translation type="obsolete">Vekil sunucu bağlantıyı beklenmeyen şekilde kapattı</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>Vekil makina adı bulunamadı</translation>
+        <translation type="obsolete">Vekil makina adı bulunamadı</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Vekille olan bağlantı zaman aşımına uğradı ya da vekil gönderilen isteğe zamanında yanıt vermedi</translation>
+        <translation type="obsolete">Vekille olan bağlantı zaman aşımına uğradı ya da vekil gönderilen isteğe zamanında yanıt vermedi</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Vekil, isteği gerçekleştirmek için yetkilendirme gerektiriyor ancak sunulan kimliklerin hiçbirini kabul etmedi</translation>
+        <translation type="obsolete">Vekil, isteği gerçekleştirmek için yetkilendirme gerektiriyor ancak sunulan kimliklerin hiçbirini kabul etmedi</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Uzak içeriğe giriş reddedildi (401)</translation>
+        <translation type="obsolete">Uzak içeriğe giriş reddedildi (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Uzak içerikteki işlem isteğine izin verilmedi</translation>
+        <translation type="obsolete">Uzak içerikteki işlem isteğine izin verilmedi</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Uzak içerik sunucuda bulunamadı (404)</translation>
+        <translation type="obsolete">Uzak içerik sunucuda bulunamadı (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Uzak sunucu, içeriğin uygunluğu için yetkilendirme istiyor ancak istenen kimlik kabul edilmedi</translation>
+        <translation type="obsolete">Uzak sunucu, içeriğin uygunluğu için yetkilendirme istiyor ancak istenen kimlik kabul edilmedi</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>Ağ Girişi API isteği gerçekleştiremedi çünkü protokol bilinmiyor</translation>
+        <translation type="obsolete">Ağ Girişi API isteği gerçekleştiremedi çünkü protokol bilinmiyor</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>İstenen işlem bu protokol için geçersiz</translation>
+        <translation type="obsolete">İstenen işlem bu protokol için geçersiz</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Bilinmeyen ağla ilgili bir hata belirlendi</translation>
+        <translation type="obsolete">Bilinmeyen ağla ilgili bir hata belirlendi</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Bilinmeyen vekille ilgili bir hata belirlendi</translation>
+        <translation type="obsolete">Bilinmeyen vekille ilgili bir hata belirlendi</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Bilinmeyen uzak içerikle ilgili bir hata belirlendi</translation>
+        <translation type="obsolete">Bilinmeyen uzak içerikle ilgili bir hata belirlendi</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Protokolde bir hata belirlendi</translation>
+        <translation type="obsolete">Protokolde bir hata belirlendi</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Bilinmeyen hata</translation>
+        <translation type="obsolete">Bilinmeyen hata</translation>
     </message>
 </context>
 <context>

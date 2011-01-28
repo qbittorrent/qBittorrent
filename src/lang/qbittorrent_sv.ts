@@ -344,6 +344,101 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Fjärrvärdnamnet hittades inte (ogiltigt värdnamn)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Åtgärden avbröts</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Fjärrservern stängde anslutningen i förtid innan hela svaret togs emot och behandlades</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Anslutningen till fjärrservern översteg tidsgränsen</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS-handskakning misslyckades</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Fjärrservern nekade anslutningen</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Anslutningen till proxyservern nekades</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Proxyservern stängde anslutningen i förtid</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Proxyserverns värdnamn hittades inte</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern på skickad begäran i tid</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Proxyservern kräver autentisering för att kunna ta emot begäran men accepterade inte inloggningsuppgifterna</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Åtkomst till fjärrinnehåll nekades (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Begärd åtgärd för fjärrinnehållet tillåts inte</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Fjärrinnehållet hittades inte på servern (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Fjärrservern kräver autentisering för att servera innehållet men angivna inloggningsuppgifter accepterades inte</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Begärd åtgärd är ogiltig för detta protokoll</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Ett okänt nätverksrelaterat fel upptäcktes</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">En okänt fel relaterat till proxyservern upptäcktes</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Ett haveri i protokollet upptäcktes</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Okänt fel</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>%1/s</source>
@@ -2190,7 +2285,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>Ingen beskrivning tillgänglig</translation>
+        <translation type="obsolete">Ingen beskrivning tillgänglig</translation>
     </message>
 </context>
 <context>
@@ -3364,95 +3459,95 @@ Vill du installera den nu?</translation>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>In/Ut-fel</translation>
+        <translation type="obsolete">In/Ut-fel</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Fjärrvärdnamnet hittades inte (ogiltigt värdnamn)</translation>
+        <translation type="obsolete">Fjärrvärdnamnet hittades inte (ogiltigt värdnamn)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>Åtgärden avbröts</translation>
+        <translation type="obsolete">Åtgärden avbröts</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Fjärrservern stängde anslutningen i förtid innan hela svaret togs emot och behandlades</translation>
+        <translation type="obsolete">Fjärrservern stängde anslutningen i förtid innan hela svaret togs emot och behandlades</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Anslutningen till fjärrservern översteg tidsgränsen</translation>
+        <translation type="obsolete">Anslutningen till fjärrservern översteg tidsgränsen</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>SSL/TLS-handskakning misslyckades</translation>
+        <translation type="obsolete">SSL/TLS-handskakning misslyckades</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Fjärrservern nekade anslutningen</translation>
+        <translation type="obsolete">Fjärrservern nekade anslutningen</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Anslutningen till proxyservern nekades</translation>
+        <translation type="obsolete">Anslutningen till proxyservern nekades</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Proxyservern stängde anslutningen i förtid</translation>
+        <translation type="obsolete">Proxyservern stängde anslutningen i förtid</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>Proxyserverns värdnamn hittades inte</translation>
+        <translation type="obsolete">Proxyserverns värdnamn hittades inte</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern på skickad begäran i tid</translation>
+        <translation type="obsolete">Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern på skickad begäran i tid</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Proxyservern kräver autentisering för att kunna ta emot begäran men accepterade inte inloggningsuppgifterna</translation>
+        <translation type="obsolete">Proxyservern kräver autentisering för att kunna ta emot begäran men accepterade inte inloggningsuppgifterna</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>Åtkomst till fjärrinnehåll nekades (401)</translation>
+        <translation type="obsolete">Åtkomst till fjärrinnehåll nekades (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Begärd åtgärd för fjärrinnehållet tillåts inte</translation>
+        <translation type="obsolete">Begärd åtgärd för fjärrinnehållet tillåts inte</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Fjärrinnehållet hittades inte på servern (404)</translation>
+        <translation type="obsolete">Fjärrinnehållet hittades inte på servern (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Fjärrservern kräver autentisering för att servera innehållet men angivna inloggningsuppgifter accepterades inte</translation>
+        <translation type="obsolete">Fjärrservern kräver autentisering för att servera innehållet men angivna inloggningsuppgifter accepterades inte</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
+        <translation type="obsolete">API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Begärd åtgärd är ogiltig för detta protokoll</translation>
+        <translation type="obsolete">Begärd åtgärd är ogiltig för detta protokoll</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Ett okänt nätverksrelaterat fel upptäcktes</translation>
+        <translation type="obsolete">Ett okänt nätverksrelaterat fel upptäcktes</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>En okänt fel relaterat till proxyservern upptäcktes</translation>
+        <translation type="obsolete">En okänt fel relaterat till proxyservern upptäcktes</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
+        <translation type="obsolete">Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Ett haveri i protokollet upptäcktes</translation>
+        <translation type="obsolete">Ett haveri i protokollet upptäcktes</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Okänt fel</translation>
+        <translation type="obsolete">Okänt fel</translation>
     </message>
 </context>
 <context>

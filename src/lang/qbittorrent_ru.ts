@@ -582,6 +582,101 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
+    <name>DownloadThread</name>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">Ошибка ввода/вывода</translation>
+    </message>
+    <message>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Удаленный хост не был найден (неправильное имя хоста)</translation>
+    </message>
+    <message>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Операция была отменена</translation>
+    </message>
+    <message>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Удаленный сервер закрыл соединение навсегда, прежде чем весь ответ был принят и обработан</translation>
+    </message>
+    <message>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Время соединения с  удаленным сервером вышло</translation>
+    </message>
+    <message>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">Соединение SSL/TLS не удалось</translation>
+    </message>
+    <message>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Удаленный сервер отклонил соединение</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Прокси-сервер отклонил соединение</translation>
+    </message>
+    <message>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Прокси-сервер закрыл соединение навсегда</translation>
+    </message>
+    <message>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">имя прокси-сервера не найдено</translation>
+    </message>
+    <message>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
+    </message>
+    <message>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Прокси-сервер требует аутентификации но не принял указанные учетные данные</translation>
+    </message>
+    <message>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">В доступе к данным было отказано (401)</translation>
+    </message>
+    <message>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">В данной операции над данными отказано</translation>
+    </message>
+    <message>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Данные не были найдены на сервере (404)</translation>
+    </message>
+    <message>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
+    </message>
+    <message>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">API сетевого доступа не может выполнить запрос потому что протокол не известен</translation>
+    </message>
+    <message>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Запрошенная операция не поддерживается данным протоколом</translation>
+    </message>
+    <message>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Неизвестная сетевая ошибка</translation>
+    </message>
+    <message>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Неизвестная ошибка прокси-сервера</translation>
+    </message>
+    <message>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Неизвестная ошибка данных</translation>
+    </message>
+    <message>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Ошибка в протоколе</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation type="unfinished">Неизвестная ошибка</translation>
+    </message>
+</context>
+<context>
     <name>EventManager</name>
     <message>
         <source>%1/s</source>
@@ -3282,7 +3377,7 @@ p, li { white-space: pre-wrap; }
     <name>RssArticle</name>
     <message>
         <source>No description available</source>
-        <translation>Описание недоступно</translation>
+        <translation type="obsolete">Описание недоступно</translation>
     </message>
 </context>
 <context>
@@ -4682,95 +4777,95 @@ Do you want to install it now?</source>
     <name>downloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation>Ошибка ввода/вывода</translation>
+        <translation type="obsolete">Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Удаленный хост не был найден (неправильное имя хоста)</translation>
+        <translation type="obsolete">Удаленный хост не был найден (неправильное имя хоста)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation>Операция была отменена</translation>
+        <translation type="obsolete">Операция была отменена</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Удаленный сервер закрыл соединение навсегда, прежде чем весь ответ был принят и обработан</translation>
+        <translation type="obsolete">Удаленный сервер закрыл соединение навсегда, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Время соединения с  удаленным сервером вышло</translation>
+        <translation type="obsolete">Время соединения с  удаленным сервером вышло</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation>Соединение SSL/TLS не удалось</translation>
+        <translation type="obsolete">Соединение SSL/TLS не удалось</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Удаленный сервер отклонил соединение</translation>
+        <translation type="obsolete">Удаленный сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation>Прокси-сервер отклонил соединение</translation>
+        <translation type="obsolete">Прокси-сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation>Прокси-сервер закрыл соединение навсегда</translation>
+        <translation type="obsolete">Прокси-сервер закрыл соединение навсегда</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation>имя прокси-сервера не найдено</translation>
+        <translation type="obsolete">имя прокси-сервера не найдено</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
+        <translation type="obsolete">Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>Прокси-сервер требует аутентификации но не принял указанные учетные данные</translation>
+        <translation type="obsolete">Прокси-сервер требует аутентификации но не принял указанные учетные данные</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation>В доступе к данным было отказано (401)</translation>
+        <translation type="obsolete">В доступе к данным было отказано (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>В данной операции над данными отказано</translation>
+        <translation type="obsolete">В данной операции над данными отказано</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation>Данные не были найдены на сервере (404)</translation>
+        <translation type="obsolete">Данные не были найдены на сервере (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
+        <translation type="obsolete">Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>API сетевого доступа не может выполнить запрос потому что протокол не известен</translation>
+        <translation type="obsolete">API сетевого доступа не может выполнить запрос потому что протокол не известен</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Запрошенная операция не поддерживается данным протоколом</translation>
+        <translation type="obsolete">Запрошенная операция не поддерживается данным протоколом</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation>Неизвестная сетевая ошибка</translation>
+        <translation type="obsolete">Неизвестная сетевая ошибка</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation>Неизвестная ошибка прокси-сервера</translation>
+        <translation type="obsolete">Неизвестная ошибка прокси-сервера</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation>Неизвестная ошибка данных</translation>
+        <translation type="obsolete">Неизвестная ошибка данных</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation>Ошибка в протоколе</translation>
+        <translation type="obsolete">Ошибка в протоколе</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation>Неизвестная ошибка</translation>
+        <translation type="obsolete">Неизвестная ошибка</translation>
     </message>
 </context>
 <context>
