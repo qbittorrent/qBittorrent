@@ -2155,11 +2155,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation>Наслов чланка</translation>
+        <translation type="obsolete">Наслов чланка</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>Оглашавач URL</translation>
+        <translation type="obsolete">Оглашавач URL</translation>
     </message>
     <message>
         <source>Delete</source>

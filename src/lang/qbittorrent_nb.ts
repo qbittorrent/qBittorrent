@@ -456,97 +456,6 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
     </message>
 </context>
 <context>
-    <name>DownloadThread</name>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="obsolete">Operasjonen ble avbrutt</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS håndtrykk mislyktes</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="obsolete">Den eksterne tjeneren nektet tilkoblingen</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Tilkoblingen til mellomtjeneren ble nektet</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="obsolete">Mellomtjenerens vertsnavn ble ikke funnet</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">En ukjent nettverksrelatert feil ble oppdaget</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">En driftstans i protokollen ble oppdaget</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">Ukjent feil</translation>
-    </message>
-</context>
-<context>
     <name>EventManager</name>
     <message>
         <location filename="../webui/eventmanager.cpp" line="69"/>
@@ -1114,13 +1023,13 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="327"/>
         <source>Execution &amp;Log</source>
-        <translation>Utførelses &amp;Log</translation>
+        <translation>Utførelses &amp;Logg</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <location filename="../mainwindow.cpp" line="1288"/>
         <source>Execution Log</source>
-        <translation>Utførelses Log</translation>
+        <translation>Utførelses Logg</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="252"/>
@@ -2752,8 +2661,8 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="35"/>
-        <location filename="../rss/rss.ui" line="216"/>
-        <location filename="../rss/rss.ui" line="219"/>
+        <location filename="../rss/rss.ui" line="183"/>
+        <location filename="../rss/rss.ui" line="186"/>
         <source>Mark items read</source>
         <translation>Marker ting som er lest</translation>
     </message>
@@ -2776,19 +2685,18 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrenter:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dobbelklikk for å laste ned)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="160"/>
         <source>Article title</source>
-        <translation>Artikkeltittel</translation>
+        <translation type="obsolete">Artikkeltittel</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="208"/>
-        <location filename="../rss/rss.ui" line="211"/>
+        <location filename="../rss/rss.ui" line="175"/>
+        <location filename="../rss/rss.ui" line="178"/>
         <source>Update all feeds</source>
         <translation>Oppdater alle matinger</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="179"/>
-        <location filename="../rss/rss.ui" line="182"/>
+        <location filename="../rss/rss.ui" line="146"/>
+        <location filename="../rss/rss.ui" line="149"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
@@ -2803,53 +2711,52 @@ p, li { white-space: pre-wrap; }
         <translation>Innstillinger...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="165"/>
         <source>Feed URL</source>
-        <translation>Matingsnettadresse</translation>
+        <translation type="obsolete">Matingsnettadresse</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="187"/>
+        <location filename="../rss/rss.ui" line="154"/>
         <source>Rename...</source>
         <translation>Omdøp...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="190"/>
+        <location filename="../rss/rss.ui" line="157"/>
         <source>Rename</source>
         <translation>Omdøp</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="195"/>
-        <location filename="../rss/rss.ui" line="198"/>
+        <location filename="../rss/rss.ui" line="162"/>
+        <location filename="../rss/rss.ui" line="165"/>
         <source>Update</source>
         <translation>Oppdater</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="203"/>
+        <location filename="../rss/rss.ui" line="170"/>
         <source>New subscription...</source>
         <translation>Nytt abonement...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="224"/>
+        <location filename="../rss/rss.ui" line="191"/>
         <source>Download torrent</source>
         <translation>Last ned torrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="229"/>
+        <location filename="../rss/rss.ui" line="196"/>
         <source>Open news URL</source>
         <translation>Åpne nyhets-nettadresse</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="234"/>
+        <location filename="../rss/rss.ui" line="201"/>
         <source>Copy feed URL</source>
         <translation>Kopier matingsnettadresse</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="239"/>
+        <location filename="../rss/rss.ui" line="206"/>
         <source>New folder...</source>
         <translation>Ny mappe...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="244"/>
+        <location filename="../rss/rss.ui" line="211"/>
         <source>Manage cookies...</source>
         <translation>Behandle cookies...</translation>
     </message>
@@ -2862,111 +2769,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Please type a rss stream url</source>
         <translation>Vennligst skriv en nyhetsovervåknings-dataflyt nettadresse</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Stream URL:</source>
         <translation>Dataflyt-nettadresse:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Er du sikker? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;No</source>
         <translation>&amp;Nei</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Please choose a folder name</source>
         <translation>Vennligst velg et mappenavn</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Folder name:</source>
         <translation>Mappenavn:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>New folder</source>
         <translation>Ny mappe</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="161"/>
+        <location filename="../rss/rss_imp.cpp" line="170"/>
         <source>Overwrite attempt</source>
         <translation>Overskrivingsforsøk</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="162"/>
+        <location filename="../rss/rss_imp.cpp" line="171"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Du kan ikke overskrive %1 gjenstanden.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="199"/>
+        <location filename="../rss/rss_imp.cpp" line="208"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="200"/>
+        <location filename="../rss/rss_imp.cpp" line="209"/>
         <source>This rss feed is already in the list.</source>
         <translation>Denne nyhetsovervåkningsmatingen er allerede på listen.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Er du sikker på at du vil slette disse elementene fra listen?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Er du sikker på at du vil slette dette elementet fra listen?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Vennligst velg et nytt navn for denne nyhetsovervåkningsmatingen</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>New feed name:</source>
         <translation>Nytt matingsnavn:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>Name already in use</source>
         <translation>Navn allerede i bruk</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Dette navnet brukes allerede av en annen gjenstand, vennligst velg et annet et.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="497"/>
+        <location filename="../rss/rss_imp.cpp" line="508"/>
         <source>Date: </source>
         <translation>Dato: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="500"/>
+        <location filename="../rss/rss_imp.cpp" line="511"/>
         <source>Author: </source>
         <translation>Opphavsperson: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="543"/>
+        <location filename="../rss/rss_imp.cpp" line="554"/>
         <source>Unread</source>
         <translation>Ulest</translation>
     </message>
@@ -2981,7 +2888,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="291"/>
+        <location filename="../rss/rssfeed.cpp" line="292"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Laster automatisk ned %1 torrent fra %2 nyhetsovervåkningsmating...</translation>
     </message>
@@ -4507,117 +4414,117 @@ Vennligst installer det manuelt.</translation>
         <location filename="../downloadthread.cpp" line="93"/>
         <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Inn/ut-operasjonsfeil</translation>
+        <translation>Inn/ut-operasjonsfeil</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
+        <translation>Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operasjonen ble avbrutt</translation>
+        <translation>Operasjonen ble avbrutt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
+        <translation>Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
+        <translation>Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS håndtrykk mislyktes</translation>
+        <translation>SSL/TLS håndtrykk mislyktes</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Den eksterne tjeneren nektet tilkoblingen</translation>
+        <translation>Den eksterne tjeneren nektet tilkoblingen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren ble nektet</translation>
+        <translation>Tilkoblingen til mellomtjeneren ble nektet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
+        <translation>Mellomtjeneren stengte tilkoblingen for tidlig</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Mellomtjenerens vertsnavn ble ikke funnet</translation>
+        <translation>Mellomtjenerens vertsnavn ble ikke funnet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
+        <translation>Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
+        <translation>Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
+        <translation>Tilgangen til det eksterne innholdet ble nektet (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
+        <translation>Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
+        <translation>Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
+        <translation>Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
+        <translation>Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
+        <translation>Den forespurte operasjonen er ugyldig for denne protokollen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">En ukjent nettverksrelatert feil ble oppdaget</translation>
+        <translation>En ukjent nettverksrelatert feil ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
+        <translation>En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
+        <translation>En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">En driftstans i protokollen ble oppdaget</translation>
+        <translation>En driftstans i protokollen ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ukjent feil</translation>
+        <translation>Ukjent feil</translation>
     </message>
 </context>
 <context>

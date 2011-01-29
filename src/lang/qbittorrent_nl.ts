@@ -2115,7 +2115,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>Feed URL</translation>
+        <translation type="obsolete">Feed URL</translation>
     </message>
     <message>
         <source>Update</source>
@@ -2163,7 +2163,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation>Artikeltitel</translation>
+        <translation type="obsolete">Artikeltitel</translation>
     </message>
     <message>
         <source>Rename...</source>
