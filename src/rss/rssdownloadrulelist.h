@@ -54,7 +54,7 @@ public:
   void saveRule(const RssDownloadRule &rule);
   void removeRule(const QString &name);
   void renameRule(const QString &old_name, const QString &new_name);
-  RssDownloadRule getRule(const QString &name) const;
+  const RssDownloadRule getRule(const QString &name) const;
   inline QStringList ruleNames() const { return m_rules.keys(); }
   inline bool isEmpty() const { return m_rules.isEmpty(); }
   bool serialize(const QString& path);
@@ -67,7 +67,6 @@ private:
   void loadRulesFromVariantHash(const QVariantHash& l);
   QVariantHash toVariantHash() const;
   void saveRulesToStorage();
-  inline QStringList feedRules(const QString &feed_url) const { return m_feedRules[feed_url]; }
 
 private:
   QHash<QString, RssDownloadRule> m_rules;

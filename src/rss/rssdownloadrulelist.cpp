@@ -58,9 +58,9 @@ void RssDownloadRuleList::drop()
 RssDownloadRule RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
 {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
-  QStringList rule_names = feedRules(feed_url);
+  const QStringList rule_names = m_feedRules.value(feed_url);
   foreach(const QString &rule_name, rule_names) {
-    RssDownloadRule rule = m_rules[rule_name];
+    const RssDownloadRule &rule = m_rules[rule_name];
     if(rule.isEnabled() && rule.matches(article_title)) return rule;
   }
   return RssDownloadRule();
@@ -172,9 +172,10 @@ void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new
   saveRulesToStorage();
 }
 
-RssDownloadRule RssDownloadRuleList::getRule(const QString &name) const
+const RssDownloadRule RssDownloadRuleList::getRule(const QString &name) const
 {
-  return m_rules.value(name);
+  Q_ASSERT(m_rules.contains(name));
+  return m_rules[name];
 }
 
 bool RssDownloadRuleList::serialize(const QString& path)
