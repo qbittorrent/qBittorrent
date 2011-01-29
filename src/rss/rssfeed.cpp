@@ -162,7 +162,7 @@ RssArticle& RssFeed::getItem(const QString &id) {
   return m_articles[id];
 }
 
-unsigned int RssFeed::getNbNews() const{
+uint RssFeed::count() const{
   return m_articles.size();
 }
 
@@ -174,7 +174,7 @@ void RssFeed::markAsRead() {
   RssManager::instance()->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
-unsigned int RssFeed::unreadCount() const{
+uint RssFeed::unreadCount() const{
   uint nbUnread=0;
   foreach(const RssArticle &item, m_articles.values()) {
     if(!item.isRead())

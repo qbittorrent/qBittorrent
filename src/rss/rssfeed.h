@@ -60,10 +60,11 @@ public:
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
   RssArticle& getItem(const QString &name);
-  unsigned int getNbNews() const;
+  uint count() const;
   void markAsRead();
-  unsigned int unreadCount() const;
+  uint unreadCount() const;
   QList<RssArticle> articleList() const;
+  const QHash<QString, RssArticle>& articleListNoCopy() const { return m_articles; }
   QList<RssArticle> unreadArticleList() const;
 
 signals:

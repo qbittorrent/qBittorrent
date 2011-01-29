@@ -648,7 +648,7 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
   connect(m_feedList, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
   connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-  connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *, int)), this, SLOT(downloadTorrent()));
+  connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
 
   // Refresh all feeds
   m_rssManager->refresh();
