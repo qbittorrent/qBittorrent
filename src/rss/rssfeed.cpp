@@ -28,6 +28,7 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
+#include <QDebug>
 #include "rssfeed.h"
 #include "rssmanager.h"
 #include "qbtsession.h"
