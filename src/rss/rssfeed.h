@@ -63,12 +63,9 @@ public:
   uint count() const;
   void markAsRead();
   uint unreadCount() const;
-  QList<RssArticle> articleList() const;
+  const QList<RssArticle> articleList() const;
   const QHash<QString, RssArticle>& articleListNoCopy() const { return m_articles; }
-  QList<RssArticle> unreadArticleList() const;
-
-signals:
-  void iconUpdated(const QString &icon);
+  const QList<RssArticle> unreadArticleList() const;
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);

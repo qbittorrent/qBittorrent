@@ -57,8 +57,8 @@ public:
   QString displayName() const;
   QString id() const;
   bool hasChild(const QString &childId);
-  QList<RssArticle> articleList() const;
-  QList<RssArticle> unreadArticleList() const;
+  const QList<RssArticle> articleList() const;
+  const QList<RssArticle> unreadArticleList() const;
   void removeAllSettings();
   void removeAllItems();
   void renameChildFolder(const QString &old_name, const QString &new_name);

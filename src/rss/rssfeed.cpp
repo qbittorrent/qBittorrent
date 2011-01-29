@@ -183,11 +183,11 @@ uint RssFeed::unreadCount() const{
   return nbUnread;
 }
 
-QList<RssArticle> RssFeed::articleList() const{
+const QList<RssArticle> RssFeed::articleList() const{
   return m_articles.values();
 }
 
-QList<RssArticle> RssFeed::unreadArticleList() const {
+const QList<RssArticle> RssFeed::unreadArticleList() const {
   QList<RssArticle> unread_news;
   foreach(const RssArticle &item, m_articles.values()) {
     if(!item.isRead())
@@ -344,7 +344,6 @@ void RssFeed::handleFinishedDownload(const QString& url, const QString &file_pat
     m_icon = file_path;
     qDebug() << "icon path:" << m_icon;
     RssManager::instance()->forwardFeedIconChanged(m_url, m_icon); // XXX: Ugly
-    emit iconUpdated(m_icon);
   }
 }
 

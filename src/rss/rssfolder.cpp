@@ -90,7 +90,7 @@ void RssFolder::refresh() {
   }
 }
 
-QList<RssArticle> RssFolder::articleList() const {
+const QList<RssArticle> RssFolder::articleList() const {
   QList<RssArticle> news;
   foreach(const IRssFile *child, m_children.values()) {
     news << child->articleList();
@@ -98,7 +98,7 @@ QList<RssArticle> RssFolder::articleList() const {
   return news;
 }
 
-QList<RssArticle> RssFolder::unreadArticleList() const {
+const QList<RssArticle> RssFolder::unreadArticleList() const {
   QList<RssArticle> unread_news;
   foreach(const IRssFile *child, m_children.values()) {
     unread_news << child->unreadArticleList();
