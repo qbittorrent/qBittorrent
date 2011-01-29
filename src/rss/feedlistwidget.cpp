@@ -33,54 +33,53 @@
 #include "rssfeed.h"
 #include "iconprovider.h"
 
-FeedListWidget::FeedListWidget(QWidget *parent, RssManager *rssmanager): QTreeWidget(parent), rssmanager(rssmanager) {
+FeedListWidget::FeedListWidget(QWidget *parent, RssManager *rssmanager): QTreeWidget(parent), m_rssManager(rssmanager) {
   setContextMenuPolicy(Qt::CustomContextMenu);
   setDragDropMode(QAbstractItemView::InternalMove);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setColumnCount(1);
   headerItem()->setText(0, tr("RSS feeds"));
-  unread_item = new QTreeWidgetItem(this);
-  unread_item->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount(), 10)+ QString(")"));
-  unread_item->setData(0,Qt::DecorationRole, IconProvider::instance()->getIcon("mail-folder-inbox"));
-  itemAdded(unread_item, rssmanager);
-  connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
-  setCurrentItem(unread_item);
+  m_unreadStickyItem = new QTreeWidgetItem(this);
+  m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount(), 10)+ QString(")"));
+  m_unreadStickyItem->setData(0,Qt::DecorationRole, IconProvider::instance()->getIcon("mail-folder-inbox"));
+  itemAdded(m_unreadStickyItem, rssmanager);
+  connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(updateCurrentFeed(QTreeWidgetItem*)));
+  setCurrentItem(m_unreadStickyItem);
 }
 
 FeedListWidget::~FeedListWidget() {
-  disconnect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(updateCurrentFeed(QTreeWidgetItem*)));
-  delete unread_item;
+  delete m_unreadStickyItem;
 }
 
-void FeedListWidget::itemAdded(QTreeWidgetItem *item, RssFile* file) {
-  mapping[item] = file;
-  if(file->type() == RssFile::FEED) {
-    feeds_items[file->id()] = item;
+void FeedListWidget::itemAdded(QTreeWidgetItem *item, IRssFile* file) {
+  m_rssMapping[item] = file;
+  if(file->type() == IRssFile::FEED) {
+    m_feedsItems[file->id()] = item;
   }
 }
 
 void FeedListWidget::itemAboutToBeRemoved(QTreeWidgetItem *item) {
-  RssFile* file = mapping.take(item);
-  if(file->type() == RssFile::FEED) {
-    feeds_items.remove(file->id());
+  IRssFile* file = m_rssMapping.take(item);
+  if(file->type() == IRssFile::FEED) {
+    m_feedsItems.remove(file->id());
   } else {
     QList<RssFeed*> feeds = ((RssFolder*)file)->getAllFeeds();
     foreach(RssFeed* feed, feeds) {
-      feeds_items.remove(feed->id());
+      m_feedsItems.remove(feed->id());
     }
   }
 }
 
-bool FeedListWidget::hasFeed(QString url) const {
-  return feeds_items.contains(QUrl(url).toString());
+bool FeedListWidget::hasFeed(const QString &url) const {
+  return m_feedsItems.contains(QUrl(url).toString());
 }
 
 QList<QTreeWidgetItem*> FeedListWidget::getAllFeedItems() const {
-  return feeds_items.values();
+  return m_feedsItems.values();
 }
 
-QTreeWidgetItem* FeedListWidget::getUnreadItem() const {
-  return unread_item;
+QTreeWidgetItem* FeedListWidget::stickyUnreadItem() const {
+  return m_unreadStickyItem;
 }
 
 QStringList FeedListWidget::getItemPath(QTreeWidgetItem* item) const {
@@ -106,7 +105,7 @@ QList<QTreeWidgetItem*> FeedListWidget::getAllOpenFolders(QTreeWidgetItem *paren
       item = parent->child(i);
     else
       item = topLevelItem(i);
-    if(getItemType(item) == RssFile::FOLDER && item->isExpanded()) {
+    if(getItemType(item) == IRssFile::FOLDER && item->isExpanded()) {
       QList<QTreeWidgetItem*> open_subfolders = getAllOpenFolders(item);
       if(!open_subfolders.empty()) {
         open_folders << open_subfolders;
@@ -120,10 +119,10 @@ QList<QTreeWidgetItem*> FeedListWidget::getAllOpenFolders(QTreeWidgetItem *paren
 
 QList<QTreeWidgetItem*> FeedListWidget::getAllFeedItems(QTreeWidgetItem* folder) {
   QList<QTreeWidgetItem*> feeds;
-  int nbChildren = folder->childCount();
+  const int nbChildren = folder->childCount();
   for(int i=0; i<nbChildren; ++i) {
     QTreeWidgetItem *item = folder->child(i);
-    if(getItemType(item) == RssFile::FEED) {
+    if(getItemType(item) == IRssFile::FEED) {
       feeds << item;
     } else {
       feeds << getAllFeedItems(item);
@@ -132,50 +131,50 @@ QList<QTreeWidgetItem*> FeedListWidget::getAllFeedItems(QTreeWidgetItem* folder)
   return feeds;
 }
 
-RssFile* FeedListWidget::getRSSItem(QTreeWidgetItem *item) const {
-  return mapping.value(item, 0);
+IRssFile* FeedListWidget::getRSSItem(QTreeWidgetItem *item) const {
+  return m_rssMapping.value(item, 0);
 }
 
-RssFile::FileType FeedListWidget::getItemType(QTreeWidgetItem *item) const {
-  return mapping.value(item)->type();
+IRssFile::FileType FeedListWidget::getItemType(QTreeWidgetItem *item) const {
+  return m_rssMapping.value(item)->type();
 }
 
 QString FeedListWidget::getItemID(QTreeWidgetItem *item) const {
-  return mapping.value(item)->id();
+  return m_rssMapping.value(item)->id();
 }
 
-QTreeWidgetItem* FeedListWidget::getTreeItemFromUrl(QString url) const{
-  return feeds_items.value(url, 0);
+QTreeWidgetItem* FeedListWidget::getTreeItemFromUrl(const QString &url) const{
+  return m_feedsItems.value(url, 0);
 }
 
-RssFeed* FeedListWidget::getRSSItemFromUrl(QString url) const {
-  return (RssFeed*)getRSSItem(getTreeItemFromUrl(url));
+RssFeed* FeedListWidget::getRSSItemFromUrl(const QString &url) const {
+  return dynamic_cast<RssFeed*>(getRSSItem(getTreeItemFromUrl(url)));
 }
 
 QTreeWidgetItem* FeedListWidget::currentItem() const {
-  return current_feed;
+  return m_currentFeed;
 }
 
 QTreeWidgetItem* FeedListWidget::currentFeed() const {
-  return current_feed;
+  return m_currentFeed;
 }
 
 void FeedListWidget::updateCurrentFeed(QTreeWidgetItem* new_item) {
   if(!new_item) return;
-  if(!mapping.contains(new_item)) return;
-  if((getItemType(new_item) == RssFile::FEED) || new_item == unread_item)
-    current_feed = new_item;
+  if(!m_rssMapping.contains(new_item)) return;
+  if((getItemType(new_item) == IRssFile::FEED) || new_item == m_unreadStickyItem)
+    m_currentFeed = new_item;
 }
 
 void FeedListWidget::dragMoveEvent(QDragMoveEvent * event) {
   QTreeWidgetItem *item = itemAt(event->pos());
-  if(item == unread_item) {
+  if(item == m_unreadStickyItem) {
     event->ignore();
   } else {
-    if(item && getItemType(item) != RssFile::FOLDER)
+    if(item && getItemType(item) != IRssFile::FOLDER)
       event->ignore();
     else {
-      if(selectedItems().contains(unread_item)) {
+      if(selectedItems().contains(m_unreadStickyItem)) {
         event->ignore();
       } else {
         QTreeWidget::dragMoveEvent(event);
@@ -193,12 +192,12 @@ void FeedListWidget::dropEvent(QDropEvent *event) {
     dest_folder = (RssFolder*)getRSSItem(dest_folder_item);
     folders_altered << dest_folder_item;
   } else {
-    dest_folder = rssmanager;
+    dest_folder = m_rssManager;
   }
   QList<QTreeWidgetItem *> src_items = selectedItems();
   // Check if there is not going to overwrite another file
   foreach(QTreeWidgetItem *src_item, src_items) {
-    RssFile *file = getRSSItem(src_item);
+    IRssFile *file = getRSSItem(src_item);
     if(dest_folder->hasChild(file->id())) {
       emit overwriteAttempt(file->id());
       return;
@@ -210,8 +209,8 @@ void FeedListWidget::dropEvent(QDropEvent *event) {
     if(parent_folder && !folders_altered.contains(parent_folder))
       folders_altered << parent_folder;
     // Actually move the file
-    RssFile *file = getRSSItem(src_item);
-    rssmanager->moveFile(file, dest_folder);
+    IRssFile *file = getRSSItem(src_item);
+    m_rssManager->moveFile(file, dest_folder);
   }
   QTreeWidget::dropEvent(event);
   if(dest_folder_item)

@@ -79,8 +79,8 @@ RssFeed::~RssFeed(){
     misc::safeRemove(m_icon);
 }
 
-RssFile::FileType RssFeed::type() const {
-  return RssFile::FEED;
+IRssFile::FileType RssFeed::type() const {
+  return IRssFile::FEED;
 }
 
 void RssFeed::refresh() {

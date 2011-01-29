@@ -31,6 +31,7 @@
 #ifndef RSSSETTINGS_H
 #define RSSSETTINGS_H
 
+#include <QStringList>
 #include "qinisettings.h"
 
 class RssSettings: public QIniSettings{

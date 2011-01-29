@@ -56,7 +56,7 @@ public slots:
   void saveStreamList() const;
   void forwardFeedInfosChanged(const QString &url, const QString &aliasOrUrl, uint nbUnread);
   void forwardFeedIconChanged(const QString &url, const QString &icon_path);
-  void moveFile(RssFile* file, RssFolder* dest_folder);
+  void moveFile(IRssFile* file, RssFolder* dest_folder);
   void updateRefreshInterval(uint val);
 
 signals:

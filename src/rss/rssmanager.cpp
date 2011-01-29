@@ -103,7 +103,7 @@ void RssManager::forwardFeedIconChanged(const QString &url, const QString &icon_
   emit feedIconChanged(url, icon_path);
 }
 
-void RssManager::moveFile(RssFile* file, RssFolder* dest_folder) {
+void RssManager::moveFile(IRssFile* file, RssFolder* dest_folder) {
   RssFolder* src_folder = file->parent();
   if(dest_folder != src_folder) {
     // Remove reference in old folder

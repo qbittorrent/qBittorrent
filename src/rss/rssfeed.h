@@ -37,7 +37,7 @@
 
 class RssManager;
 
-class RssFeed: public RssFile {
+class RssFeed: public QObject, public IRssFile {
   Q_OBJECT
 
 public:

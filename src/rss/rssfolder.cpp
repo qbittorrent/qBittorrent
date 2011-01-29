@@ -46,19 +46,19 @@ RssFolder::~RssFolder() {
 
 unsigned int RssFolder::unreadCount() const {
   unsigned int nb_unread = 0;
-  foreach(const RssFile *file, m_children.values()) {
+  foreach(const IRssFile *file, m_children.values()) {
     nb_unread += file->unreadCount();
   }
   return nb_unread;
 }
 
-RssFile::FileType RssFolder::type() const {
-  return RssFile::FOLDER;
+IRssFile::FileType RssFolder::type() const {
+  return IRssFile::FOLDER;
 }
 
 void RssFolder::removeChild(const QString &childId) {
   if(m_children.contains(childId)) {
-    RssFile* child = m_children.take(childId);
+    IRssFile* child = m_children.take(childId);
     child->removeAllSettings();
     delete child;
   }
@@ -85,14 +85,14 @@ RssFeed* RssFolder::addStream(const QString &url) {
 
 // Refresh All Children
 void RssFolder::refresh() {
-  foreach(RssFile *child, m_children.values()) {
+  foreach(IRssFile *child, m_children.values()) {
       child->refresh();
   }
 }
 
 QList<RssArticle> RssFolder::articleList() const {
   QList<RssArticle> news;
-  foreach(const RssFile *child, m_children.values()) {
+  foreach(const IRssFile *child, m_children.values()) {
     news << child->articleList();
   }
   return news;
@@ -100,20 +100,20 @@ QList<RssArticle> RssFolder::articleList() const {
 
 QList<RssArticle> RssFolder::unreadArticleList() const {
   QList<RssArticle> unread_news;
-  foreach(const RssFile *child, m_children.values()) {
+  foreach(const IRssFile *child, m_children.values()) {
     unread_news << child->unreadArticleList();
   }
   return unread_news;
 }
 
-QList<RssFile*> RssFolder::getContent() const {
+QList<IRssFile*> RssFolder::getContent() const {
   return m_children.values();
 }
 
 unsigned int RssFolder::getNbFeeds() const {
   unsigned int nbFeeds = 0;
-  foreach(RssFile* item, m_children.values()) {
-    if(item->type() == RssFile::FOLDER)
+  foreach(IRssFile* item, m_children.values()) {
+    if(item->type() == IRssFile::FOLDER)
       nbFeeds += ((RssFolder*)item)->getNbFeeds();
     else
       nbFeeds += 1;
@@ -137,15 +137,15 @@ void RssFolder::rename(const QString &new_name) {
 }
 
 void RssFolder::markAsRead() {
-  foreach(RssFile *item, m_children.values()) {
+  foreach(IRssFile *item, m_children.values()) {
     item->markAsRead();
   }
 }
 
 QList<RssFeed*> RssFolder::getAllFeeds() const {
   QList<RssFeed*> streams;
-  foreach(RssFile *item, m_children.values()) {
-    if(item->type() == RssFile::FEED) {
+  foreach(IRssFile *item, m_children.values()) {
+    if(item->type() == IRssFile::FEED) {
       streams << static_cast<RssFeed*>(item);
     } else {
       streams << static_cast<RssFolder*>(item)->getAllFeeds();
@@ -156,8 +156,8 @@ QList<RssFeed*> RssFolder::getAllFeeds() const {
 
 QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
   QHash<QString, RssFeed*> ret;
-  foreach(RssFile *item, m_children.values()) {
-    if(item->type() == RssFile::FEED) {
+  foreach(IRssFile *item, m_children.values()) {
+    if(item->type() == IRssFile::FEED) {
       RssFeed* feed = dynamic_cast<RssFeed*>(item);
       Q_ASSERT(feed);
       qDebug() << Q_FUNC_INFO << feed->url();
@@ -169,8 +169,8 @@ QHash<QString, RssFeed*> RssFolder::getAllFeedsAsHash() const {
   return ret;
 }
 
-void RssFolder::addFile(RssFile * item) {
-  if(item->type() == RssFile::FEED) {
+void RssFolder::addFile(IRssFile * item) {
+  if(item->type() == IRssFile::FEED) {
     RssFeed* feedItem = dynamic_cast<RssFeed*>(item);
     Q_ASSERT(!m_children.contains(feedItem->url()));
     m_children[feedItem->url()] = item;
@@ -191,7 +191,7 @@ void RssFolder::removeAllItems() {
 }
 
 void RssFolder::removeAllSettings() {
-  foreach(RssFile* child, m_children.values()) {
+  foreach(IRssFile* child, m_children.values()) {
     child->removeAllSettings();
   }
 }
@@ -207,11 +207,11 @@ bool RssFolder::hasChild(const QString &childId) {
 void RssFolder::renameChildFolder(const QString &old_name, const QString &new_name)
 {
   Q_ASSERT(m_children.contains(old_name));
-  RssFile *folder = m_children.take(old_name);
+  IRssFile *folder = m_children.take(old_name);
   m_children[new_name] = folder;
 }
 
-RssFile * RssFolder::takeChild(const QString &childId)
+IRssFile * RssFolder::takeChild(const QString &childId)
 {
   return m_children.take(childId);
 }

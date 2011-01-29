@@ -25,6 +25,7 @@ SOURCES +=   $$PWD/rss_imp.cpp \
              $$PWD/rssdownloadrule.cpp \
              $$PWD/rssdownloadrulelist.cpp \
              $$PWD/cookiesdlg.cpp \
+    rss/rssfile.cpp
 
 FORMS +=   $$PWD/rss.ui \
            $$PWD/rsssettingsdlg.ui \
