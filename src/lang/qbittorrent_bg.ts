@@ -3648,8 +3648,8 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="35"/>
-        <location filename="../rss/rss.ui" line="216"/>
-        <location filename="../rss/rss.ui" line="219"/>
+        <location filename="../rss/rss.ui" line="183"/>
+        <location filename="../rss/rss.ui" line="186"/>
         <source>Mark items read</source>
         <translation>Четене на маркираните</translation>
     </message>
@@ -3673,28 +3673,27 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">RSS Feed сваляч...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="239"/>
+        <location filename="../rss/rss.ui" line="206"/>
         <source>New folder...</source>
         <translation>Нова папка...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="244"/>
+        <location filename="../rss/rss.ui" line="211"/>
         <source>Manage cookies...</source>
         <translation>Управление на бисквитки...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="165"/>
         <source>Feed URL</source>
-        <translation>URL на канал</translation>
+        <translation type="obsolete">URL на канал</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="187"/>
+        <location filename="../rss/rss.ui" line="154"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="195"/>
-        <location filename="../rss/rss.ui" line="198"/>
+        <location filename="../rss/rss.ui" line="162"/>
+        <location filename="../rss/rss.ui" line="165"/>
         <source>Update</source>
         <translation>Обновяване</translation>
     </message>
@@ -3712,44 +3711,43 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Торенти:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="160"/>
         <source>Article title</source>
-        <translation>Заглавие на статията</translation>
+        <translation type="obsolete">Заглавие на статията</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="203"/>
+        <location filename="../rss/rss.ui" line="170"/>
         <source>New subscription...</source>
         <translation>Нов абонамент...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="208"/>
-        <location filename="../rss/rss.ui" line="211"/>
+        <location filename="../rss/rss.ui" line="175"/>
+        <location filename="../rss/rss.ui" line="178"/>
         <source>Update all feeds</source>
         <translation>Обнови всички канали</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="179"/>
-        <location filename="../rss/rss.ui" line="182"/>
+        <location filename="../rss/rss.ui" line="146"/>
+        <location filename="../rss/rss.ui" line="149"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="190"/>
+        <location filename="../rss/rss.ui" line="157"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="224"/>
+        <location filename="../rss/rss.ui" line="191"/>
         <source>Download torrent</source>
         <translation>Торент сваляне</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="229"/>
+        <location filename="../rss/rss.ui" line="196"/>
         <source>Open news URL</source>
         <translation>Отваря URL за новини</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="234"/>
+        <location filename="../rss/rss.ui" line="201"/>
         <source>Copy feed URL</source>
         <translation>Копира URL на канал</translation>
     </message>
@@ -3762,111 +3760,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Please type a rss stream url</source>
         <translation>Моля въведете url на поток rss</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Stream URL:</source>
         <translation>Поток URL:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Сигурни ли сте? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Please choose a folder name</source>
         <translation>Моля изберете име на папка</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Folder name:</source>
         <translation>Име на папка:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>New folder</source>
         <translation>Нова папка</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="161"/>
+        <location filename="../rss/rss_imp.cpp" line="170"/>
         <source>Overwrite attempt</source>
         <translation>Опит за презаписване</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="162"/>
+        <location filename="../rss/rss_imp.cpp" line="171"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Не можете да презапишете %1.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="199"/>
+        <location filename="../rss/rss_imp.cpp" line="208"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="200"/>
+        <location filename="../rss/rss_imp.cpp" line="209"/>
         <source>This rss feed is already in the list.</source>
         <translation>Този rss канал е вече в списъка.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Сигурни ли сте че искате да изтриете тези елементи от списъка?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Сигурни ли сте че искате да изтриете този елемент от списъка?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Моля изберете ново име за този RSS канал</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>New feed name:</source>
         <translation>Име на нов канал:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>Name already in use</source>
         <translation>Името вече се ползва</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Това име се ползва от друг елемент, моля изберете друго.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="497"/>
+        <location filename="../rss/rss_imp.cpp" line="508"/>
         <source>Date: </source>
         <translation> Дата:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="500"/>
+        <location filename="../rss/rss_imp.cpp" line="511"/>
         <source>Author: </source>
         <translation> Автор:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="543"/>
+        <location filename="../rss/rss_imp.cpp" line="554"/>
         <source>Unread</source>
         <translation>Непрочетен</translation>
     </message>
@@ -3881,7 +3879,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="291"/>
+        <location filename="../rss/rssfeed.cpp" line="292"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Автоматично сваляне на %1 торент от %2 RSS канал...</translation>
     </message>

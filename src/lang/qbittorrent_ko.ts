@@ -3255,8 +3255,8 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="35"/>
-        <location filename="../rss/rss.ui" line="216"/>
-        <location filename="../rss/rss.ui" line="219"/>
+        <location filename="../rss/rss.ui" line="183"/>
+        <location filename="../rss/rss.ui" line="186"/>
         <source>Mark items read</source>
         <translation>읽은 것으로 표시</translation>
     </message>
@@ -3276,28 +3276,27 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="165"/>
         <source>Feed URL</source>
-        <translation>피드 주소(url)</translation>
+        <translation type="obsolete">피드 주소(url)</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="187"/>
+        <location filename="../rss/rss.ui" line="154"/>
         <source>Rename...</source>
         <translation type="unfinished">이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="195"/>
-        <location filename="../rss/rss.ui" line="198"/>
+        <location filename="../rss/rss.ui" line="162"/>
+        <location filename="../rss/rss.ui" line="165"/>
         <source>Update</source>
         <translation>업데이트하기</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="239"/>
+        <location filename="../rss/rss.ui" line="206"/>
         <source>New folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="244"/>
+        <location filename="../rss/rss.ui" line="211"/>
         <source>Manage cookies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3319,44 +3318,43 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;토렌트:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(다운로드하려면 더블 클릭하세요)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="160"/>
         <source>Article title</source>
-        <translation>글 제목</translation>
+        <translation type="obsolete">글 제목</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="203"/>
+        <location filename="../rss/rss.ui" line="170"/>
         <source>New subscription...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="208"/>
-        <location filename="../rss/rss.ui" line="211"/>
+        <location filename="../rss/rss.ui" line="175"/>
+        <location filename="../rss/rss.ui" line="178"/>
         <source>Update all feeds</source>
         <translation>모든 피드 업데이트하기</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="179"/>
-        <location filename="../rss/rss.ui" line="182"/>
+        <location filename="../rss/rss.ui" line="146"/>
+        <location filename="../rss/rss.ui" line="149"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="190"/>
+        <location filename="../rss/rss.ui" line="157"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="224"/>
+        <location filename="../rss/rss.ui" line="191"/>
         <source>Download torrent</source>
         <translation>토렌트 다운로드하기</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="229"/>
+        <location filename="../rss/rss.ui" line="196"/>
         <source>Open news URL</source>
         <translation>새 주소(url) 열기</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="234"/>
+        <location filename="../rss/rss.ui" line="201"/>
         <source>Copy feed URL</source>
         <translation>피드 주소(url) 복사</translation>
     </message>
@@ -3369,111 +3367,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Please type a rss stream url</source>
         <translation>RSS 스트림 주소(url)를 입력하세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="194"/>
+        <location filename="../rss/rss_imp.cpp" line="203"/>
         <source>Stream URL:</source>
         <translation>스트림 URL:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>재확인 해주십시요? -- 큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;Yes</source>
         <translation>&amp;예</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="229"/>
-        <location filename="../rss/rss_imp.cpp" line="233"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>&amp;No</source>
         <translation>&amp;아니요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Please choose a folder name</source>
         <translation>폴더 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>Folder name:</source>
         <translation>폴도 이름:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="140"/>
+        <location filename="../rss/rss_imp.cpp" line="149"/>
         <source>New folder</source>
         <translation>새 폴더</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="161"/>
+        <location filename="../rss/rss_imp.cpp" line="170"/>
         <source>Overwrite attempt</source>
         <translation>덮어쓰기 시도</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="162"/>
+        <location filename="../rss/rss_imp.cpp" line="171"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>%1 아이템은 덮어쓸수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="199"/>
+        <location filename="../rss/rss_imp.cpp" line="208"/>
         <source>qBittorrent</source>
         <translation>큐비토런트</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="200"/>
+        <location filename="../rss/rss_imp.cpp" line="209"/>
         <source>This rss feed is already in the list.</source>
         <translation>이 RSS 피드는 이미 리스트에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="228"/>
+        <location filename="../rss/rss_imp.cpp" line="237"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>이 목록에서 이 자료들을 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="232"/>
+        <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>이 목록에서 이 자료를 지우싶으십니까?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>RSS 피드에 쓸 새 이름을 고르세요</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="340"/>
+        <location filename="../rss/rss_imp.cpp" line="351"/>
         <source>New feed name:</source>
         <translation>새 피드 이름:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>Name already in use</source>
         <translation>이 이름은 이미 사용중에 있음</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="344"/>
+        <location filename="../rss/rss_imp.cpp" line="355"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>이 이름은 이미 다른 아이템이 사용하고 있습니다. 다른 이름을 사용하십시오.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="497"/>
+        <location filename="../rss/rss_imp.cpp" line="508"/>
         <source>Date: </source>
         <translation>날짜: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="500"/>
+        <location filename="../rss/rss_imp.cpp" line="511"/>
         <source>Author: </source>
         <translation>작성자: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="543"/>
+        <location filename="../rss/rss_imp.cpp" line="554"/>
         <source>Unread</source>
         <translation>안 읽음</translation>
     </message>
@@ -3488,7 +3486,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="291"/>
+        <location filename="../rss/rssfeed.cpp" line="292"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished">RSS 피드(%2)에서 자동으로 자료(%1) 다운하기...</translation>
     </message>

@@ -3119,11 +3119,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>Besleme adresi</translation>
+        <translation type="obsolete">Besleme adresi</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation>Yazı başlığı</translation>
+        <translation type="obsolete">Yazı başlığı</translation>
     </message>
     <message>
         <source>Rename...</source>

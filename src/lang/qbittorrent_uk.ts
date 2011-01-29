@@ -3205,11 +3205,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>URL подачі</translation>
+        <translation type="obsolete">URL подачі</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation>Заголовок</translation>
+        <translation type="obsolete">Заголовок</translation>
     </message>
     <message>
         <source>Rename...</source>

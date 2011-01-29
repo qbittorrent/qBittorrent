@@ -3616,11 +3616,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation>Naslov članka</translation>
+        <translation type="obsolete">Naslov članka</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>URL kanala</translation>
+        <translation type="obsolete">URL kanala</translation>
     </message>
     <message>
         <source>Delete</source>

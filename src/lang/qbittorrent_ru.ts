@@ -3253,11 +3253,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>URL канала</translation>
+        <translation type="obsolete">URL канала</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation>Заголовок статьи</translation>
+        <translation type="obsolete">Заголовок статьи</translation>
     </message>
     <message>
         <source>Rename...</source>

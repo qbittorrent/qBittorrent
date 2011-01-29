@@ -3133,7 +3133,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>Adres kanału RSS</translation>
+        <translation type="obsolete">Adres kanału RSS</translation>
     </message>
     <message>
         <source>Update</source>
@@ -3157,7 +3157,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Article title</source>
-        <translation>Tytuł</translation>
+        <translation type="obsolete">Tytuł</translation>
     </message>
     <message>
         <source>Update all feeds</source>
