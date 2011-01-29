@@ -28,35 +28,13 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSFILE_H
-#define RSSFILE_H
+#include "rssfile.h"
+#include "rssfolder.h"
 
-#include <QList>
-#include <QStringList>
-
-class RssArticle;
-class RssFolder;
-
-class IRssFile {
-
-public:
-  enum FileType {FEED, FOLDER};
-
-  virtual ~IRssFile() {}
-
-  virtual uint unreadCount() const = 0;
-  virtual FileType type() const = 0;
-  virtual QString displayName() const = 0;
-  virtual QString id() const = 0;
-  virtual void rename(const QString &new_name) = 0;
-  virtual void markAsRead() = 0;
-  virtual RssFolder* parent() const = 0;
-  virtual void setParent(RssFolder* parent) = 0;
-  virtual void refresh() = 0;
-  virtual void removeAllSettings() = 0;
-  virtual QList<RssArticle> articleList() const = 0;
-  virtual QList<RssArticle> unreadArticleList() const = 0;
-  QStringList pathHierarchy() const;
-};
-
-#endif // RSSFILE_H
+QStringList IRssFile::pathHierarchy() const {
+  QStringList path;
+  if(parent())
+    path << parent()->pathHierarchy();
+  path << id();
+  return path;
+}

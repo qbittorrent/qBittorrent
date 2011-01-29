@@ -38,7 +38,7 @@
 class RssArticle;
 class RssFeed;
 
-class RssFolder: public RssFile {
+class RssFolder: public QObject, public IRssFile {
   Q_OBJECT
 
 public:
@@ -51,7 +51,7 @@ public:
   RssFeed* addStream(const QString &url);
   RssFolder* addFolder(const QString &name);
   unsigned int getNbFeeds() const;
-  QList<RssFile*> getContent() const;
+  QList<IRssFile*> getContent() const;
   QList<RssFeed*> getAllFeeds() const;
   QHash<QString, RssFeed*> getAllFeedsAsHash() const;
   QString displayName() const;
@@ -62,11 +62,11 @@ public:
   void removeAllSettings();
   void removeAllItems();
   void renameChildFolder(const QString &old_name, const QString &new_name);
-  RssFile *takeChild(const QString &childId);
+  IRssFile *takeChild(const QString &childId);
 
 public slots:
   void refresh();
-  void addFile(RssFile * item);
+  void addFile(IRssFile * item);
   void removeChild(const QString &childId);
   void rename(const QString &new_name);
   void markAsRead();
@@ -74,7 +74,7 @@ public slots:
 private:
   RssFolder *m_parent;
   QString m_name;
-  QHash<QString, RssFile*> m_children;
+  QHash<QString, IRssFile*> m_children;
 };
 
 #endif // RSSFOLDER_H

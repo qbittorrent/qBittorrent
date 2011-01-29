@@ -41,7 +41,7 @@ class QTreeWidgetItem;
 class RssFolder;
 class RssManager;
 
-class RSSImp : public QWidget, public Ui::RSS{
+class RSSImp : public QWidget, public Ui::RSS {
   Q_OBJECT
 
 public:
@@ -50,9 +50,9 @@ public:
 
 public slots:
   void deleteSelectedItems();
-  void updateRefreshInterval(unsigned int val);
+  void updateRefreshInterval(uint val);
 
-protected slots:
+private slots:
   void on_newFeedButton_clicked();
   void on_updateAllButton_clicked();
   void on_markReadButton_clicked();
@@ -61,11 +61,11 @@ protected slots:
   void renameFiles();
   void refreshSelectedItems();
   void copySelectedFeedsURL();
-  void refreshNewsList(QTreeWidgetItem* item);
+  void refreshArticleList(QTreeWidgetItem* item);
   void refreshTextBrowser();
-  void updateFeedIcon(QString url, QString icon_path);
-  void updateFeedInfos(QString url, QString display_name, unsigned int nbUnread);
-  void updateItemsInfos(QList<QTreeWidgetItem*> items);
+  void updateFeedIcon(const QString &url, const QString &icon_path);
+  void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
+  void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
   void updateItemInfos(QTreeWidgetItem *item);
   void openNewsUrl();
   void downloadTorrent();
@@ -75,16 +75,14 @@ protected slots:
   void askNewFolder();
   void saveFoldersOpenState();
   void loadFoldersOpenState();
-  void displayOverwriteError(QString filename);
+  void displayOverwriteError(const QString &filename);
   void on_actionManage_cookies_triggered();
   void on_settingsButton_clicked();
-
-private slots:
   void on_rssDownloaderBtn_clicked();
 
 private:
-  RssManager *rssmanager;
-  FeedListWidget *listStreams;
+  RssManager *m_rssManager;
+  FeedListWidget *m_feedList;
   QListWidgetItem* m_currentArticle;
 
 };
