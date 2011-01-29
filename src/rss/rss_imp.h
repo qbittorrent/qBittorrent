@@ -85,7 +85,7 @@ private slots:
 private:
   RssManager *rssmanager;
   FeedListWidget *listStreams;
-  QTreeWidgetItem* previous_news;
+  QListWidgetItem* m_currentArticle;
 
 };
 

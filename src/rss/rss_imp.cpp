@@ -51,7 +51,15 @@
 #include "automatedrssdownloader.h"
 #include "iconprovider.h"
 
-enum NewsCols { NEWS_ICON, NEWS_TITLE_COL, NEWS_URL_COL, NEWS_ID };
+namespace Article {
+enum ArticleRoles {
+  TitleRole = Qt::DisplayRole,
+  IconRole = Qt::DecorationRole,
+  ColorRole = Qt::ForegroundRole,
+  IdRole = Qt::UserRole + 1,
+  FeedUrlRole = Qt::UserRole + 2
+};
+}
 
 // display a right-click menu
 void RSSImp::displayRSSListMenu(const QPoint& pos){
@@ -93,13 +101,14 @@ void RSSImp::displayRSSListMenu(const QPoint& pos){
 
 void RSSImp::displayItemsListMenu(const QPoint&){
   QMenu myItemListMenu(this);
-  QList<QTreeWidgetItem*> selectedItems = listNews->selectedItems();
+  QList<QListWidgetItem*> selectedItems = listArticles->selectedItems();
   if(selectedItems.size() > 0) {
     bool has_attachment = false;
-    foreach(QTreeWidgetItem *item, selectedItems) {
-      qDebug("text(3) URL: %s", qPrintable(item->text(NEWS_URL_COL)));
-      qDebug("text(2) TITLE: %s", qPrintable(item->text(NEWS_TITLE_COL)));
-      if(listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID)).hasAttachment()) {
+    foreach(const QListWidgetItem *item, selectedItems) {
+      qDebug("text(3) URL: %s", qPrintable(item->data(Article::FeedUrlRole).toString()));
+      qDebug("text(2) TITLE: %s", qPrintable(item->data(Article::TitleRole).toString()));
+      if(listStreams->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
+          ->getItem(item->data(Article::IdRole).toString()).hasAttachment()) {
         has_attachment = true;
         break;
       }
@@ -236,8 +245,8 @@ void RSSImp::deleteSelectedItems() {
     foreach(QTreeWidgetItem *item, selectedItems){
       if(listStreams->currentFeed() == item){
         textBrowser->clear();
-        previous_news = 0;
-        listNews->clear();
+        m_currentArticle = 0;
+        listArticles->clear();
       }
       RssFile *rss_item = listStreams->getRSSItem(item);
       // Notify TreeWidget
@@ -306,9 +315,10 @@ void RSSImp::on_updateAllButton_clicked() {
 }
 
 void RSSImp::downloadTorrent() {
-  QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
-  foreach(const QTreeWidgetItem* item, selected_items) {
-    const RssArticle article =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
+  QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
+  foreach(const QListWidgetItem* item, selected_items) {
+    const RssArticle article =  listStreams->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
+        ->getItem(item->data(Article::IdRole).toString());
     if(article.hasAttachment()) {
       QBtSession::instance()->downloadFromUrl(article.torrentUrl());
     } else {
@@ -319,9 +329,10 @@ void RSSImp::downloadTorrent() {
 
 // open the url of the news in a browser
 void RSSImp::openNewsUrl() {
-  QList<QTreeWidgetItem *> selected_items = listNews->selectedItems();
-  foreach(const QTreeWidgetItem* item, selected_items) {
-    const RssArticle news =  listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL))->getItem(item->text(NEWS_ID));
+  QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
+  foreach(const QListWidgetItem* item, selected_items) {
+    const RssArticle news =  listStreams->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
+        ->getItem(item->data(Article::IdRole).toString());
     const QString link = news.link();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
@@ -434,7 +445,7 @@ void RSSImp::fillFeedsList(QTreeWidgetItem *parent, RssFolder *rss_parent) {
 // fills the newsList
 void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
   if(!item) {
-    listNews->clear();
+    listArticles->clear();
     return;
   }
 
@@ -449,20 +460,20 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
     news = RssManager::sortNewsList(rss_item->articleList());
   // Clear the list first
   textBrowser->clear();
-  previous_news = 0;
-  listNews->clear();
+  m_currentArticle = 0;
+  listArticles->clear();
   qDebug("Got the list of news");
   foreach(const RssArticle &article, news){
-    QTreeWidgetItem* it = new QTreeWidgetItem(listNews);
-    it->setText(NEWS_TITLE_COL, article.title());
-    it->setText(NEWS_URL_COL, article.parent()->url());
-    it->setText(NEWS_ID, article.guid());
+    QListWidgetItem* it = new QListWidgetItem(listArticles);
+    it->setData(Article::TitleRole, article.title());
+    it->setData(Article::FeedUrlRole, article.parent()->url());
+    it->setData(Article::IdRole, article.guid());
     if(article.isRead()){
-      it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
-      it->setData(NEWS_ICON, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
+      it->setData(Article::ColorRole, QVariant(QColor("grey")));
+      it->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
     }else{
-      it->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("blue")));
-      it->setData(NEWS_ICON, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere2.png")));
+      it->setData(Article::ColorRole, QVariant(QColor("blue")));
+      it->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere2.png")));
     }
   }
   qDebug("Added all news to the GUI");
@@ -471,25 +482,25 @@ void RSSImp::refreshNewsList(QTreeWidgetItem* item) {
 
 // display a news
 void RSSImp::refreshTextBrowser() {
-  QList<QTreeWidgetItem*> selection = listNews->selectedItems();
+  QList<QListWidgetItem*> selection = listArticles->selectedItems();
   if(selection.empty()) return;
   Q_ASSERT(selection.size() == 1);
-  QTreeWidgetItem *item = selection.first();
+  QListWidgetItem *item = selection.first();
   Q_ASSERT(item);
-  if(item == previous_news) return;
+  if(item == m_currentArticle) return;
   // Stop displaying previous news if necessary
   if(listStreams->currentFeed() == listStreams->getUnreadItem()) {
-    if(previous_news) {
-      disconnect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-      listNews->removeItemWidget(previous_news, 0);
-      Q_ASSERT(previous_news);
-      delete previous_news;
-      connect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
+    if(m_currentArticle) {
+      disconnect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
+      listArticles->removeItemWidget(m_currentArticle);
+      Q_ASSERT(m_currentArticle);
+      delete m_currentArticle;
+      connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
     }
-    previous_news = item;
+    m_currentArticle = item;
   }
-  RssFeed *stream = listStreams->getRSSItemFromUrl(item->text(NEWS_URL_COL));
-  RssArticle article = stream->getItem(item->text(NEWS_ID));
+  RssFeed *stream = listStreams->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
+  RssArticle article = stream->getItem(item->data(Article::IdRole).toString());
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
   html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article.title() + "</div>";
@@ -503,11 +514,11 @@ void RSSImp::refreshTextBrowser() {
   html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article.description()+"</div>";
   textBrowser->setHtml(html);
   article.markAsRead();
-  item->setData(NEWS_TITLE_COL, Qt::ForegroundRole, QVariant(QColor("grey")));
-  item->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/sphere.png")));
+  item->setData(Article::ColorRole, QVariant(QColor("grey")));
+  item->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
   // Decrement feed nb unread news
   updateItemInfos(listStreams->getUnreadItem());
-  updateItemInfos(listStreams->getTreeItemFromUrl(item->text(NEWS_URL_COL)));
+  updateItemInfos(listStreams->getTreeItemFromUrl(item->data(Article::FeedUrlRole).toString()));
 }
 
 void RSSImp::saveSlidersPosition() {
@@ -605,10 +616,8 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
 
   listStreams = new FeedListWidget(splitter_h, rssmanager);
   splitter_h->insertWidget(0, listStreams);
-  listNews->hideColumn(NEWS_URL_COL);
-  listNews->setColumnWidth(0, 16);
-  listNews->setSelectionBehavior(QAbstractItemView::SelectItems);
-  listNews->setSelectionMode(QAbstractItemView::SingleSelection);
+  listArticles->setSelectionBehavior(QAbstractItemView::SelectItems);
+  listArticles->setSelectionMode(QAbstractItemView::SingleSelection);
 
   rssmanager->loadStreamList();
   fillFeedsList();
@@ -619,7 +628,7 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
   connect(rssmanager, SIGNAL(feedIconChanged(QString, QString)), this, SLOT(updateFeedIcon(QString, QString)));
 
   connect(listStreams, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
-  connect(listNews, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
+  connect(listArticles, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
 
   // Feeds list actions
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
@@ -638,8 +647,8 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent) {
   connect(listStreams, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
   connect(listStreams, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
-  connect(listNews, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-  connect(listNews, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this, SLOT(downloadTorrent()));
+  connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
+  connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *, int)), this, SLOT(downloadTorrent()));
 
   // Refresh all feeds
   rssmanager->refresh();
