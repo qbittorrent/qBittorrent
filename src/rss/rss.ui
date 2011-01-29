@@ -122,7 +122,7 @@ p, li { white-space: pre-wrap; }
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <widget class="QTreeWidget" name="listNews">
+         <widget class="QListWidget" name="listArticles">
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -132,39 +132,6 @@ p, li { white-space: pre-wrap; }
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectItems</enum>
           </property>
-          <property name="rootIsDecorated">
-           <bool>false</bool>
-          </property>
-          <property name="itemsExpandable">
-           <bool>false</bool>
-          </property>
-          <property name="allColumnsShowFocus">
-           <bool>true</bool>
-          </property>
-          <property name="expandsOnDoubleClick">
-           <bool>false</bool>
-          </property>
-          <attribute name="headerVisible">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="headerStretchLastSection">
-           <bool>true</bool>
-          </attribute>
-          <column>
-           <property name="text">
-            <string notr="true">Bullet</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Article title</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Feed URL</string>
-           </property>
-          </column>
          </widget>
          <widget class="QTextBrowser" name="textBrowser"/>
         </widget>
