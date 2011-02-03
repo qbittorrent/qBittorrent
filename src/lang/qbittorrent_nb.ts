@@ -622,17 +622,17 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
     <message>
         <location filename="../headlessloader.h" line="55"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>For å kontrollere qBittorrent, få tilgang til nettbruker-grensesnittet hos http://localhost:%1</translation>
+        <translation>For å kontrollere qBittorrent, få tilgang til nettbrukergrensesnittet hos http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="56"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation>Nettbruker-grensesnittets administrator-brukernavn er: %1</translation>
+        <translation>Nettbrukergrensesnittets administrator-brukernavn er: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="59"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Nettbruker-grensesnittets administrator-passord er fremdeles standardpassordet: %1</translation>
+        <translation>Nettbrukergrensesnittets administrator-passord er fremdeles standardpassordet: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="60"/>
@@ -761,17 +761,17 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
     <message>
         <location filename="../webui/httpserver.cpp" line="126"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation>Porten som brukes for nettbruker-grensesnittet må være større enn 1024 og mindre enn 65535.</translation>
+        <translation>Porten som brukes for nettbrukergrensesnittet må være større enn 1024 og mindre enn 65535.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="127"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Nettbruker-grensesnittets brukernavn må være minst 3 tegn langt.</translation>
+        <translation>Nettbrukergrensesnittets brukernavn må være minst 3 tegn langt.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="128"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Nettbruker-grensesnittets passord må være minst 3 tegn langt.</translation>
+        <translation>Nettbrukergrensesnittets passord må være minst 3 tegn langt.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="129"/>
@@ -840,7 +840,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Verktøy</translation>
+        <translation>Verk&amp;tøy</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="79"/>
@@ -885,7 +885,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="163"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Pause</translation>
+        <translation>Sett på &amp;pause</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="168"/>
@@ -895,7 +895,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="319"/>
         <source>P&amp;ause All</source>
-        <translation>S&amp;ett Alle på Pause</translation>
+        <translation>Sett &amp;Alle på Pause</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="158"/>
@@ -905,7 +905,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="135"/>
         <source>&amp;Add torrent file...</source>
-        <translation>&amp;Legg til torrent fil...</translation>
+        <translation>Legg til &amp;torrent fil...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="140"/>
@@ -916,7 +916,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="314"/>
         <source>R&amp;esume All</source>
-        <translation>G&amp;jenoppta Alle</translation>
+        <translation>Gjenoppta &amp;Alle</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="177"/>
@@ -967,7 +967,7 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="282"/>
         <source>Search &amp;engine</source>
-        <translation>Søke &amp;motor</translation>
+        <translation>&amp;Søkemotor</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="338"/>
@@ -1023,18 +1023,18 @@ Ingen flere notiser vil bli gitt.</translation>
     <message>
         <location filename="../mainwindow.ui" line="327"/>
         <source>Execution &amp;Log</source>
-        <translation>Utførelses &amp;Logg</translation>
+        <translation>&amp;Utførelseslogg</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <location filename="../mainwindow.cpp" line="1288"/>
         <source>Execution Log</source>
-        <translation>Utførelses Logg</translation>
+        <translation>Utførelseslogg</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="252"/>
         <source>Top &amp;tool bar</source>
-        <translation>Topp-&amp;verktøylinje</translation>
+        <translation>&amp;Topp-verktøylinje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="255"/>
@@ -1120,7 +1120,7 @@ Vil du assosiere qBittorrent til torrent filer og Magnet lenker?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="368"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Brukergrensesnitt låsingspassordet har blitt oppdatert vellykket</translation>
+        <translation>Brukergrensesnitts låsingspassordet har blitt vellykket oppdatert</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="394"/>
@@ -1472,8 +1472,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <location filename="../preferences/options.ui" line="91"/>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Brukergrensesnitt
-(UI)</translation>
+        <translation>Brukergrensesnitt</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="105"/>
@@ -1497,8 +1496,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="143"/>
         <source>Web UI</source>
-        <translation>Nettbruker-grensesnitt
-(Web UI)</translation>
+        <translation>Nettbrukergrensesnitt</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="154"/>
@@ -1985,7 +1983,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2187"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Aktiver Nettbruker-grenesnitt (Fjernkontroll)</translation>
+        <translation>Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1163"/>
@@ -2430,12 +2428,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="572"/>
         <source>The Web UI is listening on port %1</source>
-        <translation>Nettbruker-grensesnittet lytter på port %1</translation>
+        <translation>Nettbrukergrensesnittet lytter på port %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="574"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Nettbruker-grenesnitts feil. Ikke i stand til å binde nettbruker-grensesnitt til port %1</translation>
+        <translation>Nettbrukergrenesnitts feil. Ikke i stand til å binde nettbrukergrensesnitt til port %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="692"/>
@@ -2473,7 +2471,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2585"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Det oppgitte IP filteret ble analysert med suksess: %1 regler ble lagt til.</translation>
+        <translation>Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2591"/>
@@ -2623,7 +2621,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port viderekoblet med suksess, melding: %1</translation>
+        <translation>UPnP/NAT-PMP: Port viderekobling vellykket, melding: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
@@ -4011,7 +4009,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../main.cpp" line="79"/>
         <source>changes the webui port (current: %1)</source>
-        <translation>forandrer nettbruker-grensesnitts porten (nåværende: %1)</translation>
+        <translation>forandrer nettbrukergrensesnitts porten (nåværende: %1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="80"/>
