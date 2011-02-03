@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.5
+* Thu Feb 3 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.5
    - BUGFIX: Make sure the progress is not 100% unless the file is complete
    - BUGFIX: Fix memory leak in HTTP torrent downloader
    - BUGFIX: Use native file dialogs (by Vladimir Golovnev)
