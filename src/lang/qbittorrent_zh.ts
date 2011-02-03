@@ -2156,11 +2156,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>文件URL</translation>
+        <translation type="obsolete">文件URL</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation>文章标题</translation>
+        <translation type="obsolete">文章标题</translation>
     </message>
     <message>
         <source>Rename...</source>

@@ -2152,11 +2152,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Feed URL</source>
-        <translation>URL do feed</translation>
+        <translation type="obsolete">URL do feed</translation>
     </message>
     <message>
         <source>Article title</source>
-        <translation>Título do artigo</translation>
+        <translation type="obsolete">Título do artigo</translation>
     </message>
     <message>
         <source>Rename...</source>
