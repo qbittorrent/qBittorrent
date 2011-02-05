@@ -1684,7 +1684,7 @@ void QBtSession::setAppendqBExtension(bool append) {
 // session will listen to
 void QBtSession::setListeningPort(int port) {
   std::pair<int,int> ports(port, port);
-  const QString& iface_name = Preferences().getNetworkInterface();
+  const QString iface_name = Preferences().getNetworkInterface();
   if(iface_name.isEmpty()) {
     s->listen_on(ports);
     return;
