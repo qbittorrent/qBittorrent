@@ -408,6 +408,16 @@ void QBtSession::configureSession() {
   sessionSettings.ignore_limits_on_local_network = pref.ignoreLimitsOnLAN();
   // Include overhead in transfer limits
   sessionSettings.rate_limit_ip_overhead = pref.includeOverheadInLimits();
+  // IP address to announce to trackers
+  QString announce_ip = pref.getNetworkAddress();
+  if(!announce_ip.isEmpty()) {
+    boost::system::error_code ec;
+    boost::asio::ip::address addr = boost::asio::ip::address::from_string(announce_ip.toStdString(), ec);
+    if(!ec) {
+      addConsoleMessage(tr("Reporting IP address %1 to trackers...").arg(announce_ip));
+      sessionSettings.announce_ip = addr;
+    }
+  }
   // Super seeding
 #if LIBTORRENT_VERSION_MINOR > 14
   sessionSettings.strict_super_seeding = pref.isSuperSeedingEnabled();
@@ -1683,12 +1693,14 @@ void QBtSession::setAppendqBExtension(bool append) {
 // Set the ports range in which is chosen the port the Bittorrent
 // session will listen to
 void QBtSession::setListeningPort(int port) {
+  Preferences pref;
   std::pair<int,int> ports(port, port);
-  const QString& iface_name = Preferences().getNetworkInterface();
+  const QString iface_name = pref.getNetworkInterface();
   if(iface_name.isEmpty()) {
     s->listen_on(ports);
     return;
   }
+  // Attempt to listen on provided interface
   const QNetworkInterface network_iface = QNetworkInterface::interfaceFromName(iface_name);
   if(!network_iface.isValid()) {
     qDebug("Invalid network interface: %s", qPrintable(iface_name));
@@ -1701,7 +1713,7 @@ void QBtSession::setListeningPort(int port) {
   qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
   foreach(const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
-    if(s->listen_on(ports, qPrintable(entry.ip().toString()))) {
+    if(s->listen_on(ports, entry.ip().toString().toAscii().constData())) {
       ip = entry.ip().toString();
       break;
     }

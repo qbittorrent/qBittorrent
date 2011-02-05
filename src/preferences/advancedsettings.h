@@ -4,14 +4,16 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QSpinBox>
+#include <QHostAddress>
 #include <QCheckBox>
+#include <QLineEdit>
 #include <QComboBox>
 #include <QNetworkInterface>
 #include <libtorrent/version.hpp>
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -34,6 +36,7 @@ private:
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
   QCheckBox *cb_use_icon_theme;
 #endif
+  QLineEdit *txt_network_address;
 
 public:
   AdvancedSettings(QWidget *parent=0): QTableWidget(parent) {
@@ -75,6 +78,7 @@ public:
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
     delete cb_use_icon_theme;
 #endif
+    delete txt_network_address;
   }
 
 public slots:
@@ -109,6 +113,12 @@ public slots:
     } else {
       pref.setNetworkInterface(combo_iface->currentText());
     }
+    // Network address
+    QHostAddress addr(txt_network_address->text().trimmed());
+    if(addr.isNull())
+      pref.setNetworkAddress("");
+    else
+      pref.setNetworkAddress(addr.toString());
     // Program notification
     pref.useProgramNotification(cb_program_notifications->isChecked());
     // Tracker
@@ -224,6 +234,12 @@ protected slots:
     }
     connect(combo_iface, SIGNAL(currentIndexChanged(int)), this, SLOT(emitSettingsChanged()));
     setCellWidget(NETWORK_IFACE, VALUE, combo_iface);
+    // Network address
+    setItem(NETWORK_ADDRESS, PROPERTY, new QTableWidgetItem(tr("IP Address to report to trackers (requires restart)")));
+    txt_network_address = new QLineEdit;
+    txt_network_address->setText(pref.getNetworkAddress());
+    connect(txt_network_address, SIGNAL(textChanged(QString)), this, SLOT(emitSettingsChanged()));
+    setCellWidget(NETWORK_ADDRESS, VALUE, txt_network_address);
     // Program notifications
     setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification balloons")));
     cb_program_notifications = new QCheckBox();

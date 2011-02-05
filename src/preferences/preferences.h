@@ -846,6 +846,14 @@ public:
     return value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
   }
 
+  void setNetworkAddress(const QString& addr) {
+    setValue(QString::fromUtf8("Preferences/Connection/InetAddress"), addr);
+  }
+
+  QString getNetworkAddress() const {
+    return value(QString::fromUtf8("Preferences/Connection/InetAddress"), QString()).toString();
+  }
+
 #if LIBTORRENT_VERSION_MINOR > 14
   bool isSuperSeedingEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), false).toBool();
