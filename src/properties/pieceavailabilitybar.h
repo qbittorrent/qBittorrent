@@ -36,7 +36,8 @@
 #include <QPixmap>
 #include <QColor>
 #include <numeric>
-#include <math.h>
+#include <cmath>
+#include <algorithm>
 
 #define BAR_HEIGHT 18
 
@@ -53,52 +54,30 @@ public:
   }
 
   void setAvailability(const std::vector<int>& avail) {
-    qreal average = 0;
     if(avail.empty()) {
       // Empty bar
       QPixmap pix = QPixmap(1, 1);
       pix.fill();
       pixmap = pix;
     } else {
-      // Look for maximum value
-      const qulonglong nb_pieces = avail.size();
-      average = std::accumulate(avail.begin(), avail.end(), 0)/(double)nb_pieces;
       // Reduce the number of pieces before creating the pixmap
       // otherwise it can crash when there are too many pieces
+      const qulonglong nb_pieces = avail.size();
       const uint w = width();
       if(nb_pieces > w) {
         const qulonglong ratio = floor(nb_pieces/(double)w);
         std::vector<int> scaled_avail;
         scaled_avail.reserve(ceil(nb_pieces/(double)ratio));
         for(qulonglong i=0; i<nb_pieces; i+= ratio) {
-          /*qulonglong j = i;
-          qulonglong sum = avail[i];
-          for(j=i+1; j<qMin(i+ratio, nb_pieces); ++j) {
-            sum += avail[j];
-          }
-          scaled_avail.push_back(sum/(qMin(ratio, nb_pieces-i)));*/
           // XXX: Do not compute the average to save cpu
           scaled_avail.push_back(avail[i]);
         }
-        QPixmap pix = QPixmap(scaled_avail.size(), 1);
-        //pix.fill();
-        QPainter painter(&pix);
-        for(qulonglong i=0; i < scaled_avail.size(); ++i) {
-          painter.setPen(getPieceColor(scaled_avail[i], average));
-          painter.drawPoint(i,0);
-        }
-        pixmap = pix;
+        updatePixmap(scaled_avail);
       } else {
-        QPixmap pix = QPixmap(nb_pieces, 1);
-        //pix.fill();
-        QPainter painter(&pix);
-        for(qulonglong i=0; i < nb_pieces; ++i) {
-          painter.setPen(getPieceColor(avail[i], average));
-          painter.drawPoint(i,0);
-        }
-        pixmap = pix;
+        updatePixmap(avail);
       }
     }
+
     update();
   }
 
@@ -114,15 +93,24 @@ protected:
     painter.drawPixmap(rect(), pixmap);
   }
 
-  QColor getPieceColor(int avail, qreal average) {
-    if(!avail) return Qt::white;
-    //qDebug("avail: %d/%d", avail, max_avail);
-    qreal fraction = 100.*average/avail;
-    if(fraction < 100)
-      fraction *= 0.8;
-    else
-      fraction *= 1.2;
-    return QColor(Qt::blue).lighter(fraction);
+private:
+  void updatePixmap(const std::vector<int> avail) {
+    const int max = *std::max_element(avail.begin(), avail.end());
+    if(max == 0) {
+      QPixmap pix = QPixmap(1, 1);
+      pix.fill();
+      pixmap = pix;
+      return;
+    }
+    QPixmap pix = QPixmap(avail.size(), 1);
+    //pix.fill();
+    QPainter painter(&pix);
+    for(uint i=0; i < avail.size(); ++i) {
+      const uint rg = 0xff - (0xff * avail[i]/max);
+      painter.setPen(QColor(rg, rg, 0xff));
+      painter.drawPoint(i,0);
+    }
+    pixmap = pix;
   }
 };
 

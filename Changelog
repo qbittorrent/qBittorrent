@@ -1,6 +1,8 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - COSMETIC: Improve main window layout
   - COSMETIC: Improve properties buttons style
+  - COSMETIC: Display pieces being downloaded in green instead of yellow
+  - COSMETIC: Improve piece availability bar appearance
 
 * Thu Feb 3 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.5
    - BUGFIX: Make sure the progress is not 100% unless the file is complete

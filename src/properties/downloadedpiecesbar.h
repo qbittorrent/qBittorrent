@@ -86,39 +86,9 @@ public:
           }
           ++scaled_index;
         }
-        QPixmap pix = QPixmap(scaled_pieces.size(), 1);
-        //pix.fill();
-        QPainter painter(&pix);
-        for(uint i=0; i<scaled_pieces.size(); ++i) {
-          if(scaled_pieces[i]) {
-            painter.setPen(Qt::blue);
-          } else {
-            if(scaled_downloading[i]) {
-              painter.setPen(Qt::yellow);
-            } else {
-              painter.setPen(Qt::white);
-            }
-          }
-          painter.drawPoint(i,0);
-        }
-        pixmap = pix;
+        updatePixmap(scaled_pieces, scaled_downloading);
       } else {
-        QPixmap pix = QPixmap(pieces.size(), 1);
-        //pix.fill();
-        QPainter painter(&pix);
-        for(uint i=0; i<pieces.size(); ++i) {
-          if(pieces[i]) {
-            painter.setPen(Qt::blue);
-          } else {
-            if(downloading_pieces[i]) {
-              painter.setPen(Qt::yellow);
-            } else {
-              painter.setPen(Qt::white);
-            }
-          }
-          painter.drawPoint(i,0);
-        }
-        pixmap = pix;
+        updatePixmap(pieces, downloading_pieces);
       }
     }
     update();
@@ -134,6 +104,26 @@ protected:
     if(pixmap.isNull()) return;
     QPainter painter(this);
     painter.drawPixmap(rect(), pixmap);
+  }
+
+private:
+  void updatePixmap(const libtorrent::bitfield &pieces, const libtorrent::bitfield &downloading_pieces) {
+    QPixmap pix = QPixmap(pieces.size(), 1);
+    //pix.fill();
+    QPainter painter(&pix);
+    for(uint i=0; i<pieces.size(); ++i) {
+      if(pieces[i]) {
+        painter.setPen(Qt::blue);
+      } else {
+        if(downloading_pieces[i]) {
+          painter.setPen(Qt::green);
+        } else {
+          painter.setPen(Qt::white);
+        }
+      }
+      painter.drawPoint(i,0);
+    }
+    pixmap = pix;
   }
 
 };
