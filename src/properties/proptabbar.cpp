@@ -37,11 +37,11 @@
 #include "iconprovider.h"
 
 #ifdef Q_WS_MAC
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 8px; margin-right: 8px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 8px; margin-right: 8px;}"
+#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 8px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); margin-left: 0px; margin-right: 8px;}"
 #else
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px; margin-left: 3px; margin-right: 3px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid rgb(85, 81, 91);border-radius: 3px;padding: 2px;background-color: rgb(255, 208, 105); margin-left: 3px; margin-right: 3px;}"
+#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 3px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); margin-left: 0px; margin-right: 3px;}"
 #endif
 
 const int BTN_ICON_SIZE = 16;
@@ -50,7 +50,7 @@ PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
 {
   m_btnGroup = new QButtonGroup(this);
-  setContentsMargins(5, 4, 5, 2);
+  setContentsMargins(0, 0, 0, 0);
   // General tab
   QPushButton *main_infos_button = new QPushButton(IconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
   main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
@@ -86,6 +86,10 @@ PropTabBar::PropTabBar(QWidget *parent) :
   addItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
   // SIGNAL/SLOT
   connect(m_btnGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
+  // Disable buttons focus
+  foreach(QAbstractButton *btn, m_btnGroup->buttons()) {
+    btn->setFocusPolicy(Qt::NoFocus);
+  }
 }
 
 PropTabBar::~PropTabBar() {
