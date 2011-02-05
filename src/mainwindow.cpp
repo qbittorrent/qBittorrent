@@ -155,6 +155,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   //vSplitter->setChildrenCollapsible(false);
   hSplitter = new QSplitter(Qt::Vertical);
   hSplitter->setChildrenCollapsible(false);
+  hSplitter->setContentsMargins(0, 4, 0, 0);
 
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, this, QBtSession::instance());
@@ -235,7 +236,6 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 
   // Load Window state and sizes
   readSettings();
-  properties->readSettings();
 
   if(!ui_locked) {
     if(pref.startMinimized())
@@ -246,6 +246,8 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
       raise();
     }
   }
+
+  properties->readSettings();
 
   // Start watching the executable for updates
   executable_watcher = new QFileSystemWatcher();
