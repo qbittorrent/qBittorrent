@@ -12,6 +12,8 @@ SOURCES += $$PWD/qbtsession.cpp \
            $$PWD/torrentspeedmonitor.cpp
 
 !contains(DEFINES, DISABLE_GUI) {
-  HEADERS += $$PWD/torrentmodel.h
+  HEADERS += $$PWD/torrentmodel.h \
+             $$PWD/shutdownconfirm.h
+
   SOURCES += $$PWD/torrentmodel.cpp
 }

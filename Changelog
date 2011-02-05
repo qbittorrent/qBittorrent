@@ -1,4 +1,5 @@
 * Unknown - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
+    - FEATURE: Added auto-shutdown confirmation dialog
     - FEATURE: Added option to skip torrent deletion confirmation (Ville Kiiskinen)
 
 * Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0

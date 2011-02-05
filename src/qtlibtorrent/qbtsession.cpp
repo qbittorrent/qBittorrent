@@ -47,6 +47,7 @@
 #include "preferences.h"
 #include "scannedfoldersmodel.h"
 #ifndef DISABLE_GUI
+#include "shutdownconfirm.h"
 #include "geoipmanager.h"
 #endif
 #include "torrentpersistentdata.h"
@@ -1987,6 +1988,18 @@ void QBtSession::readAlerts() {
           if(will_shutdown) {
             bool suspend = pref.suspendWhenDownloadsComplete();
             bool shutdown = pref.shutdownWhenDownloadsComplete();
+            // Confirm shutdown
+            QString confirm_msg;
+            if(suspend) {
+              confirm_msg = tr("The computer will now go to sleep mode unless you cancel within the next 15 seconds...");
+            } else if(shutdown) {
+              confirm_msg = tr("The computer will now be switched off unless you cancel within the next 15 seconds...");
+            } else {
+              confirm_msg = tr("qBittorrent will now exit unless you cancel within the next 15 seconds...");
+            }
+            if(!ShutdownConfirmDlg::askForConfirmation(confirm_msg))
+              return;
+            // Actually shut down
             if(suspend || shutdown) {
               qDebug("Preparing for auto-shutdown because all downloads are complete!");
               // Disabling it for next time
