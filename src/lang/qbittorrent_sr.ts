@@ -175,6 +175,10 @@ p, li { white-space: pre-wrap; }
         <source>Confirm torrent deletion</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -3203,6 +3207,22 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Грешка: Неспешна анализа датог IP филтера.</translation>
     </message>
+    <message>
+        <source>Reporting IP address %1 to trackers...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -3649,6 +3669,13 @@ Do you want to install it now?</source>
     <message>
         <source>Search engine</source>
         <translation>Претраживачки модул</translation>
+    </message>
+</context>
+<context>
+    <name>ShutdownConfirmDlg</name>
+    <message>
+        <source>Shutdown confirmation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
