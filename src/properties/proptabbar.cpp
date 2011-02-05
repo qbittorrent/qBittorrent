@@ -38,10 +38,10 @@
 
 #ifdef Q_WS_MAC
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 8px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); margin-left: 0px; margin-right: 8px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); color: palette(highlighted-text); margin-left: 0px; margin-right: 8px;}"
 #else
 #define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 3px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); margin-left: 0px; margin-right: 3px;}"
+#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); color: palette(highlighted-text); margin-left: 0px; margin-right: 3px;}"
 #endif
 
 const int BTN_ICON_SIZE = 16;
