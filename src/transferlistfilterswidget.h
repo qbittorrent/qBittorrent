@@ -206,7 +206,7 @@ public:
   TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList): QFrame(parent), transferList(transferList), nb_labeled(0), nb_torrents(0) {
     // Construct lists
     vLayout = new QVBoxLayout();
-    vLayout->setContentsMargins(0, 0, 0, 0);
+    vLayout->setContentsMargins(0, 4, 0, 4);
     statusFilters = new StatusFiltersWidget(this);
     vLayout->addWidget(statusFilters);
     labelFilters = new LabelFiltersList(this);

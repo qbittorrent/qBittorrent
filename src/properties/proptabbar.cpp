@@ -50,7 +50,7 @@ PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
 {
   m_btnGroup = new QButtonGroup(this);
-  setContentsMargins(0, 0, 0, 0);
+  setContentsMargins(0, 4, 0, 4);
   // General tab
   QPushButton *main_infos_button = new QPushButton(IconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
   main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));

@@ -114,7 +114,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   // Tab bar
   m_tabBar = new PropTabBar();
   verticalLayout->addLayout(m_tabBar);
-  verticalLayout->setMargin(0);
   connect(m_tabBar, SIGNAL(tabChanged(int)), stackedProperties, SLOT(setCurrentIndex(int)));
   connect(m_tabBar, SIGNAL(visibilityToggled(bool)), SLOT(setVisibility(bool)));
   // Dynamic data refresher
@@ -159,7 +158,6 @@ void PropertiesWidget::setVisibility(bool visible) {
     hSplitter->handle(1)->setDisabled(true);
     QList<int> sizes = QList<int>() << hSplitter->geometry().height()-30 << 30;
     hSplitter->setSizes(sizes);
-    hSplitter->updateGeometry();
     state = REDUCED;
     return;
   }
