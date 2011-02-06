@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
+  - FEATURE: IP address reported to trackers is now customizable
   - COSMETIC: Improve main window layout
   - COSMETIC: Improve properties buttons style
   - COSMETIC: Display pieces being downloaded in green instead of yellow
