@@ -241,7 +241,7 @@ protected slots:
     connect(txt_network_address, SIGNAL(textChanged(QString)), this, SLOT(emitSettingsChanged()));
     setCellWidget(NETWORK_ADDRESS, VALUE, txt_network_address);
     // Program notifications
-    setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program notification balloons")));
+    setItem(PROGRAM_NOTIFICATIONS, PROPERTY, new QTableWidgetItem(tr("Display program on-screen notifications")));
     cb_program_notifications = new QCheckBox();
     connect(cb_program_notifications, SIGNAL(toggled(bool)), this, SLOT(emitSettingsChanged()));
     cb_program_notifications->setChecked(pref.useProgramNotification());

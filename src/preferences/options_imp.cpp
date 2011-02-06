@@ -36,7 +36,6 @@
 #include <QDialogButtonBox>
 #include <QCloseEvent>
 #include <QDesktopWidget>
-#include <QStyleFactory>
 #include <QTranslator>
 
 #include <libtorrent/version.hpp>
@@ -88,7 +87,6 @@ options_imp::options_imp(QWidget *parent):
   connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
 
   connect(buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(applySettings(QAbstractButton*)));
-  comboStyle->addItems(QStyleFactory::keys());
   // Languages supported
   initializeLanguageCombo();
 
@@ -126,13 +124,13 @@ options_imp::options_imp(QWidget *parent):
   // Apply button is activated when a value is changed
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-  connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -251,10 +249,6 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
   tabOption->setCurrentIndex(tabSelection->row(current));
 }
 
-void options_imp::useStyle() {
-  QApplication::setStyle(QStyleFactory::create(comboStyle->itemText(comboStyle->currentIndex())));
-}
-
 void options_imp::loadWindowState() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
@@ -308,8 +302,6 @@ QSize options_imp::sizeFittingScreen() {
 void options_imp::saveOptions(){
   applyButton->setEnabled(false);
   Preferences pref;
-  // Apply style
-  useStyle();
   // Load the translation
   QString locale = getLocale();
   if(pref.getLocale() != locale) {
@@ -324,13 +316,13 @@ void options_imp::saveOptions(){
 
   // General preferences
   pref.setLocale(locale);
-  pref.setStyle(getStyle());
   pref.setAlternatingRowColors(checkAltRowColors->isChecked());
   pref.setSystrayIntegration(systrayIntegration());
   pref.setCloseToTray(closeToTray());
   pref.setMinimizeToTray(minimizeToTray());
   pref.setStartMinimized(startMinimized());
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
+  pref.setPreventFromSuspend(preventFromSuspend());
   // End General preferences
 
   // Downloads preferences
@@ -455,16 +447,6 @@ int options_imp::getProxyType() const{
   }
 }
 
-QString options_imp::getStyle() const{
-  return comboStyle->itemText(comboStyle->currentIndex());
-}
-
-void options_imp::setStyle(QString style) {
-  int index = comboStyle->findText(style, Qt::MatchFixedString);
-  if(index > 0)
-    comboStyle->setCurrentIndex(index);
-}
-
 void options_imp::loadOptions(){
   int intValue;
   qreal floatValue;
@@ -472,7 +454,6 @@ void options_imp::loadOptions(){
   // General preferences
   const Preferences pref;
   setLocale(pref.getLocale());
-  setStyle(pref.getStyle());
   checkAltRowColors->setChecked(pref.useAlternatingRowColors());
   checkShowSystray->setChecked(pref.systrayIntegration());
   checkShowSplash->setChecked(!pref.isSlashScreenDisabled());
@@ -484,6 +465,7 @@ void options_imp::loadOptions(){
     checkMinimizeToSysTray->setChecked(pref.minimizeToTray());
     checkStartMinimized->setChecked(pref.startMinimized());
   }
+  checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
   // End General preferences
   // Downloads preferences
   QString save_path = pref.getSavePath();
@@ -926,6 +908,10 @@ void options_imp::enableProxyAuth(bool checked){
 
 bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
+}
+
+bool options_imp::preventFromSuspend() const {
+    return checkPreventFromSuspend->isChecked();
 }
 
 bool options_imp::preAllocateAllFiles() const {

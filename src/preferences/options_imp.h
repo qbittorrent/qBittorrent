@@ -60,7 +60,6 @@ protected slots:
   void enableMaxConnecsLimitPerTorrent(bool checked);
   void enableMaxUploadsLimitPerTorrent(bool checked);
   void enableMaxRatio(bool checked);
-  void setStyle(QString style);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();
@@ -85,7 +84,6 @@ protected slots:
 
 public slots:
   void setLocale(QString locale);
-  void useStyle();
   void showConnectionTab();
 
 signals:
@@ -100,12 +98,12 @@ private:
   static QString languageToLocalizedString(QLocale::Language language, const QString& country);
   // General options
   QString getLocale() const;
-  QString getStyle() const;
   bool systrayIntegration() const;
   bool minimizeToTray() const;
   bool closeToTray() const;
   bool startMinimized() const;
   bool isSlashScreenDisabled() const;
+  bool preventFromSuspend() const;
   // Downloads
   QString getSavePath() const;
   bool isTempPathEnabled() const;

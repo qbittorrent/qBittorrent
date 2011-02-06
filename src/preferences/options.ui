@@ -40,15 +40,9 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>30</width>
-        <height>30</height>
+        <width>32</width>
+        <height>32</height>
        </size>
-      </property>
-      <property name="textElideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <property name="movement">
-       <enum>QListView::Static</enum>
       </property>
       <property name="flow">
        <enum>QListView::LeftToRight</enum>
@@ -59,23 +53,17 @@
       <property name="resizeMode">
        <enum>QListView::Adjust</enum>
       </property>
-      <property name="layoutMode">
-       <enum>QListView::SinglePass</enum>
-      </property>
       <property name="spacing">
-       <number>0</number>
+       <number>4</number>
       </property>
       <property name="gridSize">
        <size>
-        <width>107</width>
+        <width>110</width>
         <height>60</height>
        </size>
       </property>
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
-      </property>
-      <property name="uniformItemSizes">
-       <bool>false</bool>
       </property>
       <property name="wordWrap">
        <bool>false</bool>
@@ -88,10 +76,10 @@
       </property>
       <item>
        <property name="text">
-        <string extracomment="User Interface">UI</string>
+        <string>Behavior</string>
        </property>
        <property name="toolTip">
-        <string>User Interface</string>
+        <string>Behavior</string>
        </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
@@ -126,6 +114,9 @@
        <property name="text">
         <string>Speed</string>
        </property>
+       <property name="textAlignment">
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+       </property>
       </item>
       <item>
        <property name="text">
@@ -153,6 +144,9 @@
        <property name="text">
         <string>Advanced</string>
        </property>
+       <property name="textAlignment">
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+       </property>
       </item>
      </widget>
      <widget class="QStackedWidget" name="tabOption">
@@ -176,16 +170,16 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>506</width>
-             <height>430</height>
+             <y>-45</y>
+             <width>499</width>
+             <height>459</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
              <widget class="QGroupBox" name="UISettingsBox">
               <property name="title">
-               <string>Visual Appearance</string>
+               <string>Language</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <property name="bottomMargin">
@@ -193,13 +187,6 @@
                </property>
                <item>
                 <layout class="QHBoxLayout">
-                 <item>
-                  <widget class="QLabel" name="lblI18n">
-                   <property name="text">
-                    <string>Language:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item>
                   <widget class="QComboBox" name="comboI18n">
                    <property name="minimumSize">
@@ -231,33 +218,6 @@
                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                    </property>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout">
-                 <item>
-                  <widget class="QLabel" name="lblStyle">
-                   <property name="text">
-                    <string>Visual style:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboStyle"/>
                  </item>
                  <item>
                   <spacer>
@@ -451,6 +411,22 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
+               <string>Power Management</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item>
+                <widget class="QCheckBox" name="checkPreventFromSuspend">
+                 <property name="text">
+                  <string>Inhibit system sleep when torrents are active</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -481,7 +457,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>506</width>
+             <width>440</width>
              <height>698</height>
             </rect>
            </property>
@@ -924,7 +900,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>506</width>
+             <width>447</width>
              <height>457</height>
             </rect>
            </property>
@@ -1404,8 +1380,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>524</width>
-             <height>414</height>
+             <width>404</width>
+             <height>334</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1793,7 +1769,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>581</width>
+             <width>542</width>
              <height>422</height>
             </rect>
            </property>
@@ -2176,7 +2152,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>377</width>
+             <width>378</width>
              <height>229</height>
             </rect>
            </property>
@@ -2339,8 +2315,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>80</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2387,7 +2363,6 @@ QGroupBox {
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>comboStyle</tabstop>
   <tabstop>checkCloseToSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>
   <tabstop>textSavePath</tabstop>

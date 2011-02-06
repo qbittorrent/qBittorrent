@@ -43,6 +43,9 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#ifdef Q_WS_X11
+#include <QDBusInterface>
+#endif
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
@@ -80,10 +83,12 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
 #include "programupdater.h"
 #endif
+#include "powermanagement.h"
 
 using namespace libtorrent;
 
 #define TIME_TRAY_BALLOON 5000
+#define PREVENT_SUSPEND_INTERVAL 60000
 
 /*****************************************************
  *                                                   *
@@ -192,6 +197,10 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
 
+  m_pwr = new PowerManagement(this);
+  preventTimer = new QTimer(this);
+  connect(preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
+
   // Configure BT session according to options
   loadPreferences(false);
 
@@ -290,13 +299,13 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
     updater->checkForUpdates();
   }
 #endif
-
 }
 
 void MainWindow::deleteBTSession() {
   guiUpdater->stop();
   status_bar->stopTimer();
   QBtSession::drop();
+  m_pwr->setActivityState(false);
   QTimer::singleShot(0, this, SLOT(close()));
 }
 
@@ -985,6 +994,17 @@ void MainWindow::loadPreferences(bool configure_session) {
     search_filter->clear();
     toolBar->setVisible(false);
   }
+
+  if(pref.preventFromSuspend())
+  {
+      preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+  }
+  else
+  {
+      preventTimer->stop();
+      m_pwr->setActivityState(false);
+  }
+
   const uint new_refreshInterval = pref.getRefreshInterval();
   transferList->setRefreshInterval(new_refreshInterval);
   transferList->setAlternatingRowColors(pref.useAlternatingRowColors());
@@ -1312,4 +1332,13 @@ void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
 {
   qDebug() << Q_FUNC_INFO << enabled;
   Preferences().setShutdownWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::checkForActiveTorrents()
+{
+    const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
+    if(report.nb_active > 0) // Active torrents are present; prevent system from suspend
+        m_pwr->setActivityState(true);
+    else
+        m_pwr->setActivityState(false);
 }

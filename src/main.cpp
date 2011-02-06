@@ -153,15 +153,6 @@ void sigabrtHandler(int) {
 }
 #endif
 
-#ifndef DISABLE_GUI
-void useStyle(QString style){
-  if(!style.isEmpty()) {
-    QApplication::setStyle(QStyleFactory::create(style));
-  }
-  Preferences().setStyle(QApplication::style()->objectName());
-}
-#endif
-
 // Main
 int main(int argc, char *argv[]){
   // Create Application
@@ -286,7 +277,6 @@ int main(int argc, char *argv[]){
   }
 
 #ifndef DISABLE_GUI
-  useStyle(pref.getStyle());
   app.setStyleSheet("QStatusBar::item { border-width: 0; }");
 #endif
 

@@ -60,6 +60,7 @@ class HidableTabWidget;
 class LineEdit;
 class QFileSystemWatcher;
 class ExecutionLog;
+class PowerManagement;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
@@ -182,6 +183,9 @@ private:
   QPointer<RSSImp> rssWidget;
   // Execution Log
   QPointer<ExecutionLog> m_executionLog;
+  // Power Management
+  PowerManagement *m_pwr;
+  QTimer *preventTimer;
 
 private slots:
     void on_actionSearch_engine_triggered();
@@ -194,6 +198,8 @@ private slots:
     void on_actionAutoExit_qBittorrent_toggled(bool );
     void on_actionAutoSuspend_system_toggled(bool );
     void on_actionAutoShutdown_system_toggled(bool );
+    // Check for active torrents and set preventing from suspend state
+    void checkForActiveTorrents();
 };
 
 #endif

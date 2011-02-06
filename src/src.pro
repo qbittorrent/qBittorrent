@@ -87,6 +87,7 @@ include (preferences/preferences.pri)
   include(rss/rss.pri)
   include(torrentcreator/torrentcreator.pri)
   include(geoip/geoip.pri)
+  include(powermanagement/powermanagement.pri)
 }
 
 HEADERS += misc.h \
