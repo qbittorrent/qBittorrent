@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Prikaži obavjesne balončiće</translation>
+        <translation type="obsolete">Prikaži obavjesne balončiće</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -212,6 +212,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2287,7 +2291,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Korisničko sučelje </translation>
+        <translation type="obsolete">Korisničko sučelje </translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2331,7 +2335,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Jezik:</translation>
+        <translation type="obsolete">Jezik:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2339,7 +2343,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Stil:</translation>
+        <translation type="obsolete">Stil:</translation>
     </message>
     <message>
         <source>Ask for confirmation on exit when download list is not empty</source>
@@ -2781,7 +2785,7 @@ QGroupBox {
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Izgled</translation>
+        <translation type="obsolete">Izgled</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2988,11 +2992,27 @@ QGroupBox {
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Korisničko sučelje</translation>
+        <translation type="obsolete">Korisničko sučelje</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Ponovno učitaj filter</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Jezik</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

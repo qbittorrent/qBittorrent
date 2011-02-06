@@ -146,7 +146,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Toon programma notificatie ballonnen</translation>
+        <translation type="obsolete">Toon programma notificatie ballonnen</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -170,6 +170,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1890,7 +1894,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>UI</translation>
+        <translation type="obsolete">UI</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -1914,7 +1918,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -1922,7 +1926,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Visuele stijl:</translation>
+        <translation type="obsolete">Visuele stijl:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2152,7 +2156,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Visuele stijl</translation>
+        <translation type="obsolete">Visuele stijl</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2359,11 +2363,27 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Gebruikersinterface</translation>
+        <translation type="obsolete">Gebruikersinterface</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Herlaad de filter</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Taal</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

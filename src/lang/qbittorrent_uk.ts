@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Відображати сповіщення програми</translation>
+        <translation type="obsolete">Відображати сповіщення програми</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -174,6 +174,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2092,7 +2096,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Інтерфейс</translation>
+        <translation type="obsolete">Інтерфейс</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2116,7 +2120,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Мова:</translation>
+        <translation type="obsolete">Мова:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2124,7 +2128,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Візуальний стиль:</translation>
+        <translation type="obsolete">Візуальний стиль:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2354,7 +2358,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Вигляд</translation>
+        <translation type="obsolete">Вигляд</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2561,11 +2565,27 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Інтерфейс користувача</translation>
+        <translation type="obsolete">Інтерфейс користувача</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Перезавантажити фільтр</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Мова</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

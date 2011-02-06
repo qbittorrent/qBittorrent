@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Wyświetlaj powiadomienia w dymkach</translation>
+        <translation type="obsolete">Wyświetlaj powiadomienia w dymkach</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -171,6 +171,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2068,7 +2072,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Wygląd</translation>
+        <translation type="obsolete">Wygląd</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2092,7 +2096,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Język:</translation>
+        <translation type="obsolete">Język:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2100,7 +2104,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Styl wizualny:</translation>
+        <translation type="obsolete">Styl wizualny:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2330,7 +2334,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Wygląd</translation>
+        <translation type="obsolete">Wygląd</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2537,11 +2541,27 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished">Interfejs użytkownika</translation>
+        <translation type="obsolete">Interfejs użytkownika</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Przeładuj filtr</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Język</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

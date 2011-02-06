@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Zobrazovať bublinové upozornenia programu</translation>
+        <translation type="obsolete">Zobrazovať bublinové upozornenia programu</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -174,6 +174,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2087,7 +2091,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Rozhranie</translation>
+        <translation type="obsolete">Rozhranie</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2111,7 +2115,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Jazyk:</translation>
+        <translation type="obsolete">Jazyk:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2119,7 +2123,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Vizuálny štýl:</translation>
+        <translation type="obsolete">Vizuálny štýl:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2349,7 +2353,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Vzhľad</translation>
+        <translation type="obsolete">Vzhľad</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2556,11 +2560,27 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Používateľské rozhranie</translation>
+        <translation type="obsolete">Používateľské rozhranie</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Znovu načítať filter</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Jazyk</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

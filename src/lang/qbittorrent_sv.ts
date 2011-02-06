@@ -146,7 +146,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>Visa programnotifieringar som ballonger</translation>
+        <translation type="obsolete">Visa programnotifieringar som ballonger</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -170,6 +170,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2019,7 +2023,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Användargränssnitt</translation>
+        <translation type="obsolete">Användargränssnitt</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2043,7 +2047,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Språk:</translation>
+        <translation type="obsolete">Språk:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2051,7 +2055,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>Visuell stil:</translation>
+        <translation type="obsolete">Visuell stil:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2281,7 +2285,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>Visuellt utseende</translation>
+        <translation type="obsolete">Visuellt utseende</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2484,11 +2488,27 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation type="obsolete">Användargränssnitt</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>Läs om filtret</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Språk</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

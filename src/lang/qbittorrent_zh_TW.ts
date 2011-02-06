@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation>顯示程式通知氣球</translation>
+        <translation type="obsolete">顯示程式通知氣球</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -174,6 +174,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2104,7 +2108,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>使用者介面</translation>
+        <translation type="obsolete">使用者介面</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -2128,7 +2132,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Language:</source>
-        <translation>語言:</translation>
+        <translation type="obsolete">語言:</translation>
     </message>
     <message>
         <source>(Requires restart)</source>
@@ -2136,7 +2140,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Visual style:</source>
-        <translation>視覺樣式:</translation>
+        <translation type="obsolete">視覺樣式:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2366,7 +2370,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Visual Appearance</source>
-        <translation>視覺外觀</translation>
+        <translation type="obsolete">視覺外觀</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2573,11 +2577,27 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>使用者介面</translation>
+        <translation type="obsolete">使用者介面</translation>
     </message>
     <message>
         <source>Reload the filter</source>
         <translation>重讀過濾器</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">語言</translation>
+    </message>
+    <message>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -172,8 +172,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="244"/>
+        <source>Display program on-screen notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Display program notification balloons</source>
-        <translation>Zobrazovat informační bubliny programu</translation>
+        <translation type="obsolete">Zobrazovat informační bubliny programu</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="250"/>
@@ -1926,7 +1930,7 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
-        <location filename="../mainwindow.cpp" line="1288"/>
+        <location filename="../mainwindow.cpp" line="1310"/>
         <source>Execution Log</source>
         <translation>Záznamy programu</translation>
     </message>
@@ -1995,92 +1999,92 @@ Další upozornění již nebudou zobrazena.</translation>
         <translation>Zvýšit prioritu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
-        <location filename="../mainwindow.cpp" line="1212"/>
+        <location filename="../mainwindow.cpp" line="104"/>
+        <location filename="../mainwindow.cpp" line="1234"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="136"/>
+        <location filename="../mainwindow.cpp" line="141"/>
         <source>Set the password...</source>
         <translation>Nastavit heslo...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="169"/>
+        <location filename="../mainwindow.cpp" line="175"/>
         <source>Transfers</source>
         <translation>Přenosy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
+        <location filename="../mainwindow.cpp" line="282"/>
         <source>Torrent file association</source>
         <translation>Asociace souboru .torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="272"/>
+        <location filename="../mainwindow.cpp" line="283"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent není výchozí aplikací pro otevírání souborů .torrent ani odkazů Magnet.
 Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="363"/>
-        <location filename="../mainwindow.cpp" line="378"/>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="389"/>
+        <location filename="../mainwindow.cpp" line="628"/>
         <source>UI lock password</source>
         <translation>Heslo pro zamknutí UI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="363"/>
-        <location filename="../mainwindow.cpp" line="378"/>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="389"/>
+        <location filename="../mainwindow.cpp" line="628"/>
         <source>Please type the UI lock password:</source>
         <translation>Zadejte prosím heslo pro zamknutí UI:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>Password update</source>
         <translation>Změna hesla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Heslo zamykající UI bylo úspěšně změněno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="409"/>
+        <location filename="../mainwindow.cpp" line="420"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="419"/>
+        <location filename="../mainwindow.cpp" line="430"/>
         <source>Transfers (%1)</source>
         <translation>Přenosy (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="489"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>Download completion</source>
         <translation>Kompletace stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="489"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Stahování %1 bylo dokončeno.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="495"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="495"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -2089,162 +2093,162 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
  Důvod: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="502"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="504"/>
+        <location filename="../mainwindow.cpp" line="515"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="517"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="519"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="548"/>
+        <location filename="../mainwindow.cpp" line="559"/>
         <source>Recursive download confirmation</source>
         <translation>Potvrzení rekurzivního stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="548"/>
+        <location filename="../mainwindow.cpp" line="559"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrent %1 obsahuje soubory .torrent, chcete je také začít stahovat?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
-        <location filename="../mainwindow.cpp" line="713"/>
+        <location filename="../mainwindow.cpp" line="560"/>
+        <location filename="../mainwindow.cpp" line="724"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="550"/>
-        <location filename="../mainwindow.cpp" line="712"/>
+        <location filename="../mainwindow.cpp" line="561"/>
+        <location filename="../mainwindow.cpp" line="723"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="562"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="565"/>
+        <location filename="../mainwindow.cpp" line="576"/>
         <source>Url download error</source>
         <translation>Chyba stahování URL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="565"/>
+        <location filename="../mainwindow.cpp" line="576"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Nelze stáhnout soubor z URL: %1, důvod: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="571"/>
+        <location filename="../mainwindow.cpp" line="582"/>
         <source>Global Upload Speed Limit</source>
         <translation>Celkový limit rychlosti nahrávání</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="596"/>
         <source>Global Download Speed Limit</source>
         <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="630"/>
+        <location filename="../mainwindow.cpp" line="641"/>
         <source>Invalid password</source>
         <translation>Špatné heslo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="630"/>
+        <location filename="../mainwindow.cpp" line="641"/>
         <source>The password is invalid</source>
         <translation>Heslo není správné</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="709"/>
+        <location filename="../mainwindow.cpp" line="720"/>
         <source>Exiting qBittorrent</source>
         <translation>Ukončování qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="710"/>
+        <location filename="../mainwindow.cpp" line="721"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Některé soubory se právě přenášejí.
 Opravdu chcete ukončit qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="714"/>
+        <location filename="../mainwindow.cpp" line="725"/>
         <source>Always</source>
         <translation>Vždy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="872"/>
+        <location filename="../mainwindow.cpp" line="883"/>
         <source>Open Torrent Files</source>
         <translation>Otevřít torrent soubory</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="873"/>
+        <location filename="../mainwindow.cpp" line="884"/>
         <source>Torrent Files</source>
         <translation>Torrent soubory</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="952"/>
+        <location filename="../mainwindow.cpp" line="963"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1046"/>
+        <location filename="../mainwindow.cpp" line="1068"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1049"/>
-        <location filename="../mainwindow.cpp" line="1056"/>
+        <location filename="../mainwindow.cpp" line="1071"/>
+        <location filename="../mainwindow.cpp" line="1078"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rychlost stahování: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1052"/>
-        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="1074"/>
+        <location filename="../mainwindow.cpp" line="1080"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rychlost nahrávání: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1063"/>
+        <location filename="../mainwindow.cpp" line="1085"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Stahování: %2/s, Nahrávání: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1250"/>
+        <location filename="../mainwindow.cpp" line="1272"/>
         <source>A newer version is available</source>
         <translation>Je k dispozici nová verze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1251"/>
+        <location filename="../mainwindow.cpp" line="1273"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Na Sourceforge je k dispozici nová verze qBittorrent.
 Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1266"/>
+        <location filename="../mainwindow.cpp" line="1288"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Nelze provést aktualizaci qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1266"/>
+        <location filename="../mainwindow.cpp" line="1288"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent se nezdařilo aktualizovat, důvod: %1</translation>
     </message>
@@ -2394,23 +2398,22 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
 <context>
     <name>Preferences</name>
     <message>
-        <location filename="../preferences/options.ui" line="91"/>
         <source>UI</source>
         <extracomment>User Interface</extracomment>
-        <translation>Uživ. rozhraní</translation>
+        <translation type="obsolete">Uživ. rozhraní</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="105"/>
+        <location filename="../preferences/options.ui" line="93"/>
         <source>Downloads</source>
         <translation>Stahování</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="116"/>
+        <location filename="../preferences/options.ui" line="104"/>
         <source>Connection</source>
         <translation>Připojení</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="127"/>
+        <location filename="../preferences/options.ui" line="115"/>
         <source>Speed</source>
         <translation>Rychlost</translation>
     </message>
@@ -2423,85 +2426,83 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Proxy</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="143"/>
+        <location filename="../preferences/options.ui" line="134"/>
         <source>Web UI</source>
         <translation>Webové rozhraní</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="154"/>
+        <location filename="../preferences/options.ui" line="145"/>
         <source>Advanced</source>
         <translation>Pokročilé</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="199"/>
         <source>Language:</source>
-        <translation>Jazyk:</translation>
+        <translation type="obsolete">Jazyk:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="228"/>
+        <location filename="../preferences/options.ui" line="215"/>
         <source>(Requires restart)</source>
         <translation>(Vyžaduje restart)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="255"/>
         <source>Visual style:</source>
-        <translation>Nastavení vzhledu:</translation>
+        <translation type="obsolete">Nastavení vzhledu:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="283"/>
+        <location filename="../preferences/options.ui" line="243"/>
         <source>Transfer list</source>
         <translation>Seznam přenosů</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="292"/>
+        <location filename="../preferences/options.ui" line="252"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Použít střídající se barvu řádků</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="337"/>
-        <location filename="../preferences/options.ui" line="363"/>
+        <location filename="../preferences/options.ui" line="297"/>
+        <location filename="../preferences/options.ui" line="323"/>
         <source>Start / Stop Torrent</source>
         <translation>Spustit / Zastavit torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="347"/>
-        <location filename="../preferences/options.ui" line="373"/>
+        <location filename="../preferences/options.ui" line="307"/>
+        <location filename="../preferences/options.ui" line="333"/>
         <source>No action</source>
         <translation>Žádná činnost</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="533"/>
+        <location filename="../preferences/options.ui" line="509"/>
         <source>File system</source>
         <translation>Souborový systém</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="796"/>
+        <location filename="../preferences/options.ui" line="772"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopírovat soubory .torrent do:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1975"/>
+        <location filename="../preferences/options.ui" line="1951"/>
         <source>Torrent queueing</source>
         <translation>Řazení torrentů do fronty</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1990"/>
+        <location filename="../preferences/options.ui" line="1966"/>
         <source>Maximum active downloads:</source>
         <translation>Max. počet aktivních stahování:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2010"/>
+        <location filename="../preferences/options.ui" line="1986"/>
         <source>Maximum active uploads:</source>
         <translation>Max. počet aktivních nahrávání:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2030"/>
+        <location filename="../preferences/options.ui" line="2006"/>
         <source>Maximum active torrents:</source>
         <translation>Maximální počet aktivních torrentů:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="498"/>
+        <location filename="../preferences/options.ui" line="474"/>
         <source>When adding a torrent</source>
         <translation>Při přidání torrentu</translation>
     </message>
@@ -2511,17 +2512,16 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation>Možnosti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="188"/>
         <source>Visual Appearance</source>
-        <translation>Vzhled</translation>
+        <translation type="obsolete">Vzhled</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="308"/>
+        <location filename="../preferences/options.ui" line="268"/>
         <source>Action on double-click</source>
         <translation>Akce po dvojitém kliknutí</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="320"/>
+        <location filename="../preferences/options.ui" line="280"/>
         <source>Downloading torrents:</source>
         <translation>Stahování torrentů:</translation>
     </message>
@@ -2530,225 +2530,235 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Start / Stop</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="342"/>
-        <location filename="../preferences/options.ui" line="368"/>
+        <location filename="../preferences/options.ui" line="302"/>
+        <location filename="../preferences/options.ui" line="328"/>
         <source>Open destination folder</source>
         <translation>Otevřít cílový adresář</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="355"/>
+        <location filename="../preferences/options.ui" line="315"/>
         <source>Completed torrents:</source>
         <translation>Dokončené torrenty:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="400"/>
+        <location filename="../preferences/options.ui" line="360"/>
         <source>Desktop</source>
         <translation>Plocha</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="409"/>
+        <location filename="../preferences/options.ui" line="369"/>
         <source>Show splash screen on start up</source>
         <translation>Při startu zobrazovat úvodní obrazovku</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="419"/>
+        <location filename="../preferences/options.ui" line="379"/>
         <source>Start qBittorrent minimized</source>
         <translation>Spustit qBittorrent minimalizovaný</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="426"/>
+        <location filename="../preferences/options.ui" line="386"/>
         <source>Show qBittorrent icon in notification area</source>
         <translation>Zobrazovat ikonu qBittorrent v oznamovací oblasti (tray)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="436"/>
+        <location filename="../preferences/options.ui" line="396"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Minimalizovat qBittorrent do oznamovací oblasti (tray)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="446"/>
+        <location filename="../preferences/options.ui" line="406"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Zavírat qBittorrent do oznamovací oblasti (tray)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="507"/>
+        <location filename="../preferences/options.ui" line="416"/>
+        <source>Power Management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="422"/>
+        <source>Inhibit system sleep when torrents are active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="483"/>
         <source>Display torrent content and some options</source>
         <translation>Zobrazit obsah torrentu a některé volby</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="517"/>
+        <location filename="../preferences/options.ui" line="493"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Nespouštět stahování automaticky</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="552"/>
+        <location filename="../preferences/options.ui" line="528"/>
         <source>Save files to location:</source>
         <translation>Ukládat soubory do umístění:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="600"/>
+        <location filename="../preferences/options.ui" line="576"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Připojit štítek torrentu do cesty pro uložení</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="610"/>
+        <location filename="../preferences/options.ui" line="586"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Dopředu přidělit místo všem souborům</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="627"/>
+        <location filename="../preferences/options.ui" line="603"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Uchovat neúplné torrenty v:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="673"/>
+        <location filename="../preferences/options.ui" line="649"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Připojit příponu .!qB k nedokončeným souborům</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="690"/>
+        <location filename="../preferences/options.ui" line="666"/>
         <source>Automatically add torrents from:</source>
         <translation>Automaticky přidávat .torrent soubory z:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="743"/>
+        <location filename="../preferences/options.ui" line="719"/>
         <source>Add folder...</source>
         <translation>Přidat adresář ...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="852"/>
+        <location filename="../preferences/options.ui" line="828"/>
         <source>Email notification upon download completion</source>
         <translation>Oznámení emailem po dokončení stahování</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="864"/>
+        <location filename="../preferences/options.ui" line="840"/>
         <source>Destination email:</source>
         <translation>Email:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="874"/>
+        <location filename="../preferences/options.ui" line="850"/>
         <source>SMTP server:</source>
         <translation>Server SMTP:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="887"/>
+        <location filename="../preferences/options.ui" line="863"/>
         <source>Run an external program on torrent completion</source>
         <translation>Po dokončení torrentu spustit externí program</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="902"/>
+        <location filename="../preferences/options.ui" line="878"/>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Použijte %f pro zadání cesty k torrentu v parametrech</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="987"/>
+        <location filename="../preferences/options.ui" line="963"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Použít přesměrování portů UPnP / NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1137"/>
+        <location filename="../preferences/options.ui" line="1113"/>
         <source>Proxy server</source>
         <translation>Proxy server</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1370"/>
+        <location filename="../preferences/options.ui" line="1346"/>
         <source>Reload the filter</source>
         <translation>Obnovit filtr</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1804"/>
+        <location filename="../preferences/options.ui" line="1780"/>
         <source>Privacy</source>
         <translation>Soukromí</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1820"/>
+        <location filename="../preferences/options.ui" line="1796"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Zapnout DHT síť (decentralizovaná síť) k nalezení většího počtu protějšků</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1842"/>
+        <location filename="../preferences/options.ui" line="1818"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Použít jiný port pro DHT a bittorrent</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1903"/>
+        <location filename="../preferences/options.ui" line="1879"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Vyměňovat protějšky s kompatibilními klienty Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1906"/>
+        <location filename="../preferences/options.ui" line="1882"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Zapnout Peer Exchange (PeX) k nalezení většího počtu protějšků</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1919"/>
+        <location filename="../preferences/options.ui" line="1895"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Zapnout Local Peer Discovery k nalezení většího počtu protějšků</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1931"/>
+        <location filename="../preferences/options.ui" line="1907"/>
         <source>Encryption mode:</source>
         <translation>Režim šifrování:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1939"/>
+        <location filename="../preferences/options.ui" line="1915"/>
         <source>Prefer encryption</source>
         <translation>Upřednostňovat šifrování</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1944"/>
+        <location filename="../preferences/options.ui" line="1920"/>
         <source>Require encryption</source>
         <translation>Vyžadovat šifrování</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1949"/>
+        <location filename="../preferences/options.ui" line="1925"/>
         <source>Disable encryption</source>
         <translation>Zakázat šifrování</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2066"/>
+        <location filename="../preferences/options.ui" line="2042"/>
         <source>Share ratio limiting</source>
         <translation>Omezení poměru sdílení</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2077"/>
+        <location filename="../preferences/options.ui" line="2053"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Sdílet torrenty dokud poměr sdílení nedosáhne</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2109"/>
+        <location filename="../preferences/options.ui" line="2085"/>
         <source>then</source>
         <translation>potom</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2120"/>
+        <location filename="../preferences/options.ui" line="2096"/>
         <source>Pause them</source>
         <translation>Pozastavit je</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2125"/>
+        <location filename="../preferences/options.ui" line="2101"/>
         <source>Remove them</source>
         <translation>Odstranit je</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2187"/>
+        <location filename="../preferences/options.ui" line="2163"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Zapnout webové rozhraní (dálkové ovládání)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="937"/>
+        <location filename="../preferences/options.ui" line="913"/>
         <source>Listening port</source>
         <translation>Naslouchat na portu</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="945"/>
+        <location filename="../preferences/options.ui" line="921"/>
         <source>Port used for incoming connections:</source>
         <translation>Port použitý pro příchozí spojení:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="965"/>
+        <location filename="../preferences/options.ui" line="941"/>
         <source>Random</source>
         <translation>Náhodný</translation>
     </message>
@@ -2761,83 +2771,82 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Zapnout mapování portů NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1002"/>
+        <location filename="../preferences/options.ui" line="978"/>
         <source>Connections limit</source>
         <translation>Limit připojení</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1013"/>
+        <location filename="../preferences/options.ui" line="989"/>
         <source>Global maximum number of connections:</source>
         <translation>Celkový maximální počet připojení:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1056"/>
+        <location filename="../preferences/options.ui" line="1032"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Maximální počet spojení na torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1096"/>
+        <location filename="../preferences/options.ui" line="1072"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Maximální počet slotů pro nahrávání na torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1433"/>
-        <location filename="../preferences/options.ui" line="1555"/>
+        <location filename="../preferences/options.ui" line="1409"/>
+        <location filename="../preferences/options.ui" line="1531"/>
         <source>Upload:</source>
         <translation>Nahrávání:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1469"/>
-        <location filename="../preferences/options.ui" line="1582"/>
+        <location filename="../preferences/options.ui" line="1445"/>
+        <location filename="../preferences/options.ui" line="1558"/>
         <source>Download:</source>
         <translation>Stahování:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1462"/>
-        <location filename="../preferences/options.ui" line="1495"/>
-        <location filename="../preferences/options.ui" line="1575"/>
-        <location filename="../preferences/options.ui" line="1602"/>
+        <location filename="../preferences/options.ui" line="1438"/>
+        <location filename="../preferences/options.ui" line="1471"/>
+        <location filename="../preferences/options.ui" line="1551"/>
+        <location filename="../preferences/options.ui" line="1578"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="94"/>
         <source>User Interface</source>
-        <translation>Uživatelské rozhraní</translation>
+        <translation type="obsolete">Uživatelské rozhraní</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="132"/>
+        <location filename="../preferences/options.ui" line="123"/>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1415"/>
+        <location filename="../preferences/options.ui" line="1391"/>
         <source>Global speed limits</source>
         <translation>Celkové limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1520"/>
+        <location filename="../preferences/options.ui" line="1496"/>
         <source>Alternative global speed limits</source>
         <translation>Alternativní celkové limity rychlosti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1677"/>
+        <location filename="../preferences/options.ui" line="1653"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>do</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1729"/>
+        <location filename="../preferences/options.ui" line="1705"/>
         <source>Every day</source>
         <translation>Každý den</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1734"/>
+        <location filename="../preferences/options.ui" line="1710"/>
         <source>Week days</source>
         <translation>Pracovní dny</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1739"/>
+        <location filename="../preferences/options.ui" line="1715"/>
         <source>Week ends</source>
         <translation>Víkend</translation>
     </message>
@@ -2854,7 +2863,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Použít jiný port pro DHT a bittorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1862"/>
+        <location filename="../preferences/options.ui" line="1838"/>
         <source>DHT port:</source>
         <translation>Port DHT:</translation>
     </message>
@@ -2883,7 +2892,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">HTTP komunikace (trackery, web seedy, vyhledávač)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1179"/>
+        <location filename="../preferences/options.ui" line="1155"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
@@ -2892,43 +2901,54 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Komunikace protějšků</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1158"/>
+        <location filename="../preferences/options.ui" line="1134"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1145"/>
+        <location filename="../preferences/options.ui" line="1121"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="753"/>
+        <location filename="../preferences/options.ui" line="79"/>
+        <location filename="../preferences/options.ui" line="82"/>
+        <source>Behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="182"/>
+        <source>Language</source>
+        <translation type="unfinished">Jazyk</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="729"/>
         <source>Remove folder</source>
         <translation>Odstranit adresář</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1329"/>
+        <location filename="../preferences/options.ui" line="1305"/>
         <source>IP Filtering</source>
         <translation>Filtrování IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1636"/>
+        <location filename="../preferences/options.ui" line="1612"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Načasovat použití alternativních limitů rychlosti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1653"/>
+        <location filename="../preferences/options.ui" line="1629"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>od</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1721"/>
+        <location filename="../preferences/options.ui" line="1697"/>
         <source>When:</source>
         <translation>Kdy:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1916"/>
+        <location filename="../preferences/options.ui" line="1892"/>
         <source>Look for peers on your local network</source>
         <translation>Hledat protějšky na lokální síti</translation>
     </message>
@@ -2937,51 +2957,51 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Šifrování protokolu:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1153"/>
+        <location filename="../preferences/options.ui" line="1129"/>
         <source>(None)</source>
         <translation>(žádný)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1168"/>
+        <location filename="../preferences/options.ui" line="1144"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1205"/>
-        <location filename="../preferences/options.ui" line="2205"/>
+        <location filename="../preferences/options.ui" line="1181"/>
+        <location filename="../preferences/options.ui" line="2181"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1248"/>
-        <location filename="../preferences/options.ui" line="2241"/>
+        <location filename="../preferences/options.ui" line="1224"/>
+        <location filename="../preferences/options.ui" line="2217"/>
         <source>Authentication</source>
         <translation>Ověření</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1260"/>
-        <location filename="../preferences/options.ui" line="2249"/>
+        <location filename="../preferences/options.ui" line="1236"/>
+        <location filename="../preferences/options.ui" line="2225"/>
         <source>Username:</source>
         <translation>Uživatelské jméno:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1286"/>
-        <location filename="../preferences/options.ui" line="2256"/>
+        <location filename="../preferences/options.ui" line="1262"/>
+        <location filename="../preferences/options.ui" line="2232"/>
         <source>Password:</source>
         <translation>Heslo:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1163"/>
+        <location filename="../preferences/options.ui" line="1139"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1341"/>
+        <location filename="../preferences/options.ui" line="1317"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Cesta k filtru (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2199"/>
+        <location filename="../preferences/options.ui" line="2175"/>
         <source>HTTP Server</source>
         <translation>HTTP Server</translation>
     </message>
@@ -3161,18 +3181,18 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation>Velikost částí:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="795"/>
+        <location filename="../properties/propertieswidget.ui" line="796"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="802"/>
+        <location filename="../properties/propertieswidget.ui" line="803"/>
         <source>Select None</source>
         <translation>Zrušit výběr</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="866"/>
-        <location filename="../properties/propertieswidget.ui" line="869"/>
+        <location filename="../properties/propertieswidget.ui" line="851"/>
+        <location filename="../properties/propertieswidget.ui" line="854"/>
         <source>Do not download</source>
         <translation>Nestahovat</translation>
     </message>
@@ -3236,17 +3256,17 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation>Priorita</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="851"/>
+        <location filename="../properties/propertieswidget.ui" line="836"/>
         <source>Normal</source>
         <translation>Normální</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="861"/>
+        <location filename="../properties/propertieswidget.ui" line="846"/>
         <source>Maximum</source>
         <translation>Maximální</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="856"/>
+        <location filename="../properties/propertieswidget.ui" line="841"/>
         <source>High</source>
         <translation>Vysoká</translation>
     </message>
@@ -4838,95 +4858,95 @@ Nainstalujte jej prosím ručně.</translation>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="221"/>
-        <location filename="../transferlistfilterswidget.h" line="303"/>
+        <location filename="../transferlistfilterswidget.h" line="222"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>All</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="224"/>
-        <location filename="../transferlistfilterswidget.h" line="304"/>
+        <location filename="../transferlistfilterswidget.h" line="225"/>
+        <location filename="../transferlistfilterswidget.h" line="305"/>
         <source>Downloading</source>
         <translation>Stahováno</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="227"/>
-        <location filename="../transferlistfilterswidget.h" line="305"/>
+        <location filename="../transferlistfilterswidget.h" line="228"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Completed</source>
         <translation>Dokončeno</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="230"/>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="307"/>
         <source>Paused</source>
         <translation>Pozastaveno</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="233"/>
-        <location filename="../transferlistfilterswidget.h" line="307"/>
+        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Active</source>
         <translation>Aktivní</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="236"/>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="237"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Inactive</source>
         <translation>Neaktivní</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="250"/>
-        <location filename="../transferlistfilterswidget.h" line="485"/>
+        <location filename="../transferlistfilterswidget.h" line="251"/>
+        <location filename="../transferlistfilterswidget.h" line="486"/>
         <source>All labels</source>
         <translation>Všechny štítky</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="253"/>
-        <location filename="../transferlistfilterswidget.h" line="486"/>
+        <location filename="../transferlistfilterswidget.h" line="254"/>
+        <location filename="../transferlistfilterswidget.h" line="487"/>
         <source>Unlabeled</source>
         <translation>Neoznačené</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="335"/>
+        <location filename="../transferlistfilterswidget.h" line="336"/>
         <source>Remove label</source>
         <translation>Odstranit štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="336"/>
+        <location filename="../transferlistfilterswidget.h" line="337"/>
         <source>Add label...</source>
         <translation>Přidat štítek...</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="338"/>
+        <location filename="../transferlistfilterswidget.h" line="339"/>
         <source>Resume torrents</source>
         <translation>Obnovit torrenty</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="339"/>
+        <location filename="../transferlistfilterswidget.h" line="340"/>
         <source>Pause torrents</source>
         <translation>Pozastavit torrenty</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="340"/>
+        <location filename="../transferlistfilterswidget.h" line="341"/>
         <source>Delete torrents</source>
         <translation>Smazat torrenty</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="366"/>
+        <location filename="../transferlistfilterswidget.h" line="367"/>
         <source>New Label</source>
         <translation>Nový štítek</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="366"/>
+        <location filename="../transferlistfilterswidget.h" line="367"/>
         <source>Label:</source>
         <translation>Štítek:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="371"/>
+        <location filename="../transferlistfilterswidget.h" line="372"/>
         <source>Invalid label name</source>
         <translation>Neplatný název štítku</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="371"/>
+        <location filename="../transferlistfilterswidget.h" line="372"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Nepoužívejte prosím v názvu štítku žádné speciální znaky.</translation>
     </message>
@@ -6025,73 +6045,73 @@ Nicméně, tyto moduly byly vypnuty.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1057"/>
-        <location filename="../preferences/options_imp.cpp" line="1059"/>
+        <location filename="../preferences/options_imp.cpp" line="1043"/>
+        <location filename="../preferences/options_imp.cpp" line="1045"/>
         <source>Choose export directory</source>
         <translation>Vyberte adresář pro export</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1092"/>
-        <location filename="../preferences/options_imp.cpp" line="1094"/>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
-        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1078"/>
+        <location filename="../preferences/options_imp.cpp" line="1080"/>
+        <location filename="../preferences/options_imp.cpp" line="1095"/>
+        <location filename="../preferences/options_imp.cpp" line="1097"/>
         <source>Choose a save directory</source>
         <translation>Vyberte adresář pro ukládání</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1074"/>
-        <location filename="../preferences/options_imp.cpp" line="1076"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="1062"/>
         <source>Choose an ip filter file</source>
         <translation>Vyberte soubor IP filtrů</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1014"/>
+        <location filename="../preferences/options_imp.cpp" line="1000"/>
         <source>Add directory to scan</source>
         <translation>Přidat adresář ke sledování</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1020"/>
+        <location filename="../preferences/options_imp.cpp" line="1006"/>
         <source>Folder is already being watched.</source>
         <translation>Adresář je již sledován.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1023"/>
+        <location filename="../preferences/options_imp.cpp" line="1009"/>
         <source>Folder does not exist.</source>
         <translation>Adresář neexistuje.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1026"/>
+        <location filename="../preferences/options_imp.cpp" line="1012"/>
         <source>Folder is not readable.</source>
         <translation>Adresář nelze přečíst.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1034"/>
+        <location filename="../preferences/options_imp.cpp" line="1020"/>
         <source>Failure</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1034"/>
+        <location filename="../preferences/options_imp.cpp" line="1020"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Nelze přidat adresář ke sledování &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1074"/>
-        <location filename="../preferences/options_imp.cpp" line="1076"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="1062"/>
         <source>Filters</source>
         <translation>Filtry</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1170"/>
+        <location filename="../preferences/options_imp.cpp" line="1156"/>
         <source>Parsing error</source>
         <translation>Chyba zpracování</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1170"/>
+        <location filename="../preferences/options_imp.cpp" line="1156"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Nepovedlo se zpracovat poskytnutý IP filtr.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1172"/>
+        <location filename="../preferences/options_imp.cpp" line="1158"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6100,7 +6120,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation type="obsolete">Úspěšně obnoveno</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1172"/>
+        <location filename="../preferences/options_imp.cpp" line="1158"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Poskytnutý IP filtr byl úspěšně zpracován. Počet aplikovaných pravidel: %1</translation>
