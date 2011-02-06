@@ -168,7 +168,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresse IP annoncée aux trackers (redémarrage nécessaire)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="241"/>
@@ -3495,7 +3495,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Annonce de l&apos;adresse IP %1 aux trackers...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="467"/>
@@ -5585,117 +5585,117 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../downloadthread.cpp" line="93"/>
         <location filename="../downloadthread.cpp" line="96"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Erreur E/S</translation>
+        <translation>Erreur E/S</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="203"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Hôte distant introuvable (Nom d&apos;hôte invalide)</translation>
+        <translation>Hôte distant introuvable (Nom d&apos;hôte invalide)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="205"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Opération annulée</translation>
+        <translation>Opération annulée</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="207"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Connexion fermée prématurément par le serveur distant, avant la réception complète de sa réponse</translation>
+        <translation>Connexion fermée prématurément par le serveur distant, avant la réception complète de sa réponse</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Délai de connexion au serveur distant écoulée</translation>
+        <translation>Délai de connexion au serveur distant écoulée</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">Erreur poignée de main SSL/TLS</translation>
+        <translation>Erreur poignée de main SSL/TLS</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Connexion refusée par le serveur distant</translation>
+        <translation>Connexion refusée par le serveur distant</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Connexion refusée par le serveur mandataire</translation>
+        <translation>Connexion refusée par le serveur mandataire</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Connexion fermée prématurément par le serveur mandataire</translation>
+        <translation>Connexion fermée prématurément par le serveur mandataire</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Nom d&apos;hôte du serveur mandataire introuvable</translation>
+        <translation>Nom d&apos;hôte du serveur mandataire introuvable</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Délai de connexion au serveur mandataire écoulée</translation>
+        <translation>Délai de connexion au serveur mandataire écoulée</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Echec d&apos;authentification auprès du serveur mandataire</translation>
+        <translation>Echec d&apos;authentification auprès du serveur mandataire</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Accès au contenu distant refusé (401)</translation>
+        <translation>Accès au contenu distant refusé (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">L&apos;opération sur le contenu distant n&apos;est pas permise</translation>
+        <translation>L&apos;opération sur le contenu distant n&apos;est pas permise</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Contenu distant introuvable (404)</translation>
+        <translation>Contenu distant introuvable (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Echec d&apos;authentification avec le serveur distant</translation>
+        <translation>Echec d&apos;authentification avec le serveur distant</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Protocole inconnu</translation>
+        <translation>Protocole inconnu</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Opération invalide pour ce protocole</translation>
+        <translation>Opération invalide pour ce protocole</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Erreur inconnue relative au réseau</translation>
+        <translation>Erreur inconnue relative au réseau</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Erreur inconnue relative au serveur mandataire</translation>
+        <translation>Erreur inconnue relative au serveur mandataire</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Erreur inconnue relative au serveur distant</translation>
+        <translation>Erreur inconnue relative au serveur distant</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Erreur du protocole</translation>
+        <translation>Erreur du protocole</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Erreur inconnue</translation>
+        <translation>Erreur inconnue</translation>
     </message>
 </context>
 <context>
