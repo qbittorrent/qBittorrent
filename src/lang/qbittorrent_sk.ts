@@ -164,6 +164,10 @@ p, li { white-space: pre-wrap; }
         <source>Use system icon theme</source>
         <translation>Používať vzhľad ikon systému</translation>
     </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -2093,6 +2097,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Chyba: Nepodarilo sa spracovať poskytnutý filter IP.</translation>
+    </message>
+    <message>
+        <source>Reporting IP address %1 to trackers...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

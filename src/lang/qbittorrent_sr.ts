@@ -167,6 +167,10 @@ p, li { white-space: pre-wrap; }
         <source>Use system icon theme</source>
         <translation>Користи тему системских икона</translation>
     </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -2121,6 +2125,10 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Грешка: Неспешна анализа датог IP филтера.</translation>
+    </message>
+    <message>
+        <source>Reporting IP address %1 to trackers...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

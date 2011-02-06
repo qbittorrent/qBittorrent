@@ -158,6 +158,10 @@ p, li { white-space: pre-wrap; }
         <source>Use system icon theme</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -2080,6 +2084,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reporting IP address %1 to trackers...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
