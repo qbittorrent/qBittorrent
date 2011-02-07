@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - FEATURE: IP address reported to trackers is now customizable
   - BUGFIX: Use slashes instead of antislashes in URLs (Windows)
+  - BUGFIX: Fix articles read state reset problem in RSS
   - COSMETIC: Improve main window layout
   - COSMETIC: Improve properties buttons style
   - COSMETIC: Display pieces being downloaded in green instead of yellow
