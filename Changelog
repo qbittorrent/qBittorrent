@@ -2,6 +2,7 @@
   - FEATURE: IP address reported to trackers is now customizable
   - BUGFIX: Use slashes instead of antislashes in URLs (Windows)
   - BUGFIX: Fix articles read state reset problem in RSS
+  - I18N: Added Lithuanian translation
   - COSMETIC: Improve main window layout
   - COSMETIC: Improve properties buttons style
   - COSMETIC: Display pieces being downloaded in green instead of yellow
