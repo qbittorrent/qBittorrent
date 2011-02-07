@@ -216,6 +216,8 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     return;
   }
 
+  qDebug() << Q_FUNC_INFO << filePath;
+
   this->filePath = filePath;
   this->from_url = from_url;
   // Getting torrent file informations

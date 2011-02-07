@@ -238,7 +238,7 @@ void QBtSession::setUploadLimit(QString hash, long val) {
 void QBtSession::handleDownloadFailure(QString url, QString reason) {
   emit downloadFromUrlFailure(url, reason);
   // Clean up
-  const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   url_skippingDlg.removeOne(qurl);
   savepathLabel_fromurl.remove(qurl);
 }
@@ -976,9 +976,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   }
 
   QString savePath;
-  if(!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toLocal8Bit()))) {
+  if(!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toUtf8()))) {
     // Enforcing the save path defined before URL download (from RSS for example)
-    QPair<QString, QString> savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(from_url.toLocal8Bit()));
+    QPair<QString, QString> savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(from_url.toUtf8()));
     if(savePath_label.first.isEmpty())
       savePath = getSavePath(hash, fromScanDir, path, root_folder);
     else
@@ -1520,7 +1520,7 @@ void QBtSession::saveFastResumeData() {
       const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
       if(QFile::exists(file))
         misc::safeRemove(file);
-      boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
+      boost::filesystem::ofstream out(boost::filesystem::path(file.toUtf8().constData()), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), *rd->resume_data);
       // Remove torrent from session
@@ -2075,7 +2075,7 @@ void QBtSession::readAlerts() {
           misc::safeRemove(file);
         qDebug("Saving fastresume data in %s", qPrintable(file));
         if (p->resume_data) {
-          boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
+          boost::filesystem::ofstream out(boost::filesystem::path(file.toUtf8().constData()), std::ios_base::binary);
           out.unsetf(std::ios_base::skipws);
           bencode(std::ostream_iterator<char>(out), *p->resume_data);
         }
@@ -2479,7 +2479,7 @@ void QBtSession::addMagnetSkipAddDlg(QString uri) {
 
 void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label) {
   //emit aboutToDownloadFromUrl(url);
-  const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
@@ -2488,14 +2488,14 @@ void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QStrin
 
 // Add to Bittorrent session the downloaded torrent file
 void QBtSession::processDownloadedFile(QString url, QString file_path) {
-  const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toLocal8Bit()));
+  const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toUtf8()));
   if(index < 0) {
     // Add file to torrent download list
 #ifdef Q_WS_WIN
     // Windows hack
-    if(!file_path.endsWith(".torrent")) {
+    if(!file_path.endsWith(".torrent", Qt::CaseInsensitive)) {
       Q_ASSERT(QFile::exists(file_path));
-      qDebug("Torrent name does not end with .torrent, fixing...");
+      qDebug("Torrent name does not end with .torrent, from %s", qPrintable(file_path));
       if(QFile::rename(file_path, file_path+".torrent")) {
         file_path += ".torrent";
       } else {
@@ -2535,7 +2535,7 @@ void QBtSession::saveDHTEntry() {
       const QString dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_path))
         misc::safeRemove(dht_path);
-      boost::filesystem::ofstream out(dht_path.toLocal8Bit().constData(), std::ios_base::binary);
+      boost::filesystem::ofstream out(dht_path.toUtf8().constData(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
       qDebug("DHT entry saved");
