@@ -77,22 +77,28 @@ void downloadThread::processDlFinished(QNetworkReply* reply) {
     url = m_redirectMapping.take(url);
   }
   // Success
-  QTemporaryFile tmpfile;
-  tmpfile.setAutoRemove(false);
-  if (tmpfile.open()) {
-    QString filePath = tmpfile.fileName();
+  QTemporaryFile *tmpfile = new QTemporaryFile;
+  tmpfile->setAutoRemove(false);
+  if (tmpfile->open()) {
+    QString filePath = tmpfile->fileName();
     qDebug("Temporary filename is: %s", qPrintable(filePath));
     if(reply->isOpen() || reply->open(QIODevice::ReadOnly)) {
       // TODO: Support GZIP compression
-      tmpfile.write(reply->readAll());
-      tmpfile.close();
+      tmpfile->write(reply->readAll());
+      tmpfile->close();
+      // XXX: For some reason, tmpfile has to be destroyed before
+      // the signal is sent or the file stays locked on Windows
+      // for some reason.
+      delete tmpfile;
       // Send finished signal
       emit downloadFinished(url, filePath);
     } else {
+      delete tmpfile;
       // Error when reading the request
       emit downloadFailure(url, tr("I/O Error"));
     }
   } else {
+    delete tmpfile;
     emit downloadFailure(url, tr("I/O Error"));
   }
   // Clean up
@@ -134,7 +140,7 @@ QNetworkReply* downloadThread::downloadUrl(const QString &url){
 #endif
   // Process download request
   qDebug("url is %s", qPrintable(url));
-  const QUrl qurl = QUrl::fromEncoded(url.toLocal8Bit());
+  const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   QNetworkRequest request(qurl);
   // Spoof Firefox 3.5 user agent to avoid
   // Web server banning
