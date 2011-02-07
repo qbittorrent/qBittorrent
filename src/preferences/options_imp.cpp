@@ -1193,6 +1193,7 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
     return QString::fromUtf8("Português");
   }
   case QLocale::Polish: return QString::fromUtf8("Polski");
+  case QLocale::Lithuanian: return QString::fromUtf8("Lietuvių");
   case QLocale::Czech: return QString::fromUtf8("Čeština");
   case QLocale::Slovak: return QString::fromUtf8("Slovenčina");
   case QLocale::Serbian: return QString::fromUtf8("Српски");
