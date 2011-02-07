@@ -891,7 +891,13 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       //emit invalidTorrent(from_url);
       misc::safeRemove(path);
     }else{
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+      QString displayed_path = path;
+      displayed_path.replace("/", "\\");
+      addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(displayed_path), QString::fromUtf8("red"));
+#else
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(path), QString::fromUtf8("red"));
+#endif
       //emit invalidTorrent(path);
     }
     addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
@@ -914,7 +920,13 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     if(!from_url.isNull()) {
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
     }else{
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+      QString displayed_path = path;
+      displayed_path.replace("/", "\\");
+      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(displayed_path));
+#else
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(path));
+#endif
     }
     // Check if the torrent contains trackers or url seeds we don't know about
     // and add them
@@ -1057,10 +1069,19 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     else
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    QString displayed_path = path;
+    displayed_path.replace("/", "\\");
+    if(fastResume)
+      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(displayed_path));
+    else
+      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(displayed_path));
+#else
     if(fastResume)
       addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
     else
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(path));
+#endif
   }
 
   // Send torrent addition signal
@@ -1517,9 +1538,6 @@ void QBtSession::addConsoleMessage(QString msg, QColor color) {
   if(consoleMessages.size() > 100) {
     consoleMessages.removeLast();
   }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  msg = msg.replace("/", "\\");
-#endif
   msg = "<font color='grey'>"+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - <font color='" + color.name() + "'><i>" + msg + "</i></font>";
   consoleMessages.prepend(msg);
   emit newConsoleMessage(msg);
@@ -1868,7 +1886,13 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
     for(it = h.get_torrent_info().begin_files(); it != h.get_torrent_info().end_files(); it++)  {
       const QString torrent_relpath = h.filepath(*it);
       if(torrent_relpath.endsWith(".torrent")) {
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+        QString displayed_relpath = torrent_relpath;
+        displayed_relpath.replace("/", "\\");
+        addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(displayed_relpath).arg(h.name()));
+#else
         addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(torrent_relpath).arg(h.name()));
+#endif
         const QString torrent_fullpath = h.save_path()+QDir::separator()+torrent_relpath;
 
         boost::intrusive_ptr<torrent_info> t = new torrent_info(torrent_fullpath.toUtf8().constData());
@@ -1956,7 +1980,13 @@ void QBtSession::readAlerts() {
                 }
               } catch(std::exception&) {
                 qDebug("Caught error loading torrent");
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+                QString displayed_path = torrent_fullpath;
+                displayed_path.replace("/", "\\");
+                addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(displayed_path), QString::fromUtf8("red"));
+#else
                 addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(torrent_fullpath), QString::fromUtf8("red"));
+#endif
               }
             }
           }
