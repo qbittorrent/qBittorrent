@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
+* Tue Feb 8 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - FEATURE: IP address reported to trackers is now customizable
   - BUGFIX: Use slashes instead of antislashes in URLs (Windows)
   - BUGFIX: Fix articles read state reset problem in RSS
