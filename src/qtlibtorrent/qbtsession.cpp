@@ -2523,7 +2523,7 @@ void QBtSession::saveDHTEntry() {
       const QString dht_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_path))
         misc::safeRemove(dht_path);
-      boost::filesystem::ofstream out(dht_path.toUtf8().constData(), std::ios_base::binary);
+      boost::filesystem::ofstream out(dht_path.toLocal8Bit().constData(), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), dht_state);
       qDebug("DHT entry saved");
