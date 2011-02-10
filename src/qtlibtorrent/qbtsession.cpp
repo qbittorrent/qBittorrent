@@ -1350,7 +1350,7 @@ void QBtSession::loadSessionState() {
   if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
     s->load_state(e);
 #else
-  boost::filesystem::ifstream ses_state_file(state_path.toUtf8().constData()
+  boost::filesystem::ifstream ses_state_file(state_path.toLocal8Bit().constData()
                                              , std::ios_base::binary);
   ses_state_file.unsetf(std::ios_base::skipws);
   s->load_state(bdecode(
@@ -1375,7 +1375,7 @@ void QBtSession::saveSessionState() {
   f.writev(0, &b, 1, ec);
 #else
   entry session_state = s->state();
-  boost::filesystem::ofstream out(state_path.toUtf8().constData()
+  boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
                                   , std::ios_base::binary);
   out.unsetf(std::ios_base::skipws);
   bencode(std::ostream_iterator<char>(out), session_state);
@@ -1390,7 +1390,7 @@ bool QBtSession::enableDHT(bool b) {
       entry dht_state;
       const QString dht_state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("dht_state");
       if(QFile::exists(dht_state_path)) {
-        boost::filesystem::ifstream dht_state_file(dht_state_path.toUtf8().constData(), std::ios_base::binary);
+        boost::filesystem::ifstream dht_state_file(dht_state_path.toLocal8Bit().constData(), std::ios_base::binary);
         dht_state_file.unsetf(std::ios_base::skipws);
         try{
           dht_state = bdecode(std::istream_iterator<char>(dht_state_file), std::istream_iterator<char>());
@@ -1520,7 +1520,7 @@ void QBtSession::saveFastResumeData() {
       const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
       if(QFile::exists(file))
         misc::safeRemove(file);
-      boost::filesystem::ofstream out(boost::filesystem::path(file.toUtf8().constData()), std::ios_base::binary);
+      boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
       out.unsetf(std::ios_base::skipws);
       bencode(std::ostream_iterator<char>(out), *rd->resume_data);
       // Remove torrent from session
