@@ -128,7 +128,7 @@ public:
   static QString truncateRootFolder(boost::intrusive_ptr<libtorrent::torrent_info> t);
   static QString truncateRootFolder(libtorrent::torrent_handle h);
 
-  static QString updateLabelInSavePath(const QString& defaultSavePath, const QString &save_path, const QString &old_label, const QString &new_label);
+  static QString updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label);
 
   static bool sameFiles(const QString &path1, const QString &path2);
   static bool isUrl(const QString &s);
