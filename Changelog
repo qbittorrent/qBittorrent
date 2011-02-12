@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.7
+  - BUGFIX: Encoding fixes (Windows)
+  - BUGFIX: Fix "append label to save path" on Windows
+
 * Tue Feb 8 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - FEATURE: IP address reported to trackers is now customizable
   - BUGFIX: Use slashes instead of antislashes in URLs (Windows)

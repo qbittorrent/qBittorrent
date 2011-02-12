@@ -422,13 +422,17 @@ void misc::chmod644(const QDir& folder) {
   }
 }
 
-QString misc::updateLabelInSavePath(const QString& defaultSavePath, const QString &save_path, const QString &old_label, const QString &new_label) {
+QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label) {
   if(old_label == new_label) return save_path;
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+  defaultSavePath.replace("\\", "/");
+  save_path.replace("\\", "/");
+#endif
   qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
   if(!save_path.startsWith(defaultSavePath)) return save_path;
   QString new_save_path = save_path;
   new_save_path.replace(defaultSavePath, "");
-  QStringList path_parts = new_save_path.split(QDir::separator(), QString::SkipEmptyParts);
+  QStringList path_parts = new_save_path.split("/", QString::SkipEmptyParts);
   if(path_parts.empty()) {
     if(!new_label.isEmpty())
       path_parts << new_label;
