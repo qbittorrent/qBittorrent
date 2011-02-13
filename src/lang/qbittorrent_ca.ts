@@ -168,12 +168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Adreça IP per a informe d&apos;incidències als trackers (cal reiniciar)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="244"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualització en pantalla de les notificacions</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="278"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmeu la supressió del torrent</translation>
     </message>
     <message>
         <source>Display program notification baloons</source>
@@ -682,120 +682,120 @@ Podeu obtenir aquesta informació de les preferències del seu navegador web.</t
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="93"/>
-        <location filename="../downloadthread.cpp" line="96"/>
+        <location filename="../downloadthread.cpp" line="98"/>
+        <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Error d&apos;Entrada/Sortida</translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="203"/>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="205"/>
-        <source>The operation was canceled</source>
-        <translation type="unfinished">L&apos;operació va ser cancel-lada</translation>
-    </message>
-    <message>
-        <location filename="../downloadthread.cpp" line="207"/>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
+        <translation>Error d&apos;Entrada/Sortida</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
-        <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation>El nom host no s&apos;ha trobat (nom host no vàlid)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS handshake fallida</translation>
+        <source>The operation was canceled</source>
+        <translation>L&apos;operació va ser cancel-lada</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
-        <source>The remote server refused the connection</source>
-        <translation type="unfinished">El servidor remot va rebutjar la connexió</translation>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation>El servidor remot va tancar la connexió abans de temps, abans que fos rebut i processat</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">La connexió amb el servidor proxy va ser rebutjada</translation>
+        <source>The connection to the remote server timed out</source>
+        <translation>Connexió amb el servidor remot fallida, Temps d&apos;espera esgotat</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Connexió tancada abans de temps pel servidor proxy</translation>
+        <source>SSL/TLS handshake failed</source>
+        <translation>SSL/TLS handshake fallida</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
-        <source>The proxy host name was not found</source>
-        <translation type="unfinished">El nom host del proxy  no s&apos;ha trobat</translation>
+        <source>The remote server refused the connection</source>
+        <translation>El servidor remot va rebutjar la connexió</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
+        <source>The connection to the proxy server was refused</source>
+        <translation>La connexió amb el servidor proxy va ser rebutjada</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation>Connexió tancada abans de temps pel servidor proxy</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
+        <source>The proxy host name was not found</source>
+        <translation>El nom host del proxy  no s&apos;ha trobat</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation>La connexió amb el servidor proxy  s&apos;ha esgotat, o el proxy no va respondre a temps a la sol-licitud enviada</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">El contingut remot no es troba al servidor (404)</translation>
+        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
+        <translation>El proxy requereix autenticació a fi d&apos;atendre la sol-licitud, però no va acceptar les credencials que va oferir</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>L&apos;accés al contingut remot ha estat rebutjat (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Protocol desconegut</translation>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation>L&apos;operació sol-licitada en el contingut remot no està permesa</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
+        <source>The remote content was not found at the server (404)</source>
+        <translation>El contingut remot no es troba al servidor (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
-        <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Error de Xarxa desconegut</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>El servidor remot requereix autenticació per servir el contingut, però les credencials proporcionades no són correctes</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Error de Proxy desconegut</translation>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation>L&apos;accés a la xarxa de l&apos;API no pot complir amb la sol licitud pel fet que el protocol és desconegut</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Error desconegut al servidor remot</translation>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation>L&apos;operació sol-licitada no és vàlida per a aquest protocol</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Error de protocol</translation>
+        <source>An unknown network-related error was detected</source>
+        <translation>Error de Xarxa desconegut</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
+        <source>An unknown proxy-related error was detected</source>
+        <translation>Error de Proxy desconegut</translation>
+    </message>
+    <message>
+        <location filename="../downloadthread.cpp" line="247"/>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation>Error desconegut al servidor remot</translation>
+    </message>
+    <message>
+        <location filename="../downloadthread.cpp" line="249"/>
+        <source>A breakdown in protocol was detected</source>
+        <translation>Error de protocol</translation>
+    </message>
+    <message>
+        <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Error desconegut</translation>
+        <translation>Error desconegut</translation>
     </message>
 </context>
 <context>
@@ -1449,12 +1449,12 @@ Està segur que vol sortir?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>El client qBittorrent no és accessible</translation>
     </message>
 </context>
 <context>
@@ -1570,7 +1570,7 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
     <message>
         <location filename="../mainwindow.ui" line="163"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Interrompre</translation>
+        <translation>&amp;Pausar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="168"/>
@@ -2338,12 +2338,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="416"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Administració d&apos;energia</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="422"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar la suspensió de l&apos;equip quan encara queden torrents actius</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="483"/>
@@ -2578,7 +2578,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Comportament</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="123"/>
@@ -2588,7 +2588,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Idioma</translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1391"/>
@@ -3324,7 +3324,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adreça IP d&apos;Infomes %1 de trackers...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="467"/>
@@ -3407,17 +3407,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2036"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;equip entrarà en 15 segons en estat de suspensió, a menys que ho cancel...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2038"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;equip s&apos;apagarà en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2040"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent serà tancat en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2639"/>
@@ -4041,7 +4041,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Tancar confirmació</translation>
     </message>
 </context>
 <context>
@@ -4576,7 +4576,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../transferlistdelegate.h" line="97"/>
         <source>Paused</source>
-        <translation>Interrompre</translation>
+        <translation>Pausat</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="101"/>
@@ -4645,7 +4645,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <location filename="../transferlistfilterswidget.h" line="231"/>
         <location filename="../transferlistfilterswidget.h" line="307"/>
         <source>Paused</source>
-        <translation>Interrompre</translation>
+        <translation>Pausats</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="234"/>
@@ -5772,41 +5772,41 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="694"/>
+        <location filename="../misc.cpp" line="698"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="699"/>
+        <location filename="../misc.cpp" line="703"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="634"/>
-        <location filename="../misc.cpp" line="639"/>
+        <location filename="../misc.cpp" line="638"/>
         <location filename="../misc.cpp" line="643"/>
-        <location filename="../misc.cpp" line="646"/>
-        <location filename="../misc.cpp" line="651"/>
-        <location filename="../misc.cpp" line="654"/>
+        <location filename="../misc.cpp" line="647"/>
+        <location filename="../misc.cpp" line="650"/>
+        <location filename="../misc.cpp" line="655"/>
+        <location filename="../misc.cpp" line="658"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="523"/>
+        <location filename="../misc.cpp" line="527"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Desconegut</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="685"/>
+        <location filename="../misc.cpp" line="689"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt;1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="689"/>
+        <location filename="../misc.cpp" line="693"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
@@ -5883,7 +5883,7 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1158"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualitzat amb èxit</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
@@ -6007,15 +6007,15 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="229"/>
-        <location filename="../torrentadditiondlg.cpp" line="232"/>
+        <location filename="../torrentadditiondlg.cpp" line="231"/>
+        <location filename="../torrentadditiondlg.cpp" line="234"/>
         <source>Unable to decode torrent file:</source>
         <translation>Impossible descodificar l&apos;arxiu torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="506"/>
-        <location filename="../torrentadditiondlg.cpp" line="511"/>
-        <location filename="../torrentadditiondlg.cpp" line="513"/>
+        <location filename="../torrentadditiondlg.cpp" line="510"/>
+        <location filename="../torrentadditiondlg.cpp" line="525"/>
+        <location filename="../torrentadditiondlg.cpp" line="527"/>
         <source>Choose save path</source>
         <translation>Escollir directori de destí</translation>
     </message>
@@ -6030,106 +6030,106 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation>Enllaç magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="329"/>
+        <location filename="../torrentadditiondlg.cpp" line="331"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="373"/>
+        <location filename="../torrentadditiondlg.cpp" line="375"/>
         <source>Rename the file</source>
         <translation>Rebatejar arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="374"/>
+        <location filename="../torrentadditiondlg.cpp" line="376"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="378"/>
-        <location filename="../torrentadditiondlg.cpp" line="408"/>
+        <location filename="../torrentadditiondlg.cpp" line="380"/>
+        <location filename="../torrentadditiondlg.cpp" line="410"/>
         <source>The file could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="379"/>
+        <location filename="../torrentadditiondlg.cpp" line="381"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="409"/>
-        <location filename="../torrentadditiondlg.cpp" line="443"/>
+        <location filename="../torrentadditiondlg.cpp" line="411"/>
+        <location filename="../torrentadditiondlg.cpp" line="445"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Aquest nom ja està en ús. Si us plau, usi un nom diferent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="442"/>
+        <location filename="../torrentadditiondlg.cpp" line="444"/>
         <source>The folder could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="490"/>
+        <location filename="../torrentadditiondlg.cpp" line="492"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible després de descarregar el torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="493"/>
+        <location filename="../torrentadditiondlg.cpp" line="495"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(Es necessiten més %1)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="567"/>
+        <location filename="../torrentadditiondlg.cpp" line="580"/>
         <source>Empty save path</source>
         <translation>Ruta de destí buida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="567"/>
+        <location filename="../torrentadditiondlg.cpp" line="580"/>
         <source>Please enter a save path</source>
         <translation>Si us plau introdueixi un directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="646"/>
+        <location filename="../torrentadditiondlg.cpp" line="659"/>
         <source>Save path creation error</source>
         <translation>Error en la creació del directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="646"/>
+        <location filename="../torrentadditiondlg.cpp" line="659"/>
         <source>Could not create the save path</source>
         <translation>Impossible crear el directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="588"/>
+        <location filename="../torrentadditiondlg.cpp" line="601"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="588"/>
+        <location filename="../torrentadditiondlg.cpp" line="601"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="631"/>
+        <location filename="../torrentadditiondlg.cpp" line="644"/>
         <source>Seeding mode error</source>
         <translation>Error en la Sembra</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="631"/>
+        <location filename="../torrentadditiondlg.cpp" line="644"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vostè ha decidit ignorar la verificació d&apos;arxius. Tanmateix, els arxius locals no semblen existir a la carpeta de destí actual. Si us plau, desactivi aquesta funció o actualitzi la ruta de destinació.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="638"/>
+        <location filename="../torrentadditiondlg.cpp" line="651"/>
         <source>Invalid file selection</source>
         <translation>Selecció d&apos;arxiu invàlida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="638"/>
+        <location filename="../torrentadditiondlg.cpp" line="651"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Ha de seleccionar almenys un arxiu torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="333"/>
+        <location filename="../torrentadditiondlg.cpp" line="335"/>
         <source>Priority</source>
         <translation>Prioritat</translation>
     </message>
