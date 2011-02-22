@@ -388,6 +388,9 @@ void QBtSession::configureSession() {
 #endif
   sessionSettings.cache_size = pref.diskCacheSize()*64;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
+  // Disable OS cache to avoid memory problems (uTorrent behavior)
+  sessionSettings.disk_io_write_mode = session_settings::disable_os_cache_for_aligned_files;
+  sessionSettings.disk_io_read_mode = session_settings::disable_os_cache_for_aligned_files;
   // Queueing System
   if(pref.isQueueingSystemEnabled()) {
     sessionSettings.active_downloads = pref.getMaxActiveDownloads();
@@ -2410,11 +2413,6 @@ QString QBtSession::getSavePath(QString hash, bool fromScanDir, QString filePath
         savePath = defaultSavePath;
         append_root_folder = true;
       }
-    } else {
-      QIniSettings settings("qBittorrent", "qBittorrent");
-      if(!settings.value("ported_to_new_savepath_system", false).toBool()) {
-        append_root_folder = true;
-      }
     }
     if(!fromScanDir && appendLabelToSavePath) {
       const QString label = TorrentPersistentData::getLabel(hash);
@@ -2425,9 +2423,7 @@ QString QBtSession::getSavePath(QString hash, bool fromScanDir, QString filePath
     }
     if(append_root_folder && !root_folder.isEmpty()) {
       // Append torrent root folder to the save path
-      if(!savePath.endsWith(QDir::separator()))
-        savePath += QDir::separator();
-      savePath += root_folder;
+      savePath = QDir(savePath).absoluteFilePath(root_folder);
       qDebug("Torrent root folder is %s", qPrintable(root_folder));
       TorrentPersistentData::saveSavePath(hash, savePath);
     }
