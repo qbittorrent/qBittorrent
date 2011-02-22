@@ -825,6 +825,8 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
     qDebug("addMagnetURI: using save_path: %s", qPrintable(savePath));
   }
 
+  qDebug("Adding magnet URI: %s", qPrintable(magnet_uri));
+
   // Adding torrent to Bittorrent session
   try {
     h =  QTorrentHandle(add_magnet_uri(*s, magnet_uri.toStdString(), p));
