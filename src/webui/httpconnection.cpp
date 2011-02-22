@@ -389,6 +389,8 @@ void HttpConnection::respondCommand(QString command)
     QByteArray torrentfile = parser.torrent();
     // Get a unique filename
     QString filePath;
+    // XXX: We need to use a QTemporaryFile pointer here
+    // and it fails on Windows
     QTemporaryFile *tmpfile = new QTemporaryFile;
     tmpfile->setAutoRemove(false);
     if (tmpfile->open()) {
