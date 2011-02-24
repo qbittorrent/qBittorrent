@@ -295,6 +295,7 @@ void TrackerList::askForTrackers(){
   QStringList trackers = TrackersAdditionDlg::askForTrackers(h);
   if(!trackers.empty()) {
     foreach(const QString& tracker, trackers) {
+      if(tracker.trimmed().isEmpty()) continue;
       announce_entry url(tracker.toStdString());
       url.tier = 0;
       h.add_tracker(url);
