@@ -82,7 +82,6 @@ using namespace libtorrent;
 QBtSession* QBtSession::m_instance = 0;
 
 const int MAX_TRACKER_ERRORS = 2;
-const qreal MAX_RATIO = 100.;
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
@@ -1442,12 +1441,12 @@ qreal QBtSession::getRealRatio(QString hash) const{
   if(h.total_done() == 0) {
     if(h.all_time_upload() == 0)
       return 0;
-    return 101;
+    return MAX_RATIO+1;
   }
   qreal ratio = (float)h.all_time_upload()/(float)h.total_done();
   Q_ASSERT(ratio >= 0.);
-  if(ratio > 100.)
-    ratio = 100.;
+  if(ratio > MAX_RATIO)
+    ratio = MAX_RATIO;
   return ratio;
 }
 

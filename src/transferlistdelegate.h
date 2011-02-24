@@ -41,6 +41,7 @@
 #include <QDateTime>
 #include "misc.h"
 #include "torrentmodel.h"
+#include "qbtsession.h"
 
 #ifdef Q_WS_WIN
   #include <QPlastiqueStyle>
@@ -155,7 +156,7 @@ public:
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
         const qreal ratio = index.data().toDouble();
-        if(ratio > 100.)
+        if(ratio > QBtSession::MAX_RATIO)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
         else
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 2));
