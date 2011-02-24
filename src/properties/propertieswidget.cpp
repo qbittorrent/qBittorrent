@@ -349,7 +349,7 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      if(ratio > 100.)
+      if(ratio > QBtSession::MAX_RATIO)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
         shareRatio->setText(QString(QByteArray::number(ratio, 'f', 2)));

@@ -5,6 +5,7 @@
   - BUGFIX: Fix torrent upload from Web UI (Windows)
   - BUGFIX: Fix cursor problem in torrent addition dialog
   - BUGFIX: Fix crash when additing an empty tracker URL
+  - BUGFIX: Share ratio can now go over 100
 
 * Tue Feb 8 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - FEATURE: IP address reported to trackers is now customizable
