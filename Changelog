@@ -3,6 +3,7 @@
   - BUGFIX: Fix "append label to save path" (Windows)
   - BUGFIX: Disable OS cache for aligned files to reduce memory consumption
   - BUGFIX: Fix torrent upload from Web UI (Windows)
+  - BUGFIX: Fix cursor problem in torrent addition dialog
 
 * Tue Feb 8 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.6 
   - FEATURE: IP address reported to trackers is now customizable
