@@ -67,10 +67,10 @@ public:
 public slots:
   void on_uTorrentListButton_clicked() {
     DownloadThread *d = new DownloadThread(this);
-    connect(d, SIGNAL(downloadFinished(QString,QString)), this, SLOT(parseUTorrentList(QString,QString)));
-    connect(d, SIGNAL(downloadFailure(QString,QString)), this, SLOT(getTrackerError(QString,QString)));
+    connect(d, SIGNAL(downloadFinished(QString,QString)), SLOT(parseUTorrentList(QString,QString)));
+    connect(d, SIGNAL(downloadFailure(QString,QString)), SLOT(getTrackerError(QString,QString)));
     //Just to show that it takes times
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    setCursor(Qt::WaitCursor);
     d->downloadUrl("http://www.torrentz.com/announce_"+h.hash());
   }
 
@@ -78,6 +78,7 @@ public slots:
     QFile list_file(path);
     if (!list_file.open(QFile::ReadOnly)) {
       QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
+      setCursor(Qt::ArrowCursor);
       return;
     }
     QList<QUrl> existingTrackers;
@@ -90,7 +91,7 @@ public slots:
     }
     // Load from current user list
     QStringList tmp = trackers_list->toPlainText().split("\n");
-    foreach(QString user_url_str, tmp) {
+    foreach(const QString &user_url_str, tmp) {
       QUrl user_url(user_url_str);
       if(!existingTrackers.contains(user_url))
         existingTrackers << user_url;
@@ -100,7 +101,7 @@ public slots:
       trackers_list->insertPlainText("\n");
     int nb = 0;
     while (!list_file.atEnd()) {
-      QByteArray line = list_file.readLine().trimmed();
+      const QByteArray line = list_file.readLine().trimmed();
       if(line.isEmpty()) continue;
       QUrl url(line);
       if (!existingTrackers.contains(url)) {
@@ -112,7 +113,7 @@ public slots:
     list_file.close();
     list_file.remove();
     //To restore the cursor ...
-    QApplication::restoreOverrideCursor();
+    setCursor(Qt::ArrowCursor);
     // Display information message if necessary
     if(nb == 0) {
       QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
@@ -121,7 +122,7 @@ public slots:
 
   void getTrackerError(QString, QString error) {
     //To restore the cursor ...
-    QApplication::restoreOverrideCursor();
+    setCursor(Qt::ArrowCursor);
     QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
   }
 
