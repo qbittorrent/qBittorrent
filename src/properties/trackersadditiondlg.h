@@ -67,6 +67,7 @@ public:
 public slots:
   void on_uTorrentListButton_clicked() {
     downloadThread *d = new downloadThread(this);
+    uTorrentListButton->setEnabled(false);
     connect(d, SIGNAL(downloadFinished(QString,QString)), SLOT(parseUTorrentList(QString,QString)));
     connect(d, SIGNAL(downloadFailure(QString,QString)), SLOT(getTrackerError(QString,QString)));
     //Just to show that it takes times
@@ -79,6 +80,8 @@ public slots:
     if (!list_file.open(QFile::ReadOnly)) {
       QMessageBox::warning(this, tr("I/O Error"), tr("Error while trying to open the downloaded file."), QMessageBox::Ok);
       setCursor(Qt::ArrowCursor);
+      uTorrentListButton->setEnabled(true);
+      sender()->deleteLater();
       return;
     }
     QList<QUrl> existingTrackers;
@@ -114,16 +117,20 @@ public slots:
     list_file.remove();
     //To restore the cursor ...
     setCursor(Qt::ArrowCursor);
+    uTorrentListButton->setEnabled(true);
     // Display information message if necessary
     if(nb == 0) {
       QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
     }
+    sender()->deleteLater();
   }
 
-  void getTrackerError(QString, QString error) {
+  void getTrackerError(const QString&, const QString &error) {
     //To restore the cursor ...
     setCursor(Qt::ArrowCursor);
+    uTorrentListButton->setEnabled(true);
     QMessageBox::warning(this, tr("Download error"), tr("The trackers list could not be downloaded, reason: %1").arg(error), QMessageBox::Ok);
+    sender()->deleteLater();
   }
 
 public:
