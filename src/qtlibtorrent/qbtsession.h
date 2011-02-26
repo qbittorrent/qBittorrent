@@ -66,7 +66,7 @@ class QBtSession : public QObject {
   Q_DISABLE_COPY(QBtSession)
 
 public:
-  static const qreal MAX_RATIO = 9999.;
+  static const qreal MAX_RATIO;
 
 private:
   explicit QBtSession();

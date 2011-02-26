@@ -79,6 +79,7 @@
 using namespace libtorrent;
 
 QBtSession* QBtSession::m_instance = 0;
+const qreal QBtSession::MAX_RATIO = 9999.;
 
 const int MAX_TRACKER_ERRORS = 2;
 enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };

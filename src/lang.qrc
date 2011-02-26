@@ -15,6 +15,7 @@
   <file>lang/qbittorrent_fr.qm</file>
   <file>lang/qbittorrent_uk.qm</file>
   <file>lang/qbittorrent_zh.qm</file>
+  <file>lang/qbittorrent_lt.qm</file>
   <file>lang/qbittorrent_ko.qm</file>
   <file>lang/qbittorrent_nb.qm</file>
   <file>lang/qbittorrent_sv.qm</file>
@@ -32,6 +33,5 @@
   <file>lang/qbittorrent_en.qm</file>
   <file>lang/qbittorrent_hr.qm</file>
   <file>lang/qbittorrent_ro.qm</file>
-  <file>lang/qbittorrent_lt.qm</file>
 </qresource>
 </RCC>
