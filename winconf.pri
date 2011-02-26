@@ -1,5 +1,5 @@
 # Adapt these paths on Windows
-INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_44_0)
+INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_46_0)
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/include)
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/zlib)
 INCLUDEPATH += $$quote(C:/OpenSSL/include)

@@ -85,16 +85,11 @@ void TorrentCreatorThread::sendProgressSignal(int progress) {
 
 void TorrentCreatorThread::run() {
   emit updateProgress(0);
-  char const* creator_str = "qBittorrent "VERSION;
+  QString creator_str("qBittorrent "VERSION);
   try {
     file_storage fs;
-#if LIBTORRENT_VERSION_MINOR >= 16
-    add_files(fs, input_path.toUtf8().constData(), file_filter);
-#else
     // Adding files to the torrent
-    path full_path = path(input_path.toUtf8().constData());
-    add_files(fs, full_path, file_filter);
-#endif
+    add_files(fs, input_path.toUtf8().constData(), file_filter);
     if(abort) return;
     create_torrent t(fs, piece_size);
 
@@ -107,20 +102,12 @@ void TorrentCreatorThread::run() {
     }
     if(abort) return;
     // calculate the hash for all pieces
-#if LIBTORRENT_VERSION_MINOR >= 16
-    QString parent_path = input_path.replace("\\", "/");
-    QStringList parts = parent_path.split("/"/*, QString::SkipEmptyParts*/);
-    parts.removeLast();
-    parent_path = parts.join("/");
+    const QString parent_path = misc::branchPath(input_path);
     set_piece_hashes(t, parent_path.toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
-#else
-    QString parent_path = misc::toQStringU(full_path.branch_path().string());
-    set_piece_hashes(t, full_path.branch_path(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
-#endif
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
-    t.set_creator(creator_str);
-    t.set_comment((const char*)comment.toUtf8());
+    t.set_creator(creator_str.toUtf8().constData());
+    t.set_comment(comment.toUtf8().constData());
     // Is private ?
     t.set_priv(is_private);
     if(abort) return;
