@@ -13,6 +13,7 @@ HEADERS +=    $$PWD/rss_imp.h \
               $$PWD/rssdownloadrule.h \
               $$PWD/rssdownloadrulelist.h \
               $$PWD/cookiesdlg.h \
+              $$PWD/rssarticle_p.h
 
 SOURCES +=   $$PWD/rss_imp.cpp \
              $$PWD/rsssettingsdlg.cpp \

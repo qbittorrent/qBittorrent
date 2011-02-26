@@ -28,51 +28,34 @@
  * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
  */
 
-#ifndef RSSARTICLE_H
-#define RSSARTICLE_H
+#ifndef RSSARTICLE_P_H
+#define RSSARTICLE_P_H
 
-#include <QXmlStreamReader>
+#include <QString>
+#include <QSharedData>
 #include <QDateTime>
-#include <QVariantHash>
-#include <QExplicitlySharedDataPointer>
 
 class RssFeed;
-class RssArticleData;
 
-// Item of a rss stream, single information
-class RssArticle {
-
+class RssArticleData: public QSharedData {
 public:
-  RssArticle(RssFeed* parent, QXmlStreamReader& xml);
-  RssArticle(RssFeed* parent = 0, const QString &guid = QString());
-  RssArticle(const RssArticle& other); // Copy constructor
-  RssArticle& operator=(const RssArticle& other);
-  ~RssArticle();
-  // Accessors
-  bool isValid() const;
-  bool hasAttachment() const;
-  QString guid() const;
-  RssFeed* parent() const;
-  QString title() const;
-  QString author() const;
-  QString torrentUrl() const;
-  QString link() const;
-  QString description() const;
-  QDateTime date() const;
-  bool isRead() const;
-  // Setters
-  void markAsRead();
-  // Serialization
-  QVariantHash toHash() const;
-  friend RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
+  RssArticleData(): QSharedData(), read(false) {}
+  ~RssArticleData() {}
+  RssArticleData(const RssArticleData& other):
+    QSharedData(other), parent(other.parent),
+    guid(other.guid), title(other.title), torrentUrl(other.torrentUrl),
+    link(other.link), description(other.description), date(other.date),
+    author(other.author), read(other.read) {}
 
-private:
-  static QDateTime parseDate(const QString &string);
-
-private:
-  QExplicitlySharedDataPointer<RssArticleData> d;
+  RssFeed* parent;
+  QString guid;
+  QString title;
+  QString torrentUrl;
+  QString link;
+  QString description;
+  QDateTime date;
+  QString author;
+  bool read;
 };
 
-RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
-
-#endif // RSSARTICLE_H
+#endif // RSSARTICLE_P_H
