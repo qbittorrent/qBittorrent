@@ -33,9 +33,11 @@
 
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class CookiesDlg;
 }
+QT_END_NAMESPACE
 
 class CookiesDlg : public QDialog
 {

@@ -36,7 +36,10 @@
 #include <libtorrent/torrent_info.hpp>
 
 #include <QString>
+
+QT_BEGIN_NAMESPACE
 class QStringList;
+QT_END_NAMESPACE
 
 // A wrapper for torrent_handle in libtorrent
 // to interact well with Qt types

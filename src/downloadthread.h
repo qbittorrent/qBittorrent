@@ -36,7 +36,9 @@
 #include <QHash>
 #include <QSslError>
 
+QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
+QT_END_NAMESPACE
 
 class DownloadThread : public QObject {
   Q_OBJECT

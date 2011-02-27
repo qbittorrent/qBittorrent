@@ -3,9 +3,11 @@
 
 #include <QWidget>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class ExecutionLog;
 }
+QT_END_NAMESPACE
 
 class ExecutionLog : public QWidget
 {

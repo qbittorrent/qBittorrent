@@ -38,18 +38,13 @@
 #include "qtorrenthandle.h"
 
 class QBtSession;
-class QTimer;
 class downloadFromURL;
 class SearchEngine;
-class QCloseEvent;
 class RSSImp;
-class QShortcut;
 class about;
 class options_imp;
-class QTabWidget;
 class TransferListWidget;
 class TransferListFiltersWidget;
-class QSplitter;
 class PropertiesWidget;
 class StatusBar;
 class consoleDlg;
@@ -58,9 +53,17 @@ class TorrentCreatorDlg;
 class downloadFromURL;
 class HidableTabWidget;
 class LineEdit;
-class QFileSystemWatcher;
 class ExecutionLog;
 class PowerManagement;
+
+QT_BEGIN_NAMESPACE
+class QCloseEvent;
+class QFileSystemWatcher;
+class QShortcut;
+class QSplitter;
+class QTabWidget;
+class QTimer;
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT

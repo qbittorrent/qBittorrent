@@ -36,8 +36,11 @@
 #include "httpresponsegenerator.h"
 #include <QObject>
 
-class QTcpSocket;
 class HttpServer;
+
+QT_BEGIN_NAMESPACE
+class QTcpSocket;
+QT_END_NAMESPACE
 
 class HttpConnection : public QObject
 {

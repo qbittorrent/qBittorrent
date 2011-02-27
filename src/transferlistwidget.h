@@ -35,12 +35,15 @@
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
 
-class QStandardItemModel;
-class QSortFilterProxyModel;
 class QBtSession;
 class TransferListDelegate;
 class MainWindow;
 class TorrentModel;
+
+QT_BEGIN_NAMESPACE
+class QSortFilterProxyModel;
+class QStandardItemModel;
+QT_END_NAMESPACE
 
 enum TorrentFilter {FILTER_ALL, FILTER_DOWNLOADING, FILTER_COMPLETED, FILTER_PAUSED, FILTER_ACTIVE, FILTER_INACTIVE};
 

@@ -33,7 +33,9 @@
 
 #include <QHBoxLayout>
 
+QT_BEGIN_NAMESPACE
 class QButtonGroup;
+QT_END_NAMESPACE
 
 class PropTabBar : public QHBoxLayout
 {

@@ -34,12 +34,17 @@
 #include <QDialog>
 #include "rssdownloadrule.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class AutomatedRssDownloader;
 }
+QT_END_NAMESPACE
 
 class RssDownloadRuleList;
+
+QT_BEGIN_NAMESPACE
 class QListWidgetItem;
+QT_END_NAMESPACE
 
 class AutomatedRssDownloader : public QDialog
 {

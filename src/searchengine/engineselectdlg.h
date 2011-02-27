@@ -35,7 +35,10 @@
 #include "supportedengines.h"
 
 class DownloadThread;
+
+QT_BEGIN_NAMESPACE
 class QDropEvent;
+QT_END_NAMESPACE
 
 class engineSelectDlg : public QDialog, public Ui::engineSelect{
   Q_OBJECT

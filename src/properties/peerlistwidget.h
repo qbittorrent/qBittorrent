@@ -39,12 +39,15 @@
 #include "qtorrenthandle.h"
 #include "misc.h"
 
-class QStandardItemModel;
-class QStandardItem;
-class QSortFilterProxyModel;
 class PeerListDelegate;
 class ReverseResolution;
 class PropertiesWidget;
+
+QT_BEGIN_NAMESPACE
+class QSortFilterProxyModel;
+class QStandardItem;
+class QStandardItemModel;
+QT_END_NAMESPACE
 
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103500

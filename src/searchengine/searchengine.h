@@ -42,9 +42,12 @@
 #include "supportedengines.h"
 
 class DownloadThread;
-class QTimer;
 class SearchEngine;
 class MainWindow;
+
+QT_BEGIN_NAMESPACE
+class QTimer;
+QT_END_NAMESPACE
 
 class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT

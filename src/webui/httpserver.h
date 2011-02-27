@@ -38,8 +38,11 @@
 #include <QHash>
 #include "preferences.h"
 
-class QTimer;
 class EventManager;
+
+QT_BEGIN_NAMESPACE
+class QTimer;
+QT_END_NAMESPACE
 
 const int MAX_AUTH_FAILED_ATTEMPTS = 5;
 

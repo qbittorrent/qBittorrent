@@ -16,9 +16,11 @@
 #include <QObject>
 #include <QByteArray>
 
+QT_BEGIN_NAMESPACE
 struct QTextStream;
 struct QTcpSocket;
 class QTextCodec;
+QT_END_NAMESPACE
 
 class Smtp : public QObject {
   Q_OBJECT

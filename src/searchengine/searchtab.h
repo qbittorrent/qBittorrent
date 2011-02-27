@@ -38,10 +38,13 @@
 
 class SearchListDelegate;
 class SearchEngine;
+
+QT_BEGIN_NAMESPACE
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
 class QSortFilterProxyModel;
+QT_END_NAMESPACE
 
 class SearchTab: public QWidget, public Ui::search_engine {
   Q_OBJECT

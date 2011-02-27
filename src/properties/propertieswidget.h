@@ -37,10 +37,8 @@
 
 
 class TransferListWidget;
-class QTimer;
 class TorrentFilesFilterModel;
 class PropListDelegate;
-class QAction;
 class torrent_file;
 class PeerListWidget;
 class TrackerList;
@@ -49,6 +47,11 @@ class DownloadedPiecesBar;
 class PieceAvailabilityBar;
 class PropTabBar;
 class LineEdit;
+
+QT_BEGIN_NAMESPACE
+class QAction;
+class QTimer;
+QT_END_NAMESPACE
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT

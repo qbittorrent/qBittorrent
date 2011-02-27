@@ -53,7 +53,6 @@
 #define MAX_SAMPLES 20
 
 class DownloadThread;
-class QTimer;
 class FilterParserThread;
 class HttpServer;
 class BandwidthScheduler;

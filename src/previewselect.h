@@ -36,8 +36,11 @@
 #include "ui_preview.h"
 #include "qtorrenthandle.h"
 
-class QStandardItemModel;
 class PreviewListDelegate;
+
+QT_BEGIN_NAMESPACE
+class QStandardItemModel;
+QT_END_NAMESPACE
 
 class PreviewSelect: public QDialog, private Ui::preview {
   Q_OBJECT

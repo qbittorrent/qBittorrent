@@ -33,7 +33,9 @@
 
 #include <QObject>
 
+QT_BEGIN_NAMESPACE
 class QDBusPendingCallWatcher;
+QT_END_NAMESPACE
 
 class PowerManagementInhibitor : public QObject
 {

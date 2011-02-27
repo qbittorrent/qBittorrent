@@ -37,9 +37,12 @@
 #include "ui_rss.h"
 
 class FeedListWidget;
-class QTreeWidgetItem;
 class RssFolder;
 class RssManager;
+
+QT_BEGIN_NAMESPACE
+class QTreeWidgetItem;
+QT_END_NAMESPACE
 
 class RSSImp : public QWidget, public Ui::RSS {
   Q_OBJECT

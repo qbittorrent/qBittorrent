@@ -37,8 +37,11 @@
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};
 
-class QCloseEvent;
 class AdvancedSettings;
+
+QT_BEGIN_NAMESPACE
+class QCloseEvent;
+QT_END_NAMESPACE
 
 class options_imp : public QDialog, private Ui_Preferences {
   Q_OBJECT

@@ -36,9 +36,11 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class TorrentImportDlg;
 }
+QT_END_NAMESPACE
 
 class QBtSession;
 
