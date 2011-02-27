@@ -38,7 +38,7 @@
 
 class TransferListWidget;
 class QTimer;
-class TorrentFilesModel;
+class TorrentFilesFilterModel;
 class PropListDelegate;
 class QAction;
 class torrent_file;
@@ -48,6 +48,7 @@ class MainWindow;
 class DownloadedPiecesBar;
 class PieceAvailabilityBar;
 class PropTabBar;
+class LineEdit;
 
 class PropertiesWidget : public QWidget, private Ui::PropertiesWidget {
   Q_OBJECT
@@ -80,8 +81,6 @@ protected slots:
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
   void renameSelectedFile();
-  void selectAllFiles();
-  void selectNoneFiles();
 
 public slots:
   void setVisibility(bool visible);
@@ -99,7 +98,7 @@ private:
   QTorrentHandle h;
   QTimer *refreshTimer;
   SlideState state;
-  TorrentFilesModel *PropListModel;
+  TorrentFilesFilterModel *PropListModel;
   PropListDelegate *PropDelegate;
   PeerListWidget *peersList;
   TrackerList *trackerList;
@@ -107,6 +106,7 @@ private:
   DownloadedPiecesBar *downloaded_pieces;
   PieceAvailabilityBar *pieces_availability;
   PropTabBar *m_tabBar;
+  LineEdit *m_contentFilerLine;
 };
 
 #endif // PROPERTIESWIDGET_H

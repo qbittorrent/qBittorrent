@@ -37,6 +37,8 @@
 #include <QStringList>
 #include <QString>
 #include <QDir>
+#include <QDebug>
+#include <QSortFilterProxyModel>
 #include <libtorrent/torrent_info.hpp>
 #include "proplistdelegate.h"
 #include "iconprovider.h"
@@ -48,7 +50,7 @@ enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
 class TorrentFileItem {
 
 public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO};
+  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, NB_COL};
   enum FileType {TFILE, FOLDER, ROOT};
 
 private:
@@ -348,6 +350,7 @@ public:
   }
 
   void updateFilesProgress(std::vector<libtorrent::size_type> fp) {
+    emit layoutAboutToBeChanged();
     for(unsigned int i=0; i<fp.size(); ++i) {
       Q_ASSERT(fp[i] >= 0);
       files_index[i]->setProgress(fp[i]);
@@ -356,6 +359,7 @@ public:
   }
 
   void updateFilesPriorities(std::vector<int> fprio) {
+    emit layoutAboutToBeChanged();
     for(unsigned int i=0; i<fprio.size(); ++i) {
       //qDebug("Called updateFilesPriorities with %d", fprio[i]);
       files_index[i]->setPriority(fprio[i]);
@@ -479,6 +483,8 @@ public:
   QModelIndex index(int row, int column, const QModelIndex &parent=QModelIndex()) const {
     if (parent.isValid() && parent.column() != 0)
       return QModelIndex();
+    if(column >= TorrentFileItem::NB_COL)
+      return QModelIndex();
 
     TorrentFileItem *parentItem;
 
@@ -486,6 +492,9 @@ public:
       parentItem = rootItem;
     else
       parentItem = static_cast<TorrentFileItem*>(parent.internalPointer());
+    Q_ASSERT(parentItem);
+    if(row >= parentItem->childCount())
+      return QModelIndex();
 
     TorrentFileItem *childItem = parentItem->child(row);
     if (childItem) {
@@ -500,6 +509,7 @@ public:
       return QModelIndex();
 
     TorrentFileItem *childItem = static_cast<TorrentFileItem*>(index.internalPointer());
+    if(!childItem) return QModelIndex();
     TorrentFileItem *parentItem = childItem->parent();
 
     if (parentItem == rootItem)
@@ -524,6 +534,7 @@ public:
 
   void clear() {
     qDebug("clear called");
+    emit layoutAboutToBeChanged();
     if(files_index) {
       delete [] files_index;
       files_index = 0;
@@ -536,6 +547,7 @@ public:
   void setupModelData(const libtorrent::torrent_info &t) {
     qDebug("setup model data called");
     if(t.num_files() == 0) return;
+    emit layoutAboutToBeChanged();
     // Initialize files_index array
     qDebug("Torrent contains %d files", t.num_files());
     files_index = new TorrentFileItem*[t.num_files()];
@@ -576,6 +588,7 @@ public:
 
 public slots:
   void selectAll() {
+    emit layoutAboutToBeChanged();
     for(int i=0; i<rootItem->childCount(); ++i) {
       TorrentFileItem *child = rootItem->child(i);
       if(child->getPriority() == prio::IGNORED)
@@ -585,6 +598,7 @@ public slots:
   }
 
   void selectNone() {
+    emit layoutAboutToBeChanged();
     for(int i=0; i<rootItem->childCount(); ++i) {
       rootItem->child(i)->setPriority(prio::IGNORED);
     }
@@ -593,6 +607,76 @@ public slots:
 
 signals:
   void filteredFilesChanged();
+};
+
+class TorrentFilesFilterModel: public QSortFilterProxyModel {
+  Q_OBJECT
+
+public:
+  TorrentFilesFilterModel(QObject *parent = 0): QSortFilterProxyModel(parent) {
+    m_model = new TorrentFilesModel(this);
+    connect(m_model, SIGNAL(filteredFilesChanged()), this, SIGNAL(filteredFilesChanged()));
+    setSourceModel(m_model);
+    // Filter settings
+    setFilterCaseSensitivity(Qt::CaseInsensitive);
+    setFilterKeyColumn(TorrentFileItem::COL_NAME);
+    setFilterRole(Qt::DisplayRole);
+    setDynamicSortFilter(true);
+  }
+
+  ~TorrentFilesFilterModel() {
+    delete m_model;
+  }
+
+  TorrentFilesModel* model() const {
+    return m_model;
+  }
+
+  TorrentFileItem::FileType getType(const QModelIndex &index) const {
+    return m_model->getType(mapToSource(index));
+  }
+
+  int getFileIndex(const QModelIndex &index) {
+    return m_model->getFileIndex(mapToSource(index));
+  }
+
+  QModelIndex parent(const QModelIndex & child) const {
+     if(!child.isValid()) return QModelIndex();
+     Q_ASSERT(sourceModel());
+     QModelIndex sourceParent = sourceModel()->parent(mapToSource(child));
+     if(!sourceParent.isValid()) return QModelIndex();
+     return mapFromSource(sourceParent);
+  }
+
+signals:
+  void filteredFilesChanged();
+
+protected:
+  bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const {
+    if (m_model->getType(m_model->index(source_row, 0, source_parent)) == TorrentFileItem::FOLDER) {
+      // always accept folders, since we want to filter their children
+      return true;
+    }
+    return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
+  }
+
+public slots:
+  void selectAll() {
+    for(int i=0; i<rowCount(); ++i) {
+      setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
+    }
+    emit layoutChanged();
+  }
+
+  void selectNone() {
+    for(int i=0; i<rowCount(); ++i) {
+      setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
+    }
+    emit layoutChanged();
+  }
+
+private:
+  TorrentFilesModel *m_model;
 };
 
 

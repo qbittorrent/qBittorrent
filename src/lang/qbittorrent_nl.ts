@@ -2686,6 +2686,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Tijd actief:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Torrent inhoud:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>

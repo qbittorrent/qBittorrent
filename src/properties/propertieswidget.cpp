@@ -55,6 +55,7 @@
 #include "qinisettings.h"
 #include "proptabbar.h"
 #include "iconprovider.h"
+#include "lineedit.h"
 
 using namespace libtorrent;
 
@@ -72,15 +73,19 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setEnabled(false);
 
   // Set Properties list model
-  PropListModel = new TorrentFilesModel();
+  PropListModel = new TorrentFilesFilterModel();
   filesList->setModel(PropListModel);
   PropDelegate = new PropListDelegate(this);
   filesList->setItemDelegate(PropDelegate);
+  // Torrent content filtering
+  m_contentFilerLine = new LineEdit(this);
+  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), PropListModel, SLOT(setFilterFixedString(QString)));
+  contentFilterLayout->insertWidget(1, m_contentFilerLine);
 
   // SIGNAL/SLOTS
   connect(filesList, SIGNAL(clicked(const QModelIndex&)), filesList, SLOT(edit(const QModelIndex&)));
-  connect(selectAllButton, SIGNAL(clicked()), this, SLOT(selectAllFiles()));
-  connect(selectNoneButton, SIGNAL(clicked()), this, SLOT(selectNoneFiles()));
+  connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
+  connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
@@ -197,7 +202,8 @@ void PropertiesWidget::clear() {
   reannounce_lbl->clear();
   shareRatio->clear();
   listWebSeeds->clear();
-  PropListModel->clear();
+  m_contentFilerLine->clear();
+  PropListModel->model()->clear();
   showPiecesAvailability(false);
   showPiecesDownloaded(false);
   setEnabled(false);
@@ -245,7 +251,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
     changeSavePathButton->setEnabled(h.has_metadata());
     // Hash
     hash_lbl->setText(h.hash());
-    PropListModel->clear();
+    PropListModel->model()->clear();
     if(h.has_metadata()) {
       // Creation date
       lbl_creationDate->setText(h.creation_date());
@@ -256,7 +262,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
       // URL seeds
       loadUrlSeeds();
       // List files in torrent
-      PropListModel->setupModelData(h.get_torrent_info());
+      PropListModel->model()->setupModelData(h.get_torrent_info());
     }
   } catch(invalid_handle& e) {
 
@@ -294,7 +300,7 @@ void PropertiesWidget::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   QStringList contentColsWidths;
-  for(int i=0; i<PropListModel->columnCount(); ++i) {
+  for(int i=0; i<PropListModel->model()->columnCount(); ++i) {
     contentColsWidths << QString::number(filesList->columnWidth(i));
   }
   settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
@@ -393,41 +399,14 @@ void PropertiesWidget::loadDynamicData() {
     if(stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
       // Files progress
       if(h.is_valid() && h.has_metadata()) {
-        if(PropListModel->rowCount() == 0) {
-          PropListModel->setupModelData(h.get_torrent_info());
-          // Expand first item if possible
-          filesList->expand(PropListModel->index(0, 0));
-        }
         qDebug("Updating priorities in files tab");
         std::vector<size_type> fp;
         h.file_progress(fp);
-        PropListModel->updateFilesPriorities(h.file_priorities());
-        PropListModel->updateFilesProgress(fp);
+        PropListModel->model()->updateFilesPriorities(h.file_priorities());
+        PropListModel->model()->updateFilesProgress(fp);
       }
     }
   } catch(invalid_handle e) {}
-}
-
-void PropertiesWidget::selectAllFiles() {
-  // Update torrent properties
-  std::vector<int> prio = h.file_priorities();
-  for(std::vector<int>::iterator it = prio.begin(); it != prio.end(); it++) {
-    if(*it == prio::IGNORED) {
-      *it = prio::NORMAL;
-    }
-  }
-  h.prioritize_files(prio);
-  // Update model
-  PropListModel->selectAll();
-}
-
-void PropertiesWidget::selectNoneFiles() {
-  // Update torrent properties
-  std::vector<int> prio;
-  prio.assign(h.num_files(), prio::IGNORED);
-  h.prioritize_files(prio);
-  // Update model
-  PropListModel->selectNone();
 }
 
 void PropertiesWidget::loadUrlSeeds(){
@@ -682,7 +661,7 @@ void PropertiesWidget::deleteSelectedUrlSeeds(){
 
 bool PropertiesWidget::applyPriorities() {
   qDebug("Saving files priorities");
-  const std::vector<int> priorities = PropListModel->getFilesPriorities(h.get_torrent_info().num_files());
+  const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(h.get_torrent_info().num_files());
   // Save first/last piece first option state
   bool first_last_piece_first = h.first_last_piece_first();
   // Prioritize the files

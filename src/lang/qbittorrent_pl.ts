@@ -2876,6 +2876,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Pobierany przez:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Zawartość torrenta:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>

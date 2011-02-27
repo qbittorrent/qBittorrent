@@ -54,6 +54,7 @@
 #include "torrentpersistentdata.h"
 #include "iconprovider.h"
 #include "torrentadditiondlg.h"
+#include "lineedit.h"
 
 using namespace libtorrent;
 
@@ -66,7 +67,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
   // Set Properties list model
-  PropListModel = new TorrentFilesModel();
+  PropListModel = new TorrentFilesFilterModel(this);
   connect(PropListModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabels()));
   torrentContentList->setModel(PropListModel);
   torrentContentList->hideColumn(PROGRESS);
@@ -79,6 +80,9 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(resetComboLabelIndex(QString)));
   connect(comboLabel, SIGNAL(editTextChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
   connect(comboLabel, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateLabelInSavePath(QString)));
+  LineEdit *contentFilterLine = new LineEdit(this);
+  connect(contentFilterLine, SIGNAL(textChanged(QString)), PropListModel, SLOT(setFilterFixedString(QString)));
+  contentFilterLayout->insertWidget(1, contentFilterLine);
   // Important: as a default, it inserts at the bottom which is not desirable
   savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
   // Remember columns width
@@ -140,12 +144,6 @@ void torrentAdditionDialog::saveSettings() {
   settings.setValue("TorrentAdditionDlg/contentHeaderState", torrentContentList->header()->saveState());
 }
 
-void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
-  const QString new_name = misc::fileName(file_path);
-  if(!new_name.isEmpty())
-    PropListModel->setData(PropListModel->index(0, 0), new_name);
-}
-
 void torrentAdditionDialog::limitDialogWidth() {
   int scrn = 0;
   const QWidget *w = this->window();
@@ -168,10 +166,15 @@ void torrentAdditionDialog::hideTorrentContent() {
   hidden_height += torrentContentList->height();
   torrentContentList->setVisible(false);
   hidden_height += torrentContentLbl->height();
-  torrentContentLbl->setVisible(false);
+  //torrentContentLbl->setVisible(false);
   hidden_height += selectAllButton->height();
   selectNoneButton->setVisible(false);
   selectAllButton->setVisible(false);
+  for(int i=0; i<contentFilterLayout->count(); ++i) {
+    if(contentFilterLayout->itemAt(i)->widget())
+      contentFilterLayout->itemAt(i)->widget()->setVisible(false);
+  }
+  contentFilterLayout->update();
 
   // Resize main window
   setMinimumSize(0, 0);
@@ -260,7 +263,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   fileNameLbl->setText(QString::fromUtf8("<center><b>")+newFileName+QString::fromUtf8("</b></center>"));
   if(t->num_files() > 1) {
     // List files in torrent
-    PropListModel->setupModelData(*t);
+    PropListModel->model()->setupModelData(*t);
     connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(updateDiskSpaceLabels()));
     // Loads files path in the torrent
     for(uint i=0; i<nbFiles; ++i) {
@@ -279,10 +282,6 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   // Connect slots
   connect(savePathTxt->lineEdit(), SIGNAL(editingFinished()), this, SLOT(updateDiskSpaceLabels()));
   connect(savePathTxt->lineEdit(), SIGNAL(editingFinished()), this, SLOT(updateSavePathCurrentText()));
-  if(nbFiles == 1) {
-    // Update properties model whenever the file path is edited
-    connect(savePathTxt, SIGNAL(editTextChanged(QString)), this, SLOT(renameTorrentNameInModel(QString)));
-  }
 
   QString save_path = savePathTxt->currentText();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
@@ -474,7 +473,7 @@ void torrentAdditionDialog::updateDiskSpaceLabels() {
     qulonglong torrent_size = 0;
     if(t->num_files() > 1) {
       const unsigned int nbFiles = t->num_files();
-      const std::vector<int> priorities = PropListModel->getFilesPriorities(nbFiles);
+      const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(nbFiles);
 
       for(unsigned int i=0; i<nbFiles; ++i) {
         if(priorities[i] > 0)
@@ -564,13 +563,13 @@ void torrentAdditionDialog::on_CancelButton_clicked(){
 
 bool torrentAdditionDialog::allFiltered() const {
   Q_ASSERT(!is_magnet);
-  return PropListModel->allFiltered();
+  return PropListModel->model()->allFiltered();
 }
 
 void torrentAdditionDialog::savePiecesPriorities(){
   qDebug("Saving pieces priorities");
   Q_ASSERT(!is_magnet);
-  const std::vector<int> priorities = PropListModel->getFilesPriorities(t->num_files());
+  const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(t->num_files());
   TorrentTempData::setFilesPriority(hash, priorities);
 }
 

@@ -3343,6 +3343,10 @@ QGroupBox {
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Aktivno:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Sadržaj torrenta:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>

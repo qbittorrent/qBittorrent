@@ -2900,6 +2900,10 @@ Would you like to update qBittorrent to version %1?</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Активний протягом:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Вміст торренту:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>

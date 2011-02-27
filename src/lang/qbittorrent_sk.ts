@@ -2895,6 +2895,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>Čas aktivity:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Obsah torrentu:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>

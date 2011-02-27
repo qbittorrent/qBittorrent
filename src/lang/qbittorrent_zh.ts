@@ -2908,6 +2908,10 @@ Would you like to update qBittorrent to version %1?</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
         <translation>有效时间:</translation>
     </message>
+    <message>
+        <source>Torrent content:</source>
+        <translation type="unfinished">Torrent内容:</translation>
+    </message>
 </context>
 <context>
     <name>QBtSession</name>
