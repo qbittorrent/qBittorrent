@@ -1523,18 +1523,18 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="147"/>
+        <location filename="../webui/httpconnection.cpp" line="149"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Votre addresse IP a été bloquée car vous avez dépassé le nombre de tentative d&apos;authentification autorisé.</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="341"/>
+        <location filename="../webui/httpconnection.cpp" line="344"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>R : %1/s - T : %2</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="342"/>
+        <location filename="../webui/httpconnection.cpp" line="345"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>E : %1/s - T : %2</translation>
@@ -1543,17 +1543,17 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="107"/>
+        <location filename="../webui/httpserver.cpp" line="108"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="108"/>
+        <location filename="../webui/httpserver.cpp" line="109"/>
         <source>Edit</source>
         <translation>Edition</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="109"/>
+        <location filename="../webui/httpserver.cpp" line="110"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
@@ -1562,108 +1562,108 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <translation type="obsolete">Supprimer du disque dur</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="110"/>
+        <location filename="../webui/httpserver.cpp" line="111"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Téléchargement de torrents depuis leur URL ou lien Magnet</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="111"/>
+        <location filename="../webui/httpserver.cpp" line="112"/>
         <source>Only one link per line</source>
         <translation>Un seul lien par ligne</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="112"/>
+        <location filename="../webui/httpserver.cpp" line="113"/>
         <source>Download local torrent</source>
         <translation>Téléchargement d&apos;un torrent local</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="113"/>
+        <location filename="../webui/httpserver.cpp" line="114"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Les fichiers torrents ont été mis en téléchargement.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="114"/>
+        <location filename="../webui/httpserver.cpp" line="115"/>
         <source>Point to torrent file</source>
         <translation>Indiquer un fichier torrent</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="115"/>
+        <location filename="../webui/httpserver.cpp" line="116"/>
         <source>Download</source>
         <translation>Télécharger</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="116"/>
+        <location filename="../webui/httpserver.cpp" line="117"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Etes-vous certain de vouloir supprimer les torrents sélectionnés de la liste et du disque dur ?</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="117"/>
+        <location filename="../webui/httpserver.cpp" line="118"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>La limite pour la vitesse de réception doit être supérieure à 0 ou désactivée.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="118"/>
+        <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>La limite pour la vitesse d&apos;envoi doit être supérieure à 0 ou désactivée.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="119"/>
+        <location filename="../webui/httpserver.cpp" line="120"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Le nombre maximum de connexions doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="121"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Le nombre maximum de connexions par torrent doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="122"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Le nombre maximum de slots d&apos;envoi par torrent doit être supérieur à 0 ou désactivé.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="123"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Impossible de sauvegarder les préférences, qBittorrent est probablement injoignable.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="124"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Téléchargé</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="126"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Le port utilisé pour les connexions entrantes doit être compris entre 1025 et 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="127"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Le port utilisé pour l&apos;interface Web doit être compris entre 1025 et 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Le nom d&apos;utilisateur pour l&apos;interface Web doit contenir au moins 3 caractères.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Le mot de passe pour l&apos;interface Web doit contenir au moins 3 caractères.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Save</source>
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>qBittorrent client is not reachable</source>
         <translation>Le logiciel qBittorrent est injoignable</translation>
     </message>
@@ -2722,6 +2722,11 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation>Echanger des peers avec les applications compatibles (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="2249"/>
+        <source>Bypass authentication for localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Protocol encryption:</source>
         <translation type="obsolete">Brouillage de protocole :</translation>
     </message>
@@ -2963,13 +2968,13 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1236"/>
-        <location filename="../preferences/options.ui" line="2225"/>
+        <location filename="../preferences/options.ui" line="2256"/>
         <source>Username:</source>
         <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1262"/>
-        <location filename="../preferences/options.ui" line="2232"/>
+        <location filename="../preferences/options.ui" line="2263"/>
         <source>Password:</source>
         <translation>Mot de passe :</translation>
     </message>
@@ -3417,28 +3422,28 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation type="obsolete">Utilisation d&apos;un tampon disque de %1 Mo</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="450"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Prise en charge DHT [ON], port : UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="449"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="453"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="452"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="456"/>
         <source>DHT support [OFF]</source>
         <translation>Prise en charge DHT [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="457"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="460"/>
         <source>PeX support [ON]</source>
         <translation>Echange des sources avec les autres clients (PeX) [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="459"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="462"/>
         <source>PeX support [OFF]</source>
         <translation>Echange des sources avec les autres clients (PeX) [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="462"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="465"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Un redémarrage est nécessaire afin de changer l&apos;état du support PeX</translation>
     </message>
@@ -3447,89 +3452,89 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation type="obsolete">Découverte locale de sources [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="470"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="473"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Découverte locale de sources [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="482"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="485"/>
         <source>Encryption support [ON]</source>
         <translation>Brouillage de protocôle [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="487"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="490"/>
         <source>Encryption support [FORCED]</source>
         <translation>Brouillage de protocole [Forcé]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="495"/>
         <source>Encryption support [OFF]</source>
         <translation>Brouillage de protocole [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="555"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Tracker intégré [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="554"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="557"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Impossible de démarrer le tracker intégré !</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="557"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="560"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Tracker intégré [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="582"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="586"/>
         <source>The Web UI is listening on port %1</source>
         <translation>L&apos;interface Web est associée au port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="584"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="588"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Erreur interface Web - Impossible d&apos;associer l&apos;interface Web au port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="702"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="706"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; a été supprimé de la liste et du disque dur.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="708"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; a été supprimé de la liste.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="786"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="790"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; n&apos;est pas un lien magnet valide.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="802"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="921"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="926"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="928"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="806"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="927"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="932"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="934"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1068"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1076"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1081"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1083"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1088"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="856"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1078"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1083"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="862"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1077"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1085"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1090"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
@@ -3545,100 +3550,100 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation>Prise en charge UPnP / NAT-PMP [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="420"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="467"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="470"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Découverte de sources sur le réseau local [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="890"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="897"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="903"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="905"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="903"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="909"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ce fichier est corrompu ou il ne s&apos;agit pas d&apos;un torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="942"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="949"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Erreur : Le torrent %1 ne contient aucun fichier.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1210"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1217"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Remarque : Les nouveaux trackers ont été ajoutés au torrent existant.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1223"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1230"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Remarque : Les nouvelles sources HTTP sont été ajoutées au torrent existant.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1553"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1560"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été bloqué par votre filtrage IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1555"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1562"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;a été banni suite à l&apos;envoi de données corrompues&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1725"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1732"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>L&apos;interface réseau définie est invalide : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1726"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1733"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Utilisation de n&apos;importe quelle interface réseau à la place.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1740"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1747"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Ecoute sur l&apos;adresse IP %1 sur l&apos;interface réseau %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1743"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1750"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Impossible d&apos;écouter sur l&apos;interface réseau %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1901"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Téléchargement récursif du fichier %1 au sein du torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1986"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1988"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1995"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Impossible de décoder le torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2036"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2043"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2038"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2045"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2040"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2047"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3654,69 +3659,69 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
         <translation>Erreur : Impossible de charge le filtre IP fourni.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1937"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1944"/>
         <source>Torrent name: %1</source>
         <translation>Nom du torrent : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1945"/>
         <source>Torrent size: %1</source>
         <translation>Taille du torrent : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1939"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
         <source>Save path: %1</source>
         <translation>Répertoire de destination : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1940"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1947"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Le torrent a été téléchargé en %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1948"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Nous vous remercions d&apos;utiliser qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1950"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] Le téléchargement de %1 est terminé</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2207"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2208"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2330"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2215"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2337"/>
         <source>Reason: %1</source>
         <translation>Raison : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2297"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2304"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP : Impossible de rediriger le port sur le routeur, message : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2302"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2309"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP : La redirection du port sur le routeur a réussi, message : %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2325"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2332"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Les tailles de fichiers ne correspondent pas pour le torrent %1, mise en pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2329"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2336"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Le relancement rapide a échoué pour le torrent %1, revérification...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2335"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2342"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Le contact de la source HTTP a échoué à l&apos;url : %1, message : %2</translation>
     </message>
@@ -4726,17 +4731,17 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>Pas encore contacté</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="345"/>
+        <location filename="../properties/trackerlist.cpp" line="346"/>
         <source>Add a new tracker...</source>
         <translation>Ajouter nouveau tracker...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="348"/>
+        <location filename="../properties/trackerlist.cpp" line="349"/>
         <source>Remove tracker</source>
         <translation>Supprimer tracker</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="351"/>
+        <location filename="../properties/trackerlist.cpp" line="352"/>
         <source>Force reannounce</source>
         <translation>Forcer nouvelle annonce</translation>
     </message>
@@ -4759,32 +4764,32 @@ Veuillez l&apos;installer manuellement.</translation>
         <translation>URL de la liste compatible avec µTorrent :</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="80"/>
+        <location filename="../properties/trackersadditiondlg.h" line="81"/>
         <source>I/O Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="80"/>
+        <location filename="../properties/trackersadditiondlg.h" line="81"/>
         <source>Error while trying to open the downloaded file.</source>
         <translation>Erreur à l&apos;ouverture du fichier téléchargé.</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="118"/>
+        <location filename="../properties/trackersadditiondlg.h" line="123"/>
         <source>No change</source>
         <translation>Aucun changement</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="118"/>
+        <location filename="../properties/trackersadditiondlg.h" line="123"/>
         <source>No additional trackers were found.</source>
         <translation>Aucun tracker supplémentaire n&apos;est disponible.</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="125"/>
+        <location filename="../properties/trackersadditiondlg.h" line="132"/>
         <source>Download error</source>
         <translation>Erreur de téléchargement</translation>
     </message>
     <message>
-        <location filename="../properties/trackersadditiondlg.h" line="125"/>
+        <location filename="../properties/trackersadditiondlg.h" line="132"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
         <translation>La liste de trackers n&apos;a pas pu être téléchargée, raison : %1</translation>
     </message>
@@ -4792,53 +4797,53 @@ Veuillez l&apos;installer manuellement.</translation>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="93"/>
+        <location filename="../transferlistdelegate.h" line="94"/>
         <source>Downloading</source>
         <translation>En téléchargement</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="97"/>
+        <location filename="../transferlistdelegate.h" line="98"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="101"/>
+        <location filename="../transferlistdelegate.h" line="102"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>En file d&apos;attente</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="105"/>
+        <location filename="../transferlistdelegate.h" line="106"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>En partage</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="108"/>
+        <location filename="../transferlistdelegate.h" line="109"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>En attente</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="112"/>
+        <location filename="../transferlistdelegate.h" line="113"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Vérification</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="126"/>
+        <location filename="../transferlistdelegate.h" line="127"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="135"/>
+        <location filename="../transferlistdelegate.h" line="136"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>Ko/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="145"/>
+        <location filename="../transferlistdelegate.h" line="146"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Complet depuis %1</translation>
@@ -6034,61 +6039,61 @@ Cependant, les greffons en question ont été désactivés.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1000"/>
+        <location filename="../preferences/options_imp.cpp" line="1003"/>
         <source>Add directory to scan</source>
         <translation>Ajouter un dossier à surveiller</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1006"/>
+        <location filename="../preferences/options_imp.cpp" line="1009"/>
         <source>Folder is already being watched.</source>
         <translation>Ce dossier est déjà surveillé.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1012"/>
         <source>Folder does not exist.</source>
         <translation>Ce dossier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1015"/>
         <source>Folder is not readable.</source>
         <translation>Ce dossier n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1020"/>
+        <location filename="../preferences/options_imp.cpp" line="1023"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1020"/>
+        <location filename="../preferences/options_imp.cpp" line="1023"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Impossible d&apos;ajouter le dossier surveillé &apos;%1&apos; : %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1043"/>
-        <location filename="../preferences/options_imp.cpp" line="1045"/>
+        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1048"/>
         <source>Choose export directory</source>
         <translation>Choisir un dossier pour l&apos;export</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1078"/>
-        <location filename="../preferences/options_imp.cpp" line="1080"/>
-        <location filename="../preferences/options_imp.cpp" line="1095"/>
-        <location filename="../preferences/options_imp.cpp" line="1097"/>
+        <location filename="../preferences/options_imp.cpp" line="1081"/>
+        <location filename="../preferences/options_imp.cpp" line="1083"/>
+        <location filename="../preferences/options_imp.cpp" line="1098"/>
+        <location filename="../preferences/options_imp.cpp" line="1100"/>
         <source>Choose a save directory</source>
         <translation>Choisir un répertoire de sauvegarde</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1156"/>
+        <location filename="../preferences/options_imp.cpp" line="1159"/>
         <source>Parsing error</source>
         <translation>Erreur de traitement</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1156"/>
+        <location filename="../preferences/options_imp.cpp" line="1159"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Impossible de charger le filtre IP fourni</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1158"/>
+        <location filename="../preferences/options_imp.cpp" line="1161"/>
         <source>Successfully refreshed</source>
         <translation>Correctement rechargé</translation>
     </message>
@@ -6097,20 +6102,20 @@ Cependant, les greffons en question ont été désactivés.</translation>
         <translation type="obsolete">Correctement rechargé</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1158"/>
+        <location filename="../preferences/options_imp.cpp" line="1161"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Le filtre IP fourni a été correctement chargé : %1 règles ont été appliquées.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1060"/>
-        <location filename="../preferences/options_imp.cpp" line="1062"/>
+        <location filename="../preferences/options_imp.cpp" line="1063"/>
+        <location filename="../preferences/options_imp.cpp" line="1065"/>
         <source>Choose an ip filter file</source>
         <translation>Choisir un fichier de filtrage IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1060"/>
-        <location filename="../preferences/options_imp.cpp" line="1062"/>
+        <location filename="../preferences/options_imp.cpp" line="1063"/>
+        <location filename="../preferences/options_imp.cpp" line="1065"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>

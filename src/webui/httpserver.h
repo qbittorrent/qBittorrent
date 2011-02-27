@@ -52,6 +52,8 @@ public:
   ~HttpServer();
   void setAuthorization(QString username, QString password_ha1);
   bool isAuthorized(QByteArray auth, QString method) const;
+  void setlocalAuthEnabled(bool enabled);
+  bool isLocalAuthEnabled() const;
   EventManager *eventManager() const;
   QString generateNonce() const;
   int NbFailedAttemptsForIp(QString ip) const;
@@ -69,6 +71,7 @@ private:
   EventManager *manager;
   QTimer *timer;
   QHash<QString, int> client_failed_attempts;
+  bool m_localAuth;
 };
 
 #endif

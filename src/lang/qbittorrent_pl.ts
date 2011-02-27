@@ -2563,6 +2563,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bypass authentication for localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

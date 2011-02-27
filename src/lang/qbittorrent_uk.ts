@@ -2587,6 +2587,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bypass authentication for localhost</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

@@ -139,37 +139,40 @@ QString HttpConnection::translateDocument(QString data) {
 }
 
 void HttpConnection::respond() {
-  //qDebug("Respond called");
-  const QString peer_ip = socket->peerAddress().toString();
-  const int nb_fail = httpserver->NbFailedAttemptsForIp(peer_ip);
-  if(nb_fail >= MAX_AUTH_FAILED_ATTEMPTS) {
-    generator.setStatusLine(403, "Forbidden");
-    generator.setMessage(tr("Your IP address has been banned after too many failed authentication attempts."));
-    write();
-    return;
+  if((socket->peerAddress() != QHostAddress::LocalHost && socket->peerAddress() != QHostAddress::LocalHostIPv6)
+      || httpserver->isLocalAuthEnabled()) {
+    // Authentication
+    const QString peer_ip = socket->peerAddress().toString();
+    const int nb_fail = httpserver->NbFailedAttemptsForIp(peer_ip);
+    if(nb_fail >= MAX_AUTH_FAILED_ATTEMPTS) {
+      generator.setStatusLine(403, "Forbidden");
+      generator.setMessage(tr("Your IP address has been banned after too many failed authentication attempts."));
+      write();
+      return;
+    }
+    QString auth = parser.value("Authorization");
+    if(auth.isEmpty()) {
+      // Return unauthorized header
+      qDebug("Auth is Empty...");
+      generator.setStatusLine(401, "Unauthorized");
+      generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+httpserver->generateNonce()+"\", opaque=\""+httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
+      write();
+      return;
+    }
+    //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
+    if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !httpserver->isAuthorized(auth.toLocal8Bit(), parser.method())) {
+      // Update failed attempt counter
+      httpserver->increaseNbFailedAttemptsForIp(peer_ip);
+      qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail+1);
+      // Return unauthorized header
+      generator.setStatusLine(401, "Unauthorized");
+      generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+httpserver->generateNonce()+"\", opaque=\""+httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
+      write();
+      return;
+    }
+    // Client successfully authenticated, reset number of failed attempts
+    httpserver->resetNbFailedAttemptsForIp(peer_ip);
   }
-  QString auth = parser.value("Authorization");
-  if(auth.isEmpty()) {
-    // Return unauthorized header
-    qDebug("Auth is Empty...");
-    generator.setStatusLine(401, "Unauthorized");
-    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+httpserver->generateNonce()+"\", opaque=\""+httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
-    write();
-    return;
-  }
-  //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
-  if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0 || !httpserver->isAuthorized(auth.toLocal8Bit(), parser.method())) {
-    // Update failed attempt counter
-    httpserver->increaseNbFailedAttemptsForIp(peer_ip);
-    qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail+1);
-    // Return unauthorized header
-    generator.setStatusLine(401, "Unauthorized");
-    generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+httpserver->generateNonce()+"\", opaque=\""+httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
-    write();
-    return;
-  }
-  // Client successfully authenticated, reset number of failed attempts
-  httpserver->resetNbFailedAttemptsForIp(peer_ip);
   QString url  = parser.url();
   // Favicon
   if(url.endsWith("favicon.ico")) {

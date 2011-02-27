@@ -655,6 +655,14 @@ public:
     setValue("Preferences/WebUI/Enabled", enabled);
   }
 
+  void setWebUiLocalAuthEnabled(bool enabled) {
+    setValue("Preferences/WebUI/LocalHostAuth", enabled);
+  }
+
+  bool isWebUiLocalAuthEnabled() const {
+    return value("Preferences/WebUI/LocalHostAuth", true).toBool();
+  }
+
   quint16 getWebUiPort() const {
     return value("Preferences/WebUI/Port", 8080).toInt();
   }

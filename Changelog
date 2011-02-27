@@ -3,6 +3,7 @@
     - FEATURE: Added option to skip torrent deletion confirmation (Ville Kiiskinen)
     - FEATURE: IP address reported to trackers is now customizable
     - FEATURE: Inhibit system sleep when torrents are active (Vladimir Golovnev)
+    - FEATURE: Added option to bypass Web UI authentication for localhost
 
 * Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
     - FEATURE: Use system icons (Linux, Qt >= 4.6)

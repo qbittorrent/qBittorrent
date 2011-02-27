@@ -86,6 +86,7 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   const Preferences pref;
   username = pref.getWebUiUsername().toLocal8Bit();
   password_ha1 = pref.getWebUiPassword().toLocal8Bit();
+  m_localAuth = pref.isWebUiLocalAuthEnabled();
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
   manager = new EventManager(this);
   //add torrents
@@ -269,4 +270,14 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
 EventManager* HttpServer::eventManager() const
 {
   return manager;
+}
+
+void HttpServer::setlocalAuthEnabled(bool enabled)
+{
+  m_localAuth = enabled;
+}
+
+bool HttpServer::isLocalAuthEnabled() const
+{
+  return m_localAuth;
 }

@@ -170,7 +170,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-45</y>
+             <y>0</y>
              <width>499</width>
              <height>459</height>
             </rect>
@@ -457,7 +457,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>440</width>
+             <width>499</width>
              <height>698</height>
             </rect>
            </property>
@@ -900,7 +900,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>447</width>
+             <width>499</width>
              <height>457</height>
             </rect>
            </property>
@@ -1380,8 +1380,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>404</width>
-             <height>334</height>
+             <width>517</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -2152,8 +2152,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>378</width>
-             <height>229</height>
+             <width>517</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2216,67 +2216,53 @@ QGroupBox {
                  <property name="title">
                   <string>Authentication</string>
                  </property>
-                 <layout class="QHBoxLayout">
-                  <item>
-                   <layout class="QVBoxLayout">
-                    <item>
-                     <widget class="QLabel" name="lblWebUiUsername">
-                      <property name="text">
-                       <string>Username:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="lblWebUiPassword">
-                      <property name="text">
-                       <string>Password:</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QVBoxLayout">
-                    <item>
-                     <widget class="QLineEdit" name="textWebUiUsername">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="maxLength">
-                       <number>1000</number>
-                      </property>
-                      <property name="echoMode">
-                       <enum>QLineEdit::Normal</enum>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="textWebUiPassword">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="maxLength">
-                       <number>1000</number>
-                      </property>
-                      <property name="echoMode">
-                       <enum>QLineEdit::Password</enum>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <spacer>
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                 <layout class="QGridLayout" name="gridLayout_10">
+                  <item row="0" column="1" rowspan="3">
+                   <widget class="QLineEdit" name="textWebUiUsername">
+                    <property name="text">
+                     <string/>
                     </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>198</width>
-                      <height>57</height>
-                     </size>
+                    <property name="maxLength">
+                     <number>1000</number>
                     </property>
-                   </spacer>
+                    <property name="echoMode">
+                     <enum>QLineEdit::Normal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="textWebUiPassword">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="maxLength">
+                     <number>1000</number>
+                    </property>
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBypassLocalAuth">
+                    <property name="text">
+                     <string>Bypass authentication for localhost</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" rowspan="3">
+                   <widget class="QLabel" name="lblWebUiUsername">
+                    <property name="text">
+                     <string>Username:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="lblWebUiPassword">
+                    <property name="text">
+                     <string>Password:</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -2315,7 +2301,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>80</width>
+             <width>62</width>
              <height>18</height>
             </rect>
            </property>

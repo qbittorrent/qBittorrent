@@ -199,6 +199,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
   connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkBypassLocalAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
   // Tab selection mecanism
@@ -416,6 +417,7 @@ void options_imp::saveOptions(){
     pref.setWebUiUsername(webUiUsername());
     // FIXME: Check that the password is valid (not empty at least)
     pref.setWebUiPassword(webUiPassword());
+    pref.setWebUiLocalAuthEnabled(!checkBypassLocalAuth->isChecked());
   }
   // End Web UI
   // End preferences
@@ -650,6 +652,7 @@ void options_imp::loadOptions(){
   spinWebUiPort->setValue(pref.getWebUiPort());
   textWebUiUsername->setText(pref.getWebUiUsername());
   textWebUiPassword->setText(pref.getWebUiPassword());
+  checkBypassLocalAuth->setChecked(!pref.isWebUiLocalAuthEnabled());
   // End Web UI
   // Random stuff
   srand(time(0));
