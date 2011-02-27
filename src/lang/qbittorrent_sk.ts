@@ -2586,6 +2586,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ask for program exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

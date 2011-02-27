@@ -2603,6 +2603,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ask for program exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

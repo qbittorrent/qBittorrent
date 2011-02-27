@@ -2413,37 +2413,37 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Без действие</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="509"/>
+        <location filename="../preferences/options.ui" line="519"/>
         <source>File system</source>
         <translation>Файлова система</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="772"/>
+        <location filename="../preferences/options.ui" line="782"/>
         <source>Copy .torrent files to:</source>
         <translation>Копирай .торент файловете в:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1951"/>
+        <location filename="../preferences/options.ui" line="1961"/>
         <source>Torrent queueing</source>
         <translation>Серия торенти </translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1966"/>
+        <location filename="../preferences/options.ui" line="1976"/>
         <source>Maximum active downloads:</source>
         <translation>Максимум активни сваляния:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1986"/>
+        <location filename="../preferences/options.ui" line="1996"/>
         <source>Maximum active uploads:</source>
         <translation>Максимум активни качвания:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2006"/>
+        <location filename="../preferences/options.ui" line="2016"/>
         <source>Maximum active torrents:</source>
         <translation>Максимум активни торенти:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="474"/>
+        <location filename="../preferences/options.ui" line="484"/>
         <source>When adding a torrent</source>
         <translation>При добавяне на торент</translation>
     </message>
@@ -2513,198 +2513,203 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Затвори qBittorrent в зоната за уведомяване</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="416"/>
+        <location filename="../preferences/options.ui" line="413"/>
+        <source>Ask for program exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="426"/>
         <source>Power Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="422"/>
+        <location filename="../preferences/options.ui" line="432"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="483"/>
+        <location filename="../preferences/options.ui" line="493"/>
         <source>Display torrent content and some options</source>
         <translation>Показване съдържание на торента и някои опции</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="493"/>
+        <location filename="../preferences/options.ui" line="503"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Не стартирай свалянето автоматично</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="528"/>
+        <location filename="../preferences/options.ui" line="538"/>
         <source>Save files to location:</source>
         <translation>Съхрани файловете в:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="576"/>
+        <location filename="../preferences/options.ui" line="586"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Добави етикета на торента в пътя за съхранение</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="586"/>
+        <location filename="../preferences/options.ui" line="596"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Преразпредели дисково пространство за всички файлове </translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="603"/>
+        <location filename="../preferences/options.ui" line="613"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Дръж незавършени торенти в:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="649"/>
+        <location filename="../preferences/options.ui" line="659"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Добави .!qB разширение към незавършените файлове</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="666"/>
+        <location filename="../preferences/options.ui" line="676"/>
         <source>Automatically add torrents from:</source>
         <translation>Автоматично добави торенти от:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="719"/>
+        <location filename="../preferences/options.ui" line="729"/>
         <source>Add folder...</source>
         <translation>Добави папка...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="828"/>
+        <location filename="../preferences/options.ui" line="838"/>
         <source>Email notification upon download completion</source>
         <translation>Уведомяване с е-мейл при завършване на свалянето</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="840"/>
+        <location filename="../preferences/options.ui" line="850"/>
         <source>Destination email:</source>
         <translation>Е-мейл получател:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="850"/>
+        <location filename="../preferences/options.ui" line="860"/>
         <source>SMTP server:</source>
         <translation>SMTP сървър:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="863"/>
+        <location filename="../preferences/options.ui" line="873"/>
         <source>Run an external program on torrent completion</source>
         <translation>Пусни друга програма при завършване на торента</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="878"/>
+        <location filename="../preferences/options.ui" line="888"/>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Ползвай %f за вмъкване пътя на торента в параметрите</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="963"/>
+        <location filename="../preferences/options.ui" line="973"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Ползвай UPnP / NAT-PMP порт прехвърляне от моя рутер</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1113"/>
+        <location filename="../preferences/options.ui" line="1123"/>
         <source>Proxy server</source>
         <translation>Прокси сървър</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1346"/>
+        <location filename="../preferences/options.ui" line="1356"/>
         <source>Reload the filter</source>
         <translation>Зареди повторно филтъра</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1780"/>
+        <location filename="../preferences/options.ui" line="1790"/>
         <source>Privacy</source>
         <translation>Лично</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1796"/>
+        <location filename="../preferences/options.ui" line="1806"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Включи мрежа DHT (децентрализирана) за намиране на повече връзки</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1818"/>
+        <location filename="../preferences/options.ui" line="1828"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Ползвай различен порт за DHT и Битторент</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1879"/>
+        <location filename="../preferences/options.ui" line="1889"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Обмени двойки със съвместими Битторент клиенти (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1882"/>
+        <location filename="../preferences/options.ui" line="1892"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Включи Peer Exchange (PeX) за намиране на повече връзки</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1895"/>
+        <location filename="../preferences/options.ui" line="1905"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Включи Откриване на локална връзка за намиране на повече връзки</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1907"/>
+        <location filename="../preferences/options.ui" line="1917"/>
         <source>Encryption mode:</source>
         <translation>Режим на кодиране:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1915"/>
+        <location filename="../preferences/options.ui" line="1925"/>
         <source>Prefer encryption</source>
         <translation>Предпочитано кодиране</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1920"/>
+        <location filename="../preferences/options.ui" line="1930"/>
         <source>Require encryption</source>
         <translation>Изисква кодиране</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1925"/>
+        <location filename="../preferences/options.ui" line="1935"/>
         <source>Disable encryption</source>
         <translation>Изключи кодиране</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2042"/>
+        <location filename="../preferences/options.ui" line="2052"/>
         <source>Share ratio limiting</source>
         <translation>Ограничаване съотношението на споделяне</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2053"/>
+        <location filename="../preferences/options.ui" line="2063"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Давай торентите докато съотношението се увеличи</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2085"/>
+        <location filename="../preferences/options.ui" line="2095"/>
         <source>then</source>
         <translation>тогава</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2096"/>
+        <location filename="../preferences/options.ui" line="2106"/>
         <source>Pause them</source>
         <translation>Сложи ги в пауза</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2101"/>
+        <location filename="../preferences/options.ui" line="2111"/>
         <source>Remove them</source>
         <translation>Премахни ги</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2163"/>
+        <location filename="../preferences/options.ui" line="2173"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Включи Интерфейс на Web Потребител (Отдалечен контрол)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2249"/>
+        <location filename="../preferences/options.ui" line="2259"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="913"/>
+        <location filename="../preferences/options.ui" line="923"/>
         <source>Listening port</source>
         <translation>Порт за прослушване</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="921"/>
+        <location filename="../preferences/options.ui" line="931"/>
         <source>Port used for incoming connections:</source>
         <translation>Порт ползван за входящи връзки:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="941"/>
+        <location filename="../preferences/options.ui" line="951"/>
         <source>Random</source>
         <translation>Приблизително</translation>
     </message>
@@ -2717,42 +2722,42 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Включено NAT-PMP порт следене</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="978"/>
+        <location filename="../preferences/options.ui" line="988"/>
         <source>Connections limit</source>
         <translation>Ограничение на връзката</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="989"/>
+        <location filename="../preferences/options.ui" line="999"/>
         <source>Global maximum number of connections:</source>
         <translation>Общ максимален брой на връзки:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1032"/>
+        <location filename="../preferences/options.ui" line="1042"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Максимален брой връзки на торент:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1072"/>
+        <location filename="../preferences/options.ui" line="1082"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Максимален брой слотове за качване на торент:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1409"/>
-        <location filename="../preferences/options.ui" line="1531"/>
+        <location filename="../preferences/options.ui" line="1419"/>
+        <location filename="../preferences/options.ui" line="1541"/>
         <source>Upload:</source>
         <translation>Качване:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1445"/>
-        <location filename="../preferences/options.ui" line="1558"/>
+        <location filename="../preferences/options.ui" line="1455"/>
+        <location filename="../preferences/options.ui" line="1568"/>
         <source>Download:</source>
         <translation>Сваляне:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1438"/>
-        <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1551"/>
-        <location filename="../preferences/options.ui" line="1578"/>
+        <location filename="../preferences/options.ui" line="1448"/>
+        <location filename="../preferences/options.ui" line="1481"/>
+        <location filename="../preferences/options.ui" line="1561"/>
+        <location filename="../preferences/options.ui" line="1588"/>
         <source>KiB/s</source>
         <translation>KiB/с</translation>
     </message>
@@ -2766,33 +2771,33 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1391"/>
+        <location filename="../preferences/options.ui" line="1401"/>
         <source>Global speed limits</source>
         <translation>Общи ограничения за скоост</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1496"/>
+        <location filename="../preferences/options.ui" line="1506"/>
         <source>Alternative global speed limits</source>
         <translation>Разширени ограничения за скорост</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1653"/>
+        <location filename="../preferences/options.ui" line="1663"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>към</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1705"/>
+        <location filename="../preferences/options.ui" line="1715"/>
         <source>Every day</source>
         <translation>Всеки ден</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1710"/>
+        <location filename="../preferences/options.ui" line="1720"/>
         <source>Week days</source>
         <translation>Работни дни</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1715"/>
+        <location filename="../preferences/options.ui" line="1725"/>
         <source>Week ends</source>
         <translation>Почивни дни</translation>
     </message>
@@ -2809,7 +2814,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Ползвай различен порт за DHT и Битторент</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1838"/>
+        <location filename="../preferences/options.ui" line="1848"/>
         <source>DHT port:</source>
         <translation>DHT порт:</translation>
     </message>
@@ -2838,7 +2843,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">HTTP комуникации (тракери, Уеб даващи, търсачки)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1155"/>
+        <location filename="../preferences/options.ui" line="1165"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
@@ -2847,12 +2852,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Комуникации Връзки</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1134"/>
+        <location filename="../preferences/options.ui" line="1144"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1121"/>
+        <location filename="../preferences/options.ui" line="1131"/>
         <source>Type:</source>
         <translation>Вид:</translation>
     </message>
@@ -2868,33 +2873,33 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Език</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="729"/>
+        <location filename="../preferences/options.ui" line="739"/>
         <source>Remove folder</source>
         <translation>Премахни папка</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1305"/>
+        <location filename="../preferences/options.ui" line="1315"/>
         <source>IP Filtering</source>
         <translation>IP филтриране</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1612"/>
+        <location filename="../preferences/options.ui" line="1622"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>График на ползването на други ограничения на скоростта</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1629"/>
+        <location filename="../preferences/options.ui" line="1639"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>от</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1697"/>
+        <location filename="../preferences/options.ui" line="1707"/>
         <source>When:</source>
         <translation>Когато:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1892"/>
+        <location filename="../preferences/options.ui" line="1902"/>
         <source>Look for peers on your local network</source>
         <translation>Търси връзки на твоята локална мрежа</translation>
     </message>
@@ -2903,51 +2908,51 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Протокол на кодиране:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1129"/>
+        <location filename="../preferences/options.ui" line="1139"/>
         <source>(None)</source>
         <translation>(без)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1144"/>
+        <location filename="../preferences/options.ui" line="1154"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1181"/>
-        <location filename="../preferences/options.ui" line="2181"/>
+        <location filename="../preferences/options.ui" line="1191"/>
+        <location filename="../preferences/options.ui" line="2191"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1224"/>
-        <location filename="../preferences/options.ui" line="2217"/>
+        <location filename="../preferences/options.ui" line="1234"/>
+        <location filename="../preferences/options.ui" line="2227"/>
         <source>Authentication</source>
         <translation>Удостоверяване</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1236"/>
-        <location filename="../preferences/options.ui" line="2256"/>
+        <location filename="../preferences/options.ui" line="1246"/>
+        <location filename="../preferences/options.ui" line="2266"/>
         <source>Username:</source>
         <translation>Име на потребителя:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1262"/>
-        <location filename="../preferences/options.ui" line="2263"/>
+        <location filename="../preferences/options.ui" line="1272"/>
+        <location filename="../preferences/options.ui" line="2273"/>
         <source>Password:</source>
         <translation>Парола:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1139"/>
+        <location filename="../preferences/options.ui" line="1149"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1317"/>
+        <location filename="../preferences/options.ui" line="1327"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Филтър път (.dat, .p2p, .p2b): </translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2175"/>
+        <location filename="../preferences/options.ui" line="2185"/>
         <source>HTTP Server</source>
         <translation>Сървър HTTP</translation>
     </message>
@@ -5993,73 +5998,73 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1081"/>
-        <location filename="../preferences/options_imp.cpp" line="1083"/>
-        <location filename="../preferences/options_imp.cpp" line="1098"/>
-        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1084"/>
+        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1101"/>
+        <location filename="../preferences/options_imp.cpp" line="1103"/>
         <source>Choose a save directory</source>
         <translation>Изберете директория за съхранение</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1003"/>
+        <location filename="../preferences/options_imp.cpp" line="1006"/>
         <source>Add directory to scan</source>
         <translation>Добави директория за сканиране</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1012"/>
         <source>Folder is already being watched.</source>
         <translation>Папката вече се наблюдава.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1015"/>
         <source>Folder does not exist.</source>
         <translation>Папката не съществува.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1015"/>
+        <location filename="../preferences/options_imp.cpp" line="1018"/>
         <source>Folder is not readable.</source>
         <translation>Папката не се чете.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1023"/>
+        <location filename="../preferences/options_imp.cpp" line="1026"/>
         <source>Failure</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1023"/>
+        <location filename="../preferences/options_imp.cpp" line="1026"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Грешка при добавяне Папка за Сканиране &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
-        <location filename="../preferences/options_imp.cpp" line="1048"/>
+        <location filename="../preferences/options_imp.cpp" line="1049"/>
+        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Choose export directory</source>
         <translation>Изберете Директория за Експорт</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1063"/>
-        <location filename="../preferences/options_imp.cpp" line="1065"/>
+        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1068"/>
         <source>Choose an ip filter file</source>
         <translation>Избери файл за ip филтър</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1063"/>
-        <location filename="../preferences/options_imp.cpp" line="1065"/>
+        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1068"/>
         <source>Filters</source>
         <translation>Филтри</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1159"/>
+        <location filename="../preferences/options_imp.cpp" line="1162"/>
         <source>Parsing error</source>
         <translation>Грешка при вмъкване</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1159"/>
+        <location filename="../preferences/options_imp.cpp" line="1162"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Неуспешно вмъкване на дадения IP филтър</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1161"/>
+        <location filename="../preferences/options_imp.cpp" line="1164"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6068,7 +6073,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Успешно обновен</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1161"/>
+        <location filename="../preferences/options_imp.cpp" line="1164"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Успешно вмъкване на дадения IP филтър: %1 правило бе добавено.</translation>

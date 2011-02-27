@@ -2419,37 +2419,37 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Καμία δράση</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="509"/>
+        <location filename="../preferences/options.ui" line="519"/>
         <source>File system</source>
         <translation>Σύστημα αρχείων</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="772"/>
+        <location filename="../preferences/options.ui" line="782"/>
         <source>Copy .torrent files to:</source>
         <translation>Αντιγραφή .torrent αρχείων στο:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1951"/>
+        <location filename="../preferences/options.ui" line="1961"/>
         <source>Torrent queueing</source>
         <translation>Σειρά torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1966"/>
+        <location filename="../preferences/options.ui" line="1976"/>
         <source>Maximum active downloads:</source>
         <translation>Μέγιστος αριθμός ενεργών λήψεων:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1986"/>
+        <location filename="../preferences/options.ui" line="1996"/>
         <source>Maximum active uploads:</source>
         <translation>Μέγιστος αριθμός ενεργών αποστολών:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2006"/>
+        <location filename="../preferences/options.ui" line="2016"/>
         <source>Maximum active torrents:</source>
         <translation>Μέγιστος αριθμός ενεργών τόρεντ:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="474"/>
+        <location filename="../preferences/options.ui" line="484"/>
         <source>When adding a torrent</source>
         <translation>Όταν προστίθεται κάποιο τόρεντ</translation>
     </message>
@@ -2519,198 +2519,203 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Κλείσιμο του qBittorrent στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="416"/>
+        <location filename="../preferences/options.ui" line="413"/>
+        <source>Ask for program exit confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="426"/>
         <source>Power Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="422"/>
+        <location filename="../preferences/options.ui" line="432"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="483"/>
+        <location filename="../preferences/options.ui" line="493"/>
         <source>Display torrent content and some options</source>
         <translation>Εμφάνιση περιεχομένων τόρεντ και μερικών ρυθμίσεων</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="493"/>
+        <location filename="../preferences/options.ui" line="503"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Μη αυτόματη έναρξη του κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="528"/>
+        <location filename="../preferences/options.ui" line="538"/>
         <source>Save files to location:</source>
         <translation>Αποθήκευση αρχείων στην τοποθεσία:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="576"/>
+        <location filename="../preferences/options.ui" line="586"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Εγγραφή της ετικέτας του τόρεντ στην διαδρομή αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="586"/>
+        <location filename="../preferences/options.ui" line="596"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Αρχική κατάληψη του σκληρού δίσκου για όλα τα αρχεία</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="603"/>
+        <location filename="../preferences/options.ui" line="613"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Να μένουν τα μη τελειωμένα τόρεντ στο:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="649"/>
+        <location filename="../preferences/options.ui" line="659"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Να προστίθεται η κατάληψη .!qB στα ονόματα μη τελειωμένων αρχείων</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="666"/>
+        <location filename="../preferences/options.ui" line="676"/>
         <source>Automatically add torrents from:</source>
         <translation>Αυτόματη προσθήκη τόρεντ από:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="719"/>
+        <location filename="../preferences/options.ui" line="729"/>
         <source>Add folder...</source>
         <translation>Προσθήκη φακέλου...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="828"/>
+        <location filename="../preferences/options.ui" line="838"/>
         <source>Email notification upon download completion</source>
         <translation>Ειδοποίηση ηλεκτρονικού ταχυδρομείου μετά την ολοκλήρωση του κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="840"/>
+        <location filename="../preferences/options.ui" line="850"/>
         <source>Destination email:</source>
         <translation>Email προορισμού:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="850"/>
+        <location filename="../preferences/options.ui" line="860"/>
         <source>SMTP server:</source>
         <translation>Διακομιστής SMTP:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="863"/>
+        <location filename="../preferences/options.ui" line="873"/>
         <source>Run an external program on torrent completion</source>
         <translation>Εκτέλεση ενός εξωτερικού προγράμματος κατά την ολοκλήρωση ενός τόρεντ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="878"/>
+        <location filename="../preferences/options.ui" line="888"/>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Χρήση του %f για να περαστεί η διαδρομή του τόρεντ στις παραμέτρους</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="963"/>
+        <location filename="../preferences/options.ui" line="973"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Χρήση UPnP / NAT - PMP port forwarding από το ρούτερ μου</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1113"/>
+        <location filename="../preferences/options.ui" line="1123"/>
         <source>Proxy server</source>
         <translation>Διακομιστής Proxy</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1346"/>
+        <location filename="../preferences/options.ui" line="1356"/>
         <source>Reload the filter</source>
         <translation>Ανανέωση φίλτρου</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1780"/>
+        <location filename="../preferences/options.ui" line="1790"/>
         <source>Privacy</source>
         <translation>Προσωπικά δεδομένα</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1796"/>
+        <location filename="../preferences/options.ui" line="1806"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Ενεργοποίηση DHT (αποκεντροποιημένο δίκτυο) για την εύρεση περισσοτέρων διαμοιραστών</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1818"/>
+        <location filename="../preferences/options.ui" line="1828"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Χρήση διαφορετικής θύρας για DHT και BitTorrent</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1879"/>
+        <location filename="../preferences/options.ui" line="1889"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Ανταλλαγή συνδέσεων με συμβατά προγράμματα Bittorrent (μTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1882"/>
+        <location filename="../preferences/options.ui" line="1892"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Ενεργοποίηση Peer Exchange (PeX) για την εύρεση περισσοτέρων διαμοιραστών</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1895"/>
+        <location filename="../preferences/options.ui" line="1905"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Ενεργοποίηση Ανακάλυψης Νέων Συνδέσεων Δικτύου για την εύρεση περισσοτέρων διαμοιραστών</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1907"/>
+        <location filename="../preferences/options.ui" line="1917"/>
         <source>Encryption mode:</source>
         <translation>Κατάσταση κρυπτογράφησης:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1915"/>
+        <location filename="../preferences/options.ui" line="1925"/>
         <source>Prefer encryption</source>
         <translation>Προτίμησε την κωδικοποίηση</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1920"/>
+        <location filename="../preferences/options.ui" line="1930"/>
         <source>Require encryption</source>
         <translation>Απαίτησε κωδικοποίηση</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1925"/>
+        <location filename="../preferences/options.ui" line="1935"/>
         <source>Disable encryption</source>
         <translation>Απενεργοποίησε την κωδικοποίηση</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2042"/>
+        <location filename="../preferences/options.ui" line="2052"/>
         <source>Share ratio limiting</source>
         <translation>Όριο ποσοστού διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2053"/>
+        <location filename="../preferences/options.ui" line="2063"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Διαμοιρασμός τόρεντ μέχρι να φτάσουν σε αναλογία</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2085"/>
+        <location filename="../preferences/options.ui" line="2095"/>
         <source>then</source>
         <translation>τότε</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2096"/>
+        <location filename="../preferences/options.ui" line="2106"/>
         <source>Pause them</source>
         <translation>Παύση τους</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2101"/>
+        <location filename="../preferences/options.ui" line="2111"/>
         <source>Remove them</source>
         <translation>Αφαίρεσή τους</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2163"/>
+        <location filename="../preferences/options.ui" line="2173"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Ενεργοποίηση Web User Interface (Απομακρυσμένη διαχείριση)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2249"/>
+        <location filename="../preferences/options.ui" line="2259"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="913"/>
+        <location filename="../preferences/options.ui" line="923"/>
         <source>Listening port</source>
         <translation>Επικοινωνία θύρας</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="921"/>
+        <location filename="../preferences/options.ui" line="931"/>
         <source>Port used for incoming connections:</source>
         <translation>Θύρα που χρησιμοποιείται για εισερχόμενες συνδέσεις:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="941"/>
+        <location filename="../preferences/options.ui" line="951"/>
         <source>Random</source>
         <translation>Τυχαία</translation>
     </message>
@@ -2723,42 +2728,42 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Ενεργοποίηση χαρτογράφησης θυρών NAT-PMP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="978"/>
+        <location filename="../preferences/options.ui" line="988"/>
         <source>Connections limit</source>
         <translation>Όριο συνδέσεων</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="989"/>
+        <location filename="../preferences/options.ui" line="999"/>
         <source>Global maximum number of connections:</source>
         <translation>Συνολικός αριθμός μεγίστων συνδέσεων:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1032"/>
+        <location filename="../preferences/options.ui" line="1042"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Μέγιστος αριθμός συνδέσεων ανά torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1072"/>
+        <location filename="../preferences/options.ui" line="1082"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Μέγιστες θυρίδες αποστολής ανά torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1409"/>
-        <location filename="../preferences/options.ui" line="1531"/>
+        <location filename="../preferences/options.ui" line="1419"/>
+        <location filename="../preferences/options.ui" line="1541"/>
         <source>Upload:</source>
         <translation>Αποστολή:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1445"/>
-        <location filename="../preferences/options.ui" line="1558"/>
+        <location filename="../preferences/options.ui" line="1455"/>
+        <location filename="../preferences/options.ui" line="1568"/>
         <source>Download:</source>
         <translation>Λήψη:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1438"/>
-        <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1551"/>
-        <location filename="../preferences/options.ui" line="1578"/>
+        <location filename="../preferences/options.ui" line="1448"/>
+        <location filename="../preferences/options.ui" line="1481"/>
+        <location filename="../preferences/options.ui" line="1561"/>
+        <location filename="../preferences/options.ui" line="1588"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -2772,33 +2777,33 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Bittorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1391"/>
+        <location filename="../preferences/options.ui" line="1401"/>
         <source>Global speed limits</source>
         <translation>Συνολικό όριο ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1496"/>
+        <location filename="../preferences/options.ui" line="1506"/>
         <source>Alternative global speed limits</source>
         <translation>Συνολικά εναλλακτικά όρια ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1653"/>
+        <location filename="../preferences/options.ui" line="1663"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>έως</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1705"/>
+        <location filename="../preferences/options.ui" line="1715"/>
         <source>Every day</source>
         <translation>Κάθε μέρα</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1710"/>
+        <location filename="../preferences/options.ui" line="1720"/>
         <source>Week days</source>
         <translation>Καθημερινές μέρες</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1715"/>
+        <location filename="../preferences/options.ui" line="1725"/>
         <source>Week ends</source>
         <translation>Σαββατοκύριακα</translation>
     </message>
@@ -2815,7 +2820,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Χρήση διαφορετικής θύρας για DHT και Bittorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1838"/>
+        <location filename="../preferences/options.ui" line="1848"/>
         <source>DHT port:</source>
         <translation>Θύρα DHT:</translation>
     </message>
@@ -2845,7 +2850,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Επικοινωνίες HTTP (ιχνηλάτες, διαμοιραστές, μηχανή αναζήτησης)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1155"/>
+        <location filename="../preferences/options.ui" line="1165"/>
         <source>Host:</source>
         <translation>Διακομιστής:</translation>
     </message>
@@ -2854,12 +2859,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Συνδέσεις με χρήστες</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1134"/>
+        <location filename="../preferences/options.ui" line="1144"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1121"/>
+        <location filename="../preferences/options.ui" line="1131"/>
         <source>Type:</source>
         <translation>Είδος:</translation>
     </message>
@@ -2875,33 +2880,33 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Γλώσσα</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="729"/>
+        <location filename="../preferences/options.ui" line="739"/>
         <source>Remove folder</source>
         <translation>Αφαίρεση φακέλου</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1305"/>
+        <location filename="../preferences/options.ui" line="1315"/>
         <source>IP Filtering</source>
         <translation>Φιλτράρισμα IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1612"/>
+        <location filename="../preferences/options.ui" line="1622"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Προγραμματισμός χρήσης εναλλακτικών ορίων ταχύτητας</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1629"/>
+        <location filename="../preferences/options.ui" line="1639"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>από-έως</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1697"/>
+        <location filename="../preferences/options.ui" line="1707"/>
         <source>When:</source>
         <translation>Όταν:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1892"/>
+        <location filename="../preferences/options.ui" line="1902"/>
         <source>Look for peers on your local network</source>
         <translation>Αναζήτηση για διαμοιραστές στο τοπικό σας δίκτυο</translation>
     </message>
@@ -2910,51 +2915,51 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Κρυπτογράφηση πρωτόκολλου:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1129"/>
+        <location filename="../preferences/options.ui" line="1139"/>
         <source>(None)</source>
         <translation>(Κανένα)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1144"/>
+        <location filename="../preferences/options.ui" line="1154"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1181"/>
-        <location filename="../preferences/options.ui" line="2181"/>
+        <location filename="../preferences/options.ui" line="1191"/>
+        <location filename="../preferences/options.ui" line="2191"/>
         <source>Port:</source>
         <translation>Θύρα:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1224"/>
-        <location filename="../preferences/options.ui" line="2217"/>
+        <location filename="../preferences/options.ui" line="1234"/>
+        <location filename="../preferences/options.ui" line="2227"/>
         <source>Authentication</source>
         <translation>Πιστοποίηση</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1236"/>
-        <location filename="../preferences/options.ui" line="2256"/>
+        <location filename="../preferences/options.ui" line="1246"/>
+        <location filename="../preferences/options.ui" line="2266"/>
         <source>Username:</source>
         <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1262"/>
-        <location filename="../preferences/options.ui" line="2263"/>
+        <location filename="../preferences/options.ui" line="1272"/>
+        <location filename="../preferences/options.ui" line="2273"/>
         <source>Password:</source>
         <translation>Κωδικός:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1139"/>
+        <location filename="../preferences/options.ui" line="1149"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1317"/>
+        <location filename="../preferences/options.ui" line="1327"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Διαδρομή φίλτρου (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2175"/>
+        <location filename="../preferences/options.ui" line="2185"/>
         <source>HTTP Server</source>
         <translation>Διακομιστής HTTP</translation>
     </message>
@@ -6006,73 +6011,73 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1081"/>
-        <location filename="../preferences/options_imp.cpp" line="1083"/>
-        <location filename="../preferences/options_imp.cpp" line="1098"/>
-        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1084"/>
+        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1101"/>
+        <location filename="../preferences/options_imp.cpp" line="1103"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1003"/>
+        <location filename="../preferences/options_imp.cpp" line="1006"/>
         <source>Add directory to scan</source>
         <translation>Προσθήκη κατηγορίας στη σάρωση</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1012"/>
         <source>Folder is already being watched.</source>
         <translation>Αυτός ο φάκελος ήδη παρακολουθείται.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1015"/>
         <source>Folder does not exist.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1015"/>
+        <location filename="../preferences/options_imp.cpp" line="1018"/>
         <source>Folder is not readable.</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1023"/>
+        <location filename="../preferences/options_imp.cpp" line="1026"/>
         <source>Failure</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1023"/>
+        <location filename="../preferences/options_imp.cpp" line="1026"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Δεν ήταν δυνατό να προστεθεί ο Φάκελος για Σάρωση &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
-        <location filename="../preferences/options_imp.cpp" line="1048"/>
+        <location filename="../preferences/options_imp.cpp" line="1049"/>
+        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Choose export directory</source>
         <translation>Επιλέξτε φάκελο εξαγωγής</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1063"/>
-        <location filename="../preferences/options_imp.cpp" line="1065"/>
+        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1068"/>
         <source>Choose an ip filter file</source>
         <translation>Επιλέξτε ένα αρχείο φίλτρου ip</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1063"/>
-        <location filename="../preferences/options_imp.cpp" line="1065"/>
+        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1068"/>
         <source>Filters</source>
         <translation>Φίλτρα</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1159"/>
+        <location filename="../preferences/options_imp.cpp" line="1162"/>
         <source>Parsing error</source>
         <translation>Σφάλμα ανάλυσης</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1159"/>
+        <location filename="../preferences/options_imp.cpp" line="1162"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Αποτυχία ανάγνωσης του δοθέντος φίλτρου IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1161"/>
+        <location filename="../preferences/options_imp.cpp" line="1164"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6081,7 +6086,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Επιτυχής ανανέωση</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1161"/>
+        <location filename="../preferences/options_imp.cpp" line="1164"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Η ανάγνωση του δοθέντος IP φίλτρου ήταν επιτυχής: %1 κανόνες εφαρμόστηκαν.</translation>

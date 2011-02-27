@@ -130,6 +130,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -323,6 +324,7 @@ void options_imp::saveOptions(){
   pref.setMinimizeToTray(minimizeToTray());
   pref.setStartMinimized(startMinimized());
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
+  pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
   // End General preferences
 
@@ -467,6 +469,7 @@ void options_imp::loadOptions(){
     checkMinimizeToSysTray->setChecked(pref.minimizeToTray());
     checkStartMinimized->setChecked(pref.startMinimized());
   }
+  checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
   // End General preferences
   // Downloads preferences
