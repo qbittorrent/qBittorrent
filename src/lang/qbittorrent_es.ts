@@ -2369,7 +2369,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="413"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Pedir confirmación para salir del programa</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="426"/>
@@ -2513,7 +2513,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2259"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Eludir la autenticación para localhost</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
@@ -2956,7 +2956,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Contenido del torrent:</translation>
+        <translation>Contenido del torrent:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
