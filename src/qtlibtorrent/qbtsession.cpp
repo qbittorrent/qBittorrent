@@ -389,9 +389,12 @@ void QBtSession::configureSession() {
   sessionSettings.cache_size = pref.diskCacheSize()*64;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
   // Disable OS cache to avoid memory problems (uTorrent behavior)
+#ifdef Q_WS_WIN
 #if LIBTORRENT_VERSION_MINOR > 14
+  // Fixes huge memory usage on Windows 7 (especially when checking files)
   sessionSettings.disk_io_write_mode = session_settings::disable_os_cache_for_aligned_files;
   sessionSettings.disk_io_read_mode = session_settings::disable_os_cache_for_aligned_files;
+#endif
 #endif
   // Queueing System
   if(pref.isQueueingSystemEnabled()) {
