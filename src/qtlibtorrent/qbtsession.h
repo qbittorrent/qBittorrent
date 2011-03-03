@@ -216,7 +216,7 @@ private:
   libtorrent::session *s;
   QPointer<QTimer> timerAlerts;
   QPointer<BandwidthScheduler> bd_scheduler;
-  QHash<QUrl, QPair<QString, QString> > savepathLabel_fromurl;
+  QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl; // Use QMap for compatibility with Qt < 4.7: qHash(QUrl)
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
   QHash<QString, QString> savePathsToRemove;
   QStringList torrentsToPausedAfterChecking;
