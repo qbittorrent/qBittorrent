@@ -174,11 +174,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать экранные сообщения</translation>
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждать удаление торрента</translation>
     </message>
 </context>
 <context>
@@ -597,95 +597,95 @@ You should get this information from your Web browser preferences.</source>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Ошибка ввода/вывода</translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Удаленный хост не был найден (неправильное имя хоста)</translation>
+        <translation>Удаленный хост не был найден (неправильное имя хоста)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Операция была отменена</translation>
+        <translation>Операция была отменена</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Удаленный сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
+        <translation>Удаленный сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Время соединения с удаленным сервером вышло</translation>
+        <translation>Время соединения с удаленным сервером вышло</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">Соединение SSL/TLS не удалось</translation>
+        <translation>Соединение SSL/TLS не удалось</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Удаленный сервер отклонил соединение</translation>
+        <translation>Удаленный сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Прокси-сервер отклонил соединение</translation>
+        <translation>Прокси-сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Прокси-сервер преждевременно закрыл соединение</translation>
+        <translation>Прокси-сервер преждевременно закрыл соединение</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Имя прокси-сервера не было найдено</translation>
+        <translation>Имя прокси-сервера не было найдено</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
+        <translation>Подключение к прокси-серверу истекло или прокси-сервер не ответил на запрос</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Прокси-сервер требует аутентификации, но не принял указанные учетные данные</translation>
+        <translation>Прокси-сервер требует аутентификации, но не принял указанные учетные данные</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">В доступе к данным было отказано (401)</translation>
+        <translation>В доступе к данным было отказано (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">В данной операции над данными отказано</translation>
+        <translation>В данной операции над данными отказано</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Данные не были найдены на сервере (404)</translation>
+        <translation>Данные не были найдены на сервере (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
+        <translation>Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">API сетевого доступа не может выполнить запрос, потому что протокол не известен</translation>
+        <translation>API сетевого доступа не может выполнить запрос, потому что протокол не известен</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Запрошенная операция не поддерживается данным протоколом</translation>
+        <translation>Запрошенная операция не поддерживается данным протоколом</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Неизвестная сетевая ошибка</translation>
+        <translation>Неизвестная сетевая ошибка</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Неизвестная ошибка прокси-сервера</translation>
+        <translation>Неизвестная ошибка прокси-сервера</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Неизвестная ошибка данных</translation>
+        <translation>Неизвестная ошибка данных</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Ошибка в протоколе</translation>
+        <translation>Ошибка в протоколе</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Неизвестная ошибка</translation>
+        <translation>Неизвестная ошибка</translation>
     </message>
 </context>
 <context>
@@ -2625,27 +2625,27 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Поведение</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Язык</translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Управление питанием</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Запретить спящий режим, когда есть активные торренты</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропускать аутентификацию для localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрашивать подтверждение завершени программы</translation>
     </message>
 </context>
 <context>
@@ -2954,7 +2954,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Содержимое torrent-а:</translation>
+        <translation>Содержимое торрента:</translation>
     </message>
 </context>
 <context>
@@ -3230,15 +3230,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сейчас компьютер перейдёт в спящий режим, если вы не отмените это в течение следующих 15 секунд...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сейчас компьютер будет отключён, если вы не отмените это в течение следующих 15 секунд...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сейчас qBittorrent будет завершен, если вы не отмените это в течение следующих 15 секунд...</translation>
     </message>
 </context>
 <context>
@@ -3683,7 +3683,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтверждение выключения</translation>
     </message>
 </context>
 <context>
@@ -5205,7 +5205,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished">Успешно обновлён</translation>
+        <translation>Успешно обновлён</translation>
     </message>
 </context>
 <context>
