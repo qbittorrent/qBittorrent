@@ -461,8 +461,8 @@ void MainWindow::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   if(settings.contains("geometry")) {
-    restoreGeometry(settings.value("geometry").toByteArray());
-    m_posInitialized = true;
+    if(restoreGeometry(settings.value("geometry").toByteArray()))
+      m_posInitialized = true;
   }
   const QByteArray splitterState = settings.value("vsplitterState").toByteArray();
   if(splitterState.isEmpty()) {
