@@ -51,6 +51,7 @@
 #include "transferlistdelegate.h"
 #include "previewselect.h"
 #include "speedlimitdlg.h"
+#include "updownratiodlg.h"
 #include "options_imp.h"
 #include "mainwindow.h"
 #include "preferences.h"
@@ -482,6 +483,29 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
   }
 }
 
+void TransferListWidget::setMaxRatioSelectedTorrents() {
+    const QStringList hashes = getSelectedTorrentsHashes();
+    if (hashes.isEmpty())
+        return;
+    bool useGlobalValue;
+    qreal currentMaxRatio;
+    if (hashes.count() == 1) {
+        currentMaxRatio = BTSession->getMaxRatioPerTorrent(hashes.first(), &useGlobalValue);
+    } else {
+        useGlobalValue = true;
+        currentMaxRatio = BTSession->getGlobalMaxRatio();
+    }
+    UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, QBtSession::MAX_RATIO, this);
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+    foreach (const QString &hash, hashes) {
+        if (dlg.useDefault())
+            BTSession->removeRatioPerTorrent(hash);
+        else
+            BTSession->setMaxRatioPerTorrent(hash, dlg.ratio());
+    }
+}
+
 void TransferListWidget::recheckSelectedTorrents() {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
@@ -620,6 +644,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedTorrents()));
   QAction actionPreview_file(IconProvider::instance()->getIcon("view-preview"), tr("Preview file..."), 0);
   connect(&actionPreview_file, SIGNAL(triggered()), this, SLOT(previewSelectedTorrents()));
+  QAction actionSet_max_ratio(QIcon(QString::fromUtf8(":/Icons/skin/ratio.png")), tr("Limit share ratio..."), 0);
+  connect(&actionSet_max_ratio, SIGNAL(triggered()), this, SLOT(setMaxRatioSelectedTorrents()));
   QAction actionSet_upload_limit(QIcon(QString::fromUtf8(":/Icons/skin/seeding.png")), tr("Limit upload rate..."), 0);
   connect(&actionSet_upload_limit, SIGNAL(triggered()), this, SLOT(setUpLimitSelectedTorrents()));
   QAction actionSet_download_limit(QIcon(QString::fromUtf8(":/Icons/skin/download.png")), tr("Limit download rate..."), 0);
@@ -742,6 +768,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   listMenu.addSeparator();
   if(one_not_seed)
     listMenu.addAction(&actionSet_download_limit);
+  listMenu.addAction(&actionSet_max_ratio);
   listMenu.addAction(&actionSet_upload_limit);
 #if LIBTORRENT_VERSION_MINOR > 14
   if(!one_not_seed && all_same_super_seeding && one_has_metadata) {

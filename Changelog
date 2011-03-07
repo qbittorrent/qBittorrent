@@ -6,6 +6,7 @@
     - FEATURE: Inhibit system sleep when torrents are active (Vladimir Golovnev)
     - FEATURE: Added option to bypass Web UI authentication for localhost
     - FEATURE: Added option to disable program exit confirmation
+    - FEATURE: Added per-torrent ratio limiting (Christian Kandeler)
     - BUGFIX: Fix compilation with namespaced Qt (Christian Kandeler)
 
 * Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0

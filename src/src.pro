@@ -101,13 +101,15 @@ HEADERS += misc.h \
            filesystemwatcher.h \
            scannedfoldersmodel.h \
            qinisettings.h \
-           smtp.h
+           smtp.h \
+           updownratiodlg.h
 
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
-           smtp.cpp
+           smtp.cpp \
+           updownratiodlg.cpp
 
 nox {
   HEADERS += headlessloader.h
@@ -164,6 +166,7 @@ nox {
            downloadfromurldlg.ui \
            torrentadditiondlg.ui \
            bandwidth_limit.ui \
+           updownratiodlg.ui \
            confirmdeletiondlg.ui \
            torrentimportdlg.ui \
            executionlog.ui

@@ -74,6 +74,7 @@ public slots:
   void recheckSelectedTorrents();
   void setDlLimitSelectedTorrents();
   void setUpLimitSelectedTorrents();
+  void setMaxRatioSelectedTorrents();
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);

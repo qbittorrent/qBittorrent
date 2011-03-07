@@ -171,7 +171,12 @@ public:
 
 class TorrentPersistentData {
 public:
+  enum RatioLimit {
+    USE_GLOBAL_RATIO = -2,
+    NO_RATIO_LIMIT = -1
+  };
 
+public:
   static bool isKnownTorrent(QString hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
@@ -182,6 +187,34 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     return all_data.keys();
+  }
+
+  static void setRatioLimit(const QString &hash, qreal ratio) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    data["max_ratio"] = ratio;
+    all_data[hash] = data;
+    settings.setValue("torrents", all_data);
+  }
+
+  static qreal getRatioLimit(const QString &hash) {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    return data.value("max_ratio", USE_GLOBAL_RATIO).toReal();
+  }
+
+  static bool hasPerTorrentRatioLimit() {
+    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
+    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant>::ConstIterator it;
+    for(it = all_data.constBegin(); it != all_data.constEnd(); it++) {
+      if(it.value().toHash().value("max_ratio", USE_GLOBAL_RATIO).toReal() >= 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static void setAddedDate(QString hash) {

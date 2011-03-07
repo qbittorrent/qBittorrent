@@ -88,7 +88,7 @@ enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 // Main constructor
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
-    preAllocateAll(false), addInPause(false), ratio_limit(-1),
+    preAllocateAll(false), addInPause(false), global_ratio_limit(-1),
     UPnPEnabled(false), LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
     torrentExport(false)
@@ -97,6 +97,9 @@ QBtSession::QBtSession()
   #endif
   , m_tracker(0)
 {
+  BigRatioTimer = new QTimer(this);
+  BigRatioTimer->setInterval(10000);
+  connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
   Preferences pref;
   // To avoid some exceptions
   boost::filesystem::path::default_name_check(boost::filesystem::no_check);
@@ -130,19 +133,19 @@ QBtSession::QBtSession()
   }
   s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer(this);
-  connect(timerAlerts, SIGNAL(timeout()), this, SLOT(readAlerts()));
+  connect(timerAlerts, SIGNAL(timeout()), SLOT(readAlerts()));
   timerAlerts->start(3000);
-  connect(&resumeDataTimer, SIGNAL(timeout()), this, SLOT(saveTempFastResumeData()));
+  connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
   resumeDataTimer.start(180000); // 3min
   // To download from urls
   downloader = new DownloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), this, SLOT(processDownloadedFile(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), this, SLOT(handleDownloadFailure(QString, QString)));
+  connect(downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(processDownloadedFile(QString, QString)));
+  connect(downloader, SIGNAL(downloadFailure(QString, QString)), SLOT(handleDownloadFailure(QString, QString)));
   appendLabelToSavePath = pref.appendTorrentLabel();
 #if LIBTORRENT_VERSION_MINOR > 14
   appendqBExtension = pref.useIncompleteFilesExtension();
 #endif
-  connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), this, SLOT(addTorrentsFromScanFolder(QStringList&)));
+  connect(m_scanFolders, SIGNAL(torrentsAdded(QStringList&)), SLOT(addTorrentsFromScanFolder(QStringList&)));
   // Apply user settings to Bittorrent session
   configureSession();
   // Torrent speed monitor
@@ -190,7 +193,6 @@ void QBtSession::preAllocateAllFiles(bool b) {
 }
 
 void QBtSession::processBigRatios() {
-  if(ratio_limit < 0) return;
   qDebug("Process big ratios...");
   std::vector<torrent_handle> torrents = s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
@@ -200,7 +202,13 @@ void QBtSession::processBigRatios() {
     if(h.is_seed()) {
       const QString hash = h.hash();
       const qreal ratio = getRealRatio(hash);
+      qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
+      if(ratio_limit == TorrentPersistentData::NO_RATIO_LIMIT)
+        continue;
+      if(ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO)
+        ratio_limit = global_ratio_limit;
       qDebug("Ratio: %f (limit: %f)", ratio, ratio_limit);
+      Q_ASSERT(ratio_limit >= 0.f);
       if(ratio <= MAX_RATIO && ratio >= ratio_limit) {
         if(high_ratio_action == REMOVE_ACTION) {
           addConsoleMessage(tr("%1 reached the maximum ratio you set.").arg(h.name()));
@@ -502,7 +510,8 @@ void QBtSession::configureSession() {
   applyEncryptionSettings(encryptionSettings);
   // * Maximum ratio
   high_ratio_action = pref.getMaxRatioAction();
-  setMaxRatio(pref.getMaxRatio());
+  setGlobalMaxRatio(pref.getGlobalMaxRatio());
+  updateRatioTimer();
   // Ip Filter
   FilterParserThread::processFilterList(s, pref.bannedIPs());
   if(pref.isFilteringEnabled()) {
@@ -1774,22 +1783,53 @@ void QBtSession::setUploadRateLimit(long rate) {
 
 // Torrents will a ratio superior to the given value will
 // be automatically deleted
-void QBtSession::setMaxRatio(qreal ratio) {
+void QBtSession::setGlobalMaxRatio(qreal ratio) {
   if(ratio < 0) ratio = -1.;
-  if(ratio_limit == -1 && ratio != -1) {
-    Q_ASSERT(!BigRatioTimer);
-    BigRatioTimer = new QTimer(this);
-    connect(BigRatioTimer, SIGNAL(timeout()), this, SLOT(processBigRatios()));
-    BigRatioTimer->start(10000);
-  } else {
-    if(ratio_limit != -1 && ratio == -1) {
-      delete BigRatioTimer;
-    }
+  if(global_ratio_limit != ratio) {
+    global_ratio_limit = ratio;
+    qDebug("* Set global deleteRatio to %.1f", global_ratio_limit);
+    updateRatioTimer();
   }
-  if(ratio_limit != ratio) {
-    ratio_limit = ratio;
-    qDebug("* Set deleteRatio to %.1f", ratio_limit);
-    processBigRatios();
+}
+
+void QBtSession::setMaxRatioPerTorrent(const QString &hash, qreal ratio)
+{
+  if (ratio < 0)
+    ratio = -1;
+  if (ratio > MAX_RATIO)
+    ratio = MAX_RATIO;
+  qDebug("* Set individual max ratio for torrent %s to %.1f.",
+         qPrintable(hash), ratio);
+  TorrentPersistentData::setRatioLimit(hash, ratio);
+  updateRatioTimer();
+}
+
+void QBtSession::removeRatioPerTorrent(const QString &hash)
+{
+  qDebug("* Remove individual max ratio for torrent %s.", qPrintable(hash));
+  TorrentPersistentData::setRatioLimit(hash, TorrentPersistentData::USE_GLOBAL_RATIO);
+  updateRatioTimer();
+}
+
+qreal QBtSession::getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const
+{
+  qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
+  if(ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO) {
+    ratio_limit = global_ratio_limit;
+    *usesGlobalRatio = true;
+  } else {
+    *usesGlobalRatio = false;
+  }
+  return ratio_limit;
+}
+
+void QBtSession::updateRatioTimer()
+{
+  if (global_ratio_limit == -1 && !TorrentPersistentData::hasPerTorrentRatioLimit()) {
+    if (BigRatioTimer->isActive())
+      BigRatioTimer->stop();
+  } else if (!BigRatioTimer->isActive()) {
+    BigRatioTimer->start();
   }
 }
 

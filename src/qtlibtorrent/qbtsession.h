@@ -129,7 +129,11 @@ public slots:
   void setMaxUploadsPerTorrent(int max);
   void setDownloadRateLimit(long rate);
   void setUploadRateLimit(long rate);
-  void setMaxRatio(qreal ratio);
+  void setGlobalMaxRatio(qreal ratio);
+  qreal getGlobalMaxRatio() const { return global_ratio_limit; }
+  void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
+  qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
+  void removeRatioPerTorrent(const QString &hash);
   void setDHTPort(int dht_port);
   void setProxySettings(const libtorrent::proxy_settings &proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
@@ -168,6 +172,7 @@ private:
   void loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet);
   libtorrent::add_torrent_params initializeAddTorrentParams(const QString &hash);
   libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> &t, const std::vector<int> &fp);
+  void updateRatioTimer();
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
@@ -233,7 +238,7 @@ private:
   // Settings
   bool preAllocateAll;
   bool addInPause;
-  qreal ratio_limit;
+  qreal global_ratio_limit;
   int high_ratio_action;
   bool UPnPEnabled;
   bool LSDEnabled;

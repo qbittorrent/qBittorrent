@@ -391,7 +391,7 @@ void options_imp::saveOptions(){
   pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
-  pref.setMaxRatio(getMaxRatio());
+  pref.setGlobalMaxRatio(getMaxRatio());
   pref.setMaxRatioAction(comboRatioLimitAct->currentIndex());
   // End Bittorrent preferences
   // Misc preferences
@@ -624,7 +624,7 @@ void options_imp::loadOptions(){
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
   // Ratio limit
-  floatValue = pref.getMaxRatio();
+  floatValue = pref.getGlobalMaxRatio();
   if(floatValue >= 0.) {
     // Enable
     checkMaxRatio->setChecked(true);
