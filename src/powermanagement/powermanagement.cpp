@@ -30,7 +30,7 @@
 
 #include <QtGlobal>
 
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
 #include "powermanagement_x11.h"
 #endif
 #include "powermanagement.h"
@@ -45,7 +45,7 @@
 
 PowerManagement::PowerManagement(QObject *parent) : QObject(parent), m_busy(false)
 {
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
     m_inhibitor = new PowerManagementInhibitor(this);
 #endif
 }
@@ -67,7 +67,7 @@ void PowerManagement::setBusy()
 
 #ifdef Q_WS_WIN
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
-#elif defined(Q_WS_X11)
+#elif defined(Q_WS_X11) && defined(QT_DBUS_LIB)
     m_inhibitor->RequestBusy();
 #elif defined(Q_WS_MAC)
     IOReturn success = IOPMAssertionCreate(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn, &m_assertionID);
@@ -82,7 +82,7 @@ void PowerManagement::setIdle()
 
 #ifdef Q_WS_WIN
     SetThreadExecutionState(ES_CONTINUOUS);
-#elif defined(Q_WS_X11)
+#elif defined(Q_WS_X11) && defined(QT_DBUS_LIB)
     m_inhibitor->RequestIdle();
 #elif defined(Q_WS_MAC)
     IOPMAssertionRelease(m_assertionID);

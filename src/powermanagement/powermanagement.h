@@ -38,32 +38,32 @@
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #endif
 
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
 // Require DBus
 class PowerManagementInhibitor;
 #endif
 
 class PowerManagement : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    PowerManagement(QObject *parent = 0);
-    virtual ~PowerManagement();
+  PowerManagement(QObject *parent = 0);
+  virtual ~PowerManagement();
 
-    void setActivityState(bool busy);
+  void setActivityState(bool busy);
 
 private:
-    bool m_busy;
+  bool m_busy;
 
-    void setBusy();
-    void setIdle();
+  void setBusy();
+  void setIdle();
 
-#ifdef Q_WS_X11
-    PowerManagementInhibitor *m_inhibitor;
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+  PowerManagementInhibitor *m_inhibitor;
 #endif
 #ifdef Q_WS_MAC
-    IOPMAssertionID m_assertionID;
+  IOPMAssertionID m_assertionID;
 #endif
 };
 

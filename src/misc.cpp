@@ -71,7 +71,7 @@ const int UNLEN = 256;
 #endif
 
 #ifndef DISABLE_GUI
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
@@ -206,7 +206,7 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(bool sleep) {
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off the system
   // dbus-send --print-reply --system --dest=org.freedesktop.Hal /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown
   QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());

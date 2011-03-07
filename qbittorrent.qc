@@ -6,6 +6,8 @@
   <dep type='qt4'>
     <required/>
   </dep>
+  <dep type='qt-dbus'>
+  </dep>
   <dep type='pkg-config'>
     <required/>
   </dep>

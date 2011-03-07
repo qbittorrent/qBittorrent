@@ -2,7 +2,7 @@
 include(conf.pri)
 
 # COMPILATION SPECIFIC
-!nox {
+!nox:dbus {
   QT += dbus
 }
 QMAKE_LFLAGS_APP += -rdynamic

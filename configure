@@ -22,6 +22,7 @@ Dependency options:
   --disable-gui                                   Disable qBittorrent
                                                  Graphical user interface for
                                                  headless running
+  --disable-qt-dbus                              Disable use of qt-dbus
   --with-libboost-inc=[path]                      Path to libboost include
                                                  files
   --with-libboost-lib=[path]                      Path to libboost library
@@ -162,6 +163,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--disable-qt-dbus)
+			QC_DISABLE_qt_dbus="Y"
+			shift
+			;;
+
 		--with-libboost-inc=*)
 			QC_WITH_LIBBOOST_INC=$optarg
 			shift
@@ -215,6 +221,7 @@ echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
 echo QC_ENABLE_DEBUG=$QC_ENABLE_DEBUG
 echo QC_DISABLE_GUI=$QC_DISABLE_GUI
+echo QC_DISABLE_qt_dbus=$QC_DISABLE_qt_dbus
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBBOOST_LIB=$QC_WITH_LIBBOOST_LIB
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
@@ -353,6 +360,38 @@ public:
                   conf->addExtra("MANPREFIX = \$\$PREFIX/share"); 
                 #endif
 		return(QT_VERSION >= 0x040500);
+	}
+};
+#line 1 "qt-dbus.qcm"
+/*
+-----BEGIN QCMOD-----
+name: qt-dbus
+-----END QCMOD-----
+*/
+// see  Conf::findPkgConfig
+class qc_qt_dbus : public ConfObj
+{
+public:
+	qc_qt_dbus(Conf *c) : ConfObj(c) {}
+	QString name() const { return "QtDBus >= 4.5"; }
+	QString shortname() const { return "qt-dbus"; }
+        QString checkString() const {
+                if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                        return "";
+                return ConfObj::checkString();
+        }
+	bool exec(){
+                if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                  return false;
+		QStringList incs;
+		QString req_ver = "4.5.0";
+		QString version, libs, other;
+		VersionMode mode = VersionMin;
+		if(conf->findPkgConfig("QtDBus", mode, req_ver, &version, &incs, &libs, &other)) {
+                        conf->addExtra("CONFIG += dbus");
+			return true;
+                }
+		return false;
 	}
 };
 #line 1 "pkg-config.qcm"
@@ -644,6 +683,9 @@ EOT
 cat >$1/modules_new.cpp <<EOT
     o = new qc_qt4(conf);
     o->required = true;
+    o->disabled = false;
+    o = new qc_qt_dbus(conf);
+    o->required = false;
     o->disabled = false;
     o = new qc_pkg_config(conf);
     o->required = true;
@@ -1610,6 +1652,7 @@ export DATADIR
 export EX_QTDIR
 export QC_ENABLE_DEBUG
 export QC_DISABLE_GUI
+export QC_DISABLE_qt_dbus
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBBOOST_LIB
 export QC_DISABLE_libnotify

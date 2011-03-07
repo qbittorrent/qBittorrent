@@ -132,6 +132,9 @@ options_imp::options_imp(QWidget *parent):
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
+  checkPreventFromSuspend->setDisabled(true);
+#endif
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -231,7 +234,7 @@ void options_imp::initializeLanguageCombo()
     QLocale locale(localeStr);
     const QString country = locale.name().split("_").last().toLower();
     QString language_name = languageToLocalizedString(locale.language(), country);
-        comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
+    comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
     qDebug() << "Supported locale:" << locale.name();
   }
 }
@@ -917,7 +920,7 @@ bool options_imp::isSlashScreenDisabled() const {
 }
 
 bool options_imp::preventFromSuspend() const {
-    return checkPreventFromSuspend->isChecked();
+  return checkPreventFromSuspend->isChecked();
 }
 
 bool options_imp::preAllocateAllFiles() const {

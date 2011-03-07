@@ -43,9 +43,6 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
-#ifdef Q_WS_X11
-#include <QDBusInterface>
-#endif
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
@@ -235,11 +232,14 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   autoShutdownGroup->setExclusive(true);
   autoShutdownGroup->addAction(actionAutoShutdown_Disabled);
   autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
+#if !defined(Q_WS_X11) || defined(QT_DBUS_LIB)
   autoShutdownGroup->addAction(actionAutoShutdown_system);
   autoShutdownGroup->addAction(actionAutoSuspend_system);
-  actionAutoExit_qBittorrent->setChecked(pref.shutdownqBTWhenDownloadsComplete());
   actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
   actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
+#endif
+  actionAutoExit_qBittorrent->setChecked(pref.shutdownqBTWhenDownloadsComplete());
+
   if(!autoShutdownGroup->checkedAction())
     actionAutoShutdown_Disabled->setChecked(true);
 
@@ -997,12 +997,12 @@ void MainWindow::loadPreferences(bool configure_session) {
 
   if(pref.preventFromSuspend())
   {
-      preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    preventTimer->start(PREVENT_SUSPEND_INTERVAL);
   }
   else
   {
-      preventTimer->stop();
-      m_pwr->setActivityState(false);
+    preventTimer->stop();
+    m_pwr->setActivityState(false);
   }
 
   const uint new_refreshInterval = pref.getRefreshInterval();
@@ -1336,9 +1336,9 @@ void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
 
 void MainWindow::checkForActiveTorrents()
 {
-    const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
-    if(report.nb_active > 0) // Active torrents are present; prevent system from suspend
-        m_pwr->setActivityState(true);
-    else
-        m_pwr->setActivityState(false);
+  const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
+  if(report.nb_active > 0) // Active torrents are present; prevent system from suspend
+    m_pwr->setActivityState(true);
+  else
+    m_pwr->setActivityState(false);
 }
