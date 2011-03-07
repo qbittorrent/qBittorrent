@@ -232,11 +232,14 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   autoShutdownGroup->setExclusive(true);
   autoShutdownGroup->addAction(actionAutoShutdown_Disabled);
   autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
-#if !defined(Q_WS_X11) || defined(QT_DBUS_LIB)
   autoShutdownGroup->addAction(actionAutoShutdown_system);
   autoShutdownGroup->addAction(actionAutoSuspend_system);
+#if !defined(Q_WS_X11) || defined(QT_DBUS_LIB)
   actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
   actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
+#else
+  actionAutoShutdown_system->setDisabled(true);
+  actionAutoSuspend_system->setDisabled(true);
 #endif
   actionAutoExit_qBittorrent->setChecked(pref.shutdownqBTWhenDownloadsComplete());
 
