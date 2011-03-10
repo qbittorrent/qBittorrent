@@ -2414,12 +2414,12 @@ QString QBtSession::getSavePath(QString hash, bool fromScanDir, QString filePath
     qDebug("SavePath got from persistant data is %s", qPrintable(savePath));
     bool append_root_folder = false;
     if(savePath.isEmpty()) {
-      if(fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath))
+      if(fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath)) {
         savePath = QFileInfo(filePath).dir().path();
-      else {
+      } else {
         savePath = defaultSavePath;
-        append_root_folder = true;
       }
+      append_root_folder = true;
     }
     if(!fromScanDir && appendLabelToSavePath) {
       const QString label = TorrentPersistentData::getLabel(hash);

@@ -1,5 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.6.8
   - BUFIX: Fix compilation with libtorrent v0.14.x
+  - BUGFIX: Fix issues when writing on NTFS (Linux, Mac)
+  - BUGFIX: Fix root folder being cut off if the torrent comes from a scanned folder (Christian Kandeler)
 
 * Sat Feb 26 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.7
   - BUGFIX: Encoding fixes (Windows)
