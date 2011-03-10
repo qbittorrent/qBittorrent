@@ -89,16 +89,16 @@ void TorrentCreatorThread::run() {
   try {
     file_storage fs;
     // Adding files to the torrent
-    add_files(fs, input_path.toUtf8().constData(), file_filter);
+    libtorrent::add_files(fs, input_path.toUtf8().constData(), file_filter);
     if(abort) return;
     create_torrent t(fs, piece_size);
 
     // Add url seeds
     foreach(const QString &seed, url_seeds){
-      t.add_url_seed(seed.trimmed().toLocal8Bit().data());
+      t.add_url_seed(seed.trimmed().toStdString());
     }
     foreach(const QString &tracker, trackers) {
-      t.add_tracker(tracker.trimmed().toLocal8Bit().data());
+      t.add_tracker(tracker.trimmed().toStdString());
     }
     if(abort) return;
     // calculate the hash for all pieces
@@ -116,7 +116,7 @@ void TorrentCreatorThread::run() {
     std::vector<char> torrent;
     bencode(back_inserter(torrent), t.generate());
     QFile outfile(save_path);
-    if(outfile.open(QIODevice::WriteOnly)) {
+    if(!torrent.empty() && outfile.open(QIODevice::WriteOnly)) {
       outfile.write(&torrent[0], torrent.size());
       outfile.close();
       emit updateProgress(100);
