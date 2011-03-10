@@ -2176,21 +2176,20 @@ void QBtSession::readAlerts() {
 #endif
       if(!hash.isEmpty()) {
         if(savePathsToRemove.contains(hash)) {
-          QDir().rmpath(savePathsToRemove.take(hash));
+          const QString dirpath = savePathsToRemove.take(hash);
+          qDebug() << "Removing save path: " << dirpath << "...";
+          bool ok = misc::removeEmptyFolder(dirpath);
+          Q_UNUSED(ok);
+          qDebug() << "Folder was removed: " << ok;
         }
       } else {
-        // XXX: Fallback
-        QStringList hashes_deleted;
+        // Fallback
+        qDebug() << "hash is empty, use fallback to remove save path";
         foreach(const QString& key, savePathsToRemove.keys()) {
           // Attempt to delete
-          QDir().rmpath(savePathsToRemove[key]);
-          if(!QDir(savePathsToRemove[key]).exists()) {
-            hashes_deleted << key;
+          if(misc::removeEmptyFolder(savePathsToRemove[key])) {
+            savePathsToRemove.remove(key);
           }
-        }
-        // Clean up
-        foreach(const QString& key, hashes_deleted) {
-          savePathsToRemove.remove(key);
         }
       }
     }
