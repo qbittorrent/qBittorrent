@@ -799,3 +799,13 @@ QString misc::fileName(QString file_path)
     return file_path;
   return file_path.mid(slash_index+1);
 }
+
+bool misc::removeEmptyFolder(const QString &dirpath)
+{
+  QDir savedir(dirpath);
+  const QString dirname = savedir.dirName();
+  if(savedir.exists() && savedir.cdUp()) {
+    return savedir.rmdir(dirname);
+  }
+  return false;
+}
