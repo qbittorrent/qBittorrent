@@ -4115,6 +4115,33 @@ Wilt u het nu installeren?</translation>
         <comment>Delete the torrent</comment>
         <translation>Verwijderen</translation>
     </message>
+    <message>
+        <source>Limit share ratio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpDownRatioDlg</name>
+    <message>
+        <source>Torrent Upload/Download Ratio Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use global ratio limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>buttonGroup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set no ratio limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set ratio limit to</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UsageDisplay</name>
