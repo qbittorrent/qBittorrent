@@ -1362,10 +1362,10 @@ void QBtSession::loadSessionState() {
   QFile state_file(state_path);
   if(!state_file.open(QIODevice::ReadOnly)) return;
   std::vector<char> in;
-  const QByteArray content = state_file.readAll();
-  const int content_size = content.size();
+  const qint64 content_size = state_file.bytesAvailable();
+  if(content_size <= 0) return;
   in.resize(content_size);
-  memcpy(&in[0], content.data(), content_size);
+  state_file.read(&in[0], content_size);
   // bdecode
   lazy_entry e;
   if (lazy_bdecode(&in[0], &in[0] + in.size(), e) == 0)
@@ -1386,14 +1386,13 @@ void QBtSession::saveSessionState() {
 #if LIBTORRENT_VERSION_MINOR > 14
   entry session_state;
   s->save_state(session_state);
-  std::vector<char> out;
-  bencode(std::back_inserter(out), session_state);
-  file f;
-  error_code ec;
-  if (!f.open(state_path.toUtf8().constData(), file::write_only, ec)) return;
-  if (ec) return;
-  file::iovec_t b = {&out[0], out.size()};
-  f.writev(0, &b, 1, ec);
+  vector<char> out;
+  bencode(back_inserter(out), session_state);
+  QFile session_file(state_path);
+  if (!out.empty() && session_file.open(QIODevice::WriteOnly)) {
+    session_file.write(&out[0], out.size());
+    session_file.close();
+  }
 #else
   entry session_state = s->state();
   boost::filesystem::ofstream out(state_path.toLocal8Bit().constData()
@@ -1538,12 +1537,16 @@ void QBtSession::saveFastResumeData() {
     if(!h.is_valid()) continue;
     try {
       // Remove old fastresume file if it exists
-      const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
-      if(QFile::exists(file))
-        misc::safeRemove(file);
-      boost::filesystem::ofstream out(boost::filesystem::path(file.toLocal8Bit().constData()), std::ios_base::binary);
-      out.unsetf(std::ios_base::skipws);
-      bencode(std::ostream_iterator<char>(out), *rd->resume_data);
+      vector<char> out;
+      bencode(back_inserter(out), *rd->resume_data);
+      const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
+      QFile resume_file(filepath);
+      if(resume_file.exists())
+        misc::safeRemove(filepath);
+      if(!out.empty() && resume_file.open(QIODevice::WriteOnly)) {
+        resume_file.write(&out[0], out.size());
+        resume_file.close();
+      }
       // Remove torrent from session
       s->remove_torrent(rd->handle);
       s->pop_alert();
@@ -2120,16 +2123,17 @@ void QBtSession::readAlerts() {
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
       const QDir torrentBackup(misc::BTBackupLocation());
       const QTorrentHandle h(p->handle);
-      if(h.is_valid()) {
-        const QString file = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
-        // Delete old fastresume file if necessary
-        if(QFile::exists(file))
-          misc::safeRemove(file);
-        qDebug("Saving fastresume data in %s", qPrintable(file));
-        if (p->resume_data) {
-          boost::filesystem::ofstream out(boost::filesystem::path(file.toUtf8().constData()), std::ios_base::binary);
-          out.unsetf(std::ios_base::skipws);
-          bencode(std::ostream_iterator<char>(out), *p->resume_data);
+      if(h.is_valid() && p->resume_data) {
+        const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
+        QFile resume_file(filepath);
+        if(resume_file.exists())
+          misc::safeRemove(filepath);
+        qDebug("Saving fastresume data in %s", qPrintable(filepath));
+        vector<char> out;
+        bencode(back_inserter(out), *p->resume_data);
+        if(!out.empty() && resume_file.open(QIODevice::WriteOnly)) {
+          resume_file.write(&out[0], out.size());
+          resume_file.close();
         }
       }
     }
