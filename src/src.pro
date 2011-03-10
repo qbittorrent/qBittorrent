@@ -101,15 +101,13 @@ HEADERS += misc.h \
            filesystemwatcher.h \
            scannedfoldersmodel.h \
            qinisettings.h \
-           smtp.h \
-           updownratiodlg.h
+           smtp.h
 
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
-           smtp.cpp \
-           updownratiodlg.cpp
+           smtp.cpp
 
 nox {
   HEADERS += headlessloader.h
@@ -134,7 +132,8 @@ nox {
               sessionapplication.h \
               torrentimportdlg.h \
               executionlog.h \
-              iconprovider.h
+              iconprovider.h \
+              updownratiodlg.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -144,7 +143,8 @@ nox {
              torrentimportdlg.cpp \
              executionlog.cpp \
              previewselect.cpp \
-             iconprovider.cpp
+             iconprovider.cpp \
+             updownratiodlg.cpp
 
   win32 {
     HEADERS += programupdater.h
