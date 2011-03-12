@@ -147,6 +147,9 @@ protected:
   void displaySearchTab(bool enable);
 
 private:
+  QIcon getSystrayIcon() const;
+
+private:
   QFileSystemWatcher *executable_watcher;
   // Bittorrent
   QList<QPair<QTorrentHandle,QString> > unauthenticated_trackers; // Still needed?

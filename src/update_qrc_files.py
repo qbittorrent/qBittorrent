@@ -71,7 +71,7 @@ for root, dirs, files in os.walk('Icons'):
   if 'skin_unused' in dirs:
     dirs.remove('skin_unused')
   for file in files:
-    if splitext(file)[-1] in ('.png', '.jpg', '.gif'):
+    if splitext(file)[-1] in ('.png', '.jpg', '.gif', '.svg'):
       icons_list.append(join(root, file))
 
 output = '''<!DOCTYPE RCC><RCC version="1.0">

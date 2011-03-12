@@ -172,7 +172,7 @@
              <x>0</x>
              <y>0</y>
              <width>499</width>
-             <height>487</height>
+             <height>515</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -391,6 +391,13 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkUseMonoSystrayIcon">
+                 <property name="text">
+                  <string>Use monochrome system tray icon (requires restart)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkMinimizeToSysTray">
                  <property name="text">
                   <string>Minimize qBittorrent to notification area</string>
@@ -467,7 +474,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>499</width>
+             <width>440</width>
              <height>698</height>
             </rect>
            </property>
@@ -910,7 +917,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>499</width>
+             <width>447</width>
              <height>457</height>
             </rect>
            </property>
@@ -1390,8 +1397,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>517</width>
-             <height>414</height>
+             <width>404</width>
+             <height>334</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -2162,8 +2169,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>517</width>
-             <height>414</height>
+             <width>378</width>
+             <height>255</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2311,8 +2318,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>62</width>
-             <height>18</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

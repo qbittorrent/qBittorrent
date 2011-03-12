@@ -89,99 +89,99 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="48"/>
+        <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Property</source>
         <translation>Eigenschaft</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="48"/>
+        <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Value</source>
         <translation>Wert</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="141"/>
+        <location filename="../preferences/advancedsettings.h" line="119"/>
         <source>Disk write cache size</source>
         <translation>Größe des Plattencache zum schreiben</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="147"/>
+        <location filename="../preferences/advancedsettings.h" line="124"/>
         <source> MiB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="150"/>
+        <location filename="../preferences/advancedsettings.h" line="127"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Ausgehende Ports (Min) [0: Deaktiviert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="158"/>
+        <location filename="../preferences/advancedsettings.h" line="134"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Ausgehende Ports (Max) [0: Deaktiviert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="166"/>
+        <location filename="../preferences/advancedsettings.h" line="141"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Transferlimits im lokalen Netzwerk ignorieren</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="172"/>
+        <location filename="../preferences/advancedsettings.h" line="146"/>
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation>TCP/IP Overhead in Transferlimits einbeziehen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="178"/>
+        <location filename="../preferences/advancedsettings.h" line="151"/>
         <source>Recheck torrents on completion</source>
         <translation>Torrents nach Abschluss der Übertragung erneut prüfen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="184"/>
+        <location filename="../preferences/advancedsettings.h" line="156"/>
         <source>Transfer list refresh interval</source>
         <translation>Intervall zum Auffrischen der Transfer-Liste</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="190"/>
+        <location filename="../preferences/advancedsettings.h" line="161"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="193"/>
+        <location filename="../preferences/advancedsettings.h" line="164"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Herkunftsländer der Peers auflösen (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="199"/>
+        <location filename="../preferences/advancedsettings.h" line="169"/>
         <source>Resolve peer host names</source>
         <translation>Hostnamen der Peers auflösen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="174"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Maximale Anzahl halboffener Verbindungen [0: Deaktiviert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="213"/>
+        <location filename="../preferences/advancedsettings.h" line="181"/>
         <source>Strict super seeding</source>
         <translation>Striktes Super Seeding</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="190"/>
         <source>Network Interface (requires restart)</source>
         <translation>Netzwerk Interface (Neustart benötigt)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="225"/>
+        <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Beliebiges Interface</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="238"/>
+        <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="244"/>
+        <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
@@ -190,27 +190,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Zeige Benachrichtigungssprechblasen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="250"/>
+        <location filename="../preferences/advancedsettings.h" line="214"/>
         <source>Enable embedded tracker</source>
         <translation>Eingebetteten Tracker aktivieren</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="256"/>
+        <location filename="../preferences/advancedsettings.h" line="219"/>
         <source>Embedded tracker port</source>
         <translation>Port des eingebetteten Trackers</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="264"/>
+        <location filename="../preferences/advancedsettings.h" line="226"/>
         <source>Check for software updates</source>
         <translation>Auf Software-Updates prüfen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="271"/>
+        <location filename="../preferences/advancedsettings.h" line="232"/>
         <source>Use system icon theme</source>
         <translation>System-Icon-Theme benutzen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="278"/>
+        <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1821,7 +1821,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
-        <location filename="../mainwindow.cpp" line="1313"/>
+        <location filename="../mainwindow.cpp" line="1309"/>
         <source>Execution Log</source>
         <translation>Ausführungs-Log</translation>
     </message>
@@ -1901,7 +1901,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="101"/>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1233"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2131,23 +2131,23 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1275"/>
+        <location filename="../mainwindow.cpp" line="1271"/>
         <source>A newer version is available</source>
         <translation>Eine neuere Version ist erhältlich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1276"/>
+        <location filename="../mainwindow.cpp" line="1272"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Eine neuere Version von qBittorrent ist auf Sourceforge erhätlich. Möchten Sie qBittorent auf die Version %1 aktualisieren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1287"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Aktuialisierung von qBittorrent nicht möglich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1287"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent konnte nicht aktualisiert werden, Begründung: %1</translation>
     </message>
@@ -2336,62 +2336,62 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Abwechselnde Reihenfarben verwenden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="519"/>
+        <location filename="../preferences/options.ui" line="526"/>
         <source>File system</source>
         <translation>Datei System</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="782"/>
+        <location filename="../preferences/options.ui" line="789"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent Datei kopieren nach:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1905"/>
+        <location filename="../preferences/options.ui" line="1912"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Lokale Peer Auffindung aktivieren um mehr peers zu finden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1917"/>
+        <location filename="../preferences/options.ui" line="1924"/>
         <source>Encryption mode:</source>
         <translation>Verschlüsselungsmodus:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1925"/>
+        <location filename="../preferences/options.ui" line="1932"/>
         <source>Prefer encryption</source>
         <translation>Verschlüsselung bevorzugen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1930"/>
+        <location filename="../preferences/options.ui" line="1937"/>
         <source>Require encryption</source>
         <translation>Verschlüsselung verlangen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1935"/>
+        <location filename="../preferences/options.ui" line="1942"/>
         <source>Disable encryption</source>
         <translation>Verschlüsselng deaktiviere</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1961"/>
+        <location filename="../preferences/options.ui" line="1968"/>
         <source>Torrent queueing</source>
         <translation>Torrent Warteschlangen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1976"/>
+        <location filename="../preferences/options.ui" line="1983"/>
         <source>Maximum active downloads:</source>
         <translation>Maximal aktive Downloads:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1996"/>
+        <location filename="../preferences/options.ui" line="2003"/>
         <source>Maximum active uploads:</source>
         <translation>Maximal aktive Uploads:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2016"/>
+        <location filename="../preferences/options.ui" line="2023"/>
         <source>Maximum active torrents:</source>
         <translation>Maximal aktive Torrents:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="484"/>
+        <location filename="../preferences/options.ui" line="491"/>
         <source>When adding a torrent</source>
         <translation>Sobald ein Torrent hinzugefügt wird</translation>
     </message>
@@ -2445,33 +2445,33 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>qBittorrent Icon im Benachrichtigungsbereich zeigen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="396"/>
+        <location filename="../preferences/options.ui" line="403"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>qBittorrent in den Benachrichtigungsbereich minimieren</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="406"/>
+        <location filename="../preferences/options.ui" line="413"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>qBittorrent in den Benachrichtigungsbereich schliessen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="493"/>
+        <location filename="../preferences/options.ui" line="500"/>
         <source>Display torrent content and some options</source>
         <translation>Zeige Inhalt des Torrent und einige Optionen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="923"/>
+        <location filename="../preferences/options.ui" line="930"/>
         <source>Listening port</source>
         <translation>Port auf dem gelauscht wird</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="931"/>
+        <location filename="../preferences/options.ui" line="938"/>
         <source>Port used for incoming connections:</source>
         <translation>Port für eingehende Verbindungen:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="951"/>
+        <location filename="../preferences/options.ui" line="958"/>
         <source>Random</source>
         <translation>Zufällig</translation>
     </message>
@@ -2484,42 +2484,42 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">NAP-PMP Port Mapping aktivieren</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="988"/>
+        <location filename="../preferences/options.ui" line="995"/>
         <source>Connections limit</source>
         <translation>Verbindungsbeschränkung</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="999"/>
+        <location filename="../preferences/options.ui" line="1006"/>
         <source>Global maximum number of connections:</source>
         <translation>Global maximale Anzahl der Verbindungen:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1042"/>
+        <location filename="../preferences/options.ui" line="1049"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Maximale Anzahl der Verbindungen pro Torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1082"/>
+        <location filename="../preferences/options.ui" line="1089"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Maximale Anzahl Upload-Slots pro Torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1419"/>
-        <location filename="../preferences/options.ui" line="1541"/>
+        <location filename="../preferences/options.ui" line="1426"/>
+        <location filename="../preferences/options.ui" line="1548"/>
         <source>Upload:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1455"/>
-        <location filename="../preferences/options.ui" line="1568"/>
+        <location filename="../preferences/options.ui" line="1462"/>
+        <location filename="../preferences/options.ui" line="1575"/>
         <source>Download:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1448"/>
-        <location filename="../preferences/options.ui" line="1481"/>
-        <location filename="../preferences/options.ui" line="1561"/>
-        <location filename="../preferences/options.ui" line="1588"/>
+        <location filename="../preferences/options.ui" line="1455"/>
+        <location filename="../preferences/options.ui" line="1488"/>
+        <location filename="../preferences/options.ui" line="1568"/>
+        <location filename="../preferences/options.ui" line="1595"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -2536,12 +2536,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Unterschiedliche Ports für DHT und Bittorrent verwenden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1848"/>
+        <location filename="../preferences/options.ui" line="1855"/>
         <source>DHT port:</source>
         <translation>DHT Port:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1889"/>
+        <location filename="../preferences/options.ui" line="1896"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Peers mit kompatiblen Bittorrent Clients austauchen (µTorrent, Vuze, ...)</translation>
     </message>
@@ -2570,7 +2570,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">HTTP Kommunikation (Tracker, Web-Seeds, Suchmaschine)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1165"/>
+        <location filename="../preferences/options.ui" line="1172"/>
         <source>Host:</source>
         <translation></translation>
     </message>
@@ -2579,12 +2579,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Peer Kommunikation</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1144"/>
+        <location filename="../preferences/options.ui" line="1151"/>
         <source>SOCKS4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1131"/>
+        <location filename="../preferences/options.ui" line="1138"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
@@ -2616,28 +2616,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Keine Aktion</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="739"/>
+        <location filename="../preferences/options.ui" line="746"/>
         <source>Remove folder</source>
         <translation>Verzeichnis entfernen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1401"/>
+        <location filename="../preferences/options.ui" line="1408"/>
         <source>Global speed limits</source>
         <translation>Globale Geschwindigkeitsbegrenzung</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1506"/>
+        <location filename="../preferences/options.ui" line="1513"/>
         <source>Alternative global speed limits</source>
         <translation>Alternative globale Geschwindigkeitsbegrenzung</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1663"/>
+        <location filename="../preferences/options.ui" line="1670"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>bis</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="503"/>
+        <location filename="../preferences/options.ui" line="510"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Download nicht automatisch starten</translation>
@@ -2663,158 +2663,163 @@ Would you like to update qBittorrent to version %1?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="413"/>
+        <location filename="../preferences/options.ui" line="396"/>
+        <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="426"/>
+        <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="432"/>
+        <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="538"/>
+        <location filename="../preferences/options.ui" line="545"/>
         <source>Save files to location:</source>
         <translation>Datei an diesem Ort speichern:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="586"/>
+        <location filename="../preferences/options.ui" line="593"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Label des Torrents an den Speicherpfad anhängen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="596"/>
+        <location filename="../preferences/options.ui" line="603"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Allen Dateien Speicherplatz im vorhinein zuweisen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="613"/>
+        <location filename="../preferences/options.ui" line="620"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Unvollständige Torrents speichern in:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="659"/>
+        <location filename="../preferences/options.ui" line="666"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Die Dateienung .!qb an unvollständige Dateinamen anhängen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="676"/>
+        <location filename="../preferences/options.ui" line="683"/>
         <source>Automatically add torrents from:</source>
         <translation>Dateien mit der Endung .torrent aus diesem Verzeichnis automatisch hinzufügen:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="729"/>
+        <location filename="../preferences/options.ui" line="736"/>
         <source>Add folder...</source>
         <translation>Verzeichnis hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="838"/>
+        <location filename="../preferences/options.ui" line="845"/>
         <source>Email notification upon download completion</source>
         <translation>Email Benachrichtigung wenn Download vollständig ist</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="850"/>
+        <location filename="../preferences/options.ui" line="857"/>
         <source>Destination email:</source>
         <translation>Zieladresse:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="860"/>
+        <location filename="../preferences/options.ui" line="867"/>
         <source>SMTP server:</source>
         <translation>SMTP Server:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="873"/>
+        <location filename="../preferences/options.ui" line="880"/>
         <source>Run an external program on torrent completion</source>
         <translation>Externes Programm ausführen wenn Torrent vollständig ist</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="888"/>
+        <location filename="../preferences/options.ui" line="895"/>
         <source>Use %f to pass the torrent path in parameters</source>
         <translation>Verwenden Sie %f um den Torrentpfad als Parameter zu übergeben</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="973"/>
+        <location filename="../preferences/options.ui" line="980"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>UPnP / NAT-PMP Port Wieterleitung meines Routers verwenden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1123"/>
+        <location filename="../preferences/options.ui" line="1130"/>
         <source>Proxy server</source>
         <translation>Proxyserver</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1315"/>
+        <location filename="../preferences/options.ui" line="1322"/>
         <source>IP Filtering</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1356"/>
+        <location filename="../preferences/options.ui" line="1363"/>
         <source>Reload the filter</source>
         <translation>Filter neu laden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1622"/>
+        <location filename="../preferences/options.ui" line="1629"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Benutzung von alternativen Geschwindigkeitsbegrenzungen einteilen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1639"/>
+        <location filename="../preferences/options.ui" line="1646"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>von</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1707"/>
+        <location filename="../preferences/options.ui" line="1714"/>
         <source>When:</source>
         <translation>Wann:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1715"/>
+        <location filename="../preferences/options.ui" line="1722"/>
         <source>Every day</source>
         <translation>Jeden Tag</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1720"/>
+        <location filename="../preferences/options.ui" line="1727"/>
         <source>Week days</source>
         <translation>Wochentage</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1725"/>
+        <location filename="../preferences/options.ui" line="1732"/>
         <source>Week ends</source>
         <translation>Wochenenden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1790"/>
+        <location filename="../preferences/options.ui" line="1797"/>
         <source>Privacy</source>
         <translation>Privatsphäre</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1806"/>
+        <location filename="../preferences/options.ui" line="1813"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>DHT (dezentralisiertes Netzwerk) aktivieren um mehr Peers zu finden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1828"/>
+        <location filename="../preferences/options.ui" line="1835"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Unterschiedliche Ports für DHT und BitTorrent verwenden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1892"/>
+        <location filename="../preferences/options.ui" line="1899"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Peer Exchange (PeX) aktivieren um mehr Peers zu finden</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1902"/>
+        <location filename="../preferences/options.ui" line="1909"/>
         <source>Look for peers on your local network</source>
         <translation>Nach Peers im lokalen Netzwek suchen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2259"/>
+        <location filename="../preferences/options.ui" line="2266"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2823,81 +2828,81 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Protokoll-Verschlüsselung:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2052"/>
+        <location filename="../preferences/options.ui" line="2059"/>
         <source>Share ratio limiting</source>
         <translation>Shareverhältnis Begrenzung</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2063"/>
+        <location filename="../preferences/options.ui" line="2070"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Torrents seeden bis diese Verhältnis erreicht wurde</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2095"/>
+        <location filename="../preferences/options.ui" line="2102"/>
         <source>then</source>
         <translation>dann</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2106"/>
+        <location filename="../preferences/options.ui" line="2113"/>
         <source>Pause them</source>
         <translation>Anhalten</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2111"/>
+        <location filename="../preferences/options.ui" line="2118"/>
         <source>Remove them</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1139"/>
+        <location filename="../preferences/options.ui" line="1146"/>
         <source>(None)</source>
         <translation>(Keine)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1154"/>
+        <location filename="../preferences/options.ui" line="1161"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1191"/>
-        <location filename="../preferences/options.ui" line="2191"/>
+        <location filename="../preferences/options.ui" line="1198"/>
+        <location filename="../preferences/options.ui" line="2198"/>
         <source>Port:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1234"/>
-        <location filename="../preferences/options.ui" line="2227"/>
+        <location filename="../preferences/options.ui" line="1241"/>
+        <location filename="../preferences/options.ui" line="2234"/>
         <source>Authentication</source>
         <translation>Authentifizierung</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1246"/>
-        <location filename="../preferences/options.ui" line="2266"/>
+        <location filename="../preferences/options.ui" line="1253"/>
+        <location filename="../preferences/options.ui" line="2273"/>
         <source>Username:</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1272"/>
-        <location filename="../preferences/options.ui" line="2273"/>
+        <location filename="../preferences/options.ui" line="1279"/>
+        <location filename="../preferences/options.ui" line="2280"/>
         <source>Password:</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2173"/>
+        <location filename="../preferences/options.ui" line="2180"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Webuser-Interface einschalten (Fernbedienung)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1149"/>
+        <location filename="../preferences/options.ui" line="1156"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1327"/>
+        <location filename="../preferences/options.ui" line="1334"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Pfad zur Filterdatei (.dat, .p2p, p2b):</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2185"/>
+        <location filename="../preferences/options.ui" line="2192"/>
         <source>HTTP Server</source>
         <translation></translation>
     </message>
@@ -5967,73 +5972,73 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1095"/>
+        <location filename="../preferences/options_imp.cpp" line="1097"/>
+        <location filename="../preferences/options_imp.cpp" line="1112"/>
+        <location filename="../preferences/options_imp.cpp" line="1114"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1017"/>
         <source>Add directory to scan</source>
         <translation>Verzeichnis zum Scannen hinzufügen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1015"/>
+        <location filename="../preferences/options_imp.cpp" line="1023"/>
         <source>Folder is already being watched.</source>
         <translation>Verzeichnis wird bereits beobachtet.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1018"/>
+        <location filename="../preferences/options_imp.cpp" line="1026"/>
         <source>Folder does not exist.</source>
         <translation>Verzeichnis existiert nicht.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1021"/>
+        <location filename="../preferences/options_imp.cpp" line="1029"/>
         <source>Folder is not readable.</source>
         <translation>Verzeichnis kann nicht gelesen werden.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1029"/>
+        <location filename="../preferences/options_imp.cpp" line="1037"/>
         <source>Failure</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1029"/>
+        <location filename="../preferences/options_imp.cpp" line="1037"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Konnte Scan-Verzeichnis &apos;%1&apos; nicht hinzufügen: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
-        <location filename="../preferences/options_imp.cpp" line="1054"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="1062"/>
         <source>Choose export directory</source>
         <translation>Export-Verzeichnis wählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1069"/>
-        <location filename="../preferences/options_imp.cpp" line="1071"/>
+        <location filename="../preferences/options_imp.cpp" line="1077"/>
+        <location filename="../preferences/options_imp.cpp" line="1079"/>
         <source>Choose an ip filter file</source>
         <translation>IP-Filter-Datei wählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1069"/>
-        <location filename="../preferences/options_imp.cpp" line="1071"/>
+        <location filename="../preferences/options_imp.cpp" line="1077"/>
+        <location filename="../preferences/options_imp.cpp" line="1079"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1165"/>
+        <location filename="../preferences/options_imp.cpp" line="1173"/>
         <source>Parsing error</source>
         <translation>Fehler beim parsen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1165"/>
+        <location filename="../preferences/options_imp.cpp" line="1173"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Fehler beim parsen der IP-Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1167"/>
+        <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6042,7 +6047,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Erfolgreich aktualisiert</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1167"/>
+        <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP-Filter erfolgreich geparsed: %1 Regeln wurden angewandt.</translation>

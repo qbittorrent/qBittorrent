@@ -2393,6 +2393,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Ask for program exit confirmation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

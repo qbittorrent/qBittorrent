@@ -50,6 +50,10 @@ Images Authors:
   copyright: Greg Houston <gregory.houston@gmail.com>
   license: MIT
 
+* file: src/Icons/skin/qbittorrent_mono.svg
+  copyright: Daniel Eguren <deguren@gmail.com>
+  license: LGPL
+
 * file: src/search_engine/engines/btjunkie.png
   copyright: Downloaded from btjunkie.org
 

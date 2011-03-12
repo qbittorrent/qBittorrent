@@ -1198,11 +1198,7 @@ QMenu* MainWindow::getTrayIconMenu() {
 
 void MainWindow::createTrayIcon() {
   // Tray icon
-#ifdef Q_WS_WIN
-  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent16.png")), this);
-#else
-  systrayIcon = new QSystemTrayIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")), this);
-#endif
+  systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
 
   systrayIcon->setContextMenu(getTrayIconMenu());
   connect(systrayIcon, SIGNAL(messageClicked()), this, SLOT(balloonClicked()));
@@ -1344,4 +1340,18 @@ void MainWindow::checkForActiveTorrents()
     m_pwr->setActivityState(true);
   else
     m_pwr->setActivityState(false);
+}
+
+QIcon MainWindow::getSystrayIcon() const
+{
+#if defined(Q_WS_X11) && defined(QT_SVG_LIB)
+  if(Preferences().useMonochromeTrayIcon()) {
+    return QIcon(":/Icons/skin/qbittorrent_mono.svg");
+  }
+#endif
+  QIcon icon;
+  icon.addFile(":/Icons/skin/qbittorrent22.png", QSize(22, 22));
+  icon.addFile(":/Icons/skin/qbittorrent16.png", QSize(16, 16));
+  icon.addFile(":/Icons/skin/qbittorrent32.png", QSize(32, 32));
+  return icon;
 }

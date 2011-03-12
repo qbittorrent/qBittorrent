@@ -5,6 +5,9 @@ include(conf.pri)
 !nox:dbus {
   QT += dbus
 }
+!nox {
+  QT += svg
+}
 QMAKE_LFLAGS_APP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar

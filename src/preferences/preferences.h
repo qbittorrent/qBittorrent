@@ -1032,6 +1032,13 @@ public:
   void setConfirmTorrentDeletion(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Advanced/confirmTorrentDeletion"), enabled);
   }
+
+  bool useMonochromeTrayIcon() const {
+    return value(QString::fromUtf8("Preferences/Advanced/useMonochromeTrayIcon"), false).toBool();
+  }
+  void setUseMonochromeTrayIcon(bool use) {
+    setValue(QString::fromUtf8("Preferences/Advanced/useMonochromeTrayIcon"), use);
+  }
 };
 
 #endif // PREFERENCES_H

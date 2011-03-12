@@ -2647,6 +2647,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Ask for program exit confirmation</source>
         <translation>Запрашивать подтверждение завершени программы</translation>
     </message>
+    <message>
+        <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
