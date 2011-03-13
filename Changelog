@@ -5,6 +5,7 @@
   - BUGFIX: Improve folder removal behavior
   - BUGFIX: Make sure the .unwanted folder is deleted on soft torrent removal
   - BUGFIX: Indicate support for Magnet links in desktop file (Fisiu)
+  - BUGFIX: Do not report torrent being checked as queued
 
 * Sat Feb 26 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.7
   - BUGFIX: Encoding fixes (Windows)
