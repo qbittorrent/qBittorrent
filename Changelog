@@ -10,6 +10,7 @@
     - FEATURE: Torrent content list is now sortable
     - BUGFIX: Fix compilation with namespaced Qt (Christian Kandeler)
     - COSMETIC: Added monochrome tray icon
+    - COSMETIC: Improved status bar's style
     - OTHER: Make QtDBus dependency optional (X11)
 
 * Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0

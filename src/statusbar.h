@@ -41,6 +41,7 @@
 #include <QFontMetrics>
 #include "qbtsession.h"
 #include "speedlimitdlg.h"
+#include "iconprovider.h"
 #include "preferences.h"
 #include "misc.h"
 
@@ -52,19 +53,20 @@ public:
     Preferences pref;
     connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget(bar);
-    layout = new QGridLayout(container);
-    layout->setVerticalSpacing(0);
+    layout = new QHBoxLayout(container);
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
     connecStatusLblIcon = new QPushButton(bar);
     connecStatusLblIcon->setFlat(true);
     connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
-    connecStatusLblIcon->setFixedWidth(22);
+    connecStatusLblIcon->setFixedWidth(32);
     connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
     connecStatusLblIcon->setIcon(QIcon(":/Icons/skin/firewalled.png"));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)), bar);
+    dlSpeedLbl = new QPushButton(bar);
+    dlSpeedLbl->setIconSize(QSize(16,16));
+    dlSpeedLbl->setIcon(QIcon(":/Icons/skin/download.png"));
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
@@ -72,7 +74,7 @@ public:
     dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
     altSpeedsBtn = new QPushButton(bar);
-    altSpeedsBtn->setFixedWidth(32);
+    altSpeedsBtn->setFixedWidth(36);
     altSpeedsBtn->setIconSize(QSize(32,32));
     altSpeedsBtn->setFlat(true);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
@@ -81,7 +83,9 @@ public:
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
-    upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)), bar);
+    upSpeedLbl = new QPushButton(bar);
+    upSpeedLbl->setIconSize(QSize(16,16));
+    upSpeedLbl->setIcon(QIcon(":/Icons/skin/seeding.png"));
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);
@@ -105,22 +109,15 @@ public:
     statusSep4->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep4->setFrameStyle(QFrame::VLine);
     statusSep4->setFrameShadow(QFrame::Raised);
-    layout->addWidget(DHTLbl, 0, 0, Qt::AlignLeft);
-    //layout->setColumnStretch(0, 10);
-    layout->addWidget(statusSep1, 0, 1, Qt::AlignRight);
-    //layout->setColumnStretch(1, 1);
-    layout->addWidget(connecStatusLblIcon, 0, 2);
-    //layout->setColumnStretch(2, 1);
-    layout->addWidget(statusSep2, 0, 3, Qt::AlignLeft);
-    //layout->setColumnStretch(3, 1);
-    layout->addWidget(dlSpeedLbl, 0, 4, Qt::AlignLeft);
-    //layout->setColumnStretch(4, 10);
-    layout->addWidget(statusSep3, 0, 5, Qt::AlignRight);
-    layout->addWidget(altSpeedsBtn, 0, 6);
-    layout->addWidget(statusSep4, 0, 7, Qt::AlignLeft);
-    //layout->setColumnStretch(5, 10);
-    layout->addWidget(upSpeedLbl, 0, 8, Qt::AlignLeft);
-    //layout->setColumnStretch(6, 10);
+    layout->addWidget(DHTLbl);
+    layout->addWidget(statusSep1);
+    layout->addWidget(connecStatusLblIcon);
+    layout->addWidget(statusSep2);
+    layout->addWidget(altSpeedsBtn);
+    layout->addWidget(statusSep4);
+    layout->addWidget(dlSpeedLbl);
+    layout->addWidget(statusSep3);
+    layout->addWidget(upSpeedLbl);
 
     bar->addPermanentWidget(container);
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -133,6 +130,7 @@ public:
     // Is DHT enabled
     DHTLbl->setVisible(pref.isDHTEnabled());
     refreshTimer = new QTimer(bar);
+    refreshStatusBar();
     connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
     refreshTimer->start(1500);
   }
@@ -190,8 +188,8 @@ public slots:
       //statusSep1->setVisible(false);
     }
     // Update speed labels
-    dlSpeedLbl->setText(tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
-    upSpeedLbl->setText(tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
+    dlSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_download_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_download)+")");
+    upSpeedLbl->setText(tr("%1/s", "Per second").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate))+" ("+misc::friendlyUnit(sessionStatus.total_payload_upload)+")");
   }
 
   void updateAltSpeedsBtn(bool alternative) {
@@ -259,7 +257,7 @@ private:
   QPushButton *altSpeedsBtn;
   QTimer *refreshTimer;
   QWidget *container;
-  QGridLayout *layout;
+  QHBoxLayout *layout;
 
 };
 
