@@ -2153,6 +2153,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Disabled</source>
         <translation>Onemogućeno</translation>
     </message>
+    <message>
+        <source>The password should contain at least 3 characters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>

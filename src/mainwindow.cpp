@@ -376,6 +376,11 @@ void MainWindow::defineUILockPassword() {
   bool ok = false;
   QString new_clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, old_pass_md5, &ok);
   if(ok) {
+    new_clear_password = new_clear_password.trimmed();
+    if(new_clear_password.size() < 3) {
+      QMessageBox::warning(this, tr("Invalid password"), tr("The password should contain at least 3 characters"));
+      return;
+    }
     if(new_clear_password != old_pass_md5) {
       Preferences().setUILockPassword(new_clear_password);
     }

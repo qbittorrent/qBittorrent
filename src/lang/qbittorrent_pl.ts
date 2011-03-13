@@ -1950,6 +1950,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>Disabled</source>
         <translation>Wyłączone</translation>
     </message>
+    <message>
+        <source>The password should contain at least 3 characters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeerAdditionDlg</name>
