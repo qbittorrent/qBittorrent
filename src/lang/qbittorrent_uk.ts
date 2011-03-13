@@ -170,15 +170,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтвердити видалення торрента</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP адреса, що повідомляється трекерам (потребує перезапуску)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Відображати сповіщення програми на екрані</translation>
     </message>
 </context>
 <context>
@@ -597,95 +597,95 @@ You should get this information from your Web browser preferences.</source>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Помилка вводу/виводу</translation>
+        <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Віддалений сервер не знайдено (неправильна адреса)</translation>
+        <translation>Віддалений сервер не знайдено (неправильна адреса)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Операцію скасовано</translation>
+        <translation>Операцію скасовано</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Віддалений сервер закрив з&apos;єднання зарано, перед тим, як було отримано і оброблено відповідь</translation>
+        <translation>Віддалений сервер закрив з&apos;єднання зарано, перед тим, як було отримано і оброблено відповідь</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Вичерпано час на з&apos;єднання з віддаленим сервером</translation>
+        <translation>Вичерпано час на з&apos;єднання з віддаленим сервером</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">Помилка SSL/TLS</translation>
+        <translation>Помилка SSL/TLS</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Віддалений сервер відмовив у з&apos;єднанні</translation>
+        <translation>Віддалений сервер відмовив у з&apos;єднанні</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Відмовлено у з&apos;єднанні з проксі-сервером</translation>
+        <translation>Відмовлено у з&apos;єднанні з проксі-сервером</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Проксі-сервер закрив з&apos;єднання</translation>
+        <translation>Проксі-сервер закрив з&apos;єднання</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Не знайдено проксі-сервер</translation>
+        <translation>Не знайдено проксі-сервер</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Вичерпано час на з&apos;єднання з проксі</translation>
+        <translation>Вичерпано час на з&apos;єднання з проксі</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Проксі потребує автентифікації, але не прийняв автентифікаційних даних</translation>
+        <translation>Проксі потребує автентифікації, але не прийняв автентифікаційних даних</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Відмовлено у доступі до віддалених даних (401)</translation>
+        <translation>Відмовлено у доступі до віддалених даних (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Операція щодо віддаленого контенту не дозволена</translation>
+        <translation>Операція щодо віддаленого контенту не дозволена</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Віддалені дані не знайдено на сервері (404)</translation>
+        <translation>Віддалені дані не знайдено на сервері (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Віддалений сервер потребує автентифікації, але не прийняв автентифікаційних даних</translation>
+        <translation>Віддалений сервер потребує автентифікації, але не прийняв автентифікаційних даних</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Невідомий протокол</translation>
+        <translation>Невідомий протокол</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Операція неправильна для цього протоколу</translation>
+        <translation>Операція неправильна для цього протоколу</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Невідома помилка, пов&apos;язана з мережею</translation>
+        <translation>Невідома помилка, пов&apos;язана з мережею</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Невідома помилка, пов&apos;язана з проксі</translation>
+        <translation>Невідома помилка, пов&apos;язана з проксі</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Невідома помилка, пов&apos;язана з віддаленим контентом</translation>
+        <translation>Невідома помилка, пов&apos;язана з віддаленим контентом</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Поломка в протоколі</translation>
+        <translation>Поломка в протоколі</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Невідома помилка</translation>
+        <translation>Невідома помилка</translation>
     </message>
 </context>
 <context>
@@ -1511,11 +1511,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Клієнт qBittorrent недосяжний</translation>
     </message>
 </context>
 <context>
@@ -1976,7 +1976,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль повинен містити щонайменше 3 символи</translation>
     </message>
 </context>
 <context>
@@ -2577,31 +2577,31 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Поведінка</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Мова</translation>
+        <translation>Мова</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Керування енергоспоживанням</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Не дозволяти призупинення системи, коли є активні торренти</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Обходити автентифікацію для localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимагати підверрдження виходу з програми</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати монохромний логотип системного лотка (вимагає перезапуску)</translation>
     </message>
 </context>
 <context>
@@ -2910,7 +2910,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Вміст торренту:</translation>
+        <translation>Вміст торренту:</translation>
     </message>
 </context>
 <context>
@@ -3182,19 +3182,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Повідомляю IP адресу %1 трекерам...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Зараз комп&apos;ютер перемкнеться в режим сну, якщо ви не відміните це протягом наступних 15 секунд...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Зараз комп&apos;ютер вимкнеться, якщо ви не відміните це протягом наступних 15 секунд...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Програма qBittorrent зараз закриється, якщо ви не відміните це протягом наступних 15 секунд...</translation>
     </message>
 </context>
 <context>
@@ -3635,7 +3635,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Підтвердження вимкнення</translation>
     </message>
 </context>
 <context>
@@ -3717,16 +3717,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Клацніть, щоб перемкнутись на альтернативні обмеження швидкості</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Клацніть, щоб перемкнутись на звичайні обмеження швидкості</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/с</translation>
+        <translation>%1/с</translation>
     </message>
 </context>
 <context>
@@ -4407,30 +4407,30 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Обмежити коефіцієнт роздачі...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Обмеження коефіцієнта &quot;вивантаження/завантаження&quot; торрента</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати глобальні обмеження</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Не використовувати обмеження коефіцієнта</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановити обмеження коефіцієнта на</translation>
     </message>
 </context>
 <context>
@@ -5190,7 +5190,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Успішно оновлено</translation>
     </message>
 </context>
 <context>
