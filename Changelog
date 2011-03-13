@@ -4,6 +4,7 @@
   - BUGFIX: Fix root folder being cut off if the torrent comes from a scanned folder (Christian Kandeler)
   - BUGFIX: Improve folder removal behavior
   - BUGFIX: Make sure the .unwanted folder is deleted on soft torrent removal
+  - BUGFIX: Indicate support for Magnet links in desktop file (Fisiu)
 
 * Sat Feb 26 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.7
   - BUGFIX: Encoding fixes (Windows)
