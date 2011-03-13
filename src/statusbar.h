@@ -48,30 +48,30 @@ class StatusBar: public QObject {
   Q_OBJECT
 
 public:
-  StatusBar(QStatusBar *bar): bar(bar) {
+  StatusBar(QStatusBar *bar): m_bar(bar) {
     Preferences pref;
     connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
-    container = new QWidget();
+    container = new QWidget(bar);
     layout = new QGridLayout(container);
     layout->setVerticalSpacing(0);
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
-    connecStatusLblIcon = new QPushButton();
+    connecStatusLblIcon = new QPushButton(bar);
     connecStatusLblIcon->setFlat(true);
     connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     connecStatusLblIcon->setFixedWidth(22);
     connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
     connecStatusLblIcon->setIcon(QIcon(":/Icons/skin/firewalled.png"));
     connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection status:")+QString::fromUtf8("</b><br>")+QString::fromUtf8("<i>")+tr("No direct connections. This may indicate network configuration problems.")+QString::fromUtf8("</i>"));
-    dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    dlSpeedLbl = new QPushButton(tr("D: %1 B/s - T: %2", "Download speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)), bar);
     //dlSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(dlSpeedLbl, SIGNAL(clicked()), this, SLOT(capDownloadSpeed()));
     dlSpeedLbl->setFlat(true);
     dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     dlSpeedLbl->setCursor(Qt::PointingHandCursor);
 
-    altSpeedsBtn = new QPushButton();
+    altSpeedsBtn = new QPushButton(bar);
     altSpeedsBtn->setFixedWidth(32);
     altSpeedsBtn->setIconSize(QSize(32,32));
     altSpeedsBtn->setFlat(true);
@@ -81,27 +81,27 @@ public:
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
-    upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)));
+    upSpeedLbl = new QPushButton(tr("U: %1 B/s - T: %2", "Upload speed: x B/s - Transferred: x MiB").arg("0.0").arg(misc::friendlyUnit(0)), bar);
     //upSpeedLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(upSpeedLbl, SIGNAL(clicked()), this, SLOT(capUploadSpeed()));
     upSpeedLbl->setFlat(true);
     upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     upSpeedLbl->setCursor(Qt::PointingHandCursor);
-    DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0));
+    DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), bar);
     DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-    statusSep1 = new QFrame();
+    statusSep1 = new QFrame(bar);
     statusSep1->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep1->setFrameStyle(QFrame::VLine);
     statusSep1->setFrameShadow(QFrame::Raised);
-    statusSep2 = new QFrame();
+    statusSep2 = new QFrame(bar);
     statusSep2->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep2->setFrameStyle(QFrame::VLine);
     statusSep2->setFrameShadow(QFrame::Raised);
-    statusSep3 = new QFrame();
+    statusSep3 = new QFrame(bar);
     statusSep3->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep3->setFrameStyle(QFrame::VLine);
     statusSep3->setFrameShadow(QFrame::Raised);
-    statusSep4 = new QFrame();
+    statusSep4 = new QFrame(bar);
     statusSep4->setFixedSize(3, dlSpeedLbl->fontMetrics().height());
     statusSep4->setFrameStyle(QFrame::VLine);
     statusSep4->setFrameShadow(QFrame::Raised);
@@ -138,18 +138,6 @@ public:
   }
 
   ~StatusBar() {
-    delete refreshTimer;
-    delete dlSpeedLbl;
-    delete upSpeedLbl;
-    delete DHTLbl;
-    delete statusSep1;
-    delete statusSep2;
-    delete statusSep3;
-    delete statusSep4;
-    delete connecStatusLblIcon;
-    delete altSpeedsBtn;
-    delete layout;
-    delete container;
   }
 
   QPushButton* connectionStatusButton() const {
@@ -160,13 +148,13 @@ public slots:
   void showRestartRequired() {
     // Restart required notification
     const QString restart_text = tr("qBittorrent needs to be restarted");
-    QLabel *restartIconLbl = new QLabel();
+    QLabel *restartIconLbl = new QLabel(m_bar);
     restartIconLbl->setPixmap(QPixmap(":/Icons/oxygen/dialog-warning.png").scaled(QSize(24,24)));
     restartIconLbl->setToolTip(restart_text);
-    bar->insertWidget(0,restartIconLbl);
-    QLabel *restartLbl = new QLabel();
+    m_bar->insertWidget(0,restartIconLbl);
+    QLabel *restartLbl = new QLabel(m_bar);
     restartLbl->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-    bar->insertWidget(1, restartLbl);
+    m_bar->insertWidget(1, restartLbl);
     QFontMetrics fm(restartLbl->font());
     restartLbl->setText(fm.elidedText(restart_text, Qt::ElideRight, restartLbl->width()));
     QBtSession::instance()->addConsoleMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective."), "red");
@@ -259,7 +247,7 @@ public slots:
   }
 
 private:
-  QStatusBar *bar;
+  QStatusBar *m_bar;
   QPushButton *dlSpeedLbl;
   QPushButton *upSpeedLbl;
   QLabel *DHTLbl;

@@ -3,9 +3,7 @@
   <file>Icons/url.png</file>
   <file>Icons/loading.png</file>
   <file>Icons/3-state-checkbox.gif</file>
-  <file>Icons/uparrow.png</file>
   <file>Icons/sphere.png</file>
-  <file>Icons/downarrow.png</file>
   <file>Icons/slow_off.png</file>
   <file>Icons/sphere2.png</file>
   <file>Icons/magnet.png</file>
@@ -305,10 +303,12 @@
   <file>Icons/oxygen/user-group-delete.png</file>
   <file>Icons/oxygen/edit-find-user.png</file>
   <file>Icons/oxygen/media-playback-pause.png</file>
+  <file>Icons/oxygen/arrow-down.png</file>
   <file>Icons/oxygen/tab-close.png</file>
   <file>Icons/oxygen/inode-directory.png</file>
   <file>Icons/oxygen/tools-report-bug.png</file>
   <file>Icons/oxygen/view-filter.png</file>
+  <file>Icons/oxygen/arrow-up.png</file>
   <file>Icons/oxygen/services.png</file>
   <file>Icons/oxygen/view-preview.png</file>
   <file>Icons/oxygen/view-refresh.png</file>
