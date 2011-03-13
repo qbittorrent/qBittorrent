@@ -57,9 +57,13 @@ TorrentModelItem::State TorrentModelItem::state() const
       return m_torrent.is_seed() ? STATE_PAUSED_UP : STATE_PAUSED_DL;
     }
     if(m_torrent.is_queued()) {
-      m_icon = QIcon(":/Icons/skin/queued.png");
-      m_fgColor = QColor("grey");
-      return m_torrent.is_seed() ? STATE_QUEUED_UP : STATE_QUEUED_DL;
+      if(m_torrent.state() != torrent_status::queued_for_checking
+          && m_torrent.state() != torrent_status::checking_resume_data
+          && m_torrent.state() != torrent_status::checking_files) {
+        m_icon = QIcon(":/Icons/skin/queued.png");
+        m_fgColor = QColor("grey");
+        return m_torrent.is_seed() ? STATE_QUEUED_UP : STATE_QUEUED_DL;
+      }
     }
     // Other states
     switch(m_torrent.state()) {
