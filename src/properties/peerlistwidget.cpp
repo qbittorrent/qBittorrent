@@ -49,6 +49,8 @@
 using namespace libtorrent;
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent): QTreeView(parent), properties(parent), display_flags(false) {
+  // Load settings
+  loadSettings();
   // Visual settings
   setRootIsDecorated(false);
   setItemsExpandable(false);
@@ -77,8 +79,6 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent): QTreeView(parent), pro
   setItemDelegate(listDelegate);
   // Enable sorting
   setSortingEnabled(true);
-  // Load settings
-  loadSettings();
   // IP to Hostname resolver
   updatePeerHostNameResolutionState();
   // SIGNAL/SLOT
@@ -262,42 +262,12 @@ void PeerListWidget::clear() {
 
 void PeerListWidget::loadSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth")).toStringList());
-  if(!contentColsWidths.empty()) {
-    for(int i=0; i<contentColsWidths.size(); ++i) {
-      setColumnWidth(i, contentColsWidths.at(i));
-    }
-  }
-  // Load sorted column
-  QString sortedCol = settings.value(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), QString()).toString();
-  if(!sortedCol.isEmpty()) {
-    Qt::SortOrder sortOrder;
-    if(sortedCol.endsWith(QString::fromUtf8("d")))
-      sortOrder = Qt::DescendingOrder;
-    else
-      sortOrder = Qt::AscendingOrder;
-    sortedCol.chop(1);
-    int index = sortedCol.toInt();
-    sortByColumn(index, sortOrder);
-  }
+  header()->restoreState(settings.value("TorrentProperties/Peers/PeerListState").toByteArray());
 }
 
 void PeerListWidget::saveSettings() const {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QStringList contentColsWidths;
-  for(int i=0; i<listModel->columnCount(); ++i) {
-    contentColsWidths << QString::number(columnWidth(i));
-  }
-  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/peersColsWidth"), contentColsWidths);
-  // Save sorted column
-  Qt::SortOrder sortOrder = header()->sortIndicatorOrder();
-  QString sortOrderLetter;
-  if(sortOrder == Qt::AscendingOrder)
-    sortOrderLetter = QString::fromUtf8("a");
-  else
-    sortOrderLetter = QString::fromUtf8("d");
-  int index = header()->sortIndicatorSection();
-  settings.setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListSortedCol"), QVariant(QString::number(index)+sortOrderLetter));
+  settings.setValue("TorrentProperties/Peers/PeerListState", header()->saveState());
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {

@@ -62,6 +62,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   const Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+  loadFilesListState();
   // Icons
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
@@ -123,6 +124,7 @@ torrentAdditionDialog::~torrentAdditionDialog() {
 void torrentAdditionDialog::closeEvent(QCloseEvent *event)
 {
   qDebug() << Q_FUNC_INFO;
+  saveFilesListState();
   saveSettings();
   QDialog::closeEvent(event);
 }
@@ -130,20 +132,30 @@ void torrentAdditionDialog::closeEvent(QCloseEvent *event)
 void torrentAdditionDialog::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   restoreGeometry(settings.value("TorrentAdditionDlg/dimensions").toByteArray());
-  torrentContentList->header()->resizeSection(0, 200); //Default
-  torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/contentHeaderState").toByteArray());
+
 }
 
 void torrentAdditionDialog::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentAdditionDlg/dimensions", saveGeometry());
-  settings.setValue("TorrentAdditionDlg/contentHeaderState", torrentContentList->header()->saveState());
 }
 
 void torrentAdditionDialog::renameTorrentNameInModel(QString file_path) {
   const QString new_name = misc::fileName(file_path);
   if(!new_name.isEmpty())
     PropListModel->setData(PropListModel->index(0, 0), new_name);
+}
+
+void torrentAdditionDialog::loadFilesListState() {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
+    torrentContentList->header()->resizeSection(0, 200); //Default
+  }
+}
+
+void torrentAdditionDialog::saveFilesListState() {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentAdditionDlg/ContentHeaderState", torrentContentList->header()->saveState());
 }
 
 void torrentAdditionDialog::limitDialogWidth() {

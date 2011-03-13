@@ -94,6 +94,10 @@ public slots:
   void updateSavePath(const QTorrentHandle& h);
 
 private:
+  void loadFilesListState();
+  void saveFilesListState();
+
+private:
   TransferListWidget *transferList;
   MainWindow *main_window;
   QTorrentHandle h;
