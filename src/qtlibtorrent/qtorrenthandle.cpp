@@ -325,12 +325,10 @@ QStringList QTorrentHandle::uneeded_files_path() const {
   QDir saveDir(save_path());
   QStringList res;
   std::vector<int> fp = torrent_handle::file_priorities();
-  vector<size_type> progress;
-  torrent_handle::file_progress(progress);
   torrent_info::file_iterator fi = torrent_handle::get_torrent_info().begin_files();
   int i = 0;
   while(fi != torrent_handle::get_torrent_info().end_files()) {
-    if(fp[i] == 0 && progress[i] < filesize_at(i))
+    if(fp[i] == 0)
       res << QDir::cleanPath(saveDir.absoluteFilePath(filepath(*fi)));
     fi++;
     ++i;
