@@ -2027,7 +2027,7 @@ Voulez-vous corriger cela ?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>The mot de passe doit contenir au moins 3 caractères</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -2582,7 +2582,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser une icône monochrome dans la barre des tâches (redémarrage requis)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -4362,7 +4362,7 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../statusbar.h" line="192"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -4377,12 +4377,12 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliquer pour utiliser les limites de vitesse alternatives</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliquer pour utiliser les limites de vitesse normales</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -5138,7 +5138,7 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="648"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Limiter le ratio de partage...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="650"/>
@@ -5237,29 +5237,29 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitation du ratio de partage</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser la limite globale</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas limiter le ratio</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Limiter le ratio à</translation>
     </message>
 </context>
 <context>
