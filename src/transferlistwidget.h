@@ -92,7 +92,7 @@ protected:
   QModelIndex mapFromSource(const QModelIndex &index) const;
   QStringList getCustomLabels() const;
   void saveSettings();
-  void loadSettings();
+  bool loadSettings();
   QStringList getSelectedTorrentsHashes() const;
 
 protected slots:

@@ -67,7 +67,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
 
   // Load settings
-  loadSettings();
+  bool column_loaded = loadSettings();
 
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
@@ -107,15 +107,17 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   setDragDropMode(QAbstractItemView::DragOnly);
 
   // Default hidden columns
-  setColumnHidden(TorrentModelItem::TR_PRIORITY, true);
-  setColumnHidden(TorrentModelItem::TR_ADD_DATE, true);
-  setColumnHidden(TorrentModelItem::TR_SEED_DATE, true);
-  setColumnHidden(TorrentModelItem::TR_UPLIMIT, true);
-  setColumnHidden(TorrentModelItem::TR_DLLIMIT, true);
-  setColumnHidden(TorrentModelItem::TR_TRACKER, true);
-  setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
-  setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
-  setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
+  if(!column_loaded) {
+    setColumnHidden(TorrentModelItem::TR_PRIORITY, true);
+    setColumnHidden(TorrentModelItem::TR_ADD_DATE, true);
+    setColumnHidden(TorrentModelItem::TR_SEED_DATE, true);
+    setColumnHidden(TorrentModelItem::TR_UPLIMIT, true);
+    setColumnHidden(TorrentModelItem::TR_DLLIMIT, true);
+    setColumnHidden(TorrentModelItem::TR_TRACKER, true);
+    setColumnHidden(TorrentModelItem::TR_AMOUNT_DOWNLOADED, true);
+    setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
+    setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
+  }
 
   setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -485,26 +487,26 @@ void TransferListWidget::setUpLimitSelectedTorrents() {
 }
 
 void TransferListWidget::setMaxRatioSelectedTorrents() {
-    const QStringList hashes = getSelectedTorrentsHashes();
-    if (hashes.isEmpty())
-        return;
-    bool useGlobalValue;
-    qreal currentMaxRatio;
-    if (hashes.count() == 1) {
-        currentMaxRatio = BTSession->getMaxRatioPerTorrent(hashes.first(), &useGlobalValue);
-    } else {
-        useGlobalValue = true;
-        currentMaxRatio = BTSession->getGlobalMaxRatio();
-    }
-    UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, QBtSession::MAX_RATIO, this);
-    if (dlg.exec() != QDialog::Accepted)
-        return;
-    foreach (const QString &hash, hashes) {
-        if (dlg.useDefault())
-            BTSession->removeRatioPerTorrent(hash);
-        else
-            BTSession->setMaxRatioPerTorrent(hash, dlg.ratio());
-    }
+  const QStringList hashes = getSelectedTorrentsHashes();
+  if (hashes.isEmpty())
+    return;
+  bool useGlobalValue;
+  qreal currentMaxRatio;
+  if (hashes.count() == 1) {
+    currentMaxRatio = BTSession->getMaxRatioPerTorrent(hashes.first(), &useGlobalValue);
+  } else {
+    useGlobalValue = true;
+    currentMaxRatio = BTSession->getGlobalMaxRatio();
+  }
+  UpDownRatioDlg dlg(useGlobalValue, currentMaxRatio, QBtSession::MAX_RATIO, this);
+  if (dlg.exec() != QDialog::Accepted)
+    return;
+  foreach (const QString &hash, hashes) {
+    if (dlg.useDefault())
+      BTSession->removeRatioPerTorrent(hash);
+    else
+      BTSession->setMaxRatioPerTorrent(hash, dlg.ratio());
+  }
 }
 
 void TransferListWidget::recheckSelectedTorrents() {
@@ -901,10 +903,13 @@ void TransferListWidget::saveSettings()
   settings.setValue("TransferList/HeaderState", header()->saveState());
 }
 
-void TransferListWidget::loadSettings()
+bool TransferListWidget::loadSettings()
 {
   QIniSettings settings("qBittorrent", "qBittorrent");
-  header()->resizeSection(0, 200); // Default
-  header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
+  bool ok = header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
+  if(!ok) {
+    header()->resizeSection(0, 200); // Default
+  }
+  return ok;
 }
 
