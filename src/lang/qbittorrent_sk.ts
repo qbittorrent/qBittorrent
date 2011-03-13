@@ -3693,11 +3693,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation>Kliknutím vypnete alternatívne globálne rýchlostné obmedzenia</translation>
+        <translation type="obsolete">Kliknutím vypnete alternatívne globálne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Kliknutím zapnete alternatívne globálne rýchlostné obmedzenia</translation>
+        <translation type="obsolete">Kliknutím zapnete alternatívne globálne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
@@ -3706,6 +3706,14 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent bol práve aktualizovaný a je potrebné ho reštartovať, aby sa zmeny prejavili.</translation>
+    </message>
+    <message>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

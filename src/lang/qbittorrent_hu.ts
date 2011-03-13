@@ -4327,13 +4327,21 @@ Kérlek telepítsd manuálisan.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Alternatív sebesség korlátok kikapcsolásához kattints ide</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Alternatív sebesség korlátok kikapcsolásához kattints ide</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Alternatív sebesség korlátok engedélyezéséhez kattints ide</translation>
+        <translation type="obsolete">Alternatív sebesség korlátok engedélyezéséhez kattints ide</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

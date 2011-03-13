@@ -3596,11 +3596,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation>Klicka för att inaktivera alternativa hastighetsgränser</translation>
+        <translation type="obsolete">Klicka för att inaktivera alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Klicka för att aktivera alternativa hastighetsgränser</translation>
+        <translation type="obsolete">Klicka för att aktivera alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
@@ -3609,6 +3609,14 @@ Vill du installera den nu?</translation>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent har uppdaterats och behöver startas om för att ändringarna ska bli aktiva.</translation>
+    </message>
+    <message>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

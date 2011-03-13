@@ -4148,13 +4148,21 @@ Por favor, instálelo de forma manual.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Click para desactivar los límites de velocidad alternativa</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Click para desactivar los límites de velocidad alternativa</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Click para activar los límites de velocidad alternativa</translation>
+        <translation type="obsolete">Click para activar los límites de velocidad alternativa</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

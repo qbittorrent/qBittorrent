@@ -4266,13 +4266,21 @@ Asenna se itse.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Napsauta poistaaksesi vaihtoehtoinen nopeusrajoitus</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Napsauta poistaaksesi vaihtoehtoinen nopeusrajoitus</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Napsauta ottaaksesi vaihtoehtoinen nopeusrajoitus käyttöön</translation>
+        <translation type="obsolete">Napsauta ottaaksesi vaihtoehtoinen nopeusrajoitus käyttöön</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

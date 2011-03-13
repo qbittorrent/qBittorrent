@@ -3419,13 +3419,21 @@ Vennligst installer det manuelt.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Klikk for å deaktivere alternative hastighetsgrenser</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Klikk for å deaktivere alternative hastighetsgrenser</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Klikk for å aktivere alternative hastighetsgrenser</translation>
+        <translation type="obsolete">Klikk for å aktivere alternative hastighetsgrenser</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

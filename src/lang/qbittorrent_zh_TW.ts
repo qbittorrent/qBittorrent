@@ -3709,11 +3709,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation>點選來停用額外的速度限制</translation>
+        <translation type="obsolete">點選來停用額外的速度限制</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>點選來啟用額外的速度限制</translation>
+        <translation type="obsolete">點選來啟用額外的速度限制</translation>
     </message>
     <message>
         <source>qBittorrent needs to be restarted</source>
@@ -3722,6 +3722,14 @@ Do you want to install it now?</source>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent 已經更新了並且需要重新啟動。</translation>
+    </message>
+    <message>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3433,13 +3433,21 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Սեղմեք անջատելու համար արագ-ան այլընտ. սահ-ումները</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Սեղմեք անջատելու համար արագ-ան այլընտ. սահ-ումները</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Սեղմեք միացնելու համար արագ-ան այլընտ. սահ-ումները</translation>
+        <translation type="obsolete">Սեղմեք միացնելու համար արագ-ան այլընտ. սահ-ումները</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

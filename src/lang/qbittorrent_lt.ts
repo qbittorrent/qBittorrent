@@ -3278,13 +3278,21 @@ Prašome padaryti tai rankiniu būdu.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Spauskite, jei norite išjungti alternatyvius greičio apribojimus</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Spauskite, jei norite išjungti alternatyvius greičio apribojimus</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Spauskite, jei norite įjungti alternatyvius greičio apribojimus</translation>
+        <translation type="obsolete">Spauskite, jei norite įjungti alternatyvius greičio apribojimus</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

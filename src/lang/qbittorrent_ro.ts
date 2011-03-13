@@ -3225,19 +3225,19 @@ Do you want to install it now?</source>
         <translation>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</translation>
     </message>
     <message>
-        <source>Click to disable alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Click to enable alternative speed limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

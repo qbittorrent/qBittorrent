@@ -4140,11 +4140,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
-        <translation>Kliknite kako biste onemogućili alternativne limite brzine</translation>
+        <translation type="obsolete">Kliknite kako biste onemogućili alternativne limite brzine</translation>
     </message>
     <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Kliknite kako biste omogućili alternativne limite brzine</translation>
+        <translation type="obsolete">Kliknite kako biste omogućili alternativne limite brzine</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
@@ -4161,6 +4161,14 @@ Do you want to install it now?</source>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent je upravo ažuriran i treba ga ponovno pokrenuti kako bi promjene postale učinkovite.</translation>
+    </message>
+    <message>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

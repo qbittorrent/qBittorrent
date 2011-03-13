@@ -4405,13 +4405,21 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Clicca per disabilitare i limiti alternativi di velocità</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Clicca per disabilitare i limiti alternativi di velocità</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Clicca per abilitare i limiti alternativi di velocità</translation>
+        <translation type="obsolete">Clicca per abilitare i limiti alternativi di velocità</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

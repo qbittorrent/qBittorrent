@@ -4260,13 +4260,21 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>Klicken um alternative Geschwindigkeitsbegrenzungen zu deaktivieren</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">Klicken um alternative Geschwindigkeitsbegrenzungen zu deaktivieren</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>Klicken um alternative Geschwindigkeitsbegrenzungen zu aktivieren</translation>
+        <translation type="obsolete">Klicken um alternative Geschwindigkeitsbegrenzungen zu aktivieren</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>

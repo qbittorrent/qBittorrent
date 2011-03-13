@@ -3902,13 +3902,21 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../statusbar.h" line="212"/>
-        <source>Click to disable alternative speed limits</source>
-        <translation>설정한 속도 제한을 사용하지 않기</translation>
+        <source>Click to switch to alternative speed limits</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="216"/>
+        <source>Click to switch to regular speed limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to disable alternative speed limits</source>
+        <translation type="obsolete">설정한 속도 제한을 사용하지 않기</translation>
+    </message>
+    <message>
         <source>Click to enable alternative speed limits</source>
-        <translation>설정한 속도 제한을 사용하기</translation>
+        <translation type="obsolete">설정한 속도 제한을 사용하기</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="227"/>
