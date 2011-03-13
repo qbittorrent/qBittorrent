@@ -3834,79 +3834,82 @@ Please install it manually.</source>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>Connection status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>직접적으로  연결되지 않음. 네트워크 설정에 오류가 있어 보입니다.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="67"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>다운: &apos;%1&apos; B/s - 전송: %2</translation>
+        <translation type="obsolete">다운: &apos;%1&apos; B/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="84"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>업: %1 B/s - 전송: %2</translation>
+        <translation type="obsolete">업: %1 B/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="90"/>
-        <location filename="../statusbar.h" line="199"/>
+        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="185"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 노드</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="172"/>
+        <location filename="../statusbar.h" line="158"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Connection Status:</source>
         <translation>연결 상태:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>오프라인(Offline)은 선택된 포트의 수신용 연결 오류로 발생할수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Online</source>
         <translation>온라인</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="205"/>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="192"/>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/초</translation>
+    </message>
+    <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>다운: &apos;%1&apos;/s - 전송: %2</translation>
+        <translation type="obsolete">다운: &apos;%1&apos;/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="206"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>업: %1/s - 전송: %2</translation>
+        <translation type="obsolete">업: %1/s - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="212"/>
+        <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3919,12 +3922,12 @@ Please install it manually.</source>
         <translation type="obsolete">설정한 속도 제한을 사용하기</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="227"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>Global Download Speed Limit</source>
         <translation>전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="247"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Upload Speed Limit</source>
         <translation>전체 업로드 속도 제한</translation>
     </message>

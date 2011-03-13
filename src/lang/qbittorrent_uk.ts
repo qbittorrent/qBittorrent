@@ -3674,22 +3674,22 @@ Do you want to install it now?</source>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Зав.: %1/с (%2)</translation>
+        <translation type="obsolete">Зав.: %1/с (%2)</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Вив.: %1/с (%2)</translation>
+        <translation type="obsolete">Вив.: %1/с (%2)</translation>
     </message>
     <message>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Зав.: %1 Б/с (%2)</translation>
+        <translation type="obsolete">Зав.: %1 Б/с (%2)</translation>
     </message>
     <message>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Вив.: %1 Б/с (%2)</translation>
+        <translation type="obsolete">Вив.: %1 Б/с (%2)</translation>
     </message>
     <message>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
@@ -3718,6 +3718,11 @@ Do you want to install it now?</source>
     <message>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/с</translation>
     </message>
 </context>
 <context>

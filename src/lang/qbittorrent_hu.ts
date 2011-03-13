@@ -4259,79 +4259,82 @@ Kérlek telepítsd manuálisan.</translation>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>Connection status:</source>
         <translation>Kapcsolat állapota:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Nincsenek kapcsolatok. Ez lehet hálózat beállítási hiba miatt is.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="67"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>D: %1 B/s - T: %2</translation>
+        <translation type="obsolete">D: %1 B/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="84"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>U: %1 B/s - T: %2</translation>
+        <translation type="obsolete">U: %1 B/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="90"/>
-        <location filename="../statusbar.h" line="199"/>
+        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="185"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 csomó</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>qBittorrent újraindítást igényel</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="172"/>
+        <location filename="../statusbar.h" line="158"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>A qBittorrent frissült új verzióra. Most újraindítást igényel a változások életbe lépéséhez.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Connection Status:</source>
         <translation>A kapcsolat állapota:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Offline: ezt leggyakrabban az okozza, hogy a qBittorrent nem tudja használni a bejövő kapcsolatokhoz megadott portot.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="205"/>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="192"/>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/mp</translation>
+    </message>
+    <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>D: %1/s - T: %2</translation>
+        <translation type="obsolete">D: %1/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="206"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>U: %1/s - T: %2</translation>
+        <translation type="obsolete">U: %1/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="212"/>
+        <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4344,12 +4347,12 @@ Kérlek telepítsd manuálisan.</translation>
         <translation type="obsolete">Alternatív sebesség korlátok engedélyezéséhez kattints ide</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="227"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>Global Download Speed Limit</source>
         <translation>Teljes letöltési sebesség korlát</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="247"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Upload Speed Limit</source>
         <translation>Teljes feltöltési sebesség korlát</translation>
     </message>

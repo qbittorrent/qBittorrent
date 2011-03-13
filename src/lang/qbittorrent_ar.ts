@@ -4312,79 +4312,62 @@ Please install it manually.</source>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>Connection status:</source>
         <translation>حالة الإتصال:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>لا يوجد اتصالاتو قد يعود السبب الى اعدادات الشبكة.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="67"/>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="84"/>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="90"/>
-        <location filename="../statusbar.h" line="199"/>
+        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="185"/>
         <source>DHT: %1 nodes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>البرنامج يحتاج الى اعدة تشغيل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="172"/>
+        <location filename="../statusbar.h" line="158"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>تم تحديث البرنامج ,الرجاء اعادة التشغيل.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Connection Status:</source>
         <translation>حالة الإتصال:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>غير متصل. قد تعود المشكل الى عدم قدرة البرنامج في التسجيل في المنفذ للإتصلات القادمة.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Online</source>
         <translation>متصل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="205"/>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation></translation>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="192"/>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/ث</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="206"/>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="212"/>
+        <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4397,12 +4380,12 @@ Please install it manually.</source>
         <translation type="obsolete">اضغط هنا لتشغيل حد السرعة البديل</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="227"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>Global Download Speed Limit</source>
         <translation>حد سرعة التحميل العامة</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="247"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Upload Speed Limit</source>
         <translation>حد سرعة الرفع العامة</translation>
     </message>

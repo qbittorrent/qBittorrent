@@ -4105,12 +4105,12 @@ Do you want to install it now?</source>
     <message>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Preuzimanje: %1 B/s - Preuzeto: %2</translation>
+        <translation type="obsolete">Preuzimanje: %1 B/s - Preuzeto: %2</translation>
     </message>
     <message>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Slanje: %1 B/s - Poslano: %2</translation>
+        <translation type="obsolete">Slanje: %1 B/s - Poslano: %2</translation>
     </message>
     <message>
         <source>DHT: %1 nodes</source>
@@ -4131,12 +4131,12 @@ Do you want to install it now?</source>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Preuzimanje: %1/s - Preuzeto: %2</translation>
+        <translation type="obsolete">Preuzimanje: %1/s - Preuzeto: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Slanje: %1/s - Poslano: %2</translation>
+        <translation type="obsolete">Slanje: %1/s - Poslano: %2</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -4169,6 +4169,11 @@ Do you want to install it now?</source>
     <message>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/s</translation>
     </message>
 </context>
 <context>

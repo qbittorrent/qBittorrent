@@ -3745,89 +3745,72 @@ Please install it manually.</source>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>Connection status:</source>
         <translation>Forbindelses status:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Ingen direkte forbindelser. Dette kan indikere et problem med konfigurationen af netværket.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="67"/>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="84"/>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="90"/>
-        <location filename="../statusbar.h" line="199"/>
+        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="185"/>
         <source>DHT: %1 nodes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="172"/>
+        <location filename="../statusbar.h" line="158"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Connection Status:</source>
         <translation>Forbindelses Status:</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Online</source>
         <translation>Online</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="205"/>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation></translation>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="192"/>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="206"/>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../statusbar.h" line="212"/>
+        <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="227"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>Global Download Speed Limit</source>
         <translation>Global begrænsning af downloadhastighed</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="247"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Upload Speed Limit</source>
         <translation>Global begrænsning af upload hastighed</translation>
     </message>

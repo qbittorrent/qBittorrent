@@ -3365,79 +3365,82 @@ Please install it manually.</source>
     <name>StatusBar</name>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>Connection status:</source>
         <translation>ՄԻացման ընթացքը.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="66"/>
-        <location filename="../statusbar.h" line="192"/>
+        <location filename="../statusbar.h" line="178"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Չկան ուղիղ միացումներ։</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="67"/>
         <source>D: %1 B/s - T: %2</source>
         <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation>Բ. %1 Բ/վ - Ը. %2</translation>
+        <translation type="obsolete">Բ. %1 Բ/վ - Ը. %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="84"/>
         <source>U: %1 B/s - T: %2</source>
         <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation>Փ.: %1 Բ/վ - Ը. %2</translation>
+        <translation type="obsolete">Փ.: %1 Բ/վ - Ը. %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="90"/>
-        <location filename="../statusbar.h" line="199"/>
+        <location filename="../statusbar.h" line="94"/>
+        <location filename="../statusbar.h" line="185"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT. %1 հանգույց</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="162"/>
+        <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
         <translation>Պահանջվում է ծրագրի վերամեկնարկում</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="172"/>
+        <location filename="../statusbar.h" line="158"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent-ը թարմացվել է։ Վերամեկնարկեք՝ փոփոխությունները կիրառելու համար։</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="170"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Connection Status:</source>
         <translation>Միացման վիճակը.</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="184"/>
+        <location filename="../statusbar.h" line="170"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Ցանցից դուրս. Սա նշանակում է, որ qBittorrent-ը չկարողացավ միանալ ընտրված դարպասին։</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="189"/>
+        <location filename="../statusbar.h" line="175"/>
         <source>Online</source>
         <translation>Ցանցում է</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="205"/>
+        <location filename="../statusbar.h" line="191"/>
+        <location filename="../statusbar.h" line="192"/>
+        <source>%1/s</source>
+        <comment>Per second</comment>
+        <translation type="unfinished">%1/վ</translation>
+    </message>
+    <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Բ. %1/վ - Ը. %2</translation>
+        <translation type="obsolete">Բ. %1/վ - Ը. %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="206"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Փ. %1/վ - Ը. %2</translation>
+        <translation type="obsolete">Փ. %1/վ - Ը. %2</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="212"/>
+        <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="216"/>
+        <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3450,12 +3453,12 @@ Please install it manually.</source>
         <translation type="obsolete">Սեղմեք միացնելու համար արագ-ան այլընտ. սահ-ումները</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="227"/>
+        <location filename="../statusbar.h" line="213"/>
         <source>Global Download Speed Limit</source>
         <translation>Բեռնման արագ-ան գլոբալ սահ-ում</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="247"/>
+        <location filename="../statusbar.h" line="233"/>
         <source>Global Upload Speed Limit</source>
         <translation>Փոխանցման արագ-ան գլոբալ սահ-ում</translation>
     </message>
