@@ -2006,7 +2006,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль должен содержать минимум 3 символа</translation>
     </message>
 </context>
 <context>
@@ -2653,7 +2653,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать монохромную иконку в трее (требуется перезапуск)</translation>
     </message>
 </context>
 <context>
@@ -3773,16 +3773,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите для переключения к альтернативным лимитам скорости</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите для переключения к обычным лимитам скорости</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/с</translation>
+        <translation>%1/с</translation>
     </message>
 </context>
 <context>
@@ -4470,30 +4470,31 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничить коэффициент раздачи...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение коэффициента скачивания/раздачи торрента</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать глобальное ограничение коэффициента</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Do you really need to translate it?</translatorcomment>
+        <translation type="unfinished">buttonGroup</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Убрать ограничение коэффициента</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить ограничение коэффициента</translation>
     </message>
 </context>
 <context>
