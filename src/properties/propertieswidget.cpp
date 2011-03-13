@@ -61,8 +61,9 @@ using namespace libtorrent;
 
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
   QWidget(parent), transferList(transferList), main_window(main_window) {
-
   setupUi(this);
+  loadFilesListState();
+
   // Icons
   deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
   addWS_button->setIcon(IconProvider::instance()->getIcon("list-add"));
@@ -129,6 +130,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 }
 
 PropertiesWidget::~PropertiesWidget() {
+  saveFilesListState();
   delete refreshTimer;
   delete trackerList;
   delete peersList;
@@ -272,16 +274,18 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
   loadDynamicData();
 }
 
+void PropertiesWidget::loadFilesListState() {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray());
+}
+
+void PropertiesWidget::saveFilesListState() {
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
+}
+
 void PropertiesWidget::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/filesColsWidth")).toStringList());
-  if(contentColsWidths.empty()) {
-    filesList->header()->resizeSection(0, 300);
-  } else {
-    for(int i=0; i<contentColsWidths.size(); ++i) {
-      filesList->setColumnWidth(i, contentColsWidths.at(i));
-    }
-  }
   // Restore splitter sizes
   QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
   if(sizes_str.size() == 2) {
@@ -300,11 +304,6 @@ void PropertiesWidget::readSettings() {
 void PropertiesWidget::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
-  QStringList contentColsWidths;
-  for(int i=0; i<PropListModel->model()->columnCount(); ++i) {
-    contentColsWidths << QString::number(filesList->columnWidth(i));
-  }
-  settings.setValue(QString::fromUtf8("TorrentProperties/filesColsWidth"), contentColsWidths);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;

@@ -46,8 +46,6 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 public:
   torrentAdditionDialog(QWidget *parent);
   ~torrentAdditionDialog();
-  void readSettings();
-  void saveSettings();
   void showLoadMagnetURI(QString magnet_uri);
   void showLoad(QString filePath, QString from_url=QString::null);
   QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
@@ -72,6 +70,12 @@ public slots:
 
 protected:
   void closeEvent(QCloseEvent *event);
+
+private:
+  void readSettings();
+  void saveSettings();
+  void loadFilesListState();
+  void saveFilesListState();
 
 private:
   QString fileName;

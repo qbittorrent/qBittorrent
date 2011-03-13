@@ -65,6 +65,10 @@ using namespace libtorrent;
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
+
+  // Load settings
+  loadSettings();
+
   // Create and apply delegate
   listDelegate = new TransferListDelegate(this);
   setItemDelegate(listDelegate);
@@ -120,9 +124,6 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
   header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
-
-  // Load settings
-  loadSettings();
 }
 
 TransferListWidget::~TransferListWidget() {

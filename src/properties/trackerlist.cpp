@@ -47,6 +47,7 @@
 using namespace libtorrent;
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
+  loadSettings();
   // Graphical settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
@@ -71,7 +72,6 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   lsd_item = new QTreeWidgetItem(QStringList("** "+tr("[LSD]")+" **"));
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
-  loadSettings();
 }
 
 TrackerList::~TrackerList() {
@@ -368,21 +368,12 @@ void TrackerList::showTrackerListMenu(QPoint) {
 
 void TrackerList::loadSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QList<int> contentColsWidths = misc::intListfromStringList(settings.value(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth")).toStringList());
-  if(!contentColsWidths.empty()) {
-    for(int i=0; i<contentColsWidths.size(); ++i) {
-      setColumnWidth(i, contentColsWidths.at(i));
-    }
-  } else {
+  if(!header()->restoreState(settings.value("TorrentProperties/Trackers/TrackerListState").toByteArray())) {
     setColumnWidth(0, 300);
   }
 }
 
 void TrackerList::saveSettings() const {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  QStringList contentColsWidths;
-  for(int i=0; i<columnCount(); ++i) {
-    contentColsWidths << QString::number(columnWidth(i));
-  }
-  settings.setValue(QString::fromUtf8("TorrentProperties/Trackers/trackersColsWidth"), contentColsWidths);
+  settings.setValue("TorrentProperties/Trackers/TrackerListState", header()->saveState());
 }
