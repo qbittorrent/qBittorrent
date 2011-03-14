@@ -168,12 +168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP адрес за информиране на тракери (изисква рестарт)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи уведомленията на програмата на екрана</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Потвърди изтриването на торента</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="141"/>
@@ -652,117 +652,117 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../downloadthread.cpp" line="98"/>
         <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Грешка на Вход/Изход</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Името на приемащия не бе намерено (невалидно име)</translation>
+        <translation>Името на приемащия не бе намерено (невалидно име)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Действието бе прекъснато</translation>
+        <translation>Действието бе прекъснато</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
+        <translation>Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Връзката с приемащия сървър затвори поради изтичане на времето</translation>
+        <translation>Връзката с приемащия сървър затвори поради изтичане на времето</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">Прекъсване на скачването SSL/TLS</translation>
+        <translation>Прекъсване на скачването SSL/TLS</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Приемащия сървър отхвърли връзката</translation>
+        <translation>Приемащия сървър отхвърли връзката</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Връзката с прокси сървъра бе отхвърлена</translation>
+        <translation>Връзката с прокси сървъра бе отхвърлена</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Прокси сървъра затвори връзката едностранно</translation>
+        <translation>Прокси сървъра затвори връзката едностранно</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Името на приемащия прокси не бе намерено</translation>
+        <translation>Името на приемащия прокси не бе намерено</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
+        <translation>Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation>Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Достъпа бе отхвърлен (401)</translation>
+        <translation>Достъпа бе отхвърлен (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Поисканото действие не е разрешено </translation>
+        <translation>Поисканото действие не е разрешено </translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Поисканото не бе намерено на сървъра (404)</translation>
+        <translation>Поисканото не бе намерено на сървъра (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
+        <translation>Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
+        <translation>Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Поисканото действие е невалидно за този протокол</translation>
+        <translation>Поисканото действие е невалидно за този протокол</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана с мрежата</translation>
+        <translation>Установена е неизвестна грешка свързана с мрежата</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана с проксито</translation>
+        <translation>Установена е неизвестна грешка свързана с проксито</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Установена е неизвестна грешка свързана със съдържанието</translation>
+        <translation>Установена е неизвестна грешка свързана със съдържанието</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="249"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Установено е прекъсване в протокола</translation>
+        <translation>Установено е прекъсване в протокола</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Неизвестна грешка</translation>
+        <translation>Неизвестна грешка</translation>
     </message>
 </context>
 <context>
@@ -1619,12 +1619,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Съхрани</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent клиента е недостъпен</translation>
     </message>
 </context>
 <context>
@@ -1986,7 +1986,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Паролата трябва да съдържа поне 3 символа</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -2510,7 +2510,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ползвай едноцветна системна икона (изисква рестарт)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -2526,17 +2526,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Искай потвърждение за изход от програмата</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Управление на Енергията</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Попречи на системата да заспи когато има активни торенти</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="500"/>
@@ -2707,7 +2707,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2266"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Заобиколи удостоверяването за локален хост</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="930"/>
@@ -2876,12 +2876,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим на работа</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Език</translation>
+        <translation>Език</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="746"/>
@@ -3145,7 +3145,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Съдържание на Торента:</translation>
+        <translation>Съдържание на Торента:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
@@ -3531,7 +3531,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="433"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Съобщаване на IP адрес %1 на тракери...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="483"/>
@@ -3614,17 +3614,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2091"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Компютъра ще влезе сега в режим сън освен ако прекратите операцията в следващите 15 секунди...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Компютъра ще се загаси сега освен ако прекратите операцията в следващите 15 секунди...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ще се затвори освен ако прекратите операцията в следващите 15 секунди...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
@@ -4244,7 +4244,7 @@ Please install it manually.</source>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потвърждение за загасяване</translation>
     </message>
 </context>
 <context>
@@ -4316,7 +4316,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="192"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/с</translation>
+        <translation>%1/с</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -4331,12 +4331,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Натисни за смяна към други ограничения за скорост</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Натисни за смяна към стандартни ограничения за скорост</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -5092,7 +5092,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение на съотношението за споделяне...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
@@ -5191,29 +5191,29 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение на съотношението Сваляне/Качване на торента</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ползвай стандартното ограничение</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>група Бутони</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Не определяй ограничение</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Определи ограничение на</translation>
     </message>
 </context>
 <context>
@@ -6128,7 +6128,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно обновен</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>

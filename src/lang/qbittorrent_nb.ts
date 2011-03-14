@@ -173,12 +173,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis programvarslinger på skjermen</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekreft sletting av torrenter</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -475,117 +475,117 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
         <location filename="../downloadthread.cpp" line="98"/>
         <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Inn/ut-operasjonsfeil</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
+        <translation>Det eksterne vertsnavnet ble ikke funnet (ugyldig vertsnavn)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operasjonen ble avbrutt</translation>
+        <translation>Operasjonen ble avbrutt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
+        <translation>Den eksterne tjeneren stengte tilkoblingen for tidlig, før hele svaret ble mottatt og bearbeidet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
+        <translation>Tilkoblingen til den eksterne tjeneren endte i tidsavbrudd</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS håndtrykk mislyktes</translation>
+        <translation>SSL/TLS håndtrykk mislyktes</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Den eksterne tjeneren nektet tilkoblingen</translation>
+        <translation>Den eksterne tjeneren nektet tilkoblingen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren ble nektet</translation>
+        <translation>Tilkoblingen til mellomtjeneren ble nektet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Mellomtjeneren stengte tilkoblingen for tidlig</translation>
+        <translation>Mellomtjeneren stengte tilkoblingen for tidlig</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Mellomtjenerens vertsnavn ble ikke funnet</translation>
+        <translation>Mellomtjenerens vertsnavn ble ikke funnet</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
+        <translation>Tilkoblingen til mellomtjeneren endte i tidsavbrudd, eller mellomtjeneren svarte ikke i tide på forespørselen som ble sendt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
+        <translation>Mellomtjeneren krever autentisering for å kunne hedre forespørselen, men godtok ikke noen av attestene som ble tilbudt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Tilgangen til det eksterne innholdet ble nektet (401)</translation>
+        <translation>Tilgangen til det eksterne innholdet ble nektet (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
+        <translation>Operasjonen som blir forespurt på det eksterne innholdet er ikke tillatt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
+        <translation>Det eksterne innholdet ble ikke funnet på tjeneren (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
+        <translation>Den eksterne tjeneren krever autentisering for å kunne servere innholdet, men attestene som ble oppgitt ble ikke akseptert</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Nettverktilgangens applikasjons-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen er ukjent</translation>
+        <translation>Nettverktilgangens applikasjon-programeringsgrensesnitt kan ikke hedre forespørselen fordi protokollen ikke er kjent</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Den forespurte operasjonen er ugyldig for denne protokollen</translation>
+        <translation>Den forespurte operasjonen er ugyldig for denne protokollen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">En ukjent nettverksrelatert feil ble oppdaget</translation>
+        <translation>En ukjent nettverksrelatert feil ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
+        <translation>En ukjent mellomtjenerrelatert feil ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
+        <translation>En ukjent feil relatert til det eksterne innholdet ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="249"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">En driftstans i protokollen ble oppdaget</translation>
+        <translation>En driftstans i protokollen ble oppdaget</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ukjent feil</translation>
+        <translation>Ukjent feil</translation>
     </message>
 </context>
 <context>
@@ -1248,7 +1248,7 @@ Vil du assosiere qBittorrent til torrentfiler og Magnetlenker?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Passordet bør inneholde minst 3 tegn</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -1597,12 +1597,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="212"/>
         <source>Upload rate limiting</source>
-        <translation>Opplastingsforholdsbegrensing</translation>
+        <translation>Opplastingsforholdsbegrensning</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="233"/>
         <source>Download rate limiting</source>
-        <translation>Nedlastingsforholdsbegrensing</translation>
+        <translation>Nedlastingsforholdsbegrensning</translation>
     </message>
 </context>
 <context>
@@ -1741,12 +1741,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppførsel</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Språk</translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="500"/>
@@ -1926,7 +1926,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk monokromt systemkurvikon (krever omstart)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -1942,17 +1942,17 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Spør etter programavsluttningsbekreftelse</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Strømstyring</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Hindre systemhvile når torrenter er aktive</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="510"/>
@@ -2084,7 +2084,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2059"/>
         <source>Share ratio limiting</source>
-        <translation>Delingsforholdsbegrensing</translation>
+        <translation>Delingsforholdsbegrensning</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2070"/>
@@ -2109,7 +2109,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2266"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Omgå autentisering for lokalvert</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1146"/>
@@ -2358,7 +2358,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Torrent innhold:</translation>
+        <translation>Torrentinnhold:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
@@ -2652,17 +2652,17 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2091"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskinen vil nå gå i hvilemodus dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskinen vil nå bli slått av dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent vil nå avsluttes dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
@@ -3342,7 +3342,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Avslåingsbekreftelse</translation>
     </message>
 </context>
 <context>
@@ -3414,7 +3414,7 @@ Vennligst installer det manuelt.</translation>
         <location filename="../statusbar.h" line="192"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -3429,12 +3429,12 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikk for å bytte til alternative hastighetsgrenser</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikk for å bytte til regulære hastighetsgrenser</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -4052,12 +4052,12 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="447"/>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Torrentnedlasting-hastighetsbegrensing</translation>
+        <translation>Torrent-nedlastingshastighetsbegrensning</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="480"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Torrentopplasting-hastighetsbegrensing</translation>
+        <translation>Torrent-opplastingshastighetsbegrensning</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="587"/>
@@ -4115,7 +4115,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Begrens delingsforholdet...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
@@ -4214,29 +4214,29 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-Opplasting/Nedlasting Forholdsbegrensning</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk global forholdsgrense</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>knappeGruppe</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sett ingen forholdsgrense</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Sett forholdsgrensen til</translation>
     </message>
 </context>
 <context>
@@ -4349,7 +4349,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentadditiondlg.ui" line="184"/>
         <source>Torrent content:</source>
-        <translation>Torrent innhold:</translation>
+        <translation>Torrentinnhold:</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.ui" line="237"/>
@@ -5106,7 +5106,7 @@ Disse programtilleggene ble derimot deaktivert.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished">Oppdatert vellykket</translation>
+        <translation>Oppdatert vellykket</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1175"/>

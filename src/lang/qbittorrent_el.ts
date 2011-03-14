@@ -169,12 +169,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Η διεύθυνση IP να δίνει αναφορά στους ιχνηλάτες (απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση ειδοποιήσεων προγράμματος</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -204,7 +204,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιβεβαίωση διαγραφής τόρεντ</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="141"/>
@@ -655,117 +655,117 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../downloadthread.cpp" line="98"/>
         <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Σφάλμα I/O</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Ο απομακρυσμένος διακομιστής δεν βρέθηκε (άκυρο όνομα διακομιστή)</translation>
+        <translation>Ο απομακρυσμένος διακομιστής δεν βρέθηκε (άκυρο όνομα διακομιστή)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Η διαδικασία ακυρώθηκε</translation>
+        <translation>Η διαδικασία ακυρώθηκε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Ο απομακρυσμένος εξυπηρετητής διέκοψε την σύνδεση πρόωρα, προτού η πλήρης απάντηση γίνει ληπτή και επεξεργασθεί</translation>
+        <translation>Ο απομακρυσμένος εξυπηρετητής διέκοψε την σύνδεση πρόωρα, προτού η πλήρης απάντηση γίνει ληπτή και επεξεργασθεί</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Η σύνδεση προς τον απομακρυσμένο εξυπηρετητή έληξε</translation>
+        <translation>Η σύνδεση προς τον απομακρυσμένο εξυπηρετητή έληξε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS σύνδεση απέτυχε</translation>
+        <translation>SSL/TLS σύνδεση απέτυχε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Ο απομακρυσμένος εξυπηρετητής αρνήθηκε τη σύνδεση</translation>
+        <translation>Ο απομακρυσμένος εξυπηρετητής αρνήθηκε τη σύνδεση</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Η σύνδεση προς τον διακομιστή proxy δεν έγινε δεκτή</translation>
+        <translation>Η σύνδεση προς τον διακομιστή proxy δεν έγινε δεκτή</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Ο διακομιστής proxy έκλεισε την σύνδεση πρόωρα</translation>
+        <translation>Ο διακομιστής proxy έκλεισε την σύνδεση πρόωρα</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Το όνομα του διακομιστή proxy δεν βρέθηκε</translation>
+        <translation>Το όνομα του διακομιστή proxy δεν βρέθηκε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Η σύνδεση προς τον εξυπηρετητή proxy έληξε ή ο proxy δεν αποκρίθηκε εγκαίρως στο σταλθέν αίτημα</translation>
+        <translation>Η σύνδεση προς τον εξυπηρετητή proxy έληξε ή ο proxy δεν αποκρίθηκε εγκαίρως στο σταλθέν αίτημα</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Ο proxy απαιτεί πιστοποίηση για να δεχθεί την αίτηση αλλά δεν δέχθηκε καμία πιστοποίηση</translation>
+        <translation>Ο proxy απαιτεί πιστοποίηση για να δεχθεί την αίτηση αλλά δεν δέχθηκε καμία πιστοποίηση</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Η πρόσβαση στο απομακρυσμένο περιεχόμενο δεν έγινε δεκτή (401)</translation>
+        <translation>Η πρόσβαση στο απομακρυσμένο περιεχόμενο δεν έγινε δεκτή (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Η λειτουργία που ζητήσατε στο αποκαρυσμένο περιεχόμενο δεν επιτρέπεται</translation>
+        <translation>Η λειτουργία που ζητήσατε στο αποκαρυσμένο περιεχόμενο δεν επιτρέπεται</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Το απομακρυσμένο περιεχόμενο δεν βρέθηκε στον διακομιστή (404)</translation>
+        <translation>Το απομακρυσμένο περιεχόμενο δεν βρέθηκε στον διακομιστή (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Ο απομακρυσμένος διακομιστής απαιτεί πιστοποίηση για να δεχθεί την αίτηση αλλά δεν δέχθηκε καμία πιστοποίηση</translation>
+        <translation>Ο απομακρυσμένος διακομιστής απαιτεί πιστοποίηση για να δεχθεί την αίτηση αλλά δεν δέχθηκε καμία πιστοποίηση</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Το API Δικτύου δεν μπόρεσε να εκπληρώσει το αίτημα επειδή το πρωτόκολλο είναι άγνωστο</translation>
+        <translation>Το API Δικτύου δεν μπόρεσε να εκπληρώσει το αίτημα επειδή το πρωτόκολλο είναι άγνωστο</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Η ζητηθείσα λειτουργία είναι άκυρη για αυτό το πρωτόκολλο</translation>
+        <translation>Η ζητηθείσα λειτουργία είναι άκυρη για αυτό το πρωτόκολλο</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Ένα άγνωστο σφάλμα δικτύου βρέθηκε</translation>
+        <translation>Ένα άγνωστο σφάλμα δικτύου βρέθηκε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Ένα άγνωστο σφάλμα του proxy βρέθηκε</translation>
+        <translation>Ένα άγνωστο σφάλμα του proxy βρέθηκε</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Βρέθηκε ένα άγνωστο σφάλμα στο απομακρυσμένο περιεχόμενο</translation>
+        <translation>Βρέθηκε ένα άγνωστο σφάλμα στο απομακρυσμένο περιεχόμενο</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="249"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Εντοπίστηκε διακοπή στο πρωτόκολλο</translation>
+        <translation>Εντοπίστηκε διακοπή στο πρωτόκολλο</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Άγνωστο σφάλμα</translation>
+        <translation>Άγνωστο σφάλμα</translation>
     </message>
 </context>
 <context>
@@ -1623,12 +1623,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποθήκευση</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1991,7 +1991,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο κωδικός πρέπει να περιέχει τουλάχιστο 3 χαρακτήρες</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -2516,7 +2516,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση μονόχρωμου εικονιδίου μπάρας εργασιών (απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -2532,17 +2532,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ερώτηση για επιβεβαίωση εξόδου</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαχείριση ενέργειας</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Ακύρωση αναμονής υπολογιστή όταν υπάρχουν ενεργά τόρεντ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="500"/>
@@ -2713,7 +2713,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2266"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Παράβλεψη αυθεντικότητας για τον localhost</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="930"/>
@@ -2883,12 +2883,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Συμπεριφορά</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Γλώσσα</translation>
+        <translation>Γλώσσα</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="746"/>
@@ -3186,7 +3186,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Περιεχόμενο torrent:</translation>
+        <translation>Περιεχόμενο torrent:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
@@ -3538,7 +3538,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="433"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναφορά της διεύθυνσης ΙΡ %1 στους ιχνηλάτες...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="483"/>
@@ -3621,17 +3621,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2091"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο υπολογιστής θα τεθεί σε λειτουργία αναμονής εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο υπολογιστής θα απενεργοποιηθεί εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Το qBittorrent θα κλείσει, εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
@@ -4256,7 +4256,7 @@ Please install it manually.</source>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιβεβαίωση απενεργοποίησης</translation>
     </message>
 </context>
 <context>
@@ -4328,7 +4328,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="192"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1 /s</translation>
+        <translation>%1 /s</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -4343,12 +4343,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλικ για εναλλαγή προς τα εναλλακτικά όρια ταχύτητας</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλικ για εναλλαγή προς τα κανονικά όρια ταχύτητας</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -5104,7 +5104,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Όριο ποσοστού διαμοιρασμού...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
@@ -5203,29 +5203,30 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιορισμός ποσοστού ανεβάσματος/κατεβάσματος τόρεντ</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση συνολικού ορίου διαμοιράσματος</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?</translatorcomment>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Μη ρύθμιση ορίου ποσοστού διαμοιρασμού</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρύθμιση ορίου ποσοστού διαμοιρασμού σε</translation>
     </message>
 </context>
 <context>
@@ -6141,7 +6142,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιτυχής ανανέωση</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
