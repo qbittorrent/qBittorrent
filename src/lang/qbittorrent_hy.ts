@@ -157,7 +157,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source>Network Interface (requires restart)</source>
-        <translation>Ցանցի միջներեսը (պահանջում է վերամեկնարկում)</translation>
+        <translation>Ցանցի միջներեսը (պահանջում է վերագործարկում)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
@@ -168,12 +168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ուղորդիչների հաշվետվության IP-ն (պահ. է վերագործարկում)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Հաստատեք torrent-ի ջնջումը</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="141"/>
@@ -458,117 +458,118 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../downloadthread.cpp" line="98"/>
         <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Սխալ</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
+        <translation>Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Գործողությունը ընդհատվել է</translation>
+        <translation>Գործողությունը ընդհատվել է</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
+        <translation>Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
+        <translation>Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS փոխլրացումը ձախողվեց</translation>
+        <translation>SSL/TLS փոխլրացումը ձախողվեց</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
+        <translation>Հեռադիր սպասարկիչը մերժել է միացումը</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
+        <translation>Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Միջնորդ սպասարկիչը փակել է միացումը</translation>
+        <translation>Միջնորդ սպասարկիչը փակել է միացումը</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Չի գտնվել միջնորդի հոսթի անունը</translation>
+        <translation>Չի գտնվել միջնորդի հոսթի անունը</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
+        <translation>Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Միջնորդը պահանջում է ներկայացում</translation>
+        <translation>Միջնորդը պահանջում է ներկայացում</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
+        <translation>
+Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
+        <translation>Գործողությունը, որը պահանջում է հեռադիր պարունակությունը, չի թույլատրվել</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
+        <translation>Հեռադիր պարունակությունը չի գտնվել սպասարկիչում (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
+        <translation>Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
+        <translation>Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
+        <translation>Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Անհայտ սխալ</translation>
+        <translation>Անհայտ սխալ</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Միջնորդի անհայտ սխալ</translation>
+        <translation>Միջնորդի անհայտ սխալ</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Հեռադիր բովանդակության անհայտ սխալ</translation>
+        <translation>Հեռադիր պարունակության անհայտ սխալ</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="249"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Անհաջողություն արձանագրությունում</translation>
+        <translation>Անհաջողություն արձանագրությունում</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Անհայտ սխալ</translation>
+        <translation>Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
@@ -823,12 +824,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Պահպանել</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ծրագիրը հասանելի չէ</translation>
     </message>
 </context>
 <context>
@@ -996,7 +997,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="182"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Ավելացնել &amp;torrent-ի սղումը…</translation>
+        <translation>Ավելացնել &amp;torrent-ի հղումը…</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="298"/>
@@ -1186,7 +1187,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ծածկագիրը պետք է պարունակի գոնե 3 նիշ</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -1586,7 +1587,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="215"/>
         <source>(Requires restart)</source>
-        <translation>(Պահանջվում է վերամեկնարկում)</translation>
+        <translation>(Պահանջվում է վերագործարկում)</translation>
     </message>
     <message>
         <source>Visual style:</source>
@@ -1678,7 +1679,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="500"/>
         <source>Display torrent content and some options</source>
-        <translation>Ցուցադրել torrent-ի բովանդակությունը և այլ ընտրանքներ</translation>
+        <translation>Ցուցադրել torrent-ի պարունակությունը և այլ ընտրանքներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="930"/>
@@ -1757,12 +1758,12 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Վարմունքը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Լեզուն</translation>
+        <translation>Լեզուն</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1513"/>
@@ -1904,7 +1905,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Օգտ. անգույն պատկեր՝էկրանի ներքևում (պահ. է վերագործարկում)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -1920,17 +1921,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Հարցնել ծրագիրը փակելիս</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Սնուցման կառավարում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Կանխել համակարգչի &quot;քնեցումը&quot;, երբ կան ակտիվ torrent-ներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="510"/>
@@ -2062,7 +2063,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2266"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>localhost-ի շրջանցիկ ներկայացում</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
@@ -2249,7 +2250,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="80"/>
         <source>Content</source>
-        <translation>Բովանդակությունը</translation>
+        <translation>Պարունակությունը</translation>
     </message>
     <message>
         <source>URL Seeds</source>
@@ -2356,7 +2357,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Torrent-ի բովանդակությունը.</translation>
+        <translation>Torrent-ի պարունակությունը.</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
@@ -2573,7 +2574,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="478"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Պահանջվում է վերամեկնարկում՝ փոխանջատելու համար PeX-ը</translation>
+        <translation>Պահանջվում է վերագործարկում՝ փոխանջատելու համար PeX-ը</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
@@ -2680,7 +2681,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="433"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Հաղորդվում է %1 IP հասցեի մասին ուղորդիչին...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="483"/>
@@ -2763,17 +2764,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2091"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Այժմ համակարգիչը կանցնի &quot;քուն&quot; վիճակի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Այժմ համակարգիչը կանջատվի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-ը կփակվի 15 վայրկյանից...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
@@ -3356,7 +3357,7 @@ Please install it manually.</source>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Հաստատեք անջատումը</translation>
     </message>
 </context>
 <context>
@@ -3400,7 +3401,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="148"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation>Պահանջվում է ծրագրի վերամեկնարկում</translation>
+        <translation>Պահանջվում է ծրագրի վերագործարկում</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="158"/>
@@ -3428,7 +3429,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="192"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/վ</translation>
+        <translation>%1/վ</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -3443,12 +3444,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="198"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Սեղմեք՝ այլընտրանքային սահ-ներին անցնելու համար</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="202"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Սեղմեք՝ հիմնական սահ-ներին անցնելու համար</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -4109,7 +4110,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Արագ-ան սահ-ներ...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
@@ -4208,29 +4209,29 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent-ի բեռնման/փոխանցման սահ-եր</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Օգտ. ընդհ. սահ-ներ</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>Խմբի կոճակը</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Առանց սահ-ների</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Արագ-ը սահ-ել՝</translation>
     </message>
 </context>
 <context>
@@ -4343,7 +4344,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentadditiondlg.ui" line="184"/>
         <source>Torrent content:</source>
-        <translation>Torrent-ի բովանդակությունը.</translation>
+        <translation>Torrent-ի պարունակությունը.</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.ui" line="237"/>
