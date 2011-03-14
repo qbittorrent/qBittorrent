@@ -170,15 +170,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie zmazania torrentu</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Akú IP adresu oznamovať trackeru (vyžaduje reštart)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazovať OSD upozornenia</translation>
     </message>
 </context>
 <context>
@@ -593,95 +593,95 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>V/V Chyba</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Názov vzdialeného počítača nebol zistený (neplatný názov)</translation>
+        <translation>Názov vzdialeného počítača nebol zistený (neplatný názov počítača)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operácia bola zrušená</translation>
+        <translation>Operácia bola zrušená</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
+        <translation>Vzdialený server predčasne zatvoril spojenie predtým, než bola prijatá a spracovaná celá odpoveď</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Čas spojenia so vzdialeným serverom vypršal</translation>
+        <translation>Čas spojenia so vzdialeným serverom vypršal</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS handshake zlyhal</translation>
+        <translation>SSL/TLS handshake zlyhal</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Vzdialený server odmietol spojenie</translation>
+        <translation>Vzdialený server odmietol spojenie</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Spojenie s proxy serverom bolo odmietnuté</translation>
+        <translation>Spojenie s proxy serverom bolo odmietnuté</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Proxy server predčasne zatvoril spojenie</translation>
+        <translation>Proxy server predčasne zatvoril spojenie</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Názov proxy servera nebol nájdený</translation>
+        <translation>Názov proxy servera nebol nájdený</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
+        <translation>Čas spojenia s proxy serverom vypršal alebo proxy server neodpovedal včas na zaslanú požiadavku</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+        <translation>Proxy vyžaduje autentifikáciu aby mohol splniť požiadavku, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
+        <translation>Prístup k vzdialenému obsahu bol zamietnutý (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
+        <translation>Požadovaná operácia so vzdialeným obsahom nie je povolená</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Vzdialený obsah nebol nájdený na serveri (404)</translation>
+        <translation>Vzdialený obsah nebol nájdený na serveri (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, , ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
+        <translation>Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, ale neprijal žiadne z ponúknutých prihlasovacích údajov</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
+        <translation>Network Access API neprijalo požiadavku, pretože nie je známy protokol</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Požadovaná operácia nie je platná pre tento protokol</translation>
+        <translation>Požadovaná operácia nie je platná pre tento protokol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa siete</translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa siete</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa proxy</translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa proxy</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
+        <translation>Bola zistená neznáma chyba týkajúca sa vzdialeného obsahu</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Bola zistená porucha v protokole</translation>
+        <translation>Bola zistená porucha v protokole</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Neznáma chyba</translation>
+        <translation>Neznáma chyba</translation>
     </message>
 </context>
 <context>
@@ -1510,11 +1510,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Klient qBittorrent nie je dostupný</translation>
     </message>
 </context>
 <context>
@@ -1971,7 +1971,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo by malo obsahovať aspoň 3 znaky</translation>
     </message>
 </context>
 <context>
@@ -2572,31 +2572,31 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Správanie</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Jazyk</translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Správa napájania</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Potlačiť prechod systému do režimu spánku ak sú torrenty aktívne</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Obísť autentifikáciu pri prihlasovaní z lokálneho počítača</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie ukončenia programu</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Používať monochromatickú ikonu v oznamovacej oblasti (vyžaduje reštart)</translation>
     </message>
 </context>
 <context>
@@ -2905,7 +2905,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Obsah torrentu:</translation>
+        <translation>Obsah torrentu:</translation>
     </message>
 </context>
 <context>
@@ -3177,19 +3177,19 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trackerom sa oznamuje IP adresa %1...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Počítač prejde do režimu spánku ak to nezrušíte do 15 sekúnd odteraz...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Počítač sa vypne ak to nezrušíte do 15 sekúnd odteraz...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent sa ukončí ak to nezrušíte do 15 sekúnd odteraz...</translation>
     </message>
 </context>
 <context>
@@ -3631,7 +3631,7 @@ Chcete ho nainštalovať teraz?</translation>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdenie vypnutia</translation>
     </message>
 </context>
 <context>
@@ -3713,16 +3713,16 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknutím prepnete na alternatívne rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknutím prepnete na bežné rýchlostné obmedzenia</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4403,30 +4403,30 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie pomeru zdieľania...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenie pomeru odoslaných/stiahnutých dát torrentu</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť globálne obmedzenie pomeru</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez obmedzenia pomeru</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastaviť obmedzenie pomeru na</translation>
     </message>
 </context>
 <context>
@@ -5186,7 +5186,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Úspešne obnovené</translation>
     </message>
 </context>
 <context>
