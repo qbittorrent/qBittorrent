@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Network;FileTransfer;P2P;Qt;
-Comment=V2.7.0
+Comment=Download and share files over BitTorrent
 Exec=qbittorrent %U
 GenericName=BitTorrent client
 GenericName[ar]=العميل BitTorrent
