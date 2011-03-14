@@ -224,8 +224,10 @@ void TorrentModel::populate() {
 }
 
 TorrentModel::~TorrentModel() {
+  qDebug() << Q_FUNC_INFO << "ENTER";
   qDeleteAll(m_torrents);
   m_torrents.clear();
+  qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,

@@ -130,6 +130,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 }
 
 PropertiesWidget::~PropertiesWidget() {
+  qDebug() << Q_FUNC_INFO << "ENTER";
   saveFilesListState();
   delete refreshTimer;
   delete trackerList;
@@ -139,6 +140,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete PropListModel;
   delete PropDelegate;
   delete m_tabBar;
+  qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 void PropertiesWidget::showPiecesAvailability(bool show) {

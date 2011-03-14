@@ -129,6 +129,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
 }
 
 TransferListWidget::~TransferListWidget() {
+  qDebug() << Q_FUNC_INFO << "ENTER";
   // Save settings
   saveSettings();
   // Clean up
@@ -137,6 +138,7 @@ TransferListWidget::~TransferListWidget() {
   delete nameFilterModel;
   delete listModel;
   delete listDelegate;
+  qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 TorrentModel* TransferListWidget::getSourceModel() const {

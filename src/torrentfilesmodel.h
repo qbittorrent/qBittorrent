@@ -345,8 +345,10 @@ public:
   }
 
   ~TorrentFilesModel() {
+    qDebug() << Q_FUNC_INFO << "ENTER";
     delete [] files_index;
     delete rootItem;
+    qDebug() << Q_FUNC_INFO << "EXIT";
   }
 
   void updateFilesProgress(std::vector<libtorrent::size_type> fp) {
@@ -625,7 +627,9 @@ public:
   }
 
   ~TorrentFilesFilterModel() {
+    qDebug() << Q_FUNC_INFO << "ENTER";
     delete m_model;
+    qDebug() << Q_FUNC_INFO << "EXIT";
   }
 
   TorrentFilesModel* model() const {

@@ -39,6 +39,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QFontMetrics>
+#include <QDebug>
 #include "qbtsession.h"
 #include "speedlimitdlg.h"
 #include "iconprovider.h"
@@ -136,6 +137,7 @@ public:
   }
 
   ~StatusBar() {
+    qDebug() << Q_FUNC_INFO;
   }
 
   QPushButton* connectionStatusButton() const {

@@ -917,8 +917,8 @@ void MainWindow::processParams(const QString& params_str) {
 }
 
 void MainWindow::processParams(const QStringList& params) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
+  Preferences pref;
+  const bool useTorrentAdditionDialog = pref.useAdditionDialog();
   foreach(QString param, params) {
     param = param.trimmed();
     if(misc::isUrl(param)) {
