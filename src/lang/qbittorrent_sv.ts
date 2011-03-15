@@ -166,15 +166,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta borttagning av torrent</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-adress att rapportera till bevakare (kräver omstart)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa skärmnotifieringar</translation>
     </message>
 </context>
 <context>
@@ -568,95 +568,95 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>In-/ut-fel</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Fjärrvärdnamnet hittades inte (ogiltigt värdnamn)</translation>
+        <translation>Fjärrvärdnamnet hittades inte (ogiltigt värdnamn)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Åtgärden avbröts</translation>
+        <translation>Åtgärden avbröts</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Fjärrservern stängde anslutningen i förtid innan hela svaret togs emot och behandlades</translation>
+        <translation>Fjärrservern stängde anslutningen i förtid innan hela svaret togs emot och behandlades</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Anslutningen till fjärrservern översteg tidsgränsen</translation>
+        <translation>Anslutningen till fjärrservern översteg tidsgränsen</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS-handskakning misslyckades</translation>
+        <translation>SSL/TLS-handskakning misslyckades</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Fjärrservern nekade anslutningen</translation>
+        <translation>Fjärrservern nekade anslutningen</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Anslutningen till proxyservern nekades</translation>
+        <translation>Anslutningen till proxyservern nekades</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Proxyservern stängde anslutningen i förtid</translation>
+        <translation>Proxyservern stängde anslutningen i förtid</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Proxyserverns värdnamn hittades inte</translation>
+        <translation>Proxyserverns värdnamn hittades inte</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern på skickad begäran i tid</translation>
+        <translation>Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern på skickad begäran i tid</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Proxyservern kräver autentisering för att kunna ta emot begäran men accepterade inte inloggningsuppgifterna</translation>
+        <translation>Proxyservern kräver autentisering för att kunna ta emot begäran men accepterade inte inloggningsuppgifterna</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Åtkomst till fjärrinnehåll nekades (401)</translation>
+        <translation>Åtkomst till fjärrinnehåll nekades (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Begärd åtgärd för fjärrinnehållet tillåts inte</translation>
+        <translation>Begärd åtgärd för fjärrinnehållet tillåts inte</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Fjärrinnehållet hittades inte på servern (404)</translation>
+        <translation>Fjärrinnehållet hittades inte på servern (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Fjärrservern kräver autentisering för att servera innehållet men angivna inloggningsuppgifter accepterades inte</translation>
+        <translation>Fjärrservern kräver autentisering för att servera innehållet men angivna inloggningsuppgifter accepterades inte</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
+        <translation>API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Begärd åtgärd är ogiltig för detta protokoll</translation>
+        <translation>Begärd åtgärd är ogiltig för detta protokoll</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Ett okänt nätverksrelaterat fel upptäcktes</translation>
+        <translation>Ett okänt nätverksrelaterat fel upptäcktes</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">En okänt fel relaterat till proxyservern upptäcktes</translation>
+        <translation>En okänt fel relaterat till proxyservern upptäcktes</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
+        <translation>Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Ett haveri i protokollet upptäcktes</translation>
+        <translation>Ett haveri i protokollet upptäcktes</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Okänt fel</translation>
+        <translation>Okänt fel</translation>
     </message>
 </context>
 <context>
@@ -1446,11 +1446,11 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-klienten är inte nåbar</translation>
     </message>
 </context>
 <context>
@@ -1903,7 +1903,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenordet bör innehålla minst 3 tecken</translation>
     </message>
 </context>
 <context>
@@ -2500,31 +2500,31 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Beteende</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Språk</translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Strömhantering</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhindra att systemet försätts i vänteläge när torrentfiler är aktiva</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Kringgå autentisering för localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Fråga efter bekräftelse för programavslut</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd monokrom ikon för aktivitetsfält (kräver omstart)</translation>
     </message>
 </context>
 <context>
@@ -2817,7 +2817,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Innehåll:</translation>
+        <translation>Torrentfilens innehåll:</translation>
     </message>
 </context>
 <context>
@@ -3089,19 +3089,19 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapporterar IP-adressen %1 till bevakare...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Datorn kommer nu att försättas i viloläge om du inte avbryter inom 15 sekunder...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Datorn kommer nu att stängas av om du inte avbryter inom 15 sekunder...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent kommer nu att avslutas om du inte avbryter inom 15 sekunder...</translation>
     </message>
 </context>
 <context>
@@ -3534,7 +3534,7 @@ Vill du installera den nu?</translation>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta avstängning</translation>
     </message>
 </context>
 <context>
@@ -3616,16 +3616,16 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicka för att växla till alternativa hastighetsgränser</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klicka för att växla till vanliga hastighetsgränser</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4298,30 +4298,30 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Begränsa utdelningsförhållande...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Gränser för sändning/hämtning</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd allmän förhållandegräns</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>knappGrupp</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ inte in någon förhållandegräns</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in förhållandegräns till</translation>
     </message>
 </context>
 <context>
@@ -5081,7 +5081,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdaterades</translation>
     </message>
 </context>
 <context>
