@@ -213,7 +213,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Assign label:</source>
-        <translation>Priradiť označenie</translation>
+        <translation>Priradiť označenie:</translation>
     </message>
     <message>
         <source>Apply rule to feeds:</source>
@@ -1603,7 +1603,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>M&amp;žnosti...</translation>
+        <translation>Mo&amp;žnosti...</translation>
     </message>
     <message>
         <source>Add &amp;URL...</source>
