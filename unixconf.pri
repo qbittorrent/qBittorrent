@@ -65,6 +65,10 @@ INSTALLS += man
           icon96 \
           icon128 \
           icon192
+
+      pixmap.files = menuicons/128x128/apps/qbittorrent.png
+      pixmap.path = $$PREFIX/share/pixmaps/
+      INSTALLS += pixmap
 }
 
 # INSTALL
