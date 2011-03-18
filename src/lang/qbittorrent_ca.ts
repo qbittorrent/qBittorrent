@@ -6087,15 +6087,15 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="246"/>
-        <location filename="../torrentadditiondlg.cpp" line="249"/>
+        <location filename="../torrentadditiondlg.cpp" line="251"/>
+        <location filename="../torrentadditiondlg.cpp" line="254"/>
         <source>Unable to decode torrent file:</source>
         <translation>Impossible descodificar l&apos;arxiu torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="521"/>
-        <location filename="../torrentadditiondlg.cpp" line="536"/>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
+        <location filename="../torrentadditiondlg.cpp" line="526"/>
+        <location filename="../torrentadditiondlg.cpp" line="541"/>
+        <location filename="../torrentadditiondlg.cpp" line="543"/>
         <source>Choose save path</source>
         <translation>Escollir directori de destí</translation>
     </message>
@@ -6110,106 +6110,106 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
         <translation>Enllaç magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="347"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="386"/>
+        <location filename="../torrentadditiondlg.cpp" line="391"/>
         <source>Rename the file</source>
         <translation>Rebatejar arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="387"/>
+        <location filename="../torrentadditiondlg.cpp" line="392"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="391"/>
-        <location filename="../torrentadditiondlg.cpp" line="421"/>
+        <location filename="../torrentadditiondlg.cpp" line="396"/>
+        <location filename="../torrentadditiondlg.cpp" line="426"/>
         <source>The file could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="392"/>
+        <location filename="../torrentadditiondlg.cpp" line="397"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>El nom introduït conté caràcters prohibits, si us plau n&apos;elegeixi un altre.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="422"/>
-        <location filename="../torrentadditiondlg.cpp" line="456"/>
+        <location filename="../torrentadditiondlg.cpp" line="427"/>
+        <location filename="../torrentadditiondlg.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Aquest nom ja està en ús. Si us plau, usi un nom diferent.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="455"/>
+        <location filename="../torrentadditiondlg.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>No es pot canviar el nom d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="503"/>
+        <location filename="../torrentadditiondlg.cpp" line="508"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible després de descarregar el torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="506"/>
+        <location filename="../torrentadditiondlg.cpp" line="511"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(Es necessiten més %1)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Empty save path</source>
         <translation>Ruta de destí buida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Please enter a save path</source>
         <translation>Si us plau introdueixi un directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Save path creation error</source>
         <translation>Error en la creació del directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Could not create the save path</source>
         <translation>Impossible crear el directori de destí</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>Seeding mode error</source>
         <translation>Error en la Sembra</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Vostè ha decidit ignorar la verificació d&apos;arxius. Tanmateix, els arxius locals no semblen existir a la carpeta de destí actual. Si us plau, desactivi aquesta funció o actualitzi la ruta de destinació.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>Invalid file selection</source>
         <translation>Selecció d&apos;arxiu invàlida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Ha de seleccionar almenys un arxiu torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>Priority</source>
         <translation>Prioritat</translation>
     </message>

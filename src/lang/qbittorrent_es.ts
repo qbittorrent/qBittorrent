@@ -6091,15 +6091,15 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="246"/>
-        <location filename="../torrentadditiondlg.cpp" line="249"/>
+        <location filename="../torrentadditiondlg.cpp" line="251"/>
+        <location filename="../torrentadditiondlg.cpp" line="254"/>
         <source>Unable to decode torrent file:</source>
         <translation>Imposible decodificar el archivo torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="521"/>
-        <location filename="../torrentadditiondlg.cpp" line="536"/>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
+        <location filename="../torrentadditiondlg.cpp" line="526"/>
+        <location filename="../torrentadditiondlg.cpp" line="541"/>
+        <location filename="../torrentadditiondlg.cpp" line="543"/>
         <source>Choose save path</source>
         <translation>Elegir directorio de destino</translation>
     </message>
@@ -6114,106 +6114,106 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <translation>Enlace magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="347"/>
         <source>Rename...</source>
         <translation>Renombrar...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="386"/>
+        <location filename="../torrentadditiondlg.cpp" line="391"/>
         <source>Rename the file</source>
         <translation>Renombrar archivo</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="387"/>
+        <location filename="../torrentadditiondlg.cpp" line="392"/>
         <source>New name:</source>
         <translation>Nuevo nombre:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="391"/>
-        <location filename="../torrentadditiondlg.cpp" line="421"/>
+        <location filename="../torrentadditiondlg.cpp" line="396"/>
+        <location filename="../torrentadditiondlg.cpp" line="426"/>
         <source>The file could not be renamed</source>
         <translation>No se puede cambiar el nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="392"/>
+        <location filename="../torrentadditiondlg.cpp" line="397"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Este nombre de archivo contiene caracteres prohibidos, por favor, elija uno otro.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="422"/>
-        <location filename="../torrentadditiondlg.cpp" line="456"/>
+        <location filename="../torrentadditiondlg.cpp" line="427"/>
+        <location filename="../torrentadditiondlg.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Este nombre ya está en uso. Por favor, use un nombre diferente.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="455"/>
+        <location filename="../torrentadditiondlg.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>No se puede cambiar el nombre de archivo</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="503"/>
+        <location filename="../torrentadditiondlg.cpp" line="508"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 disponible después de descargar el torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="506"/>
+        <location filename="../torrentadditiondlg.cpp" line="511"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(Se necesitan más %1)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Empty save path</source>
         <translation>Ruta de destino vacía</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Please enter a save path</source>
         <translation>Por favor introduzca un directorio de destino</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Save path creation error</source>
         <translation>Error en la creación del directorio de destino</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Could not create the save path</source>
         <translation>Imposible crear el directorio de destino</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Invalid label name</source>
         <translation>Nombre de Etiqueta no válido</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Por favor, no utilice caracteres especiales para el nombre de la Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>Seeding mode error</source>
         <translation>Error en la Siembra</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Usted ha decidido ignorar la verificación de archivos. Sin embargo, los archivos locales no parecen existir en la carpeta destino actual. Por favor, desactive esta función o actualice la ruta de destino.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>Invalid file selection</source>
         <translation>Selección de archivo inválida</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Debe seleccionar al menos un archivo torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>Priority</source>
         <translation>Prioridad</translation>
     </message>

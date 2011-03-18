@@ -1694,7 +1694,11 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Følgende parametre er støttet:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrentsti&lt;/li&gt;
+&lt;li&gt;%n: Torrentnavn&lt;/li&gt;
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1919"/>
@@ -5230,15 +5234,15 @@ Disse programtilleggene ble derimot deaktivert.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="246"/>
-        <location filename="../torrentadditiondlg.cpp" line="249"/>
+        <location filename="../torrentadditiondlg.cpp" line="251"/>
+        <location filename="../torrentadditiondlg.cpp" line="254"/>
         <source>Unable to decode torrent file:</source>
         <translation>Ikke i stand til å dekode torrent filen:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="521"/>
-        <location filename="../torrentadditiondlg.cpp" line="536"/>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
+        <location filename="../torrentadditiondlg.cpp" line="526"/>
+        <location filename="../torrentadditiondlg.cpp" line="541"/>
+        <location filename="../torrentadditiondlg.cpp" line="543"/>
         <source>Choose save path</source>
         <translation>Velg lagringssti</translation>
     </message>
@@ -5253,106 +5257,106 @@ Disse programtilleggene ble derimot deaktivert.</translation>
         <translation>Magnetlenke</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="342"/>
+        <location filename="../torrentadditiondlg.cpp" line="347"/>
         <source>Rename...</source>
         <translation>Omdøp...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="346"/>
+        <location filename="../torrentadditiondlg.cpp" line="351"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="386"/>
+        <location filename="../torrentadditiondlg.cpp" line="391"/>
         <source>Rename the file</source>
         <translation>Omdøp filen</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="387"/>
+        <location filename="../torrentadditiondlg.cpp" line="392"/>
         <source>New name:</source>
         <translation>Nytt navn:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="391"/>
-        <location filename="../torrentadditiondlg.cpp" line="421"/>
+        <location filename="../torrentadditiondlg.cpp" line="396"/>
+        <location filename="../torrentadditiondlg.cpp" line="426"/>
         <source>The file could not be renamed</source>
         <translation>Filen kunne ikke omdøpes</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="392"/>
+        <location filename="../torrentadditiondlg.cpp" line="397"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Dette filnavnet inneholder forbudte tegn, vennligst velg et annet et.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="422"/>
-        <location filename="../torrentadditiondlg.cpp" line="456"/>
+        <location filename="../torrentadditiondlg.cpp" line="427"/>
+        <location filename="../torrentadditiondlg.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Dette navnet er allerede i bruk i denne mappen. Vennligst bruk et annet navn.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="455"/>
+        <location filename="../torrentadditiondlg.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>Mappen kunne ikke omdøpes</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="503"/>
+        <location filename="../torrentadditiondlg.cpp" line="508"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 igjen etter torrent nedlasting)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="506"/>
+        <location filename="../torrentadditiondlg.cpp" line="511"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 mer kreves å laste ned)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Empty save path</source>
         <translation>Tom lagringssti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="591"/>
+        <location filename="../torrentadditiondlg.cpp" line="596"/>
         <source>Please enter a save path</source>
         <translation>Vennligst skriv en lagringssti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Save path creation error</source>
         <translation>Feil ved opprettelse av lagringssti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="675"/>
         <source>Could not create the save path</source>
         <translation>Kunne ikke opprette lagringsstien</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Invalid label name</source>
         <translation>Ugyldig etikettnavn</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="612"/>
+        <location filename="../torrentadditiondlg.cpp" line="617"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Vennligst ikke bruk noen spesielle tegn i etikettnavnet.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>Seeding mode error</source>
         <translation>Givningsmodusfeil</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="655"/>
+        <location filename="../torrentadditiondlg.cpp" line="660"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Du valgte å hoppe over filsjekking. Lokale filer ser derimot ikke ut til å eksistere i den nåværende destinasjonsmappen. Vennligst deaktiver denne funksjonen eller oppdater lagringsstien.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>Invalid file selection</source>
         <translation>Ugyldig filvalg</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="662"/>
+        <location filename="../torrentadditiondlg.cpp" line="667"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Du må velge minst en fil i torrenten</translation>
     </message>
