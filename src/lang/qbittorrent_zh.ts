@@ -2521,7 +2521,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>使用%f在参数中传输torrent路径</translation>
+        <translation type="obsolete">使用%f在参数中传输torrent路径</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -2609,6 +2609,14 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

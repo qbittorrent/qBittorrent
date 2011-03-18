@@ -2436,7 +2436,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Använd %f i parametrarna för att skicka med sökvägen till torrentfilen</translation>
+        <translation type="obsolete">Använd %f i parametrarna för att skicka med sökvägen till torrentfilen</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -2525,6 +2525,14 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
         <translation>Använd monokrom ikon för aktivitetsfält (kräver omstart)</translation>
+    </message>
+    <message>
+        <source>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

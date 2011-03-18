@@ -2940,7 +2940,7 @@ QGroupBox {
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Koristi %f kako bi se prošlo putanjom torrenta u parametrima</translation>
+        <translation type="obsolete">Koristi %f kako bi se prošlo putanjom torrenta u parametrima</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -3028,6 +3028,14 @@ QGroupBox {
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

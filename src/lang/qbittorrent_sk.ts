@@ -2508,7 +2508,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Pomocou %f môžete odovzdať v parametroch cestu k torrentu</translation>
+        <translation type="obsolete">Pomocou %f môžete odovzdať v parametroch cestu k torrentu</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -2597,6 +2597,14 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
         <translation>Používať monochromatickú ikonu v oznamovacej oblasti (vyžaduje reštart)</translation>
+    </message>
+    <message>
+        <source>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

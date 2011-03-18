@@ -2513,7 +2513,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
-        <translation>Використовуйте %f, щоб передати шлях торрента як параметр</translation>
+        <translation type="obsolete">Використовуйте %f, щоб передати шлях торрента як параметр</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -2602,6 +2602,14 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
         <translation>Використовувати монохромний логотип системного лотка (вимагає перезапуску)</translation>
+    </message>
+    <message>
+        <source>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

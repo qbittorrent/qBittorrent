@@ -473,9 +473,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>440</width>
-             <height>698</height>
+             <y>-330</y>
+             <width>499</width>
+             <height>744</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -892,7 +892,14 @@ QGroupBox {
                <item>
                 <widget class="QLabel" name="label_4">
                  <property name="text">
-                  <string>Use %f to pass the torrent path in parameters</string>
+                  <string>The following parameters are supported:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent path&lt;/li&gt;
+&lt;li&gt;%n: Torrent name&lt;/li&gt;
+&lt;/ul&gt;</string>
+                 </property>
+                 <property name="textFormat">
+                  <enum>Qt::RichText</enum>
                  </property>
                 </widget>
                </item>
@@ -2318,8 +2325,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>517</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -1977,6 +1977,8 @@ void QBtSession::autoRunExternalProgram(const QTorrentHandle &h, bool async) {
   else
     torrent_path = h.save_path();
   program.replace("%f", torrent_path);
+  // Replace %n by torrent name
+  program.replace("%n", h.name());
   QProcess *process = new QProcess;
   if(async) {
     connect(process, SIGNAL(finished(int)), this, SLOT(cleanUpAutoRunProcess(int)));
