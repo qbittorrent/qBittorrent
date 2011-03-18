@@ -226,6 +226,11 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
 
 void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   is_magnet = false;
+
+  // This is an URL to a local file, switch to local path
+  if(filePath.startsWith("file:", Qt::CaseInsensitive))
+    filePath = QUrl(filePath).toLocalFile();
+
   if(!QFile::exists(filePath)) {
     close();
     return;
