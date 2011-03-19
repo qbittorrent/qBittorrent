@@ -2661,7 +2661,11 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддерживаются следующие параметры:
+&lt;ul&gt;
+&lt;li&gt;%f: Путь торрента&lt;/li&gt;
+&lt;li&gt;%n: Имя торрента&lt;/li&gt;
+&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
