@@ -134,7 +134,7 @@ QBtSession::QBtSession()
   s->add_extension(&create_smart_ban_plugin);
   timerAlerts = new QTimer(this);
   connect(timerAlerts, SIGNAL(timeout()), SLOT(readAlerts()));
-  timerAlerts->start(3000);
+  timerAlerts->start(1000);
   connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
   resumeDataTimer.start(180000); // 3min
   // To download from urls
