@@ -893,7 +893,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     if(QFile::rename(path, path+".torrent")) path += ".torrent";
 #endif
   if(path.startsWith("file:", Qt::CaseInsensitive))
-    path = QUrl(path).toLocalFile();
+    path = QUrl::fromEncoded(path.toLocal8Bit()).toLocalFile();
   if(path.isEmpty()) return h;
 
   Q_ASSERT(!misc::isUrl(path));

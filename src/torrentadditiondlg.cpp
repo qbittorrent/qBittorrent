@@ -229,7 +229,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
 
   // This is an URL to a local file, switch to local path
   if(filePath.startsWith("file:", Qt::CaseInsensitive))
-    filePath = QUrl(filePath).toLocalFile();
+    filePath = QUrl::fromEncoded(filePath.toLocal8Bit()).toLocalFile();
 
   if(!QFile::exists(filePath)) {
     close();
