@@ -166,15 +166,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevestig verwijder torrent</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-adres om te melden aan trackers (vereist herstart)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon programma on-screen meldingen</translation>
     </message>
 </context>
 <context>
@@ -498,95 +498,95 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Fout</translation>
+        <translation>I/O Fout</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
+        <translation>De remote hostnaam werd niet gevonden (ongeldige hostnaam)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">De operatie werd geannuleerd</translation>
+        <translation>De operatie werd geannuleerd</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">De remote server sloot the verbinding permanent, voor the gehele reactie werd ontvangen en verwerkt</translation>
+        <translation>De remote server sloot de verbinding permanent, voor de gehele reactie werd ontvangen en verwerkt</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">De verbinding naar de remote server timede out</translation>
+        <translation>De verbinding naar de remote server timede out</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/T|S handshake mislukt</translation>
+        <translation>SSL/T|S handshake mislukt</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">De remote server weigerde de verbinding</translation>
+        <translation>De remote server weigerde de verbinding</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">De verbinding naar de proxy server werd geweigerd</translation>
+        <translation>De verbinding naar de proxy server werd geweigerd</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">De proxy server sloot de verbinding permanent</translation>
+        <translation>De proxy server sloot de verbinding permanent</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">De proxy host name werd niet gevonden</translation>
+        <translation>De proxy host name werd niet gevonden</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
+        <translation>De verbinding naar de proxy timede out of the proxy reageerde niet op tijd op het verzonden verzoek</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
+        <translation>De proxy vereist authenticatie om in te kunnen gaan op het verzoek maar accepteerde geen van de aangeboden credentials</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">De toegang tot de remote content werd genegeerd (401)</translation>
+        <translation>De toegang tot de remote content werd genegeerd (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">De gevraagde operatie op de remote content is niet toegestaan</translation>
+        <translation>De gevraagde operatie op de remote content is niet toegestaan</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">De remote content werd niet gevonden op de server (404)</translation>
+        <translation>De remote content werd niet gevonden op de server (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
+        <translation>De remote server vereist authenticatie om de inhoud te presenteren maar de gegeven credentials werden niet geaccepteerd</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
+        <translation>De Network Access API kon niet ingaan op het verzoek want het protocol is niet bekend</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">De verzochte operatie is niet geldig voor dit protocol</translation>
+        <translation>De verzochte operatie is niet geldig voor dit protocol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Een onbekende netwerkgerelateerde fout werd gevonden</translation>
+        <translation>Een onbekende netwerkgerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Een onbekende proxy-gerelateerde fout werd gevonden</translation>
+        <translation>Een onbekende proxy-gerelateerde fout werd gevonden</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
+        <translation>Een onbekende error gerelateerd tot de remote content werd gevonden</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Een storing in het protocol werd gedetecteerd</translation>
+        <translation>Een storing in het protocol werd gedetecteerd</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Onbekende fout</translation>
+        <translation>Onbekende fout</translation>
     </message>
 </context>
 <context>
@@ -1316,11 +1316,11 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Sla op</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent client is niet bereikbaar</translation>
     </message>
 </context>
 <context>
@@ -1774,7 +1774,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Het wachtwoord moet minstens 3 tekens bevatten</translation>
     </message>
 </context>
 <context>
@@ -2375,31 +2375,31 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Gedrag</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Taal</translation>
+        <translation>Taal</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Power Management</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop systeem sleep wanneer torrent actief zijn</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Sla authenticatie over voor localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag voor programma afsluiten bevestiging</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik monochrome system tray icon (vereist herstart)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2704,7 +2704,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Torrent inhoud:</translation>
+        <translation>Torrent inhoud:</translation>
     </message>
 </context>
 <context>
@@ -2976,19 +2976,19 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Melden van IP-adres %1 aan trackers...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>De computer zal nu in sleep modus gaan tenzij u annuleert binnen 15 seconden...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>De computer zal nu afgesloten worden tenzij u annuleert binnen 15 seconden...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent zal nu afsluiten tenzij u annuleert binnen 15 seconden...</translation>
     </message>
 </context>
 <context>
@@ -3414,7 +3414,7 @@ Wilt u het nu installeren?</translation>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Afsluit bevestiging</translation>
     </message>
 </context>
 <context>
@@ -3496,16 +3496,16 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klik om om te schakelen naar alternatieve snelheidslimieten</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Klik om om te schakelen naar algemene snelheidslimieten</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4146,30 +4146,30 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Limiet deel ratio...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Upload/Download Ratio limietering</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik globale ratio limiet</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>knopGroep</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Zet geen ratio limiet</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Zet ratio limiet op</translation>
     </message>
 </context>
 <context>
@@ -4929,7 +4929,7 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Succesvol vernieuwd</translation>
     </message>
 </context>
 <context>
