@@ -170,15 +170,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>确认删除torrent</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>向追踪器报告IP地址(需重启)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>显示程序通知</translation>
     </message>
 </context>
 <context>
@@ -597,95 +597,95 @@ You should get this information from your Web browser preferences.</source>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">输入/输出错误</translation>
+        <translation>输入/输出错误</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">远端主机名未找到(无效主机名)</translation>
+        <translation>未找到远端主机名(无效主机名)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">操作被取消</translation>
+        <translation>操作被取消</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">远端服务器在接到和处理完整回复前过早关闭连接</translation>
+        <translation>远端服务器在接到和处理完整回复前过早关闭连接</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">连接远端伺服器超时</translation>
+        <translation>连接远端伺服器超时</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS握手失败</translation>
+        <translation>SSL/TLS握手失败</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">远端服务器拒绝连接</translation>
+        <translation>远端服务器拒绝连接</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">连接到代理服务器被拒绝</translation>
+        <translation>连接到代理服务器被拒绝</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">代理服务器过早关闭连接</translation>
+        <translation>代理服务器过早关闭连接</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">未找到代理主机名</translation>
+        <translation>未找到代理主机名</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">连接到代理服务器超时或代理服务器未及时回复请求</translation>
+        <translation>连接到代理服务器超时或代理服务器未及时回复请求</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">为了执行要求,代理服务器需要认证但不接受任何提供的凭证 </translation>
+        <translation>为了执行要求,代理服务器需要认证但不接受任何提供的凭证</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">读取远端内容被拒绝(401)</translation>
+        <translation>读取远端内容被拒绝 (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">对于远端内容请求的操作未被允许</translation>
+        <translation>对于远端内容请求的操作未被允许</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">内容在远端伺服器上未找到(404)</translation>
+        <translation>内容在远端伺服器上未找到(404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">为了提供内容，远端伺服器需要认证但不接受任何提供的凭证</translation>
+        <translation>为了提供内容，远端伺服器需要认证但不接受任何提供的凭证</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">未知协议</translation>
+        <translation>由于协议未知网络访问API不能履行请求</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">请求的操作对该协议无效</translation>
+        <translation>请求的操作对该协议无效</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">检测到未知的关于局域网的错误</translation>
+        <translation>检测到未知的关于局域网的错误</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">检测到未知的关于代理服务器的错误</translation>
+        <translation>检测到未知的关于代理服务器的错误</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">检测到未知的关于远端内容的错误</translation>
+        <translation>检测到未知的关于远端内容的错误</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">检测到协议故障</translation>
+        <translation>检测到协议故障</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">未知错误</translation>
+        <translation>未知错误</translation>
     </message>
 </context>
 <context>
@@ -1521,11 +1521,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>无法访问qBittorrent客户端</translation>
     </message>
 </context>
 <context>
@@ -1984,7 +1984,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>密码应包含至少三个字符</translation>
     </message>
 </context>
 <context>
@@ -2585,31 +2585,31 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>行为</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>电源管理</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>当torrent激活时禁止系统休眠</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>绕过对本地主机的验证</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>请求程序退出确认</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>使用单色系统托盘图标(需重启)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2926,7 +2926,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Torrent内容:</translation>
+        <translation>Torrent内容:</translation>
     </message>
 </context>
 <context>
@@ -3198,19 +3198,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>向追踪器报告IP地址%1...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您15秒内不取消电脑将进入休眠模式...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您15秒内不取消电脑将被关闭...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您15秒内不取消qBitorrent将退出...</translation>
     </message>
 </context>
 <context>
@@ -3647,7 +3647,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>确认关闭</translation>
     </message>
 </context>
 <context>
@@ -3729,16 +3729,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>点击以切换到其他速度限制</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>点击以切换到常规速度限制</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4419,30 +4419,30 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>限制分享率...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent上传/下载率限制</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>使用总比率限制</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>按键组</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>不设比率限制</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>设比率限制为</translation>
     </message>
 </context>
 <context>
@@ -5202,7 +5202,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新成功</translation>
     </message>
 </context>
 <context>
