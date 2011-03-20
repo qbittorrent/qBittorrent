@@ -1,4 +1,4 @@
-* Unknown - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
+* Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
     - FEATURE: Added search field for torrent content
     - FEATURE: Added auto-shutdown confirmation dialog
     - FEATURE: Added option to skip torrent deletion confirmation (Ville Kiiskinen)
