@@ -208,15 +208,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdite brisanje torrenta</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP adresa za prijaviti trackerima (potrebno ponovno pokretanje)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikazuj obavijesti.na ekranu</translation>
     </message>
 </context>
 <context>
@@ -639,95 +639,95 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O greška</translation>
+        <translation>I/O greška</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Ime udaljenog računala nije nađeno (neispravno ime računala)</translation>
+        <translation>Ime udaljenog računala nije nađeno (neispravno ime računala)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operacija je otkazana</translation>
+        <translation>Operacija je otkazana</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Udaljeni poslužitelj je prerano prekinuo spajanje, prije nego je primljen i obrađen cijeli odgovor</translation>
+        <translation>Udaljeni poslužitelj je prerano prekinuo spajanje, prije nego je primljen i obrađen cijeli odgovor</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Spajanje s udaljenim poslužiteljem je isteklo</translation>
+        <translation>Spajanje s udaljenim poslužiteljem je isteklo</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS usklađivanje nije uspjelo</translation>
+        <translation>SSL/TLS usklađivanje nije uspjelo</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Udaljeni poslužitelj odbija spajanje</translation>
+        <translation>Udaljeni poslužitelj odbija spajanje</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Spajanje s proxy poslužiteljem je odbijeno</translation>
+        <translation>Spajanje s proxy poslužiteljem je odbijeno</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Proxy server je prerano prekinuo spajanje</translation>
+        <translation>Proxy server je prerano prekinuo spajanje</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Ime proxy računala nije nađeno</translation>
+        <translation>Ime proxy računala nije nađeno</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Spajanje prema proxyju je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
+        <translation>Spajanje prema proxyju je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Proxy zahtjeva ovjeru kako bi prihvatio zahtjev, ali nije prihvatio ponuđene vjerodajnice</translation>
+        <translation>Proxy zahtjeva autentifikaciju kako bi prihvatio zahtjev, ali nije prihvatio ponuđene vjerodajnice</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Pristup udaljenom sadržaju je odbijen (401)</translation>
+        <translation>Pristup udaljenom sadržaju je odbijen (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Tražena operacija nad udaljenim sadržajem nije dopuštena</translation>
+        <translation>Tražena operacija nad udaljenim sadržajem nije dopuštena</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Udaljeni sadržaj nije nađen na poslužitelju (404)</translation>
+        <translation>Udaljeni sadržaj nije nađen na poslužitelju (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Udaljeni poslužitelj zahtjeva ovjeru kako bi dostavio sadržaj, ali pružene vjerodajnice nisu prihvaćene</translation>
+        <translation>Udaljeni poslužitelj zahtjeva autentifikaciju kako bi dostavio sadržaj, ali pružene vjerodajnice nisu prihvaćene</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Network Access API ne može prihvatiti zahtjev jer protokol nije poznat</translation>
+        <translation>Network Access API ne može prihvatiti zahtjev jer protokol nije poznat</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Tražena operacija je neispravna za ovaj protokol</translation>
+        <translation>Tražena operacija je neispravna za ovaj protokol</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Otkrivena je nepoznata greška vezana za mrežu</translation>
+        <translation>Otkrivena je nepoznata greška vezana za mrežu</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Otkrivena je nepoznata greška vezana za proxy</translation>
+        <translation>Otkrivena je nepoznata greška vezana za proxy</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Otkrivena je nepoznata greška vezana za udaljeni sadržaj </translation>
+        <translation>Otkrivena je nepoznata greška vezana za udaljeni sadržaj </translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Otkriven je kvar u protokolu</translation>
+        <translation>Otkriven je kvar u protokolu</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Nepoznata greška</translation>
+        <translation>Nepoznata greška</translation>
     </message>
 </context>
 <context>
@@ -1594,11 +1594,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent klijent nije dostupan</translation>
     </message>
 </context>
 <context>
@@ -2155,7 +2155,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Lozinka mora imati najmanje 3 znaka</translation>
     </message>
 </context>
 <context>
@@ -3004,31 +3004,31 @@ QGroupBox {
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponašanje</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Jezik</translation>
+        <translation>Jezik</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravljanje energijom</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Spriječi stanje mirovanja kada su torrenti aktivni</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaobiđi autentifikaciju za localhosta</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Traži potvrdu za zatvaranje programa</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi jednobojnu ikonu u prostor obavijesti (potrebno ponovno pokretanje)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -3361,7 +3361,7 @@ QGroupBox {
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Sadržaj torrenta:</translation>
+        <translation>Sadržaj torrenta:</translation>
     </message>
 </context>
 <context>
@@ -3633,19 +3633,19 @@ QGroupBox {
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prijavljivanje IP adrese trackerima...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Računalo će sada prijeći u stanje mirovanja osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Računalo će sada biti isključeno osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent će se sada zatvoriti osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
 </context>
 <context>
@@ -4094,7 +4094,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrda gašenja</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4176,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknite za prelazak na alternativne limite brzine</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknite za prelazak na uobičajene limite brzine</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4893,18 +4893,18 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Limit omjera djeljenja</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitiranje omjera slanja/preuzimanja torrenta</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi globalni limit omjera</translation>
     </message>
     <message>
         <source>buttonGroup</source>
@@ -4912,11 +4912,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne podešavaj limit omjera</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Podesi limit omjera na</translation>
     </message>
 </context>
 <context>
@@ -5706,7 +5706,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno obnovljeno</translation>
     </message>
 </context>
 <context>

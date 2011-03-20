@@ -222,6 +222,7 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   hideTorrentContent();
   // Limit dialog width
   limitDialogWidth();
+  // Raise to top
 }
 
 void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
