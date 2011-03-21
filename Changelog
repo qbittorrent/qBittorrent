@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.7.1
+    - BUGFIX: Limit file names to 255 bytes to avoid issues on Linux FS
     - I18N: Updated German translation
 
 * Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0

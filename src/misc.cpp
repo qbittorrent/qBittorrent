@@ -79,13 +79,15 @@ const int UNLEN = 256;
 
 using namespace libtorrent;
 
+const int MAX_FILENAME_LENGTH = 255;
+
 static struct { const char *source; const char *comment; } units[] = {
-    QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
-    QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
-    QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
-    QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
-    };
+  QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
+  QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
+  QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
+  QT_TRANSLATE_NOOP3("misc", "GiB", "gibibytes (1024 mibibytes)"),
+  QT_TRANSLATE_NOOP3("misc", "TiB", "tebibytes (1024 gibibytes)")
+};
 
 QString misc::QDesktopServicesDataLocation() {
 #ifdef Q_WS_WIN
@@ -291,34 +293,64 @@ void misc::shutdownComputer(bool sleep) {
 }
 #endif // DISABLE_GUI
 
+QString misc::fixFileNames(QString path) {
+  //qDebug() << Q_FUNC_INFO << path;
+  path.replace("\\", "/");
+  QStringList parts = path.split("/", QString::SkipEmptyParts);
+  if(parts.isEmpty()) return path;
+  QString last_part = parts.takeLast();
+  QList<QString>::iterator it;
+  for(it = parts.begin(); it != parts.end(); it++) {
+    QByteArray raw_filename = it->toLocal8Bit();
+    // Make sure the filename is not too long
+    if(raw_filename.size() > MAX_FILENAME_LENGTH) {
+      qDebug() << "Folder" << *it << "was cut because it was too long";
+      raw_filename.resize(MAX_FILENAME_LENGTH);
+      *it = QString::fromLocal8Bit(raw_filename.constData());
+      qDebug() << "New folder name is" << *it;
+      Q_ASSERT(it->length() == MAX_FILENAME_LENGTH);
+    }
+  }
+  // Fix the last part (file name)
+  QByteArray raw_lastPart = last_part.toLocal8Bit();
+  qDebug() << "Last part length:" << raw_lastPart.length();
+  if(raw_lastPart.length() > MAX_FILENAME_LENGTH) {
+    qDebug() << "Filename" << last_part << "was cut because it was too long";
+    // Shorten the name, keep the file extension
+    int point_index = raw_lastPart.lastIndexOf(".");
+    QByteArray extension = "";
+    if(point_index >= 0) {
+      extension = raw_lastPart.mid(point_index);
+      raw_lastPart = raw_lastPart.left(point_index);
+    }
+    raw_lastPart = raw_lastPart.left(MAX_FILENAME_LENGTH-extension.length()) + extension;
+    Q_ASSERT(raw_lastPart.length() == MAX_FILENAME_LENGTH);
+    last_part = QString::fromLocal8Bit(raw_lastPart.constData());
+    qDebug() << "New file name is" << last_part;
+  }
+  parts << last_part;
+  return parts.join("/");
+}
+
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
-#if LIBTORRENT_VERSION_MINOR >= 16
-  file_storage fs = t->files();
-#endif
   if(t->num_files() == 1) {
     // Single file torrent
-    // Remove possible subfolders
-#if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = toQStringU(fs.file_path(t->file_at(0)));
-#else
     QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
-#endif
-    t->rename_file(0, fileName(path).toUtf8().data());
-    return QString::null;
+    // Remove possible subfolders
+    path = fixFileNames(fileName(path));
+    t->rename_file(0, path.toUtf8().data());
+    return QString();
   }
   QString root_folder;
   int i = 0;
   for(torrent_info::file_iterator it = t->begin_files(); it < t->end_files(); it++) {
-#if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = toQStringU(fs.file_path(*it));
-#else
     QString path = QString::fromUtf8(it->path.string().c_str());
-#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
-      t->rename_file(i, path_parts.join("/").toUtf8().data());
     }
+    path = fixFileNames(path_parts.join("/"));
+    t->rename_file(i, path.toUtf8().data());
     ++i;
   }
   return root_folder;
@@ -326,33 +358,24 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
 
 QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   torrent_info t = h.get_torrent_info();
-#if LIBTORRENT_VERSION_MINOR >= 16
-  file_storage fs = t.files();
-#endif
   if(t.num_files() == 1) {
     // Single file torrent
     // Remove possible subfolders
-#if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = misc::toQStringU(fs.file_path(t.file_at(0)));
-#else
     QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
-#endif
-    t.rename_file(0, fileName(path).toUtf8().data());
-    return QString::null;
+    path = fixFileNames(fileName(path));
+    t.rename_file(0, path.toUtf8().data());
+    return QString();
   }
   QString root_folder;
   int i = 0;
   for(torrent_info::file_iterator it = t.begin_files(); it < t.end_files(); it++) {
-#if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = toQStringU(fs.file_path(*it));
-#else
     QString path = QString::fromUtf8(it->path.string().c_str());
-#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
-      h.rename_file(i, path_parts.join("/").toUtf8().data());
     }
+    path = fixFileNames(path_parts.join("/"));
+    h.rename_file(i, path.toUtf8().data());
     ++i;
   }
   return root_folder;
