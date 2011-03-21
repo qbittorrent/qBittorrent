@@ -78,8 +78,8 @@ public:
     if(name.endsWith(".!qB"))
       name.chop(4);
     itemData << name;
-    qDebug("Created a TreeItem file with name %s", qPrintable(getName()));
-    qDebug("parent is %s", qPrintable(parent->getName()));
+    //qDebug("Created a TreeItem file with name %s", qPrintable(getName()));
+    //qDebug("parent is %s", qPrintable(parent->getName()));
     itemData << QVariant((qulonglong)f.size);
     total_done = 0;
     itemData << 0.; // Progress;
