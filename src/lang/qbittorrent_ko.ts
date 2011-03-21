@@ -2586,31 +2586,31 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PreviewSelect</name>
     <message>
-        <location filename="../previewselect.cpp" line="18"/>
+        <location filename="../previewselect.cpp" line="48"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="19"/>
+        <location filename="../previewselect.cpp" line="49"/>
         <source>Size</source>
         <translation type="unfinished">크기</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="20"/>
+        <location filename="../previewselect.cpp" line="50"/>
         <source>Progress</source>
         <translation type="unfinished">진행상황</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="45"/>
-        <location filename="../previewselect.cpp" line="80"/>
-        <location filename="../previewselect.cpp" line="86"/>
+        <location filename="../previewselect.cpp" line="75"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Preview impossible</source>
         <translation type="unfinished">미리보기 불가</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="45"/>
-        <location filename="../previewselect.cpp" line="80"/>
-        <location filename="../previewselect.cpp" line="86"/>
+        <location filename="../previewselect.cpp" line="75"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation type="unfinished">죄송합니다. 이 파일은 미리보기를 할수 없습니다</translation>
     </message>

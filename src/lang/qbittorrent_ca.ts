@@ -2798,31 +2798,31 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PreviewSelect</name>
     <message>
-        <location filename="../previewselect.cpp" line="18"/>
+        <location filename="../previewselect.cpp" line="48"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="19"/>
+        <location filename="../previewselect.cpp" line="49"/>
         <source>Size</source>
         <translation>Mida</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="20"/>
+        <location filename="../previewselect.cpp" line="50"/>
         <source>Progress</source>
         <translation>Progrés</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="45"/>
-        <location filename="../previewselect.cpp" line="80"/>
-        <location filename="../previewselect.cpp" line="86"/>
+        <location filename="../previewselect.cpp" line="75"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Preview impossible</source>
         <translation>Impossible vista prèvia</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="45"/>
-        <location filename="../previewselect.cpp" line="80"/>
-        <location filename="../previewselect.cpp" line="86"/>
+        <location filename="../previewselect.cpp" line="75"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Ho sento, no es pot realitzar una vista prèvia d&apos;aquest arxiu</translation>
     </message>
