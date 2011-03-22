@@ -164,15 +164,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar deletar torrent</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço IP para reportar aos trackers (requer reinicio)</translation>
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir notificações do programa na tela</translation>
     </message>
 </context>
 <context>
@@ -591,95 +591,95 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de I/O</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">O host remoto não foi encontrado (host inválido)</translation>
+        <translation>O host remoto não foi encontrado (host inválido)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">A operação foi cancelada</translation>
+        <translation>A operação foi cancelada</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">O servidor remoto fechou a conexão, antes de responder, receber e processar</translation>
+        <translation>O servidor remoto fechou a conexão, antes de responder, receber e processar</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Atingiu o fim do tempo da conexão com o servidor remoto</translation>
+        <translation>Atingiu o fim do tempo da conexão com o servidor remoto</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS falhou</translation>
+        <translation>SSL/TLS falhou</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">O servidor remoto recusou a conexão</translation>
+        <translation>O servidor remoto recusou a conexão</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Conexão com proxy foi recusada</translation>
+        <translation>Conexão com proxy foi recusada</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Servidor proxy fechou a conexão</translation>
+        <translation>Servidor proxy fechou a conexão</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">O host name do proxy não foi encontrado</translation>
+        <translation>O host name do proxy não foi encontrado</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Fim do tempo de conexão com o proxy ou o proxy não respondeu no tempo</translation>
+        <translation>Fim do tempo de conexão com o proxy ou o proxy não respondeu no tempo</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">O proxy requer autenticação mas não aceitou as credenciais oferecidas</translation>
+        <translation>O proxy requer autenticação mas não aceitou as credenciais oferecidas</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">O conteúdo do acesso remoto foi negado (401)</translation>
+        <translation>O conteúdo do acesso remoto foi negado (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">A operação requerida no servidor não foi permitida</translation>
+        <translation>A operação requerida no servidor não foi permitida</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">O conteúdo não foi encontrado no servidor (404)</translation>
+        <translation>O conteúdo não foi encontrado no servidor (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">O servidor remoto requer autenticação para servir os dados mas as credenciais oferecidas não foram aceitas</translation>
+        <translation>O servidor remoto requer autenticação para servir os dados mas as credenciais oferecidas não foram aceitas</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">O acesso a internet não honrou o pedido pois o protocolo é desconhecido</translation>
+        <translation>O acesso a internet não honrou o pedido pois o protocolo é desconhecido</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Operação inválida para este protocolo</translation>
+        <translation>Operação inválida para este protocolo</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Um desconhecido erro relatado de internet foi detectado</translation>
+        <translation>Um desconhecido erro relatado de internet foi detectado</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Um desconhecido erro de proxy relatado foi detectado</translation>
+        <translation>Um desconhecido erro de proxy relatado foi detectado</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Um desconhecido erro relacionado ao conteúdo do servidor foi detectado</translation>
+        <translation>Um desconhecido erro relacionado ao conteúdo do servidor foi detectado</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Um erro no protocolo foi detectado</translation>
+        <translation>Um erro no protocolo foi detectado</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Erro desconhecido</translation>
+        <translation>Erro desconhecido</translation>
     </message>
 </context>
 <context>
@@ -1515,11 +1515,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliente qBittorrent não está alcançável</translation>
     </message>
 </context>
 <context>
@@ -1980,7 +1980,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>A senha deve conter ao menos 3 caracteres</translation>
     </message>
 </context>
 <context>
@@ -2103,7 +2103,6 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <name>Preferences</name>
     <message>
         <source>UI</source>
-        <extracomment>User Interface</extracomment>
         <translation type="obsolete">UI</translation>
     </message>
     <message>
@@ -2581,31 +2580,31 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Comportamento</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Linguagem</translation>
+        <translation>Linguagem</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestão de Energia</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema de espera inibe quando torrents estão activos</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Desvio de autenticação para localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Solicite confirmação para fechar o programa</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Use o ícone da bandeja do sistema monocromático (requer reinicialização)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2922,7 +2921,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Conteúdo do torrent:</translation>
+        <translation>Conteúdo do torrent:</translation>
     </message>
 </context>
 <context>
@@ -3194,19 +3193,19 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reportando endereço IP %1 aos trackers...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>O computador entrará em modo de espera a não ser que você cancele durante os próximos 15 segundos...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>O computador irá se desligar a não ser que você cancele durante os próximos 15 segundos...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent irá sair a não ser que você cancele durante os próximos 15 segundos...</translation>
     </message>
 </context>
 <context>
@@ -3647,7 +3646,7 @@ Gostaria de instalar agora?</translation>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmação de desligamento</translation>
     </message>
 </context>
 <context>
@@ -3729,16 +3728,16 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique aqui para mudar para os limites de velocidade alternativa</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique aqui para alternar para regular os limites de velocidade</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4419,30 +4418,30 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Taxa de limite de compartilhamento...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Upload/Download limite</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar taxa de limite global</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>botãoGrupo</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Não configurar taxa de limite</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar limite para</translation>
     </message>
 </context>
 <context>
@@ -5202,7 +5201,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizado com sucesso</translation>
     </message>
 </context>
 <context>
