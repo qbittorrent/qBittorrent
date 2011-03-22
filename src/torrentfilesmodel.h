@@ -357,7 +357,7 @@ public:
       Q_ASSERT(fp[i] >= 0);
       files_index[i]->setProgress(fp[i]);
     }
-    emit layoutChanged();
+    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
   void updateFilesPriorities(std::vector<int> fprio) {
@@ -366,7 +366,7 @@ public:
       //qDebug("Called updateFilesPriorities with %d", fprio[i]);
       files_index[i]->setPriority(fprio[i]);
     }
-    emit layoutChanged();
+    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
   std::vector<int> getFilesPriorities(unsigned int nbFiles) const {
@@ -405,8 +405,8 @@ public:
           item->setPriority(prio::IGNORED);
         else
           item->setPriority(prio::NORMAL);
+        emit dataChanged(this->index(0,0), this->index(rowCount(), columnCount()));
         emit filteredFilesChanged();
-        emit dataChanged(this->index(0,0), this->index(rowCount(), 0));
       }
       return true;
     }
@@ -536,14 +536,13 @@ public:
 
   void clear() {
     qDebug("clear called");
-    emit layoutAboutToBeChanged();
+    beginResetModel();
     if(files_index) {
       delete [] files_index;
       files_index = 0;
     }
     rootItem->deleteAllChildren();
-    reset();
-    emit layoutChanged();
+    endResetModel();
   }
 
   void setupModelData(const libtorrent::torrent_info &t) {
@@ -590,21 +589,19 @@ public:
 
 public slots:
   void selectAll() {
-    emit layoutAboutToBeChanged();
     for(int i=0; i<rootItem->childCount(); ++i) {
       TorrentFileItem *child = rootItem->child(i);
       if(child->getPriority() == prio::IGNORED)
         child->setPriority(prio::NORMAL);
     }
-    emit layoutChanged();
+    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
   void selectNone() {
-    emit layoutAboutToBeChanged();
     for(int i=0; i<rootItem->childCount(); ++i) {
       rootItem->child(i)->setPriority(prio::IGNORED);
     }
-    emit layoutChanged();
+   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
 signals:
@@ -645,11 +642,10 @@ public:
   }
 
   QModelIndex parent(const QModelIndex & child) const {
-     if(!child.isValid()) return QModelIndex();
-     Q_ASSERT(sourceModel());
-     QModelIndex sourceParent = sourceModel()->parent(mapToSource(child));
-     if(!sourceParent.isValid()) return QModelIndex();
-     return mapFromSource(sourceParent);
+    if(!child.isValid()) return QModelIndex();
+    QModelIndex sourceParent = m_model->parent(mapToSource(child));
+    if(!sourceParent.isValid()) return QModelIndex();
+    return mapFromSource(sourceParent);
   }
 
 signals:
@@ -669,14 +665,14 @@ public slots:
     for(int i=0; i<rowCount(); ++i) {
       setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
     }
-    emit layoutChanged();
+    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
   void selectNone() {
     for(int i=0; i<rowCount(); ++i) {
       setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
     }
-    emit layoutChanged();
+    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
 private:
