@@ -1816,7 +1816,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Com a mínim la contrasenya ha de tenir 3 caràcters</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -2258,7 +2258,11 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Els següents paràmetres són compatibles:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent ruta&lt;/li&gt;
+&lt;li&gt;%n: Torrent nom&lt;/li&gt;
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1975"/>
@@ -2342,7 +2346,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilitza icona monocromàtic a la safata del sistema (cal reinicar)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -4147,7 +4151,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <location filename="../statusbar.h" line="194"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/s</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -4162,12 +4166,12 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliqueu per canviar als límits de velocitat alternativa</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliqueu per canviar als límits de velocitat normal</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -4927,7 +4931,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Límit ràtio compartició ...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="654"/>
@@ -5026,29 +5030,29 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Límits de ràtio de Pujada/Baixada</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilitza límit de ràtio global</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sense límits de ràtio</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitar ràtio a</translation>
     </message>
 </context>
 <context>
