@@ -140,7 +140,7 @@ void SearchEngine::installPython() {
   DownloadThread *pydownloader = new DownloadThread(this);
   connect(pydownloader, SIGNAL(downloadFinished(QString,QString)), this, SLOT(pythonDownloadSuccess(QString,QString)));
   connect(pydownloader, SIGNAL(downloadFailure(QString,QString)), this, SLOT(pythonDownloadFailure(QString,QString)));
-  pydownloader->downloadUrl("http://python.org/ftp/python/2.6.5/python-2.6.5.msi");
+  pydownloader->downloadUrl("http://python.org/ftp/python/2.7.1/python-2.7.1.msi");
 }
 
 void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
