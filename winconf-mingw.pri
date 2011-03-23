@@ -1,5 +1,9 @@
 RC_FILE = qbittorrent_mingw.rc
 
+#You need to link with libtorrent > 0.15.5 (or svn) and you must
+#configure libtorrent to use iconv in the building process. This is
+#needed for correct Unicode support.
+
 #Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
   LIBS += libtorrent \
