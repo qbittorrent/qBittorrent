@@ -1,8 +1,5 @@
 RC_FILE = qbittorrent_mingw.rc
 
-# Enable Wide characters
-DEFINES += TORRENT_USE_WPATH
-
 #Adapt the lib names/versions accordingly
 CONFIG(debug, debug|release) {
   LIBS += libtorrent \
