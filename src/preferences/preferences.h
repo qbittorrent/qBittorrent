@@ -994,7 +994,7 @@ public:
     settings.setValue("Magnet/Default", "Magnet URI");
     settings.setValue("Magnet/Content Type", "application/x-magnet");
     settings.setValue("Magnet/URL Protocol", "");
-    settings.setValue("Magnet/DefaultIcon\\Default", icon_str);
+    settings.setValue("Magnet/DefaultIcon/Default", icon_str);
     settings.setValue("Magnet/shell/Default", "open");
     settings.setValue("Magnet/shell/open/command/Default", command_str);
   }

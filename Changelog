@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.7.1
     - BUGFIX: Limit file names to 255 bytes to avoid issues on Linux FS
     - BUGFIX: Fix possible crash when changing the priority of a file
+    - BUGFIX: Magnet link association fix on Win32 (sledgehammer999)
     - I18N: Updated German, Portuguese, Brazilian, Spanish and Catalan translations
 
 * Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
