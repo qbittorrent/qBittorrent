@@ -1,11 +1,20 @@
 # Adapt these paths on Windows
+
+#Point this to the boost include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_46_0)
+#Point this to the libtorrent include folser
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/include)
+#Point this to the zlib include folder(libtorrent's if you used that)
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_15/zlib)
+#Point this to the openssl include folder
 INCLUDEPATH += $$quote(C:/OpenSSL/include)
 
+#Point this to the openssl lib folder
 LIBS += $$quote(-LC:/OpenSSL/lib/VC)
-LIBS += $$quote(-LC:/qBittorrent/libs)
+#Point this to the libtorrent lib folder
+LIBS += $$quote(-LC:/qBittorrent/RC_0_15/bin/<path-according-to-the-build-options-chosen>)
+#Point this to the boost lib folder
+LIBS += $$quote(-LC:/qBittorrent/boost_1_46_0/stage/lib)
 
 # LIBTORRENT DEFINES
 DEFINES += BOOST_ALL_NO_LIB
@@ -24,9 +33,9 @@ DEFINES += _SCL_SECURE_NO_DEPRECATE
 DEFINES += _UNICODE
 DEFINES += _WIN32
 DEFINES += _WIN32_WINNT=0x0500
+DEFINES += _WIN32_IE=0x0500
 DEFINES += __USE_W32_SOCKETS
 DEFINES += WITH_SHIPPED_GEOIP_H
-DEFINES += TORRENT_USE_WPATH
 
 CONFIG(debug, debug|release) {
   DEFINES += TORRENT_DEBUG
@@ -34,23 +43,12 @@ CONFIG(debug, debug|release) {
   DEFINES += NDEBUG
 }
 
-RC_FILE = qbittorrent.rc
-
-CONFIG(debug, debug|release) {
-  LIBS += libtorrentd.lib \
-          libboost_system-vc90-mt-gd.lib \
-          libboost_filesystem-vc90-mt-gd.lib \
-          libboost_thread-vc90-mt-gd.lib
-} else {
-  LIBS += libtorrent.lib \
-          libboost_system-vc90-mt.lib \
-          libboost_filesystem-vc90-mt.lib \
-          libboost_thread-vc90-mt.lib
+win32-g++ {
+  include(winconf-mingw.pri)
 }
-
-LIBS += advapi32.lib shell32.lib
-LIBS += libeay32MD.lib ssleay32MD.lib
-LIBS += PowrProf.lib
+else {
+  include(winconf-msvc.pri)
+}
 
 DEFINES += WITH_GEOIP_EMBEDDED
 message("On Windows, GeoIP database must be embedded.")

@@ -4,7 +4,7 @@ CONFIG += qt thread
 
 # Windows specific configuration
 win32 {
-  include(../winconf.pri)
+  include(../winconf.pri)  
 }
 
 # Mac specific configuration
@@ -176,6 +176,8 @@ DESTDIR = .
 
 # OS specific config
 OTHER_FILES += ../winconf.pri ../macxconf.pri ../unixconf.pri ../os2conf.pri
+# compiler specific config
+OTHER_FILES += ../winconf-mingw.pri ../winconf-msvc.pri
 # version file
 OTHER_FILES += ../version.pri
 
