@@ -168,12 +168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP cím jelentése a trackernek (újraindítást igényel)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Értesítési ablakok megjelenítése</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent törlés megerősítése</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="141"/>
@@ -652,117 +652,117 @@ Ez megtudható a  böngésző beállításaiból.</translation>
         <location filename="../downloadthread.cpp" line="98"/>
         <location filename="../downloadthread.cpp" line="102"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Hiba</translation>
+        <translation>I/O Hiba</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="209"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">A távoli hosztnév nem található (érvénytelen hosztnév)</translation>
+        <translation>A távoli kiszolgálónév nem található (érvénytelen hosztnév)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="211"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">A művelet megszakítva</translation>
+        <translation>A művelet megszakítva</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">A távoli szerver lezárta a kapcsolatot, a teljes válasz elküldése és feldolgozása előtt</translation>
+        <translation>A távoli szerver lezárta a kapcsolatot a teljes válasz elküldése és feldolgozása előtt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="215"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Időtúllépés a szervehez való kapcsolódás közben</translation>
+        <translation>Időtúllépés a szervehez való kapcsolódás közben</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="217"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS kapcsolódás sikertelen</translation>
+        <translation>SSL/TLS kapcsolódás sikertelen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="219"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">A szerver visszautasította a kapcsolódást</translation>
+        <translation>A szerver visszautasította a kapcsolódást</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="221"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Kapcsolódás a proxy szerverhez sikertelen</translation>
+        <translation>Kapcsolódás a proxy szerverhez sikertelen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="223"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">A proxy szerver idő előtt bontotta a kapcsolatot</translation>
+        <translation>A proxy szerver idő előtt bontotta a kapcsolatot</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="225"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Proxy szerver név ismeretlen</translation>
+        <translation>Proxy szerver név ismeretlen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="227"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
+        <translation>Időtúllépés a proxy szerverhez való kapcsolódáskor, vagy a szerver nem továbbította a kérést időben</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation>A proxy szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="231"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
+        <translation>Csatlakozás a távoli tartalomhoz megtagadva (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="233"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">A kért művelet nem engedélyezett a távoli eszközön</translation>
+        <translation>A kért művelet nem engedélyezett a távoli eszközön</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="235"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">A távoli tartalom nem található a szeveren (404)</translation>
+        <translation>A távoli tartalom nem található a szeveren (404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="237"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
+        <translation>A szerver hitelesítést kíván, de nem fogadja el a megadott igazolást</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="239"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">A Network Access API nem teljesíti a kérést, mivel a protokol ismeretlen</translation>
+        <translation>A Network Access API nem teljesíti a kérést, mivel a protokoll ismeretlen</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="241"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">A kért művelet ismeretlen ebben a protokollban</translation>
+        <translation>A kért művelet ismeretlen ebben a protokollban</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="243"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Ismeretlen hálózati hiba történt</translation>
+        <translation>Ismeretlen hálózati hiba történt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="245"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Ismeretlen proxy hiba történt</translation>
+        <translation>Ismeretlen proxy hiba történt</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Ismeretlen hiba a távoli tartalomban</translation>
+        <translation>Ismeretlen hiba a távoli tartalomban</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="249"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Hiba a protokollban</translation>
+        <translation>Hiba a protokollban</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="251"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ismeretlen hiba</translation>
+        <translation>Ismeretlen hiba</translation>
     </message>
 </context>
 <context>
@@ -1620,12 +1620,12 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>A qBittorent kliens nem elérhető</translation>
     </message>
 </context>
 <context>
@@ -1987,7 +1987,7 @@ Szeretnéd alapértelmezetté tenni?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>A jelszó legalább három karaktert tartalmazzon</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
@@ -2521,7 +2521,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../preferences/options.ui" line="396"/>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyszínű panel ikon használata (újraindítást igényel)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="403"/>
@@ -2537,17 +2537,17 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../preferences/options.ui" line="420"/>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Megerősítés kérése kilépéskor</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="433"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Energia gazdálkodás</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Alvó üzemmód tiltása aktív torrenteknél</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="500"/>
@@ -2717,7 +2717,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2273"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Hitelesítés mellőzése helyi gépen</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="937"/>
@@ -2886,12 +2886,12 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Viselkedés</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
-        <translation type="unfinished">Nyelv</translation>
+        <translation>Nyelv</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="746"/>
@@ -3155,7 +3155,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="774"/>
         <source>Torrent content:</source>
-        <translation type="unfinished">Torrent tartalma:</translation>
+        <translation>Torrent tartalma:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="827"/>
@@ -3541,7 +3541,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="433"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 IP cím jelentése a trackernek...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="483"/>
@@ -3624,17 +3624,17 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>A számítógép alvó állapotba kerül, hacsak nem állítod le 15 másodpercen belül...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>A számítógép kikapcsol, hacsak nem állítod le 15 másodpercen belül...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>A qBittorent kilép, hacsak nem vonod vissza 15 másodpercen belül...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
@@ -4258,7 +4258,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../qtlibtorrent/shutdownconfirm.h" line="44"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Leállítás megerősítése</translation>
     </message>
 </context>
 <context>
@@ -4330,7 +4330,7 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../statusbar.h" line="194"/>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/mp</translation>
+        <translation>%1/mp</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -4345,12 +4345,12 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatív sebesség korlát bekapcsolásához kattints ide</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános sebesség korlát bekapcsolásához kattints ide</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -5106,7 +5106,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="652"/>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Megosztási arány korlát...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="654"/>
@@ -5205,29 +5205,29 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent fel/letöltés arány korlátozás</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes arány limit használata</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs arány limit</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Arány korlát beállítása</translation>
     </message>
 </context>
 <context>
@@ -6142,7 +6142,7 @@ Viszont kikapcsoltam a modult.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1175"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikeresen frissítve</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
