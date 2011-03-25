@@ -106,7 +106,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="124"/>
         <source> MiB</source>
-        <translation>Մբիթ</translation>
+        <translation>ՄԲ</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="127"/>
@@ -4528,42 +4528,42 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="167"/>
         <source>32 KiB</source>
-        <translation>32 Կբիթ</translation>
+        <translation>32 ԿԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="172"/>
         <source>64 KiB</source>
-        <translation>64 Կբիթ</translation>
+        <translation>64 ԿԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="177"/>
         <source>128 KiB</source>
-        <translation>128 Կբիթ</translation>
+        <translation>128 ԿԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="182"/>
         <source>256 KiB</source>
-        <translation>256 Կբիթ</translation>
+        <translation>256 ԿԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="187"/>
         <source>512 KiB</source>
-        <translation>512 Կբիթ</translation>
+        <translation>512 ԿԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="192"/>
         <source>1 MiB</source>
-        <translation>1 Մբիթ</translation>
+        <translation>1 ՄԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="197"/>
         <source>2 MiB</source>
-        <translation>2 Մբիթ</translation>
+        <translation>2 ՄԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="202"/>
         <source>4 MiB</source>
-        <translation>4 Մբիթ</translation>
+        <translation>4 ՄԲ</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="210"/>
@@ -4945,25 +4945,25 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="86"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>Կբիթ</translation>
+        <translation>ԿԲ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="87"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>Մբիթ</translation>
+        <translation>ՄԲ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="88"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>Գբիթ</translation>
+        <translation>ԳԲ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="89"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>Տբիթ</translation>
+        <translation>ՏԲ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="721"/>
