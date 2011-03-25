@@ -1634,7 +1634,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="134"/>
         <source>Web UI</source>
-        <translation>Nettbrukergrensesnitt</translation>
+        <translation>Web UI</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="145"/>
@@ -1728,7 +1728,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1975"/>
         <source>Torrent queueing</source>
-        <translation>Torrent kødanning</translation>
+        <translation>Torrentkø-danning</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1990"/>
@@ -1789,7 +1789,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1013"/>
         <source>Global maximum number of connections:</source>
-        <translation>Globalt maksimalt antall av tilkoblinger:</translation>
+        <translation>Globalt maksimalt antall tilkoblinger:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1056"/>
@@ -3560,7 +3560,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentimportdlg.ui" line="50"/>
         <source>Torrent file to import:</source>
-        <translation>Torrent fil til å importere:</translation>
+        <translation>Torrentfil til å importere:</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="66"/>
@@ -3586,12 +3586,12 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentimportdlg.cpp" line="70"/>
         <source>Torrent file to import</source>
-        <translation>Torrent fil til å importere</translation>
+        <translation>Torrentfil til å importere</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="70"/>
         <source>Torrent files (*.torrent)</source>
-        <translation>Torrent filer (*.torrent)</translation>
+        <translation>Torrentfiler (*.torrent)</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="98"/>
@@ -4497,7 +4497,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
-        <translation>Torrent filopprettelse</translation>
+        <translation>Torrentfil-opprettelse</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="65"/>
