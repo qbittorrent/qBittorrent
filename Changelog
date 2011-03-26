@@ -4,6 +4,7 @@
     - BUGFIX: Magnet link association fix on Win32 (sledgehammer999)
     - BUGFIX: Easier compilation on Win32 using MinGW (sledgehammer999)
     - BUGFIX: Sync program preferences before computer shutdown to avoid loss
+    - OTHER: Get rid of QtSVG dependency
     - I18N: Updated German, Italian, Hungarian, Portuguese, Brazilian, 
       Spanish and Catalan translations
 

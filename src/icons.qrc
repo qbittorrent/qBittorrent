@@ -21,6 +21,7 @@
   <file>Icons/skin/slider-area.gif</file>
   <file>Icons/skin/stalledDL.png</file>
   <file>Icons/skin/error.png</file>
+  <file>Icons/skin/qbittorrent_mono_dark.png</file>
   <file>Icons/skin/handle-icon-horizontal.gif</file>
   <file>Icons/skin/qbittorrent32.png</file>
   <file>Icons/skin/knob.gif</file>
@@ -34,7 +35,6 @@
   <file>Icons/skin/firewalled.png</file>
   <file>Icons/skin/downloading.png</file>
   <file>Icons/skin/toolbox-divider.gif</file>
-  <file>Icons/skin/qbittorrent_mono.svg</file>
   <file>Icons/skin/stalledUP.png</file>
   <file>Icons/skin/filteractive.png</file>
   <file>Icons/skin/bg-handle-horizontal.gif</file>

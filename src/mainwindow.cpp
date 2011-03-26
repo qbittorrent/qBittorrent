@@ -1349,9 +1349,9 @@ void MainWindow::checkForActiveTorrents()
 
 QIcon MainWindow::getSystrayIcon() const
 {
-#if defined(Q_WS_X11) && defined(QT_SVG_LIB)
+#if defined(Q_WS_X11)
   if(Preferences().useMonochromeTrayIcon()) {
-    return QIcon(":/Icons/skin/qbittorrent_mono.svg");
+    return QIcon(":/Icons/skin/qbittorrent_mono_dark.png");
   }
 #endif
   QIcon icon;
