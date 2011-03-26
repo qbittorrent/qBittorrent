@@ -2111,6 +2111,8 @@ void QBtSession::readAlerts() {
               saveSessionState();
               qDebug("Saving fast resume data");
               saveFastResumeData();
+              // Make sure preferences are synced before exiting
+              pref.sync();
               qDebug("Sending computer shutdown/suspend signal");
               misc::shutdownComputer(suspend);
             }
