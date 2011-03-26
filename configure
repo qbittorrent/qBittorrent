@@ -23,7 +23,6 @@ Dependency options:
                                                  Graphical user interface for
                                                  headless running
   --disable-qt-dbus                              Disable use of qt-dbus
-  --disable-qt-svg                               Disable use of qt-svg
   --with-libboost-inc=[path]                      Path to libboost include
                                                  files
   --with-libboost-lib=[path]                      Path to libboost library
@@ -169,11 +168,6 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
-		--disable-qt-svg)
-			QC_DISABLE_qt_svg="Y"
-			shift
-			;;
-
 		--with-libboost-inc=*)
 			QC_WITH_LIBBOOST_INC=$optarg
 			shift
@@ -228,7 +222,6 @@ echo EX_QTDIR=$EX_QTDIR
 echo QC_ENABLE_DEBUG=$QC_ENABLE_DEBUG
 echo QC_DISABLE_GUI=$QC_DISABLE_GUI
 echo QC_DISABLE_qt_dbus=$QC_DISABLE_qt_dbus
-echo QC_DISABLE_qt_svg=$QC_DISABLE_qt_svg
 echo QC_WITH_LIBBOOST_INC=$QC_WITH_LIBBOOST_INC
 echo QC_WITH_LIBBOOST_LIB=$QC_WITH_LIBBOOST_LIB
 echo QC_DISABLE_libnotify=$QC_DISABLE_libnotify
@@ -396,38 +389,6 @@ public:
 		VersionMode mode = VersionMin;
 		if(conf->findPkgConfig("QtDBus", mode, req_ver, &version, &incs, &libs, &other)) {
                         conf->addExtra("CONFIG += dbus");
-			return true;
-                }
-		return false;
-	}
-};
-#line 1 "qt-svg.qcm"
-/*
------BEGIN QCMOD-----
-name: qt-svg
------END QCMOD-----
-*/
-// see  Conf::findPkgConfig
-class qc_qt_svg : public ConfObj
-{
-public:
-	qc_qt_svg(Conf *c) : ConfObj(c) {}
-	QString name() const { return "QtSvg >= 4.5"; }
-	QString shortname() const { return "qt-svg"; }
-        QString checkString() const {
-                if(!conf->getenv("QC_DISABLE_qt_svg").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                        return "";
-                return ConfObj::checkString();
-        }
-	bool exec(){
-                if(!conf->getenv("QC_DISABLE_qt_svg").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                  return false;
-		QStringList incs;
-		QString req_ver = "4.5.0";
-		QString version, libs, other;
-		VersionMode mode = VersionMin;
-		if(conf->findPkgConfig("QtSvg", mode, req_ver, &version, &incs, &libs, &other)) {
-                        conf->addExtra("CONFIG += svg");
 			return true;
                 }
 		return false;
@@ -724,9 +685,6 @@ cat >$1/modules_new.cpp <<EOT
     o->required = true;
     o->disabled = false;
     o = new qc_qt_dbus(conf);
-    o->required = false;
-    o->disabled = false;
-    o = new qc_qt_svg(conf);
     o->required = false;
     o->disabled = false;
     o = new qc_pkg_config(conf);
@@ -1695,7 +1653,6 @@ export EX_QTDIR
 export QC_ENABLE_DEBUG
 export QC_DISABLE_GUI
 export QC_DISABLE_qt_dbus
-export QC_DISABLE_qt_svg
 export QC_WITH_LIBBOOST_INC
 export QC_WITH_LIBBOOST_LIB
 export QC_DISABLE_libnotify

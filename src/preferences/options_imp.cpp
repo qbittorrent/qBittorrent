@@ -106,7 +106,7 @@ options_imp::options_imp(QWidget *parent):
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
   }
-#if !defined(Q_WS_X11) || !defined(QT_SVG_LIB)
+#if !defined(Q_WS_X11)
   checkUseMonoSystrayIcon->setVisible(false);
 #endif
   // Connect signals / slots
