@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
+    - FEATURE: Added monochrome icon for light themes
+    - BUGFIX: Change systray icon on the fly (no restart needed)
+
 * Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
     - FEATURE: Added search field for torrent content
     - FEATURE: Added auto-shutdown confirmation dialog

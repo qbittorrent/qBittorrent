@@ -994,6 +994,10 @@ void MainWindow::loadPreferences(bool configure_session) {
       delete myTrayIconMenu;
     }
   }
+  // Reload systray icon
+  if(newSystrayIntegration && systrayIcon) {
+    systrayIcon->setIcon(getSystrayIcon());
+  }
   // General
   if(pref.isToolbarDisplayed()) {
     toolBar->setVisible(true);
@@ -1350,8 +1354,14 @@ void MainWindow::checkForActiveTorrents()
 QIcon MainWindow::getSystrayIcon() const
 {
 #if defined(Q_WS_X11)
-  if(Preferences().useMonochromeTrayIcon()) {
+  TrayIcon::Style style = Preferences().trayIconStyle();
+  switch(style) {
+  case TrayIcon::MONO_DARK:
     return QIcon(":/Icons/skin/qbittorrent_mono_dark.png");
+  case TrayIcon::MONO_LIGHT:
+    return QIcon(":/Icons/skin/qbittorrent_mono_light.png");
+  default:
+    break;
   }
 #endif
   QIcon icon;

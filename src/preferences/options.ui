@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>499</width>
-             <height>515</height>
+             <width>508</width>
+             <height>531</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -360,9 +360,6 @@
                <string>Desktop</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
                <item>
                 <widget class="QCheckBox" name="checkShowSplash">
                  <property name="text">
@@ -391,13 +388,6 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkUseMonoSystrayIcon">
-                 <property name="text">
-                  <string>Use monochrome system tray icon (requires restart)</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkMinimizeToSysTray">
                  <property name="text">
                   <string>Minimize qBittorrent to notification area</string>
@@ -413,6 +403,49 @@
                   <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close qBittorrent to notification area</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="label_trayIconStyle">
+                   <property name="text">
+                    <string>Tray icon style:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboTrayIcon">
+                   <item>
+                    <property name="text">
+                     <string>Normal</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Monochrome (Dark theme)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Monochrome (Light theme)</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
@@ -473,8 +506,8 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-330</y>
-             <width>499</width>
+             <y>0</y>
+             <width>453</width>
              <height>744</height>
             </rect>
            </property>
@@ -924,7 +957,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>447</width>
+             <width>480</width>
              <height>457</height>
             </rect>
            </property>
@@ -1404,7 +1437,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>404</width>
+             <width>403</width>
              <height>334</height>
             </rect>
            </property>
@@ -1793,7 +1826,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>542</width>
+             <width>589</width>
              <height>422</height>
             </rect>
            </property>
@@ -2176,7 +2209,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>378</width>
+             <width>380</width>
              <height>255</height>
             </rect>
            </property>
@@ -2325,8 +2358,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>517</width>
-             <height>414</height>
+             <width>64</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -58,6 +58,9 @@ enum maxRatioAction {PAUSE_ACTION, REMOVE_ACTION};
 namespace Proxy {
 enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 }
+namespace TrayIcon {
+enum Style { NORMAL = 0, MONO_DARK, MONO_LIGHT };
+}
 
 class Preferences : public QIniSettings {
   Q_DISABLE_COPY(Preferences);
@@ -1033,11 +1036,11 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/confirmTorrentDeletion"), enabled);
   }
 
-  bool useMonochromeTrayIcon() const {
-    return value(QString::fromUtf8("Preferences/Advanced/useMonochromeTrayIcon"), false).toBool();
+  TrayIcon::Style trayIconStyle() const {
+    return TrayIcon::Style(value(QString::fromUtf8("Preferences/Advanced/TrayIconStyle"), TrayIcon::NORMAL).toInt());
   }
-  void setUseMonochromeTrayIcon(bool use) {
-    setValue(QString::fromUtf8("Preferences/Advanced/useMonochromeTrayIcon"), use);
+  void setTrayIconStyle(TrayIcon::Style style) {
+    setValue(QString::fromUtf8("Preferences/Advanced/TrayIconStyle"), style);
   }
 };
 

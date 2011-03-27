@@ -107,7 +107,8 @@ options_imp::options_imp(QWidget *parent):
     checkShowSystray->setEnabled(false);
   }
 #if !defined(Q_WS_X11)
-  checkUseMonoSystrayIcon->setVisible(false);
+  label_trayIconStyle->setVisible(false);
+  comboTrayIcon->setVisible(false);
 #endif
   // Connect signals / slots
   // General tab
@@ -135,7 +136,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkUseMonoSystrayIcon, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
 #if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
@@ -327,7 +328,7 @@ void options_imp::saveOptions(){
   pref.setLocale(locale);
   pref.setAlternatingRowColors(checkAltRowColors->isChecked());
   pref.setSystrayIntegration(systrayIntegration());
-  pref.setUseMonochromeTrayIcon(checkUseMonoSystrayIcon->isChecked());
+  pref.setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
   pref.setCloseToTray(closeToTray());
   pref.setMinimizeToTray(minimizeToTray());
   pref.setStartMinimized(startMinimized());
@@ -476,8 +477,8 @@ void options_imp::loadOptions(){
     checkCloseToSystray->setChecked(pref.closeToTray());
     checkMinimizeToSysTray->setChecked(pref.minimizeToTray());
     checkStartMinimized->setChecked(pref.startMinimized());
-    checkUseMonoSystrayIcon->setChecked(pref.useMonochromeTrayIcon());
   }
+  comboTrayIcon->setCurrentIndex(pref.trayIconStyle());
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
   // End General preferences
@@ -854,13 +855,13 @@ void options_imp::enableMaxConnecsLimitPerTorrent(bool checked){
 void options_imp::enableSystrayOptions() {
   checkCloseToSystray->setEnabled(true);
   checkMinimizeToSysTray->setEnabled(true);
-  checkUseMonoSystrayIcon->setEnabled(true);
+  comboTrayIcon->setEnabled(true);
 }
 
 void options_imp::disableSystrayOptions() {
   checkCloseToSystray->setEnabled(false);
   checkMinimizeToSysTray->setEnabled(false);
-  checkUseMonoSystrayIcon->setEnabled(false);
+  comboTrayIcon->setEnabled(false);
 }
 
 void options_imp::setSystrayOptionsState(bool checked) {
