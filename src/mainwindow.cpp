@@ -309,7 +309,7 @@ void MainWindow::deleteBTSession() {
   status_bar->stopTimer();
   QBtSession::drop();
   m_pwr->setActivityState(false);
-  QTimer::singleShot(0, this, SLOT(close()));
+  close();
 }
 
 // Destructor
@@ -367,6 +367,7 @@ MainWindow::~MainWindow() {
   // Delete QBtSession::instance() object
   qDebug("Deleting QBtSession::instance()");
   QBtSession::drop();
+  m_pwr->setActivityState(false);
   qDebug("Exiting GUI destructor...");
 }
 
