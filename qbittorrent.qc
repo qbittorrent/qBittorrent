@@ -17,8 +17,6 @@
   <dep type='libboost'>
     <required/>
   </dep>
-  <dep type='libnotify'>
-  </dep>
   <dep type='geoip-database'>
   </dep>
   <dep type='qtsingleapplication'>
