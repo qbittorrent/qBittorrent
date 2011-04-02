@@ -10,7 +10,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
   will install and execute qBittorrent hopefully without any problems.
 
   Dependencies:
-    - Qt >= 4.5.0 (libqt-devel, libqtgui, libqtcore, libqtnetwork, libqtxml)
+    - Qt >= 4.5.0 (libqtgui, libqtcore, libqtnetwork, libqtxml, libqtdbus/optional)
 
     - pkg-config executable
 
@@ -22,12 +22,8 @@ qBittorrent - A BitTorrent client in C++ / Qt4
       or
     - libboost >= 1.35.x (libboost-system, libboost-filesystem, libboost-date-time)
 
-    - python >= 2.3 (needed by search engine)
+    - python >= 2.3 && < 3.0 (needed by search engine)
         * Run time only dependency
-
-    - libnotify >= 0.4.2, glib-2.0 (optional)
-        * Can be used for system notifications to replace standard Qt notifications
-          so that it integrates better into the Desktop
 
     - geoip-database (optional)
         * If qBittorrent cannot find this database, it will try to resolve countries using the Internet but it will be a lot slower.
