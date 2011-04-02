@@ -1107,8 +1107,10 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
   if(notifications.isValid()) {
+    QVariantMap hints;
+    hints["desktop-entry"] = "qBittorrent";
     QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), QVariantMap(), -1);
+                                                         msg, QStringList(), hints, -1);
     reply.waitForFinished();
     if(!reply.isError())
       return;
