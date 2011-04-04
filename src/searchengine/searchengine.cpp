@@ -99,7 +99,11 @@ SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(
   connect(searchTimeout, SIGNAL(timeout()), this, SLOT(on_search_button_clicked()));
   // Update nova.py search plugin if necessary
   updateNova();
-  supported_engines = new SupportedEngines();
+  supported_engines = new SupportedEngines(
+      #ifdef Q_WS_WIN
+        has_python
+      #endif
+        );
   // Fill in category combobox
   fillCatCombobox();
   connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));

@@ -105,8 +105,9 @@ signals:
   void newSupportedEngine(QString name);
 
 public:
-  SupportedEngines() {
-    update();
+  SupportedEngines(bool has_python = true) {
+    if(has_python)
+      update();
   }
 
   ~SupportedEngines() {
