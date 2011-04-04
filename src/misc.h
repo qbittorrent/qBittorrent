@@ -123,6 +123,8 @@ public:
     return MyFile.remove();
   }
 
+  static QString parseHtmlLinks(const QString &raw_text);
+
   static bool removeEmptyFolder(const QString &dirpath);
 
   static quint64 computePathSize(QString path);

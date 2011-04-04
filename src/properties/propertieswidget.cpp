@@ -263,7 +263,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
       // Pieces size
       pieceSize_lbl->setText(misc::friendlyUnit(h.piece_length()));
       // Comment
-      comment_text->setHtml(h.comment());
+      comment_text->setHtml(misc::parseHtmlLinks(h.comment()));
       // URL seeds
       loadUrlSeeds();
       // List files in torrent
