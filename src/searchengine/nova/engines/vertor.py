@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.3
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -52,13 +52,28 @@ class vertor(object):
       self.results = results
       self.in_name = False
       self.outside_td = True;
+    
+    def start_tr(self, attr):
+      self.td_counter = -1
+      self.current_item = {}
       
+    def end_tr(self):
+      if self.td_counter == 5:
+        self.td_counter = None
+        # Display item
+        if self.current_item and self.current_item.has_key('link'):
+          self.current_item['engine_url'] = self.url
+          if not self.current_item['seeds'].isdigit():
+            self.current_item['seeds'] = 0
+          if not self.current_item['leech'].isdigit():
+            self.current_item['leech'] = 0
+          prettyPrinter(self.current_item)
+          self.results.append('a')
+
     def start_a(self, attr):
+      #if self.td_counter is None or self.td_counter < 0: return
       params = dict(attr)
-      #print params
       if params.has_key('href') and params['href'].startswith("http://www.vertor.com/index.php?mod=download"):
-        self.current_item = {}
-        self.td_counter = 0
         self.current_item['link']=params['href'].strip()
       elif self.td_counter == 0 and params.has_key('href') and params['href'].startswith("/torrents/") \
       and not self.current_item.has_key('name'):
@@ -94,17 +109,6 @@ class vertor(object):
         if isinstance(self.td_counter,int):
 	  self.outside_td = False
           self.td_counter += 1
-          if self.td_counter > 5:
-            self.td_counter = None
-            # Display item
-            if self.current_item:
-              self.current_item['engine_url'] = self.url
-              if not self.current_item['seeds'].isdigit():
-                self.current_item['seeds'] = 0
-              if not self.current_item['leech'].isdigit():
-                self.current_item['leech'] = 0
-              prettyPrinter(self.current_item)
-              self.results.append('a')
 
   def search(self, what, cat='all'):
     ret = []
