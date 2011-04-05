@@ -2524,7 +2524,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>Använd monokrom ikon för aktivitetsfält (kräver omstart)</translation>
+        <translation type="obsolete">Använd monokrom ikon för aktivitetsfält (kräver omstart)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2532,6 +2532,22 @@ Vill du uppdatera qBittorrent till version %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3766,6 +3782,14 @@ Vill du installera den nu?</translation>
     <message>
         <source>Please point to the location of the torrent: %1</source>
         <translation>Peka ut platsen för torrent-filen: %1</translation>
+    </message>
+    <message>
+        <source>Invalid torrent file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid torrent file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -3028,7 +3028,7 @@ QGroupBox {
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>Koristi jednobojnu ikonu u prostor obavijesti (potrebno ponovno pokretanje)</translation>
+        <translation type="obsolete">Koristi jednobojnu ikonu u prostor obavijesti (potrebno ponovno pokretanje)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -3036,6 +3036,22 @@ QGroupBox {
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Uobičajen</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4304,11 +4320,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">Neispravna torrent datoteka</translation>
+        <translation type="unfinished">Neispravna torrent datoteka</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Ovo nije ispravna torrent datoteka.</translation>
+        <translation type="unfinished">Ovo nije ispravna torrent datoteka.</translation>
     </message>
 </context>
 <context>

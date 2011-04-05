@@ -2596,7 +2596,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>Používať monochromatickú ikonu v oznamovacej oblasti (vyžaduje reštart)</translation>
+        <translation type="obsolete">Používať monochromatickú ikonu v oznamovacej oblasti (vyžaduje reštart)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2604,6 +2604,22 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normálna</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3866,11 +3882,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">Neplatný torrent</translation>
+        <translation type="unfinished">Neplatný torrent</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Toto nie je platný torrent.</translation>
+        <translation type="unfinished">Toto nie je platný torrent.</translation>
     </message>
 </context>
 <context>

@@ -2613,7 +2613,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>使用單色的系統通知區域圖示 (需要重新啟動)</translation>
+        <translation type="obsolete">使用單色的系統通知區域圖示 (需要重新啟動)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2621,6 +2621,22 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3882,11 +3898,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">無效的 torrent 檔案</translation>
+        <translation type="unfinished">無效的 torrent 檔案</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">這是一個無效的 torrent 檔案。</translation>
+        <translation type="unfinished">這是一個無效的 torrent 檔案。</translation>
     </message>
 </context>
 <context>

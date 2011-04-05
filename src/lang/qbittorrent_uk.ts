@@ -2601,7 +2601,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>Використовувати монохромний логотип системного лотка (вимагає перезапуску)</translation>
+        <translation type="obsolete">Використовувати монохромний логотип системного лотка (вимагає перезапуску)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2609,6 +2609,22 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Нормальний</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3870,11 +3886,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">Неправильний torrent-файл</translation>
+        <translation type="unfinished">Неправильний torrent-файл</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Цей файл не є правильним torrent-файлом.</translation>
+        <translation type="unfinished">Цей файл не є правильним torrent-файлом.</translation>
     </message>
 </context>
 <context>

@@ -2604,7 +2604,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
-        <translation>Use o ícone da bandeja do sistema monocromático (requer reinicialização)</translation>
+        <translation type="obsolete">Use o ícone da bandeja do sistema monocromático (requer reinicialização)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2612,6 +2612,22 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3873,11 +3889,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">Arquivo torrent inválido</translation>
+        <translation type="unfinished">Arquivo torrent inválido</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">Este não é um arquivo torrent válido.</translation>
+        <translation type="unfinished">Este não é um arquivo torrent válido.</translation>
     </message>
 </context>
 <context>

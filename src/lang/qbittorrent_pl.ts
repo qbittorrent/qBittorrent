@@ -2576,15 +2576,27 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normalny</translation>
+    </message>
+    <message>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3849,11 +3861,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="obsolete">Nieprawidłowy plik torrent</translation>
+        <translation type="unfinished">Nieprawidłowy plik torrent</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="obsolete">To nie jest prawidłowy plik torrent.</translation>
+        <translation type="unfinished">To nie jest prawidłowy plik torrent.</translation>
     </message>
 </context>
 <context>
