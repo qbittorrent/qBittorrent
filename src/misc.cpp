@@ -211,13 +211,31 @@ void misc::shutdownComputer(bool sleep) {
 #if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
   if(sleep) {
+    // Recent systems use UPower
     QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
-                            "org.freedesktop.UPower", QDBusConnection::systemBus());
-    upowerIface.call("Suspend");
+                               "org.freedesktop.UPower", QDBusConnection::systemBus());
+    if(upowerIface.isValid()) {
+      upowerIface.call("Suspend");
+      return;
+    }
+    // HAL (older systems)
+    QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
+                            "org.freedesktop.Hal.Device.SystemPowerManagement",
+                            QDBusConnection::systemBus());
+    halIface.call("Suspend", 5);
   } else {
+    // Recent systems use ConsoleKit
     QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                    "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
-    consolekitIface.call("Stop");
+    if(consolekitIface.isValid()) {
+      consolekitIface.call("Stop");
+      return;
+    }
+    // HAL (older systems)
+    QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
+                            "org.freedesktop.Hal.Device.SystemPowerManagement",
+                            QDBusConnection::systemBus());
+    halIface.call("Shutdown");
   }
 #endif
 #ifdef Q_WS_MAC
