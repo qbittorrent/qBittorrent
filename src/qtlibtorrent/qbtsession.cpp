@@ -182,10 +182,12 @@ QBtSession::~QBtSession() {
   qDebug("Deleting the session");
   delete s;
   qDebug("BTSession destructor OUT");
+#ifndef DISABLE_GUI
   if(m_shutdownAct != NO_SHUTDOWN) {
     qDebug() << "Sending computer shutdown/suspend signal...";
     misc::shutdownComputer(m_shutdownAct == SUSPEND_COMPUTER);
   }
+#endif
 }
 
 void QBtSession::preAllocateAllFiles(bool b) {
