@@ -209,13 +209,16 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(bool sleep) {
 #if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
-  // Use dbus to power off the system
-  // dbus-send --print-reply --system --dest=org.freedesktop.Hal /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown
-  QDBusInterface computer("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer", "org.freedesktop.Hal.Device.SystemPowerManagement", QDBusConnection::systemBus());
-  if(sleep)
-    computer.call("Suspend", 5);
-  else
-    computer.call("Shutdown");
+  // Use dbus to power off / suspend the system
+  if(sleep) {
+    QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
+                            "org.freedesktop.UPower", QDBusConnection::systemBus());
+    upowerIface.call("Suspend");
+  } else {
+    QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
+                                   "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
+    consolekitIface.call("Stop");
+  }
 #endif
 #ifdef Q_WS_MAC
   AEEventID EventToSend;

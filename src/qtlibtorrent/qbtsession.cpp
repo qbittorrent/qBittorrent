@@ -95,7 +95,7 @@ QBtSession::QBtSession()
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
-  , m_tracker(0)
+  , m_tracker(0), m_shutdownAct(NO_SHUTDOWN)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
@@ -182,6 +182,10 @@ QBtSession::~QBtSession() {
   qDebug("Deleting the session");
   delete s;
   qDebug("BTSession destructor OUT");
+  if(m_shutdownAct != NO_SHUTDOWN) {
+    qDebug() << "Sending computer shutdown/suspend signal...";
+    misc::shutdownComputer(m_shutdownAct == SUSPEND_COMPUTER);
+  }
 }
 
 void QBtSession::preAllocateAllFiles(bool b) {
@@ -2112,9 +2116,10 @@ void QBtSession::readAlerts() {
               qDebug("Saving fast resume data");
               saveFastResumeData();
               // Make sure preferences are synced before exiting
-              pref.sync();
-              qDebug("Sending computer shutdown/suspend signal");
-              misc::shutdownComputer(suspend);
+              if(suspend)
+                m_shutdownAct = SUSPEND_COMPUTER;
+              else
+                m_shutdownAct = SHUTDOWN_COMPUTER;
             }
             qDebug("Exiting the application");
             qApp->exit();
