@@ -366,9 +366,9 @@ MainWindow::~MainWindow() {
   delete switchRSSShortcut;
   IconProvider::drop();
   // Delete QBtSession::instance() object
+  m_pwr->setActivityState(false);
   qDebug("Deleting QBtSession::instance()");
   QBtSession::drop();
-  m_pwr->setActivityState(false);
   qDebug("Exiting GUI destructor...");
 }
 
