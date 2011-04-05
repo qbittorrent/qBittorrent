@@ -50,7 +50,7 @@ Images Authors:
   copyright: Greg Houston <gregory.houston@gmail.com>
   license: MIT
 
-* file: src/Icons/skin/qbittorrent_mono.svg
+* file: src/Icons/skin/qbittorrent_mono*
   copyright: Daniel Eguren <deguren@gmail.com>
   license: LGPL
 
