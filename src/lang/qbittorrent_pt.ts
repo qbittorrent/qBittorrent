@@ -2630,6 +2630,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This server requires a secure connection (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

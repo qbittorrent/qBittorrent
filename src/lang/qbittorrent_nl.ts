@@ -2425,6 +2425,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This server requires a secure connection (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
