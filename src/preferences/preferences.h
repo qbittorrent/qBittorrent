@@ -306,6 +306,38 @@ public:
     setValue(QString::fromUtf8("Preferences/MailNotification/smtp_server"), smtp_server);
   }
 
+  bool getMailNotificationSMTPSSL() const {
+    return value(QString::fromUtf8("Preferences/MailNotification/req_ssl"), false).toBool();
+  }
+
+  void setMailNotificationSMTPSSL(bool use) {
+    setValue(QString::fromUtf8("Preferences/MailNotification/req_ssl"), use);
+  }
+
+  bool getMailNotificationSMTPAuth() const {
+    return value(QString::fromUtf8("Preferences/MailNotification/req_auth"), false).toBool();
+  }
+
+  void setMailNotificationSMTPAuth(bool use) {
+    setValue(QString::fromUtf8("Preferences/MailNotification/req_auth"), use);
+  }
+
+  QString getMailNotificationSMTPUsername() const {
+    return value(QString::fromUtf8("Preferences/MailNotification/username")).toString();
+  }
+
+  void setMailNotificationSMTPUsername(const QString &username) {
+    setValue(QString::fromUtf8("Preferences/MailNotification/username"), username);
+  }
+
+  QString getMailNotificationSMTPPassword() const {
+    return value(QString::fromUtf8("Preferences/MailNotification/password")).toString();
+  }
+
+  void setMailNotificationSMTPPassword(const QString &password) {
+    setValue(QString::fromUtf8("Preferences/MailNotification/password"), password);
+  }
+
   int getActionOnDblClOnTorrentDl() const {
     return value(QString::fromUtf8("Preferences/Downloads/DblClOnTorDl"), 0).toInt();
   }

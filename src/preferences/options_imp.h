@@ -55,8 +55,6 @@ public:
   QSize sizeFittingScreen();
 
 protected slots:
-  void enableUploadLimit(bool checked);
-  void enableDownloadLimit(bool checked);
   void enableProxy(int comboIndex);
   void enableProxyAuth(bool checked);
   void enableMaxConnecsLimit(bool checked);

@@ -2004,7 +2004,8 @@ void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
   content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(h.active_time())) + "\n\n\n";
   content += tr("Thank you for using qBittorrent.") + "\n";
   // Send the notification email
-  new Smtp("notification@qbittorrent.org", Preferences().getMailNotificationEmail(), tr("[qBittorrent] %1 has finished downloading").arg(h.name()), content);
+  Smtp *sender = new Smtp(this);
+  sender->sendMail("notification@qbittorrent.org", Preferences().getMailNotificationEmail(), tr("[qBittorrent] %1 has finished downloading").arg(h.name()), content);
 }
 
 // Read alerts sent by the Bittorrent session

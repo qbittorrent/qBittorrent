@@ -113,9 +113,6 @@ options_imp::options_imp(QWidget *parent):
   // Connect signals / slots
   // General tab
   connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(setSystrayOptionsState(bool)));
-  // Connection tab
-  connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableUploadLimit(bool)));
-  connect(checkDownloadLimit,  SIGNAL(toggled(bool)), this, SLOT(enableDownloadLimit(bool)));
   // Bittorrent tab
   connect(checkMaxConnecs,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimit(bool)));
   connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
@@ -158,6 +155,10 @@ options_imp::options_imp(QWidget *parent):
   connect(groupMailNotification, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(dest_email_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(smtp_server_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkSmtpSSL, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(groupMailNotifAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(mailNotifUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(mailNotifPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(autoRunBox, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
@@ -366,6 +367,10 @@ void options_imp::saveOptions(){
   pref.setMailNotificationEnabled(groupMailNotification->isChecked());
   pref.setMailNotificationEmail(dest_email_txt->text());
   pref.setMailNotificationSMTP(smtp_server_txt->text());
+  pref.setMailNotificationSMTPSSL(checkSmtpSSL->isChecked());
+  pref.setMailNotificationSMTPAuth(groupMailNotifAuth->isChecked());
+  pref.setMailNotificationSMTPUsername(mailNotifUsername->text());
+  pref.setMailNotificationSMTPPassword(mailNotifPassword->text());
   pref.setAutoRunEnabled(autoRunBox->isChecked());
   pref.setAutoRunProgram(autoRun_txt->text());
   pref.setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
@@ -522,6 +527,10 @@ void options_imp::loadOptions(){
   groupMailNotification->setChecked(pref.isMailNotificationEnabled());
   dest_email_txt->setText(pref.getMailNotificationEmail());
   smtp_server_txt->setText(pref.getMailNotificationSMTP());
+  checkSmtpSSL->setChecked(pref.getMailNotificationSMTPSSL());
+  groupMailNotifAuth->setChecked(pref.getMailNotificationSMTPAuth());
+  mailNotifUsername->setText(pref.getMailNotificationSMTPUsername());
+  mailNotifPassword->setText(pref.getMailNotificationSMTPPassword());
   autoRunBox->setChecked(pref.isAutoRunEnabled());
   autoRun_txt->setText(pref.getAutoRunProgram());
   intValue = pref.getActionOnDblClOnTorrentDl();
@@ -832,14 +841,6 @@ void options_imp::on_buttonBox_rejected(){
   reject();
 }
 
-void options_imp::enableDownloadLimit(bool checked){
-  if(checked){
-    spinDownloadLimit->setEnabled(true);
-  }else{
-    spinDownloadLimit->setEnabled(false);
-  }
-}
-
 bool options_imp::useAdditionDialog() const{
   return checkAdditionDialog->isChecked();
 }
@@ -878,10 +879,6 @@ void options_imp::enableMaxUploadsLimitPerTorrent(bool checked){
   }else{
     spinMaxUploadsPerTorrent->setEnabled(false);
   }
-}
-
-void options_imp::enableUploadLimit(bool checked){
-  spinUploadLimit->setEnabled(checked);
 }
 
 void options_imp::enableApplyButton(){

@@ -506,9 +506,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-344</y>
+             <y>-387</y>
              <width>499</width>
-             <height>728</height>
+             <height>849</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -853,26 +853,76 @@ QGroupBox {
               <property name="checked">
                <bool>false</bool>
               </property>
-              <layout class="QGridLayout" name="gridLayout_15">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Destination email:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="dest_email_txt"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>SMTP server:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="smtp_server_txt"/>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <layout class="QFormLayout" name="formLayout">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Destination email:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="dest_email_txt"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_3">
+                   <property name="text">
+                    <string>SMTP server:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="smtp_server_txt"/>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QGroupBox" name="groupMailNotifAuth">
+                   <property name="title">
+                    <string>Authentication</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
+                   <layout class="QFormLayout" name="formLayout_2">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_7">
+                      <property name="text">
+                       <string>Username:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="mailNotifUsername"/>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_8">
+                      <property name="text">
+                       <string>Password:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="mailNotifPassword">
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QCheckBox" name="checkSmtpSSL">
+                   <property name="text">
+                    <string>This server requires a secure connection (SSL)</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>
@@ -927,7 +977,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>499</width>
+             <width>392</width>
              <height>426</height>
             </rect>
            </property>
@@ -1407,8 +1457,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>514</width>
-             <height>384</height>
+             <width>328</width>
+             <height>306</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1786,7 +1836,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>499</width>
+             <width>486</width>
              <height>408</height>
             </rect>
            </property>
@@ -2149,8 +2199,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>514</width>
-             <height>384</height>
+             <width>316</width>
+             <height>236</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2298,8 +2348,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>514</width>
-             <height>384</height>
+             <width>86</width>
+             <height>16</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2365,5 +2415,38 @@ QGroupBox {
  <resources>
   <include location="../icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkUploadLimit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinUploadLimit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>367</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>448</x>
+     <y>62</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkDownloadLimit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinDownloadLimit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>377</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
