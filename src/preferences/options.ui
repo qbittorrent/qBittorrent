@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>508</width>
-             <height>531</height>
+             <width>499</width>
+             <height>506</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -506,9 +506,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>453</width>
-             <height>744</height>
+             <y>-344</y>
+             <width>499</width>
+             <height>728</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -564,16 +564,6 @@
                </property>
                <item>
                 <widget class="QGroupBox" name="groupBox_3">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 0px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                 </property>
                  <property name="title">
                   <string>Save files to location:</string>
                  </property>
@@ -639,16 +629,6 @@ QGroupBox {
                </item>
                <item>
                 <widget class="QGroupBox" name="checkTempFolder">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 0px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                 </property>
                  <property name="title">
                   <string>Keep incomplete torrents in:</string>
                  </property>
@@ -808,16 +788,6 @@ QGroupBox {
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 0px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                 </property>
                  <property name="title">
                   <string>Copy .torrent files to:</string>
                  </property>
@@ -957,8 +927,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>480</width>
-             <height>457</height>
+             <width>499</width>
+             <height>426</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1437,8 +1407,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>403</width>
-             <height>334</height>
+             <width>514</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1655,16 +1625,6 @@ QGroupBox {
                </item>
                <item>
                 <widget class="QGroupBox" name="check_schedule">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 10px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                 </property>
                  <property name="title">
                   <string>Schedule the use of alternative speed limits</string>
                  </property>
@@ -1826,8 +1786,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>589</width>
-             <height>422</height>
+             <width>499</width>
+             <height>408</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1839,16 +1799,6 @@ QGroupBox {
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
                 <widget class="QGroupBox" name="checkDHT">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 0px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                 </property>
                  <property name="title">
                   <string>Enable DHT (decentralized network) to find more peers</string>
                  </property>
@@ -1861,16 +1811,6 @@ QGroupBox {
                   </property>
                   <item>
                    <widget class="QGroupBox" name="checkDifferentDHTPort">
-                    <property name="styleSheet">
-                     <string notr="true">QGroupBox::title {
-font-weight: normal;
-margin-left: 0px;
-margin-top: 5px;
-}
-QGroupBox {
-  border-width: 0;
-}</string>
-                    </property>
                     <property name="title">
                      <string>Use a different port for DHT and BitTorrent</string>
                     </property>
@@ -2209,8 +2149,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>380</width>
-             <height>255</height>
+             <width>514</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2358,8 +2298,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>64</width>
-             <height>18</height>
+             <width>514</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -907,6 +907,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   qDebug("Adding %s to download list", qPrintable(path));
   boost::intrusive_ptr<torrent_info> t;
   try {
+    qDebug() << "Loading torrent at" << path;
     // Getting torrent file informations
     t = new torrent_info(path.toUtf8().constData());
     if(!t->is_valid())
