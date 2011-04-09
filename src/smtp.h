@@ -70,6 +70,7 @@ private:
   void authCramMD5(const QByteArray& challenge = QByteArray());
   void authPlain();
   void authLogin();
+  void logError(const QString &msg);
 
 private:
   enum states { Rcpt, EhloSent, HeloSent, EhloDone, EhloGreetReceived, AuthRequestSent, AuthSent,

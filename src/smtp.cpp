@@ -34,6 +34,7 @@
 
 #include "smtp.h"
 #include "preferences.h"
+#include "qbtsession.h"
 
 #include <QTextStream>
 #ifndef QT_NO_OPENSSL
@@ -161,8 +162,7 @@ void Smtp::readyRead()
         // Connection was successful
         ehlo();
       } else {
-        // TODO: Log something
-        qDebug() << "Connection failed, unrecognized reply:" << line;
+        logError("Connection failed, unrecognized reply: "+line);
         state = Close;
       }
       break;
@@ -191,14 +191,13 @@ void Smtp::readyRead()
     case AuthSent:
     case Authenticated:
       if (code[0] == '2') {
-        qDebug() << "Login was OK, send <mail from>...";
+        qDebug() << "Sending <mail from>...";
         socket->write("mail from:<" + from.toAscii() + ">\r\n");
         socket->flush();
         state = Rcpt;
       } else {
         // Authentication failed!
-        // TODO: Log something
-        qDebug() << "Authentication not sent properly, aborting";
+        logError("Authentication failed, msg: "+line);
         state = Close;
       }
       break;
@@ -208,7 +207,7 @@ void Smtp::readyRead()
         socket->flush();
         state = Data;
       } else {
-        qDebug() << "<Mail from> not sent properly, aborting";
+        logError("<mail from> was rejected by server, msg: "+line);
         state = Close;
       }
       break;
@@ -218,7 +217,7 @@ void Smtp::readyRead()
         socket->flush();
         state = Body;
       } else {
-        qDebug() << "<Rcpt to> not sent properly, aborting";
+        logError("<Rcpt to> was rejected by server, msg: "+line);
         state = Close;
       }
       break;
@@ -228,7 +227,7 @@ void Smtp::readyRead()
         socket->flush();
         state = Quit;
       } else {
-        qDebug() << "data not sent properly, aborting";
+        logError("<data> was rejected by server, msg: "+line);
         state = Close;
       }
       break;
@@ -239,7 +238,7 @@ void Smtp::readyRead()
         // here, we just close.
         state = Close;
       } else {
-        qDebug() << "Message not sent properly, aborting";
+        logError("Message was rejected by the server, error: "+line);
         state = Close;
       }
       break;
@@ -319,8 +318,7 @@ void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QStri
     } else {
       // Both EHLO and HELO failed, chances are this is NOT
       // a SMTP server
-      // TODO: log something
-      qDebug() << "Both EHLO and HELO failed, aborting.";
+      logError("Both EHLO and HELO failed, msg: "+line);
       state = Close;
     }
     return;
@@ -379,7 +377,9 @@ void Smtp::authenticate()
     authLogin();
   } else {
     // Skip authentication
-    qDebug() << "Server does not support any of our AUTH modes, skip authentication...";
+    logError("The SMTP server does not seem to support any of the authentications modes "
+             "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
+             "knowing it is likely to fail... Server Auth Modes: "+auth.join("|"));
     state = Authenticated;
   }
 }
@@ -449,4 +449,10 @@ void Smtp::authLogin()
     socket->flush();
     state = AuthSent;
   }
+}
+
+void Smtp::logError(const QString &msg)
+{
+  qDebug() << "Email Notification Error:" << msg;
+  QBtSession::instance()->addConsoleMessage("Email Notification Error: "+msg, "red");
 }
