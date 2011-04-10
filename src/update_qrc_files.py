@@ -45,8 +45,9 @@ lang_file.write(output)
 lang_file.close()
 
 # update search_engine directory
+os.chdir('searchengine')
 search_list = []
-for root, dirs, files in os.walk('search_engine'):
+for root, dirs, files in os.walk('nova/'):
   for file in files:
     if file.startswith("__"):
       continue
@@ -64,6 +65,8 @@ output += '''</qresource>
 search_file = open('search.qrc', 'w')
 search_file.write(output)
 search_file.close()
+
+os.chdir('..');
 
 # update icons files directory
 icons_list = []
