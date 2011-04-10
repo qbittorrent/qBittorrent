@@ -328,8 +328,11 @@ QStringList QTorrentHandle::uneeded_files_path() const {
   torrent_info::file_iterator fi = torrent_handle::get_torrent_info().begin_files();
   int i = 0;
   while(fi != torrent_handle::get_torrent_info().end_files()) {
-    if(fp[i] == 0)
-      res << QDir::cleanPath(saveDir.absoluteFilePath(filepath(*fi)));
+    if(fp[i] == 0) {
+      const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filepath(*fi)));
+      if(file_path.contains(".unwanted"))
+        res << file_path;
+    }
     fi++;
     ++i;
   }
@@ -511,6 +514,12 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     // Move unwanted files to a .unwanted subfolder
     if(files[i] == 0 && progress[i] < filesize_at(i)) {
       QString old_path = filepath_at(i);
+      // Make sure the file does not already exists
+      if(QFile::exists(QDir(save_path()).absoluteFilePath(old_path))) {
+        qWarning() << "File" << old_path << "already exists at destination.";
+        qWarning() << "We do not move it to .unwanted folder";
+        continue;
+      }
       QString old_name = filename_at(i);
       QString parent_path = misc::branchPath(old_path);
       if(parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
