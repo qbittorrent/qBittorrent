@@ -82,7 +82,6 @@ void qt_mac_set_dock_menu(QMenu *menu);
 #include "programupdater.h"
 #endif
 #include "powermanagement.h"
-#include "smtp.h"
 
 using namespace libtorrent;
 
@@ -98,9 +97,6 @@ using namespace libtorrent;
 // Constructor
 MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false) {
   setupUi(this);
-  // TODO: Remove this
-  Smtp *sender = new Smtp(this);
-  sender->sendMail("notification@qbittorrent.org", Preferences().getMailNotificationEmail(), "title", "content");
 
   Preferences pref;
   ui_locked = pref.isUILocked();
