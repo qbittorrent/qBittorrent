@@ -2649,7 +2649,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation>Запрашивать подтверждение завершени программы</translation>
+        <translation>Запрашивать подтверждение завершения программы</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
@@ -2669,23 +2669,23 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Стиль иконки в трее:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Обычный</translation>
+        <translation>Обычная</translation>
     </message>
     <message>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Монохромная (Тёмная тема)</translation>
     </message>
     <message>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Монохромная (Светлая тема)</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Этот сервер требует защищённое соединение (SSL)</translation>
     </message>
 </context>
 <context>
@@ -3929,7 +3929,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent file to import</source>
-        <translation>Файл торрент для импорта</translation>
+        <translation>Торрент файл для импорта</translation>
     </message>
     <message>
         <source>Torrent files (*.torrent)</source>
@@ -3951,11 +3951,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished">Неправильный торрент файл</translation>
+        <translation>Неправильный торрент файл</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished">Это не правильный торрент файл.</translation>
+        <translation>Это не правильный торрент файл.</translation>
     </message>
 </context>
 <context>
