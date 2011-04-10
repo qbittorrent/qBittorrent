@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,11 @@ class kickasstorrents(object):
     while True and i<11:
       results = []
       json_data = retrieve_url(self.url+'/search/%s/%d/?categories[]=%s&field=seeders&sorder=desc&json=1'%(what, i, self.supported_categories[cat]))
-      json_dict = json.loads(json_data)
+      try:
+        json_dict = json.loads(json_data)
+      except:
+	i += 1
+	continue
       if json_dict['total_results'] <= 0: return
       results = json_dict['list']
       for r in results:
