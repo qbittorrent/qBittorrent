@@ -247,7 +247,7 @@
             <item>
              <widget class="QGroupBox" name="groupBox_4">
               <property name="title">
-               <string>Transfer list</string>
+               <string>Transfer List</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <property name="bottomMargin">
@@ -277,7 +277,10 @@
                  <property name="flat">
                   <bool>true</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout">
+                 <layout class="QFormLayout" name="formLayout_3">
+                  <property name="fieldGrowthPolicy">
+                   <enum>QFormLayout::ExpandingFieldsGrow</enum>
+                  </property>
                   <property name="bottomMargin">
                    <number>0</number>
                   </property>
@@ -341,19 +344,6 @@
                      </property>
                     </item>
                    </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -421,15 +411,15 @@
                    </widget>
                   </item>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
+                   <layout class="QFormLayout" name="formLayout_4">
+                    <item row="0" column="0">
                      <widget class="QLabel" name="label_trayIconStyle">
                       <property name="text">
                        <string>Tray icon style:</string>
                       </property>
                      </widget>
                     </item>
-                    <item>
+                    <item row="0" column="1">
                      <widget class="QComboBox" name="comboTrayIcon">
                       <item>
                        <property name="text">
@@ -447,19 +437,6 @@
                        </property>
                       </item>
                      </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_3">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
                     </item>
                    </layout>
                   </item>
@@ -565,7 +542,7 @@
                </sizepolicy>
               </property>
               <property name="title">
-               <string>File system</string>
+               <string>Hard Disk</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
                <property name="bottomMargin">
@@ -985,9 +962,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-84</y>
+             <y>0</y>
              <width>503</width>
-             <height>462</height>
+             <height>456</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -996,7 +973,7 @@ QGroupBox {
               <item>
                <widget class="QGroupBox" name="ListeningPortBox">
                 <property name="title">
-                 <string>Listening port</string>
+                 <string>Listening Port</string>
                 </property>
                 <layout class="QVBoxLayout">
                  <item>
@@ -1061,131 +1038,116 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="nbConnecBox">
               <property name="title">
-               <string>Connections limit</string>
+               <string>Connections Limits</string>
               </property>
-              <layout class="QVBoxLayout" name="_8">
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <layout class="QHBoxLayout" name="_9">
-                 <item>
-                  <widget class="QCheckBox" name="checkMaxConnecs">
-                   <property name="text">
-                    <string>Global maximum number of connections:</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinMaxConnec">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="minimum">
-                    <number>2</number>
-                   </property>
-                   <property name="maximum">
-                    <number>2000</number>
-                   </property>
-                   <property name="value">
-                    <number>500</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0">
+                <widget class="QCheckBox" name="checkMaxConnecs">
+                 <property name="text">
+                  <string>Global maximum number of connections:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
-               <item>
-                <layout class="QHBoxLayout" name="_10">
-                 <item>
-                  <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
-                   <property name="text">
-                    <string>Maximum number of connections per torrent:</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
-                   <property name="minimum">
-                    <number>2</number>
-                   </property>
-                   <property name="maximum">
-                    <number>2000</number>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinMaxConnec">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="minimum">
+                  <number>2</number>
+                 </property>
+                 <property name="maximum">
+                  <number>2000</number>
+                 </property>
+                 <property name="value">
+                  <number>500</number>
+                 </property>
+                </widget>
                </item>
-               <item>
-                <layout class="QHBoxLayout" name="_11">
-                 <item>
-                  <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
-                   <property name="text">
-                    <string>Maximum number of upload slots per torrent:</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
-                   <property name="maximum">
-                    <number>500</number>
-                   </property>
-                   <property name="value">
-                    <number>4</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of connections per torrent:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
+                 <property name="minimum">
+                  <number>2</number>
+                 </property>
+                 <property name="maximum">
+                  <number>2000</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of upload slots per torrent:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
+                 <property name="maximum">
+                  <number>500</number>
+                 </property>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="2" column="2">
+                <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </widget>
@@ -1196,7 +1158,7 @@ QGroupBox {
                <bool>true</bool>
               </property>
               <property name="title">
-               <string>Proxy server</string>
+               <string>Proxy Server</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_29">
                <item>
@@ -1283,19 +1245,6 @@ QGroupBox {
                     <number>8080</number>
                    </property>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>21</width>
-                     <height>29</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                 </layout>
                </item>
@@ -1465,7 +1414,7 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="bandwidthBox">
               <property name="title">
-               <string>Global speed limits</string>
+               <string>Global Speed Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
                <item row="0" column="0">
@@ -1570,7 +1519,7 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="groupBox_6">
               <property name="title">
-               <string>Alternative global speed limits</string>
+               <string>Alternative Global Speed Limits</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
@@ -1995,7 +1944,7 @@ QGroupBox {
             <item>
              <widget class="QGroupBox" name="checkEnableQueueing">
               <property name="title">
-               <string>Torrent queueing</string>
+               <string>Torrent Queueing</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2080,13 +2029,39 @@ QGroupBox {
                  </property>
                 </spacer>
                </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer_7">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="2" column="2">
+                <spacer name="horizontalSpacer_11">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
               </layout>
              </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="ratioBox">
               <property name="title">
-               <string>Share ratio limiting</string>
+               <string>Share Ratio Limiting</string>
               </property>
               <layout class="QVBoxLayout">
                <property name="bottomMargin">
@@ -2149,19 +2124,6 @@ QGroupBox {
                     </property>
                    </item>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                 </layout>
                </item>

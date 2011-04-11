@@ -52,36 +52,33 @@ public:
   // Contructor / Destructor
   options_imp(QWidget *parent=0);
   ~options_imp();
-  QSize sizeFittingScreen();
 
-protected slots:
+signals:
+  void status_changed() const;
+  void exitWithCancel();
+
+private slots:
   void enableProxy(int comboIndex);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();
   void applySettings(QAbstractButton* button);
-  void on_browseExportDirButton_clicked();
-  void on_browseFilterButton_clicked();
-  void on_browseSaveDirButton_clicked();
-  void on_browseTempDirButton_clicked();
   void enableApplyButton();
   void changePage(QListWidgetItem*, QListWidgetItem*);
   void loadWindowState();
   void saveWindowState() const;
-  void on_randomButton_clicked();
-  void on_addScanFolderButton_clicked();
-  void on_removeScanFolderButton_clicked();
   void handleScanFolderViewSelectionChanged();
   void on_IpFilterRefreshBtn_clicked();
   void handleIPFilterParsed(bool error, int ruleCount);
-
-public slots:
-  void setLocale(QString locale);
+  void on_browseExportDirButton_clicked();
+  void on_browseFilterButton_clicked();
+  void on_browseSaveDirButton_clicked();
+  void on_browseTempDirButton_clicked();
+  void on_randomButton_clicked();
+  void on_addScanFolderButton_clicked();
+  void on_removeScanFolderButton_clicked();
+  void setLocale(const QString &locale);
   void showConnectionTab();
-
-signals:
-  void status_changed() const;
-  void exitWithCancel();
 
 private:
   // Methods
@@ -142,6 +139,7 @@ private:
   quint16 webUiPort() const;
   QString webUiUsername() const;
   QString webUiPassword() const;
+  QSize sizeFittingScreen() const;
 
 private:
   QButtonGroup choiceLanguage;

@@ -283,7 +283,7 @@ void options_imp::saveWindowState() const {
   settings.setValue(QString::fromUtf8("Preferences/State/hSplitterSizes"), sizes_str);
 }
 
-QSize options_imp::sizeFittingScreen() {
+QSize options_imp::sizeFittingScreen() const {
   int scrn = 0;
   QWidget *w = this->topLevelWidget();
 
@@ -891,9 +891,7 @@ bool options_imp::isProxyAuthEnabled() const{
 }
 
 QString options_imp::getProxyIp() const{
-  QString ip = textProxyIP->text();
-  ip = ip.trimmed();
-  return ip;
+  return textProxyIP->text().trimmed();
 }
 
 unsigned short options_imp::getProxyPort() const{
@@ -917,7 +915,7 @@ QString options_imp::getLocale() const{
   return comboI18n->itemData(comboI18n->currentIndex(), Qt::UserRole).toString();
 }
 
-void options_imp::setLocale(QString localeStr) {
+void options_imp::setLocale(const QString &localeStr) {
   QLocale locale(localeStr);
   // Attempt to find exact match
   int index = comboI18n->findData(locale.name(), Qt::UserRole);
@@ -930,23 +928,21 @@ void options_imp::setLocale(QString localeStr) {
 }
 
 QString options_imp::getExportDir() const {
-  if(checkExportDir->isChecked()){
+  if(checkExportDir->isChecked())
     return misc::expandPath(textExportDir->text());
-  }else{
-    return QString::null;
-  }
+  return QString();
 }
 
 // Return action on double-click on a downloading torrent set in options
 int options_imp::getActionOnDblClOnTorrentDl() const {
-  if(actionTorrentDlOnDblClBox->currentIndex()<1)
+  if(actionTorrentDlOnDblClBox->currentIndex() < 1)
     return 0;
   return actionTorrentDlOnDblClBox->currentIndex();
 }
 
 // Return action on double-click on a finished torrent set in options
 int options_imp::getActionOnDblClOnTorrentFn() const {
-  if(actionTorrentFnOnDblClBox->currentIndex()<1)
+  if(actionTorrentFnOnDblClBox->currentIndex() < 1)
     return 0;
   return actionTorrentFnOnDblClBox->currentIndex();
 }
@@ -991,7 +987,7 @@ void options_imp::handleScanFolderViewSelectionChanged() {
 }
 
 void options_imp::on_browseExportDirButton_clicked() {
-  QString export_path = misc::expandPath(textExportDir->text());
+  const QString export_path = misc::expandPath(textExportDir->text());
   QDir exportDir(export_path);
   QString dir;
   if(!export_path.isEmpty() && exportDir.exists()) {
@@ -1008,7 +1004,7 @@ void options_imp::on_browseExportDirButton_clicked() {
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  QString filter_path = misc::expandPath(textFilterPath->text());
+  const QString filter_path = misc::expandPath(textFilterPath->text());
   QDir filterDir(filter_path);
   QString ipfilter;
   if(!filter_path.isEmpty() && filterDir.exists()) {
@@ -1026,7 +1022,7 @@ void options_imp::on_browseFilterButton_clicked() {
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked(){
-  QString save_path = misc::expandPath(textSavePath->text());
+  const QString save_path = misc::expandPath(textSavePath->text());
   QDir saveDir(save_path);
   QString dir;
   if(!save_path.isEmpty() && saveDir.exists()) {
@@ -1043,7 +1039,7 @@ void options_imp::on_browseSaveDirButton_clicked(){
 }
 
 void options_imp::on_browseTempDirButton_clicked(){
-  QString temp_path = misc::expandPath(textTempPath->text());
+  const QString temp_path = misc::expandPath(textTempPath->text());
   QDir tempDir(temp_path);
   QString dir;
   if(!temp_path.isEmpty() && tempDir.exists()) {
@@ -1165,5 +1161,4 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
     return eng_lang;
   }
   }
-
 }
