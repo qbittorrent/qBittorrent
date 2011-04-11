@@ -13,6 +13,17 @@
         <source>About</source>
         <translation>Ծրագրի մասին</translation>
     </message>
+    <message utf8="true">
+        <location filename="../about.ui" line="105"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../about.ui" line="134"/>
         <source>Author</source>
@@ -59,7 +70,6 @@
         <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
     <message utf8="true">
-        <location filename="../about.ui" line="105"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -67,7 +77,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -89,128 +99,136 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Property</source>
-        <translation>Առաջ-ը</translation>
+        <translation type="obsolete">Առաջ-ը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Value</source>
-        <translation>Նիշը</translation>
+        <translation type="obsolete">Նիշը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="119"/>
+        <location filename="../preferences/advancedsettings.h" line="159"/>
         <source>Disk write cache size</source>
         <translation>Պնակը գրելու պահեստի չափը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="124"/>
+        <location filename="../preferences/advancedsettings.h" line="158"/>
         <source> MiB</source>
         <translation>ՄԲ</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="127"/>
+        <location filename="../preferences/advancedsettings.h" line="164"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Ելքի դարպասներ (Նվազ) [0. Անջատված]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="134"/>
+        <location filename="../preferences/advancedsettings.h" line="169"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Ելքի դարպասներ (Առավ) [0. Անջատված]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="151"/>
+        <location filename="../preferences/advancedsettings.h" line="178"/>
         <source>Recheck torrents on completion</source>
         <translation>Ավարտելուց հետո ստուգել torrent-ները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="156"/>
+        <location filename="../preferences/advancedsettings.h" line="184"/>
         <source>Transfer list refresh interval</source>
         <translation>Փոխանցումների ցանկի թարմացման դադարը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="161"/>
+        <location filename="../preferences/advancedsettings.h" line="183"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>մվ</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="164"/>
+        <location filename="../preferences/advancedsettings.h" line="49"/>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="49"/>
+        <source>Value</source>
+        <comment>Value set for this setting</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="187"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Որոշել peer-երի երկրները (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="169"/>
+        <location filename="../preferences/advancedsettings.h" line="190"/>
         <source>Resolve peer host names</source>
         <translation>Որոշել peer-երի հոսթերի անունները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="174"/>
+        <location filename="../preferences/advancedsettings.h" line="195"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Կիսաբաց միացումների առավ. քանակը [0. Անջատված]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="181"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source>Strict super seeding</source>
         <translation>Որոշված գերփոխանցումը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="190"/>
+        <location filename="../preferences/advancedsettings.h" line="214"/>
         <source>Network Interface (requires restart)</source>
         <translation>Ցանցի միջներեսը (պահանջում է վերագործարկում)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="191"/>
+        <location filename="../preferences/advancedsettings.h" line="204"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Ցանկացած միջներես</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="204"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Ուղորդիչների հաշվետվության IP-ն (պահ. է վերագործարկում)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Display program on-screen notifications</source>
-        <translation>Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
+        <translation type="obsolete">Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
         <translation type="obsolete">Ցուցադրել ծրագրի տեղեկացումների պատուհանները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="214"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Enable embedded tracker</source>
         <translation>Միացնել ուղղորդիչի արգելումը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="219"/>
+        <location filename="../preferences/advancedsettings.h" line="228"/>
         <source>Embedded tracker port</source>
         <translation>Արգելված ուղղորդիչի դարպասը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="231"/>
         <source>Check for software updates</source>
         <translation>Ստուգել ծրագրի թարմացումները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="232"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Use system icon theme</source>
         <translation>Օգտ. համակարգային պատկերով թեման</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="238"/>
+        <location filename="../preferences/advancedsettings.h" line="239"/>
         <source>Confirm torrent deletion</source>
         <translation>Հաստատեք torrent-ի ջնջումը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="141"/>
+        <location filename="../preferences/advancedsettings.h" line="172"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Անտեսել փոխանցումների սահ-ները լոկալ ցանցի համար</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="146"/>
+        <location filename="../preferences/advancedsettings.h" line="175"/>
         <source>Include TCP/IP overhead in transfer limits</source>
         <translation>Ներառել TCP/IP վերադիր՝ փոխանցումների սահ-երում</translation>
     </message>
@@ -1585,7 +1603,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Լեզուն.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="215"/>
+        <location filename="../preferences/options.ui" line="222"/>
         <source>(Requires restart)</source>
         <translation>(Պահանջվում է վերագործարկում)</translation>
     </message>
@@ -1594,40 +1612,38 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Տեսքը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="243"/>
         <source>Transfer list</source>
-        <translation>Փոխանցումերի ցանկը</translation>
+        <translation type="obsolete">Փոխանցումերի ցանկը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="252"/>
+        <location filename="../preferences/options.ui" line="259"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Օգտ. այլ գույն</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="297"/>
-        <location filename="../preferences/options.ui" line="323"/>
+        <location filename="../preferences/options.ui" line="307"/>
+        <location filename="../preferences/options.ui" line="333"/>
         <source>Start / Stop Torrent</source>
         <translation>Սկսել / Կանգնեցնել</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="307"/>
-        <location filename="../preferences/options.ui" line="333"/>
+        <location filename="../preferences/options.ui" line="317"/>
+        <location filename="../preferences/options.ui" line="343"/>
         <source>No action</source>
         <translation>Չկա գործողություն</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="559"/>
         <source>File system</source>
-        <translation>Ֆայլային համակարգը</translation>
+        <translation type="obsolete">Ֆայլային համակարգը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="792"/>
+        <location filename="../preferences/options.ui" line="778"/>
         <source>Copy .torrent files to:</source>
         <translation>Պատճենել .torrent ֆայլերը՝</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="948"/>
+        <location filename="../preferences/options.ui" line="934"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -1636,72 +1652,85 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1942"/>
+        <location filename="../preferences/options.ui" line="976"/>
+        <source>Listening Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1041"/>
+        <source>Connections Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1161"/>
+        <source>Proxy Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1891"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Միացնել Լոկալ Peer-երի բացահայտումը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1954"/>
+        <location filename="../preferences/options.ui" line="1903"/>
         <source>Encryption mode:</source>
         <translation>Կոդավորման եղանակը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1962"/>
+        <location filename="../preferences/options.ui" line="1911"/>
         <source>Prefer encryption</source>
         <translation>Նախընտրելի կոդավորում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1967"/>
+        <location filename="../preferences/options.ui" line="1916"/>
         <source>Require encryption</source>
         <translation>Պահանջել կոդավորում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1972"/>
+        <location filename="../preferences/options.ui" line="1921"/>
         <source>Disable encryption</source>
         <translation>Անջատել կոդավորումը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1998"/>
         <source>Torrent queueing</source>
-        <translation>Torrent-երի հերթը</translation>
+        <translation type="obsolete">Torrent-երի հերթը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2013"/>
+        <location filename="../preferences/options.ui" line="1962"/>
         <source>Maximum active downloads:</source>
         <translation>Առավելագ. ակտիվ բեռնումներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2033"/>
+        <location filename="../preferences/options.ui" line="1982"/>
         <source>Maximum active uploads:</source>
         <translation>Առավելագ. ակտիվ փոխանցումներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2053"/>
+        <location filename="../preferences/options.ui" line="2002"/>
         <source>Maximum active torrents:</source>
         <translation>Առավելագ. ակտիվ  torrent-ներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="524"/>
+        <location filename="../preferences/options.ui" line="510"/>
         <source>When adding a torrent</source>
         <translation>Երբ ավելացվում է torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="533"/>
+        <location filename="../preferences/options.ui" line="519"/>
         <source>Display torrent content and some options</source>
         <translation>Ցուցադրել torrent-ի պարունակությունը և այլ ընտրանքներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="990"/>
         <source>Listening port</source>
-        <translation>Դարպասը</translation>
+        <translation type="obsolete">Դարպասը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="998"/>
+        <location filename="../preferences/options.ui" line="984"/>
         <source>Port used for incoming connections:</source>
         <translation>Մուտքային կապուղիների դարպասը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1018"/>
+        <location filename="../preferences/options.ui" line="1004"/>
         <source>Random</source>
         <translation>Պատահական</translation>
     </message>
@@ -1714,52 +1743,50 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Միացնել NAT-PMP դարպասի պլան-ը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1055"/>
         <source>Connections limit</source>
-        <translation>Միացումների սահմանափակումներ</translation>
+        <translation type="obsolete">Միացումների սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1066"/>
+        <location filename="../preferences/options.ui" line="1047"/>
         <source>Global maximum number of connections:</source>
         <translation>Կապուղիների առավ. քանակը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1109"/>
+        <location filename="../preferences/options.ui" line="1073"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Կապուղիների առավ. քանակը torrent-ի համար.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1149"/>
+        <location filename="../preferences/options.ui" line="1096"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Փոխանցումների սլոթների առավ. քանակը torrent-ի համար.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1486"/>
-        <location filename="../preferences/options.ui" line="1608"/>
+        <location filename="../preferences/options.ui" line="1435"/>
+        <location filename="../preferences/options.ui" line="1557"/>
         <source>Upload:</source>
         <translation>Փոխանցում.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1522"/>
-        <location filename="../preferences/options.ui" line="1635"/>
+        <location filename="../preferences/options.ui" line="1471"/>
+        <location filename="../preferences/options.ui" line="1584"/>
         <source>Download:</source>
         <translation>Բեռնում.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1515"/>
-        <location filename="../preferences/options.ui" line="1548"/>
-        <location filename="../preferences/options.ui" line="1628"/>
-        <location filename="../preferences/options.ui" line="1655"/>
+        <location filename="../preferences/options.ui" line="1464"/>
+        <location filename="../preferences/options.ui" line="1497"/>
+        <location filename="../preferences/options.ui" line="1577"/>
+        <location filename="../preferences/options.ui" line="1604"/>
         <source>KiB/s</source>
         <translation>Կբիթ/վ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1468"/>
         <source>Global speed limits</source>
-        <translation>Արագության սահմանափակումներ</translation>
+        <translation type="obsolete">Արագության սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="759"/>
+        <location filename="../preferences/options.ui" line="745"/>
         <source>Remove folder</source>
         <translation>Ջնջել թղթապանակը</translation>
     </message>
@@ -1775,28 +1802,27 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Լեզուն</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1573"/>
         <source>Alternative global speed limits</source>
-        <translation>Արագության այլընտրանքային սահմանափակումներ</translation>
+        <translation type="obsolete">Արագության այլընտրանքային սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1720"/>
+        <location filename="../preferences/options.ui" line="1669"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>մինչև</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1772"/>
+        <location filename="../preferences/options.ui" line="1721"/>
         <source>Every day</source>
         <translation>Ամեն օր</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1777"/>
+        <location filename="../preferences/options.ui" line="1726"/>
         <source>Week days</source>
         <translation>Շաբաթական</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1782"/>
+        <location filename="../preferences/options.ui" line="1731"/>
         <source>Week ends</source>
         <translation>Հանգստյան օրեր</translation>
     </message>
@@ -1813,12 +1839,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Օգտագործել տարբեր դարպասներ DHT-ի և Bittorrent-ի համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1885"/>
+        <location filename="../preferences/options.ui" line="1834"/>
         <source>DHT port:</source>
         <translation>DHT դարպասը.</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1926"/>
+        <location filename="../preferences/options.ui" line="1875"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Փոխանակել  peer-երը համատեղելի Bittorrent ծրագրերի միջև (µTorrent, Vuze, ...)</translation>
     </message>
@@ -1843,17 +1869,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Անջատված է</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1232"/>
+        <location filename="../preferences/options.ui" line="1203"/>
         <source>Host:</source>
         <translation>Հոսթը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1211"/>
+        <location filename="../preferences/options.ui" line="1182"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1198"/>
+        <location filename="../preferences/options.ui" line="1169"/>
         <source>Type:</source>
         <translation>Տեսակը.</translation>
     </message>
@@ -1867,12 +1893,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Տեսողականացում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="268"/>
+        <location filename="../preferences/options.ui" line="275"/>
         <source>Action on double-click</source>
         <translation>Գործ. կրկնակի սեղմամբ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="280"/>
+        <location filename="../preferences/options.ui" line="290"/>
         <source>Downloading torrents:</source>
         <translation>Բեռնվում են torrent-ներ.</translation>
     </message>
@@ -1881,149 +1907,168 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Սկսել/Կանգնեցնել</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="302"/>
-        <location filename="../preferences/options.ui" line="328"/>
+        <location filename="../preferences/options.ui" line="312"/>
+        <location filename="../preferences/options.ui" line="338"/>
         <source>Open destination folder</source>
         <translation>Բացել պարունակող թղթապանակը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="315"/>
+        <location filename="../preferences/options.ui" line="325"/>
         <source>Completed torrents:</source>
         <translation>Ավարտված  torrent-ներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="360"/>
+        <location filename="../preferences/options.ui" line="357"/>
         <source>Desktop</source>
         <translation>Աշխատանքը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="366"/>
+        <location filename="../preferences/options.ui" line="363"/>
         <source>Show splash screen on start up</source>
         <translation>Բացելիս ցուցադրել ծրագրի պատկերը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="376"/>
+        <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
         <translation>Բացել qBittorrent-ը թաքնված վիճակում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="383"/>
         <source>Show qBittorrent icon in notification area</source>
-        <translation>Ցուցադրել qBittorrent-ի պատկերը իրազեկման գոտում</translation>
+        <translation type="obsolete">Ցուցադրել qBittorrent-ի պատկերը իրազեկման գոտում</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
         <translation type="obsolete">Օգտ. անգույն պատկեր՝էկրանի ներքևում (պահ. է վերագործարկում)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="393"/>
+        <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Թաքցնել qBittorrent-ը իրազեկման գոտում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="403"/>
+        <location filename="../preferences/options.ui" line="409"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>qBittorrent-ը փակելիս թաքցնել իրազեկման գոտում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="412"/>
+        <location filename="../preferences/options.ui" line="418"/>
         <source>Tray icon style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="420"/>
+        <location filename="../preferences/options.ui" line="426"/>
         <source>Normal</source>
         <translation type="unfinished">Նորմալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="425"/>
+        <location filename="../preferences/options.ui" line="431"/>
         <source>Monochrome (Dark theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="430"/>
+        <location filename="../preferences/options.ui" line="436"/>
         <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="453"/>
+        <location filename="../preferences/options.ui" line="380"/>
         <source>Ask for program exit confirmation</source>
         <translation>Հարցնել ծրագիրը փակելիս</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="466"/>
+        <location filename="../preferences/options.ui" line="193"/>
+        <source>User Interface Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="250"/>
+        <source>Transfer List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="390"/>
+        <source>Show qBittorrent in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="452"/>
         <source>Power Management</source>
         <translation>Սնուցման կառավարում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="472"/>
+        <location filename="../preferences/options.ui" line="458"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation>Կանխել համակարգչի &quot;քնեցումը&quot;, երբ կան ակտիվ torrent-ներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="543"/>
+        <location filename="../preferences/options.ui" line="529"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Միանգամից չսկսել բեռնումները</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="568"/>
+        <location filename="../preferences/options.ui" line="545"/>
+        <source>Hard Disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="554"/>
         <source>Save files to location:</source>
         <translation>Պահպանել ֆայլերը՝</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="616"/>
+        <location filename="../preferences/options.ui" line="602"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Torrent-ի նիշը պահպանելու ճանապարհին</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="626"/>
+        <location filename="../preferences/options.ui" line="612"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Բոլոր ֆայլերի համար առանձնացնել անհրաժեշտ չափով տեղ պնակի վրա</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="633"/>
+        <location filename="../preferences/options.ui" line="619"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Պահել չբեռնված torrent-ները՝</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="679"/>
+        <location filename="../preferences/options.ui" line="665"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation>Կցել .!qB ընդլայնումը անավարտ ֆայլերի անուններին</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="696"/>
+        <location filename="../preferences/options.ui" line="682"/>
         <source>Automatically add torrents from:</source>
         <translation>Միանգամից ավելացնել torrent-ները՝</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="749"/>
+        <location filename="../preferences/options.ui" line="735"/>
         <source>Add folder...</source>
         <translation>Ավելացնել թղթապանակ...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="848"/>
+        <location filename="../preferences/options.ui" line="834"/>
         <source>Email notification upon download completion</source>
         <translation>Բեռնումները ավարտելիս տեղեկացնել էլ. փոստով</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="862"/>
+        <location filename="../preferences/options.ui" line="848"/>
         <source>Destination email:</source>
         <translation>էլ. հասցեն.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="872"/>
+        <location filename="../preferences/options.ui" line="858"/>
         <source>SMTP server:</source>
         <translation>SMTP սպասարկիչ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="921"/>
+        <location filename="../preferences/options.ui" line="907"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="933"/>
+        <location filename="../preferences/options.ui" line="919"/>
         <source>Run an external program on torrent completion</source>
         <translation>Torrent-ը բեռնելուց հետո բացել արտաքին ծրագրով</translation>
     </message>
@@ -2032,68 +2077,87 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Օգտագործեք %f-ը՝ բաց թողնելու համար torrent-ի ճանապարհի ցուցիչը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1040"/>
+        <location filename="../preferences/options.ui" line="1026"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Օգտագործել UPnP / NAT-PMP դարպասի փոխանցում ռոութերից</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1190"/>
         <source>Proxy server</source>
-        <translation>Միջնորդ սպասարկիչ</translation>
+        <translation type="obsolete">Միջնորդ սպասարկիչ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1382"/>
+        <location filename="../preferences/options.ui" line="1331"/>
         <source>IP Filtering</source>
         <translation>Ֆիլտրում IP-ով</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1423"/>
+        <location filename="../preferences/options.ui" line="1372"/>
         <source>Reload the filter</source>
         <translation>Վերաբացել ֆիլտրը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1679"/>
+        <location filename="../preferences/options.ui" line="1417"/>
+        <source>Global Speed Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1522"/>
+        <source>Alternative Global Speed Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1628"/>
         <source>Schedule the use of alternative speed limits</source>
         <translation>Նշեք արագության այլընտրանքային սահմանափակում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1696"/>
+        <location filename="../preferences/options.ui" line="1645"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>Ժ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1764"/>
+        <location filename="../preferences/options.ui" line="1713"/>
         <source>When:</source>
         <translation>Երբ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1847"/>
+        <location filename="../preferences/options.ui" line="1796"/>
         <source>Privacy</source>
         <translation>Անվտանգություն</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1853"/>
+        <location filename="../preferences/options.ui" line="1802"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Միացնել DHT՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1865"/>
+        <location filename="../preferences/options.ui" line="1814"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Օգտագործել այլ դարպաս՝ DHT-ի և BitTorrent-ի համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1929"/>
+        <location filename="../preferences/options.ui" line="1878"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Միացնել Peer-երի փոխանակումը (PeX)՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1939"/>
+        <location filename="../preferences/options.ui" line="1888"/>
         <source>Look for peers on your local network</source>
         <translation>Ձեր լոկալ ցանցի peer-երը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2296"/>
+        <location filename="../preferences/options.ui" line="1947"/>
+        <source>Torrent Queueing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2064"/>
+        <source>Share Ratio Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2258"/>
         <source>Bypass authentication for localhost</source>
         <translation>localhost-ի շրջանցիկ ներկայացում</translation>
     </message>
@@ -2102,32 +2166,31 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Արձանագրության գաղտնագրում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2089"/>
         <source>Share ratio limiting</source>
-        <translation>Սահմանափակումներ</translation>
+        <translation type="obsolete">Սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2100"/>
+        <location filename="../preferences/options.ui" line="2075"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Փոխանցել torrent-ները մինչև սահ-ը կհասնի</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2132"/>
+        <location filename="../preferences/options.ui" line="2107"/>
         <source>then</source>
         <translation>ապա</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2143"/>
+        <location filename="../preferences/options.ui" line="2118"/>
         <source>Pause them</source>
         <translation>Դադարեցնել բոլորը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2148"/>
+        <location filename="../preferences/options.ui" line="2123"/>
         <source>Remove them</source>
         <translation>Ջնջել</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1206"/>
+        <location filename="../preferences/options.ui" line="1177"/>
         <source>(None)</source>
         <translation>(Չկա)</translation>
     </message>
@@ -2141,54 +2204,54 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1221"/>
+        <location filename="../preferences/options.ui" line="1192"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1258"/>
-        <location filename="../preferences/options.ui" line="2228"/>
+        <location filename="../preferences/options.ui" line="1229"/>
+        <location filename="../preferences/options.ui" line="2190"/>
         <source>Port:</source>
         <translation>Դարպասը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="882"/>
-        <location filename="../preferences/options.ui" line="1301"/>
-        <location filename="../preferences/options.ui" line="2264"/>
+        <location filename="../preferences/options.ui" line="868"/>
+        <location filename="../preferences/options.ui" line="1257"/>
+        <location filename="../preferences/options.ui" line="2226"/>
         <source>Authentication</source>
         <translation>Ներկայացում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="894"/>
-        <location filename="../preferences/options.ui" line="1313"/>
-        <location filename="../preferences/options.ui" line="2303"/>
+        <location filename="../preferences/options.ui" line="880"/>
+        <location filename="../preferences/options.ui" line="1274"/>
+        <location filename="../preferences/options.ui" line="2265"/>
         <source>Username:</source>
         <translation>Օգտվողը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="904"/>
-        <location filename="../preferences/options.ui" line="1339"/>
-        <location filename="../preferences/options.ui" line="2310"/>
+        <location filename="../preferences/options.ui" line="890"/>
+        <location filename="../preferences/options.ui" line="1300"/>
+        <location filename="../preferences/options.ui" line="2272"/>
         <source>Password:</source>
         <translation>Ծածկագիրը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2210"/>
+        <location filename="../preferences/options.ui" line="2172"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Միացնել  Web User Interface-ը (Հեռադիր կառավարում)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1216"/>
+        <location filename="../preferences/options.ui" line="1187"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1394"/>
+        <location filename="../preferences/options.ui" line="1343"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Ֆիլտրերի ճանապարհը (.dat, .p2p, .p2b).</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2222"/>
+        <location filename="../preferences/options.ui" line="2184"/>
         <source>HTTP Server</source>
         <translation>HTTP սպասարկիչ</translation>
     </message>
@@ -5043,78 +5106,78 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1058"/>
-        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="994"/>
+        <location filename="../preferences/options_imp.cpp" line="996"/>
         <source>Choose export directory</source>
         <translation>Ընտրեք արտածման տեղը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1093"/>
-        <location filename="../preferences/options_imp.cpp" line="1095"/>
-        <location filename="../preferences/options_imp.cpp" line="1110"/>
-        <location filename="../preferences/options_imp.cpp" line="1112"/>
+        <location filename="../preferences/options_imp.cpp" line="1029"/>
+        <location filename="../preferences/options_imp.cpp" line="1031"/>
+        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1048"/>
         <source>Choose a save directory</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1075"/>
-        <location filename="../preferences/options_imp.cpp" line="1077"/>
+        <location filename="../preferences/options_imp.cpp" line="1011"/>
+        <location filename="../preferences/options_imp.cpp" line="1013"/>
         <source>Choose an ip filter file</source>
         <translation>Ընտրեք ip ֆիլտր ֆայլը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1015"/>
+        <location filename="../preferences/options_imp.cpp" line="951"/>
         <source>Add directory to scan</source>
         <translation>Ստուգելու համար ավելացնել թղթապանակ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1021"/>
+        <location filename="../preferences/options_imp.cpp" line="957"/>
         <source>Folder is already being watched.</source>
         <translation>Թղթապանակը արդեն ստուգվել է։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1024"/>
+        <location filename="../preferences/options_imp.cpp" line="960"/>
         <source>Folder does not exist.</source>
         <translation>Թղթապանակը գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1027"/>
+        <location filename="../preferences/options_imp.cpp" line="963"/>
         <source>Folder is not readable.</source>
         <translation>Թղթապանակը կարդալու համար չէ։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1035"/>
+        <location filename="../preferences/options_imp.cpp" line="971"/>
         <source>Failure</source>
         <translation>Ձախողում</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1035"/>
+        <location filename="../preferences/options_imp.cpp" line="971"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Հնարավոր չէ ստուգման համարավելացնել թղթապանակ՝ &apos;%1&apos;: %2 </translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1075"/>
-        <location filename="../preferences/options_imp.cpp" line="1077"/>
+        <location filename="../preferences/options_imp.cpp" line="1011"/>
+        <location filename="../preferences/options_imp.cpp" line="1013"/>
         <source>Filters</source>
         <translation>Ֆիլտրեր</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1171"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
         <source>Parsing error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1171"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
         <source>Failed to parse the provided IP filter</source>
         <translation> IP ֆիլտրի տրամադրման սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1173"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Successfully refreshed</source>
         <translation>Հաջողությամբ թարմացվեց</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1173"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP ֆիլտրի ներկայացումը հաջող էր. %1 կանոնները կիրառվեցին։</translation>
