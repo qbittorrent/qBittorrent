@@ -111,13 +111,6 @@ options_imp::options_imp(QWidget *parent):
   comboTrayIcon->setVisible(false);
 #endif
   // Connect signals / slots
-  // General tab
-  connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(setSystrayOptionsState(bool)));
-  // Bittorrent tab
-  connect(checkMaxConnecs,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimit(bool)));
-  connect(checkMaxConnecsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxConnecsLimitPerTorrent(bool)));
-  connect(checkMaxUploadsPerTorrent,  SIGNAL(toggled(bool)), this, SLOT(enableMaxUploadsLimitPerTorrent(bool)));
-  connect(checkMaxRatio,  SIGNAL(toggled(bool)), this, SLOT(enableMaxRatio(bool)));
   // Proxy tab
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
   connect(checkProxyAuth,  SIGNAL(toggled(bool)), this, SLOT(enableProxyAuth(bool)));
@@ -475,10 +468,7 @@ void options_imp::loadOptions(){
   checkAltRowColors->setChecked(pref.useAlternatingRowColors());
   checkShowSystray->setChecked(pref.systrayIntegration());
   checkShowSplash->setChecked(!pref.isSlashScreenDisabled());
-  if(!checkShowSystray->isChecked()) {
-    disableSystrayOptions();
-  } else {
-    enableSystrayOptions();
+  if(checkShowSystray->isChecked()) {
     checkCloseToSystray->setChecked(pref.closeToTray());
     checkMinimizeToSysTray->setChecked(pref.minimizeToTray());
     checkStartMinimized->setChecked(pref.startMinimized());
@@ -845,49 +835,8 @@ bool options_imp::useAdditionDialog() const{
   return checkAdditionDialog->isChecked();
 }
 
-void options_imp::enableMaxConnecsLimit(bool checked){
-  spinMaxConnec->setEnabled(checked);
-}
-
-void options_imp::enableMaxConnecsLimitPerTorrent(bool checked){
-  spinMaxConnecPerTorrent->setEnabled(checked);
-}
-
-void options_imp::enableSystrayOptions() {
-  checkCloseToSystray->setEnabled(true);
-  checkMinimizeToSysTray->setEnabled(true);
-  comboTrayIcon->setEnabled(true);
-}
-
-void options_imp::disableSystrayOptions() {
-  checkCloseToSystray->setEnabled(false);
-  checkMinimizeToSysTray->setEnabled(false);
-  comboTrayIcon->setEnabled(false);
-}
-
-void options_imp::setSystrayOptionsState(bool checked) {
-  if(checked) {
-    enableSystrayOptions();
-  } else {
-    disableSystrayOptions();
-  }
-}
-
-void options_imp::enableMaxUploadsLimitPerTorrent(bool checked){
-  if(checked){
-    spinMaxUploadsPerTorrent->setEnabled(true);
-  }else{
-    spinMaxUploadsPerTorrent->setEnabled(false);
-  }
-}
-
 void options_imp::enableApplyButton(){
   applyButton->setEnabled(true);
-}
-
-void options_imp::enableMaxRatio(bool checked){
-  spinMaxRatio->setEnabled(checked);
-  comboRatioLimitAct->setEnabled(checked);
 }
 
 void options_imp::enableProxy(int index){

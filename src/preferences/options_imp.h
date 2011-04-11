@@ -57,10 +57,6 @@ public:
 protected slots:
   void enableProxy(int comboIndex);
   void enableProxyAuth(bool checked);
-  void enableMaxConnecsLimit(bool checked);
-  void enableMaxConnecsLimitPerTorrent(bool checked);
-  void enableMaxUploadsLimitPerTorrent(bool checked);
-  void enableMaxRatio(bool checked);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();
@@ -70,9 +66,6 @@ protected slots:
   void on_browseSaveDirButton_clicked();
   void on_browseTempDirButton_clicked();
   void enableApplyButton();
-  void enableSystrayOptions();
-  void disableSystrayOptions();
-  void setSystrayOptionsState(bool checked);
   void changePage(QListWidgetItem*, QListWidgetItem*);
   void loadWindowState();
   void saveWindowState() const;

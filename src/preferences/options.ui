@@ -170,9 +170,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>499</width>
-             <height>506</height>
+             <y>-115</y>
+             <width>503</width>
+             <height>519</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -378,74 +378,76 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkShowSystray">
-                 <property name="text">
-                  <string>Show qBittorrent icon in notification area</string>
+                <widget class="QGroupBox" name="checkShowSystray">
+                 <property name="title">
+                  <string>Show qBittorrent in notification area</string>
                  </property>
-                 <property name="checked">
+                 <property name="checkable">
                   <bool>true</bool>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkMinimizeToSysTray">
-                 <property name="text">
-                  <string>Minimize qBittorrent to notification area</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkCloseToSystray">
-                 <property name="text">
-                  <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close qBittorrent to notification area</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <widget class="QLabel" name="label_trayIconStyle">
-                   <property name="text">
-                    <string>Tray icon style:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboTrayIcon">
-                   <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_22">
+                  <item>
+                   <widget class="QCheckBox" name="checkMinimizeToSysTray">
                     <property name="text">
-                     <string>Normal</string>
+                     <string>Minimize qBittorrent to notification area</string>
                     </property>
-                   </item>
-                   <item>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkCloseToSystray">
                     <property name="text">
-                     <string>Monochrome (Dark theme)</string>
+                     <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close qBittorrent to notification area</string>
                     </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Monochrome (Light theme)</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                    <item>
+                     <widget class="QLabel" name="label_trayIconStyle">
+                      <property name="text">
+                       <string>Tray icon style:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboTrayIcon">
+                      <item>
+                       <property name="text">
+                        <string>Normal</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Monochrome (Dark theme)</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Monochrome (Light theme)</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
@@ -506,8 +508,8 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-387</y>
-             <width>499</width>
+             <y>0</y>
+             <width>503</width>
              <height>849</height>
             </rect>
            </property>
@@ -977,7 +979,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>392</width>
+             <width>503</width>
              <height>426</height>
             </rect>
            </property>
@@ -1457,8 +1459,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>328</width>
-             <height>306</height>
+             <width>518</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1835,8 +1837,8 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>486</width>
+             <y>-24</y>
+             <width>503</width>
              <height>408</height>
             </rect>
            </property>
@@ -2199,8 +2201,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>316</width>
-             <height>236</height>
+             <width>518</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2348,8 +2350,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>16</height>
+             <width>518</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2396,8 +2398,6 @@ QGroupBox {
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>checkCloseToSystray</tabstop>
-  <tabstop>checkMinimizeToSysTray</tabstop>
   <tabstop>textSavePath</tabstop>
   <tabstop>browseSaveDirButton</tabstop>
   <tabstop>checkAdditionDialog</tabstop>
@@ -2445,6 +2445,86 @@ QGroupBox {
     <hint type="destinationlabel">
      <x>430</x>
      <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxConnecs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxConnec</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>574</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxConnecsPerTorrent</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxConnecPerTorrent</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>611</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxUploadsPerTorrent</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxUploadsPerTorrent</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>510</x>
+     <y>214</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>616</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxRatio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxRatio</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>440</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>563</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxRatio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboRatioLimitAct</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>418</x>
+     <y>371</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>707</x>
+     <y>376</y>
     </hint>
    </hints>
   </connection>
