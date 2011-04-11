@@ -53,6 +53,9 @@ public:
   options_imp(QWidget *parent=0);
   ~options_imp();
 
+public slots:
+  void showConnectionTab();
+
 signals:
   void status_changed() const;
   void exitWithCancel();
@@ -78,7 +81,6 @@ private slots:
   void on_addScanFolderButton_clicked();
   void on_removeScanFolderButton_clicked();
   void setLocale(const QString &locale);
-  void showConnectionTab();
 
 private:
   // Methods
