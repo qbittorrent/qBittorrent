@@ -729,7 +729,7 @@ void SearchEngine::on_goToDescBtn_clicked()
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       const QString desc_url = model->data(model->index(index.row(), DESC_LINK)).toString();
       if(!desc_url.isEmpty())
-        QDesktopServices::openUrl(QUrl(desc_url));
+        QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
     }
   }
 }

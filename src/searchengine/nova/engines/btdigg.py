@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 
-#VERSION: 1.00
+#VERSION: 1.1
 #AUTHORS: BTDigg team (research@btdigg.org)
 #
 #                    GNU GENERAL PUBLIC LICENSE
@@ -52,7 +52,7 @@ class btdigg(object):
                            seeds = int(dl),
                            leech = int(dl),
                            engine_url = self.url,
-                           desc_link = 'http://btdigg.org/search?%s' % (urllib.urlencode(dict(info_hash = info_hash)),))
+                           desc_link = 'http://btdigg.org/search?%s' % (urllib.urlencode(dict(info_hash = info_hash, q = req)),))
 
                 prettyPrinter(res)
         finally:
