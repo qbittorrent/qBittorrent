@@ -985,9 +985,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-84</y>
              <width>503</width>
-             <height>426</height>
+             <height>462</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1300,87 +1300,78 @@ QGroupBox {
                 </layout>
                </item>
                <item>
-                <layout class="QGridLayout" name="gridLayout_13">
-                 <item row="0" column="0">
-                  <widget class="QCheckBox" name="checkProxyAuth">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string>Authentication</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <layout class="QGridLayout" name="gridLayout_12">
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="lblProxyUsername">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="text">
-                      <string>Username:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <widget class="QLineEdit" name="textProxyUsername">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="maxLength">
-                      <number>1000</number>
-                     </property>
-                     <property name="echoMode">
-                      <enum>QLineEdit::Normal</enum>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="lblProxyPassword">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="text">
-                      <string>Password:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QLineEdit" name="textProxyPassword">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="maxLength">
-                      <number>1000</number>
-                     </property>
-                     <property name="echoMode">
-                      <enum>QLineEdit::Password</enum>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="0" column="2">
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+                <widget class="QGroupBox" name="checkProxyAuth">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="title">
+                  <string>Authentication</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_24">
+                  <item>
+                   <layout class="QGridLayout" name="gridLayout_12">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="lblProxyUsername">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Username:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="textProxyUsername">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="maxLength">
+                       <number>1000</number>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Normal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="lblProxyPassword">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Password:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="textProxyPassword">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="maxLength">
+                       <number>1000</number>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
                </item>
               </layout>
              </widget>

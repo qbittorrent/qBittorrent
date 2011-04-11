@@ -56,7 +56,6 @@ public:
 
 protected slots:
   void enableProxy(int comboIndex);
-  void enableProxyAuth(bool checked);
   void on_buttonBox_accepted();
   void closeEvent(QCloseEvent *e);
   void on_buttonBox_rejected();

@@ -113,7 +113,6 @@ options_imp::options_imp(QWidget *parent):
   // Connect signals / slots
   // Proxy tab
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
-  connect(checkProxyAuth,  SIGNAL(toggled(bool)), this, SLOT(enableProxyAuth(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
@@ -589,7 +588,6 @@ void options_imp::loadOptions(){
   checkProxyAuth->setChecked(pref.isProxyAuthEnabled());
   textProxyUsername->setText(pref.getProxyUsername());
   textProxyPassword->setText(pref.getProxyPassword());
-  enableProxyAuth(checkProxyAuth->isChecked());
   //}
   // End Connection preferences
   // Bittorrent preferences
@@ -861,13 +859,6 @@ void options_imp::enableProxy(int index){
     checkProxyAuth->setEnabled(false);
     checkProxyAuth->setChecked(false);
   }
-}
-
-void options_imp::enableProxyAuth(bool checked){
-  lblProxyUsername->setEnabled(checked);
-  lblProxyPassword->setEnabled(checked);
-  textProxyUsername->setEnabled(checked);
-  textProxyPassword->setEnabled(checked);
 }
 
 bool options_imp::isSlashScreenDisabled() const {
