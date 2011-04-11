@@ -170,7 +170,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-115</y>
+             <y>0</y>
              <width>503</width>
              <height>519</height>
             </rect>
@@ -187,6 +187,13 @@
                </property>
                <item>
                 <layout class="QHBoxLayout">
+                 <item>
+                  <widget class="QLabel" name="label_9">
+                   <property name="text">
+                    <string>User Interface Language:</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QComboBox" name="comboI18n">
                    <property name="minimumSize">
@@ -378,6 +385,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkProgramExitConfirm">
+                 <property name="text">
+                  <string>Ask for program exit confirmation</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkShowSystray">
                  <property name="title">
                   <string>Show qBittorrent in notification area</string>
@@ -447,16 +464,6 @@
                    </layout>
                   </item>
                  </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkProgramExitConfirm">
-                 <property name="text">
-                  <string>Ask for program exit confirmation</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
                 </widget>
                </item>
               </layout>
