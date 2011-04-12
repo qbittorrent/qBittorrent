@@ -339,7 +339,7 @@ void TrackerList::deleteSelectedTrackers(){
 
 void TrackerList::showTrackerListMenu(QPoint) {
   QTorrentHandle h = properties->getCurrentTorrent();
-  if(!h.is_valid() || !h.has_metadata()) return;
+  if(!h.is_valid()) return;
   //QList<QTreeWidgetItem*> selected_items = getSelectedTrackerItems();
   QMenu menu;
   // Add actions
