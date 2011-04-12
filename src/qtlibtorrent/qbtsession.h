@@ -241,7 +241,6 @@ private:
   bool addInPause;
   qreal global_ratio_limit;
   int high_ratio_action;
-  bool UPnPEnabled;
   bool LSDEnabled;
   bool DHTEnabled;
   int current_dht_port;
@@ -269,7 +268,9 @@ private:
   QPointer<QTracker> m_tracker;
   TorrentSpeedMonitor *m_speedMonitor;
   shutDownAction m_shutdownAct;
-
+  // Port forwarding
+  libtorrent::upnp *m_upnp;
+  libtorrent::natpmp *m_natpmp;
 };
 
 #endif

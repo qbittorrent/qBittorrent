@@ -706,6 +706,14 @@ public:
     setValue("Preferences/WebUI/Port", port);
   }
 
+  bool useUPnPForWebUIPort() const {
+    return value("Preferences/WebUI/UseUPnP", true).toBool();
+  }
+
+  void setUPnPForWebUIPort(bool enabled) {
+    setValue("Preferences/WebUI/UseUPnP", enabled);
+  }
+
   QString getWebUiUsername() const {
     return value("Preferences/WebUI/Username", "admin").toString();
   }

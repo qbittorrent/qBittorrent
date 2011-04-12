@@ -199,6 +199,7 @@ options_imp::options_imp(QWidget *parent):
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
+  connect(checkWebUIUPnP, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkBypassLocalAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -422,6 +423,7 @@ void options_imp::saveOptions(){
   if(isWebUiEnabled())
   {
     pref.setWebUiPort(webUiPort());
+    pref.setUPnPForWebUIPort(checkWebUIUPnP->isChecked());
     pref.setWebUiUsername(webUiUsername());
     // FIXME: Check that the password is valid (not empty at least)
     pref.setWebUiPassword(webUiPassword());
@@ -660,6 +662,7 @@ void options_imp::loadOptions(){
   // Web UI
   checkWebUi->setChecked(pref.isWebUiEnabled());
   spinWebUiPort->setValue(pref.getWebUiPort());
+  checkWebUIUPnP->setChecked(pref.useUPnPForWebUIPort());
   textWebUiUsername->setText(pref.getWebUiUsername());
   textWebUiPassword->setText(pref.getWebUiPassword());
   checkBypassLocalAuth->setChecked(!pref.isWebUiLocalAuthEnabled());

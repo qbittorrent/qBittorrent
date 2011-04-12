@@ -68,6 +68,8 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
+#include <libtorrent/upnp.hpp>
+#include <libtorrent/natpmp.hpp>
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -89,13 +91,14 @@ enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
     preAllocateAll(false), addInPause(false), global_ratio_limit(-1),
-    UPnPEnabled(false), LSDEnabled(false),
+    LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
     torrentExport(false)
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
-  , m_tracker(0), m_shutdownAct(NO_SHUTDOWN)
+  , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
+    m_upnp(0), m_natpmp(0)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
@@ -1324,19 +1327,26 @@ void QBtSession::setMaxUploadsPerTorrent(int max) {
 }
 
 void QBtSession::enableUPnP(bool b) {
+  Preferences pref;
   if(b) {
-    if(!UPnPEnabled) {
+    if(!m_upnp) {
       qDebug("Enabling UPnP / NAT-PMP");
-      s->start_upnp();
-      s->start_natpmp();
-      UPnPEnabled = true;  
+      m_upnp = s->start_upnp();
+      m_natpmp = s->start_natpmp();
+    }
+    // Use UPnP/NAT-PMP for Web UI too
+    if(pref.isWebUiEnabled() && pref.useUPnPForWebUIPort()) {
+      const qint16 port = pref.getWebUiPort();
+      m_upnp->add_mapping(upnp::tcp, port, port);
+      m_natpmp->add_mapping(natpmp::tcp, port, port);
     }
   } else {
-    if(UPnPEnabled) {
+    if(m_upnp) {
       qDebug("Disabling UPnP / NAT-PMP");
       s->stop_upnp();
       s->stop_natpmp();
-      UPnPEnabled = false;
+      m_upnp = 0;
+      m_natpmp = 0;
     }
   }
 }

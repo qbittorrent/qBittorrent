@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
     - FEATURE: Added support for secure SMTP connection (SSL)
     - FEATURE: Added support for SMTP authentication
+    - FEATURE: Added UPnP/NAT-PMP port forward for the Web UI port
     - BUGFIX: Change systray icon on the fly (no restart needed)
     - COSMETIC: Added monochrome icon for light themes 
 

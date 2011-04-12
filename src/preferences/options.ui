@@ -171,7 +171,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>503</width>
+             <width>489</width>
              <height>519</height>
             </rect>
            </property>
@@ -493,7 +493,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>503</width>
+             <width>489</width>
              <height>849</height>
             </rect>
            </property>
@@ -963,7 +963,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>503</width>
+             <width>489</width>
              <height>456</height>
             </rect>
            </property>
@@ -1406,7 +1406,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>518</width>
+             <width>504</width>
              <height>384</height>
             </rect>
            </property>
@@ -1784,8 +1784,8 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-24</y>
-             <width>503</width>
+             <y>0</y>
+             <width>496</width>
              <height>408</height>
             </rect>
            </property>
@@ -2161,7 +2161,7 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>518</width>
+             <width>504</width>
              <height>384</height>
             </rect>
            </property>
@@ -2179,45 +2179,50 @@ QGroupBox {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                <item>
-                <widget class="QGroupBox" name="groupWebUiServer">
-                 <property name="title">
-                  <string>HTTP Server</string>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="lblWebUiPort">
+                   <property name="text">
+                    <string>Port:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinWebUiPort">
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>65535</number>
+                   </property>
+                   <property name="value">
+                    <number>8080</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>21</width>
+                     <height>29</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkWebUIUPnP">
+                 <property name="text">
+                  <string>Use UPnP / NAT-PMP to forward the port from my router</string>
                  </property>
-                 <layout class="QHBoxLayout">
-                  <item>
-                   <widget class="QLabel" name="lblWebUiPort">
-                    <property name="text">
-                     <string>Port:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinWebUiPort">
-                    <property name="minimum">
-                     <number>1</number>
-                    </property>
-                    <property name="maximum">
-                     <number>65535</number>
-                    </property>
-                    <property name="value">
-                     <number>8080</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer>
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>21</width>
-                      <height>29</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -2310,8 +2315,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>518</width>
-             <height>384</height>
+             <width>86</width>
+             <height>16</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
