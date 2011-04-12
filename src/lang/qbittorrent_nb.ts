@@ -1987,26 +1987,6 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>Steng qBittorrent til varslingsområdet</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="418"/>
-        <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="426"/>
-        <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="431"/>
-        <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="436"/>
-        <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="380"/>
         <source>Ask for program exit confirmation</source>
         <translation>Spør etter programavsluttningsbekreftelse</translation>
@@ -2024,6 +2004,26 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="418"/>
+        <source>Tray icon style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="426"/>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="431"/>
+        <source>Monochrome (Dark theme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="436"/>
+        <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3703,12 +3703,12 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>Invalid torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig torrentfil</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dette er ikke en gyldig torrentfil.</translation>
     </message>
 </context>
 <context>
@@ -4597,7 +4597,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="43"/>
         <source>Torrent file creation</source>
-        <translation>Torrentfil-opprettelse</translation>
+        <translation>Torrentfilopprettelse</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="65"/>
@@ -4622,7 +4622,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="93"/>
         <source>Web seeds urls:</source>
-        <translation>Nettgivere nettadresser:</translation>
+        <translation>Nettgiver-nettadresser:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="103"/>
