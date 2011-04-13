@@ -298,18 +298,6 @@ void QBtSession::configureSession() {
 #endif
   preAllocateAllFiles(pref.preAllocateAllFiles());
   startTorrentsInPause(pref.addTorrentsInPause());
-  // * Scan dirs
-  const QStringList scan_dirs = pref.getScanDirs();
-  QList<bool> downloadInDirList = pref.getDownloadInScanDirs();
-  while(scan_dirs.size() > downloadInDirList.size()) {
-    downloadInDirList << false;
-  }
-  int i = 0;
-  foreach (const QString &dir, scan_dirs) {
-    qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i);
-    m_scanFolders->addPath(dir, downloadInDirList.at(i));
-    ++i;
-  }
   // * Export Dir
   const bool newTorrentExport = pref.isTorrentExportEnabled();
   if(torrentExport != newTorrentExport) {
@@ -585,6 +573,18 @@ void QBtSession::configureSession() {
     addConsoleMessage(tr("Embedded Tracker [OFF]"));
     if(m_tracker)
       delete m_tracker;
+  }
+  // * Scan dirs
+  const QStringList scan_dirs = pref.getScanDirs();
+  QList<bool> downloadInDirList = pref.getDownloadInScanDirs();
+  while(scan_dirs.size() > downloadInDirList.size()) {
+    downloadInDirList << false;
+  }
+  int i = 0;
+  foreach (const QString &dir, scan_dirs) {
+    qDebug() << "Adding scan dir" << dir << downloadInDirList.at(i);
+    m_scanFolders->addPath(dir, downloadInDirList.at(i));
+    ++i;
   }
   qDebug("Session configured");
 }
