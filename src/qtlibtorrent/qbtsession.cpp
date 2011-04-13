@@ -138,12 +138,6 @@ QBtSession::QBtSession()
   timerAlerts = new QTimer(this);
   connect(timerAlerts, SIGNAL(timeout()), SLOT(readAlerts()));
   timerAlerts->start(1000);
-  connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
-  resumeDataTimer.start(180000); // 3min
-  // To download from urls
-  downloader = new DownloadThread(this);
-  connect(downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(processDownloadedFile(QString, QString)));
-  connect(downloader, SIGNAL(downloadFailure(QString, QString)), SLOT(handleDownloadFailure(QString, QString)));
   appendLabelToSavePath = pref.appendTorrentLabel();
 #if LIBTORRENT_VERSION_MINOR > 14
   appendqBExtension = pref.useIncompleteFilesExtension();
@@ -154,6 +148,13 @@ QBtSession::QBtSession()
   // Torrent speed monitor
   m_speedMonitor = new TorrentSpeedMonitor(this);
   m_speedMonitor->start();
+  // To download from urls
+  downloader = new DownloadThread(this);
+  connect(downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(processDownloadedFile(QString, QString)));
+  connect(downloader, SIGNAL(downloadFailure(QString, QString)), SLOT(handleDownloadFailure(QString, QString)));
+  // Regular saving of fastresume data
+  connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
+  resumeDataTimer.start(170000); // 3min
   qDebug("* BTSession constructed");
 }
 
@@ -275,6 +276,14 @@ void QBtSession::setQueueingEnabled(bool enable) {
 void QBtSession::configureSession() {
   qDebug("Configuring session");
   const Preferences pref;
+  // * Ports binding
+  const unsigned short old_listenPort = getListenPort();
+  const unsigned short new_listenPort = pref.getSessionPort();
+  if(old_listenPort != new_listenPort) {
+    setListeningPort(new_listenPort);
+    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(new_listenPort)));
+  }
+
   // Downloads
   // * Save path
   defaultSavePath = pref.getSavePath();
@@ -311,13 +320,6 @@ void QBtSession::configureSession() {
     }
   }
   // Connection
-  // * Ports binding
-  const unsigned short old_listenPort = getListenPort();
-  const unsigned short new_listenPort = pref.getSessionPort();
-  if(old_listenPort != new_listenPort) {
-    setListeningPort(new_listenPort);
-    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(new_listenPort)));
-  }
   // * Global download limit
   const bool alternative_speeds = pref.isAltBandwidthEnabled();
   int down_limit;
@@ -2412,6 +2414,16 @@ void QBtSession::readAlerts() {
     else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())) {
       addConsoleMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQString(p->message())), QString::fromUtf8("red"));
       //emit urlSeedProblem(QString::fromUtf8(p->url.c_str()), QString::fromUtf8(p->msg().c_str()));
+    }
+    else if (listen_succeeded_alert *p = dynamic_cast<listen_succeeded_alert*>(a.get())) {
+      qDebug() << "Sucessfully listening on" << p->endpoint.address().to_string().c_str() << "/" << p->endpoint.port();
+      // Force reannounce on all torrents because some trackers blacklist some ports
+      std::vector<torrent_handle> torrents = s->get_torrents();
+      std::vector<torrent_handle>::iterator it;
+      for(it = torrents.begin(); it != torrents.end(); it++) {
+        it->force_reannounce();
+      }
+      emit listenSucceeded();
     }
     else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())) {
       QTorrentHandle h(p->handle);

@@ -211,6 +211,7 @@ signals:
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
+  void listenSucceeded();
 
 private:
 #if LIBTORRENT_VERSION_MINOR < 15
