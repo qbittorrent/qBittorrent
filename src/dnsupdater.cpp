@@ -93,6 +93,7 @@ void DNSUpdater::ipRequestFinished(QNetworkReply *reply)
       if(!new_ip.isNull()) {
         if(m_lastIP != new_ip) {
           qDebug() << Q_FUNC_INFO << "The IP address changed, report the change to DynDNS...";
+          qDebug() << m_lastIP.toString() << "->" << new_ip.toString();
           m_lastIP = new_ip;
           updateDNSService();
         }
