@@ -78,6 +78,7 @@
 #endif
 #include <queue>
 #include <string.h>
+#include "dnsupdater.h"
 
 using namespace libtorrent;
 
@@ -98,7 +99,7 @@ QBtSession::QBtSession()
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
   , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
-    m_upnp(0), m_natpmp(0)
+    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
@@ -612,8 +613,25 @@ void QBtSession::initWebUi() {
       else
         addConsoleMessage(tr("Web User Interface Error - Unable to bind Web UI to port %1").arg(port), "red");
     }
-  } else if(httpServer) {
-    delete httpServer;
+    // DynDNS
+    if(pref.isDynDNSEnabled()) {
+      if(!m_dynDNSUpdater)
+        m_dynDNSUpdater = new DNSUpdater(this);
+      else
+        m_dynDNSUpdater->updateCredentials();
+    } else {
+      if(m_dynDNSUpdater) {
+        delete m_dynDNSUpdater;
+        m_dynDNSUpdater = 0;
+      }
+    }
+  } else {
+    if(httpServer)
+     delete httpServer;
+    if(m_dynDNSUpdater) {
+      delete m_dynDNSUpdater;
+      m_dynDNSUpdater = 0;
+    }
   }
 }
 

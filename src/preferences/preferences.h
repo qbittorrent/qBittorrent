@@ -61,6 +61,9 @@ enum ProxyType {HTTP=1, SOCKS5=2, HTTP_PW=3, SOCKS5_PW=4, SOCKS4=5};
 namespace TrayIcon {
 enum Style { NORMAL = 0, MONO_DARK, MONO_LIGHT };
 }
+namespace DNS {
+  enum Service { DYNDNS, NOIP };
+}
 
 class Preferences : public QIniSettings {
   Q_DISABLE_COPY(Preferences);
@@ -744,6 +747,46 @@ public:
       pass_ha1 = md5.result().toHex();
     }
     return pass_ha1;
+  }
+
+  bool isDynDNSEnabled() const {
+    return value("Preferences/DynDNS/Enabled", false).toBool();
+  }
+
+  void setDynDNSEnabled(bool enabled) {
+    setValue("Preferences/DynDNS/Enabled", enabled);
+  }
+
+  DNS::Service getDynDNSService() const {
+    return DNS::Service(value("Preferences/DynDNS/Service", DNS::DYNDNS).toInt());
+  }
+
+  void setDynDNSService(int service) {
+    setValue("Preferences/DynDNS/Service", service);
+  }
+
+  QString getDynDomainName() const {
+    return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
+  }
+
+  void setDynDomainName(const QString name) {
+    setValue("Preferences/DynDNS/DomainName", name);
+  }
+
+  QString getDynDNSUsername() const {
+    return value("Preferences/DynDNS/Username").toString();
+  }
+
+  void setDynDNSUsername(const QString username) {
+    setValue("Preferences/DynDNS/Username", username);
+  }
+
+  QString getDynDNSPassword() const {
+    return value("Preferences/DynDNS/Password").toString();
+  }
+
+  void setDynDNSPassword(const QString password) {
+    setValue("Preferences/DynDNS/Password", password);
   }
 
   // Advanced settings

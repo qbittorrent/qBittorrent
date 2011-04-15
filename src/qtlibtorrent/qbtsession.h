@@ -58,6 +58,7 @@ class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
 class TorrentSpeedMonitor;
+class DNSUpdater;
 
 class QBtSession : public QObject {
   Q_OBJECT
@@ -272,6 +273,8 @@ private:
   // Port forwarding
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
+  // DynDNS
+  DNSUpdater *m_dynDNSUpdater;
 };
 
 #endif

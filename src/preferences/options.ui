@@ -2281,11 +2281,103 @@ QGroupBox {
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QGroupBox" name="checkDynDNS">
+                 <property name="title">
+                  <string>Update my dynamic domain name</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QFormLayout" name="formLayout_5">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_19">
+                    <property name="text">
+                     <string>Service:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <layout class="QHBoxLayout" name="horizontalLayout_3">
+                    <item>
+                     <widget class="QComboBox" name="comboDNSService">
+                      <item>
+                       <property name="text">
+                        <string>DynDNS</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>No-IP</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="registerDNSBtn">
+                      <property name="text">
+                       <string>Register</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_20">
+                    <property name="text">
+                     <string>Domain name:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="domainNameTxt">
+                    <property name="text">
+                     <string>changeme.dyndns.org</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_21">
+                    <property name="text">
+                     <string>Username:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="DNSUsernameTxt">
+                    <property name="maxLength">
+                     <number>50</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_22">
+                    <property name="text">
+                     <string>Password:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="DNSPasswordTxt">
+                    <property name="maxLength">
+                     <number>50</number>
+                    </property>
+                    <property name="echoMode">
+                     <enum>QLineEdit::Password</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
             <item>
-             <spacer name="verticalSpacer_9">
+             <spacer name="verticalSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2315,8 +2407,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>16</height>
+             <width>504</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

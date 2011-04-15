@@ -2,6 +2,7 @@
     - FEATURE: Added support for secure SMTP connection (SSL)
     - FEATURE: Added support for SMTP authentication
     - FEATURE: Added UPnP/NAT-PMP port forward for the Web UI port
+    - FEATURE: qBittorrent can update dynamic DNS services (DynDNS, no-ip)
     - BUGFIX: Change systray icon on the fly (no restart needed)
     - COSMETIC: Added monochrome icon for light themes 
 

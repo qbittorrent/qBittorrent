@@ -80,6 +80,7 @@ private slots:
   void on_randomButton_clicked();
   void on_addScanFolderButton_clicked();
   void on_removeScanFolderButton_clicked();
+  void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
 
 private:

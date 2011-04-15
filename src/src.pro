@@ -101,13 +101,15 @@ HEADERS += misc.h \
            filesystemwatcher.h \
            scannedfoldersmodel.h \
            qinisettings.h \
-           smtp.h
+           smtp.h \
+    dnsupdater.h
 
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
-           smtp.cpp
+           smtp.cpp \
+    dnsupdater.cpp
 
 nox {
   HEADERS += headlessloader.h

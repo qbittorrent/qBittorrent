@@ -37,6 +37,7 @@
 #include <QCloseEvent>
 #include <QDesktopWidget>
 #include <QTranslator>
+#include <QDesktopServices>
 
 #include <libtorrent/version.hpp>
 #include <time.h>
@@ -50,6 +51,7 @@
 #include "qinisettings.h"
 #include "qbtsession.h"
 #include "iconprovider.h"
+#include "dnsupdater.h"
 
 using namespace libtorrent;
 
@@ -203,6 +205,11 @@ options_imp::options_imp(QWidget *parent):
   connect(textWebUiUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textWebUiPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkBypassLocalAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkDynDNS, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+  connect(comboDNSService, SIGNAL(currentIndexChanged(int)), SLOT(enableApplyButton()));
+  connect(domainNameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+  connect(DNSUsernameTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
+  connect(DNSPasswordTxt, SIGNAL(textChanged(QString)), SLOT(enableApplyButton()));
   // Disable apply Button
   applyButton->setEnabled(false);
   // Tab selection mecanism
@@ -428,6 +435,12 @@ void options_imp::saveOptions(){
     // FIXME: Check that the password is valid (not empty at least)
     pref.setWebUiPassword(webUiPassword());
     pref.setWebUiLocalAuthEnabled(!checkBypassLocalAuth->isChecked());
+    // DynDNS
+    pref.setDynDNSEnabled(checkDynDNS->isChecked());
+    pref.setDynDNSService(comboDNSService->currentIndex());
+    pref.setDynDomainName(domainNameTxt->text());
+    pref.setDynDNSUsername(DNSUsernameTxt->text());
+    pref.setDynDNSPassword(DNSPasswordTxt->text());
   }
   // End Web UI
   // End preferences
@@ -666,6 +679,12 @@ void options_imp::loadOptions(){
   textWebUiUsername->setText(pref.getWebUiUsername());
   textWebUiPassword->setText(pref.getWebUiPassword());
   checkBypassLocalAuth->setChecked(!pref.isWebUiLocalAuthEnabled());
+  // Dynamic DNS
+  checkDynDNS->setChecked(pref.isDynDNSEnabled());
+  comboDNSService->setCurrentIndex((int)pref.getDynDNSService());
+  domainNameTxt->setText(pref.getDynDomainName());
+  DNSUsernameTxt->setText(pref.getDynDNSUsername());
+  DNSPasswordTxt->setText(pref.getDynDNSPassword());
   // End Web UI
   // Random stuff
   srand(time(0));
@@ -1088,6 +1107,10 @@ QString options_imp::webUiPassword() const
 void options_imp::showConnectionTab()
 {
   tabSelection->setCurrentRow(2);
+}
+
+void options_imp::on_registerDNSBtn_clicked() {
+  QDesktopServices::openUrl(DNSUpdater::getRegistrationUrl(comboDNSService->currentIndex()));
 }
 
 void options_imp::on_IpFilterRefreshBtn_clicked() {
