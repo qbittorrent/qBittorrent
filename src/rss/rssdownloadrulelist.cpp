@@ -174,7 +174,7 @@ void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new
 
 const RssDownloadRule RssDownloadRuleList::getRule(const QString &name) const
 {
-  return m_rules[name];
+  return m_rules.value(name);
 }
 
 bool RssDownloadRuleList::serialize(const QString& path)
