@@ -345,6 +345,9 @@ public:
                 // Debug mode
                 if(!conf->getenv("QC_ENABLE_DEBUG").isEmpty()) {
                   conf->addExtra("CONFIG += debug");
+                } else {
+                  conf->addExtra("CONFIG -= debug");
+                  conf->addExtra("CONFIG += release");
                 }
                 #ifdef Q_OS_FREEBSD
                   conf->addLib("-lexecinfo");
