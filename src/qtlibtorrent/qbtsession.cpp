@@ -54,6 +54,7 @@
 #include "httpserver.h"
 #include "qinisettings.h"
 #include "bandwidthscheduler.h"
+#include <libtorrent/version.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
 #include <libtorrent/version.hpp>
 #if LIBTORRENT_VERSION_MINOR > 14
@@ -67,7 +68,6 @@
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/torrent_info.hpp>
-#include <libtorrent/version.hpp>
 #include <libtorrent/upnp.hpp>
 #include <libtorrent/natpmp.hpp>
 #include <boost/filesystem/exception.hpp>
@@ -427,24 +427,35 @@ void QBtSession::configureSession() {
   // IP address to announce to trackers
   QString announce_ip = pref.getNetworkAddress();
   if(!announce_ip.isEmpty()) {
+#if LIBTORRENT_VERSION_MINOR > 15
+    sessionSettings.announce_ip = announce_ip.toStdString();
+#else
     boost::system::error_code ec;
     boost::asio::ip::address addr = boost::asio::ip::address::from_string(announce_ip.toStdString(), ec);
     if(!ec) {
       addConsoleMessage(tr("Reporting IP address %1 to trackers...").arg(announce_ip));
       sessionSettings.announce_ip = addr;
     }
+#endif
   }
   // Super seeding
 #if LIBTORRENT_VERSION_MINOR > 14
   sessionSettings.strict_super_seeding = pref.isSuperSeedingEnabled();
 #endif
-  qDebug() << "Settings SessionSettings";
-  setSessionSettings(sessionSettings);
-  // Bittorrent
+#if LIBTORRENT_VERSION_MINOR > 15
+  // * Max Half-open connections
+  sessionSettings.half_open_limit = pref.getMaxHalfOpenConnections();
+  // * Max connections limit
+  sessionSettings.connections_limit = pref.getMaxConnecs();
+#else
   // * Max Half-open connections
   s->set_max_half_open_connections(pref.getMaxHalfOpenConnections());
   // * Max connections limit
   setMaxConnections(pref.getMaxConnecs());
+#endif
+  qDebug() << "Settings SessionSettings";
+  setSessionSettings(sessionSettings);
+  // Bittorrent
   // * Max connections per torrent limit
   setMaxConnectionsPerTorrent(pref.getMaxConnecsPerTorrent());
   // * Max uploads per torrent limit
@@ -627,7 +638,7 @@ void QBtSession::initWebUi() {
     }
   } else {
     if(httpServer)
-     delete httpServer;
+      delete httpServer;
     if(m_dynDNSUpdater) {
       delete m_dynDNSUpdater;
       m_dynDNSUpdater = 0;

@@ -117,6 +117,7 @@ public:
   bool has_error() const;
   QString error() const;
   void downloading_pieces(libtorrent::bitfield &bf) const;
+  bool has_metadata() const;
 
   //
   // Setters

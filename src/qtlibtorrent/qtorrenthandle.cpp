@@ -107,11 +107,21 @@ QString QTorrentHandle::current_tracker() const {
 }
 
 bool QTorrentHandle::is_paused() const {
+#if LIBTORRENT_VERSION_MINOR > 15
+  torrent_status status = torrent_handle::status(0x0);
+  return status.paused && !status.auto_managed;
+#else
   return torrent_handle::is_paused() && !torrent_handle::is_auto_managed();
+#endif
 }
 
 bool QTorrentHandle::is_queued() const {
+#if LIBTORRENT_VERSION_MINOR > 15
+  torrent_status status = torrent_handle::status(0x0);
+  return status.paused && status.auto_managed;
+#else
   return torrent_handle::is_paused() && torrent_handle::is_auto_managed();
+#endif
 }
 
 size_type QTorrentHandle::total_size() const {
@@ -420,6 +430,15 @@ void QTorrentHandle::downloading_pieces(bitfield &bf) const {
     bf.set_bit(it->piece_index);
   }
   return;
+}
+
+bool QTorrentHandle::has_metadata() const {
+#if LIBTORRENT_VERSION_MINOR > 15
+  torrent_status st = torrent_handle::status(0x0);
+  return st.has_metadata;
+#else
+  return torrent_handle::has_metadata();
+#endif
 }
 
 //
