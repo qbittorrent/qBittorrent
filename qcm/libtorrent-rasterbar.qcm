@@ -19,9 +19,6 @@ public:
 			return false;
 		for(int n = 0; n < incs.count(); ++n)
 			conf->addIncludePath(incs[n]);
-		if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
-  		  conf->addLib("-lcrypto");
-                }
 		return true;
 	}
 };

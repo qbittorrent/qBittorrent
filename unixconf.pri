@@ -9,6 +9,7 @@ include(conf.pri)
 QMAKE_LFLAGS_APP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
+LIBS += -lssl -lcrypto
 
 # Man page
 nox {
