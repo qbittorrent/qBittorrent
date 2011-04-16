@@ -655,6 +655,49 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
 </context>
 <context>
+    <name>DNSUpdater</name>
+    <message>
+        <source>Your dynamic DNS was successfuly updated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: Invalid username/password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: supplied domain name is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: supplied username is too short.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dynamic DNS error: supplied password is too short.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
@@ -2764,7 +2807,7 @@ QGroupBox {
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation>HTTP poslužitelj</translation>
+        <translation type="obsolete">HTTP poslužitelj</translation>
     </message>
     <message>
         <source>Enable RSS support</source>
@@ -3119,6 +3162,38 @@ QGroupBox {
     </message>
     <message>
         <source>Share Ratio Limiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update my dynamic domain name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DynDNS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No-IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Register</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Domain name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>changeme.dyndns.org</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
