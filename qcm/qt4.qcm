@@ -19,6 +19,7 @@ public:
 		}
                 // Debug mode
                 if(!conf->getenv("QC_ENABLE_DEBUG").isEmpty()) {
+                  conf->addExtra("CONFIG -= release");
                   conf->addExtra("CONFIG += debug");
                 } else {
                   conf->addExtra("CONFIG -= debug");
