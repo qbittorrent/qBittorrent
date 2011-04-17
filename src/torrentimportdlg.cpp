@@ -153,7 +153,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 #if LIBTORRENT_VERSION_MINOR > 15
       const QString rel_path = misc::toQStringU(t->file_at(i).path);
 #else
-      const QString rel_path = misc::toQStringU(t->file_at(i)->path.string());
+      const QString rel_path = misc::toQStringU(t->file_at(i).path.string());
 #endif
       if(QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size() != t->file_at(i).size) {
         qDebug("%s is %lld",
