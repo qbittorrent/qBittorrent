@@ -1568,6 +1568,7 @@ qreal QBtSession::getRealRatio(const QString &hash) const{
   return ratio;
 }
 
+// Called periodically
 void QBtSession::saveTempFastResumeData() {
   std::vector<torrent_handle> torrents =  s->get_torrents();
   std::vector<torrent_handle>::iterator torrentIT;
@@ -1575,6 +1576,9 @@ void QBtSession::saveTempFastResumeData() {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     try {
       if(!h.is_valid() || !h.has_metadata() /*|| h.is_seed() || h.is_paused()*/) continue;
+#if LIBTORRENT_VERSION_MINOR > 15
+      if(!h.need_save_resume_data()) continue;
+#endif
       if(h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
@@ -1583,7 +1587,7 @@ void QBtSession::saveTempFastResumeData() {
 }
 
 // Only save fast resume data for unfinished and unpaused torrents (Optimization)
-// Called periodically and on exit
+// Called on exit
 void QBtSession::saveFastResumeData() {
   qDebug("Saving fast resume data...");
   // Stop listening for alerts
