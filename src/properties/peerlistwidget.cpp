@@ -207,10 +207,18 @@ void PeerListWidget::banSelectedPeers(QStringList peer_ips) {
 }
 
 void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
+  if(peer_ips.empty()) return;
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
   bool ok=false;
-  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), -1, Preferences().getGlobalUploadLimit()*1024.);
+  int cur_limit = -1;
+#if LIBTORRENT_VERSION_MINOR > 15
+  libtorrent::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
+                                                                     libtorrent::asio::ip::tcp::endpoint());
+  if(first_ep != libtorrent::asio::ip::tcp::endpoint())
+    cur_limit = h.get_peer_upload_limit(first_ep);
+#endif
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), cur_limit, Preferences().getGlobalUploadLimit()*1024.);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
@@ -231,7 +239,14 @@ void PeerListWidget::limitDlRateSelectedPeers(QStringList peer_ips) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if(!h.is_valid()) return;
   bool ok=false;
-  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), -1, Preferences().getGlobalDownloadLimit()*1024.);
+  int cur_limit = -1;
+#if LIBTORRENT_VERSION_MINOR > 15
+  libtorrent::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
+                                                                     libtorrent::asio::ip::tcp::endpoint());
+  if(first_ep != libtorrent::asio::ip::tcp::endpoint())
+    cur_limit = h.get_peer_download_limit(first_ep);
+#endif
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), cur_limit, Preferences().getGlobalDownloadLimit()*1024.);
   if(!ok) return;
   foreach(const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
