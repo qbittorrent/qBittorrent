@@ -471,6 +471,15 @@ bool QTorrentHandle::is_auto_managed() const {
 #endif
 }
 
+bool is_sequential_download() const {
+#if LIBTORRENT_VERSION_MINOR > 15
+  torrent_status status = torrent_handle::status(0x0);
+  return status.sequential_download;
+#else
+  return torrent_handle::is_sequential_download();
+#endif
+}
+
 qlonglong QTorrentHandle::active_time() const {
 #if LIBTORRENT_VERSION_MINOR > 15
   return torrent_handle::status(0x0).active_time;

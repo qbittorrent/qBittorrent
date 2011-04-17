@@ -104,6 +104,7 @@ public:
   bool is_seed() const;
   bool is_checking() const;
   bool is_auto_managed() const;
+  bool is_sequential_download() const;
   qlonglong active_time() const;
   qlonglong seeding_time() const;
   QString creation_date() const;
