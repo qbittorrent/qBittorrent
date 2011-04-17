@@ -98,7 +98,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
-        <translation>Includeer TCP/IP overheid in de overdrachtlimieten</translation>
+        <translation type="obsolete">Includeer TCP/IP overheid in de overdrachtlimieten</translation>
     </message>
     <message>
         <source>Disk write cache size</source>
@@ -1954,6 +1954,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>Copy IP</source>
         <translation>Kopiëer IP</translation>
     </message>
+    <message>
+        <source>Connection</source>
+        <translation type="unfinished">Verbinding</translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
@@ -2308,7 +2312,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
-        <translation>Plan het gebruik van alternatieve snelheidslimieten</translation>
+        <translation type="obsolete">Plan het gebruik van alternatieve snelheidslimieten</translation>
     </message>
     <message>
         <source>from</source>
@@ -2520,14 +2524,6 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Global Speed Limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alternative Global Speed Limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Torrent Queueing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2565,6 +2561,42 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>changeme.dyndns.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Rate Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TCP and uTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TCP only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>uTP only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rate limit to uTP connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rate limit to transport overhead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative Global Rate Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
