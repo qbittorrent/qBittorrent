@@ -35,10 +35,12 @@
 #include <QPainter>
 #include "misc.h"
 
-enum PeerListColumns {IP, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED, TOT_DOWN, TOT_UP, IP_HIDDEN};
-
 class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
+
+public:
+  enum PeerListColumns {IP, CONNECTION, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
+                        TOT_DOWN, TOT_UP, IP_HIDDEN, COL_COUNT};
 
 public:
   PeerListDelegate(QObject *parent) : QItemDelegate(parent){}
@@ -56,18 +58,18 @@ public:
       break;
     case DOWN_SPEED:
     case UP_SPEED:{
-        QItemDelegate::drawBackground(painter, opt, index);
-        qreal speed = index.data().toDouble();
-        if (speed > 0.0)
-          QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
-        break;
-      }
+      QItemDelegate::drawBackground(painter, opt, index);
+      qreal speed = index.data().toDouble();
+      if (speed > 0.0)
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (i.e. per second)"));
+      break;
+    }
     case PROGRESS:{
-        QItemDelegate::drawBackground(painter, opt, index);
-        qreal progress = index.data().toDouble();
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
-        break;
-      }
+      QItemDelegate::drawBackground(painter, opt, index);
+      qreal progress = index.data().toDouble();
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
+      break;
+    }
     default:
       QItemDelegate::paint(painter, option, index);
     }

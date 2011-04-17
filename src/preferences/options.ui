@@ -1405,16 +1405,16 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>504</width>
-             <height>384</height>
+             <y>-16</y>
+             <width>489</width>
+             <height>425</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
             <item>
              <widget class="QGroupBox" name="bandwidthBox">
               <property name="title">
-               <string>Global Speed Limits</string>
+               <string>Global Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
                <item row="0" column="0">
@@ -1513,13 +1513,66 @@ QGroupBox {
                  </property>
                 </spacer>
                </item>
+               <item row="1" column="1" colspan="2">
+                <widget class="QGroupBox" name="groupBox_5">
+                 <property name="title">
+                  <string>Options</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_27">
+                  <item>
+                   <layout class="QFormLayout" name="formLayout_6">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_23">
+                      <property name="text">
+                       <string>Protocol:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QComboBox" name="comboBTProtocol">
+                      <item>
+                       <property name="text">
+                        <string>TCP and uTP</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>TCP only</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>uTP only</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkLimituTPConnections">
+                    <property name="text">
+                     <string>Apply rate limit to uTP connections</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkLimitTransportOverhead">
+                    <property name="text">
+                     <string>Apply rate limit to transport overhead</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="groupBox_6">
               <property name="title">
-               <string>Alternative Global Speed Limits</string>
+               <string>Alternative Global Rate Limits</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
@@ -1625,7 +1678,7 @@ QGroupBox {
                <item>
                 <widget class="QGroupBox" name="check_schedule">
                  <property name="title">
-                  <string>Schedule the use of alternative speed limits</string>
+                  <string>Schedule the use of alternative rate limits</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>

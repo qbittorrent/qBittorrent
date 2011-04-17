@@ -82,6 +82,7 @@ private slots:
   void on_removeScanFolderButton_clicked();
   void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
+  void updateBTProtocolSettings(int protocol);
 
 private:
   // Methods

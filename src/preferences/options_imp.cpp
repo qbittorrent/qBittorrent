@@ -113,6 +113,8 @@ options_imp::options_imp(QWidget *parent):
   comboTrayIcon->setVisible(false);
 #endif
   // Connect signals / slots
+  // Speeds
+  connect(comboBTProtocol, SIGNAL(currentIndexChanged(int)), SLOT(updateBTProtocolSettings(int)));
   // Proxy tab
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
 
@@ -168,6 +170,9 @@ options_imp::options_imp(QWidget *parent):
   connect(schedule_from, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
   connect(schedule_to, SIGNAL(timeChanged(QTime)), this, SLOT(enableApplyButton()));
   connect(schedule_days, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
+  connect(comboBTProtocol, SIGNAL(currentIndexChanged(int)), SLOT(enableApplyButton()));
+  connect(checkLimituTPConnections, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
+  connect(checkLimitTransportOverhead, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -216,6 +221,10 @@ options_imp::options_imp(QWidget *parent):
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 #if LIBTORRENT_VERSION_MINOR < 15
   checkAppendqB->setVisible(false);
+#endif
+#if LIBTORRENT_VERSION_MINOR < 16
+  comboBTProtocol->setVisible(false);
+  checkLimituTPConnections->setVisible(false);
 #endif
   // Load Advanced settings
   QVBoxLayout *adv_layout = new QVBoxLayout();
@@ -382,6 +391,9 @@ void options_imp::saveOptions(){
   const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
   pref.setGlobalDownloadLimit(down_up_limit.first);
   pref.setGlobalUploadLimit(down_up_limit.second);
+  pref.setBTProtocol(comboBTProtocol->currentIndex());
+  pref.setuTPRateLimited(checkLimituTPConnections->isChecked());
+  pref.includeOverheadInLimits(checkLimitTransportOverhead->isChecked());
   pref.setAltGlobalDownloadLimit(spinDownloadLimitAlt->value());
   pref.setAltGlobalUploadLimit(spinUploadLimitAlt->value());
   pref.setSchedulerEnabled(check_schedule->isChecked());
@@ -573,6 +585,10 @@ void options_imp::loadOptions(){
   }
   spinUploadLimitAlt->setValue(pref.getAltGlobalUploadLimit());
   spinDownloadLimitAlt->setValue(pref.getAltGlobalDownloadLimit());
+  // Options
+  comboBTProtocol->setCurrentIndex((int)pref.getBTProtocol());
+  checkLimituTPConnections->setChecked(pref.isuTPRateLimited());
+  checkLimitTransportOverhead->setChecked(pref.includeOverheadInLimits());
   // Scheduler
   check_schedule->setChecked(pref.isSchedulerEnabled());
   schedule_from->setTime(pref.getSchedulerStartTime());
@@ -1186,5 +1202,23 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
     qWarning() << "Unrecognized language name: " << eng_lang;
     return eng_lang;
   }
+  }
+}
+
+void options_imp::updateBTProtocolSettings(int protocol)
+{
+  switch(protocol) {
+  case BT::TCP:
+    checkLimituTPConnections->setEnabled(false);
+    break;
+  case BT::TCP_uTP:
+    checkLimituTPConnections->setEnabled(true);
+    break;
+  case BT::uTP:
+    checkLimituTPConnections->setEnabled(true);
+    break;
+  default:
+    Q_ASSERT(0);
+    break;
   }
 }

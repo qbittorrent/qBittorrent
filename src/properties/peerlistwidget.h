@@ -83,6 +83,9 @@ protected slots:
   void handleSortColumnChanged(int col);
 
 private:
+  static QString getConnectionString(int connection_type);
+
+private:
   QStandardItemModel *listModel;
   PeerListDelegate *listDelegate;
   QSortFilterProxyModel * proxyModel;

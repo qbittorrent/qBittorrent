@@ -13,7 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, COUNT_OVERHEAD, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -28,7 +28,7 @@ class AdvancedSettings: public QTableWidget {
 
 private:
   QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
-  QCheckBox cb_ignore_limits_lan, cb_count_overhead, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
+  QCheckBox cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion;
   QComboBox combo_iface;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
@@ -69,8 +69,6 @@ public slots:
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
     // Ignore limits on LAN
     pref.ignoreLimitsOnLAN(cb_ignore_limits_lan.isChecked());
-    // Include protocol overhead in transfer limits
-    pref.includeOverheadInLimits(cb_count_overhead.isChecked());
     // Recheck torrents on completion
     pref.recheckTorrentsOnCompletion(cb_recheck_completed.isChecked());
     // Transfer list refresh interval
@@ -170,9 +168,6 @@ private slots:
     // Ignore transfer limits on local network
     cb_ignore_limits_lan.setChecked(pref.ignoreLimitsOnLAN());
     setRow(IGNORE_LIMIT_LAN, tr("Ignore transfer limits on local network"), &cb_ignore_limits_lan);
-    // Consider protocol overhead in transfer limits
-    cb_count_overhead.setChecked(pref.includeOverheadInLimits());
-    setRow(COUNT_OVERHEAD, tr("Include TCP/IP overhead in transfer limits"), &cb_count_overhead);
     // Recheck completed torrents
     cb_recheck_completed.setChecked(pref.recheckTorrentsOnCompletion());
     setRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &cb_recheck_completed);
