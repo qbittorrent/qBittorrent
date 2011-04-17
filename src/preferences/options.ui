@@ -1405,9 +1405,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-16</y>
+             <y>0</y>
              <width>489</width>
-             <height>425</height>
+             <height>419</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1520,34 +1520,14 @@ QGroupBox {
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_27">
                   <item>
-                   <layout class="QFormLayout" name="formLayout_6">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_23">
-                      <property name="text">
-                       <string>Protocol:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QComboBox" name="comboBTProtocol">
-                      <item>
-                       <property name="text">
-                        <string>TCP and uTP</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>TCP only</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>uTP only</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QCheckBox" name="checkuTP">
+                    <property name="text">
+                     <string>Enable bandwidth management (uTP)</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QCheckBox" name="checkLimituTPConnections">
@@ -2214,8 +2194,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>384</height>
+             <width>389</width>
+             <height>378</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2460,8 +2440,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>384</height>
+             <width>86</width>
+             <height>16</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2569,8 +2549,8 @@ QGroupBox {
      <y>157</y>
     </hint>
     <hint type="destinationlabel">
-     <x>574</x>
-     <y>160</y>
+     <x>643</x>
+     <y>165</y>
     </hint>
    </hints>
   </connection>
@@ -2613,12 +2593,12 @@ QGroupBox {
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>440</x>
-     <y>364</y>
+     <x>542</x>
+     <y>404</y>
     </hint>
     <hint type="destinationlabel">
-     <x>563</x>
-     <y>374</y>
+     <x>598</x>
+     <y>405</y>
     </hint>
    </hints>
   </connection>
@@ -2629,12 +2609,28 @@ QGroupBox {
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>418</x>
-     <y>371</y>
+     <x>542</x>
+     <y>404</y>
     </hint>
     <hint type="destinationlabel">
-     <x>707</x>
-     <y>376</y>
+     <x>757</x>
+     <y>406</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkuTP</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkLimituTPConnections</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>421</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>176</y>
     </hint>
    </hints>
   </connection>

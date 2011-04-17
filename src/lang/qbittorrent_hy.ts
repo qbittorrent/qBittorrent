@@ -1609,12 +1609,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>%1 peer-երի ձեռադիր արգելում…</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="213"/>
+        <location filename="../properties/peerlistwidget.cpp" line="221"/>
         <source>Upload rate limiting</source>
         <translation>Փոխանցման սահ-ը</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="234"/>
+        <location filename="../properties/peerlistwidget.cpp" line="249"/>
         <source>Download rate limiting</source>
         <translation>Բեռնման սահ-ը</translation>
     </message>
@@ -1724,27 +1724,32 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1944"/>
+        <location filename="../preferences/options.ui" line="1525"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1924"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Միացնել Լոկալ Peer-երի բացահայտումը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1956"/>
+        <location filename="../preferences/options.ui" line="1936"/>
         <source>Encryption mode:</source>
         <translation>Կոդավորման եղանակը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1964"/>
+        <location filename="../preferences/options.ui" line="1944"/>
         <source>Prefer encryption</source>
         <translation>Նախընտրելի կոդավորում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1969"/>
+        <location filename="../preferences/options.ui" line="1949"/>
         <source>Require encryption</source>
         <translation>Պահանջել կոդավորում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1974"/>
+        <location filename="../preferences/options.ui" line="1954"/>
         <source>Disable encryption</source>
         <translation>Անջատել կոդավորումը</translation>
     </message>
@@ -1753,17 +1758,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Torrent-երի հերթը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2015"/>
+        <location filename="../preferences/options.ui" line="1995"/>
         <source>Maximum active downloads:</source>
         <translation>Առավելագ. ակտիվ բեռնումներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2035"/>
+        <location filename="../preferences/options.ui" line="2015"/>
         <source>Maximum active uploads:</source>
         <translation>Առավելագ. ակտիվ փոխանցումներ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2055"/>
+        <location filename="../preferences/options.ui" line="2035"/>
         <source>Maximum active torrents:</source>
         <translation>Առավելագ. ակտիվ  torrent-ներ.</translation>
     </message>
@@ -1820,21 +1825,21 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1435"/>
-        <location filename="../preferences/options.ui" line="1610"/>
+        <location filename="../preferences/options.ui" line="1590"/>
         <source>Upload:</source>
         <translation>Փոխանցում.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1637"/>
+        <location filename="../preferences/options.ui" line="1617"/>
         <source>Download:</source>
         <translation>Բեռնում.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1464"/>
         <location filename="../preferences/options.ui" line="1497"/>
-        <location filename="../preferences/options.ui" line="1630"/>
-        <location filename="../preferences/options.ui" line="1657"/>
+        <location filename="../preferences/options.ui" line="1610"/>
+        <location filename="../preferences/options.ui" line="1637"/>
         <source>KiB/s</source>
         <translation>Կբիթ/վ</translation>
     </message>
@@ -1863,23 +1868,23 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Արագության այլընտրանքային սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1722"/>
+        <location filename="../preferences/options.ui" line="1702"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>մինչև</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1774"/>
+        <location filename="../preferences/options.ui" line="1754"/>
         <source>Every day</source>
         <translation>Ամեն օր</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1779"/>
+        <location filename="../preferences/options.ui" line="1759"/>
         <source>Week days</source>
         <translation>Շաբաթական</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1784"/>
+        <location filename="../preferences/options.ui" line="1764"/>
         <source>Week ends</source>
         <translation>Հանգստյան օրեր</translation>
     </message>
@@ -1896,12 +1901,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Օգտագործել տարբեր դարպասներ DHT-ի և Bittorrent-ի համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1887"/>
+        <location filename="../preferences/options.ui" line="1867"/>
         <source>DHT port:</source>
         <translation>DHT դարպասը.</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1928"/>
+        <location filename="../preferences/options.ui" line="1908"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Փոխանակել  peer-երը համատեղելի Bittorrent ծրագրերի միջև (µTorrent, Vuze, ...)</translation>
     </message>
@@ -2136,77 +2141,57 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1527"/>
-        <source>Protocol:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1535"/>
-        <source>TCP and uTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1540"/>
-        <source>TCP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1545"/>
-        <source>uTP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1555"/>
         <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1562"/>
+        <location filename="../preferences/options.ui" line="1542"/>
         <source>Apply rate limit to transport overhead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1575"/>
+        <location filename="../preferences/options.ui" line="1555"/>
         <source>Alternative Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1681"/>
+        <location filename="../preferences/options.ui" line="1661"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2340"/>
+        <location filename="../preferences/options.ui" line="2320"/>
         <source>Update my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2352"/>
+        <location filename="../preferences/options.ui" line="2332"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2362"/>
+        <location filename="../preferences/options.ui" line="2342"/>
         <source>DynDNS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2367"/>
+        <location filename="../preferences/options.ui" line="2347"/>
         <source>No-IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2375"/>
+        <location filename="../preferences/options.ui" line="2355"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2384"/>
+        <location filename="../preferences/options.ui" line="2364"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2391"/>
+        <location filename="../preferences/options.ui" line="2371"/>
         <source>changeme.dyndns.org</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2238,58 +2223,58 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Նշեք արագության այլընտրանքային սահմանափակում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1698"/>
+        <location filename="../preferences/options.ui" line="1678"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>Ժ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1766"/>
+        <location filename="../preferences/options.ui" line="1746"/>
         <source>When:</source>
         <translation>Երբ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1849"/>
+        <location filename="../preferences/options.ui" line="1829"/>
         <source>Privacy</source>
         <translation>Անվտանգություն</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1855"/>
+        <location filename="../preferences/options.ui" line="1835"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Միացնել DHT՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1867"/>
+        <location filename="../preferences/options.ui" line="1847"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Օգտագործել այլ դարպաս՝ DHT-ի և BitTorrent-ի համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1931"/>
+        <location filename="../preferences/options.ui" line="1911"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Միացնել Peer-երի փոխանակումը (PeX)՝ լրացուցիչ peer-եր գտնելու համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1941"/>
+        <location filename="../preferences/options.ui" line="1921"/>
         <source>Look for peers on your local network</source>
         <translation>Ձեր լոկալ ցանցի peer-երը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2000"/>
+        <location filename="../preferences/options.ui" line="1980"/>
         <source>Torrent Queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2117"/>
+        <location filename="../preferences/options.ui" line="2097"/>
         <source>Share Ratio Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2274"/>
+        <location filename="../preferences/options.ui" line="2254"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2316"/>
+        <location filename="../preferences/options.ui" line="2296"/>
         <source>Bypass authentication for localhost</source>
         <translation>localhost-ի շրջանցիկ ներկայացում</translation>
     </message>
@@ -2302,22 +2287,22 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Սահմանափակումներ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2128"/>
+        <location filename="../preferences/options.ui" line="2108"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Փոխանցել torrent-ները մինչև սահ-ը կհասնի</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2160"/>
+        <location filename="../preferences/options.ui" line="2140"/>
         <source>then</source>
         <translation>ապա</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2171"/>
+        <location filename="../preferences/options.ui" line="2151"/>
         <source>Pause them</source>
         <translation>Դադարեցնել բոլորը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2176"/>
+        <location filename="../preferences/options.ui" line="2156"/>
         <source>Remove them</source>
         <translation>Ջնջել</translation>
     </message>
@@ -2342,35 +2327,35 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1229"/>
-        <location filename="../preferences/options.ui" line="2239"/>
+        <location filename="../preferences/options.ui" line="2219"/>
         <source>Port:</source>
         <translation>Դարպասը.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="868"/>
         <location filename="../preferences/options.ui" line="1257"/>
-        <location filename="../preferences/options.ui" line="2284"/>
+        <location filename="../preferences/options.ui" line="2264"/>
         <source>Authentication</source>
         <translation>Ներկայացում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="880"/>
         <location filename="../preferences/options.ui" line="1274"/>
-        <location filename="../preferences/options.ui" line="2323"/>
-        <location filename="../preferences/options.ui" line="2398"/>
+        <location filename="../preferences/options.ui" line="2303"/>
+        <location filename="../preferences/options.ui" line="2378"/>
         <source>Username:</source>
         <translation>Օգտվողը.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="890"/>
         <location filename="../preferences/options.ui" line="1300"/>
-        <location filename="../preferences/options.ui" line="2330"/>
-        <location filename="../preferences/options.ui" line="2412"/>
+        <location filename="../preferences/options.ui" line="2310"/>
+        <location filename="../preferences/options.ui" line="2392"/>
         <source>Password:</source>
         <translation>Ծածկագիրը.</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2225"/>
+        <location filename="../preferences/options.ui" line="2205"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Միացնել  Web User Interface-ը (Հեռադիր կառավարում)</translation>
     </message>
@@ -2782,28 +2767,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Օգտագործվում է պնակի պահեստի չափը՝ %1 Մբիթ</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="491"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT աջակցումը [ՄԻԱՑ], դարպասը. UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="509"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="493"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>DHT support [OFF]</source>
         <translation>DHT աջակցում [ԱՆՋ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="501"/>
         <source>PeX support [ON]</source>
         <translation>PeX աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
         <source>PeX support [OFF]</source>
         <translation>PeX աջակցում [ԱՆՏ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="506"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Պահանջվում է վերագործարկում՝ փոխանջատելու համար PeX-ը</translation>
     </message>
@@ -2812,89 +2797,89 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Լոկալ Peer-երի բացահայտում [ՄԻԱՑ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="514"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Լոկալ Peer-երի բացահայտման աջակցում [ԱՆՋ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>Encryption support [ON]</source>
         <translation>Գաղտնագրման աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="531"/>
         <source>Encryption support [FORCED]</source>
         <translation>Գաղտնագրման աջակցում [ՊԱՐՏ.]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="548"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="536"/>
         <source>Encryption support [OFF]</source>
         <translation>Գաղտնագրման աջակցում [ԱՆՋ.]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="609"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="597"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Արգելված ուղղորդիչ [ՄԻԱՑ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="611"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="599"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Սխալ՝ արգելված ուղղորդիչը բացելիս։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="614"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="602"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Արգելված ուղղորդիչ [ԱՆՋ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="652"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="640"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Web UI-ին ստանում է %1 դարպասից</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="654"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="642"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web User Interface-ի սխալ - Հնարավոր չէ պարդատրել Web UI-ին %1 դարպասը</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="789"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="777"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից և պնակից։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="791"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="779"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="873"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="861"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;-ը ճիշտ magnet հղում չէ։.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="889"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1011"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1016"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1018"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="877"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1004"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1006"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;-ը արդեն առկա է ցանկում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1159"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1167"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1172"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1158"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1163"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;-ը վերսկսվել է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="945"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1161"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1169"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1174"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="933"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1152"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1160"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1165"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;-ը ավելացվել է բեռնումների ցանկին։</translation>
@@ -2915,178 +2900,178 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Հաղորդվում է %1 IP հասցեի մասին ուղորդիչին...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="511"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Լոկալ Peer-երի բացահայտման աջակցում [ՄԻԱՑ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="980"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="987"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="968"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="975"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="977"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Հնարավոր չէ ապակոդավորել &apos;%1&apos; ֆայլը</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="981"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ֆայլը վնասված է կամ torrent չէ։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1021"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Սխալ. %1 torrent-ը չի պարունակում ֆայլեր։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1301"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1309"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Նշում. նոր ուղղորդիչները ավելացվել են ընթացիկ torrent-ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1327"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1335"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Նշում. նոր հղումները ավելացվել են ընթացիկ torrent-ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1679"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1-ը&lt;/font&gt; &lt;i&gt;կողփվել է Ձեր IP ֆիլտրի կողմից&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1681"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1693"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;-ը արգելված է, քանզի հատվածները վնասված են&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1858"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1870"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1859"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1871"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Հասանելի է այլ ցանցային միջներես։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1882"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Ստանում է %1 IP հասցեից՝ հետևյալ ցանցում՝ %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1885"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Սխալ՝ %1 ցանցային միջներեսից ստանալիս</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2076"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2078"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2088"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2090"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>%1 ֆայլի ձեռադիր բեռնումը արգելված է %2 ֆայլում</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2173"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2185"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2187"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2223"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Այժմ համակարգիչը կանցնի &quot;քուն&quot; վիճակի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2225"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Այժմ համակարգիչը կանջատվի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2227"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2239"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent-ը կփակվի 15 վայրկյանից...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2837"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Հաջողությամբ կիրառվել է IP ֆիլտրը. %1 կանոններ կիրառվել են։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2838"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2843"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2123"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2135"/>
         <source>Torrent name: %1</source>
         <translation>Torrent-ի անունը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2136"/>
         <source>Torrent size: %1</source>
         <translation>Torrent-ի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2125"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2137"/>
         <source>Save path: %1</source>
         <translation>Պահպանելու տեղը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2126"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2138"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent-ը բեռնվել է  %1ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2139"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Շնորհակալություն qBittorrent-ը օգտագործելու համար։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2130"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1-ի բեռնումը ավարտվեց</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2397"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2402"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ն/Ա սխալ, &apos;%1&apos; դադարի մեջ է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2398"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2520"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2403"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
         <source>Reason: %1</source>
         <translation>Պատճառը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2487"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը ձախողվեց, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը հաջող էր, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2520"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Ֆայլի չափը չի համապատասխանում %1 torrent-ին, դադարեցվում է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Վերսկսումը մերժվել է %1 torrent-ի համար, նորից է սկսվում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2530"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Հղման փոխանցումը ձախողվեց %1 հղումների համար, հաղորդագրությունը՝ %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2653"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2658"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
@@ -5239,78 +5224,78 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1030"/>
         <location filename="../preferences/options_imp.cpp" line="1032"/>
-        <location filename="../preferences/options_imp.cpp" line="1034"/>
         <source>Choose export directory</source>
         <translation>Ընտրեք արտածման տեղը</translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1065"/>
         <location filename="../preferences/options_imp.cpp" line="1067"/>
-        <location filename="../preferences/options_imp.cpp" line="1069"/>
+        <location filename="../preferences/options_imp.cpp" line="1082"/>
         <location filename="../preferences/options_imp.cpp" line="1084"/>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
         <source>Choose a save directory</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <location filename="../preferences/options_imp.cpp" line="1049"/>
-        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Choose an ip filter file</source>
         <translation>Ընտրեք ip ֆիլտր ֆայլը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="989"/>
+        <location filename="../preferences/options_imp.cpp" line="987"/>
         <source>Add directory to scan</source>
         <translation>Ստուգելու համար ավելացնել թղթապանակ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="995"/>
+        <location filename="../preferences/options_imp.cpp" line="993"/>
         <source>Folder is already being watched.</source>
         <translation>Թղթապանակը արդեն ստուգվել է։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="998"/>
+        <location filename="../preferences/options_imp.cpp" line="996"/>
         <source>Folder does not exist.</source>
         <translation>Թղթապանակը գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1001"/>
+        <location filename="../preferences/options_imp.cpp" line="999"/>
         <source>Folder is not readable.</source>
         <translation>Թղթապանակը կարդալու համար չէ։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1007"/>
         <source>Failure</source>
         <translation>Ձախողում</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1007"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Հնարավոր չէ ստուգման համարավելացնել թղթապանակ՝ &apos;%1&apos;: %2 </translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <location filename="../preferences/options_imp.cpp" line="1049"/>
-        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Filters</source>
         <translation>Ֆիլտրեր</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1149"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Parsing error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1149"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Failed to parse the provided IP filter</source>
         <translation> IP ֆիլտրի տրամադրման սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
+        <location filename="../preferences/options_imp.cpp" line="1149"/>
         <source>Successfully refreshed</source>
         <translation>Հաջողությամբ թարմացվեց</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
+        <location filename="../preferences/options_imp.cpp" line="1149"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP ֆիլտրի ներկայացումը հաջող էր. %1 կանոնները կիրառվեցին։</translation>

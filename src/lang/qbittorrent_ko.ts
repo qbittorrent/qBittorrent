@@ -2020,12 +2020,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>공유자(Peer)인 %1를 직접적으로 제한하기...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="213"/>
+        <location filename="../properties/peerlistwidget.cpp" line="221"/>
         <source>Upload rate limiting</source>
         <translation>업로드 비율 제한</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="234"/>
+        <location filename="../properties/peerlistwidget.cpp" line="249"/>
         <source>Download rate limiting</source>
         <translation>다운로드 비율 제한</translation>
     </message>
@@ -2128,17 +2128,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">토렌트 나열하기</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2015"/>
+        <location filename="../preferences/options.ui" line="1995"/>
         <source>Maximum active downloads:</source>
         <translation>최대 활성 다운로드:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2035"/>
+        <location filename="../preferences/options.ui" line="2015"/>
         <source>Maximum active uploads:</source>
         <translation>최대 활성 업로드:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2055"/>
+        <location filename="../preferences/options.ui" line="2035"/>
         <source>Maximum active torrents:</source>
         <translation>최대 활성 토렌트:</translation>
     </message>
@@ -2342,122 +2342,127 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1849"/>
+        <location filename="../preferences/options.ui" line="1525"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1829"/>
         <source>Privacy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1855"/>
+        <location filename="../preferences/options.ui" line="1835"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1867"/>
+        <location filename="../preferences/options.ui" line="1847"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1928"/>
+        <location filename="../preferences/options.ui" line="1908"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1931"/>
+        <location filename="../preferences/options.ui" line="1911"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1944"/>
+        <location filename="../preferences/options.ui" line="1924"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1956"/>
+        <location filename="../preferences/options.ui" line="1936"/>
         <source>Encryption mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1964"/>
+        <location filename="../preferences/options.ui" line="1944"/>
         <source>Prefer encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1969"/>
+        <location filename="../preferences/options.ui" line="1949"/>
         <source>Require encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1974"/>
+        <location filename="../preferences/options.ui" line="1954"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2128"/>
+        <location filename="../preferences/options.ui" line="2108"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2160"/>
+        <location filename="../preferences/options.ui" line="2140"/>
         <source>then</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2171"/>
+        <location filename="../preferences/options.ui" line="2151"/>
         <source>Pause them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2176"/>
+        <location filename="../preferences/options.ui" line="2156"/>
         <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2225"/>
+        <location filename="../preferences/options.ui" line="2205"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2274"/>
+        <location filename="../preferences/options.ui" line="2254"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2316"/>
+        <location filename="../preferences/options.ui" line="2296"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2340"/>
+        <location filename="../preferences/options.ui" line="2320"/>
         <source>Update my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2352"/>
+        <location filename="../preferences/options.ui" line="2332"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2362"/>
+        <location filename="../preferences/options.ui" line="2342"/>
         <source>DynDNS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2367"/>
+        <location filename="../preferences/options.ui" line="2347"/>
         <source>No-IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2375"/>
+        <location filename="../preferences/options.ui" line="2355"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2384"/>
+        <location filename="../preferences/options.ui" line="2364"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2391"/>
+        <location filename="../preferences/options.ui" line="2371"/>
         <source>changeme.dyndns.org</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2504,21 +2509,21 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1435"/>
-        <location filename="../preferences/options.ui" line="1610"/>
+        <location filename="../preferences/options.ui" line="1590"/>
         <source>Upload:</source>
         <translation>업로드:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1637"/>
+        <location filename="../preferences/options.ui" line="1617"/>
         <source>Download:</source>
         <translation>다운로드:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1464"/>
         <location filename="../preferences/options.ui" line="1497"/>
-        <location filename="../preferences/options.ui" line="1630"/>
-        <location filename="../preferences/options.ui" line="1657"/>
+        <location filename="../preferences/options.ui" line="1610"/>
+        <location filename="../preferences/options.ui" line="1637"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -2547,23 +2552,23 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">설정된 전체 전송 속도 제한</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1722"/>
+        <location filename="../preferences/options.ui" line="1702"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>~</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1774"/>
+        <location filename="../preferences/options.ui" line="1754"/>
         <source>Every day</source>
         <translation>매일</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1779"/>
+        <location filename="../preferences/options.ui" line="1759"/>
         <source>Week days</source>
         <translation>주중</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1784"/>
+        <location filename="../preferences/options.ui" line="1764"/>
         <source>Week ends</source>
         <translation>주말</translation>
     </message>
@@ -2580,7 +2585,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">비토렌트와 DHT에 다른 포트 사용하기</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1887"/>
+        <location filename="../preferences/options.ui" line="1867"/>
         <source>DHT port:</source>
         <translation>DHT 포트:</translation>
     </message>
@@ -2648,18 +2653,18 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1698"/>
+        <location filename="../preferences/options.ui" line="1678"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1766"/>
+        <location filename="../preferences/options.ui" line="1746"/>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1941"/>
+        <location filename="../preferences/options.ui" line="1921"/>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2675,30 +2680,30 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1229"/>
-        <location filename="../preferences/options.ui" line="2239"/>
+        <location filename="../preferences/options.ui" line="2219"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="868"/>
         <location filename="../preferences/options.ui" line="1257"/>
-        <location filename="../preferences/options.ui" line="2284"/>
+        <location filename="../preferences/options.ui" line="2264"/>
         <source>Authentication</source>
         <translation>인증</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="880"/>
         <location filename="../preferences/options.ui" line="1274"/>
-        <location filename="../preferences/options.ui" line="2323"/>
-        <location filename="../preferences/options.ui" line="2398"/>
+        <location filename="../preferences/options.ui" line="2303"/>
+        <location filename="../preferences/options.ui" line="2378"/>
         <source>Username:</source>
         <translation>아이디:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="890"/>
         <location filename="../preferences/options.ui" line="1300"/>
-        <location filename="../preferences/options.ui" line="2330"/>
-        <location filename="../preferences/options.ui" line="2412"/>
+        <location filename="../preferences/options.ui" line="2310"/>
+        <location filename="../preferences/options.ui" line="2392"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
@@ -2718,52 +2723,32 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1527"/>
-        <source>Protocol:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1535"/>
-        <source>TCP and uTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1540"/>
-        <source>TCP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1545"/>
-        <source>uTP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1555"/>
         <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1562"/>
+        <location filename="../preferences/options.ui" line="1542"/>
         <source>Apply rate limit to transport overhead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1575"/>
+        <location filename="../preferences/options.ui" line="1555"/>
         <source>Alternative Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1681"/>
+        <location filename="../preferences/options.ui" line="1661"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2000"/>
+        <location filename="../preferences/options.ui" line="1980"/>
         <source>Torrent Queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2117"/>
+        <location filename="../preferences/options.ui" line="2097"/>
         <source>Share Ratio Limiting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3189,28 +3174,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">사용중인 디스크 케쉬 용량: %1 MiB</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="491"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation type="unfinished">DHT 지원 [사용], 포트:&apos;UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="509"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="493"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>DHT support [OFF]</source>
         <translation type="unfinished">DHT 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="501"/>
         <source>PeX support [ON]</source>
         <translation type="unfinished">PeX 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
         <source>PeX support [OFF]</source>
         <translation type="unfinished">PeX 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="506"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished">Pex 기능을 재설정하기 위해서 프로그램을 다시 시작해야 합니다</translation>
     </message>
@@ -3219,89 +3204,89 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Local Peer Discovery (로컬 공유자 찾기) [사용]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="514"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation type="unfinished">Local Peer Discovery (로컬 공유자 찾기) [사용안함]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>Encryption support [ON]</source>
         <translation type="unfinished">암호화 지원 [사용]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="531"/>
         <source>Encryption support [FORCED]</source>
         <translation type="unfinished">암호화 지원 [강제사용]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="548"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="536"/>
         <source>Encryption support [OFF]</source>
         <translation type="unfinished">암호화 지원 [사용안함]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="609"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="597"/>
         <source>Embedded Tracker [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="611"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="599"/>
         <source>Failed to start the embedded tracker!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="614"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="602"/>
         <source>Embedded Tracker [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="652"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="640"/>
         <source>The Web UI is listening on port %1</source>
         <translation type="unfinished">웹 사용자 인터페이스는 포트 %1 를 사용하고 있습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="654"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="642"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation type="unfinished">웹 유저 인터페이스 에러 - 웹 유저 인터페이스를 다음 포트에 연결 할수 없습니다:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="789"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="777"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">전송목록과 디스크에서 &apos;%1&apos; 를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="791"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="779"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished">전송목록에서 &apos;%1&apos;를 삭제하였습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="873"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="861"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished">&apos;%1&apos;는 유효한 마그넷 URI (magnet URI)가 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="889"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1011"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1016"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1018"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="877"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="999"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1004"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1006"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation type="unfinished">&apos;%1&apos;는/은 이미 전송목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1159"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1167"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1172"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1158"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1163"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation type="unfinished">&apos;%1&apos;가 다시 시작되었습니다. (빠른 재개)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="945"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1161"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1169"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1174"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="933"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1152"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1160"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1165"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation type="unfinished">&apos;%1&apos;가 전송목록에 추가되었습니다.</translation>
@@ -3322,178 +3307,178 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="511"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="980"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="987"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="968"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="975"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="977"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation type="unfinished">토렌트 파일을 해독할수 없음: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="981"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation type="unfinished">파일에 오류가 있거나 토런트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1021"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1301"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1309"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation type="unfinished">참고: 새 트렉커가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1327"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1335"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation type="unfinished">참고: 새 URL 완전체 공유자가 토렌트에 추가 되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1679"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 IP 필터에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1681"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1693"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation type="unfinished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;은/는 유효하지 않은 파일 공유에 의해 접속이 금지되었습니다&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1858"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1870"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1859"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1871"/>
         <source>Trying any other network interface available instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1882"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1885"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
         <source>Failed to listen on network interface %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2076"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2078"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2088"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2090"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation type="unfinished">토렌트 %2 에는  또 다른 토렌트 파일 %1이 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2173"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2185"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2187"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation type="unfinished">%1 토렌트를 해독할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2223"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2235"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2225"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2237"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2227"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2239"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2837"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2838"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2843"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2123"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2135"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2136"/>
         <source>Torrent size: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2125"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2137"/>
         <source>Save path: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2126"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2138"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2139"/>
         <source>Thank you for using qBittorrent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2130"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2397"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2402"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished">I/O 에러가 있습니다, &apos;%1&apos; 정지.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2398"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2520"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2403"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
         <source>Reason: %1</source>
         <translation type="unfinished">이유: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2487"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 포트 설정(Port Mapping) 실패, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: 포트 설정(Port mapping) 성공, 메세지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2520"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished"> %1 의 빨리 이어받기가 실퍠하였습니다, 재확인중...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2530"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url 완전체(Url seed)를 찾을 수 없습니다: %1, 관련내용: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2653"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2658"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">&apos;%1&apos;을 다운 중입니다, 기다려 주세요...</translation>
@@ -5835,78 +5820,78 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1065"/>
         <location filename="../preferences/options_imp.cpp" line="1067"/>
-        <location filename="../preferences/options_imp.cpp" line="1069"/>
+        <location filename="../preferences/options_imp.cpp" line="1082"/>
         <location filename="../preferences/options_imp.cpp" line="1084"/>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="989"/>
+        <location filename="../preferences/options_imp.cpp" line="987"/>
         <source>Add directory to scan</source>
         <translation>스켄 할 폴더 추가</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="995"/>
+        <location filename="../preferences/options_imp.cpp" line="993"/>
         <source>Folder is already being watched.</source>
         <translation>선택하신 폴더는 이미 스켄 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="998"/>
+        <location filename="../preferences/options_imp.cpp" line="996"/>
         <source>Folder does not exist.</source>
         <translation>선택하신 폴더는 존재하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1001"/>
+        <location filename="../preferences/options_imp.cpp" line="999"/>
         <source>Folder is not readable.</source>
         <translation>선택하신 폴더를 읽을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1007"/>
         <source>Failure</source>
         <translation>실패</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1009"/>
+        <location filename="../preferences/options_imp.cpp" line="1007"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>퐅도 추가 실패 &apos;%1&apos;: %2</translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1030"/>
         <location filename="../preferences/options_imp.cpp" line="1032"/>
-        <location filename="../preferences/options_imp.cpp" line="1034"/>
         <source>Choose export directory</source>
         <translation>내보낼 폴더 선택하기</translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <location filename="../preferences/options_imp.cpp" line="1049"/>
-        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <location filename="../preferences/options_imp.cpp" line="1049"/>
-        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1149"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Parsing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1149"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Failed to parse the provided IP filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
+        <location filename="../preferences/options_imp.cpp" line="1149"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
+        <location filename="../preferences/options_imp.cpp" line="1149"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>

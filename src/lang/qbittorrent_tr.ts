@@ -2663,22 +2663,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Protocol:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TCP and uTP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TCP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uTP only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2692,6 +2676,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable bandwidth management (uTP)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

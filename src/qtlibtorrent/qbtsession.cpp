@@ -456,31 +456,19 @@ void QBtSession::configureSession() {
 #endif
 #if LIBTORRENT_VERSION_MINOR > 15
   // uTP
-  switch((int)pref.getBTProtocol()) {
-  case BT::TCP_uTP:
-    sessionSettings.enable_incoming_tcp = true;
-    sessionSettings.enable_outgoing_tcp = true;
+  if(pref.isuTPEnabled()) {
     sessionSettings.enable_incoming_utp = true;
     sessionSettings.enable_outgoing_utp = true;
-    break;
-  case BT::TCP:
-    sessionSettings.enable_incoming_tcp = true;
-    sessionSettings.enable_outgoing_tcp = true;
+  } else {
     sessionSettings.enable_incoming_utp = false;
     sessionSettings.enable_outgoing_utp = false;
-    break;
-  case BT::uTP:
-    sessionSettings.enable_incoming_tcp = false;
-    sessionSettings.enable_outgoing_tcp = false;
-    sessionSettings.enable_incoming_utp = true;
-    sessionSettings.enable_outgoing_utp = true;
-    break;
-  default:
-    Q_ASSERT(0);
-    break;
   }
   // uTP rate limiting
   sessionSettings.rate_limit_utp = pref.isuTPRateLimited();
+  if(sessionSettings.rate_limit_utp)
+    sessionSettings.mixed_mode_algorithm = session_settings::prefer_tcp;
+  else
+    sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
 #endif
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);

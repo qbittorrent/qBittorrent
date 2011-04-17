@@ -64,9 +64,6 @@ enum Style { NORMAL = 0, MONO_DARK, MONO_LIGHT };
 namespace DNS {
 enum Service { DYNDNS, NOIP };
 }
-namespace BT {
-enum Protocol { TCP_uTP, TCP, uTP };
-}
 
 class Preferences : public QIniSettings {
   Q_DISABLE_COPY(Preferences);
@@ -540,12 +537,12 @@ public:
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), val);
   }
 
-  BT::Protocol getBTProtocol() const {
-    return (BT::Protocol)value(QString::fromUtf8("Preferences/Bittorrent/Protocol"), BT::TCP_uTP).toInt();
+  bool isuTPEnabled() const {
+    return value(QString::fromUtf8("Preferences/Bittorrent/uTP"), true).toBool();
   }
 
-  void setBTProtocol(int protocol) {
-    setValue("Preferences/Bittorrent/Protocol", protocol);
+  void setuTPEnabled(bool enabled) {
+    setValue("Preferences/Bittorrent/uTP", enabled);
   }
 
   bool isuTPRateLimited() const {
