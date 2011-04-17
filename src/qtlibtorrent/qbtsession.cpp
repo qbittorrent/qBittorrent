@@ -1052,7 +1052,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       p.resume_data = &buf;
       qDebug("Successfully loaded fast resume data");
     }
-  } else {
+  }
+#if LIBTORRENT_VERSION_MINOR < 16
+  else {
     // Generate fake resume data to make sure unwanted files
     // are not allocated
     if(preAllocateAll) {
@@ -1065,6 +1067,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       }
     }
   }
+#endif
 
   QString savePath;
   if(!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toUtf8()))) {
@@ -1215,6 +1218,21 @@ add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
   else
     p.storage_mode = storage_mode_sparse;
 
+  // Priorities
+#if LIBTORRENT_VERSION_MINOR > 15
+  if(TorrentTempData::hasTempData(hash)) {
+    std::vector<int> fp;
+    TorrentTempData::getFilesPriority(hash, fp);
+    if(!fp.empty()) {
+      std::vector<boost::uint8_t> *fp_conv = new std::vector<boost::uint8_t>();
+      for(uint i=0; i<fp.size(); ++i) {
+        fp_conv->push_back(fp[i]);
+      }
+      p.file_priorities = fp_conv;
+    }
+  }
+#endif
+
   // Start in pause
   p.paused = true;
   p.duplicate_is_error = false; // Already checked
@@ -1233,10 +1251,12 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
 
     // The following is useless for newly added magnet
     if(!magnet) {
+#if LIBTORRENT_VERSION_MINOR < 16
       // Files priorities
       vector<int> fp;
       TorrentTempData::getFilesPriority(hash, fp);
       h.prioritize_files(fp);
+#endif
 
       // Prioritize first/last piece
       h.prioritize_first_last_piece(TorrentTempData::isSequential(hash));
