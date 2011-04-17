@@ -118,6 +118,7 @@ public:
   QString error() const;
   void downloading_pieces(libtorrent::bitfield &bf) const;
   bool has_metadata() const;
+  float distributed_copies() const;
 
   //
   // Setters
