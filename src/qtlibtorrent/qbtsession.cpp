@@ -2234,13 +2234,6 @@ void QBtSession::readAlerts() {
               // Disabling it for next time
               pref.setShutdownWhenDownloadsComplete(false);
               pref.setSuspendWhenDownloadsComplete(false);
-#if LIBTORRENT_VERSION_MINOR < 15
-              saveDHTEntry();
-#endif
-              qDebug("Saving session state");
-              saveSessionState();
-              qDebug("Saving fast resume data");
-              saveFastResumeData();
               // Make sure preferences are synced before exiting
               if(suspend)
                 m_shutdownAct = SUSPEND_COMPUTER;
