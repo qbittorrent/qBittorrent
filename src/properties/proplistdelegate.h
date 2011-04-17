@@ -74,51 +74,51 @@ public:
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
     case PROGRESS:{
-        QStyleOptionProgressBarV2 newopt;
-        qreal progress = index.data().toDouble()*100.;
-        newopt.rect = opt.rect;
-        // We don't want to display 100% unless
-        // the torrent is really complete
-        if(progress > 99.94 && progress < 100.)
-          progress = 99.9;
-        newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
-        newopt.progress = (int)progress;
-        newopt.maximum = 100;
-        newopt.minimum = 0;
-        newopt.state |= QStyle::State_Enabled;
-        newopt.textVisible = true;
+      QStyleOptionProgressBarV2 newopt;
+      qreal progress = index.data().toDouble()*100.;
+      newopt.rect = opt.rect;
+      // We don't want to display 100% unless
+      // the torrent is really complete
+      if(progress > 99.94 && progress < 100.)
+        progress = 99.9;
+      newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
+      newopt.progress = (int)progress;
+      newopt.maximum = 100;
+      newopt.minimum = 0;
+      newopt.state |= QStyle::State_Enabled;
+      newopt.textVisible = true;
 #ifndef Q_WS_WIN
-        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+      QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-        // XXX: To avoid having the progress text on the right of the bar
-        QPlastiqueStyle st;
-        st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+      // XXX: To avoid having the progress text on the right of the bar
+      QPlastiqueStyle st;
+      st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
-        break;
-      }
+      break;
+    }
     case PRIORITY: {
-        QItemDelegate::drawBackground(painter, opt, index);
-        QString text = "";
-        switch(index.data().toInt()) {
-        case -1:
-          text = tr("Mixed", "Mixed (priorities");
-          break;
-        case 0:
-          text = tr("Not downloaded");
-          break;
-        case 2:
-          text = tr("High", "High (priority)");
-          break;
-        case 7:
-          text = tr("Maximum", "Maximum (priority)");
-          break;
-        default:
-          text = tr("Normal", "Normal (priority)");
-          break;
-        }
-        QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+      QItemDelegate::drawBackground(painter, opt, index);
+      QString text = "";
+      switch(index.data().toInt()) {
+      case -1:
+        text = tr("Mixed", "Mixed (priorities");
+        break;
+      case 0:
+        text = tr("Not downloaded");
+        break;
+      case 2:
+        text = tr("High", "High (priority)");
+        break;
+      case 7:
+        text = tr("Maximum", "Maximum (priority)");
+        break;
+      default:
+        text = tr("Normal", "Normal (priority)");
         break;
       }
+      QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+      break;
+    }
     default:
       QItemDelegate::paint(painter, option, index);
       break;
@@ -156,7 +156,11 @@ public:
     if(index.column() != PRIORITY) return 0;
     if(properties) {
       QTorrentHandle h = properties->getCurrentTorrent();
-      if(!h.is_valid() || static_cast<libtorrent::torrent_handle>(h).is_seed() || !h.has_metadata()) return 0;
+#if LIBTORRENT_VERSION_MINOR > 15
+      if(!h.is_valid() || !h.has_metadata() || h.status(0x0).is_seeding) return 0;
+#else
+      if(!h.is_valid() || !h.has_metadata() || static_cast<libtorrent::torrent_handle>(h).is_seed()) return 0;
+#endif
     }
     if(index.data().toInt() <= 0) {
       // IGNORED or MIXED

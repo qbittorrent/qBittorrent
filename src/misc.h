@@ -31,6 +31,9 @@
 #ifndef MISC_H
 #define MISC_H
 
+#include <libtorrent/version.hpp>
+#include <libtorrent/torrent_info.hpp>
+#include <libtorrent/torrent_handle.hpp>
 #include <sstream>
 #include <QString>
 #include <QStringList>
@@ -44,9 +47,6 @@
 #ifndef DISABLE_GUI
 #include <QIcon>
 #endif
-
-#include <libtorrent/torrent_info.hpp>
-#include <libtorrent/torrent_handle.hpp>
 
 const qlonglong MAX_ETA = 8640000;
 
@@ -104,8 +104,9 @@ public:
 
   static inline QString file_extension(const QString &filename) {
     QString extension;
-    if(filename.contains(".")) {
-      extension = filename.mid(filename.lastIndexOf(".")+1);
+    int point_index = filename.lastIndexOf(".");
+    if(point_index >= 0) {
+      extension = filename.mid(point_index+1);
     }
     return extension;
   }

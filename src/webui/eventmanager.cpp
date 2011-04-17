@@ -103,24 +103,19 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   std::vector<int> priorities = h.file_priorities();
   std::vector<size_type> fp;
   h.file_progress(fp);
-  torrent_info t = h.get_torrent_info();
-  torrent_info::file_iterator fi;
-  int i=0;
-  for(fi=t.begin_files(); fi != t.end_files(); fi++) {
+  for(int i=0; i<h.num_files(); ++i) {
     QVariantMap file;
-    QString path = h.filepath(*fi);
-    QString name = misc::fileName(path);
-    file["name"] = name;
-    file["size"] = misc::friendlyUnit((double)fi->size);
-    if(fi->size > 0)
-      file["progress"] = fp[i]/(double)fi->size;
+    file["name"] = h.filename_at(i);
+    libtorrent::size_type size = h.filesize_at(i);
+    file["size"] = misc::friendlyUnit((double)size);
+    if(size > 0)
+      file["progress"] = fp[i]/(double)size;
     else
       file["progress"] = 1.; // Empty file...
     file["priority"] = priorities[i];
     if(i == 0)
       file["is_seed"] = h.is_seed();
     files << file;
-    ++i;
   }
   return files;
 }

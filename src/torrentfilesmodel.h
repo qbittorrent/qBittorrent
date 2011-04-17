@@ -558,14 +558,13 @@ public:
     TorrentFileItem *current_parent;
 
     // Iterate over files
-    int i = 0;
-    libtorrent::torrent_info::file_iterator fi = t.begin_files();
-    while(fi != t.end_files()) {
+    for(int i=0; i<t.num_files(); ++i) {
+      libtorrent::file_entry fentry = t.file_at(i);
       current_parent = root_folder;
 #if LIBTORRENT_VERSION_MINOR >= 16
-      QString path = QDir::cleanPath(misc::toQStringU(t.files().file_path(*fi))).replace("\\", "/");
+      QString path = QDir::cleanPath(misc::toQStringU(fentry.path)).replace("\\", "/");
 #else
-      QString path = QDir::cleanPath(misc::toQStringU(fi->path.string())).replace("\\", "/");
+      QString path = QDir::cleanPath(misc::toQStringU(fentry.path.string())).replace("\\", "/");
 #endif
       // Iterate of parts of the path to create necessary folders
       QStringList pathFolders = path.split("/");
@@ -579,10 +578,8 @@ public:
         current_parent = new_parent;
       }
       // Actually create the file
-      TorrentFileItem *f = new TorrentFileItem(t, *fi, current_parent, i);
+      TorrentFileItem *f = new TorrentFileItem(t, fentry, current_parent, i);
       files_index[i] = f;
-      fi++;
-      ++i;
     }
     emit layoutChanged();
   }

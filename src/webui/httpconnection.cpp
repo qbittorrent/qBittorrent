@@ -451,13 +451,21 @@ void HttpConnection::respondCommand(QString command)
   if(command == "getGlobalUpLimit") {
     generator.setStatusLine(200, "OK");
     generator.setContentTypeByExt("html");
+#if LIBTORRENT_VERSION_MINOR > 15
+    generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
+#else
     generator.setMessage(QString::number(QBtSession::instance()->getSession()->upload_rate_limit()));
+#endif
     write();
   }
   if(command == "getGlobalDlLimit") {
     generator.setStatusLine(200, "OK");
     generator.setContentTypeByExt("html");
+#if LIBTORRENT_VERSION_MINOR > 15
+    generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
+#else
     generator.setMessage(QString::number(QBtSession::instance()->getSession()->download_rate_limit()));
+#endif
     write();
   }
   if(command == "getTorrentUpLimit") {
@@ -501,13 +509,13 @@ void HttpConnection::respondCommand(QString command)
   if(command == "setGlobalUpLimit") {
     qlonglong limit = parser.post("limit").toLongLong();
     if(limit == 0) limit = -1;
-    QBtSession::instance()->getSession()->set_upload_rate_limit(limit);
+    QBtSession::instance()->setUploadRateLimit(limit);
     Preferences().setGlobalUploadLimit(limit/1024.);
   }
   if(command == "setGlobalDlLimit") {
     qlonglong limit = parser.post("limit").toLongLong();
     if(limit == 0) limit = -1;
-    QBtSession::instance()->getSession()->set_download_rate_limit(limit);
+    QBtSession::instance()->setDownloadRateLimit(limit);
     Preferences().setGlobalDownloadLimit(limit/1024.);
   }
   if(command == "pause") {

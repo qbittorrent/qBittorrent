@@ -87,7 +87,6 @@ public:
   libtorrent::size_type filesize_at(unsigned int index) const;
   QString filepath_at(unsigned int index) const;
   QString orig_filepath_at(unsigned int index) const;
-  QString filepath(const libtorrent::file_entry &f) const;
   libtorrent::torrent_status::state_t state() const;
   QString creator() const;
   QString comment() const;
@@ -98,8 +97,8 @@ public:
   libtorrent::size_type all_time_upload() const;
   libtorrent::size_type all_time_download() const;
   libtorrent::size_type total_done() const;
-  QStringList files_path() const;
-  QStringList uneeded_files_path() const;
+  QStringList absolute_files_path() const;
+  QStringList absolute_files_path_uneeded() const;
   bool has_missing_files() const;
   int num_uploads() const;
   bool is_seed() const;

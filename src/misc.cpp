@@ -356,23 +356,29 @@ QString misc::fixFileNames(QString path) {
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
   if(t->num_files() == 1) {
     // Single file torrent
+#if LIBTORRENT_VERSION_MINOR > 15
+    QString path = QString::fromUtf8(t->file_at(0).path.c_str());
+#else
     QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
+#endif
     // Remove possible subfolders
     path = fixFileNames(fileName(path));
     t->rename_file(0, path.toUtf8().data());
     return QString();
   }
   QString root_folder;
-  int i = 0;
-  for(torrent_info::file_iterator it = t->begin_files(); it < t->end_files(); it++) {
-    QString path = QString::fromUtf8(it->path.string().c_str());
+  for(int i=0; i<t->num_files(); ++i) {
+#if LIBTORRENT_VERSION_MINOR > 15
+    QString path = QString::fromUtf8(t->file_at(i).path.c_str());
+#else
+    QString path = QString::fromUtf8(t->file_at(i).path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
     }
     path = fixFileNames(path_parts.join("/"));
     t->rename_file(i, path.toUtf8().data());
-    ++i;
   }
   return root_folder;
 }
@@ -382,22 +388,28 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   if(t.num_files() == 1) {
     // Single file torrent
     // Remove possible subfolders
+#if LIBTORRENT_VERSION_MINOR > 15
+    QString path = QString::fromUtf8(t.file_at(0).path.c_str());
+#else
     QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
+#endif
     path = fixFileNames(fileName(path));
     t.rename_file(0, path.toUtf8().data());
     return QString();
   }
   QString root_folder;
-  int i = 0;
-  for(torrent_info::file_iterator it = t.begin_files(); it < t.end_files(); it++) {
-    QString path = QString::fromUtf8(it->path.string().c_str());
+  for(int i=0; i<t.num_files(); ++i) {
+#if LIBTORRENT_VERSION_MINOR > 15
+    QString path = QString::fromUtf8(t.file_at(i).path.c_str());
+#else
+    QString path = QString::fromUtf8(t.file_at(i).path.string().c_str());
+#endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
     if(path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
     }
     path = fixFileNames(path_parts.join("/"));
     h.rename_file(i, path.toUtf8().data());
-    ++i;
   }
   return root_folder;
 }

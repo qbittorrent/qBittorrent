@@ -102,7 +102,7 @@ void PreviewSelect::on_previewButton_clicked(){
 #endif
   QString path;
   foreach(index, selectedIndexes){
-    path = h.files_path().at(indexes.at(index.row()));
+    path = h.absolute_files_path().at(indexes.at(index.row()));
     // File
     if(QFile::exists(path)){
       emit readyToPreviewFile(path);

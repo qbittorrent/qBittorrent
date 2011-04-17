@@ -81,7 +81,11 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
   const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
   if(t->num_files() == 1) {
     // Single file torrent
+#if LIBTORRENT_VERSION_MINOR > 15
+    const QString file_name = misc::fileName(misc::toQStringU(t->file_at(0).path));
+#else
     const QString file_name = misc::toQStringU(t->file_at(0).path.filename());
+#endif
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
     QString extension = misc::file_extension(file_name);
     qDebug("File extension is : %s", qPrintable(extension));
@@ -145,14 +149,17 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
     bool size_mismatch = false;
     QDir content_dir(m_contentPath);
     // Check file sizes
-    torrent_info::file_iterator it; t->begin_files();
-    for(it = t->begin_files(); it != t->end_files(); it++) {
-      const QString rel_path = misc::toQStringU(it->path.string());
-      if(QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size() != it->size) {
+    for(int i=0; i<t->num_files(); ++i) {
+#if LIBTORRENT_VERSION_MINOR > 15
+      const QString rel_path = misc::toQStringU(t->file_at(i).path);
+#else
+      const QString rel_path = misc::toQStringU(t->file_at(i)->path.string());
+#endif
+      if(QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size() != t->file_at(i).size) {
         qDebug("%s is %lld",
                qPrintable(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))), (long long int) QFile(QDir::cleanPath(content_dir.absoluteFilePath(rel_path))).size());
         qDebug("%s is %lld",
-               qPrintable(rel_path), (long long int)it->size);
+               qPrintable(rel_path), (long long int)t->file_at(i).size);
         size_mismatch = true;
         break;
       }
@@ -254,7 +261,11 @@ void TorrentImportDlg::initializeFilesPath()
   m_filesPath.clear();
   // Loads files path in the torrent
   for(int i=0; i<t->num_files(); ++i) {
+#if LIBTORRENT_VERSION_MINOR > 15
+    m_filesPath << misc::toQStringU(t->file_at(i).path).replace("\\", "/");
+#else
     m_filesPath << misc::toQStringU(t->file_at(i).path.string()).replace("\\", "/");
+#endif
   }
 }
 

@@ -212,36 +212,50 @@ public slots:
 
   void capDownloadSpeed() {
     bool ok = false;
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), QBtSession::instance()->getSession()->download_rate_limit());
+#if LIBTORRENT_VERSION_MINOR > 15
+    int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
+#else
+    int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();
+#endif
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
     if(ok) {
       Preferences pref;
       bool alt = pref.isAltBandwidthEnabled();
       if(new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
+        QBtSession::instance()->setDownloadRateLimit(-1);
         if(!alt)
-          QBtSession::instance()->getSession()->set_download_rate_limit(-1);
-        pref.setGlobalDownloadLimit(-1);
+          pref.setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
+        QBtSession::instance()->setDownloadRateLimit(new_limit);
         if(!alt)
-          QBtSession::instance()->getSession()->set_download_rate_limit(new_limit);
-        pref.setGlobalDownloadLimit(new_limit/1024.);
+          pref.setGlobalDownloadLimit(new_limit/1024.);
       }
     }
   }
 
   void capUploadSpeed() {
     bool ok = false;
-    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), QBtSession::instance()->getSession()->upload_rate_limit());
+#if LIBTORRENT_VERSION_MINOR > 15
+    int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
+#else
+    int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();
+#endif
+    long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
     if(ok) {
+      Preferences pref;
+      bool alt = pref.isAltBandwidthEnabled();
       if(new_limit <= 0) {
         qDebug("Setting global upload rate limit to Unlimited");
-        QBtSession::instance()->getSession()->set_upload_rate_limit(-1);
-        Preferences().setGlobalUploadLimit(-1);
+        QBtSession::instance()->setUploadRateLimit(-1);
+        if(!alt)
+          Preferences().setGlobalUploadLimit(-1);
       } else {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
-        Preferences().setGlobalUploadLimit(new_limit/1024.);
-        QBtSession::instance()->getSession()->set_upload_rate_limit(new_limit);
+        QBtSession::instance()->setUploadRateLimit(new_limit);
+        if(!alt)
+          Preferences().setGlobalUploadLimit(new_limit/1024.);
       }
     }
   }
