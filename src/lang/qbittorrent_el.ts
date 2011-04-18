@@ -257,177 +257,197 @@ p, li { white-space: pre-wrap; }
         <translation>Ορισμός κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="135"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
         <translation>Να περιέχει:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="148"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="180"/>
         <source>Must not contain:</source>
         <translation>Να μην περιέχει:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="277"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="129"/>
+        <source>Use regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.ui" line="355"/>
         <source>Import...</source>
         <translation>Εισαγωγή...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="284"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="362"/>
         <source>Export...</source>
         <translation>Εξαγωγή...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="210"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="286"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="161"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="233"/>
         <source>Assign label:</source>
         <translation>Ορισμός ετικέτας:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="178"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
         <source>Save to a different directory</source>
         <translation>Αποθήκευση σε διαφορετική κατηγορία</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="188"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="264"/>
         <source>Save to:</source>
         <translation>Αποθήκευση σε:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="230"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="308"/>
         <source>Apply rule to feeds:</source>
         <translation>Εφαρμογή κανόνα στις τροφοδοσίες:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="330"/>
         <source>Matching RSS articles</source>
         <translation>Άρθρα RSS που αντιστοιχούν</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>New rule name</source>
         <translation>Όνομα νέου κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Παρακαλώ εισάγετε το όνομα του νέου κανόνα κατεβασμάτων.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>Rule name conflict</source>
         <translatorcomment>Εμπλοκή.</translatorcomment>
         <translation>Εμπλοκή ονόματος κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Υπάρχει ήδη κανόνας με αυτό το όνομα, παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="326"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
         <translation>Είστε σίγουρος οτι θέλετε να αφαιρέσετε τον κανόνα κατεβασμάτων %1?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="307"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="328"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Είστε σίγουρος οτι θέλετε να αφαιρέσετε τους επιλεγμένους κανόνες κατεβασμάτων?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="329"/>
         <source>Rule deletion confirmation</source>
         <translation>Επιβεβαίωση διαγραφής κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="345"/>
         <source>Destination directory</source>
         <translation>Φάκελος προορισμού</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Invalid action</source>
         <translation>Άκυρη επιλογή</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Η λίστα είναι άδεια, δεν υπάρχει τίποτα προς εξαγωγή.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Where would you like to save the list?</source>
         <translation>Πού θα θέλατε να αποθηκεύσετε τη λίστα?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Λίστα κανόνων (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>I/O Error</source>
         <translation>Σφάλμα I/O</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>Failed to create the destination file</source>
         <translation>Αποτυχία δημιουργίας του αρχείου προορισμού</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Παρακαλώ επιλέξτε το αρχείο κανόνων κατεβασμάτων RSS</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Rules list (*.rssrules *.filters)</source>
         <translation>Λίστες κανόνων (*.rssrules *.filters)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Import Error</source>
         <translation>Σφάλμα Εισαγωγής</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Failed to import the selected rules file</source>
         <translation>Αποτυχία εισαγωγής του επιλεγμένου αρχείου κανόνων</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>Add new rule...</source>
         <translation>Προσθήκη νέου κανόνα...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="391"/>
         <source>Delete rule</source>
         <translation>Διαγραφή κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="372"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
         <source>Rename rule...</source>
         <translation>Μετονομασία κανόνα...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="395"/>
         <source>Delete selected rules</source>
         <translation>Διαγραφή επιλεγμένων κανόνων</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Rule renaming</source>
         <translation>Μετονομασία κανόνα</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Please type the new rule name</source>
         <translation>Παρακαλώ εισάγετε το νέο όνομα του κανόνα</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="521"/>
+        <source>Regex mode: use Perl-like regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="525"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

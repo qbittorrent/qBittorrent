@@ -80,7 +80,11 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   // Update matching articles when necessary
   ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
   Q_ASSERT(ok);
+  ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMustLineValidity()));
+  Q_ASSERT(ok);
   ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
+  ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMustNotLineValidity()));
   Q_ASSERT(ok);
   updateRuleDefinitionBox();
   updateFeedList();
@@ -212,6 +216,8 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       } else {
         ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule.label()));
       }
+      updateMustLineValidity();
+      updateMustNotLineValidity();
     } else {
       // New rule
       clearRuleDefinitionBox();
@@ -237,6 +243,8 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->comboLabel->clearEditText();
   ui->checkRegex->setChecked(false);
   updateFieldsToolTips(ui->checkRegex->isChecked());
+  updateMustLineValidity();
+  updateMustNotLineValidity();
 }
 
 RssDownloadRule AutomatedRssDownloader::getCurrentRule() const
@@ -511,11 +519,64 @@ void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
   QString tip;
   if(regex) {
     tip = tr("Regex mode: use Perl-like regular expressions");
+    ui->lineContains->setToolTip(tip);
+    ui->lineNotContains->setToolTip(tip);
   } else {
-    tip = tr("Wildcard mode: you can use:\n ? to match any single character.\n * to match zero or more of any characters.\n Whitespaces count as AND operators.");
+    tip = tr("Wildcard mode: you can use<ul><li>? to match any single character</li><li>* to match zero or more of any characters</li><li>Whitespaces count as AND operators</li></ul>");
+    ui->lineContains->setToolTip(tip);
+    tip = tr("Wildcard mode: you can use<ul><li>? to match any single character</li><li>* to match zero or more of any characters</li><li>| is used as OR operator</li></ul>");
+    ui->lineNotContains->setToolTip(tip);
   }
-  ui->lineContains->setToolTip(tip);
-  ui->lineNotContains->setToolTip(tip);
+}
+
+void AutomatedRssDownloader::updateMustLineValidity()
+{
+  const QString text = ui->lineContains->text();
+  bool valid = true;
+  QStringList tokens;
+  if(ui->checkRegex->isChecked())
+    tokens << text;
+  else
+    tokens << text.split(" ");
+  foreach(const QString &token, tokens) {
+    QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
+    if(!reg.isValid()) {
+      valid = false;
+      break;
+    }
+  }
+  if(valid) {
+    ui->lineContains->setStyleSheet("");
+    ui->lbl_must_stat->setPixmap(QPixmap());
+  } else {
+    ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
+    ui->lbl_must_stat->setPixmap(IconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+  }
+}
+
+void AutomatedRssDownloader::updateMustNotLineValidity()
+{
+  const QString text = ui->lineNotContains->text();
+  bool valid = true;
+  QStringList tokens;
+  if(ui->checkRegex->isChecked())
+    tokens << text;
+  else
+    tokens << text.split(QRegExp("[\\s|]"));
+  foreach(const QString &token, tokens) {
+    QRegExp reg(token, Qt::CaseInsensitive, ui->checkRegex->isChecked() ? QRegExp::RegExp : QRegExp::Wildcard);
+    if(!reg.isValid()) {
+      valid = false;
+      break;
+    }
+  }
+  if(valid) {
+    ui->lineNotContains->setStyleSheet("");
+    ui->lbl_mustnot_stat->setPixmap(QPixmap());
+  } else {
+    ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
+    ui->lbl_mustnot_stat->setPixmap(IconProvider::instance()->getIcon("task-attention").pixmap(16, 16));
+  }
 }
 
 

@@ -255,176 +255,196 @@ p, li { white-space: pre-wrap; }
         <translation>Regeldefinition</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="135"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
         <translation>Enthält:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="148"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="180"/>
         <source>Must not contain:</source>
         <translation>Enthält nicht:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="277"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="129"/>
+        <source>Use regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.ui" line="355"/>
         <source>Import...</source>
         <translation>Import...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="284"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="362"/>
         <source>Export...</source>
         <translation>Export...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="210"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="286"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="161"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="233"/>
         <source>Assign label:</source>
         <translation>Label zuweisen:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="178"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
         <source>Save to a different directory</source>
         <translation>In ein anderes Verzeicnis speichern</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="188"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="264"/>
         <source>Save to:</source>
         <translation>Speichern in:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="230"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="308"/>
         <source>Apply rule to feeds:</source>
         <translation>Regeln auf Feeds anwenden:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="330"/>
         <source>Matching RSS articles</source>
         <translation>Übereinstimmende RSS Artikel</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>New rule name</source>
         <translation>Neuer Regelname</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Bitte geben Sie einen neuen Namen für die Downloadregel ein.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>Rule name conflict</source>
         <translation>Namenskonflikt</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Eine Regel mit diesem Namen existiert bereits, bitte wählen SIe einen anderen Namen.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="326"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
         <translation>Sind Sie sicher, daß Sie die Downloadregel &apos;%1&apos; entfernen möchten?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="307"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="328"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Sind Sie sicher, daß Sie die ausgewählten Downloadregeln entfernen möchten?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="329"/>
         <source>Rule deletion confirmation</source>
         <translation>Löschen der Regel bestätigen</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="345"/>
         <source>Destination directory</source>
         <translation>Zielverzeichnis</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Invalid action</source>
         <translation>Ungültige Aktion</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Die Liste ist leer, es gibt nichts zu exportieren.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Where would you like to save the list?</source>
         <translation>Wohin möchten Sie die Liste speichern?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Regelliste (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>I/O Error</source>
         <translation>I/O Fehler</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>Failed to create the destination file</source>
         <translation>Fehler beim Erstellen des Zielverzeichnisses</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Bitte geben Sie die RSS-Downloadregeldatei an</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Rules list (*.rssrules *.filters)</source>
         <translation>Regel-Liste (*.rssrules *.filters)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Import Error</source>
         <translation>Fehler beim Import</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Failed to import the selected rules file</source>
         <translation>Import der ausgewählten Regeldatei fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>Add new rule...</source>
         <translation>Neue Regel hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="391"/>
         <source>Delete rule</source>
         <translation>Regel löschen</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="372"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
         <source>Rename rule...</source>
         <translation>Regel umbenennen...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="395"/>
         <source>Delete selected rules</source>
         <translation>Ausgewählte Regeln löschen</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Rule renaming</source>
         <translation>Regelumbenennung</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Please type the new rule name</source>
         <translation>Bitte geben Sie einen neuen Namen für die Regel ein</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="521"/>
+        <source>Regex mode: use Perl-like regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="525"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

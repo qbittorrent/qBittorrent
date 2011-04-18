@@ -259,176 +259,196 @@ p, li { white-space: pre-wrap; }
         <translation>Definice pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="135"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
         <translation>Musí obsahovat:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="148"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="180"/>
         <source>Must not contain:</source>
         <translation>Nesmí obsahovat:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="277"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="129"/>
+        <source>Use regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.ui" line="355"/>
         <source>Import...</source>
         <translation>Import...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="284"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="362"/>
         <source>Export...</source>
         <translation>Export...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="210"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="286"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="161"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="233"/>
         <source>Assign label:</source>
         <translation>Přiřadit štítek:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="178"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
         <source>Save to a different directory</source>
         <translation>Uložit do jiného adresáře</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="188"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="264"/>
         <source>Save to:</source>
         <translation>Uložit do:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="230"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="308"/>
         <source>Apply rule to feeds:</source>
         <translation>Použít pravidlo na kanály:</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="252"/>
+        <location filename="../rss/automatedrssdownloader.ui" line="330"/>
         <source>Matching RSS articles</source>
         <translation>Odpovídající RSS články</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>New rule name</source>
         <translation>Nový název pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Napište název nového pravidla stahování, prosím.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>Rule name conflict</source>
         <translation>Název pravidla koliduje</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="287"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="423"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Pravidlo s tímto názvem již existuje, vyberte prosím název jiný.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="326"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
         <translation>Opravdu chcete odstranit pravidlo s názvem %1?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="307"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="328"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Jste si jist, že chcete odstranit označená pravidla?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="329"/>
         <source>Rule deletion confirmation</source>
         <translation>Potvrdit smazání pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="324"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="345"/>
         <source>Destination directory</source>
         <translation>Cílový adresář</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Invalid action</source>
         <translation>Neplatná akce</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="332"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Seznam je prázdný, není co exportovat.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Where would you like to save the list?</source>
         <translation>Kam chcete seznam uložit?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="357"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Seznam pravidel (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="341"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="362"/>
         <source>Failed to create the destination file</source>
         <translation>Nezdařilo se vytvořit cílový soubor</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Odkažte na soubor s pravidly stahování RSS, prosím</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="349"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
         <source>Rules list (*.rssrules *.filters)</source>
         <translation>Seznam pravidel (*.rssrules *.filters)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Import Error</source>
         <translation>Import selhal</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
         <source>Failed to import the selected rules file</source>
         <translation>Import vybraného seznamu pravidel se nezdařil</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="364"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
         <source>Add new rule...</source>
         <translation>Přidat nové pravidlo...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="370"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="391"/>
         <source>Delete rule</source>
         <translation>Smazat pravidlo</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="372"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
         <source>Rename rule...</source>
         <translation>Přejmenovat pravidlo...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="374"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="395"/>
         <source>Delete selected rules</source>
         <translation>Smazat označená pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Rule renaming</source>
         <translation>Přejmenování pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="419"/>
         <source>Please type the new rule name</source>
         <translation>Napište název nového pravidla, prosím</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="521"/>
+        <source>Regex mode: use Perl-like regular expressions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="525"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
+        <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
