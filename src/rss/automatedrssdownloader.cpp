@@ -62,18 +62,26 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
   ui->hsplitter->setCollapsible(0, false);
   ui->hsplitter->setCollapsible(1, false);
   ui->hsplitter->setCollapsible(2, true); // Only the preview list is collapsible
-
-  connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
+  bool ok; Q_UNUSED(ok);
+  ok = connect(ui->checkRegex, SIGNAL(toggled(bool)), SLOT(updateFieldsToolTips(bool)));
+  Q_ASSERT(ok);
+  ok = connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
+  Q_ASSERT(ok);
   m_ruleList = RssDownloadRuleList::instance();
   initLabelCombobox();
   loadFeedList();
   loadSettings();
-  connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
-  connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
-  connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
+  ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateRuleDefinitionBox()));
+  Q_ASSERT(ok);
+  ok = connect(ui->listRules, SIGNAL(itemSelectionChanged()), SLOT(updateFeedList()));
+  Q_ASSERT(ok);
+  ok = connect(ui->listFeeds, SIGNAL(itemChanged(QListWidgetItem*)), SLOT(handleFeedCheckStateChange(QListWidgetItem*)));
+  Q_ASSERT(ok);
   // Update matching articles when necessary
-  connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
-  connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  ok = connect(ui->lineContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
+  ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
   updateRuleDefinitionBox();
   updateFeedList();
 }
@@ -209,6 +217,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       clearRuleDefinitionBox();
       ui->lineContains->setText(selection.first()->text());
     }
+    updateFieldsToolTips(ui->checkRegex->isChecked());
     // Enable
     ui->ruleDefBox->setEnabled(true);
   } else {
@@ -227,6 +236,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->lineSavePath->clear();
   ui->comboLabel->clearEditText();
   ui->checkRegex->setChecked(false);
+  updateFieldsToolTips(ui->checkRegex->isChecked());
 }
 
 RssDownloadRule AutomatedRssDownloader::getCurrentRule() const
@@ -494,6 +504,18 @@ void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QS
     treeFeedItem->addChild(item);
   }
   ui->treeMatchingArticles->expandItem(treeFeedItem);
+}
+
+void AutomatedRssDownloader::updateFieldsToolTips(bool regex)
+{
+  QString tip;
+  if(regex) {
+    tip = tr("Regex mode: use Perl-like regular expressions");
+  } else {
+    tip = tr("Wildcard mode: you can use:\n ? to match any single character.\n * to match zero or more of any characters.\n Whitespaces count as AND operators.");
+  }
+  ui->lineContains->setToolTip(tip);
+  ui->lineNotContains->setToolTip(tip);
 }
 
 
