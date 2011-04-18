@@ -2755,23 +2755,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>DynDNS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No-IP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>changeme.dyndns.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

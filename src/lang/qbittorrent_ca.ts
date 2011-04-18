@@ -2612,16 +2612,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2342"/>
-        <source>DynDNS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2347"/>
-        <source>No-IP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="2355"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
@@ -2629,11 +2619,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2364"/>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2371"/>
-        <source>changeme.dyndns.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

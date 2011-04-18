@@ -63,7 +63,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Un client BitTorrent avancé programmé en C++, basé sur la bibliothèque Qt4 et libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Site Officiel :&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent sur Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="202"/>
@@ -145,13 +151,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètre</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="49"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation type="unfinished">Valeur</translation>
+        <translation>Valeur</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="182"/>
@@ -271,7 +277,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="129"/>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser des expressions régulières</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="355"/>
@@ -438,17 +444,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="521"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode regex : Utiliser des expressions régulières similaires à celles de Perl</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="525"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode simplifié : vous pouvez utiliser&lt;ul&gt;&lt;li&gt;? pour remplacer n&apos;importe quel caractère&lt;/li&gt;&lt;li&gt;* pour remplacer zéro ou plusieurs caractères&lt;/li&gt;&lt;li&gt;Les espaces sont considérés équivalent à des opérateurs ET&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode simplifié : vous pouvez utiliser&lt;ul&gt;&lt;li&gt;? pour remplacer n&apos;importe quel caractère&lt;/li&gt;&lt;li&gt;* pour remplacer zéro ou plusieurs caractères&lt;/li&gt;&lt;li&gt;| est utilisé comme opérateur OU&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -717,12 +723,12 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Votre DNS dynamique à été mis à jour avec succès.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur DNS dynamique : Le service est temporairement indisponible, un nouvel essai sera tenté dans 30 minutes.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
@@ -2364,7 +2370,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="62"/>
         <source>Connection</source>
-        <translation type="unfinished">Connexion</translation>
+        <translation>Connexion</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="63"/>
@@ -2579,22 +2585,22 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="976"/>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port d&apos;écoute</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1041"/>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limites de connexions</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1161"/>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur mandataire (Proxy)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1525"/>
         <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer la gestion de bande passante (uTP)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1911"/>
@@ -2722,22 +2728,22 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="418"/>
         <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Style de l&apos;icône :</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="426"/>
         <source>Normal</source>
-        <translation type="unfinished">Normale</translation>
+        <translation>Normale</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="431"/>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monochrome (Thème foncé)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="436"/>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monochrome (Thème clair)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="380"/>
@@ -2747,17 +2753,17 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="193"/>
         <source>User Interface Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Langue de l&apos;interface utilisateur :</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="250"/>
         <source>Transfer List</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des transferts</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;icône de qBittorrent dans la zone de notification</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="452"/>
@@ -2783,7 +2789,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="545"/>
         <source>Hard Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Disque dur</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="554"/>
@@ -2838,7 +2844,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="907"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce serveur nécessite une connexion sécurisée (SSL)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="919"/>
@@ -2848,62 +2854,47 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1417"/>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limites de vitesse globales</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1535"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer les limites de vitesse aux connexions uTP</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1542"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer les limites de vitesse au surplus généré par le protocole</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1555"/>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limites de vitesse globales alternatives</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1661"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Plannifier l&apos;utilisation des vitesses limites alternatives</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2320"/>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour mon nom de domaine dynamique</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2332"/>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2342"/>
-        <source>DynDNS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2347"/>
-        <source>No-IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Service :</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2355"/>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un compte</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2364"/>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2371"/>
-        <source>changeme.dyndns.org</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de domaine :</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
@@ -2966,17 +2957,17 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1980"/>
         <source>Torrent Queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorisation des torrents</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2097"/>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitation du ratio de partage</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2254"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser la redirection de port sur mon routeur via UPnP / NAT-PMP</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2296"/>
@@ -4806,12 +4797,12 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../torrentimportdlg.cpp" line="242"/>
         <source>Invalid torrent file</source>
-        <translation type="unfinished">Fichier Torrent invalide</translation>
+        <translation>Fichier torrent invalide</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="242"/>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished">Il ne s&apos;agit pas d&apos;un fichier Torrent valide</translation>
+        <translation>Il ne s&apos;agit pas d&apos;un fichier torrent valide.</translation>
     </message>
 </context>
 <context>
