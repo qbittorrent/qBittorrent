@@ -37,7 +37,7 @@
 #include "rssfeed.h"
 #include "rssarticle.h"
 
-RssDownloadRule::RssDownloadRule()
+RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 {
 }
 
@@ -46,7 +46,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
   foreach(const QString& token, m_mustContain) {
     if(token.isEmpty() || token == "")
       continue;
-    QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
+    QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
     //reg.setMinimal(false);
     if(reg.indexIn(article_title) < 0) return false;
   }
@@ -54,7 +54,7 @@ bool RssDownloadRule::matches(const QString &article_title) const
   // Checking not matching
   foreach(const QString& token, m_mustNotContain) {
     if(token.isEmpty()) continue;
-    QRegExp reg(token, Qt::CaseInsensitive, QRegExp::Wildcard);
+    QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
     if(reg.indexIn(article_title) > -1) return false;
   }
   return true;
@@ -62,12 +62,18 @@ bool RssDownloadRule::matches(const QString &article_title) const
 
 void RssDownloadRule::setMustContain(const QString &tokens)
 {
-  m_mustContain = tokens.split(" ");
+  if(m_useRegex)
+    m_mustContain = QStringList() << tokens;
+  else
+    m_mustContain = tokens.split(" ");
 }
 
 void RssDownloadRule::setMustNotContain(const QString &tokens)
 {
-  m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
+  if(m_useRegex)
+    m_mustNotContain = QStringList() << tokens;
+  else
+    m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
 }
 
 RssDownloadRule RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
@@ -98,6 +104,7 @@ RssDownloadRule RssDownloadRule::fromNewFormat(const QVariantHash &rule_hash)
   rule.setEnabled(rule_hash.value("enabled", false).toBool());
   rule.setSavePath(rule_hash.value("save_path").toString());
   rule.setLabel(rule_hash.value("label_assigned").toString());
+  rule.setUseRegex(rule_hash.value("use_regex", false).toBool());
   return rule;
 }
 
@@ -111,6 +118,7 @@ QVariantHash RssDownloadRule::toVariantHash() const
   hash["affected_feeds"] = m_rssFeeds;
   hash["enabled"] = m_enabled;
   hash["label_assigned"] = m_label;
+  hash["use_regex"] = m_useRegex;
   return hash;
 }
 

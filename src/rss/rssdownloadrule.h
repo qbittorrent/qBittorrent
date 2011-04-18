@@ -60,6 +60,8 @@ public:
   inline bool isValid() const { return !m_name.isEmpty(); }
   inline QString mustContain() const { return m_mustContain.join(" "); }
   inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
+  inline bool useRegex() const { return m_useRegex; }
+  inline void setUseRegex(bool enabled) { m_useRegex = enabled; }
   QStringList findMatchingArticles(const RssFeed* feed) const;
   // Operators
   bool operator==(const RssDownloadRule &other);
@@ -72,6 +74,7 @@ private:
   QString m_label;
   bool m_enabled;
   QStringList m_rssFeeds;
+  bool m_useRegex;
 };
 
 #endif // RSSDOWNLOADRULE_H

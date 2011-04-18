@@ -5,6 +5,7 @@
     - FEATURE: Added UPnP/NAT-PMP port forward for the Web UI port
     - FEATURE: qBittorrent can update dynamic DNS services (DynDNS, no-ip)
     - FEATURE: Display peer connection type in peer list (BT, uTP, Web)
+    - FEATURE: Added full regex support to RSS downloader
     - BUGFIX: Change systray icon on the fly (no restart needed)
     - BUGFIX: Remember peer-level rate limits (requires libtorrent v0.16)
     - COSMETIC: Added monochrome icon for light themes 

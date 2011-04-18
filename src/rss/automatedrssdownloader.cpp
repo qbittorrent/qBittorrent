@@ -197,6 +197,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       ui->lineNotContains->setText(rule.mustNotContain());
       ui->saveDiffDir_check->setChecked(!rule.savePath().isEmpty());
       ui->lineSavePath->setText(rule.savePath());
+      ui->checkRegex->setChecked(rule.useRegex());
       if(rule.label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
         ui->comboLabel->clearEditText();
@@ -225,6 +226,7 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   ui->saveDiffDir_check->setChecked(false);
   ui->lineSavePath->clear();
   ui->comboLabel->clearEditText();
+  ui->checkRegex->setChecked(false);
 }
 
 RssDownloadRule AutomatedRssDownloader::getCurrentRule() const
@@ -261,6 +263,7 @@ void AutomatedRssDownloader::saveEditedRule()
     rule.setEnabled(false);
   else
     rule.setEnabled(true);
+  rule.setUseRegex(ui->checkRegex->isChecked());
   rule.setMustContain(ui->lineContains->text());
   rule.setMustNotContain(ui->lineNotContains->text());
   if(ui->saveDiffDir_check->isChecked())
