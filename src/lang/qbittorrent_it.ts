@@ -1798,6 +1798,11 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>Il client qBittorrent non è raggiungibile</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Server HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

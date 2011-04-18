@@ -1006,6 +1006,11 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent er ikke oppnåelig</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Tjener</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

@@ -1605,6 +1605,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent client is not reachable</source>
         <translation>无法访问qBittorrent客户端</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP 服务器</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

@@ -1546,6 +1546,11 @@ Està segur que vol sortir?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>El client qBittorrent no és accessible</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Servidor HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

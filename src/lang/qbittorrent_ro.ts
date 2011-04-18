@@ -1187,6 +1187,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Server</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

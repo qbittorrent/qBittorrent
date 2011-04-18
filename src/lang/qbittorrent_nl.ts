@@ -1400,6 +1400,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent client is niet bereikbaar</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Server</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

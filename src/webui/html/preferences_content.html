@@ -1,6 +1,6 @@
 <div id="ConnectionTab" class="PrefTab">
 <fieldset>
-  <legend><b>_(Listening port)</b></legend>
+  <legend><b>_(Listening Port)</b></legend>
   <div style="padding-left: 30px;">
   _(Port used for incoming connections:)
   <input type="text" id="port_value" style="width: 4em;"/>
@@ -13,7 +13,7 @@
   </div>
 </fieldset>
 <fieldset>
-  <legend><b>_(Connections limit)</b></legend>
+  <legend><b>_(Connections Limits)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -29,7 +29,7 @@
   </div>
 </fieldset>
 <fieldset>
-  <legend><b>_(Global speed limits)</b></legend>
+  <legend><b>_(Global Rate Limits)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -45,7 +45,7 @@
 
 <div id="BittorrentTab" class="PrefTab invisible">
 <fieldset>
-  <legend><b>_(Bittorrent features)</b></legend>
+  <legend><b>_(Privacy)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -76,7 +76,7 @@
 
 <div id="DownloadsTab" class="PrefTab invisible">
   <fieldset>
-  <legend><b>_(File system)</b></legend>
+  <legend><b>_(Hard Disk)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -133,13 +133,17 @@
 <div style="padding-left: 30px;">
  <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/> _(Run an external program on torrent completion)<br/>
 <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
-<i>_(Use %f to pass the torrent path in parameters)</i>
+<i>The following parameters are supported:
+<ul>
+<li>%f: Torrent path</li>
+<li>%n: Torrent name</li>
+</ul></i>
 </div>
 </fieldset>
 <fieldset>
-  <legend><b>_(Torrent queueing)</b></legend>
+  <legend><b>_(Torrent Queueing)</b></legend>
   <div style="padding-left: 30px;">
-  <input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/> _(Torrent queueing)
+  <input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/> _(Torrent Queueing)
   <table>
   <tr>
   <td style="vertical-align: bottom; text-align: right;">_(Maximum active downloads:)</td><td><input type="text" id="max_active_dl_value" style="width: 4em;"/></td>
@@ -169,7 +173,7 @@
 </div>
 
 <div id="ProxyTab" class="PrefTab invisible">
-  <legend><b>_(Proxy server)</b></legend>
+  <legend><b>_(Proxy Server)</b></legend>
   <div style="padding-left: 30px;">
     _(Type:) <select id ="peer_proxy_type_select" onchange="updatePeerProxySettings();">
       <option value="none">_((None))</option>
@@ -190,11 +194,11 @@
 
 <div id="WebUITab" class="PrefTab invisible">
 <fieldset>
-  <legend><b>_(Visual Appearance)</b></legend>
+  <legend><b>_(Language)</b></legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
-  <td style="vertical-align: bottom;">_(Language:)</td>
+  <td style="vertical-align: bottom;">_(User Interface Language:)</td>
   <td style="padding-right: 3px;">
     <select id="locale_select">
       <option value="en_GB">English</option>

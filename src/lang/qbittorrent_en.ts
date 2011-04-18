@@ -864,6 +864,11 @@ You should get this information from your Web browser preferences.</source>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

@@ -1589,6 +1589,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>Cliente qBittorrent não está alcançável</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Servidor HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

@@ -1678,6 +1678,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent klijent nije dostupan</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP poslužitelj</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

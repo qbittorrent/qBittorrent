@@ -1594,6 +1594,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>Klient qBittorrent nie je dostupný</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Server</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

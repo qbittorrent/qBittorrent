@@ -1508,6 +1508,10 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Sunucu</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

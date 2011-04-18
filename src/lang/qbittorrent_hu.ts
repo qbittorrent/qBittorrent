@@ -1717,6 +1717,11 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>A qBittorent kliens nem elérhető</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP Szerver</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

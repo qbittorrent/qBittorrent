@@ -1720,6 +1720,11 @@ Are you sure you want to quit qBittorrent?</source>
         <source>qBittorrent client is not reachable</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Διακομιστής HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

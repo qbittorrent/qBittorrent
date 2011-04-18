@@ -1530,6 +1530,10 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent-klienten är inte nåbar</translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP-server</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

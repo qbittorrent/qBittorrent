@@ -1763,6 +1763,11 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>Le logiciel qBittorrent est injoignable</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Serveur HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

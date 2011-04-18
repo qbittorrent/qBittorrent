@@ -1567,6 +1567,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Serwer www</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

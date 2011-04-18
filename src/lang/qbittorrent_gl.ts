@@ -905,6 +905,11 @@ Debería obter esta información nas preferencias do navegador.</translation>
         <source>qBittorrent client is not reachable</source>
         <translation>O cliente qBittorrent non está accesíbel</translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">Servidor HTTP</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

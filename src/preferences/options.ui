@@ -492,7 +492,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-292</y>
              <width>489</width>
              <height>849</height>
             </rect>
@@ -2194,8 +2194,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>389</width>
-             <height>378</height>
+             <width>504</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2339,12 +2339,12 @@ QGroupBox {
                      <widget class="QComboBox" name="comboDNSService">
                       <item>
                        <property name="text">
-                        <string>DynDNS</string>
+                        <string notr="true">DynDNS</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>No-IP</string>
+                        <string notr="true">No-IP</string>
                        </property>
                       </item>
                      </widget>
@@ -2368,7 +2368,7 @@ QGroupBox {
                   <item row="1" column="1">
                    <widget class="QLineEdit" name="domainNameTxt">
                     <property name="text">
-                     <string>changeme.dyndns.org</string>
+                     <string notr="true">changeme.dyndns.org</string>
                     </property>
                    </widget>
                   </item>
@@ -2440,8 +2440,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>16</height>
+             <width>504</width>
+             <height>384</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

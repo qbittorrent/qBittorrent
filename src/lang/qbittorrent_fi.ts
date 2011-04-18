@@ -1671,6 +1671,11 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="132"/>
+        <source>HTTP Server</source>
+        <translation type="unfinished">HTTP-palvelin</translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
