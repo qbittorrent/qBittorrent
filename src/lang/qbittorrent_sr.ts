@@ -183,11 +183,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Потврда брисања торента</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>IP адресни извештај о пратиоцима (захтева рестарт)</translation>
+    </message>
+    <message>
+        <source>Display program on-screen notifications</source>
+        <translation type="obsolete">Прикажи програмска обавештења на екрану</translation>
     </message>
     <message>
         <source>Setting</source>
@@ -687,95 +691,95 @@ You should get this information from your Web browser preferences.</source>
     <name>DownloadThread</name>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">И/О Грешка</translation>
+        <translation>И/О Грешка</translation>
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Име удаљеног домаћина није пронађено (неважеће hostname)</translation>
+        <translation>Име удаљеног рачунара није пронађено (неисправно име рачунара)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Операција је отказана</translation>
+        <translation>Операција је отказана</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
+        <translation>Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
+        <translation>Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS управљање неуспешно</translation>
+        <translation>SSL/TLS управљање неуспешно</translation>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">Удаљени сервер не прихвата конекцију</translation>
+        <translation>Удаљени сервер не прихвата конекцију</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">Конекција на прокси сервер је одбијена</translation>
+        <translation>Конекција на прокси сервер је одбијена</translation>
     </message>
     <message>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">Прокси сервер је превремено затворио конекцију</translation>
+        <translation>Прокси сервер је превремено затворио конекцију</translation>
     </message>
     <message>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">Назив прокси сервера није пронађен</translation>
+        <translation>Назив прокси сервера није пронађен</translation>
     </message>
     <message>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
+        <translation>Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
+        <translation>Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">Приступ удаљеном садржају је одбијен (401)</translation>
+        <translation>Приступ удаљеном садржају је одбијен (401)</translation>
     </message>
     <message>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">Захтевана операција за удаљеним садржајем се не одобрава</translation>
+        <translation>Захтевана операција за удаљеним садржајем се не одобрава</translation>
     </message>
     <message>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">Захтевани садржај, није пронађен на серверу (404)</translation>
+        <translation>Захтевани садржај, није пронађен на серверу (404)</translation>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
+        <translation>Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
+        <translation>Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">Захтевана операција је погрешна за овај протокол</translation>
+        <translation>Захтевана операција је погрешна за овај протокол</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">Непозната грешка у вези са мрежом је откривена</translation>
+        <translation>Детектована је непозната грешка у вези са мрежом</translation>
     </message>
     <message>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">Непозната грешка у вези са прокси-јем је откривена</translation>
+        <translation>Детектована је непозната грешка у вези са проксијем</translation>
     </message>
     <message>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">Непозната грешка у вези са удаљеним садржајем је откривена</translation>
+        <translation>Детектована је непозната грешка у вези са удаљеним садржајем</translation>
     </message>
     <message>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">Детектован је проблем са протоколом</translation>
+        <translation>Детектован је проблем са протоколом</translation>
     </message>
     <message>
         <source>Unknown error</source>
-        <translation type="unfinished">Непозната грешка</translation>
+        <translation>Непозната грешка</translation>
     </message>
 </context>
 <context>
@@ -1631,11 +1635,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent клијент није доступан</translation>
     </message>
     <message>
         <source>HTTP Server</source>
@@ -2076,7 +2080,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Execution &amp;Log</source>
-        <translation>Дешавања &amp;Дневник</translation>
+        <translation>Дневник &amp;Дешавања</translation>
     </message>
     <message>
         <source>Execution Log</source>
@@ -2104,7 +2108,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Лозинка мора имати најмање 3 карактера</translation>
     </message>
 </context>
 <context>
@@ -2721,27 +2725,31 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>Понашање</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Језик</translation>
+        <translation>Језик</translation>
     </message>
     <message>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Управљање напајањем</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Спречи стање мировања када су торенти активни</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Заобиђи аутентификацију за localhost-а</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Захтевај потврду за излазак из програма</translation>
+    </message>
+    <message>
+        <source>Use monochrome system tray icon (requires restart)</source>
+        <translation type="obsolete">Користи једнобојну икону на системској палети (захтева рестарт)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2749,6 +2757,22 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
+        <translation>Следећи параметри су подржани:
+&lt;ul&gt;
+&lt;li&gt;%f: Torrent путања&lt;/li&gt;
+&lt;li&gt;%n: Torrent име&lt;/li&gt;
+&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>User Interface Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transfer List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show qBittorrent in notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2768,23 +2792,11 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfer List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hard Disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This server requires a secure connection (SSL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2797,6 +2809,30 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Proxy Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Global Rate Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rate limit to uTP connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apply rate limit to transport overhead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alternative Global Rate Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2825,30 +2861,6 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable bandwidth management (uTP)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3163,7 +3175,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation type="unfinished">Садржај Торента:</translation>
+        <translation>Садржај Торента:</translation>
     </message>
 </context>
 <context>
@@ -3435,19 +3447,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Пријављивање IP адреса %1 пратиоцима...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Рачунар ће сада отићи у стање мировања осим ако то не откажете у наредних 15 секунди...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>Рачунар ће сада бити искључен осим ако то не откажете у наредних 15 секунди...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ће сада бити искључен осим ако то не откажете у наредних 15 секунди...</translation>
     </message>
 </context>
 <context>
@@ -3901,7 +3913,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Потврђивање искључења</translation>
     </message>
 </context>
 <context>
@@ -3985,16 +3997,16 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Кликните да укључите алтернативно ограничење брзине</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Кликните да укључите уобичајено ограничење брзине</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>Per second</comment>
-        <translation type="unfinished">%1/s</translation>
+        <translation>%1/s</translation>
     </message>
 </context>
 <context>
@@ -4130,11 +4142,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished">Неисправна торент датотека</translation>
+        <translation>Неисправна торент датотека</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished">Ово није валидан торент фајл.</translation>
+        <translation>Ово није валидан торент фајл.</translation>
     </message>
 </context>
 <context>
@@ -4684,30 +4696,30 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење односа дељења...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Однос ограничења слања/преузимања торента</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи општи однос ограничења</translation>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>дугмад Група</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Постави без односа ограничења</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Постави односа ограничења на</translation>
     </message>
 </context>
 <context>
@@ -5493,7 +5505,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>Успешно обновљен</translation>
     </message>
 </context>
 <context>
