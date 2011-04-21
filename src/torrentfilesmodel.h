@@ -360,7 +360,7 @@ public:
     emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
-  void updateFilesPriorities(std::vector<int> fprio) {
+  void updateFilesPriorities(const std::vector<int> &fprio) {
     emit layoutAboutToBeChanged();
     for(unsigned int i=0; i<fprio.size(); ++i) {
       //qDebug("Called updateFilesPriorities with %d", fprio[i]);

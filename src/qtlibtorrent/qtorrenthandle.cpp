@@ -420,6 +420,8 @@ QStringList QTorrentHandle::absolute_files_path_uneeded() const {
   QDir saveDir(save_path());
   QStringList res;
   std::vector<int> fp = torrent_handle::file_priorities();
+  qDebug() << fp.size() << num_files();
+  Q_ASSERT(fp.size() == num_files());
   for(int i = 0; i < num_files(); ++i) {
     if(fp[i] == 0) {
       const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filepath_at(i)));
