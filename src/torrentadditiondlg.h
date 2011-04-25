@@ -74,8 +74,6 @@ protected:
 private:
   void readSettings();
   void saveSettings();
-  void loadFilesListState();
-  void saveFilesListState();
 
 private:
   QString fileName;

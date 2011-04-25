@@ -63,7 +63,6 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   const Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  loadFilesListState();
   // Icons
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
@@ -128,7 +127,6 @@ torrentAdditionDialog::~torrentAdditionDialog() {
 void torrentAdditionDialog::closeEvent(QCloseEvent *event)
 {
   qDebug() << Q_FUNC_INFO;
-  saveFilesListState();
   saveSettings();
   QDialog::closeEvent(event);
 }
@@ -136,24 +134,16 @@ void torrentAdditionDialog::closeEvent(QCloseEvent *event)
 void torrentAdditionDialog::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   restoreGeometry(settings.value("TorrentAdditionDlg/dimensions").toByteArray());
-
+  if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
+    qDebug() << Q_FUNC_INFO << "First executation, resize first section to 200px...";
+    torrentContentList->header()->resizeSection(0, 400); //Default
+  }
 }
 
 void torrentAdditionDialog::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentAdditionDlg/dimensions", saveGeometry());
-}
-
-void torrentAdditionDialog::loadFilesListState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
-    torrentContentList->header()->resizeSection(0, 200); //Default
-  }
-}
-
-void torrentAdditionDialog::saveFilesListState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   settings.setValue("TorrentAdditionDlg/ContentHeaderState", torrentContentList->header()->saveState());
+  settings.setValue("TorrentAdditionDlg/dimensions", saveGeometry());
 }
 
 void torrentAdditionDialog::limitDialogWidth() {
