@@ -135,7 +135,7 @@ void torrentAdditionDialog::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   restoreGeometry(settings.value("TorrentAdditionDlg/dimensions").toByteArray());
   if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
-    qDebug() << Q_FUNC_INFO << "First executation, resize first section to 200px...";
+    qDebug() << Q_FUNC_INFO << "First executation, resize first section to 400px...";
     torrentContentList->header()->resizeSection(0, 400); //Default
   }
 }
