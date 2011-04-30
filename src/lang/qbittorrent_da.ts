@@ -2030,7 +2030,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Sprog:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="222"/>
+        <location filename="../preferences/options.ui" line="219"/>
         <source>(Requires restart)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2039,20 +2039,20 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Udseende:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="259"/>
+        <location filename="../preferences/options.ui" line="253"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="307"/>
-        <location filename="../preferences/options.ui" line="333"/>
+        <location filename="../preferences/options.ui" line="301"/>
+        <location filename="../preferences/options.ui" line="327"/>
         <source>Start / Stop Torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="317"/>
-        <location filename="../preferences/options.ui" line="343"/>
+        <location filename="../preferences/options.ui" line="311"/>
+        <location filename="../preferences/options.ui" line="337"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2061,12 +2061,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Fil system</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="778"/>
+        <location filename="../preferences/options.ui" line="772"/>
         <source>Copy .torrent files to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="934"/>
+        <location filename="../preferences/options.ui" line="928"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -2075,62 +2075,62 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1041"/>
+        <location filename="../preferences/options.ui" line="1035"/>
         <source>Connections Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1161"/>
+        <location filename="../preferences/options.ui" line="1155"/>
         <source>Proxy Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1417"/>
+        <location filename="../preferences/options.ui" line="1411"/>
         <source>Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1535"/>
+        <location filename="../preferences/options.ui" line="1529"/>
         <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1542"/>
+        <location filename="../preferences/options.ui" line="1536"/>
         <source>Apply rate limit to transport overhead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1555"/>
+        <location filename="../preferences/options.ui" line="1549"/>
         <source>Alternative Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1661"/>
+        <location filename="../preferences/options.ui" line="1655"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1924"/>
+        <location filename="../preferences/options.ui" line="1918"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1936"/>
+        <location filename="../preferences/options.ui" line="1930"/>
         <source>Encryption mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1944"/>
+        <location filename="../preferences/options.ui" line="1938"/>
         <source>Prefer encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1949"/>
+        <location filename="../preferences/options.ui" line="1943"/>
         <source>Require encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1954"/>
+        <location filename="../preferences/options.ui" line="1948"/>
         <source>Disable encryption</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2139,27 +2139,27 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Torrent kø</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1995"/>
+        <location filename="../preferences/options.ui" line="1989"/>
         <source>Maximum active downloads:</source>
         <translation type="unfinished">Maksimale antal aktive downloads:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2015"/>
+        <location filename="../preferences/options.ui" line="2009"/>
         <source>Maximum active uploads:</source>
         <translation type="unfinished">Maksimale antal aktive uploads:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2035"/>
+        <location filename="../preferences/options.ui" line="2029"/>
         <source>Maximum active torrents:</source>
         <translation type="unfinished">Maksimale antal aktive torrents:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="510"/>
+        <location filename="../preferences/options.ui" line="504"/>
         <source>When adding a torrent</source>
         <translation type="unfinished">Når en torrent tilføjes</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="519"/>
+        <location filename="../preferences/options.ui" line="513"/>
         <source>Display torrent content and some options</source>
         <translation type="unfinished">Vis indhold af torrent og nogle indstillinger</translation>
     </message>
@@ -2168,12 +2168,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Port</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="984"/>
+        <location filename="../preferences/options.ui" line="978"/>
         <source>Port used for incoming connections:</source>
         <translation type="unfinished">Port til indkommende forbindelser:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1004"/>
+        <location filename="../preferences/options.ui" line="998"/>
         <source>Random</source>
         <translation type="unfinished">Tilfældig</translation>
     </message>
@@ -2190,63 +2190,63 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Grænse for forbindelser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1047"/>
+        <location filename="../preferences/options.ui" line="1041"/>
         <source>Global maximum number of connections:</source>
         <translation type="unfinished">Global grænse for det maksimale antal forbindelser:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1073"/>
+        <location filename="../preferences/options.ui" line="1067"/>
         <source>Maximum number of connections per torrent:</source>
         <translation type="unfinished">Maksimale antal forbindelser per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1096"/>
+        <location filename="../preferences/options.ui" line="1090"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation type="unfinished">Maksimale antal upload slots per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1435"/>
-        <location filename="../preferences/options.ui" line="1590"/>
+        <location filename="../preferences/options.ui" line="1429"/>
+        <location filename="../preferences/options.ui" line="1584"/>
         <source>Upload:</source>
         <translation type="unfinished">Upload:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1617"/>
+        <location filename="../preferences/options.ui" line="1465"/>
+        <location filename="../preferences/options.ui" line="1611"/>
         <source>Download:</source>
         <translation type="unfinished">Download:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1464"/>
-        <location filename="../preferences/options.ui" line="1497"/>
-        <location filename="../preferences/options.ui" line="1610"/>
-        <location filename="../preferences/options.ui" line="1637"/>
+        <location filename="../preferences/options.ui" line="1458"/>
+        <location filename="../preferences/options.ui" line="1491"/>
+        <location filename="../preferences/options.ui" line="1604"/>
+        <location filename="../preferences/options.ui" line="1631"/>
         <source>KiB/s</source>
         <translation type="unfinished">KB/s</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="745"/>
+        <location filename="../preferences/options.ui" line="739"/>
         <source>Remove folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1702"/>
+        <location filename="../preferences/options.ui" line="1696"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation type="unfinished">til</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1754"/>
+        <location filename="../preferences/options.ui" line="1748"/>
         <source>Every day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1759"/>
+        <location filename="../preferences/options.ui" line="1753"/>
         <source>Week days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1764"/>
+        <location filename="../preferences/options.ui" line="1758"/>
         <source>Week ends</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2259,12 +2259,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Brug en anden port til DHT og Bittorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1867"/>
+        <location filename="../preferences/options.ui" line="1861"/>
         <source>DHT port:</source>
         <translation type="unfinished">DHT port:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1908"/>
+        <location filename="../preferences/options.ui" line="1902"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2285,307 +2285,307 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Frakoblet</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1203"/>
+        <location filename="../preferences/options.ui" line="1197"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1182"/>
+        <location filename="../preferences/options.ui" line="1176"/>
         <source>SOCKS4</source>
         <translation type="unfinished">SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1169"/>
+        <location filename="../preferences/options.ui" line="1163"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="20"/>
-        <location filename="../preferences/options.ui" line="1519"/>
+        <location filename="../preferences/options.ui" line="1513"/>
         <source>Options</source>
         <translation type="unfinished">Indstillinger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="275"/>
+        <location filename="../preferences/options.ui" line="269"/>
         <source>Action on double-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="290"/>
+        <location filename="../preferences/options.ui" line="284"/>
         <source>Downloading torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="312"/>
-        <location filename="../preferences/options.ui" line="338"/>
+        <location filename="../preferences/options.ui" line="306"/>
+        <location filename="../preferences/options.ui" line="332"/>
         <source>Open destination folder</source>
         <translation type="unfinished">Åben destinationsmappe</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="325"/>
+        <location filename="../preferences/options.ui" line="319"/>
         <source>Completed torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="357"/>
+        <location filename="../preferences/options.ui" line="351"/>
         <source>Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="363"/>
+        <location filename="../preferences/options.ui" line="357"/>
         <source>Show splash screen on start up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="373"/>
+        <location filename="../preferences/options.ui" line="367"/>
         <source>Start qBittorrent minimized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="399"/>
+        <location filename="../preferences/options.ui" line="393"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="409"/>
+        <location filename="../preferences/options.ui" line="403"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="418"/>
+        <location filename="../preferences/options.ui" line="412"/>
         <source>Tray icon style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="426"/>
+        <location filename="../preferences/options.ui" line="420"/>
         <source>Normal</source>
         <translation type="unfinished">Normal</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="431"/>
+        <location filename="../preferences/options.ui" line="425"/>
         <source>Monochrome (Dark theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="436"/>
+        <location filename="../preferences/options.ui" line="430"/>
         <source>Monochrome (Light theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="380"/>
+        <location filename="../preferences/options.ui" line="374"/>
         <source>Ask for program exit confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="193"/>
+        <location filename="../preferences/options.ui" line="190"/>
         <source>User Interface Language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="250"/>
+        <location filename="../preferences/options.ui" line="247"/>
         <source>Transfer List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="390"/>
+        <location filename="../preferences/options.ui" line="384"/>
         <source>Show qBittorrent in notification area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="452"/>
+        <location filename="../preferences/options.ui" line="446"/>
         <source>Power Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="458"/>
+        <location filename="../preferences/options.ui" line="452"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="529"/>
+        <location filename="../preferences/options.ui" line="523"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="545"/>
+        <location filename="../preferences/options.ui" line="539"/>
         <source>Hard Disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="554"/>
+        <location filename="../preferences/options.ui" line="548"/>
         <source>Save files to location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="602"/>
+        <location filename="../preferences/options.ui" line="596"/>
         <source>Append the label of the torrent to the save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="612"/>
+        <location filename="../preferences/options.ui" line="606"/>
         <source>Pre-allocate disk space for all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="619"/>
+        <location filename="../preferences/options.ui" line="613"/>
         <source>Keep incomplete torrents in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="665"/>
+        <location filename="../preferences/options.ui" line="659"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="682"/>
+        <location filename="../preferences/options.ui" line="676"/>
         <source>Automatically add torrents from:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="735"/>
+        <location filename="../preferences/options.ui" line="729"/>
         <source>Add folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="834"/>
+        <location filename="../preferences/options.ui" line="828"/>
         <source>Email notification upon download completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="848"/>
+        <location filename="../preferences/options.ui" line="842"/>
         <source>Destination email:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="858"/>
+        <location filename="../preferences/options.ui" line="852"/>
         <source>SMTP server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="907"/>
+        <location filename="../preferences/options.ui" line="901"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="919"/>
+        <location filename="../preferences/options.ui" line="913"/>
         <source>Run an external program on torrent completion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="976"/>
+        <location filename="../preferences/options.ui" line="970"/>
         <source>Listening Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1026"/>
+        <location filename="../preferences/options.ui" line="1020"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1331"/>
+        <location filename="../preferences/options.ui" line="1325"/>
         <source>IP Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1372"/>
+        <location filename="../preferences/options.ui" line="1366"/>
         <source>Reload the filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1525"/>
+        <location filename="../preferences/options.ui" line="1519"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1678"/>
+        <location filename="../preferences/options.ui" line="1672"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1746"/>
+        <location filename="../preferences/options.ui" line="1740"/>
         <source>When:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1829"/>
+        <location filename="../preferences/options.ui" line="1823"/>
         <source>Privacy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1835"/>
+        <location filename="../preferences/options.ui" line="1829"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1847"/>
+        <location filename="../preferences/options.ui" line="1841"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1911"/>
+        <location filename="../preferences/options.ui" line="1905"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1921"/>
+        <location filename="../preferences/options.ui" line="1915"/>
         <source>Look for peers on your local network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2108"/>
+        <location filename="../preferences/options.ui" line="2102"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2140"/>
+        <location filename="../preferences/options.ui" line="2134"/>
         <source>then</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2151"/>
+        <location filename="../preferences/options.ui" line="2145"/>
         <source>Pause them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2156"/>
+        <location filename="../preferences/options.ui" line="2150"/>
         <source>Remove them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2254"/>
+        <location filename="../preferences/options.ui" line="2248"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2296"/>
+        <location filename="../preferences/options.ui" line="2290"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2320"/>
+        <location filename="../preferences/options.ui" line="2314"/>
         <source>Update my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2332"/>
+        <location filename="../preferences/options.ui" line="2326"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2355"/>
+        <location filename="../preferences/options.ui" line="2349"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2364"/>
+        <location filename="../preferences/options.ui" line="2358"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1177"/>
+        <location filename="../preferences/options.ui" line="1171"/>
         <source>(None)</source>
         <translation type="unfinished">(Ingen)</translation>
     </message>
@@ -2606,61 +2606,61 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">Sprog</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1192"/>
+        <location filename="../preferences/options.ui" line="1186"/>
         <source>HTTP</source>
         <translation type="unfinished">HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1229"/>
-        <location filename="../preferences/options.ui" line="2219"/>
+        <location filename="../preferences/options.ui" line="1223"/>
+        <location filename="../preferences/options.ui" line="2213"/>
         <source>Port:</source>
         <translation type="unfinished">Port:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="868"/>
-        <location filename="../preferences/options.ui" line="1257"/>
-        <location filename="../preferences/options.ui" line="2264"/>
+        <location filename="../preferences/options.ui" line="862"/>
+        <location filename="../preferences/options.ui" line="1251"/>
+        <location filename="../preferences/options.ui" line="2258"/>
         <source>Authentication</source>
         <translation type="unfinished">Godkendelse</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="880"/>
-        <location filename="../preferences/options.ui" line="1274"/>
-        <location filename="../preferences/options.ui" line="2303"/>
-        <location filename="../preferences/options.ui" line="2378"/>
+        <location filename="../preferences/options.ui" line="874"/>
+        <location filename="../preferences/options.ui" line="1268"/>
+        <location filename="../preferences/options.ui" line="2297"/>
+        <location filename="../preferences/options.ui" line="2372"/>
         <source>Username:</source>
         <translation type="unfinished">Brugernavn:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="890"/>
-        <location filename="../preferences/options.ui" line="1300"/>
-        <location filename="../preferences/options.ui" line="2310"/>
-        <location filename="../preferences/options.ui" line="2392"/>
+        <location filename="../preferences/options.ui" line="884"/>
+        <location filename="../preferences/options.ui" line="1294"/>
+        <location filename="../preferences/options.ui" line="2304"/>
+        <location filename="../preferences/options.ui" line="2386"/>
         <source>Password:</source>
         <translation type="unfinished">Kodeord:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1980"/>
+        <location filename="../preferences/options.ui" line="1974"/>
         <source>Torrent Queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2097"/>
+        <location filename="../preferences/options.ui" line="2091"/>
         <source>Share Ratio Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2205"/>
+        <location filename="../preferences/options.ui" line="2199"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1187"/>
+        <location filename="../preferences/options.ui" line="1181"/>
         <source>SOCKS5</source>
         <translation type="unfinished">SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1343"/>
+        <location filename="../preferences/options.ui" line="1337"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation type="unfinished"></translation>
     </message>
