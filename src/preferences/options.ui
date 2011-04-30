@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>496</width>
-             <height>557</height>
+             <width>465</width>
+             <height>476</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -487,8 +487,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>876</height>
+             <width>465</width>
+             <height>811</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -505,7 +505,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_5">
                <property name="bottomMargin">
-                <number>0</number>
+                <number>9</number>
                </property>
                <item row="0" column="0" colspan="2">
                 <widget class="QCheckBox" name="checkAdditionDialog">
@@ -540,7 +540,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
                <property name="bottomMargin">
-                <number>0</number>
+                <number>9</number>
                </property>
                <item>
                 <widget class="QGroupBox" name="groupBox_3">
@@ -549,7 +549,7 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_26">
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>9</number>
                   </property>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -620,7 +620,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_3">
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>9</number>
                   </property>
                   <item row="0" column="0">
                    <widget class="QLineEdit" name="textTempPath"/>
@@ -677,7 +677,7 @@ QGroupBox {
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_38">
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>9</number>
                   </property>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -779,7 +779,7 @@ QGroupBox {
                  </property>
                  <layout class="QGridLayout" name="gridLayout_4">
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>9</number>
                   </property>
                   <item row="0" column="0">
                    <widget class="QLineEdit" name="textExportDir"/>
@@ -957,8 +957,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>461</width>
-             <height>492</height>
+             <width>465</width>
+             <height>426</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1399,9 +1399,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>413</width>
-             <height>454</height>
+             <y>-78</y>
+             <width>465</width>
+             <height>396</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1811,9 +1811,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>565</width>
-             <height>422</height>
+             <y>-73</y>
+             <width>465</width>
+             <height>391</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1833,7 +1833,7 @@ QGroupBox {
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_18">
                   <property name="bottomMargin">
-                   <number>0</number>
+                   <number>9</number>
                   </property>
                   <item>
                    <widget class="QGroupBox" name="checkDifferentDHTPort">
@@ -1848,7 +1848,7 @@ QGroupBox {
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_17">
                      <property name="bottomMargin">
-                      <number>0</number>
+                      <number>9</number>
                      </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1981,7 +1981,7 @@ QGroupBox {
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
                <property name="bottomMargin">
-                <number>0</number>
+                <number>9</number>
                </property>
                <item row="0" column="0">
                 <widget class="QLabel" name="label_max_active_dl">
@@ -2092,7 +2092,7 @@ QGroupBox {
               </property>
               <layout class="QVBoxLayout">
                <property name="bottomMargin">
-                <number>0</number>
+                <number>9</number>
                </property>
                <item>
                 <layout class="QHBoxLayout">
@@ -2187,9 +2187,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>451</width>
-             <height>419</height>
+             <y>-43</y>
+             <width>465</width>
+             <height>361</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2434,8 +2434,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>482</width>
+             <height>318</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
