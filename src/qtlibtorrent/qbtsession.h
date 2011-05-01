@@ -137,7 +137,7 @@ public slots:
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
   void setDHTPort(int dht_port);
-  void setProxySettings(const libtorrent::proxy_settings &proxySettings);
+  void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);

@@ -509,6 +509,14 @@ public:
     setValue(QString::fromUtf8("Preferences/Connection/ProxyType"), type);
   }
 
+  void setProxyPeerConnections(bool enabled) {
+    setValue(QString::fromUtf8("Preferences/Connection/ProxyPeerConnections"), enabled);
+  }
+
+  bool proxyPeerConnections() const {
+    return value(QString::fromUtf8("Preferences/Connection/ProxyPeerConnections"), false).toBool();
+  }
+
   // Bittorrent options
   int getMaxConnecs() const {
     return value(QString::fromUtf8("Preferences/Bittorrent/MaxConnecs"), 500).toInt();

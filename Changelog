@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
     - FEATURE: Added full libtorrent v0.16 support (uTP, ...)
+    - FEATURE: Proxy can be disabled for peer connections
     - FEATURE: Added support for secure SMTP connection (SSL)
     - FEATURE: Added support for SMTP authentication
     - FEATURE: Added UPnP/NAT-PMP port forward for the Web UI port

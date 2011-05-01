@@ -151,7 +151,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabOptionPage1">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>465</width>
-             <height>476</height>
+             <width>496</width>
+             <height>557</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -487,8 +487,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>465</width>
-             <height>811</height>
+             <width>516</width>
+             <height>930</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -956,9 +956,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>465</width>
-             <height>426</height>
+             <y>-12</y>
+             <width>496</width>
+             <height>520</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1243,6 +1243,19 @@ QGroupBox {
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkProxyPeerConnecs">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Otherwise, the proxy server is only used for tracker connections</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for peer connections</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkProxyAuth">
                  <property name="enabled">
                   <bool>false</bool>
@@ -1399,9 +1412,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-78</y>
-             <width>465</width>
-             <height>396</height>
+             <y>0</y>
+             <width>496</width>
+             <height>454</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1811,9 +1824,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-73</y>
-             <width>465</width>
-             <height>391</height>
+             <y>0</y>
+             <width>565</width>
+             <height>458</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2187,9 +2200,9 @@ QGroupBox {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-43</y>
-             <width>465</width>
-             <height>361</height>
+             <y>0</y>
+             <width>496</width>
+             <height>419</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2434,8 +2447,8 @@ QGroupBox {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
-             <height>318</height>
+             <width>512</width>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

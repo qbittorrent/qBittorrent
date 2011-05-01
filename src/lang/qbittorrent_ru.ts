@@ -2867,6 +2867,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Enable bandwidth management (uTP)</source>
         <translation>Включить управление полосой пропускания (uTP)</translation>
     </message>
+    <message>
+        <source>Otherwise, the proxy server is only used for tracker connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use proxy for peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

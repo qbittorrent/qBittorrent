@@ -2022,17 +2022,22 @@ void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
 }
 
 // Set Proxy
-void QBtSession::setProxySettings(const proxy_settings &proxySettings) {
+void QBtSession::setProxySettings(proxy_settings proxySettings) {
   qDebug() << Q_FUNC_INFO;
 
-#if (LIBTORRENT_VERSION_MINOR > 15) || (LIBTORRENT_VERSION_MINOR == 15 && LIBTORRENT_VERSION_TINY > 4)
+#if LIBTORRENT_VERSION_MINOR > 15
+  proxySettings.proxy_peer_connections = Preferences().proxyPeerConnections();
   s->set_proxy(proxySettings);
 #else
-  s->set_peer_proxy(proxySettings);
-  s->set_web_seed_proxy(proxySettings);
   s->set_tracker_proxy(proxySettings);
-  s->set_dht_proxy(proxySettings);
+  proxy_settings peer_proxy;
+  if (Preferences().proxyPeerConnections())
+    peer_proxy = proxySettings;
+  s->set_peer_proxy(peer_proxy);
+  s->set_web_seed_proxy(peer_proxy);
+  s->set_dht_proxy(peer_proxy);
 #endif
+
   // Define environment variable
   QString proxy_str;
   switch(proxySettings.type) {

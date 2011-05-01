@@ -191,6 +191,7 @@ options_imp::options_imp(QWidget *parent):
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(textProxyIP, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinProxyPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkProxyPeerConnecs, SIGNAL(toggled(bool)), SLOT(enableApplyButton()));
   connect(checkProxyAuth, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textProxyUsername, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textProxyPassword, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -401,6 +402,7 @@ void options_imp::saveOptions(){
   pref.setProxyType(getProxyType());
   pref.setProxyIp(getProxyIp());
   pref.setProxyPort(getProxyPort());
+  pref.setProxyPeerConnections(checkProxyPeerConnecs->isChecked());
   pref.setProxyAuthEnabled(isProxyAuthEnabled());
   pref.setProxyUsername(getProxyUsername());
   pref.setProxyPassword(getProxyPassword());
@@ -614,6 +616,7 @@ void options_imp::loadOptions(){
   // Proxy is enabled, save settings
   textProxyIP->setText(pref.getProxyIp());
   spinProxyPort->setValue(pref.getProxyPort());
+  checkProxyPeerConnecs->setChecked(pref.proxyPeerConnections());
   checkProxyAuth->setChecked(pref.isProxyAuthEnabled());
   textProxyUsername->setText(pref.getProxyUsername());
   textProxyPassword->setText(pref.getProxyPassword());
@@ -880,6 +883,7 @@ void options_imp::enableProxy(int index){
     textProxyIP->setEnabled(true);
     lblProxyPort->setEnabled(true);
     spinProxyPort->setEnabled(true);
+    checkProxyPeerConnecs->setEnabled(true);
     if(index > 1) {
       checkProxyAuth->setEnabled(true);
     } else {
@@ -892,6 +896,7 @@ void options_imp::enableProxy(int index){
     textProxyIP->setEnabled(false);
     lblProxyPort->setEnabled(false);
     spinProxyPort->setEnabled(false);
+    checkProxyPeerConnecs->setEnabled(false);
     checkProxyAuth->setEnabled(false);
     checkProxyAuth->setChecked(false);
   }
