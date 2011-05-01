@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Zobrazovať OSD upozornenia</translation>
+        <translation type="unfinished">Zobrazovať OSD upozornenia</translation>
     </message>
     <message>
         <source>Setting</source>

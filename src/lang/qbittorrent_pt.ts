@@ -172,7 +172,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Exibir notificações do programa na tela</translation>
+        <translation type="unfinished">Exibir notificações do programa na tela</translation>
     </message>
     <message>
         <source>Setting</source>

@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>Ուղորդիչների հաշվետվության IP-ն (պահ. է վերագործարկում)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
+        <translation type="unfinished">Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

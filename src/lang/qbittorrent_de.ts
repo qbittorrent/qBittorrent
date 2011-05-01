@@ -199,8 +199,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP Adresse die bei Trackern angegeben werden soll (Neustart benötigtr)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Benachrichtigungen auf dem Bildschirm anzeigen</translation>
+        <translation type="unfinished">Benachrichtigungen auf dem Bildschirm anzeigen</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

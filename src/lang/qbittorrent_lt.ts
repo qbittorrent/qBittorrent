@@ -190,6 +190,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <source>Display program on-screen notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../preferences/advancedsettings.h" line="234"/>
         <source>Confirm torrent deletion</source>
         <translation type="unfinished"></translation>

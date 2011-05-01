@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP cím jelentése a trackernek (újraindítást igényel)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Értesítési ablakok megjelenítése</translation>
+        <translation type="unfinished">Értesítési ablakok megjelenítése</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

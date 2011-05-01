@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP Address to report to trackers (requires restart)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">اظهار بالونات المعلومات</translation>
+        <translation type="unfinished">اظهار بالونات المعلومات</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

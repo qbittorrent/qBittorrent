@@ -184,7 +184,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Toon programma on-screen meldingen</translation>
+        <translation type="unfinished">Toon programma on-screen meldingen</translation>
     </message>
     <message>
         <source>Setting</source>

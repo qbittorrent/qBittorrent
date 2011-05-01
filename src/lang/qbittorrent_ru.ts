@@ -190,7 +190,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Показывать экранные сообщения</translation>
+        <translation type="unfinished">Показывать экранные сообщения</translation>
     </message>
     <message>
         <source>Confirm torrent deletion</source>

@@ -212,7 +212,7 @@ private slots:
     setRow(NETWORK_ADDRESS, tr("IP Address to report to trackers (requires restart)"), &txt_network_address);
     // Program notifications
     cb_program_notifications.setChecked(pref.useProgramNotification());
-    setRow(PROGRAM_NOTIFICATIONS, "Display program on-screen notifications", &cb_program_notifications);
+    setRow(PROGRAM_NOTIFICATIONS, tr("Display program on-screen notifications"), &cb_program_notifications);
     // Tracker State
     cb_tracker_status.setChecked(pref.isTrackerEnabled());
     setRow(TRACKER_STATUS, tr("Enable embedded tracker"), &cb_tracker_status);

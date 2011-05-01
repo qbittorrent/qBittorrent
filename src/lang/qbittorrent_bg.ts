@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP адрес за информиране на тракери (изисква рестарт)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Покажи уведомленията на програмата на екрана</translation>
+        <translation type="unfinished">Покажи уведомленията на програмата на екрана</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

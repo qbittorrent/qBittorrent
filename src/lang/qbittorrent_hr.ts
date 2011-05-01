@@ -226,7 +226,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Prikazuj obavijesti.na ekranu</translation>
+        <translation type="unfinished">Prikazuj obavijesti.na ekranu</translation>
     </message>
     <message>
         <source>Setting</source>

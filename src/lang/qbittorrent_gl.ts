@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>Enderezo IP que enviar aos localizadores (necesita reiniciar)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Mostrar as notificacións na pantalla</translation>
+        <translation type="unfinished">Mostrar as notificacións na pantalla</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

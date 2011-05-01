@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP Adresse som skal rapporteres til sporere (krever omstart)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Vis programvarslinger på skjermen</translation>
+        <translation type="unfinished">Vis programvarslinger på skjermen</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="234"/>

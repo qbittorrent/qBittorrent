@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>IP adresa hlášená trackerům (vyžaduje restart)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Zobrazovat on-screen oznámení programu</translation>
+        <translation type="unfinished">Zobrazovat on-screen oznámení programu</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

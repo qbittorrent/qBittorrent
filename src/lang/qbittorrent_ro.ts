@@ -159,6 +159,10 @@ p, li { white-space: pre-wrap; }
         <comment>Value set for this setting</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Display program on-screen notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>

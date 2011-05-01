@@ -199,8 +199,9 @@ p, li { white-space: pre-wrap; }
         <translation>Indirizzo Ip da riportare ai tracker</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Mostra notifiche del programma nello schermo</translation>
+        <translation type="unfinished">Mostra notifiche del programma nello schermo</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="226"/>

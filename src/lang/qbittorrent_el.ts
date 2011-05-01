@@ -191,8 +191,9 @@ p, li { white-space: pre-wrap; }
         <translation>Η διεύθυνση IP να δίνει αναφορά στους ιχνηλάτες (απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Εμφάνιση ειδοποιήσεων προγράμματος</translation>
+        <translation type="unfinished">Εμφάνιση ειδοποιήσεων προγράμματος</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

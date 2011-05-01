@@ -190,8 +190,9 @@ p, li { white-space: pre-wrap; }
         <translation>Dirección IP para informe de incidencias a los trackers (es necesario reiniciar)</translation>
     </message>
     <message>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Visualización en pantalla de las notificaciones</translation>
+        <translation type="unfinished">Visualización en pantalla de las notificaciones</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>

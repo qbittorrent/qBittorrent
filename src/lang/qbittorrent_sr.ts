@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">Прикажи програмска обавештења на екрану</translation>
+        <translation type="unfinished">Прикажи програмска обавештења на екрану</translation>
     </message>
     <message>
         <source>Setting</source>

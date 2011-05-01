@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="obsolete">顯示程式通知</translation>
+        <translation type="unfinished">顯示程式通知</translation>
     </message>
     <message>
         <source>Setting</source>
