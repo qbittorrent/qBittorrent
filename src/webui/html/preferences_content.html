@@ -182,7 +182,8 @@
       <option value="http">_(HTTP)</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
     _(Host:) <input type="text" id="peer_proxy_host_text" />&nbsp;&nbsp;&nbsp;&nbsp;
-    _(Port:) <input type="text" id="peer_proxy_port_value" style="width: 4em;"/><br/><br/>
+    _(Port:) <input type="text" id="peer_proxy_port_value" style="width: 4em;"/><br/>
+    <input type="checkbox" id="use_peer_proxy_checkbox" />&nbsp;&nbsp;_(Use proxy for peer connections)<br/><br/>
     <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />&nbsp;&nbsp;_(Authentication)<br/>
     <table>
     <tr><td style="padding-left: 10px;">_(Username:)</td><td><input type="text" id="peer_proxy_username_text" /></td></tr>
@@ -404,6 +405,7 @@
   }
   var proxy_ip = $('peer_proxy_host_text').get('value');
   var proxy_port = $('peer_proxy_port_value').get('value');
+  var proxy_peer_connections = $defined($('use_peer_proxy_checkbox').get('checked')) && $('use_peer_proxy_checkbox').get('checked');
   var proxy_username = $('peer_proxy_username_text').get('value');
   var proxy_password = $('peer_proxy_password_text').get('value');
   // Web UI
@@ -469,6 +471,7 @@
   dict.set('proxy_type', proxy_type);
   dict.set('proxy_ip', proxy_ip);
   dict.set('proxy_port', proxy_port);
+  dict.set('proxy_peer_connections', proxy_peer_connections);
   dict.set('proxy_auth_enabled', proxy_auth_enabled);
   dict.set('proxy_username', proxy_username);
   dict.set('proxy_password', proxy_password);
@@ -610,6 +613,7 @@ updatePeerProxySettings = function() {
   if($('peer_proxy_type_select').get('value') != "none") {
     $('peer_proxy_host_text').removeProperty('disabled');
     $('peer_proxy_port_value').removeProperty('disabled');
+    $('use_peer_proxy_checkbox').removeProperty('disabled');
     if($('peer_proxy_type_select').get('value') != "socks5") {
       $('peer_proxy_auth_checkbox').removeProperty('checked');
       $('peer_proxy_auth_checkbox').set('disabled', 'true');
@@ -620,6 +624,7 @@ updatePeerProxySettings = function() {
   } else {
     $('peer_proxy_host_text').set('disabled', 'true');
     $('peer_proxy_port_value').set('disabled', 'true');
+    $('use_peer_proxy_checkbox').set('disabled', 'true');
     $('peer_proxy_auth_checkbox').set('disabled', 'true');
     $('peer_proxy_auth_checkbox').removeProperty('checked');
     updatePeerProxyAuthSettings();
@@ -876,6 +881,11 @@ loadPreferences = function() {
                     updatePeerProxySettings();
                     $('peer_proxy_host_text').set('value', pref.proxy_ip);
                     $('peer_proxy_port_value').set('value', pref.proxy_port);
+                    if(pref.proxy_peer_connections) {
+                      $('use_peer_proxy_checkbox').set('checked', 'checked');
+                    } else {
+                      $('use_peer_proxy_checkbox').removeProperty('checked');
+                    }
                     if(pref.proxy_auth_enabled) {
                       $('peer_proxy_auth_checkbox').set('checked', 'checked');
                     } else {

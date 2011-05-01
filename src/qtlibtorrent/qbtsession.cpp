@@ -282,6 +282,7 @@ void QBtSession::configureSession() {
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref.getSessionPort();
   if(old_listenPort != new_listenPort) {
+    qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
     setListeningPort(new_listenPort);
     addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(new_listenPort)));
   }
@@ -1849,6 +1850,7 @@ void QBtSession::setAppendqBExtension(bool append) {
 // Set the ports range in which is chosen the port the Bittorrent
 // session will listen to
 void QBtSession::setListeningPort(int port) {
+  qDebug() << Q_FUNC_INFO << port;
   Preferences pref;
   std::pair<int,int> ports(port, port);
 #if LIBTORRENT_VERSION_MINOR > 15
