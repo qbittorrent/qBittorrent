@@ -130,6 +130,8 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   a = tr("Save");
   a = tr("qBittorrent client is not reachable");
   a = tr("HTTP Server");
+  a = tr("Torrent path");
+  a = tr("Torrent name");
 }
 
 HttpServer::~HttpServer()

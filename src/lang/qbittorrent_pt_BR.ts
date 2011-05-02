@@ -1593,6 +1593,14 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <source>HTTP Server</source>
         <translation type="unfinished">Servidor HTTP</translation>
     </message>
+    <message>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2511,7 +2519,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Acrescentar extensão .!qB para nomes de arquivos incompletos</translation>
+        <translation type="obsolete">Acrescentar extensão .!qB para nomes de arquivos incompletos</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -2796,6 +2804,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

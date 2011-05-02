@@ -1682,6 +1682,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>HTTP Server</source>
         <translation type="unfinished">HTTP poslužitelj</translation>
     </message>
+    <message>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2556,7 +2564,7 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="obsolete">Pridodaj .!qB proširenje nedovršenim datotekama</translation>
+        <translation type="unfinished">Pridodaj .!qB proširenje nedovršenim datotekama</translation>
     </message>
     <message>
         <source>Pre-allocate all files</source>
@@ -2945,7 +2953,7 @@ QGroupBox {
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Pridodaj .!qB proširenje imenima nedovršenih datoteka</translation>
+        <translation type="obsolete">Pridodaj .!qB proširenje imenima nedovršenih datoteka</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>

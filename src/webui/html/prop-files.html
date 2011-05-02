@@ -266,7 +266,7 @@ var createPriorityCombo = function(id, selected_prio) {
                 noCache: true,
                 method: 'get',
                 onFailure: function() {
-                        $('error_div').set('html', 'qBittorrent client is not reachable');
+                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
                         waitingTorrentFiles=false;
                         loadTorrentFilesData.delay(2000);
                 },

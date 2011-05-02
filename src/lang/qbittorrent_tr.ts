@@ -1516,6 +1516,14 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <source>HTTP Server</source>
         <translation type="unfinished">HTTP Sunucu</translation>
     </message>
+    <message>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2431,7 +2439,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Tamamlanmamış dosya adlarına .!qB eklentisini ekle</translation>
+        <translation type="obsolete">Tamamlanmamış dosya adlarına .!qB eklentisini ekle</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -2700,6 +2708,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

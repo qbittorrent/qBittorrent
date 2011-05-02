@@ -656,7 +656,7 @@
                <item>
                 <widget class="QCheckBox" name="checkAppendqB">
                  <property name="text">
-                  <string>Append .!qB extension to incomplete files' names</string>
+                  <string>Append .!qB extension to incomplete files</string>
                  </property>
                 </widget>
                </item>

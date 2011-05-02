@@ -1627,6 +1627,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>HTTP Server</source>
         <translation>HTTP сервер</translation>
     </message>
+    <message>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2568,7 +2576,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Добавить расширение .!qB к незаконченым файлам</translation>
+        <translation type="obsolete">Добавить расширение .!qB к незаконченым файлам</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -2873,6 +2881,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

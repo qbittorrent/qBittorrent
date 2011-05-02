@@ -73,7 +73,7 @@ dynamic information: total_downloaded, total_uploaded, total_wasted, up_limit, d
                 noCache: true,
                 method: 'get',
                 onFailure: function() {
-                        $('error_div').set('html', 'qBittorrent client is not reachable');
+                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
                         waiting=false;
                         loadData.delay(2000);
                 },

@@ -94,7 +94,7 @@ var trackersDynTable = new Class ({
                 noCache: true,
                 method: 'get',
                 onFailure: function() {
-                        $('error_div').set('html', 'qBittorrent client is not reachable');
+                        $('error_div').set('html', '_(qBittorrent client is not reachable)');
                         waitingTrackers=false;
                         loadTrackersData.delay(2000);
                 },

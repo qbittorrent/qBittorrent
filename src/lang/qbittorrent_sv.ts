@@ -1534,6 +1534,14 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <source>HTTP Server</source>
         <translation type="unfinished">HTTP-server</translation>
     </message>
+    <message>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2445,7 +2453,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Lägg till filändelsen .!qB till ofullständiga filers namn</translation>
+        <translation type="obsolete">Lägg till filändelsen .!qB till ofullständiga filers namn</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -2726,6 +2734,10 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Append .!qB extension to incomplete files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

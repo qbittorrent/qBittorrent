@@ -885,33 +885,33 @@ You should get this information from your Web browser preferences.</source>
         <translation>Δεν επικοινώνησε ακόμα</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="336"/>
-        <location filename="../webui/eventmanager.cpp" line="337"/>
+        <location filename="../webui/eventmanager.cpp" line="339"/>
+        <location filename="../webui/eventmanager.cpp" line="340"/>
         <source>this session</source>
         <translation>αυτή η συνεδρία</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="341"/>
-        <location filename="../webui/eventmanager.cpp" line="345"/>
+        <location filename="../webui/eventmanager.cpp" line="344"/>
+        <location filename="../webui/eventmanager.cpp" line="348"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="348"/>
+        <location filename="../webui/eventmanager.cpp" line="351"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Διαμοιράστηκε για %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="351"/>
+        <location filename="../webui/eventmanager.cpp" line="354"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>μέγιστο %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="430"/>
-        <location filename="../webui/eventmanager.cpp" line="439"/>
+        <location filename="../webui/eventmanager.cpp" line="433"/>
+        <location filename="../webui/eventmanager.cpp" line="442"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1 /s</translation>
@@ -1725,6 +1725,16 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../webui/httpserver.cpp" line="132"/>
         <source>HTTP Server</source>
         <translation type="unfinished">Διακομιστής HTTP</translation>
+    </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="133"/>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="134"/>
+        <source>Torrent name</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2722,9 +2732,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Να μένουν τα μη τελειωμένα τόρεντ στο:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="659"/>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation>Να προστίθεται η κατάληψη .!qB στα ονόματα μη τελειωμένων αρχείων</translation>
+        <translation type="obsolete">Να προστίθεται η κατάληψη .!qB στα ονόματα μη τελειωμένων αρχείων</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="676"/>
@@ -3098,6 +3107,11 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="182"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="659"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="739"/>
@@ -3614,7 +3628,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Παύση του τόρεντ %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="287"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>Το qBittorrent χρησιμοποιεί τη θύρα: TCP/%1</translation>
@@ -3636,7 +3650,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Υποστήριξη NAT-PMP [OXI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="383"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="384"/>
         <source>HTTP user agent is %1</source>
         <translation>Η εφαρμογή HTTP σας είναι %1</translation>
     </message>
@@ -3645,28 +3659,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Χρησιμοποιείται προσωρινή μνήμη δίσκου, %1 MiB</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="491"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="492"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Υποστήριξη DHT [NAI], θύρα: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="493"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="494"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="498"/>
         <source>DHT support [OFF]</source>
         <translation>Υποστήριξη DHT [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="501"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
         <source>PeX support [ON]</source>
         <translation>Υποστήριξη PeX [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
         <source>PeX support [OFF]</source>
         <translation>Υποστήριξη PeX [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="506"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Απαιτείται επανεκκίνηση για να αλλάξουν οι ρυθμίσεις PeX</translation>
     </message>
@@ -3675,281 +3689,281 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Ανακάλυψη Τοπικών Συνδέσεων [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="514"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
         <source>Encryption support [ON]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="531"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="532"/>
         <source>Encryption support [FORCED]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΕΞΑΝΑΓΚΑΣΜΕΝΗ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="536"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="537"/>
         <source>Encryption support [OFF]</source>
         <translation>Υποστήριξη κρυπτογράφησης [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="597"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="598"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Ενσωματομένος Ιχνηλάτης [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="599"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="600"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Αποτυχία έναρξης ενσωματομένου ιχνηλάτη!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="602"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="603"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Ενσωματομένος Ιχνηλάτης [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="641"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Το Web UI χρησιμοποιεί τη θύρα %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="642"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="643"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Σφάλμα Web User Interface - Αδύνατο να συνδεθεί το Web UI στην θύρα %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="777"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="778"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>To &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων και τον σκληρό δίσκο.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="779"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="780"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>Το &apos;%1&apos; αφαιρέθηκε από την λίστα ληφθέντων.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="861"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="862"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>Το &apos;%1&apos; δεν είναι ένα έγκυρο magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="877"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="999"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1004"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1006"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="878"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1000"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1007"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>Το &apos;%1&apos; είναι ήδη στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1150"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1158"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1163"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1151"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1159"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1164"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Το &apos;%1&apos; ξανάρχισε. (γρήγορη επανασύνδεση)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="933"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1152"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1160"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1165"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="934"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1153"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1161"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1166"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Το &apos;%1&apos; προστέθηκε στη λίστα των λαμβανόμενων.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="374"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="375"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>Υποστήριξη UpnP / NAT-PMP [NAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="377"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="378"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>Υποστήριξη UpnP / NAT-PMP [ΟΧΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="437"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="438"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>Αναφορά της διεύθυνσης ΙΡ %1 στους ιχνηλάτες...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="511"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="512"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Ανακάλυψη Τοπικών Συνδέσεων [ΝΑΙ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="968"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="975"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="977"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="969"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="976"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="978"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="981"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="982"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Το αρχείο είναι είτε κατεστραμμένο ή δεν είναι torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1021"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1022"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Σφάλμα: Το τόρεντ %1 δεν περιέχει κανένα αρχείο.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1309"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1310"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι trackers προστέθηκαν στο υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1335"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1336"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Σημείωση: νέοι διαμοιραστές μέσω URL προστέθηκαν στο ήδη υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1691"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1692"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1693"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1694"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1870"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1872"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Το δικτυακό interface που ορίσατε είναι άκυρο: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1871"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1873"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Δοκιμή κάθε άλλου δικτυακού interface.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Αναμονή στην διεύθυνση ΙΡ %1 στο interface δικτύου %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1897"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Αποτυχία αναμονής στο interface δικτύου %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2093"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2190"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2192"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2194"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2240"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα τεθεί σε λειτουργία αναμονής εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2244"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα απενεργοποιηθεί εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2244"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>Το qBittorrent θα κλείσει, εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2842"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2844"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Η ανάγνωση του δοθέντος IP φίλτρου ήταν επιτυχής: %1 κανόνες εφαρμόστηκαν.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2848"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2850"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Σφάλμα: Αποτυχία ανάγνωσης του δοθέντος φίλτρου IP.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2140"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
         <source>Torrent name: %1</source>
         <translation>Όνομα τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
         <source>Torrent size: %1</source>
         <translation>Μέγεθος τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2144"/>
         <source>Save path: %1</source>
         <translation>Διαδρομή αποθήκευσης: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2145"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Το τόρεντ κατέβηκε σε %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2144"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2146"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Σας ευχαριστούμε που χρησιμοποιείτε το qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2147"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>Το κατέβασμα του [qBittorrent] %1 τελείωσε</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2407"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2409"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2408"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2410"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2532"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2499"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2504"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Τα μεγέθη των αρχείων δεν είναι σε αντιστοιχία για το τόρεντ %1, γίνεται παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2529"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2531"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2537"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2663"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2665"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
