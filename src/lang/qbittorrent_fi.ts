@@ -1683,11 +1683,16 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="133"/>
-        <source>Torrent path</source>
+        <source>The following parameters are supported:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="134"/>
+        <source>Torrent path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Torrent name</source>
         <translation type="unfinished"></translation>
     </message>

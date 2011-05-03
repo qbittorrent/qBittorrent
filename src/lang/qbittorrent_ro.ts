@@ -1203,6 +1203,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>Torrent name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The following parameters are supported:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>

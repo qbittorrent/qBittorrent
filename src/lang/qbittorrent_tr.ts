@@ -1524,6 +1524,10 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <source>Torrent name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The following parameters are supported:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
