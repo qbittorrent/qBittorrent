@@ -288,13 +288,15 @@ void PeerListWidget::saveSettings() const {
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {
   if(!h.is_valid()) return;
+  boost::system::error_code ec;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
   std::vector<peer_info>::iterator itr;
   QSet<QString> old_peers_set = peerItems.keys().toSet();
   for(itr = peers.begin(); itr != peers.end(); itr++) {
     peer_info peer = *itr;
-    QString peer_ip = misc::toQString(peer.ip.address().to_string());
+    QString peer_ip = misc::toQString(peer.ip.address().to_string(ec));
+    if(ec) continue;
     if(peerItems.contains(peer_ip)) {
       // Update existing peer
       updatePeer(peer_ip, peer);

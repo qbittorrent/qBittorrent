@@ -60,7 +60,9 @@ public:
   }
 
   QString getHostFromCache(const libtorrent::asio::ip::tcp::endpoint &ip) {
-    const QString ip_str = misc::toQString(ip.address().to_string());
+    boost::system::error_code ec;
+    const QString ip_str = misc::toQString(ip.address().to_string(ec));
+    if (ec) return QString();
     QString ret;
     if(m_cache.contains(ip_str)) {
       qDebug("Got host name from cache");
@@ -72,7 +74,9 @@ public:
   }
 
   void resolve(const libtorrent::asio::ip::tcp::endpoint &ip) {
-    const QString ip_str = misc::toQString(ip.address().to_string());
+    boost::system::error_code ec;
+    const QString ip_str = misc::toQString(ip.address().to_string(ec));
+    if (ec) return;
     if(m_cache.contains(ip_str)) {
       qDebug("Resolved host name using cache");
       emit ip_resolved(ip_str, *m_cache.object(ip_str));

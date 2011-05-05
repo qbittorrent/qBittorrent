@@ -2505,12 +2505,20 @@ void QBtSession::readAlerts() {
       //emit UPnPSuccess(QString(p->msg().c_str()));
     }
     else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
-      addPeerBanMessage(QString(p->ip.to_string().c_str()), true);
-      //emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
+      boost::system::error_code ec;
+      string ip = p->ip.to_string(ec);
+      if (!ec) {
+        addPeerBanMessage(QString::fromAscii(ip.c_str()), true);
+        //emit peerBlocked(QString::fromAscii(ip.c_str()));
+      }
     }
     else if (peer_ban_alert* p = dynamic_cast<peer_ban_alert*>(a.get())) {
-      addPeerBanMessage(QString(p->ip.address().to_string().c_str()), false);
-      //emit peerBlocked(QString::fromUtf8(p->ip.to_string().c_str()));
+      boost::system::error_code ec;
+      string ip = p->ip.address().to_string(ec);
+      if (!ec) {
+        addPeerBanMessage(QString::fromAscii(ip.c_str()), false);
+        //emit peerBlocked(QString::fromAscii(ip.c_str()));
+      }
     }
     else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
@@ -2538,7 +2546,8 @@ void QBtSession::readAlerts() {
       //emit urlSeedProblem(QString::fromUtf8(p->url.c_str()), QString::fromUtf8(p->msg().c_str()));
     }
     else if (listen_succeeded_alert *p = dynamic_cast<listen_succeeded_alert*>(a.get())) {
-      qDebug() << "Sucessfully listening on" << p->endpoint.address().to_string().c_str() << "/" << p->endpoint.port();
+      boost::system::error_code ec;
+      qDebug() << "Sucessfully listening on" << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
       // Force reannounce on all torrents because some trackers blacklist some ports
       std::vector<torrent_handle> torrents = s->get_torrents();
       std::vector<torrent_handle>::iterator it;
