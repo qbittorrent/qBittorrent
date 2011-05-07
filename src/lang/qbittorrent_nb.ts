@@ -2925,13 +2925,13 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>qBittorrent vil nå avsluttes dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2844"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2853"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2850"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Feil: Mislyktes i å analysere det oppgitte IP filteret.</translation>
     </message>
@@ -3070,7 +3070,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2410"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2532"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2540"/>
         <source>Reason: %1</source>
         <translation>Grunn: %1</translation>
     </message>
@@ -3085,22 +3085,22 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>UPnP/NAT-PMP: Port-viderekobling vellykket, melding: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2535"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Filstørrelser feilmatching for torrent %1, setter den på pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2531"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2539"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hurtig gjennopptakingsdata ble avslått for torrent %1, sjekker igjen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2537"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2545"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Nettadressegivningsoppsøking mislyktes for nettadresse: %1, melding: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2665"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2674"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Laster ned &apos;%1&apos;, vennligst vent...</translation>

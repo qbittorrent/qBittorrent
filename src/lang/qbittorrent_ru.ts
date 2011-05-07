@@ -190,7 +190,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished">Показывать экранные сообщения</translation>
+        <translation>Показывать экранные сообщения</translation>
     </message>
     <message>
         <source>Confirm torrent deletion</source>
@@ -1629,15 +1629,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь торрента</translation>
     </message>
     <message>
         <source>Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя торрента</translation>
     </message>
     <message>
         <source>The following parameters are supported:</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддерживаются следующие параметры:</translation>
     </message>
 </context>
 <context>
@@ -2881,15 +2881,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Иначе прокси сервер используется только для соединения с трекерами</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать прокси для соединения с пирами</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить расширение .!qB к незаконченным файлам</translation>
     </message>
 </context>
 <context>
