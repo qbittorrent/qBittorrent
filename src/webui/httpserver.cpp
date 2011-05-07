@@ -38,6 +38,7 @@
 #include <QTime>
 #include <QRegExp>
 #include <QTimer>
+#include <QSslSocket>
 
 using namespace libtorrent;
 
@@ -87,6 +88,11 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   username = pref.getWebUiUsername().toLocal8Bit();
   password_ha1 = pref.getWebUiPassword().toLocal8Bit();
   m_localAuth = pref.isWebUiLocalAuthEnabled();
+  m_https = pref.isWebUiHttpsEnabled();
+  if (m_https) {
+    m_certificate = pref.getWebUiHttpsCertificate();
+    m_key = pref.getWebUiHttpsKey();
+  }
   connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
   manager = new EventManager(this);
   //add torrents
@@ -139,6 +145,36 @@ HttpServer::~HttpServer()
 {
   delete timer;
   delete manager;
+}
+
+void HttpServer::incomingConnection(int socketDescriptor)
+{
+  QTcpSocket *serverSocket;
+  QSslSocket *serverSslSocket;
+  if (m_https)
+  {
+    serverSslSocket = new QSslSocket;
+    serverSocket = serverSslSocket;
+  }
+  else
+  {
+    serverSocket = new QTcpSocket;
+  }
+  if (serverSocket->setSocketDescriptor(socketDescriptor))
+  {
+    if (m_https)
+    {
+      serverSslSocket->setProtocol(QSsl::AnyProtocol);
+      serverSslSocket->setPrivateKey(m_key);
+      serverSslSocket->setLocalCertificate(m_certificate);
+      serverSslSocket->startServerEncryption();
+    }
+    addPendingConnection(serverSocket);
+  }
+  else
+  {
+    delete serverSocket;
+  }
 }
 
 void HttpServer::newHttpConnection()

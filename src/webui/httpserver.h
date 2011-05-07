@@ -63,6 +63,9 @@ public:
   void increaseNbFailedAttemptsForIp(QString ip);
   void resetNbFailedAttemptsForIp(QString ip);
 
+private:
+  void incomingConnection(int socketDescriptor);
+
 private slots:
   void newHttpConnection();
   void onTimer();
@@ -75,6 +78,9 @@ private:
   QTimer *timer;
   QHash<QString, int> client_failed_attempts;
   bool m_localAuth;
+  bool m_https;
+  QSslCertificate m_certificate;
+  QSslKey m_key;
 };
 
 #endif

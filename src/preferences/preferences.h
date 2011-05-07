@@ -37,6 +37,8 @@
 #include <QTime>
 #include <QList>
 #include <QDebug>
+#include <QSslCertificate>
+#include <QSslKey>
 #include <libtorrent/version.hpp>
 
 #ifndef DISABLE_GUI
@@ -771,6 +773,36 @@ public:
       pass_ha1 = md5.result().toHex();
     }
     return pass_ha1;
+  }
+
+  bool isWebUiHttpsEnabled() const {
+    return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();
+  }
+
+  void setWebUiHttpsEnabled(bool enabled) {
+    setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
+  }
+
+  QSslCertificate getWebUiHttpsCertificate() const {
+    return QSslCertificate(value("Preferences/WebUI/HTTPS/Certificate").toByteArray());
+  }
+
+  void setWebUiHttpsCertificate(QString filename) {
+    QFile file(filename);
+    file.open(QIODevice::ReadOnly);
+    setValue("Preferences/WebUI/HTTPS/Certificate", file.readAll());
+    file.close();
+  }
+
+  QSslKey getWebUiHttpsKey() const {
+    return QSslKey(value("Preferences/WebUI/HTTPS/Key").toByteArray(), QSsl::Rsa);
+  }
+
+  void setWebUiHttpsKey(QString filename) {
+    QFile file(filename);
+    file.open(QIODevice::ReadOnly);
+    setValue("Preferences/WebUI/HTTPS/Key", file.readAll());
+    file.close();
   }
 
   bool isDynDNSEnabled() const {
