@@ -1,0 +1,38 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="webui/">
+  <file>html/index.html</file>
+  <file>html/download.html</file>
+  <file>html/addtrackers.html</file>
+  <file>html/upload.html</file>
+  <file>html/uploadframe.html</file>
+  <file>html/about.html</file>
+  <file>html/filters.html</file>
+  <file>html/transferlist.html</file>
+  <file>html/prop-general.html</file>
+  <file>html/prop-trackers.html</file>
+  <file>html/prop-files.html</file>
+  <file>html/properties.html</file>
+  <file>html/uploadlimit.html</file>
+  <file>html/downloadlimit.html</file>
+  <file>html/preferences.html</file>
+  <file>html/preferences_content.html</file>
+  <file>html/confirmdeletion.html</file>
+  <file>css/Core.css</file>
+  <file>css/Layout.css</file>
+  <file>css/Window.css</file>
+  <file>css/Tabs.css</file>
+  <file>css/dynamicTable.css</file>
+  <file>css/style.css</file>
+  <file>scripts/excanvas-compressed.js</file>
+  <file>scripts/mocha-yc.js</file>
+  <file>scripts/mocha-init.js</file>
+  <file>scripts/mootools-1.2-core-yc.js</file>
+  <file>scripts/mootools-1.2-more.js</file>
+  <file>scripts/dynamicTable.js</file>
+  <file>scripts/client.js</file>
+  <file>scripts/download.js</file>
+  <file>scripts/progressbar.js</file>
+  <file>scripts/contextmenu.js</file>
+  <file>scripts/parametrics.js</file>
+</qresource>
+</RCC>

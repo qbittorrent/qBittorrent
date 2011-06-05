@@ -1,0 +1,3 @@
+IDI_ICON1 ICON DISCARDABLE "qbittorrent.ico"
+IDI_ICON2 ICON DISCARDABLE "qbittorrent_file.ico"
+1 24 DISCARDABLE "qbittorrent.exe.manifest"

@@ -1,0 +1,883 @@
+* Sun Jun 05 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.1
+    - BUGFIX: Fix Web UI username/password change (Web UI)
+
+* Thu Jun 02 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
+    - FEATURE: Added full libtorrent v0.16 support (uTP, ...)
+    - FEATURE: Proxy can be disabled for peer connections
+    - FEATURE: Added support for secure SMTP connection (SSL)
+    - FEATURE: Added support for SMTP authentication
+    - FEATURE: Added UPnP/NAT-PMP port forward for the Web UI port
+    - FEATURE: qBittorrent can update dynamic DNS services (DynDNS, no-ip)
+    - FEATURE: Display peer connection type in peer list (BT, uTP, Web)
+    - FEATURE: Added full regex support to RSS downloader
+    - FEATURE: Added regex help and validation in RSS downloader
+    - FEATURE: Added HTTPS support to Web UI (Ishan Arora)
+    - BUGFIX: Change systray icon on the fly (no restart needed)
+    - BUGFIX: Remember peer-level rate limits (requires libtorrent v0.16)
+    - BUGFIX: Stop annoncing to trackers an all tiers (more respectful)
+    - BUGFIX: Stop sharing private trackers with other peers
+    - BUGFIX: Tracker exchange extension can be disabled
+    - BUGFIX: Cleaner program exit on system log out
+    - BUGFIX: Fix possible magnet link parsing problems
+    - BUGFIX: Fix possible RSS URL parsing problems
+    - COSMETIC: Added monochrome icon for light themes 
+
+* Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0
+    - FEATURE: Added search field for torrent content
+    - FEATURE: Added auto-shutdown confirmation dialog
+    - FEATURE: Added option to skip torrent deletion confirmation (Ville Kiiskinen)
+    - FEATURE: IP address reported to trackers is now customizable
+    - FEATURE: Inhibit system sleep when torrents are active (Vladimir Golovnev)
+    - FEATURE: Added option to bypass Web UI authentication for localhost
+    - FEATURE: Added option to disable program exit confirmation
+    - FEATURE: Added per-torrent ratio limiting (Christian Kandeler)
+    - FEATURE: Torrent content list is now sortable
+    - BUGFIX: Fix compilation with namespaced Qt (Christian Kandeler)
+    - BUGFIX: Added length restriction on UI lock password
+    - COSMETIC: Added monochrome tray icon
+    - COSMETIC: Improved status bar's style
+    - OTHER: Make QtDBus dependency optional (X11)
+
+* Sun Jan 9 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.6.0
+    - FEATURE: Use system icons (Linux, Qt >= 4.6)
+    - FEATURE: Improved ETA calculation
+    - FEATURE: Simplify program preferences
+    - FEATURE: Software update check can now be disabled (Mac OS X / Windows)
+    - FEATURE: Display pieces size in torrent properties
+    - FEATURE: Added "Time Active/Seeded" column to transfer list
+    - FEATURE: Give feedback regarding the IP filter parsing
+    - FEATURE: Added a button to reload the IP filter
+    - FEATURE: Search engine results can now be opened in a Web browser
+    - FEATURE: Added a search engine plugin to extratorrent.com
+    - FEATURE: Added a search engine plugin for kickasstorrents.com
+    - FEATURE: Added auto-suspend upon downloads completion feature
+    - BUGFIX: Hide unwanted files that have to be partly downloaded
+    - BUGFIX: Do not allocate space for unwanted files (preallocation mode)
+    - I18N: Added Galician translation
+    - COSMETIC: Same deletion confirmation dialog in the GUI and Web UI
+    - COSMETIC: Simplified the top toolbar
+    - COSMETIC: Display execution log as a tab instead of a modal window
+
+* Sun Dec 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.5.0
+    - FEATURE: qBittorrent can now act as a tracker
+    - FEATURE: New and improved RSS feed automated downloader
+    - FEATURE: Added feature to shutdown qbittorrent on torrents completion
+    - FEATURE: Added a torrent import assistant to seed or keep downloading outside torrents
+    - FEATURE: qBittorrent can update itself from Sourceforge (Windows/Mac OS X only)
+    - FEATURE: Added a transfer list column to display the current tracker
+    - FEATURE: Remember the last trackers used in the torrent creation tool
+    - FEATURE: The optimal piece size is now automatically computed in the torrent creation tool
+    - FEATURE: Bring up the connection settings when clicking on the connection status icon
+    - FEATURE: Major code refactoring and optimization
+    - FEATURE: Added "Amount downloaded/left" columns to transfer list
+    - FEATURE: Simplified proxy settings
+    - FEATURE: Optimized and improved the peer country resolution code
+    - FEATURE: Download first/last pieces first when sequential download is
+    enabled (Thanks Ahmad)
+    - FEATURE: Download first/last pieces first now applies to all media files
+    in the torrent (Thanks Ahmad)
+    - BUGFIX: Fix SOCKS5 proxy authentication in search engine(closes #680072)
+    - BUGFIX: Fix two advanced settings (ignore limits on LAN and protocol
+    overhead inclusion in rate limiter)
+    - BUGFIX: Fix strict super seeding (was not working)
+    - BUGFIX: Improve magnet save path handling (closes #683395)
+    - BUGFIX: Disable overwrite confirmation in torrent addition dialog (closes # 685269)
+    - COSMETIC: Replaced message box by on-screen notification for download errors
+    - COSMETIC: Improved the torrent creation tool appearance
+    - COSMETIC: Use country flags by Mark James (Thanks to Dmytro Pukha)
+    - COSMETIC: Use bigger alternative speed icon
+    - OTHERS: Dropped support for Qt <= 4.4
+
+* Tue Aug 24 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.4.0
+    - FEATURE: Added actions to "Move to top/bottom" of priority queue
+    - FEATURE: Auto-Shutdown on downloads completion
+    - FEATURE: Email notification on download completion
+    - FEATURE: Added button to password-lock the UI
+    - FEATURE: Added label-level Pause/Resume/Delete actions
+    - FEATURE: Torrents can now be filtered by name
+    - FEATURE: Run external program on torrent completion
+    - FEATURE: Detect executable updates in order to advise the user to restart
+
+* Tue Jul 27 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.3.0
+    - FEATURE: Simplified torrent root folder renaming/truncating (< v2.3.0 is no longer forward compatible)
+    - FEATURE: Remember previous save paths in torrent addition dialog
+    - FEATURE: Max number of half-open connections can now be edited
+    - FEATURE: Added support for strict super seeding
+    - FEATURE: The user can force listening on a particular network interface
+    - FEATURE: Added cookie support for RSS feeds
+    - FEATURE: User can force tracker reannounce
+    - FEATURE: Added "No action" setting for double-click action
+    - FEATURE: Several torrents can be moved at once
+    - FEATURE: Added error state for torrents (error is displayed in a tooltip)
+    - FEATURE: Added filter for paused/error torrents
+    - FEATURE: Add Check/Uncheck all feature in Web UI
+    - FEATURE: Search engine can now be disabled
+    - FEATURE: Torrents can be automatically paused once they reach a given ratio
+    - FEATURE: Several files can now be disabled at once
+    - FEATURE: Added "Select All/None" buttons to files list
+    - FEATURE: Added support for BitComet links (bc://bt/...)
+    - BUGFIX: Hide seeding torrents files priorities in Web UI
+    - BUGFIX: The user can disable permanently recursive torrent download
+    - BUGFIX: Peer Exchange status is now correctly reported
+    - BUGFIX: Use an INI file instead of the registry on Windows (More reliable)
+    - BUGFIX: Removed client spoofing feature to avoid tracker blacklisting
+    - COSMETIC: Display peers country name in tooltip
+    - COSMETIC: Display number of torrents in transfers tab label
+    - COSMETIC: Simplified program preferences
+    - COSMETIC: Fix naming of actions opening new dialogs (use Name...)
+
+* Sun Mar 14 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.2.0
+    - FEATURE: User can set alternative speed limits for fast toggling
+    - FEATURE: Bandwidth scheduler (automatically use alternative speed limits for a given period)
+    - FEATURE: Added "Added/Completed On" columns to transfer list
+    - FEATURE: Added "Upload/Download limit" columns to transfer list
+    - FEATURE: Torrent files can be exported to a given directory
+    - FEATURE: Outgoing ports range can be customized (for QoS)
+    - FEATURE: User can choose to apply transfer limits on LAN too
+    - FEATURE: User can choose to include the protocol overhead in transfer limits
+    - FEATURE: Torrents can be automatically rechecked on completion
+    - FEATURE: If 2 torrents have the same hash, add new trackers/URL seeds to the existing torrent
+    - FEATURE: Trackers can be added from Web UI
+    - FEATURE: Global transfer information are displayed in the new Web UI status bar
+    - FEATURE: Allow to change the priority of several files at once
+    - FEATURE: Support for multiple scan folders (Patch by Christian Kandeler)
+    - BUGFIX: Only one log window can be opened at a time
+    - BUGFIX: Optimized RSS module memory usage
+    - BUGFIX: Consider HTTP downloads >1MB as invalid .torrent files and abort
+    - BUGFIX: Fix Web UI authentication with some browsers
+    - BUGFIX: Set Web UI ban period to 1 hour
+    - COSMETIC: Improved style management
+
+* Mon Jan 18 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.1.0
+    - FEATURE: Graphical User Interface can be disabled at compilation time (headless running)
+    - FEATURE: Torrents can be labeled/categorized
+    - FEATURE: Labeled torrent can be downloaded corresponding subfolders
+    - FEATURE: Disk cache size can be set from preferences
+    - FEATURE: Peer Exchange (PeX) can be disabled from preferences
+    - FEATURE: Append !.qB extension to incomplete files option (libtorrent >= v0.15 only)
+    - FEATURE: Torrent files/folders can be renamed (torrent addition dialog or files properties)
+    - FEATURE: uTorrent compatible tracker list support (use torrentz.com url as a default)
+    - FEATURE: Better proxy support and preferences remodeling
+    - FEATURE: qBittorrent can identify itself as uTorrent, Vuze or KTorrent (Any stable version)
+    - FEATURE: Torrents can be renamed in transfer list
+    - FEATURE: Display torrent addition dialog for magnet links too
+    - FEATURE: Files contained in a torrent are opened on double click (files panel)
+    - FEATURE: Added support for magnet links in search engine
+    - FEATURE: Added vertor.com and torrentdownloads.net search plugins
+    - FEATURE: Search engine can now use a SOCKS5 proxy
+    - FEATURE: HTTP proxy support for peer communication
+    - BUGFIX: Search engine loads new proxy settings without program restart
+    - BUGFIX: Use XDG folders (.cache, .local) instead of .qbittorrent
+    - BUGFIX: Added legal notice on startup that the user must accept
+    - BUGFIX: Protect Web UI authentication against brute forcing
+    - BUGFIX: Use HTTP digest mode for Web UI authentication (instead of Basic)
+    - BUGFIX: Properly display torrents with one file in subfolder(s)
+    - BUGFIX: Display Web UI favicon
+    - BUGFIX: File priority can be set for finished torrents that have filtered files
+    - COSMETIC: Use checkboxes to filter torrent content instead of comboboxes
+    - COSMETIC: Use alternating row colors in transfer list (set in program preferences)
+    - COSMETIC: Added a spin box to speed limiting dialog for manual input
+
+* Mon Jan 11 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.0.7
+    - BUGFIX: Fix 'Add in pause' setting in torrent addition dialog
+    - BUGFIX: Update RSS feed as soon as feed downloader is enabled
+    - BUGFIX: RSS Feed downloader ignores articles above maximum number of articles
+    - BUGFIX: Fix possible bug when deleting a RSS folder
+    - BUGFIX: Remove persistant data when a RSS feed is deleted
+    - BUGFIX: RSS filters are now alphabetically sorted
+    - BUGFIX: Fix crash when renaming currently displayed RSS filter
+    - BUGFIX: Remove overwriting confirmation when exporting RSS filters since Qt takes care of it
+
+* Tue Jan 5 2010 - Christophe Dumez <chris@qbittorrent.org> - v2.0.6
+    - BUGFIX: Fix detection of invalid torrent files
+    - BUGFIX: Stop catching signals once one has been caught to avoid possible infinite loop
+    - BUGFIX: Force data recheck whenever a torrent is moved
+    - BUGFIX: Detect existing torrent data even if incomplete torrents are saved to a different folder
+    - COSMETIC: Improve torrent deletion confirmation dialog so that the text that not get truncated
+
+* Thu Dec 31 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.5
+    - BUGFIX: Fix crash with downloaded/availability bars when the torrent has too many pieces
+
+* Wed Dec 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.4
+    - BUGFIX: Fix PeerGuardian .p2b binary filter support
+    - BUGFIX: Fix possible crash when closing a search engine tab
+    - BUGFIX: Make sure service port does not change
+    - BUGFIX: Fix possible DHT port saving issue
+    - BUGFIX: Fix communication between qBittorrent and Web UI (Qt 4.6)
+    - BUGFIX: Use Wildcard matching instead of full regex in RSS feed downloader
+    - BUGFIX: Fix code for listening on a random port whenever it failed to listen on the one defined
+    - BUGFIX: Use global maximum transfer rates as maximum values in per-torrent speed limiting dialogs
+    - BUGFIX: Fix global download rate limiting from Web UI
+    - COSMETIC: Display a disconnected icon in status bar whenever qBittorrent failed to listen on the port defined
+
+* Wed Dec 23 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.3
+    - BUGFIX: Minor cosmetic fix to program preferences
+    - BUGFIX: Fix "Temp path" button in program preferences
+    - BUGFIX: Handle paths with [~, ., ..] properly
+    - BUGFIX: Trackers are now displayed for torrents without metadata
+    - BUGFIX: Fix issue with speed limiting (unlimited was not handled properly)
+    - BUGFIX: Use the save path set in program preferences as a default in torrent addition dialog
+
+* Fri Dec 18 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.2
+    - BUGFIX: Fix .qbittorrent folder not being created (critical bug introduced in v2.0.1 that makes qBittorrent unusuable for new users)
+    - BUGFIX: Fix RSS Feed downloader for some feeds
+    - BUGFIX: Do not use home folder as a fallback when the save path is not accessible
+    - BUGFIX: Fix Mininova, ThePirateBay search engine plugins
+    - BUGFIX: Read RSS articles are remembered on restart for feeds with no torrents attached
+
+* Sun Dec 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.1
+    - BUGFIX: µTorrent user-agent is now spoofed correctly
+    - BUGFIX: Fix column hiding behavior when queueing system is disabled
+    - BUGFIX: Fix link to plugins.qbittorrent.org in plugins dialog
+    - BUGFIX: ~/qBT_dir is created only when it is actually used
+    - BUGFIX: Fix possible missing slot message (toggleSelectedTorrentsSuperSeeding)
+    - BUGFIX: Fix possible crash in torrent properties (files)
+    - BUGFIX: Added Hex Magnet Links support (Thanks Haypo)
+
+* Thu Dec 10 2009 - Christophe Dumez <chris@qbittorrent.org> - v2.0.0
+    - FEATURE: Added program option to disable splash screen
+    - FEATURE: Dropped dependency on libcurl and libzzip
+    - FEATURE: Display more information regarding the torrent in its properties
+    - FEATURE: Various optimizations to save CPU and memory
+    - FEATURE: Folder scanning now works with CIFS and NFS mounted folders
+    - FEATURE: Speed up qBittorrent startup and shutdown
+    - FEATURE: Display per-torrent peer list
+    - FEATURE: Make sure torrent files are always sorted by name
+    - FEATURE: Seeds and Peers columns are now sortable
+    - FEATURE: Torrents can be rechecked from Web UI (Stephanos Antaris)
+    - FEATURE: New peers can manually be added to the torrents
+    - FEATURE: Support per-peer rate limiting
+    - FEATURE: Support peer manual ban
+    - FEATURE: Display total amounts transferred in status bar
+    - FEATURE: Display trackers status as well as error/warning messages
+    - FEATURE: Display the number of peers returned by each tracker & DHT/PeX/LSD
+    - FEATURE: Global upload/download speeds can be capped from status bar (µTorrent behavior)
+    - FEATURE: Added option to download first and last piece of a torrent main file first (for preview)
+    - FEATURE: Graphically display piece availability in torrent properties
+    - FEATURE: Dropped Qt 4.3 support (Qt >= 4.4 is now required)
+    - FEATURE: Display close tab button into the tabs in search engine (Qt >= 4.5 only)
+    - FEATURE: Show official documentation when pressing F1 key
+    - FEATURE: Search engine plugins now handle HTTP protocol gzip compression
+    - FEATURE: Enabled lazy bitfield as a counter-measure for ISP speed throttling
+    - FEATURE: Fall back to a random port if qBittorrent could not listen on the chosen port
+    - FEATURE: Announce to all trackers specified for a torrent (µTorrent behavior) (libtorrent >= v0.15 only)
+    - FEATURE: Added per-torrent super seeding mode (libtorrent >= v0.15 only)
+    - FEATURE: Support for storing symbolic links in .torrent files (libtorrent >= v0.15 only)
+    - FEATURE: Support for uTorrent interpretation of multi-tracker torrents (libtorrent >= v0.15 only)
+    - FEATURE: Handle torrents with duplicate filenames (libtorrent >= v0.15 only)
+    - FEATURE: Support for merkle hash tree torrents (.merkle.torrent) (libtorrent >= v0.15 only)
+    - FEATURE: Metadata download from swarm is now compatible with µtorrent (libtorrent >= v0.15 only)
+    - FEATURE: Support tracker exchange between peers (libtorrent >= v0.15 only)
+    - FEATURE: Better http seed support (libtorrent >= v0.15 only)
+    - FEATURE: Tracker connections are now also subject to IP filtering (libtorrent >= v0.15 only)
+    - FEATURE: Include DHT traffic in the rate limiter (libtorrent >= v0.15 only)
+    - FEATURE: Support for bitcomet padding files (libtorrent >= v0.15 only)
+    - FEATURE: Option to skip file checking and start seeding immediately in torrent addition dialog (Stephanos Antaris) (libtorrent >= v0.15 only)
+    - BUGFIX: Made sure qBittorrent does not scrape the tracker too frequently (libtorrent >= 0.15 only)
+    - BUGFIX: Fix Paste action in search engine field
+    - BUGFIX: Fix possible double free in search engine destructor
+    - BUGFIX: Properly handle trackers error messages
+    - WEB UI: Remodeled Web UI to match new qBittorrent UI (Properties and preferences available)
+    - WEB UI: Added internationalization support
+    - WEB UI: Reduced computation in Javascript (do this one server side instead)
+    - WEB UI: Fixed Transfer list flickering
+    - WEB UI: Password is now stored as md5
+    - I18N: Added Serbian translation (By Anaximandar Milet)
+    - COSMETIC: Merged download / upload lists
+    - COSMETIC: Torrents can be filtered based on their status
+    - COSMETIC: Torrent properties are now displayed in main window
+    - COSMETIC: Made program preferences scrollable for usability on small screens (e.g. netbooks)
+    - COSMETIC: Added a "torrent status" column to transfer list
+    - COSMETIC: Display Seeds and Peers in two separate columns
+    - COSMETIC: New deletion confirmation dialog (Merged delete/delete permanently actions)
+    - COSMETIC: Improved status bar layout spacing
+    - COSMETIC: Display speeds with more user friendly units instead of always using KiB/s
+    - COSMETIC: New torrent status icons by Mateusz Tolola
+    - COSMETIC: Make use of libnotify if available for system notifications (Ubuntu, ...)
+
+* Tue Nov 17 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.6
+  - BUGFIX: RSS feed articles can now be displayed using keyboard arrows
+  - BUGFIX: RSS feed downloader can only process unread articles now
+  - BUGFIX: Fixed memory leak in RSS parser
+  - BUGFIX: Fixed possible crash in search autocompletion
+  - BUGFIX: Improved ETA calculation for big torrents
+  - BUGFIX: Fixed per-torrent speed limiting
+
+* Wed Nov 4 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.5
+  - BUGFIX: Fixed man page
+  - BUGFIX: Fix crash on torrent addition (if libtorrent-rasterbar has debug enabled)
+  - BUGFIX: Fix trackers addition to torrents (bug introduced in v1.5.4)
+  - BUGFIX: Suppress compilation warning regarding sortNewsList() not being used
+  - BUGFIX: Make sure scan folder is different than qBittorrent backup directory to avoid torrents deletion
+  - BUGFIX: Added safety mecanism which adds the torrents back to the list in case qbittorrent-resume.conf gets deleted or corrupted.
+
+* Sun Oct 25 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.4
+  - BUGFIX: Updated man page
+  - BUGFIX: Fixed possible crash with torrents containing unicode characters
+  - BUGFIX: Fixed problem when disabling systray integration and starting minimized
+  - BUGFIX: Fixed PirateBay search plugin
+  - BUGFIX: Using Download button in search results list now downloads the right torrents
+  - BUGFIX: The search results list is no longer sorted automatically when a row color is updated
+
+* Wed Sep 30 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.3
+  - BUGFIX: Fix a possible crash when pausing then deleting a torrent quickly
+  - BUGFIX: Fix a race condition in folder scanning and torrent downloader
+  - BUGFIX: Hide download url column in search results
+  - BUGFIX: Fix a crash when scanned directory does not exist
+  - BUGFIX: Fix compilation on Mac OS
+  - BUGFIX: Added a command line parameter to disable splash screen
+  - BUGFIX: Ignore permanent deletion button when no torrent is selected
+  - BUGFIX: When a selected torrent is deleted, select next suitable torrent
+
+* Sun Sep 20 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.2
+  - BUGFIX: Some torrents were pausing for no reason
+  - I18N: Updated Korean translation
+
+* Thu Sep 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.1
+   - BUGFIX: Fix crash in torrent addition dialog when save path does not exist (closes #425227)
+   - BUGFIX: Fix downloading from URL (broken in v1.5.0)
+   - BUGFIX: Pause torrents in error state
+
+* Thu Sep 3 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.5.0
+    - FEATURE: Added Magnet URI support
+    - FEATURE: Search engine supports category-based requests
+    - FEATURE: Make use of torrent enclosure in RSS feeds for direct download
+    - FEATURE: Implemented a RSS feed downloader with filter support
+    - FEATURE: Save old RSS item to hard disk to remember them on start up
+    - FEATURE: Display free disk space in torrent addition dialog
+    - FEATURE: In torrent addition from URL, paste clipboard content if it contains an URL
+    - FEATURE: RSS feeds URLs can now be copied to clipboard
+    - FEATURE: RSS feeds can now be grouped into folders
+    - FEATURE: Added "Unread" item to RSS feed list to display all unread news
+    - FEATURE: If a torrent contains a torrent file, process downloaded torrent file too
+    - FEATURE: A random listening port can be chosen automatically
+    - BUGFIX: torrent resume code rewrited
+    - BUGFIX: Fixed uTorrent spoofing code
+    - BUGFIX: Greatly improved column sorting code
+    - BUGFIX: Possibility to create trackerless torrents
+    - BUGFIX: Better item coloring in torrent content filtering dialog
+    - COSMETIC: Redesigned search tab to improve usability
+    - COSMETIC: Redesigned RSS tab to improve usability
+    - COSMETIC: Improved tracker errors readability
+
+* Sun Aug 21 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.1
+    - BUGFIX: Fix problems when changing save path (if using temporary download folder)
+    - BUGFIX: Display real save path instead of the temporary one in torrent properties
+    - BUGFIX: Catching invalid_handle exception to avoid rare crashes
+    - BUGFIX: Fixed popup menu position in RSS feeds list
+    - BUGFIX: Don't save RSS feed state if it could not be updated
+
+* Thu Aug 13 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.4.0
+    - FEATURE: Display swarm information in lists
+    - FEATURE: Allow to define temporary download folder
+    - FEATURE: Display total amount of uploaded data in finished list
+    - FEATURE: Resizing a column in a search results tab affects all tabs
+    - FEATURE: Search results tab columns are now remembered upon startup
+    - FEATURE: Added right click menu in search engine to clear completion history
+    - FEATURE: Allow to set a different port for DHT (UDP) than the one used for Bittorrent
+    - FEATURE: Updated spoofing code to avoid trackers ban
+    - BUGFIX: Provide more helpful explanation when an I/O error occured
+    - BUGFIX: Stop enforcing UTF-8 and use system locale instead
+    - COSMETIC: Redesigned program preferences
+    - COSMETIC: Updated icons set
+
+* Fri Jul 24 2009 - Christophe DUMEZ <chris@qbittorrent.org> - 1.3.5
+    - BUGFIX: Made IP filter parser more robust
+    - BUGFIX: Fixed torrent creation tool
+    - BUGFIX: Fixed possible overflow in progress calculation in arborescence.h
+    - BUGFIX: Save properties window size, position, columns width and restore them
+    - BUGFIX: Set a minimum default width for NAME column in properties
+    - BUGFIX: Remember visual indexes of columns in transfer lists
+
+* Sun Jul 12 2009 - Christophe DUMEZ <chris@qbittorrent.org> - v1.3.4
+    - BUGFIX: Fixed IP filter file parsing on 64bits
+    - BUGFIX: Suppressed QLayout: Attempting to add QLayout "" to properties "properties" warning message when opening a properties dialog
+    - BUGFIX: Fixed a little bug in search engine plugins helper file
+    - BUGFIX: Fixed compilation problems with Qt 4.3
+    - BUGFIX: Percentages no longer disapear with default cleanlooks style
+    - BUGFIX: Cleanly fixed popup menus position in lists (no more workarounds)
+    - BUGFIX: Fixed memory leak in search engine
+    - BUGFIX: Torrents with an infinite ratio are no longer affected by ratio_limit set in program preferences
+    - BUGFIX: Display a ratio of 0.0 if total_upload and total_download are both 0
+    - BUGFIX: Remove last separator in top tool bar
+    - BUGFIX: Tuned lists properties to make sure display is correct
+    - COSMETIC: Display date as well as time in log window
+
+* Sun Apr 5 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.3
+    - BUGFIX: Fixed Web UI torrent upload form
+    - BUGFIX: Fixed unicode support in search engine
+    - BUGFIX: Fixed search engine bug that prevented a torrent from appearing more than once among all tabs
+    - LICENSE: Added an exception to the license regarding OpenSSL.
+    - I18N: Updated Finnish translation
+
+* Sat Mar 7 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.2
+    - BUGFIX: Fix top toolbar disabling
+    - BUGFIX: Fix building with Qt 4.5
+    - BUGFIX: RSS items read status is now remembered upon restart
+
+* Mon Jan 26 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.1
+    - BUGFIX: Torrents paused due to an I/O error were displayed as queued
+    - BUGFIX: qBittorrent now prints backtrace in terminal when segfaulting
+    - BUGFIX: Fixed files progress display in torrent properties
+    - BUGFIX: Improved torrent ratio calculation
+    - BUGFIX: Fixed possible crash when parsing filter file
+    - BUGFIX: Made some code optimization
+    - BUGFIX: Fixed download/upload speed decrease problems
+    - I18N: Updated Finnish, Bulgarian and Greek translations
+
+* Fri Jan 9 2009 - Christophe Dumez <chris@qbittorrent.org> - v1.3.0
+    - FEATURE: Based on libtorrent-rasterbar v0.14.2
+    - FEATURE: Improved ratio calculation system
+    - FEATURE: Torrent creation code cleanup
+    - FEATURE: Allow to set maximum number of active seeds (queueing)
+    - FEATURE: Now seeds priorities are handled automatically by libtorrent-rasterbar (queueing)
+    - FEATURE: Code cleanup and optimization (save memory and cpu)
+    - FEATURE: ETA calculation now relies on average speed over all sessions
+    - FEATURE: Allow to force rechecking torrents
+    - FEATURE: Added support for 2 new extensions (uTorrent metadata and smart ban plugin)
+    - FEATURE: Allow to change the save path of torrents after addition
+    - FEATURE: Got rid of libmagick++ dependency
+    - FEATURE: Updated Web interface to MochaUI v0.9.5
+    - FEATURE: Added notification in WebUI when qBittorrent is not reachable
+    - FEATURE: Rewrote folder scanning code (Now uses a filesystem watcher)
+    - FEATURE: Added torrent deletion from hard drive function in Web UI
+    - FEATURE: Added queueing priority actions in Web UI
+    - FEATURE: Display progress using progress bars in Web UI
+    - BUGFIX: Made usage of fastresume data more reliable
+    - BUGFIX: qBittorrent shutdown is now faster
+    - BUGFIX: Fixed several memory leaks
+    - BUGFIX: WebUI is now working with IE7
+    - BUGFIX: Fixed spacing problem in toolbar when toggling its visibility
+    - BUGFIX: Fixed some compilation and Qt4 warnings
+    - BUGFIX: Do not use an addition dialog for torrents from folder scanning
+    - BUGFIX: Catch SIGTERM to exit cleanly (e.g. computer shutdown)
+    - BUGFIX: Improved proxy support code
+    - BUGFIX: Fixed systray icon tooltip on Windows
+    - BUGFIX: Proxy settings are now saved even if disabled
+
+* Sun Nov 9 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.1
+    - BUGFIX: Fixed possible crash when deleting a torrent permanently
+    - BUGFIX: Queued_for_checking torrents were not displayed as checking in seeding list
+    - BUGFIX: Speed up startup time when having a lot of torrents
+
+* Wed Oct 29th 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.2.0
+    - FEATURE: Torrent queueing system (with priorities)
+    - FEATURE: The number of DHT nodes is displayed
+    - FEATURE: RSS can now be disabled from program preferences
+    - FEATURE: Added collapse/expand all buttons in addition and properties dialogs
+    - FEATURE: Can have different proxies for Bittorrent and search engine
+    - FEATURE: Allow multiple item selection in Web UI transfer list
+    - FEATURE: Moved uploads to a separate list in Web UI
+    - BUGFIX: Totally rewritten Web UI list refresh system (fixed memory leak)
+    - BUGFIX: Disable ETA calculation when ETA column is hidden
+    - BUGFIX: Removed "disconnected" connection state, detection was far from perfect
+    - BUGFIX: Torrents are no longer starting from scratch when changing default save path (when torrent addition dialog is disabled)
+    - BUGFIX: Single instance code is now more reliable on Qt >= 4.4
+    - COSMETIC: Transfer speed, ratio, connection status and DHT nodes are displayed in status bar    
+    - COSMETIC: RSS Tab is now hidden as a default
+    - COSMETIC: Allow to hide or display top toolbar
+    - COSMETIC: Log is now in a separate dialog
+
+* Sun Sept 14 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.4
+    - FEATURE: DHT is no longer used as fallback only
+    - FEATURE: Ported WebUI to Mootools v1.2
+    - BUGFIX: Fixed 'start seeding after torrent creation' feature
+    - BUGFIX: Fixed compilation with boost v1.36
+    - BUGFIX: Some code optimization
+    - BUGFIX: Fixed memory leak in Web UI
+    - BUGFIX: Fixed problems with column sorting
+    - BUGFIX: Improved code for pausing torrents on startup
+    - BUGFIX: Torrent addition dialog is now disabled for downloads from WebUI
+    - BUGFIX: Give focus to input field in WebUI download dialog
+
+* Tue Aug 26 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.3
+    - BUGFIX: Fixed ratio saving for seeding torrents
+    - I18N: Added czech and traditional chinese translations
+
+* Sun Aug 17 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.2
+    - BUGFIX: Fixed progress calculation
+    - BUGFIX: Fixed finished torrent detection
+
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.1
+    - BUGFIX: Fixed bad resource file for icons
+
+* Fri Aug 01 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.1.0
+    - FEATURE: Web interface to control qbittorrent (Ishan Arora)
+    - FEATURE: Can spoof Azureus peer id to avoid ban
+    - FEATURE: Allow to hide/show some columns in download and seeding lists
+    - FEATURE: Option to start qBittorrent minimized in systray
+    - FEATURE: Multi-tab support in search engine (Grigis Gaëtan)
+    - FEATURE: Allow to define double-click actions in torrents lists
+    - FEATURE: Allow to open torrent destination folder
+    - FEATURE: Real progress bar in torrent properties that displays downloaded pieces
+    - FEATURE: Allow to buy downloads using ShareMonkey
+    - FEATURE: Display if UPnP/NAT-PMP was successful or not
+    - FEATURE: Threadified torrent creation
+    - FEATURE: Improved eMule DAT ip filter parser
+    - FEATURE: Added support for PeerGuardian p2p filters (text)
+    - FEATURE: Added support for PeerGuardian p2b filters (binary)
+    - FEATURE: Allow to customize folder scan interval
+    - FEATURE: Allow to add several trackers at once
+    - BUGFIX: Allow to run one instance of qBittorrent per user
+    - BUGFIX: Do not display seeds number in seeding list (always 0)
+    - BUGFIX: Threadified IP filter file parser to avoid GUI freeze
+    - BUGFIX: Ask if we want to redownload if content was deleted from hard drive
+    - BUGFIX: Added missing copyright/licensing information for some files
+    - BUGFIX: qBittorrent is no longer conflicting with rTorrent (libtorrent renamed to libtorrent-rasterbar)
+    - COSMETIC: Do not display progress bar in seeding list (always 100%)
+    - COSMETIC: Added a progress bar for torrent creation
+    - COSMETIC: Display tracker errors in a cleaner way
+    - COSMETIC: Display "unpaused/total_torrent" in download/upload tabs
+    - COSMETIC: Allow to resize RSS column
+    - COSMETIC: Global UP/DL speeds and ratio are displayed above tabs
+    - COSMETIC: Use infinity symbol for ETA when time is infinite
+
+* Fri Apr 11 2008 - Christophe Dumez <chris@qbittorrent.org> - v1.0.0
+    - FEATURE: Based on new libtorrent v0.13
+    - FEATURE: Added UPnP / NAT-PMP port forwarding support
+    - FEATURE: Added encryption support (compatible with Azureus)
+    - FEATURE: Bittorrent FAST extension support
+    - FEATURE: Added RSS support
+    - FEATURE: Support files prioritizing in a torrent
+    - FEATURE: Brand new search engine plugins system
+    - FEATURE: Filtered files don't appear on hard disk anymore
+    - FEATURE: Finished torrents are now moved to another tab for seeding
+    - FEATURE: Display more infos about the torrent in its properties
+    - FEATURE: Allow the user to edit torrents' trackers
+    - FEATURE: Allow user to change qBT's style (Plastique, Cleanlooks, Motif, CDE, MacOSX, WinXP)
+    - FEATURE: Allow the user to disable system tray integration
+    - FEATURE: Search engine is now using one thread per website for faster results
+    - FEATURE: Improved a lot the torrent creation module
+    - FEATURE: Allow to set upload/download limit per torrent (right click)
+    - FEATURE: Ask for exit confirmation only if download list is not empty
+    - FEATURE: Allow to use  a proxy for trackers / web seeds / peers / DHT connections
+    - FEATURE: Supports SOCKS5 proxies as well as HTTP ones
+    - FEATURE: Better systems integration (buttons, dialogs...)
+    - FEATURE: Filtered files are not allocated on the hard-drive anymore (sparse file support)
+    - FEATURE: IPs blocked by filter are now logged in GUI
+    - FEATURE: Added a way to link against static libtorrent (useful for deb packages)
+    - FEATURE: Allow to set global upload/download limits from tray icon menu
+    - FEATURE: IPv6 is now fully supported
+    - FEATURE: Real torrent share ratio is now displayed in transfer list
+    - FEATURE: Added keyboard shortcuts for main actions (see wiki)
+    - FEATURE: Added a popup menu to set priority for multiple files at once
+    - FEATURE: Improved a lot downloading from urls (using libcommoncpp2 instead of libcurl)
+    - FEATURE: A search request can now be terminated by another
+    - FEATURE: User is now warned when fast resume data was rejected
+    - FEATURE: Url seeds are now displayed in torrent properties and are editable
+    - FEATURE: Allow to drag 'n drop urls on the main window
+    - FEATURE: Improved search engine (multipage support in all plugins)
+    - FEATURE: Added BTJunkie search engine plugin
+    - FEATURE: Added an option to force full disk allocation for all torrents
+    - FEATURE: Added an option to add torrents in paused state
+    - FEATURE: Added an option to set the max number of connections per torrent
+    - FEATURE: Added an option to set the max number of uploads per torrent
+    - FEATURE: Added an option to automatically delete torrents when they reach a given ratio (>= 1.0)
+    - FEATURE: Added an option to display current transfer speeds in title bar
+    - FEATURE: Torrent content is now displayed as a tree
+    - I18N: Added Hungarian translation
+    - I18N: Added Brazilian translation
+    - BUGFIX: Progress of paused torrents is now correct on restart
+    - BUGFIX: Progress column gets sorted on restart it is was during last execution
+    - BUGFIX: Made ETA more reliable using stats instead of instant values
+    - BUGFIX: Remove torrent from hard drive used to delete parent folder if empty
+    - BUGFIX: Fixed a crash when filtering all the files in a torrent
+    - BUGFIX: Reload torrent only when necessary (properties)
+    - BUGFIX: qBittorrent is not exiting anymore when a dialog is closed and main window is hidden
+    - BUGFIX: Search plugin update is not making the GUI freeze anymore (moved to a thread)
+    - BUGFIX: DHT settings were not saved correctly
+    - BUGFIX: Workaround to build on Fedora system (pkg-config problem)
+    - BUGFIX: search plugin update - do not display only last version changelog
+    - BUGFIX: Search plugin update - fixed missing new lines in changelog
+    - BUGFIX: The number of search results was not reset when clicking on 'Clear' button
+    - BUGFIX: Update torrent progress when its content changed (filtered files)
+    - BUGFIX: Improved the way menu icons are installed to avoid problems on some systems
+    - BUGFIX: Improved incremental download
+    - BUGFIX: Improved unicode support
+    - BUGFIX: Made torrent deletion from hard-drive safer
+    - BUGFIX: Prevent downloadFromUrl flooding
+    - BUGFIX: ETA was wrong for torrents with filtered files
+    - BUGFIX: Fixed drag'n drop on non-KDE systems
+    - BUGFIX: Removed build dependency on Python
+    - BUGFIX: Catching DHT exception in case there is a problem
+    - COSMETIC: Redesigned torrent properties a little
+    - COSMETIC: Totally redesigned program preferences
+    - COSMETIC: Display more logs messages concerning features
+    - COSMETIC: Improved lists renderers
+    - COSMETIC: Use a different icon for torrents being checked and for connecting ones
+    - COSMETIC: Improved some icons
+    - COSMETIC: Improved systray tooltip style
+
+* Mon May 07 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.3
+    - BUGFIX: Fixed pause toggle on double-click in download list
+    - BUGFIX: The torrent size displayed now only takes unfiltered files into account
+    - BUGFIX: Fixed compiling errors with libtorrent svn (future v0.13 with UPnP enabled)
+    - BUGFIX: Remember sorted column in download list on restart
+    - BUGFIX: Small fix in the german translation
+    - BUGFIX: Some fixes in slovak translation
+
+* Tue Apr 10 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.2
+    - BUGFIX: Window can now stay maximized on exit
+    - BUGFIX: Use PKGCONFIG again for configuring libtorrent
+    - BUGFIX: Allow to compile with libtorrent v0.11
+    - BUGFIX: Disabled main window context menu (annoying)
+    - I18N: Added Japanese translation
+    - I18N: Updated Turkish translation
+
+* Wed Apr 04 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.1
+    - BUGFIX: A lot of fixes in configure file
+
+* Sun Apr 01 2007 - Christophe Dumez <chris@qbittorrent.org> - v0.9.0
+    - FEATURE: Based on libtorrent v0.12
+    - FEATURE: Based on Qt4.2
+    - FEATURE: Brand new trayicon from Qt4.2
+    - FEATURE: Support uTorrent Peer Exchange (PeX - exchanges peers between clients)
+    - FEATURE: Added a menu action to visit qBittorrent website
+    - FEATURE: Added a menu action to report a bug in qBittorrent
+    - FEATURE: Improved the way parameters are passed between qBT instances (socket)
+    - FEATURE: User is warned when hard drive becomes full and downloads are paused
+    - FEATURE: Number of complete/incomplete sources are now displayed in download list for each torrent
+    - FEATURE: Implemented close to systray
+    - FEATURE: Added Autocompletion to search engine
+    - FEATURE: Splitted BT & GUI parts (huge code rewriting & optimization)
+    - FEATURE: New parameters for configure file to point to custom locations for libtorrent/libcurl
+    - FEATURE: Update application style according to the system (WindowsXP, MacOS, X11)
+    - BUGFIX: Two torrents can now have the same name although they are different (use their hash)
+    - BUGFIX: Fixed download from url that would fail sometimes
+    - BUGFIX: Save directory was reset to default when filtering files in torrent
+    - BUGFIX: Force a refresh of download list when the window is shown (avoid delay)
+    - BUGFIX: Fixed deletion from hard drive (failed for non-empty folders)
+    - BUGFIX: qBittorrent now identifies its version correctly on the network
+    - BUGFIX: Preventing GUI from freezing when deleting a download permanently
+    - BUGFIX: Fixed directory scanning (stop trying to download the same files several times)
+    - BUGFIX: Fixed bad loading of scan dir in option (widgets still disabled)
+    - BUGFIX: Threads are now stopped cleanly before their destruction
+    - BUGFIX: Create Options object only when necessary (to save memory)
+    - BUGFIX: Let libtorrent store the torrent handles (save memory)
+    - BUGFIX: Set DHT Port only when DHT is enabled
+    - BUGFIX: Made ipfilter.dat parser less sensitive to errors
+    - BUGFIX: Bring main window to foreground when asking for exit confirmation
+    - I18N: Added Danish translation
+    - I18N: Better internationalization thanks to dynamic text support
+    - COSMETIC: Replaced OSD messages by Qt4.2 systray messages
+
+* Tue Nov 28 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.8.0
+    - FEATURE: Added a torrent addition dialog
+    - FEATURE: Allow user to change DHT port
+    - FEATURE: Added an action to remove files from download list and hard drive too
+    - FEATURE: Rewritten intensively options code
+    - FEATURE: Remember GUI settings in a cleaner way on restart
+    - I18N: Added Finnish translation
+    - I18N: Improved Italian translation a lot
+    - BUGFIX: Enabled debug with Qt 4.2.1 too because Trolltech didn't fix their bug yet
+    - BUGFIX: Fixed layout in torrent properties
+    - BUGFIX: Made right click menu work for multiple selection in DL list
+    - BUGFIX: Fixed utf-8 support in paths and filenames
+    - BUGFIX: Could only listen on the first IP of the given range
+    - COSMETIC: Connection status in toolBar is not clickable anymore
+    - COSMETIC: Displaying save path in torrent properties window
+    - COSMETIC: Reworked options window a little
+    - COSMETIC: Remember mainwindow position during last execution
+
+* Mon Oct 16 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.7.1
+    - I18N: Updated French, Polish, Dutch, Swedish, Slovak translations
+    - BUGFIX: Fixed Seeds/Leechers display in torrent properties
+    - BUGFIX: Fixed finished torrent state on restart
+    - BUGFIX: Fixed trayicon with Qt 4.2
+    - BUGFIX: Enabling debug when Qt 4.2.0 is detected (because of a bug in this Qt)
+    - BUGFIX: Fixed new lines in log widget with Qt 4.2
+    - BUGFIX: Display errors to stderr instead of stdout
+    - BUGFIX: Forgot to catch invalid_handle exception thrown by libtorrent
+    - BUGFIX: Close torrents properties windows when they are deleted
+    - BUGFIX: Fixed prefix in Makefile
+
+* Fri Oct 13 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.7.0
+    - FEATURE: Based on new libtorrent v0.11 (a lot of bugfixes, new features)
+    - FEATURE: Added DHT (Trackerless - Decentralized BT) support
+    - FEATURE: Audio/Video File previewing while downloading
+    - FEATURE: Added support for incremental download (slower but great for previewing)
+    - FEATURE: Added Tracker authentication support
+    - FEATURE: Defined qBittorrent fingerprint so that it doesn't use libtorrent fingerprint anymore
+    - FEATURE: Display an explicit error message when a download from url fails
+    - FEATURE: Allow the download multiple torrents from urls at once
+    - FEATURE: New context menu on main window (Add, Start all, Pause all, Exit...)
+    - FEATURE: Now supports one new search engines (MegaNova)
+    - FEATURE: Rewritten search engine plugin (by fab31)
+    - FEATURE: Rewritten parts of the download/search lists to improve performance
+    - FEATURE: Individual share ratio is now displayed in each torrent properties.
+    - FEATURE: Tuned default settings to improve download speed
+    - FEATURE: Downloading from an URL will retry 10 times if too many users.
+    - FEATURE: Now remembers filtered pieces in a torrent on restart
+    - FEATURE: Now updating pieces progress in real time in torrent properties
+    - I18N: Added Norwegian translation
+    - BUGFIX: Fixed a memory leak when pressing OK in torrent properties
+    - BUGFIX: Improved code so that GUI never freeze during downloading from an url
+    - BUGFIX: Forgot to remove torrent file from scanned directory when "Clear Finished torrents" is enabled
+    - BUGFIX: Fixed multiple selection in torrent content tab
+    - BUGFIX: Improved configure file (detects libboost-thread)
+    - BUGFIX: Fixed trayicon on some window managers (Gnome, XFCE)
+    - BUGFIX: Always set maximum limit for connection depending on system
+    - BUGFIX: Fixed Memory leaks in search engine
+    - BUGFIX: Remove torrent file from scanned directory if it is already in download list
+    - BUGFIX: Fixed possible segfault on loading due to columns size loading
+    - BUGFIX: Fixed problems that could happen with delete selection action
+    - BUGFIX: Fixed an arithmetic exception that could happen in ETA calculation
+    - BUGFIX: Fixed Isohunt search engine
+    - BUGFIX: Fixed download from URL function (was buggy)
+    - BUGFIX: Fixed download button in search engine
+    - BUGFIX: Fixed selective download
+    - BUGFIX: Fixed memory leaks in torrent properties
+    - BUGFIX: Fixed tooltip behaviour for trayicon
+    - BUGFIX: Fixed Ipfilter.dat loading
+    - BUGFIX: Not loading options every time we display options anymore
+    - COSMETIC: Now displaying the number of downloads in tab title
+    - COSMETIC: Redesigned download from url dialog
+    - COSMETIC: Added a message to warn user that we started download from an url
+    - COSMETIC: Renamed main tab from "Downloads" to "Transfers"
+    - COSMETIC: Improved icons
+    - COSMETIC: Resized flags in localization settings
+    - COSMETIC: Improved trayicon image
+
+* Fri Aug 24 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.6.1
+    - BUGFIX: Fixed possible segfaults when using context menus
+    - BUGFIX: Cleanup up context menus code
+    - BUGFIX: Use best gzip compressing for man page
+
+* Wed Aug 22 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.6.0
+    - FEATURE: Rewritten the download list from scratch (more flexible)
+    - FEATURE: Rewritten the search results list from scratch (more flexible)
+    - FEATURE: Rewritten the torrent properties list from scratch (more flexible)
+    - FEATURE: Improved and cleaned up search engine code
+    - FEATURE: Search results are now displayed in real time (not sequentially)
+    - FEATURE: Added two command lines parameters (--version, --help)
+    - FEATURE: Added a popup menu for download list
+    - FEATURE: Double-click on an item now toggles the paused state of a download
+    - FEATURE: Improved code to be more portable (Windows & MacOS versions should arrive soon)
+    - FEATURE: Allow to toggle selected state of a file within a torrent using double-click
+    - FEATURE: Remember columns width in download and search results lists
+    - BUGFIX: Don't use pkg-config for libcurl anymore (easier to compile)
+    - BUGFIX: Fixed ETA calculation when downloading while connecting
+    - BUGFIX: Download progress is now displayed correctly during first seconds of execution (was 0% before)
+    - BUGFIX: Code cleanup & optimization
+    - BUGFIX: Fixed sorting in download list
+    - BUGFIX: Fixed sorting in search results list
+    - BUGFIX: Fixed Parameters passing between instances
+    - BUGFIX: Fixed missing icon for clear action in infoBar popup menu
+    - BUGFIX: Fixed truncated lines in search results
+    - BUGFIX: Don't refresh download list when user is in search tab (save CPU)
+    - BUGFIX: Don't update Progress/DL Speed/ETA for finished downloads (save CPU)
+    - BUGFIX: Save selected search engines only when they have changed (faster program exit)
+    - COSMETIC: Increased icon size in toolbar from 24px to 32px
+    - COSMETIC: Display a progress bar to visualize each download progress
+    - COSMETIC: Size of each result in search are displayed in user friendly units
+    - COSMETIC: Display a progress bar to visualize each file progress within a torrent
+    - COSMETIC: Renamed 'ratio' to 'Session ratio' (makes more sense)
+    - COSMETIC: Improved layout of torrent properties window when maximized
+    - COSMETIC: Now number of search results is updated in real time
+    - COSMETIC: Remember last window size
+    - COSMETIC: Improved splash screen look
+    - COSMETIC: Improved default width of columns in download and search results lists
+
+* Wed Aug 2 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.5.0
+    - FEATURE: Improved "Download from url" feature (now supports https, ftp & redirections)
+    - FEATURE: Added a torrent creation tool
+    - FEATURE: Display progress for each file within a torrent
+    - FEATURE: Based on new libtorrent v0.10 (lot of improvements)
+    - FEATURE: Now possible to clear log textbox (popup menu)
+    - FEATURE: Added two search engines (isohunt, torrentreactor)
+    - FEATURE: Now Display share ratio on main window
+    - FEATURE: Use OSD (On Screen Display) when a download or a search is finished
+    - FEATURE: Allow only one instance of qBittorrent (and add new parameters to download list)
+    - FEATURE: Remember last selected search engines in search tab
+    - FEATURE: Improved search engines status output (Aborted, timed out, finished, no results)
+    - FEATURE: qBittorrent can now update search plugin from qbittorrent.org
+    - I18N: Added Slovak, Italian, Portuguese, Romanian and Traditional Chinese languages
+    - BUGFIX: Fixed ThePirateBay parser for search engine (website had changed)
+    - BUGFIX: Fixed filenames for results from ThePirateBay search engine
+    - BUGFIX: Fixed unicode support for ThePirateBay search engine
+    - BUGFIX: Now search results are sorted by seeds
+    - BUGFIX: Overwrite nova.py search plugin only if it is outdated
+    - BUGFIX: Fixed possible division by 0 in ETA calculation
+    - BUGFIX: Improved ETA calculation precision
+    - BUGFIX: Fixed default tab in options
+    - BUGFIX: When saving options, reconnect only when listening ports changed
+    - COSMETIC: qBittorrent has now its own new logo
+    - COSMETIC: Display status "downloading" if DL Speed > 0 (even when tracker is down)
+    - COSMETIC: Added a splashscreen
+    - COSMETIC: qBittorrent has new cute icons
+    - COSMETIC: Display number of results in search tab
+    - COSMETIC: Added icons for each item in download list according to its state
+    - COSMETIC: Redesigned Locale settings
+    - COSMETIC: Fixed search engines names width (were cut on the right)
+    - COSMETIC: Moved search engines to the left of the window (better ui)
+
+* Fri Jun 23 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.4.1
+    - Not counting "protocol chatter" in UP/DL speed anymore
+    - Download speed is now 0 when download is finished
+    - Paused torrents remain paused when qbittorrent is re-started
+    - Added option "go to systray when minimizing"
+    - Added option "Clear finished downloads on exit"
+    - Added option "Ask user for confirmation on exit"
+    - Added "Stalled" status for downloads (colored in orange, paused are in red and finished in green)
+    - Fixed Search window layout on maximizing
+    - Fixed a bug that caused upload limit not to be always applied
+    - Added Bulgarian translation
+    - Updated Translations
+    - Code optimization
+
+* Tue Jun 13 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.4.0
+    - Added a search engine (supports Mininova & thepiratebay websites)
+    - Fixed critical bug: some options were not applied correctly to BT session
+    - Possibility to download a torrent file from an URL
+    - Added confirmation dialog on qbittorrent exit
+    - Enabled sorting in Download list
+    - Added Ukrainian translation
+    - Support urls as program parameters
+    - Added more actions to trayicon menu
+    - Fixed exception catching when retrieving fastresume data
+    - use Binary prefix standards from IEC 60027-2 for units (B, KiB, MiB, GiB, TiB)
+    - Iconification to systray when minimizing
+    - Code Cleanup & optimization
+
+* Tue Jun 06 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.3.1
+    - Fixed toolbar layout (spacing)
+    - Added Russian translation
+    - Resume also finished files on startup (for seeding)
+    - Added colors corresponding to download state
+    - Fixed a segfault when deleting a download (if no scan dir is set)
+
+* Mon Jun 05 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.3
+    - Fixed auto-resume (worked only once)
+    - Fixed BT_Backup dir creation on first startup (thanks Peter)
+    - Now min port and max port are inverted if (min port > max port)
+    - Fixed memory leaks
+    - Added qbittorrent man page
+    - Allow to disable max connections limit (default is disabled)
+    - Disable upload limit by default
+    - Added Menu Entry with icon (thanks Peter)
+    - Restructured directory, now Makefile is in main directory (not src/)
+    - Updated README / INSTALL
+
+* Fri Jun 02 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.2.3
+    - Fixed ports checking function (user couldn't type the value he wanted)
+    - qBittorrent does not remove .torrent file from scanned directory anymore
+    - Check tracker errors list size and clear it if it becomes too big.
+    - Small cosmetic change
+
+* Wed May 31 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.2.2
+    - Fixed missing icons
+
+* Thu May 25 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.2.1
+    - Fixed "make install" rule
+    - Disabled debug mode
+
+* Thu May 25 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.2
+    - Fixed a compatibility problem with some versions of qmake
+    - Added translations : Greek, Swedish
+    - Fixed Polish translation selection
+    - Fixed come warning because of two unexisting slots
+    - Improved "Apply" button behaviour in options
+    - Windows are now resizable
+
+* Tue May 16 2006 - Christophe Dumez <chris@qbittorrent.org> - v0.1
+    - Initial release (lack features & still need a lot of improvements)
