@@ -670,8 +670,9 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   int pos = regHex.indexIn(magnet_uri);
   if(pos > -1) {
     const QString found = regHex.cap(1);
+    qDebug() << Q_FUNC_INFO << "regex found: " << found;
     if(found.length() == 40) {
-      const sha1_hash sha1(QString(QByteArray::fromHex(regHex.cap(1).toLocal8Bit())).toStdString());
+      const sha1_hash sha1(QByteArray::fromHex(found.toAscii()).constData());
       qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
       return misc::toQString(sha1);
     }

@@ -142,7 +142,6 @@ void engineSelectDlg::on_closeButton_clicked() {
 void engineSelectDlg::on_actionUninstall_triggered() {
   QList<QTreeWidgetItem *> items = pluginsTree->selectedItems();
   QTreeWidgetItem *item;
-  bool change = false;
   bool error = false;
   foreach(item, items) {
     int index = pluginsTree->indexOfTopLevelItem(item);
@@ -169,7 +168,6 @@ void engineSelectDlg::on_actionUninstall_triggered() {
       // Remove it from supported engines
       delete supported_engines->take(id);
       delete item;
-      change = true;
     }
   }
   if(error)

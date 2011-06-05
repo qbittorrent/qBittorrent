@@ -80,6 +80,8 @@ private slots:
   void on_randomButton_clicked();
   void on_addScanFolderButton_clicked();
   void on_removeScanFolderButton_clicked();
+  void on_btnWebUiCrt_clicked();
+  void on_btnWebUiKey_clicked();
   void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
 
@@ -145,10 +147,16 @@ private:
   QSize sizeFittingScreen() const;
 
 private:
+  void setSslKey(const QByteArray &key, bool interactive = true);
+  void setSslCertificate(const QByteArray &cert, bool interactive = true);
+
+private:
   QButtonGroup choiceLanguage;
   QAbstractButton *applyButton;
   AdvancedSettings *advancedSettings;
   QList<QString> addedScanDirs;
+  // SSL Cert / key
+  QByteArray m_sslCert, m_sslKey;
 
 };
 

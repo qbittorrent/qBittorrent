@@ -119,6 +119,7 @@ public:
   void downloading_pieces(libtorrent::bitfield &bf) const;
   bool has_metadata() const;
   float distributed_copies() const;
+  void file_progress(std::vector<libtorrent::size_type>& fp) const;
 
   //
   // Setters

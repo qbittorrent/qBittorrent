@@ -79,7 +79,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;一個使用 C++ 編寫, 基於 QT4 以及 libtorrent-rasterbar 的 Bittorrent 客戶端。&lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;首頁:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;論壇:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -188,16 +194,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished">顯示程式通知</translation>
+        <translation>顯示程式通知</translation>
     </message>
     <message>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation type="unfinished">值</translation>
+        <translation>值</translation>
+    </message>
+    <message>
+        <source>Exchange trackers with other peers</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -357,19 +367,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>使用正規表示法</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>正規表示法模式: 使用類 Perl 的正規表示法</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>萬用字元模式: 你可以使用&lt;ul&gt;&lt;li&gt;? 來配對任何單一字元&lt;/li&gt;&lt;li&gt;* 來配對零或多個字元&lt;/li&gt;&lt;li&gt;空白視為 &quot;和&quot; 運算子&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>萬用字元模式: 你可以使用&lt;ul&gt;&lt;li&gt;? 來配對任何單一字元&lt;/li&gt;&lt;li&gt;* 來配對零或多個字元&lt;/li&gt;&lt;li&gt;| 視為 &quot;或&quot; 運算子&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -633,43 +643,43 @@ You should get this information from your Web browser preferences.</source>
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>你的動態 DNS 更新成功。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 服務暫時無法使用, 將在 30 分鐘後重試。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 提供的主機名稱在指定的帳號下不存在。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 無效的使用者名稱/密碼。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: qBittorrent 被此服務封鎖了, 請回報此問題至 http://bugs.qbittorrent.org。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: %1 被此服務退回, 請回報此問題至 http://bugs.qbittorrent.org。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 你的使用者名稱因濫用而被封鎖。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 提供的領域名稱是無效的。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 提供的使用者名稱太短。</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>動態 DNS 錯誤: 提供的密碼太短。</translation>
     </message>
 </context>
 <context>
@@ -1609,19 +1619,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished">HTTP 伺服器</translation>
+        <translation>HTTP 伺服器</translation>
     </message>
     <message>
         <source>Torrent path</source>
-        <translation type="unfinished"></translation>
+        <translation>torrent 路徑</translation>
     </message>
     <message>
         <source>Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>torrent 名稱</translation>
     </message>
     <message>
         <source>The following parameters are supported:</source>
-        <translation type="unfinished"></translation>
+        <translation>支援以下的參數:</translation>
     </message>
 </context>
 <context>
@@ -2202,7 +2212,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">連線</translation>
+        <translation>連線</translation>
     </message>
 </context>
 <context>
@@ -2719,119 +2729,147 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>支援以下參數:
+&lt;ul&gt;
+&lt;li&gt;%f: torrent 路徑&lt;/li&gt;
+&lt;li&gt;%n: torrent 名稱&lt;/li&gt;
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
+        <translation>系統匣圖示樣式:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>單色 (暗主題)</translation>
     </message>
     <message>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>單色 (亮主題)</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>這個伺服器需要加密連線 (SSL)</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>使用者介面語言:</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished"></translation>
+        <translation>傳輸清單</translation>
     </message>
     <message>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>在通知區域顯示 qBittorrent</translation>
     </message>
     <message>
         <source>Hard Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>硬碟</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation>監聽埠</translation>
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>連線限制</translation>
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>代理伺服器</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>torrent 排程</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>分享率限制</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>從我的路由器使用 UPnP/NAT-PMP: 埠映射</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>更新我的動態領域名稱</translation>
     </message>
     <message>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
+        <translation>服務:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>註冊</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation>領域名稱:</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>全域分享率限制</translation>
     </message>
     <message>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
+        <translation>套用速度限制至 uTP 連線</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>套用速度限制至傳輸負載</translation>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>額外的全域分享率限制</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
+        <translation>排程使用額外的速度限制</translation>
     </message>
     <message>
         <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用頻寬管理 (uTP)</translation>
     </message>
     <message>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation>除此之外, 代理伺服器僅用於 tracker 連線</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>使用代理伺服器來連線下載者</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>在未完成檔案加上 .!qB 副檔名</translation>
+    </message>
+    <message>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>使用 HTTPS 而不是 HTTP</translation>
+    </message>
+    <message>
+        <source>Import SSL Certificate</source>
+        <translation>匯入 SSL 憑證</translation>
+    </message>
+    <message>
+        <source>Import SSL Key</source>
+        <translation>匯入 SSL 鑰匙</translation>
+    </message>
+    <message>
+        <source>Certificate:</source>
+        <translation>憑證:</translation>
+    </message>
+    <message>
+        <source>Key:</source>
+        <translation>鑰匙:</translation>
+    </message>
+    <message>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -4092,11 +4130,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished">無效的 torrent 檔案</translation>
+        <translation>無效的 torrent 檔案</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished">這是一個無效的 torrent 檔案。</translation>
+        <translation>這是一個無效的 torrent 檔案。</translation>
     </message>
 </context>
 <context>
@@ -5421,6 +5459,30 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfully refreshed</source>
         <translation>重新更新成功</translation>
+    </message>
+    <message>
+        <source>Invalid key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL certificate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL Certificate (*.crt *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL Key (*.key *.pem)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

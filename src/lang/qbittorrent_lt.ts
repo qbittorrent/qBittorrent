@@ -107,95 +107,100 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reikšmė</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="157"/>
+        <location filename="../preferences/advancedsettings.h" line="160"/>
         <source>Disk write cache size</source>
         <translation>Podėlio diske dydis</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="156"/>
+        <location filename="../preferences/advancedsettings.h" line="159"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="162"/>
+        <location filename="../preferences/advancedsettings.h" line="165"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Išeities prievadai (Min.) [0: Išjungta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="167"/>
+        <location filename="../preferences/advancedsettings.h" line="170"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Išeities prievadai (Maks.) [0: Išjungta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="173"/>
+        <location filename="../preferences/advancedsettings.h" line="176"/>
         <source>Recheck torrents on completion</source>
         <translation>Pertikrinti torentus baigus atsiuntimą</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="179"/>
+        <location filename="../preferences/advancedsettings.h" line="182"/>
         <source>Transfer list refresh interval</source>
         <translation>Siuntimų sąrašo atnaujinimo intervalas</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="178"/>
+        <location filename="../preferences/advancedsettings.h" line="181"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="49"/>
+        <location filename="../preferences/advancedsettings.h" line="50"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="49"/>
+        <location filename="../preferences/advancedsettings.h" line="50"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation type="unfinished">Reikšmė</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="182"/>
+        <location filename="../preferences/advancedsettings.h" line="185"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Gauti siuntėjų šalis (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="185"/>
+        <location filename="../preferences/advancedsettings.h" line="188"/>
         <source>Resolve peer host names</source>
         <translation>Gauti siuntėjų stočių vardus</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="190"/>
+        <location filename="../preferences/advancedsettings.h" line="193"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Didžiausias pusiau atvirų prisijungimų kiekis[0: Išjungta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="197"/>
+        <location filename="../preferences/advancedsettings.h" line="200"/>
         <source>Strict super seeding</source>
         <translation>Griežtas super skleidimas</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
+        <location filename="../preferences/advancedsettings.h" line="212"/>
         <source>Network Interface (requires restart)</source>
         <translation>Tinklo sąsaja (būtina perkrauti)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="199"/>
+        <location filename="../preferences/advancedsettings.h" line="240"/>
+        <source>Exchange trackers with other peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Bet kokia sąsaja</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="212"/>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="218"/>
         <source>Display program on-screen notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="234"/>
+        <location filename="../preferences/advancedsettings.h" line="237"/>
         <source>Confirm torrent deletion</source>
         <translation type="unfinished"></translation>
     </message>
@@ -204,27 +209,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Rodyti programos pranešimus iš dėklo</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="221"/>
         <source>Enable embedded tracker</source>
         <translation>Įjungti įtaisytą trakerį</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="226"/>
         <source>Embedded tracker port</source>
         <translation>Įtaisyto trakerio prievadas</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="229"/>
         <source>Check for software updates</source>
         <translation>Tikrinti, ar yra atnaujinimų</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="233"/>
         <source>Use system icon theme</source>
         <translation>Naudoti sistemos piktogramas</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="170"/>
+        <location filename="../preferences/advancedsettings.h" line="173"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Nepaisyti siuntimo apribojimų vietiniame tinkle</translation>
     </message>
@@ -650,56 +655,56 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="69"/>
-        <location filename="../webui/eventmanager.cpp" line="83"/>
+        <location filename="../webui/eventmanager.cpp" line="73"/>
+        <location filename="../webui/eventmanager.cpp" line="87"/>
         <source>Working</source>
         <translation>Veikia</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="72"/>
+        <location filename="../webui/eventmanager.cpp" line="76"/>
         <source>Updating...</source>
         <translation>Atnaujinama...</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="75"/>
-        <location filename="../webui/eventmanager.cpp" line="86"/>
+        <location filename="../webui/eventmanager.cpp" line="79"/>
+        <location filename="../webui/eventmanager.cpp" line="90"/>
         <source>Not working</source>
         <translation>Neveikia</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="77"/>
-        <location filename="../webui/eventmanager.cpp" line="88"/>
+        <location filename="../webui/eventmanager.cpp" line="81"/>
+        <location filename="../webui/eventmanager.cpp" line="92"/>
         <source>Not contacted yet</source>
         <translation>Dar nesusisiekta</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="339"/>
-        <location filename="../webui/eventmanager.cpp" line="340"/>
+        <location filename="../webui/eventmanager.cpp" line="405"/>
+        <location filename="../webui/eventmanager.cpp" line="406"/>
         <source>this session</source>
         <translation>šioje sesijoje</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="344"/>
-        <location filename="../webui/eventmanager.cpp" line="348"/>
+        <location filename="../webui/eventmanager.cpp" line="410"/>
+        <location filename="../webui/eventmanager.cpp" line="414"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="351"/>
+        <location filename="../webui/eventmanager.cpp" line="417"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Skleidžiama jau %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="354"/>
+        <location filename="../webui/eventmanager.cpp" line="420"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>daugiausiai %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="433"/>
-        <location filename="../webui/eventmanager.cpp" line="442"/>
+        <location filename="../webui/eventmanager.cpp" line="499"/>
+        <location filename="../webui/eventmanager.cpp" line="508"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -762,18 +767,18 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="149"/>
+        <location filename="../webui/httpconnection.cpp" line="150"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Jūsų IP adresas buvo užblokuotas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="344"/>
+        <location filename="../webui/httpconnection.cpp" line="345"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Ats.: %1/s - Viso: %2</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="345"/>
+        <location filename="../webui/httpconnection.cpp" line="346"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Išs.: %1/s - Viso: %2</translation>
@@ -782,143 +787,143 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="108"/>
+        <location filename="../webui/httpserver.cpp" line="120"/>
         <source>File</source>
         <translation>Failas</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="109"/>
+        <location filename="../webui/httpserver.cpp" line="121"/>
         <source>Edit</source>
         <translation>Redaguoti</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="110"/>
+        <location filename="../webui/httpserver.cpp" line="122"/>
         <source>Help</source>
         <translation>Žinynas</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="111"/>
+        <location filename="../webui/httpserver.cpp" line="123"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Atsiųsti torentus iš jų URL arba Magnet nuorodos</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="112"/>
+        <location filename="../webui/httpserver.cpp" line="124"/>
         <source>Only one link per line</source>
         <translation>Po vieną nuorodą eilutėje</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="113"/>
+        <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Download local torrent</source>
         <translation>Atsiųsti vietinį torentą</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="114"/>
+        <location filename="../webui/httpserver.cpp" line="126"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torentų failai tvarkingai pridėti į atsiuntimų sąrašą.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="115"/>
+        <location filename="../webui/httpserver.cpp" line="127"/>
         <source>Point to torrent file</source>
         <translation>Nurodykite torento failą</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="116"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>Download</source>
         <translation>Atsiųsti</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="117"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Ar tikrai norite pašalinti pasirinktus torentus iš siuntimų sąrašo bei kietojo disko?</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="118"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Atsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="119"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Išsiuntimo greičio apribojimas privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="132"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Didžiausias prisijungimų kiekis privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="133"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Didžiausias prisijungimų kiekis vienam torentui privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="134"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Didžiausias išsiuntimo prisijungimų kiekis vienam torentui privalo būti arba aukštesnis už 0, arba išjungtas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Nepavyko išsaugoti programos nuostatų, qBittorrent tikriausiai yra nepasiekiamas.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="136"/>
         <source>Language</source>
         <translation>Kalba</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="137"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Atsiųstas</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="138"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Įeinančių susijungimų prievadas privalo būti tarp 1024 ir 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="139"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Tinklo vartotojo sąsajos prievadas privalo būti tarp 1024 ir 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="140"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Tinklo sąsajos vartotojo vardas privalo būti bent 3 simbolių ilgio.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="141"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Tinklo sąsajos vartotojo slaptažodis privalo būti bent 3 simbolių ilgio.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="142"/>
         <source>Save</source>
         <translation>Išsaugoti</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="131"/>
+        <location filename="../webui/httpserver.cpp" line="143"/>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent klientas nepasiekiamas</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="132"/>
+        <location filename="../webui/httpserver.cpp" line="144"/>
         <source>HTTP Server</source>
         <translation type="unfinished">HTTP serveris</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="133"/>
+        <location filename="../webui/httpserver.cpp" line="145"/>
         <source>The following parameters are supported:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="134"/>
+        <location filename="../webui/httpserver.cpp" line="146"/>
         <source>Torrent path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="135"/>
+        <location filename="../webui/httpserver.cpp" line="147"/>
         <source>Torrent name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1186,7 +1191,7 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
-        <location filename="../mainwindow.cpp" line="1328"/>
+        <location filename="../mainwindow.cpp" line="1330"/>
         <source>Execution Log</source>
         <translation>Vykdymo žurnalas</translation>
     </message>
@@ -1202,7 +1207,7 @@ Daugiau nebus rodoma pranešimų apie tai.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1252"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1230,68 +1235,68 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Ar norite susieti .torrent failus bei Magnet nuorodas su qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="380"/>
-        <location filename="../mainwindow.cpp" line="400"/>
-        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>UI lock password</source>
         <translation>Vartotojo sąsajos užrakinimo slaptažodis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="380"/>
-        <location filename="../mainwindow.cpp" line="400"/>
-        <location filename="../mainwindow.cpp" line="649"/>
+        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>Please type the UI lock password:</source>
         <translation>Įveskite vartotojo sąsajos užrakinimo slaptažodį:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="384"/>
+        <location filename="../mainwindow.cpp" line="385"/>
         <source>The password should contain at least 3 characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="391"/>
         <source>Password update</source>
         <translation>Slaptažodžio atnaujinimas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="391"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Vartotojo sąsajos užrakinimo slaptažodis sėkmingai atnaujintas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="416"/>
+        <location filename="../mainwindow.cpp" line="417"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="431"/>
+        <location filename="../mainwindow.cpp" line="432"/>
         <source>Search</source>
         <translation>Paieška</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="441"/>
+        <location filename="../mainwindow.cpp" line="442"/>
         <source>Transfers (%1)</source>
         <translation>Siuntimai (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="511"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>Download completion</source>
         <translation>Užbaigiamas atsiuntimas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="511"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 baigta siųsti.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="517"/>
+        <location filename="../mainwindow.cpp" line="519"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O klaida</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="517"/>
+        <location filename="../mainwindow.cpp" line="519"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1299,163 +1304,163 @@ Ar norite susieti .torrent failus bei Magnet nuorodas su qBittorrent?</translati
         <translation>Įvyko įvesties/išvesties klaida torentui %1. Priežastis: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="524"/>
+        <location filename="../mainwindow.cpp" line="526"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="526"/>
+        <location filename="../mainwindow.cpp" line="528"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="528"/>
+        <location filename="../mainwindow.cpp" line="530"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="530"/>
+        <location filename="../mainwindow.cpp" line="532"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="570"/>
+        <location filename="../mainwindow.cpp" line="572"/>
         <source>Recursive download confirmation</source>
         <translation>Rekursyvaus siuntimo patvirtinimas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="570"/>
+        <location filename="../mainwindow.cpp" line="572"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torente %1 yra torentų failų. Ar norite atsiųsti ir juos?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="571"/>
-        <location filename="../mainwindow.cpp" line="745"/>
+        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="747"/>
         <source>Yes</source>
         <translation>Taip</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
-        <location filename="../mainwindow.cpp" line="744"/>
+        <location filename="../mainwindow.cpp" line="574"/>
+        <location filename="../mainwindow.cpp" line="746"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="575"/>
         <source>Never</source>
         <translation>Niekada</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Url download error</source>
         <translation>URL atsiuntimo klaida</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Nepavyko atsiųsti failo iš URL: %1, priežastis: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="600"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globalus išsiuntimo greičio apribojimas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>Global Download Speed Limit</source>
         <translation>Globalus atsiuntimo greičio apribojimas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="384"/>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="385"/>
+        <location filename="../mainwindow.cpp" line="664"/>
         <source>Invalid password</source>
         <translation>Neteisingas slaptažodis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="664"/>
         <source>The password is invalid</source>
         <translation>Slaptažodis yra neteisingas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="741"/>
+        <location filename="../mainwindow.cpp" line="743"/>
         <source>Exiting qBittorrent</source>
         <translation>Uždaroma qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="742"/>
+        <location filename="../mainwindow.cpp" line="744"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Šiuo metu vyksta kelių failų siuntimas.
 Ar tikrai norite uždaryti qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="746"/>
+        <location filename="../mainwindow.cpp" line="748"/>
         <source>Always</source>
         <translation>Visada</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="904"/>
+        <location filename="../mainwindow.cpp" line="906"/>
         <source>Open Torrent Files</source>
         <translation>Atverti torentų failus</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="905"/>
+        <location filename="../mainwindow.cpp" line="907"/>
         <source>Torrent Files</source>
         <translation>Torentų failai</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="984"/>
+        <location filename="../mainwindow.cpp" line="986"/>
         <source>Options were saved successfully.</source>
         <translation>Pasirinktys sėkmingai išsaugotos.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1093"/>
+        <location filename="../mainwindow.cpp" line="1095"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1096"/>
-        <location filename="../mainwindow.cpp" line="1103"/>
+        <location filename="../mainwindow.cpp" line="1098"/>
+        <location filename="../mainwindow.cpp" line="1105"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Ats. greitis: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1099"/>
-        <location filename="../mainwindow.cpp" line="1105"/>
+        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1107"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Išs. greitis: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1110"/>
+        <location filename="../mainwindow.cpp" line="1112"/>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
         <translation>qBittorrent %1 (Ats.: %2/s, Išs.: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1290"/>
+        <location filename="../mainwindow.cpp" line="1292"/>
         <source>A newer version is available</source>
         <translation>Nauja versija yra prieinama</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1293"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Nauja qBittorrent versija yra prieinama Sourceforge tinklalapyje.
 Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1308"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Neįmanoma atnaujinti qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1306"/>
+        <location filename="../mainwindow.cpp" line="1308"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent nepavyko atsinaujinti, priežastis: %1</translation>
     </message>
@@ -1679,12 +1684,12 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Failų sistema</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="772"/>
+        <location filename="../preferences/options.ui" line="762"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopijuoti .torrent failus į:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="928"/>
+        <location filename="../preferences/options.ui" line="918"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -1693,47 +1698,47 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="970"/>
+        <location filename="../preferences/options.ui" line="960"/>
         <source>Listening Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1035"/>
+        <location filename="../preferences/options.ui" line="1025"/>
         <source>Connections Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1155"/>
+        <location filename="../preferences/options.ui" line="1145"/>
         <source>Proxy Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1532"/>
+        <location filename="../preferences/options.ui" line="1522"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1931"/>
+        <location filename="../preferences/options.ui" line="1921"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Įjungti vietinių siuntėjų aptikimą, kad rasti daugiau siuntėjų</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1943"/>
+        <location filename="../preferences/options.ui" line="1933"/>
         <source>Encryption mode:</source>
         <translation>Šifravimo rėžimas:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1951"/>
+        <location filename="../preferences/options.ui" line="1941"/>
         <source>Prefer encryption</source>
         <translation>Teikti pirmenybę šifravimui</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1956"/>
+        <location filename="../preferences/options.ui" line="1946"/>
         <source>Require encryption</source>
         <translation>Reikalauti šifravimo</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1961"/>
+        <location filename="../preferences/options.ui" line="1951"/>
         <source>Disable encryption</source>
         <translation>Išjungti šifravimą</translation>
     </message>
@@ -1742,17 +1747,17 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Siuntimų eilė</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2002"/>
+        <location filename="../preferences/options.ui" line="1992"/>
         <source>Maximum active downloads:</source>
         <translation>Didžiausias aktyvių atsiuntimų kiekis:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2022"/>
+        <location filename="../preferences/options.ui" line="2012"/>
         <source>Maximum active uploads:</source>
         <translation>Didžiausias aktyvių išsiuntimų kiekis:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2042"/>
+        <location filename="../preferences/options.ui" line="2032"/>
         <source>Maximum active torrents:</source>
         <translation>Didžiausias aktyvių torentų kiekis:</translation>
     </message>
@@ -1782,12 +1787,12 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Klausymosi prievadas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="978"/>
+        <location filename="../preferences/options.ui" line="968"/>
         <source>Port used for incoming connections:</source>
         <translation>Prievadas, naudojamas įeinantiems sujungimams:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="998"/>
+        <location filename="../preferences/options.ui" line="988"/>
         <source>Random</source>
         <translation>Atsitiktinis</translation>
     </message>
@@ -1796,37 +1801,37 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Prisijungimų limitas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1041"/>
+        <location filename="../preferences/options.ui" line="1031"/>
         <source>Global maximum number of connections:</source>
         <translation>Globalus didžiausias prisijungimų skaičius:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1067"/>
+        <location filename="../preferences/options.ui" line="1057"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Didžiausias prisijungimų kiekis vienam torentui:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1090"/>
+        <location filename="../preferences/options.ui" line="1080"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Didžiausias išsiuntimo prisijungimų kiekis vienam torentui:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1442"/>
-        <location filename="../preferences/options.ui" line="1597"/>
+        <location filename="../preferences/options.ui" line="1432"/>
+        <location filename="../preferences/options.ui" line="1587"/>
         <source>Upload:</source>
         <translation>Išsiuntimo:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1478"/>
-        <location filename="../preferences/options.ui" line="1624"/>
+        <location filename="../preferences/options.ui" line="1468"/>
+        <location filename="../preferences/options.ui" line="1614"/>
         <source>Download:</source>
         <translation>Atsiuntimo:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1471"/>
-        <location filename="../preferences/options.ui" line="1504"/>
-        <location filename="../preferences/options.ui" line="1617"/>
-        <location filename="../preferences/options.ui" line="1644"/>
+        <location filename="../preferences/options.ui" line="1461"/>
+        <location filename="../preferences/options.ui" line="1494"/>
+        <location filename="../preferences/options.ui" line="1607"/>
+        <location filename="../preferences/options.ui" line="1634"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -1835,7 +1840,7 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Globalus greičio ribojimas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="739"/>
+        <location filename="../preferences/options.ui" line="729"/>
         <source>Remove folder</source>
         <translation>Pašalinti aplanką</translation>
     </message>
@@ -1844,54 +1849,54 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Alternatyvūs globalūs greičio apribojimai</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1709"/>
+        <location filename="../preferences/options.ui" line="1699"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>iki</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1761"/>
+        <location filename="../preferences/options.ui" line="1751"/>
         <source>Every day</source>
         <translation>Kasdien</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1766"/>
+        <location filename="../preferences/options.ui" line="1756"/>
         <source>Week days</source>
         <translation>Darbo dienomis</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1771"/>
+        <location filename="../preferences/options.ui" line="1761"/>
         <source>Week ends</source>
         <translation>Savaitgaliais</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1874"/>
+        <location filename="../preferences/options.ui" line="1864"/>
         <source>DHT port:</source>
         <translation>DHT prievadas:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1915"/>
+        <location filename="../preferences/options.ui" line="1905"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Keistis siuntėjais su suderinamais BitTorrent klientais (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1197"/>
+        <location filename="../preferences/options.ui" line="1187"/>
         <source>Host:</source>
         <translation>Stotis:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1176"/>
+        <location filename="../preferences/options.ui" line="1166"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1163"/>
+        <location filename="../preferences/options.ui" line="1153"/>
         <source>Type:</source>
         <translation>Tipas:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="20"/>
-        <location filename="../preferences/options.ui" line="1526"/>
+        <location filename="../preferences/options.ui" line="1516"/>
         <source>Options</source>
         <translation>Pasirinktys</translation>
     </message>
@@ -2040,92 +2045,122 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Pridėti .!qB plėtinį nebaigtiems siųsti failams</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="676"/>
+        <location filename="../preferences/options.ui" line="666"/>
         <source>Automatically add torrents from:</source>
         <translation>Automatiškai pridėti torentus iš:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="729"/>
+        <location filename="../preferences/options.ui" line="719"/>
         <source>Add folder...</source>
         <translation>Pridėti aplanką...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="828"/>
+        <location filename="../preferences/options.ui" line="818"/>
         <source>Email notification upon download completion</source>
         <translation>Pabaigus atsiuntimą, pranešti el. paštu</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="842"/>
+        <location filename="../preferences/options.ui" line="832"/>
         <source>Destination email:</source>
         <translation>Gavėjo el. pašto adresas:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="852"/>
+        <location filename="../preferences/options.ui" line="842"/>
         <source>SMTP server:</source>
         <translation>SMTP serveris:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="901"/>
+        <location filename="../preferences/options.ui" line="891"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="913"/>
+        <location filename="../preferences/options.ui" line="903"/>
         <source>Run an external program on torrent completion</source>
         <translation>Užbaigus torento siuntimą paleisti išorinę programą</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1251"/>
+        <location filename="../preferences/options.ui" line="1241"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1254"/>
+        <location filename="../preferences/options.ui" line="1244"/>
         <source>Use proxy for peer connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1424"/>
+        <location filename="../preferences/options.ui" line="1414"/>
         <source>Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1542"/>
+        <location filename="../preferences/options.ui" line="1532"/>
         <source>Apply rate limit to uTP connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1549"/>
+        <location filename="../preferences/options.ui" line="1539"/>
         <source>Apply rate limit to transport overhead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1562"/>
+        <location filename="../preferences/options.ui" line="1552"/>
         <source>Alternative Global Rate Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1668"/>
+        <location filename="../preferences/options.ui" line="1658"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2327"/>
+        <location filename="../preferences/options.ui" line="2261"/>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2304"/>
+        <source>Import SSL Certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2357"/>
+        <source>Import SSL Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2292"/>
+        <source>Certificate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2345"/>
+        <source>Key:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2379"/>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2448"/>
         <source>Update my dynamic domain name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2339"/>
+        <location filename="../preferences/options.ui" line="2460"/>
         <source>Service:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2362"/>
+        <location filename="../preferences/options.ui" line="2483"/>
         <source>Register</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2371"/>
+        <location filename="../preferences/options.ui" line="2492"/>
         <source>Domain name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2134,7 +2169,7 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Naudokite %f, kad perduoti torento vietą parametruose</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1020"/>
+        <location filename="../preferences/options.ui" line="1010"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Naudoti UPnP / NAT-PMP prievadų nukreipimą mašrutizatoriuje</translation>
     </message>
@@ -2143,12 +2178,12 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Proxy serveris</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1338"/>
+        <location filename="../preferences/options.ui" line="1328"/>
         <source>IP Filtering</source>
         <translation>IP filtravimas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1379"/>
+        <location filename="../preferences/options.ui" line="1369"/>
         <source>Reload the filter</source>
         <translation>Įkelti filtrą iš naujo</translation>
     </message>
@@ -2157,38 +2192,38 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Planuoti alternatyvių greičio apribojimų taikymą</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1685"/>
+        <location filename="../preferences/options.ui" line="1675"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>nuo</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1753"/>
+        <location filename="../preferences/options.ui" line="1743"/>
         <source>When:</source>
         <translation>Kada:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1836"/>
+        <location filename="../preferences/options.ui" line="1826"/>
         <source>Privacy</source>
         <translation>Privatumas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1842"/>
+        <location filename="../preferences/options.ui" line="1832"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Įjungti DHT (išcentruotą tinklą), kad rasti daugiau siuntėjų</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1854"/>
+        <location filename="../preferences/options.ui" line="1844"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>DHT ir BitTorrent tinklams naudoti skirtingus prievadus</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1918"/>
+        <location filename="../preferences/options.ui" line="1908"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Įjungti siuntėjų apsikeitimą (PeX), kad rasti daugiau siuntėjų</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1928"/>
+        <location filename="../preferences/options.ui" line="1918"/>
         <source>Look for peers on your local network</source>
         <translation>Ieškoti siuntėjų vietiniame tinkle</translation>
     </message>
@@ -2197,37 +2232,37 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="obsolete">Dalinimosi santykio ribojimas</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2115"/>
+        <location filename="../preferences/options.ui" line="2105"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Skleisti torentus, kol jų dalinimosi santykis pasieks</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2147"/>
+        <location filename="../preferences/options.ui" line="2137"/>
         <source>then</source>
         <translation>o tada</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2158"/>
+        <location filename="../preferences/options.ui" line="2148"/>
         <source>Pause them</source>
         <translation>juos pristabdyti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2163"/>
+        <location filename="../preferences/options.ui" line="2153"/>
         <source>Remove them</source>
         <translation>juos pašalinti</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2261"/>
+        <location filename="../preferences/options.ui" line="2251"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2303"/>
+        <location filename="../preferences/options.ui" line="2424"/>
         <source>Bypass authentication for localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1171"/>
+        <location filename="../preferences/options.ui" line="1161"/>
         <source>(None)</source>
         <translation>(jokio)</translation>
     </message>
@@ -2237,20 +2272,20 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1186"/>
+        <location filename="../preferences/options.ui" line="1176"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1223"/>
-        <location filename="../preferences/options.ui" line="2226"/>
+        <location filename="../preferences/options.ui" line="1213"/>
+        <location filename="../preferences/options.ui" line="2216"/>
         <source>Port:</source>
         <translation>Prievadas:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="862"/>
-        <location filename="../preferences/options.ui" line="1264"/>
-        <location filename="../preferences/options.ui" line="2271"/>
+        <location filename="../preferences/options.ui" line="852"/>
+        <location filename="../preferences/options.ui" line="1254"/>
+        <location filename="../preferences/options.ui" line="2392"/>
         <source>Authentication</source>
         <translation>Atpažinimas</translation>
     </message>
@@ -2260,43 +2295,43 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="874"/>
-        <location filename="../preferences/options.ui" line="1281"/>
-        <location filename="../preferences/options.ui" line="2310"/>
-        <location filename="../preferences/options.ui" line="2385"/>
+        <location filename="../preferences/options.ui" line="864"/>
+        <location filename="../preferences/options.ui" line="1271"/>
+        <location filename="../preferences/options.ui" line="2431"/>
+        <location filename="../preferences/options.ui" line="2506"/>
         <source>Username:</source>
         <translation>Vartotojo vardas:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="884"/>
-        <location filename="../preferences/options.ui" line="1307"/>
-        <location filename="../preferences/options.ui" line="2317"/>
-        <location filename="../preferences/options.ui" line="2399"/>
+        <location filename="../preferences/options.ui" line="874"/>
+        <location filename="../preferences/options.ui" line="1297"/>
+        <location filename="../preferences/options.ui" line="2438"/>
+        <location filename="../preferences/options.ui" line="2520"/>
         <source>Password:</source>
         <translation>Slaptažodis:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1987"/>
+        <location filename="../preferences/options.ui" line="1977"/>
         <source>Torrent Queueing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2104"/>
+        <location filename="../preferences/options.ui" line="2094"/>
         <source>Share Ratio Limiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2212"/>
+        <location filename="../preferences/options.ui" line="2202"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Įjungti Tinklo vartotojo sąsają (nuotolinis valdymas)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1181"/>
+        <location filename="../preferences/options.ui" line="1171"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1350"/>
+        <location filename="../preferences/options.ui" line="1340"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Kelias iki filtro (.dat, .p2p, .p2b):</translation>
     </message>
@@ -2526,112 +2561,112 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation>Nesiųsti</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="337"/>
-        <location filename="../properties/propertieswidget.cpp" line="338"/>
+        <location filename="../properties/propertieswidget.cpp" line="329"/>
+        <location filename="../properties/propertieswidget.cpp" line="330"/>
         <source>this session</source>
         <translation>šioje sesijoje</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="342"/>
-        <location filename="../properties/propertieswidget.cpp" line="346"/>
+        <location filename="../properties/propertieswidget.cpp" line="334"/>
+        <location filename="../properties/propertieswidget.cpp" line="338"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="349"/>
+        <location filename="../properties/propertieswidget.cpp" line="341"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Skleidžiama jau %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="353"/>
+        <location filename="../properties/propertieswidget.cpp" line="345"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>daugiausiai %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="441"/>
-        <location filename="../properties/propertieswidget.cpp" line="463"/>
+        <location filename="../properties/propertieswidget.cpp" line="435"/>
+        <location filename="../properties/propertieswidget.cpp" line="457"/>
         <source>I/O Error</source>
         <translation>I/O klaida</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="441"/>
+        <location filename="../properties/propertieswidget.cpp" line="435"/>
         <source>This file does not exist yet.</source>
         <translation>Šis failas dar neegzistuoja.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="463"/>
+        <location filename="../properties/propertieswidget.cpp" line="457"/>
         <source>This folder does not exist yet.</source>
         <translation>Šis aplankas dar neegzistuoja.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="473"/>
+        <location filename="../properties/propertieswidget.cpp" line="467"/>
         <source>Rename...</source>
         <translation>Pervadinti...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="482"/>
+        <location filename="../properties/propertieswidget.cpp" line="476"/>
         <source>Priority</source>
         <translation>Svarba</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="524"/>
+        <location filename="../properties/propertieswidget.cpp" line="518"/>
         <source>Rename the file</source>
         <translation>Pervadinti failą</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="525"/>
+        <location filename="../properties/propertieswidget.cpp" line="519"/>
         <source>New name:</source>
         <translation>Naujas vardas:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="529"/>
-        <location filename="../properties/propertieswidget.cpp" line="561"/>
+        <location filename="../properties/propertieswidget.cpp" line="523"/>
+        <location filename="../properties/propertieswidget.cpp" line="555"/>
         <source>The file could not be renamed</source>
         <translation>Failo pervadinti nepavyko</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="530"/>
+        <location filename="../properties/propertieswidget.cpp" line="524"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Šiame failo varde yra neleistinų simbolių, pasirinkite kitokį.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="562"/>
-        <location filename="../properties/propertieswidget.cpp" line="600"/>
+        <location filename="../properties/propertieswidget.cpp" line="556"/>
+        <location filename="../properties/propertieswidget.cpp" line="594"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Šis vardas šiame aplanke jau naudojamas. Pasirinkite kitokį vardą.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="599"/>
+        <location filename="../properties/propertieswidget.cpp" line="593"/>
         <source>The folder could not be renamed</source>
         <translation>Šio aplanko pervadinti nepavyko</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="638"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Naujo šaltinio adresas</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="639"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>New url seed:</source>
         <translation>Naujo šaltinio adresas:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="644"/>
+        <location filename="../properties/propertieswidget.cpp" line="638"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="645"/>
+        <location filename="../properties/propertieswidget.cpp" line="639"/>
         <source>This url seed is already in the list.</source>
         <translation>Šis adresas jau yra sąraše.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="687"/>
-        <location filename="../properties/propertieswidget.cpp" line="690"/>
+        <location filename="../properties/propertieswidget.cpp" line="681"/>
+        <location filename="../properties/propertieswidget.cpp" line="684"/>
         <source>Choose save path</source>
         <translation>Pasirinkite išsaugojimo vietą</translation>
     </message>
@@ -2639,334 +2674,334 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
 <context>
     <name>QBtSession</name>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="226"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="232"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="227"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="233"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 pasiekė didžiausią Jūsų nustatytą dalinimosi santykį.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="227"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="228"/>
         <source>Removing torrent %1...</source>
         <translation>Šalinamas torentas %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="233"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="234"/>
         <source>Pausing torrent %1...</source>
         <translation>Pristabdomas torentas %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="287"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="288"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
         <translation>qBittorrent pririštas prie prievado: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="384"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="385"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP vartotojo agentas yra %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="438"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="439"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="493"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT palaikymas [ĮJUNGTAS], prievadas: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="494"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="498"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="499"/>
         <source>DHT support [OFF]</source>
         <translation>DHT palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
         <source>PeX support [ON]</source>
         <translation>PeX palaikymas [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
         <source>PeX support [OFF]</source>
         <translation>PeX palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="508"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Būtina perkrauti programą norint pakeisti PeX palaikymą</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="516"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Vietinių siuntėjų aptikimo palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="528"/>
         <source>Encryption support [ON]</source>
         <translation>Šifravimo palaikymas [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="532"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="533"/>
         <source>Encryption support [FORCED]</source>
         <translation>Šifravimo palaikymas [PRIVERSTINIS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="537"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
         <source>Encryption support [OFF]</source>
         <translation>Šifravimo palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="598"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="599"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Įtaisytas trakeris [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="600"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="601"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Nepavyko paleisti įtaisyto trakerio!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="603"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="604"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Įtaisytas trakeris [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="641"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="658"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Tinklo vartotojo sąsaja klausosi ties prievadu %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="643"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="660"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Tinklo vartotojo sąsajos klaida - Nepavyko pririšti tinklo vartotojo sąsajos prie prievado %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="778"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="795"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; buvo pašalintas iš siuntimų sąrašo bei kietojo disko.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="780"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="797"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; buvo pašalintas iš siuntimų sąrašo.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="862"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="879"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; yra negaliojanti Magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="878"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1000"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1007"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="895"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1017"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1022"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1024"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; jau yra siuntimų sąraše.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1151"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1159"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1164"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1168"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1176"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1181"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; buvo pratęstas (spartusis pratęsimas)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2259"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2244"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2853"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2870"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Sėkmingai įkeltas nurodytas IP filtras. %1 taisyklės pritaikytos.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2876"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Klaida: Nepavyko įkelti nurodyto IP filtro.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="934"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1153"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1161"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1166"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="951"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1170"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1178"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; buvo pridėtas į siuntimų sąrašą.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="375"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="376"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>UPnP / NAT-PMP palaikymas [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="378"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="379"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>UPnP / NAT-PMP palaikymas [IŠJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="512"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Vietinių siuntėjų aptikimo palaikymas [ĮJUNGTAS]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="969"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="976"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="978"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="986"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="993"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="995"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nepavyko iššifruoti torento failo: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="982"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="999"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Šis failas yra arba sugadintas, arba tai ne torento failas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1022"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1039"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Klaida: Torente %1 nėra nė vieno failo.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1310"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1327"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Pastaba: esamam torentui buvo pridėti nauji trakeriai.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1336"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1353"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Pastaba: esamam torentui buvo pridėti tinklo siuntėjų šaltiniai.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1692"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;buvo užblokuotas atsižvelgiant į Jūsų IP filtrą&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1694"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1711"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;buvo užblokuotas dėl sugadintų dalių siuntimo&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1872"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1889"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Ši tinklo sąsaja yra netinkama: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1873"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1890"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Bandoma kita prieinama tinklo sąsaja.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1913"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Klausomasi IP adreso %1 tinklo sąsajoje %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1899"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1916"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Nepavyko klausytis tinklo sąsajoje %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2112"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2114"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursyvus failo %1, įdėto į torentą %2, atsiuntimas</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2192"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2194"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2209"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2211"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nepavyko iššifruoti %1 torento failo.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2142"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2159"/>
         <source>Torrent name: %1</source>
         <translation>Torento vardas: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2143"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2160"/>
         <source>Torrent size: %1</source>
         <translation>Torento dydis: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2144"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2161"/>
         <source>Save path: %1</source>
         <translation>Atsiuntimo vieta: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2145"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2162"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torentas atsiųstas per %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2146"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Ačiū, kad naudojatės qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 baigtas atsiųsti</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2409"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2426"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Įvyko I/O klaida, &apos;%1&apos; pristabdytas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2410"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2540"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2427"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2557"/>
         <source>Reason: %1</source>
         <translation>Priežastis: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2499"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2516"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Prievadų išdėstymas nesėkmingas, žinutė: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2504"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2521"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Prievadų išdėstymas sėkmingas, žinutė: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2552"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Failų dydžio nesutapimas torente %1, jis pristabdomas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2539"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2556"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Greito pratęsimo duomenys atmesti torente %1, tikrinama iš naujo...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2545"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>URL sklėidėjo patikrinimas nepavyko adresu: %1, pranešimas: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2674"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2691"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Atsiunčiamas &apos;%1&apos;. luktelkite...</translation>
@@ -4871,12 +4906,12 @@ Prašome padaryti tai rankiniu būdu.</translation>
 <context>
     <name>engineSelectDlg</name>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="174"/>
         <source>Uninstall warning</source>
         <translation>Pašalinimo įspėjimas</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="174"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
@@ -4885,124 +4920,124 @@ Pašalinti galima tik tuos priedus, kuriuos pridėjote Jūs.
 Nepaisant to, tie priedai buvo išjungti.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
         <source>Uninstall success</source>
         <translation>Sėkmingai pašalinta</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="342"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="340"/>
         <source>Select search plugins</source>
         <translation>Pasirinkite paieškos priedus</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="343"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="341"/>
         <source>qBittorrent search plugins</source>
         <translation>qBittorrent paieškos priedai</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="239"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="237"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="262"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="276"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="279"/>
         <source>Search plugin install</source>
         <translation>Paieškos priedo įdiegimas</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="117"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="190"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="301"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="188"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="299"/>
         <source>Yes</source>
         <translation>Taip</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="120"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="155"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="193"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="304"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="154"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="191"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="302"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="239"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="395"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="428"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="449"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="456"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="237"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="262"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="276"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="279"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="393"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="426"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="454"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="239"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="237"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Naujesnė priedo %1 versija jau įdiegta.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="395"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="428"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="449"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="456"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="393"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="426"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="454"/>
         <source>Search plugin update</source>
         <translation>Paieškos priedo atnaujinimas</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="428"/>
-        <location filename="../searchengine/engineselectdlg.cpp" line="449"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="426"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="447"/>
         <source>Sorry, update server is temporarily unavailable.</source>
         <translation>Atsiprašome, atnaujinimų serveris kolkas nepasiekiamas.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="395"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="393"/>
         <source>All your plugins are already up to date.</source>
         <translation>Visi priedai yra naujausios laidos.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="264"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="262"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 paieškos priedo nepavyko atnaujinti, paliekama senoji versija.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="269"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="267"/>
         <source>%1 search engine plugin could not be installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 paieškos priedo nepavyko įdiegti.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="178"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="176"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Visi pasirinkti priedai buvo sėkmingai pašalinti</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="278"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="276"/>
         <source>%1 search engine plugin was successfully updated.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 paieškos priedas buvo sėkmingai atnaujintas.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="281"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="279"/>
         <source>%1 search engine plugin was successfully installed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>%1 paieškos priedas buvo sėkmingai įdiegtas.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="456"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="454"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
         <translation>Atsiprašome, %1 paieškos priedo įdiegti nepavyko.</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="331"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="329"/>
         <source>New search engine plugin URL</source>
         <translation>Naujo paieškos priedo URL</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="332"/>
+        <location filename="../searchengine/engineselectdlg.cpp" line="330"/>
         <source>URL:</source>
         <translation>URL:</translation>
     </message>
@@ -5040,13 +5075,13 @@ Nepaisant to, tie priedai buvo išjungti.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="754"/>
+        <location filename="../misc.cpp" line="755"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 val. %2 min.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="759"/>
+        <location filename="../misc.cpp" line="760"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1 diena %2 val.</translation>
@@ -5063,23 +5098,23 @@ Nepaisant to, tie priedai buvo išjungti.</translation>
         <translation>qBittorrent dabar išjungs kompiuterį, kadangi visi siuntimai baigti.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="694"/>
-        <location filename="../misc.cpp" line="699"/>
-        <location filename="../misc.cpp" line="703"/>
-        <location filename="../misc.cpp" line="706"/>
-        <location filename="../misc.cpp" line="711"/>
-        <location filename="../misc.cpp" line="714"/>
+        <location filename="../misc.cpp" line="695"/>
+        <location filename="../misc.cpp" line="700"/>
+        <location filename="../misc.cpp" line="704"/>
+        <location filename="../misc.cpp" line="707"/>
+        <location filename="../misc.cpp" line="712"/>
+        <location filename="../misc.cpp" line="715"/>
         <source>Unknown</source>
         <translation>Nežinoma</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="745"/>
+        <location filename="../misc.cpp" line="746"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 min.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="749"/>
+        <location filename="../misc.cpp" line="750"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min.</translation>
@@ -5088,74 +5123,104 @@ Nepaisant to, tie priedai buvo išjungti.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1035"/>
-        <location filename="../preferences/options_imp.cpp" line="1037"/>
+        <location filename="../preferences/options_imp.cpp" line="1055"/>
+        <location filename="../preferences/options_imp.cpp" line="1057"/>
         <source>Choose export directory</source>
         <translation>Pasirinkite eksportavimo aplanką</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1070"/>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose a save directory</source>
         <translation>Pasirinkite išsaugojimo aplanką</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
-        <location filename="../preferences/options_imp.cpp" line="1054"/>
+        <location filename="../preferences/options_imp.cpp" line="1072"/>
+        <location filename="../preferences/options_imp.cpp" line="1074"/>
         <source>Choose an ip filter file</source>
         <translation>Pasirinkite IP filtrų failą</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="992"/>
+        <location filename="../preferences/options_imp.cpp" line="1012"/>
         <source>Add directory to scan</source>
         <translation>Pridėkite norimą skenuoti aplanką</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="998"/>
+        <location filename="../preferences/options_imp.cpp" line="1018"/>
         <source>Folder is already being watched.</source>
         <translation>Šis aplankas jau stebimas.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1001"/>
+        <location filename="../preferences/options_imp.cpp" line="1021"/>
         <source>Folder does not exist.</source>
         <translation>Aplankas neegzistuoja.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1004"/>
+        <location filename="../preferences/options_imp.cpp" line="1024"/>
         <source>Folder is not readable.</source>
         <translation>Aplanko skaityti nepavyko.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1032"/>
         <source>Failure</source>
         <translation>Nepavyko</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1032"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Nepavyko pridėti skenuojamo aplanko &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
-        <location filename="../preferences/options_imp.cpp" line="1054"/>
+        <location filename="../preferences/options_imp.cpp" line="1072"/>
+        <location filename="../preferences/options_imp.cpp" line="1074"/>
         <source>Filters</source>
         <translation>Filtrai</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1152"/>
+        <source>SSL Certificate (*.crt *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1163"/>
+        <source>SSL Key (*.key *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1194"/>
         <source>Parsing error</source>
         <translation>Įkėlimo klaida</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1152"/>
+        <location filename="../preferences/options_imp.cpp" line="1194"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Nepavyko įkelti nurodyto IP filtro</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1154"/>
+        <location filename="../preferences/options_imp.cpp" line="1196"/>
         <source>Successfully refreshed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1263"/>
+        <source>Invalid key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1263"/>
+        <source>This is not a valid SSL key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <source>Invalid certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5163,7 +5228,7 @@ Nepaisant to, tie priedai buvo išjungti.</translation>
         <translation type="obsolete">Sėkmingai atnaujinta</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1154"/>
+        <location filename="../preferences/options_imp.cpp" line="1196"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Nurodytas IP filtras sėkmingai įkeltas. %1 taisyklės pritaikytos.</translation>

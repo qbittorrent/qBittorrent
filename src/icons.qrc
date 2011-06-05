@@ -292,6 +292,7 @@
   <file>Icons/oxygen/edit-copy.png</file>
   <file>Icons/oxygen/folder-documents.png</file>
   <file>Icons/oxygen/document-edit.png</file>
+  <file>Icons/oxygen/security-low.png</file>
   <file>Icons/oxygen/insert-link.png</file>
   <file>Icons/oxygen/network-wired.png</file>
   <file>Icons/oxygen/mail-mark-read.png</file>
@@ -319,6 +320,7 @@
   <file>Icons/oxygen/preferences-system-network.png</file>
   <file>Icons/oxygen/document-properties.png</file>
   <file>Icons/oxygen/user-group-new.png</file>
+  <file>Icons/oxygen/security-high.png</file>
   <file>Icons/oxygen/network-server.png</file>
   <file>Icons/oxygen/wallet-open.png</file>
   <file>Icons/oxygen/preferences-web-browser-cookies.png</file>

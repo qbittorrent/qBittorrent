@@ -37,8 +37,6 @@
 #include <QTime>
 #include <QList>
 #include <QDebug>
-#include <QSslCertificate>
-#include <QSslKey>
 #include <libtorrent/version.hpp>
 
 #ifndef DISABLE_GUI
@@ -64,7 +62,7 @@ namespace TrayIcon {
 enum Style { NORMAL = 0, MONO_DARK, MONO_LIGHT };
 }
 namespace DNS {
-enum Service { DYNDNS, NOIP };
+enum Service { DYNDNS, NOIP, NONE = -1 };
 }
 
 class Preferences : public QIniSettings {
@@ -783,26 +781,20 @@ public:
     setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
   }
 
-  QSslCertificate getWebUiHttpsCertificate() const {
-    return QSslCertificate(value("Preferences/WebUI/HTTPS/Certificate").toByteArray());
+  QByteArray getWebUiHttpsCertificate() const {
+    return value("Preferences/WebUI/HTTPS/Certificate").toByteArray();
   }
 
-  void setWebUiHttpsCertificate(QString filename) {
-    QFile file(filename);
-    file.open(QIODevice::ReadOnly);
-    setValue("Preferences/WebUI/HTTPS/Certificate", file.readAll());
-    file.close();
+  void setWebUiHttpsCertificate(const QByteArray &data) {
+    setValue("Preferences/WebUI/HTTPS/Certificate", data);
   }
 
-  QSslKey getWebUiHttpsKey() const {
-    return QSslKey(value("Preferences/WebUI/HTTPS/Key").toByteArray(), QSsl::Rsa);
+  QByteArray getWebUiHttpsKey() const {
+    return value("Preferences/WebUI/HTTPS/Key").toByteArray();
   }
 
-  void setWebUiHttpsKey(QString filename) {
-    QFile file(filename);
-    file.open(QIODevice::ReadOnly);
-    setValue("Preferences/WebUI/HTTPS/Key", file.readAll());
-    file.close();
+  void setWebUiHttpsKey(const QByteArray &data) {
+    setValue("Preferences/WebUI/HTTPS/Key", data);
   }
 
   bool isDynDNSEnabled() const {
@@ -944,6 +936,14 @@ public:
 
   void includeOverheadInLimits(bool include) {
     setValue(QString::fromUtf8("Preferences/Advanced/IncludeOverhead"), include);
+  }
+
+  bool trackerExchangeEnabled() const {
+    return value(QString::fromUtf8("Preferences/Advanced/TrackerExchange"), true).toBool();
+  }
+
+  void setTrackerExchangeEnabled(bool enable) {
+    setValue(QString::fromUtf8("Preferences/Advanced/TrackerExchange"), enable);
   }
 
   bool recheckTorrentsOnCompletion() const {

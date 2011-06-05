@@ -572,6 +572,14 @@ return torrent_handle::status(0x0).distributed_copies;
 #endif
 }
 
+void QTorrentHandle::file_progress(std::vector<size_type>& fp) const {
+  torrent_handle::file_progress(fp
+#if LIBTORRENT_VERSION_MINOR > 14
+                                , torrent_handle::piece_granularity
+#endif
+                                );
+}
+
 //
 // Setters
 //
@@ -658,7 +666,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
   vector<size_type> progress;
-  torrent_handle::file_progress(progress);
+  file_progress(progress);
   torrent_handle::prioritize_files(files);
   for(uint i=0; i<files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder

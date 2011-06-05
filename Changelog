@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
+* Thu Jun 02 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
     - FEATURE: Added full libtorrent v0.16 support (uTP, ...)
     - FEATURE: Proxy can be disabled for peer connections
     - FEATURE: Added support for secure SMTP connection (SSL)
@@ -8,8 +8,15 @@
     - FEATURE: Display peer connection type in peer list (BT, uTP, Web)
     - FEATURE: Added full regex support to RSS downloader
     - FEATURE: Added regex help and validation in RSS downloader
+    - FEATURE: Added HTTPS support to Web UI (Ishan Arora)
     - BUGFIX: Change systray icon on the fly (no restart needed)
     - BUGFIX: Remember peer-level rate limits (requires libtorrent v0.16)
+    - BUGFIX: Stop annoncing to trackers an all tiers (more respectful)
+    - BUGFIX: Stop sharing private trackers with other peers
+    - BUGFIX: Tracker exchange extension can be disabled
+    - BUGFIX: Cleaner program exit on system log out
+    - BUGFIX: Fix possible magnet link parsing problems
+    - BUGFIX: Fix possible RSS URL parsing problems
     - COSMETIC: Added monochrome icon for light themes 
 
 * Sun Mar 20 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.7.0

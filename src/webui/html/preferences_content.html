@@ -39,6 +39,12 @@
   <td style="vertical-align: bottom;"><input type="checkbox" id="dl_limit_checkbox" onClick="updateDlLimitEnabled();"/></td><td style="padding-right: 3px;">_(Download:)</td><td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
   </tr>
   </table>
+  <fieldset>
+  <legend><b>_(Options)</b></legend>
+  <input type="checkbox" id="enable_utp_checkbox"/>&nbsp;&nbsp;_(Enable bandwidth management (uTP))<br/>
+  <input type="checkbox" id="limit_utp_rate_checkbox"/>&nbsp;&nbsp;_(Apply rate limit to uTP connections)<br/>
+  <input type="checkbox" id="limit_tcp_overhead_checkbox"/>&nbsp;&nbsp;_(Apply rate limit to transport overhead)<br/>
+  </fieldset>
   </div>
 </fieldset>
 </div>
@@ -126,6 +132,12 @@
   <td style="vertical-align: bottom; text-align: right;">_(SMTP server:)</td><td><input type="text" id="smtp_server_txt"/></td>
   </tr>
   </table>
+  <input type="checkbox" id="mail_ssl_checkbox"/> _(This server requires a secure connection (SSL))<br/>
+  <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();" />&nbsp;&nbsp;_(Authentication)<br/>
+    <table>
+    <tr><td style="padding-left: 10px;">_(Username:)</td><td><input type="text" id="mail_username_text" /></td></tr>
+    <tr><td style="padding-left: 10px;">_(Password:)</td><td><input type="password" id="mail_password_text" /></td></tr>
+    </table>
 </div>
 </fieldset>
 <fieldset>
@@ -248,9 +260,15 @@
   <td style="vertical-align: bottom;">_(Port:)</td><td style="padding-right: 3px;"><input type="text" id="webui_port_value" style="width: 4em;"/></td>
   </tr>
   </table>
+  <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />&nbsp;&nbsp;_(Use HTTPS instead of HTTP)<br/>
+  <table>
+  <tr><td style="padding-left: 10px;">_(Key:)</td><td><textarea id="ssl_key_textarea" rows="5" cols="70"></textarea></td></tr>
+  <tr><td style="padding-left: 10px;">_(Certificate:)</td><td><textarea id="ssl_cert_textarea" rows="5" cols="70"></textarea></td></tr>
+  </table>
+  <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
   </div>
 </fieldset>
-  <fieldset>
+<fieldset>
   <legend><b>_(Authentication)</b></legend>
   <div style="padding-left: 30px;">
   <table>
@@ -260,6 +278,28 @@
   <tr>
   <td style="vertical-align: bottom;">_(Password:)</td><td style="padding-right: 3px;"><input type="password" id="webui_password_text" /></td>
   </tr>
+  </table>
+  <input type="checkbox" id="bypass_local_auth_checkbox" />&nbsp;&nbsp;_(Bypass authentication for localhost)
+  </div>
+</fieldset>
+<fieldset>
+  <legend><b><input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />&nbsp;&nbsp;_(Update my dynamic domain name)</b></legend>
+  <div style="padding-left: 30px;">
+  <select id="dyndns_select">
+    <option value="0">DynDNS</option>
+    <option value="1">NO-IP</option>
+  </select>
+  <input type="button" value="_(Register)" onclick="registerDynDns();"/><br/>
+  <table>
+    <tr>
+      <td style="vertical-align: bottom;">_(Domain name:)</td><td style="padding-right: 3px;"><input type="text" id="dyndns_domain_text" /></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: bottom;">_(Username:)</td><td style="padding-right: 3px;"><input type="text" id="dyndns_username_text" /></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: bottom;">_(Password:)</td><td style="padding-right: 3px;"><input type="password" id="dyndns_password_text" /></td>
+    </tr>
   </table>
   </div>
 </fieldset>
@@ -271,121 +311,622 @@
 <script type="text/javascript">
   var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
-  applyPreferences = function() {
+updateDlLimitEnabled = function() {
+  if($('dl_limit_checkbox').getProperty('checked')) {
+    $('dl_limit_value').setProperty('disabled', false);
+  } else {
+    $('dl_limit_value').setProperty('disabled', true);
+  }
+}
+
+updateUpLimitEnabled = function() {
+  if($('up_limit_checkbox').getProperty('checked')) {
+    $('up_limit_value').setProperty('disabled', false);
+  } else {
+    $('up_limit_value').setProperty('disabled', true);
+  }
+}
+
+setuTPSettingsVisible = function(visible) {
+  if(visible) {
+    $('enable_utp_checkbox').removeClass('invisible');
+    $('limit_utp_rate_checkbox').removeClass('invisible');
+  } else {
+    $('enable_utp_checkbox').addClass('invisible');
+    $('limit_utp_rate_checkbox').addClass('invisible');
+  }
+}
+
+updateMaxConnecEnabled = function() {
+  if($('max_connec_checkbox').getProperty('checked')) {
+    $('max_connec_value').setProperty('disabled', false);
+  } else {
+    $('max_connec_value').setProperty('disabled', true);
+  }
+}
+
+updateMaxConnecPerTorrentEnabled = function() {
+  if($('max_connec_per_torrent_checkbox').getProperty('checked')) {
+    $('max_connec_per_torrent_value').setProperty('disabled', false);
+  } else {
+    $('max_connec_per_torrent_value').setProperty('disabled', true);
+  }
+}
+
+updateMaxUploadsPerTorrentEnabled = function() {
+  if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
+    $('max_uploads_per_torrent_value').setProperty('disabled', false);
+  } else {
+    $('max_uploads_per_torrent_value').setProperty('disabled', true);
+  }
+}
+
+updateTempDirEnabled = function() {
+  if($('temppath_checkbox').getProperty('checked')) {
+    $('temppath_text').setProperty('disabled', false);
+  } else {
+    $('temppath_text').setProperty('disabled', true);
+  }
+}
+
+updateHttpsSettings = function() {
+  if($('use_https_checkbox').getProperty('checked')) {
+    $('ssl_key_textarea').setProperty('disabled', false);
+    $('ssl_cert_textarea').setProperty('disabled', false);
+  } else {
+    $('ssl_key_textarea').setProperty('disabled', true);
+    $('ssl_cert_textarea').setProperty('disabled', true);
+  }
+}
+
+updateExportDirEnabled = function() {
+  if($('exportdir_checkbox').getProperty('checked')) {
+    $('exportdir_text').setProperty('disabled', false);
+  } else {
+    $('exportdir_text').setProperty('disabled', true);
+  }
+}
+
+updateQueueingSystem = function() {
+  if($('queueing_checkbox').getProperty('checked')) {
+    $('max_active_dl_value').setProperty('disabled', false);
+    $('max_active_up_value').setProperty('disabled', false);
+    $('max_active_to_value').setProperty('disabled', false);
+  } else {
+    $('max_active_dl_value').setProperty('disabled', true);
+    $('max_active_up_value').setProperty('disabled', true);
+    $('max_active_to_value').setProperty('disabled', true);
+  }
+}
+
+updateMailNotification = function() {
+  if($('mail_notification_checkbox').getProperty('checked')) {
+    $('dest_email_txt').setProperty('disabled', false);
+    $('smtp_server_txt').setProperty('disabled', false);
+    $('mail_auth_checkbox').setProperty('disabled', false);
+    $('mail_ssl_checkbox').setProperty('disabled', false);
+  } else {
+    $('dest_email_txt').setProperty('disabled', true);
+    $('smtp_server_txt').setProperty('disabled', true);
+    $('mail_ssl_checkbox').setProperty('disabled', true);
+    $('mail_auth_checkbox').setProperty('disabled', true);
+    $('mail_auth_checkbox').setProperty('checked', false);
+    updateMailAuthSettings();
+  }
+}
+
+updateMailAuthSettings = function() {
+  if($('mail_auth_checkbox').getProperty('checked')) {
+    $('mail_username_text').setProperty('disabled', false);
+    $('mail_password_text').setProperty('disabled', false);
+  } else {
+    $('mail_username_text').setProperty('disabled', true);
+    $('mail_password_text').setProperty('disabled', true);
+  }
+}
+
+updateAutoRun = function() {
+  if($('autorun_checkbox').getProperty('checked')) {
+    $('autorunProg_txt').setProperty('disabled', false);
+  } else {
+    $('autorunProg_txt').setProperty('disabled', true);
+  }
+}
+
+updateFilterSettings = function() {
+  if($('ipfilter_enabled_checkbox').getProperty('checked')) {
+    $('ipfilter_text').setProperty('disabled', false);
+  } else {
+    $('ipfilter_text').setProperty('disabled', true);
+  }
+}
+
+updateDHTPortSettings = function() {
+  if($('DHTPortDiffThanBT_checkbox').getProperty('checked')) {
+    $('DHTPort_txt').setProperty('disabled', false);
+  } else {
+    $('DHTPort_txt').setProperty('disabled', true);
+  }
+}
+
+updatePeerProxySettings = function() {
+  if($('peer_proxy_type_select').getProperty('value') != "none") {
+    $('peer_proxy_host_text').setProperty('disabled', false);
+    $('peer_proxy_port_value').setProperty('disabled', false);
+    $('use_peer_proxy_checkbox').setProperty('disabled', false);
+    if($('peer_proxy_type_select').getProperty('value') != "socks5") {
+      $('peer_proxy_auth_checkbox').setProperty('checked', false);
+      $('peer_proxy_auth_checkbox').setProperty('disabled', true);
+      updatePeerProxyAuthSettings();
+    } else {
+      $('peer_proxy_auth_checkbox').setProperty('disabled', false);
+    }
+  } else {
+    $('peer_proxy_host_text').setProperty('disabled', true);
+    $('peer_proxy_port_value').setProperty('disabled', true);
+    $('use_peer_proxy_checkbox').setProperty('disabled', true);
+    $('peer_proxy_auth_checkbox').setProperty('disabled', true);
+    $('peer_proxy_auth_checkbox').setProperty('checked', false);
+    updatePeerProxyAuthSettings();
+  }
+}
+
+updatePeerProxyAuthSettings = function() {
+  if($('peer_proxy_auth_checkbox').getProperty('checked')) {
+    $('peer_proxy_username_text').setProperty('disabled', false);
+    $('peer_proxy_password_text').setProperty('disabled', false);
+  } else {
+    $('peer_proxy_username_text').setProperty('disabled', true);
+    $('peer_proxy_password_text').setProperty('disabled', true);
+  }
+}
+
+updateDynDnsSettings = function() {
+  if($('use_dyndns_checkbox').getProperty('checked')) {
+    $('dyndns_select').setProperty('disabled', false);
+    $('dyndns_domain_text').setProperty('disabled', false);
+    $('dyndns_username_text').setProperty('disabled', false);
+    $('dyndns_password_text').setProperty('disabled', false);
+  } else {
+    $('dyndns_select').setProperty('disabled', true);
+    $('dyndns_domain_text').setProperty('disabled', true);
+    $('dyndns_username_text').setProperty('disabled', true);
+    $('dyndns_password_text').setProperty('disabled', true);
+  }
+}
+
+registerDynDns = function() {
+  if($('dyndns_select').getProperty('value').toInt() == 1) {
+    window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
+  } else {
+    window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
+  }
+}
+
+getWatchedFolders = function() {
+  var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+  var folders = Array();
+  var download_in_place = Array();
+  for(var i=0; i<nb_folders; i+=1) {
+    var folder_path = $('text_watch_'+i).getProperty('value').trim();
+    if(folder_path.length > 0) {
+      folders[folders.length] = folder_path;
+      if($("cb_watch_"+i).getProperty('checked')) {
+        download_in_place[download_in_place.length] = 1;
+      } else {
+        download_in_place[download_in_place.length] = 0;
+      }
+    }
+  }
+  return [folders, download_in_place];
+}
+
+addWatchFolder = function() {
+  var new_folder = $('new_watch_folder_txt').getProperty('value').trim();
+  if(new_folder.length <= 0) return;
+  
+  var download_here = $('new_watch_folder_dl').getProperty('checked');
+  var myinput = new Element('input');
+  var i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
+  myinput.setProperty('id', 'text_watch_'+i);
+  myinput.setProperty('type', 'text');
+  myinput.setProperty('value', new_folder);
+  
+  var mycb = new Element('input');
+  mycb.setProperty('type', 'checkbox');
+  mycb.setProperty('id', 'cb_watch_'+i);
+  mycb.setProperty('checked', download_here);
+  WatchedFoldersTable.push([myinput, mycb]);
+  
+  // Clear fields
+  $('new_watch_folder_txt').setProperty('value', '');
+  $('new_watch_folder_dl').setProperty('checked', false);
+}
+
+loadPreferences = function() {
+  var url = 'json/preferences';
+  var request = new Request.JSON({
+          url: url,
+          method: 'get',
+          noCache: true,
+          onFailure: function() {
+            alert("Could not contact qBittorrent");
+          },
+          onSuccess: function(pref) {
+                  if(pref){
+                    // Connection
+                    var listen_port = pref.listen_port.toInt();
+                    $('port_value').setProperty('value', listen_port);
+                    
+                    if(pref.upnp) {
+                      $('upnp_checkbox').setProperty('checked', true);
+                    } else {
+                      $('upnp_checkbox').setProperty('checked', false);
+                    }
+                    
+                    var dl_limit = pref.dl_limit.toInt();
+                    if(dl_limit <= 0) {
+                      $('dl_limit_checkbox').setProperty('checked', false);
+                    } else {
+                      $('dl_limit_checkbox').setProperty('checked', true);
+                      $('dl_limit_value').setProperty('value', dl_limit);
+                    }
+                    updateDlLimitEnabled();
+                    var up_limit = pref.up_limit.toInt();
+                    if(up_limit <= 0) {
+                      $('up_limit_checkbox').setProperty('checked', false);
+                    } else {
+                      $('up_limit_checkbox').setProperty('checked', true);
+                      $('up_limit_value').setProperty('value', up_limit);
+                    }
+                    updateUpLimitEnabled();
+		    // uTP
+		    utp_supported = $defined(pref.enable_utp);
+		    setuTPSettingsVisible(utp_supported);
+		    if(utp_supported) {
+		      if(pref.enable_utp)
+		        $('enable_utp_checkbox').setProperty('checked', true);
+	              else
+		        $('enable_utp_checkbox').setProperty('checked', false);
+		      if(pref.limit_utp_rate)
+		        $('limit_utp_rate_checkbox').setProperty('checked', true);
+	              else
+		        $('limit_utp_rate_checkbox').setProperty('checked', false);
+		    }
+		    if(pref.limit_tcp_overhead)
+		      $('limit_tcp_overhead_checkbox').setProperty('checked', true);
+	            else
+		      $('limit_tcp_overhead_checkbox').setProperty('checked', false);
+                    var max_connec = pref.max_connec.toInt();
+                    if(max_connec <= 0) {
+                      $('max_connec_checkbox').setProperty('checked', false);
+                      $('max_connec_value').setProperty('value', 500);
+                    } else {
+                      $('max_connec_checkbox').setProperty('checked', true);
+                      $('max_connec_value').setProperty('value', max_connec);
+                    }
+                    updateMaxConnecEnabled();
+                    var max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
+                    if(max_connec_per_torrent <= 0) {
+                      $('max_connec_per_torrent_checkbox').setProperty('checked', false);
+                      $('max_connec_per_torrent_value').setProperty('value', 100);
+                    } else {
+                      $('max_connec_per_torrent_checkbox').setProperty('checked', true);
+                      $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
+                    }
+                    updateMaxConnecPerTorrentEnabled();
+                    var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
+                    if(max_uploads_per_torrent <= 0) {
+                      $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
+                      $('max_uploads_per_torrent_value').setProperty('value', 4);
+                    } else {
+                      $('max_uploads_per_torrent_checkbox').setProperty('checked', true);
+                      $('max_uploads_per_torrent_value').setProperty('value', max_uploads_per_torrent);
+                    }
+                    updateMaxUploadsPerTorrentEnabled();
+                    // Bittorrent
+                    var dht = pref.dht; //bool
+                    if(dht) {
+                      $('dht_checkbox').setProperty('checked', true);
+                    } else {
+                      $('dht_checkbox').setProperty('checked', false);
+                    }
+                    var dhtSameAsBT = pref.dhtSameAsBT;
+                    if(dhtSameAsBT) {
+                      $('DHTPortDiffThanBT_checkbox').setProperty('checked', false);
+                    } else {
+                      $('DHTPortDiffThanBT_checkbox').setProperty('checked', true);
+                    }
+                    $('DHTPort_txt').setProperty('value', pref.dht_port);
+                    updateDHTPortSettings();
+                    var pex = pref.pex; //bool
+                    if(pex) {
+                      $('pex_checkbox').setProperty('checked', true);
+                    } else {
+                      $('pex_checkbox').setProperty('checked', false);
+                    }
+                    var lsd = pref.lsd; //bool
+                    if(lsd) {
+                      $('lsd_checkbox').setProperty('checked', true);
+                    } else {
+                      $('lsd_checkbox').setProperty('checked', false);
+                    }
+                    var encryption = pref.encryption.toInt();
+                    $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
+                    // Downloads
+                    var save_path = pref.save_path;
+                    $("savepath_text").setProperty('value', save_path);
+                    var temp_path_enabled = pref.temp_path_enabled;
+                    if(temp_path_enabled) {
+                      $('temppath_checkbox').setProperty('checked', true);
+                    } else {
+                      $('temppath_checkbox').setProperty('checked', false);
+                    }
+                    var temp_path = pref.temp_path;
+                    $('temppath_text').setProperty('value', temp_path);
+                    updateTempDirEnabled();
+                    var i = 0;
+                    for(i=0; i<pref.scan_dirs.length; i+=1) {
+                      var myinput = new Element('input');
+                      myinput.setProperty('id', 'text_watch_'+i);
+                      myinput.setProperty('type', 'text');
+                      myinput.setProperty('value', pref.scan_dirs[i]);
+                      var mycb = new Element('input');
+                      mycb.setProperty('type', 'checkbox');
+                      mycb.setProperty('id', 'cb_watch_'+i);
+                      mycb.setProperty('checked', pref.download_in_scan_dirs[i]);
+                      WatchedFoldersTable.push([myinput, mycb]);
+                    }
+
+                    var export_dir_enabled = pref.export_dir_enabled;
+                    if(export_dir_enabled) {
+                      $('exportdir_text').setProperty('value', pref.export_dir);
+                      $('exportdir_checkbox').setProperty('checked', true);
+                    } else {
+                      $('exportdir_text').setProperty('value', '');
+                      $('exportdir_checkbox').setProperty('checked', false);
+                    }
+                    updateExportDirEnabled();
+                    var mail_notification_enabled = pref.mail_notification_enabled;
+                    if(mail_notification_enabled) {
+                      $('mail_notification_checkbox').setProperty('checked', true);
+                    } else {
+                      $('mail_notification_checkbox').setProperty('checked', false);
+                    }
+                    $('dest_email_txt').setProperty('value', pref.mail_notification_email);
+                    $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
+                    if(pref.mail_notification_ssl_enabled)
+                      $('mail_ssl_checkbox').setProperty('checked', true);
+                    else
+                      $('mail_ssl_checkbox').setProperty('checked', false);
+                    if(pref.mail_notification_auth_enabled)
+                      $('mail_auth_checkbox').setProperty('checked', true);
+                    else
+                      $('mail_auth_checkbox').setProperty('checked', false);
+                    $('mail_username_text').setProperty('value', pref.mail_notification_username);
+                    $('mail_password_text').setProperty('value', pref.mail_notification_password);
+                    updateMailNotification();
+                    updateMailAuthSettings();
+                    var autorun_enabled = pref.autorun_enabled;
+                    if(autorun_enabled) {
+                      $('autorun_checkbox').setProperty('checked', true);
+                    } else {
+                      $('autorun_checkbox').setProperty('checked', false);
+                    }
+                    $('autorunProg_txt').setProperty('value', pref.autorun_program);
+                    updateAutoRun();
+                    if(pref.preallocate_all) {
+                      $('preallocateall_checkbox').setProperty('checked', true);
+                    } else {
+                      $('preallocateall_checkbox').setProperty('checked', false);
+                    }
+                    if($defined(pref.incomplete_files_ext)) {
+                      $('appendexttr').removeClass('invisible');
+                      if(pref.incomplete_files_ext) {
+                        $('appendext_checkbox').setProperty('checked', true);
+                      } else {
+                        $('appendext_checkbox').setProperty('checked', false);
+                      }
+                    } else {
+                      $('appendexttr').addClass('invisible');
+                    }
+                    if(pref.queueing_enabled) {
+                      $('queueing_checkbox').setProperty('checked', true);
+                    } else {
+                      $('queueing_checkbox').setProperty('checked', false);
+                    }
+                    $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
+                    $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
+                    $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
+                    updateQueueingSystem();
+                    // IP Filter
+                    if(pref.ip_filter_enabled) {
+                      $('ipfilter_enabled_checkbox').setProperty('checked', true);
+                    } else {
+                      $('ipfilter_enabled_checkbox').setProperty('checked', false);
+                    }
+                    $('ipfilter_text').setProperty('value', pref.ip_filter_path);
+                    updateFilterSettings();
+                    // PEER Proxy
+                    switch(pref.proxy_type.toInt()) {
+                      case 5: //SOCKS4
+                        $('peer_proxy_type_select').setProperty('value', 'socks4');
+                        break;
+                      case 2: // SOCKS5
+                      case 4: // SOCKS5_PW
+                        $('peer_proxy_type_select').setProperty('value', 'socks5');
+                        break;
+                      case 1: // HTTP
+                      case 3: // HTTP_PW
+                        $('peer_proxy_type_select').setProperty('value', 'http');
+                        break;
+                      default: // NONE
+                      $('peer_proxy_type_select').setProperty('value', 'none');
+                    }
+                    updatePeerProxySettings();
+                    $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
+                    $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
+                    if(pref.proxy_peer_connections) {
+                      $('use_peer_proxy_checkbox').setProperty('checked', true);
+                    } else {
+                      $('use_peer_proxy_checkbox').setProperty('checked', false);
+                    }
+                    if(pref.proxy_auth_enabled) {
+                      $('peer_proxy_auth_checkbox').setProperty('checked', true);
+                    } else {
+                      $('peer_proxy_auth_checkbox').setProperty('checked', false);
+                    }
+                    updatePeerProxyAuthSettings();
+                    $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
+                    $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
+                    // Web UI
+                    $('webui_port_value').setProperty('value', pref.web_ui_port);
+                    $('webui_username_text').setProperty('value', pref.web_ui_username);
+                    $('webui_password_text').setProperty('value', pref.web_ui_password);
+                    if(pref.bypass_local_auth)
+                      $('bypass_local_auth_checkbox').setProperty('checked', true);
+                    else
+                      $('bypass_local_auth_checkbox').setProperty('checked', false);
+                    if(pref.use_https)
+                      $('use_https_checkbox').setProperty('checked', true);
+                    else
+                      $('use_https_checkbox').setProperty('checked', false);
+                    updateHttpsSettings();
+                    $('ssl_key_textarea').setProperty('value', pref.ssl_key);
+                    $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
+                    $('locale_select').setProperty('value', pref.locale);
+		    // Dyndns
+		    $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
+		    updateDynDnsSettings();
+		    $('dyndns_select').setProperty('value', pref.dyndns_service);
+		    $('dyndns_domain_text').setProperty('value', pref.dyndns_domain);
+		    $('dyndns_username_text').setProperty('value', pref.dyndns_username);
+		    $('dyndns_password_text').setProperty('value', pref.dyndns_password);
+                  }
+          }
+  }).send();
+}
+
+applyPreferences = function() {
+  var settings = new Hash();
   // Validate form data
   // Connection
-  var listen_port = $('port_value').get('value').toInt();
+  var listen_port = $('port_value').getProperty('value').toInt();
   if(listen_port <= 1024 || listen_port > 65535) {
     alert("_(The port used for incoming connections must be greater than 1024 and less than 65535.)");
     return;
   }
-  var upnp = 0;
-  if($defined($('upnp_checkbox').get('checked')) && $('upnp_checkbox').get('checked'))
-    upnp = 1;
+  settings.set('listen_port', listen_port);
+  
+  settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
     
   var dl_limit = -1;
-  if($defined($('dl_limit_checkbox').get('checked')) && $('dl_limit_checkbox').get('checked')) {
-    dl_limit = $('dl_limit_value').get('value');
+  if($('dl_limit_checkbox').getProperty('checked')) {
+    dl_limit = $('dl_limit_value').getProperty('value').toInt();
     if(dl_limit <= 0) {
       alert("_(Download rate limit must be greater than 0 or disabled.)");
       return;
     }
   }
+  settings.set('dl_limit', dl_limit);
+  
   var up_limit = -1;
-  if($defined($('up_limit_checkbox').get('checked')) && $('up_limit_checkbox').get('checked')) {
-    up_limit = $('up_limit_value').get('value');
+  if($('up_limit_checkbox').getProperty('checked')) {
+    up_limit = $('up_limit_value').getProperty('value').toInt();
     if(up_limit <= 0) {
       alert("_(Upload rate limit must be greater than 0 or disabled.)");
       return;
     }
   }
+  settings.set('up_limit', up_limit);
+  
+  if(!$('enable_utp_checkbox').hasClass('invisible')) {
+    settings.set('enable_utp', $('enable_utp_checkbox').getProperty('checked'));
+    settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
+  }
+  
+  settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
+  
   var max_connec = -1;
-  if($defined($('max_connec_checkbox').get('checked')) && $('max_connec_checkbox').get('checked')) {
-    max_connec = $('max_connec_value').get('value');
+  if($('max_connec_checkbox').getProperty('checked')) {
+    max_connec = $('max_connec_value').getProperty('value').toInt();
     if(max_connec <= 0) {
       alert("_(Maximum number of connections limit must be greater than 0 or disabled.)");
       return;
     }
   }
+  settings.set('max_connec', max_connec);
+  
   var max_connec_per_torrent = -1;
-  if($defined($('max_connec_per_torrent_checkbox').get('checked')) && $('max_connec_per_torrent_checkbox').get('checked')) {
-    max_connec_per_torrent = $('max_connec_per_torrent_value').get('value');
+  if($('max_connec_per_torrent_checkbox').getProperty('checked')) {
+    max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
     if(max_connec_per_torrent <= 0) {
       alert("_(Maximum number of connections per torrent limit must be greater than 0 or disabled.)");
       return;
     }
   }
+  settings.set('max_connec_per_torrent', max_connec_per_torrent);
+  
   var max_uploads_per_torrent = -1;
-  if($defined($('max_uploads_per_torrent_checkbox').get('checked')) && $('max_uploads_per_torrent_checkbox').get('checked')) {
-    max_uploads_per_torrent = $('max_uploads_per_torrent_value').get('value');
+  if($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
+    max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
     if(max_uploads_per_torrent <= 0) {
       alert("_(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)");
       return;
     }
   }
+  settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
+  
   // Bittorrent
-  var dht = 0;
-  if($defined($('dht_checkbox').get('checked')) && $('dht_checkbox').get('checked'))
-    dht = 1;
-  var dhtSameAsBT = 1;
-  if($defined($('DHTPortDiffThanBT_checkbox').get('checked')) && $('DHTPortDiffThanBT_checkbox').get('checked'))
-    dhtSameAsBT = 0;
-  var dht_port = $("DHTPort_txt").get('value').toInt();
-  var pex = 0;
-  if($defined($('pex_checkbox').get('checked')) && $('pex_checkbox').get('checked'))
-    pex = 1;
-  var lsd = 0;
-  if($defined($('lsd_checkbox').get('checked')) && $('lsd_checkbox').get('checked'))
-    lsd = 1;
+  settings.set('dht', $('dht_checkbox').getProperty('checked'));
+  settings.set('dhtSameAsBT', $('DHTPortDiffThanBT_checkbox').getProperty('checked'));
+  settings.set('dht_port', $('DHTPort_txt').getProperty('value').toInt());
+  settings.set('pex', $('pex_checkbox').getProperty('checked'));
+  settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
+  
   // Downloads
-  var save_path = $("savepath_text").get('value');
-  var temp_path_enabled = 0
-  if($defined($('temppath_checkbox').get('checked')) && $('temppath_checkbox').get('checked'))
-    temp_path_enabled = 1;
-  var temp_path = $('temppath_text').get('value');
+  settings.set('save_path', $('savepath_text').getProperty('value'));
+  settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
+  settings.set('temp_path', $('temppath_text').getProperty('value'));
+  
   var watched_folders = getWatchedFolders();
-  var exportdir_enabled = 0;
-  if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked'))
-    exportdir_enabled = 1;
-  var exportdir_path = '';
-  if(exportdir_enabled)
-    exportdir_path = $('exportdir_text').get('value');
-  var preallocate_all = 0;
-  if($defined($('preallocateall_checkbox').get('checked')) && $('preallocateall_checkbox').get('checked'))
-    preallocate_all = 1;
+  settings.set('scan_dirs', watched_folders[0]);
+  settings.set('download_in_scan_dirs', watched_folders[1]);
+
+  settings.set('exportdir_enabled', $('exportdir_checkbox').getProperty('checked'));
+  settings.set('exportdir_path', $('exportdir_text').getProperty('value'));
+  settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
   if(!$('appendexttr').hasClass('invisible')) {
-    var incomplete_files_ext = 0;
-    if($defined($('appendext_checkbox').get('checked')) && $('appendext_checkbox').get('checked'))
-      incomplete_files_ext = 1;
+    settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
   }
-  var queueing_enabled = 0;
-  if($defined($('queueing_checkbox').get('checked')) && $('queueing_checkbox').get('checked'))
-    queueing_enabled = 1;
-  var max_active_downloads = $('max_active_dl_value').get('value');
-  var max_active_uploads = $('max_active_up_value').get('value');
-  var max_active_torrents = $('max_active_to_value').get('value');
-  var mail_notification_enabled = 0;
-  if($defined($('mail_notification_checkbox').get('checked')) && $('mail_notification_checkbox').get('checked'))
-    mail_notification_enabled = 1;
-  var mail_notification_email = $('dest_email_txt').get('value');
-  var mail_notification_smtp = $('smtp_server_txt').get('value');
-  var autorun_enabled = 0;
-  if($defined($('autorun_checkbox').get('checked')) && $('autorun_checkbox').get('checked'))
-    autorun_enabled = 1;
-  var autorun_program = $('autorunProg_txt').get('value');
+  settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
+  settings.set('max_active_downloads', $('max_active_dl_value').getProperty('value').toInt());
+  settings.set('max_active_uploads', $('max_active_up_value').getProperty('value').toInt());
+  settings.set('max_active_torrents', $('max_active_to_value').getProperty('value').toInt());
+ 
+  settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
+  settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
+  settings.set('mail_notification_smtp', $('smtp_server_txt').getProperty('value'));
+  settings.set('mail_notification_ssl_enabled', $('mail_ssl_checkbox').getProperty('checked'));
+  settings.set('mail_notification_auth_enabled', $('mail_auth_checkbox').getProperty('checked'));
+  settings.set('mail_notification_username', $('mail_username_text').getProperty('value'));
+  settings.set('mail_notification_password', $('mail_password_text').getProperty('value'));
+  
+  settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
+  settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+  
   // IP Filter
-  var ip_filter_enabled = 0;
-  if($defined($('ipfilter_enabled_checkbox').get('checked')) && $('ipfilter_enabled_checkbox').get('checked'))
-    ip_filter_enabled = 1;
-  var ip_filter_path = $('ipfilter_text').get('value');
+  settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
+  settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
+  
   // Peer Proxy
-  var proxy_type_str = $('peer_proxy_type_select').get('value');
+  var proxy_type_str = $('peer_proxy_type_select').getProperty('value');
   var proxy_type = -1;
-  var proxy_auth_enabled = 0;
+  var proxy_auth_enabled = false;
   if(proxy_type_str == "socks5") {
-    if($defined($('peer_proxy_auth_checkbox').get('checked')) && $('peer_proxy_auth_checkbox').get('checked')) {
+    if($('peer_proxy_auth_checkbox').getProperty('checked')) {
       proxy_type = 4;
-      proxy_auth_enabled = 1;
+      proxy_auth_enabled = true;
     } else {
       proxy_type = 2;
     }
@@ -394,94 +935,62 @@
       proxy_type = 5;
     } else {
       if(proxy_type_str == "http") {
-        if($defined($('peer_proxy_auth_checkbox').get('checked')) && $('peer_proxy_auth_checkbox').get('checked')) {
+        if($('peer_proxy_auth_checkbox').getProperty('checked')) {
           proxy_type = 3;
-          proxy_auth_enabled = 1;
+          proxy_auth_enabled = true;
         } else {
           proxy_type = 1;
         }
       }
     }
   }
-  var proxy_ip = $('peer_proxy_host_text').get('value');
-  var proxy_port = $('peer_proxy_port_value').get('value');
-  var proxy_peer_connections = $defined($('use_peer_proxy_checkbox').get('checked')) && $('use_peer_proxy_checkbox').get('checked');
-  var proxy_username = $('peer_proxy_username_text').get('value');
-  var proxy_password = $('peer_proxy_password_text').get('value');
+  settings.set('proxy_type', proxy_type);
+  settings.set('proxy_auth_enabled', proxy_auth_enabled);
+  settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
+  settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
+  settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
+  settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
+  settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
+  
   // Web UI
-  var webui_port = $('webui_port_value').get('value').toInt();
-  if(webui_port <= 1024 || webui_port > 65535) {
+  var web_ui_port = $('webui_port_value').getProperty('value').toInt();
+  if(web_ui_port <= 1024 || web_ui_port > 65535) {
     alert("_(The port used for the Web UI must be greater than 1024 and less than 65535.)");
     return;
   }
-  var webui_username = $('webui_username_text').get('value');
-  var webui_password = $('webui_password_text').get('value');
-  // Add some username/password length checking
-  if(webui_username.length < 3) {
+  settings.set('web_ui_port', web_ui_port);
+  
+  var web_ui_username = $('webui_username_text').getProperty('value');
+  var web_ui_password = $('webui_password_text').getProperty('value');
+    // Add some username/password length checking
+  if(web_ui_username.length < 3) {
     alert("_(The Web UI username must be at least 3 characters long.)");
     return;
   }
-  if(webui_password.length < 3) {
+  if(web_ui_password.length < 3) {
     alert("_(The Web UI password must be at least 3 characters long.)");
     return;
   }
-  var locale = $('locale_select').get('value');
+  settings.set('web_ui_username', web_ui_username);
+  settings.set('web_ui_password', web_ui_password);
+  
+  settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
+  settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
+  settings.set('ssl_key', $('ssl_key_textarea').getProperty('value'));
+  settings.set('ssl_cert', $('ssl_cert_textarea').getProperty('value'));
+  
+  // Dyndns
+  settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
+  settings.set('dyndns_service', $('dyndns_select').getProperty('value'));
+  settings.set('dyndns_domain', $('dyndns_domain_text').getProperty('value'));
+  settings.set('dyndns_username', $('dyndns_username_text').getProperty('value'));
+  settings.set('dyndns_password', $('dyndns_password_text').getProperty('value'));
+  
+  // Locale
+  settings.set('locale', $('locale_select').getProperty('value'));
   
   // Send it to qBT
-  var dict = new Hash();
-  // Connection
-  dict.set('listen_port', listen_port);
-  dict.set('upnp', upnp);
-  dict.set('up_limit', up_limit);
-  dict.set('dl_limit', dl_limit);
-  dict.set('max_connec', max_connec);
-  dict.set('max_connec_per_torrent', max_connec_per_torrent);
-  dict.set('max_uploads_per_torrent', max_uploads_per_torrent);
-  // Bittorrent
-  dict.set('dht', dht);
-  dict.set('dhtSameAsBT', dhtSameAsBT);
-  dict.set('dht_port', dht_port);
-  dict.set('pex', pex);
-  dict.set('lsd', lsd);
-  dict.set('encryption', $('encryption_select').get('value'));
-  // Downloads
-  dict.set('save_path', save_path);
-  dict.set('temp_path_enabled', temp_path_enabled);
-  dict.set('temp_path', temp_path);
-  dict.set('scan_dirs', watched_folders[0]);
-  dict.set('download_in_scan_dirs', watched_folders[1]);
-  dict.set('export_dir', exportdir_path);
-  dict.set('preallocate_all', preallocate_all);
-  if(!$('appendexttr').hasClass('invisible')) {
-    dict.set('incomplete_files_ext', incomplete_files_ext);
-  }
-  dict.set('queueing_enabled', queueing_enabled);
-  dict.set('max_active_uploads', max_active_uploads);
-  dict.set('max_active_downloads', max_active_downloads);
-  dict.set('max_active_torrents', max_active_torrents);
-  dict.set('mail_notification_enabled', mail_notification_enabled);
-  dict.set('mail_notification_email', mail_notification_email);
-  dict.set('mail_notification_smtp', mail_notification_smtp);
-  dict.set('autorun_enabled', autorun_enabled);
-  dict.set('autorun_program', autorun_program);
-  // IP Filter
-  dict.set('ip_filter_enabled', ip_filter_enabled);
-  dict.set('ip_filter_path', ip_filter_path);
-  // Proxy
-  dict.set('proxy_type', proxy_type);
-  dict.set('proxy_ip', proxy_ip);
-  dict.set('proxy_port', proxy_port);
-  dict.set('proxy_peer_connections', proxy_peer_connections);
-  dict.set('proxy_auth_enabled', proxy_auth_enabled);
-  dict.set('proxy_username', proxy_username);
-  dict.set('proxy_password', proxy_password);
-  // Web UI
-  dict.set('web_ui_port', webui_port);
-  dict.set('web_ui_username', webui_username);
-  dict.set('web_ui_password', webui_password);
-  dict.set('locale', locale);
-  
-  var json_str = JSON.encode(dict);
+  var json_str = JSON.encode(settings);
 
   new Request({url: '/command/setPreferences',
 			    method: 'post',
@@ -498,411 +1007,6 @@
 			    }
 		}).send();
 };
-
-updateDlLimitEnabled = function() {
-  if($defined($('dl_limit_checkbox').get('checked')) && $('dl_limit_checkbox').get('checked')) {
-    $('dl_limit_value').removeProperty('disabled');
-  } else {
-    $('dl_limit_value').set('disabled', 'true');
-  }
-}
-
-updateUpLimitEnabled = function() {
-  if($defined($('up_limit_checkbox').get('checked')) && $('up_limit_checkbox').get('checked')) {
-    $('up_limit_value').removeProperty('disabled');
-  } else {
-    $('up_limit_value').set('disabled', 'true');
-  }
-}
-
-updateMaxConnecEnabled = function() {
-  if($defined($('max_connec_checkbox').get('checked')) && $('max_connec_checkbox').get('checked')) {
-    $('max_connec_value').removeProperty('disabled');
-  } else {
-    $('max_connec_value').set('disabled', 'true');
-  }
-}
-
-updateMaxConnecPerTorrentEnabled = function() {
-  if($defined($('max_connec_per_torrent_checkbox').get('checked')) && $('max_connec_per_torrent_checkbox').get('checked')) {
-    $('max_connec_per_torrent_value').removeProperty('disabled');
-  } else {
-    $('max_connec_per_torrent_value').set('disabled', 'true');
-  }
-}
-
-updateMaxUploadsPerTorrentEnabled = function() {
-  if($defined($('max_uploads_per_torrent_checkbox').get('checked')) && $('max_uploads_per_torrent_checkbox').get('checked')) {
-    $('max_uploads_per_torrent_value').removeProperty('disabled');
-  } else {
-    $('max_uploads_per_torrent_value').set('disabled', 'true');
-  }
-}
-
-updateTempDirEnabled = function() {
-  if($defined($('temppath_checkbox').get('checked')) && $('temppath_checkbox').get('checked')) {
-    $('temppath_text').removeProperty('disabled');
-  } else {
-    $('temppath_text').set('disabled', 'true');
-  }
-}
-
-/*updateScanDirEnabled = function() {
-  if($defined($('scandir_checkbox').get('checked')) && $('scandir_checkbox').get('checked')) {
-    $('scandir_text').removeProperty('disabled');
-  } else {
-    $('scandir_text').set('disabled', 'true');
-  }
-}*/
-
-updateExportDirEnabled = function() {
-  if($defined($('exportdir_checkbox').get('checked')) && $('exportdir_checkbox').get('checked')) {
-    $('exportdir_text').removeProperty('disabled');
-  } else {
-    $('exportdir_text').set('disabled', 'true');
-  }
-}
-
-updateQueueingSystem = function() {
-  if($defined($('queueing_checkbox').get('checked')) && $('queueing_checkbox').get('checked')) {
-    $('max_active_dl_value').removeProperty('disabled');
-    $('max_active_up_value').removeProperty('disabled');
-    $('max_active_to_value').removeProperty('disabled');
-  } else {
-    $('max_active_dl_value').set('disabled', 'true');
-    $('max_active_up_value').set('disabled', 'true');
-    $('max_active_to_value').set('disabled', 'true');
-  }
-}
-
-updateMailNotification = function() {
-  if($defined($('mail_notification_checkbox').get('checked')) && $('mail_notification_checkbox').get('checked')) {
-    $('dest_email_txt').removeProperty('disabled');
-    $('smtp_server_txt').removeProperty('disabled');
-  } else {
-    $('dest_email_txt').set('disabled', 'true');
-    $('smtp_server_txt').set('disabled', 'true');
-  }
-}
-
-updateAutoRun = function() {
-  if($defined($('autorun_checkbox').get('checked')) && $('autorun_checkbox').get('checked')) {
-    $('autorunProg_txt').removeProperty('disabled');
-  } else {
-    $('autorunProg_txt').set('disabled', 'true');
-  }
-}
-
-updateFilterSettings = function() {
-  if($defined($('ipfilter_enabled_checkbox').get('checked')) && $('ipfilter_enabled_checkbox').get('checked')) {
-    $('ipfilter_text').removeProperty('disabled');
-  } else {
-    $('ipfilter_text').set('disabled', 'true');
-  }
-}
-
-updateDHTPortSettings = function() {
-  if($defined($('DHTPortDiffThanBT_checkbox').get('checked')) && $('DHTPortDiffThanBT_checkbox').get('checked')) {
-    $('DHTPort_txt').removeProperty('disabled');
-  } else {
-    $('DHTPort_txt').set('disabled', 'true');
-  }
-}
-
-updatePeerProxySettings = function() {
-  if($('peer_proxy_type_select').get('value') != "none") {
-    $('peer_proxy_host_text').removeProperty('disabled');
-    $('peer_proxy_port_value').removeProperty('disabled');
-    $('use_peer_proxy_checkbox').removeProperty('disabled');
-    if($('peer_proxy_type_select').get('value') != "socks5") {
-      $('peer_proxy_auth_checkbox').removeProperty('checked');
-      $('peer_proxy_auth_checkbox').set('disabled', 'true');
-      updatePeerProxyAuthSettings();
-    } else {
-      $('peer_proxy_auth_checkbox').removeProperty('disabled');
-    }
-  } else {
-    $('peer_proxy_host_text').set('disabled', 'true');
-    $('peer_proxy_port_value').set('disabled', 'true');
-    $('use_peer_proxy_checkbox').set('disabled', 'true');
-    $('peer_proxy_auth_checkbox').set('disabled', 'true');
-    $('peer_proxy_auth_checkbox').removeProperty('checked');
-    updatePeerProxyAuthSettings();
-  }
-}
-
-updatePeerProxyAuthSettings = function() {
-  if($defined($('peer_proxy_auth_checkbox').get('checked')) && $('peer_proxy_auth_checkbox').get('checked')) {
-    $('peer_proxy_username_text').removeProperty('disabled');
-    $('peer_proxy_password_text').removeProperty('disabled');
-  } else {
-    $('peer_proxy_username_text').set('disabled', 'true');
-    $('peer_proxy_password_text').set('disabled', 'true');
-  }
-}
-
-getWatchedFolders = function() {
-  var nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-  var folders = Array();
-  var download_in_place = Array();
-  for(var i=0; i<nb_folders; i+=1) {
-    var folder_path = $('text_watch_'+i).get('value').trim();
-    if(folder_path.length > 0) {
-      folders[folders.length] = folder_path;
-      if($defined($("cb_watch_"+i).get('checked')) && $("cb_watch_"+i).get('checked')) {
-        download_in_place[download_in_place.length] = 1;
-      } else {
-        download_in_place[download_in_place.length] = 0;
-      }
-    }
-  }
-  return [folders, download_in_place];
-}
-
-addWatchFolder = function() {
-  var new_folder = $("new_watch_folder_txt").get('value').trim();
-  if(new_folder.length <= 0) return;
-  var download_here = ($defined($("new_watch_folder_dl").get('checked')) && $("new_watch_folder_dl").get('checked'));
-  var myinput = new Element("input");
-  var i = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-  myinput.set('id', 'text_watch_'+i);
-  myinput.set('type', 'text');
-  myinput.set('value', new_folder);
-  var mycb = new Element("input");
-  mycb.set("type", "checkbox");
-  mycb.set("id", "cb_watch_"+i);
-  if(download_here) {
-    mycb.set("checked", "checked");
-  } else {
-    mycb.removeProperty('checked');
-  }
-  WatchedFoldersTable.push([myinput, mycb]);
-  // Clear fields
-  $("new_watch_folder_txt").set('value', '');
-  $("new_watch_folder_dl").removeProperty('checked');
-}
-
-loadPreferences = function() {
-  var url = 'json/preferences';
-  var request = new Request.JSON({
-          url: url,
-          method: 'get',
-          noCache: true,
-          onFailure: function() {
-            alert("Could not contact qBittorrent");
-          },
-          onSuccess: function(pref) {
-                  if(pref){
-                    // Connection
-                    var listen_port = pref.listen_port.toInt();
-                    $('port_value').set('value', listen_port);
-                    
-                    if(pref.upnp) {
-                      $('upnp_checkbox').set('checked', 'checked');
-                    } else {
-                      $('upnp_checkbox').removeProperty('checked');
-                    }
-                    
-                    var dl_limit = pref.dl_limit.toInt();
-                    if(dl_limit <= 0) {
-                      $('dl_limit_checkbox').removeProperty('checked');
-                    } else {
-                      $('dl_limit_checkbox').set('checked', 'checked');
-                      $('dl_limit_value').set('value', dl_limit);
-                    }
-                    updateDlLimitEnabled();
-                    var up_limit = pref.up_limit.toInt();
-                    if(up_limit <= 0) {
-                      $('up_limit_checkbox').removeProperty('checked');
-                    } else {
-                      $('up_limit_checkbox').set('checked', 'checked');
-                      $('up_limit_value').set('value', up_limit);
-                    }
-                    updateUpLimitEnabled();
-                    var max_connec = pref.max_connec.toInt();
-                    if(max_connec <= 0) {
-                      $('max_connec_checkbox').removeProperty('checked');
-                      $('max_connec_value').set('value', 500);
-                    } else {
-                      $('max_connec_checkbox').set('checked', 'checked');
-                      $('max_connec_value').set('value', max_connec);
-                    }
-                    updateMaxConnecEnabled();
-                    var max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
-                    if(max_connec_per_torrent <= 0) {
-                      $('max_connec_per_torrent_checkbox').removeProperty('checked');
-                      $('max_connec_per_torrent_value').set('value', 100);
-                    } else {
-                      $('max_connec_per_torrent_checkbox').set('checked', 'checked');
-                      $('max_connec_per_torrent_value').set('value', max_connec_per_torrent);
-                    }
-                    updateMaxConnecPerTorrentEnabled();
-                    var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
-                    if(max_uploads_per_torrent <= 0) {
-                      $('max_uploads_per_torrent_checkbox').removeProperty('checked');
-                      $('max_uploads_per_torrent_value').set('value', 4);
-                    } else {
-                      $('max_uploads_per_torrent_checkbox').set('checked', 'checked');
-                      $('max_uploads_per_torrent_value').set('value', max_uploads_per_torrent);
-                    }
-                    updateMaxUploadsPerTorrentEnabled();
-                    // Bittorrent
-                    var dht = pref.dht; //bool
-                    if(dht) {
-                      $('dht_checkbox').set('checked', 'checked');
-                    } else {
-                      $('dht_checkbox').removeProperty('checked');
-                    }
-                    var dhtSameAsBT = pref.dhtSameAsBT;
-                    if(dhtSameAsBT) {
-                      $('DHTPortDiffThanBT_checkbox').removeProperty('checked');
-                    } else {
-                      $('DHTPortDiffThanBT_checkbox').set('checked', 'checked');
-                    }
-                    $("DHTPort_txt").set("value", pref.dht_port);
-                    updateDHTPortSettings();
-                    var pex = pref.pex; //bool
-                    if(pex) {
-                      $('pex_checkbox').set('checked', 'checked');
-                    } else {
-                      $('pex_checkbox').removeProperty('checked');
-                    }
-                    var lsd = pref.lsd; //bool
-                    if(lsd) {
-                      $('lsd_checkbox').set('checked', 'checked');
-                    } else {
-                      $('lsd_checkbox').removeProperty('checked');
-                    }
-                    var encryption = pref.encryption.toInt();
-                    $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-                    // Downloads
-                    var save_path = pref.save_path;
-                    $("savepath_text").set('value', save_path);
-                    var temp_path_enabled = pref.temp_path_enabled;
-                    if(temp_path_enabled) {
-                      $('temppath_checkbox').set('checked', 'checked');
-                    } else {
-                      $('temppath_checkbox').removeProperty('checked');
-                    }
-                    var temp_path = pref.temp_path;
-                    $('temppath_text').set('value', temp_path);
-                    updateTempDirEnabled();
-                    var i = 0;
-                    for(i=0; i<pref.scan_dirs.length; i+=1) {
-                      var myinput = new Element("input");
-                      myinput.set('id', 'text_watch_'+i);
-                      myinput.set('type', 'text');
-                      myinput.set('value', pref.scan_dirs[i]);
-                      var mycb = new Element("input");
-                      mycb.set("type", "checkbox");
-                      mycb.set("id", "cb_watch_"+i);
-                      if(pref.download_in_scan_dirs[i] == "true" || pref.download_in_scan_dirs[i] == 1) {
-                        mycb.set("checked", "checked");
-                      } else {
-                        mycb.removeProperty('checked');
-                      }
-                      WatchedFoldersTable.push([myinput, mycb]);
-                    }
-
-                    var export_dir_enabled = pref.export_dir_enabled;
-                    if(export_dir_enabled) {
-                      $('exportdir_text').set('value', pref.export_dir);
-                      $('exportdir_checkbox').set('checked', 'checked');
-                    } else {
-                      $('exportdir_text').set('value', '');
-                      $('exportdir_checkbox').removeProperty('checked');
-                    }
-                    updateExportDirEnabled();
-                    var mail_notification_enabled = pref.mail_notification_enabled;
-                    if(mail_notification_enabled) {
-                      $('mail_notification_checkbox').set('checked', 'checked');
-                    } else {
-                      $('mail_notification_checkbox').removeProperty('checked');
-                    }
-                    $('dest_email_txt').set('value', pref.mail_notification_email);
-                    $('smtp_server_txt').set('value', pref.mail_notification_smtp);
-                    updateMailNotification();
-                    var autorun_enabled = pref.autorun_enabled;
-                    if(autorun_enabled) {
-                      $('autorun_checkbox').set('checked', 'checked');
-                    } else {
-                      $('autorun_checkbox').removeProperty('checked');
-                    }
-                    $('autorunProg_txt').set('value', pref.autorun_program);
-                    updateAutoRun();
-                    if(pref.preallocate_all) {
-                      $('preallocateall_checkbox').set('checked', 'checked');
-                    } else {
-                      $('preallocateall_checkbox').removeProperty('checked');
-                    }
-                    if($defined(pref.incomplete_files_ext)) {
-                      $('appendexttr').removeClass('invisible');
-                      if(pref.incomplete_files_ext) {
-                        $('appendext_checkbox').set('checked', 'checked');
-                      } else {
-                        $('appendext_checkbox').removeProperty('checked');
-                      }
-                    } else {
-                      $('appendexttr').addClass('invisible');
-                    }
-                    if(pref.queueing_enabled) {
-                      $('queueing_checkbox').set('checked', 'checked');
-                    } else {
-                      $('queueing_checkbox').removeProperty('checked');
-                    }
-                    $('max_active_dl_value').set('value', pref.max_active_downloads.toInt());
-                    $('max_active_up_value').set('value', pref.max_active_uploads.toInt());
-                    $('max_active_to_value').set('value', pref.max_active_torrents.toInt());
-                    updateQueueingSystem();
-                    // IP Filter
-                    if(pref.ip_filter_enabled) {
-                      $('ipfilter_enabled_checkbox').set('checked', 'checked');
-                    } else {
-                      $('ipfilter_enabled_checkbox').removeProperty('checked');
-                    }
-                    $('ipfilter_text').set('value', pref.ip_filter_path);
-                    updateFilterSettings();
-                    // PEER Proxy
-                    switch(pref.proxy_type.toInt()) {
-                      case 5: //SOCKS4
-                        $('peer_proxy_type_select').set('value', 'socks4');
-                        break;
-                      case 2: // SOCKS5
-                      case 4: // SOCKS5_PW
-                        $('peer_proxy_type_select').set('value', 'socks5');
-                        break;
-                      case 1: // HTTP
-                      case 3: // HTTP_PW
-                        $('peer_proxy_type_select').set('value', 'http');
-                        break;
-                      default: // NONE
-                      $('peer_proxy_type_select').set('value', 'none');
-                    }
-                    updatePeerProxySettings();
-                    $('peer_proxy_host_text').set('value', pref.proxy_ip);
-                    $('peer_proxy_port_value').set('value', pref.proxy_port);
-                    if(pref.proxy_peer_connections) {
-                      $('use_peer_proxy_checkbox').set('checked', 'checked');
-                    } else {
-                      $('use_peer_proxy_checkbox').removeProperty('checked');
-                    }
-                    if(pref.proxy_auth_enabled) {
-                      $('peer_proxy_auth_checkbox').set('checked', 'checked');
-                    } else {
-                      $('peer_proxy_auth_checkbox').removeProperty('checked');
-                    }
-                    updatePeerProxyAuthSettings();
-                    $('peer_proxy_username_text').set('value', pref.proxy_username);
-                    $('peer_proxy_password_text').set('value', pref.proxy_password);
-                    // Web UI
-                    $('webui_port_value').set('value', pref.web_ui_port);
-                    $('webui_username_text').set('value', pref.web_ui_username);
-                    $('webui_password_text').set('value', pref.web_ui_password);
-                    $('locale_select').set('value', pref.locale);
-                  }
-          }
-  }).send();
-}
 
 loadPreferences();
 </script>

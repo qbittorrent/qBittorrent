@@ -41,13 +41,13 @@
 #include <QHash>
 
 QT_BEGIN_NAMESPACE
-struct QTextStream;
+class QTextStream;
 #ifndef QT_NO_OPENSSL
-struct QSslSocket;
+class QSslSocket;
 #else
-struct QTcpSocket;
+class QTcpSocket;
 #endif
-struct QTextCodec;
+class QTextCodec;
 QT_END_NAMESPACE
 
 class Smtp : public QObject {

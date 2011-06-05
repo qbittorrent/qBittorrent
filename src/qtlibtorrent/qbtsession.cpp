@@ -128,7 +128,8 @@ QBtSession::QBtSession()
   //s->add_extension(&create_metadata_plugin);
   s->add_extension(&create_ut_metadata_plugin);
 #if LIBTORRENT_VERSION_MINOR > 14
-  s->add_extension(&create_lt_trackers_plugin);
+  if(pref.trackerExchangeEnabled())
+    s->add_extension(&create_lt_trackers_plugin);
 #endif
   if(pref.isPeXEnabled()) {
     PeXEnabled = true;
@@ -393,7 +394,7 @@ void QBtSession::configureSession() {
   sessionSettings.auto_scrape_interval = 1200; // 20 minutes
 #if LIBTORRENT_VERSION_MINOR > 14
   sessionSettings.announce_to_all_trackers = true;
-  sessionSettings.announce_to_all_tiers = true; //uTorrent behavior
+  sessionSettings.announce_to_all_tiers = false;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif
   sessionSettings.cache_size = pref.diskCacheSize()*64;
@@ -633,6 +634,22 @@ void QBtSession::initWebUi() {
     } else {
       httpServer = new HttpServer(3000, this);
     }
+
+#ifndef QT_NO_OPENSSL
+    if (pref.isWebUiHttpsEnabled()) {
+      QSslCertificate cert(pref.getWebUiHttpsCertificate());
+      QSslKey key;
+      const QByteArray raw_key = pref.getWebUiHttpsKey();
+      key = QSslKey(raw_key, QSsl::Rsa);
+      if (!cert.isNull() && !key.isNull())
+        httpServer->enableHttps(cert, key);
+      else
+        httpServer->disableHttps();
+    } else {
+      httpServer->disableHttps();
+    }
+#endif
+
     httpServer->setAuthorization(username, password);
     httpServer->setlocalAuthEnabled(pref.isWebUiLocalAuthEnabled());
     if(!httpServer->isListening()) {

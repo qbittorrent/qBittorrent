@@ -63,7 +63,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;(new line)
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
+p, li { white-space: pre-wrap; }(new line)
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;(new line)
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Um cliente BitTorrent avançado programado em C++, baseado no kit de ferramentas Qt4 e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;(new line)
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;(new line)
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent no Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -172,16 +178,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished">Exibir notificações do programa na tela</translation>
+        <translation>Exibir notificações do programa na tela</translation>
     </message>
     <message>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração</translation>
     </message>
     <message>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation type="unfinished">Valor</translation>
+        <translation>Valor</translation>
+    </message>
+    <message>
+        <source>Exchange trackers with other peers</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -340,19 +350,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar expressões regulares</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo Regex: Usar expressões regulares estilo Perl</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo coringa: você pode usar&lt;ul&gt;&lt;li&gt;? para atingir um caracter&lt;/li&gt;&lt;li&gt;* para atingir zero ou mais de vários caracteres&lt;/li&gt;&lt;li&gt;Espaços vazios contam como operador AND&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo coringa: você pode usar&lt;ul&gt;&lt;li&gt;? para atingir um caracter&lt;/li&gt;&lt;li&gt;* para atingir zero ou mais de vários caracteres&lt;/li&gt;&lt;li&gt;| é usado como como operador OR&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -616,43 +626,43 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seu DNS dinâmico foi atualizado com sucesso.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: O serviço está temporariamente inacessível, tentarei novamente em 30 minutos.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: o hostname não existe na conta.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: Usuário/Senha inválido(s).</translation>
     </message>
     <message>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: qBittorrent está na lista negra por este serviço, por favor envie este bug para http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: %1 foi retornado pelo serviço, por favor envie este bug para http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: Seu usuário foi bloqueado por motivo de abuso.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: O domínio é inválido.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: Usuário informado é muito pequeno.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de DNS dinâmico: A senha é muito pequena.</translation>
     </message>
 </context>
 <context>
@@ -1591,19 +1601,19 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished">Servidor HTTP</translation>
+        <translation>Servidor HTTP</translation>
     </message>
     <message>
         <source>Torrent path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho torrent</translation>
     </message>
     <message>
         <source>Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do torrent</translation>
     </message>
     <message>
         <source>The following parameters are supported:</source>
-        <translation type="unfinished"></translation>
+        <translation>Os parâmetros a seguir são suportados:</translation>
     </message>
 </context>
 <context>
@@ -2184,7 +2194,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Conexão</translation>
+        <translation>Conexão</translation>
     </message>
 </context>
 <context>
@@ -2700,119 +2710,147 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Os parâmetros a seguir são suportados:(new line)
+&lt;ul&gt;(new line)
+&lt;li&gt;%f: Caminho do Torrent&lt;/li&gt;(new line)
+&lt;li&gt;%n: Nome do Torrent&lt;/li&gt;(new line)
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo do icone da bandeja:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monocromático (Dark theme)</translation>
     </message>
     <message>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monocromático (Light theme)</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Este servidor espera por uma conexão segura (SSL)</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Linguagem da interface de usuário:</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de transferência</translation>
     </message>
     <message>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar qBittorrent na área de notificação</translation>
     </message>
     <message>
         <source>Hard Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Disco Rígido</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Escutando Porta</translation>
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limites de Conexão</translation>
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor Proxy</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents na espera</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Taxa limite de compartilhamento</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Use UPnP / NAT-PMP para redirecionar a porta do meu roteador</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualize meu nome de domínio dinâmico</translation>
     </message>
     <message>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serviço:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de domínio:</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite Global</translation>
     </message>
     <message>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar taxa limite para conexões uTP </translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar taxa limite para o transporte fora da cabeça</translation>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Taxa limite global alternativa</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Agende para usar taxas limite alternativas</translation>
     </message>
     <message>
         <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar manutenção de largura de banda (uTP)</translation>
     </message>
     <message>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Então, o servidor proxy é somente usado para conexões de tracker</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar proxy para conexões de peer</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar extensão .!qB para arquivos incompletos</translation>
+    </message>
+    <message>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>Usar HTTPS ao invez de HTTP</translation>
+    </message>
+    <message>
+        <source>Import SSL Certificate</source>
+        <translation>Importar certificado SSL</translation>
+    </message>
+    <message>
+        <source>Import SSL Key</source>
+        <translation>Importar chave SSL</translation>
+    </message>
+    <message>
+        <source>Certificate:</source>
+        <translation>Certificado:</translation>
+    </message>
+    <message>
+        <source>Key:</source>
+        <translation>Chave:</translation>
+    </message>
+    <message>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informações sobre certificados&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -4073,11 +4111,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Invalid torrent file</source>
-        <translation type="unfinished">Arquivo torrent inválido</translation>
+        <translation>Arquivo torrent inválido</translation>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation type="unfinished">Este não é um arquivo torrent válido.</translation>
+        <translation>Este não é um arquivo torrent válido.</translation>
     </message>
 </context>
 <context>
@@ -5402,6 +5440,30 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>Successfully refreshed</source>
         <translation>Atualizado com sucesso</translation>
+    </message>
+    <message>
+        <source>Invalid key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL certificate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL Certificate (*.crt *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL Key (*.key *.pem)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

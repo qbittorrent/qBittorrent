@@ -42,7 +42,7 @@
 RssFeed::RssFeed(RssFolder* parent, const QString &url): m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
   m_refreshed(false), m_downloadFailure(false), m_loading(false) {
   qDebug() << Q_FUNC_INFO << url;
-  m_url = QUrl(url).toString();
+  m_url = QUrl::fromEncoded(url.toUtf8()).toString();
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
   const QVariantList old_items = all_old_items.value(m_url, QVariantList()).toList();

@@ -38,14 +38,19 @@
 #include <QTime>
 #include <QRegExp>
 #include <QTimer>
+
+#ifndef QT_NO_OPENSSL
 #include <QSslSocket>
+#else
+#include <QTcpSocket>
+#endif
 
 using namespace libtorrent;
 
 const int BAN_TIME = 3600000; // 1 hour
 
 class UnbanTimer: public QTimer {
-  public:
+public:
   UnbanTimer(QObject *parent, QString peer_ip): QTimer(parent), peer_ip(peer_ip){
     setSingleShot(true);
     setInterval(BAN_TIME);
@@ -88,12 +93,13 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   username = pref.getWebUiUsername().toLocal8Bit();
   password_ha1 = pref.getWebUiPassword().toLocal8Bit();
   m_localAuth = pref.isWebUiLocalAuthEnabled();
+#ifndef QT_NO_OPENSSL
   m_https = pref.isWebUiHttpsEnabled();
   if (m_https) {
-    m_certificate = pref.getWebUiHttpsCertificate();
-    m_key = pref.getWebUiHttpsKey();
+    m_certificate = QSslCertificate(pref.getWebUiHttpsCertificate());
+    m_key = QSslKey(pref.getWebUiHttpsKey(), QSsl::Rsa);
   }
-  connect(this, SIGNAL(newConnection()), this, SLOT(newHttpConnection()));
+#endif
   manager = new EventManager(this);
   //add torrents
   std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
@@ -147,52 +153,58 @@ HttpServer::~HttpServer()
   delete manager;
 }
 
+#ifndef QT_NO_OPENSSL
+void HttpServer::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
+{
+  m_certificate = certificate;
+  m_key = key;
+  m_https = true;
+}
+
+void HttpServer::disableHttps()
+{
+  m_https = false;
+  m_certificate.clear();
+  m_key.clear();
+}
+#endif
+
 void HttpServer::incomingConnection(int socketDescriptor)
 {
   QTcpSocket *serverSocket;
-  QSslSocket *serverSslSocket;
+#ifndef QT_NO_OPENSSL
   if (m_https)
-  {
-    serverSslSocket = new QSslSocket;
-    serverSocket = serverSslSocket;
-  }
+    serverSocket = new QSslSocket(this);
   else
-  {
-    serverSocket = new QTcpSocket;
-  }
-  if (serverSocket->setSocketDescriptor(socketDescriptor))
-  {
-    if (m_https)
-    {
-      serverSslSocket->setProtocol(QSsl::AnyProtocol);
-      serverSslSocket->setPrivateKey(m_key);
-      serverSslSocket->setLocalCertificate(m_certificate);
-      serverSslSocket->startServerEncryption();
+#endif
+    serverSocket = new QTcpSocket(this);
+  if (serverSocket->setSocketDescriptor(socketDescriptor)) {
+#ifndef QT_NO_OPENSSL
+    if (m_https) {
+      static_cast<QSslSocket*>(serverSocket)->setProtocol(QSsl::AnyProtocol);
+      static_cast<QSslSocket*>(serverSocket)->setPrivateKey(m_key);
+      static_cast<QSslSocket*>(serverSocket)->setLocalCertificate(m_certificate);
+      static_cast<QSslSocket*>(serverSocket)->startServerEncryption();
     }
-    addPendingConnection(serverSocket);
-  }
-  else
-  {
-    delete serverSocket;
+#endif
+    handleNewConnection(serverSocket);
+  } else {
+    serverSocket->deleteLater();
   }
 }
 
-void HttpServer::newHttpConnection()
+void HttpServer::handleNewConnection(QTcpSocket *socket)
 {
-  QTcpSocket *socket;
-  while((socket = nextPendingConnection()))
-  {
-    HttpConnection *connection = new HttpConnection(socket, this);
-    //connect connection to QBtSession::instance()
-    connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(downloadUrlAndSkipDialog(QString)));
-    connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(addMagnetSkipAddDlg(QString)));
-    connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), QBtSession::instance(), SLOT(addTorrent(QString, bool, QString, bool)));
-    connect(connection, SIGNAL(deleteTorrent(QString, bool)), QBtSession::instance(), SLOT(deleteTorrent(QString, bool)));
-    connect(connection, SIGNAL(pauseTorrent(QString)), QBtSession::instance(), SLOT(pauseTorrent(QString)));
-    connect(connection, SIGNAL(resumeTorrent(QString)), QBtSession::instance(), SLOT(resumeTorrent(QString)));
-    connect(connection, SIGNAL(pauseAllTorrents()), QBtSession::instance(), SLOT(pauseAllTorrents()));
-    connect(connection, SIGNAL(resumeAllTorrents()), QBtSession::instance(), SLOT(resumeAllTorrents()));
-  }
+  HttpConnection *connection = new HttpConnection(socket, this);
+  //connect connection to QBtSession::instance()
+  connect(connection, SIGNAL(UrlReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(downloadUrlAndSkipDialog(QString)));
+  connect(connection, SIGNAL(MagnetReadyToBeDownloaded(QString)), QBtSession::instance(), SLOT(addMagnetSkipAddDlg(QString)));
+  connect(connection, SIGNAL(torrentReadyToBeDownloaded(QString, bool, QString, bool)), QBtSession::instance(), SLOT(addTorrent(QString, bool, QString, bool)));
+  connect(connection, SIGNAL(deleteTorrent(QString, bool)), QBtSession::instance(), SLOT(deleteTorrent(QString, bool)));
+  connect(connection, SIGNAL(pauseTorrent(QString)), QBtSession::instance(), SLOT(pauseTorrent(QString)));
+  connect(connection, SIGNAL(resumeTorrent(QString)), QBtSession::instance(), SLOT(resumeTorrent(QString)));
+  connect(connection, SIGNAL(pauseAllTorrents()), QBtSession::instance(), SLOT(pauseAllTorrents()));
+  connect(connection, SIGNAL(resumeAllTorrents()), QBtSession::instance(), SLOT(resumeAllTorrents()));
 }
 
 void HttpServer::onTimer() {

@@ -80,7 +80,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Напредни Бит-торен клијент програмиран у C++, базиран на Qt4 програмском алату и libtorrent-rasterbar-у. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -191,16 +197,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished">Прикажи програмска обавештења на екрану</translation>
+        <translation>Прикажи програмска обавештења на екрану</translation>
     </message>
     <message>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Подешавање</translation>
     </message>
     <message>
         <source>Value</source>
         <comment>Value set for this setting</comment>
-        <translation type="unfinished">Вредност</translation>
+        <translation>Вредност</translation>
+    </message>
+    <message>
+        <source>Exchange trackers with other peers</source>
+        <translation>Размена претилаца са осталим учесницима</translation>
     </message>
 </context>
 <context>
@@ -360,19 +370,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Користите регуларне изразе</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Regex мод: користи слично Perl-у регуларне изразе</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Џокер мод: можете користити&lt;ul&gt;&lt;li&gt;? да представља било који појединачни карактер&lt;/li&gt;&lt;li&gt;* да представља нулу или било које друге карактере&lt;/li&gt;&lt;li&gt;Размак број као AND операторе&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Џокер мод: можете користити&lt;ul&gt;&lt;li&gt;? да представља било који појединачни карактер&lt;/li&gt;&lt;li&gt;* да представља нулу или било које друге карактере&lt;/li&gt;&lt;li&gt;| се користи као OR оператор&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -630,7 +640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Тастер</translation>
+        <translation>Кључ</translation>
     </message>
     <message>
         <source>Value</source>
@@ -640,7 +650,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation>Уобичајени тастери за колачиће су : &apos;%1&apos;, &apos;%2&apos;.
+        <translation>Уобичајени кључеви за колачиће су : &apos;%1&apos;, &apos;%2&apos;.
 Требало би да добијете ове информације из подешавања вашег Веб читача.</translation>
     </message>
 </context>
@@ -648,43 +658,43 @@ You should get this information from your Web browser preferences.</source>
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваш динамички DNS је успешно ажуриран.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: сервис је привремено недоступан, биће проверено за 30 минута.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: наведено име рачунара не постоји на специфираном налогу.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: Погрешно корисничко име/лозинка.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: qBittorrent је на црној листи сервиса, пријавите грешку на http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: %1 је враћен од сервиса, пријавите грешку на http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: Ваше корисничко име је блокирано због злоупотребе.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: Наведено име домена је погрешно.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: Наведено корисничко име је прекратко.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Динамички DNS грешка: Наведена лозинка је прекратка.</translation>
     </message>
 </context>
 <context>
@@ -1562,11 +1572,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>Само један Линк по линији</translation>
+        <translation>Само један линк по линији</translation>
     </message>
     <message>
         <source>Download local torrent</source>
-        <translation>Преузми локални Торент</translation>
+        <translation>Преузми локални торент</translation>
     </message>
     <message>
         <source>Torrent files were correctly added to download list.</source>
@@ -1643,19 +1653,19 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished">HTTP Сервер</translation>
+        <translation>HTTP Сервер</translation>
     </message>
     <message>
         <source>Torrent path</source>
-        <translation type="unfinished"></translation>
+        <translation>Путања Трента</translation>
     </message>
     <message>
         <source>Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>Име Торента</translation>
     </message>
     <message>
         <source>The following parameters are supported:</source>
-        <translation type="unfinished"></translation>
+        <translation>Следећи параметри су подржани:</translation>
     </message>
 </context>
 <context>
@@ -1796,7 +1806,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Алтернативна ограничења брзине</translation>
+        <translation>Алтернативно ограничење брзине</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -2244,7 +2254,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Конекције</translation>
+        <translation>Конекције</translation>
     </message>
 </context>
 <context>
@@ -2653,6 +2663,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
+        <translatorcomment>peer-пир-учесник</translatorcomment>
         <translation>Размењуј peer-ове са компатибилним Bittorrent клијентима (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
@@ -2777,115 +2788,141 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Кориснички интерфејс Језик:</translation>
     </message>
     <message>
         <source>Transfer List</source>
-        <translation type="unfinished"></translation>
+        <translation>Трансфер листа</translation>
     </message>
     <message>
         <source>Show qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи qBittorrent на системској палети</translation>
     </message>
     <message>
         <source>Tray icon style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Изглед системске иконе:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Нормалан</translation>
+        <translation>Нормалан</translation>
     </message>
     <message>
         <source>Monochrome (Dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Једнобојан (Тамна тема)</translation>
     </message>
     <message>
         <source>Monochrome (Light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Једнобојан (Светла тема)</translation>
     </message>
     <message>
         <source>Hard Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Хард диск</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај сервер захтева безбедну конекцију (SSL)</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Пријемни порт</translation>
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Конекциона ограничења</translation>
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокси сервер</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Општа вредност ограничења</translation>
     </message>
     <message>
         <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући управљање пропусног опсега (uTP)</translation>
     </message>
     <message>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Примени ведност ограничења на  uTP конекције</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>Примени ведносна ограничења код прекорачење преноса</translation>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Алтернатива општег ограничења брзине</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Распоред коришћења алтернативног ограничења брзине</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Опслуживање Торета</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничење индекса дељења</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи UPnP / NAT-PMP преусмерење порта са мог рутера</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнови име мог динамичког домена</translation>
     </message>
     <message>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервис:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>Регистар</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Име домена:</translation>
     </message>
     <message>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>tracker-пратилац</translatorcomment>
+        <translation>У супротном, прокси сервер се једино користи за конекције tracker-а(пратилаца)</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>peer-учесник</translatorcomment>
+        <translation>Користи прокси за peer(учесничке) конекције</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај .!qB екстензију у некомплетне фајлове</translation>
+    </message>
+    <message>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>Користи HTTPS уместо HTTP</translation>
+    </message>
+    <message>
+        <source>Import SSL Certificate</source>
+        <translation>Увоз SSL сертификата</translation>
+    </message>
+    <message>
+        <source>Import SSL Key</source>
+        <translation>Увоз SSL кључа</translation>
+    </message>
+    <message>
+        <source>Certificate:</source>
+        <translation>Сертификат:</translation>
+    </message>
+    <message>
+        <source>Key:</source>
+        <translation>Кључ:</translation>
+    </message>
+    <message>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -2989,6 +3026,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent hash:</source>
+        <translatorcomment>hash-контролна сума</translatorcomment>
         <translation>Торент hash:</translation>
     </message>
     <message>
@@ -3844,7 +3882,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Searching...</source>
-        <translation>Претражи...</translation>
+        <translation>Претраживање...</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4926,7 +4964,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation>Запамти изабрано</translation>
+        <translation>Запамти избор</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
@@ -5530,6 +5568,38 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfully refreshed</source>
         <translation>Успешно обновљен</translation>
+    </message>
+    <message>
+        <source>SSL Certificate (*.crt)</source>
+        <translation type="obsolete">SSL Сертификат (*.crt)</translation>
+    </message>
+    <message>
+        <source>SSL Key (*.key)</source>
+        <translation type="obsolete">SSL Кључ (*.key)</translation>
+    </message>
+    <message>
+        <source>Invalid key</source>
+        <translation>Погрешан кључ</translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL key.</source>
+        <translation>Ово није валидан SSL кључ.</translation>
+    </message>
+    <message>
+        <source>Invalid certificate</source>
+        <translation>Неважећи сертификат</translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL certificate.</source>
+        <translation>Ово није валидан SSL сертификат.</translation>
+    </message>
+    <message>
+        <source>SSL Certificate (*.crt *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL Key (*.key *.pem)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

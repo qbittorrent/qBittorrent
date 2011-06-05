@@ -205,6 +205,10 @@ p, li { white-space: pre-wrap; }
         <comment>Value set for this setting</comment>
         <translation>Значение</translation>
     </message>
+    <message>
+        <source>Exchange trackers with other peers</source>
+        <translation>Обмениваться трекерами с другими пирами</translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -2891,6 +2895,30 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Добавить расширение .!qB к незаконченным файлам</translation>
     </message>
+    <message>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>Использовать HTTPS вместо HTTP</translation>
+    </message>
+    <message>
+        <source>Import SSL Certificate</source>
+        <translation>Импортировать сертификат SSL</translation>
+    </message>
+    <message>
+        <source>Import SSL Key</source>
+        <translation>Импортировать ключ SSL</translation>
+    </message>
+    <message>
+        <source>Certificate:</source>
+        <translation>Сертификат:</translation>
+    </message>
+    <message>
+        <source>Key:</source>
+        <translation>Ключ:</translation>
+    </message>
+    <message>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Информация о сертификатах&lt;/a&gt;</translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -5491,6 +5519,30 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfully refreshed</source>
         <translation>Успешно обновлён</translation>
+    </message>
+    <message>
+        <source>SSL Certificate (*.crt *.pem)</source>
+        <translation>SSL сертификат (*.crt *.pem)</translation>
+    </message>
+    <message>
+        <source>SSL Key (*.key *.pem)</source>
+        <translation>SSL ключ (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Invalid key</source>
+        <translation>Недействительный ключ</translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL key.</source>
+        <translation>Это не действительный SSL ключ.</translation>
+    </message>
+    <message>
+        <source>Invalid certificate</source>
+        <translation>Недействительный сертификат</translation>
+    </message>
+    <message>
+        <source>This is not a valid SSL certificate.</source>
+        <translation>Это не действительный SSL сертификат.</translation>
     </message>
 </context>
 <context>

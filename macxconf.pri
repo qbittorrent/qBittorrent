@@ -3,7 +3,7 @@ BINDIR = /usr/local/bin
 DATADIR = /usr/local/share
 
 INCLUDEPATH += /usr/local/include/libtorrent /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
-LIBS += -ltorrent-rasterbar -lcrypto -L/opt/local/lib -lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt -framework Cocoa -framework Carbon
+LIBS += -ltorrent-rasterbar -lcrypto -L/opt/local/lib -lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt -framework Cocoa -framework Carbon -framework IOKit
 
 document_icon.path = Contents/Resources
 document_icon.files = Icons/qBitTorrentDocument.icns

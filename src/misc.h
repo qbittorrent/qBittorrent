@@ -81,7 +81,7 @@ public:
   }
 
   static inline libtorrent::sha1_hash toSha1Hash(const QString &hash) {
-    return libtorrent::sha1_hash(qPrintable(hash));
+    return libtorrent::sha1_hash(hash.toAscii().constData());
   }
 
   static void chmod644(const QDir& folder);

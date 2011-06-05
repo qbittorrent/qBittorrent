@@ -62,7 +62,6 @@ using namespace libtorrent;
 PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, TransferListWidget *transferList):
   QWidget(parent), transferList(transferList), main_window(main_window) {
   setupUi(this);
-  loadFilesListState();
 
   // Icons
   deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
@@ -131,7 +130,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
 
 PropertiesWidget::~PropertiesWidget() {
   qDebug() << Q_FUNC_INFO << "ENTER";
-  saveFilesListState();
   delete refreshTimer;
   delete trackerList;
   delete peersList;
@@ -276,16 +274,6 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
   loadDynamicData();
 }
 
-void PropertiesWidget::loadFilesListState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray());
-}
-
-void PropertiesWidget::saveFilesListState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
-}
-
 void PropertiesWidget::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Restore splitter sizes
@@ -295,6 +283,9 @@ void PropertiesWidget::readSettings() {
     slideSizes << sizes_str.last().toInt();
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
+  }
+  if (!filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray())) {
+    filesList->header()->resizeSection(0, 400); //Default
   }
   const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
   m_tabBar->setCurrentIndex(current_tab);
@@ -317,6 +308,7 @@ void PropertiesWidget::saveSettings() {
   if(sizes.size() == 2) {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
   }
+  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
   // Remember current tab
   settings.setValue("TorrentProperties/CurrentTab", m_tabBar->currentIndex());
 }
@@ -402,10 +394,12 @@ void PropertiesWidget::loadDynamicData() {
       // Files progress
       if(h.is_valid() && h.has_metadata()) {
         qDebug("Updating priorities in files tab");
+        filesList->setUpdatesEnabled(false);
         std::vector<size_type> fp;
         h.file_progress(fp);
         PropListModel->model()->updateFilesPriorities(h.file_priorities());
         PropListModel->model()->updateFilesProgress(fp);
+        filesList->setUpdatesEnabled(true);
       }
     }
   } catch(invalid_handle e) {}

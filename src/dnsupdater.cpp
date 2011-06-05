@@ -35,7 +35,7 @@
 #include "qbtsession.h"
 
 DNSUpdater::DNSUpdater(QObject *parent) :
-  QObject(parent), m_state(OK)
+  QObject(parent), m_state(OK), m_service(DNS::NONE)
 {
   updateCredentials();
 

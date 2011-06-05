@@ -20,7 +20,7 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                     #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
                       USE_ICON_THEME,
                     #endif
-                      CONFIRM_DELETE_TORRENT,
+                      CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
                       ROW_COUNT};
 
 class AdvancedSettings: public QTableWidget {
@@ -29,7 +29,8 @@ class AdvancedSettings: public QTableWidget {
 private:
   QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
   QCheckBox cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
-  cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion;
+  cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
+  cb_enable_tracker_ext;
   QComboBox combo_iface;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox cb_update_check;
@@ -108,6 +109,8 @@ public slots:
     pref.useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
+    // Tracker exchange
+    pref.setTrackerEnabled(cb_enable_tracker_ext.isChecked());
   }
 
 signals:
@@ -232,6 +235,9 @@ private slots:
     // Torrent deletion confirmation
     cb_confirm_torrent_deletion.setChecked(pref.confirmTorrentDeletion());
     setRow(CONFIRM_DELETE_TORRENT, tr("Confirm torrent deletion"), &cb_confirm_torrent_deletion);
+    // Tracker exchange
+    cb_enable_tracker_ext.setChecked(pref.trackerExchangeEnabled());
+    setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
   }
 
 };

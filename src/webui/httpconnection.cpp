@@ -116,7 +116,7 @@ QString HttpConnection::translateDocument(QString data) {
   bool found = false;
   do {
     found = false;
-    QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
+    static QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
     i = regex.indexIn(data, i);
     if(i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
@@ -128,7 +128,8 @@ QString HttpConnection::translateDocument(QString data) {
         ++context_index;
       }while(translation == word && context_index < 15);
       // Remove keyboard shortcuts
-      translation = translation.replace("&", "");
+      static QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
+      translation = translation.replace(mnemonic, "");
       //qDebug("Translation is %s", translation.toUtf8().data());
       data = data.replace(i, regex.matchedLength(), translation);
       i += translation.length();

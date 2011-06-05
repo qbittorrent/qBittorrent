@@ -39,6 +39,10 @@
 #include "torrentpersistentdata.h"
 #include <QDebug>
 #include <QTranslator>
+#ifndef QT_NO_OPENSSL
+#include <QSslCertificate>
+#include <QSslKey>
+#endif
 
 using namespace libtorrent;
 
@@ -180,6 +184,14 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setMailNotificationEmail(m["mail_notification_email"].toString());
   if(m.contains("mail_notification_smtp"))
     pref.setMailNotificationSMTP(m["mail_notification_smtp"].toString());
+  if(m.contains("mail_notification_ssl_enabled"))
+    pref.setMailNotificationSMTPSSL(m["mail_notification_ssl_enabled"].toBool());
+  if(m.contains("mail_notification_auth_enabled"))
+    pref.setMailNotificationSMTPAuth(m["mail_notification_auth_enabled"].toBool());
+  if(m.contains("mail_notification_username"))
+    pref.setMailNotificationSMTPUsername(m["mail_notification_username"].toString());
+  if(m.contains("mail_notification_password"))
+    pref.setMailNotificationSMTPPassword(m["mail_notification_password"].toString());
   if(m.contains("autorun_enabled"))
     pref.setAutoRunEnabled(m["autorun_enabled"].toBool());
   if(m.contains("autorun_program"))
@@ -213,6 +225,14 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
   if(m.contains("max_uploads_per_torrent"))
     pref.setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
+#if LIBTORRENT_VERSION_MINOR >= 16
+  if(m.contains("enable_utp"))
+    pref.setuTPEnabled(m["enable_utp"].toBool());
+  if(m.contains("limit_utp_rate"))
+    pref.setuTPRateLimited(m["limit_utp_rate"].toBool());
+#endif
+  if(m.contains("limit_tcp_overhead"))
+    pref.includeOverheadInLimits(m["limit_tcp_overhead"].toBool());
   // Bittorrent
   if(m.contains("dht"))
     pref.setDHTEnabled(m["dht"].toBool());
@@ -254,6 +274,33 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setWebUiUsername(m["web_ui_username"].toString());
   if(m.contains("web_ui_password"))
     pref.setWebUiPassword(m["web_ui_password"].toString());
+  if(m.contains("bypass_local_auth"))
+    pref.setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
+  if(m.contains("use_https"))
+    pref.setWebUiHttpsEnabled(m["use_https"].toBool());
+#ifndef QT_NO_OPENSSL
+  if(m.contains("ssl_key")) {
+    QByteArray raw_key = m["ssl_key"].toString().toAscii();
+    if (!QSslKey(raw_key, QSsl::Rsa).isNull())
+      pref.setWebUiHttpsKey(raw_key);
+  }
+  if(m.contains("ssl_cert")) {
+    QByteArray raw_cert = m["ssl_cert"].toString().toAscii();
+    if (!QSslCertificate(raw_cert).isNull())
+      pref.setWebUiHttpsCertificate(raw_cert);
+  }
+#endif
+  // Dyndns
+  if(m.contains("dyndns_enabled"))
+    pref.setDynDNSEnabled(m["dyndns_enabled"].toBool());
+  if(m.contains("dyndns_service"))
+    pref.setDynDNSService(m["dyndns_service"].toInt());
+  if(m.contains("dyndns_username"))
+    pref.setDynDNSUsername(m["dyndns_username"].toString());
+  if(m.contains("dyndns_password"))
+    pref.setDynDNSPassword(m["dyndns_password"].toString());
+  if(m.contains("dyndns_domain"))
+    pref.setDynDomainName(m["dyndns_domain"].toString());
   // Reload preferences
   QBtSession::instance()->configureSession();
 }
@@ -278,6 +325,10 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["mail_notification_enabled"] = pref.isMailNotificationEnabled();
   data["mail_notification_email"] = pref.getMailNotificationEmail();
   data["mail_notification_smtp"] = pref.getMailNotificationSMTP();
+  data["mail_notification_ssl_enabled"] = pref.getMailNotificationSMTPSSL();
+  data["mail_notification_auth_enabled"] = pref.getMailNotificationSMTPAuth();
+  data["mail_notification_username"] = pref.getMailNotificationSMTPUsername();
+  data["mail_notification_password"] = pref.getMailNotificationSMTPPassword();
   data["autorun_enabled"] = pref.isAutoRunEnabled();
   data["autorun_program"] = pref.getAutoRunProgram();
   data["preallocate_all"] = pref.preAllocateAllFiles();
@@ -296,6 +347,11 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["max_connec"] = pref.getMaxConnecs();
   data["max_connec_per_torrent"] = pref.getMaxConnecsPerTorrent();
   data["max_uploads_per_torrent"] = pref.getMaxUploadsPerTorrent();
+#if LIBTORRENT_VERSION_MINOR >= 16
+  data["enable_utp"] = pref.isuTPEnabled();
+  data["limit_utp_rate"] = pref.isuTPRateLimited();
+#endif
+  data["limit_tcp_overhead"] = pref.includeOverheadInLimits();
   // Bittorrent
   data["dht"] = pref.isDHTEnabled();
   data["dhtSameAsBT"] = pref.isDHTPortSameAsBT();
@@ -318,6 +374,16 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["web_ui_port"] = pref.getWebUiPort();
   data["web_ui_username"] = pref.getWebUiUsername();
   data["web_ui_password"] = pref.getWebUiPassword();
+  data["bypass_local_auth"] = !pref.isWebUiLocalAuthEnabled();
+  data["use_https"] = pref.isWebUiHttpsEnabled();
+  data["ssl_key"] = QString::fromAscii(pref.getWebUiHttpsKey());
+  data["ssl_cert"] = QString::fromAscii(pref.getWebUiHttpsCertificate());
+  // DynDns
+  data["dyndns_enabled"] = pref.isDynDNSEnabled();
+  data["dyndns_service"] = pref.getDynDNSService();
+  data["dyndns_username"] = pref.getDynDNSUsername();
+  data["dyndns_password"] = pref.getDynDNSPassword();
+  data["dyndns_domain"] = pref.getDynDomainName();
   return data;
 }
 
@@ -421,7 +487,7 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
           event["state"] = QVariant("stalledDL");
         event["eta"] = misc::userFriendlyDuration(QBtSession::instance()->getETA(hash));
         break;
-                        default:
+      default:
         qDebug("No status, should not happen!!! status is %d", h.state());
         event["state"] = QVariant();
       }

@@ -311,7 +311,10 @@ void MainWindow::deleteBTSession() {
   status_bar->stopTimer();
   QBtSession::drop();
   m_pwr->setActivityState(false);
-  close();
+  // Save window size, columns size
+  writeSettings();
+  // Accept exit
+  qApp->exit();
 }
 
 // Destructor
@@ -322,8 +325,6 @@ MainWindow::~MainWindow() {
   // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
   setUnifiedTitleAndToolBarOnMac(false);
 #endif
-  // Some saving
-  properties->saveSettings();
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
   // Delete other GUI objects
   if(executable_watcher)
@@ -475,6 +476,7 @@ void MainWindow::writeSettings() {
   // Splitter size
   settings.setValue(QString::fromUtf8("vsplitterState"), vSplitter->saveState());
   settings.endGroup();
+  properties->saveSettings();
 }
 
 void MainWindow::readSettings() {
@@ -727,14 +729,14 @@ void MainWindow::showEvent(QShowEvent *e) {
 
 // Called when we close the program
 void MainWindow::closeEvent(QCloseEvent *e) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool goToSystrayOnExit = settings.value(QString::fromUtf8("Preferences/General/CloseToTray"), false).toBool();
+  Preferences pref;
+  const bool goToSystrayOnExit = pref.closeToTray();
   if(!force_exit && systrayIcon && goToSystrayOnExit && !this->isHidden()) {
     hide();
     e->accept();
     return;
   }
-  if(settings.value(QString::fromUtf8("Preferences/General/ExitConfirm"), true).toBool() && QBtSession::instance() && QBtSession::instance()->hasActiveTorrents()) {
+  if(pref.confirmOnExit() && QBtSession::instance()->hasActiveTorrents()) {
     if(e->spontaneous() || force_exit) {
       if(!isVisible())
         show();

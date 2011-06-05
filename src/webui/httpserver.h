@@ -36,6 +36,12 @@
 #include <QTcpServer>
 #include <QByteArray>
 #include <QHash>
+
+#ifndef QT_NO_OPENSSL
+#include <QSslCertificate>
+#include <QSslKey>
+#endif
+
 #include "preferences.h"
 
 class EventManager;
@@ -63,13 +69,20 @@ public:
   void increaseNbFailedAttemptsForIp(QString ip);
   void resetNbFailedAttemptsForIp(QString ip);
 
+#ifndef QT_NO_OPENSSL
+  void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
+  void disableHttps();
+#endif
+
 private:
   void incomingConnection(int socketDescriptor);
 
 private slots:
-  void newHttpConnection();
   void onTimer();
   void UnbanTimerEvent();
+
+private:
+  void handleNewConnection(QTcpSocket *socket);
 
 private:
   QByteArray username;
@@ -78,9 +91,11 @@ private:
   QTimer *timer;
   QHash<QString, int> client_failed_attempts;
   bool m_localAuth;
+#ifndef QT_NO_OPENSSL
   bool m_https;
   QSslCertificate m_certificate;
   QSslKey m_key;
+#endif
 };
 
 #endif
