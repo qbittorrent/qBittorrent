@@ -99,7 +99,7 @@ public slots:
     // Program notification
     pref.useProgramNotification(cb_program_notifications.isChecked());
     // Tracker
-    pref.setTrackerEnabled(cb_tracker_status.isChecked());
+    pref.setTrackerExchangeEnabled(cb_tracker_status.isChecked());
     pref.setTrackerPort(spin_tracker_port.value());
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     pref.setUpdateCheckEnabled(cb_update_check.isChecked());
