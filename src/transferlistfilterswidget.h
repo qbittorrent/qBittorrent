@@ -154,35 +154,18 @@ class StatusFiltersWidget : public QListWidget {
 
 public:
   StatusFiltersWidget(QWidget *parent) : QListWidget(parent), m_shown(false) {
-    //setFixedHeight(120);
-    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
-  }
-
-public slots:
-  void updateHeight() {
-    qDebug("Adjusting statuslist widget height...");
-    m_shown = true;
-    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    int cur_height = 50;
-    do {
-      setFixedHeight(cur_height);
-      cur_height += 10;
-    }while(verticalScrollBar()->isVisible());
+    setUniformItemSizes(true);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // Height is fixed (sizeHint().height() is used)
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   }
 
 protected:
-  void changeEvent(QEvent *e) {
-    QListWidget::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::StyleChange:
-      qDebug("Style has changed, adapting the statusfilters widget height");
-      if(m_shown)
-        updateHeight();
-      break;
-    default:
-      break;
-    }
+  QSize sizeHint() const {
+    QSize size = QListWidget::sizeHint();
+    // Height should be exactly the height of the content
+    size.setHeight(contentsSize().height() + 2 * frameWidth());
+    return size;
   }
 
 private:

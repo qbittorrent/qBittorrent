@@ -711,9 +711,6 @@ void MainWindow::on_actionAbout_triggered() {
 void MainWindow::showEvent(QShowEvent *e) {
   qDebug("** Show Event **");
 
-  // Update status filters list height
-  transferListFilters->getStatusFilters()->updateHeight();
-
   if(getCurrentTabWidget() == transferList) {
     properties->loadDynamicData();
   }
