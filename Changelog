@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.2
     - BUGFIX: Fix tracker exchange advanced setting
+    - BUGFIX: Fix Proxy authentication settings
 
 * Sun Jun 05 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.1
     - BUGFIX: Fix Web UI username/password change (Web UI)
