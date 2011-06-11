@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>488</width>
-             <height>601</height>
+             <width>504</width>
+             <height>537</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -487,8 +487,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>999</height>
+             <width>504</width>
+             <height>923</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -946,9 +946,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>488</width>
-             <height>560</height>
+             <y>-91</y>
+             <width>504</width>
+             <height>493</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1264,9 +1264,6 @@
                    <layout class="QGridLayout" name="gridLayout_12">
                     <item row="0" column="0">
                      <widget class="QLabel" name="lblProxyUsername">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
                       <property name="text">
                        <string>Username:</string>
                       </property>
@@ -1274,9 +1271,6 @@
                     </item>
                     <item row="0" column="1">
                      <widget class="QLineEdit" name="textProxyUsername">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
                       <property name="text">
                        <string/>
                       </property>
@@ -1290,9 +1284,6 @@
                     </item>
                     <item row="1" column="0">
                      <widget class="QLabel" name="lblProxyPassword">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
                       <property name="text">
                        <string>Password:</string>
                       </property>
@@ -1300,9 +1291,6 @@
                     </item>
                     <item row="1" column="1">
                      <widget class="QLineEdit" name="textProxyPassword">
-                      <property name="enabled">
-                       <bool>false</bool>
-                      </property>
                       <property name="text">
                        <string/>
                       </property>
@@ -1403,8 +1391,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>506</width>
-             <height>510</height>
+             <width>363</width>
+             <height>427</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1815,8 +1803,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>545</width>
-             <height>492</height>
+             <width>542</width>
+             <height>455</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2191,8 +2179,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>488</width>
-             <height>594</height>
+             <width>425</width>
+             <height>513</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2568,8 +2556,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>86</width>
+             <height>16</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2674,11 +2662,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>496</x>
-     <y>157</y>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
      <x>643</x>
-     <y>165</y>
+     <y>74</y>
     </hint>
    </hints>
   </connection>
@@ -2690,11 +2678,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>494</x>
-     <y>188</y>
+     <y>97</y>
     </hint>
     <hint type="destinationlabel">
      <x>611</x>
-     <y>190</y>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -2706,11 +2694,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>510</x>
-     <y>214</y>
+     <y>123</y>
     </hint>
     <hint type="destinationlabel">
      <x>616</x>
-     <y>217</y>
+     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -2721,12 +2709,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>542</x>
-     <y>404</y>
+     <x>552</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>598</x>
-     <y>405</y>
+     <x>612</x>
+     <y>443</y>
     </hint>
    </hints>
   </connection>
@@ -2737,12 +2725,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>542</x>
-     <y>404</y>
+     <x>552</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>757</x>
-     <y>406</y>
+     <x>788</x>
+     <y>444</y>
     </hint>
    </hints>
   </connection>
