@@ -2,6 +2,7 @@
     - BUGFIX: Fix tracker exchange advanced setting
     - BUGFIX: Fix Proxy authentication settings
     - BUGFIX: Fix possible status filters widget height problem
+    - FEATURE: Show tracker tier (order) in tracker list
 
 * Sun Jun 05 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.1
     - BUGFIX: Fix Web UI username/password change (Web UI)
