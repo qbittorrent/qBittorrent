@@ -38,7 +38,7 @@
 #include "qtorrenthandle.h"
 #include "propertieswidget.h"
 
-enum TrackerListColumn {COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
+enum TrackerListColumn {COL_TIER, COL_URL, COL_STATUS, COL_PEERS, COL_MSG};
 #define NB_STICKY_ITEM 3
 
 class TrackerList: public QTreeWidget {

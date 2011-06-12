@@ -47,7 +47,6 @@
 using namespace libtorrent;
 
 TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), properties(properties) {
-  loadSettings();
   // Graphical settings
   setRootIsDecorated(false);
   setAllColumnsShowFocus(true);
@@ -58,20 +57,23 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTrackerListMenu(QPoint)));
   // Set header
   QStringList header;
+  header << "#";
   header << tr("URL");
   header << tr("Status");
   header << tr("Peers");
   header << tr("Message");
   setHeaderItem(new QTreeWidgetItem(header));
-  dht_item = new QTreeWidgetItem(QStringList("** "+tr("[DHT]")+" **"));
+  dht_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[DHT]")+" **");
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
-  pex_item = new QTreeWidgetItem(QStringList("** "+tr("[PeX]")+" **"));
+  pex_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[PeX]")+" **");
   insertTopLevelItem(1, pex_item);
   setRowColor(1, QColor("grey"));
-  lsd_item = new QTreeWidgetItem(QStringList("** "+tr("[LSD]")+" **"));
+  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[LSD]")+" **");
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
+
+  loadSettings();
 }
 
 TrackerList::~TrackerList() {
@@ -240,6 +242,7 @@ void TrackerList::loadTrackers() {
     QTreeWidgetItem *item = tracker_items.value(tracker_url, 0);
     if(!item) {
       item = new QTreeWidgetItem();
+      item->setText(COL_TIER, QString::number(it->tier));
       item->setText(COL_URL, tracker_url);
       addTopLevelItem(item);
       tracker_items[tracker_url] = item;
@@ -369,7 +372,8 @@ void TrackerList::showTrackerListMenu(QPoint) {
 void TrackerList::loadSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   if(!header()->restoreState(settings.value("TorrentProperties/Trackers/TrackerListState").toByteArray())) {
-    setColumnWidth(0, 300);
+    setColumnWidth(0, 30);
+    setColumnWidth(1, 300);
   }
 }
 
