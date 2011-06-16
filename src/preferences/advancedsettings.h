@@ -99,7 +99,7 @@ public slots:
     // Program notification
     pref.useProgramNotification(cb_program_notifications.isChecked());
     // Tracker
-    pref.setTrackerExchangeEnabled(cb_tracker_status.isChecked());
+    pref.setTrackerEnabled(cb_tracker_status.isChecked());
     pref.setTrackerPort(spin_tracker_port.value());
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     pref.setUpdateCheckEnabled(cb_update_check.isChecked());
@@ -110,7 +110,7 @@ public slots:
 #endif
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
     // Tracker exchange
-    pref.setTrackerEnabled(cb_enable_tracker_ext.isChecked());
+    pref.setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
   }
 
 signals:
