@@ -1,8 +1,7 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.2
+* Sat Jun 18 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.2
     - BUGFIX: Fix tracker exchange advanced setting
     - BUGFIX: Fix Proxy authentication settings
     - BUGFIX: Fix possible status filters widget height problem
-    - BUGFIX: Fix tracker extension setting
     - FEATURE: Show tracker tier (order) in tracker list
 
 * Sun Jun 05 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.1
