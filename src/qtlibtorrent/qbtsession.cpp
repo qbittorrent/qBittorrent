@@ -87,7 +87,6 @@ QBtSession* QBtSession::m_instance = 0;
 const qreal QBtSession::MAX_RATIO = 9999.;
 
 const int MAX_TRACKER_ERRORS = 2;
-enum VersionType { NORMAL,ALPHA,BETA,RELEASE_CANDIDATE,DEVEL };
 
 // Main constructor
 QBtSession::QBtSession()
@@ -113,7 +112,7 @@ QBtSession::QBtSession()
   version << VERSION_MAJOR;
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
-  version << VERSION_TYPE;
+  version << 0;
   const QString peer_id = "qB";
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
