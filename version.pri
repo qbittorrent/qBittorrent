@@ -2,9 +2,9 @@ PROJECT_NAME = qbittorrent
 PROJECT_VERSION = 2.9.0alpha
 
 os2 {
-    DEFINES += VERSION=\'\"v$${VERSION}\"\'
+    DEFINES += VERSION=\'\"v$${PROJECT_VERSION}\"\'
 } else {
-    DEFINES += VERSION=\\\"v$${VERSION}\\\"
+    DEFINES += VERSION=\\\"v$${PROJECT_VERSION}\\\"
 }
 
 DEFINES += VERSION_MAJOR=2
