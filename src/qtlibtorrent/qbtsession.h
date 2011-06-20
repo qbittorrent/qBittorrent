@@ -60,6 +60,8 @@ class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class DNSUpdater;
 
+const int MAX_LOG_MESSAGES = 100;
+
 class QBtSession : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QBtSession)

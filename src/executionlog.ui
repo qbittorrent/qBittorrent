@@ -28,7 +28,11 @@
       </attribute>
       <layout class="QVBoxLayout">
        <item>
-        <widget class="QTextBrowser" name="textConsole"/>
+        <widget class="QListWidget" name="logList">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -38,7 +42,11 @@
       </attribute>
       <layout class="QVBoxLayout" name="_2">
        <item>
-        <widget class="QTextBrowser" name="textBannedPeers"/>
+        <widget class="QListWidget" name="banList">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

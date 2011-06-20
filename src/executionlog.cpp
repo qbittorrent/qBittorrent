@@ -28,6 +28,8 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QListWidgetItem>
+#include <QLabel>
 #include "executionlog.h"
 #include "ui_executionlog.h"
 #include "qbtsession.h"
@@ -40,9 +42,13 @@ ExecutionLog::ExecutionLog(QWidget *parent) :
     ui->setupUi(this);
     ui->tabConsole->setTabIcon(0, IconProvider::instance()->getIcon("view-calendar-journal"));
     ui->tabConsole->setTabIcon(1, IconProvider::instance()->getIcon("view-filter"));
-    ui->textConsole->setHtml(QBtSession::instance()->getConsoleMessages().join("<br>"));
+    const QStringList log_msgs = QBtSession::instance()->getConsoleMessages();
+    foreach(const QString& msg, log_msgs)
+      addLogMessage(msg);
+    const QStringList ban_msgs = QBtSession::instance()->getPeerBanMessages();
+    foreach(const QString& msg, ban_msgs)
+      addBanMessage(msg);
     connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), SLOT(addLogMessage(QString)));
-    ui->textBannedPeers->setHtml(QBtSession::instance()->getPeerBanMessages().join("<br>"));
     connect(QBtSession::instance(), SIGNAL(newBanMessage(QString)), SLOT(addBanMessage(QString)));
 }
 
@@ -53,10 +59,24 @@ ExecutionLog::~ExecutionLog()
 
 void ExecutionLog::addLogMessage(const QString &msg)
 {
-   ui->textConsole->setHtml(msg+ui->textConsole->toHtml());
+   QListWidgetItem *item = new QListWidgetItem;
+   QLabel *lbl = new QLabel(msg);
+   lbl->setContentsMargins(4, 2, 4, 2);
+   item->setSizeHint(lbl->sizeHint());
+   ui->logList->insertItem(0, item);
+   ui->logList->setItemWidget(item, lbl);
+   if(ui->logList->count() > MAX_LOG_MESSAGES)
+     delete ui->logList->takeItem(ui->logList->count()-1);
 }
 
 void ExecutionLog::addBanMessage(const QString &msg)
 {
-   ui->textBannedPeers->setHtml(msg+ui->textBannedPeers->toHtml());
+  QListWidgetItem *item = new QListWidgetItem;
+  QLabel *lbl = new QLabel(msg);
+  lbl->setContentsMargins(4, 2, 4, 2);
+  item->setSizeHint(lbl->sizeHint());
+  ui->banList->insertItem(0, item);
+  ui->banList->setItemWidget(item, lbl);
+  if(ui->banList->count() > MAX_LOG_MESSAGES)
+    delete ui->banList->takeItem(ui->banList->count()-1);
 }
