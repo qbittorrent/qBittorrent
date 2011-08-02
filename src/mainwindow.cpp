@@ -252,7 +252,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   readSettings();
 
   if(!ui_locked) {
-    if(pref.startMinimized())
+    if(pref.startMinimized() && systrayIcon)
       showMinimized();
     else {
       show();
@@ -304,6 +304,13 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
     updater->checkForUpdates();
   }
 #endif
+
+  // Make sure the Window is visible if we don't have a tray icon
+  if (!systrayIcon && isHidden()) {
+    show();
+    activateWindow();
+    raise();
+  }
 }
 
 void MainWindow::deleteBTSession() {
