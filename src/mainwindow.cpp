@@ -1106,7 +1106,7 @@ void MainWindow::updateGUI() {
     systrayIcon->setToolTip(html); // tray icon
   }
   if(displaySpeedInTitle) {
-    setWindowTitle(tr("qBittorrent %1 (Down: %2/s, Up: %3/s)", "%1 is qBittorrent version").arg(QString::fromUtf8(VERSION)).arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_download_rate)).arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_upload_rate)));
+    setWindowTitle(tr("[D: %1/s, U: %2/s] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version").arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_download_rate)).arg(misc::friendlyUnit(QBtSession::instance()->getSessionStatus().payload_upload_rate)).arg(QString::fromUtf8(VERSION)));
   }
 }
 

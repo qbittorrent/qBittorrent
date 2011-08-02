@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
+    - COSMETIC: Display speed at the beginning of the Window title
+
 * Thu Jun 02 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
     - FEATURE: Added full libtorrent v0.16 support (uTP, ...)
     - FEATURE: Proxy can be disabled for peer connections
