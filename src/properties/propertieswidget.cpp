@@ -106,13 +106,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   ProgressHLayout_2->insertWidget(1, pieces_availability);
   // Tracker list
   trackerList = new TrackerList(this);
-#if LIBTORRENT_VERSION_MINOR > 14
-  trackerUpButton->setVisible(false);
-  trackerDownButton->setVisible(false);
-#else
   connect(trackerUpButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionUp()));
   connect(trackerDownButton, SIGNAL(clicked()), trackerList, SLOT(moveSelectionDown()));
-#endif
   horizontalLayout_trackers->insertWidget(0, trackerList);
   // Peers list
   peersList = new PeerListWidget(this);
