@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.4
+    - BUGFIX: Added back ability to reorder trackers
+
 * Tue Aug 02 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.3
     - BUGFIX: Fix memory usage problem in log tab
     - BUGFIX: Make sure the main window is not hidden on startup if no
