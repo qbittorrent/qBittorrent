@@ -392,7 +392,8 @@ void QBtSession::configureSession() {
   //sessionSettings.announce_to_all_trackers = true;
   sessionSettings.auto_scrape_interval = 1200; // 20 minutes
 #if LIBTORRENT_VERSION_MINOR > 14
-  sessionSettings.announce_to_all_trackers = true;
+  // Comply with the multi-tracker specification
+  sessionSettings.announce_to_all_trackers = false;
   sessionSettings.announce_to_all_tiers = false;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif
