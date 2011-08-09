@@ -171,8 +171,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>537</height>
+             <width>489</width>
+             <height>601</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -487,8 +487,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>923</height>
+             <width>501</width>
+             <height>999</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -946,9 +946,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-91</y>
-             <width>504</width>
-             <height>493</height>
+             <y>0</y>
+             <width>489</width>
+             <height>560</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1391,8 +1391,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>363</width>
-             <height>427</height>
+             <width>507</width>
+             <height>510</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1803,8 +1803,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>542</width>
-             <height>455</height>
+             <width>546</width>
+             <height>492</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1823,9 +1823,6 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_18">
-                  <property name="bottomMargin">
-                   <number>9</number>
-                  </property>
                   <item>
                    <widget class="QGroupBox" name="checkDifferentDHTPort">
                     <property name="title">
@@ -2179,8 +2176,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>425</width>
-             <height>513</height>
+             <width>451</width>
+             <height>594</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2556,8 +2553,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>16</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
