@@ -59,10 +59,11 @@
 using namespace libtorrent;
 
 torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
-  QDialog(parent), old_label(""), hidden_height(0) {
+  QDialog(parent), old_label(""), hidden_height(0), m_showContentList(true) {
   const Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+  setMinimumSize(0, 0);
   // Icons
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
@@ -85,8 +86,6 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   contentFilterLayout->insertWidget(1, contentFilterLine);
   // Important: as a default, it inserts at the bottom which is not desirable
   savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
-  // Remember columns width
-  readSettings();
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
   defaultSavePath = pref.getSavePath();
   appendLabelToSavePath = pref.appendTorrentLabel();
@@ -132,18 +131,33 @@ void torrentAdditionDialog::closeEvent(QCloseEvent *event)
 }
 
 void torrentAdditionDialog::readSettings() {
+  // The window should NOT be shown before calling this method
+  Q_ASSERT(!isVisible());
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  restoreGeometry(settings.value("TorrentAdditionDlg/dimensions").toByteArray());
-  if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
-    qDebug() << Q_FUNC_INFO << "First executation, resize first section to 400px...";
-    torrentContentList->header()->resizeSection(0, 400); //Default
+  QString mode = m_showContentList ? "Full" : "Short";
+  qDebug() << Q_FUNC_INFO << "mode:" << mode;
+  if (!restoreGeometry(settings.value("TorrentAdditionDlg/geometry" + mode).toByteArray())) {
+    qDebug() << Q_FUNC_INFO << "Failed to load last known dialog geometry";
+    if (!m_showContentList) {
+      qDebug() << Q_FUNC_INFO << "Short mode: adapting default size";
+      resize(width(), height() - 220); // Default size is for full mode
+    }
+  }
+  if (m_showContentList) {
+    if(!torrentContentList->header()->restoreState(settings.value("TorrentAdditionDlg/ContentHeaderState").toByteArray())) {
+      qDebug() << Q_FUNC_INFO << "First executation, resize first section to 400px...";
+      torrentContentList->header()->resizeSection(0, 400); // Default
+    }
   }
 }
 
 void torrentAdditionDialog::saveSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentAdditionDlg/ContentHeaderState", torrentContentList->header()->saveState());
-  settings.setValue("TorrentAdditionDlg/dimensions", saveGeometry());
+  QString mode = m_showContentList ? "Full" : "Short";
+  settings.setValue("TorrentAdditionDlg/geometry" + mode, saveGeometry());
+  if (m_showContentList) {
+    settings.setValue("TorrentAdditionDlg/ContentHeaderState", torrentContentList->header()->saveState());
+  }
 }
 
 void torrentAdditionDialog::limitDialogWidth() {
@@ -165,26 +179,22 @@ void torrentAdditionDialog::limitDialogWidth() {
 
 void torrentAdditionDialog::hideTorrentContent() {
   // Disable useless widgets
-  hidden_height += torrentContentList->height();
   torrentContentList->setVisible(false);
-  hidden_height += torrentContentLbl->height();
   //torrentContentLbl->setVisible(false);
-  hidden_height += selectAllButton->height();
-  selectNoneButton->setVisible(false);
-  selectAllButton->setVisible(false);
+  for(int i=0; i<selectionBtnsLayout->count(); ++i) {
+    if(selectionBtnsLayout->itemAt(i)->widget())
+      selectionBtnsLayout->itemAt(i)->widget()->setVisible(false);
+  }
   for(int i=0; i<contentFilterLayout->count(); ++i) {
     if(contentFilterLayout->itemAt(i)->widget())
       contentFilterLayout->itemAt(i)->widget()->setVisible(false);
   }
   contentFilterLayout->update();
 
-  // Resize main window
-  setMinimumSize(0, 0);
-  resize(width(), height()-hidden_height);
+  m_showContentList = false;
 }
 
 void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
-  show();
   is_magnet = true;
   this->from_url = magnet_uri;
 
@@ -210,8 +220,15 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
 
   // No need to display torrent content
   hideTorrentContent();
+
+  // Remember dialog geometry
+  readSettings();
+
   // Limit dialog width
   limitDialogWidth();
+
+  // Display dialog
+  show();
 }
 
 void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
@@ -317,15 +334,18 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   // Update size labels
   updateDiskSpaceLabels();
 
-  // Show the dialog
-  show();
-
   // Hide useless widgets
   if(t->num_files() <= 1)
     hideTorrentContent();
 
+  // Remember dialog geometry
+  readSettings();
+
   // Limit dialog width
   limitDialogWidth();
+
+  // Show the dialog
+  show();
 }
 
 void torrentAdditionDialog::displayContentListMenu(const QPoint&) {

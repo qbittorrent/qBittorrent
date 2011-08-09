@@ -91,6 +91,7 @@ private:
   bool is_magnet;
   int hidden_height;
   QStringList path_history;
+  bool m_showContentList;
 };
 
 #endif
