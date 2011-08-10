@@ -99,9 +99,7 @@ protected slots:
   void torrentDoubleClicked(const QModelIndex& index);
   void displayListMenu(const QPoint&);
   void currentChanged(const QModelIndex& current, const QModelIndex&);
-#if LIBTORRENT_VERSION_MINOR > 14
   void toggleSelectedTorrentsSuperSeeding() const;
-#endif
   void toggleSelectedTorrentsSequentialDownload() const;
   void toggleSelectedFirstLastPiecePrio() const;
   void askNewLabelForSelection();

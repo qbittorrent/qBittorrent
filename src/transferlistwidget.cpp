@@ -545,8 +545,8 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
   }
 }
 
-#if LIBTORRENT_VERSION_MINOR > 14
 void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
+#if LIBTORRENT_VERSION_MINOR > 14
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
@@ -554,8 +554,8 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
       h.super_seeding(!h.super_seeding());
     }
   }
-}
 #endif
+}
 
 void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const {
   const QStringList hashes = getSelectedTorrentsHashes();
