@@ -883,6 +883,7 @@ applyPreferences = function() {
   settings.set('dht_port', $('DHTPort_txt').getProperty('value').toInt());
   settings.set('pex', $('pex_checkbox').getProperty('checked'));
   settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
+  settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
   
   // Downloads
   settings.set('save_path', $('savepath_text').getProperty('value'));
