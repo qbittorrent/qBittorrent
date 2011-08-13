@@ -894,8 +894,10 @@ applyPreferences = function() {
   settings.set('scan_dirs', watched_folders[0]);
   settings.set('download_in_scan_dirs', watched_folders[1]);
 
-  settings.set('exportdir_enabled', $('exportdir_checkbox').getProperty('checked'));
-  settings.set('exportdir_path', $('exportdir_text').getProperty('value'));
+  if($('exportdir_checkbox').getProperty('checked'))
+    settings.set('export_dir', $('exportdir_text').getProperty('value'));
+  else
+    settings.set('export_dir', '');
   settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
   if(!$('appendexttr').hasClass('invisible')) {
     settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
