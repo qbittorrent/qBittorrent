@@ -1,3 +1,7 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.5
+    - BUGFIX: Fix encryption setting saving in Web UI
+    - BUGFIX: Fix "Copy torrents to" setting saving in Web UI
+
 * Tue Aug 09 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.4
     - BUGFIX: Added back ability to reorder trackers
     - BUGFIX: Do not announce to all trackers in the same tier to comply
