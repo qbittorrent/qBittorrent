@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
     - COSMETIC: Display speed at the beginning of the Window title
+    - OTHER: Display libraries versions in about dialog (sledgehammer999)
 
 * Thu Jun 02 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.0
     - FEATURE: Added full libtorrent v0.16 support (uTP, ...)

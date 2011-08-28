@@ -33,6 +33,9 @@
 
 #include "ui_about.h"
 #include <QFile>
+#include <QtGlobal>
+#include <libtorrent/version.hpp>
+#include <boost/version.hpp>
 
 class about : public QDialog, private Ui::AboutDlg{
   Q_OBJECT
@@ -99,6 +102,10 @@ class about : public QDialog, private Ui::AboutDlg{
         te_license->setHtml(licensefile.readAll());
         licensefile.close();
       }
+      // Libraries
+      label_11->setText(QT_VERSION_STR);
+      label_12->setText(LIBTORRENT_VERSION);
+      label_13->setText(QString::number(BOOST_VERSION / 100000) + "." + QString::number((BOOST_VERSION / 100) % 1000) + "." + QString::number(BOOST_VERSION % 100));
       show();
     }
 };
