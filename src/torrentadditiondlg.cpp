@@ -60,7 +60,7 @@ using namespace libtorrent;
 
 torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   QDialog(parent), old_label(""), hidden_height(0), m_showContentList(true) {
-  const Preferences pref;
+  Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   setMinimumSize(0, 0);
@@ -87,7 +87,18 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   // Important: as a default, it inserts at the bottom which is not desirable
   savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-  defaultSavePath = pref.getSavePath();
+  QString lastLocation = pref.lastLocationPath();
+  //lastLocation will always have '/' as separator since it is saved in
+  //::on_OkButton_clicked()  after the conversion is done.
+  if (pref.rememberLastLocation() && !lastLocation.isEmpty() && QFile(lastLocation).exists())
+      defaultSavePath = lastLocation;
+  else
+  {
+    defaultSavePath = pref.getSavePath();
+    //In case of the LastLocationPath doesn't exist anymore, empty the string
+    pref.setLastLocationPath(QString());
+  }
+
   appendLabelToSavePath = pref.appendTorrentLabel();
   QString display_path = defaultSavePath.replace("\\", "/");
   if(!display_path.endsWith("/"))
@@ -686,6 +697,12 @@ void torrentAdditionDialog::on_OkButton_clicked(){
       return;
     }
   }
+  //Save last location path
+  {//limit the scope of pref
+    Preferences pref;
+    if (pref.rememberLastLocation())
+        pref.setLastLocationPath(save_path);
+}
   // save filtered files
   if(!is_magnet && t->num_files() > 1)
     savePiecesPriorities();
