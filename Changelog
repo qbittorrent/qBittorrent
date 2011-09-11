@@ -3,6 +3,8 @@
     - BUGFIX: Fix "Copy torrents to" setting saving in Web UI
     - BUGFIX: Announce to all trackers in a tier to avoid stalling issues
     - BUGFIX: Make search engine work with Python 3.x
+    - BUGFIX: Fix search engine plugins update tool
+    - BUGFIX: Fix KickAssTorrents search plugin
 
 * Tue Aug 09 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.4
     - BUGFIX: Added back ability to reorder trackers
