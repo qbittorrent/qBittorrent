@@ -151,6 +151,7 @@ public:
   // Get screen center
   static QPoint screenCenter(QWidget *win);
 #endif
+  static int pythonVersion();
   static QString searchEngineLocation();
   static QString BTBackupLocation();
   static QString cacheLocation();
