@@ -85,9 +85,9 @@ def download_file(url, referer=None):
     response = urllib.request.urlopen(req)
     dat = response.read()
     # Check if it is gzipped
-    if dat[:2] == '\037\213':
+    if dat[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = io.StringIO(dat)
+        compressedstream = io.BytesIO(dat)
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
