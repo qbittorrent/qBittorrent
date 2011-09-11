@@ -1,4 +1,4 @@
-#VERSION: 1.2
+#VERSION: 1.21
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -31,9 +31,9 @@ from helpers import retrieve_url, download_file
 import json
 
 class kickasstorrents(object):
-  url = 'http://www.kickasstorrents.com'
+  url = 'http://www.kat.ph'
   name = 'kickasstorrents'
-  supported_categories = {'all': 'all', 'movies': 'movies', 'tv': 'tv', 'music': 'music', 'games': 'games', 'software': 'applications'}
+  supported_categories = {'all': '', 'movies': 'Movies', 'tv': 'TV', 'music': 'Music', 'games': 'Games', 'software': 'Applications'}
 
   def __init__(self):
     self.results = []
@@ -46,16 +46,17 @@ class kickasstorrents(object):
     i = 1
     while True and i<11:
       results = []
-      json_data = retrieve_url(self.url+'/search/%s/%d/?categories[]=%s&field=seeders&sorder=desc&json=1'%(what, i, self.supported_categories[cat]))
+      json_data = retrieve_url(self.url+'/json.php?q=%s&page=%d'%(what, i))
       try:
         json_dict = json.loads(json_data)
       except:
         i += 1
         continue
-      if json_dict['total_results'] <= 0: return
+      if int(json_dict['total_results']) <= 0: return
       results = json_dict['list']
       for r in results:
         try:
+          if cat != 'all' and self.supported_categories[cat] != r['category']: continue
           res_dict = dict()
           res_dict['name'] = r['title']
           res_dict['size'] = str(r['size'])
