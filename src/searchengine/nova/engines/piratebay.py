@@ -1,4 +1,4 @@
-#VERSION: 1.40
+#VERSION: 1.41
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -105,8 +105,7 @@ class piratebay(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search/%s/%u/7/%s' % (what, i, self.supported_categories[cat]))
-			print self.url+'/search/%s/%u/7/%s' % (what, i, self.supported_categories[cat])
+			dat = retrieve_url(self.url+'/search/%s/%d/7/%s' % (what, i, self.supported_categories[cat]))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:
