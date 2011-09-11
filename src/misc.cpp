@@ -36,6 +36,7 @@
 #include <QDateTime>
 #include <QByteArray>
 #include <QDebug>
+#include <QProcess>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -548,9 +549,36 @@ QPoint misc::screenCenter(QWidget *win) {
 }
 #endif
 
+/**
+ * Detects the version of python by calling
+ * "python --version" and parsing the output.
+ */
+int misc::pythonVersion() {
+  static int version = -1;
+  if (version < 0) {
+    QProcess python_proc;
+    python_proc.start("python", QStringList() << "--version", QIODevice::ReadOnly);
+    if (!python_proc.waitForFinished()) return -1;
+    if (python_proc.exitCode() < 0) return -1;
+    QByteArray output = python_proc.readAllStandardOutput();
+    if (output.isEmpty())
+      output = python_proc.readAllStandardError();
+    const QByteArray version_str = output.split(' ').last();
+    qDebug() << "Python version is:" << version_str.trimmed();
+    if (version_str.startsWith("3."))
+      version = 3;
+    else
+      version = 2;
+  }
+  return version;
+}
+
 QString misc::searchEngineLocation() {
+  QString folder = "nova";
+  if (pythonVersion() >= 3)
+    folder = "nova3";
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + "nova");
+                                           + QDir::separator() + folder);
   QDir locationDir(location);
   if(!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());

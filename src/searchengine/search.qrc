@@ -25,5 +25,31 @@
   <file>nova/engines/piratebay.png</file>
   <file>nova/engines/vertor.py</file>
   <file>nova/engines/btdigg.png</file>
+  <file>nova3/nova2.py</file>
+  <file>nova3/novaprinter.py</file>
+  <file>nova3/socks.py</file>
+  <file>nova3/nova2dl.py</file>
+  <file>nova3/helpers.py</file>
+  <file>nova3/sgmllib3.py</file>
+  <file>nova3/engines/vertor.png</file>
+  <file>nova3/engines/kickasstorrents.png</file>
+  <file>nova3/engines/mininova.png</file>
+  <file>nova3/engines/mininova.py</file>
+  <file>nova3/engines/torrentdownloads.png</file>
+  <file>nova3/engines/isohunt.png</file>
+  <file>nova3/engines/torrentreactor.py</file>
+  <file>nova3/engines/btjunkie.png</file>
+  <file>nova3/engines/extratorrent.py</file>
+  <file>nova3/engines/piratebay.py</file>
+  <file>nova3/engines/torrentdownloads.py</file>
+  <file>nova3/engines/torrentreactor.png</file>
+  <file>nova3/engines/isohunt.py</file>
+  <file>nova3/engines/btdigg.py</file>
+  <file>nova3/engines/btjunkie.py</file>
+  <file>nova3/engines/kickasstorrents.py</file>
+  <file>nova3/engines/extratorrent.png</file>
+  <file>nova3/engines/piratebay.png</file>
+  <file>nova3/engines/vertor.py</file>
+  <file>nova3/engines/btdigg.png</file>
 </qresource>
 </RCC>

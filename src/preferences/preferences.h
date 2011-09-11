@@ -1056,7 +1056,7 @@ public:
     QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QIniSettings::NativeFormat);
     QStringList versions = reg_python.childGroups();
     qDebug("Python versions nb: %d", versions.size());
-    versions = versions.filter(QRegExp("2\\..*"));
+    //versions = versions.filter(QRegExp("2\\..*"));
     versions.sort();
     while(!versions.empty()) {
       const QString version = versions.takeLast();
@@ -1067,17 +1067,14 @@ public:
         return path;
       }
     }
-    if(QFile::exists("C:/Python27/python.exe")) {
-      reg_python.setValue("2.7/InstallPath/Default", "C:\\Python27");
-      return "C:\\Python27";
-    }
-    if(QFile::exists("C:/Python26/python.exe")) {
-      reg_python.setValue("2.6/InstallPath/Default", "C:\\Python26");
-      return "C:\\Python26";
-    }
-    if(QFile::exists("C:/Python25/python.exe")) {
-      reg_python.setValue("2.5/InstallPath/Default", "C:\\Python25");
-      return "C:\\Python25";
+    // Fallback: Detect python from default locations
+    QStringList supported_versions;
+    supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
+    foreach(const v, supported_versions) {
+      if(QFile::exists("C:/Python"+v+"/python.exe")) {
+        reg_python.setValue(v[0]+"."+v[1]+"/InstallPath/Default", "C:\\Python"+v);
+        return "C:\\Python"+v;
+      }
     }
     return QString::null;
   }
