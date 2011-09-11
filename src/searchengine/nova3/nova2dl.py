@@ -33,7 +33,7 @@
 import sys
 import os
 import glob
-from .helpers import download_file
+from helpers import download_file
 
 supported_engines = dict()
 
