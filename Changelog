@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.8.5
+* Mon Sep 12 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.8.5
     - BUGFIX: Fix encryption setting saving in Web UI
     - BUGFIX: Fix "Copy torrents to" setting saving in Web UI
     - BUGFIX: Announce to all trackers in a tier to avoid stalling issues
