@@ -414,6 +414,11 @@ void HttpConnection::respondCommand(QString command)
       std::cerr << "I/O Error: Could not create temporary file" << std::endl;
       return;
     }
+#ifdef Q_WS_WIN
+    // Change extension to .torrent on Windows or loading will fail
+    QFile::rename(filePath, filePath+".torrent");
+    filePath += ".torrent";
+#endif
     emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
     delete tmpfile;
     // Prepare response
