@@ -81,6 +81,26 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This version of qBittorrent was built against the following libraries:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boost:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Libtorrent:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AdvancedSettings</name>
@@ -2012,7 +2032,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
         <comment>%1 is qBittorrent version</comment>
-        <translation>qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
+        <translation type="obsolete">qBittorrent %1 (Зав.: %2/с, Вив.: %3/с)</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -2075,6 +2095,19 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>The password should contain at least 3 characters</source>
         <translation>Пароль повинен містити щонайменше 3 символи</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
+        <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

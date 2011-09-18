@@ -362,6 +362,11 @@
     <string>Disabled</string>
    </property>
   </action>
+  <action name="actionToggleVisibility">
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="icons.qrc"/>

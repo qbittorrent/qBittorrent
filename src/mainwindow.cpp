@@ -195,6 +195,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
   connect(actionDelete, SIGNAL(triggered()), transferList, SLOT(deleteSelectedTorrents()));
   connect(actionIncreasePriority, SIGNAL(triggered()), transferList, SLOT(increasePrioSelectedTorrents()));
   connect(actionDecreasePriority, SIGNAL(triggered()), transferList, SLOT(decreasePrioSelectedTorrents()));
+  connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
 
   m_pwr = new PowerManagement(this);
   preventTimer = new QTimer(this);
@@ -703,6 +704,7 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
       hide();
     }
   }
+  actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
 }
 
 // Display About Dialog
@@ -1202,6 +1204,9 @@ QMenu* MainWindow::getTrayIconMenu() {
     return myTrayIconMenu;
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
+  actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
+  myTrayIconMenu->addAction(actionToggleVisibility);
+  myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionOpen);
   //myTrayIconMenu->addAction(actionDownload_from_URL);
   myTrayIconMenu->addSeparator();

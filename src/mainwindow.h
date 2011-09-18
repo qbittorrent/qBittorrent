@@ -91,7 +91,7 @@ protected slots:
   // GUI related slots
   void dropEvent(QDropEvent *event);
   void dragEnterEvent(QDragEnterEvent *event);
-  void toggleVisibility(QSystemTrayIcon::ActivationReason e);
+  void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
   void on_actionAbout_triggered();
   void on_actionCreate_torrent_triggered();
   void on_actionWebsite_triggered() const;
