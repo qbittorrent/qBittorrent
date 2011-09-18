@@ -392,10 +392,9 @@ void QBtSession::configureSession() {
   //sessionSettings.announce_to_all_trackers = true;
   sessionSettings.auto_scrape_interval = 1200; // 20 minutes
 #if LIBTORRENT_VERSION_MINOR > 14
-  // XXX: Does not comply with the multi-tracker specification
-  // but avoids stalling issues with libtorrent
-  sessionSettings.announce_to_all_trackers = true;
-  sessionSettings.announce_to_all_tiers = false;
+  bool announce_to_all = pref.announceToAllTrackers();
+  sessionSettings.announce_to_all_trackers = announce_to_all;
+  sessionSettings.announce_to_all_tiers = announce_to_all;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
 #endif
   sessionSettings.cache_size = pref.diskCacheSize()*64;

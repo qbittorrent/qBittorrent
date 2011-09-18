@@ -1021,6 +1021,14 @@ public:
   void enableSuperSeeding(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), enabled);
   }
+
+  bool announceToAllTrackers() const {
+    return value(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), false).toBool();
+  }
+
+  void setAnnounceToAllTrackers(bool enabled) {
+    setValue(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), enabled);
+  }
 #endif
 
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))

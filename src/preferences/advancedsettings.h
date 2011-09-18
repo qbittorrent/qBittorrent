@@ -20,6 +20,9 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                     #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
                       USE_ICON_THEME,
                     #endif
+                    #if LIBTORRENT_VERSION_MINOR > 14
+                      ANNOUNCE_ALL_TRACKERS,
+                    #endif
                       CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
                       ROW_COUNT};
 
@@ -37,6 +40,9 @@ private:
 #endif
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
   QCheckBox cb_use_icon_theme;
+#endif
+#if LIBTORRENT_VERSION_MINOR > 14
+   QCheckBox cb_announce_all_trackers;
 #endif
   QLineEdit txt_network_address;
 
@@ -111,6 +117,9 @@ public slots:
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
     // Tracker exchange
     pref.setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
+#if LIBTORRENT_VERSION_MINOR > 14
+    pref.setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
+#endif
   }
 
 signals:
@@ -238,6 +247,11 @@ private slots:
     // Tracker exchange
     cb_enable_tracker_ext.setChecked(pref.trackerExchangeEnabled());
     setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
+#if LIBTORRENT_VERSION_MINOR > 14
+    // Announce to all trackers
+    cb_announce_all_trackers.setCheckable(pref.announceToAllTrackers());
+    setRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
+#endif
   }
 
 };

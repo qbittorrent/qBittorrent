@@ -223,6 +223,10 @@ p, li { white-space: pre-wrap; }
         <source>Exchange trackers with other peers</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Always announce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
