@@ -741,33 +741,33 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
         <translation>Ikke kontaktet ennå</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="405"/>
-        <location filename="../webui/eventmanager.cpp" line="406"/>
+        <location filename="../webui/eventmanager.cpp" line="408"/>
+        <location filename="../webui/eventmanager.cpp" line="409"/>
         <source>this session</source>
         <translation>denne sesjonen</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="410"/>
-        <location filename="../webui/eventmanager.cpp" line="414"/>
+        <location filename="../webui/eventmanager.cpp" line="413"/>
+        <location filename="../webui/eventmanager.cpp" line="417"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="417"/>
+        <location filename="../webui/eventmanager.cpp" line="420"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Gitt ut i %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="420"/>
+        <location filename="../webui/eventmanager.cpp" line="423"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 maks</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="499"/>
-        <location filename="../webui/eventmanager.cpp" line="508"/>
+        <location filename="../webui/eventmanager.cpp" line="502"/>
+        <location filename="../webui/eventmanager.cpp" line="511"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -2305,52 +2305,57 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>Planlegg bruken av alternative forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2269"/>
+        <location filename="../preferences/options.ui" line="2099"/>
+        <source>Do not count slow torrents in these limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2276"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Bruk HTTPS istedenfor HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2312"/>
+        <location filename="../preferences/options.ui" line="2319"/>
         <source>Import SSL Certificate</source>
         <translation>Importer SSL Sertifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2365"/>
+        <location filename="../preferences/options.ui" line="2372"/>
         <source>Import SSL Key</source>
         <translation>Importer SSL Nøkkel</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2300"/>
+        <location filename="../preferences/options.ui" line="2307"/>
         <source>Certificate:</source>
         <translation>Sertifikat:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2353"/>
+        <location filename="../preferences/options.ui" line="2360"/>
         <source>Key:</source>
         <translation>Nøkkel:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2387"/>
+        <location filename="../preferences/options.ui" line="2394"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informasjon om sertifikater&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2456"/>
+        <location filename="../preferences/options.ui" line="2463"/>
         <source>Update my dynamic domain name</source>
         <translation>Oppdater mitt dynamiske domenenavn</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2468"/>
+        <location filename="../preferences/options.ui" line="2475"/>
         <source>Service:</source>
         <translation>Tjeneste:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2491"/>
+        <location filename="../preferences/options.ui" line="2498"/>
         <source>Register</source>
         <translation>Registrer</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2500"/>
+        <location filename="../preferences/options.ui" line="2507"/>
         <source>Domain name:</source>
         <translation>Domenenavn:</translation>
     </message>
@@ -2422,32 +2427,32 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Delingsforholdsbegrensning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2113"/>
+        <location filename="../preferences/options.ui" line="2120"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Vær giver for torrenter til forholdet deres når</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2145"/>
+        <location filename="../preferences/options.ui" line="2152"/>
         <source>then</source>
         <translation>deretter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2156"/>
+        <location filename="../preferences/options.ui" line="2163"/>
         <source>Pause them</source>
         <translation>Sett dem på pause</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2161"/>
+        <location filename="../preferences/options.ui" line="2168"/>
         <source>Remove them</source>
         <translation>Fjern dem</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2259"/>
+        <location filename="../preferences/options.ui" line="2266"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Bruk UPnP / NAT-PMP for å videresende porten fra min ruter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2432"/>
+        <location filename="../preferences/options.ui" line="2439"/>
         <source>Bypass authentication for localhost</source>
         <translation>Omgå autentisering for lokalvert</translation>
     </message>
@@ -2468,14 +2473,14 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1236"/>
-        <location filename="../preferences/options.ui" line="2224"/>
+        <location filename="../preferences/options.ui" line="2231"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="875"/>
         <location filename="../preferences/options.ui" line="1277"/>
-        <location filename="../preferences/options.ui" line="2400"/>
+        <location filename="../preferences/options.ui" line="2407"/>
         <source>Authentication</source>
         <translation>Autentisering</translation>
     </message>
@@ -2487,16 +2492,16 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="887"/>
         <location filename="../preferences/options.ui" line="1291"/>
-        <location filename="../preferences/options.ui" line="2439"/>
-        <location filename="../preferences/options.ui" line="2514"/>
+        <location filename="../preferences/options.ui" line="2446"/>
+        <location filename="../preferences/options.ui" line="2521"/>
         <source>Username:</source>
         <translation>Brukernavn:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="897"/>
         <location filename="../preferences/options.ui" line="1311"/>
-        <location filename="../preferences/options.ui" line="2446"/>
-        <location filename="../preferences/options.ui" line="2528"/>
+        <location filename="../preferences/options.ui" line="2453"/>
+        <location filename="../preferences/options.ui" line="2535"/>
         <source>Password:</source>
         <translation>Passord:</translation>
     </message>
@@ -2506,12 +2511,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>Torrentkø-danning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2102"/>
+        <location filename="../preferences/options.ui" line="2109"/>
         <source>Share Ratio Limiting</source>
         <translation>Delingsforholdsbegrensning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2210"/>
+        <location filename="../preferences/options.ui" line="2217"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
     </message>
@@ -5403,68 +5408,68 @@ Disse programtilleggene ble derimot deaktivert.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1105"/>
-        <location filename="../preferences/options_imp.cpp" line="1107"/>
-        <location filename="../preferences/options_imp.cpp" line="1122"/>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
+        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1110"/>
+        <location filename="../preferences/options_imp.cpp" line="1125"/>
+        <location filename="../preferences/options_imp.cpp" line="1127"/>
         <source>Choose a save directory</source>
         <translation>Velg en lagringskatalog</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1027"/>
+        <location filename="../preferences/options_imp.cpp" line="1030"/>
         <source>Add directory to scan</source>
         <translation>Legg til katalog som skal gjennomsøkes</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1033"/>
+        <location filename="../preferences/options_imp.cpp" line="1036"/>
         <source>Folder is already being watched.</source>
         <translation>Mappe er allerede overvåket.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1036"/>
+        <location filename="../preferences/options_imp.cpp" line="1039"/>
         <source>Folder does not exist.</source>
         <translation>Mappe eksisterer ikke.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1039"/>
+        <location filename="../preferences/options_imp.cpp" line="1042"/>
         <source>Folder is not readable.</source>
         <translation>Mappe er ikke lesbar.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1047"/>
+        <location filename="../preferences/options_imp.cpp" line="1050"/>
         <source>Failure</source>
         <translation>Svikt</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1047"/>
+        <location filename="../preferences/options_imp.cpp" line="1050"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Tillegging av gjennomsøkingsmappe mislyktes &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1070"/>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
+        <location filename="../preferences/options_imp.cpp" line="1073"/>
+        <location filename="../preferences/options_imp.cpp" line="1075"/>
         <source>Choose export directory</source>
         <translation>Velg eksporteringskatalog</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Choose an ip filter file</source>
         <translation>Velg en ip filter fil</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1167"/>
+        <location filename="../preferences/options_imp.cpp" line="1170"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1178"/>
+        <location filename="../preferences/options_imp.cpp" line="1181"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5477,32 +5482,32 @@ Disse programtilleggene ble derimot deaktivert.</translation>
         <translation type="obsolete">SSL Nøkkel (*.key)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1209"/>
+        <location filename="../preferences/options_imp.cpp" line="1212"/>
         <source>Parsing error</source>
         <translation>Analyseringsfeil</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1209"/>
+        <location filename="../preferences/options_imp.cpp" line="1212"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Analysering av det oppgitte IP filteret mislyktes</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <location filename="../preferences/options_imp.cpp" line="1281"/>
         <source>Invalid key</source>
         <translation>Ugyldig nøkkel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <location filename="../preferences/options_imp.cpp" line="1281"/>
         <source>This is not a valid SSL key.</source>
         <translation>Dette er ikke en gyldig SSL nøkkel.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1293"/>
+        <location filename="../preferences/options_imp.cpp" line="1296"/>
         <source>Invalid certificate</source>
         <translation>Ugyldig sertifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1293"/>
+        <location filename="../preferences/options_imp.cpp" line="1296"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dette er ikke et gyldig SSL sertifikat.</translation>
     </message>
@@ -5511,12 +5516,12 @@ Disse programtilleggene ble derimot deaktivert.</translation>
         <translation type="obsolete">Oppdatert vellykket</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1211"/>
+        <location filename="../preferences/options_imp.cpp" line="1214"/>
         <source>Successfully refreshed</source>
         <translation>Oppdatert vellykket</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1211"/>
+        <location filename="../preferences/options_imp.cpp" line="1214"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analysering av det oppgitte IP filteret var vellykket: %1 regler ble lagt til.</translation>

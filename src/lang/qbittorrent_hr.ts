@@ -3327,6 +3327,10 @@ QGroupBox {
         <source>Use qBittorrent for magnet links</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do not count slow torrents in these limits</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

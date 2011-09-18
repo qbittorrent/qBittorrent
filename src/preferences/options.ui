@@ -170,7 +170,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-176</y>
+             <y>0</y>
              <width>485</width>
              <height>632</height>
             </rect>
@@ -970,7 +970,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>443</width>
+             <width>485</width>
              <height>506</height>
             </rect>
            </property>
@@ -1414,7 +1414,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>384</width>
+             <width>485</width>
              <height>440</height>
             </rect>
            </property>
@@ -1825,9 +1825,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-67</y>
              <width>530</width>
-             <height>444</height>
+             <height>471</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2092,6 +2092,13 @@
                   </size>
                  </property>
                 </spacer>
+               </item>
+               <item row="3" column="0" colspan="3">
+                <widget class="QCheckBox" name="checkIgnoreSlowTorrentsForQueueing">
+                 <property name="text">
+                  <string>Do not count slow torrents in these limits</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2576,8 +2583,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>502</width>
+             <height>366</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -415,7 +415,7 @@ void QBtSession::configureSession() {
     sessionSettings.active_downloads = pref.getMaxActiveDownloads();
     sessionSettings.active_seeds = pref.getMaxActiveUploads();
     sessionSettings.active_limit = pref.getMaxActiveTorrents();
-    sessionSettings.dont_count_slow_torrents = false;
+    sessionSettings.dont_count_slow_torrents = pref.ignoreSlowTorrentsForQueueing();
     setQueueingEnabled(true);
   } else {
     sessionSettings.active_downloads = -1;

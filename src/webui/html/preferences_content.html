@@ -167,6 +167,7 @@
   <td style="vertical-align: bottom; text-align: right;">_(Maximum active torrents:)</td><td><input type="text" id="max_active_to_value" style="width: 4em;"/></td>
   </tr>
   </table>
+  <input type="checkbox" id="dont_count_slow_torrents_checkbox"/> _(Do not count slow torrents in these limits)
   </div>
 </fieldset>
 </div>
@@ -716,7 +717,7 @@ loadPreferences = function() {
                     $('autorunProg_txt').setProperty('value', pref.autorun_program);
                     updateAutoRun();
                     if(pref.preallocate_all) {
-                      $('preallocateall_checkbox').setProperty('checked', true);
+                      $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                     } else {
                       $('preallocateall_checkbox').setProperty('checked', false);
                     }
@@ -738,6 +739,7 @@ loadPreferences = function() {
                     $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
                     $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
                     $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
+                    $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
                     updateQueueingSystem();
                     // IP Filter
                     if(pref.ip_filter_enabled) {
@@ -906,6 +908,7 @@ applyPreferences = function() {
   settings.set('max_active_downloads', $('max_active_dl_value').getProperty('value').toInt());
   settings.set('max_active_uploads', $('max_active_up_value').getProperty('value').toInt());
   settings.set('max_active_torrents', $('max_active_to_value').getProperty('value').toInt());
+  settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
  
   settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
   settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));

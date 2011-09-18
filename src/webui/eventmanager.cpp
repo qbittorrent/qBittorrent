@@ -206,6 +206,8 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setMaxActiveTorrents(m["max_active_torrents"].toInt());
   if(m.contains("max_active_uploads"))
     pref.setMaxActiveUploads(m["max_active_uploads"].toInt());
+  if(m.contains("dont_count_slow_torrents"))
+    pref.setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
 #if LIBTORRENT_VERSION_MINOR > 14
   if(m.contains("incomplete_files_ext"))
     pref.useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
@@ -336,6 +338,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["max_active_downloads"] = pref.getMaxActiveDownloads();
   data["max_active_torrents"] = pref.getMaxActiveTorrents();
   data["max_active_uploads"] = pref.getMaxActiveUploads();
+  data["dont_count_slow_torrents"] = pref.ignoreSlowTorrentsForQueueing();
 #if LIBTORRENT_VERSION_MINOR > 14
   data["incomplete_files_ext"] = pref.useIncompleteFilesExtension();
 #endif

@@ -215,6 +215,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinMaxActiveDownloads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxActiveUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxActiveTorrents, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkIgnoreSlowTorrentsForQueueing, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   // Web UI tab
   connect(checkWebUi, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinWebUiPort, SIGNAL(valueChanged(int)), this, SLOT(enableApplyButton()));
@@ -457,6 +458,7 @@ void options_imp::saveOptions(){
   pref.setMaxActiveDownloads(spinMaxActiveDownloads->value());
   pref.setMaxActiveUploads(spinMaxActiveUploads->value());
   pref.setMaxActiveTorrents(spinMaxActiveTorrents->value());
+  pref.setIgnoreSlowTorrentsForQueueing(checkIgnoreSlowTorrentsForQueueing->isChecked());
   // End Queueing system preferences
   // Web UI
   pref.setWebUiEnabled(isWebUiEnabled());
@@ -720,6 +722,7 @@ void options_imp::loadOptions(){
   spinMaxActiveDownloads->setValue(pref.getMaxActiveDownloads());
   spinMaxActiveUploads->setValue(pref.getMaxActiveUploads());
   spinMaxActiveTorrents->setValue(pref.getMaxActiveTorrents());
+  checkIgnoreSlowTorrentsForQueueing->setChecked(pref.ignoreSlowTorrentsForQueueing());
   // End Queueing system preferences
   // Web UI
   checkWebUi->setChecked(pref.isWebUiEnabled());

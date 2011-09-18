@@ -709,6 +709,14 @@ public:
     setValue(QString::fromUtf8("Preferences/Queueing/MaxActiveTorrents"), val);
   }
 
+  void setIgnoreSlowTorrentsForQueueing(bool ignore) {
+    setValue("Preferences/Queueing/IgnoreSlowTorrents", ignore);
+  }
+
+  bool ignoreSlowTorrentsForQueueing() const {
+    return value("Preferences/Queueing/IgnoreSlowTorrents", false).toBool();
+  }
+
   bool isWebUiEnabled() const {
     return value("Preferences/WebUI/Enabled", false).toBool();
   }
