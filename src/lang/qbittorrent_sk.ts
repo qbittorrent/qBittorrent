@@ -2887,6 +2887,18 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
     </message>
+    <message>
+        <source>File association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use qBittorrent for .torrent files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use qBittorrent for magnet links</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

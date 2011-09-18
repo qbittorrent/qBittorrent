@@ -1271,8 +1271,8 @@ Ingen flere notiser vil bli gitt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="367"/>
-        <location filename="../mainwindow.cpp" line="707"/>
-        <location filename="../mainwindow.cpp" line="1207"/>
+        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="1208"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1314,7 +1314,7 @@ Ingen flere notiser vil bli gitt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>Execution Log</source>
         <translation>Utførelseslogg</translation>
     </message>
@@ -1358,7 +1358,7 @@ Ingen flere notiser vil bli gitt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1263"/>
+        <location filename="../mainwindow.cpp" line="1264"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1386,68 +1386,68 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Vil du assosiere qBittorrent til torrentfiler og Magnetlenker?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="389"/>
-        <location filename="../mainwindow.cpp" line="409"/>
-        <location filename="../mainwindow.cpp" line="659"/>
+        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="660"/>
         <source>UI lock password</source>
         <translation>Brukergrensesnitt låsingspassord</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="389"/>
-        <location filename="../mainwindow.cpp" line="409"/>
-        <location filename="../mainwindow.cpp" line="659"/>
+        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="660"/>
         <source>Please type the UI lock password:</source>
         <translation>Vennligst skriv brukergrensesnitt låsingspassordet:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="393"/>
+        <location filename="../mainwindow.cpp" line="394"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Passordet bør inneholde minst 3 tegn</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="399"/>
+        <location filename="../mainwindow.cpp" line="400"/>
         <source>Password update</source>
         <translation>Passord oppdatering</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="399"/>
+        <location filename="../mainwindow.cpp" line="400"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Brukergrensesnitt-låsingspassordet har blitt vellykket oppdatert</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="425"/>
+        <location filename="../mainwindow.cpp" line="426"/>
         <source>RSS</source>
         <translation>Nyhetsmating (RSS)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="440"/>
+        <location filename="../mainwindow.cpp" line="441"/>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="450"/>
+        <location filename="../mainwindow.cpp" line="451"/>
         <source>Transfers (%1)</source>
         <translation>Overføringer (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="521"/>
+        <location filename="../mainwindow.cpp" line="522"/>
         <source>Download completion</source>
         <translation>Nedlastingsfullførelse</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="521"/>
+        <location filename="../mainwindow.cpp" line="522"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 er ferdig nedlastet.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="527"/>
+        <location filename="../mainwindow.cpp" line="528"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Inn/ut-operasjonsfeil</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="527"/>
+        <location filename="../mainwindow.cpp" line="528"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1456,146 +1456,146 @@ Vil du assosiere qBittorrent til torrentfiler og Magnetlenker?</translation>
  Grunn: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="535"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="536"/>
+        <location filename="../mainwindow.cpp" line="537"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="539"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="541"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="580"/>
+        <location filename="../mainwindow.cpp" line="581"/>
         <source>Recursive download confirmation</source>
         <translation>Rekursiv nedlastingsbekreftelse</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="580"/>
+        <location filename="../mainwindow.cpp" line="581"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrenten %1 inneholder torrentfiler, vil du fortsette med deres nedlasting?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
-        <location filename="../mainwindow.cpp" line="753"/>
+        <location filename="../mainwindow.cpp" line="582"/>
+        <location filename="../mainwindow.cpp" line="754"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="582"/>
-        <location filename="../mainwindow.cpp" line="752"/>
+        <location filename="../mainwindow.cpp" line="583"/>
+        <location filename="../mainwindow.cpp" line="753"/>
         <source>No</source>
         <translation>Nei</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="583"/>
+        <location filename="../mainwindow.cpp" line="584"/>
         <source>Never</source>
         <translation>Aldri</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="597"/>
+        <location filename="../mainwindow.cpp" line="598"/>
         <source>Url download error</source>
         <translation>Nettadresse nedlastingsfeil</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="597"/>
+        <location filename="../mainwindow.cpp" line="598"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Kunne ikke laste ned filen hos nettadresse: %1, grunn: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="608"/>
+        <location filename="../mainwindow.cpp" line="609"/>
         <source>Global Upload Speed Limit</source>
         <translation>Global Opplastingshastighetsgrense</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="627"/>
+        <location filename="../mainwindow.cpp" line="628"/>
         <source>Global Download Speed Limit</source>
         <translation>Global Nedlastingshastighetsgrense</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1118"/>
+        <location filename="../mainwindow.cpp" line="1119"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="393"/>
-        <location filename="../mainwindow.cpp" line="672"/>
+        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.cpp" line="673"/>
         <source>Invalid password</source>
         <translation>Ugyldig passord</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="672"/>
+        <location filename="../mainwindow.cpp" line="673"/>
         <source>The password is invalid</source>
         <translation>Passordet er ugyldig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="707"/>
-        <location filename="../mainwindow.cpp" line="1207"/>
+        <location filename="../mainwindow.cpp" line="708"/>
+        <location filename="../mainwindow.cpp" line="1208"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="749"/>
+        <location filename="../mainwindow.cpp" line="750"/>
         <source>Exiting qBittorrent</source>
         <translation>Avslutter qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="750"/>
+        <location filename="../mainwindow.cpp" line="751"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Noen filer overføres for øyeblikket.
 Er du sikker på at du vil avslutte qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="755"/>
         <source>Always</source>
         <translation>Alltid</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="912"/>
+        <location filename="../mainwindow.cpp" line="913"/>
         <source>Open Torrent Files</source>
         <translation>Åpne Torrentfiler</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="914"/>
         <source>Torrent Files</source>
         <translation>Torrentfiler</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="992"/>
+        <location filename="../mainwindow.cpp" line="993"/>
         <source>Options were saved successfully.</source>
         <translation>Alternativene ble vellykket lagret.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1101"/>
+        <location filename="../mainwindow.cpp" line="1102"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1104"/>
-        <location filename="../mainwindow.cpp" line="1111"/>
+        <location filename="../mainwindow.cpp" line="1105"/>
+        <location filename="../mainwindow.cpp" line="1112"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>NL-hastighet: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1107"/>
-        <location filename="../mainwindow.cpp" line="1113"/>
+        <location filename="../mainwindow.cpp" line="1108"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>OL-hastighet: %1 KiB/s</translation>
@@ -1606,24 +1606,24 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <translation type="obsolete">qBittorrent %1 (Ned: %2/s, Opp: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1301"/>
+        <location filename="../mainwindow.cpp" line="1302"/>
         <source>A newer version is available</source>
         <translation>En nyere versjon er tilgjengelig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1302"/>
+        <location filename="../mainwindow.cpp" line="1303"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>En nyere verjon av qBittorrent er tilgjengelig hos Sourceforge.
 Vil du oppdatere qBittorrent til versjon %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1317"/>
+        <location filename="../mainwindow.cpp" line="1318"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Umulig å oppdatere qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1317"/>
+        <location filename="../mainwindow.cpp" line="1318"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent mislyktes i å oppdateres, grunn: %1</translation>
     </message>
@@ -1851,12 +1851,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Filsystem</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="762"/>
+        <location filename="../preferences/options.ui" line="785"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopier torrentfiler til:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="918"/>
+        <location filename="../preferences/options.ui" line="941"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -1869,47 +1869,47 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="960"/>
+        <location filename="../preferences/options.ui" line="983"/>
         <source>Listening Port</source>
         <translation>Lytteport</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1025"/>
+        <location filename="../preferences/options.ui" line="1048"/>
         <source>Connections Limits</source>
         <translation>Tilkoblingsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1145"/>
+        <location filename="../preferences/options.ui" line="1168"/>
         <source>Proxy Server</source>
         <translation>Mellomtjener</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1510"/>
+        <location filename="../preferences/options.ui" line="1533"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation>Aktiver båndbreddebehandling (uTP)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1906"/>
+        <location filename="../preferences/options.ui" line="1929"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Aktiver lokal deltakeroppdagelse for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1918"/>
+        <location filename="../preferences/options.ui" line="1941"/>
         <source>Encryption mode:</source>
         <translation>Krypteringsmodus:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1926"/>
+        <location filename="../preferences/options.ui" line="1949"/>
         <source>Prefer encryption</source>
         <translation>Foretrekk kryptering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1931"/>
+        <location filename="../preferences/options.ui" line="1954"/>
         <source>Require encryption</source>
         <translation>Krev kryptering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1936"/>
+        <location filename="../preferences/options.ui" line="1959"/>
         <source>Disable encryption</source>
         <translation>Deaktiver kryptering</translation>
     </message>
@@ -1918,22 +1918,22 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Torrentkø-danning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1977"/>
+        <location filename="../preferences/options.ui" line="2000"/>
         <source>Maximum active downloads:</source>
         <translation>Maksimalt aktive nedlastinger:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1997"/>
+        <location filename="../preferences/options.ui" line="2020"/>
         <source>Maximum active uploads:</source>
         <translation>Maksimalt aktive opplastinger:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2017"/>
+        <location filename="../preferences/options.ui" line="2040"/>
         <source>Maximum active torrents:</source>
         <translation>Maksimalt aktive torrenter:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="504"/>
+        <location filename="../preferences/options.ui" line="527"/>
         <source>When adding a torrent</source>
         <translation>Når en torrent legges til</translation>
     </message>
@@ -1949,7 +1949,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="513"/>
+        <location filename="../preferences/options.ui" line="536"/>
         <source>Display torrent content and some options</source>
         <translation>Vis torrentinnhold og noen alternativer</translation>
     </message>
@@ -1958,12 +1958,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Lytteport</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="968"/>
+        <location filename="../preferences/options.ui" line="991"/>
         <source>Port used for incoming connections:</source>
         <translation>Port brukt for innkommende tilkoblinger:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="988"/>
+        <location filename="../preferences/options.ui" line="1011"/>
         <source>Random</source>
         <translation>Tilfeldig</translation>
     </message>
@@ -1972,37 +1972,37 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Tilkoblingsgrense</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1031"/>
+        <location filename="../preferences/options.ui" line="1054"/>
         <source>Global maximum number of connections:</source>
         <translation>Globalt maksimalt antall tilkoblinger:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1057"/>
+        <location filename="../preferences/options.ui" line="1080"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Maksimalt antall tilkoblinger per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1080"/>
+        <location filename="../preferences/options.ui" line="1103"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Maksimalt antall opplastingsåpninger per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1420"/>
-        <location filename="../preferences/options.ui" line="1575"/>
+        <location filename="../preferences/options.ui" line="1443"/>
+        <location filename="../preferences/options.ui" line="1598"/>
         <source>Upload:</source>
         <translation>Opplasting:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1456"/>
-        <location filename="../preferences/options.ui" line="1602"/>
+        <location filename="../preferences/options.ui" line="1479"/>
+        <location filename="../preferences/options.ui" line="1625"/>
         <source>Download:</source>
         <translation>Nedlasting:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1449"/>
-        <location filename="../preferences/options.ui" line="1482"/>
-        <location filename="../preferences/options.ui" line="1595"/>
-        <location filename="../preferences/options.ui" line="1622"/>
+        <location filename="../preferences/options.ui" line="1472"/>
+        <location filename="../preferences/options.ui" line="1505"/>
+        <location filename="../preferences/options.ui" line="1618"/>
+        <location filename="../preferences/options.ui" line="1645"/>
         <source>KiB/s</source>
         <translation>KiB/s</translation>
     </message>
@@ -2011,7 +2011,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Globale hastighetsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="729"/>
+        <location filename="../preferences/options.ui" line="752"/>
         <source>Remove folder</source>
         <translation>Fjern mappe</translation>
     </message>
@@ -2020,54 +2020,54 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Alternative globale hastighetsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1687"/>
+        <location filename="../preferences/options.ui" line="1710"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>til</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1739"/>
+        <location filename="../preferences/options.ui" line="1762"/>
         <source>Every day</source>
         <translation>Hver dag</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1744"/>
+        <location filename="../preferences/options.ui" line="1767"/>
         <source>Week days</source>
         <translation>Ukedager</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1749"/>
+        <location filename="../preferences/options.ui" line="1772"/>
         <source>Week ends</source>
         <translation>Helger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1849"/>
+        <location filename="../preferences/options.ui" line="1872"/>
         <source>DHT port:</source>
         <translation>DHT port:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1890"/>
+        <location filename="../preferences/options.ui" line="1913"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Utveksle deltakere med kompatible Bittorrent klienter (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1187"/>
+        <location filename="../preferences/options.ui" line="1210"/>
         <source>Host:</source>
         <translation>Vert:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1166"/>
+        <location filename="../preferences/options.ui" line="1189"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1153"/>
+        <location filename="../preferences/options.ui" line="1176"/>
         <source>Type:</source>
         <translation>Type:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="20"/>
-        <location filename="../preferences/options.ui" line="1504"/>
+        <location filename="../preferences/options.ui" line="1527"/>
         <source>Options</source>
         <translation>Alternativer</translation>
     </message>
@@ -2175,43 +2175,58 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>Monokromt (Lyst tema)</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="440"/>
+        <source>File association</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="446"/>
+        <source>Use qBittorrent for .torrent files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="453"/>
+        <source>Use qBittorrent for magnet links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="469"/>
         <source>Power Management</source>
         <translation>Strømstyring</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="452"/>
+        <location filename="../preferences/options.ui" line="475"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation>Hindre systemhvile når torrenter er aktive</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="523"/>
+        <location filename="../preferences/options.ui" line="546"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Ikke start nedlastingen automatisk</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="539"/>
+        <location filename="../preferences/options.ui" line="562"/>
         <source>Hard Disk</source>
         <translation>Harddisk</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="548"/>
+        <location filename="../preferences/options.ui" line="571"/>
         <source>Save files to location:</source>
         <translation>Lagre filer til plassering:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="596"/>
+        <location filename="../preferences/options.ui" line="619"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Tilføy torrentens etikett til lagringsstien</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="606"/>
+        <location filename="../preferences/options.ui" line="629"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Forhåndstildel diskplass for alle filer</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="613"/>
+        <location filename="../preferences/options.ui" line="636"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Oppbevar ikke-fullførte torrenter i:</translation>
     </message>
@@ -2220,122 +2235,122 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Tilføy .!qB benevnelse til navn på ikke-fullførte filer</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="666"/>
+        <location filename="../preferences/options.ui" line="689"/>
         <source>Automatically add torrents from:</source>
         <translation>Legg automatisk til torrenter fra:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="719"/>
+        <location filename="../preferences/options.ui" line="742"/>
         <source>Add folder...</source>
         <translation>Legg til mappe...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="818"/>
+        <location filename="../preferences/options.ui" line="841"/>
         <source>Email notification upon download completion</source>
         <translation>Epost-varsling ved nedlastingsfullførelse</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="832"/>
+        <location filename="../preferences/options.ui" line="855"/>
         <source>Destination email:</source>
         <translation>Destinasjons-epost:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="842"/>
+        <location filename="../preferences/options.ui" line="865"/>
         <source>SMTP server:</source>
         <translation>SMTP tjener:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="891"/>
+        <location filename="../preferences/options.ui" line="914"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Denne tjeneren krever en sikker tilkobling (SSL)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="903"/>
+        <location filename="../preferences/options.ui" line="926"/>
         <source>Run an external program on torrent completion</source>
         <translation>Kjør et eksternt program ved torrentfullførelse</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1241"/>
+        <location filename="../preferences/options.ui" line="1264"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Ellers så er mellomtjeneren kun brukt for sporertilkoblinger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1244"/>
+        <location filename="../preferences/options.ui" line="1267"/>
         <source>Use proxy for peer connections</source>
         <translation>Bruk mellomtjener for deltakertilkoblinger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1402"/>
+        <location filename="../preferences/options.ui" line="1425"/>
         <source>Global Rate Limits</source>
         <translation>Globale Forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1520"/>
+        <location filename="../preferences/options.ui" line="1543"/>
         <source>Apply rate limit to uTP connections</source>
         <translation>Bruk forholdsgrense for uTP tilkoblinger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1527"/>
+        <location filename="../preferences/options.ui" line="1550"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Bruk forholdsgrense for transportering av tilleggsdata</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1540"/>
+        <location filename="../preferences/options.ui" line="1563"/>
         <source>Alternative Global Rate Limits</source>
         <translation>Alternative Globale Forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1646"/>
+        <location filename="../preferences/options.ui" line="1669"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>Planlegg bruken av alternative forholdsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2246"/>
+        <location filename="../preferences/options.ui" line="2269"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Bruk HTTPS istedenfor HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2289"/>
+        <location filename="../preferences/options.ui" line="2312"/>
         <source>Import SSL Certificate</source>
         <translation>Importer SSL Sertifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2342"/>
+        <location filename="../preferences/options.ui" line="2365"/>
         <source>Import SSL Key</source>
         <translation>Importer SSL Nøkkel</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2277"/>
+        <location filename="../preferences/options.ui" line="2300"/>
         <source>Certificate:</source>
         <translation>Sertifikat:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2330"/>
+        <location filename="../preferences/options.ui" line="2353"/>
         <source>Key:</source>
         <translation>Nøkkel:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2364"/>
+        <location filename="../preferences/options.ui" line="2387"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informasjon om sertifikater&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2433"/>
+        <location filename="../preferences/options.ui" line="2456"/>
         <source>Update my dynamic domain name</source>
         <translation>Oppdater mitt dynamiske domenenavn</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2445"/>
+        <location filename="../preferences/options.ui" line="2468"/>
         <source>Service:</source>
         <translation>Tjeneste:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2468"/>
+        <location filename="../preferences/options.ui" line="2491"/>
         <source>Register</source>
         <translation>Registrer</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2477"/>
+        <location filename="../preferences/options.ui" line="2500"/>
         <source>Domain name:</source>
         <translation>Domenenavn:</translation>
     </message>
@@ -2344,7 +2359,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Bruk %f for å overføre torrentstien i parametre</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1010"/>
+        <location filename="../preferences/options.ui" line="1033"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Bruk UPnP / NAT-PMP port-videresending fra min ruter</translation>
     </message>
@@ -2353,12 +2368,12 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Mellomtjener</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1316"/>
+        <location filename="../preferences/options.ui" line="1339"/>
         <source>IP Filtering</source>
         <translation>IP Filtrering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1357"/>
+        <location filename="../preferences/options.ui" line="1380"/>
         <source>Reload the filter</source>
         <translation>Last inn filteret på nytt</translation>
     </message>
@@ -2367,38 +2382,38 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Planlegg bruken av alternative hastighetsgrenser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1663"/>
+        <location filename="../preferences/options.ui" line="1686"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>fra</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1731"/>
+        <location filename="../preferences/options.ui" line="1754"/>
         <source>When:</source>
         <translation>Når:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1814"/>
+        <location filename="../preferences/options.ui" line="1837"/>
         <source>Privacy</source>
         <translation>Personvern</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1820"/>
+        <location filename="../preferences/options.ui" line="1843"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Aktiver DHT (desentralisert nettverk) for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1829"/>
+        <location filename="../preferences/options.ui" line="1852"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Bruk en annen port for DHT og BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1893"/>
+        <location filename="../preferences/options.ui" line="1916"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Aktiver utveksling av deltakere (PeX) for å finne flere deltakere</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1903"/>
+        <location filename="../preferences/options.ui" line="1926"/>
         <source>Look for peers on your local network</source>
         <translation>Se etter deltakere i ditt lokale nettverk</translation>
     </message>
@@ -2407,37 +2422,37 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation type="obsolete">Delingsforholdsbegrensning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2090"/>
+        <location filename="../preferences/options.ui" line="2113"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Vær giver for torrenter til forholdet deres når</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2122"/>
+        <location filename="../preferences/options.ui" line="2145"/>
         <source>then</source>
         <translation>deretter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2133"/>
+        <location filename="../preferences/options.ui" line="2156"/>
         <source>Pause them</source>
         <translation>Sett dem på pause</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2138"/>
+        <location filename="../preferences/options.ui" line="2161"/>
         <source>Remove them</source>
         <translation>Fjern dem</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2236"/>
+        <location filename="../preferences/options.ui" line="2259"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Bruk UPnP / NAT-PMP for å videresende porten fra min ruter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2409"/>
+        <location filename="../preferences/options.ui" line="2432"/>
         <source>Bypass authentication for localhost</source>
         <translation>Omgå autentisering for lokalvert</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1161"/>
+        <location filename="../preferences/options.ui" line="1184"/>
         <source>(None)</source>
         <translation>(Ingen)</translation>
     </message>
@@ -2447,66 +2462,66 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1176"/>
+        <location filename="../preferences/options.ui" line="1199"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1213"/>
-        <location filename="../preferences/options.ui" line="2201"/>
+        <location filename="../preferences/options.ui" line="1236"/>
+        <location filename="../preferences/options.ui" line="2224"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="852"/>
-        <location filename="../preferences/options.ui" line="1254"/>
-        <location filename="../preferences/options.ui" line="2377"/>
+        <location filename="../preferences/options.ui" line="875"/>
+        <location filename="../preferences/options.ui" line="1277"/>
+        <location filename="../preferences/options.ui" line="2400"/>
         <source>Authentication</source>
         <translation>Autentisering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="659"/>
+        <location filename="../preferences/options.ui" line="682"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Tilføy .!qB benevnelse til ikke-fullførte filer</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="864"/>
-        <location filename="../preferences/options.ui" line="1268"/>
-        <location filename="../preferences/options.ui" line="2416"/>
-        <location filename="../preferences/options.ui" line="2491"/>
+        <location filename="../preferences/options.ui" line="887"/>
+        <location filename="../preferences/options.ui" line="1291"/>
+        <location filename="../preferences/options.ui" line="2439"/>
+        <location filename="../preferences/options.ui" line="2514"/>
         <source>Username:</source>
         <translation>Brukernavn:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="874"/>
-        <location filename="../preferences/options.ui" line="1288"/>
-        <location filename="../preferences/options.ui" line="2423"/>
-        <location filename="../preferences/options.ui" line="2505"/>
+        <location filename="../preferences/options.ui" line="897"/>
+        <location filename="../preferences/options.ui" line="1311"/>
+        <location filename="../preferences/options.ui" line="2446"/>
+        <location filename="../preferences/options.ui" line="2528"/>
         <source>Password:</source>
         <translation>Passord:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1962"/>
+        <location filename="../preferences/options.ui" line="1985"/>
         <source>Torrent Queueing</source>
         <translation>Torrentkø-danning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2079"/>
+        <location filename="../preferences/options.ui" line="2102"/>
         <source>Share Ratio Limiting</source>
         <translation>Delingsforholdsbegrensning</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2187"/>
+        <location filename="../preferences/options.ui" line="2210"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Aktiver Nettbrukergrenesnitt (Web UI) *Fjernkontroll*</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1171"/>
+        <location filename="../preferences/options.ui" line="1194"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1328"/>
+        <location filename="../preferences/options.ui" line="1351"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Filtersti (.dat, .p2p, .p2b):</translation>
     </message>
@@ -5388,68 +5403,68 @@ Disse programtilleggene ble derimot deaktivert.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1090"/>
-        <location filename="../preferences/options_imp.cpp" line="1092"/>
+        <location filename="../preferences/options_imp.cpp" line="1105"/>
         <location filename="../preferences/options_imp.cpp" line="1107"/>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
+        <location filename="../preferences/options_imp.cpp" line="1122"/>
+        <location filename="../preferences/options_imp.cpp" line="1124"/>
         <source>Choose a save directory</source>
         <translation>Velg en lagringskatalog</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1012"/>
+        <location filename="../preferences/options_imp.cpp" line="1027"/>
         <source>Add directory to scan</source>
         <translation>Legg til katalog som skal gjennomsøkes</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1018"/>
+        <location filename="../preferences/options_imp.cpp" line="1033"/>
         <source>Folder is already being watched.</source>
         <translation>Mappe er allerede overvåket.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1021"/>
+        <location filename="../preferences/options_imp.cpp" line="1036"/>
         <source>Folder does not exist.</source>
         <translation>Mappe eksisterer ikke.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1024"/>
+        <location filename="../preferences/options_imp.cpp" line="1039"/>
         <source>Folder is not readable.</source>
         <translation>Mappe er ikke lesbar.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1032"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Failure</source>
         <translation>Svikt</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1032"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Tillegging av gjennomsøkingsmappe mislyktes &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1055"/>
-        <location filename="../preferences/options_imp.cpp" line="1057"/>
+        <location filename="../preferences/options_imp.cpp" line="1070"/>
+        <location filename="../preferences/options_imp.cpp" line="1072"/>
         <source>Choose export directory</source>
         <translation>Velg eksporteringskatalog</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
-        <location filename="../preferences/options_imp.cpp" line="1074"/>
+        <location filename="../preferences/options_imp.cpp" line="1087"/>
+        <location filename="../preferences/options_imp.cpp" line="1089"/>
         <source>Choose an ip filter file</source>
         <translation>Velg en ip filter fil</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
-        <location filename="../preferences/options_imp.cpp" line="1074"/>
+        <location filename="../preferences/options_imp.cpp" line="1087"/>
+        <location filename="../preferences/options_imp.cpp" line="1089"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1152"/>
+        <location filename="../preferences/options_imp.cpp" line="1167"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1163"/>
+        <location filename="../preferences/options_imp.cpp" line="1178"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5462,32 +5477,32 @@ Disse programtilleggene ble derimot deaktivert.</translation>
         <translation type="obsolete">SSL Nøkkel (*.key)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1194"/>
+        <location filename="../preferences/options_imp.cpp" line="1209"/>
         <source>Parsing error</source>
         <translation>Analyseringsfeil</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1194"/>
+        <location filename="../preferences/options_imp.cpp" line="1209"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Analysering av det oppgitte IP filteret mislyktes</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1263"/>
+        <location filename="../preferences/options_imp.cpp" line="1278"/>
         <source>Invalid key</source>
         <translation>Ugyldig nøkkel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1263"/>
+        <location filename="../preferences/options_imp.cpp" line="1278"/>
         <source>This is not a valid SSL key.</source>
         <translation>Dette er ikke en gyldig SSL nøkkel.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>Invalid certificate</source>
         <translation>Ugyldig sertifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1278"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dette er ikke et gyldig SSL sertifikat.</translation>
     </message>
@@ -5496,12 +5511,12 @@ Disse programtilleggene ble derimot deaktivert.</translation>
         <translation type="obsolete">Oppdatert vellykket</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1196"/>
+        <location filename="../preferences/options_imp.cpp" line="1211"/>
         <source>Successfully refreshed</source>
         <translation>Oppdatert vellykket</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1196"/>
+        <location filename="../preferences/options_imp.cpp" line="1211"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analysering av det oppgitte IP filteret var vellykket: %1 regler ble lagt til.</translation>
