@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
+    - FEATURE: Add file association settings to program preferences (Windows)
     - BUGFIX: Add tray menu entry for toggling window visibility
     - COSMETIC: Display speed at the beginning of the Window title
     - OTHER: Display libraries versions in about dialog (sledgehammer999)

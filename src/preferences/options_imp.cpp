@@ -120,6 +120,11 @@ options_imp::options_imp(QWidget *parent):
 #if defined(QT_NO_OPENSSL)
   checkWebUiHttps->setVisible(false);
 #endif
+
+#ifndef Q_WS_WIN
+  groupFileAssociation->setVisible(false);
+#endif
+
   // Connect signals / slots
   // Proxy tab
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
@@ -355,6 +360,11 @@ void options_imp::saveOptions(){
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
   pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
+#ifdef Q_WS_WIN
+  // Windows: file association settings
+  Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
+  Preferences::setMagnetLinkAssoc(checkAssociateMagnetLinks->isChecked());
+#endif
   // End General preferences
 
   // Downloads preferences
@@ -519,6 +529,11 @@ void options_imp::loadOptions(){
   comboTrayIcon->setCurrentIndex(pref.trayIconStyle());
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
+#ifdef Q_WS_WIN
+  // Windows: file association settings
+  checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+  checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+#endif
   // End General preferences
   // Downloads preferences
   QString save_path = pref.getSavePath();
