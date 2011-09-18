@@ -556,14 +556,8 @@ loadPreferences = function() {
           onSuccess: function(pref) {
                   if(pref){
                     // Connection
-                    var listen_port = pref.listen_port.toInt();
-                    $('port_value').setProperty('value', listen_port);
-                    
-                    if(pref.upnp) {
-                      $('upnp_checkbox').setProperty('checked', true);
-                    } else {
-                      $('upnp_checkbox').setProperty('checked', false);
-                    }
+                    $('port_value').setProperty('value', pref.listen_port.toInt());
+                    $('upnp_checkbox').setProperty('checked', pref.upnp);
                     
                     var dl_limit = pref.dl_limit.toInt();
                     if(dl_limit <= 0) {
@@ -585,19 +579,10 @@ loadPreferences = function() {
 		    utp_supported = $defined(pref.enable_utp);
 		    setuTPSettingsVisible(utp_supported);
 		    if(utp_supported) {
-		      if(pref.enable_utp)
-		        $('enable_utp_checkbox').setProperty('checked', true);
-	              else
-		        $('enable_utp_checkbox').setProperty('checked', false);
-		      if(pref.limit_utp_rate)
-		        $('limit_utp_rate_checkbox').setProperty('checked', true);
-	              else
-		        $('limit_utp_rate_checkbox').setProperty('checked', false);
+		      $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
+		      $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
 		    }
-		    if(pref.limit_tcp_overhead)
-		      $('limit_tcp_overhead_checkbox').setProperty('checked', true);
-	            else
-		      $('limit_tcp_overhead_checkbox').setProperty('checked', false);
+		    $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
                     var max_connec = pref.max_connec.toInt();
                     if(max_connec <= 0) {
                       $('max_connec_checkbox').setProperty('checked', false);
@@ -626,47 +611,20 @@ loadPreferences = function() {
                     }
                     updateMaxUploadsPerTorrentEnabled();
                     // Bittorrent
-                    var dht = pref.dht; //bool
-                    if(dht) {
-                      $('dht_checkbox').setProperty('checked', true);
-                    } else {
-                      $('dht_checkbox').setProperty('checked', false);
-                    }
-                    var dhtSameAsBT = pref.dhtSameAsBT;
-                    if(dhtSameAsBT) {
-                      $('DHTPortDiffThanBT_checkbox').setProperty('checked', false);
-                    } else {
-                      $('DHTPortDiffThanBT_checkbox').setProperty('checked', true);
-                    }
+                    $('dht_checkbox').setProperty('checked', pref.dht);
+                    $('DHTPortDiffThanBT_checkbox').setProperty('checked', !pref.dhtSameAsBT);
                     $('DHTPort_txt').setProperty('value', pref.dht_port);
                     updateDHTPortSettings();
-                    var pex = pref.pex; //bool
-                    if(pex) {
-                      $('pex_checkbox').setProperty('checked', true);
-                    } else {
-                      $('pex_checkbox').setProperty('checked', false);
-                    }
-                    var lsd = pref.lsd; //bool
-                    if(lsd) {
-                      $('lsd_checkbox').setProperty('checked', true);
-                    } else {
-                      $('lsd_checkbox').setProperty('checked', false);
-                    }
+                    $('pex_checkbox').setProperty('checked', pref.pex);
+                    $('lsd_checkbox').setProperty('checked', pref.lsd);
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
                     // Downloads
-                    var save_path = pref.save_path;
-                    $("savepath_text").setProperty('value', save_path);
-                    var temp_path_enabled = pref.temp_path_enabled;
-                    if(temp_path_enabled) {
-                      $('temppath_checkbox').setProperty('checked', true);
-                    } else {
-                      $('temppath_checkbox').setProperty('checked', false);
-                    }
-                    var temp_path = pref.temp_path;
-                    $('temppath_text').setProperty('value', temp_path);
+                    $("savepath_text").setProperty('value', pref.save_path);
+                    $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
+                    $('temppath_text').setProperty('value', pref.temp_path);
                     updateTempDirEnabled();
-                    var i = 0;
+                    var i;
                     for(i=0; i<pref.scan_dirs.length; i+=1) {
                       var myinput = new Element('input');
                       myinput.setProperty('id', 'text_watch_'+i);
@@ -679,8 +637,7 @@ loadPreferences = function() {
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
 
-                    var export_dir_enabled = pref.export_dir_enabled;
-                    if(export_dir_enabled) {
+                    if(pref.export_dir_enabled) {
                       $('exportdir_text').setProperty('value', pref.export_dir);
                       $('exportdir_checkbox').setProperty('checked', true);
                     } else {
@@ -688,65 +645,33 @@ loadPreferences = function() {
                       $('exportdir_checkbox').setProperty('checked', false);
                     }
                     updateExportDirEnabled();
-                    var mail_notification_enabled = pref.mail_notification_enabled;
-                    if(mail_notification_enabled) {
-                      $('mail_notification_checkbox').setProperty('checked', true);
-                    } else {
-                      $('mail_notification_checkbox').setProperty('checked', false);
-                    }
+                    $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
                     $('dest_email_txt').setProperty('value', pref.mail_notification_email);
                     $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
-                    if(pref.mail_notification_ssl_enabled)
-                      $('mail_ssl_checkbox').setProperty('checked', true);
-                    else
-                      $('mail_ssl_checkbox').setProperty('checked', false);
-                    if(pref.mail_notification_auth_enabled)
-                      $('mail_auth_checkbox').setProperty('checked', true);
-                    else
-                      $('mail_auth_checkbox').setProperty('checked', false);
+                    $('mail_ssl_checkbox').setProperty('checked', pref.mail_notification_ssl_enabled);
+                    $('mail_auth_checkbox').setProperty('checked', pref.mail_notification_auth_enabled);
                     $('mail_username_text').setProperty('value', pref.mail_notification_username);
                     $('mail_password_text').setProperty('value', pref.mail_notification_password);
                     updateMailNotification();
                     updateMailAuthSettings();
-                    var autorun_enabled = pref.autorun_enabled;
-                    if(autorun_enabled) {
-                      $('autorun_checkbox').setProperty('checked', true);
-                    } else {
-                      $('autorun_checkbox').setProperty('checked', false);
-                    }
+                    $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
                     $('autorunProg_txt').setProperty('value', pref.autorun_program);
                     updateAutoRun();
-                    if(pref.preallocate_all) {
-                      $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
-                    } else {
-                      $('preallocateall_checkbox').setProperty('checked', false);
-                    }
+                    $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                     if($defined(pref.incomplete_files_ext)) {
                       $('appendexttr').removeClass('invisible');
-                      if(pref.incomplete_files_ext) {
-                        $('appendext_checkbox').setProperty('checked', true);
-                      } else {
-                        $('appendext_checkbox').setProperty('checked', false);
-                      }
+                      $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
                     } else {
                       $('appendexttr').addClass('invisible');
                     }
-                    if(pref.queueing_enabled) {
-                      $('queueing_checkbox').setProperty('checked', true);
-                    } else {
-                      $('queueing_checkbox').setProperty('checked', false);
-                    }
+                    $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
                     $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
                     $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
                     $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
                     $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
                     updateQueueingSystem();
                     // IP Filter
-                    if(pref.ip_filter_enabled) {
-                      $('ipfilter_enabled_checkbox').setProperty('checked', true);
-                    } else {
-                      $('ipfilter_enabled_checkbox').setProperty('checked', false);
-                    }
+                    $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
                     $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                     updateFilterSettings();
                     // PEER Proxy
@@ -768,16 +693,8 @@ loadPreferences = function() {
                     updatePeerProxySettings();
                     $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
-                    if(pref.proxy_peer_connections) {
-                      $('use_peer_proxy_checkbox').setProperty('checked', true);
-                    } else {
-                      $('use_peer_proxy_checkbox').setProperty('checked', false);
-                    }
-                    if(pref.proxy_auth_enabled) {
-                      $('peer_proxy_auth_checkbox').setProperty('checked', true);
-                    } else {
-                      $('peer_proxy_auth_checkbox').setProperty('checked', false);
-                    }
+                    $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
+                    $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
                     $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
                     $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
@@ -785,14 +702,8 @@ loadPreferences = function() {
                     $('webui_port_value').setProperty('value', pref.web_ui_port);
                     $('webui_username_text').setProperty('value', pref.web_ui_username);
                     $('webui_password_text').setProperty('value', pref.web_ui_password);
-                    if(pref.bypass_local_auth)
-                      $('bypass_local_auth_checkbox').setProperty('checked', true);
-                    else
-                      $('bypass_local_auth_checkbox').setProperty('checked', false);
-                    if(pref.use_https)
-                      $('use_https_checkbox').setProperty('checked', true);
-                    else
-                      $('use_https_checkbox').setProperty('checked', false);
+                    $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
+                    $('use_https_checkbox').setProperty('checked', pref.use_https);
                     updateHttpsSettings();
                     $('ssl_key_textarea').setProperty('value', pref.ssl_key);
                     $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
