@@ -144,6 +144,10 @@ options_imp::options_imp(QWidget *parent):
 #if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
+#ifdef Q_WS_WIN
+  connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
