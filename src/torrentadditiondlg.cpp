@@ -88,6 +88,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
   QString lastLocation = pref.lastLocationPath();
+  checkLastFolder->setChecked(pref.rememberLastLocation());
   //lastLocation will always have '/' as separator since it is saved in
   //::on_OkButton_clicked()  after the conversion is done.
   if (pref.rememberLastLocation() && !lastLocation.isEmpty() && QFile(lastLocation).exists())
@@ -700,7 +701,9 @@ void torrentAdditionDialog::on_OkButton_clicked(){
   //Save last location path
   {//limit the scope of pref
     Preferences pref;
-    if (pref.rememberLastLocation())
+    bool isChecked = checkLastFolder->isChecked();
+    if (pref.rememberLastLocation() != isChecked) pref.setRememberLastLocation(isChecked);
+    if (pref.rememberLastLocation() && save_path != pref.lastLocationPath())
         pref.setLastLocationPath(save_path);
 }
   // save filtered files

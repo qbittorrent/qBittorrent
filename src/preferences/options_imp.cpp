@@ -155,7 +155,6 @@ options_imp::options_imp(QWidget *parent):
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(textTempPath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkAppendLabel, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkLastLocation, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -392,7 +391,6 @@ void options_imp::saveOptions(){
 #endif
   pref.setTempPath(temp_path);
   pref.setAppendTorrentLabel(checkAppendLabel->isChecked());
-  pref.setRememberLastLocation(checkLastLocation->isChecked());
 #if LIBTORRENT_VERSION_MINOR > 14
   pref.useIncompleteFilesExtension(checkAppendqB->isChecked());
 #endif
@@ -570,7 +568,6 @@ void options_imp::loadOptions(){
 #endif
   textTempPath->setText(temp_path);
   checkAppendLabel->setChecked(pref.appendTorrentLabel());
-  checkLastLocation->setChecked(pref.rememberLastLocation());
 #if LIBTORRENT_VERSION_MINOR > 14
   checkAppendqB->setChecked(pref.useIncompleteFilesExtension());
 #endif
