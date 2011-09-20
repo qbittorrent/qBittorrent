@@ -20,10 +20,10 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                     #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
                       USE_ICON_THEME,
                     #endif
+                      CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
                     #if LIBTORRENT_VERSION_MINOR > 14
                       ANNOUNCE_ALL_TRACKERS,
                     #endif
-                      CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
                       ROW_COUNT};
 
 class AdvancedSettings: public QTableWidget {
