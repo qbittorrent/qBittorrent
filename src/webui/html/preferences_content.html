@@ -1,6 +1,6 @@
 <div id="ConnectionTab" class="PrefTab">
-<fieldset>
-  <legend><b>_(Listening Port)</b></legend>
+<fieldset class="settings">
+  <legend>_(Listening Port)</legend>
   <div style="padding-left: 30px;">
   _(Port used for incoming connections:)
   <input type="text" id="port_value" style="width: 4em;"/>
@@ -12,8 +12,8 @@
   </table>
   </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Connections Limits)</b></legend>
+<fieldset class="settings">
+  <legend>_(Connections Limits)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -28,8 +28,8 @@
   </table>
   </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Global Rate Limits)</b></legend>
+<fieldset class="settings">
+  <legend>_(Global Rate Limits)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -39,8 +39,8 @@
   <td style="vertical-align: bottom;"><input type="checkbox" id="dl_limit_checkbox" onClick="updateDlLimitEnabled();"/></td><td style="padding-right: 3px;">_(Download:)</td><td><input type="text" id="dl_limit_value" style="width: 4em;"/>&nbsp;&nbsp;_(KiB/s)</td>
   </tr>
   </table>
-  <fieldset>
-  <legend><b>_(Options)</b></legend>
+  <fieldset class="settings">
+  <legend>_(Options)</legend>
   <input type="checkbox" id="enable_utp_checkbox"/>&nbsp;&nbsp;_(Enable bandwidth management (uTP))<br/>
   <input type="checkbox" id="limit_utp_rate_checkbox"/>&nbsp;&nbsp;_(Apply rate limit to uTP connections)<br/>
   <input type="checkbox" id="limit_tcp_overhead_checkbox"/>&nbsp;&nbsp;_(Apply rate limit to transport overhead)<br/>
@@ -50,8 +50,8 @@
 </div>
 
 <div id="BittorrentTab" class="PrefTab invisible">
-<fieldset>
-  <legend><b>_(Privacy)</b></legend>
+<fieldset class="settings">
+  <legend>_(Privacy)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -82,8 +82,8 @@
 </div>
 
 <div id="DownloadsTab" class="PrefTab invisible">
-  <fieldset>
-  <legend><b>_(Hard Disk)</b></legend>
+  <fieldset class="settings">
+  <legend>_(Hard Disk)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -121,8 +121,8 @@
   </table>
   </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Email notification upon download completion)</b></legend>
+<fieldset class="settings">
+  <legend>_(Email notification upon download completion)</legend>
 <div style="padding-left: 30px;">
  <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();"/> _(Email notification upon download completion)
   <table>
@@ -141,8 +141,8 @@
     </table>
 </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Run an external program on torrent completion)</b></legend>
+<fieldset class="settings">
+  <legend>_(Run an external program on torrent completion)</legend>
 <div style="padding-left: 30px;">
  <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();"/> _(Run an external program on torrent completion)<br/>
 <input type="text" id="autorunProg_txt" style="width: 400px;"/><br/>
@@ -153,8 +153,8 @@
 </ul></i>
 </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Torrent Queueing)</b></legend>
+<fieldset class="settings">
+  <legend>_(Torrent Queueing)</legend>
   <div style="padding-left: 30px;">
   <input type="checkbox" id="queueing_checkbox" onclick="updateQueuingSystem();"/> _(Torrent Queueing)
   <table>
@@ -174,7 +174,8 @@
 </div>
 
 <div id="FilterTab" class="PrefTab invisible">
-  <legend><b>_(IP Filtering)</b></legend>
+<fieldset class="settings">
+  <legend>_(IP Filtering)</legend>
   <div style="padding-left: 30px;">
   <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();"/> _(IP Filtering)
   <table>
@@ -187,7 +188,8 @@
 </div>
 
 <div id="ProxyTab" class="PrefTab invisible">
-  <legend><b>_(Proxy Server)</b></legend>
+<fieldset class="settings">
+  <legend>_(Proxy Server)</legend>
   <div style="padding-left: 30px;">
     _(Type:) <select id ="peer_proxy_type_select" onchange="updatePeerProxySettings();">
       <option value="none">_((None))</option>
@@ -208,8 +210,8 @@
 </div>
 
 <div id="WebUITab" class="PrefTab invisible">
-<fieldset>
-  <legend><b>_(Language)</b></legend>
+<fieldset class="settings">
+  <legend>_(Language)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -254,8 +256,8 @@
   </div>
 </fieldset>
 
-<fieldset>
-  <legend><b>_(HTTP Server)</b></legend>
+<fieldset class="settings">
+  <legend>_(HTTP Server)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -270,8 +272,8 @@
   <div style="padding-left: 10px;"><a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts>Information about certificates</a></div>
   </div>
 </fieldset>
-<fieldset>
-  <legend><b>_(Authentication)</b></legend>
+<fieldset class="settings">
+  <legend>_(Authentication)</legend>
   <div style="padding-left: 30px;">
   <table>
   <tr>
@@ -284,8 +286,8 @@
   <input type="checkbox" id="bypass_local_auth_checkbox" />&nbsp;&nbsp;_(Bypass authentication for localhost)
   </div>
 </fieldset>
-<fieldset>
-  <legend><b><input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />&nbsp;&nbsp;_(Update my dynamic domain name)</b></legend>
+<fieldset class="settings">
+  <legend><input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />&nbsp;&nbsp;_(Update my dynamic domain name)</legend>
   <div style="padding-left: 30px;">
   <select id="dyndns_select">
     <option value="0">DynDNS</option>

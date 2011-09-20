@@ -289,4 +289,16 @@ a.tristate {
 a.checked { background-position: 0 -13px; }
 a.partial { background-position: 0 -26px; }
 
+fieldset.settings {
+	border: solid 1px black;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	padding: 4px;
+}
 
+fieldset.settings legend {
+        margin-left: 8px;
+	padding: 4px;
+        font-weight: bold;
+}
