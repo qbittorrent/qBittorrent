@@ -249,6 +249,10 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
     pref.setLSDEnabled(m["lsd"].toBool());
   if(m.contains("encryption"))
     pref.setEncryptionSetting(m["encryption"].toInt());
+#if LIBTORRENT_VERSION_MINOR >= 16
+  if(m.contains("anonymous_mode"))
+    pref.enableAnonymousMode(m["anonymous_mode"].toBool());
+#endif
   // Proxy
   if(m.contains("proxy_type"))
     pref.setProxyType(m["proxy_type"].toInt());
@@ -362,6 +366,9 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["pex"] = pref.isPeXEnabled();
   data["lsd"] = pref.isLSDEnabled();
   data["encryption"] = pref.getEncryptionSetting();
+#if LIBTORRENT_VERSION_MINOR >= 16
+  data["anonymous_mode"] = pref.isAnonymousModeEnabled();
+#endif
   // Proxy
   data["proxy_type"] = pref.getProxyType();
   data["proxy_ip"] = pref.getProxyIp();

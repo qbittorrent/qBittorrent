@@ -76,6 +76,7 @@
     <option value="1">_(Require encryption)</option>
     <option value="2">_(Disable encryption)</option>
   </select><br/>
+  <input type="checkbox" id="anonymous_mode_checkbox" onClick="toggleAnonymousMode()"/>&nbsp;&nbsp;_(Enable anonymous mode) (<a href="http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode">More information</a>)<br/>
   </div>
 </fieldset>
 </div>
@@ -311,6 +312,23 @@
 
 <script type="text/javascript">
   var WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
+
+toggleAnonymousMode = function() {
+  if($('anonymous_mode_checkbox').getProperty('checked')) {
+    $('dht_checkbox').setProperty('disabled', true);
+    $('DHTPortDiffThanBT_checkbox').setProperty('disabled', true);
+    $('dht_checkbox').setProperty('checked', false);
+    $('lsd_checkbox').setProperty('disabled', true);
+    $('lsd_checkbox').setProperty('checked', false);
+    $('upnp_checkbox').setProperty('disabled', true);
+    $('upnp_checkbox').setProperty('checked', false);
+  } else {
+    $('dht_checkbox').setProperty('disabled', false);
+    $('DHTPortDiffThanBT_checkbox').setProperty('disabled', false);
+    $('lsd_checkbox').setProperty('disabled', false);
+    $('upnp_checkbox').setProperty('disabled', false);
+  }
+}
 
 updateDlLimitEnabled = function() {
   if($('dl_limit_checkbox').getProperty('checked')) {
@@ -619,6 +637,11 @@ loadPreferences = function() {
                     $('lsd_checkbox').setProperty('checked', pref.lsd);
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
+		    if($defined(pref.anonymous_mode)) {
+		      $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
+		    } else {
+                      $('enable_utp_checkbox').addClass('invisible');
+                    }
                     // Downloads
                     $("savepath_text").setProperty('value', pref.save_path);
                     $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
@@ -797,6 +820,9 @@ applyPreferences = function() {
   settings.set('pex', $('pex_checkbox').getProperty('checked'));
   settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
   settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
+  if(!$('anonymous_mode_checkbox').hasClass('invisible')) {
+    settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
+  }
   
   // Downloads
   settings.set('save_path', $('savepath_text').getProperty('value'));

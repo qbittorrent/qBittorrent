@@ -124,10 +124,13 @@ options_imp::options_imp(QWidget *parent):
 #ifndef Q_WS_WIN
   groupFileAssociation->setVisible(false);
 #endif
+#if LIBTORRENT_VERSION_MINOR < 16
+  checkAnonymousMode->setVisible(false);
+#endif
 
   // Connect signals / slots
-  // Proxy tab
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
+  connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(toggleAnonymousMode(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
@@ -196,6 +199,9 @@ options_imp::options_imp(QWidget *parent):
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#if LIBTORRENT_VERSION_MINOR > 15
+  connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
   connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -443,6 +449,9 @@ void options_imp::saveOptions(){
   pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
+#if LIBTORRENT_VERSION_MINOR > 15
+  pref.enableAnonymousMode(checkAnonymousMode->isChecked());
+#endif
   pref.setGlobalMaxRatio(getMaxRatio());
   pref.setMaxRatioAction(comboRatioLimitAct->currentIndex());
   // End Bittorrent preferences
@@ -700,6 +709,9 @@ void options_imp::loadOptions(){
   checkPeX->setChecked(pref.isPeXEnabled());
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
+#if LIBTORRENT_VERSION_MINOR > 15
+  checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
+#endif
   // Ratio limit
   floatValue = pref.getGlobalMaxRatio();
   if(floatValue >= 0.) {
@@ -1300,4 +1312,23 @@ void options_imp::setSslCertificate(const QByteArray &cert, bool interactive)
       QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
   }
 #endif
+}
+
+void options_imp::toggleAnonymousMode(bool enabled)
+{
+  if (enabled) {
+    // Disable DHT, LSD, UPnP / NAT-PMP
+    checkDHT->setEnabled(false);
+    checkDifferentDHTPort->setEnabled(false);
+    checkDHT->setChecked(false);
+    checkLSD->setEnabled(false);
+    checkLSD->setChecked(false);
+    checkUPnP->setEnabled(false);
+    checkUPnP->setChecked(false);
+  } else {
+    checkDHT->setEnabled(true);
+    checkDifferentDHTPort->setEnabled(true);
+    checkLSD->setEnabled(true);
+    checkUPnP->setEnabled(true);
+  }
 }

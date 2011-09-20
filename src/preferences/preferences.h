@@ -1013,6 +1013,16 @@ public:
     return value(QString::fromUtf8("Preferences/Connection/InetAddress"), QString()).toString();
   }
 
+#if LIBTORRENT_VERSION_MINOR > 15
+  bool isAnonymousModeEnabled() const {
+    return value(QString::fromUtf8("Preferences/Advanced/AnonymousMode"), false).toBool();
+  }
+
+  void enableAnonymousMode(bool enabled) {
+    setValue(QString::fromUtf8("Preferences/Advanced/AnonymousMode"), enabled);
+  }
+#endif
+
 #if LIBTORRENT_VERSION_MINOR > 14
   bool isSuperSeedingEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), false).toBool();

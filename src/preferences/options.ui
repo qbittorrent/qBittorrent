@@ -1825,9 +1825,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-67</y>
+             <y>0</y>
              <width>530</width>
-             <height>471</height>
+             <height>500</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1963,6 +1963,37 @@
                  </item>
                  <item>
                   <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <item>
+                  <widget class="QCheckBox" name="checkAnonymousMode">
+                   <property name="text">
+                    <string>Enable anonymous mode</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_23">
+                   <property name="text">
+                    <string> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_14">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
@@ -2206,7 +2237,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>419</width>
+             <width>485</width>
              <height>535</height>
             </rect>
            </property>

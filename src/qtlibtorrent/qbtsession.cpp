@@ -284,7 +284,7 @@ void QBtSession::configureSession() {
   if(old_listenPort != new_listenPort) {
     qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
     setListeningPort(new_listenPort);
-    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(new_listenPort)));
+    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
   }
 
   // Downloads
@@ -408,6 +408,12 @@ void QBtSession::configureSession() {
   sessionSettings.disk_io_write_mode = session_settings::disable_os_cache_for_aligned_files;
   sessionSettings.disk_io_read_mode = session_settings::disable_os_cache_for_aligned_files;
 #endif
+#endif
+#if LIBTORRENT_VERSION_MINOR > 15
+  sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
+  if (sessionSettings.anonymous_mode) {
+    addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
+  }
 #endif
   // Queueing System
   if(pref.isQueueingSystemEnabled()) {
