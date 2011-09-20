@@ -19,4 +19,5 @@ SOURCES += $$PWD/propertieswidget.cpp \
              $$PWD/peerlistwidget.cpp \
              $$PWD/trackerlist.cpp \
              $$PWD/proptabbar.cpp \
-    properties/downloadedpiecesbar.cpp
+    properties/downloadedpiecesbar.cpp \
+    properties/pieceavailabilitybar.cpp
