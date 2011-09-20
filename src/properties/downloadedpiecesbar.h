@@ -33,99 +33,51 @@
 
 #include <QWidget>
 #include <QPainter>
-#include <QList>
-#include <QPixmap>
+#include <QImage>
+#include <cmath>
 #include <libtorrent/bitfield.hpp>
-#include <math.h>
 
 #define BAR_HEIGHT 18
 
 class DownloadedPiecesBar: public QWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(DownloadedPiecesBar)
+	Q_OBJECT
+	Q_DISABLE_COPY(DownloadedPiecesBar)
 
 private:
-  QPixmap pixmap;
+	QImage image;
 
+	// I used values, bacause it should be possible to change colors in runtime
+
+	// background color
+	int bg_color;
+	// complete piece color
+	int piece_color;
+	// incomplete piece color
+	int piece_color_dl;
+	// buffered 256 levels gradient from bg_color to piece_color
+	std::vector<int> piece_colors;
+
+	// last used bitfields, uses to better resize redraw
+	// TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+	libtorrent::bitfield pieces;
+	libtorrent::bitfield pieces_dl;
+
+	// scale bitfield vector to float vector
+	std::vector<float> bitfieldToFloatVector(const libtorrent::bitfield &vecin, int reqSize);
+	// mix two colors by light model, ratio <0, 1>
+	int mixTwoColors(int &rgb1, int &rgb2, float ratio);
+	// draw new image and replace actual image
+	void updateImage();
 
 public:
-  DownloadedPiecesBar(QWidget *parent): QWidget(parent) {
-    setFixedHeight(BAR_HEIGHT);
-  }
+	DownloadedPiecesBar(QWidget *parent);
 
-  void setProgress(const libtorrent::bitfield &pieces, const libtorrent::bitfield &downloading_pieces) {
-    if(pieces.empty()) {
-      // Empty bar
-      QPixmap pix = QPixmap(1, 1);
-      pix.fill();
-      pixmap = pix;
-    } else {
-      const qulonglong nb_pieces = pieces.size();
-      // Reduce the number of pieces before creating the pixmap
-      // otherwise it can crash when there are too many pieces
-      const uint w = width();
-      if(nb_pieces > w) {
-        const uint ratio = floor(nb_pieces/(double)w);
-        libtorrent::bitfield scaled_pieces(ceil(nb_pieces/(double)ratio), false);
-        libtorrent::bitfield scaled_downloading(ceil(nb_pieces/(double)ratio), false);
-        uint scaled_index = 0;
-        for(qulonglong i=0; i<nb_pieces; i+= ratio) {
-          bool have = true;
-          for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
-            if(!pieces[i]) { have = false; break; }
-          }
-          if(have) {
-            scaled_pieces.set_bit(scaled_index);
-          } else {
-            bool downloading = false;
-            for(qulonglong j=i; j<qMin(i+ratio, nb_pieces); ++j) {
-              if(downloading_pieces[i]) { downloading = true; break; }
-            }
-            if(downloading)
-              scaled_downloading.set_bit(scaled_index);
-          }
-          ++scaled_index;
-        }
-        updatePixmap(scaled_pieces, scaled_downloading);
-      } else {
-        updatePixmap(pieces, downloading_pieces);
-      }
-    }
-    update();
-  }
-
-  void clear() {
-    pixmap = QPixmap();
-    update();
-  }
+	void setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl);
+	void updatePieceColors();
+	void clear();
 
 protected:
-  void paintEvent(QPaintEvent *) {
-    if(pixmap.isNull()) return;
-    QPainter painter(this);
-    painter.drawPixmap(rect(), pixmap);
-  }
-
-private:
-  void updatePixmap(const libtorrent::bitfield &pieces, const libtorrent::bitfield &downloading_pieces) {
-    QPixmap pix = QPixmap(pieces.size(), 1);
-    //pix.fill();
-    QPainter painter(&pix);
-    for(uint i=0; i<pieces.size(); ++i) {
-      if(pieces[i]) {
-        painter.setPen(Qt::blue);
-      } else {
-        if(downloading_pieces[i]) {
-          painter.setPen(Qt::green);
-        } else {
-          painter.setPen(Qt::white);
-        }
-      }
-      painter.drawPoint(i,0);
-    }
-    pixmap = pix;
-  }
-
+	void paintEvent(QPaintEvent *);
 };
 
 #endif // DOWNLOADEDPIECESBAR_H
