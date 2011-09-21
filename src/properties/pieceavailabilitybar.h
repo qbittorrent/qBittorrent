@@ -33,85 +33,54 @@
 
 #include <QWidget>
 #include <QPainter>
-#include <QPixmap>
-#include <QColor>
-#include <numeric>
+#include <QImage>
 #include <cmath>
 #include <algorithm>
 
 #define BAR_HEIGHT 18
 
 class PieceAvailabilityBar: public QWidget {
-  Q_OBJECT
-  Q_DISABLE_COPY(PieceAvailabilityBar)
+	Q_OBJECT
+	Q_DISABLE_COPY(PieceAvailabilityBar)
 
 private:
-  QPixmap pixmap;
+	QImage image;
+
+	// I used values, bacause it should be possible to change colors in runtime
+
+	// background color
+	int bg_color;
+	// border color
+	int border_color;
+	// complete piece color
+	int piece_color;
+	// buffered 256 levels gradient from bg_color to piece_color
+	std::vector<int> piece_colors;
+
+	// last used int vector, uses to better resize redraw
+	// TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+	std::vector<int> pieces;
+
+	// scale int vector to float vector
+	std::vector<float> intToFloatVector(const std::vector<int> &vecin, int reqSize);
+
+	// mix two colors by light model, ratio <0, 1>
+	int mixTwoColors(int &rgb1, int &rgb2, float ratio);
+	// draw new image and replace actual image
+	void updateImage();
 
 public:
-  PieceAvailabilityBar(QWidget *parent): QWidget(parent) {
-    setFixedHeight(BAR_HEIGHT);
-  }
+	PieceAvailabilityBar(QWidget *parent);
 
-  void setAvailability(const std::vector<int>& avail) {
-    if(avail.empty()) {
-      // Empty bar
-      QPixmap pix = QPixmap(1, 1);
-      pix.fill();
-      pixmap = pix;
-    } else {
-      // Reduce the number of pieces before creating the pixmap
-      // otherwise it can crash when there are too many pieces
-      const qulonglong nb_pieces = avail.size();
-      const uint w = width();
-      if(nb_pieces > w) {
-        const qulonglong ratio = floor(nb_pieces/(double)w);
-        std::vector<int> scaled_avail;
-        scaled_avail.reserve(ceil(nb_pieces/(double)ratio));
-        for(qulonglong i=0; i<nb_pieces; i+= ratio) {
-          // XXX: Do not compute the average to save cpu
-          scaled_avail.push_back(avail[i]);
-        }
-        updatePixmap(scaled_avail);
-      } else {
-        updatePixmap(avail);
-      }
-    }
+	void setAvailability(const std::vector<int>& avail);
+	void updatePieceColors();
+	void clear();
 
-    update();
-  }
-
-  void clear() {
-    pixmap = QPixmap();
-    update();
-  }
+	void setColors(int background, int border, int available);
 
 protected:
-  void paintEvent(QPaintEvent *) {
-    if(pixmap.isNull()) return;
-    QPainter painter(this);
-    painter.drawPixmap(rect(), pixmap);
-  }
+	void paintEvent(QPaintEvent *);
 
-private:
-  void updatePixmap(const std::vector<int> avail) {
-    const int max = *std::max_element(avail.begin(), avail.end());
-    if(max == 0) {
-      QPixmap pix = QPixmap(1, 1);
-      pix.fill();
-      pixmap = pix;
-      return;
-    }
-    QPixmap pix = QPixmap(avail.size(), 1);
-    //pix.fill();
-    QPainter painter(&pix);
-    for(uint i=0; i < avail.size(); ++i) {
-      const uint rg = 0xff - (0xff * avail[i]/max);
-      painter.setPen(QColor(rg, rg, 0xff));
-      painter.drawPoint(i,0);
-    }
-    pixmap = pix;
-  }
 };
 
 #endif // PIECEAVAILABILITYBAR_H
