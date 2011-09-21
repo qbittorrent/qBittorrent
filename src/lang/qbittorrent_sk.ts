@@ -2907,6 +2907,14 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>Do not count slow torrents in these limits</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable anonymous mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3499,6 +3507,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent sa ukončí ak to nezrušíte do 15 sekúnd odteraz...</translation>
+    </message>
+    <message>
+        <source>Anonymous mode [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4872,6 +4884,10 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Do not download</source>
         <translation>Nesťahovať</translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

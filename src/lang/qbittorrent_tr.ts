@@ -2799,6 +2799,14 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Do not count slow torrents in these limits</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable anonymous mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3377,6 +3385,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anonymous mode [ON]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4755,6 +4767,10 @@ Do you want to install it now?</source>
     <message>
         <source>Do not download</source>
         <translation>İndirme</translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

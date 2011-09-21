@@ -2888,6 +2888,14 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <source>Do not count slow torrents in these limits</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable anonymous mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3480,6 +3488,10 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished">Działanie qBittorrent zostanie zakończone jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
+    </message>
+    <message>
+        <source>Anonymous mode [ON]</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4859,6 +4871,10 @@ Do you want to install it now?</source>
     <message>
         <source>Do not download</source>
         <translation>Nie pobieraj</translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
