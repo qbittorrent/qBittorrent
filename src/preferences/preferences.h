@@ -955,11 +955,11 @@ public:
   }
 
   bool trackerExchangeEnabled() const {
-    return value(QString::fromUtf8("Preferences/Advanced/TrackerExchange"), true).toBool();
+    return value(QString::fromUtf8("Preferences/Advanced/LtTrackerExchange"), false).toBool();
   }
 
   void setTrackerExchangeEnabled(bool enable) {
-    setValue(QString::fromUtf8("Preferences/Advanced/TrackerExchange"), enable);
+    setValue(QString::fromUtf8("Preferences/Advanced/LtTrackerExchange"), enable);
   }
 
   bool recheckTorrentsOnCompletion() const {
