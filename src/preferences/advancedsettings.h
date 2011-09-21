@@ -249,7 +249,7 @@ private slots:
     setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
 #if LIBTORRENT_VERSION_MINOR > 14
     // Announce to all trackers
-    cb_announce_all_trackers.setCheckable(pref.announceToAllTrackers());
+    cb_announce_all_trackers.setChecked(pref.announceToAllTrackers());
     setRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
 #endif
   }
