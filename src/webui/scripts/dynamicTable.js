@@ -379,7 +379,7 @@ var dynamicTable = new Class	({
 			for(var i=0; i<row.length; i++) {
 				if(i==1) continue; // Do not refresh name
 				if(i==this.progressIndex) {
-					$('pb_'+id).setValue(row[i].toFloat());
+					$('pb_'+id).setValue(row[i]);
 				} else {
 					if(i==0) {
 						tds[i].getChildren('img')[0].set('src', row[i]);
