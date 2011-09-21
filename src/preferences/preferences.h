@@ -229,14 +229,6 @@ public:
     setValue("Preferences/Downloads/AppendLabel", b);
   }
 
-  bool rememberLastLocation() const {
-    return value(QString::fromUtf8("Preferences/Downloads/RememberLastLocation"), false).toBool();
-  }
-
-  void setRememberLastLocation(bool b) {
-    setValue("Preferences/Downloads/RememberLastLocation", b);
-  }
-
   QString lastLocationPath() const {
     return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString();
 }

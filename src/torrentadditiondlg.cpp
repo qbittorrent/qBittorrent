@@ -87,18 +87,8 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   // Important: as a default, it inserts at the bottom which is not desirable
   savePathTxt->setInsertPolicy(QComboBox::InsertAtCurrent);
   //torrentContentList->header()->setResizeMode(0, QHeaderView::Stretch);
-  QString lastLocation = pref.lastLocationPath();
-  checkLastFolder->setChecked(pref.rememberLastLocation());
-  //lastLocation will always have '/' as separator since it is saved in
-  //::on_OkButton_clicked()  after the conversion is done.
-  if (pref.rememberLastLocation() && !lastLocation.isEmpty() && QFile(lastLocation).exists())
-      defaultSavePath = lastLocation;
-  else
-  {
-    defaultSavePath = pref.getSavePath();
-    //In case of the LastLocationPath doesn't exist anymore, empty the string
-    pref.setLastLocationPath(QString());
-  }
+  defaultSavePath = pref.getSavePath();
+  //In case of the LastLocationPath doesn't exist anymore, empty the string
 
   appendLabelToSavePath = pref.appendTorrentLabel();
   QString display_path = defaultSavePath.replace("\\", "/");
@@ -613,6 +603,7 @@ void torrentAdditionDialog::savePiecesPriorities(){
 }
 
 void torrentAdditionDialog::on_OkButton_clicked(){
+  Preferences pref;
   qDebug() << "void torrentAdditionDialog::on_OkButton_clicked() - ENTER";
   if(savePathTxt->currentText().trimmed().isEmpty()){
     QMessageBox::critical(0, tr("Empty save path"), tr("Please enter a save path"));
@@ -691,6 +682,11 @@ void torrentAdditionDialog::on_OkButton_clicked(){
   }
   // Save path history
   saveTruncatedPathHistory();
+
+  // Set as default save path if necessary
+  if (checkLastFolder->isChecked())
+    pref.setSavePath(getCurrentTruncatedSavePath());
+
   // Check if savePath exists
   if(!savePath.exists()){
     if(!savePath.mkpath(savePath.path())){
@@ -698,14 +694,7 @@ void torrentAdditionDialog::on_OkButton_clicked(){
       return;
     }
   }
-  //Save last location path
-  {//limit the scope of pref
-    Preferences pref;
-    bool isChecked = checkLastFolder->isChecked();
-    if (pref.rememberLastLocation() != isChecked) pref.setRememberLastLocation(isChecked);
-    if (pref.rememberLastLocation() && save_path != pref.lastLocationPath())
-        pref.setLastLocationPath(save_path);
-}
+
   // save filtered files
   if(!is_magnet && t->num_files() > 1)
     savePiecesPriorities();
