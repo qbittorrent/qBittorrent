@@ -1,2 +1,14 @@
 src/geoip/GeoIP.dat
+src/qbittorrent
 qbittorrent.pro.user
+conf.pri
+Makefile
+*.pyc
+*.log
+# Compiled object files
+*.o
+# Generated MOC, resource and UI files
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.moc
