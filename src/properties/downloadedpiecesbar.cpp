@@ -189,8 +189,8 @@ void DownloadedPiecesBar::updateImage()
 
 void DownloadedPiecesBar::setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl)
 {
-	pieces.assign(bf.bytes(), bf.size());
-	pieces_dl.assign(bf_dl.bytes(), bf_dl.size());
+	pieces = libtorrent::bitfield(bf);
+	pieces_dl = libtorrent::bitfield(bf_dl);
 
 	updateImage();
 	update();

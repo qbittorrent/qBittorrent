@@ -182,7 +182,7 @@ void PieceAvailabilityBar::updateImage()
 
 void PieceAvailabilityBar::setAvailability(const std::vector<int>& avail)
 {
-	pieces.assign(avail.begin(), avail.end());
+	pieces = std::vector<int>(avail);
 
 	updateImage();
 	update();
