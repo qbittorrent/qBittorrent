@@ -37,6 +37,7 @@ DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent): QWidget(parent)
 	setFixedHeight(BAR_HEIGHT);
 
 	bg_color = 0xffffff;
+	border_color = palette().color(QPalette::Dark).rgb();
 	piece_color = 0x0000ff;
 	piece_color_dl = 0x00d000;
 
@@ -228,8 +229,20 @@ void DownloadedPiecesBar::paintEvent(QPaintEvent *)
 	QPainterPath border;
 	border.addRect(0, 0, width() - 1, height() - 1);
 
-	painter.setPen(palette().color(QPalette::Dark));
+	painter.setPen(border_color);
 	painter.drawPath(border);
+}
+
+void DownloadedPiecesBar::setColors(int background, int border, int complete, int incomplete)
+{
+	bg_color = background;
+	border_color = border;
+	piece_color = complete;
+	piece_color_dl = incomplete;
+
+	updatePieceColors();
+	updateImage();
+	update();
 }
 
 

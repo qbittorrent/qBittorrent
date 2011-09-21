@@ -50,6 +50,8 @@ private:
 
 	// background color
 	int bg_color;
+	// border color
+	int border_color;
 	// complete piece color
 	int piece_color;
 	// incomplete piece color
@@ -75,6 +77,8 @@ public:
 	void setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl);
 	void updatePieceColors();
 	void clear();
+
+	void setColors(int background, int border, int complete, int incomplete);
 
 protected:
 	void paintEvent(QPaintEvent *);

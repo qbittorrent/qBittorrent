@@ -38,6 +38,7 @@ PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent) :
 	setFixedHeight(BAR_HEIGHT);
 
 	bg_color = 0xffffff;
+	border_color = palette().color(QPalette::Dark).rgb();
 	piece_color = 0x0000ff;
 
 	updatePieceColors();
@@ -220,6 +221,17 @@ void PieceAvailabilityBar::paintEvent(QPaintEvent *)
 	QPainterPath border;
 	border.addRect(0, 0, width() - 1, height() - 1);
 
-	painter.setPen(palette().color(QPalette::Dark));
+	painter.setPen(border_color);
 	painter.drawPath(border);
+}
+
+void PieceAvailabilityBar::setColors(int background, int border, int available)
+{
+	bg_color = background;
+	border_color = border;
+	piece_color = available;
+
+	updatePieceColors();
+	updateImage();
+	update();
 }
