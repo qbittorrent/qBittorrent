@@ -117,6 +117,9 @@
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsEnabled</set>
+       </property>
       </item>
       <item>
        <property name="text">
@@ -146,6 +149,9 @@
        </property>
        <property name="textAlignment">
         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsEnabled</set>
        </property>
       </item>
      </widget>
@@ -970,7 +976,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>485</width>
+             <width>443</width>
              <height>506</height>
             </rect>
            </property>
@@ -1414,7 +1420,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>485</width>
+             <width>384</width>
              <height>440</height>
             </rect>
            </property>
@@ -2237,7 +2243,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>485</width>
+             <width>419</width>
              <height>535</height>
             </rect>
            </property>
@@ -2614,8 +2620,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>502</width>
-             <height>366</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
