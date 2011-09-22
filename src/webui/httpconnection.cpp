@@ -388,39 +388,23 @@ void HttpConnection::respondCommand(QString command)
       }
     }
   }
-  if(command == "upload")
-  {
-    QByteArray torrentfile = parser.torrent();
+  if(command == "upload") {
     // Get a unique filename
-    QString filePath;
     // XXX: We need to use a QTemporaryFile pointer here
-    // and it fails on Windows
-    QTemporaryFile *tmpfile = new QTemporaryFile;
-    tmpfile->setAutoRemove(false);
+    // and it fails on Windows.
+    // The file also needs to end with .torrent otherwise
+    // it fails to load on Windows.
+    QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
     if (tmpfile->open()) {
-      filePath = tmpfile->fileName();
+      tmpfile->write(parser.torrent());
+      tmpfile->close();
+      emit torrentReadyToBeDownloaded(tmpfile->fileName(), false, QString(), false);
+      delete tmpfile;
     } else {
       std::cerr << "I/O Error: Could not create temporary file" << std::endl;
+      delete tmpfile;
       return;
     }
-    tmpfile->close();
-    // Now temporary file is created but closed so that it can be used.
-    // write torrent to temporary file
-    QFile torrent(filePath);
-    if(torrent.open(QIODevice::WriteOnly)) {
-      torrent.write(torrentfile);
-      torrent.close();
-    } else {
-      std::cerr << "I/O Error: Could not create temporary file" << std::endl;
-      return;
-    }
-#ifdef Q_WS_WIN
-    // Change extension to .torrent on Windows or loading will fail
-    QFile::rename(filePath, filePath+".torrent");
-    filePath += ".torrent";
-#endif
-    emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
-    delete tmpfile;
     // Prepare response
     generator.setStatusLine(200, "OK");
     generator.setContentTypeByExt("html");
