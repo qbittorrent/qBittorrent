@@ -261,7 +261,7 @@ void misc::shutdownComputer(bool sleep) {
 
   if (GetLastError() != ERROR_SUCCESS)
     return;
-  bool ret;
+
   if(sleep)
     SetSuspendState(false, false, false);
   else
