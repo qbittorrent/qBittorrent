@@ -76,10 +76,7 @@ public:
 #if BOOST_VERSION >= 103500
       required_libs << "system"; 
 #endif
-    if(conf->getenv("QC_DISABLE_GUI").isEmpty()) {
-      // Not required by nox
-      required_libs << "filesystem" ;
-    }
+    required_libs << "filesystem" ;
     QStringList libDirs;
     libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
     foreach(const QString& lib, required_libs) {
