@@ -37,6 +37,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QProcess>
+#include <boost/filesystem/operations.hpp>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -60,14 +61,7 @@ const int UNLEN = 256;
 #include <Carbon/Carbon.h>
 #endif
 
-#ifndef Q_WS_WIN
-#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
-#include <sys/param.h>
-#include <sys/mount.h>
-#else
-#include <sys/vfs.h>
-#endif
-#else
+#ifdef Q_WS_WIN
 #include <winbase.h>
 #endif
 
@@ -168,43 +162,9 @@ long long misc::freeDiskSpaceOnPath(QString path) {
     if(!dir_path.exists()) return -1;
   }
   Q_ASSERT(dir_path.exists());
-#ifndef Q_WS_WIN
-  unsigned long long available;
-  struct statfs stats;
-  const QString statfs_path = dir_path.path()+"/.";
-  const int ret = statfs (qPrintable(statfs_path), &stats) ;
-  if(ret == 0) {
-    available = ((unsigned long long)stats.f_bavail) *
-        ((unsigned long long)stats.f_bsize) ;
-    return available;
-  } else {
-    return -1;
-  }
-#else
-  typedef BOOL (WINAPI *GetDiskFreeSpaceEx_t)(LPCTSTR,
-                                              PULARGE_INTEGER,
-                                              PULARGE_INTEGER,
-                                              PULARGE_INTEGER);
-  GetDiskFreeSpaceEx_t
-      pGetDiskFreeSpaceEx = (GetDiskFreeSpaceEx_t)::GetProcAddress
-      (
-        ::GetModuleHandle(TEXT("kernel32.dll")),
-        "GetDiskFreeSpaceExW"
-        );
-  if ( pGetDiskFreeSpaceEx )
-  {
-    ULARGE_INTEGER bytesFree, bytesTotal;
-    unsigned long long *ret;
-    if (pGetDiskFreeSpaceEx((LPCTSTR)path.utf16(), &bytesFree, &bytesTotal, NULL)) {
-      ret = (unsigned long long*)&bytesFree;
-      return *ret;
-    } else {
-      return -1;
-    }
-  } else {
-    return -1;
-  }
-#endif
+  namespace fs = boost::filesystem;
+  fs::space_info sp_in = fs::space(fs::path(dir_path.path().toLocal8Bit()));
+  return sp_in.available;
 }
 
 #ifndef DISABLE_GUI
