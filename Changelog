@@ -2,7 +2,7 @@
     - FEATURE: Add file association settings to program preferences (Windows)
     - FEATURE: Add setting to ignore slow torrents in queueing system
     - FEATURE: Add advanced setting to announce to all trackers
-    - FEATURE: Add support for anonymous mode
+    - FEATURE: Add support for anonymous mode (libtorrent >= v0.16)
     - FEATURE: Add quick "set as default save path" checkbox to torrent addition dialog (sledgehammer999)
     - BUGFIX: Add tray menu entry for toggling window visibility
     - COSMETIC: Display speed at the beginning of the Window title
