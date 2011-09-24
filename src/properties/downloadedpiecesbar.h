@@ -40,48 +40,48 @@
 #define BAR_HEIGHT 18
 
 class DownloadedPiecesBar: public QWidget {
-	Q_OBJECT
-	Q_DISABLE_COPY(DownloadedPiecesBar)
+  Q_OBJECT
+  Q_DISABLE_COPY(DownloadedPiecesBar)
 
 private:
-	QImage image;
+  QImage image;
 
-	// I used values, bacause it should be possible to change colors in runtime
+  // I used values, bacause it should be possible to change colors in runtime
 
-	// background color
-	int bg_color;
-	// border color
-	int border_color;
-	// complete piece color
-	int piece_color;
-	// incomplete piece color
-	int piece_color_dl;
-	// buffered 256 levels gradient from bg_color to piece_color
-	std::vector<int> piece_colors;
+  // background color
+  int bg_color;
+  // border color
+  int border_color;
+  // complete piece color
+  int piece_color;
+  // incomplete piece color
+  int piece_color_dl;
+  // buffered 256 levels gradient from bg_color to piece_color
+  std::vector<int> piece_colors;
 
-	// last used bitfields, uses to better resize redraw
-	// TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-	libtorrent::bitfield pieces;
-	libtorrent::bitfield pieces_dl;
+  // last used bitfields, uses to better resize redraw
+  // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+  libtorrent::bitfield pieces;
+  libtorrent::bitfield pieces_dl;
 
-	// scale bitfield vector to float vector
-	std::vector<float> bitfieldToFloatVector(const libtorrent::bitfield &vecin, int reqSize);
-	// mix two colors by light model, ratio <0, 1>
-	int mixTwoColors(int &rgb1, int &rgb2, float ratio);
-	// draw new image and replace actual image
-	void updateImage();
+  // scale bitfield vector to float vector
+  std::vector<float> bitfieldToFloatVector(const libtorrent::bitfield &vecin, int reqSize);
+  // mix two colors by light model, ratio <0, 1>
+  int mixTwoColors(int &rgb1, int &rgb2, float ratio);
+  // draw new image and replace actual image
+  void updateImage();
 
 public:
-	DownloadedPiecesBar(QWidget *parent);
+  DownloadedPiecesBar(QWidget *parent);
 
-	void setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl);
-	void updatePieceColors();
-	void clear();
+  void setProgress(const libtorrent::bitfield &bf, const libtorrent::bitfield &bf_dl);
+  void updatePieceColors();
+  void clear();
 
-	void setColors(int background, int border, int complete, int incomplete);
+  void setColors(int background, int border, int complete, int incomplete);
 
 protected:
-	void paintEvent(QPaintEvent *);
+  void paintEvent(QPaintEvent *);
 };
 
 #endif // DOWNLOADEDPIECESBAR_H
