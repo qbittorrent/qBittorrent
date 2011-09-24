@@ -771,7 +771,7 @@ You should get this information from your Web browser preferences.</source>
         <translation>Գլխավորը</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>Կողփված IP-ներ</translation>
     </message>
@@ -1029,6 +1029,14 @@ No further notices will be issued.</source>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Մաքրել տեսքտ</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Պատճենել</translation>
     </message>
 </context>
 <context>

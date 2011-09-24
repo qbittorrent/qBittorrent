@@ -1000,7 +1000,7 @@ Debe obtener esta información de las preferencias de su navegador Web.</transla
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>IPs bloqueadas</translation>
     </message>
@@ -1653,6 +1653,14 @@ Probablemente esto es algo que ya sabía, así que no se lo diré otra vez.</tra
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Borrar texto</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Copiar</translation>
     </message>
 </context>
 <context>

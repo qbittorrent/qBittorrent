@@ -1697,6 +1697,13 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
+    <name>LogListWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">複製</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>

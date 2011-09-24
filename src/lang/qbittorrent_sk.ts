@@ -1684,6 +1684,13 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
 </context>
 <context>
+    <name>LogListWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Kopírovať</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>

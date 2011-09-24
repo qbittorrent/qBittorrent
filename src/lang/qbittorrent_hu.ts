@@ -961,7 +961,7 @@ Ez megtudható a  böngésző beállításaiból.</translation>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>Blokkolt IP címek</translation>
     </message>
@@ -1818,6 +1818,14 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Szöveg törlése</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Másolás</translation>
     </message>
 </context>
 <context>

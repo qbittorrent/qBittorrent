@@ -786,7 +786,7 @@ Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</tran
         <translation>Generelt</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>Blokerte IPer</translation>
     </message>
@@ -1113,6 +1113,14 @@ Ingen flere notiser vil bli gitt.</translation>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Fjern teksten</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Kopier</translation>
     </message>
 </context>
 <context>

@@ -1661,6 +1661,13 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
 </context>
 <context>
+    <name>LogListWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Kopiuj</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>

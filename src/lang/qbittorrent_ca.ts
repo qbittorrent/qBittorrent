@@ -1000,7 +1000,7 @@ Podeu obtenir aquesta informació de les preferències del seu navegador web.</t
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>IPs bloquejades</translation>
     </message>
@@ -1653,6 +1653,14 @@ Probablement això és una cosa que ja sabia, així que no li dirà cap altra ve
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Esborrar el text</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Copiar</translation>
     </message>
 </context>
 <context>

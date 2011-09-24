@@ -937,7 +937,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation type="unfinished">Estetyt IP-osoitteet</translation>
     </message>
@@ -1776,6 +1776,14 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Kopioi</translation>
     </message>
 </context>
 <context>

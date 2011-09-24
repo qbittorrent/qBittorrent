@@ -1679,6 +1679,13 @@ Nenhum outro aviso será dado.</translation>
     </message>
 </context>
 <context>
+    <name>LogListWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished">Copia</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>

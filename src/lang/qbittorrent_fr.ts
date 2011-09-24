@@ -992,7 +992,7 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>IPs bloquées</translation>
     </message>
@@ -1864,6 +1864,14 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Effacer le texte</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Copier</translation>
     </message>
 </context>
 <context>

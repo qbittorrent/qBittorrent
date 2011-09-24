@@ -996,7 +996,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
         <translation>Obecné</translation>
     </message>
     <message>
-        <location filename="../executionlog.ui" line="41"/>
+        <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
         <translation>Blokované IP</translation>
     </message>
@@ -1881,6 +1881,14 @@ Další upozornění již nebudou zobrazena.</translation>
         <location filename="../lineedit/src/lineedit.cpp" line="30"/>
         <source>Clear the text</source>
         <translation>Vymazat text</translation>
+    </message>
+</context>
+<context>
+    <name>LogListWidget</name>
+    <message>
+        <location filename="../loglistwidget.cpp" line="47"/>
+        <source>Copy</source>
+        <translation type="unfinished">Kopírovat</translation>
     </message>
 </context>
 <context>
