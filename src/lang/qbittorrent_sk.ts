@@ -89,23 +89,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation>Knižnice</translation>
     </message>
     <message>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation type="unfinished"></translation>
+        <translation>Táto verza qBittorrent bola zostavená s nasledovnými knižnicami:</translation>
     </message>
     <message>
         <source>Qt:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt:</translation>
     </message>
     <message>
         <source>Boost:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boost:</translation>
     </message>
     <message>
         <source>Libtorrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Libtorrent:</translation>
     </message>
 </context>
 <context>
@@ -227,11 +227,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Exchange trackers with other peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymieňať si trackery s ostatnými rovesníkmi</translation>
     </message>
     <message>
         <source>Always announce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy oznamovať všetkým trackerom</translation>
     </message>
 </context>
 <context>
@@ -1687,7 +1687,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <name>LogListWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Kopírovať</translation>
+        <translation>Kopírovať</translation>
     </message>
 </context>
 <context>
@@ -2110,16 +2110,16 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť</translation>
     </message>
     <message>
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Skryť</translation>
     </message>
     <message>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
 </context>
 <context>
@@ -2900,27 +2900,27 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>File association</source>
-        <translation type="unfinished"></translation>
+        <translation>Asociácia typu súboru</translation>
     </message>
     <message>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvárať súbory .torrent programom qBittorrent</translation>
     </message>
     <message>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvárať odkazy magnet programom qBittorrent</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepočítať pomalé torrenty do týchto obmedzení</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnúť anonymný režim</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Ďalšie informácie&lt;/a&gt;)</translation>
     </message>
 </context>
 <context>
@@ -3517,7 +3517,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonymný režim [zapnutý]</translation>
     </message>
 </context>
 <context>
@@ -4894,7 +4894,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastaviť ako predvolenú cestu pre uloženie</translation>
     </message>
 </context>
 <context>
@@ -5522,27 +5522,27 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Invalid key</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný kľúč</translation>
     </message>
     <message>
         <source>This is not a valid SSL key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto nie je platný kľúč SSL.</translation>
     </message>
     <message>
         <source>Invalid certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný certifikát</translation>
     </message>
     <message>
         <source>This is not a valid SSL certificate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto nie je platný certifikát SSL.</translation>
     </message>
     <message>
         <source>SSL Certificate (*.crt *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>Certifikát SSL (*.crt *.pem)</translation>
     </message>
     <message>
         <source>SSL Key (*.key *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kľúč SSL (*.key *.pem)</translation>
     </message>
 </context>
 <context>
