@@ -53,27 +53,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="294"/>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation>مكتبات</translation>
     </message>
     <message>
         <location filename="../about.ui" line="306"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation type="unfinished"></translation>
+        <translation>تم بناء البرنامج بالاعتماد على المكتبة التالية:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="325"/>
         <source>Qt:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="335"/>
         <source>Boost:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boost:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="366"/>
         <source>Libtorrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Libtorrent:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="164"/>
@@ -212,12 +212,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="249"/>
         <source>Exchange trackers with other peers</source>
-        <translation type="unfinished"></translation>
+        <translation>مشاركة التراكر مع القرناء الاخرين</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="253"/>
         <source>Always announce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>الاعلان دائما لجميع التراكرات</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="211"/>
@@ -1885,7 +1885,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../loglistwidget.cpp" line="47"/>
         <source>Copy</source>
-        <translation type="unfinished">نسخ</translation>
+        <translation>نسخ</translation>
     </message>
 </context>
 <context>
@@ -2086,7 +2086,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.cpp" line="708"/>
         <location filename="../mainwindow.cpp" line="1208"/>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>أظهر</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
@@ -2336,7 +2336,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="1119"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="394"/>
@@ -2353,7 +2353,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="708"/>
         <location filename="../mainwindow.cpp" line="1208"/>
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>إخفاء</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="750"/>
@@ -3034,17 +3034,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="446"/>
         <source>File association</source>
-        <translation type="unfinished"></translation>
+        <translation>الارتباط بملف</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="452"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>إستخدام البرنامج لفتح ملفات التورنت</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="459"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished"></translation>
+        <translation>إستخدام البرنامج لفتح الروابط المغناطيسية</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="475"/>
@@ -3164,17 +3164,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1990"/>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished"></translation>
+        <translation>تفعيل الوضع المجهول</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1997"/>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2136"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>عدم حساب الملفات البطيئة</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2313"/>
@@ -3973,7 +3973,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="415"/>
         <source>Anonymous mode [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>الوضع المجهول (مفعل)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="447"/>
@@ -5742,7 +5742,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentadditiondlg.ui" line="73"/>
         <source>Set as default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>اختر مكان الحفظ الرئيسي</translation>
     </message>
     <message>
         <location filename="../torrentadditiondlg.ui" line="84"/>
@@ -6565,12 +6565,12 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1186"/>
         <source>SSL Certificate (*.crt *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL Certificate (*.crt *.pem)</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1197"/>
         <source>SSL Key (*.key *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL Key (*.key *.pem)</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1228"/>
@@ -6590,22 +6590,22 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1297"/>
         <source>Invalid key</source>
-        <translation type="unfinished"></translation>
+        <translation>مفتاح خاطئ</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1297"/>
         <source>This is not a valid SSL key.</source>
-        <translation type="unfinished"></translation>
+        <translation>هذا مفتاح SSL خاطئ.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1312"/>
         <source>Invalid certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>شهادة خاطئة</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1312"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation type="unfinished"></translation>
+        <translation>هذه شهادة SSL خاطئة.</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
