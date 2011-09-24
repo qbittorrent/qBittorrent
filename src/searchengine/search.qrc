@@ -25,12 +25,12 @@
   <file>nova/engines/piratebay.png</file>
   <file>nova/engines/vertor.py</file>
   <file>nova/engines/btdigg.png</file>
+  <file>nova3/sgmllib3.py</file>
   <file>nova3/nova2.py</file>
   <file>nova3/novaprinter.py</file>
   <file>nova3/socks.py</file>
   <file>nova3/nova2dl.py</file>
   <file>nova3/helpers.py</file>
-  <file>nova3/sgmllib3.py</file>
   <file>nova3/engines/vertor.png</file>
   <file>nova3/engines/kickasstorrents.png</file>
   <file>nova3/engines/mininova.png</file>
