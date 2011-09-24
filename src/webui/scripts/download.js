@@ -22,7 +22,7 @@
  */
 
 window.addEvent('domready', function(){
-        $('urls').focus();
+  $('urls').focus();
 	$('downButton').addEvent('click', function(e){
 		new Event(e).stop();
 		new Request({url: '/command/download', method: 'post', data: {urls: $('urls').value},

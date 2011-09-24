@@ -47,13 +47,10 @@ class HttpConnection : public QObject
   Q_OBJECT
   Q_DISABLE_COPY(HttpConnection)
 
-private:
-  QTcpSocket *socket;
-  HttpServer *httpserver;
-
-protected:
-  HttpRequestParser parser;
-  HttpResponseGenerator generator;
+public:
+  HttpConnection(QTcpSocket *socket, HttpServer *httpserver);
+  ~HttpConnection();
+  void translateDocument(QString& data);
 
 protected slots:
   void write();
@@ -73,12 +70,6 @@ protected slots:
   void decreaseTorrentsPriority(const QStringList& hashes);
   void increaseTorrentsPriority(const QStringList& hashes);
 
-
-public:
-  HttpConnection(QTcpSocket *socket, HttpServer *httpserver);
-  ~HttpConnection();
-  QString translateDocument(QString data);
-
 private slots:
   void read();
 
@@ -93,6 +84,15 @@ signals:
   void decreasePrioTorrent(QString hash);
   void resumeAllTorrents();
   void pauseAllTorrents();
+
+private:
+  QTcpSocket *socket;
+  HttpServer *httpserver;
+
+private:
+  HttpRequestParser parser;
+  HttpResponseGenerator generator;
+  bool m_needsTranslation;
 };
 
 #endif

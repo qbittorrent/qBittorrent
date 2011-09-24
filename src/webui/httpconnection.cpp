@@ -59,6 +59,7 @@ HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
   socket->setParent(this);
   connect(socket, SIGNAL(readyRead()), this, SLOT(read()));
   connect(socket, SIGNAL(disconnected()), this, SLOT(deleteLater()));
+  m_needsTranslation = !Preferences().getLocale().startsWith("en");
 }
 
 HttpConnection::~HttpConnection()
@@ -110,33 +111,43 @@ void HttpConnection::write()
   socket->disconnectFromHost();
 }
 
-QString HttpConnection::translateDocument(QString data) {
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget", "PropertiesWidget", "MainWindow", "HttpServer", "confirmDeletionDlg", "TrackerList", "TorrentFilesModel", "options_imp", "Preferences", "TrackersAdditionDlg", "ScanFoldersModel", "PropTabBar", "TorrentModel", "downloadFromURL"};
+void HttpConnection::translateDocument(QString& data) {
+  static QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
+  static QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
+  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget",
+                            "PropertiesWidget", "MainWindow", "HttpServer",
+                            "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
+                            "options_imp", "Preferences", "TrackersAdditionDlg",
+                            "ScanFoldersModel", "PropTabBar", "TorrentModel",
+                            "downloadFromURL"};
   int i=0;
-  bool found = false;
+  bool found;
+
   do {
     found = false;
-    static QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
+
     i = regex.indexIn(data, i);
     if(i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
-      QString word = regex.cap(1);
+      QByteArray word = regex.cap(1).toLocal8Bit();
+
       QString translation = word;
-      int context_index= 0;
-      do {
-        translation = qApp->translate(contexts[context_index].c_str(), word.toLocal8Bit().constData(), 0, QCoreApplication::UnicodeUTF8, 1);
-        ++context_index;
-      }while(translation == word && context_index < 15);
+      if (m_needsTranslation) {
+        int context_index = 0;
+        do {
+          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+          ++context_index;
+        } while(translation == word && context_index < 15);
+      }
+
       // Remove keyboard shortcuts
-      static QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
       translation = translation.replace(mnemonic, "");
-      //qDebug("Translation is %s", translation.toUtf8().data());
-      data = data.replace(i, regex.matchedLength(), translation);
+
+      data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
       found = true;
     }
-  }while(found && i < data.size());
-  return data;
+  } while(found && i < data.size());
 }
 
 void HttpConnection::respond() {
@@ -277,9 +288,15 @@ void HttpConnection::respond() {
   else
     ext.clear();
   QByteArray data = file.readAll();
+
   // Translate the page
   if(ext == "html" || (ext == "js" && !list.last().startsWith("excanvas"))) {
-    data = translateDocument(QString::fromUtf8(data.data())).toUtf8();
+    QString dataStr = QString::fromUtf8(data.constData());
+    translateDocument(dataStr);
+    if (url.endsWith("about.html")) {
+      dataStr.replace("${VERSION}", VERSION);
+    }
+    data = dataStr.toUtf8();
   }
   generator.setStatusLine(200, "OK");
   generator.setContentTypeByExt(ext);

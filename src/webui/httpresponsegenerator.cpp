@@ -31,15 +31,13 @@
 
 #include "httpresponsegenerator.h"
 
-void HttpResponseGenerator::setMessage(const QByteArray message)
+void HttpResponseGenerator::setMessage(const QByteArray& message)
 {
 	HttpResponseGenerator::message = message;
 	setContentLength(message.size());
 }
 
-void HttpResponseGenerator::setMessage(const QString message)
-{
-  // This must be UTF-8!
+void HttpResponseGenerator::setMessage(const QString& message) {
   setMessage(message.toUtf8());
 }
 

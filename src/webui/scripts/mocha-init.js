@@ -71,8 +71,8 @@ initializeWindows = function(){
 			maximizable: false,
 			paddingVertical: 0,
 			paddingHorizontal: 0,
-			width: 500,
-			height: 150
+			width: 600,
+			height: 170
 		});
 	});
 	
@@ -275,10 +275,10 @@ initializeWindows = function(){
 		new MochaUI.Window({
 			id: 'aboutpage',
 			title: 'About',
-			loadMethod: 'iframe',
+			loadMethod: 'xhr',
 			contentURL: 'about.html',
 			width: 650,
-			height: 400,
+			height: 200,
 			padding: 10
 		});
 	});

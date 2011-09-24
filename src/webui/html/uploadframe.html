@@ -5,21 +5,13 @@
         <title>_(Download local torrent)</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" />
         <script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
-<script type="text/javascript">
-function submitForm(form) {
-  if($('torrentfile').get('value').length == 0) {
-    alert("Form cannot be left empty");
-    return false;
-  }
-  document.uploadForm.submit();
-}
-</script>
 </head>
 <body>
+<center>
 <form action="/command/upload" enctype="multipart/form-data" method="post" name="uploadForm">
-
-        <input type="file" name="torrentfile" id="torrentfile" size="40"/><p>_(Point to torrent file)</p><!--<input type="submit" value="Download"/> -->
- <a id="upButton" onclick="javascript:submitForm();">_(Download)</a>
-        </form>
+  <input type="file" name="torrentfile" id="torrentfile" size="40"/><br/><br/>
+  <input type="submit" value="_(Download)" id="upButton"/>
+</form>
+</center>
 </body>
 </html>
