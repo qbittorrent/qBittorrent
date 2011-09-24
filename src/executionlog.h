@@ -37,6 +37,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui {
     class ExecutionLog;
 }
+class LogListWidget;
 QT_END_NAMESPACE
 
 class ExecutionLog : public QWidget
@@ -52,7 +53,11 @@ public slots:
   void addBanMessage(const QString &msg);
 
 private:
-    Ui::ExecutionLog *ui;
+  Ui::ExecutionLog *ui;
+
+  LogListWidget *m_logList;
+  LogListWidget *m_banList;
+  int m_maxLines;
 };
 
 #endif // EXECUTIONLOG_H

@@ -5,6 +5,7 @@
     - FEATURE: Add support for anonymous mode (libtorrent >= v0.16)
     - FEATURE: Add quick "set as default save path" checkbox to torrent addition dialog (sledgehammer999)
     - BUGFIX: Add tray menu entry for toggling window visibility
+    - BUGFIX: Fix execution log lines selection and copying
     - COSMETIC: Display speed at the beginning of the Window title
     - OTHER: Display libraries versions in about dialog (sledgehammer999)
 

@@ -22,33 +22,17 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabGeneral">
       <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QVBoxLayout">
-       <item>
-        <widget class="QListWidget" name="logList">
-         <property name="alternatingRowColors">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout"/>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tabBan">
       <attribute name="title">
        <string>Blocked IPs</string>
       </attribute>
-      <layout class="QVBoxLayout" name="_2">
-       <item>
-        <widget class="QListWidget" name="banList">
-         <property name="alternatingRowColors">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="_2"/>
      </widget>
     </widget>
    </item>

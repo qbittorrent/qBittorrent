@@ -27,51 +27,34 @@
  *
  * Contact : chris@qbittorrent.org
  */
+#ifndef LOGLISTWIDGET_H
+#define LOGLISTWIDGET_H
 
-#include <QListWidgetItem>
-#include <QLabel>
-#include "executionlog.h"
-#include "ui_executionlog.h"
-#include "qbtsession.h"
-#include "iconprovider.h"
-#include "loglistwidget.h"
+#include <QListWidget>
 
-ExecutionLog::ExecutionLog(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::ExecutionLog),
-  m_logList(new LogListWidget(MAX_LOG_MESSAGES)),
-  m_banList(new LogListWidget(MAX_LOG_MESSAGES))
+QT_BEGIN_NAMESPACE
+class QKeyEvent;
+QT_END_NAMESPACE
+
+class LogListWidget : public QListWidget
 {
-    ui->setupUi(this);
+    Q_OBJECT
 
-    ui->tabConsole->setTabIcon(0, IconProvider::instance()->getIcon("view-calendar-journal"));
-    ui->tabConsole->setTabIcon(1, IconProvider::instance()->getIcon("view-filter"));
-    ui->tabGeneral->layout()->addWidget(m_logList);
-    ui->tabBan->layout()->addWidget(m_banList);
+public:
+  explicit LogListWidget(int max_lines = 100, QWidget *parent = 0);
 
-    const QStringList log_msgs = QBtSession::instance()->getConsoleMessages();
-    foreach(const QString& msg, log_msgs)
-      addLogMessage(msg);
-    const QStringList ban_msgs = QBtSession::instance()->getPeerBanMessages();
-    foreach(const QString& msg, ban_msgs)
-      addBanMessage(msg);
-    connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), SLOT(addLogMessage(QString)));
-    connect(QBtSession::instance(), SIGNAL(newBanMessage(QString)), SLOT(addBanMessage(QString)));
-}
+public slots:
+  void appendLine(const QString &line);
 
-ExecutionLog::~ExecutionLog()
-{
-  delete m_logList;
-  delete m_banList;
-  delete ui;
-}
+protected slots:
+  void copySelection();
 
-void ExecutionLog::addLogMessage(const QString &msg)
-{
-  m_logList->appendLine(msg);
-}
+protected:
+  void keyPressEvent(QKeyEvent *event);
 
-void ExecutionLog::addBanMessage(const QString &msg)
-{
-  m_banList->appendLine(msg);
-}
+private:
+  int m_maxLines;
+
+};
+
+#endif // LOGLISTWIDGET_H
