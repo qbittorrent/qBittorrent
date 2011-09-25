@@ -1671,18 +1671,18 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="161"/>
+        <location filename="../webui/httpconnection.cpp" line="151"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>تم رفضك لكثرة المحاولات الفاشلة.</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="362"/>
+        <location filename="../webui/httpconnection.cpp" line="351"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>D: %1/s - T: %2</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="363"/>
+        <location filename="../webui/httpconnection.cpp" line="352"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>U: %1/s - T: %2</translation>
@@ -1691,17 +1691,17 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>File</source>
         <translation>ملف</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Edit</source>
         <translation>تعديل</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Help</source>
         <translation>مساعدة</translation>
     </message>
@@ -1710,128 +1710,128 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">مسح من القرص الصلب</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>حمل تورنت من رابط او مغناطيس</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="132"/>
         <source>Only one link per line</source>
         <translation>رابط واحد لكل سطر</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="133"/>
         <source>Download local torrent</source>
         <translation>حمل تورنت محلي</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="134"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>ملفات التورنت تمت اضافتها بنجاح لقائمة التحميل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Point to torrent file</source>
         <translation>التوجيه الى ملف تورنت</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="136"/>
         <source>Download</source>
         <translation>تحميل</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="137"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>هل انت متأكد من رغبتك في حذف التورنت من قائمة النقل و من القرص الصلب؟</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="138"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>حد التحميل يجب ان يكون أكبر من 0 او معطل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="131"/>
+        <location filename="../webui/httpserver.cpp" line="139"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>حد الرفع يجب ان أكبر من يكون 0 او معطل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="132"/>
+        <location filename="../webui/httpserver.cpp" line="140"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>حد الاتصالات يجب ان يكون أكبر من 0 او معطل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="133"/>
+        <location filename="../webui/httpserver.cpp" line="141"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>حد الاتصالات لكل تورنت يجب ان يكون أكبر من 0 او معطل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="134"/>
+        <location filename="../webui/httpserver.cpp" line="142"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>حد وحدة الرفع لكل تورنت يجب ان يكون أكبر من 0 او معطل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="135"/>
+        <location filename="../webui/httpserver.cpp" line="143"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>غير قادر على حفظ الخيارات , لا يمكن الاتصال بالبرنامج حاليا.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="136"/>
+        <location filename="../webui/httpserver.cpp" line="144"/>
         <source>Language</source>
         <translation>اللغة</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="137"/>
+        <location filename="../webui/httpserver.cpp" line="145"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>تم تحميله</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="138"/>
+        <location filename="../webui/httpserver.cpp" line="146"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>منفذ الاتصال يجب ان يكون بين 1024 و 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="139"/>
+        <location filename="../webui/httpserver.cpp" line="147"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>منفذ الاتصال لواجهة الويب يجب ان تكون بين 1024 و 65535.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="140"/>
+        <location filename="../webui/httpserver.cpp" line="148"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>اسم المستخدم يجب ان يحتوي على 3 احرف على الاقل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="141"/>
+        <location filename="../webui/httpserver.cpp" line="149"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>كلمة المرور يجب ان تحتوي على 3 احرف على الاقل.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="142"/>
+        <location filename="../webui/httpserver.cpp" line="150"/>
         <source>Save</source>
         <translation>حفظ</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="143"/>
+        <location filename="../webui/httpserver.cpp" line="151"/>
         <source>qBittorrent client is not reachable</source>
         <translation>لا يمكن الوصول للبرنامج</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="144"/>
+        <location filename="../webui/httpserver.cpp" line="152"/>
         <source>HTTP Server</source>
         <translation>خادم HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="145"/>
+        <location filename="../webui/httpserver.cpp" line="153"/>
         <source>The following parameters are supported:</source>
         <translation>الأسماء المسموحة:</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="146"/>
+        <location filename="../webui/httpserver.cpp" line="154"/>
         <source>Torrent path</source>
         <translation>مكان التورنت</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="147"/>
+        <location filename="../webui/httpserver.cpp" line="155"/>
         <source>Torrent name</source>
         <translation>إسم التورنت</translation>
     </message>
@@ -3737,7 +3737,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="518"/>
-        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>The file could not be renamed</source>
         <translation>لا يمكن اعادة تسمية الملف</translation>
     </message>
@@ -3747,40 +3747,40 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>اختر اسما بدون رموز خاصة.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="551"/>
-        <location filename="../properties/propertieswidget.cpp" line="589"/>
+        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="588"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>الاسم مستخدم مسبقا , اختر اسما اخر.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="588"/>
+        <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>The folder could not be renamed</source>
         <translation>لا يمكن اعادة تسمية المجلد</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="626"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>New url seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>New url seed:</source>
         <translation>New url seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="633"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="634"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>This url seed is already in the list.</source>
         <translation>This url seed is already in the list.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="676"/>
-        <location filename="../properties/propertieswidget.cpp" line="679"/>
+        <location filename="../properties/propertieswidget.cpp" line="675"/>
+        <location filename="../properties/propertieswidget.cpp" line="678"/>
         <source>Choose save path</source>
         <translation>اختر مكان الحفظ</translation>
     </message>
@@ -4471,12 +4471,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="101"/>
         <source>Watched Folder</source>
         <translation>المجلد المراقب</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="104"/>
+        <location filename="../scannedfoldersmodel.cpp" line="102"/>
         <source>Download here</source>
         <translation>حمل هنا</translation>
     </message>
@@ -6507,103 +6507,103 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
-        <location filename="../preferences/options_imp.cpp" line="1091"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Choose export directory</source>
         <translation>إختر مكان للتصدير</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
-        <location filename="../preferences/options_imp.cpp" line="1143"/>
+        <location filename="../preferences/options_imp.cpp" line="1125"/>
+        <location filename="../preferences/options_imp.cpp" line="1127"/>
+        <location filename="../preferences/options_imp.cpp" line="1142"/>
+        <location filename="../preferences/options_imp.cpp" line="1144"/>
         <source>Choose a save directory</source>
         <translation>إختر مكان للحفظ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose an ip filter file</source>
         <translation>إختر ملف لمنقي الاي بي</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Add directory to scan</source>
         <translation>اضافة مكان الملفات المراد فحصها</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
+        <location filename="../preferences/options_imp.cpp" line="1053"/>
         <source>Folder is already being watched.</source>
         <translation>المجلد يستعرض الآن.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1055"/>
+        <location filename="../preferences/options_imp.cpp" line="1056"/>
         <source>Folder does not exist.</source>
         <translation>المجلد غير موجود.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1058"/>
+        <location filename="../preferences/options_imp.cpp" line="1059"/>
         <source>Folder is not readable.</source>
         <translation>المجلد غير قابل للقراءة.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failure</source>
         <translation>فشل</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>فشل اضافة المجلد للفحص &apos;%1: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Filters</source>
         <translation>منقيات</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1186"/>
+        <location filename="../preferences/options_imp.cpp" line="1187"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL Certificate (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1197"/>
+        <location filename="../preferences/options_imp.cpp" line="1198"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL Key (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Parsing error</source>
         <translation>Parsing error</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Failed to parse the provided IP filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfully refreshed</source>
         <translation>التحديث ناجح</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Invalid key</source>
         <translation>مفتاح خاطئ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>This is not a valid SSL key.</source>
         <translation>هذا مفتاح SSL خاطئ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>Invalid certificate</source>
         <translation>شهادة خاطئة</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>هذه شهادة SSL خاطئة.</translation>
     </message>
@@ -6612,7 +6612,7 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">التحديث ناجح</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Successfuly parsed the provided IP filter: %1 rules were applied.</translation>

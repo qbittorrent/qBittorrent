@@ -1255,18 +1255,18 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="161"/>
+        <location filename="../webui/httpconnection.cpp" line="151"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>확인 과정을 여러차례 통과하지 못했으므로 님의 현재 IP 주소는 금지되었습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="362"/>
+        <location filename="../webui/httpconnection.cpp" line="351"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>다운: &apos;%1&apos;/초당 - 전송: %2</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="363"/>
+        <location filename="../webui/httpconnection.cpp" line="352"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>업: %1/초당 - 전송: %2</translation>
@@ -1275,17 +1275,17 @@ Are you sure you want to quit qBittorrent?</source>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>File</source>
         <translation>파일</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Edit</source>
         <translation>편집</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Help</source>
         <translation>도움</translation>
     </message>
@@ -1294,128 +1294,128 @@ Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">하드디스크에서 지우기</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>웹주소(url)이나 마그네틱 링크에서 토렌트 다운받기</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="132"/>
         <source>Only one link per line</source>
         <translation>한 줄에 링크 한개씩</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="133"/>
         <source>Download local torrent</source>
         <translation>로컬 토렌트 다운받기</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="134"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>전송목록에 토렌트 파일이 성공적으로 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Point to torrent file</source>
         <translation>토렌트 파일 지정하기</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="136"/>
         <source>Download</source>
         <translation>다운로드</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="137"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>선택하신 토렌트 파일을 전송목록과 디스크에서 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="138"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>다운로드 비율제한은 0보다 높게 설정되어야 합니다. 0으로 설정시 다운로드 제한 기능이 사용되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="131"/>
+        <location filename="../webui/httpserver.cpp" line="139"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>업로드 비율제한은 0보다 높게 설정되어야 합니다. 0으로 설정시 업로드 제한 기능이 사용되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="132"/>
+        <location filename="../webui/httpserver.cpp" line="140"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>최대 연결수는 0보다 높게 설정되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="133"/>
+        <location filename="../webui/httpserver.cpp" line="141"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>토렌트 당 최대 연결수는 0보다 높게 설정 되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="134"/>
+        <location filename="../webui/httpserver.cpp" line="142"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>토렌트 당 최대 업로드 연결 수는 0보다 높게 설정 되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="135"/>
+        <location filename="../webui/httpserver.cpp" line="143"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>설정을 저장 훌수 없습니다. 큐비토렌트에 연결 할수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="136"/>
+        <location filename="../webui/httpserver.cpp" line="144"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="137"/>
+        <location filename="../webui/httpserver.cpp" line="145"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>다운됨</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="138"/>
+        <location filename="../webui/httpserver.cpp" line="146"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>송신 포트는 1024 이상 65535 이하로 설정되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="139"/>
+        <location filename="../webui/httpserver.cpp" line="147"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>웹 사용자 인터페이스용 포트는 1024 이상 65535 이하로 설정되어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="140"/>
+        <location filename="../webui/httpserver.cpp" line="148"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>웹 사용자 인터페이스의 사용자 이름은 3글자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="141"/>
+        <location filename="../webui/httpserver.cpp" line="149"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>웹 사용자 인터페이스의 비밀번호는 3글자 이상이어야 합니다.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="142"/>
+        <location filename="../webui/httpserver.cpp" line="150"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="143"/>
+        <location filename="../webui/httpserver.cpp" line="151"/>
         <source>qBittorrent client is not reachable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="144"/>
+        <location filename="../webui/httpserver.cpp" line="152"/>
         <source>HTTP Server</source>
         <translation type="unfinished">HTTP 서버</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="145"/>
+        <location filename="../webui/httpserver.cpp" line="153"/>
         <source>The following parameters are supported:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="146"/>
+        <location filename="../webui/httpserver.cpp" line="154"/>
         <source>Torrent path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="147"/>
+        <location filename="../webui/httpserver.cpp" line="155"/>
         <source>Torrent name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3229,7 +3229,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="518"/>
-        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 변경할수 없음</translation>
     </message>
@@ -3239,40 +3239,40 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>파일 이름에 특수문자가 들어가 있습니다, 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="551"/>
-        <location filename="../properties/propertieswidget.cpp" line="589"/>
+        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="588"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>이 이름은 이 폴더에서 이미 사용중에 있습니다. 다른 이름을 입력해 주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="588"/>
+        <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 변경할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="626"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="633"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>qBittorrent</source>
         <translation>큐비토렌트</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="634"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="676"/>
-        <location filename="../properties/propertieswidget.cpp" line="679"/>
+        <location filename="../properties/propertieswidget.cpp" line="675"/>
+        <location filename="../properties/propertieswidget.cpp" line="678"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
@@ -3947,12 +3947,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="101"/>
         <source>Watched Folder</source>
         <translation>주시할 폴더</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="104"/>
+        <location filename="../scannedfoldersmodel.cpp" line="102"/>
         <source>Download here</source>
         <translation>여기에 다운로드하기</translation>
     </message>
@@ -5991,109 +5991,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
-        <location filename="../preferences/options_imp.cpp" line="1143"/>
+        <location filename="../preferences/options_imp.cpp" line="1125"/>
+        <location filename="../preferences/options_imp.cpp" line="1127"/>
+        <location filename="../preferences/options_imp.cpp" line="1142"/>
+        <location filename="../preferences/options_imp.cpp" line="1144"/>
         <source>Choose a save directory</source>
         <translation>파일을 저장할 경로를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Add directory to scan</source>
         <translation>스켄 할 폴더 추가</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
+        <location filename="../preferences/options_imp.cpp" line="1053"/>
         <source>Folder is already being watched.</source>
         <translation>선택하신 폴더는 이미 스켄 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1055"/>
+        <location filename="../preferences/options_imp.cpp" line="1056"/>
         <source>Folder does not exist.</source>
         <translation>선택하신 폴더는 존재하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1058"/>
+        <location filename="../preferences/options_imp.cpp" line="1059"/>
         <source>Folder is not readable.</source>
         <translation>선택하신 폴더를 읽을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failure</source>
         <translation>실패</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>퐅도 추가 실패 &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
-        <location filename="../preferences/options_imp.cpp" line="1091"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Choose export directory</source>
         <translation>내보낼 폴더 선택하기</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose an ip filter file</source>
         <translation>ip filter 파일 선택</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Filters</source>
         <translation>필터</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1186"/>
+        <location filename="../preferences/options_imp.cpp" line="1187"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1197"/>
+        <location filename="../preferences/options_imp.cpp" line="1198"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Parsing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Failed to parse the provided IP filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -820,18 +820,18 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="161"/>
+        <location filename="../webui/httpconnection.cpp" line="151"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ձեր IP հասցեն արգելվել է՝ մի շարք անհաջող ներկայացումներից հետո։</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="362"/>
+        <location filename="../webui/httpconnection.cpp" line="351"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Բ. %1/վ - Ը. %2</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="363"/>
+        <location filename="../webui/httpconnection.cpp" line="352"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Փ. %1/վ - Ը. %2</translation>
@@ -840,17 +840,17 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>File</source>
         <translation>Ֆայլ</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Edit</source>
         <translation>Խմբագրել</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Help</source>
         <translation>Օգնություն</translation>
     </message>
@@ -859,128 +859,128 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Ջնջել HD-ից</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Բեռնել Torrent-ները իրենց հղումներից կամ Magnet հղումից</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="132"/>
         <source>Only one link per line</source>
         <translation>Մեկ հղում տողի համար</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="133"/>
         <source>Download local torrent</source>
         <translation>Բեռնել լոկալ torrent</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="134"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torrent ֆայլերը հաջողությամբ ավելացվել են բեռնումների ցանկին։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Point to torrent file</source>
         <translation>Ավելացնել torrent ֆայլին</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="136"/>
         <source>Download</source>
         <translation>Բեռնել</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="137"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Ջնջե՞լ ընտրված torrent-ները ցանկից և պնակից։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="138"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Բեռնման սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="131"/>
+        <location filename="../webui/httpserver.cpp" line="139"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Փոխանցման սահմանափակումը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="132"/>
+        <location filename="../webui/httpserver.cpp" line="140"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Միացումների առավ. քանակը պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="133"/>
+        <location filename="../webui/httpserver.cpp" line="141"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Միացումների առավ. քանակը torrent-ի համար պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="134"/>
+        <location filename="../webui/httpserver.cpp" line="142"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Փոխանցման սլոթների առավ. քանակը torrent-ի համար պետք է լինի կամ բարձր 0-ից կամ անջատված։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="135"/>
+        <location filename="../webui/httpserver.cpp" line="143"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Հնարավոր չէ պահպանել ծրագրի կարգավորումները, qBittorrent-ը հնարավոր է անհասանելի է։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="136"/>
+        <location filename="../webui/httpserver.cpp" line="144"/>
         <source>Language</source>
         <translation>Լեզուն</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="137"/>
+        <location filename="../webui/httpserver.cpp" line="145"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Բեռնվել է</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="138"/>
+        <location filename="../webui/httpserver.cpp" line="146"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Մտնող կապուղիների դարպասը պետք է լինի 1024-ից մինչև 65535։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="139"/>
+        <location filename="../webui/httpserver.cpp" line="147"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Web UI-ի համար օգտագործվող դարպասը պետք է լինի 1024-ից մինչև 65535։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="140"/>
+        <location filename="../webui/httpserver.cpp" line="148"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web UI-ի օգտագործողի անունը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="141"/>
+        <location filename="../webui/httpserver.cpp" line="149"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Օգտագործողի ծածկագիրը պետք է պարունակի գոնե 3 նիշ։</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="142"/>
+        <location filename="../webui/httpserver.cpp" line="150"/>
         <source>Save</source>
         <translation>Պահպանել</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="143"/>
+        <location filename="../webui/httpserver.cpp" line="151"/>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent ծրագիրը հասանելի չէ</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="144"/>
+        <location filename="../webui/httpserver.cpp" line="152"/>
         <source>HTTP Server</source>
         <translation>HTTP սպասարկիչ</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="145"/>
+        <location filename="../webui/httpserver.cpp" line="153"/>
         <source>The following parameters are supported:</source>
         <translation>Աջակցվում են՝</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="146"/>
+        <location filename="../webui/httpserver.cpp" line="154"/>
         <source>Torrent path</source>
         <translation>Torrent-ի ճ-ը</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="147"/>
+        <location filename="../webui/httpserver.cpp" line="155"/>
         <source>Torrent name</source>
         <translation>Torrent-ի անունը</translation>
     </message>
@@ -2841,7 +2841,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="518"/>
-        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>The file could not be renamed</source>
         <translation>Հնարավոր չէ անվանափոխել ֆայլը</translation>
     </message>
@@ -2851,40 +2851,40 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ֆայլի անունը պարունակում է արգելված նշաններ, ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="551"/>
-        <location filename="../properties/propertieswidget.cpp" line="589"/>
+        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="588"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Այս անունը արդեն առկա է տվյալ թղթապանակում։ Նշեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="588"/>
+        <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>The folder could not be renamed</source>
         <translation>Թղթապանակը հնարավոր չէ անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="626"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Նոր հղման փոխանցում</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>New url seed:</source>
         <translation>Նոր հղման փոխանցում.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="633"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="634"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>This url seed is already in the list.</source>
         <translation>Այս հղումը արդեն առկա է ցանկում։</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="676"/>
-        <location filename="../properties/propertieswidget.cpp" line="679"/>
+        <location filename="../properties/propertieswidget.cpp" line="675"/>
+        <location filename="../properties/propertieswidget.cpp" line="678"/>
         <source>Choose save path</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
@@ -3526,12 +3526,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="101"/>
         <source>Watched Folder</source>
         <translation>Հետևելու թղթապանակը</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="104"/>
+        <location filename="../scannedfoldersmodel.cpp" line="102"/>
         <source>Download here</source>
         <translation>Բեռնել այստեղ</translation>
     </message>
@@ -5406,109 +5406,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
-        <location filename="../preferences/options_imp.cpp" line="1091"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Choose export directory</source>
         <translation>Ընտրեք արտածման տեղը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
-        <location filename="../preferences/options_imp.cpp" line="1143"/>
+        <location filename="../preferences/options_imp.cpp" line="1125"/>
+        <location filename="../preferences/options_imp.cpp" line="1127"/>
+        <location filename="../preferences/options_imp.cpp" line="1142"/>
+        <location filename="../preferences/options_imp.cpp" line="1144"/>
         <source>Choose a save directory</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose an ip filter file</source>
         <translation>Ընտրեք ip ֆիլտր ֆայլը</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Add directory to scan</source>
         <translation>Ստուգելու համար ավելացնել թղթապանակ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
+        <location filename="../preferences/options_imp.cpp" line="1053"/>
         <source>Folder is already being watched.</source>
         <translation>Թղթապանակը արդեն ստուգվել է։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1055"/>
+        <location filename="../preferences/options_imp.cpp" line="1056"/>
         <source>Folder does not exist.</source>
         <translation>Թղթապանակը գոյություն չունի։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1058"/>
+        <location filename="../preferences/options_imp.cpp" line="1059"/>
         <source>Folder is not readable.</source>
         <translation>Թղթապանակը կարդալու համար չէ։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failure</source>
         <translation>Ձախողում</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Հնարավոր չէ ստուգման համարավելացնել թղթապանակ՝ &apos;%1&apos;: %2 </translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Filters</source>
         <translation>Ֆիլտրեր</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1186"/>
+        <location filename="../preferences/options_imp.cpp" line="1187"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1197"/>
+        <location filename="../preferences/options_imp.cpp" line="1198"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Parsing error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Failed to parse the provided IP filter</source>
         <translation> IP ֆիլտրի տրամադրման սխալ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfully refreshed</source>
         <translation>Հաջողությամբ թարմացվեց</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP ֆիլտրի ներկայացումը հաջող էր. %1 կանոնները կիրառվեցին։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>

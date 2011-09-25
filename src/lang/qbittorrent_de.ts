@@ -1571,19 +1571,19 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="161"/>
+        <location filename="../webui/httpconnection.cpp" line="151"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ihre IP Adresse wurde nach zu vielen fehlerhaften Authentisierungversuchen gebannt.</translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="362"/>
+        <location filename="../webui/httpconnection.cpp" line="351"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translatorcomment>How are we supposed to translate this? Do you want the initial letter of a translation of the hint you gave in the developer comments? Are there going to be any tooltips that will help the user understand the abbreviation?</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="363"/>
+        <location filename="../webui/httpconnection.cpp" line="352"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translatorcomment>see comment on D: %1/s - T: %2</translatorcomment>
@@ -1593,17 +1593,17 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
 <context>
     <name>HttpServer</name>
     <message>
-        <location filename="../webui/httpserver.cpp" line="120"/>
+        <location filename="../webui/httpserver.cpp" line="128"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="121"/>
+        <location filename="../webui/httpserver.cpp" line="129"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="122"/>
+        <location filename="../webui/httpserver.cpp" line="130"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
@@ -1612,128 +1612,128 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
         <translation type="obsolete">Von der Festplatte löschen</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="123"/>
+        <location filename="../webui/httpserver.cpp" line="131"/>
         <source>Download Torrents from their URL or Magnet link</source>
         <translation>Lade Torrents von URL oder Magnet-Link</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="124"/>
+        <location filename="../webui/httpserver.cpp" line="132"/>
         <source>Only one link per line</source>
         <translation>Nur ein Link pro Zeile</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="125"/>
+        <location filename="../webui/httpserver.cpp" line="133"/>
         <source>Download local torrent</source>
         <translation>Lade lokalen Torrent</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="126"/>
+        <location filename="../webui/httpserver.cpp" line="134"/>
         <source>Torrent files were correctly added to download list.</source>
         <translation>Torrents wurden der Download-Liste erfolgreich hinzugefügt.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="127"/>
+        <location filename="../webui/httpserver.cpp" line="135"/>
         <source>Point to torrent file</source>
         <translation>Zeige auf Torrent Datei</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="128"/>
+        <location filename="../webui/httpserver.cpp" line="136"/>
         <source>Download</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="129"/>
+        <location filename="../webui/httpserver.cpp" line="137"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
         <translation>Sind Sie sicher, daß Sie die ausgewählten Torrents von der Transfer-Liste und der Festplatte entfernen möchten?</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="130"/>
+        <location filename="../webui/httpserver.cpp" line="138"/>
         <source>Download rate limit must be greater than 0 or disabled.</source>
         <translation>Begrenzung der Downloadrate muss größer als 0 sein oder deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="131"/>
+        <location filename="../webui/httpserver.cpp" line="139"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
         <translation>Begrenzung der Uploadrate muss größer als 0 sein oder deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="132"/>
+        <location filename="../webui/httpserver.cpp" line="140"/>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
         <translation>Maximale Anzahl der Verbindungen muss größer als 0 sein oder deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="133"/>
+        <location filename="../webui/httpserver.cpp" line="141"/>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximale Anzahl der Verbindungen pro Torrent muss größer als 0 sein oder deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="134"/>
+        <location filename="../webui/httpserver.cpp" line="142"/>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximale Anzahle der Upload-Slots muss größer als 0 sein oder deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="135"/>
+        <location filename="../webui/httpserver.cpp" line="143"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>Konnte Programmeinstellungen nicht speichern, qBittorrent ist vermutlich nicht erreichbar.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="136"/>
+        <location filename="../webui/httpserver.cpp" line="144"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="137"/>
+        <location filename="../webui/httpserver.cpp" line="145"/>
         <source>Downloaded</source>
         <comment>Is the file downloaded or not?</comment>
         <translation>Runtergeladen</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="138"/>
+        <location filename="../webui/httpserver.cpp" line="146"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
         <translation>Der Port für eingehende Verbindungen muss grösser als 1024 und kleiner als 65535 sein.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="139"/>
+        <location filename="../webui/httpserver.cpp" line="147"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
         <translation>Der Port für das Webinterface muss grösser als 1024 und kleiner als 65535 sein.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="140"/>
+        <location filename="../webui/httpserver.cpp" line="148"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Der Benutzername für das Webinterface muss mindestens 3 Zeichen lang sein.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="141"/>
+        <location filename="../webui/httpserver.cpp" line="149"/>
         <source>The Web UI password must be at least 3 characters long.</source>
         <translation>Das Passwort für das Webinterface muss mindestens 3 Zeichen lang sein.</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="142"/>
+        <location filename="../webui/httpserver.cpp" line="150"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="143"/>
+        <location filename="../webui/httpserver.cpp" line="151"/>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent-Client ist nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="144"/>
+        <location filename="../webui/httpserver.cpp" line="152"/>
         <source>HTTP Server</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="145"/>
+        <location filename="../webui/httpserver.cpp" line="153"/>
         <source>The following parameters are supported:</source>
         <translation>Folgende Parameter werden unterstützt:</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="146"/>
+        <location filename="../webui/httpserver.cpp" line="154"/>
         <source>Torrent path</source>
         <translation>Torrent Pfad</translation>
     </message>
     <message>
-        <location filename="../webui/httpserver.cpp" line="147"/>
+        <location filename="../webui/httpserver.cpp" line="155"/>
         <source>Torrent name</source>
         <translation>Torrent Name</translation>
     </message>
@@ -3610,7 +3610,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="518"/>
-        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
@@ -3620,40 +3620,40 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Der Dateiname enthält ungültige Zeichen, bitte einen anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="551"/>
-        <location filename="../properties/propertieswidget.cpp" line="589"/>
+        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="588"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="588"/>
+        <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>The folder could not be renamed</source>
         <translation>Das Verzeichnis konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="626"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Neuer URL Seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>New url seed:</source>
         <translation>Neuer URL Seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="633"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>qBittorrent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="634"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>This url seed is already in the list.</source>
         <translation>Dieser URL Seed befindet sich bereits in der Liste.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="676"/>
-        <location filename="../properties/propertieswidget.cpp" line="679"/>
+        <location filename="../properties/propertieswidget.cpp" line="675"/>
+        <location filename="../properties/propertieswidget.cpp" line="678"/>
         <source>Choose save path</source>
         <translation>Wählen Sie den Speicher-Pfad</translation>
     </message>
@@ -4344,12 +4344,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="103"/>
+        <location filename="../scannedfoldersmodel.cpp" line="101"/>
         <source>Watched Folder</source>
         <translation>Beobachtetes Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="104"/>
+        <location filename="../scannedfoldersmodel.cpp" line="102"/>
         <source>Download here</source>
         <translation>Hier herunterladen</translation>
     </message>
@@ -6359,103 +6359,103 @@ Die Plugins wurden jedoch deaktiviert.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
-        <location filename="../preferences/options_imp.cpp" line="1143"/>
+        <location filename="../preferences/options_imp.cpp" line="1125"/>
+        <location filename="../preferences/options_imp.cpp" line="1127"/>
+        <location filename="../preferences/options_imp.cpp" line="1142"/>
+        <location filename="../preferences/options_imp.cpp" line="1144"/>
         <source>Choose a save directory</source>
         <translation>Verzeichnis zum Speichern auswählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1047"/>
         <source>Add directory to scan</source>
         <translation>Verzeichnis zum Scannen hinzufügen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
+        <location filename="../preferences/options_imp.cpp" line="1053"/>
         <source>Folder is already being watched.</source>
         <translation>Verzeichnis wird bereits beobachtet.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1055"/>
+        <location filename="../preferences/options_imp.cpp" line="1056"/>
         <source>Folder does not exist.</source>
         <translation>Verzeichnis existiert nicht.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1058"/>
+        <location filename="../preferences/options_imp.cpp" line="1059"/>
         <source>Folder is not readable.</source>
         <translation>Verzeichnis kann nicht gelesen werden.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failure</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1067"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Konnte Scan-Verzeichnis &apos;%1&apos; nicht hinzufügen: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
-        <location filename="../preferences/options_imp.cpp" line="1091"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
         <source>Choose export directory</source>
         <translation>Export-Verzeichnis wählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose an ip filter file</source>
         <translation>IP-Filter-Datei wählen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
-        <location filename="../preferences/options_imp.cpp" line="1108"/>
+        <location filename="../preferences/options_imp.cpp" line="1107"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1186"/>
+        <location filename="../preferences/options_imp.cpp" line="1187"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL Zertifikat (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1197"/>
+        <location filename="../preferences/options_imp.cpp" line="1198"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL Schlüssel (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Parsing error</source>
         <translation>Fehler beim parsen</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1229"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Fehler beim parsen der IP-Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfully refreshed</source>
         <translation>Erfolgreich aktualisiert</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Invalid key</source>
         <translation>Ungültiger Schlüssel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>This is not a valid SSL key.</source>
         <translation>Dies ist kein gültiger SSL-Schlüssel.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>Invalid certificate</source>
         <translation>Ungültiges Zertifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1313"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dies ist kein gültiges SSL Zertifikat.</translation>
     </message>
@@ -6464,7 +6464,7 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation type="obsolete">Erfolgreich aktualisiert</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1230"/>
+        <location filename="../preferences/options_imp.cpp" line="1231"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP-Filter erfolgreich geparsed: %1 Regeln wurden angewandt.</translation>
