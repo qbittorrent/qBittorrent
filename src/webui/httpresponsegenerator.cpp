@@ -41,10 +41,6 @@ void HttpResponseGenerator::setMessage(const QString& message) {
   setMessage(message.toUtf8());
 }
 
-void HttpResponseGenerator::stripMessage() {
-	message.clear();
-}
-
 void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
   if(ext == "css") {
 		setContentType("text/css");

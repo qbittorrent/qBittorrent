@@ -104,7 +104,7 @@ void HttpConnection::write() {
 void HttpConnection::translateDocument(QString& data) {
   static QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
   static QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
-  std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget",
+  const std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget",
                             "PropertiesWidget", "MainWindow", "HttpServer",
                             "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
                             "options_imp", "Preferences", "TrackersAdditionDlg",
