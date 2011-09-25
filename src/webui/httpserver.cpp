@@ -96,7 +96,7 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
 
   m_username = pref.getWebUiUsername().toLocal8Bit();
   m_passwordSha1 = pref.getWebUiPassword().toLocal8Bit();
-  m_localAuth = pref.isWebUiLocalAuthEnabled();
+  m_localAuthEnabled = pref.isWebUiLocalAuthEnabled();
 
   // HTTPS-related
 #ifndef QT_NO_OPENSSL
@@ -331,9 +331,9 @@ EventManager* HttpServer::eventManager() const {
 }
 
 void HttpServer::setlocalAuthEnabled(bool enabled) {
-  m_localAuth = enabled;
+  m_localAuthEnabled = enabled;
 }
 
 bool HttpServer::isLocalAuthEnabled() const {
-  return m_localAuth;
+  return m_localAuthEnabled;
 }

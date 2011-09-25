@@ -91,7 +91,7 @@ private:
   EventManager *m_eventManager;
   QTimer m_timer;
   QHash<QString, int> m_clientFailedAttempts;
-  bool m_localAuth;
+  bool m_localAuthEnabled;
 #ifndef QT_NO_OPENSSL
   bool m_https;
   QSslCertificate m_certificate;
