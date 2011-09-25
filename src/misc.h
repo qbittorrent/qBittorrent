@@ -88,7 +88,7 @@ public:
 
   static inline QString removeLastPathPart(QString path) {
     if(path.isEmpty()) return path;
-    path = path.replace("\\", "/");
+    path.replace("\\", "/");
     QStringList tmp = path.split("/");
     tmp.removeLast();
     return tmp.join("/");

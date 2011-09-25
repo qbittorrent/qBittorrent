@@ -222,7 +222,7 @@ void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
         p = h.save_path();
     }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    p = p.replace("/", "\\");
+    p.replace("/", "\\");
 #endif
     save_path->setText(p);
   }
@@ -524,8 +524,7 @@ void PropertiesWidget::renameSelectedFile() {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if(!h.is_valid() || !h.has_metadata()) return;
-      QString old_name = h.filepath_at(file_index);
-      old_name = old_name.replace("\\", "/");
+      QString old_name = h.filepath_at(file_index).replace("\\", "/");
       if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
@@ -713,7 +712,7 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
       display_path = savePath.absolutePath();
     }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    display_path = display_path.replace("/", "\\");
+    display_path.replace("/", "\\");
 #endif
     save_path->setText(display_path);
   }

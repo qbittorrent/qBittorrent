@@ -520,7 +520,7 @@ QString QTorrentHandle::firstFileSavePath() const {
   QString fsave_path = TorrentPersistentData::getSavePath(hash());
   if(fsave_path.isEmpty())
     fsave_path = save_path();
-  fsave_path = fsave_path.replace("\\", "/");
+  fsave_path.replace("\\", "/");
   if(!fsave_path.endsWith("/"))
     fsave_path += "/";
   fsave_path += filepath_at(0);

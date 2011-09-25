@@ -382,13 +382,13 @@ void options_imp::saveOptions(){
   // Downloads preferences
   QString save_path = getSavePath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path = save_path.replace("\\", "/");
+  save_path.replace("\\", "/");
 #endif
   pref.setSavePath(save_path);
   pref.setTempPathEnabled(isTempPathEnabled());
   QString temp_path = getTempPath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  temp_path = temp_path.replace("\\", "/");
+  temp_path.replace("\\", "/");
 #endif
   pref.setTempPath(temp_path);
   pref.setAppendTorrentLabel(checkAppendLabel->isChecked());
@@ -402,7 +402,7 @@ void options_imp::saveOptions(){
   addedScanDirs.clear();
   QString export_dir = getExportDir();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  export_dir = export_dir.replace("\\", "/");
+  export_dir.replace("\\", "/");
 #endif
   pref.setExportDir(export_dir);
   pref.setMailNotificationEnabled(groupMailNotification->isChecked());
@@ -462,7 +462,7 @@ void options_imp::saveOptions(){
   if(isFilteringEnabled()){
     QString filter_path = textFilterPath->text();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    filter_path = filter_path.replace("\\", "/");
+    filter_path.replace("\\", "/");
 #endif
     pref.setFilter(filter_path);
   }
@@ -554,7 +554,7 @@ void options_imp::loadOptions(){
   // Downloads preferences
   QString save_path = pref.getSavePath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path = save_path.replace("/", "\\");
+  save_path.replace("/", "\\");
 #endif
   textSavePath->setText(save_path);
   if(pref.isTempPathEnabled()) {
@@ -565,7 +565,7 @@ void options_imp::loadOptions(){
   }
   QString temp_path = pref.getTempPath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  temp_path = temp_path.replace("/", "\\");
+  temp_path.replace("/", "\\");
 #endif
   textTempPath->setText(temp_path);
   checkAppendLabel->setChecked(pref.appendTorrentLabel());
@@ -584,7 +584,7 @@ void options_imp::loadOptions(){
     // enable
     checkExportDir->setChecked(true);
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    strValue = strValue.replace("/", "\\");
+    strValue.replace("/", "\\");
 #endif
     textExportDir->setText(strValue);
   }
@@ -855,7 +855,7 @@ QString options_imp::getSavePath() const{
   if(textSavePath->text().trimmed().isEmpty()){
     QString save_path = Preferences().getSavePath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    save_path = save_path.replace("/", "\\");
+    save_path.replace("/", "\\");
 #endif
     textSavePath->setText(save_path);
   }
@@ -1093,7 +1093,7 @@ void options_imp::on_browseExportDirButton_clicked() {
   }
   if(!dir.isNull()){
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir = dir.replace("/", "\\");
+    dir.replace("/", "\\");
 #endif
     textExportDir->setText(dir);
   }
@@ -1110,7 +1110,7 @@ void options_imp::on_browseFilterButton_clicked() {
   }
   if(!ipfilter.isNull()){
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    ipfilter = ipfilter.replace("/", "\\");
+    ipfilter.replace("/", "\\");
 #endif
     textFilterPath->setText(ipfilter);
   }
@@ -1128,7 +1128,7 @@ void options_imp::on_browseSaveDirButton_clicked(){
   }
   if(!dir.isNull()){
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir = dir.replace("/", "\\");
+    dir.replace("/", "\\");
 #endif
     textSavePath->setText(dir);
   }
@@ -1145,7 +1145,7 @@ void options_imp::on_browseTempDirButton_clicked(){
   }
   if(!dir.isNull()){
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir = dir.replace("/", "\\");
+    dir.replace("/", "\\");
 #endif
     textTempPath->setText(dir);
   }

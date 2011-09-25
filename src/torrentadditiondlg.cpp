@@ -96,7 +96,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
     display_path += "/";
   path_history << display_path;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  display_path = display_path.replace("/", "\\");
+  display_path.replace("/", "\\");
 #endif
   savePathTxt->addItem(display_path);
 
@@ -311,7 +311,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
 
   QString save_path = savePathTxt->currentText();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path = save_path.replace("/", "\\");
+  save_path.replace("/", "\\");
 #endif
   if(!save_path.endsWith(QDir::separator()))
     save_path += QDir::separator();
@@ -327,7 +327,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     QString single_file_relpath = misc::toQStringU(t->file_at(0).path.string());
 #endif
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    single_file_relpath = single_file_relpath.replace("/", "\\");
+    single_file_relpath.replace("/", "\\");
 #endif
     save_path += single_file_relpath;
   }
@@ -414,7 +414,7 @@ void torrentAdditionDialog::renameSelectedFile() {
       // File renaming
       const uint file_index = PropListModel->getFileIndex(index);
       QString old_name = files_path.at(file_index);
-      old_name = old_name.replace("\\", "/");
+      old_name.replace("\\", "/");
       qDebug("Old name: %s", qPrintable(old_name));
       QStringList path_items = old_name.split("/");
       path_items.removeLast();
@@ -580,7 +580,7 @@ void torrentAdditionDialog::on_browseButton_clicked(){
       savePathTxt->setCurrentIndex(cur_index);
     }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    new_path = new_path.replace("/", "\\");
+    new_path.replace("/", "\\");
 #endif
     savePathTxt->setEditText(new_path);
   }
@@ -611,7 +611,7 @@ void torrentAdditionDialog::on_OkButton_clicked(){
   }
   QString save_path = savePathTxt->currentText();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path = save_path.replace("\\", "/");
+  save_path.replace("\\", "/");
 #endif
   save_path = misc::expandPath(save_path);
   qDebug("Save path is %s", qPrintable(save_path));
@@ -751,7 +751,7 @@ void torrentAdditionDialog::updateSavePathCurrentText() {
     if(!root_folder_or_file_name.isEmpty())
       item_path += root_folder_or_file_name;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    item_path = item_path.replace("/", "\\");
+    item_path.replace("/", "\\");
 #endif
     savePathTxt->setItemText(i, item_path);
   }
@@ -812,7 +812,7 @@ void torrentAdditionDialog::loadSavePathHistory() {
     if(QDir(sp) != QDir(defaultSavePath)) {
       QString dsp = sp;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-      dsp = dsp.replace("/", "\\");
+      dsp.replace("/", "\\");
 #endif
       path_history << sp;
       savePathTxt->addItem(dsp);

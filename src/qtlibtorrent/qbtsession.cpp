@@ -1281,7 +1281,7 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
       if(files_path.size() == h.num_files()) {
         for(int i=0; i<h.num_files(); ++i) {
           QString old_path = h.absolute_files_path().at(i);
-          old_path = old_path.replace("\\", "/");
+          old_path.replace("\\", "/");
           if(!QFile::exists(old_path)) {
             // Remove old parent folder manually since we will
             // not get a file_renamed alert
@@ -2685,7 +2685,7 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
     qDebug("getSavePath, got save_path from persistent data: %s", qPrintable(savePath));
   }
   // Clean path
-  savePath = savePath.replace("\\", "/");
+  savePath.replace("\\", "/");
   savePath = misc::expandPath(savePath);
   if(!savePath.endsWith("/"))
     savePath += "/";

@@ -74,7 +74,7 @@ void TorrentCreatorDlg::on_addFolder_button_clicked(){
   if(!dir.isEmpty()) {
     settings.setValue("CreateTorrent/last_add_path", dir);
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir = dir.replace("/", "\\");
+    dir.replace("/", "\\");
 #endif
     textInputPath->setText(dir);
     // Update piece size
@@ -90,7 +90,7 @@ void TorrentCreatorDlg::on_addFile_button_clicked(){
   if(!file.isEmpty()) {
     settings.setValue("CreateTorrent/last_add_path", misc::removeLastPathPart(file));
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    file = file.replace("/", "\\");
+    file.replace("/", "\\");
 #endif
     textInputPath->setText(file);
     // Update piece size

@@ -151,7 +151,7 @@ QString misc::QDesktopServicesCacheLocation() {
 
 long long misc::freeDiskSpaceOnPath(QString path) {
   if(path.isEmpty()) return -1;
-  path = path.replace("\\", "/");
+  path.replace("\\", "/");
   QDir dir_path(path);
   if(!dir_path.exists()) {
     QStringList parts = path.split("/");
@@ -475,15 +475,15 @@ QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, 
 
 QString misc::toValidFileSystemName(QString filename) {
   qDebug("toValidFSName: %s", qPrintable(filename));
-  filename = filename.replace("\\", "/").trimmed();
+  filename.replace("\\", "/").trimmed();
   const QRegExp regex("[/:?\"*<>|]");
-  filename = filename.replace(regex, " ").trimmed();
+  filename.replace(regex, " ").trimmed();
   qDebug("toValidFSName, result: %s", qPrintable(filename));
   return filename;
 }
 
 bool misc::isValidFileSystemName(QString filename) {
-  filename = filename.replace("\\", "/").trimmed();
+  filename.replace("\\", "/").trimmed();
   if(filename.isEmpty()) return false;
   const QRegExp regex("[/:?\"*<>|]");
   if(filename.contains(regex))
@@ -712,7 +712,7 @@ QString misc::expandPath(QString path) {
     if(path[0] == '~' ) return QDir::homePath();
   }
   if(path[0] == '~' && path[1] == QDir::separator()) {
-    path = path.replace(0, 1, QDir::homePath());
+    path.replace(0, 1, QDir::homePath());
   } else {
     if(QDir::isAbsolutePath(path)) {
       path = QDir(path).absolutePath();

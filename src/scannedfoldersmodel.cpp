@@ -83,9 +83,7 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const {
   const PathData* pathData = m_pathList.at(index.row());
   if (index.column() == PathColumn && role == Qt::DisplayRole) {
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    QString ret = pathData->path;
-    ret = ret.replace("/", "\\");
-    return ret;
+    return pathData->path.replace("/", "\\");
 #else
   return pathData->path;
 #endif
