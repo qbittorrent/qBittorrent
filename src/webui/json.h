@@ -36,7 +36,7 @@
 
 namespace json {
 
-  QString toJson(QVariant v) {
+  QString toJson(const QVariant& v) {
     if (v.isNull())
       return "null";
     switch(v.type())
@@ -97,7 +97,7 @@ namespace json {
     }
   }
 
-  QString toJson(QVariantMap m) {
+  QString toJson(const QVariantMap& m) {
     QStringList vlist;
     QVariantMap::ConstIterator it;
     for (it = m.constBegin(); it != m.constEnd(); it++) {
@@ -106,15 +106,14 @@ namespace json {
     return "{"+vlist.join(",")+"}";
   }
 
-  QVariantMap fromJson(QString json) {
+  QVariantMap fromJson(const QString& json) {
     qDebug("JSON is %s", qPrintable(json));
     QVariantMap m;
     if(json.startsWith("{") && json.endsWith("}")) {
-      json = json.mid(1, json.length()-2);
       QStringList couples;
       QString tmp = "";
       bool in_list = false;
-      foreach(const QChar &c, json) {
+      foreach(const QChar &c, json.mid(1, json.length()-2)) {
         if(c == ',' && !in_list) {
           couples << tmp;
           tmp = "";
@@ -169,7 +168,7 @@ namespace json {
     return m;
   }
 
-  QString toJson(QList<QVariantMap> v) {
+  QString toJson(const QList<QVariantMap>& v) {
     QStringList res;
     foreach(QVariantMap m, v) {
       QStringList vlist;
