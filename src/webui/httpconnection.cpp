@@ -445,6 +445,7 @@ void HttpConnection::respondCommand(QString command)
     QString json_str = parser.post("json");
     EventManager* manager =  httpserver->eventManager();
     manager->setGlobalPreferences(json::fromJson(json_str));
+    m_needsTranslation = !Preferences().getLocale().startsWith("en");
   }
   if(command == "setFilePrio") {
     QString hash = parser.post("hash");
