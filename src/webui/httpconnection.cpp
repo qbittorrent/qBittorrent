@@ -238,7 +238,7 @@ void HttpConnection::respond() {
       }
     }
     if (list[0] == "command") {
-      QString command = list[1];
+      const QString& command = list[1];
       respondCommand(command);
       m_generator.setStatusLine(200, "OK");
       write();
@@ -361,8 +361,7 @@ void HttpConnection::respondGlobalTransferInfoJson() {
 
 void HttpConnection::respondCommand(const QString& command)
 {
-  if(command == "download")
-  {
+  if(command == "download") {
     QString urls = m_parser.post("urls");
     QStringList list = urls.split('\n');
     foreach(QString url, list){
@@ -382,6 +381,7 @@ void HttpConnection::respondCommand(const QString& command)
     }
     return;
   }
+
   if(command == "addTrackers") {
     QString hash = m_parser.post("hash");
     if(!hash.isEmpty()) {
@@ -451,7 +451,7 @@ void HttpConnection::respondCommand(const QString& command)
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
 #if LIBTORRENT_VERSION_MINOR > 15
-    generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
+    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
 #else
     m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->upload_rate_limit()));
 #endif
@@ -461,7 +461,7 @@ void HttpConnection::respondCommand(const QString& command)
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
 #if LIBTORRENT_VERSION_MINOR > 15
-    generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
+    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
 #else
     m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->download_rate_limit()));
 #endif
