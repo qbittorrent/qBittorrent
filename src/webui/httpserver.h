@@ -59,15 +59,15 @@ class HttpServer : public QTcpServer {
 public:
   HttpServer(int msec, QObject* parent = 0);
   ~HttpServer();
-  void setAuthorization(QString username, QString password_ha1);
-  bool isAuthorized(QByteArray auth, QString method) const;
+  void setAuthorization(const QString& username, const QString& password_sha1);
+  bool isAuthorized(const QByteArray& auth, const QString& method) const;
   void setlocalAuthEnabled(bool enabled);
   bool isLocalAuthEnabled() const;
   EventManager *eventManager() const;
   QString generateNonce() const;
-  int NbFailedAttemptsForIp(QString ip) const;
-  void increaseNbFailedAttemptsForIp(QString ip);
-  void resetNbFailedAttemptsForIp(QString ip);
+  int NbFailedAttemptsForIp(const QString& ip) const;
+  void increaseNbFailedAttemptsForIp(const QString& ip);
+  void resetNbFailedAttemptsForIp(const QString& ip);
 
 #ifndef QT_NO_OPENSSL
   void enableHttps(const QSslCertificate &certificate, const QSslKey &key);
@@ -85,11 +85,11 @@ private:
   void handleNewConnection(QTcpSocket *socket);
 
 private:
-  QByteArray username;
-  QByteArray password_ha1;
-  EventManager *manager;
-  QTimer *timer;
-  QHash<QString, int> client_failed_attempts;
+  QByteArray m_username;
+  QByteArray m_passwordSha1;
+  EventManager *m_eventManager;
+  QTimer *m_timer;
+  QHash<QString, int> m_clientFailedAttempts;
   bool m_localAuth;
 #ifndef QT_NO_OPENSSL
   bool m_https;

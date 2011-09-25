@@ -51,30 +51,35 @@ const int BAN_TIME = 3600000; // 1 hour
 
 class UnbanTimer: public QTimer {
 public:
-  UnbanTimer(QObject *parent, QString peer_ip): QTimer(parent), peer_ip(peer_ip){
+  UnbanTimer(QObject *parent, const QString& peer_ip): QTimer(parent), m_peerIp(peer_ip){
     setSingleShot(true);
     setInterval(BAN_TIME);
   }
+
   ~UnbanTimer() {
     qDebug("||||||||||||Deleting ban timer|||||||||||||||");
   }
-  QString peer_ip;
+
+  inline QString peerIp() const { return m_peerIp; }
+
+private:
+  QString m_peerIp;
 };
 
 void HttpServer::UnbanTimerEvent() {
   UnbanTimer* ubantimer = static_cast<UnbanTimer*>(sender());
-  qDebug("Ban period has expired for %s", qPrintable(ubantimer->peer_ip));
-  client_failed_attempts.remove(ubantimer->peer_ip);
+  qDebug("Ban period has expired for %s", qPrintable(ubantimer->peerIp()));
+  m_clientFailedAttempts.remove(ubantimer->peerIp());
   ubantimer->deleteLater();
 }
 
-int HttpServer::NbFailedAttemptsForIp(QString ip) const {
-  return client_failed_attempts.value(ip, 0);
+int HttpServer::NbFailedAttemptsForIp(const QString& ip) const {
+  return m_clientFailedAttempts.value(ip, 0);
 }
 
-void HttpServer::increaseNbFailedAttemptsForIp(QString ip) {
-  const int nb_fail = client_failed_attempts.value(ip, 0);
-  client_failed_attempts.insert(ip, nb_fail+1);
+void HttpServer::increaseNbFailedAttemptsForIp(const QString& ip) {
+  const int nb_fail = m_clientFailedAttempts.value(ip, 0);
+  m_clientFailedAttempts.insert(ip, nb_fail+1);
   if(nb_fail == MAX_AUTH_FAILED_ATTEMPTS-1) {
     // Max number of failed attempts reached
     // Start ban period
@@ -84,15 +89,20 @@ void HttpServer::increaseNbFailedAttemptsForIp(QString ip) {
   }
 }
 
-void HttpServer::resetNbFailedAttemptsForIp(QString ip) {
-  client_failed_attempts.remove(ip);
+void HttpServer::resetNbFailedAttemptsForIp(const QString& ip) {
+  m_clientFailedAttempts.remove(ip);
 }
 
-HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
+HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
+  m_eventManager(new EventManager(this)) {
+
   const Preferences pref;
-  username = pref.getWebUiUsername().toLocal8Bit();
-  password_ha1 = pref.getWebUiPassword().toLocal8Bit();
+
+  m_username = pref.getWebUiUsername().toLocal8Bit();
+  m_passwordSha1 = pref.getWebUiPassword().toLocal8Bit();
   m_localAuth = pref.isWebUiLocalAuthEnabled();
+
+  // HTTPS-related
 #ifndef QT_NO_OPENSSL
   m_https = pref.isWebUiHttpsEnabled();
   if (m_https) {
@@ -100,22 +110,25 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
     m_key = QSslKey(pref.getWebUiHttpsKey(), QSsl::Rsa);
   }
 #endif
-  manager = new EventManager(this);
-  //add torrents
+
+  // Add torrents
   std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if(h.is_valid())
-      manager->addedTorrent(h);
+      m_eventManager->addedTorrent(h);
   }
+
   //connect QBtSession::instance() to manager
-  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), manager, SLOT(addedTorrent(QTorrentHandle)));
-  connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), manager, SLOT(deletedTorrent(QString)));
+  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), m_eventManager, SLOT(addedTorrent(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), m_eventManager, SLOT(deletedTorrent(QString)));
+
   //set timer
-  timer = new QTimer(this);
-  connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
-  timer->start(msec);
+  m_timer = new QTimer(this);
+  connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
+  m_timer->start(msec);
+
   // Additional translations for Web UI
   QString a = tr("File");
   a = tr("Edit");
@@ -147,22 +160,20 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent) {
   a = tr("Torrent name");
 }
 
-HttpServer::~HttpServer()
-{
-  delete timer;
-  delete manager;
+HttpServer::~HttpServer() {
+  delete m_timer;
+  delete m_eventManager;
 }
 
 #ifndef QT_NO_OPENSSL
-void HttpServer::enableHttps(const QSslCertificate &certificate, const QSslKey &key)
-{
+void HttpServer::enableHttps(const QSslCertificate &certificate,
+                             const QSslKey &key) {
   m_certificate = certificate;
   m_key = key;
   m_https = true;
 }
 
-void HttpServer::disableHttps()
-{
+void HttpServer::disableHttps() {
   m_https = false;
   m_certificate.clear();
   m_key.clear();
@@ -213,7 +224,7 @@ void HttpServer::onTimer() {
   for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if(h.is_valid())
-      manager->modifiedTorrent(h);
+      m_eventManager->modifiedTorrent(h);
   }
 }
 
@@ -225,21 +236,23 @@ QString HttpServer::generateNonce() const {
   return md5.result().toHex();
 }
 
-void HttpServer::setAuthorization(QString _username, QString _password_ha1) {
-  username = _username.toLocal8Bit();
-  password_ha1 = _password_ha1.toLocal8Bit();
+void HttpServer::setAuthorization(const QString& username,
+                                  const QString& password_sha1) {
+  m_username = username.toLocal8Bit();
+  m_passwordSha1 = password_sha1.toLocal8Bit();
 }
 
 // Parse HTTP AUTH string
 // http://tools.ietf.org/html/rfc2617
-bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
+bool HttpServer::isAuthorized(const QByteArray& auth,
+                              const QString& method) const {
   //qDebug("AUTH string is %s", auth.data());
   // Get user name
   QRegExp regex_user(".*username=\"([^\"]+)\".*"); // Must be a quoted string
   if(regex_user.indexIn(auth) < 0) return false;
   QString prop_user = regex_user.cap(1);
   //qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
-  if(prop_user != username) {
+  if(prop_user != m_username) {
     // User name is invalid, we can reject already
     qDebug("AUTH-PROB: Username is invalid");
     return false;
@@ -308,28 +321,25 @@ bool HttpServer::isAuthorized(QByteArray auth, QString method) const {
     }
     QByteArray prop_qop = regex_qop.cap(1).toLocal8Bit();
     //qDebug("prop qop is: %s", prop_qop.data());
-    md5_ha.addData(password_ha1+":"+prop_nonce+":"+prop_nc+":"+prop_cnonce+":"+prop_qop+":"+ha2);
+    md5_ha.addData(m_passwordSha1+":"+prop_nonce+":"+prop_nc+":"+prop_cnonce+":"+prop_qop+":"+ha2);
     response = md5_ha.result().toHex();
   } else {
     QCryptographicHash md5_ha(QCryptographicHash::Md5);
-    md5_ha.addData(password_ha1+":"+prop_nonce+":"+ha2);
+    md5_ha.addData(m_passwordSha1+":"+prop_nonce+":"+ha2);
     response = md5_ha.result().toHex();
   }
   //qDebug("AUTH: comparing reponses: (%d)", static_cast<int>(prop_response == response));
   return prop_response == response;
 }
 
-EventManager* HttpServer::eventManager() const
-{
-  return manager;
+EventManager* HttpServer::eventManager() const {
+  return m_eventManager;
 }
 
-void HttpServer::setlocalAuthEnabled(bool enabled)
-{
+void HttpServer::setlocalAuthEnabled(bool enabled) {
   m_localAuth = enabled;
 }
 
-bool HttpServer::isLocalAuthEnabled() const
-{
+bool HttpServer::isLocalAuthEnabled() const {
   return m_localAuth;
 }

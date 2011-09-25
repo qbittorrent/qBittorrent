@@ -62,8 +62,7 @@ HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
   connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
 }
 
-HttpConnection::~HttpConnection()
-{
+HttpConnection::~HttpConnection() {
   delete m_socket;
 }
 
