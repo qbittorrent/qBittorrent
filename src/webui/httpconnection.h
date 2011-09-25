@@ -48,7 +48,7 @@ class HttpConnection : public QObject
   Q_DISABLE_COPY(HttpConnection)
 
 public:
-  HttpConnection(QTcpSocket *socket, HttpServer *httpserver);
+  HttpConnection(QTcpSocket *m_socket, HttpServer *m_httpserver);
   ~HttpConnection();
   void translateDocument(QString& data);
 
@@ -63,8 +63,8 @@ protected slots:
   void respondGlobalTransferInfoJson();
   void respondCommand(QString command);
   void respondNotFound();
-  void processDownloadedFile(QString, QString);
-  void handleDownloadFailure(QString, QString);
+  void processDownloadedFile(const QString& url, const QString& file_path);
+  void handleDownloadFailure(const QString& url, const QString& reason);
   void recheckTorrent(QString hash);
   void recheckAllTorrents();
   void decreaseTorrentsPriority(const QStringList& hashes);
@@ -86,12 +86,10 @@ signals:
   void pauseAllTorrents();
 
 private:
-  QTcpSocket *socket;
-  HttpServer *httpserver;
-
-private:
-  HttpRequestParser parser;
-  HttpResponseGenerator generator;
+  QTcpSocket *m_socket;
+  HttpServer *m_httpserver;
+  HttpRequestParser m_parser;
+  HttpResponseGenerator m_generator;
   bool m_needsTranslation;
 };
 

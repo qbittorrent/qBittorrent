@@ -34,29 +34,29 @@
 
 #include<QHttpRequestHeader>
 
-class HttpRequestParser : public QHttpRequestHeader
-{
-	private:
-		bool headerDone;
-		bool messageDone;
-		bool error;
-		QByteArray data;
-		QString path;
-		QMap<QString, QString> postMap;
-		QMap<QString, QString> getMap;
-		QByteArray torrent_content;
+class HttpRequestParser : public QHttpRequestHeader {
 
-	public:
-		HttpRequestParser();
-		~HttpRequestParser();
-		bool isParsable() const;
-		bool isError() const;
-		QString url() const;
-		QByteArray message() const;
-		QString get(const QString key) const;
-		QString post(const QString key) const;
-		QByteArray torrent() const;
-		void write(QByteArray str);
+public:
+  HttpRequestParser();
+  ~HttpRequestParser();
+  bool isParsable() const;
+  bool isError() const;
+  QString url() const;
+  QByteArray message() const;
+  QString get(const QString& key) const;
+  QString post(const QString& key) const;
+  QByteArray torrent() const;
+  void write(QByteArray ba);
+
+private:
+  bool m_headerDone;
+  bool m_messageDone;
+  bool m_error;
+  QByteArray m_data;
+  QString m_path;
+  QMap<QString, QString> m_postMap;
+  QMap<QString, QString> m_getMap;
+  QByteArray m_torrentContent;
 };
 
 #endif
