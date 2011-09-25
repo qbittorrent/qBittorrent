@@ -30,6 +30,7 @@
 
 #include <QHttpRequestHeader>
 #include <QTcpSocket>
+#include <QUrl>
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
@@ -86,27 +87,36 @@ void QTracker::readRequest()
   QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
   QByteArray input = socket->readAll();
   //qDebug("QTracker: Raw request:\n%s", input.data());
-  HttpRequestParser parser;
-  parser.write(input);
-  if(!parser.isValid()) {
-    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(parser.toString()));
+  QHttpRequestHeader http_request(input);
+  if(!http_request.isValid()) {
+    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(http_request.toString()));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
   //qDebug("QTracker received the following request:\n%s", qPrintable(parser.toString()));
   // Request is correct, is it a GET request?
-  if(parser.method() != "GET") {
-    qDebug("QTracker: Unsupported HTTP request: %s", qPrintable(parser.method()));
+  if(http_request.method() != "GET") {
+    qDebug("QTracker: Unsupported HTTP request: %s", qPrintable(http_request.method()));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
-  if(!parser.url().startsWith("/announce", Qt::CaseInsensitive)) {
-    qDebug("QTracker: Unrecognized path: %s", qPrintable(parser.url()));
+  if(!http_request.path().startsWith("/announce", Qt::CaseInsensitive)) {
+    qDebug("QTracker: Unrecognized path: %s", qPrintable(http_request.path()));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
+
   // OK, this is a GET request
-  respondToAnnounceRequest(socket, parser);
+  // Parse GET parameters
+  QHash<QString, QString> get_parameters;
+  QUrl url = QUrl::fromEncoded(http_request.path().toAscii());
+  QListIterator<QPair<QString, QString> > i(url.queryItems());
+  while (i.hasNext()) {
+    QPair<QString, QString> pair = i.next();
+    get_parameters[pair.first] = pair.second;
+  }
+
+  respondToAnnounceRequest(socket, get_parameters);
 }
 
 void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
@@ -117,18 +127,19 @@ void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
   socket->disconnectFromHost();
 }
 
-void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestParser& parser)
+void QTracker::respondToAnnounceRequest(QTcpSocket *socket,
+                                        const QHash<QString, QString>& get_parameters)
 {
   TrackerAnnounceRequest annonce_req;
   // IP
   annonce_req.peer.ip = socket->peerAddress().toString();
   // 1. Get info_hash
-  if(parser.get("info_hash").isNull()) {
+  if(!get_parameters.contains("info_hash")) {
     qDebug("QTracker: Missing info_hash");
     respondInvalidRequest(socket, 101, "Missing info_hash");
     return;
   }
-  annonce_req.info_hash = parser.get("info_hash");
+  annonce_req.info_hash = get_parameters.value("info_hash");
   // info_hash cannot be longer than 20 bytes
   /*if(annonce_req.info_hash.toAscii().length() > 20) {
     qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toAscii().length());
@@ -136,12 +147,12 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
     return;
   }*/
   // 2. Get peer ID
-  if(parser.get("peer_id").isNull()) {
+  if(!get_parameters.contains("peer_id")) {
     qDebug("QTracker: Missing peer_id");
     respondInvalidRequest(socket, 102, "Missing peer_id");
     return;
   }
-  annonce_req.peer.peer_id = parser.get("peer_id");
+  annonce_req.peer.peer_id = get_parameters.value("peer_id");
   // peer_id cannot be longer than 20 bytes
   /*if(annonce_req.peer.peer_id.length() > 20) {
     qDebug("QTracker: peer_id is not 20 byte long: %s", qPrintable(annonce_req.peer.peer_id));
@@ -149,13 +160,13 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
     return;
   }*/
   // 3. Get port
-  if(parser.get("port").isNull()) {
+  if(!get_parameters.contains("port")) {
     qDebug("QTracker: Missing port");
     respondInvalidRequest(socket, 103, "Missing port");
     return;
   }
   bool ok = false;
-  annonce_req.peer.port = parser.get("port").toInt(&ok);
+  annonce_req.peer.port = get_parameters.value("port").toInt(&ok);
   if(!ok || annonce_req.peer.port < 1 || annonce_req.peer.port > 65535) {
     qDebug("QTracker: Invalid port number (%d)", annonce_req.peer.port);
     respondInvalidRequest(socket, 103, "Missing port");
@@ -163,14 +174,14 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
   }
   // 4.  Get event
   annonce_req.event = "";
-  if(!parser.get("event").isNull()) {
-    annonce_req.event = parser.get("event");
+  if(get_parameters.contains("event")) {
+    annonce_req.event = get_parameters.value("event");
     qDebug("QTracker: event is %s", qPrintable(annonce_req.event));
   }
   // 5. Get numwant
   annonce_req.numwant = 50;
-  if(!parser.get("numwant").isNull()) {
-    int tmp = parser.get("numwant").toInt();
+  if(get_parameters.contains("numwant")) {
+    int tmp = get_parameters.value("numwant").toInt();
     if(tmp > 0) {
       qDebug("QTracker: numwant=%d", tmp);
       annonce_req.numwant = tmp;
@@ -178,7 +189,7 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket, const HttpRequestPar
   }
   // 6. no_peer_id (extension)
   annonce_req.no_peer_id = false;
-  if(parser.hasKey("no_peer_id")) {
+  if(get_parameters.contains("no_peer_id")) {
     annonce_req.no_peer_id = true;
   }
   // 7. TODO: support "compact" extension

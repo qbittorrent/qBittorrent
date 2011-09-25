@@ -34,23 +34,22 @@
 
 #include<QHttpRequestHeader>
 
-class HttpRequestParser : public QHttpRequestHeader {
+class HttpRequestParser {
 
 public:
   HttpRequestParser();
   ~HttpRequestParser();
-  bool isParsable() const;
   bool isError() const;
   QString url() const;
   QByteArray message() const;
   QString get(const QString& key) const;
   QString post(const QString& key) const;
   QByteArray torrent() const;
-  void write(QByteArray ba);
+  void write(const QByteArray& ba);
+  inline QHttpRequestHeader& header() { return m_header; }
 
 private:
-  bool m_headerDone;
-  bool m_messageDone;
+  QHttpRequestHeader m_header;
   bool m_error;
   QByteArray m_data;
   QString m_path;

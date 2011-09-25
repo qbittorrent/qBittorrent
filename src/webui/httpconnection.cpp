@@ -91,7 +91,7 @@ void HttpConnection::read() {
     m_generator.setStatusLine(400, "Bad Request");
     write();
   } else {
-    if (m_parser.isParsable())
+    if (!m_parser.isError())
       respond();
   }
 }
@@ -129,7 +129,6 @@ void HttpConnection::translateDocument(QString& data) {
           ++context_index;
         } while(translation == word && context_index < 15);
       }
-
       // Remove keyboard shortcuts
       translation.replace(mnemonic, "");
 
@@ -153,7 +152,7 @@ void HttpConnection::respond() {
       write();
       return;
     }
-    QString auth = m_parser.value("Authorization");
+    QString auth = m_parser.header().value("Authorization");
     if(auth.isEmpty()) {
       // Return unauthorized header
       qDebug("Auth is Empty...");
@@ -164,7 +163,7 @@ void HttpConnection::respond() {
     }
     //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
     if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0
-        || !m_httpserver->isAuthorized(auth.toLocal8Bit(), m_parser.method())) {
+        || !m_httpserver->isAuthorized(auth.toLocal8Bit(), m_parser.header().method())) {
       // Update failed attempt counter
       m_httpserver->increaseNbFailedAttemptsForIp(peer_ip);
       qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail);
@@ -567,19 +566,16 @@ void HttpConnection::respondCommand(const QString& command) {
     return;
   }
   if(command == "recheck"){
-    recheckTorrent(m_parser.post("hash"));
+    QBtSession::instance()->recheckTorrent(m_parser.post("hash"));
     return;
   }
 }
 
-void HttpConnection::recheckTorrent(const QString& hash) {
-  QBtSession::instance()->recheckTorrent(hash);
-}
-
-void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes)
-{
+void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes) {
   qDebug() << Q_FUNC_INFO << hashes;
-  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::less<QPair<int, QTorrentHandle> > > torrent_queue;
+  std::priority_queue<QPair<int, QTorrentHandle>,
+      std::vector<QPair<int, QTorrentHandle> >,
+      std::less<QPair<int, QTorrentHandle> > > torrent_queue;
   // Sort torrents by priority
   foreach(const QString &hash, hashes) {
     try {
@@ -602,7 +598,9 @@ void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes)
 void HttpConnection::increaseTorrentsPriority(const QStringList &hashes)
 {
   qDebug() << Q_FUNC_INFO << hashes;
-  std::priority_queue<QPair<int, QTorrentHandle>, std::vector<QPair<int, QTorrentHandle> >, std::greater<QPair<int, QTorrentHandle> > > torrent_queue;
+  std::priority_queue<QPair<int, QTorrentHandle>,
+      std::vector<QPair<int, QTorrentHandle> >,
+      std::greater<QPair<int, QTorrentHandle> > > torrent_queue;
   // Sort torrents by priority
   foreach(const QString &hash, hashes) {
     try {
