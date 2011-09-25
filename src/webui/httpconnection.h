@@ -66,7 +66,6 @@ protected slots:
   void processDownloadedFile(const QString& url, const QString& file_path);
   void handleDownloadFailure(const QString& url, const QString& reason);
   void recheckTorrent(const QString& hash);
-  void recheckAllTorrents();
   void decreaseTorrentsPriority(const QStringList& hashes);
   void increaseTorrentsPriority(const QStringList& hashes);
 

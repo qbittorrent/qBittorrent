@@ -105,11 +105,11 @@ void HttpConnection::translateDocument(QString& data) {
   static QRegExp regex(QString::fromUtf8("_\\(([\\w\\s?!:\\/\\(\\),%µ&\\-\\.]+)\\)"));
   static QRegExp mnemonic("\\(?&([a-zA-Z]?\\))?");
   const std::string contexts[] = {"TransferListFiltersWidget", "TransferListWidget",
-                            "PropertiesWidget", "MainWindow", "HttpServer",
-                            "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
-                            "options_imp", "Preferences", "TrackersAdditionDlg",
-                            "ScanFoldersModel", "PropTabBar", "TorrentModel",
-                            "downloadFromURL"};
+                                  "PropertiesWidget", "MainWindow", "HttpServer",
+                                  "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
+                                  "options_imp", "Preferences", "TrackersAdditionDlg",
+                                  "ScanFoldersModel", "PropTabBar", "TorrentModel",
+                                  "downloadFromURL"};
   int i = 0;
   bool found;
 
@@ -570,27 +570,10 @@ void HttpConnection::respondCommand(const QString& command) {
     recheckTorrent(m_parser.post("hash"));
     return;
   }
-  if(command == "recheckall"){
-    recheckAllTorrents();
-    return;
-  }
 }
 
 void HttpConnection::recheckTorrent(const QString& hash) {
-  QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-  if(h.is_valid()){
-    QBtSession::instance()->recheckTorrent(h.hash());
-  }
-}
-
-void HttpConnection::recheckAllTorrents() {
-  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(h.is_valid())
-      QBtSession::instance()->recheckTorrent(h.hash());
-  }
+  QBtSession::instance()->recheckTorrent(hash);
 }
 
 void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes)
