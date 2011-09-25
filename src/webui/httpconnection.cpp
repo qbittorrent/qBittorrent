@@ -131,7 +131,7 @@ void HttpConnection::translateDocument(QString& data) {
       }
 
       // Remove keyboard shortcuts
-      translation = translation.replace(mnemonic, "");
+      translation.replace(mnemonic, "");
 
       data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
