@@ -36,6 +36,7 @@
 #include <QTcpServer>
 #include <QByteArray>
 #include <QHash>
+#include <QTimer>
 
 #ifndef QT_NO_OPENSSL
 #include <QSslCertificate>
@@ -88,7 +89,7 @@ private:
   QByteArray m_username;
   QByteArray m_passwordSha1;
   EventManager *m_eventManager;
-  QTimer *m_timer;
+  QTimer m_timer;
   QHash<QString, int> m_clientFailedAttempts;
   bool m_localAuth;
 #ifndef QT_NO_OPENSSL

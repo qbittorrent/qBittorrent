@@ -33,7 +33,6 @@
 #include "httpconnection.h"
 #include "eventmanager.h"
 #include "qbtsession.h"
-#include <QTimer>
 #include <QCryptographicHash>
 #include <QTime>
 #include <QRegExp>
@@ -51,13 +50,10 @@ const int BAN_TIME = 3600000; // 1 hour
 
 class UnbanTimer: public QTimer {
 public:
-  UnbanTimer(QObject *parent, const QString& peer_ip): QTimer(parent), m_peerIp(peer_ip){
+  UnbanTimer(const QString& peer_ip, QObject *parent): QTimer(parent),
+    m_peerIp(peer_ip) {
     setSingleShot(true);
     setInterval(BAN_TIME);
-  }
-
-  ~UnbanTimer() {
-    qDebug("||||||||||||Deleting ban timer|||||||||||||||");
   }
 
   inline QString peerIp() const { return m_peerIp; }
@@ -78,13 +74,13 @@ int HttpServer::NbFailedAttemptsForIp(const QString& ip) const {
 }
 
 void HttpServer::increaseNbFailedAttemptsForIp(const QString& ip) {
-  const int nb_fail = m_clientFailedAttempts.value(ip, 0);
-  m_clientFailedAttempts.insert(ip, nb_fail+1);
-  if(nb_fail == MAX_AUTH_FAILED_ATTEMPTS-1) {
+  const int nb_fail = m_clientFailedAttempts.value(ip, 0) + 1;
+  m_clientFailedAttempts.insert(ip, nb_fail);
+  if(nb_fail == MAX_AUTH_FAILED_ATTEMPTS) {
     // Max number of failed attempts reached
     // Start ban period
-    UnbanTimer* ubantimer = new UnbanTimer(this, ip);
-    connect(ubantimer, SIGNAL(timeout()), this, SLOT(UnbanTimerEvent()));
+    UnbanTimer* ubantimer = new UnbanTimer(ip, this);
+    connect(ubantimer, SIGNAL(timeout()), SLOT(UnbanTimerEvent()));
     ubantimer->start();
   }
 }
@@ -125,9 +121,8 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
   connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), m_eventManager, SLOT(deletedTorrent(QString)));
 
   //set timer
-  m_timer = new QTimer(this);
-  connect(m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
-  m_timer->start(msec);
+  connect(&m_timer, SIGNAL(timeout()), SLOT(onTimer()));
+  m_timer.start(msec);
 
   // Additional translations for Web UI
   QString a = tr("File");
@@ -161,7 +156,6 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
 }
 
 HttpServer::~HttpServer() {
-  delete m_timer;
   delete m_eventManager;
 }
 
