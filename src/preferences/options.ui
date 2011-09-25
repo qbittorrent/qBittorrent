@@ -177,8 +177,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>485</width>
-             <height>632</height>
+             <width>494</width>
+             <height>649</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -516,8 +516,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>488</width>
-             <height>902</height>
+             <width>507</width>
+             <height>930</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -976,8 +976,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>443</width>
-             <height>506</height>
+             <width>494</width>
+             <height>520</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1420,8 +1420,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>384</width>
-             <height>440</height>
+             <width>494</width>
+             <height>454</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1832,8 +1832,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>530</width>
-             <height>500</height>
+             <width>556</width>
+             <height>516</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1992,7 +1992,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_23">
+                  <widget class="QLabel" name="label_anonymous">
                    <property name="text">
                     <string> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</string>
                    </property>
@@ -2243,8 +2243,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>419</width>
-             <height>535</height>
+             <width>453</width>
+             <height>549</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">

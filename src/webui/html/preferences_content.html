@@ -639,10 +639,10 @@ loadPreferences = function() {
                     $('lsd_checkbox').setProperty('checked', pref.lsd);
                     var encryption = pref.encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-		    if($defined(pref.anonymous_mode)) {
-		      $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
-		    } else {
-                      $('enable_utp_checkbox').addClass('invisible');
+	            	    if($defined(pref.anonymous_mode)) {
+		                  $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
+		                } else {
+                      $('anonymous_mode_checkbox').addClass('invisible');
                     }
                     // Downloads
                     $("savepath_text").setProperty('value', pref.save_path);

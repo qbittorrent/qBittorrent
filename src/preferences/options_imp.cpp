@@ -126,6 +126,7 @@ options_imp::options_imp(QWidget *parent):
 #endif
 #if LIBTORRENT_VERSION_MINOR < 16
   checkAnonymousMode->setVisible(false);
+  label_anonymous->setVisible(false);
 #endif
 
   // Connect signals / slots
