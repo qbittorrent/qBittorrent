@@ -80,7 +80,7 @@ void HttpConnection::handleDownloadFailure(const QString& url,
 }
 
 void HttpConnection::read() {
-  QByteArray input = m_socket->readAll();
+  const QByteArray input = m_socket->readAll();
   if(input.size() > 100000) {
     qDebug("Request too big");
     m_generator.setStatusLine(400, "Bad Request");
@@ -88,24 +88,17 @@ void HttpConnection::read() {
     return;
   }
   m_parser.write(input);
-  if(m_parser.isError())
-  {
+  if(m_parser.isError()) {
     m_generator.setStatusLine(400, "Bad Request");
     write();
-  }
-  else
+  } else {
     if (m_parser.isParsable())
       respond();
+  }
 }
 
-void HttpConnection::write()
-{
-  QByteArray output = m_generator.toByteArray();
-  /*qDebug(" --------");
-        qDebug("|RESPONSE|");
-        qDebug(" --------");
-        qDebug()<<output;*/
-  m_socket->write(output);
+void HttpConnection::write() {
+  m_socket->write(m_generator.toByteArray());
   m_socket->disconnectFromHost();
 }
 
@@ -118,7 +111,7 @@ void HttpConnection::translateDocument(QString& data) {
                             "options_imp", "Preferences", "TrackersAdditionDlg",
                             "ScanFoldersModel", "PropTabBar", "TorrentModel",
                             "downloadFromURL"};
-  int i=0;
+  int i = 0;
   bool found;
 
   do {
@@ -149,8 +142,9 @@ void HttpConnection::translateDocument(QString& data) {
 }
 
 void HttpConnection::respond() {
-  if((m_socket->peerAddress() != QHostAddress::LocalHost && m_socket->peerAddress() != QHostAddress::LocalHostIPv6)
-      || m_httpserver->isLocalAuthEnabled()) {
+  if((m_socket->peerAddress() != QHostAddress::LocalHost
+      && m_socket->peerAddress() != QHostAddress::LocalHostIPv6)
+     || m_httpserver->isLocalAuthEnabled()) {
     // Authentication
     const QString peer_ip = m_socket->peerAddress().toString();
     const int nb_fail = m_httpserver->NbFailedAttemptsForIp(peer_ip);
@@ -199,36 +193,35 @@ void HttpConnection::respond() {
     }
     return;
   }
+
   QStringList list = url.split('/', QString::SkipEmptyParts);
-  if (list.contains(".") || list.contains(".."))
-  {
+  if (list.contains(".") || list.contains("..")) {
     respondNotFound();
     return;
   }
-  if (list.size() == 0)
+
+  if (list.isEmpty())
     list.append("index.html");
-  if (list.size() >= 2)
-  {
-    if (list[0] == "json")
-    {
-      if (list[1] == "events")
-      {
+
+  if (list.size() >= 2) {
+    if (list[0] == "json") {
+      if (list[1] == "events") {
         respondJson();
         return;
       }
       if(list.size() > 2) {
         if(list[1] == "propertiesGeneral") {
-          QString hash = list[2];
+          const QString& hash = list[2];
           respondGenPropertiesJson(hash);
           return;
         }
         if(list[1] == "propertiesTrackers") {
-          QString hash = list[2];
+          const QString& hash = list[2];
           respondTrackersPropertiesJson(hash);
           return;
         }
         if(list[1] == "propertiesFiles") {
-          QString hash = list[2];
+          const QString& hash = list[2];
           respondFilesPropertiesJson(hash);
           return;
         }
@@ -244,8 +237,7 @@ void HttpConnection::respond() {
         }
       }
     }
-    if (list[0] == "command")
-    {
+    if (list[0] == "command") {
       QString command = list[1];
       respondCommand(command);
       m_generator.setStatusLine(200, "OK");
@@ -253,6 +245,7 @@ void HttpConnection::respond() {
       return;
     }
   }
+
   // Icons from theme
   qDebug() << "list[0]" << list[0];
   if(list[0] == "theme" && list.size() == 2) {
@@ -318,7 +311,7 @@ void HttpConnection::respondJson()
   write();
 }
 
-void HttpConnection::respondGenPropertiesJson(QString hash) {
+void HttpConnection::respondGenPropertiesJson(const QString& hash) {
   EventManager* manager =  m_httpserver->eventManager();
   QString string = json::toJson(manager->getPropGeneralInfo(hash));
   m_generator.setStatusLine(200, "OK");
@@ -327,7 +320,7 @@ void HttpConnection::respondGenPropertiesJson(QString hash) {
   write();
 }
 
-void HttpConnection::respondTrackersPropertiesJson(QString hash) {
+void HttpConnection::respondTrackersPropertiesJson(const QString& hash) {
   EventManager* manager =  m_httpserver->eventManager();
   QString string = json::toJson(manager->getPropTrackersInfo(hash));
   m_generator.setStatusLine(200, "OK");
@@ -336,7 +329,7 @@ void HttpConnection::respondTrackersPropertiesJson(QString hash) {
   write();
 }
 
-void HttpConnection::respondFilesPropertiesJson(QString hash) {
+void HttpConnection::respondFilesPropertiesJson(const QString& hash) {
   EventManager* manager =  m_httpserver->eventManager();
   QString string = json::toJson(manager->getPropFilesInfo(hash));
   m_generator.setStatusLine(200, "OK");
@@ -366,7 +359,7 @@ void HttpConnection::respondGlobalTransferInfoJson() {
   write();
 }
 
-void HttpConnection::respondCommand(QString command)
+void HttpConnection::respondCommand(const QString& command)
 {
   if(command == "download")
   {
@@ -574,7 +567,7 @@ void HttpConnection::respondCommand(QString command)
   }
 }
 
-void HttpConnection::recheckTorrent(QString hash) {
+void HttpConnection::recheckTorrent(const QString& hash) {
   QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
   if(h.is_valid()){
     QBtSession::instance()->recheckTorrent(h.hash());

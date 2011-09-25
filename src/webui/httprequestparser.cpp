@@ -42,46 +42,39 @@ HttpRequestParser::~HttpRequestParser()
 {
 }
 
-bool HttpRequestParser::isParsable() const
-{
+bool HttpRequestParser::isParsable() const {
   return !m_error && m_headerDone && isValid()
       && (m_messageDone || !hasContentLength() || contentLength() == 0);
 }
 
-bool HttpRequestParser::isError() const
-{
+bool HttpRequestParser::isError() const {
   return m_error;
 }
 
-QString HttpRequestParser::url() const
-{
+QString HttpRequestParser::url() const {
   return m_path;
 }
 
-QByteArray HttpRequestParser::message() const
-{
-	if(isParsable())
+QByteArray HttpRequestParser::message() const {
+  if (isParsable())
     return m_data;
 	return QByteArray();
 }
 
-QString HttpRequestParser::get(const QString& key) const
-{
+QString HttpRequestParser::get(const QString& key) const {
         return m_getMap.value(key);
 }
 
-QString HttpRequestParser::post(const QString& key) const
-{
+QString HttpRequestParser::post(const QString& key) const {
         return m_postMap.value(key);
 }
 
-QByteArray HttpRequestParser::torrent() const
-{
+QByteArray HttpRequestParser::torrent() const {
   return m_torrentContent;
 }
 
-void HttpRequestParser::write(QByteArray ba)
-{
+void HttpRequestParser::write(QByteArray ba) {
+  // Parse header
   while (!m_headerDone && !ba.isEmpty()) {
     const int index = ba.indexOf('\n') + 1;
     if(index == 0) {
@@ -105,6 +98,7 @@ void HttpRequestParser::write(QByteArray ba)
 			}
 		}
 	}
+  // Parse message
   if(!m_messageDone && !ba.isEmpty()) {
     if(hasContentLength()) {
       m_data += ba;

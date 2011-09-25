@@ -56,16 +56,16 @@ protected slots:
   void write();
   void respond();
   void respondJson();
-  void respondGenPropertiesJson(QString hash);
-  void respondTrackersPropertiesJson(QString hash);
-  void respondFilesPropertiesJson(QString hash);
+  void respondGenPropertiesJson(const QString& hash);
+  void respondTrackersPropertiesJson(const QString& hash);
+  void respondFilesPropertiesJson(const QString& hash);
   void respondPreferencesJson();
   void respondGlobalTransferInfoJson();
-  void respondCommand(QString command);
+  void respondCommand(const QString& command);
   void respondNotFound();
   void processDownloadedFile(const QString& url, const QString& file_path);
   void handleDownloadFailure(const QString& url, const QString& reason);
-  void recheckTorrent(QString hash);
+  void recheckTorrent(const QString& hash);
   void recheckAllTorrents();
   void decreaseTorrentsPriority(const QStringList& hashes);
   void increaseTorrentsPriority(const QStringList& hashes);
@@ -74,14 +74,14 @@ private slots:
   void read();
 
 signals:
-  void UrlReadyToBeDownloaded(QString url);
-  void MagnetReadyToBeDownloaded(QString uri);
-  void torrentReadyToBeDownloaded(QString, bool, QString, bool);
-  void deleteTorrent(QString hash, bool permanently);
-  void resumeTorrent(QString hash);
-  void pauseTorrent(QString hash);
-  void increasePrioTorrent(QString hash);
-  void decreasePrioTorrent(QString hash);
+  void UrlReadyToBeDownloaded(const QString& url);
+  void MagnetReadyToBeDownloaded(const QString& uri);
+  void torrentReadyToBeDownloaded(const QString&, bool, const QString&, bool);
+  void deleteTorrent(const QString& hash, bool permanently);
+  void resumeTorrent(const QString& hash);
+  void pauseTorrent(const QString& hash);
+  void increasePrioTorrent(const QString& hash);
+  void decreasePrioTorrent(const QString& hash);
   void resumeAllTorrents();
   void pauseAllTorrents();
 
