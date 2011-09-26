@@ -287,13 +287,16 @@ bool RssFeed::parseRSS(QIODevice* device) {
   // Make sure we limit the number of articles
   resizeList();
 
+  // Save items to disk (for safety)
+  saveItemsToDisk();
+
   return true;
 }
 
 void RssFeed::downloadMatchingArticleTorrents() {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   QHash<QString, RssArticle>::iterator it;
-  for(it = m_articles.begin(); it != m_articles.end(); it++) {
+  for (it = m_articles.begin(); it != m_articles.end(); it++) {
     RssArticle &item = it.value();
     if(item.isRead()) continue;
     QString torrent_url;
@@ -304,11 +307,11 @@ void RssFeed::downloadMatchingArticleTorrents() {
     // Check if the item should be automatically downloaded
     const RssDownloadRule matching_rule = RssDownloadRuleList::instance()->findMatchingRule(m_url, item.title());
     if(matching_rule.isValid()) {
+      // Item was downloaded, consider it as Read
+      item.markAsRead();
       // Download the torrent
       QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item.title()).arg(displayName()));
       QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
-      // Item was downloaded, consider it as Read
-      item.markAsRead();
     }
   }
 }
