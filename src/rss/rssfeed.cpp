@@ -43,10 +43,44 @@ RssFeed::RssFeed(RssFolder* parent, const QString &url): m_parent(parent), m_ico
   m_refreshed(false), m_downloadFailure(false), m_loading(false) {
   qDebug() << Q_FUNC_INFO << url;
   m_url = QUrl::fromEncoded(url.toUtf8()).toString();
+  // Listen for new RSS downloads
+  connect(RssManager::instance()->rssDownloader(), SIGNAL(downloadFinished(QString,QString)), SLOT(handleFinishedDownload(QString,QString)));
+  connect(RssManager::instance()->rssDownloader(), SIGNAL(downloadFailure(QString,QString)), SLOT(handleDownloadFailure(QString,QString)));
+  // Download the RSS Feed icon
+  m_iconUrl = iconUrl();
+  RssManager::instance()->rssDownloader()->downloadUrl(m_iconUrl);
+
+  // Load old RSS articles
+  loadItemsFromDisk();
+}
+
+RssFeed::~RssFeed(){
+  // Saving current articles to hard disk
+  if(m_refreshed) {
+    saveItemsToDisk();
+  }
+  if(!m_icon.startsWith(":/") && QFile::exists(m_icon))
+    misc::safeRemove(m_icon);
+}
+
+void RssFeed::saveItemsToDisk() {
+  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  QVariantList old_items;
+  foreach(const RssArticle &item, m_articles.values()) {
+    old_items << item.toHash();
+  }
+  qDebug("Saving %d old items for feed %s", old_items.size(), displayName().toLocal8Bit().data());
+  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+  all_old_items[m_url] = old_items;
+  qBTRSS.setValue("old_items", all_old_items);
+}
+
+void RssFeed::loadItemsFromDisk() {
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
   const QVariantList old_items = all_old_items.value(m_url, QVariantList()).toList();
   qDebug("Loading %d old items for feed %s", old_items.size(), displayName().toLocal8Bit().data());
+
   foreach(const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
     const RssArticle rss_item = hashToRssArticle(this, item);
@@ -54,29 +88,6 @@ RssFeed::RssFeed(RssFolder* parent, const QString &url): m_parent(parent), m_ico
       m_articles.insert(rss_item.guid(), rss_item);
     }
   }
-  // Listen for new RSS downloads
-  connect(RssManager::instance()->rssDownloader(), SIGNAL(downloadFinished(QString,QString)), SLOT(handleFinishedDownload(QString,QString)));
-  connect(RssManager::instance()->rssDownloader(), SIGNAL(downloadFailure(QString,QString)), SLOT(handleDownloadFailure(QString,QString)));
-  // Download the RSS Feed icon
-  m_iconUrl = iconUrl();
-  RssManager::instance()->rssDownloader()->downloadUrl(m_iconUrl);
-}
-
-RssFeed::~RssFeed(){
-  // Saving current articles to hard disk
-  if(m_refreshed) {
-    QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-    QVariantList old_items;
-    foreach(const RssArticle &item, m_articles.values()) {
-      old_items << item.toHash();
-    }
-    qDebug("Saving %d old items for feed %s", old_items.size(), displayName().toLocal8Bit().data());
-    QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
-    all_old_items[m_url] = old_items;
-    qBTRSS.setValue("old_items", all_old_items);
-  }
-  if(!m_icon.startsWith(":/") && QFile::exists(m_icon))
-    misc::safeRemove(m_icon);
 }
 
 IRssFile::FileType RssFeed::type() const {

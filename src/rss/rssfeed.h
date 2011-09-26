@@ -77,6 +77,8 @@ private:
   bool parseXmlFile(const QString &file_path);
   void downloadMatchingArticleTorrents();
   QString iconUrl() const;
+  void saveItemsToDisk();
+  void loadItemsFromDisk();
 
 private:
   QHash<QString, RssArticle> m_articles;
