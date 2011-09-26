@@ -48,6 +48,7 @@ RssManager::RssManager(): RssFolder() {
 
 RssManager::~RssManager(){
   qDebug("Deleting RSSManager");
+  m_refreshTimer.stop();
   delete m_rssDownloader;
   RssDownloadRuleList::drop();
   saveStreamList();
