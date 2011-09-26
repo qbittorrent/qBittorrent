@@ -104,14 +104,19 @@ void RssFeed::refresh() {
 void RssFeed::removeAllSettings() {
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", QHash<QString, QVariant>()).toHash();
-  if(feeds_w_downloader.contains(m_url)) {
+  if (feeds_w_downloader.contains(m_url)) {
     feeds_w_downloader.remove(m_url);
     qBTRSS.setValue("downloader_on", feeds_w_downloader);
   }
   QHash<QString, QVariant> all_feeds_filters = qBTRSS.value("feed_filters", QHash<QString, QVariant>()).toHash();
-  if(all_feeds_filters.contains(m_url)) {
+  if (all_feeds_filters.contains(m_url)) {
     all_feeds_filters.remove(m_url);
     qBTRSS.setValue("feed_filters", all_feeds_filters);
+  }
+  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+  if (all_old_items.contains(m_url)) {
+      all_old_items.remove(m_url);
+      qBTRSS.setValue("old_items", all_old_items);
   }
 }
 
