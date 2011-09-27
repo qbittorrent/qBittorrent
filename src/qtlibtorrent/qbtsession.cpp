@@ -1588,14 +1588,15 @@ qreal QBtSession::getRealRatio(const QString &hash) const{
   if(!h.is_valid()) {
     return 0.;
   }
-  Q_ASSERT(h.total_done() >= 0);
-  Q_ASSERT(h.all_time_upload() >= 0);
-  if(h.total_done() == 0) {
-    if(h.all_time_upload() == 0)
+  const libtorrent::size_type all_time_download = h.all_time_download();
+  const libtorrent::size_type all_time_upload = h.all_time_upload();
+
+  if(all_time_download == 0) {
+    if(all_time_upload == 0)
       return 0;
     return MAX_RATIO+1;
   }
-  qreal ratio = (float)h.all_time_upload()/(float)h.total_done();
+  qreal ratio = all_time_upload / (float) all_time_download;
   Q_ASSERT(ratio >= 0.);
   if(ratio > MAX_RATIO)
     ratio = MAX_RATIO;

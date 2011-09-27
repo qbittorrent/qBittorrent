@@ -8,6 +8,7 @@
     - BUGFIX: Fix execution log lines selection and copying
     - BUGFIX: Reduce CPU usage when running Web UI
     - BUGFIX: Save RSS items to disk regularly for safety
+    - BUGFIX: Fix ratio calculation (use all_time_download)
     - COSMETIC: Display speed at the beginning of the Window title
     - COSMETIC: Several cosmetic fixes to the Web UI
     - OTHER: Display libraries versions in about dialog (sledgehammer999)
