@@ -49,6 +49,10 @@
 #include <QDesktopServices>
 #endif
 
+#ifdef Q_OS_LINUX
+#include <cstdlib>
+#endif
+
 #include "misc.h"
 #include "qinisettings.h"
 
@@ -185,6 +189,22 @@ public:
 #ifdef Q_WS_WIN
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"),
                  QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
+#elif defined Q_OS_LINUX
+      QString downloads(QDir::homePath() + "/Downloads");
+      QString conf(getenv("XDG_CONFIG_HOME"));
+      if (conf.isEmpty()) conf = QDir::homePath() + "/.config";
+      if (QFile::exists(conf + "/user-dirs.dirs"))
+      {
+          QSettings settings(conf + "/user-dirs.dirs", QSettings::IniFormat);
+          QString temp(settings.value("XDG_DOWNLOAD_DIR").toString());
+          if (!temp.isEmpty())
+          {
+              if (temp.startsWith("$HOME")) downloads = QDir::homePath() + temp.remove(0, 5);
+              else downloads = temp;
+          }
+      }
+      return value(QString::fromUtf8("Preferences/Downloads/SavePath"), downloads).toString();
+
 #else
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
 #endif
