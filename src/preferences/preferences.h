@@ -185,11 +185,13 @@ public:
   }
 
   // Downloads
-  QString getSavePath() {
-#ifdef Q_WS_WIN
+  QString getSavePath() const {
+#if defined(Q_WS_WIN)
+    // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
+    // instead of hardcoding "Downloads"
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"),
                  QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
-#else defined(Q_OS_LINUX)
+#elif defined(Q_WS_X11)
       QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
       if (!save_path.isEmpty())
         return save_path;
@@ -199,34 +201,37 @@ public:
       if (config_path.isEmpty())
         config_path = QDir::home().absoluteFilePath(".config");
 
-      if (QFile::exists(conf + "/user-dirs.dirs")) {
-        QSettings settings(conf + "/user-dirs.dirs", QSettings::IniFormat);
+      QString user_dirs_file = config_path + "/user-dirs.dirs";
+      if (QFile::exists(user_dirs_file)) {
+        QSettings settings(user_dirs_file, QSettings::IniFormat);
         QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
         if (!xdg_download_dir.isEmpty()) {
           // Resolve environment variables
-          QRegExp envar("$([a-ZA-Z_]+)");
+          QRegExp envar("\\$([a-ZA-Z_]+)");
           int pos = 0;
           while ((pos = envar.indexIn(xdg_download_dir, pos)) != -1) {
             QString variable = envar.cap(1);
             QString replacement = QString::fromLocal8Bit(getenv(variable.toLocal8Bit()));
+            qDebug() << Q_FUNC_INFO << "Replacing " <<  envar.cap(0) << "by" << replacement;
             if (!replacement.isEmpty())
-              xdg_download_dir.replace("$"+variable, replacement);
+              xdg_download_dir.replace(envar.cap(0), replacement);
           }
           save_path = xdg_download_dir;
+          qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
         }
       }
 
       // Fallback
-      if (save_path.isEmpty() || !QFile::exists(save_path))
-        save_path = QDir::home().absoluteFilePath("/Downloads");
-
-      // Save it
-      setSavePath(save_path);
+      if (save_path.isEmpty() || !QFile::exists(save_path)) {
+        save_path = QDir::home().absoluteFilePath("Downloads");
+        qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
+      }
 
       return save_path;
 
 #else
-    return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
+    // TODO: On MAC OS X there is probably a way to detect the Downloads folder path
+    return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("Downloads")).toString();
 #endif
   }
 
