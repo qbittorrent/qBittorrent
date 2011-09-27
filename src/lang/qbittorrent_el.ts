@@ -4118,29 +4118,29 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="25"/>
+        <location filename="../rss/rss.ui" line="31"/>
         <source>New subscription</source>
         <translation>Νέα εγγραφή</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="35"/>
-        <location filename="../rss/rss.ui" line="183"/>
-        <location filename="../rss/rss.ui" line="186"/>
+        <location filename="../rss/rss.ui" line="47"/>
+        <location filename="../rss/rss.ui" line="195"/>
+        <location filename="../rss/rss.ui" line="198"/>
         <source>Mark items read</source>
         <translation>Μαρκάρισμα αντικειμένων ως διαβασμένα</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="54"/>
+        <location filename="../rss/rss.ui" line="66"/>
         <source>Update all</source>
         <translation>Ανανέωση όλων</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="83"/>
+        <location filename="../rss/rss.ui" line="95"/>
         <source>RSS Downloader...</source>
         <translation>Κατέβασμα RSS...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="90"/>
+        <location filename="../rss/rss.ui" line="102"/>
         <source>Settings...</source>
         <translation>Ρυθμίσεις...</translation>
     </message>
@@ -4149,12 +4149,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Κατέβασμα παροχών RSS...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="206"/>
+        <location filename="../rss/rss.ui" line="218"/>
         <source>New folder...</source>
         <translation>Νέος φάκελος...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="211"/>
+        <location filename="../rss/rss.ui" line="223"/>
         <source>Manage cookies...</source>
         <translation>Διαχείριση cookies...</translation>
     </message>
@@ -4163,13 +4163,13 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">URL Παροχής</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="154"/>
+        <location filename="../rss/rss.ui" line="166"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="162"/>
-        <location filename="../rss/rss.ui" line="165"/>
+        <location filename="../rss/rss.ui" line="174"/>
+        <location filename="../rss/rss.ui" line="177"/>
         <source>Update</source>
         <translation>Ανανέωση</translation>
     </message>
@@ -4178,7 +4178,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Παροχές RSS</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="112"/>
+        <location filename="../rss/rss.ui" line="124"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -4195,44 +4195,44 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Τίτλος άρθρου</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="170"/>
+        <location filename="../rss/rss.ui" line="182"/>
         <source>New subscription...</source>
         <translation>Νέα εγγραφή...</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="175"/>
-        <location filename="../rss/rss.ui" line="178"/>
+        <location filename="../rss/rss.ui" line="187"/>
+        <location filename="../rss/rss.ui" line="190"/>
         <source>Update all feeds</source>
         <translation>Ανανέωση όλων των παροχών</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="146"/>
-        <location filename="../rss/rss.ui" line="149"/>
+        <location filename="../rss/rss.ui" line="158"/>
+        <location filename="../rss/rss.ui" line="161"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="157"/>
+        <location filename="../rss/rss.ui" line="169"/>
         <source>Rename</source>
         <translation>Μετονομασία</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="191"/>
+        <location filename="../rss/rss.ui" line="203"/>
         <source>Download torrent</source>
         <translation>Λήψη torrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="196"/>
+        <location filename="../rss/rss.ui" line="208"/>
         <source>Open news URL</source>
         <translation>Άνοιγμα URL ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="201"/>
+        <location filename="../rss/rss.ui" line="213"/>
         <source>Copy feed URL</source>
         <translation>Αντιγραφή URL παροχής</translation>
     </message>
     <message>
-        <location filename="../rss/rss.ui" line="51"/>
+        <location filename="../rss/rss.ui" line="63"/>
         <source>Refresh RSS streams</source>
         <translation>Ανανέωση RSS τροφοδοτήσεων</translation>
     </message>
@@ -4360,7 +4360,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="292"/>
+        <location filename="../rss/rssfeed.cpp" line="313"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Αυτόματη λήψη του torrent %1 από την παροχή RSS %2...</translation>
     </message>
@@ -4424,12 +4424,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ScanFoldersModel</name>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="101"/>
+        <location filename="../scannedfoldersmodel.cpp" line="102"/>
         <source>Watched Folder</source>
         <translation>Φάκελος υπό παρακολούθηση</translation>
     </message>
     <message>
-        <location filename="../scannedfoldersmodel.cpp" line="102"/>
+        <location filename="../scannedfoldersmodel.cpp" line="103"/>
         <source>Download here</source>
         <translation>Κατέβασμα εδώ</translation>
     </message>
