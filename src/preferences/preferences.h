@@ -49,6 +49,10 @@
 #include <QDesktopServices>
 #endif
 
+#ifdef Q_OS_LINUX
+#include <cstdlib>
+#endif
+
 #include "misc.h"
 #include "qinisettings.h"
 
@@ -181,10 +185,46 @@ public:
   }
 
   // Downloads
-  QString getSavePath() const {
+  QString getSavePath() {
 #ifdef Q_WS_WIN
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"),
                  QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
+#else defined(Q_OS_LINUX)
+      QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
+      if (!save_path.isEmpty())
+        return save_path;
+
+      // Default save path on Linux
+      QString config_path = QString::fromLocal8Bit(getenv("XDG_CONFIG_HOME"));
+      if (config_path.isEmpty())
+        config_path = QDir::home().absoluteFilePath(".config");
+
+      if (QFile::exists(conf + "/user-dirs.dirs")) {
+        QSettings settings(conf + "/user-dirs.dirs", QSettings::IniFormat);
+        QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
+        if (!xdg_download_dir.isEmpty()) {
+          // Resolve environment variables
+          QRegExp envar("$([a-ZA-Z_]+)");
+          int pos = 0;
+          while ((pos = envar.indexIn(xdg_download_dir, pos)) != -1) {
+            QString variable = envar.cap(1);
+            QString replacement = QString::fromLocal8Bit(getenv(variable.toLocal8Bit()));
+            if (!replacement.isEmpty())
+              xdg_download_dir.replace("$"+variable, replacement);
+          }
+          save_path = xdg_download_dir;
+        }
+      }
+
+      // Fallback
+      if (save_path.isEmpty() || !QFile::exists(save_path))
+        save_path = QDir::home().absoluteFilePath("/Downloads");
+
+      // Save it
+      setSavePath(save_path);
+
+      return save_path;
+
 #else
     return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("qBT_dir")).toString();
 #endif
