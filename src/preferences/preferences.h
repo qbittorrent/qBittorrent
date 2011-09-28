@@ -206,16 +206,8 @@ public:
         QSettings settings(user_dirs_file, QSettings::IniFormat);
         QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
         if (!xdg_download_dir.isEmpty()) {
-          // Resolve environment variables
-          QRegExp envar("\\$([a-ZA-Z_]+)");
-          int pos = 0;
-          while ((pos = envar.indexIn(xdg_download_dir, pos)) != -1) {
-            QString variable = envar.cap(1);
-            QString replacement = QString::fromLocal8Bit(getenv(variable.toLocal8Bit()));
-            qDebug() << Q_FUNC_INFO << "Replacing " <<  envar.cap(0) << "by" << replacement;
-            if (!replacement.isEmpty())
-              xdg_download_dir.replace(envar.cap(0), replacement);
-          }
+          // Resolve $HOME environment variables
+          xdg_download_dir.replace("$HOME", QDir::homePath());
           save_path = xdg_download_dir;
           qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
         }
