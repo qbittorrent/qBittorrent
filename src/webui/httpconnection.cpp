@@ -402,6 +402,8 @@ void HttpConnection::respondCommand(const QString& command) {
     // it fails to load on Windows.
     QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
     if (tmpfile->open()) {
+      // Make sure we are writing in binary mode
+      tmpfile->setTextModeEnabled(false);
       tmpfile->write(m_parser.torrent());
       tmpfile->close();
       emit torrentReadyToBeDownloaded(tmpfile->fileName(), false, QString(), false);
