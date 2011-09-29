@@ -87,6 +87,7 @@ void HttpRequestParser::write(const QByteArray& ba) {
 
   // Parse message content
   if (m_header.hasContentLength()) {
+    qDebug() << Q_FUNC_INFO << "header: " <<  ba.left(end_of_header);
     m_data = ba.mid(end_of_header + 4, m_header.contentLength()); // +4 to skip "\r\n\r\n"
 
     // Parse POST data
@@ -101,7 +102,9 @@ void HttpRequestParser::write(const QByteArray& ba) {
     } else {
       // Parse form data (torrent file)
       if(m_header.contentType() == "multipart/form-data") {
-        m_torrentContent = m_data.right(m_data.size()-m_data.indexOf("\r\n\r\n")-QByteArray("\r\n\r\n").size());
+        qDebug() << "form-part header: " << m_data.left(m_data.indexOf("\r\n\r\n"));
+        m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n") + 4);
+        qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size();
       }
     }
   }
