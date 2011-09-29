@@ -88,7 +88,6 @@ private:
   HttpServer *m_httpserver;
   HttpRequestParser m_parser;
   HttpResponseGenerator m_generator;
-  bool m_needsTranslation;
 };
 
 #endif

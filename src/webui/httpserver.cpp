@@ -97,6 +97,8 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
   m_username = pref.getWebUiUsername().toLocal8Bit();
   m_passwordSha1 = pref.getWebUiPassword().toLocal8Bit();
   m_localAuthEnabled = pref.isWebUiLocalAuthEnabled();
+  m_needsTranslation = !Preferences().getLocale().startsWith("en");
+  connect(m_eventManager, SIGNAL(localeChanged(QString)), SLOT(onLocaleChanged(QString)));
 
   // HTTPS-related
 #ifndef QT_NO_OPENSSL
@@ -336,4 +338,12 @@ void HttpServer::setlocalAuthEnabled(bool enabled) {
 
 bool HttpServer::isLocalAuthEnabled() const {
   return m_localAuthEnabled;
+}
+
+bool HttpServer::isTranslationNeeded() {
+  return m_needsTranslation;
+}
+
+void HttpServer::onLocaleChanged(const QString &locale) {
+  m_needsTranslation = !locale.startsWith("en");
 }

@@ -124,7 +124,7 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   return files;
 }
 
-void EventManager::setGlobalPreferences(QVariantMap m) const {
+void EventManager::setGlobalPreferences(QVariantMap m) {
   // UI
   Preferences pref;
   if(m.contains("locale")) {
@@ -137,9 +137,10 @@ void EventManager::setGlobalPreferences(QVariantMap m) const {
         qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
       }
       qApp->installTranslator(translator);
-    }
 
-    pref.setLocale(locale);
+      pref.setLocale(locale);
+      emit localeChanged(locale);
+    }
   }
   // Downloads
   if(m.contains("save_path"))

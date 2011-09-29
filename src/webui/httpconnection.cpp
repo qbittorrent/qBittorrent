@@ -56,7 +56,6 @@ using namespace libtorrent;
 HttpConnection::HttpConnection(QTcpSocket *socket, HttpServer *parent)
   : QObject(parent), m_socket(socket), m_httpserver(parent)
 {
-  m_needsTranslation = !Preferences().getLocale().startsWith("en");
   m_socket->setParent(this);
   connect(m_socket, SIGNAL(readyRead()), SLOT(read()));
   connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
@@ -121,7 +120,7 @@ void HttpConnection::translateDocument(QString& data) {
       QByteArray word = regex.cap(1).toLocal8Bit();
 
       QString translation = word;
-      if (m_needsTranslation) {
+      if (m_httpserver->isTranslationNeeded()) {
         int context_index = 0;
         do {
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
@@ -433,7 +432,6 @@ void HttpConnection::respondCommand(const QString& command) {
     QString json_str = m_parser.post("json");
     EventManager* manager =  m_httpserver->eventManager();
     manager->setGlobalPreferences(json::fromJson(json_str));
-    m_needsTranslation = !Preferences().getLocale().startsWith("en");
     return;
   }
   if(command == "setFilePrio") {

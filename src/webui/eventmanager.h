@@ -54,7 +54,10 @@ public:
   QList<QVariantMap> getPropTrackersInfo(QString hash) const;
   QList<QVariantMap> getPropFilesInfo(QString hash) const;
   QVariantMap getGlobalPreferences() const;
-  void setGlobalPreferences(QVariantMap m) const;
+  void setGlobalPreferences(QVariantMap m);
+
+signals:
+  void localeChanged(const QString &locale);
 
 public slots:
   void addedTorrent(const QTorrentHandle& h);
