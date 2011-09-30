@@ -403,7 +403,7 @@ void HttpConnection::respondCommand(const QString& command) {
       tmpfile->write(m_parser.torrent());
       tmpfile->close();
       emit torrentReadyToBeDownloaded(tmpfile->fileName(), false, QString(), false);
-      delete tmpfile;
+      tmpfile->deleteLater();
     } else {
       std::cerr << "I/O Error: Could not create temporary file" << std::endl;
       delete tmpfile;

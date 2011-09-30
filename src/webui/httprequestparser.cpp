@@ -61,7 +61,7 @@ QString HttpRequestParser::post(const QString& key) const {
   return m_postMap.value(key);
 }
 
-QByteArray HttpRequestParser::torrent() const {
+const QByteArray& HttpRequestParser::torrent() const {
   return m_torrentContent;
 }
 
