@@ -87,7 +87,7 @@ void HttpRequestParser::write(const QByteArray& ba) {
 
   // Parse message content
   if (m_header.hasContentLength()) {
-    qDebug() << Q_FUNC_INFO << "header: " <<  ba.left(end_of_header);
+    qDebug() << Q_FUNC_INFO << "\n\n" << "header: " <<  ba.left(end_of_header) << "\n\n";
     m_data = ba.mid(end_of_header + 4, m_header.contentLength()); // +4 to skip "\r\n\r\n"
 
     // Parse POST data
@@ -101,10 +101,36 @@ void HttpRequestParser::write(const QByteArray& ba) {
       }
     } else {
       // Parse form data (torrent file)
-      if(m_header.contentType() == "multipart/form-data") {
-        qDebug() << "form-part header: " << m_data.left(m_data.indexOf("\r\n\r\n"));
-        m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n") + 4);
-        qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size();
+      /**
+        m_data has the following format (if boundary is "cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5")
+
+--cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
+Content-Disposition: form-data; name=\"Filename\"
+
+PB020344.torrent
+--cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
+Content-Disposition: form-data; name=\"torrentfile"; filename=\"PB020344.torrent\"
+Content-Type: application/x-bittorrent
+
+BINARY DATA IS HERE
+--cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
+Content-Disposition: form-data; name=\"Upload\"
+
+Submit Query
+--cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
+**/
+      if (m_header.contentType().startsWith("multipart/form-data")) {
+        int filename_index = m_data.indexOf("filename=");
+        if (filename_index >= 0) {
+          QByteArray boundary = m_data.left(m_data.indexOf("\r\n"));
+          qDebug() << "Boundary is " << boundary << "\n\n";
+          qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
+          m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
+          m_torrentContent = m_torrentContent.left(m_torrentContent.indexOf("\r\n"+boundary));
+          qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
+        } else {
+          m_error = true;
+        }
       }
     }
   }
