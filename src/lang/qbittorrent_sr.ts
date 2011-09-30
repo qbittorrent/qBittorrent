@@ -90,23 +90,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation>Библиотеке</translation>
     </message>
     <message>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ова верзија qBittorrentа је изграђена помоћу следећих библиотека:</translation>
     </message>
     <message>
         <source>Qt:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt:</translation>
     </message>
     <message>
         <source>Boost:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boost:</translation>
     </message>
     <message>
         <source>Libtorrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Libtorrent:</translation>
     </message>
 </context>
 <context>
@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Always announce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Увек објави за све пратиоце</translation>
     </message>
 </context>
 <context>
@@ -1735,7 +1735,7 @@ No further notices will be issued.</source>
     <name>LogListWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Копирај</translation>
+        <translation>Копирај</translation>
     </message>
 </context>
 <context>
@@ -2165,16 +2165,16 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи</translation>
     </message>
     <message>
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Сакриј</translation>
     </message>
     <message>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[П: %1/s, С: %2/s] qBittorrent %3</translation>
     </message>
 </context>
 <context>
@@ -2970,27 +2970,28 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>File association</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Придруживање датотека</translatorcomment>
+        <translation>Асоцириње фајлова</translation>
     </message>
     <message>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи qBittorrent за .torrent фајлове</translation>
     </message>
     <message>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи qBittorrent за магнет линкове</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вреднуј споре торенте у овим ограничењима</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Омогући анонимни начин рада</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
     </message>
 </context>
 <context>
@@ -3593,7 +3594,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонимни начин рада [Укључен]</translation>
     </message>
 </context>
 <context>
@@ -4994,7 +4995,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Подесите подразумевану путању чувања</translation>
     </message>
 </context>
 <context>
@@ -5671,11 +5672,11 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>SSL Certificate (*.crt *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL Сертификат (*.crt *.pem)</translation>
     </message>
     <message>
         <source>SSL Key (*.key *.pem)</source>
-        <translation type="unfinished"></translation>
+        <translation>SSL Кључ (*.key *.pem)</translation>
     </message>
 </context>
 <context>
