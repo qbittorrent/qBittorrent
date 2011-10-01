@@ -89,7 +89,7 @@ void HttpConnection::read() {
     return;
   }
 
-  if (!input.endsWith("\r\n\r\n")) {
+  if (!input.endsWith("\r\n")) {
     // incomplete, let wait for more data
     qDebug() << Q_FUNC_INFO << "Incomplete HTTP request, let's wait for more data...";
     return;
