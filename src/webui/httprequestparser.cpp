@@ -66,6 +66,7 @@ const QByteArray& HttpRequestParser::torrent() const {
 }
 
 void HttpRequestParser::write(const QByteArray& ba) {
+  qDebug() << Q_FUNC_INFO << "ba.size(): " << ba.size();
   int end_of_header = ba.indexOf("\r\n\r\n");
   if (end_of_header < 0) {
     qWarning() << "Could not find HTTP header: " << ba.constData();
@@ -89,6 +90,7 @@ void HttpRequestParser::write(const QByteArray& ba) {
   if (m_header.hasContentLength()) {
     qDebug() << Q_FUNC_INFO << "\n\n" << "header: " <<  ba.left(end_of_header) << "\n\n";
     m_data = ba.mid(end_of_header + 4, m_header.contentLength()); // +4 to skip "\r\n\r\n"
+    qDebug() << "m_data.size(): " << m_data.size();
 
     // Parse POST data
     if(m_header.contentType() == "application/x-www-form-urlencoded") {
@@ -126,7 +128,11 @@ Submit Query
           qDebug() << "Boundary is " << boundary << "\n\n";
           qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
           m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
-          m_torrentContent = m_torrentContent.left(m_torrentContent.indexOf("\r\n"+boundary));
+          int binaryend_index = m_torrentContent.indexOf("\r\n"+boundary);
+          if (binaryend_index >= 0) {
+            qDebug() << "found end boundary :)";
+            m_torrentContent = m_torrentContent.left(binaryend_index);
+          }
           qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
         } else {
           m_error = true;
