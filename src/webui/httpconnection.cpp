@@ -83,6 +83,7 @@ void HttpConnection::read() {
   input.append(m_socket->readAll());
   if(input.size() > 100000) {
     qDebug("Request too big");
+    input.clear();
     m_generator.setStatusLine(400, "Bad Request");
     write();
     return;
@@ -99,6 +100,7 @@ void HttpConnection::read() {
   input.clear();
 
   if(m_parser.isError()) {
+    qDebug() << Q_FUNC_INFO << "parsing error";
     m_generator.setStatusLine(400, "Bad Request");
     write();
   } else {
@@ -405,6 +407,7 @@ void HttpConnection::respondCommand(const QString& command) {
     return;
   }
   if(command == "upload") {
+    qDebug() << Q_FUNC_INFO << "upload";
     // Get a unique filename
     // XXX: We need to use a QTemporaryFile pointer here
     // and it fails on Windows.
