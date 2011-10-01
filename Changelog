@@ -10,6 +10,7 @@
     - BUGFIX: Save RSS items to disk regularly for safety
     - BUGFIX: Fix ratio calculation (use all_time_download)
     - BUGFIX: Fix torrent upload issues (Web UI)
+    - BUGFIX: Fix some IE incompatibilities (Web UI)
     - COSMETIC: Display speed at the beginning of the Window title
     - COSMETIC: Several cosmetic fixes to the Web UI
     - COSMETIC: Make top toolbar follow system style

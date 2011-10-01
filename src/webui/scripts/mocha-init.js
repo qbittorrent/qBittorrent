@@ -160,7 +160,7 @@ initializeWindows = function(){
 				id: 'confirmDeletionPage',
 				title: "_(Deletion confirmation - qBittorrent)",
 				loadMethod: 'iframe',
-				contentURL:'confirmdeletion.html?hashes='+JSON.encode(h),
+				contentURL:'confirmdeletion.html?hashes='+h.join(','),
 				scrollbars: false,
 				resizable: false,
 				maximizable: false,
