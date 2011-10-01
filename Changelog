@@ -11,6 +11,7 @@
     - BUGFIX: Fix ratio calculation (use all_time_download)
     - COSMETIC: Display speed at the beginning of the Window title
     - COSMETIC: Several cosmetic fixes to the Web UI
+    - COSMETIC: Make top toolbar follow system style
     - OTHER: Display libraries versions in about dialog (sledgehammer999)
     - OTHER: Display qBittorrent version in Web UI about dialog
 
