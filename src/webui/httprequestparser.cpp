@@ -66,7 +66,6 @@ const QByteArray& HttpRequestParser::torrent() const {
 }
 
 void HttpRequestParser::write(const QByteArray& ba) {
-  qDebug() << Q_FUNC_INFO << "ba.size(): " << ba.size();
   int end_of_header = ba.indexOf("\r\n\r\n");
   if (end_of_header < 0) {
     qWarning() << "Could not find HTTP header: " << ba.constData();
@@ -88,6 +87,7 @@ void HttpRequestParser::write(const QByteArray& ba) {
 
   // Parse message content
   if (m_header.hasContentLength()) {
+    qDebug() << Q_FUNC_INFO << "ba.size(): " << ba.size();
     qDebug() << Q_FUNC_INFO << "\n\n" << "header: " <<  ba.left(end_of_header) << "\n\n";
     m_data = ba.mid(end_of_header + 4, m_header.contentLength()); // +4 to skip "\r\n\r\n"
     qDebug() << "m_data.size(): " << m_data.size();
