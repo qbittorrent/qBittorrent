@@ -78,26 +78,41 @@ void HttpConnection::handleDownloadFailure(const QString& url,
 }
 
 void HttpConnection::read() {
-  static QByteArray input;
+  QByteArray input = m_socket->readAll();
 
-  input.append(m_socket->readAll());
-  if(input.size() > 100000) {
-    qDebug("Request too big");
-    input.clear();
+  // Parse HTTP request header
+  int header_end = input.indexOf("\r\n\r\n");
+  QByteArray header = input.left(header_end);
+  m_parser.writeHeader(header);
+  if (m_parser.isError()) {
+    qDebug() << Q_FUNC_INFO << "parsing error";
     m_generator.setStatusLine(400, "Bad Request");
     write();
     return;
   }
 
-  if (!input.endsWith("\r\n")) {
-    // incomplete, let wait for more data
-    qDebug() << Q_FUNC_INFO << "Incomplete HTTP request, let's wait for more data...";
-    return;
-  }
+  // Parse HTTP request message
+  if (m_parser.header().hasContentLength())  {
+    QByteArray message = input.mid(header_end + 4);
+    int expected_length = m_parser.header().contentLength();
 
-  // HTTP Request is complete, let's parse it
-  m_parser.write(input);
-  input.clear();
+    if (expected_length > 100000) {
+      m_generator.setStatusLine(400, "Bad Request");
+      write();
+      return;
+    }
+
+    bool is_reading = true;
+    while (message.length() < expected_length && is_reading) {
+      disconnect(m_socket, SIGNAL(readyRead()), this, SLOT(read()));
+      is_reading = m_socket->waitForReadyRead(2000);
+      if (is_reading) {
+        message.append(m_socket->readAll());
+      }
+      connect(m_socket, SIGNAL(readyRead()), this, SLOT(read()));
+    }
+    m_parser.writeMessage(message);
+  }
 
   if(m_parser.isError()) {
     qDebug() << Q_FUNC_INFO << "parsing error";

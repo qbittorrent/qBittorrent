@@ -65,16 +65,9 @@ const QByteArray& HttpRequestParser::torrent() const {
   return m_torrentContent;
 }
 
-void HttpRequestParser::write(const QByteArray& ba) {
-  int end_of_header = ba.indexOf("\r\n\r\n");
-  if (end_of_header < 0) {
-    qWarning() << "Could not find HTTP header: " << ba.constData();
-    m_error = true;
-    return;
-  }
-
+void HttpRequestParser::writeHeader(const QByteArray& ba) {
   // Parse header
-  m_header = QHttpRequestHeader(ba.left(end_of_header));
+  m_header = QHttpRequestHeader(ba);
   QUrl url = QUrl::fromEncoded(m_header.path().toAscii());
   m_path = url.path();
 
@@ -84,26 +77,27 @@ void HttpRequestParser::write(const QByteArray& ba) {
     QPair<QString, QString> pair = i.next();
     m_getMap[pair.first] = pair.second;
   }
+}
 
+void HttpRequestParser::writeMessage(const QByteArray& ba) {
   // Parse message content
-  if (m_header.hasContentLength()) {
-    qDebug() << Q_FUNC_INFO << "ba.size(): " << ba.size();
-    qDebug() << Q_FUNC_INFO << "\n\n" << "header: " <<  ba.left(end_of_header) << "\n\n";
-    m_data = ba.mid(end_of_header + 4, m_header.contentLength()); // +4 to skip "\r\n\r\n"
-    qDebug() << "m_data.size(): " << m_data.size();
+  Q_ASSERT (m_header.hasContentLength());
 
-    // Parse POST data
-    if(m_header.contentType() == "application/x-www-form-urlencoded") {
-      QUrl url;
-      url.setEncodedQuery(m_data);
-      QListIterator<QPair<QString, QString> > i(url.queryItems());
-      while (i.hasNext())	{
-        QPair<QString, QString> pair = i.next();
-        m_postMap[pair.first] = pair.second;
-      }
-    } else {
-      // Parse form data (torrent file)
-      /**
+  m_data = ba;
+  qDebug() << "m_data.size(): " << m_data.size();
+
+  // Parse POST data
+  if(m_header.contentType() == "application/x-www-form-urlencoded") {
+    QUrl url;
+    url.setEncodedQuery(m_data);
+    QListIterator<QPair<QString, QString> > i(url.queryItems());
+    while (i.hasNext())	{
+      QPair<QString, QString> pair = i.next();
+      m_postMap[pair.first] = pair.second;
+    }
+  } else {
+    // Parse form data (torrent file)
+    /**
         m_data has the following format (if boundary is "cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5")
 
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
@@ -121,22 +115,21 @@ Content-Disposition: form-data; name=\"Upload\"
 Submit Query
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
 **/
-      if (m_header.contentType().startsWith("multipart/form-data")) {
-        int filename_index = m_data.indexOf("filename=");
-        if (filename_index >= 0) {
-          QByteArray boundary = m_data.left(m_data.indexOf("\r\n"));
-          qDebug() << "Boundary is " << boundary << "\n\n";
-          qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
-          m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
-          int binaryend_index = m_torrentContent.indexOf("\r\n"+boundary);
-          if (binaryend_index >= 0) {
-            qDebug() << "found end boundary :)";
-            m_torrentContent = m_torrentContent.left(binaryend_index);
-          }
-          qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
-        } else {
-          m_error = true;
+    if (m_header.contentType().startsWith("multipart/form-data")) {
+      int filename_index = m_data.indexOf("filename=");
+      if (filename_index >= 0) {
+        QByteArray boundary = m_data.left(m_data.indexOf("\r\n"));
+        qDebug() << "Boundary is " << boundary << "\n\n";
+        qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
+        m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
+        int binaryend_index = m_torrentContent.indexOf("\r\n"+boundary);
+        if (binaryend_index >= 0) {
+          qDebug() << "found end boundary :)";
+          m_torrentContent = m_torrentContent.left(binaryend_index);
         }
+        qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
+      } else {
+        m_error = true;
       }
     }
   }

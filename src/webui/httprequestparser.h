@@ -45,7 +45,8 @@ public:
   QString get(const QString& key) const;
   QString post(const QString& key) const;
   const QByteArray& torrent() const;
-  void write(const QByteArray& ba);
+  void writeHeader(const QByteArray& ba);
+  void writeMessage(const QByteArray& ba);
   inline QHttpRequestHeader& header() { return m_header; }
 
 private:
