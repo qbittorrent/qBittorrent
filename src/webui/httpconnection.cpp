@@ -82,10 +82,16 @@ void HttpConnection::read() {
 
   // Parse HTTP request header
   int header_end = input.indexOf("\r\n\r\n");
+  if (header_end < 0) {
+    qDebug() << Q_FUNC_INFO << "missing double-CRLF";
+    m_generator.setStatusLine(400, "Bad Request");
+    write();
+    return;
+  }
   QByteArray header = input.left(header_end);
   m_parser.writeHeader(header);
   if (m_parser.isError()) {
-    qDebug() << Q_FUNC_INFO << "parsing error";
+    qDebug() << Q_FUNC_INFO << "header parsing error";
     m_generator.setStatusLine(400, "Bad Request");
     write();
     return;
@@ -115,7 +121,7 @@ void HttpConnection::read() {
   }
 
   if(m_parser.isError()) {
-    qDebug() << Q_FUNC_INFO << "parsing error";
+    qDebug() << Q_FUNC_INFO << "message parsing error";
     m_generator.setStatusLine(400, "Bad Request");
     write();
   } else {

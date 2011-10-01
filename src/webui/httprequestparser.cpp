@@ -84,7 +84,7 @@ void HttpRequestParser::writeMessage(const QByteArray& ba) {
   Q_ASSERT (m_header.hasContentLength());
 
   m_data = ba;
-  qDebug() << "m_data.size(): " << m_data.size();
+  qDebug() << Q_FUNC_INFO << "m_data.size(): " << m_data.size();
 
   // Parse POST data
   if(m_header.contentType() == "application/x-www-form-urlencoded") {
@@ -95,9 +95,11 @@ void HttpRequestParser::writeMessage(const QByteArray& ba) {
       QPair<QString, QString> pair = i.next();
       m_postMap[pair.first] = pair.second;
     }
-  } else {
-    // Parse form data (torrent file)
-    /**
+    return;
+  }
+
+  // Parse multipart/form data (torrent file)
+  /**
         m_data has the following format (if boundary is "cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5")
 
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5
@@ -115,22 +117,23 @@ Content-Disposition: form-data; name=\"Upload\"
 Submit Query
 --cH2ae0GI3KM7GI3Ij5ae0ei4Ij5Ij5--
 **/
-    if (m_header.contentType().startsWith("multipart/form-data")) {
-      int filename_index = m_data.indexOf("filename=");
-      if (filename_index >= 0) {
-        QByteArray boundary = m_data.left(m_data.indexOf("\r\n"));
-        qDebug() << "Boundary is " << boundary << "\n\n";
-        qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
-        m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
-        int binaryend_index = m_torrentContent.indexOf("\r\n"+boundary);
-        if (binaryend_index >= 0) {
-          qDebug() << "found end boundary :)";
-          m_torrentContent = m_torrentContent.left(binaryend_index);
-        }
-        qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
-      } else {
-        m_error = true;
+  if (m_header.contentType().startsWith("multipart/form-data")) {
+    qDebug() << Q_FUNC_INFO << "header is: " << m_header.toString();
+
+    int filename_index = m_data.indexOf("filename=");
+    if (filename_index >= 0) {
+      QByteArray boundary = m_data.left(m_data.indexOf("\r\n"));
+      qDebug() << "Boundary is " << boundary << "\n\n";
+      qDebug() << "Before binary data: " << m_data.left(m_data.indexOf("\r\n\r\n", filename_index+9)) << "\n\n";
+      m_torrentContent = m_data.mid(m_data.indexOf("\r\n\r\n", filename_index+9) + 4);
+      int binaryend_index = m_torrentContent.indexOf("\r\n"+boundary);
+      if (binaryend_index >= 0) {
+        qDebug() << "found end boundary :)";
+        m_torrentContent = m_torrentContent.left(binaryend_index);
       }
+      qDebug() << Q_FUNC_INFO << "m_torrentContent.size(): " << m_torrentContent.size()<< "\n\n";
+    } else {
+      m_error = true;
     }
   }
 }
