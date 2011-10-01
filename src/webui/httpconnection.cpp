@@ -78,19 +78,31 @@ void HttpConnection::handleDownloadFailure(const QString& url,
 }
 
 void HttpConnection::read() {
-  const QByteArray input = m_socket->readAll();
+  static QByteArray input;
+
+  input.append(m_socket->readAll());
   if(input.size() > 100000) {
     qDebug("Request too big");
     m_generator.setStatusLine(400, "Bad Request");
     write();
     return;
   }
+
+  if (!input.endsWith("\r\n\r\n")) {
+    // incomplete, let wait for more data
+    qDebug() << Q_FUNC_INFO << "Incomplete HTTP request, let's wait for more data...";
+    return;
+  }
+
+  // HTTP Request is complete, let's parse it
   m_parser.write(input);
+  input.clear();
+
   if(m_parser.isError()) {
     m_generator.setStatusLine(400, "Bad Request");
     write();
   } else {
-      respond();
+    respond();
   }
 }
 
