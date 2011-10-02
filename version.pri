@@ -1,5 +1,5 @@
 PROJECT_NAME = qbittorrent
-PROJECT_VERSION = 2.9.0rc2
+PROJECT_VERSION = 2.9.0rc3
 
 os2 {
     DEFINES += VERSION=\'\"v$${PROJECT_VERSION}\"\'
