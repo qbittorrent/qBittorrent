@@ -70,7 +70,7 @@ enum Service { DYNDNS, NOIP, NONE = -1 };
 }
 
 class Preferences : public QIniSettings {
-  Q_DISABLE_COPY(Preferences);
+  Q_DISABLE_COPY(Preferences)
 
 public:
   Preferences() : QIniSettings("qBittorrent", "qBittorrent") {
@@ -186,45 +186,10 @@ public:
 
   // Downloads
   QString getSavePath() const {
-#if defined(Q_WS_WIN)
-    // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
-    // instead of hardcoding "Downloads"
-    return value(QString::fromUtf8("Preferences/Downloads/SavePath"),
-                 QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath("Downloads")).toString();
-#elif defined(Q_WS_X11)
-      QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
-      if (!save_path.isEmpty())
-        return save_path;
-
-      // Default save path on Linux
-      QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
-      if (config_path.isEmpty())
-        config_path = QDir::home().absoluteFilePath(".config");
-
-      QString user_dirs_file = config_path + "/user-dirs.dirs";
-      if (QFile::exists(user_dirs_file)) {
-        QSettings settings(user_dirs_file, QSettings::IniFormat);
-        QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
-        if (!xdg_download_dir.isEmpty()) {
-          // Resolve $HOME environment variables
-          xdg_download_dir.replace("$HOME", QDir::homePath());
-          save_path = xdg_download_dir;
-          qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
-        }
-      }
-
-      // Fallback
-      if (save_path.isEmpty() || !QFile::exists(save_path)) {
-        save_path = QDir::home().absoluteFilePath("Downloads");
-        qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
-      }
-
+    QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
+    if (!save_path.isEmpty())
       return save_path;
-
-#else
-    // TODO: On MAC OS X there is probably a way to detect the Downloads folder path
-    return value(QString::fromUtf8("Preferences/Downloads/SavePath"), QDir::home().absoluteFilePath("Downloads")).toString();
-#endif
+    return misc::QDesktopServicesDownloadLocation();
   }
 
   void setSavePath(const QString &save_path) {

@@ -145,6 +145,7 @@ public:
   /* Ported from Qt4 to drop dependency on QtGui */
   static QString QDesktopServicesDataLocation();
   static QString QDesktopServicesCacheLocation();
+  static QString QDesktopServicesDownloadLocation();
   /* End of Qt4 code */
 
 #ifndef DISABLE_GUI

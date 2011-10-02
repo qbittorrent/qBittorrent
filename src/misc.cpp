@@ -37,6 +37,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QProcess>
+#include <QSettings>
 #include <boost/filesystem/operations.hpp>
 
 #ifdef DISABLE_GUI
@@ -59,6 +60,8 @@ const int UNLEN = 256;
 #ifdef Q_WS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
+#include <Cocoa/Cocoa.h>
+#include <NSPathUtilities.h>
 #endif
 
 #ifdef Q_WS_WIN
@@ -101,7 +104,9 @@ QString misc::QDesktopServicesDataLocation() {
   return result;
 #else
 #ifdef Q_WS_MAC
-  // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
+  // http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/Reference/reference.html
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+  NSString *dataDirectory =
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
   if (err)
@@ -147,6 +152,54 @@ QString misc::QDesktopServicesCacheLocation() {
   return xdgCacheHome;
 #endif
 #endif
+}
+
+QString misc::QDesktopServicesDownloadLocation() {
+#ifdef Q_WS_WIN
+  // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
+  // instead of hardcoding "Downloads"
+  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads")).toString();
+#endif
+
+#ifdef Q_WS_X11
+  QString save_path;
+  // Default save path on Linux
+  QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
+  if (config_path.isEmpty())
+    config_path = QDir::home().absoluteFilePath(".config");
+
+  QString user_dirs_file = config_path + "/user-dirs.dirs";
+  if (QFile::exists(user_dirs_file)) {
+    QSettings settings(user_dirs_file, QSettings::IniFormat);
+    QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
+    if (!xdg_download_dir.isEmpty()) {
+      // Resolve $HOME environment variables
+      xdg_download_dir.replace("$HOME", QDir::homePath());
+      save_path = xdg_download_dir;
+      qDebug() << Q_FUNC_INFO << "SUCCESS: Using XDG path for downloads: " << save_path;
+    }
+  }
+
+  // Fallback
+  if (!save_path.isEmpty() && !QFile::exists(save_path)) {
+    QDir().mkpath(save_path);
+  }
+
+  if (save_path.isEmpty() || !QFile::exists(save_path)) {
+    save_path = QDir::home().absoluteFilePath(tr("Downloads"));
+    qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
+  }
+
+  return save_path;
+#endif
+
+#ifdef Q_WS_MAC
+  // TODO: Use NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES)
+  // See http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/Reference/reference.html
+#endif
+
+  // Fallback
+  return QDir::home().absoluteFilePath(tr("Downloads"));
 }
 
 long long misc::freeDiskSpaceOnPath(QString path) {
