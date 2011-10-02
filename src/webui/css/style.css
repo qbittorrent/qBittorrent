@@ -1,8 +1,8 @@
 /* Reset */
 
-ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }
+/*ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }*/
 a img,:link img,:visited img { border: none; }
-table { border-collapse: collapse; border-spacing: 0; }
+/*table { border-collapse: collapse; border-spacing: 0; }*/
 :focus { outline: none; }
 
 /* Structure */
@@ -294,11 +294,46 @@ fieldset.settings {
 	border-radius: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
-	padding: 4px;
+	padding: 4px 4px 4px 10px;
 }
 
 fieldset.settings legend {
-        margin-left: 8px;
+  margin-left: 8px;
 	padding: 4px;
-        font-weight: bold;
+  font-weight: bold;
 }
+
+fieldset.settings label {
+  padding: 2px;
+}
+
+fieldset.settings .leftLabelSmall {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+fieldset.settings .leftLabelLarge {
+  width: 14em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+div.formRow {
+  clear: left;
+  display: block;
+}
+
+ul.filterList {
+  margin: 0 0 0 16px;
+  padding-left: 0;
+}
+
+ul.filterList li {
+  padding-top: 2px
+}
+
