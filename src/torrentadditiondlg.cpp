@@ -199,6 +199,7 @@ void torrentAdditionDialog::hideTorrentContent() {
 void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
   is_magnet = true;
   this->from_url = magnet_uri;
+  checkLastFolder->setEnabled(false);
 
   // Disable Save path combox and browse button
   // Save path should be default for magnet links
