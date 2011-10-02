@@ -158,6 +158,7 @@ QString misc::QDesktopServicesDownloadLocation() {
 #ifdef Q_WS_WIN
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
+  // Unfortunately, this would break compatibility with WinXP
   return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads")).toString();
 #endif
 
