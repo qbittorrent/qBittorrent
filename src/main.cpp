@@ -272,7 +272,7 @@ int main(int argc, char *argv[]){
   }
 #endif
   // Set environment variable
-  if(putenv((char*)"QBITTORRENT="VERSION)) {
+  if (qputenv("QBITTORRENT", QByteArray(VERSION))) {
     std::cerr << "Couldn't set environment variable...\n";
   }
 

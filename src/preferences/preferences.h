@@ -197,7 +197,7 @@ public:
         return save_path;
 
       // Default save path on Linux
-      QString config_path = QString::fromLocal8Bit(getenv("XDG_CONFIG_HOME"));
+      QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
       if (config_path.isEmpty())
         config_path = QDir::home().absoluteFilePath(".config");
 

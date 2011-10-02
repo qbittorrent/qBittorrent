@@ -125,14 +125,13 @@ bool SearchEngine::addPythonPathToEnv() {
   QString python_path = Preferences::getPythonPath();
   if(!python_path.isEmpty()) {
     // Add it to PATH envvar
-    QString path_envar = QString::fromLocal8Bit(getenv("PATH"));
+    QString path_envar = QString::fromLocal8Bit(qgetenv("PATH").constData());
     if(path_envar.isNull()) {
       path_envar = "";
     }
     path_envar = python_path+";"+path_envar;
     qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-    QString envar = "PATH="+path_envar;
-    putenv(envar.toLocal8Bit().data());
+    qputenv("PATH", path_envar.toLocal8Bit());
     return true;
   }
   return false;

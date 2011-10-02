@@ -2083,31 +2083,16 @@ void QBtSession::setProxySettings(proxy_settings proxySettings) {
     break;
   default:
     qDebug("Disabling HTTP communications proxy");
-#ifdef Q_WS_WIN
-    putenv("http_proxy=");
-    putenv("sock_proxy=");
-#else
-    unsetenv("http_proxy");
-    unsetenv("sock_proxy");
-#endif
+    qputenv("http_proxy", QByteArray());
+    qputenv("sock_proxy", QByteArray());
     return;
   }
   // We need this for urllib in search engine plugins
-#ifdef Q_WS_WIN
-  QString type_str;
-  if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-    type_str = "sock_proxy";
-  else
-    type_str = "http_proxy";
-  QString tmp = type_str+"="+proxy_str;
-  putenv(tmp.toLocal8Bit().constData());
-#else
   qDebug("HTTP communications proxy string: %s", qPrintable(proxy_str));
   if(proxySettings.type == proxy_settings::socks5 || proxySettings.type == proxy_settings::socks5_pw)
-    setenv("sock_proxy", proxy_str.toLocal8Bit().constData(), 1);
+    qputenv("sock_proxy", proxy_str.toLocal8Bit());
   else
-    setenv("http_proxy", proxy_str.toLocal8Bit().constData(), 1);
-#endif
+    qputenv("http_proxy", proxy_str.toLocal8Bit());
 }
 
 void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
