@@ -5359,6 +5359,10 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent kommer nu att stänga av datorn därför att alla hämtningar är färdiga.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Hämtningar</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

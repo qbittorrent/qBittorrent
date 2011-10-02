@@ -5456,6 +5456,10 @@ Tieto moduly však boli vypnuté.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent teraz vypne počítač, pretože sťahovanie všetkých torrentov bolo dokončené.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Sťahovania</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

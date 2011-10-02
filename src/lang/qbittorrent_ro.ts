@@ -4893,6 +4893,10 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Descărcări</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

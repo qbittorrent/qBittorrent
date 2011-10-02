@@ -5420,6 +5420,10 @@ Jednak tamte wtyczki były wyłączone.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent wyłączy teraz komputer, ponieważ pobieranie zostało ukończone.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Pobieranie</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

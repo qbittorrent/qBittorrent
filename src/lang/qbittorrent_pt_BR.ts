@@ -5453,6 +5453,10 @@ Portanto os plugins foram desabilitados.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBIttorrent irá desligar seu computador agora porque os downloads terminaram.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Downloads</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

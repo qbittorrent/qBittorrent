@@ -5532,6 +5532,10 @@ However, those plugins were disabled.</source>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorent сейчас выключит компьютер, потому что все загрузки завершены.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Загрузки</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

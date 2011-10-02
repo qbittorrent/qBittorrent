@@ -5472,6 +5472,10 @@ However, those plugins were disabled.</source>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>因為所有下載已經完成, qBittorrent 現在會將電腦關機。</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">下載</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

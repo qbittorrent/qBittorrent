@@ -5339,6 +5339,10 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">İndirilenler</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

@@ -5191,6 +5191,10 @@ De plugins zijn uitgeschakeld.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent zal de computer afsluiten, want alle downloads zijn voltooid.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Downloads</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>

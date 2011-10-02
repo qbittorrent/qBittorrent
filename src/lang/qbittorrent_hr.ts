@@ -5960,6 +5960,10 @@ Međutim, te tražilice su bile onemogućene.</translation>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent će sada isključiti računalo jer su sva preuzimanja završila.</translation>
     </message>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Preuzimanja</translation>
+    </message>
 </context>
 <context>
     <name>options_imp</name>
