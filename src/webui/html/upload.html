@@ -13,11 +13,13 @@ function hideAll() {
 </head>
 <body>
 <br/>
+<iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px;" src="javascript:false;"></iframe>
 <center>
 	<h1 class="vcenter"><img class="vcenter" title="Download local torrent" src="theme/list-add"/>_(Download local torrent)</h1>
-<iframe src="uploadframe.html" frameborder="0" style="padding: 10px; height: 80px; width: 500px;" id="myiframe">
-<p>Your Web browser does not support iframes</p>
-</iframe>	
+<form action="/command/upload" enctype="multipart/form-data" method="post" id="uploadForm" target="upload_frame">
+  <input type="file" name="torrentfile" id="torrentfile" size="40"/><br/><br/>
+  <input type="submit" value="_(Download)" id="upButton"/>
+</form>
 </center>
 </body>
 </html>
