@@ -4958,7 +4958,7 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="190"/>
         <location filename="../misc.cpp" line="203"/>
         <source>Downloads</source>
-        <translation type="unfinished">ダウンロード</translation>
+        <translation>ダウンロード</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="737"/>
