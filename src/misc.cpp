@@ -75,6 +75,10 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
+#ifdef Q_WS_WIN
+#include <QDesktopServices>
+#endif
+
 using namespace libtorrent;
 
 const int MAX_FILENAME_LENGTH = 255;
@@ -159,7 +163,7 @@ QString misc::QDesktopServicesDownloadLocation() {
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
-  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads")).toString();
+  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
 #endif
 
 #ifdef Q_WS_X11

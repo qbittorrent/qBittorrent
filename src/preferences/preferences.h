@@ -45,14 +45,6 @@
 #include <QCoreApplication>
 #endif
 
-#ifdef Q_WS_WIN
-#include <QDesktopServices>
-#endif
-
-#ifdef Q_OS_LINUX
-#include <cstdlib>
-#endif
-
 #include "misc.h"
 #include "qinisettings.h"
 
