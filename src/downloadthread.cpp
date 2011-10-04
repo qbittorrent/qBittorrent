@@ -86,9 +86,8 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
       // TODO: Support GZIP compression
       tmpfile->write(reply->readAll());
       tmpfile->close();
-      // XXX: For some reason, tmpfile has to be destroyed before
-      // the signal is sent or the file stays locked on Windows
-      // for some reason.
+      // XXX: tmpfile needs to be deleted on Windows before using the file
+      // or it will complain that the file is used by another process.
       delete tmpfile;
       // Send finished signal
       emit downloadFinished(url, filePath);

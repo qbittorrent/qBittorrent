@@ -430,16 +430,18 @@ void HttpConnection::respondCommand(const QString& command) {
   if(command == "upload") {
     qDebug() << Q_FUNC_INFO << "upload";
     // Get a unique filename
-    // XXX: We need to use a QTemporaryFile pointer here
-    // and it fails on Windows.
-    // The file also needs to end with .torrent otherwise
-    // it fails to load on Windows.
     QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+    tmpfile->setAutoRemove(false);
     if (tmpfile->open()) {
+      QString filePath = tmpfile->fileName();
       tmpfile->write(m_parser.torrent());
       tmpfile->close();
-      emit torrentReadyToBeDownloaded(tmpfile->fileName(), false, QString(), false);
-      tmpfile->deleteLater();
+      // XXX: tmpfile needs to be deleted on Windows before using the file
+      // or it will complain that the file is used by another process.
+      delete tmpfile;
+      emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
+      // Clean up
+      QFile::remove(filePath);
     } else {
       std::cerr << "I/O Error: Could not create temporary file" << std::endl;
       delete tmpfile;
