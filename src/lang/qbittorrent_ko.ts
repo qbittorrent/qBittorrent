@@ -6217,129 +6217,129 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="260"/>
-        <location filename="../torrentadditiondlg.cpp" line="263"/>
+        <location filename="../torrentadditiondlg.cpp" line="261"/>
+        <location filename="../torrentadditiondlg.cpp" line="264"/>
         <source>Unable to decode torrent file:</source>
         <translation>토런트 파일을 해독 할 수가 없습니다:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
-        <location filename="../torrentadditiondlg.cpp" line="553"/>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="539"/>
+        <location filename="../torrentadditiondlg.cpp" line="554"/>
+        <location filename="../torrentadditiondlg.cpp" line="556"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="211"/>
+        <location filename="../torrentadditiondlg.cpp" line="212"/>
         <source>Unable to decode magnet link:</source>
         <translation>마그넷 링크를 읽을 수 없음:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="217"/>
+        <location filename="../torrentadditiondlg.cpp" line="218"/>
         <source>Magnet Link</source>
         <translation>마그넷 링크</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="359"/>
+        <location filename="../torrentadditiondlg.cpp" line="360"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="403"/>
+        <location filename="../torrentadditiondlg.cpp" line="404"/>
         <source>Rename the file</source>
         <translation>파일 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="404"/>
+        <location filename="../torrentadditiondlg.cpp" line="405"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="408"/>
-        <location filename="../torrentadditiondlg.cpp" line="438"/>
+        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="410"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일 이름에 특수문자가 있습니다. 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="439"/>
-        <location filename="../torrentadditiondlg.cpp" line="473"/>
+        <location filename="../torrentadditiondlg.cpp" line="440"/>
+        <location filename="../torrentadditiondlg.cpp" line="474"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>같은 이름의 파일이 있습니다. 다른 이름을 사용해 주세요.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="472"/>
+        <location filename="../torrentadditiondlg.cpp" line="473"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 바꿀수 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="520"/>
+        <location filename="../torrentadditiondlg.cpp" line="521"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(자료를 다운 후에는 %1 의 디스크 공간이 남습니다.)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="523"/>
+        <location filename="../torrentadditiondlg.cpp" line="524"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(자료를 다운받기 위해서는 %1 의 디스크 공간이 필요합니다)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Empty save path</source>
         <translation>저장 경로 지우기</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Please enter a save path</source>
         <translation>저장 경로를 지정해주십시오</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Save path creation error</source>
         <translation>저장 경로 설정이 잘못되었습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Could not create the save path</source>
         <translation>저장 경로를 생성할수가 없습니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Invalid label name</source>
         <translation>적절치 않은 라벨 이름입니다</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>Seeding mode error</source>
         <translation>공유 모트 오류</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>파일 검사를 옵션을 선택하셨지만 지정된 폴더에는 로컬 파일이 존재하지 않습니다. 파일 검사 옵션을 비활성화 하시거나 폴더를 재지정하십시오.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>Invalid file selection</source>
         <translation>부적당한 파일 선택</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>You must select at least one file in the torrent</source>
         <translation>토렌트에서 적어도 하나 이상의 파일을 선택해야 합니다 </translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="363"/>
+        <location filename="../torrentadditiondlg.cpp" line="364"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>

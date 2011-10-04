@@ -6688,129 +6688,129 @@ However, those plugins were disabled.</source>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="260"/>
-        <location filename="../torrentadditiondlg.cpp" line="263"/>
+        <location filename="../torrentadditiondlg.cpp" line="261"/>
+        <location filename="../torrentadditiondlg.cpp" line="264"/>
         <source>Unable to decode torrent file:</source>
         <translation>Не мога да декодирам торент-файла:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
-        <location filename="../torrentadditiondlg.cpp" line="553"/>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="539"/>
+        <location filename="../torrentadditiondlg.cpp" line="554"/>
+        <location filename="../torrentadditiondlg.cpp" line="556"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="211"/>
+        <location filename="../torrentadditiondlg.cpp" line="212"/>
         <source>Unable to decode magnet link:</source>
         <translation>Не мога да декодирам връзката Magnet:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="217"/>
+        <location filename="../torrentadditiondlg.cpp" line="218"/>
         <source>Magnet Link</source>
         <translation>Връзка Magnet</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="359"/>
+        <location filename="../torrentadditiondlg.cpp" line="360"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="403"/>
+        <location filename="../torrentadditiondlg.cpp" line="404"/>
         <source>Rename the file</source>
         <translation>Преименувай файла</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="404"/>
+        <location filename="../torrentadditiondlg.cpp" line="405"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="408"/>
-        <location filename="../torrentadditiondlg.cpp" line="438"/>
+        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
         <source>The file could not be renamed</source>
         <translation>Файла не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="410"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Името на файла съдържа забранени символи, моля изберете различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="439"/>
-        <location filename="../torrentadditiondlg.cpp" line="473"/>
+        <location filename="../torrentadditiondlg.cpp" line="440"/>
+        <location filename="../torrentadditiondlg.cpp" line="474"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Това име вече съществува в тази папка. Моля, ползвайте различно име.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="472"/>
+        <location filename="../torrentadditiondlg.cpp" line="473"/>
         <source>The folder could not be renamed</source>
         <translation>Папката не може да се преименува</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="520"/>
+        <location filename="../torrentadditiondlg.cpp" line="521"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 остават след сваляне на торента)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="523"/>
+        <location filename="../torrentadditiondlg.cpp" line="524"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(още %1 са необходими за свалянето)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Empty save path</source>
         <translation>Празен път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Please enter a save path</source>
         <translation>Моля въведете път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Save path creation error</source>
         <translation>Грешка при създаване на път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Could not create the save path</source>
         <translation>Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>Seeding mode error</source>
         <translation>Грешка в режим даване</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Избрахте прескачане на проверката. Обаче местните файлове изглежда не съществуват в папката получател. Моля изключете тази функция или обновете пътя за съхранение.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>Invalid file selection</source>
         <translation>Невалиден избор на файл</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Трябва да изберете поне един файл в торента</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="363"/>
+        <location filename="../torrentadditiondlg.cpp" line="364"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>

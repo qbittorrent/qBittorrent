@@ -6684,129 +6684,129 @@ Viszont kikapcsoltam a modult.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="260"/>
-        <location filename="../torrentadditiondlg.cpp" line="263"/>
+        <location filename="../torrentadditiondlg.cpp" line="261"/>
+        <location filename="../torrentadditiondlg.cpp" line="264"/>
         <source>Unable to decode torrent file:</source>
         <translation>Hasznavehetetlen torrent fájl:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="211"/>
+        <location filename="../torrentadditiondlg.cpp" line="212"/>
         <source>Unable to decode magnet link:</source>
         <translation>Magnet link dekódolása sikertelen:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="217"/>
+        <location filename="../torrentadditiondlg.cpp" line="218"/>
         <source>Magnet Link</source>
         <translation>Magnet Link</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="359"/>
+        <location filename="../torrentadditiondlg.cpp" line="360"/>
         <source>Rename...</source>
         <translation>Átnevezés...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="403"/>
+        <location filename="../torrentadditiondlg.cpp" line="404"/>
         <source>Rename the file</source>
         <translation>Fájl átnevezése</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="404"/>
+        <location filename="../torrentadditiondlg.cpp" line="405"/>
         <source>New name:</source>
         <translation>Új név:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="408"/>
-        <location filename="../torrentadditiondlg.cpp" line="438"/>
+        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
         <source>The file could not be renamed</source>
         <translation>A fájlt nem lehet átnevezni</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="409"/>
+        <location filename="../torrentadditiondlg.cpp" line="410"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ez a név tiltott karaktereket tartalmaz, kérlek válassz másik nevet.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="439"/>
-        <location filename="../torrentadditiondlg.cpp" line="473"/>
+        <location filename="../torrentadditiondlg.cpp" line="440"/>
+        <location filename="../torrentadditiondlg.cpp" line="474"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ilyen fájl már van a könyvtárban. Kérlek válassz másik nevet.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="472"/>
+        <location filename="../torrentadditiondlg.cpp" line="473"/>
         <source>The folder could not be renamed</source>
         <translation>A könyvtárat nem lehet átnevezni</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="520"/>
+        <location filename="../torrentadditiondlg.cpp" line="521"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 hely marad letöltés után)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="523"/>
+        <location filename="../torrentadditiondlg.cpp" line="524"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 hely hiányzik a letöltéshez)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="538"/>
-        <location filename="../torrentadditiondlg.cpp" line="553"/>
-        <location filename="../torrentadditiondlg.cpp" line="555"/>
+        <location filename="../torrentadditiondlg.cpp" line="539"/>
+        <location filename="../torrentadditiondlg.cpp" line="554"/>
+        <location filename="../torrentadditiondlg.cpp" line="556"/>
         <source>Choose save path</source>
         <translation>Mentés helye</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Empty save path</source>
         <translation>Mentés helye hiányos</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="609"/>
+        <location filename="../torrentadditiondlg.cpp" line="610"/>
         <source>Please enter a save path</source>
         <translation>Kérlek add meg a mentés helyét</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Save path creation error</source>
         <translation>Járhatatlan ösvény</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="693"/>
+        <location filename="../torrentadditiondlg.cpp" line="694"/>
         <source>Could not create the save path</source>
         <translation>Nem sikerült létrehozni a letöltési könyvtárat. (Írásvédett?)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Invalid label name</source>
         <translation>Érvénytelen címke név</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="630"/>
+        <location filename="../torrentadditiondlg.cpp" line="631"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Kérlek ne használj speciális karaktereket a címke nevében.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>Seeding mode error</source>
         <translation>Seed mód hiba</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="673"/>
+        <location filename="../torrentadditiondlg.cpp" line="674"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Ellenőrzés kihagyását kérted. Viszont a megadott helyen nincsenek a megadott fájlok. Kapcsold ki ezt a funkciót, vagy adj meg másik letöltési helyet.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>Invalid file selection</source>
         <translation>Választás hiánya</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="680"/>
+        <location filename="../torrentadditiondlg.cpp" line="681"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Legalább egy fájlt ki kell választanod</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="363"/>
+        <location filename="../torrentadditiondlg.cpp" line="364"/>
         <source>Priority</source>
         <translation>Elsőbbség</translation>
     </message>
