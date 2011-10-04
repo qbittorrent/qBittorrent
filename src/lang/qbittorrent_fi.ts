@@ -3928,13 +3928,13 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2864"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2868"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2870"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2874"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3970,43 +3970,43 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2420"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2424"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation type="unfinished">Tapahtui I/O-virhe, ”%1” pysäytettiin.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2421"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2551"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2425"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2555"/>
         <source>Reason: %1</source>
         <translation type="unfinished">Syy: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2510"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2514"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: portin määritys epäonnistui virhe: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2519"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PP: portin määritys onnistui, viesti: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2546"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2550"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished">Torrentin %1 tiedostokoot eivät täsmää, keskeytetään.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2550"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2554"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Nopean jatkamisen tiedot eivät kelpaa torrentille %1. Tarkistetaan uudestaan...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2556"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2560"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Jakajien haku osoitteesta %1 epäonnistui: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2685"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished">Ladataan torrenttia ”%1”. Odota...</translation>
