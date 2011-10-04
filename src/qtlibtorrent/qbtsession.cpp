@@ -2390,15 +2390,19 @@ void QBtSession::readAlerts() {
         // Truncate root folder
         const QString root_folder = misc::truncateRootFolder(p->handle);
         TorrentPersistentData::setRootFolder(h.hash(), root_folder);
+        qDebug() << "magnet root folder is:" <<  root_folder;
 
         // Move to a subfolder corresponding to the torrent root folder if necessary
         if(!root_folder.isEmpty()) {
           if(!h.is_seed() && !defaultTempPath.isEmpty()) {
+            qDebug("Incomplete torrent in temporary folder case");
             QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
             if(!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
             torrent_tmp_path += root_folder;
+            qDebug() << "Moving torrent to" << torrent_tmp_path;
             h.move_storage(torrent_tmp_path);
           } else {
+            qDebug() << "Incomplete torrent in destination folder case";
             QString save_path = h.save_path();
             h.move_storage(QDir(save_path).absoluteFilePath(root_folder));
           }
