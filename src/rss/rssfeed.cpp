@@ -95,7 +95,10 @@ IRssFile::FileType RssFeed::type() const {
 }
 
 void RssFeed::refresh() {
-  if(m_loading) return;
+  if(m_loading) {
+    qWarning() << Q_FUNC_INFO << "Feed" << this->displayName() << "is already being refreshed, ignoring request";
+    return;
+  }
   m_loading = true;
   // Download the RSS again
   RssManager::instance()->rssDownloader()->downloadUrl(m_url);
@@ -351,25 +354,28 @@ bool RssFeed::parseXmlFile(const QString &file_path){
 // read and store the downloaded rss' informations
 void RssFeed::handleFinishedDownload(const QString& url, const QString &file_path) {
   if(url == m_url) {
+    qDebug() << Q_FUNC_INFO << "Successfuly downloaded RSS feed at" << url;
     m_downloadFailure = false;
     m_loading = false;
     // Parse the download RSS
     if(parseXmlFile(file_path)) {
       m_refreshed = true;
       RssManager::instance()->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+      qDebug() << Q_FUNC_INFO << "Feed parsed successfuly";
     }
   }
   else if(url == m_iconUrl) {
     m_icon = file_path;
-    qDebug() << "icon path:" << m_icon;
+    qDebug() << Q_FUNC_INFO << "icon path:" << m_icon;
     RssManager::instance()->forwardFeedIconChanged(m_url, m_icon); // XXX: Ugly
   }
 }
 
 void RssFeed::handleDownloadFailure(const QString &url, const QString& error) {
-  Q_UNUSED(error);
   if(url != m_url) return;
   m_downloadFailure = true;
   m_loading = false;
   RssManager::instance()->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+  qWarning() << "Failed to download RSS feed at" << url;
+  qWarning() << "Reason:" << error;
 }
