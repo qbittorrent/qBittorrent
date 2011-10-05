@@ -249,11 +249,17 @@ void RSSImp::deleteSelectedItems() {
         listArticles->clear();
       }
       IRssFile *rss_item = m_feedList->getRSSItem(item);
+      QTreeWidgetItem * parent = item->parent();
       // Notify TreeWidget
       m_feedList->itemAboutToBeRemoved(item);
       // Actually delete the item
       rss_item->parent()->removeChild(rss_item->id());
       delete item;
+      // Update parents count
+      while (parent && parent != m_feedList->invisibleRootItem()) {
+        updateItemInfos (parent);
+        parent = parent->parent();
+      }
     }
     m_rssManager->saveStreamList();
     // Update Unread items
@@ -549,6 +555,9 @@ void RSSImp::updateItemsInfos(const QList<QTreeWidgetItem *> &items) {
 
 void RSSImp::updateItemInfos(QTreeWidgetItem *item) {
   IRssFile *rss_item = m_feedList->getRSSItem(item);
+  if (!rss_item)
+    return;
+
   QString name;
   if(rss_item == m_rssManager)
     name = tr("Unread");
