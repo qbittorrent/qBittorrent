@@ -199,8 +199,19 @@ QString misc::QDesktopServicesDownloadLocation() {
 #endif
 
 #ifdef Q_WS_MAC
-  // TODO: Use NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES)
-  // See http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/Reference/reference.html
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+  NSString *applicationDirectory = [paths objectAtIndex:0];
+  NSRange range;
+  range.location = 0;
+  range.length = [applicationDirectory length];
+  QString path(range.length, QChar(0));
+
+  unichar *chars = new unichar[range.location];
+  [nsstr getCharacters:chars range:range];
+  QString path = QString::fromUtf16(chars, range.length);
+  delete chars;
+  path += QLatin1Char('/') + qApp->applicationName();
+  return path;
 #endif
 
   // Fallback
