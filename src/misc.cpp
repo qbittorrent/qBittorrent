@@ -61,7 +61,6 @@ const int UNLEN = 256;
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
 #include <Cocoa/Cocoa.h>
-#include <NSPathUtilities.h>
 #endif
 
 #ifdef Q_WS_WIN
