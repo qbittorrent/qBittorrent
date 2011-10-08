@@ -403,10 +403,8 @@ void QBtSession::configureSession() {
 #ifdef Q_WS_WIN
 #if LIBTORRENT_VERSION_MINOR > 14
   // Fixes huge memory usage on Windows 7 (especially when checking files)
-  //sessionSettings.disk_io_write_mode = session_settings::disable_os_cache;
-  //sessionSettings.disk_io_read_mode = session_settings::disable_os_cache;
-  sessionSettings.disk_io_write_mode = session_settings::disable_os_cache_for_aligned_files;
-  sessionSettings.disk_io_read_mode = session_settings::disable_os_cache_for_aligned_files;
+  sessionSettings.disk_io_write_mode = session_settings::disable_os_cache;
+  sessionSettings.disk_io_read_mode = session_settings::disable_os_cache;
 #endif
 #endif
 #if LIBTORRENT_VERSION_MINOR > 15
