@@ -5913,83 +5913,82 @@ However, those plugins were disabled.</source>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../misc.cpp" line="337"/>
+        <location filename="../misc.cpp" line="335"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="87"/>
+        <location filename="../misc.cpp" line="86"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="88"/>
+        <location filename="../misc.cpp" line="87"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>킬로바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="89"/>
+        <location filename="../misc.cpp" line="88"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>메가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="90"/>
+        <location filename="../misc.cpp" line="89"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>기가바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="91"/>
+        <location filename="../misc.cpp" line="90"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>테라바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="166"/>
-        <location filename="../misc.cpp" line="194"/>
-        <location filename="../misc.cpp" line="218"/>
+        <location filename="../misc.cpp" line="192"/>
+        <location filename="../misc.cpp" line="216"/>
         <source>Downloads</source>
         <translation type="unfinished">다운로드</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="812"/>
+        <location filename="../misc.cpp" line="810"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="817"/>
+        <location filename="../misc.cpp" line="815"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="752"/>
-        <location filename="../misc.cpp" line="757"/>
-        <location filename="../misc.cpp" line="761"/>
-        <location filename="../misc.cpp" line="764"/>
-        <location filename="../misc.cpp" line="769"/>
-        <location filename="../misc.cpp" line="772"/>
+        <location filename="../misc.cpp" line="750"/>
+        <location filename="../misc.cpp" line="755"/>
+        <location filename="../misc.cpp" line="759"/>
+        <location filename="../misc.cpp" line="762"/>
+        <location filename="../misc.cpp" line="767"/>
+        <location filename="../misc.cpp" line="770"/>
         <source>Unknown</source>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="640"/>
+        <location filename="../misc.cpp" line="638"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>알수 없음</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="803"/>
+        <location filename="../misc.cpp" line="801"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="807"/>
+        <location filename="../misc.cpp" line="805"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
