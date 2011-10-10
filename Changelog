@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.1
+    - I18N: Update Russian translation
+
 * Sat Oct 08 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
     - FEATURE: Add file association settings to program preferences (Windows)
     - FEATURE: Add setting to ignore slow torrents in queueing system
