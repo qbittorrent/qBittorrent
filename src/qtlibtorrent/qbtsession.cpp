@@ -1562,9 +1562,8 @@ bool QBtSession::enableDHT(bool b) {
 #endif
         s->add_dht_router(std::make_pair(std::string("router.bittorrent.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("router.utorrent.com"), 6881));
-        s->add_dht_router(std::make_pair(std::string("router.bitcomet.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
-        s->add_dht_router(std::make_pair(std::string("dht.aelitis.com "), 6881)); // Vuze
+        s->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
         DHTEnabled = true;
         qDebug("DHT enabled");
       }catch(std::exception e) {
