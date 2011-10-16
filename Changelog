@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.1
+    - BUGFIX: Fix ratio calculation for purely seeded torrents
     - I18N: Update Russian translation
 
 * Sat Oct 08 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
