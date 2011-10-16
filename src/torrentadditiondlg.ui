@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>addTorrentDialog</class>
  <widget class="QDialog" name="addTorrentDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>560</width>
-    <height>517</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Torrent addition dialog</string>
   </property>
@@ -32,12 +24,6 @@
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="savePathLbl">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>Save path:</string>
        </property>
@@ -47,12 +33,6 @@
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QComboBox" name="savePathTxt">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="editable">
           <bool>true</bool>
          </property>
@@ -93,12 +73,22 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string notr="true"> - </string>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
@@ -148,14 +138,8 @@
       <widget class="QComboBox" name="comboLabel">
        <property name="minimumSize">
         <size>
-         <width>180</width>
+         <width>150</width>
          <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>26</height>
         </size>
        </property>
        <property name="editable">
