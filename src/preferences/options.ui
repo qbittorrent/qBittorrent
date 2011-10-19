@@ -1419,7 +1419,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-40</y>
              <width>494</width>
              <height>454</height>
             </rect>

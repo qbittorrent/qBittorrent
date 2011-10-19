@@ -236,6 +236,22 @@ void EventManager::setGlobalPreferences(QVariantMap m) {
 #endif
   if(m.contains("limit_tcp_overhead"))
     pref.includeOverheadInLimits(m["limit_tcp_overhead"].toBool());
+  if(m.contains("alt_dl_limit"))
+    pref.setAltGlobalDownloadLimit(m["alt_dl_limit"].toInt());
+  if(m.contains("alt_up_limit"))
+    pref.setAltGlobalUploadLimit(m["alt_up_limit"].toInt());
+  if(m.contains("scheduler_enabled"))
+    pref.setSchedulerEnabled(m["scheduler_enabled"].toBool());
+  if(m.contains("schedule_from_hour") && m.contains("schedule_from_min")) {
+    pref.setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(),
+                                     m["schedule_from_min"].toInt()));
+  }
+  if(m.contains("schedule_to_hour") && m.contains("schedule_to_min")) {
+    pref.setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(),
+                                   m["schedule_to_min"].toInt()));
+  }
+  if(m.contains("scheduler_days"))
+    pref.setSchedulerDays(scheduler_days(m["scheduler_days"].toInt()));
   // Bittorrent
   if(m.contains("dht"))
     pref.setDHTEnabled(m["dht"].toBool());
@@ -360,6 +376,16 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["limit_utp_rate"] = pref.isuTPRateLimited();
 #endif
   data["limit_tcp_overhead"] = pref.includeOverheadInLimits();
+  data["alt_dl_limit"] = pref.getAltGlobalDownloadLimit();
+  data["alt_up_limit"] = pref.getAltGlobalUploadLimit();
+  data["scheduler_enabled"] = pref.isSchedulerEnabled();
+  const QTime start_time = pref.getSchedulerStartTime();
+  data["schedule_from_hour"] = start_time.hour();
+  data["schedule_from_min"] = start_time.minute();
+  const QTime end_time = pref.getSchedulerEndTime();
+  data["schedule_to_hour"] = end_time.hour();
+  data["schedule_to_min"] = end_time.minute();
+  data["scheduler_days"] = pref.getSchedulerDays();
   // Bittorrent
   data["dht"] = pref.isDHTEnabled();
   data["dhtSameAsBT"] = pref.isDHTPortSameAsBT();
