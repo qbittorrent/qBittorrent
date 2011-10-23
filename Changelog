@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.1
+* Sun Oct 23 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.1
     - BUGFIX: Add support for speed limits scheduling (Web UI)
     - BUGFIX: Fix ratio calculation for purely seeded torrents
     - I18N: Update Russian translation
