@@ -43,7 +43,6 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
-#include <boost/filesystem/fstream.hpp>
 
 #ifdef Q_WS_WIN
 #include <Windows.h>
@@ -638,18 +637,22 @@ void QTorrentHandle::move_storage(QString new_path) const {
 
 bool QTorrentHandle::save_torrent_file(QString path) const {
   if(!has_metadata()) return false;
-  QFile met_file(path);
-  if(met_file.open(QIODevice::WriteOnly)) {
-    entry meta = bdecode(torrent_handle::get_torrent_info().metadata().get(), torrent_handle::get_torrent_info().metadata().get()+torrent_handle::get_torrent_info().metadata_size());
-    entry torrent_file(entry::dictionary_t);
-    torrent_file["info"] = meta;
-    if(!torrent_handle::trackers().empty())
-      torrent_file["announce"] = torrent_handle::trackers().front().url;
-    boost::filesystem::ofstream out(path.toLocal8Bit().constData(), std::ios_base::binary);
-    out.unsetf(std::ios_base::skipws);
-    bencode(std::ostream_iterator<char>(out), torrent_file);
+
+  entry meta = bdecode(torrent_handle::get_torrent_info().metadata().get(), torrent_handle::get_torrent_info().metadata().get()+torrent_handle::get_torrent_info().metadata_size());
+  entry torrent_entry(entry::dictionary_t);
+  torrent_entry["info"] = meta;
+  if(!torrent_handle::trackers().empty())
+    torrent_entry["announce"] = torrent_handle::trackers().front().url;
+
+  vector<char> out;
+  bencode(back_inserter(out), torrent_entry);
+  QFile torrent_file(path);
+  if (!out.empty() && torrent_file.open(QIODevice::WriteOnly)) {
+    torrent_file.write(&out[0], out.size());
+    torrent_file.close();
     return true;
   }
+
   return false;
 }
 

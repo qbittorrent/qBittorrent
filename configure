@@ -442,12 +442,15 @@ arg: with-libboost-lib=[path], Path to libboost library files
 -----END QCMOD-----
 */
 #include <boost/version.hpp>
+#include <libtorrent/version.hpp>
+
 class qc_libboost : public ConfObj
 {
 public:
-	qc_libboost(Conf *c) : ConfObj(c) {}
-	QString name() const { return "libboost"; }
-	QString shortname() const { return "libboost"; }
+  qc_libboost(Conf *c) : ConfObj(c) {}
+  QString name() const { return "libboost"; }
+  QString shortname() const { return "libboost"; }
+
   QString findBoostLib(QString path, QString lib) const {
     QString name;
     QDir libDir(path);
@@ -471,77 +474,61 @@ public:
     }
     return name;
   }
-	bool exec(){
-        	QString s;
-		s = conf->getenv("QC_WITH_LIBBOOST_INC");
-		if(!s.isEmpty()) {
-			if(!conf->checkHeader(s, "boost/format.hpp")) {
-				return false;
-      			}
-			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
-				return false;
-      			}
-			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
-				return false;
-      			}
-		}else{
-			QStringList sl;
-			sl << "/usr/include";
-			sl << "/usr/local/include";
-			bool found = false;
-			foreach(s, sl){
-				if(conf->checkHeader(s, "boost/format.hpp")){
-					found = true;
-					break;
-				}
-			}
-			if(!found) {
-				return false;
-          		}
-			if(!conf->checkHeader(s, "boost/date_time/posix_time/posix_time.hpp")) {
-				return false;
-      			}
-			if(!conf->checkHeader(s, "boost/filesystem/path.hpp")) {
-				return false;
-      			}
-		}
-		conf->addIncludePath(s);
-		// Find library
-		s = conf->getenv("QC_WITH_LIBBOOST_LIB");
+
+  bool exec(){
+    QStringList sl;
+    QString s = conf->getenv("QC_WITH_LIBBOOST_INC");
+    if (!s.isEmpty())
+      sl << s;
+    sl << "/usr/include";
+    sl << "/usr/local/include";
+    bool found = false;
+    foreach (s, sl) {
+      if (conf->checkHeader(s, "boost/format.hpp")
+#if LIBTORRENT_VERSION_MAJOR == 0 && LIBTORRENT_VERSION_MINOR < 16
+          && conf->checkHeader(s, "boost/filesystem/path.hpp")
+#endif
+         ) {
+        found = true;
+        break;
+      }
+    }
+    if (!found)
+      return false;
+
+    conf->addIncludePath(s);
+
+    // Find library
+    s = conf->getenv("QC_WITH_LIBBOOST_LIB");
     QStringList required_libs;
 #if BOOST_VERSION >= 103500
       required_libs << "system"; 
 #endif
+#if LIBTORRENT_VERSION_MAJOR == 0 && LIBTORRENT_VERSION_MINOR < 16
     required_libs << "filesystem" ;
+#endif
     QStringList libDirs;
+    if (!s.isEmpty())
+      libDirs << s;
     libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
+
     foreach(const QString& lib, required_libs) {
-      if(!s.isEmpty()) {
-        QString detected_name = findBoostLib(s, lib);
-        if(detected_name.isEmpty()) {
-          printf("Could not find boost %s library!\n", qPrintable(lib));
-          return false;
-        } else {
+      bool found = false;
+      foreach(const QString& libDir, libDirs) {
+        QString detected_name = findBoostLib(libDir, lib);
+        if(!detected_name.isEmpty()) {
           conf->addLib("-l"+detected_name);
-        }
-      } else {
-        bool found = false;
-        foreach(const QString& libDir, libDirs) {
-          QString detected_name = findBoostLib(libDir, lib);
-          if(!detected_name.isEmpty()) {
-            conf->addLib("-l"+detected_name);
-            found = true;
-            break;
-          }
-        }
-        if(!found) {
-          printf("Could not find boost %s library!\n", qPrintable(lib));
-          return false;
+          found = true;
+          break;
         }
       }
+      if(!found) {
+        printf("Could not find boost %s library!\n", qPrintable(lib));
+        return false;
+      }
     }
-		return true;
-	}
+    return true;
+  }
 };
 #line 1 "geoip-database.qcm"
 /*
