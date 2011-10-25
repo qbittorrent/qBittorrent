@@ -71,9 +71,11 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/upnp.hpp>
 #include <libtorrent/natpmp.hpp>
+#if LIBTORRENT_VERSION_MINOR < 16
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+#endif
 #if LIBTORRENT_VERSION_MINOR > 15
 #include "libtorrent/error_code.hpp"
 #endif
@@ -105,8 +107,10 @@ QBtSession::QBtSession()
   BigRatioTimer->setInterval(10000);
   connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
   Preferences pref;
+#if LIBTORRENT_VERSION_MINOR < 16
   // To avoid some exceptions
   boost::filesystem::path::default_name_check(boost::filesystem::no_check);
+#endif
   // Creating Bittorrent session
   QList<int> version;
   version << VERSION_MAJOR;
