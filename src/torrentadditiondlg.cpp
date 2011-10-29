@@ -63,7 +63,6 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   Preferences pref;
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
-  setMinimumSize(10, 10);
   // Icons
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
