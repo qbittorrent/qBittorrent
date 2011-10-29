@@ -1,3 +1,8 @@
+* Sat Oct 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.2
+    - BUGFIX: Fix mimimum dimensions for torrent addition dialog
+    - BUGFIX: Remove dependency on boost-datetime
+    - BUGFIX: Remove dependency on boost-filesystem (libtorrent v0.16.x)
+
 * Sun Oct 23 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.1
     - BUGFIX: Add support for speed limits scheduling (Web UI)
     - BUGFIX: Fix ratio calculation for purely seeded torrents
