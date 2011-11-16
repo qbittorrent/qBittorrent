@@ -59,7 +59,6 @@ const int UNLEN = 256;
 #ifdef Q_WS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
-#include <Cocoa/Cocoa.h>
 #endif
 
 #ifndef Q_WS_WIN
@@ -113,9 +112,6 @@ QString misc::QDesktopServicesDataLocation() {
   return result;
 #else
 #ifdef Q_WS_MAC
-  // http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Functions/Reference/reference.html
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-  NSString *dataDirectory =
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
   if (err)
@@ -204,19 +200,7 @@ QString misc::QDesktopServicesDownloadLocation() {
 #endif
 
 #ifdef Q_WS_MAC
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-  NSString *applicationDirectory = [paths objectAtIndex:0];
-  NSRange range;
-  range.location = 0;
-  range.length = [applicationDirectory length];
-  QString path(range.length, QChar(0));
-
-  unichar *chars = new unichar[range.location];
-  [nsstr getCharacters:chars range:range];
-  QString path = QString::fromUtf16(chars, range.length);
-  delete chars;
-  path += QLatin1Char('/') + qApp->applicationName();
-  return path;
+  // TODO: How to support this on Mac OS X?
 #endif
 
   // Fallback
