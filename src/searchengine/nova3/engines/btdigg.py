@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: BTDigg team (research@btdigg.org)
 #
 #                    GNU GENERAL PUBLIC LICENSE
@@ -36,23 +36,24 @@ class btdigg(object):
         pass
         
     def search(self, what, cat='all'):
-        req = what.replace('+', ' ')
+        req = urllib.parse.unquote(what).replace('+', ' ')
         u = urllib.request.urlopen('http://api.btdigg.org/api/public-8e9a50f8335b964f/s01?%s' % (urllib.parse.urlencode(dict(q = req)),))
 
         try:
             for line in u:
+                line = line.decode('utf-8')
                 if line.startswith('#'):
                     continue
 
                 info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
-
-                res = dict(link = 'magnet:?xt=urn:btih:%s' % (info_hash,),
-                           name = name.translate(None, '|'),
+                name = name.replace('|', '')
+                res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.parse.quote(name)),
+                           name = name,
                            size = size,
                            seeds = int(dl),
                            leech = int(dl),
                            engine_url = self.url,
-                           desc_link = 'http://btdigg.org/search?%s' % (urllib.parse.urlencode(dict(info_hash = info_hash, q = req)),))
+                           desc_link = '%s/search?%s' % (self.url, urllib.parse.urlencode(dict(info_hash = info_hash, q = req)),))
 
                 prettyPrinter(res)
         finally:

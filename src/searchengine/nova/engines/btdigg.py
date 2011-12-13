@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: BTDigg team (research@btdigg.org)
 #
 #                    GNU GENERAL PUBLIC LICENSE
@@ -45,14 +45,14 @@ class btdigg(object):
                     continue
 
                 info_hash, name, files, size, dl, seen = line.strip().split('\t')[:6]
-
-                res = dict(link = 'magnet:?xt=urn:btih:%s' % (info_hash,),
-                           name = name.translate(None, '|'),
+                name = name.translate(None, '|')
+                res = dict(link = 'magnet:?xt=urn:btih:%s&dn=%s' % (info_hash, urllib.quote(name)),
+                           name = name,
                            size = size,
                            seeds = int(dl),
                            leech = int(dl),
                            engine_url = self.url,
-                           desc_link = 'http://btdigg.org/search?%s' % (urllib.urlencode(dict(info_hash = info_hash, q = req)),))
+                           desc_link = '%s/search?%s' % (self.url, urllib.urlencode(dict(info_hash = info_hash, q = req)),))
 
                 prettyPrinter(res)
         finally:
