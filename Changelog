@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
     - BUGFIX: Fix btdigg plugin (Python3 support + torrent name in magnet links)
+    - I18N: Add Georgian translation
 
 * Sat Oct 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.2
     - BUGFIX: Fix mimimum dimensions for torrent addition dialog
