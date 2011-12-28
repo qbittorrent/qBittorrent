@@ -2,8 +2,22 @@ PREFIX = /usr/local
 BINDIR = /usr/local/bin
 DATADIR = /usr/local/share
 
-INCLUDEPATH += /usr/local/include/libtorrent /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
-LIBS += -ltorrent-rasterbar -lcrypto -L/opt/local/lib -lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt -framework Cocoa -framework Carbon -framework IOKit
+# Use pkg-config to get all necessary libtorrent DEFINES
+CONFIG += link_pkgconfig
+PKGCONFIG += libtorrent-rasterbar
+
+# Special include/libs paths (macports)
+INCLUDEPATH += /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
+LIBS += -L/opt/local/lib
+
+# OpenSSL lib
+LIBS += -lssl -lcrypto
+# Boost system lib
+LIBS += -lboost_system-mt
+# Boost filesystem lib (Not needed for libtorrent >= 0.16.0)
+LIBS += -lboost_filesystem-mt
+# Carbon
+LIBS += -framework Carbon -framework IOKit
 
 document_icon.path = Contents/Resources
 document_icon.files = Icons/qBitTorrentDocument.icns
