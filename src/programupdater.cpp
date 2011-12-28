@@ -196,40 +196,42 @@ void ProgramUpdater::updateProgram()
 
 // title on Windows: /qbittorrent-win32/qbittorrent-2.4.7/qbittorrent_2.4.7_setup.exe
 // title on Mac: /qbittorrent-mac/qbittorrent-2.4.4/qbittorrent-2.4.4.dmg
-QString ProgramUpdater::extractVersionNumber(QString title) const
+QString ProgramUpdater::extractVersionNumber(const QString& title) const
 {
-  QString version;
-  QStringList parts = title.split("/");
-  if(parts.size() != 4) {
-    qDebug("ProgramUpdater: Unrecognized title: %s", qPrintable(title));
-    return version;
-  }
-  QString folder = parts.at(2);
-  if(!folder.contains("-")) {
-    qDebug("ProgramUpdater: Unrecognized folder name: %s", qPrintable(folder));
-    return version;
-  }
-  version = folder.mid(folder.lastIndexOf("-")+1);
-  if(version.split(".").size() != 3) {
-    qDebug("ProgramUpdater: Unrecognized version format: %s", qPrintable(version));
+  qDebug() << Q_FUNC_INFO << title;
+  QRegExp regVer("qbittorrent[_-]([0-9.]+)(_setup)?(\\.exe|\\.dmg)");
+  if (regVer.indexIn(title)  < 0) {
+    qWarning() << Q_FUNC_INFO << "Failed to extract version from file name:" << title;
     return QString::null;
+  } else {
+    QString version = regVer.cap(1);
+    qDebug() << Q_FUNC_INFO << "Extracted version:" << version;
+    return version;
   }
-  return version;
 }
 
-bool ProgramUpdater::isVersionMoreRecent(QString new_version) const
+bool ProgramUpdater::isVersionMoreRecent(const QString& remote_version) const
 {
-  const QStringList parts = new_version.split(".");
-  Q_ASSERT(parts.size() == 3);
-  const int major = parts.at(0).toInt();
-  const int minor = parts.at(1).toInt();
-  const int bugfix = parts.at(2).toInt();
-  if(major < VERSION_MAJOR)
-    return false;
-  if(minor < VERSION_MINOR)
-    return false;
-  if(bugfix <= VERSION_BUGFIX)
-    return false;
-  return true;
+  QRegExp regVer("([0-9.]+)");
+  if (regVer.indexIn(QString(VERSION)) >= 0) {
+    QString local_version = regVer.cap(1);
+    qDebug() << Q_FUNC_INFO << "local version:" << local_version << "/" << VERSION;
+    QStringList remote_parts = remote_version.split('.');
+    QStringList local_parts = local_version.split('.');
+    for (int i=0; i<qMin(remote_parts.size(), local_parts.size()); ++i) {
+      if (remote_parts[i].toInt() > local_parts[i].toInt())
+        return true;
+      if (remote_parts[i].toInt() < local_parts[i].toInt())
+        return false;
+    }
+    // Compared parts were equal, if remote version is longer, then it's more recent (2.9.2.1 > 2.9.2)
+    if (remote_parts.size() > local_parts.size())
+      return true;
+    // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
+    QRegExp regDevel("(alpha|beta|rc)");
+    if (regDevel.indexIn(VERSION) >= 0)
+      return true;
+  }
+  return false;
 }
 
