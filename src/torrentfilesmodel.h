@@ -194,7 +194,7 @@ public:
 
   qreal getProgress() const {
     if(getPriority() == 0)
-      return 0.;
+      return -1;
     qulonglong size = getSize();
     if(size > 0)
       return total_done/(float)getSize();
@@ -313,6 +313,8 @@ public:
   }
 
   QVariant data(int column) const  {
+    if(column == COL_PROGRESS)
+        return getProgress();
     return itemData.value(column);
   }
 
