@@ -317,7 +317,7 @@ window.addEvent('load', function(){
     if($defined(prop_h))
       prop_h = prop_h.toInt();
     else
-      prop_h = 200;
+      prop_h = Window.getSize().y / 2.;
     new MochaUI.Panel({
 		id: 'propertiesPanel',
 		title: 'Panel',
