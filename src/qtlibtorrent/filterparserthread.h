@@ -365,13 +365,13 @@ public:
     start();
   }
 
-  static void processFilterList(libtorrent::session *s, QStringList IPs) {
+  static void processFilterList(libtorrent::session *s, const QStringList& IPs) {
     // First, import current filter
     libtorrent::ip_filter filter = s->get_ip_filter();
     foreach(const QString &ip, IPs) {
       qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
       boost::system::error_code ec;
-      libtorrent::address_v4 addr = libtorrent::address_v4::from_string(ip.toLocal8Bit().constData(), ec);
+      libtorrent::address addr = libtorrent::address::from_string(ip.toLocal8Bit().constData(), ec);
       Q_ASSERT(!ec);
       if(!ec)
         filter.add_rule(addr, addr, libtorrent::ip_filter::blocked);
