@@ -74,26 +74,31 @@ public:
       QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
       break;
     case PROGRESS:{
-      QStyleOptionProgressBarV2 newopt;
-      qreal progress = index.data().toDouble()*100.;
-      newopt.rect = opt.rect;
-      // We don't want to display 100% unless
-      // the torrent is really complete
-      if(progress > 99.94 && progress < 100.)
-        progress = 99.9;
-      newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
-      newopt.progress = (int)progress;
-      newopt.maximum = 100;
-      newopt.minimum = 0;
-      newopt.state |= QStyle::State_Enabled;
-      newopt.textVisible = true;
+      if (index.data().toDouble() >= 0) {
+          QStyleOptionProgressBarV2 newopt;
+          qreal progress = index.data().toDouble()*100.;
+          newopt.rect = opt.rect;
+          // We don't want to display 100% unless
+          // the torrent is really complete
+          if(progress > 99.94 && progress < 100.)
+            progress = 99.9;
+          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
+          newopt.progress = (int)progress;
+          newopt.maximum = 100;
+          newopt.minimum = 0;
+          newopt.state |= QStyle::State_Enabled;
+          newopt.textVisible = true;
 #ifndef Q_WS_WIN
-      QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+          QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-      // XXX: To avoid having the progress text on the right of the bar
-      QPlastiqueStyle st;
-      st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+          // XXX: To avoid having the progress text on the right of the bar
+          QPlastiqueStyle st;
+          st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
+      } else {
+          // Do not display anything if the file is disabled (progress  == -1)
+          QItemDelegate::drawBackground(painter, opt, index);
+      }
       break;
     }
     case PRIORITY: {
