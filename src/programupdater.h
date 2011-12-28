@@ -47,8 +47,8 @@ public:
     void updateProgram();
 
 protected:
-    QString extractVersionNumber(QString title) const;
-    bool isVersionMoreRecent(QString new_version) const;
+    QString extractVersionNumber(const QString& title) const;
+    bool isVersionMoreRecent(const QString& new_version) const;
 
 protected slots:
     void rssDownloadFinished(QNetworkReply* reply);

@@ -5,6 +5,7 @@
     - BUGFIX: Do not report any progress for disabled files (Closes #56731485)
     - BUGFIX: Make torrent sorting case insensitive (Closes #857154)
     - BUGFIX: Improve Web UI usability of small devices
+    - BUGFIX: Program updater: More reliable version detection / comparison
     - I18N: Add Georgian translation
 
 * Sat Oct 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.2
