@@ -94,6 +94,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   nameFilterModel->setSourceModel(statusFilterModel);
   nameFilterModel->setFilterKeyColumn(TorrentModelItem::TR_NAME);
   nameFilterModel->setFilterRole(Qt::DisplayRole);
+  nameFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
 
   setModel(nameFilterModel);
 

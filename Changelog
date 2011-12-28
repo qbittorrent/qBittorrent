@@ -3,6 +3,7 @@
     - BUGFIX: Fix banning of IPv6 peers (Closes #885021)
     - BUGFIX: Fix torrent addition dialog layout problem (Closes #84650522)
     - BUGFIX: Do not report any progress for disabled files (Closes #56731485)
+    - BUGFIX: Make torrent sorting case insensitive (Closes #857154)
     - I18N: Add Georgian translation
 
 * Sat Oct 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.2

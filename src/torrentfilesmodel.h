@@ -620,6 +620,7 @@ public:
     setFilterKeyColumn(TorrentFileItem::COL_NAME);
     setFilterRole(Qt::DisplayRole);
     setDynamicSortFilter(true);
+    setSortCaseSensitivity(Qt::CaseInsensitive);
   }
 
   ~TorrentFilesFilterModel() {
