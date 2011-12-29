@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
+* Thu Dec 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
     - BUGFIX: Fix btdigg plugin (Python3 support + torrent name in magnet links)
     - BUGFIX: Fix banning of IPv6 peers (Closes #885021)
     - BUGFIX: Fix torrent addition dialog layout problem (Closes #84650522)
