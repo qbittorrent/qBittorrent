@@ -66,9 +66,14 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
   const QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
   if(redirection.isValid()) {
     // We should redirect
-    qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(redirection.toUrl().toString()));
-    m_redirectMapping.insert(redirection.toUrl().toString(), url);
-    downloadUrl(redirection.toUrl().toString());
+    QUrl newUrl = redirection.toUrl();
+    // Resolve relative urls
+    if (newUrl.isRelative())
+        newUrl = reply->url().resolved(newUrl);
+    const QString newUrlString = newUrl.toString();
+    qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(newUrlString));
+    m_redirectMapping.insert(newUrlString, url);
+    downloadUrl(newUrlString);
     reply->deleteLater();
     return;
   }
