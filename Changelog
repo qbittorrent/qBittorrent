@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.4
     - BUGFIX: qBittorrent does not handle redirection to relative URLs correctly (Closes #919905)
+    - I18N: Add Belarusian translation
 
 * Thu Dec 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
     - BUGFIX: Fix btdigg plugin (Python3 support + torrent name in magnet links)
