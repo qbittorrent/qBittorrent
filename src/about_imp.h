@@ -64,6 +64,7 @@ class about : public QDialog, private Ui::AboutDlg{
       QString trans_txt = "<p>"+tr("I would like to thank the following people who volunteered to translate qBittorrent:")+"</p>";
       trans_txt += QString::fromUtf8("<ul><li><u>Arabic:</u> SDERAWI (abz8868@msn.com) and sn51234 (nesseyan@gmail.com)</li>\
           <li><u>Armenian:</u> Hrant Ohanyan (hrantohanyan@mail.am)</li>\
+          <li><u>Belarusian:</u> Mihas Varantsou (meequz@gmail.com)</li>\
           <li><u>Brazilian:</u> Nick Marinho (nickmarinho@gmail.com)</li>\
           <li><u>Bulgarian:</u> Tsvetan & Boyko Bankoff (emerge_life@users.sourceforge.net)</li>\
           <li><u>Catalan:</u> Francisco Luque Contreras (frannoe@ya.com)</li>\
