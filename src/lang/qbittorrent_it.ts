@@ -838,118 +838,118 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="97"/>
-        <location filename="../downloadthread.cpp" line="101"/>
+        <location filename="../downloadthread.cpp" line="102"/>
+        <location filename="../downloadthread.cpp" line="106"/>
         <source>I/O Error</source>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>L&apos;host remoto non è stato trovato (hostname invalido)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The operation was canceled</source>
         <translation>L&apos;operazione è stata annullata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Il server remoto ha interrotto la connessione prematuramente, prima che la risposta completa fosse ricevuta e processata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The connection to the remote server timed out</source>
         <translation>La connessione al server remoto è scaduta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Handshake SSL/TLS fallito</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="218"/>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The remote server refused the connection</source>
         <translation>Il server remoto ha rifiutato la connessione</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="220"/>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The connection to the proxy server was refused</source>
         <translation>La connessione al server proxy è stata rifiutata</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="222"/>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Il server proxy ha interrotto la connessione prematuramente</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="224"/>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy host name was not found</source>
         <translation>L&apos;hostname del proxy non è stato trovato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="226"/>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>La connessione al proxy è scaduta o il proxy non ha risposto in tempo alla richiesta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="228"/>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Il proxy richiede l&apos;autenticazione per onorare la richiesta ma non ha accettato le credenziali fornite</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="230"/>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>L&apos;accesso al contenuto remoto è stato negato (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="232"/>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>L&apos;operazione richiesta sul contenuto remoto non è permessa</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="234"/>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Il contenuto remoto non è stato trovato sul server (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="236"/>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Il server remoto richiede l&apos;autenticazione per fornire il contenuto ma le credenziali fornite non sono state accettate</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="238"/>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Le API dell&apos;Accesso Remoto non possono onorare la richiesta perché il protocollo è sconosciuto</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="240"/>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>L&apos;operazione richiesta non è valida per questo protocollo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="242"/>
+        <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown network-related error was detected</source>
         <translation>Un errore di rete sconosciuto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="244"/>
+        <location filename="../downloadthread.cpp" line="249"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Un errore proxy sconosciuto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="246"/>
+        <location filename="../downloadthread.cpp" line="251"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Un errore sconosciuto del contenuto remoto è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="248"/>
+        <location filename="../downloadthread.cpp" line="253"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Un malfunzionamento del protocollo è stato rilevato</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="250"/>
+        <location filename="../downloadthread.cpp" line="255"/>
         <source>Unknown error</source>
         <translation>Errore sconosciuto</translation>
     </message>
@@ -3482,33 +3482,33 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="116"/>
-        <location filename="../properties/proplistdelegate.h" line="171"/>
+        <location filename="../properties/proplistdelegate.h" line="121"/>
+        <location filename="../properties/proplistdelegate.h" line="176"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normale</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="110"/>
-        <location filename="../properties/proplistdelegate.h" line="172"/>
+        <location filename="../properties/proplistdelegate.h" line="115"/>
+        <location filename="../properties/proplistdelegate.h" line="177"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="104"/>
+        <location filename="../properties/proplistdelegate.h" line="109"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>Mista</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="107"/>
+        <location filename="../properties/proplistdelegate.h" line="112"/>
         <source>Not downloaded</source>
         <translation>Non scaricato</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="113"/>
-        <location filename="../properties/proplistdelegate.h" line="173"/>
+        <location filename="../properties/proplistdelegate.h" line="118"/>
+        <location filename="../properties/proplistdelegate.h" line="178"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Massima</translation>
@@ -4908,22 +4908,22 @@ Per favore installalo manualmente.</translation>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Size</source>
         <translation>Dimensione</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Progress</source>
         <translation>Avanzamento</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Priority</source>
         <translation>Priorità</translation>
     </message>
@@ -5427,7 +5427,7 @@ Per favore installalo manualmente.</translation>
         <translation type="obsolete">ETA</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="524"/>
+        <location filename="../transferlistwidget.cpp" line="525"/>
         <source>Column visibility</source>
         <translation>Visibilità colonna</translation>
     </message>
@@ -5467,7 +5467,7 @@ Per favore installalo manualmente.</translation>
         <translation type="obsolete">Rapporto</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="767"/>
         <source>Label</source>
         <translation>Etichetta</translation>
     </message>
@@ -5496,7 +5496,7 @@ Per favore installalo manualmente.</translation>
         <translation type="obsolete">Limiti di upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="227"/>
+        <location filename="../transferlistwidget.cpp" line="228"/>
         <source>Choose save path</source>
         <translation>Scegliere una directory di salvataggio</translation>
     </message>
@@ -5509,160 +5509,160 @@ Per favore installalo manualmente.</translation>
         <translation type="obsolete">Impossibile creare la directory di salvataggio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="449"/>
+        <location filename="../transferlistwidget.cpp" line="450"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Limitazione velocità download</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="482"/>
+        <location filename="../transferlistwidget.cpp" line="483"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Limitazione velocità upload</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>New Label</source>
         <translation>Nuova etichetta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>Label:</source>
         <translation>Etichetta:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Invalid label name</source>
         <translation>Nome etichetta invalida</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Per favore non usare caratteri speciali per il nome dell&apos;etichetta.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>New name:</source>
         <translation>Nuovo nome:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="644"/>
+        <location filename="../transferlistwidget.cpp" line="645"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Riprendi/avvia il torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="646"/>
+        <location filename="../transferlistwidget.cpp" line="647"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Ferma</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="649"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="651"/>
         <source>Preview file...</source>
         <translation>Anteprima file...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Limit share ratio...</source>
         <translation>Limite rapporto parti...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
         <source>Limit upload rate...</source>
         <translation>Tasso di limite upload...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="656"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Limit download rate...</source>
         <translation>Tasso di limite download...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Priority</source>
         <translation>Priorità</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="658"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Open destination folder</source>
         <translation>Apri cartella di destinazione</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="660"/>
+        <location filename="../transferlistwidget.cpp" line="661"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Muovi in alto</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="662"/>
+        <location filename="../transferlistwidget.cpp" line="663"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Muovi in basso</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="664"/>
+        <location filename="../transferlistwidget.cpp" line="665"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Muovi in cima</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="666"/>
+        <location filename="../transferlistwidget.cpp" line="667"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Muovi in fondo</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Set location...</source>
         <translation>Seleziona locazione...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="670"/>
+        <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Force recheck</source>
         <translation>Forza ricontrollo</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="672"/>
+        <location filename="../transferlistwidget.cpp" line="673"/>
         <source>Copy magnet link</source>
         <translation>Copia link magnetico</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Super seeding mode</source>
         <translation>Modalità super seeding</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="679"/>
+        <location filename="../transferlistwidget.cpp" line="680"/>
         <source>Rename...</source>
         <translation>Rinomina...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="681"/>
+        <location filename="../transferlistwidget.cpp" line="682"/>
         <source>Download in sequential order</source>
         <translation>Scarica in ordine sequenziale</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="684"/>
+        <location filename="../transferlistwidget.cpp" line="685"/>
         <source>Download first and last piece first</source>
         <translation>Scarica prima il primo e l&apos;ultimo pezzo</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="767"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nuova...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="769"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Azzera</translation>
@@ -5744,7 +5744,7 @@ Per favore installalo manualmente.</translation>
         <translation>Vorrei ringraziare le seguenti persone che si sono rese volontarie per tradurre qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="96"/>
+        <location filename="../about_imp.h" line="97"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Per favore contattami se vorresti tradurre qBittorrent nella tua lingua.</translation>
     </message>
@@ -5770,104 +5770,104 @@ Per favore installalo manualmente.</translation>
 <context>
     <name>addTorrentDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="6"/>
+        <location filename="../torrentadditiondlg.ui" line="14"/>
         <source>Torrent addition dialog</source>
         <translation>Dialogo per l&apos;aggiunta di un torrent</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="28"/>
+        <location filename="../torrentadditiondlg.ui" line="36"/>
         <source>Save path:</source>
         <translation>Directory di salvataggio:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="44"/>
+        <location filename="../torrentadditiondlg.ui" line="58"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="53"/>
+        <location filename="../torrentadditiondlg.ui" line="67"/>
         <source>Set as default save path</source>
         <translation>Imposta come percorso predefinito</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="64"/>
+        <location filename="../torrentadditiondlg.ui" line="78"/>
         <source>Torrent size:</source>
         <translation>Dimensione del torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="71"/>
-        <location filename="../torrentadditiondlg.ui" line="102"/>
+        <location filename="../torrentadditiondlg.ui" line="85"/>
+        <location filename="../torrentadditiondlg.ui" line="116"/>
         <source>Unknown</source>
         <translation>Sconosciuta</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="95"/>
+        <location filename="../torrentadditiondlg.ui" line="109"/>
         <source>Free disk space:</source>
         <translation>Spazio libero sul disco:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="133"/>
+        <location filename="../torrentadditiondlg.ui" line="147"/>
         <source>Label:</source>
         <translation>Etichetta:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="179"/>
+        <location filename="../torrentadditiondlg.ui" line="193"/>
         <source>Torrent content:</source>
         <translation>Contenuto del torrent:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="232"/>
+        <location filename="../torrentadditiondlg.ui" line="246"/>
         <source>Select All</source>
         <translation>Seleziona tutti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="239"/>
+        <location filename="../torrentadditiondlg.ui" line="253"/>
         <source>Select None</source>
         <translation>Deseleziona tutti</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="261"/>
+        <location filename="../torrentadditiondlg.ui" line="275"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Scarica nell&apos;ordine giusto (più lento ma migliore per le anteprime)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="268"/>
+        <location filename="../torrentadditiondlg.ui" line="282"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Salta il controllo file e inizia subito la distribuzione</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="347"/>
-        <location filename="../torrentadditiondlg.ui" line="350"/>
+        <location filename="../torrentadditiondlg.ui" line="355"/>
+        <location filename="../torrentadditiondlg.ui" line="358"/>
         <source>Do not download</source>
         <translation>Non scaricare</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="275"/>
+        <location filename="../torrentadditiondlg.ui" line="289"/>
         <source>Add to download list in paused state</source>
         <translation>Aggiungi fra i download mettendolo in pausa</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="303"/>
+        <location filename="../torrentadditiondlg.ui" line="311"/>
         <source>Add</source>
         <translation>Aggiungi</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="310"/>
+        <location filename="../torrentadditiondlg.ui" line="318"/>
         <source>Cancel</source>
         <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="332"/>
+        <location filename="../torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
         <translation>Normale</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="337"/>
+        <location filename="../torrentadditiondlg.ui" line="345"/>
         <source>High</source>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="342"/>
+        <location filename="../torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
         <translation>Massima</translation>
     </message>
@@ -6642,22 +6642,22 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation>Il filtro IP del provider è stato analizzato correttamente: %1 le regole sono state applicate.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>Invalid key</source>
         <translation>Chiave non valida</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>This is not a valid SSL key.</source>
         <translation>Questa non è una chiave SSL valida.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>Invalid certificate</source>
         <translation>Certificato non valido</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Questo non è un certificato SSL valido.</translation>
     </message>

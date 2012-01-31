@@ -781,118 +781,118 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="97"/>
-        <location filename="../downloadthread.cpp" line="101"/>
+        <location filename="../downloadthread.cpp" line="102"/>
+        <location filename="../downloadthread.cpp" line="106"/>
         <source>I/O Error</source>
         <translation>Грешка на Вход/Изход</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Името на приемащия не бе намерено (невалидно име)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The operation was canceled</source>
         <translation>Действието бе прекъснато</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Приемащия сървър затвори едностранно връзката, преди отговора да бъде получен и изпълнен</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The connection to the remote server timed out</source>
         <translation>Връзката с приемащия сървър затвори поради изтичане на времето</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Прекъсване на скачването SSL/TLS</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="218"/>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The remote server refused the connection</source>
         <translation>Приемащия сървър отхвърли връзката</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="220"/>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Връзката с прокси сървъра бе отхвърлена</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="222"/>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Прокси сървъра затвори връзката едностранно</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="224"/>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy host name was not found</source>
         <translation>Името на приемащия прокси не бе намерено</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="226"/>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Връзката с прокси изтече или проксито не отговаря когато запитването бе изпратено</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="228"/>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Проксито изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="230"/>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Достъпа бе отхвърлен (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="232"/>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Поисканото действие не е разрешено </translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="234"/>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Поисканото не бе намерено на сървъра (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="236"/>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Сървъра изисква удостоверяване за да изпълни запитването но не приема предложените данни</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="238"/>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Приложението за Мрежов Достъп не може да изпълни заявката поради неизвестен протокол</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="240"/>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Поисканото действие е невалидно за този протокол</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="242"/>
+        <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown network-related error was detected</source>
         <translation>Установена е неизвестна грешка свързана с мрежата</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="244"/>
+        <location filename="../downloadthread.cpp" line="249"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Установена е неизвестна грешка свързана с проксито</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="246"/>
+        <location filename="../downloadthread.cpp" line="251"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Установена е неизвестна грешка свързана със съдържанието</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="248"/>
+        <location filename="../downloadthread.cpp" line="253"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Установено е прекъсване в протокола</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="250"/>
+        <location filename="../downloadthread.cpp" line="255"/>
         <source>Unknown error</source>
         <translation>Неизвестна грешка</translation>
     </message>
@@ -3402,33 +3402,33 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="107"/>
+        <location filename="../properties/proplistdelegate.h" line="112"/>
         <source>Not downloaded</source>
         <translation>Не свалени</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="116"/>
-        <location filename="../properties/proplistdelegate.h" line="171"/>
+        <location filename="../properties/proplistdelegate.h" line="121"/>
+        <location filename="../properties/proplistdelegate.h" line="176"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Нормален</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="110"/>
-        <location filename="../properties/proplistdelegate.h" line="172"/>
+        <location filename="../properties/proplistdelegate.h" line="115"/>
+        <location filename="../properties/proplistdelegate.h" line="177"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Висок</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="104"/>
+        <location filename="../properties/proplistdelegate.h" line="109"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>Смесени</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="113"/>
-        <location filename="../properties/proplistdelegate.h" line="173"/>
+        <location filename="../properties/proplistdelegate.h" line="118"/>
+        <location filename="../properties/proplistdelegate.h" line="178"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Максимален</translation>
@@ -4824,22 +4824,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Name</source>
         <translation>Име</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Size</source>
         <translation>Размер</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Progress</source>
         <translation>Изпълнение</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>
@@ -5343,7 +5343,7 @@ Please install it manually.</source>
         <translation type="obsolete">ЕТА</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="524"/>
+        <location filename="../transferlistwidget.cpp" line="525"/>
         <source>Column visibility</source>
         <translation>Видимост на колона</translation>
     </message>
@@ -5383,7 +5383,7 @@ Please install it manually.</source>
         <translation type="obsolete">Съотношение</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="767"/>
         <source>Label</source>
         <translation>Етикет</translation>
     </message>
@@ -5408,7 +5408,7 @@ Please install it manually.</source>
         <translation type="obsolete">Лимит качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="227"/>
+        <location filename="../transferlistwidget.cpp" line="228"/>
         <source>Choose save path</source>
         <translation>Избери път за съхранение</translation>
     </message>
@@ -5421,160 +5421,160 @@ Please install it manually.</source>
         <translation type="obsolete">Не мога да създам път за съхранение</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="449"/>
+        <location filename="../transferlistwidget.cpp" line="450"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Ограничаване Скорост на сваляне</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="482"/>
+        <location filename="../transferlistwidget.cpp" line="483"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Ограничаване Скорост на качване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>New Label</source>
         <translation>Нов етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>Label:</source>
         <translation>Етикет:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Invalid label name</source>
         <translation>Невалидно име на етикет</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Моля, не ползвайте специални символи в името на етикета.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>Rename</source>
         <translation>Преименувай</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>New name:</source>
         <translation>Ново име:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="644"/>
+        <location filename="../transferlistwidget.cpp" line="645"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Продължи</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="646"/>
+        <location filename="../transferlistwidget.cpp" line="647"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="649"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="651"/>
         <source>Preview file...</source>
         <translation>Огледай файла...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Limit share ratio...</source>
         <translation>Ограничение на съотношението за споделяне...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
         <source>Limit upload rate...</source>
         <translation>Ограничи процент качване...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="656"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Limit download rate...</source>
         <translation>Ограничи процент сваляне...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Priority</source>
         <translation>Предимство</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="658"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Open destination folder</source>
         <translation>Отвори папка получател</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="660"/>
+        <location filename="../transferlistwidget.cpp" line="661"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Нагоре в листата</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="662"/>
+        <location filename="../transferlistwidget.cpp" line="663"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Надолу в листата</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="664"/>
+        <location filename="../transferlistwidget.cpp" line="665"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>На върха на листата</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="666"/>
+        <location filename="../transferlistwidget.cpp" line="667"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>На дъното на листата</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Set location...</source>
         <translation>Определи място...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="670"/>
+        <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Force recheck</source>
         <translation>Включени проверки за промени</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="672"/>
+        <location filename="../transferlistwidget.cpp" line="673"/>
         <source>Copy magnet link</source>
         <translation>Копирай връзка magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Super seeding mode</source>
         <translation>Режим на супер-даване</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="679"/>
+        <location filename="../transferlistwidget.cpp" line="680"/>
         <source>Rename...</source>
         <translation>Преименувай...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="681"/>
+        <location filename="../transferlistwidget.cpp" line="682"/>
         <source>Download in sequential order</source>
         <translation>Сваляне по азбучен ред</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="684"/>
+        <location filename="../transferlistwidget.cpp" line="685"/>
         <source>Download first and last piece first</source>
         <translation>Свали първо и последно парче първо</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="767"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Ново...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="769"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Нулирай</translation>
@@ -5656,7 +5656,7 @@ Please install it manually.</source>
         <translation>Бих искал да благодаря на следните доброволци, превели qBittorent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="96"/>
+        <location filename="../about_imp.h" line="97"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Моля, свържете се с мен ако искате да преведете qBittorrent на вашия език.</translation>
     </message>
@@ -5682,104 +5682,104 @@ Please install it manually.</source>
 <context>
     <name>addTorrentDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="6"/>
+        <location filename="../torrentadditiondlg.ui" line="14"/>
         <source>Torrent addition dialog</source>
         <translation>Торента добавя диалог</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="28"/>
+        <location filename="../torrentadditiondlg.ui" line="36"/>
         <source>Save path:</source>
         <translation>Съхрани път:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="44"/>
+        <location filename="../torrentadditiondlg.ui" line="58"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="53"/>
+        <location filename="../torrentadditiondlg.ui" line="67"/>
         <source>Set as default save path</source>
         <translation>Определи като път за съхраняване по подразбиране</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="64"/>
+        <location filename="../torrentadditiondlg.ui" line="78"/>
         <source>Torrent size:</source>
         <translation>Торент размер:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="71"/>
-        <location filename="../torrentadditiondlg.ui" line="102"/>
+        <location filename="../torrentadditiondlg.ui" line="85"/>
+        <location filename="../torrentadditiondlg.ui" line="116"/>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="95"/>
+        <location filename="../torrentadditiondlg.ui" line="109"/>
         <source>Free disk space:</source>
         <translation>Празно пространство на диска:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="133"/>
+        <location filename="../torrentadditiondlg.ui" line="147"/>
         <source>Label:</source>
         <translation>Етикет:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="179"/>
+        <location filename="../torrentadditiondlg.ui" line="193"/>
         <source>Torrent content:</source>
         <translation>Съдържание на Торента:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="232"/>
+        <location filename="../torrentadditiondlg.ui" line="246"/>
         <source>Select All</source>
         <translation> Избери всички</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="239"/>
+        <location filename="../torrentadditiondlg.ui" line="253"/>
         <source>Select None</source>
         <translation>Не избирай</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="261"/>
+        <location filename="../torrentadditiondlg.ui" line="275"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>Сваляне поред (по-бавно но удобно за преглед)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="268"/>
+        <location filename="../torrentadditiondlg.ui" line="282"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>Прескочи проверката на файла и започни да даваш веднага</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="347"/>
-        <location filename="../torrentadditiondlg.ui" line="350"/>
+        <location filename="../torrentadditiondlg.ui" line="355"/>
+        <location filename="../torrentadditiondlg.ui" line="358"/>
         <source>Do not download</source>
         <translation>Не сваляй</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="275"/>
+        <location filename="../torrentadditiondlg.ui" line="289"/>
         <source>Add to download list in paused state</source>
         <translation>Добави в листа за сваляне в състояние на пауза</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="303"/>
+        <location filename="../torrentadditiondlg.ui" line="311"/>
         <source>Add</source>
         <translation>Добави</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="310"/>
+        <location filename="../torrentadditiondlg.ui" line="318"/>
         <source>Cancel</source>
         <translation>Прекъсни</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="332"/>
+        <location filename="../torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
         <translation>Нормален</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="337"/>
+        <location filename="../torrentadditiondlg.ui" line="345"/>
         <source>High</source>
         <translation>Висок</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="342"/>
+        <location filename="../torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
         <translation>Максимален</translation>
     </message>
@@ -6547,22 +6547,22 @@ However, those plugins were disabled.</source>
         <translation>Успешно обновен</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>Invalid key</source>
         <translation>Невалиден ключ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>This is not a valid SSL key.</source>
         <translation>Това е невалиден SSL-ключ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>Invalid certificate</source>
         <translation>Невалиден сертификат</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Това не е валиден SSL сертификат.</translation>
     </message>

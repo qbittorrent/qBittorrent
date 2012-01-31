@@ -540,118 +540,118 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="97"/>
-        <location filename="../downloadthread.cpp" line="101"/>
+        <location filename="../downloadthread.cpp" line="102"/>
+        <location filename="../downloadthread.cpp" line="106"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="208"/>
+        <location filename="../downloadthread.cpp" line="213"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>リモートホスト名が見つかりませんでした (不正なホスト名)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="210"/>
+        <location filename="../downloadthread.cpp" line="215"/>
         <source>The operation was canceled</source>
         <translation>操作はキャンセルされました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="212"/>
+        <location filename="../downloadthread.cpp" line="217"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>リモートサーバは応答全体が受信および処理される前に接続を切断しました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="214"/>
+        <location filename="../downloadthread.cpp" line="219"/>
         <source>The connection to the remote server timed out</source>
         <translation>リモートサーバへの接続がタイムアウトしました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="216"/>
+        <location filename="../downloadthread.cpp" line="221"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS ハンドシェイクが失敗しました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="218"/>
+        <location filename="../downloadthread.cpp" line="223"/>
         <source>The remote server refused the connection</source>
         <translation>リモートサーバが接続を拒否しました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="220"/>
+        <location filename="../downloadthread.cpp" line="225"/>
         <source>The connection to the proxy server was refused</source>
         <translation>プロキシサーバへの接続が拒否されました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="222"/>
+        <location filename="../downloadthread.cpp" line="227"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>プロキシサーバが接続を切断しました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="224"/>
+        <location filename="../downloadthread.cpp" line="229"/>
         <source>The proxy host name was not found</source>
         <translation>プロキシホスト名が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="226"/>
+        <location filename="../downloadthread.cpp" line="231"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>プロキシへの接続がタイムアウトしたかプロキシは要求の送信中に応答しませんでした</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="228"/>
+        <location filename="../downloadthread.cpp" line="233"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>プロキシは要求を履行するために認証を必要としますが提出した証明書のどれも受け付けませんでした</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="230"/>
+        <location filename="../downloadthread.cpp" line="235"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>リモートコンテンツへのアクセスは拒否されました (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="232"/>
+        <location filename="../downloadthread.cpp" line="237"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>リモートコンテンツに対して要求された操作は許可されていません</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="234"/>
+        <location filename="../downloadthread.cpp" line="239"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>リモートコンテンツはサーバ上に見つかりませんでした (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="236"/>
+        <location filename="../downloadthread.cpp" line="241"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>リモートサーバはコンテンツを供給するために認証を必要としますが提出した証明書は受け付けられませんでした</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="238"/>
+        <location filename="../downloadthread.cpp" line="243"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>プロトコルが不明なためネットワークアクセス API は要求を履行できません</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="240"/>
+        <location filename="../downloadthread.cpp" line="245"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>要求された操作はこのプロトコルでは無効です</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="242"/>
+        <location filename="../downloadthread.cpp" line="247"/>
         <source>An unknown network-related error was detected</source>
         <translation>未知のネットワーク関連エラーが検出されました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="244"/>
+        <location filename="../downloadthread.cpp" line="249"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>未知のプロキシ関連エラーが検出されました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="246"/>
+        <location filename="../downloadthread.cpp" line="251"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>未知のリモートコンテンツ関連エラーが検出されました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="248"/>
+        <location filename="../downloadthread.cpp" line="253"/>
         <source>A breakdown in protocol was detected</source>
         <translation>プロトコルの破壊が検出されました</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="250"/>
+        <location filename="../downloadthread.cpp" line="255"/>
         <source>Unknown error</source>
         <translation>未知のエラーです</translation>
     </message>
@@ -2367,33 +2367,33 @@ qBittorrent をバージョン %1 へアップデートしますか?</translatio
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="107"/>
+        <location filename="../properties/proplistdelegate.h" line="112"/>
         <source>Not downloaded</source>
         <translation>ダウンロードしない</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="116"/>
-        <location filename="../properties/proplistdelegate.h" line="171"/>
+        <location filename="../properties/proplistdelegate.h" line="121"/>
+        <location filename="../properties/proplistdelegate.h" line="176"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>通常</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="110"/>
-        <location filename="../properties/proplistdelegate.h" line="172"/>
+        <location filename="../properties/proplistdelegate.h" line="115"/>
+        <location filename="../properties/proplistdelegate.h" line="177"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>高い</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="104"/>
+        <location filename="../properties/proplistdelegate.h" line="109"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>混在</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="113"/>
-        <location filename="../properties/proplistdelegate.h" line="173"/>
+        <location filename="../properties/proplistdelegate.h" line="118"/>
+        <location filename="../properties/proplistdelegate.h" line="178"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最高</translation>
@@ -3628,22 +3628,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Size</source>
         <translation>サイズ</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Progress</source>
         <translation>進行状況</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="343"/>
+        <location filename="../torrentfilesmodel.h" line="345"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
@@ -4132,175 +4132,175 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="524"/>
+        <location filename="../transferlistwidget.cpp" line="525"/>
         <source>Column visibility</source>
         <translation>表示カラム</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="766"/>
+        <location filename="../transferlistwidget.cpp" line="767"/>
         <source>Label</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="227"/>
+        <location filename="../transferlistwidget.cpp" line="228"/>
         <source>Choose save path</source>
         <translation>保存先パスの選択</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="449"/>
+        <location filename="../transferlistwidget.cpp" line="450"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrent ダウンロード速度制限</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="482"/>
+        <location filename="../transferlistwidget.cpp" line="483"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrent アップロード速度制限</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>New Label</source>
         <translation>新しいラベル</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>Label:</source>
         <translation>ラベル:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Invalid label name</source>
         <translation>不正なラベル名</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>ラベル名に特殊文字は使わないでください。</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>Rename</source>
         <translation>名前の変更</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>New name:</source>
         <translation>新しい名前:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="644"/>
+        <location filename="../transferlistwidget.cpp" line="645"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>再開</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="646"/>
+        <location filename="../transferlistwidget.cpp" line="647"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="649"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="651"/>
         <source>Preview file...</source>
         <translation>ファイルのプレビュー...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Limit share ratio...</source>
         <translation>共有比制限...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
         <source>Limit upload rate...</source>
         <translation>アップロード速度制限...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="656"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Limit download rate...</source>
         <translation>ダウンロード速度制限...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="658"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Open destination folder</source>
         <translation>作成先のフォルダを開く</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="660"/>
+        <location filename="../transferlistwidget.cpp" line="661"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>上げる</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="662"/>
+        <location filename="../transferlistwidget.cpp" line="663"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>下げる</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="664"/>
+        <location filename="../transferlistwidget.cpp" line="665"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>先頭へ</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="666"/>
+        <location filename="../transferlistwidget.cpp" line="667"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>最後へ</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Set location...</source>
         <translation>場所の移動...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="670"/>
+        <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Force recheck</source>
         <translation>強制再チェック</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="672"/>
+        <location filename="../transferlistwidget.cpp" line="673"/>
         <source>Copy magnet link</source>
         <translation>マグネットリンクのコピー</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Super seeding mode</source>
         <translation>スーパーシードモード</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="679"/>
+        <location filename="../transferlistwidget.cpp" line="680"/>
         <source>Rename...</source>
         <translation>名前の変更...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="681"/>
+        <location filename="../transferlistwidget.cpp" line="682"/>
         <source>Download in sequential order</source>
         <translation>シーケンシャルにダウンロード</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="684"/>
+        <location filename="../transferlistwidget.cpp" line="685"/>
         <source>Download first and last piece first</source>
         <translation>最初と最後のピースを最初にダウンロード</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="767"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>新しいラベル...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="768"/>
+        <location filename="../transferlistwidget.cpp" line="769"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>リセット</translation>
@@ -4382,7 +4382,7 @@ Please install it manually.</source>
         <translation>ボランティアで qBittorrent の翻訳に協力してくださった以下の方々に感謝します:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="96"/>
+        <location filename="../about_imp.h" line="97"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>qBittorrent を自分の言語に翻訳したいとお思いならご連絡ください。</translation>
     </message>
@@ -4408,104 +4408,104 @@ Please install it manually.</source>
 <context>
     <name>addTorrentDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="6"/>
+        <location filename="../torrentadditiondlg.ui" line="14"/>
         <source>Torrent addition dialog</source>
         <translation>Torrent の追加ダイアログ</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="28"/>
+        <location filename="../torrentadditiondlg.ui" line="36"/>
         <source>Save path:</source>
         <translation>保存先パス:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="44"/>
+        <location filename="../torrentadditiondlg.ui" line="58"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="53"/>
+        <location filename="../torrentadditiondlg.ui" line="67"/>
         <source>Set as default save path</source>
         <translation>デフォルトの保存先に設定する</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="64"/>
+        <location filename="../torrentadditiondlg.ui" line="78"/>
         <source>Torrent size:</source>
         <translation>Torrent サイズ:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="71"/>
-        <location filename="../torrentadditiondlg.ui" line="102"/>
+        <location filename="../torrentadditiondlg.ui" line="85"/>
+        <location filename="../torrentadditiondlg.ui" line="116"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="95"/>
+        <location filename="../torrentadditiondlg.ui" line="109"/>
         <source>Free disk space:</source>
         <translation>ディスクの空き容量:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="133"/>
+        <location filename="../torrentadditiondlg.ui" line="147"/>
         <source>Label:</source>
         <translation>ラベル:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="179"/>
+        <location filename="../torrentadditiondlg.ui" line="193"/>
         <source>Torrent content:</source>
         <translation>Torrent の内容:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="232"/>
+        <location filename="../torrentadditiondlg.ui" line="246"/>
         <source>Select All</source>
         <translation>すべて選択</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="239"/>
+        <location filename="../torrentadditiondlg.ui" line="253"/>
         <source>Select None</source>
         <translation>すべて解除</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="261"/>
+        <location filename="../torrentadditiondlg.ui" line="275"/>
         <source>Download in sequential order (slower but good for previewing)</source>
         <translation>シーケンシャルにダウンロードする (時間はかかりますがプレビューには向いています)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="268"/>
+        <location filename="../torrentadditiondlg.ui" line="282"/>
         <source>Skip file checking and start seeding immediately</source>
         <translation>ファイルチェックをスキップし、直ちにシードを開始する</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="347"/>
-        <location filename="../torrentadditiondlg.ui" line="350"/>
+        <location filename="../torrentadditiondlg.ui" line="355"/>
+        <location filename="../torrentadditiondlg.ui" line="358"/>
         <source>Do not download</source>
         <translation>ダウンロードしない</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="275"/>
+        <location filename="../torrentadditiondlg.ui" line="289"/>
         <source>Add to download list in paused state</source>
         <translation>停止状態でダウンロードリストに追加する</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="303"/>
+        <location filename="../torrentadditiondlg.ui" line="311"/>
         <source>Add</source>
         <translation>追加</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="310"/>
+        <location filename="../torrentadditiondlg.ui" line="318"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="332"/>
+        <location filename="../torrentadditiondlg.ui" line="340"/>
         <source>Normal</source>
         <translation>通常</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="337"/>
+        <location filename="../torrentadditiondlg.ui" line="345"/>
         <source>High</source>
         <translation>高い</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.ui" line="342"/>
+        <location filename="../torrentadditiondlg.ui" line="350"/>
         <source>Maximum</source>
         <translation>最高</translation>
     </message>
@@ -5096,22 +5096,22 @@ However, those plugins were disabled.</source>
         <translation>与えられた IP フィルタは正しく解析されました: %1 ルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>Invalid key</source>
         <translation>不正な鍵</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1298"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>This is not a valid SSL key.</source>
         <translation>これは正常な SSL 鍵ではありません。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>Invalid certificate</source>
         <translation>不正な証明書</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1313"/>
+        <location filename="../preferences/options_imp.cpp" line="1314"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>これは正常な SSL 証明書ではありません。</translation>
     </message>
