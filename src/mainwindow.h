@@ -110,6 +110,7 @@ protected slots:
   bool unlockUI();
   void notifyOfUpdate(QString);
   void showConnectionSettings();
+  void minimizeWindow();
   // Keyboard shortcuts
   void createKeyboardShortcuts();
   void displayTransferTab() const;
