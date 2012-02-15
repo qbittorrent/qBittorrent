@@ -670,7 +670,9 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   bool was_seed = is_seed();
   vector<size_type> progress;
   file_progress(progress);
+  qDebug() << Q_FUNC_INFO << "Changing files priorities...";
   torrent_handle::prioritize_files(files);
+  qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder...";
   for(uint i=0; i<files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
     if(files[i] == 0 && progress[i] < filesize_at(i)) {
@@ -706,19 +708,25 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
       }
     }
     // Move wanted files back to their original folder
+    qDebug() << Q_FUNC_INFO << "Moving wanted files back from .unwanted folder";
     if(files[i] > 0) {
-      QString old_path = filepath_at(i);
-      QString old_name = filename_at(i);
-      QDir parent_path(misc::branchPath(old_path));
-      if(parent_path.dirName() == ".unwanted") {
-        QDir new_path(misc::branchPath(parent_path.path()));
-        rename_file(i, new_path.filePath(old_name));
+      QString parent_relpath = misc::branchPath(filepath_at(i));
+      if(QDir(parent_relpath).dirName() == ".unwanted") {
+        QString old_name = filename_at(i);
+        QString new_relpath = misc::branchPath(parent_relpath);
+        if (new_relpath.isEmpty())
+            rename_file(i, old_name);
+        else
+            rename_file(i, QDir(new_relpath).filePath(old_name));
         // Remove .unwanted directory if empty
-        new_path.rmdir(".unwanted");
+        qDebug() << "Attempting to remove .unwanted folder at " << QDir(save_path() + QDir::separator() + new_relpath).absoluteFilePath(".unwanted");
+        QDir(save_path() + QDir::separator() + new_relpath).rmdir(".unwanted");
       }
     }
   }
+
   if(was_seed && !is_seed()) {
+    qDebug() << "Torrent is no longer SEEDING";
     // Save seed status
     TorrentPersistentData::saveSeedStatus(*this);
     // Move to temp folder if necessary
@@ -728,6 +736,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
       QString root_folder = TorrentPersistentData::getRootFolder(hash());
       if(!root_folder.isEmpty())
         tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
+      qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << save_path();
       move_storage(tmp_path);
     }
   }
