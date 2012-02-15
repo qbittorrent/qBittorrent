@@ -575,13 +575,10 @@ QString misc::toValidFileSystemName(QString filename) {
   return filename;
 }
 
-bool misc::isValidFileSystemName(QString filename) {
-  filename.replace("\\", "/").trimmed();
+bool misc::isValidFileSystemName(const QString& filename) {
   if(filename.isEmpty()) return false;
-  const QRegExp regex("[/:?\"*<>|]");
-  if(filename.contains(regex))
-    return false;
-  return true;
+  const QRegExp regex("[\\\\/:?\"*<>|]");
+  return !filename.contains(regex);
 }
 
 #ifndef DISABLE_GUI

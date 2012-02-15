@@ -140,7 +140,7 @@ public:
   static bool isUrl(const QString &s);
   static void copyDir(QString src_path, QString dst_path);
   static QString toValidFileSystemName(QString filename);
-  static bool isValidFileSystemName(QString filename);
+  static bool isValidFileSystemName(const QString& filename);
 
   /* Ported from Qt4 to drop dependency on QtGui */
   static QString QDesktopServicesDataLocation();
