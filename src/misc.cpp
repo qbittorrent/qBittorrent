@@ -568,11 +568,10 @@ QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, 
 
 QString misc::toValidFileSystemName(QString filename) {
   qDebug("toValidFSName: %s", qPrintable(filename));
-  filename.replace("\\", "/").trimmed();
-  const QRegExp regex("[/:?\"*<>|]");
-  filename.replace(regex, " ").trimmed();
+  const QRegExp regex("[\\\\/:?\"*<>|]");
+  filename.replace(regex, " ");
   qDebug("toValidFSName, result: %s", qPrintable(filename));
-  return filename;
+  return filename.trimmed();
 }
 
 bool misc::isValidFileSystemName(const QString& filename) {
