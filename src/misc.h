@@ -39,8 +39,6 @@
 #include <QStringList>
 #include <QThread>
 #include <ctime>
-#include <boost/date_time/posix_time/posix_time_types.hpp>
-#include <boost/date_time/posix_time/conversion.hpp>
 #include <QPoint>
 #include <QFile>
 #include <QDir>
@@ -168,7 +166,6 @@ public:
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
   static QString bcLinkToMagnet(QString bc_link);
-  static QString boostTimeToQString(const boost::optional<boost::posix_time::ptime> &boostDate);
   static QString time_tToQString(const boost::optional<time_t> &t);
   // Replace ~ in path
   static QString expandPath(QString path);

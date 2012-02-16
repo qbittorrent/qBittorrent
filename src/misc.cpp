@@ -768,23 +768,6 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   return hash;
 }
 
-QString misc::boostTimeToQString(const boost::optional<boost::posix_time::ptime> &boostDate) {
-  if(!boostDate || !boostDate.is_initialized() || boostDate->is_not_a_date_time()) return tr("Unknown");
-  struct std::tm tm;
-  try {
-    tm = boost::posix_time::to_tm(*boostDate);
-  } catch(std::exception e) {
-    return tr("Unknown");
-  }
-  const time_t t = mktime(&tm);
-  if(t < 0)
-    return tr("Unknown");
-  const QDateTime dt = QDateTime::fromTime_t(t);
-  if(dt.isNull() || !dt.isValid())
-    return tr("Unknown");
-  return dt.toString(Qt::DefaultLocaleLongDate);
-}
-
 QString misc::time_tToQString(const boost::optional<time_t> &t) {
   if(!t.is_initialized() || *t < 0) return tr("Unknown");
   QDateTime dt = QDateTime::fromTime_t(*t);
