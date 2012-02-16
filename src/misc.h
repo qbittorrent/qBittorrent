@@ -80,14 +80,6 @@ public:
 
   static void chmod644(const QDir& folder);
 
-  static inline QString removeLastPathPart(QString path) {
-    if(path.isEmpty()) return path;
-    path.replace("\\", "/");
-    QStringList tmp = path.split("/");
-    tmp.removeLast();
-    return tmp.join("/");
-  }
-
   static inline QString file_extension(const QString &filename) {
     QString extension;
     int point_index = filename.lastIndexOf(".");

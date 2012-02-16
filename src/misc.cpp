@@ -888,6 +888,10 @@ bool misc::isValidTorrentFile(const QString &torrent_path) {
   return true;
 }
 
+/**
+ * Returns a path constructed from all the elements of file_path except the last.
+ * A typical use is to obtain the parent path for a path supplied by the user.
+ */
 QString misc::branchPath(QString file_path, bool uses_slashes)
 {
   if(!uses_slashes)

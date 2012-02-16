@@ -88,7 +88,7 @@ void TorrentCreatorDlg::on_addFile_button_clicked(){
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
   if(!file.isEmpty()) {
-    settings.setValue("CreateTorrent/last_add_path", misc::removeLastPathPart(file));
+    settings.setValue("CreateTorrent/last_add_path", misc::branchPath(file));
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     file.replace("/", "\\");
 #endif
@@ -121,7 +121,7 @@ void TorrentCreatorDlg::on_createButton_clicked(){
 
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if(!destination.isEmpty()) {
-    settings.setValue("CreateTorrent/last_save_path", misc::removeLastPathPart(destination));
+    settings.setValue("CreateTorrent/last_save_path", misc::branchPath(destination));
     if(!destination.toUpper().endsWith(".TORRENT"))
       destination += QString::fromUtf8(".torrent");
   } else {
