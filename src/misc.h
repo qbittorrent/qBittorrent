@@ -73,13 +73,9 @@ public:
   }
 
   static inline QString toQString(const libtorrent::sha1_hash &hash) {
-    std::ostringstream o;
-    o << hash;
-    return QString(o.str().c_str());
-  }
-
-  static inline libtorrent::sha1_hash toSha1Hash(const QString &hash) {
-    return libtorrent::sha1_hash(hash.toAscii().constData());
+    char out[41];
+    to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
+    return QString(out);
   }
 
   static void chmod644(const QDir& folder);
