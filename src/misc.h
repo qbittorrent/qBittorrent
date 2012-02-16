@@ -92,14 +92,6 @@ public:
     return tmp.join("/");
   }
 
-  static inline libtorrent::sha1_hash QStringToSha1(const QString& s) {
-    std::string str(s.toLocal8Bit().data());
-    std::istringstream i(str);
-    libtorrent::sha1_hash x;
-    i>>x;
-    return x;
-  }
-
   static inline QString file_extension(const QString &filename) {
     QString extension;
     int point_index = filename.lastIndexOf(".");

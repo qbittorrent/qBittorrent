@@ -90,6 +90,15 @@ const qreal QBtSession::MAX_RATIO = 9999.;
 
 const int MAX_TRACKER_ERRORS = 2;
 
+/* Converts a QString hash into a libtorrent sha1_hash */
+static libtorrent::sha1_hash QStringToSha1(const QString& s) {
+  QByteArray raw = s.toAscii();
+  Q_ASSERT(raw.size() == 40);
+  libtorrent::sha1_hash ret;
+  from_hex(raw.constData(), 40, (char*)&ret[0]);
+  return ret;
+}
+
 // Main constructor
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
@@ -718,7 +727,7 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
 
 // Return the torrent handle, given its hash
 QTorrentHandle QBtSession::getTorrentHandle(const QString &hash) const{
-  return QTorrentHandle(s->find_torrent(misc::QStringToSha1(hash)));
+  return QTorrentHandle(s->find_torrent(QStringToSha1(hash)));
 }
 
 bool QBtSession::hasActiveTorrents() const {
