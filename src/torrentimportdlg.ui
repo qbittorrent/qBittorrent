@@ -16,9 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <property name="spacing">
-      <number>15</number>
-     </property>
      <item>
       <widget class="QLabel" name="lbl_info">
        <property name="sizePolicy">
@@ -27,6 +24,18 @@
          <verstretch>32</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>38</width>
+         <height>38</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>38</width>
+         <height>38</height>
+        </size>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -34,6 +43,12 @@
      </item>
      <item>
       <widget class="QLabel" name="label_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</string>
        </property>
