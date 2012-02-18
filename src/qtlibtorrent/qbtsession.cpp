@@ -796,7 +796,7 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
       QFile::remove(uneeded_file);
       const QString parent_folder = misc::branchPath(uneeded_file);
       qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
-      misc::removeEmptyFolder(parent_folder);
+      QDir().rmdir(parent_folder);
     }
   }
   // Remove it from torrent backup directory
@@ -2357,7 +2357,7 @@ void QBtSession::readAlerts() {
         if(savePathsToRemove.contains(hash)) {
           const QString dirpath = savePathsToRemove.take(hash);
           qDebug() << "Removing save path: " << dirpath << "...";
-          bool ok = misc::removeEmptyFolder(dirpath);
+          bool ok = QDir().rmdir(dirpath);
           Q_UNUSED(ok);
           qDebug() << "Folder was removed: " << ok;
         }
@@ -2366,7 +2366,7 @@ void QBtSession::readAlerts() {
         qDebug() << "hash is empty, use fallback to remove save path";
         foreach(const QString& key, savePathsToRemove.keys()) {
           // Attempt to delete
-          if(misc::removeEmptyFolder(savePathsToRemove[key])) {
+          if(QDir().rmdir(savePathsToRemove[key])) {
             savePathsToRemove.remove(key);
           }
         }

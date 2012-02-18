@@ -95,8 +95,6 @@ public:
 
   static QString parseHtmlLinks(const QString &raw_text);
 
-  static bool removeEmptyFolder(const QString &dirpath);
-
   static quint64 computePathSize(QString path);
 
   static QString truncateRootFolder(boost::intrusive_ptr<libtorrent::torrent_info> t);
