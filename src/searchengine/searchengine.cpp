@@ -575,10 +575,6 @@ void SearchEngine::updateNova() {
       }
     }
   }
-#ifndef Q_WS_WIN
-  // Fix permissions
-  misc::chmod644(QDir(misc::searchEngineLocation()));
-#endif
 }
 
 // Slot called when search is Finished

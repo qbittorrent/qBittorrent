@@ -488,20 +488,6 @@ bool misc::sameFiles(const QString &path1, const QString &path2) {
   return same;
 }
 
-void misc::chmod644(const QDir& folder) {
-  qDebug("chmod644(%s)", qPrintable(folder.absolutePath()));
-  if(!folder.exists()) return;
-  foreach(const QFileInfo &fi, folder.entryInfoList(QDir::Dirs|QDir::Files|QDir::NoSymLinks)) {
-    if(fi.fileName().startsWith(".")) continue;
-    if(fi.isDir()) {
-      misc::chmod644(QDir(fi.absoluteFilePath()));
-    } else {
-      QFile f(fi.absoluteFilePath());
-      f.setPermissions(f.permissions()|QFile::ReadUser|QFile::WriteUser|QFile::ReadGroup|QFile::ReadOther);
-    }
-  }
-}
-
 QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label) {
   if(old_label == new_label) return save_path;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)

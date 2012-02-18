@@ -78,8 +78,6 @@ public:
     return QString(out);
   }
 
-  static void chmod644(const QDir& folder);
-
   static inline QString file_extension(const QString &filename) {
     QString extension;
     int point_index = filename.lastIndexOf(".");
