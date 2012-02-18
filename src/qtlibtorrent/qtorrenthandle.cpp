@@ -72,7 +72,9 @@ QString QTorrentHandle::name() const {
 QString QTorrentHandle::creation_date() const {
 #if LIBTORRENT_VERSION_MINOR > 15
   boost::optional<time_t> t = torrent_handle::get_torrent_info().creation_date();
-  return misc::time_tToQString(t);
+  if (t)
+      return QDateTime::fromTime_t(*t).toString(Qt::DefaultLocaleLongDate);
+  return tr("Unknown");
 #else
   boost::optional<boost::posix_time::ptime> boostDate = torrent_handle::get_torrent_info().creation_date();
   return misc::boostTimeToQString(boostDate);

@@ -724,14 +724,6 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   return hash;
 }
 
-QString misc::time_tToQString(const boost::optional<time_t> &t) {
-  if(!t.is_initialized() || *t < 0) return tr("Unknown");
-  QDateTime dt = QDateTime::fromTime_t(*t);
-  if(dt.isNull() || !dt.isValid())
-    return tr("Unknown");
-  return dt.toString(Qt::DefaultLocaleLongDate);
-}
-
 // Replace ~ in path
 QString misc::expandPath(QString path) {
   path = path.trimmed();
