@@ -488,36 +488,6 @@ bool misc::sameFiles(const QString &path1, const QString &path2) {
   return same;
 }
 
-void misc::copyDir(QString src_path, QString dst_path) {
-  QDir sourceDir(src_path);
-  if(!sourceDir.exists()) return;
-  // Create destination directory
-  QDir destDir(dst_path);
-  if(!destDir.exists()) {
-    if(!destDir.mkpath(destDir.absolutePath())) return;
-  }
-  // List source directory
-  const QFileInfoList content = sourceDir.entryInfoList();
-  foreach(const QFileInfo& child, content) {
-    if(child.fileName()[0] == '.') continue;
-    if(child.isDir()) {
-      copyDir(child.absoluteFilePath(), dst_path+QDir::separator()+QDir(child.absoluteFilePath()).dirName());
-      continue;
-    }
-    const QString src_child_path = child.absoluteFilePath();
-    const QString dest_child_path = destDir.absoluteFilePath(child.fileName());
-    // Copy the file from src to dest
-    QFile::copy(src_child_path, dest_child_path);
-    // Remove source file
-    QFile::remove(src_child_path);
-  }
-  // Remove source folder
-  const QString dir_name = sourceDir.dirName();
-  if(sourceDir.cdUp()) {
-    sourceDir.rmdir(dir_name);
-  }
-}
-
 void misc::chmod644(const QDir& folder) {
   qDebug("chmod644(%s)", qPrintable(folder.absolutePath()));
   if(!folder.exists()) return;

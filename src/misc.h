@@ -105,7 +105,6 @@ public:
 
   static bool sameFiles(const QString &path1, const QString &path2);
   static bool isUrl(const QString &s);
-  static void copyDir(QString src_path, QString dst_path);
   static QString toValidFileSystemName(QString filename);
   static bool isValidFileSystemName(const QString& filename);
 
