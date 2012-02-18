@@ -112,9 +112,6 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
     comboLabel->addItem(label);
   }
 
-#if LIBTORRENT_VERSION_MINOR < 15
-  addInSeed->setVisible(false);
-#endif
   // Set Add button as default
   OkButton->setDefault(true);
 }
@@ -663,7 +660,6 @@ void torrentAdditionDialog::on_OkButton_clicked(){
       TorrentTempData::setFilesPath(hash, files_path);
     }
   }
-#if LIBTORRENT_VERSION_MINOR > 14
   // Skip file checking and directly start seeding
   if(addInSeed->isChecked()) {
     // Check if local file(s) actually exist
@@ -674,7 +670,6 @@ void torrentAdditionDialog::on_OkButton_clicked(){
       return;
     }
   }
-#endif
   // Check if there is at least one selected file
   if(!is_magnet && t->num_files() > 1 && allFiltered()){
     QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));

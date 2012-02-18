@@ -56,9 +56,7 @@ public:
   QString getContentPath() const;
   bool fileRenamed() const;
   boost::intrusive_ptr<libtorrent::torrent_info> torrent() const;
-#if LIBTORRENT_VERSION_MINOR >= 15
   bool skipFileChecking() const;
-#endif
 
 protected slots:
   void loadTorrent(const QString &torrent_path);

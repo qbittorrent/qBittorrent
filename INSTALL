@@ -14,7 +14,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
 
     - pkg-config executable
 
-    - libtorrent-rasterbar by Arvid Norberg (>= 0.14.4 REQUIRED, compatible with v0.15.x/v0.16.x)
+    - libtorrent-rasterbar by Arvid Norberg (>= 0.15.0)
         -> http://www.libtorrent.net
         Be careful: another library (the one used by rTorrent) uses a similar name.
 
@@ -44,7 +44,7 @@ qBittorrent - A BitTorrent client in C++ / Qt4
 
     - pkg-config executable
 
-    - libtorrent-rasterbar by Arvid Norberg (>= 0.14.4 REQUIRED, >= v0.15.0 ADVISED)
+    - libtorrent-rasterbar by Arvid Norberg (>= v0.15.0)
         -> http://www.libtorrent.net
         Be careful: another library (the one used by rTorrent) uses a similar name.
 

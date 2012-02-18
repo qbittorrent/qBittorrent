@@ -21,9 +21,7 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                       USE_ICON_THEME,
                     #endif
                       CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
-                    #if LIBTORRENT_VERSION_MINOR > 14
                       ANNOUNCE_ALL_TRACKERS,
-                    #endif
                       ROW_COUNT};
 
 class AdvancedSettings: public QTableWidget {
@@ -41,9 +39,7 @@ private:
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
   QCheckBox cb_use_icon_theme;
 #endif
-#if LIBTORRENT_VERSION_MINOR > 14
-   QCheckBox cb_announce_all_trackers;
-#endif
+  QCheckBox cb_announce_all_trackers;
   QLineEdit txt_network_address;
 
 public:
@@ -85,10 +81,8 @@ public slots:
     pref.resolvePeerHostNames(cb_resolve_hosts.isChecked());
     // Max Half-Open connections
     pref.setMaxHalfOpenConnections(spin_maxhalfopen.value());
-#if LIBTORRENT_VERSION_MINOR > 14
     // Super seeding
     pref.enableSuperSeeding(cb_super_seeding.isChecked());
-#endif
     // Network interface
     if(combo_iface.currentIndex() == 0) {
       // All interfaces (default)
@@ -117,9 +111,7 @@ public slots:
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
     // Tracker exchange
     pref.setTrackerExchangeEnabled(cb_enable_tracker_ext.isChecked());
-#if LIBTORRENT_VERSION_MINOR > 14
     pref.setAnnounceToAllTrackers(cb_announce_all_trackers.isChecked());
-#endif
   }
 
 signals:
@@ -201,11 +193,7 @@ private slots:
     spin_maxhalfopen.setValue(pref.getMaxHalfOpenConnections());
     setRow(MAX_HALF_OPEN, tr("Maximum number of half-open connections [0: Disabled]"), &spin_maxhalfopen);
     // Super seeding
-#if LIBTORRENT_VERSION_MINOR > 14
     cb_super_seeding.setChecked(pref.isSuperSeedingEnabled());
-#else
-    cb_super_seeding.setEnabled(false);
-#endif
     setRow(SUPER_SEEDING, tr("Strict super seeding"), &cb_super_seeding);
     // Network interface
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
@@ -247,11 +235,9 @@ private slots:
     // Tracker exchange
     cb_enable_tracker_ext.setChecked(pref.trackerExchangeEnabled());
     setRow(TRACKER_EXCHANGE, tr("Exchange trackers with other peers"), &cb_enable_tracker_ext);
-#if LIBTORRENT_VERSION_MINOR > 14
     // Announce to all trackers
     cb_announce_all_trackers.setChecked(pref.announceToAllTrackers());
     setRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers"), &cb_announce_all_trackers);
-#endif
   }
 
 };

@@ -420,10 +420,8 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     const QString filename = h.filepath_at(i);
     const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
-#if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
     h.flush_cache();
-#endif
     if(QFile::exists(file_path)) {
       QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
@@ -442,10 +440,8 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     const QString filename = path_items.join(QDir::separator());
     const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open folder at %s", qPrintable(file_path));
-#if LIBTORRENT_VERSION_MINOR > 14
     // Flush data
     h.flush_cache();
-#endif
     if(QFile::exists(file_path)) {
       QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {

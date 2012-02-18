@@ -246,9 +246,6 @@ options_imp::options_imp(QWidget *parent):
   applyButton->setEnabled(false);
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-#if LIBTORRENT_VERSION_MINOR < 15
-  checkAppendqB->setVisible(false);
-#endif
 #if LIBTORRENT_VERSION_MINOR < 16
   checkuTP->setVisible(false);
   checkLimituTPConnections->setVisible(false);
@@ -392,9 +389,7 @@ void options_imp::saveOptions(){
 #endif
   pref.setTempPath(temp_path);
   pref.setAppendTorrentLabel(checkAppendLabel->isChecked());
-#if LIBTORRENT_VERSION_MINOR > 14
   pref.useIncompleteFilesExtension(checkAppendqB->isChecked());
-#endif
   pref.preAllocateAllFiles(preAllocateAllFiles());
   pref.useAdditionDialog(useAdditionDialog());
   pref.addTorrentsInPause(addTorrentsInPause());
@@ -569,9 +564,7 @@ void options_imp::loadOptions(){
 #endif
   textTempPath->setText(temp_path);
   checkAppendLabel->setChecked(pref.appendTorrentLabel());
-#if LIBTORRENT_VERSION_MINOR > 14
   checkAppendqB->setChecked(pref.useIncompleteFilesExtension());
-#endif
   checkPreallocateAll->setChecked(pref.preAllocateAllFiles());
   checkAdditionDialog->setChecked(pref.useAdditionDialog());
   checkStartPaused->setChecked(pref.addTorrentsInPause());

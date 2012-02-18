@@ -205,7 +205,6 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/TempPath"), path);
   }
 
-#if LIBTORRENT_VERSION_MINOR > 14
   bool useIncompleteFilesExtension() const {
     return value(QString::fromUtf8("Preferences/Downloads/UseIncompleteExtension"), false).toBool();
   }
@@ -213,7 +212,6 @@ public:
   void useIncompleteFilesExtension(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Downloads/UseIncompleteExtension"), enabled);
   }
-#endif
 
   bool appendTorrentLabel() const {
     return value(QString::fromUtf8("Preferences/Downloads/AppendLabel"), false).toBool();
@@ -1025,7 +1023,6 @@ public:
   }
 #endif
 
-#if LIBTORRENT_VERSION_MINOR > 14
   bool isSuperSeedingEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), false).toBool();
   }
@@ -1041,7 +1038,6 @@ public:
   void setAnnounceToAllTrackers(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), enabled);
   }
-#endif
 
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
   bool useSystemIconTheme() const {

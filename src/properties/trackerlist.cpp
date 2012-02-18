@@ -247,7 +247,6 @@ void TrackerList::loadTrackers() {
     }
     TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
     QString error_message = data.last_message.trimmed();
-#if LIBTORRENT_VERSION_MINOR > 14
     if(it->verified) {
       item->setText(COL_STATUS, tr("Working"));
       item->setText(COL_MSG, "");
@@ -265,20 +264,6 @@ void TrackerList::loadTrackers() {
         }
       }
     }
-#else
-    if(data.verified) {
-      item->setText(COL_STATUS, tr("Working"));
-      item->setText(COL_MSG, "");
-    } else {
-      if(data.fail_count > 0) {
-        item->setText(COL_STATUS, tr("Not working"));
-        item->setText(COL_MSG, error_message);
-      } else {
-        item->setText(COL_STATUS, tr("Not contacted yet"));
-        item->setText(COL_MSG, "");
-      }
-    }
-#endif
     item->setText(COL_PEERS, QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers));
   }
   // Remove old trackers

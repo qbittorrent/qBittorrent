@@ -68,7 +68,6 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
       tracker["url"] = tracker_url;
       TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
       QString error_message = data.last_message.trimmed();
-#if LIBTORRENT_VERSION_MINOR > 14
       if(it->verified) {
         tracker["status"] = tr("Working");
       } else {
@@ -82,16 +81,6 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
           }
         }
       }
-#else
-      if(data.verified) {
-        tracker["status"] = tr("Working");
-      } else {
-        if(data.fail_count > 0)
-          tracker["status"] = tr("Not working");
-        else
-          tracker["status"] = tr("Not contacted yet");
-      }
-#endif
       tracker["num_peers"] = QString::number(trackers_data.value(tracker_url, TrackerInfos(tracker_url)).num_peers);
       tracker["msg"] = error_message;
       trackersInfo << tracker;
@@ -209,10 +198,8 @@ void EventManager::setGlobalPreferences(QVariantMap m) {
     pref.setMaxActiveUploads(m["max_active_uploads"].toInt());
   if(m.contains("dont_count_slow_torrents"))
     pref.setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
-#if LIBTORRENT_VERSION_MINOR > 14
   if(m.contains("incomplete_files_ext"))
     pref.useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
-#endif
   // Connection
   if(m.contains("listen_port"))
     pref.setSessionPort(m["listen_port"].toInt());
@@ -360,9 +347,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["max_active_torrents"] = pref.getMaxActiveTorrents();
   data["max_active_uploads"] = pref.getMaxActiveUploads();
   data["dont_count_slow_torrents"] = pref.ignoreSlowTorrentsForQueueing();
-#if LIBTORRENT_VERSION_MINOR > 14
   data["incomplete_files_ext"] = pref.useIncompleteFilesExtension();
-#endif
   // Connection
   data["listen_port"] = pref.getSessionPort();
   data["upnp"] = pref.isUPnPEnabled();

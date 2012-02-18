@@ -171,10 +171,8 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
       save_path = QDir(save_path).absoluteFilePath(root_folder);
     }
     TorrentTempData::setSavePath(hash, save_path);
-#if LIBTORRENT_VERSION_MINOR > 14
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);
-#endif
     emit torrent_to_seed(path);
   }
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);

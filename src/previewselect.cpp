@@ -96,10 +96,9 @@ void PreviewSelect::on_previewButton_clicked(){
   QModelIndex index;
   QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(NAME);
   if(selectedIndexes.size() == 0) return;
-#if LIBTORRENT_VERSION_MINOR > 14
   // Flush data
   h.flush_cache();
-#endif
+
   QString path;
   foreach(index, selectedIndexes){
     path = h.absolute_files_path().at(indexes.at(index.row()));

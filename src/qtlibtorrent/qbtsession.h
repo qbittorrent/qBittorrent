@@ -146,10 +146,8 @@ public slots:
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(const QTorrentHandle &h);
   void changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label);
-#if LIBTORRENT_VERSION_MINOR > 14
   void appendqBextensionToTorrent(const QTorrentHandle &h, bool append);
   void setAppendqBExtension(bool append);
-#endif
   void applyEncryptionSettings(libtorrent::pe_settings se);
   void setDownloadLimit(QString hash, long val);
   void setUploadLimit(QString hash, long val);
@@ -217,11 +215,6 @@ signals:
   void listenSucceeded();
 
 private:
-#if LIBTORRENT_VERSION_MINOR < 15
-  void saveDHTEntry();
-#endif
-
-private:
   // Bittorrent
   libtorrent::session *s;
   QPointer<QTimer> timerAlerts;
@@ -252,9 +245,7 @@ private:
   bool queueingEnabled;
   bool appendLabelToSavePath;
   bool torrentExport;
-#if LIBTORRENT_VERSION_MINOR > 14
   bool appendqBExtension;
-#endif
   QString defaultSavePath;
   QString defaultTempPath;
   // IP filtering

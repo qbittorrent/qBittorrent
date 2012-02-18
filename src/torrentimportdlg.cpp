@@ -51,9 +51,6 @@ TorrentImportDlg::TorrentImportDlg(QWidget *parent) :
   ui->lbl_info->setFixedWidth(ui->lbl_info->height());
   ui->importBtn->setIcon(IconProvider::instance()->getIcon("document-import"));
   // Libtorrent < 0.15 does not support skipping file checking
-#if LIBTORRENT_VERSION_MINOR < 15
-  ui->checkSkipCheck->setVisible(false);
-#endif
   loadSettings();
 }
 
@@ -107,7 +104,6 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 #else
     ui->lineContent->setText(m_contentPath);
 #endif
-#if LIBTORRENT_VERSION_MINOR >= 15
     // Check file size
     const qint64 file_size = QFile(m_contentPath).size();
     if(t->file_at(0).size == file_size) {
@@ -118,7 +114,6 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
       ui->checkSkipCheck->setChecked(false);
       ui->checkSkipCheck->setEnabled(false);
     }
-#endif
     // Handle file renaming
     QStringList parts = m_contentPath.replace("\\", "/").split("/");
     QString new_file_name = parts.takeLast();
@@ -145,7 +140,6 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 #else
     ui->lineContent->setText(m_contentPath);
 #endif
-#if LIBTORRENT_VERSION_MINOR >= 15
     bool size_mismatch = false;
     QDir content_dir(m_contentPath);
     // Check file sizes
@@ -172,7 +166,6 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
       qDebug("The file size matches, allowing fast seeding...");
       ui->checkSkipCheck->setEnabled(true);
     }
-#endif
   }
   // Enable the import button
   ui->importBtn->setEnabled(true);
@@ -214,9 +207,7 @@ void TorrentImportDlg::importTorrent()
     const QString hash = misc::toQString(t->info_hash());
     qDebug() << "Torrent hash is" << hash;
     TorrentTempData::setSavePath(hash, content_path);
-#if LIBTORRENT_VERSION_MINOR >= 15
     TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
-#endif
     qDebug("Adding the torrent to the session...");
     QBtSession::instance()->addTorrent(torrent_path);
     // Remember the last opened folder
@@ -280,12 +271,10 @@ boost::intrusive_ptr<libtorrent::torrent_info> TorrentImportDlg::torrent() const
   return t;
 }
 
-#if LIBTORRENT_VERSION_MINOR >= 15
 bool TorrentImportDlg::skipFileChecking() const
 {
   return ui->checkSkipCheck->isChecked();
 }
-#endif
 
 void TorrentImportDlg::loadSettings()
 {

@@ -547,7 +547,6 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&){
 }
 
 void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
-#if LIBTORRENT_VERSION_MINOR > 14
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach(const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
@@ -555,7 +554,6 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
       h.super_seeding(!h.super_seeding());
     }
   }
-#endif
 }
 
 void TransferListWidget::toggleSelectedTorrentsSequentialDownload() const {
@@ -672,11 +670,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(":/Icons/magnet.png"), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
-#if LIBTORRENT_VERSION_MINOR > 14
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   actionSuper_seeding_mode.setCheckable(true);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
-#endif
   QAction actionRename(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."), 0);
   connect(&actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedTorrent()));
   QAction actionSequential_download(tr("Download in sequential order"), 0);
@@ -690,10 +686,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // Enable/disable pause/start action given the DL state
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
-#if LIBTORRENT_VERSION_MINOR > 14
   bool all_same_super_seeding = true;
   bool super_seeding_mode = false;
-#endif
   bool all_same_sequential_download_mode = true, all_same_prio_firstlast = true;
   bool sequential_download_mode = false, prioritize_first_last = false;
   bool one_has_metadata = false, one_not_seed = false;
@@ -724,7 +718,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
         }
       }
     }
-#if LIBTORRENT_VERSION_MINOR > 14
     else {
       if(!one_not_seed && all_same_super_seeding && h.has_metadata()) {
         if(first) {
@@ -736,7 +729,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
         }
       }
     }
-#endif
     if(h.is_paused()) {
       if(!has_start) {
         listMenu.addAction(&actionStart);
@@ -776,12 +768,10 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     listMenu.addAction(&actionSet_download_limit);
   listMenu.addAction(&actionSet_max_ratio);
   listMenu.addAction(&actionSet_upload_limit);
-#if LIBTORRENT_VERSION_MINOR > 14
   if(!one_not_seed && all_same_super_seeding && one_has_metadata) {
     actionSuper_seeding_mode.setChecked(super_seeding_mode);
     listMenu.addAction(&actionSuper_seeding_mode);
   }
-#endif
   listMenu.addSeparator();
   bool added_preview_action = false;
   if(has_preview) {

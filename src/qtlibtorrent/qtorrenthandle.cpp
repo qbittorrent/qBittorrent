@@ -43,6 +43,9 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
+#if LIBTORRENT_VERSION_MINOR < 15
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#endif
 
 #ifdef Q_WS_WIN
 #include <Windows.h>
@@ -50,6 +53,21 @@
 
 using namespace libtorrent;
 using namespace std;
+
+#if LIBTORRENT_VERSION_MINOR < 16
+static QString boostTimeToQString(const boost::posix_time::ptime &boostDate) {
+  if(boostDate.is_not_a_date_time()) return "";
+  struct std::tm tm;
+  try {
+    tm = boost::posix_time::to_tm(boostDate);
+  } catch(std::exception e) {
+      return "";
+  }
+  const time_t t = mktime(&tm);
+  const QDateTime dt = QDateTime::fromTime_t(t);
+  return dt.toString(Qt::DefaultLocaleLongDate);
+}
+#endif
 
 QTorrentHandle::QTorrentHandle(torrent_handle h): torrent_handle(h) {}
 
@@ -74,10 +92,13 @@ QString QTorrentHandle::creation_date() const {
   boost::optional<time_t> t = torrent_handle::get_torrent_info().creation_date();
   if (t)
       return QDateTime::fromTime_t(*t).toString(Qt::DefaultLocaleLongDate);
-  return tr("Unknown");
+  return "";
 #else
   boost::optional<boost::posix_time::ptime> boostDate = torrent_handle::get_torrent_info().creation_date();
-  return misc::boostTimeToQString(boostDate);
+  if (boostDate) {
+      return boostTimeToQString(*boostDate);
+  }
+  return "";
 #endif
 }
 
@@ -574,11 +595,7 @@ return torrent_handle::status(0x0).distributed_copies;
 }
 
 void QTorrentHandle::file_progress(std::vector<size_type>& fp) const {
-  torrent_handle::file_progress(fp
-#if LIBTORRENT_VERSION_MINOR > 14
-                                , torrent_handle::piece_granularity
-#endif
-                                );
+  torrent_handle::file_progress(fp, torrent_handle::piece_granularity);
 }
 
 //
@@ -745,24 +762,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
 }
 
 void QTorrentHandle::add_tracker(const announce_entry& url) const {
-#if LIBTORRENT_VERSION_MINOR > 14
   torrent_handle::add_tracker(url);
-#else
-  std::vector<announce_entry> trackers = torrent_handle::trackers();
-  bool exists = false;
-  std::vector<announce_entry>::iterator it = trackers.begin();
-  while(it != trackers.end()) {
-    if(it->url == url.url) {
-      exists = true;
-      break;
-    }
-    it++;
-  }
-  if(!exists) {
-    trackers.push_back(url);
-    torrent_handle::replace_trackers(trackers);
-  }
-#endif
 }
 
 void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {

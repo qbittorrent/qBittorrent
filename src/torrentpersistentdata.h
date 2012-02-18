@@ -118,7 +118,6 @@ public:
     return data.value("sequential", false).toBool();
   }
 
-#if LIBTORRENT_VERSION_MINOR > 14
   static void setSeedingMode(QString hash,bool seed){
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
@@ -134,7 +133,6 @@ public:
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();
     return data.value("seeding", false).toBool();
   }
-#endif
 
   static QString getSavePath(QString hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
