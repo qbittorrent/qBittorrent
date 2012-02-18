@@ -1,9 +1,10 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.4
+* Sat Feb 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.4
     - BUGFIX: qBittorrent does not handle redirection to relative URLs correctly (Closes #919905)
     - BUGFIX: Cmd+M minimizes main window on Mac OS X (Closes #928216)
     - BUGFIX: Cmd+Del removes torrents on Mac OS X (Closes #928852)
     - BUGFIX: Fix potential bug when moving single file torrents to tmp folder (closes #932861)
     - BUGFIX: Fix torrent import dialog layout (Closes #930932)
+    - BUGFIX: Prevent log window buffer from filling up (Closes #929673)
     - I18N: Add Belarusian translation
 
 * Thu Dec 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
