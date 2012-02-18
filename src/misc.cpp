@@ -509,7 +509,7 @@ void misc::copyDir(QString src_path, QString dst_path) {
     // Copy the file from src to dest
     QFile::copy(src_child_path, dest_child_path);
     // Remove source file
-    safeRemove(src_child_path);
+    QFile::remove(src_child_path);
   }
   // Remove source folder
   const QString dir_name = sourceDir.dirName();

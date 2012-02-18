@@ -168,7 +168,7 @@ void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
     on_search_button_clicked();
   }
   // Delete temp file
-  misc::safeRemove(file_path+".msi");
+  QFile::remove(file_path+".msi");
 }
 
 void SearchEngine::pythonDownloadFailure(QString url, QString error) {
@@ -500,8 +500,8 @@ void SearchEngine::updateNova() {
   QString filePath = search_dir.absoluteFilePath("nova2.py");
   if(getPluginVersion(":/"+nova_folder+"/nova2.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)) {
-      misc::safeRemove(filePath);
-      misc::safeRemove(filePath+"c");
+      QFile::remove(filePath);
+      QFile::remove(filePath+"c");
     }
     QFile::copy(":/"+nova_folder+"/nova2.py", filePath);
   }
@@ -509,8 +509,8 @@ void SearchEngine::updateNova() {
   filePath = search_dir.absoluteFilePath("nova2dl.py");
   if(getPluginVersion(":/"+nova_folder+"/nova2dl.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      misc::safeRemove(filePath);
-      misc::safeRemove(filePath+"c");
+      QFile::remove(filePath);
+      QFile::remove(filePath+"c");
     }
     QFile::copy(":/"+nova_folder+"/nova2dl.py", filePath);
   }
@@ -518,8 +518,8 @@ void SearchEngine::updateNova() {
   filePath = search_dir.absoluteFilePath("novaprinter.py");
   if(getPluginVersion(":/"+nova_folder+"/novaprinter.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      misc::safeRemove(filePath);
-      misc::safeRemove(filePath+"c");
+      QFile::remove(filePath);
+      QFile::remove(filePath+"c");
     }
     QFile::copy(":/"+nova_folder+"/novaprinter.py", filePath);
   }
@@ -527,24 +527,24 @@ void SearchEngine::updateNova() {
   filePath = search_dir.absoluteFilePath("helpers.py");
   if(getPluginVersion(":/"+nova_folder+"/helpers.py") > getPluginVersion(filePath)) {
     if(QFile::exists(filePath)){
-      misc::safeRemove(filePath);
-      misc::safeRemove(filePath+"c");
+      QFile::remove(filePath);
+      QFile::remove(filePath+"c");
     }
     QFile::copy(":/"+nova_folder+"/helpers.py", filePath);
   }
 
   filePath = search_dir.absoluteFilePath("socks.py");
   if(QFile::exists(filePath)){
-    misc::safeRemove(filePath);
-    misc::safeRemove(filePath+"c");
+    QFile::remove(filePath);
+    QFile::remove(filePath+"c");
   }
   QFile::copy(":/"+nova_folder+"/socks.py", filePath);
 
   if (nova_folder == "nova3") {
     filePath = search_dir.absoluteFilePath("sgmllib3.py");
     if(QFile::exists(filePath)){
-      misc::safeRemove(filePath);
-      misc::safeRemove(filePath+"c");
+      QFile::remove(filePath);
+      QFile::remove(filePath+"c");
     }
     QFile::copy(":/"+nova_folder+"/sgmllib3.py", filePath);
   }
@@ -560,8 +560,8 @@ void SearchEngine::updateNova() {
         qDebug("shipped %s is more recent then local plugin, updating...", qPrintable(file));
         if(QFile::exists(dest_file)) {
           qDebug("Removing old %s", qPrintable(dest_file));
-          misc::safeRemove(dest_file);
-          misc::safeRemove(dest_file+"c");
+          QFile::remove(dest_file);
+          QFile::remove(dest_file+"c");
         }
         qDebug("%s copied to %s", qPrintable(shipped_file), qPrintable(dest_file));
         QFile::copy(shipped_file, dest_file);

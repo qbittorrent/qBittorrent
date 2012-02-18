@@ -258,7 +258,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
     qDebug("Caught error loading torrent");
     if(!from_url.isNull()){
       QBtSession::instance()->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
-      misc::safeRemove(filePath);
+      QFile::remove(filePath);
     }else{
       QBtSession::instance()->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+filePath+QString::fromUtf8("'"), QString::fromUtf8("red"));
     }

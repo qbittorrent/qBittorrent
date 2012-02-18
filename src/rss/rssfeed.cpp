@@ -60,7 +60,7 @@ RssFeed::~RssFeed(){
     saveItemsToDisk();
   }
   if(!m_icon.startsWith(":/") && QFile::exists(m_icon))
-    misc::safeRemove(m_icon);
+    QFile::remove(m_icon);
 }
 
 void RssFeed::saveItemsToDisk() {

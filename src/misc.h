@@ -93,15 +93,6 @@ public:
   static void shutdownComputer(bool sleep=false);
 #endif
 
-  static bool safeRemove(QString file_path) {
-    QFile MyFile(file_path);
-    if(!MyFile.exists()) return true;
-    // Make sure the permissions are ok
-    MyFile.setPermissions(MyFile.permissions()|QFile::ReadOwner|QFile::WriteOwner|QFile::ReadUser|QFile::WriteUser);
-    // Actually remove the file
-    return MyFile.remove();
-  }
-
   static QString parseHtmlLinks(const QString &raw_text);
 
   static bool removeEmptyFolder(const QString &dirpath);
