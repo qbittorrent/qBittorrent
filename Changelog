@@ -3,6 +3,7 @@
     - BUGFIX: Cmd+M minimizes main window on Mac OS X (Closes #928216)
     - BUGFIX: Cmd+Del removes torrents on Mac OS X (Closes #928852)
     - BUGFIX: Fix potential bug when moving single file torrents to tmp folder (closes #932861)
+    - BUGFIX: Fix torrent import dialog layout (Closes #930932)
     - I18N: Add Belarusian translation
 
 * Thu Dec 29 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.3
