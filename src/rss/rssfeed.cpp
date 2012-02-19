@@ -56,15 +56,14 @@ RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
 }
 
 RssFeed::~RssFeed(){
-  // Saving current articles to hard disk
-  if(m_refreshed) {
-    saveItemsToDisk();
-  }
   if(!m_icon.startsWith(":/") && QFile::exists(m_icon))
     QFile::remove(m_icon);
 }
 
 void RssFeed::saveItemsToDisk() {
+  qDebug() << Q_FUNC_INFO << m_url;
+  if (!m_refreshed)
+    return;
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QVariantList old_items;
   for (RssArticleHash::ConstIterator it=m_articles.begin(); it != m_articles.end(); it++) {
@@ -102,6 +101,7 @@ void RssFeed::refresh() {
 }
 
 void RssFeed::removeAllSettings() {
+  qDebug() << "Removing all settings / history for feed: " << m_url;
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on", QHash<QString, QVariant>()).toHash();
   if (feeds_w_downloader.contains(m_url)) {
@@ -278,12 +278,12 @@ bool RssFeed::parseRSS(QIODevice* device) {
     }
   }
 
+  // Make sure we limit the number of articles
+  resizeList();
+
   // RSS Feed Downloader
   if(RssSettings().isRssDownloadingEnabled())
     downloadMatchingArticleTorrents();
-
-  // Make sure we limit the number of articles
-  resizeList();
 
   // Save items to disk (for safety)
   saveItemsToDisk();

@@ -55,6 +55,7 @@ public:
   QString id() const { return m_url; }
   void removeAllSettings();
   bool itemAlreadyExists(const QString &guid) const;
+  virtual void saveItemsToDisk();
   void setLoading(bool val);
   bool isLoading() const;
   QString title() const;
@@ -82,7 +83,6 @@ private:
   bool parseXmlFile(const QString &file_path);
   void downloadMatchingArticleTorrents();
   QString iconUrl() const;
-  void saveItemsToDisk();
   void loadItemsFromDisk();
 
 private:

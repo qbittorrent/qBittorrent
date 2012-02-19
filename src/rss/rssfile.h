@@ -62,6 +62,7 @@ public:
   virtual void removeAllSettings() = 0;
   virtual const RssArticleList articleList() const = 0;
   virtual const RssArticleList unreadArticleList() const = 0;
+  virtual void saveItemsToDisk() = 0;
   QStringList pathHierarchy() const;
 };
 
