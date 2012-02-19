@@ -59,7 +59,7 @@ public:
   QString icon() const;
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
-  RssArticle& getItem(const QString &guid);
+  const RssArticle getItem(const QString &guid) const;
   uint count() const;
   void markAsRead();
   uint unreadCount() const;

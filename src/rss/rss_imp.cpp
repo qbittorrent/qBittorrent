@@ -508,7 +508,7 @@ void RSSImp::refreshTextBrowser() {
     m_currentArticle = item;
   }
   RssFeed *stream = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
-  RssArticle &article = stream->getItem(item->data(Article::IdRole).toString());
+  RssArticle article = stream->getItem(item->data(Article::IdRole).toString());
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
   html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article.title() + "</div>";

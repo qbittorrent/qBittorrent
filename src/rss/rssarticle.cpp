@@ -190,6 +190,11 @@ QDateTime RssArticle::parseDate(const QString &string) {
   return result;
 }
 
+RssArticle::RssArticle():
+    d(new RssArticleData(0))
+{
+}
+
 // public constructor
 RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml):
   d(new RssArticleData(parent))

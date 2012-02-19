@@ -43,8 +43,9 @@ class RssArticleData;
 class RssArticle {
 
 public:
+  RssArticle();
   RssArticle(RssFeed* parent, QXmlStreamReader& xml);
-  RssArticle(RssFeed* parent = 0, const QString &guid = QString());
+  RssArticle(RssFeed* parent, const QString &guid);
   RssArticle(const RssArticle& other); // Copy constructor
   RssArticle& operator=(const RssArticle& other);
   ~RssArticle();

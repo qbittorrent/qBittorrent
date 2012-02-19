@@ -177,8 +177,8 @@ void RssFeed::setIconPath(const QString &path) {
   m_icon = path;
 }
 
-RssArticle& RssFeed::getItem(const QString &guid) {
-  return m_articles[guid];
+const RssArticle RssFeed::getItem(const QString &guid) const {
+  return m_articles.value(guid);
 }
 
 uint RssFeed::count() const{
@@ -300,7 +300,7 @@ void RssFeed::downloadMatchingArticleTorrents() {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   QHash<QString, RssArticle>::iterator it;
   for (it = m_articles.begin(); it != m_articles.end(); it++) {
-    RssArticle &item = it.value();
+    RssArticle item = it.value();
     if(item.isRead()) continue;
     QString torrent_url;
     if(item.hasAttachment())
