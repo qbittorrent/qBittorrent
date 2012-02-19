@@ -46,10 +46,10 @@ private:
 public:
   static RssManager* instance();
   static void drop();
-  ~RssManager();
+  virtual ~RssManager();
   inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
   static void insertSortElem(QList<RssArticle> &list, const RssArticle &item);
-  static QList<RssArticle> sortNewsList(const QList<RssArticle>& news_list);
+  static void sortNewsList(QList<RssArticle>& news_list);
 
 public slots:
   void loadStreamList();

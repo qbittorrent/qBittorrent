@@ -191,10 +191,9 @@ QDateTime RssArticle::parseDate(const QString &string) {
 }
 
 // public constructor
-RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml)
+RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml):
+  d(new RssArticleData(parent))
 {
-  d = new RssArticleData;
-  d->parent = parent;
   while(!xml.atEnd()) {
     xml.readNext();
 
@@ -231,11 +230,8 @@ RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml)
   }
 }
 
-RssArticle::RssArticle(RssFeed* parent, const QString &guid) {
-  d = new RssArticleData;
-  d->parent = parent;
-  d->guid = guid;
-}
+RssArticle::RssArticle(RssFeed* parent, const QString &guid):
+  d(new RssArticleData(parent, guid)) {}
 
 RssArticle::~RssArticle() {}
 

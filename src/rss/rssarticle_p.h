@@ -39,7 +39,8 @@ class RssFeed;
 
 class RssArticleData: public QSharedData {
 public:
-  RssArticleData(): QSharedData(), read(false) {}
+  RssArticleData(RssFeed* _parent, const QString& _guid = QString()):
+    parent(_parent), guid(_guid), read(false) {}
   ~RssArticleData() {}
   RssArticleData(const RssArticleData& other):
     QSharedData(other), parent(other.parent),

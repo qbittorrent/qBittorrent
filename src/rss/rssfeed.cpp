@@ -123,8 +123,8 @@ void RssFeed::removeAllSettings() {
   }
 }
 
-bool RssFeed::itemAlreadyExists(const QString &hash) const {
-  return m_articles.contains(hash);
+bool RssFeed::itemAlreadyExists(const QString &guid) const {
+  return m_articles.contains(guid);
 }
 
 void RssFeed::setLoading(bool val) {
@@ -177,8 +177,8 @@ void RssFeed::setIconPath(const QString &path) {
   m_icon = path;
 }
 
-RssArticle& RssFeed::getItem(const QString &id) {
-  return m_articles[id];
+RssArticle& RssFeed::getItem(const QString &guid) {
+  return m_articles[guid];
 }
 
 uint RssFeed::count() const{
@@ -323,10 +323,11 @@ void RssFeed::resizeList() {
   const uint max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   const uint nb_articles = m_articles.size();
   if(nb_articles > max_articles) {
-    const QList<RssArticle> listItem = RssManager::sortNewsList(m_articles.values());
+    QList<RssArticle> listItems = m_articles.values();
+    RssManager::sortNewsList(listItems);
     const int excess = nb_articles - max_articles;
     for(uint i=nb_articles-excess; i<nb_articles; ++i){
-      m_articles.remove(listItem.at(i).guid());
+      m_articles.remove(listItems.at(i).guid());
     }
   }
 }

@@ -42,14 +42,14 @@ class RssFeed: public QObject, public IRssFile {
 
 public:
   RssFeed(RssFolder* m_parent, const QString &url);
-  ~RssFeed();
+  virtual ~RssFeed();
   inline RssFolder* parent() const { return m_parent; }
   void setParent(RssFolder* parent) { m_parent = parent; }
   FileType type() const;
   void refresh();
   QString id() const { return m_url; }
   void removeAllSettings();
-  bool itemAlreadyExists(const QString &hash) const;
+  bool itemAlreadyExists(const QString &guid) const;
   void setLoading(bool val);
   bool isLoading() const;
   QString title() const;
@@ -59,7 +59,7 @@ public:
   QString icon() const;
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
-  RssArticle& getItem(const QString &name);
+  RssArticle& getItem(const QString &guid);
   uint count() const;
   void markAsRead();
   uint unreadCount() const;
