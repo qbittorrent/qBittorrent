@@ -51,8 +51,10 @@ RssDownloadRuleList* RssDownloadRuleList::instance()
 
 void RssDownloadRuleList::drop()
 {
-  if(m_instance)
+  if(m_instance) {
     delete m_instance;
+    m_instance = 0;
+  }
 }
 
 RssDownloadRule RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
