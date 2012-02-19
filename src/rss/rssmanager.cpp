@@ -134,13 +134,13 @@ void RssManager::saveStreamList() const {
   settings.setRssFeedsAliases(aliases);
 }
 
-static bool earlierItemDate(const RssArticle& a, const RssArticle& b)
+static bool laterItemDate(const RssArticle& a, const RssArticle& b)
 {
-  return (a.date() < b.date());
+  return (a.date() > b.date());
 }
 
 void RssManager::sortNewsList(QList<RssArticle>& news_list) {
-  qSort(news_list.begin(), news_list.end(), earlierItemDate);
+  qSort(news_list.begin(), news_list.end(), laterItemDate);
 }
 
 RssManager * RssManager::instance()
