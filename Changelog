@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.5
     - BUGFIX: Fix crash when disabling then reenabling RSS
+    - BUGFIX: Fix duplicate torrent detection when adding a magnet link
 
 * Sat Feb 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.4
     - BUGFIX: qBittorrent does not handle redirection to relative URLs correctly (Closes #919905)

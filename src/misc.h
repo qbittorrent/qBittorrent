@@ -80,10 +80,6 @@ public:
     return QString(o.str().c_str());
   }
 
-  static inline libtorrent::sha1_hash toSha1Hash(const QString &hash) {
-    return libtorrent::sha1_hash(hash.toAscii().constData());
-  }
-
   static void chmod644(const QDir& folder);
 
   static inline QString removeLastPathPart(QString path) {
@@ -95,7 +91,7 @@ public:
   }
 
   static inline libtorrent::sha1_hash QStringToSha1(const QString& s) {
-    std::string str(s.toLocal8Bit().data());
+    std::string str(s.toAscii().data());
     std::istringstream i(str);
     libtorrent::sha1_hash x;
     i>>x;
