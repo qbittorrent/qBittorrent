@@ -45,10 +45,10 @@
 #include "rssfeed.h"
 #include "iconprovider.h"
 
-AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent) :
+AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
   ui(new Ui::AutomatedRssDownloader),
-  m_editedRule(0)
+  m_manager(manager), m_editedRule(0)
 {
   ui->setupUi(this);
   // Icons
@@ -129,7 +129,7 @@ void AutomatedRssDownloader::loadRulesList()
   foreach (const QString &rule_name, m_ruleList->ruleNames()) {
     QListWidgetItem *item = new QListWidgetItem(rule_name, ui->listRules);
     item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
-    if(m_ruleList->getRule(rule_name).isEnabled())
+    if(m_ruleList->getRule(rule_name)->isEnabled())
       item->setCheckState(Qt::Checked);
     else
       item->setCheckState(Qt::Unchecked);
@@ -164,17 +164,17 @@ void AutomatedRssDownloader::updateFeedList()
     const QString feed_url = item->data(Qt::UserRole).toString();
     bool all_enabled = false;
     foreach(const QListWidgetItem *ruleItem, ui->listRules->selectedItems()) {
-      RssDownloadRule rule = m_ruleList->getRule(ruleItem->text());
-      if(!rule.isValid()) continue;
-      qDebug() << "Rule" << rule.name() << "affects" << rule.rssFeeds().size() << "feeds.";
-      foreach(QString test, rule.rssFeeds()) {
+      RssDownloadRulePtr rule = m_ruleList->getRule(ruleItem->text());
+      if(!rule) continue;
+      qDebug() << "Rule" << rule->name() << "affects" << rule->rssFeeds().size() << "feeds.";
+      foreach(QString test, rule->rssFeeds()) {
         qDebug() << "Feed is " << test;
       }
-      if(rule.rssFeeds().contains(feed_url)) {
-        qDebug() << "Rule " << rule.name() << " affects feed " << feed_url;
+      if(rule->rssFeeds().contains(feed_url)) {
+        qDebug() << "Rule " << rule->name() << " affects feed " << feed_url;
         all_enabled = true;
       } else {
-        qDebug() << "Rule " << rule.name() << " does NOT affect feed " << feed_url;
+        qDebug() << "Rule " << rule->name() << " does NOT affect feed " << feed_url;
         all_enabled = false;
         break;
       }
@@ -203,18 +203,18 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
   if(selection.count() == 1) {
     m_editedRule = selection.first();
-    RssDownloadRule rule = getCurrentRule();
-    if(rule.isValid()) {
-      ui->lineContains->setText(rule.mustContain());
-      ui->lineNotContains->setText(rule.mustNotContain());
-      ui->saveDiffDir_check->setChecked(!rule.savePath().isEmpty());
-      ui->lineSavePath->setText(rule.savePath());
-      ui->checkRegex->setChecked(rule.useRegex());
-      if(rule.label().isEmpty()) {
+    RssDownloadRulePtr rule = getCurrentRule();
+    if (rule) {
+      ui->lineContains->setText(rule->mustContain());
+      ui->lineNotContains->setText(rule->mustNotContain());
+      ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
+      ui->lineSavePath->setText(rule->savePath());
+      ui->checkRegex->setChecked(rule->useRegex());
+      if (rule->label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
         ui->comboLabel->clearEditText();
       } else {
-        ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule.label()));
+        ui->comboLabel->setCurrentIndex(ui->comboLabel->findText(rule->label()));
       }
       updateMustLineValidity();
       updateMustNotLineValidity();
@@ -247,12 +247,12 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
   updateMustNotLineValidity();
 }
 
-RssDownloadRule AutomatedRssDownloader::getCurrentRule() const
+RssDownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
 {
   QListWidgetItem * current_item = ui->listRules->currentItem();
   if(current_item)
     return m_ruleList->getRule(current_item->text());
-  return RssDownloadRule();
+  return RssDownloadRulePtr();
 }
 
 void AutomatedRssDownloader::initLabelCombobox()
@@ -273,26 +273,26 @@ void AutomatedRssDownloader::saveEditedRule()
     qDebug() << "Probably removed the item, no need to save it";
     return;
   }
-  RssDownloadRule rule = m_ruleList->getRule(m_editedRule->text());
-  if(!rule.isValid()) {
-    rule.setName(m_editedRule->text());
+  RssDownloadRulePtr rule = m_ruleList->getRule(m_editedRule->text());
+  if (!rule) {
+    rule->setName(m_editedRule->text());
   }
-  if(m_editedRule->checkState() == Qt::Unchecked)
-    rule.setEnabled(false);
+  if (m_editedRule->checkState() == Qt::Unchecked)
+    rule->setEnabled(false);
   else
-    rule.setEnabled(true);
-  rule.setUseRegex(ui->checkRegex->isChecked());
-  rule.setMustContain(ui->lineContains->text());
-  rule.setMustNotContain(ui->lineNotContains->text());
+    rule->setEnabled(true);
+  rule->setUseRegex(ui->checkRegex->isChecked());
+  rule->setMustContain(ui->lineContains->text());
+  rule->setMustNotContain(ui->lineNotContains->text());
   if(ui->saveDiffDir_check->isChecked())
-    rule.setSavePath(ui->lineSavePath->text());
+    rule->setSavePath(ui->lineSavePath->text());
   else
-    rule.setSavePath("");
-  rule.setLabel(ui->comboLabel->currentText());
+    rule->setSavePath("");
+  rule->setLabel(ui->comboLabel->currentText());
   // Save new label
-  if(!rule.label().isEmpty())
-    Preferences().addTorrentLabel(rule.label());
-  //rule.setRssFeeds(getSelectedFeeds());
+  if(!rule->label().isEmpty())
+    Preferences().addTorrentLabel(rule->label());
+  //rule->setRssFeeds(getSelectedFeeds());
   // Save it
   m_ruleList->saveRule(rule);
 }
@@ -301,15 +301,15 @@ void AutomatedRssDownloader::saveEditedRule()
 void AutomatedRssDownloader::on_addRuleBtn_clicked()
 {
   // Ask for a rule name
-  const QString rule = QInputDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule."));
-  if(rule.isEmpty()) return;
+  const QString rule_name = QInputDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule->"));
+  if(rule_name.isEmpty()) return;
   // Check if this rule name already exists
-  if(m_ruleList->getRule(rule).isValid()) {
+  if(m_ruleList->getRule(rule_name)) {
     QMessageBox::warning(this, tr("Rule name conflict"), tr("A rule with this name already exists, please choose another name."));
     return;
   }
   // Add the new rule to the list
-  QListWidgetItem * item = new QListWidgetItem(rule, ui->listRules);
+  QListWidgetItem * item = new QListWidgetItem(rule_name, ui->listRules);
   item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
   item->setCheckState(Qt::Checked); // Enable as a default
   ui->listRules->clearSelection();
@@ -382,7 +382,7 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
 {
   Q_UNUSED(pos);
   QMenu menu;
-  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
+  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule->.."));
   QAction *delAct = 0;
   QAction *renameAct = 0;
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
@@ -390,7 +390,7 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
     if(selection.count() == 1) {
       delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
       menu.addSeparator();
-      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
+      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule->.."));
     } else {
       delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
     }
@@ -438,9 +438,9 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
   }
   const QString feed_url = feed_item->data(Qt::UserRole).toString();
   foreach (QListWidgetItem* rule_item, ui->listRules->selectedItems()) {
-    RssDownloadRule rule = m_ruleList->getRule(rule_item->text());
-    Q_ASSERT(rule.isValid());
-    QStringList affected_feeds = rule.rssFeeds();
+    RssDownloadRulePtr rule = m_ruleList->getRule(rule_item->text());
+    Q_ASSERT(rule);
+    QStringList affected_feeds = rule->rssFeeds();
     if(feed_item->checkState() == Qt::Checked) {
       if(!affected_feeds.contains(feed_url))
         affected_feeds << feed_url;
@@ -449,8 +449,8 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
         affected_feeds.removeOne(feed_url);
     }
     // Save the updated rule
-    if(affected_feeds.size() != rule.rssFeeds().size()) {
-      rule.setRssFeeds(affected_feeds);
+    if(affected_feeds.size() != rule->rssFeeds().size()) {
+      rule->setRssFeeds(affected_feeds);
       m_ruleList->saveRule(rule);
     }
   }
@@ -464,26 +464,29 @@ void AutomatedRssDownloader::updateMatchingArticles()
   if(ui->ruleDefBox->isEnabled()) {
     saveEditedRule();
   }
-  const QHash<QString, RssFeed*> all_feeds = RssManager::instance()->getAllFeedsAsHash();
+  RssManagerPtr manager = m_manager.toStrongRef();
+  if (!manager)
+    return;
+  const QHash<QString, RssFeedPtr> all_feeds = manager->getAllFeedsAsHash();
 
   foreach(const QListWidgetItem *rule_item, ui->listRules->selectedItems()) {
-    RssDownloadRule rule = m_ruleList->getRule(rule_item->text());
-    if(!rule.isValid()) continue;
-    foreach(const QString &feed_url, rule.rssFeeds()) {
+    RssDownloadRulePtr rule = m_ruleList->getRule(rule_item->text());
+    if(!rule) continue;
+    foreach(const QString &feed_url, rule->rssFeeds()) {
       qDebug() << Q_FUNC_INFO << feed_url;
       Q_ASSERT(all_feeds.contains(feed_url));
       if(!all_feeds.contains(feed_url)) continue;
-      const RssFeed *feed = all_feeds.value(feed_url);
+      RssFeedPtr feed = all_feeds.value(feed_url);
       Q_ASSERT(feed);
       if(!feed) continue;
-      const QStringList matching_articles = rule.findMatchingArticles(feed);
+      const QStringList matching_articles = rule->findMatchingArticles(feed);
       if(!matching_articles.isEmpty())
         addFeedArticlesToTree(feed, matching_articles);
     }
   }
 }
 
-void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeed *feed, const QStringList &articles)
+void AutomatedRssDownloader::addFeedArticlesToTree(const RssFeedPtr& feed, const QStringList &articles)
 {
   // Check if this feed is already in the tree
   QTreeWidgetItem *treeFeedItem = 0;

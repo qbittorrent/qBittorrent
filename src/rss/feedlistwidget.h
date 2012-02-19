@@ -40,15 +40,14 @@
 #include <QUrl>
 
 #include "rssfile.h"
-
-class RssManager;
-class RssFeed;
+#include "rssfeed.h"
+#include "rssmanager.h"
 
 class FeedListWidget: public QTreeWidget {
   Q_OBJECT
 
 public:
-  FeedListWidget(QWidget *parent, RssManager *m_rssManager);
+  FeedListWidget(QWidget *parent, const RssManagerPtr& rssManager);
   ~FeedListWidget();
 
   bool hasFeed(const QString &url) const;
@@ -57,16 +56,17 @@ public:
   QStringList getItemPath(QTreeWidgetItem* item) const;
   QList<QTreeWidgetItem*> getAllOpenFolders(QTreeWidgetItem *parent=0) const;
   QList<QTreeWidgetItem*> getAllFeedItems(QTreeWidgetItem* folder);
-  IRssFile* getRSSItem(QTreeWidgetItem *item) const;
-  IRssFile::FileType getItemType(QTreeWidgetItem *item) const;
+  RssFilePtr getRSSItem(QTreeWidgetItem *item) const;
+  bool isFeed(QTreeWidgetItem *item) const;
+  bool isFolder(QTreeWidgetItem *item) const;
   QString getItemID(QTreeWidgetItem *item) const;
   QTreeWidgetItem* getTreeItemFromUrl(const QString &url) const;
-  RssFeed* getRSSItemFromUrl(const QString &url) const;
+  RssFeedPtr getRSSItemFromUrl(const QString &url) const;
   QTreeWidgetItem* currentItem() const;
   QTreeWidgetItem* currentFeed() const;
 
 public slots:
-  void itemAdded(QTreeWidgetItem *item, IRssFile* file);
+  void itemAdded(QTreeWidgetItem *item, const RssFilePtr& file);
   void itemAboutToBeRemoved(QTreeWidgetItem *item);
 
 signals:
@@ -81,8 +81,8 @@ protected:
   void dropEvent(QDropEvent *event);
 
 private:
-  RssManager *m_rssManager;
-  QHash<QTreeWidgetItem*, IRssFile*> m_rssMapping;
+  RssManagerPtr m_rssManager;
+  QHash<QTreeWidgetItem*, RssFilePtr> m_rssMapping;
   QHash<QString, QTreeWidgetItem*> m_feedsItems;
   QTreeWidgetItem* m_currentFeed;
   QTreeWidgetItem *m_unreadStickyItem;

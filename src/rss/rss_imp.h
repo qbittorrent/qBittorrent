@@ -35,10 +35,10 @@
 #include <QPointer>
 
 #include "ui_rss.h"
+#include "rssfolder.h"
+#include "rssmanager.h"
 
 class FeedListWidget;
-class RssFolder;
-class RssManager;
 
 QT_BEGIN_NAMESPACE
 class QTreeWidgetItem;
@@ -72,7 +72,7 @@ private slots:
   void updateItemInfos(QTreeWidgetItem *item);
   void openNewsUrl();
   void downloadTorrent();
-  void fillFeedsList(QTreeWidgetItem *parent=0, RssFolder *rss_parent=0);
+  void fillFeedsList(QTreeWidgetItem *parent=0, const RssFolderPtr& rss_parent = RssFolderPtr());
   void saveSlidersPosition();
   void restoreSlidersPosition();
   void askNewFolder();
@@ -84,7 +84,7 @@ private slots:
   void on_rssDownloaderBtn_clicked();
 
 private:
-  RssManager *m_rssManager;
+  RssManagerPtr m_rssManager;
   FeedListWidget *m_feedList;
   QListWidgetItem* m_currentArticle;
 

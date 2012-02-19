@@ -51,19 +51,21 @@ RssDownloadRuleList* RssDownloadRuleList::instance()
 
 void RssDownloadRuleList::drop()
 {
-  if(m_instance)
+  if (m_instance) {
     delete m_instance;
+    m_instance = 0;
+  }
 }
 
-RssDownloadRule RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
+RssDownloadRulePtr RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
 {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
-  const QStringList rule_names = m_feedRules.value(feed_url);
+  QStringList rule_names = m_feedRules.value(feed_url);
   foreach(const QString &rule_name, rule_names) {
-    const RssDownloadRule &rule = m_rules[rule_name];
-    if(rule.isEnabled() && rule.matches(article_title)) return rule;
+    RssDownloadRulePtr rule = m_rules[rule_name];
+    if(rule->isEnabled() && rule->matches(article_title)) return rule;
   }
-  return RssDownloadRule();
+  return RssDownloadRulePtr();
 }
 
 void RssDownloadRuleList::saveRulesToStorage()
@@ -97,11 +99,11 @@ void RssDownloadRuleList::importFeedsInOldFormat(const QHash<QString, QVariant> 
 void RssDownloadRuleList::importFeedRulesInOldFormat(const QString &feed_url, const QHash<QString, QVariant> &rules)
 {
   foreach(const QString &rule_name, rules.keys()) {
-    RssDownloadRule rule = RssDownloadRule::fromOldFormat(rules.value(rule_name).toHash(), feed_url, rule_name);
-    if(!rule.isValid()) continue;
+    RssDownloadRulePtr rule = RssDownloadRule::fromOldFormat(rules.value(rule_name).toHash(), feed_url, rule_name);
+    if(!rule) continue;
     // Check for rule name clash
-    while(m_rules.contains(rule.name())) {
-      rule.setName(rule.name()+"_");
+    while(m_rules.contains(rule->name())) {
+      rule->setName(rule->name()+"_");
     }
     // Add the rule to the list
     saveRule(rule);
@@ -111,8 +113,8 @@ void RssDownloadRuleList::importFeedRulesInOldFormat(const QString &feed_url, co
 QVariantHash RssDownloadRuleList::toVariantHash() const
 {
   QVariantHash ret;
-  foreach(const RssDownloadRule &rule, m_rules.values()) {
-    ret.insert(rule.name(), rule.toVariantHash());
+  foreach(const RssDownloadRulePtr &rule, m_rules.values()) {
+    ret.insert(rule->name(), rule->toVariantHash());
   }
   return ret;
 }
@@ -120,25 +122,25 @@ QVariantHash RssDownloadRuleList::toVariantHash() const
 void RssDownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 {
   foreach(const QVariant& v, h.values()) {
-    RssDownloadRule rule = RssDownloadRule::fromNewFormat(v.toHash());
-    if(!rule.name().isEmpty()) {
+    RssDownloadRulePtr rule = RssDownloadRule::fromNewFormat(v.toHash());
+    if(rule && !rule->name().isEmpty()) {
       saveRule(rule);
     }
   }
 }
 
-void RssDownloadRuleList::saveRule(const RssDownloadRule &rule)
+void RssDownloadRuleList::saveRule(const RssDownloadRulePtr &rule)
 {
-  qDebug() << Q_FUNC_INFO << rule.name();
-  Q_ASSERT(rule.isValid());
-  if(m_rules.contains(rule.name())) {
+  qDebug() << Q_FUNC_INFO << rule->name();
+  Q_ASSERT(rule);
+  if(m_rules.contains(rule->name())) {
     qDebug("This is an update, removing old rule first");
-    removeRule(rule.name());
+    removeRule(rule->name());
   }
-  m_rules.insert(rule.name(), rule);
+  m_rules.insert(rule->name(), rule);
   // Update feedRules hashtable
-  foreach(const QString &feed_url, rule.rssFeeds()) {
-    m_feedRules[feed_url].append(rule.name());
+  foreach(const QString &feed_url, rule->rssFeeds()) {
+    m_feedRules[feed_url].append(rule->name());
   }
   // Save rules
   saveRulesToStorage();
@@ -149,10 +151,10 @@ void RssDownloadRuleList::removeRule(const QString &name)
 {
   qDebug() << Q_FUNC_INFO << name;
   if(!m_rules.contains(name)) return;
-  const RssDownloadRule rule = m_rules.take(name);
+  RssDownloadRulePtr rule = m_rules.take(name);
   // Update feedRules hashtable
-  foreach(const QString &feed_url, rule.rssFeeds()) {
-    m_feedRules[feed_url].removeOne(rule.name());
+  foreach(const QString &feed_url, rule->rssFeeds()) {
+    m_feedRules[feed_url].removeOne(rule->name());
   }
   // Save rules
   saveRulesToStorage();
@@ -161,18 +163,18 @@ void RssDownloadRuleList::removeRule(const QString &name)
 void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new_name)
 {
   if(!m_rules.contains(old_name)) return;
-  RssDownloadRule rule = m_rules.take(old_name);
-  rule.setName(new_name);
+  RssDownloadRulePtr rule = m_rules.take(old_name);
+  rule->setName(new_name);
   m_rules.insert(new_name, rule);
   // Update feedRules hashtable
-  foreach(const QString &feed_url, rule.rssFeeds()) {
+  foreach(const QString &feed_url, rule->rssFeeds()) {
     m_feedRules[feed_url].replace(m_feedRules[feed_url].indexOf(old_name), new_name);
   }
   // Save rules
   saveRulesToStorage();
 }
 
-const RssDownloadRule RssDownloadRuleList::getRule(const QString &name) const
+RssDownloadRulePtr RssDownloadRuleList::getRule(const QString &name) const
 {
   return m_rules.value(name);
 }

@@ -32,15 +32,19 @@
 #define RSSFOLDER_H
 
 #include <QHash>
-
+#include <QSharedPointer>
 #include "rssfile.h"
 
-class RssArticle;
+class RssFolder;
 class RssFeed;
+class RssManager;
 
-typedef QHash<QString, IRssFile*> RssFileHash;
+typedef QHash<QString, RssFilePtr> RssFileHash;
+typedef QSharedPointer<RssFeed> RssFeedPtr;
+typedef QSharedPointer<RssFolder> RssFolderPtr;
+typedef QList<RssFeedPtr> RssFeedList;
 
-class RssFolder: public QObject, public IRssFile {
+class RssFolder: public QObject, public RssFile {
   Q_OBJECT
 
 public:
@@ -49,26 +53,25 @@ public:
   inline RssFolder* parent() const { return m_parent; }
   void setParent(RssFolder* parent) { m_parent = parent; }
   unsigned int unreadCount() const;
-  FileType type() const;
-  RssFeed* addStream(const QString &url);
-  RssFolder* addFolder(const QString &name);
+  RssFeedPtr addStream(RssManager* manager, const QString &url);
+  RssFolderPtr addFolder(const QString &name);
   unsigned int getNbFeeds() const;
-  QList<IRssFile*> getContent() const;
-  QList<RssFeed*> getAllFeeds() const;
-  QHash<QString, RssFeed*> getAllFeedsAsHash() const;
+  RssFileList getContent() const;
+  RssFeedList getAllFeeds() const;
+  QHash<QString, RssFeedPtr> getAllFeedsAsHash() const;
   QString displayName() const;
   QString id() const;
   bool hasChild(const QString &childId);
-  const QList<RssArticlePtr> articleList() const;
-  const QList<RssArticlePtr> unreadArticleList() const;
+  const RssArticleList articleList() const;
+  const RssArticleList unreadArticleList() const;
   void removeAllSettings();
   void removeAllItems();
   void renameChildFolder(const QString &old_name, const QString &new_name);
-  IRssFile *takeChild(const QString &childId);
+  RssFilePtr takeChild(const QString &childId);
 
 public slots:
   void refresh();
-  void addFile(IRssFile * item);
+  void addFile(const RssFilePtr& item);
   void removeChild(const QString &childId);
   void rename(const QString &new_name);
   void markAsRead();

@@ -33,19 +33,25 @@
 
 #include <QList>
 #include <QStringList>
-#include "rssarticle.h"
+#include <QSharedPointer>
 
 class RssFolder;
+class RssFile;
+class RssArticle;
 
-class IRssFile {
+typedef QSharedPointer<RssFile> RssFilePtr;
+typedef QSharedPointer<RssArticle> RssArticlePtr;
+typedef QList<RssArticlePtr> RssArticleList;
+typedef QList<RssFilePtr> RssFileList;
 
+/**
+ * Parent interface for RssFolder and RssFeed.
+ */
+class RssFile {
 public:
-  enum FileType {FEED, FOLDER};
-
-  virtual ~IRssFile() {}
+  virtual ~RssFile() {}
 
   virtual uint unreadCount() const = 0;
-  virtual FileType type() const = 0;
   virtual QString displayName() const = 0;
   virtual QString id() const = 0;
   virtual void rename(const QString &new_name) = 0;
@@ -54,8 +60,8 @@ public:
   virtual void setParent(RssFolder* parent) = 0;
   virtual void refresh() = 0;
   virtual void removeAllSettings() = 0;
-  virtual const QList<RssArticlePtr> articleList() const = 0;
-  virtual const QList<RssArticlePtr> unreadArticleList() const = 0;
+  virtual const RssArticleList articleList() const = 0;
+  virtual const RssArticleList unreadArticleList() const = 0;
   QStringList pathHierarchy() const;
 };
 

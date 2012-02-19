@@ -49,12 +49,12 @@ private:
 public:
   static RssDownloadRuleList* instance();
   static void drop();
-  RssDownloadRule findMatchingRule(const QString &feed_url, const QString &article_title) const;
+  RssDownloadRulePtr findMatchingRule(const QString &feed_url, const QString &article_title) const;
   // Operators
-  void saveRule(const RssDownloadRule &rule);
+  void saveRule(const RssDownloadRulePtr &rule);
   void removeRule(const QString &name);
   void renameRule(const QString &old_name, const QString &new_name);
-  const RssDownloadRule getRule(const QString &name) const;
+  RssDownloadRulePtr getRule(const QString &name) const;
   inline QStringList ruleNames() const { return m_rules.keys(); }
   inline bool isEmpty() const { return m_rules.isEmpty(); }
   bool serialize(const QString& path);
@@ -69,7 +69,7 @@ private:
   void saveRulesToStorage();
 
 private:
-  QHash<QString, RssDownloadRule> m_rules;
+  QHash<QString, RssDownloadRulePtr> m_rules;
   QHash<QString, QStringList> m_feedRules;
 
 };

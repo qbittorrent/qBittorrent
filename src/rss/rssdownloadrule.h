@@ -33,16 +33,21 @@
 
 #include <QStringList>
 #include <QVariantHash>
+#include <QSharedPointer>
 
 class RssFeed;
+typedef QSharedPointer<RssFeed> RssFeedPtr;
+
+class RssDownloadRule;
+typedef QSharedPointer<RssDownloadRule> RssDownloadRulePtr;
 
 class RssDownloadRule
 {
 
 public:
   explicit RssDownloadRule();
-  static RssDownloadRule fromOldFormat(const QVariantHash& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
-  static RssDownloadRule fromNewFormat(const QVariantHash &rule_hash);
+  static RssDownloadRulePtr fromOldFormat(const QVariantHash& rule_hash, const QString &feed_url, const QString &rule_name); // Before v2.5.0
+  static RssDownloadRulePtr fromNewFormat(const QVariantHash &rule_hash);
   QVariantHash toVariantHash() const;
   bool matches(const QString &article_title) const;
   void setMustContain(const QString &tokens);
@@ -57,12 +62,11 @@ public:
   inline void setLabel(const QString &_label) { m_label = _label; }
   inline bool isEnabled() const { return m_enabled; }
   inline void setEnabled(bool enable) { m_enabled = enable; }
-  inline bool isValid() const { return !m_name.isEmpty(); }
   inline QString mustContain() const { return m_mustContain.join(" "); }
   inline QString mustNotContain() const { return m_mustNotContain.join(" "); }
   inline bool useRegex() const { return m_useRegex; }
   inline void setUseRegex(bool enabled) { m_useRegex = enabled; }
-  QStringList findMatchingArticles(const RssFeed* feed) const;
+  QStringList findMatchingArticles(const RssFeedPtr& feed) const;
   // Operators
   bool operator==(const RssDownloadRule &other);
 

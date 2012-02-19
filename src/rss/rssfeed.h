@@ -32,22 +32,25 @@
 #define RSSFEED_H
 
 #include <QHash>
+#include <QSharedPointer>
 
 #include "rssfile.h"
 
+class RssFeed;
 class RssManager;
 
 typedef QHash<QString, RssArticlePtr> RssArticleHash;
+typedef QSharedPointer<RssFeed> RssFeedPtr;
+typedef QList<RssFeedPtr> RssFeedList;
 
-class RssFeed: public QObject, public IRssFile {
+class RssFeed: public QObject, public RssFile {
   Q_OBJECT
 
 public:
-  RssFeed(RssFolder* m_parent, const QString &url);
+  RssFeed(RssManager* manager, RssFolder* m_parent, const QString &url);
   virtual ~RssFeed();
   inline RssFolder* parent() const { return m_parent; }
   void setParent(RssFolder* parent) { m_parent = parent; }
-  FileType type() const;
   void refresh();
   QString id() const { return m_url; }
   void removeAllSettings();
@@ -65,9 +68,9 @@ public:
   uint count() const;
   void markAsRead();
   uint unreadCount() const;
-  const QList<RssArticlePtr> articleList() const;
+  const RssArticleList articleList() const;
   const RssArticleHash& articleHash() const { return m_articles; }
-  const QList<RssArticlePtr> unreadArticleList() const;
+  const RssArticleList unreadArticleList() const;
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
@@ -83,6 +86,7 @@ private:
   void loadItemsFromDisk();
 
 private:
+  RssManager* m_manager;
   RssArticleHash m_articles;
   RssFolder *m_parent;
   QString m_title;

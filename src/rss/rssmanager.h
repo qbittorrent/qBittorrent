@@ -32,31 +32,32 @@
 #define RSSMANAGER_H
 
 #include <QTimer>
+#include <QSharedPointer>
 
 #include "rssfolder.h"
 
 class DownloadThread;
 
+class RssManager;
+typedef QSharedPointer<RssManager> RssManagerPtr;
+
 class RssManager: public RssFolder {
   Q_OBJECT
-private:
-  explicit RssManager();
-  static RssManager* m_instance;
 
 public:
-  static RssManager* instance();
-  static void drop();
+  RssManager();
   virtual ~RssManager();
+
   inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
-  static void insertSortElem(QList<RssArticlePtr> &list, const RssArticlePtr &item);
-  static void sortNewsList(QList<RssArticlePtr>& news_list);
+  static void insertSortElem(RssArticleList &list, const RssArticlePtr &item);
+  static void sortNewsList(RssArticleList& news_list);
 
 public slots:
   void loadStreamList();
   void saveStreamList() const;
   void forwardFeedInfosChanged(const QString &url, const QString &aliasOrUrl, uint nbUnread);
   void forwardFeedIconChanged(const QString &url, const QString &icon_path);
-  void moveFile(IRssFile* file, RssFolder* dest_folder);
+  void moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folder);
   void updateRefreshInterval(uint val);
 
 signals:

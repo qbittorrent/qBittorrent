@@ -32,6 +32,7 @@
 #define AUTOMATEDRSSDOWNLOADER_H
 
 #include <QDialog>
+#include <QWeakPointer>
 #include "rssdownloadrule.h"
 
 QT_BEGIN_NAMESPACE
@@ -41,6 +42,7 @@ class AutomatedRssDownloader;
 QT_END_NAMESPACE
 
 class RssDownloadRuleList;
+class RssManager;
 
 QT_BEGIN_NAMESPACE
 class QListWidgetItem;
@@ -51,7 +53,7 @@ class AutomatedRssDownloader : public QDialog
   Q_OBJECT
 
 public:
-  explicit AutomatedRssDownloader(QWidget *parent = 0);
+  explicit AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent = 0);
   ~AutomatedRssDownloader();
   bool isRssDownloaderEnabled() const;
 
@@ -80,12 +82,13 @@ private slots:
   void updateMustNotLineValidity();
 
 private:
-  RssDownloadRule getCurrentRule() const;
+  RssDownloadRulePtr getCurrentRule() const;
   void initLabelCombobox();
-  void addFeedArticlesToTree(const RssFeed *feed, const QStringList& articles);
+  void addFeedArticlesToTree(const RssFeedPtr& feed, const QStringList& articles);
 
 private:
   Ui::AutomatedRssDownloader *ui;
+  QWeakPointer<RssManager> m_manager;
   QListWidgetItem* m_editedRule;
   RssDownloadRuleList *m_ruleList;
 };

@@ -37,8 +37,6 @@
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
 
-RssManager* RssManager::m_instance = 0;
-
 RssManager::RssManager(): m_rssDownloader(new DownloadThread(this)) {
   connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
@@ -78,14 +76,14 @@ void RssManager::loadStreamList() {
     const QString feed_url = path.takeLast();
     qDebug() << "Feed URL:" << feed_url;
     // Create feed path (if it does not exists)
-    RssFolder * feed_parent = this;
+    RssFolder* feed_parent = this;
     foreach(const QString &folder_name, path) {
       qDebug() << "Adding parent folder:" << folder_name;
-      feed_parent = feed_parent->addFolder(folder_name);
+      feed_parent = feed_parent->addFolder(folder_name).data();
     }
     // Create feed
     qDebug() << "Adding feed to parent folder";
-    RssFeed *stream = feed_parent->addStream(feed_url);
+    RssFeedPtr stream = feed_parent->addStream(this, feed_url);
     const QString alias = aliases.at(i);
     if(!alias.isEmpty()) {
       stream->rename(alias);
@@ -103,7 +101,7 @@ void RssManager::forwardFeedIconChanged(const QString &url, const QString &icon_
   emit feedIconChanged(url, icon_path);
 }
 
-void RssManager::moveFile(IRssFile* file, RssFolder* dest_folder) {
+void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folder) {
   RssFolder* src_folder = file->parent();
   if(dest_folder != src_folder) {
     // Remove reference in old folder
@@ -118,8 +116,8 @@ void RssManager::moveFile(IRssFile* file, RssFolder* dest_folder) {
 void RssManager::saveStreamList() const {
   QStringList streamsUrl;
   QStringList aliases;
-  const QList<RssFeed*> streams = getAllFeeds();
-  foreach(const RssFeed *stream, streams) {
+  QList<RssFeedPtr> streams = getAllFeeds();
+  foreach(const RssFeedPtr& stream, streams) {
     QString stream_path = stream->pathHierarchy().join("\\");
     if(stream_path.isNull()) {
       stream_path = "";
@@ -138,21 +136,6 @@ static bool laterItemDate(const RssArticlePtr& a, const RssArticlePtr& b)
   return (a->date() > b->date());
 }
 
-void RssManager::sortNewsList(QList<RssArticlePtr>& news_list) {
+void RssManager::sortNewsList(RssArticleList& news_list) {
   qSort(news_list.begin(), news_list.end(), laterItemDate);
-}
-
-RssManager * RssManager::instance()
-{
-  if(!m_instance)
-    m_instance = new RssManager;
-  return m_instance;
-}
-
-void RssManager::drop()
-{
-  if(m_instance) {
-    delete m_instance;
-    m_instance = 0;
-  }
 }

@@ -76,35 +76,35 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
     m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
 }
 
-RssDownloadRule RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
+RssDownloadRulePtr RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
 {
   qDebug() << Q_FUNC_INFO << feed_url << rule_name;
-  RssDownloadRule rule;
-  rule.setName(rule_name);
-  rule.setMustContain(rule_hash.value("matches", "").toString());
-  rule.setMustNotContain(rule_hash.value("not", "").toString());
+  RssDownloadRulePtr rule(new RssDownloadRule);
+  rule->setName(rule_name);
+  rule->setMustContain(rule_hash.value("matches", "").toString());
+  rule->setMustNotContain(rule_hash.value("not", "").toString());
   if(!feed_url.isEmpty())
-    rule.setRssFeeds(QStringList() << feed_url);
-  rule.setSavePath(rule_hash.value("save_path", "").toString());
+    rule->setRssFeeds(QStringList() << feed_url);
+  rule->setSavePath(rule_hash.value("save_path", "").toString());
   // Is enabled?
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on").toHash();
-  rule.setEnabled(feeds_w_downloader.value(feed_url, true).toBool());
+  rule->setEnabled(feeds_w_downloader.value(feed_url, true).toBool());
   // label was unsupported < 2.5.0
   return rule;
 }
 
-RssDownloadRule RssDownloadRule::fromNewFormat(const QVariantHash &rule_hash)
+RssDownloadRulePtr RssDownloadRule::fromNewFormat(const QVariantHash &rule_hash)
 {
-  RssDownloadRule rule;
-  rule.setName(rule_hash.value("name").toString());
-  rule.setMustContain(rule_hash.value("must_contain").toString());
-  rule.setMustNotContain(rule_hash.value("must_not_contain").toString());
-  rule.setRssFeeds(rule_hash.value("affected_feeds").toStringList());
-  rule.setEnabled(rule_hash.value("enabled", false).toBool());
-  rule.setSavePath(rule_hash.value("save_path").toString());
-  rule.setLabel(rule_hash.value("label_assigned").toString());
-  rule.setUseRegex(rule_hash.value("use_regex", false).toBool());
+  RssDownloadRulePtr rule(new RssDownloadRule);
+  rule->setName(rule_hash.value("name").toString());
+  rule->setMustContain(rule_hash.value("must_contain").toString());
+  rule->setMustNotContain(rule_hash.value("must_not_contain").toString());
+  rule->setRssFeeds(rule_hash.value("affected_feeds").toStringList());
+  rule->setEnabled(rule_hash.value("enabled", false).toBool());
+  rule->setSavePath(rule_hash.value("save_path").toString());
+  rule->setLabel(rule_hash.value("label_assigned").toString());
+  rule->setUseRegex(rule_hash.value("use_regex", false).toBool());
   return rule;
 }
 
@@ -134,7 +134,7 @@ void RssDownloadRule::setSavePath(const QString &save_path)
     m_savePath = QString();
 }
 
-QStringList RssDownloadRule::findMatchingArticles(const RssFeed *feed) const
+QStringList RssDownloadRule::findMatchingArticles(const RssFeedPtr& feed) const
 {
   QStringList ret;
   const RssArticleHash& feed_articles = feed->articleHash();
