@@ -108,7 +108,7 @@ void RSSImp::displayItemsListMenu(const QPoint&){
       qDebug("text(3) URL: %s", qPrintable(item->data(Article::FeedUrlRole).toString()));
       qDebug("text(2) TITLE: %s", qPrintable(item->data(Article::TitleRole).toString()));
       if(m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
-          ->getItem(item->data(Article::IdRole).toString()).hasAttachment()) {
+          ->getItem(item->data(Article::IdRole).toString())->hasAttachment()) {
         has_attachment = true;
         break;
       }
@@ -323,12 +323,12 @@ void RSSImp::on_updateAllButton_clicked() {
 void RSSImp::downloadTorrent() {
   QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
   foreach(const QListWidgetItem* item, selected_items) {
-    const RssArticle article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
+    RssArticlePtr article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
-    if(article.hasAttachment()) {
-      QBtSession::instance()->downloadFromUrl(article.torrentUrl());
+    if(article->hasAttachment()) {
+      QBtSession::instance()->downloadFromUrl(article->torrentUrl());
     } else {
-      QBtSession::instance()->downloadFromUrl(article.link());
+      QBtSession::instance()->downloadFromUrl(article->link());
     }
   }
 }
@@ -337,9 +337,9 @@ void RSSImp::downloadTorrent() {
 void RSSImp::openNewsUrl() {
   QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
   foreach(const QListWidgetItem* item, selected_items) {
-    const RssArticle news =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
+    RssArticlePtr news =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
-    const QString link = news.link();
+    const QString link = news->link();
     if(!link.isEmpty())
       QDesktopServices::openUrl(QUrl(link));
   }
@@ -459,7 +459,7 @@ void RSSImp::refreshArticleList(QTreeWidgetItem* item) {
   if(!rss_item) return;
 
   qDebug("Getting the list of news");
-  QList<RssArticle> news;
+  QList<RssArticlePtr> news;
   if(rss_item == m_rssManager)
     news = rss_item->unreadArticleList();
   else if(rss_item)
@@ -471,12 +471,12 @@ void RSSImp::refreshArticleList(QTreeWidgetItem* item) {
   m_currentArticle = 0;
   listArticles->clear();
   qDebug("Got the list of news");
-  foreach(const RssArticle &article, news){
+  foreach(const RssArticlePtr &article, news){
     QListWidgetItem* it = new QListWidgetItem(listArticles);
-    it->setData(Article::TitleRole, article.title());
-    it->setData(Article::FeedUrlRole, article.parent()->url());
-    it->setData(Article::IdRole, article.guid());
-    if(article.isRead()){
+    it->setData(Article::TitleRole, article->title());
+    it->setData(Article::FeedUrlRole, article->parent()->url());
+    it->setData(Article::IdRole, article->guid());
+    if(article->isRead()){
       it->setData(Article::ColorRole, QVariant(QColor("grey")));
       it->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
     }else{
@@ -508,20 +508,20 @@ void RSSImp::refreshTextBrowser() {
     m_currentArticle = item;
   }
   RssFeed *stream = m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString());
-  RssArticle article = stream->getItem(item->data(Article::IdRole).toString());
+  RssArticlePtr article = stream->getItem(item->data(Article::IdRole).toString());
   QString html;
   html += "<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>";
-  html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article.title() + "</div>";
-  if(article.date().isValid()) {
-    html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article.date().toLocalTime().toString(Qt::SystemLocaleLongDate)+"</div>";
+  html += "<div style='background-color: #678db2; font-weight: bold; color: #fff;'>"+article->title() + "</div>";
+  if(article->date().isValid()) {
+    html += "<div style='background-color: #efefef;'><b>"+tr("Date: ")+"</b>"+article->date().toLocalTime().toString(Qt::SystemLocaleLongDate)+"</div>";
   }
-  if(!article.author().isEmpty()) {
-    html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article.author()+"</div>";
+  if(!article->author().isEmpty()) {
+    html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->author()+"</div>";
   }
   html += "</div>";
-  html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article.description()+"</div>";
+  html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->description()+"</div>";
   textBrowser->setHtml(html);
-  article.markAsRead();
+  article->markAsRead();
   item->setData(Article::ColorRole, QVariant(QColor("grey")));
   item->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
   // Decrement feed nb unread news

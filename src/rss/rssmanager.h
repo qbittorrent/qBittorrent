@@ -48,8 +48,8 @@ public:
   static void drop();
   virtual ~RssManager();
   inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
-  static void insertSortElem(QList<RssArticle> &list, const RssArticle &item);
-  static void sortNewsList(QList<RssArticle>& news_list);
+  static void insertSortElem(QList<RssArticlePtr> &list, const RssArticlePtr &item);
+  static void sortNewsList(QList<RssArticlePtr>& news_list);
 
 public slots:
   void loadStreamList();

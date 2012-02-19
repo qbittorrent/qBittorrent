@@ -34,23 +34,19 @@
 #include <QXmlStreamReader>
 #include <QDateTime>
 #include <QVariantHash>
-#include <QExplicitlySharedDataPointer>
+#include <QSharedPointer>
 
 class RssFeed;
-class RssArticleData;
+class RssArticle;
+
+typedef QSharedPointer<RssArticle> RssArticlePtr;
 
 // Item of a rss stream, single information
 class RssArticle {
 
 public:
-  RssArticle();
-  RssArticle(RssFeed* parent, QXmlStreamReader& xml);
   RssArticle(RssFeed* parent, const QString &guid);
-  RssArticle(const RssArticle& other); // Copy constructor
-  RssArticle& operator=(const RssArticle& other);
-  ~RssArticle();
   // Accessors
-  bool isValid() const;
   bool hasAttachment() const;
   QString guid() const;
   RssFeed* parent() const;
@@ -65,15 +61,26 @@ public:
   void markAsRead();
   // Serialization
   QVariantHash toHash() const;
-  friend RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
+
+  friend RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml);
+  friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 private:
   static QDateTime parseDate(const QString &string);
 
 private:
-  QExplicitlySharedDataPointer<RssArticleData> d;
+  RssFeed* m_parent;
+  QString m_guid;
+  QString m_title;
+  QString m_torrentUrl;
+  QString m_link;
+  QString m_description;
+  QDateTime m_date;
+  QString m_author;
+  bool m_read;
 };
 
-RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
+RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml);
+RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 #endif // RSSARTICLE_H

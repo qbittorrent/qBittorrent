@@ -37,6 +37,8 @@
 
 class RssManager;
 
+typedef QHash<QString, RssArticlePtr> RssArticleHash;
+
 class RssFeed: public QObject, public IRssFile {
   Q_OBJECT
 
@@ -59,13 +61,13 @@ public:
   QString icon() const;
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
-  const RssArticle getItem(const QString &guid) const;
+  RssArticlePtr getItem(const QString &guid) const;
   uint count() const;
   void markAsRead();
   uint unreadCount() const;
-  const QList<RssArticle> articleList() const;
-  const QHash<QString, RssArticle>& articleListNoCopy() const { return m_articles; }
-  const QList<RssArticle> unreadArticleList() const;
+  const QList<RssArticlePtr> articleList() const;
+  const RssArticleHash& articleHash() const { return m_articles; }
+  const QList<RssArticlePtr> unreadArticleList() const;
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
@@ -81,7 +83,7 @@ private:
   void loadItemsFromDisk();
 
 private:
-  QHash<QString, RssArticle> m_articles;
+  RssArticleHash m_articles;
   RssFolder *m_parent;
   QString m_title;
   QString m_url;

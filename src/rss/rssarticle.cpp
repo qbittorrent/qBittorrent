@@ -35,7 +35,6 @@
 #include <iostream>
 
 #include "rssarticle.h"
-#include "rssarticle_p.h"
 
 static const char shortDay[][4] = {
   "Mon", "Tue", "Wed",
@@ -153,11 +152,11 @@ QDateTime RssArticle::parseDate(const QString &string) {
         negOffset = true;    // military zone: RFC 2822 treats as '-0000'
       else if (zone != "UT" && zone != "GMT") {    // treated as '+0000'
         offset = (zone == "EDT")                  ? -4*3600
-          : (zone == "EST" || zone == "CDT") ? -5*3600
-            : (zone == "CST" || zone == "MDT") ? -6*3600
-              : (zone == "MST" || zone == "PDT") ? -7*3600
-                : (zone == "PST")                  ? -8*3600
-                  : 0;
+                                                  : (zone == "EST" || zone == "CDT") ? -5*3600
+                                                                                     : (zone == "CST" || zone == "MDT") ? -6*3600
+                                                                                                                        : (zone == "MST" || zone == "PDT") ? -7*3600
+                                                                                                                                                           : (zone == "PST")                  ? -8*3600
+                                                                                                                                                                                              : 0;
         if (!offset) {
           // Check for any other alphabetic time zone
           bool nonalpha = false;
@@ -176,7 +175,7 @@ QDateTime RssArticle::parseDate(const QString &string) {
     return QDateTime::currentDateTime();
   QDateTime result(qdate, QTime(hour, minute, second));
   if (!result.isValid()
-    ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
+      ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
     return QDateTime::currentDateTime();    // invalid date/time, or weekday doesn't correspond with date
   if (!offset) {
     result.setTimeSpec(Qt::UTC);
@@ -190,15 +189,37 @@ QDateTime RssArticle::parseDate(const QString &string) {
   return result;
 }
 
-RssArticle::RssArticle():
-    d(new RssArticleData(0))
-{
+// public constructor
+RssArticle::RssArticle(RssFeed* parent, const QString &guid):
+  m_parent(parent), m_guid(guid), m_read(false) {}
+
+bool RssArticle::hasAttachment() const {
+  return !m_torrentUrl.isEmpty();
 }
 
-// public constructor
-RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml):
-  d(new RssArticleData(parent))
+QVariantHash RssArticle::toHash() const {
+  QVariantHash item;
+  item["title"] = m_title;
+  item["id"] = m_guid;
+  item["torrent_url"] = m_torrentUrl;
+  item["news_link"] = m_link;
+  item["description"] = m_description;
+  item["date"] = m_date;
+  item["author"] = m_author;
+  item["read"] = m_read;
+  return item;
+}
+
+RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
 {
+  QString guid;
+  QString title;
+  QString torrentUrl;
+  QString link;
+  QString description;
+  QDateTime date;
+  QString author;
+
   while(!xml.atEnd()) {
     xml.readNext();
 
@@ -207,125 +228,103 @@ RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml):
 
     if(xml.isStartElement()) {
       if(xml.name() == "title") {
-        d->title = xml.readElementText();
+        title = xml.readElementText();
       }
       else if(xml.name() == "enclosure") {
         if(xml.attributes().value("type") == "application/x-bittorrent") {
-          d->torrentUrl = xml.attributes().value("url").toString();
+          torrentUrl = xml.attributes().value("url").toString();
         }
       }
       else if(xml.name() == "link") {
-        d->link = xml.readElementText();
-        if(d->guid.isEmpty())
-          d->guid = d->link;
+        link = xml.readElementText();
+        if(guid.isEmpty())
+          guid = link;
       }
       else if(xml.name() == "description") {
-        d->description = xml.readElementText();
+        description = xml.readElementText();
       }
       else if(xml.name() == "pubDate") {
-        d->date = parseDate(xml.readElementText());
+        date = RssArticle::parseDate(xml.readElementText());
       }
       else if(xml.name() == "author") {
-        d->author = xml.readElementText();
+        author = xml.readElementText();
       }
       else if(xml.name() == "guid") {
-        d->guid = xml.readElementText();
+        guid = xml.readElementText();
       }
     }
   }
+
+  if (guid.isEmpty())
+    return RssArticlePtr();
+
+  RssArticlePtr art(new RssArticle(parent, guid));
+  art->m_title = title;
+  art->m_torrentUrl = torrentUrl;
+  art->m_link = link;
+  art->m_description = description;
+  art->m_date = date;
+  art->m_author = author;
+
+  return art;
 }
 
-RssArticle::RssArticle(RssFeed* parent, const QString &guid):
-  d(new RssArticleData(parent, guid)) {}
-
-RssArticle::~RssArticle() {}
-
-RssArticle::RssArticle(const RssArticle& other): d(other.d) {
-}
-
-RssArticle & RssArticle::operator =(const RssArticle &other)
-{
-  d = other.d;
-  return *this;
-}
-
-bool RssArticle::hasAttachment() const {
-  return !d->torrentUrl.isEmpty();
-}
-
-QVariantHash RssArticle::toHash() const {
-  QVariantHash item;
-  item["title"] = d->title;
-  item["id"] = d->guid;
-  item["torrent_url"] = d->torrentUrl;
-  item["news_link"] = d->link;
-  item["description"] = d->description;
-  item["date"] = d->date;
-  item["author"] = d->author;
-  item["read"] = d->read;
-  return item;
-}
-
-RssArticle hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
+RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
   const QString guid = h.value("id").toString();
-  if(guid.isEmpty()) return RssArticle();
-  RssArticle art(parent, guid);
-  art.d->title = h.value("title", "").toString();
-  art.d->torrentUrl = h.value("torrent_url", "").toString();
-  art.d->link = h.value("news_link", "").toString();
-  art.d->description = h.value("description").toString();
-  art.d->date = h.value("date").toDateTime();
-  art.d->author = h.value("author").toString();
-  art.d->read = h.value("read").toBool();
+  if(guid.isEmpty()) return RssArticlePtr();
 
-  Q_ASSERT(art.isValid());
+  RssArticlePtr art(new RssArticle(parent, guid));
+  art->m_title = h.value("title", "").toString();
+  art->m_torrentUrl = h.value("torrent_url", "").toString();
+  art->m_link = h.value("news_link", "").toString();
+  art->m_description = h.value("description").toString();
+  art->m_date = h.value("date").toDateTime();
+  art->m_author = h.value("author").toString();
+  art->m_read = h.value("read").toBool();
+
   return art;
 }
 
 RssFeed* RssArticle::parent() const {
-  return d->parent;
-}
-
-bool RssArticle::isValid() const {
-  return !d->guid.isEmpty();
+  return m_parent;
 }
 
 QString RssArticle::author() const {
-  return d->author;
+  return m_author;
 }
 
 QString RssArticle::torrentUrl() const{
-  return d->torrentUrl;
+  return m_torrentUrl;
 }
 
 QString RssArticle::link() const {
-  return d->link;
+  return m_link;
 }
 
 QString RssArticle::description() const{
-  if(d->description.isNull())
+  if(m_description.isNull())
     return "";
-  return d->description;
+  return m_description;
 }
 
 QDateTime RssArticle::date() const {
-  return d->date;
+  return m_date;
 }
 
 bool RssArticle::isRead() const{
-  return d->read;
+  return m_read;
 }
 
 void RssArticle::markAsRead(){
-  d->read = true;
+  m_read = true;
 }
 
 QString RssArticle::guid() const
 {
-  return d->guid;
+  return m_guid;
 }
 
 QString RssArticle::title() const
 {
-  return d->title;
+  return m_title;
 }
