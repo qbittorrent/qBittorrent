@@ -196,6 +196,13 @@ void RssFolder::removeAllSettings() {
   }
 }
 
+void RssFolder::saveItemsToDisk()
+{
+  foreach(IRssFile* child, m_children.values()) {
+    child->saveItemsToDisk();
+  }
+}
+
 QString RssFolder::id() const {
   return m_name;
 }

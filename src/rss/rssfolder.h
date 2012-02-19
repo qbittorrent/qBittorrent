@@ -59,7 +59,8 @@ public:
   bool hasChild(const QString &childId);
   const QList<RssArticle> articleList() const;
   const QList<RssArticle> unreadArticleList() const;
-  void removeAllSettings();
+  virtual void removeAllSettings();
+  virtual void saveItemsToDisk();
   void removeAllItems();
   void renameChildFolder(const QString &old_name, const QString &new_name);
   IRssFile *takeChild(const QString &childId);

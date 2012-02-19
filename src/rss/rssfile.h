@@ -54,6 +54,7 @@ public:
   virtual void setParent(RssFolder* parent) = 0;
   virtual void refresh() = 0;
   virtual void removeAllSettings() = 0;
+  virtual void saveItemsToDisk() = 0;
   virtual const QList<RssArticle> articleList() const = 0;
   virtual const QList<RssArticle> unreadArticleList() const = 0;
   QStringList pathHierarchy() const;

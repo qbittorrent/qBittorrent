@@ -471,8 +471,7 @@ void AutomatedRssDownloader::updateMatchingArticles()
     if(!rule.isValid()) continue;
     foreach(const QString &feed_url, rule.rssFeeds()) {
       qDebug() << Q_FUNC_INFO << feed_url;
-      Q_ASSERT(all_feeds.contains(feed_url));
-      if(!all_feeds.contains(feed_url)) continue;
+      if(!all_feeds.contains(feed_url)) continue; // Feed was removed
       const RssFeed *feed = all_feeds.value(feed_url);
       Q_ASSERT(feed);
       if(!feed) continue;

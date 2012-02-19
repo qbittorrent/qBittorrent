@@ -48,7 +48,8 @@ public:
   FileType type() const;
   void refresh();
   QString id() const { return m_url; }
-  void removeAllSettings();
+  virtual void removeAllSettings();
+  virtual void saveItemsToDisk();
   bool itemAlreadyExists(const QString &hash) const;
   void setLoading(bool val);
   bool isLoading() const;
@@ -77,7 +78,6 @@ private:
   bool parseXmlFile(const QString &file_path);
   void downloadMatchingArticleTorrents();
   QString iconUrl() const;
-  void saveItemsToDisk();
   void loadItemsFromDisk();
 
 private:
