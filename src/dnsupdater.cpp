@@ -175,7 +175,7 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
   QString code = reply.split(" ").first();
   qDebug() << Q_FUNC_INFO << "Code:" << code;
   if (code == "good" || code == "nochg") {
-    QBtSession::instance()->addConsoleMessage(tr("Your dynamic DNS was successfuly updated."), "green");
+    QBtSession::instance()->addConsoleMessage(tr("Your dynamic DNS was successfully updated."), "green");
     return;
   }
   if (code == "911" || code == "dnserr") {

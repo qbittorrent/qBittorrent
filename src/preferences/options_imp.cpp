@@ -1221,7 +1221,7 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
   if (error) {
     QMessageBox::warning(this, tr("Parsing error"), tr("Failed to parse the provided IP filter"));
   } else {
-    QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfuly parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+    QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
   }
   m_refreshingIpFilter = false;
   disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));

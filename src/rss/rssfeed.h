@@ -55,7 +55,6 @@ public:
   void refresh();
   virtual QString id() const { return m_url; }
   virtual void removeAllSettings();
-  bool itemAlreadyExists(const QString &guid) const;
   virtual void saveItemsToDisk();
   void setLoading(bool val);
   bool isLoading() const;

@@ -2775,7 +2775,7 @@ qlonglong QBtSession::getETA(const QString &hash) const
 
 void QBtSession::handleIPFilterParsed(int ruleCount)
 {
-  addConsoleMessage(tr("Successfuly parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+  addConsoleMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
   emit ipFilterParsed(false, ruleCount);
 }
 

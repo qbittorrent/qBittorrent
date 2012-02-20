@@ -284,7 +284,7 @@ QString RssArticle::author() const {
   return m_author;
 }
 
-QString RssArticle::torrentUrl() const{
+QString RssArticle::torrentUrl() const {
   return m_torrentUrl;
 }
 
@@ -292,7 +292,7 @@ QString RssArticle::link() const {
   return m_link;
 }
 
-QString RssArticle::description() const{
+QString RssArticle::description() const {
   if (m_description.isNull())
     return "";
   return m_description;
@@ -302,7 +302,7 @@ QDateTime RssArticle::date() const {
   return m_date;
 }
 
-bool RssArticle::isRead() const{
+bool RssArticle::isRead() const {
   return m_read;
 }
 

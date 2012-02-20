@@ -120,10 +120,6 @@ void RssFeed::removeAllSettings() {
   }
 }
 
-bool RssFeed::itemAlreadyExists(const QString &guid) const {
-  return m_articles.contains(guid);
-}
-
 void RssFeed::setLoading(bool val) {
   m_loading = val;
 }
@@ -231,8 +227,12 @@ void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
     }
     else if (xml.name() == "item") {
       RssArticlePtr article = xmlToRssArticle(this, xml);
-      if (article && !itemAlreadyExists(article->guid()))
-        m_articles.insert(article->guid(), article);
+      if (article) {
+        QString guid = article->guid();
+        if (m_articles.contains(guid) && m_articles[guid]->isRead())
+          article->markAsRead();
+        m_articles[guid] = article;
+      }
     } else
       xml.skipCurrentElement();
   }
@@ -335,14 +335,14 @@ bool RssFeed::parseXmlFile(const QString &file_path) {
 // read and store the downloaded rss' informations
 void RssFeed::handleFinishedDownload(const QString& url, const QString &file_path) {
   if (url == m_url) {
-    qDebug() << Q_FUNC_INFO << "Successfuly downloaded RSS feed at" << url;
+    qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
     m_downloadFailure = false;
     m_loading = false;
     // Parse the download RSS
     if (parseXmlFile(file_path)) {
       m_refreshed = true;
       m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
-      qDebug() << Q_FUNC_INFO << "Feed parsed successfuly";
+      qDebug() << Q_FUNC_INFO << "Feed parsed successfully";
     }
   }
   else if (url == m_iconUrl) {
