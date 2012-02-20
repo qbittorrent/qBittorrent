@@ -45,15 +45,15 @@ class PreviewListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    PreviewListDelegate(QObject *parent=0) : QItemDelegate(parent){}
+    PreviewListDelegate(QObject *parent=0) : QItemDelegate(parent) {}
 
-    ~PreviewListDelegate(){}
+    ~PreviewListDelegate() {}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
 
-      switch(index.column()){
+      switch(index.column()) {
         case PreviewSelect::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));

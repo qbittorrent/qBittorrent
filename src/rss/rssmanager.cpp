@@ -45,7 +45,7 @@ RssManager::RssManager():
   m_refreshTimer.start(m_refreshInterval*60000);
 }
 
-RssManager::~RssManager(){
+RssManager::~RssManager() {
   qDebug("Deleting RSSManager...");
   delete m_rssDownloader;
   delete m_downloadRules;
@@ -54,7 +54,7 @@ RssManager::~RssManager(){
   qDebug("RSSManager deleted");
 }
 
-void RssManager::updateRefreshInterval(uint val){
+void RssManager::updateRefreshInterval(uint val) {
   if (m_refreshInterval != val) {
     m_refreshInterval = val;
     m_refreshTimer.start(m_refreshInterval*60000);
@@ -66,13 +66,13 @@ void RssManager::loadStreamList() {
   RssSettings settings;
   const QStringList streamsUrl = settings.getRssFeedsUrls();
   const QStringList aliases =  settings.getRssFeedsAliases();
-  if (streamsUrl.size() != aliases.size()){
+  if (streamsUrl.size() != aliases.size()) {
     std::cerr << "Corrupted Rss list, not loading it\n";
     return;
   }
   uint i = 0;
   qDebug() << Q_FUNC_INFO << streamsUrl;
-  foreach (QString s, streamsUrl){
+  foreach (QString s, streamsUrl) {
     QStringList path = s.split("\\", QString::SkipEmptyParts);
     if (path.empty()) continue;
     const QString feed_url = path.takeLast();

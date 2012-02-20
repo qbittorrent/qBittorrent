@@ -96,7 +96,7 @@ void engineSelectDlg::dropEvent(QDropEvent *event) {
 // Decode if we accept drag 'n drop or not
 void engineSelectDlg::dragEnterEvent(QDragEnterEvent *event) {
   QString mime;
-  foreach (mime, event->mimeData()->formats()){
+  foreach (mime, event->mimeData()->formats()) {
     qDebug("mimeData: %s", qPrintable(mime));
   }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {
@@ -195,14 +195,14 @@ void engineSelectDlg::enableSelection(bool enable) {
 }
 
 // Set the color of a row in data model
-void engineSelectDlg::setRowColor(int row, QString color){
+void engineSelectDlg::setRowColor(int row, QString color) {
   QTreeWidgetItem *item = pluginsTree->topLevelItem(row);
-  for (int i=0; i<pluginsTree->columnCount(); ++i){
+  for (int i=0; i<pluginsTree->columnCount(); ++i) {
     item->setData(i, Qt::ForegroundRole, QVariant(QColor(color)));
   }
 }
 
-QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url){
+QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url) {
   QList<QTreeWidgetItem*> res;
   for (int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
@@ -212,7 +212,7 @@ QList<QTreeWidgetItem*> engineSelectDlg::findItemsWithUrl(QString url){
   return res;
 }
 
-QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id){
+QTreeWidgetItem* engineSelectDlg::findItemWithID(QString id) {
   QList<QTreeWidgetItem*> res;
   for (int i=0; i<pluginsTree->topLevelItemCount(); ++i) {
     QTreeWidgetItem *item = pluginsTree->topLevelItem(i);
@@ -353,7 +353,7 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
   qDebug("Checking if update is needed");
   bool file_correct = false;
   QFile versions(versions_file);
-  if (!versions.open(QIODevice::ReadOnly | QIODevice::Text)){
+  if (!versions.open(QIODevice::ReadOnly | QIODevice::Text)) {
     qDebug("* Error: Could not read versions.txt file");
     return false;
   }
@@ -398,13 +398,13 @@ bool engineSelectDlg::parseVersionsFile(QString versions_file) {
 void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
   setCursor(QCursor(Qt::ArrowCursor));
   qDebug("engineSelectDlg received %s", qPrintable(url));
-  if (url.endsWith("favicon.ico", Qt::CaseInsensitive)){
+  if (url.endsWith("favicon.ico", Qt::CaseInsensitive)) {
     // Icon downloaded
     QImage fileIcon;
     if (fileIcon.load(filePath)) {
       QList<QTreeWidgetItem*> items = findItemsWithUrl(url);
       QTreeWidgetItem *item;
-      foreach (item, items){
+      foreach (item, items) {
         QString id = item->text(ENGINE_ID);
         QString iconPath;
         QFile icon(filePath);
@@ -439,7 +439,7 @@ void engineSelectDlg::processDownloadedFile(QString url, QString filePath) {
 
 void engineSelectDlg::handleDownloadFailure(QString url, QString reason) {
   setCursor(QCursor(Qt::ArrowCursor));
-  if (url.endsWith("favicon.ico", Qt::CaseInsensitive)){
+  if (url.endsWith("favicon.ico", Qt::CaseInsensitive)) {
     qDebug("Could not download favicon: %s, reason: %s", qPrintable(url), qPrintable(reason));
     return;
   }

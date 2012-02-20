@@ -120,7 +120,7 @@ void EventManager::setGlobalPreferences(QVariantMap m) {
     QString locale = m["locale"].toString();
     if (pref.getLocale() != locale) {
       QTranslator *translator = new QTranslator;
-      if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+      if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
       }else{
         qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));

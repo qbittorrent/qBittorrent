@@ -89,7 +89,7 @@ void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   start();
 }
 
-void sendProgressUpdateSignal(int i, int num, TorrentCreatorThread *parent){
+void sendProgressUpdateSignal(int i, int num, TorrentCreatorThread *parent) {
   parent->sendProgressSignal((int)(i*100./(float)num));
 }
 
@@ -108,7 +108,7 @@ void TorrentCreatorThread::run() {
     create_torrent t(fs, piece_size);
 
     // Add url seeds
-    foreach (const QString &seed, url_seeds){
+    foreach (const QString &seed, url_seeds) {
       t.add_url_seed(seed.trimmed().toStdString());
     }
     foreach (const QString &tracker, trackers) {
@@ -138,7 +138,7 @@ void TorrentCreatorThread::run() {
     } else {
       throw std::exception();
     }
-  } catch (std::exception& e){
+  } catch (std::exception& e) {
     emit creationFailure(QString::fromLocal8Bit(e.what()));
   }
 }

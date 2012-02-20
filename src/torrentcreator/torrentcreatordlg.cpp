@@ -67,7 +67,7 @@ TorrentCreatorDlg::~TorrentCreatorDlg() {
     delete creatorThread;
 }
 
-void TorrentCreatorDlg::on_addFolder_button_clicked(){
+void TorrentCreatorDlg::on_addFolder_button_clicked() {
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
@@ -83,7 +83,7 @@ void TorrentCreatorDlg::on_addFolder_button_clicked(){
   }
 }
 
-void TorrentCreatorDlg::on_addFile_button_clicked(){
+void TorrentCreatorDlg::on_addFile_button_clicked() {
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
@@ -104,11 +104,11 @@ int TorrentCreatorDlg::getPieceSize() const {
 }
 
 // Main function that create a .torrent file
-void TorrentCreatorDlg::on_createButton_clicked(){
+void TorrentCreatorDlg::on_createButton_clicked() {
   QString input = textInputPath->text().trimmed();
   if (input.endsWith(QDir::separator()))
     input.chop(1);
-  if (input.isEmpty()){
+  if (input.isEmpty()) {
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }

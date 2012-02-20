@@ -44,14 +44,14 @@ class SearchListDelegate: public QItemDelegate {
   Q_OBJECT
 
   public:
-    SearchListDelegate(QObject *parent=0) : QItemDelegate(parent){}
+    SearchListDelegate(QObject *parent=0) : QItemDelegate(parent) {}
 
-    ~SearchListDelegate(){}
+    ~SearchListDelegate() {}
 
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
       painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-      switch(index.column()){
+      switch(index.column()) {
         case SearchEngine::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));

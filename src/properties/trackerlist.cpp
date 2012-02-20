@@ -108,7 +108,7 @@ void TrackerList::moveSelectionUp() {
   QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
   if (selected_items.isEmpty()) return;
   bool change = false;
-  foreach (QTreeWidgetItem *item, selected_items){
+  foreach (QTreeWidgetItem *item, selected_items) {
     int index = indexOfTopLevelItem(item);
     if (index > NB_STICKY_ITEM) {
       insertTopLevelItem(index-1, takeTopLevelItem(index));
@@ -273,7 +273,7 @@ void TrackerList::loadTrackers() {
 }
 
 // Ask the user for new trackers and add them to the torrent
-void TrackerList::askForTrackers(){
+void TrackerList::askForTrackers() {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) return;
   QStringList trackers = TrackersAdditionDlg::askForTrackers(h);
@@ -291,7 +291,7 @@ void TrackerList::askForTrackers(){
   }
 }
 
-void TrackerList::deleteSelectedTrackers(){
+void TrackerList::deleteSelectedTrackers() {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) {
     clear();
@@ -300,7 +300,7 @@ void TrackerList::deleteSelectedTrackers(){
   QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
   if (selected_items.isEmpty()) return;
   QStringList urls_to_remove;
-  foreach (QTreeWidgetItem *item, selected_items){
+  foreach (QTreeWidgetItem *item, selected_items) {
     QString tracker_url = item->data(COL_URL, Qt::DisplayRole).toString();
     urls_to_remove << tracker_url;
     tracker_items.remove(tracker_url);

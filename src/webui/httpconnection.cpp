@@ -394,9 +394,9 @@ void HttpConnection::respondCommand(const QString& command) {
   if (command == "download") {
     QString urls = m_parser.post("urls");
     QStringList list = urls.split('\n');
-    foreach (QString url, list){
+    foreach (QString url, list) {
       url = url.trimmed();
-      if (!url.isEmpty()){
+      if (!url.isEmpty()) {
         if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
           qDebug("Converting bc link to magnet link");
           url = misc::bcLinkToMagnet(url);
@@ -600,7 +600,7 @@ void HttpConnection::respondCommand(const QString& command) {
     }
     return;
   }
-  if (command == "recheck"){
+  if (command == "recheck") {
     QBtSession::instance()->recheckTorrent(m_parser.post("hash"));
     return;
   }
@@ -618,7 +618,7 @@ void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes) {
       if (!h.is_seed()) {
         torrent_queue.push(qMakePair(h.queue_position(), h));
       }
-    }catch(invalid_handle&){}
+    }catch(invalid_handle&) {}
   }
   // Decrease torrents priority (starting with the ones with lowest priority)
   while(!torrent_queue.empty()) {
@@ -643,7 +643,7 @@ void HttpConnection::increaseTorrentsPriority(const QStringList &hashes)
       if (!h.is_seed()) {
         torrent_queue.push(qMakePair(h.queue_position(), h));
       }
-    }catch(invalid_handle&){}
+    }catch(invalid_handle&) {}
   }
   // Increase torrents priority (starting with the ones with highest priority)
   while(!torrent_queue.empty()) {

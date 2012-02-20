@@ -53,13 +53,13 @@ class pluginSourceDlg: public QDialog, private Ui::pluginSourceDlg {
     }
 
   public:
-    pluginSourceDlg(QWidget* parent): QDialog(parent){
+    pluginSourceDlg(QWidget* parent): QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       show();
     }
 
-    ~pluginSourceDlg(){}
+    ~pluginSourceDlg() {}
 };
 
 #endif

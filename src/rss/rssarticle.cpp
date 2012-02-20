@@ -315,7 +315,7 @@ bool RssArticle::isRead() const{
   return m_read;
 }
 
-void RssArticle::markAsRead(){
+void RssArticle::markAsRead() {
   m_read = true;
 }
 

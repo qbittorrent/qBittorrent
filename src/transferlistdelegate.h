@@ -53,14 +53,14 @@ class TransferListDelegate: public QItemDelegate {
   Q_OBJECT
 
 public:
-  TransferListDelegate(QObject *parent) : QItemDelegate(parent){}
+  TransferListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
-  ~TransferListDelegate(){}
+  ~TransferListDelegate() {}
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     painter->save();
-    switch(index.column()){
+    switch(index.column()) {
     case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
     case TorrentModelItem::TR_AMOUNT_LEFT:
     case TorrentModelItem::TR_SIZE:{

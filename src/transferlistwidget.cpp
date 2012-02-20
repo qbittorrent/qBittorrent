@@ -323,7 +323,7 @@ void TransferListWidget::increasePrioSelectedTorrents() {
       if (!h.is_seed()) {
         torrent_queue.push(qMakePair(h.queue_position(), h));
       }
-    }catch(invalid_handle&){}
+    }catch(invalid_handle&) {}
   }
   // Increase torrents priority (starting with the ones with highest priority)
   while(!torrent_queue.empty()) {
@@ -347,7 +347,7 @@ void TransferListWidget::decreasePrioSelectedTorrents() {
       if (!h.is_seed()) {
         torrent_queue.push(qMakePair(h.queue_position(), h));
       }
-    }catch(invalid_handle&){}
+    }catch(invalid_handle&) {}
   }
   // Decrease torrents priority (starting with the ones with lowest priority)
   while(!torrent_queue.empty()) {
@@ -520,7 +520,7 @@ void TransferListWidget::recheckSelectedTorrents() {
 }
 
 // hide/show columns menu
-void TransferListWidget::displayDLHoSMenu(const QPoint&){
+void TransferListWidget::displayDLHoSMenu(const QPoint&) {
   QMenu hideshowColumn(this);
   hideshowColumn.setTitle(tr("Column visibility"));
   QList<QAction*> actions;

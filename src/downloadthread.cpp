@@ -133,7 +133,7 @@ void DownloadThread::downloadTorrentUrl(const QString &url) {
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
 }
 
-QNetworkReply* DownloadThread::downloadUrl(const QString &url){
+QNetworkReply* DownloadThread::downloadUrl(const QString &url) {
   // Update proxy settings
   applyProxySettings();
 #ifndef DISABLE_GUI
@@ -208,7 +208,7 @@ void DownloadThread::applyProxySettings() {
 }
 
 QString DownloadThread::errorCodeToString(QNetworkReply::NetworkError status) {
-  switch(status){
+  switch(status) {
   case QNetworkReply::HostNotFoundError:
     return tr("The remote host name was not found (invalid hostname)");
   case QNetworkReply::OperationCanceledError:

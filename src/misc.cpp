@@ -622,7 +622,7 @@ QString misc::friendlyUnit(qreal val) {
   return QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
 }
 
-bool misc::isPreviewable(QString extension){
+bool misc::isPreviewable(QString extension) {
   if (extension.isEmpty()) return false;
   extension = extension.toUpper();
   if (extension == "AVI") return true;
@@ -911,7 +911,7 @@ QString misc::parseHtmlLinks(const QString &raw_text)
                 ")"
                 "|"
                 "("                                     // case 2b no scheme, no TLD, must have at least 2 aphanum strings plus uncommon TLD string  --> del.icio.us
-                "([a-zA-Z0-9_-]+\\.){2,}"           //2 or more domainpart.   --> del.icio.
+                "([a-zA-Z0-9_-]+\\.) {2,}"           //2 or more domainpart.   --> del.icio.
                 "[a-zA-Z]{2,}"                      //one ab  (2 char or longer) --> us
                 "([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"     // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
                 ")"

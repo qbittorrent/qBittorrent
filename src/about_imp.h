@@ -45,7 +45,7 @@ class about : public QDialog, private Ui::AboutDlg{
       qDebug("Deleting about dlg");
     }
 
-    about(QWidget *parent): QDialog(parent){
+    about(QWidget *parent): QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       // Set icons

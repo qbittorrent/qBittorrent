@@ -41,7 +41,7 @@ using namespace libtorrent;
 class SpeedSample {
 
 public:
-  SpeedSample(){}
+  SpeedSample() {}
   void addSample(int s);
   qreal average() const;
   void clear();
@@ -106,7 +106,7 @@ void TorrentSpeedMonitor::removeSamples(const QString &hash)
 void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
   try {
     m_samples.remove(h.hash());
-  } catch(invalid_handle&){}
+  } catch(invalid_handle&) {}
 }
 
 qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
@@ -133,6 +133,6 @@ void TorrentSpeedMonitor::getSamples()
       if (!it->is_paused())
         m_samples[misc::toQString(it->info_hash())].addSample(it->status().download_payload_rate);
 #endif
-    } catch(invalid_handle&){}
+    } catch(invalid_handle&) {}
   }
 }

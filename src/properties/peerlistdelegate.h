@@ -43,14 +43,14 @@ public:
                         TOT_DOWN, TOT_UP, IP_HIDDEN, COL_COUNT};
 
 public:
-  PeerListDelegate(QObject *parent) : QItemDelegate(parent){}
+  PeerListDelegate(QObject *parent) : QItemDelegate(parent) {}
 
-  ~PeerListDelegate(){}
+  ~PeerListDelegate() {}
 
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
     painter->save();
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
-    switch(index.column()){
+    switch(index.column()) {
     case TOT_DOWN:
     case TOT_UP:
       QItemDelegate::drawBackground(painter, opt, index);

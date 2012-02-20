@@ -118,7 +118,7 @@ public:
     return data.value("sequential", false).toBool();
   }
 
-  static void setSeedingMode(QString hash,bool seed){
+  static void setSeedingMode(QString hash,bool seed) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
@@ -127,7 +127,7 @@ public:
     settings.setValue("torrents-tmp", all_data);
   }
 
-  static bool isSeedingMode(QString hash){
+  static bool isSeedingMode(QString hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();

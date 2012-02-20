@@ -584,7 +584,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h
   QString torrent_name;
   try {
     torrent_name = h.name();
-  } catch(invalid_handle&){
+  } catch(invalid_handle&) {
     return;
   }
   QMessageBox confirmBox(QMessageBox::Question, tr("Recursive download confirmation"), tr("The torrent %1 contains torrent files, do you want to proceed with their download?").arg(torrent_name));
@@ -897,7 +897,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
 
 // Decode if we accept drag 'n drop or not
 void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
-  foreach (const QString &mime, event->mimeData()->formats()){
+  foreach (const QString &mime, event->mimeData()->formats()) {
     qDebug("mimeData: %s", mime.toLocal8Bit().data());
   }
   if (event->mimeData()->hasFormat(QString::fromUtf8("text/plain")) || event->mimeData()->hasFormat(QString::fromUtf8("text/uri-list"))) {

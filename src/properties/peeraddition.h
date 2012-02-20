@@ -55,7 +55,7 @@ public:
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(validateInput()));
   }
 
-  ~PeerAdditionDlg(){}
+  ~PeerAdditionDlg() {}
 
   QString getIP() const {
     QHostAddress ip(lineIP->text());

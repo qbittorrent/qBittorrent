@@ -253,7 +253,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
       throw std::exception();
   } catch(std::exception&) {
     qDebug("Caught error loading torrent");
-    if (!from_url.isNull()){
+    if (!from_url.isNull()) {
       QBtSession::instance()->addConsoleMessage(tr("Unable to decode torrent file:")+QString::fromUtf8(" '")+from_url+QString::fromUtf8("'"), QString::fromUtf8("red"));
       QFile::remove(filePath);
     }else{
@@ -278,7 +278,7 @@ void torrentAdditionDialog::showLoad(QString filePath, QString from_url) {
   hash = misc::toQString(t->info_hash());
   // Use left() to remove .old extension
   QString newFileName;
-  if (fileName.endsWith(QString::fromUtf8(".old"))){
+  if (fileName.endsWith(QString::fromUtf8(".old"))) {
     newFileName = fileName.left(fileName.size()-4);
   }else{
     newFileName = fileName;
@@ -526,7 +526,7 @@ void torrentAdditionDialog::updateDiskSpaceLabels() {
   }
 }
 
-void torrentAdditionDialog::on_browseButton_clicked(){
+void torrentAdditionDialog::on_browseButton_clicked() {
   Q_ASSERT(!is_magnet);
   QString new_path;
   QString root_folder;
@@ -546,7 +546,7 @@ void torrentAdditionDialog::on_browseButton_clicked(){
     }
   } else {
     QString truncated_path = getCurrentTruncatedSavePath(&root_folder);
-    if (!truncated_path.isEmpty() && QDir(truncated_path).exists()){
+    if (!truncated_path.isEmpty() && QDir(truncated_path).exists()) {
       new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), truncated_path);
     }else{
       new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), QDir::homePath());
@@ -583,7 +583,7 @@ void torrentAdditionDialog::on_browseButton_clicked(){
   }
 }
 
-void torrentAdditionDialog::on_CancelButton_clicked(){
+void torrentAdditionDialog::on_CancelButton_clicked() {
   close();
 }
 
@@ -592,17 +592,17 @@ bool torrentAdditionDialog::allFiltered() const {
   return PropListModel->model()->allFiltered();
 }
 
-void torrentAdditionDialog::savePiecesPriorities(){
+void torrentAdditionDialog::savePiecesPriorities() {
   qDebug("Saving pieces priorities");
   Q_ASSERT(!is_magnet);
   const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(t->num_files());
   TorrentTempData::setFilesPriority(hash, priorities);
 }
 
-void torrentAdditionDialog::on_OkButton_clicked(){
+void torrentAdditionDialog::on_OkButton_clicked() {
   Preferences pref;
   qDebug() << "void torrentAdditionDialog::on_OkButton_clicked() - ENTER";
-  if (savePathTxt->currentText().trimmed().isEmpty()){
+  if (savePathTxt->currentText().trimmed().isEmpty()) {
     QMessageBox::critical(0, tr("Empty save path"), tr("Please enter a save path"));
     return;
   }
@@ -671,7 +671,7 @@ void torrentAdditionDialog::on_OkButton_clicked(){
     }
   }
   // Check if there is at least one selected file
-  if (!is_magnet && t->num_files() > 1 && allFiltered()){
+  if (!is_magnet && t->num_files() > 1 && allFiltered()) {
     QMessageBox::warning(0, tr("Invalid file selection"), tr("You must select at least one file in the torrent"));
     return;
   }
@@ -683,8 +683,8 @@ void torrentAdditionDialog::on_OkButton_clicked(){
     pref.setSavePath(getCurrentTruncatedSavePath());
 
   // Check if savePath exists
-  if (!savePath.exists()){
-    if (!savePath.mkpath(savePath.path())){
+  if (!savePath.exists()) {
+    if (!savePath.mkpath(savePath.path())) {
       QMessageBox::critical(0, tr("Save path creation error"), tr("Could not create the save path"));
       return;
     }

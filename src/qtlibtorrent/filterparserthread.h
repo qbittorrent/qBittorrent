@@ -59,7 +59,7 @@ public:
 
   }
 
-  ~FilterParserThread(){
+  ~FilterParserThread() {
     abort = true;
     wait();
   }
@@ -68,8 +68,8 @@ public:
   int parseDATFilterFile(QString filePath) {
     int ruleCount = 0;
     QFile file(filePath);
-    if (file.exists()){
-      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if (file.exists()) {
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -141,7 +141,7 @@ public:
         try {
           filter.add_rule(startAddr, endAddr, libtorrent::ip_filter::blocked);
           ++ruleCount;
-        }catch(exception){
+        }catch(exception) {
           qDebug("Bad line in filter file, avoided crash...");
         }
       }
@@ -154,8 +154,8 @@ public:
   int parseP2PFilterFile(QString filePath) {
     int ruleCount = 0;
     QFile file(filePath);
-    if (file.exists()){
-      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if (file.exists()) {
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -168,7 +168,7 @@ public:
         if (line.startsWith('#') || line.startsWith("//")) continue;
         // Line is splitted by :
         QList<QByteArray> partsList = line.split(':');
-        if (partsList.size() < 2){
+        if (partsList.size() < 2) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           continue;
         }
@@ -246,8 +246,8 @@ public:
   int parseP2BFilterFile(QString filePath) {
     int ruleCount = 0;
     QFile file(filePath);
-    if (file.exists()){
-      if (!file.open(QIODevice::ReadOnly)){
+    if (file.exists()) {
+      if (!file.open(QIODevice::ReadOnly)) {
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -351,7 +351,7 @@ public:
   //  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
   //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
   //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
-  void processFilterFile(QString _filePath){
+  void processFilterFile(QString _filePath) {
     // First, import current filter
     filter = s->get_ip_filter();
     if (isRunning()) {
@@ -392,7 +392,7 @@ protected:
     return ip.toString();
   }
 
-  void run(){
+  void run() {
     qDebug("Processing filter file");
     int ruleCount = 0;
     if (filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
@@ -412,7 +412,7 @@ protected:
     try {
       s->set_ip_filter(filter);
       emit IPFilterParsed(ruleCount);
-    } catch(std::exception&){
+    } catch(std::exception&) {
       emit IPFilterError();
     }
     qDebug("IP Filter thread: finished parsing, filter applied");

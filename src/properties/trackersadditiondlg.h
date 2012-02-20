@@ -58,7 +58,7 @@ public:
     list_url->setCursorPosition(0);
   }
 
-  ~TrackersAdditionDlg(){}
+  ~TrackersAdditionDlg() {}
 
   QStringList newTrackers() const {
     return trackers_list->toPlainText().trimmed().split("\n");

@@ -55,7 +55,7 @@ RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   loadItemsFromDisk();
 }
 
-RssFeed::~RssFeed(){
+RssFeed::~RssFeed() {
   if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
     QFile::remove(m_icon);
 }
@@ -136,7 +136,7 @@ QString RssFeed::title() const{
   return m_title;
 }
 
-void RssFeed::rename(const QString &new_name){
+void RssFeed::rename(const QString &new_name) {
   qDebug() << "Renaming stream to" << new_name;
   m_alias = new_name;
 }
@@ -321,14 +321,14 @@ void RssFeed::resizeList() {
     RssArticleList listItems = m_articles.values();
     RssManager::sortNewsList(listItems);
     const int excess = nb_articles - max_articles;
-    for (uint i=nb_articles-excess; i<nb_articles; ++i){
+    for (uint i=nb_articles-excess; i<nb_articles; ++i) {
       m_articles.remove(listItems.at(i)->guid());
     }
   }
 }
 
 // existing and opening test after download
-bool RssFeed::parseXmlFile(const QString &file_path){
+bool RssFeed::parseXmlFile(const QString &file_path) {
   qDebug("openRss() called");
   QFile fileRss(file_path);
   if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {

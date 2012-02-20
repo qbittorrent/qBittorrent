@@ -183,7 +183,7 @@ QString SearchEngine::selectedCategory() const {
   return comboCategory->itemData(comboCategory->currentIndex()).toString();
 }
 
-SearchEngine::~SearchEngine(){
+SearchEngine::~SearchEngine() {
   qDebug("Search destruction");
   // save the searchHistory for later uses
   saveSearchHistory();
@@ -273,7 +273,7 @@ void SearchEngine::on_enginesButton_clicked() {
 }
 
 // get the last searchs from a QIniSettings to a QStringList
-void SearchEngine::startSearchHistory(){
+void SearchEngine::startSearchHistory() {
   QIniSettings settings("qBittorrent", "qBittorrent");
   searchHistory.setStringList(settings.value("Search/searchHistory",QStringList()).toStringList());
 }
@@ -294,7 +294,7 @@ void SearchEngine::giveFocusToSearchInput() {
 }
 
 // Function called when we click on search button
-void SearchEngine::on_search_button_clicked(){
+void SearchEngine::on_search_button_clicked() {
 #ifdef Q_WS_WIN
   if (!has_python) {
     if (QMessageBox::question(this, tr("Missing Python Interpreter"),
@@ -306,7 +306,7 @@ void SearchEngine::on_search_button_clicked(){
     return;
   }
 #endif
-  if (searchProcess->state() != QProcess::NotRunning){
+  if (searchProcess->state() != QProcess::NotRunning) {
 #ifdef Q_WS_WIN
     searchProcess->kill();
 #else
@@ -327,7 +327,7 @@ void SearchEngine::on_search_button_clicked(){
 
   const QString pattern = search_pattern->text().trimmed();
   // No search pattern entered
-  if (pattern.isEmpty()){
+  if (pattern.isEmpty()) {
     QMessageBox::critical(0, tr("Empty search pattern"), tr("Please type a search pattern first"));
     return;
   }
@@ -344,7 +344,7 @@ void SearchEngine::on_search_button_clicked(){
 #endif
   // if the pattern is not in the pattern
   QStringList wordList = searchHistory.stringList();
-  if (wordList.indexOf(pattern) == -1){
+  if (wordList.indexOf(pattern) == -1) {
     //update the searchHistory list
     wordList.append(pattern);
     // verify the max size of the history
@@ -399,7 +399,7 @@ void SearchEngine::saveResultsColumnsWidth() {
     if (!line.isEmpty()) {
       width_list = line.split(' ');
     }
-    for (short i=0; i<nbColumns; ++i){
+    for (short i=0; i<nbColumns; ++i) {
       if (treeview->columnWidth(i)<1 && width_list.size() == nbColumns && width_list.at(i).toInt()>=1) {
         // load the former width
         new_width_list << width_list.at(i);
@@ -439,7 +439,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
   }
 }
 
-void SearchEngine::searchStarted(){
+void SearchEngine::searchStarted() {
   // Update SearchEngine widgets
   search_status->setText(tr("Searching..."));
   search_status->repaint();
@@ -449,16 +449,16 @@ void SearchEngine::searchStarted(){
 // search Qprocess return output as soon as it gets new
 // stuff to read. We split it into lines and add each
 // line to search results calling appendSearchResult().
-void SearchEngine::readSearchOutput(){
+void SearchEngine::readSearchOutput() {
   QByteArray output = searchProcess->readAllStandardOutput();
   output.replace("\r", "");
   QList<QByteArray> lines_list = output.split('\n');
-  if (!search_result_line_truncated.isEmpty()){
+  if (!search_result_line_truncated.isEmpty()) {
     QByteArray end_of_line = lines_list.takeFirst();
     lines_list.prepend(search_result_line_truncated+end_of_line);
   }
   search_result_line_truncated = lines_list.takeLast().trimmed();
-  foreach (const QByteArray &line, lines_list){
+  foreach (const QByteArray &line, lines_list) {
     appendSearchResult(QString::fromUtf8(line));
   }
   if (currentSearchTab)
@@ -490,7 +490,7 @@ void SearchEngine::updateNova() {
   QFile package_file(search_dir.absoluteFilePath("__init__.py"));
   package_file.open(QIODevice::WriteOnly | QIODevice::Text);
   package_file.close();
-  if (!search_dir.exists("engines")){
+  if (!search_dir.exists("engines")) {
     search_dir.mkdir("engines");
   }
   QFile package_file2(search_dir.absolutePath().replace("\\", "/")+"/engines/__init__.py");
@@ -508,7 +508,7 @@ void SearchEngine::updateNova() {
 
   filePath = search_dir.absoluteFilePath("nova2dl.py");
   if (getPluginVersion(":/"+nova_folder+"/nova2dl.py") > getPluginVersion(filePath)) {
-    if (QFile::exists(filePath)){
+    if (QFile::exists(filePath)) {
       QFile::remove(filePath);
       QFile::remove(filePath+"c");
     }
@@ -517,7 +517,7 @@ void SearchEngine::updateNova() {
 
   filePath = search_dir.absoluteFilePath("novaprinter.py");
   if (getPluginVersion(":/"+nova_folder+"/novaprinter.py") > getPluginVersion(filePath)) {
-    if (QFile::exists(filePath)){
+    if (QFile::exists(filePath)) {
       QFile::remove(filePath);
       QFile::remove(filePath+"c");
     }
@@ -526,7 +526,7 @@ void SearchEngine::updateNova() {
 
   filePath = search_dir.absoluteFilePath("helpers.py");
   if (getPluginVersion(":/"+nova_folder+"/helpers.py") > getPluginVersion(filePath)) {
-    if (QFile::exists(filePath)){
+    if (QFile::exists(filePath)) {
       QFile::remove(filePath);
       QFile::remove(filePath+"c");
     }
@@ -534,7 +534,7 @@ void SearchEngine::updateNova() {
   }
 
   filePath = search_dir.absoluteFilePath("socks.py");
-  if (QFile::exists(filePath)){
+  if (QFile::exists(filePath)) {
     QFile::remove(filePath);
     QFile::remove(filePath+"c");
   }
@@ -542,7 +542,7 @@ void SearchEngine::updateNova() {
 
   if (nova_folder == "nova3") {
     filePath = search_dir.absoluteFilePath("sgmllib3.py");
-    if (QFile::exists(filePath)){
+    if (QFile::exists(filePath)) {
       QFile::remove(filePath);
       QFile::remove(filePath+"c");
     }
@@ -551,7 +551,7 @@ void SearchEngine::updateNova() {
   QDir destDir(QDir(misc::searchEngineLocation()).absoluteFilePath("engines"));
   QDir shipped_subDir(":/"+nova_folder+"/engines/");
   QStringList files = shipped_subDir.entryList();
-  foreach (const QString &file, files){
+  foreach (const QString &file, files) {
     QString shipped_file = shipped_subDir.absoluteFilePath(file);
     // Copy python classes
     if (file.endsWith(".py")) {
@@ -580,7 +580,7 @@ void SearchEngine::updateNova() {
 // Slot called when search is Finished
 // Search can be finished for 3 reasons :
 // Error | Stopped by user | Finished normally
-void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
+void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   if (searchTimeout->isActive()) {
     searchTimeout->stop();
   }
@@ -589,17 +589,17 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
   if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
     mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }
-  if (exitcode){
+  if (exitcode) {
 #ifdef Q_WS_WIN
     search_status->setText(tr("Search aborted"));
 #else
     search_status->setText(tr("An error occured during search..."));
 #endif
   }else{
-    if (search_stopped){
+    if (search_stopped) {
       search_status->setText(tr("Search aborted"));
     }else{
-      if (no_search_results){
+      if (no_search_results) {
         search_status->setText(tr("Search returned no results"));
       }else{
         search_status->setText(tr("Search has finished"));
@@ -614,9 +614,9 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus){
 // SLOT to append one line to search results list
 // Line is in the following form :
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-void SearchEngine::appendSearchResult(const QString &line){
+void SearchEngine::appendSearchResult(const QString &line) {
   if (!currentSearchTab) {
-    if (searchProcess->state() != QProcess::NotRunning){
+    if (searchProcess->state() != QProcess::NotRunning) {
       searchProcess->terminate();
     }
     if (searchTimeout->isActive()) {
@@ -627,7 +627,7 @@ void SearchEngine::appendSearchResult(const QString &line){
   }
   const QStringList parts = line.split("|");
   const int nb_fields = parts.size();
-  if (nb_fields < NB_PLUGIN_COLUMNS-1){ //-1 because desc_link is optional
+  if (nb_fields < NB_PLUGIN_COLUMNS-1) { //-1 because desc_link is optional
     return;
   }
   Q_ASSERT(currentSearchTab);
@@ -669,7 +669,7 @@ void SearchEngine::appendSearchResult(const QString &line){
 void SearchEngine::closeTab(int index) {
   if (index == tabWidget->indexOf(currentSearchTab)) {
     qDebug("Deleted current search Tab");
-    if (searchProcess->state() != QProcess::NotRunning){
+    if (searchProcess->state() != QProcess::NotRunning) {
       searchProcess->terminate();
     }
     if (searchTimeout->isActive()) {
@@ -686,13 +686,13 @@ void SearchEngine::closeTab(int index) {
 }
 #else
 // Clear search results list
-void SearchEngine::closeTab_button_clicked(){
+void SearchEngine::closeTab_button_clicked() {
   if (all_tab.size()) {
     qDebug("currentTab rank: %d", tabWidget->currentIndex());
     qDebug("currentSearchTab rank: %d", tabWidget->indexOf(currentSearchTab));
     if (tabWidget->currentIndex() == tabWidget->indexOf(currentSearchTab)) {
       qDebug("Deleted current search Tab");
-      if (searchProcess->state() != QProcess::NotRunning){
+      if (searchProcess->state() != QProcess::NotRunning) {
         searchProcess->terminate();
       }
       if (searchTimeout->isActive()) {
@@ -711,11 +711,11 @@ void SearchEngine::closeTab_button_clicked(){
 #endif
 
 // Download selected items in search results list
-void SearchEngine::on_download_button_clicked(){
+void SearchEngine::on_download_button_clicked() {
   //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  foreach (const QModelIndex &index, selectedIndexes){
-    if (index.column() == NAME){
+  foreach (const QModelIndex &index, selectedIndexes) {
+    if (index.column() == NAME) {
       // Get Item url
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
@@ -729,7 +729,7 @@ void SearchEngine::on_download_button_clicked(){
 void SearchEngine::on_goToDescBtn_clicked()
 {
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-  foreach (const QModelIndex &index, selectedIndexes){
+  foreach (const QModelIndex &index, selectedIndexes) {
     if (index.column() == NAME) {
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       const QString desc_url = model->data(model->index(index.row(), DESC_LINK)).toString();

@@ -400,12 +400,12 @@ void PropertiesWidget::loadDynamicData() {
   } catch(invalid_handle e) {}
 }
 
-void PropertiesWidget::loadUrlSeeds(){
+void PropertiesWidget::loadUrlSeeds() {
   listWebSeeds->clear();
   qDebug("Loading URL seeds");
   const QStringList hc_seeds = h.url_seeds();
   // Add url seeds
-  foreach (const QString &hc_seed, hc_seeds){
+  foreach (const QString &hc_seed, hc_seeds) {
     qDebug("Loading URL seed: %s", qPrintable(hc_seed));
     new QListWidgetItem(hc_seed, listWebSeeds);
   }
@@ -450,7 +450,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   }
 }
 
-void PropertiesWidget::displayFilesListMenu(const QPoint&){
+void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
@@ -616,7 +616,7 @@ void PropertiesWidget::renameSelectedFile() {
   }
 }
 
-void PropertiesWidget::askWebSeed(){
+void PropertiesWidget::askWebSeed() {
   bool ok;
   // Ask user for a new url seed
   const QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
@@ -635,15 +635,15 @@ void PropertiesWidget::askWebSeed(){
   loadUrlSeeds();
 }
 
-void PropertiesWidget::deleteSelectedUrlSeeds(){
+void PropertiesWidget::deleteSelectedUrlSeeds() {
   const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
   bool change = false;
-  foreach (const QListWidgetItem *item, selectedItems){
+  foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
     h.remove_url_seed(url_seed);
     change = true;
   }
-  if (change){
+  if (change) {
     // Refresh list
     loadUrlSeeds();
   }
@@ -674,7 +674,7 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
     new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
                                                  QFileDialog::DontConfirmOverwrite|QFileDialog::ShowDirsOnly|QFileDialog::HideNameFilterDetails);
   }
-  if (!new_path.isEmpty()){
+  if (!new_path.isEmpty()) {
     // Check if savePath exists
     QString save_path_dir = new_path.replace("\\", "/");
     QString new_file_name;

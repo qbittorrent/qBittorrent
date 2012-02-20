@@ -44,7 +44,7 @@ class trackerLogin : public QDialog, private Ui::authentication{
     QTorrentHandle h;
 
   public:
-    trackerLogin(QWidget *parent, QTorrentHandle h): QDialog(parent), h(h){
+    trackerLogin(QWidget *parent, QTorrentHandle h): QDialog(parent), h(h) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       login_logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/oxygen/encrypted.png")));
@@ -53,19 +53,19 @@ class trackerLogin : public QDialog, private Ui::authentication{
       show();
     }
 
-    ~trackerLogin(){}
+    ~trackerLogin() {}
 
   signals:
     void trackerLoginCancelled(QPair<QTorrentHandle,QString> tracker);
 
   public slots:
-    void on_loginButton_clicked(){
+    void on_loginButton_clicked() {
       // login
       h.set_tracker_login(lineUsername->text(), linePasswd->text());
       close();
     }
 
-    void on_cancelButton_clicked(){
+    void on_cancelButton_clicked() {
       // Emit a signal to GUI to stop asking for authentication
       emit trackerLoginCancelled(QPair<QTorrentHandle,QString>(h, h.current_tracker()));
       close();

@@ -50,7 +50,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       move(misc::screenCenter(this));
     }
 
-    ~SpeedLimitDialog(){
+    ~SpeedLimitDialog() {
       qDebug("Deleting bandwidth allocation dialog");
     }
 
@@ -75,7 +75,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
   protected slots:
     void updateSpinValue(int val) const {
       qDebug("Called updateSpinValue with %d", val);
-      if (val <= 0){
+      if (val <= 0) {
         spinBandwidth->setValue(0);
         spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
         spinBandwidth->setSuffix(QString::fromUtf8(""));

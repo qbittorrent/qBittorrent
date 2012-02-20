@@ -34,9 +34,8 @@
 #include <QList>
 #include <QHash>
 #include <QVariantHash>
-
 #include "rssdownloadrule.h"
-
+s
 // This class is not thread-safe (not required)
 class RssDownloadRuleList
 {

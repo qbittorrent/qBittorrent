@@ -154,7 +154,7 @@ void sigabrtHandler(int) {
 #endif
 
 // Main
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   // Create Application
   QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
@@ -192,19 +192,19 @@ int main(int argc, char *argv[]){
   QString locale = pref.getLocale();
   QTranslator qtTranslator;
   QTranslator translator;
-  if (locale.isEmpty()){
+  if (locale.isEmpty()) {
     locale = QLocale::system().name();
     pref.setLocale(locale);
   }
   if (qtTranslator.load(
           QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)
-                                                                    )){
+                                                                    )) {
     qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
   }else{
     qDebug("Qt %s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
   app.installTranslator(&qtTranslator);
-  if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+  if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
     qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
     qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
@@ -221,12 +221,12 @@ int main(int argc, char *argv[]){
   app.setApplicationName(QString::fromUtf8("qBittorrent"));
 
   // Check for executable parameters
-  if (argc > 1){
-    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
+  if (argc > 1) {
+    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")) {
       std::cout << "qBittorrent " << VERSION << '\n';
       return 0;
     }
-    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
+    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")) {
       UsageDisplay::displayUsage(argv[0]);
       return 0;
     }

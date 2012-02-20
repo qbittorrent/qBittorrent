@@ -922,7 +922,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   // Adding torrent to Bittorrent session
   try {
     h =  QTorrentHandle(add_magnet_uri(*s, magnet_uri.toStdString(), p));
-  }catch(std::exception e){
+  }catch(std::exception e) {
     qDebug("Error: %s", e.what());
   }
   // Check if it worked
@@ -1114,7 +1114,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   // Adding torrent to Bittorrent session
   try {
     h =  QTorrentHandle(s->add_torrent(p));
-  }catch(std::exception e){
+  }catch(std::exception e) {
     qDebug("Error: %s", e.what());
   }
   // Check if it worked
@@ -1585,7 +1585,7 @@ void QBtSession::saveTempFastResumeData() {
       if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
-    }catch(std::exception e){}
+    }catch(std::exception e) {}
   }
 }
 
@@ -1630,7 +1630,7 @@ void QBtSession::saveFastResumeData() {
         // Remove torrent from session
         if (rda->handle.is_valid())
           s->remove_torrent(rda->handle);
-      }catch(libtorrent::libtorrent_exception){}
+      }catch(libtorrent::libtorrent_exception) {}
       continue;
     }
     save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
@@ -1659,7 +1659,7 @@ void QBtSession::saveFastResumeData() {
       // Remove torrent from session
       s->remove_torrent(rd->handle);
       s->pop_alert();
-    } catch(libtorrent::invalid_handle&){}
+    } catch(libtorrent::invalid_handle&) {}
   }
 }
 
@@ -2405,7 +2405,7 @@ void QBtSession::readAlerts() {
     else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a.get())) {
       // Level: fatal
       QTorrentHandle h(p->handle);
-      if (h.is_valid()){
+      if (h.is_valid()) {
         // Authentication
         if (p->status_code != 401) {
           qDebug("Received a tracker error for %s: %s", p->url.c_str(), p->msg.c_str());
@@ -2422,7 +2422,7 @@ void QBtSession::readAlerts() {
     }
     else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a.get())) {
       const QTorrentHandle h(p->handle);
-      if (h.is_valid()){
+      if (h.is_valid()) {
         qDebug("Received a tracker reply from %s (Num_peers=%d)", p->url.c_str(), p->num_peers);
         // Connection was successful now. Remove possible old errors
         QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
@@ -2435,7 +2435,7 @@ void QBtSession::readAlerts() {
       }
     } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
       const QTorrentHandle h(p->handle);
-      if (h.is_valid()){
+      if (h.is_valid()) {
         // Connection was successful now but there is a warning message
         QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
         const QString tracker_url = misc::toQString(p->url);
@@ -2504,7 +2504,7 @@ void QBtSession::readAlerts() {
     }
     else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())) {
       QTorrentHandle h(p->handle);
-      if (h.is_valid()){
+      if (h.is_valid()) {
         const QString hash = h.hash();
         qDebug("%s have just finished checking", qPrintable(hash));
         // Save seed status

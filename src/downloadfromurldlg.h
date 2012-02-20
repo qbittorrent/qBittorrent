@@ -43,7 +43,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
   Q_OBJECT
 
   public:
-    downloadFromURL(QWidget *parent): QDialog(parent){
+    downloadFromURL(QWidget *parent): QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
       setModal(true);
@@ -55,26 +55,26 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       }
     }
 
-    ~downloadFromURL(){}
+    ~downloadFromURL() {}
 
   signals:
     void urlsReadyToBeDownloaded(const QStringList& torrent_urls);
 
   public slots:
-    void on_downloadButton_clicked(){
+    void on_downloadButton_clicked() {
       QString urls = textUrls->toPlainText();
       QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
       QStringList url_list_cleaned;
-      foreach (url, url_list){
+      foreach (url, url_list) {
         url = url.trimmed();
-        if (!url.isEmpty()){
-          if (url_list_cleaned.indexOf(QRegExp(url, Qt::CaseInsensitive, QRegExp::FixedString)) < 0){
+        if (!url.isEmpty()) {
+          if (url_list_cleaned.indexOf(QRegExp(url, Qt::CaseInsensitive, QRegExp::FixedString)) < 0) {
             url_list_cleaned << url;
           }
         }
       }
-      if (!url_list_cleaned.size()){
+      if (!url_list_cleaned.size()) {
         QMessageBox::critical(0, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }
@@ -83,7 +83,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       close();
     }
 
-    void on_cancelButton_clicked(){
+    void on_cancelButton_clicked() {
       close();
     }
 };
