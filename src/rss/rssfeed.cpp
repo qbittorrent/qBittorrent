@@ -218,68 +218,62 @@ QString RssFeed::iconUrl() const {
   return QString("http://")+siteUrl.host()+QString("/favicon.ico");
 }
 
+void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
+{
+  Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
+
+  while (xml.readNextStartElement()) {
+    if (xml.name() == "title") {
+      m_title = xml.readElementText();
+      if (m_alias == url())
+        rename(m_title);
+    }
+    else if (xml.name() == "image") {
+      QString icon_path = xml.attributes().value("url").toString();
+      if (!icon_path.isEmpty()) {
+        m_iconUrl = icon_path;
+        m_manager->rssDownloader()->downloadUrl(m_iconUrl);
+      }
+    }
+    else if (xml.name() == "item") {
+      RssArticlePtr article = xmlToRssArticle(this, xml);
+      if (article && !itemAlreadyExists(article->guid()))
+        m_articles.insert(article->guid(), article);
+    } else
+      xml.skipCurrentElement();
+  }
+}
+
 // read and create items from a rss document
-bool RssFeed::parseRSS(QIODevice* device) {
+bool RssFeed::parseRSS(QIODevice* device)
+{
   qDebug("Parsing RSS file...");
   QXmlStreamReader xml(device);
-  // is it a rss file ?
-  if (xml.atEnd()) {
-    qDebug("ERROR: Could not parse RSS file");
+
+  bool found_channel = false;
+  while (xml.readNextStartElement()) {
+    if (xml.name() == "rss") {
+      // Find channels
+      while (xml.readNextStartElement()) {
+        if (xml.name() == "channel") {
+          parseRSSChannel(xml);
+          found_channel = true;
+          break;
+        } else
+          xml.skipCurrentElement();
+      }
+      break;
+    } else
+      xml.skipCurrentElement();
+  }
+
+  if (!found_channel) {
+    qDebug() << m_url << " is not a valid RSS feed";
     return false;
-  }
-  while (!xml.atEnd()) {
-    xml.readNext();
-    if (xml.isStartElement()) {
-      if (xml.name() != "rss") {
-        qDebug("ERROR: this is not a rss file, root tag is <%s>", qPrintable(xml.name().toString()));
-        return false;
-      } else {
-        break;
-      }
-    }
-  }
-  // Read channels
-  while(!xml.atEnd()) {
-    xml.readNext();
-
-    if (!xml.isStartElement())
-      continue;
-
-    if (xml.name() != "channel")
-      continue;
-
-    // Parse channel content
-    while(!xml.atEnd()) {
-      xml.readNext();
-
-      if (xml.isEndElement() && xml.name() == "channel")
-        break; // End of this channel, parse the next one
-
-      if (!xml.isStartElement())
-        continue;
-
-      if (xml.name() == "title") {
-        m_title = xml.readElementText();
-        if (m_alias == url())
-          rename(m_title);
-      }
-      else if (xml.name() == "image") {
-        QString icon_path = xml.attributes().value("url").toString();
-        if (!icon_path.isEmpty()) {
-          m_iconUrl = icon_path;
-          m_manager->rssDownloader()->downloadUrl(m_iconUrl);
-        }
-      }
-      else if (xml.name() == "item") {
-        RssArticlePtr art = xmlToRssArticle(this, xml);
-        if (art && !itemAlreadyExists(art->guid()))
-          m_articles.insert(art->guid(), art);
-      }
-    }
   }
 
   // Make sure we limit the number of articles
-  resizeList();
+  removeOldArticles();
 
   // RSS Feed Downloader
   if (RssSettings().isRssDownloadingEnabled())
@@ -295,26 +289,24 @@ void RssFeed::downloadMatchingArticleTorrents() {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   RssDownloadRuleList *download_rules = m_manager->downloadRules();
   for (RssArticleHash::ConstIterator it = m_articles.begin(); it != m_articles.end(); it++) {
-    RssArticlePtr item = it.value();
-    if (item->isRead()) continue;
-    QString torrent_url;
-    if (item->hasAttachment())
-      torrent_url = item->torrentUrl();
-    else
-      torrent_url = item->link();
+    RssArticlePtr article = it.value();
+    // Skip read articles
+    if (article->isRead())
+      continue;
     // Check if the item should be automatically downloaded
-    RssDownloadRulePtr matching_rule = download_rules->findMatchingRule(m_url, item->title());
+    RssDownloadRulePtr matching_rule = download_rules->findMatchingRule(m_url, article->title());
     if (matching_rule) {
-      // Item was downloaded, consider it as Read
-      item->markAsRead();
+      // Torrent was downloaded, consider article as read
+      article->markAsRead();
       // Download the torrent
-      QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item->title()).arg(displayName()));
+      QString torrent_url = article->hasAttachment() ? article->torrentUrl() : article->link();
+      QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
       QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
     }
   }
 }
 
-void RssFeed::resizeList() {
+void RssFeed::removeOldArticles() {
   const uint max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   const uint nb_articles = m_articles.size();
   if (nb_articles > max_articles) {
@@ -333,9 +325,8 @@ bool RssFeed::parseXmlFile(const QString &file_path) {
   QFile fileRss(file_path);
   if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
     qDebug("openRss error: open failed, no file or locked, %s", qPrintable(file_path));
-    if (QFile::exists(file_path)) {
+    if (QFile::exists(file_path))
       fileRss.remove();
-    }
     return false;
   }
 

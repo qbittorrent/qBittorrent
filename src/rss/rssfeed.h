@@ -33,6 +33,7 @@
 
 #include <QHash>
 #include <QSharedPointer>
+#include <QXmlStreamReader>
 
 #include "rssfile.h"
 
@@ -79,7 +80,8 @@ private slots:
 
 private:
   bool parseRSS(QIODevice* device);
-  void resizeList();
+  void parseRSSChannel(QXmlStreamReader& xml);
+  void removeOldArticles();
   bool parseXmlFile(const QString &file_path);
   void downloadMatchingArticleTorrents();
   QString iconUrl() const;
