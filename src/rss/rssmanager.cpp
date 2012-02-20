@@ -47,11 +47,15 @@ RssManager::RssManager():
 
 RssManager::~RssManager() {
   qDebug("Deleting RSSManager...");
-  delete m_rssDownloader;
   delete m_downloadRules;
   saveItemsToDisk();
   saveStreamList();
   qDebug("RSSManager deleted");
+}
+
+DownloadThread *RssManager::rssDownloader() const
+{
+  return m_rssDownloader;
 }
 
 void RssManager::updateRefreshInterval(uint val) {
@@ -86,7 +90,7 @@ void RssManager::loadStreamList() {
     // Create feed
     qDebug() << "Adding feed to parent folder";
     RssFeedPtr stream = feed_parent->addStream(this, feed_url);
-    const QString alias = aliases.at(i);
+    const QString& alias = aliases[i];
     if (!alias.isEmpty()) {
       stream->rename(alias);
     }
@@ -138,7 +142,7 @@ static bool laterItemDate(const RssArticlePtr& a, const RssArticlePtr& b)
   return (a->date() > b->date());
 }
 
-void RssManager::sortNewsList(RssArticleList& news_list) {
+void RssManager::sortArticleListByDateDesc(RssArticleList& news_list) {
   qSort(news_list.begin(), news_list.end(), laterItemDate);
 }
 

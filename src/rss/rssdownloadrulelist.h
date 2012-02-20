@@ -35,8 +35,7 @@
 #include <QHash>
 #include <QVariantHash>
 #include "rssdownloadrule.h"
-s
-// This class is not thread-safe (not required)
+
 class RssDownloadRuleList
 {
   Q_DISABLE_COPY(RssDownloadRuleList)
@@ -56,8 +55,6 @@ public:
 
 private:
   void loadRulesFromStorage();
-  void importFeedsInOldFormat(const QHash<QString, QVariant> &feedrules); // Before v2.5.0
-  void importFeedRulesInOldFormat(const QString &feed_url, const QHash<QString, QVariant> &rules); // Before v2.5.0
   void loadRulesFromVariantHash(const QVariantHash& l);
   QVariantHash toVariantHash() const;
   void saveRulesToStorage();

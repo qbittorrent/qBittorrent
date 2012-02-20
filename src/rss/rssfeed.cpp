@@ -319,7 +319,7 @@ void RssFeed::resizeList() {
   const uint nb_articles = m_articles.size();
   if (nb_articles > max_articles) {
     RssArticleList listItems = m_articles.values();
-    RssManager::sortNewsList(listItems);
+    RssManager::sortArticleListByDateDesc(listItems);
     const int excess = nb_articles - max_articles;
     for (uint i=nb_articles-excess; i<nb_articles; ++i) {
       m_articles.remove(listItems.at(i)->guid());

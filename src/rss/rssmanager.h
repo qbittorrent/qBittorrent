@@ -49,8 +49,8 @@ public:
   RssManager();
   virtual ~RssManager();
 
-  inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
-  static void sortNewsList(RssArticleList& news_list);
+  DownloadThread* rssDownloader() const;
+  static void sortArticleListByDateDesc(RssArticleList& news_list);
 
   RssDownloadRuleList* downloadRules() const;
 

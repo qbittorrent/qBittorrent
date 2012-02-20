@@ -325,7 +325,7 @@ cat >$1/modules.cpp <<EOT
 #line 1 "qt4.qcm"
 /*
 -----BEGIN QCMOD-----
-name: Qt >= 4.5
+name: Qt >= 4.6
 arg: enable-debug, Enable debug mode
 arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 -----END QCMOD-----
@@ -334,8 +334,8 @@ class qc_qt4 : public ConfObj
 {
 public:
 	qc_qt4(Conf *c) : ConfObj(c) {}
-	QString name() const { return "Qt >= 4.5"; }
-	QString shortname() const { return "Qt 4.5"; }
+	QString name() const { return "Qt >= 4.6"; }
+	QString shortname() const { return "Qt 4.6"; }
 	bool exec()
 	{
                 // NOX mode
@@ -356,7 +356,7 @@ public:
                 #else
                   conf->addExtra("MANPREFIX = \$\$PREFIX/share"); 
                 #endif
-		return(QT_VERSION >= 0x040500);
+		return(QT_VERSION >= 0x040600);
 	}
 };
 #line 1 "qt-dbus.qcm"

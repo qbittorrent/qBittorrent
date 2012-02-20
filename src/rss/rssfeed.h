@@ -41,7 +41,7 @@ class RssManager;
 
 typedef QHash<QString, RssArticlePtr> RssArticleHash;
 typedef QSharedPointer<RssFeed> RssFeedPtr;
-typedef RssFeedList RssFeedList;
+typedef QList<RssFeedPtr> RssFeedList;
 
 class RssFeed: public QObject, public RssFile {
   Q_OBJECT

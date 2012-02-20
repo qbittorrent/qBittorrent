@@ -465,7 +465,7 @@ void RSSImp::refreshArticleList(QTreeWidgetItem* item) {
   else if (rss_item)
     news = rss_item->articleList();
   // Sort
-  RssManager::sortNewsList(news);
+  RssManager::sortArticleListByDateDesc(news);
   // Clear the list first
   textBrowser->clear();
   m_currentArticle = 0;

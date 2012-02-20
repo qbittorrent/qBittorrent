@@ -44,18 +44,20 @@ RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 bool RssDownloadRule::matches(const QString &article_title) const
 {
   foreach (const QString& token, m_mustContain) {
-    if (token.isEmpty() || token == "")
-      continue;
-    QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-    //reg.setMinimal(false);
-    if (reg.indexIn(article_title) < 0) return false;
+    if (!token.isEmpty()) {
+      QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+      if (reg.indexIn(article_title) < 0)
+        return false;
+    }
   }
   qDebug("Checking not matching tokens");
   // Checking not matching
   foreach (const QString& token, m_mustNotContain) {
-    if (token.isEmpty()) continue;
-    QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-    if (reg.indexIn(article_title) > -1) return false;
+    if (!token.isEmpty()) {
+      QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
+      if (reg.indexIn(article_title) > -1)
+        return false;
+    }
   }
   return true;
 }
@@ -76,25 +78,7 @@ void RssDownloadRule::setMustNotContain(const QString &tokens)
     m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
 }
 
-RssDownloadRulePtr RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash, const QString &feed_url, const QString &rule_name)
-{
-  qDebug() << Q_FUNC_INFO << feed_url << rule_name;
-  RssDownloadRulePtr rule(new RssDownloadRule);
-  rule->setName(rule_name);
-  rule->setMustContain(rule_hash.value("matches", "").toString());
-  rule->setMustNotContain(rule_hash.value("not", "").toString());
-  if (!feed_url.isEmpty())
-    rule->setRssFeeds(QStringList() << feed_url);
-  rule->setSavePath(rule_hash.value("save_path", "").toString());
-  // Is enabled?
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  const QHash<QString, QVariant> feeds_w_downloader = qBTRSS.value("downloader_on").toHash();
-  rule->setEnabled(feeds_w_downloader.value(feed_url, true).toBool());
-  // label was unsupported < 2.5.0
-  return rule;
-}
-
-RssDownloadRulePtr RssDownloadRule::fromNewFormat(const QVariantHash &rule_hash)
+RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_hash)
 {
   RssDownloadRulePtr rule(new RssDownloadRule);
   rule->setName(rule_hash.value("name").toString());
