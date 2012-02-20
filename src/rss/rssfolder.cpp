@@ -83,7 +83,7 @@ void RssFolder::refresh() {
   }
 }
 
-const RssArticleList RssFolder::articleList() const {
+RssArticleList RssFolder::articleList() const {
   RssArticleList news;
   for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
     news << it.value()->articleList();
@@ -91,7 +91,7 @@ const RssArticleList RssFolder::articleList() const {
   return news;
 }
 
-const RssArticleList RssFolder::unreadArticleList() const {
+RssArticleList RssFolder::unreadArticleList() const {
   RssArticleList unread_news;
   for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
     unread_news << it.value()->unreadArticleList();

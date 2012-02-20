@@ -198,11 +198,11 @@ uint RssFeed::unreadCount() const{
   return nbUnread;
 }
 
-const RssArticleList RssFeed::articleList() const{
+RssArticleList RssFeed::articleList() const{
   return m_articles.values();
 }
 
-const RssArticleList RssFeed::unreadArticleList() const {
+RssArticleList RssFeed::unreadArticleList() const {
   RssArticleList unread_news;
   for (RssArticleHash::ConstIterator it = m_articles.begin(); it != m_articles.end(); it++) {
     if(!it.value()->isRead())

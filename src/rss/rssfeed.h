@@ -49,29 +49,29 @@ class RssFeed: public QObject, public RssFile {
 public:
   RssFeed(RssManager* manager, RssFolder* m_parent, const QString &url);
   virtual ~RssFeed();
-  inline RssFolder* parent() const { return m_parent; }
-  void setParent(RssFolder* parent) { m_parent = parent; }
+  virtual RssFolder* parent() const { return m_parent; }
+  virtual void setParent(RssFolder* parent) { m_parent = parent; }
   void refresh();
-  QString id() const { return m_url; }
-  void removeAllSettings();
+  virtual QString id() const { return m_url; }
+  virtual void removeAllSettings();
   bool itemAlreadyExists(const QString &guid) const;
   virtual void saveItemsToDisk();
   void setLoading(bool val);
   bool isLoading() const;
   QString title() const;
-  void rename(const QString &alias);
-  QString displayName() const;
+  virtual void rename(const QString &alias);
+  virtual QString displayName() const;
   QString url() const;
   QString icon() const;
   bool hasCustomIcon() const;
   void setIconPath(const QString &pathHierarchy);
   RssArticlePtr getItem(const QString &guid) const;
   uint count() const;
-  void markAsRead();
-  uint unreadCount() const;
-  const RssArticleList articleList() const;
+  virtual void markAsRead();
+  virtual uint unreadCount() const;
+  virtual RssArticleList articleList() const;
   const RssArticleHash& articleHash() const { return m_articles; }
-  const RssArticleList unreadArticleList() const;
+  virtual RssArticleList unreadArticleList() const;
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
