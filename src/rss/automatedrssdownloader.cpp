@@ -67,7 +67,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(ui->listRules, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRulesListMenu(const QPoint&)));
   Q_ASSERT(ok);
-  m_ruleList = RssDownloadRuleList::instance();
+  m_ruleList = manager.toStrongRef()->downloadRules();
   initLabelCombobox();
   loadFeedList();
   loadSettings();

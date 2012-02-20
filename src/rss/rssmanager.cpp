@@ -37,17 +37,18 @@
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
 
-RssManager::RssManager(): m_rssDownloader(new DownloadThread(this)) {
+RssManager::RssManager():
+  m_rssDownloader(new DownloadThread(this)), m_downloadRules(new RssDownloadRuleList)
+{
   connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
   m_refreshTimer.start(m_refreshInterval*60000);
 }
 
 RssManager::~RssManager(){
-  qDebug("Deleting RSSManager");
-  m_refreshTimer.stop();
+  qDebug("Deleting RSSManager...");
   delete m_rssDownloader;
-  RssDownloadRuleList::drop();
+  delete m_downloadRules;
   saveItemsToDisk();
   saveStreamList();
   qDebug("RSSManager deleted");
@@ -117,7 +118,7 @@ void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folde
 void RssManager::saveStreamList() const {
   QStringList streamsUrl;
   QStringList aliases;
-  QList<RssFeedPtr> streams = getAllFeeds();
+  RssFeedList streams = getAllFeeds();
   foreach (const RssFeedPtr& stream, streams) {
     QString stream_path = stream->pathHierarchy().join("\\");
     if (stream_path.isNull()) {
@@ -139,4 +140,10 @@ static bool laterItemDate(const RssArticlePtr& a, const RssArticlePtr& b)
 
 void RssManager::sortNewsList(RssArticleList& news_list) {
   qSort(news_list.begin(), news_list.end(), laterItemDate);
+}
+
+RssDownloadRuleList *RssManager::downloadRules() const
+{
+  Q_ASSERT(m_downloadRules);
+  return m_downloadRules;
 }

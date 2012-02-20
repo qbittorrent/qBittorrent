@@ -37,6 +37,7 @@
 #include "rssfolder.h"
 
 class DownloadThread;
+class RssDownloadRuleList;
 
 class RssManager;
 typedef QSharedPointer<RssManager> RssManagerPtr;
@@ -49,8 +50,9 @@ public:
   virtual ~RssManager();
 
   inline DownloadThread* rssDownloader() const { return m_rssDownloader; }
-  static void insertSortElem(RssArticleList &list, const RssArticlePtr &item);
   static void sortNewsList(RssArticleList& news_list);
+
+  RssDownloadRuleList* downloadRules() const;
 
 public slots:
   void loadStreamList();
@@ -68,7 +70,7 @@ private:
   QTimer m_refreshTimer;
   uint m_refreshInterval;
   DownloadThread *m_rssDownloader;
-
+  RssDownloadRuleList *m_downloadRules;
 };
 
 #endif // RSSMANAGER_H

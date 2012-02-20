@@ -293,6 +293,7 @@ bool RssFeed::parseRSS(QIODevice* device) {
 
 void RssFeed::downloadMatchingArticleTorrents() {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
+  RssDownloadRuleList *download_rules = m_manager->downloadRules();
   for (RssArticleHash::ConstIterator it = m_articles.begin(); it != m_articles.end(); it++) {
     RssArticlePtr item = it.value();
     if (item->isRead()) continue;
@@ -302,7 +303,7 @@ void RssFeed::downloadMatchingArticleTorrents() {
     else
       torrent_url = item->link();
     // Check if the item should be automatically downloaded
-    RssDownloadRulePtr matching_rule = RssDownloadRuleList::instance()->findMatchingRule(m_url, item->title());
+    RssDownloadRulePtr matching_rule = download_rules->findMatchingRule(m_url, item->title());
     if (matching_rule) {
       // Item was downloaded, consider it as Read
       item->markAsRead();

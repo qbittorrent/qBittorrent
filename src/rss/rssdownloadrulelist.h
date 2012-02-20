@@ -42,13 +42,8 @@ class RssDownloadRuleList
 {
   Q_DISABLE_COPY(RssDownloadRuleList)
 
-private:
-  explicit RssDownloadRuleList();
-  static RssDownloadRuleList* m_instance;
-
 public:
-  static RssDownloadRuleList* instance();
-  static void drop();
+  RssDownloadRuleList();
   RssDownloadRulePtr findMatchingRule(const QString &feed_url, const QString &article_title) const;
   // Operators
   void saveRule(const RssDownloadRulePtr &rule);

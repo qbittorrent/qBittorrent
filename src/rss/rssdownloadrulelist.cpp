@@ -36,25 +36,9 @@
 #include "rsssettings.h"
 #include "qinisettings.h"
 
-RssDownloadRuleList* RssDownloadRuleList::m_instance = 0;
-
-RssDownloadRuleList::RssDownloadRuleList(){
+RssDownloadRuleList::RssDownloadRuleList()
+{
   loadRulesFromStorage();
-}
-
-RssDownloadRuleList* RssDownloadRuleList::instance()
-{
-  if (!m_instance)
-    m_instance = new RssDownloadRuleList;
-  return m_instance;
-}
-
-void RssDownloadRuleList::drop()
-{
-  if (m_instance) {
-    delete m_instance;
-    m_instance = 0;
-  }
 }
 
 RssDownloadRulePtr RssDownloadRuleList::findMatchingRule(const QString &feed_url, const QString &article_title) const
