@@ -56,13 +56,13 @@ PowerManagement::~PowerManagement()
 
 void PowerManagement::setActivityState(bool busy)
 {
-    if(busy) setBusy();
+    if (busy) setBusy();
     else setIdle();
 }
 
 void PowerManagement::setBusy()
 {
-    if(m_busy) return;
+    if (m_busy) return;
     m_busy = true;
 
 #ifdef Q_WS_WIN
@@ -71,13 +71,13 @@ void PowerManagement::setBusy()
     m_inhibitor->RequestBusy();
 #elif defined(Q_WS_MAC)
     IOReturn success = IOPMAssertionCreate(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn, &m_assertionID);
-    if(success != kIOReturnSuccess) m_busy = false;
+    if (success != kIOReturnSuccess) m_busy = false;
 #endif
 }
 
 void PowerManagement::setIdle()
 {
-    if(!m_busy) return;
+    if (!m_busy) return;
     m_busy = false;
 
 #ifdef Q_WS_WIN

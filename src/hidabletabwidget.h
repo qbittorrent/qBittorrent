@@ -44,7 +44,7 @@ public:
 protected:
   void tabInserted(int index) {
     QTabWidget::tabInserted(index);
-    if(count() == 1) {
+    if (count() == 1) {
       showTabBar(false);
     } else {
       showTabBar(true);
@@ -53,7 +53,7 @@ protected:
 
   void tabRemoved(int index) {
     QTabWidget::tabInserted(index);
-    if(count() == 1) {
+    if (count() == 1) {
       showTabBar(false);
     } else {
       showTabBar(true);

@@ -59,7 +59,7 @@ public:
 
   QString getIP() const {
     QHostAddress ip(lineIP->text());
-    if(!ip.isNull()) {
+    if (!ip.isNull()) {
       // QHostAddress::toString() cleans up the IP for libtorrent
       return ip.toString();
     }
@@ -73,11 +73,11 @@ public:
   static libtorrent::asio::ip::tcp::endpoint askForPeerEndpoint() {
     libtorrent::asio::ip::tcp::endpoint ep;
     PeerAdditionDlg dlg;
-    if(dlg.exec() == QDialog::Accepted) {
+    if (dlg.exec() == QDialog::Accepted) {
       QString ip = dlg.getIP();
       boost::system::error_code ec;
       libtorrent::address addr = libtorrent::address::from_string(qPrintable(ip), ec);
-      if(ec) {
+      if (ec) {
         qDebug("Unable to parse the provided IP: %s", qPrintable(ip));
         return ep;
       }
@@ -90,7 +90,7 @@ public:
 
 protected slots:
   void validateInput() {
-    if(getIP().isEmpty()) {
+    if (getIP().isEmpty()) {
       QMessageBox::warning(this, tr("Invalid IP"),
                            tr("The IP you provided is invalid."),
                            QMessageBox::Ok);

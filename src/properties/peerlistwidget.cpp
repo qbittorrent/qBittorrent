@@ -92,30 +92,30 @@ PeerListWidget::~PeerListWidget() {
   delete proxyModel;
   delete listModel;
   delete listDelegate;
-  if(resolver)
+  if (resolver)
     delete resolver;
 }
 
 void PeerListWidget::updatePeerHostNameResolutionState() {
-  if(Preferences().resolvePeerHostNames()) {
-    if(!resolver) {
+  if (Preferences().resolvePeerHostNames()) {
+    if (!resolver) {
       resolver = new ReverseResolution(this);
       connect(resolver, SIGNAL(ip_resolved(QString,QString)), this, SLOT(handleResolved(QString,QString)));
       loadPeers(properties->getCurrentTorrent(), true);
     }
   } else {
-    if(resolver) {
+    if (resolver) {
       delete resolver;
     }
   }
 }
 
 void PeerListWidget::updatePeerCountryResolutionState() {
-  if(Preferences().resolvePeerCountries() != display_flags) {
+  if (Preferences().resolvePeerCountries() != display_flags) {
     display_flags = !display_flags;
-    if(display_flags) {
+    if (display_flags) {
       const QTorrentHandle h = properties->getCurrentTorrent();
-      if(!h.is_valid()) return;
+      if (!h.is_valid()) return;
       loadPeers(h);
     }
   }
@@ -125,17 +125,17 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QMenu menu;
   bool empty_menu = true;
   QTorrentHandle h = properties->getCurrentTorrent();
-  if(!h.is_valid()) return;
+  if (!h.is_valid()) return;
   QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   QStringList selectedPeerIPs;
-  foreach(const QModelIndex &index, selectedIndexes) {
+  foreach (const QModelIndex &index, selectedIndexes) {
     int row = proxyModel->mapToSource(index).row();
     QString myip = listModel->data(listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     selectedPeerIPs << myip;
   }
   // Add Peer Action
   QAction *addPeerAct = 0;
-  if(!h.is_queued() && !h.is_checking()) {
+  if (!h.is_queued() && !h.is_checking()) {
     addPeerAct = menu.addAction(IconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
     empty_menu = false;
   }
@@ -144,7 +144,7 @@ void PeerListWidget::showPeerListMenu(QPoint) {
   QAction *dlLimitAct = 0;
   QAction *banAct = 0;
   QAction *copyIPAct = 0;
-  if(!selectedPeerIPs.isEmpty()) {
+  if (!selectedPeerIPs.isEmpty()) {
     copyIPAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy IP"));
     menu.addSeparator();
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
@@ -153,12 +153,12 @@ void PeerListWidget::showPeerListMenu(QPoint) {
     banAct = menu.addAction(IconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
     empty_menu = false;
   }
-  if(empty_menu) return;
+  if (empty_menu) return;
   QAction *act = menu.exec(QCursor::pos());
-  if(act == 0) return;
-  if(act == addPeerAct) {
+  if (act == 0) return;
+  if (act == addPeerAct) {
     libtorrent::asio::ip::tcp::endpoint ep = PeerAdditionDlg::askForPeerEndpoint();
-    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
+    if (ep != libtorrent::asio::ip::tcp::endpoint()) {
       try {
         h.connect_peer(ep);
         QMessageBox::information(0, tr("Peer addition"), tr("The peer was added to this torrent."));
@@ -170,19 +170,19 @@ void PeerListWidget::showPeerListMenu(QPoint) {
     }
     return;
   }
-  if(act == upLimitAct) {
+  if (act == upLimitAct) {
     limitUpRateSelectedPeers(selectedPeerIPs);
     return;
   }
-  if(act == dlLimitAct) {
+  if (act == dlLimitAct) {
     limitDlRateSelectedPeers(selectedPeerIPs);
     return;
   }
-  if(act == banAct) {
+  if (act == banAct) {
     banSelectedPeers(selectedPeerIPs);
     return;
   }
-  if(act == copyIPAct) {
+  if (act == copyIPAct) {
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     QApplication::clipboard()->setText(selectedPeerIPs.join("\r\n"));
 #else
@@ -196,8 +196,8 @@ void PeerListWidget::banSelectedPeers(QStringList peer_ips) {
   int ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to ban permanently the selected peers?"),
                                   tr("&Yes"), tr("&No"),
                                   QString(), 0, 1);
-  if(ret) return;
-  foreach(const QString &ip, peer_ips) {
+  if (ret) return;
+  foreach (const QString &ip, peer_ips) {
     qDebug("Banning peer %s...", ip.toLocal8Bit().data());
     QBtSession::instance()->addConsoleMessage(tr("Manually banning peer %1...").arg(ip));
     QBtSession::instance()->banIP(ip);
@@ -207,22 +207,22 @@ void PeerListWidget::banSelectedPeers(QStringList peer_ips) {
 }
 
 void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
-  if(peer_ips.empty()) return;
+  if (peer_ips.empty()) return;
   QTorrentHandle h = properties->getCurrentTorrent();
-  if(!h.is_valid()) return;
+  if (!h.is_valid()) return;
   bool ok=false;
   int cur_limit = -1;
 #if LIBTORRENT_VERSION_MINOR > 15
   libtorrent::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
                                                                      libtorrent::asio::ip::tcp::endpoint());
-  if(first_ep != libtorrent::asio::ip::tcp::endpoint())
+  if (first_ep != libtorrent::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_upload_limit(first_ep);
 #endif
   long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Upload rate limiting"), cur_limit, Preferences().getGlobalUploadLimit()*1024.);
-  if(!ok) return;
-  foreach(const QString &ip, peer_ips) {
+  if (!ok) return;
+  foreach (const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
-    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
+    if (ep != libtorrent::asio::ip::tcp::endpoint()) {
       qDebug("Settings Upload limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
       try {
         h.set_peer_upload_limit(ep, limit);
@@ -237,20 +237,20 @@ void PeerListWidget::limitUpRateSelectedPeers(QStringList peer_ips) {
 
 void PeerListWidget::limitDlRateSelectedPeers(QStringList peer_ips) {
   QTorrentHandle h = properties->getCurrentTorrent();
-  if(!h.is_valid()) return;
+  if (!h.is_valid()) return;
   bool ok=false;
   int cur_limit = -1;
 #if LIBTORRENT_VERSION_MINOR > 15
   libtorrent::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
                                                                      libtorrent::asio::ip::tcp::endpoint());
-  if(first_ep != libtorrent::asio::ip::tcp::endpoint())
+  if (first_ep != libtorrent::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_download_limit(first_ep);
 #endif
   long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), cur_limit, Preferences().getGlobalDownloadLimit()*1024.);
-  if(!ok) return;
-  foreach(const QString &ip, peer_ips) {
+  if (!ok) return;
+  foreach (const QString &ip, peer_ips) {
     libtorrent::asio::ip::tcp::endpoint ep = peerEndpoints.value(ip, libtorrent::asio::ip::tcp::endpoint());
-    if(ep != libtorrent::asio::ip::tcp::endpoint()) {
+    if (ep != libtorrent::asio::ip::tcp::endpoint()) {
       qDebug("Settings Download limit of %.1f Kb/s to peer %s", limit/1024., ip.toLocal8Bit().data());
       try {
         h.set_peer_download_limit(ep, limit);
@@ -270,7 +270,7 @@ void PeerListWidget::clear() {
   peerEndpoints.clear();
   missingFlags.clear();
   int nbrows = listModel->rowCount();
-  if(nbrows > 0) {
+  if (nbrows > 0) {
     qDebug("Cleared %d peers", nbrows);
     listModel->removeRows(0,  nbrows);
   }
@@ -287,24 +287,24 @@ void PeerListWidget::saveSettings() const {
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {
-  if(!h.is_valid()) return;
+  if (!h.is_valid()) return;
   boost::system::error_code ec;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
   std::vector<peer_info>::iterator itr;
   QSet<QString> old_peers_set = peerItems.keys().toSet();
-  for(itr = peers.begin(); itr != peers.end(); itr++) {
+  for (itr = peers.begin(); itr != peers.end(); itr++) {
     peer_info peer = *itr;
     QString peer_ip = misc::toQString(peer.ip.address().to_string(ec));
-    if(ec) continue;
-    if(peerItems.contains(peer_ip)) {
+    if (ec) continue;
+    if (peerItems.contains(peer_ip)) {
       // Update existing peer
       updatePeer(peer_ip, peer);
       old_peers_set.remove(peer_ip);
-      if(force_hostname_resolution) {
-        if(resolver) {
+      if (force_hostname_resolution) {
+        if (resolver) {
           const QString host = resolver->getHostFromCache(peer.ip);
-          if(host.isNull()) {
+          if (host.isNull()) {
             resolver->resolve(peer.ip);
           } else {
             qDebug("Got peer IP from cache");
@@ -334,20 +334,20 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
   // Adding Peer to peer list
   listModel->insertRow(row);
   QString host;
-  if(resolver) {
+  if (resolver) {
     host = resolver->getHostFromCache(peer.ip);
   }
-  if(host.isNull())
+  if (host.isNull())
     listModel->setData(listModel->index(row, PeerListDelegate::IP), ip);
   else
     listModel->setData(listModel->index(row, PeerListDelegate::IP), host);
   listModel->setData(listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
   // Resolve peer host name is asked
-  if(resolver && host.isNull())
+  if (resolver && host.isNull())
     resolver->resolve(peer.ip);
-  if(display_flags) {
+  if (display_flags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
-    if(!ico.isNull()) {
+    if (!ico.isNull()) {
       listModel->setData(listModel->index(row, PeerListDelegate::IP), ico, Qt::DecorationRole);
       const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country);
       listModel->setData(listModel->index(row, PeerListDelegate::IP), country_name, Qt::ToolTipRole);
@@ -368,9 +368,9 @@ QStandardItem* PeerListWidget::addPeer(QString ip, peer_info peer) {
 void PeerListWidget::updatePeer(QString ip, peer_info peer) {
   QStandardItem *item = peerItems.value(ip);
   int row = item->row();
-  if(display_flags) {
+  if (display_flags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
-    if(!ico.isNull()) {
+    if (!ico.isNull()) {
       listModel->setData(listModel->index(row, PeerListDelegate::IP), ico, Qt::DecorationRole);
       const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country);
       listModel->setData(listModel->index(row, PeerListDelegate::IP), country_name, Qt::ToolTipRole);
@@ -388,7 +388,7 @@ void PeerListWidget::updatePeer(QString ip, peer_info peer) {
 
 void PeerListWidget::handleResolved(const QString &ip, const QString &hostname) {
   QStandardItem *item = peerItems.value(ip, 0);
-  if(item) {
+  if (item) {
     qDebug("Resolved %s -> %s", qPrintable(ip), qPrintable(hostname));
     item->setData(hostname, Qt::DisplayRole);
     //listModel->setData(listModel->index(item->row(), IP), hostname, Qt::DisplayRole);
@@ -397,7 +397,7 @@ void PeerListWidget::handleResolved(const QString &ip, const QString &hostname) 
 
 void PeerListWidget::handleSortColumnChanged(int col)
 {
-  if(col == 0) {
+  if (col == 0) {
     qDebug("Sorting by decoration");
     proxyModel->setSortRole(Qt::ToolTipRole);
   } else {

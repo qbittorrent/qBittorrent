@@ -59,11 +59,11 @@ private:
 private:
   static bool isNetworkFileSystem(QString path) {
     QString file = path;
-    if(!file.endsWith(QDir::separator()))
+    if (!file.endsWith(QDir::separator()))
       file += QDir::separator();
     file += ".";
     struct statfs buf;
-    if(!statfs(file.toLocal8Bit().constData(), &buf)) {
+    if (!statfs(file.toLocal8Bit().constData(), &buf)) {
 #ifdef Q_WS_MAC
       // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
       return (strcmp(buf.f_fstypename, "nfs") == 0 || strcmp(buf.f_fstypename, "cifs") == 0 || strcmp(buf.f_fstypename, "smbfs") == 0);
@@ -124,17 +124,17 @@ public:
 
   ~FileSystemWatcher() {
 #ifndef Q_WS_WIN
-    if(watch_timer)
+    if (watch_timer)
       delete watch_timer;
 #endif
-    if(m_partialTorrentTimer)
+    if (m_partialTorrentTimer)
       delete m_partialTorrentTimer;
   }
 
   QStringList directories() const {
     QStringList dirs;
 #ifndef Q_WS_WIN
-    if(watch_timer) {
+    if (watch_timer) {
       foreach (const QDir &dir, watched_folders)
         dirs << dir.canonicalPath();
     }
@@ -149,7 +149,7 @@ public:
     if (!dir.exists())
       return;
     // Check if the path points to a network file system or not
-    if(isNetworkFileSystem(path)) {
+    if (isNetworkFileSystem(path)) {
       // Network mode
       qDebug("Network folder detected: %s", qPrintable(path));
       qDebug("Using file polling mode instead of inotify...");
@@ -194,7 +194,7 @@ protected slots:
     // Local folders scan
     addTorrentsFromDir(QDir(path), torrents);
     // Report detected torrent files
-    if(!torrents.empty()) {
+    if (!torrents.empty()) {
       qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
       emit torrentsAdded(torrents);
     }
@@ -210,7 +210,7 @@ protected slots:
       addTorrentsFromDir(dir, torrents);
     }
     // Report detected torrent files
-    if(!torrents.empty()) {
+    if (!torrents.empty()) {
       qDebug("The following files are being reported: %s", qPrintable(torrents.join("\n")));
       emit torrentsAdded(torrents);
     }
@@ -221,16 +221,16 @@ protected slots:
     QStringList no_longer_partial;
 
     // Check which torrents are still partial
-    foreach(const QString& torrent_path, m_partialTorrents.keys()) {
-      if(!QFile::exists(torrent_path)) {
+    foreach (const QString& torrent_path, m_partialTorrents.keys()) {
+      if (!QFile::exists(torrent_path)) {
         m_partialTorrents.remove(torrent_path);
         continue;
       }
-      if(misc::isValidTorrentFile(torrent_path)) {
+      if (misc::isValidTorrentFile(torrent_path)) {
         no_longer_partial << torrent_path;
          m_partialTorrents.remove(torrent_path);
       } else {
-        if(m_partialTorrents[torrent_path] >= MAX_PARTIAL_RETRIES) {
+        if (m_partialTorrents[torrent_path] >= MAX_PARTIAL_RETRIES) {
           m_partialTorrents.remove(torrent_path);
           QFile::rename(torrent_path, torrent_path+".invalid");
         } else {
@@ -240,7 +240,7 @@ protected slots:
     }
 
     // Stop the partial timer if necessary
-    if(m_partialTorrents.empty()) {
+    if (m_partialTorrents.empty()) {
       m_partialTorrentTimer->stop();
       m_partialTorrentTimer->deleteLater();
       qDebug("No longer any partial torrent.");
@@ -249,7 +249,7 @@ protected slots:
       m_partialTorrentTimer->start(WATCH_INTERVAL);
     }
     // Notify of new torrents
-    if(!no_longer_partial.isEmpty())
+    if (!no_longer_partial.isEmpty())
       emit torrentsAdded(no_longer_partial);
   }
 
@@ -259,7 +259,7 @@ signals:
 private:
   void startPartialTorrentTimer() {
     Q_ASSERT(!m_partialTorrents.isEmpty());
-    if(!m_partialTorrentTimer) {
+    if (!m_partialTorrentTimer) {
       m_partialTorrentTimer = new QTimer();
       connect(m_partialTorrentTimer, SIGNAL(timeout()), SLOT(processPartialTorrents()));
       m_partialTorrentTimer->setSingleShot(true);
@@ -269,19 +269,19 @@ private:
 
   void addTorrentsFromDir(const QDir &dir, QStringList &torrents) {
     const QStringList files = dir.entryList(m_filters, QDir::Files, QDir::Unsorted);
-    foreach(const QString &file, files) {
+    foreach (const QString &file, files) {
       const QString file_abspath = dir.absoluteFilePath(file);
-      if(misc::isValidTorrentFile(file_abspath)) {
+      if (misc::isValidTorrentFile(file_abspath)) {
         torrents << file_abspath;
       } else {
-        if(!m_partialTorrents.contains(file_abspath)) {
+        if (!m_partialTorrents.contains(file_abspath)) {
           qDebug("Partial torrent detected at: %s", qPrintable(file_abspath));
           qDebug("Delay the file's processing...");
           m_partialTorrents.insert(file_abspath, 0);
         }
       }
     }
-    if(!m_partialTorrents.empty())
+    if (!m_partialTorrents.empty())
       startPartialTorrentTimer();
   }
 

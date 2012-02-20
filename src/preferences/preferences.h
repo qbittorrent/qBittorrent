@@ -280,7 +280,7 @@ public:
 
   void setExportDir(QString path) {
     path = path.trimmed();
-    if(path.isEmpty())
+    if (path.isEmpty())
       path = QString();
     setValue(QString::fromUtf8("Preferences/Downloads/TorrentExport"), path);
   }
@@ -379,7 +379,7 @@ public:
   }
 
   void setGlobalDownloadLimit(int limit) {
-    if(limit <= 0) limit = -1;
+    if (limit <= 0) limit = -1;
     setValue("Preferences/Connection/GlobalDLLimit", limit);
   }
 
@@ -388,31 +388,31 @@ public:
   }
 
   void setGlobalUploadLimit(int limit) {
-    if(limit <= 0) limit = -1;
+    if (limit <= 0) limit = -1;
     setValue("Preferences/Connection/GlobalUPLimit", limit);
   }
 
   int getAltGlobalDownloadLimit() const {
     int ret = value(QString::fromUtf8("Preferences/Connection/GlobalDLLimitAlt"), 10).toInt();
-    if(ret <= 0)
+    if (ret <= 0)
       ret = 10;
     return ret;
   }
 
   void setAltGlobalDownloadLimit(int limit) {
-    if(limit <= 0) limit = -1;
+    if (limit <= 0) limit = -1;
     setValue("Preferences/Connection/GlobalDLLimitAlt", limit);
   }
 
   int getAltGlobalUploadLimit() const {
     int ret = value(QString::fromUtf8("Preferences/Connection/GlobalUPLimitAlt"), 10).toInt();
-    if(ret <= 0)
+    if (ret <= 0)
       ret = 10;
     return ret;
   }
 
   void setAltGlobalUploadLimit(int limit) {
-    if(limit <= 0) limit = -1;
+    if (limit <= 0) limit = -1;
     setValue("Preferences/Connection/GlobalUPLimitAlt", limit);
   }
 
@@ -523,7 +523,7 @@ public:
   }
 
   void setMaxConnecs(int val) {
-    if(val <= 0) val = -1;
+    if (val <= 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecs"), val);
   }
 
@@ -532,7 +532,7 @@ public:
   }
 
   void setMaxConnecsPerTorrent(int val) {
-    if(val <= 0) val = -1;
+    if (val <= 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecsPerTorrent"), val);
   }
 
@@ -541,7 +541,7 @@ public:
   }
 
   void setMaxUploadsPerTorrent(int val) {
-    if(val <= 0) val = -1;
+    if (val <= 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), val);
   }
 
@@ -644,7 +644,7 @@ public:
 
   void banIP(const QString &ip) {
     QStringList banned_ips = value(QString::fromUtf8("Preferences/IPFilter/BannedIPs"), QStringList()).toStringList();
-    if(!banned_ips.contains(ip)) {
+    if (!banned_ips.contains(ip)) {
       banned_ips << ip;
       setValue("Preferences/IPFilter/BannedIPs", banned_ips);
     }
@@ -687,7 +687,7 @@ public:
   }
 
   void setMaxActiveDownloads(int val) {
-    if(val < 0) val = -1;
+    if (val < 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Queueing/MaxActiveDownloads"), val);
   }
 
@@ -696,7 +696,7 @@ public:
   }
 
   void setMaxActiveUploads(int val) {
-    if(val < 0) val = -1;
+    if (val < 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Queueing/MaxActiveUploads"), val);
   }
 
@@ -705,7 +705,7 @@ public:
   }
 
   void setMaxActiveTorrents(int val) {
-    if(val < 0) val = -1;
+    if (val < 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Queueing/MaxActiveTorrents"), val);
   }
 
@@ -761,7 +761,7 @@ public:
     // Get current password md5
     QString current_pass_md5 = getWebUiPassword();
     // Check if password did not change
-    if(current_pass_md5 == new_password) return;
+    if (current_pass_md5 == new_password) return;
     // Encode to md5 and save
     QCryptographicHash md5(QCryptographicHash::Md5);
     md5.addData(getWebUiUsername().toLocal8Bit()+":"+QBT_REALM+":");
@@ -772,7 +772,7 @@ public:
 
   QString getWebUiPassword() const {
     QString pass_ha1 = value("Preferences/WebUI/Password_ha1", "").toString();
-    if(pass_ha1.isEmpty()) {
+    if (pass_ha1.isEmpty()) {
       QCryptographicHash md5(QCryptographicHash::Md5);
       md5.addData(getWebUiUsername().toLocal8Bit()+":"+QBT_REALM+":");
       md5.addData("adminadmin");
@@ -988,12 +988,12 @@ public:
 
   int getMaxHalfOpenConnections() const {
     const int val = value(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), 50).toInt();
-    if(val <= 0) return -1;
+    if (val <= 0) return -1;
     return val;
   }
 
   void setMaxHalfOpenConnections(int value) {
-    if(value <= 0) value = -1;
+    if (value <= 0) value = -1;
     setValue(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), value);
   }
 
@@ -1055,14 +1055,14 @@ public:
 
   void addTorrentLabel(const QString& label) {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if(!labels.contains(label))
+    if (!labels.contains(label))
       labels << label;
     setValue("TransferListFilters/customLabels", labels);
   }
 
   void removeTorrentLabel(const QString& label) {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
-    if(labels.contains(label))
+    if (labels.contains(label))
       labels.removeOne(label);
     setValue("TransferListFilters/customLabels", labels);
   }
@@ -1086,7 +1086,7 @@ public:
       const QString version = versions.takeLast();
       qDebug("Detected possible Python v%s location", qPrintable(version));
       QString path = reg_python.value(version+"/InstallPath/Default", "").toString().replace("/", "\\");
-      if(!path.isEmpty() && QDir(path).exists("python.exe")) {
+      if (!path.isEmpty() && QDir(path).exists("python.exe")) {
         qDebug("Found python.exe at %s", qPrintable(path));
         return path;
       }
@@ -1094,8 +1094,8 @@ public:
     // Fallback: Detect python from default locations
     QStringList supported_versions;
     supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
-    foreach(const QString &v, supported_versions) {
-      if(QFile::exists("C:/Python"+v+"/python.exe")) {
+    foreach (const QString &v, supported_versions) {
+      if (QFile::exists("C:/Python"+v+"/python.exe")) {
         reg_python.setValue(v[0]+"."+v[1]+"/InstallPath/Default", QString("C:\\Python"+v));
         return "C:\\Python"+v;
       }
@@ -1113,7 +1113,7 @@ public:
 
   static bool isTorrentFileAssocSet() {
     QSettings settings("HKEY_CLASSES_ROOT", QIniSettings::NativeFormat);
-    if(settings.value(".torrent/Default").toString() != "qBittorrent") {
+    if (settings.value(".torrent/Default").toString() != "qBittorrent") {
       qDebug(".torrent != qBittorrent");
       return false;
     }
@@ -1121,15 +1121,15 @@ public:
     QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
     qDebug("Shell command is: %s", qPrintable(shell_command));
     QRegExp exe_reg("\"([^\"]+)\".*");
-    if(exe_reg.indexIn(shell_command) < 0)
+    if (exe_reg.indexIn(shell_command) < 0)
       return false;
     QString assoc_exe = exe_reg.cap(1);
     qDebug("exe: %s", qPrintable(assoc_exe));
-    if(assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+    if (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
       return false;
     // Icon
     const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",1";
-    if(settings.value("qBittorrent/DefaultIcon/Default", icon_str).toString().compare(icon_str, Qt::CaseInsensitive) != 0)
+    if (settings.value("qBittorrent/DefaultIcon/Default", icon_str).toString().compare(icon_str, Qt::CaseInsensitive) != 0)
       return false;
 
     return true;
@@ -1141,11 +1141,11 @@ public:
     // Check magnet link assoc
     QRegExp exe_reg("\"([^\"]+)\".*");
     QString shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
-    if(exe_reg.indexIn(shell_command) < 0)
+    if (exe_reg.indexIn(shell_command) < 0)
       return false;
     QString assoc_exe = exe_reg.cap(1);
     qDebug("exe: %s", qPrintable(assoc_exe));
-    if(assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+    if (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
       return false;
     return true;
   }

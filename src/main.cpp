@@ -87,14 +87,14 @@ class LegalNotice: public QObject {
 public:
   static bool userAgreesWithNotice() {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    if(settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
+    if (settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI
     std::cout << std::endl << "*** " << qPrintable(tr("Legal Notice")) << " ***" << std::endl;
     std::cout << qPrintable(tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
     std::cout << qPrintable(tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
     char ret = getchar(); // Read pressed key
-    if(ret == 'y' || ret == 'Y') {
+    if (ret == 'y' || ret == 'Y') {
       // Save the answer
       settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
       return true;
@@ -109,7 +109,7 @@ public:
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(misc::screenCenter(&msgBox));
     msgBox.exec();
-    if(msgBox.clickedButton() == agree_button) {
+    if (msgBox.clickedButton() == agree_button) {
       // Save the answer
       settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
       return true;
@@ -164,18 +164,18 @@ int main(int argc, char *argv[]){
 #endif
 
   // Check if qBittorrent is already running for this user
-  if(app.isRunning()) {
+  if (app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
     //Pass program parameters if any
     QString message;
     for (int a = 1; a < argc; ++a) {
       QString p = QString::fromLocal8Bit(argv[a]);
-      if(p.startsWith("--")) continue;
+      if (p.startsWith("--")) continue;
       message += p;
       if (a < argc-1)
         message += "|";
     }
-    if(!message.isEmpty()) {
+    if (!message.isEmpty()) {
       qDebug("Passing program parameters to running instance...");
       qDebug("Message: %s", qPrintable(message));
       app.sendMessage(message);
@@ -192,11 +192,11 @@ int main(int argc, char *argv[]){
   QString locale = pref.getLocale();
   QTranslator qtTranslator;
   QTranslator translator;
-  if(locale.isEmpty()){
+  if (locale.isEmpty()){
     locale = QLocale::system().name();
     pref.setLocale(locale);
   }
-  if(qtTranslator.load(
+  if (qtTranslator.load(
           QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)
                                                                     )){
     qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
@@ -204,14 +204,14 @@ int main(int argc, char *argv[]){
     qDebug("Qt %s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
   app.installTranslator(&qtTranslator);
-  if(translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+  if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
     qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
     qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
   }
   app.installTranslator(&translator);
 #ifndef DISABLE_GUI
-  if(locale.startsWith("ar")) {
+  if (locale.startsWith("ar")) {
     qDebug("Right to Left mode");
     app.setLayoutDirection(Qt::RightToLeft);
   } else {
@@ -221,28 +221,28 @@ int main(int argc, char *argv[]){
   app.setApplicationName(QString::fromUtf8("qBittorrent"));
 
   // Check for executable parameters
-  if(argc > 1){
-    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
+  if (argc > 1){
+    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--version")){
       std::cout << "qBittorrent " << VERSION << '\n';
       return 0;
     }
-    if(QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
+    if (QString::fromLocal8Bit(argv[1]) == QString::fromUtf8("--help")){
       UsageDisplay::displayUsage(argv[0]);
       return 0;
     }
 
-    for(int i=1; i<argc; ++i) {
+    for (int i=1; i<argc; ++i) {
 #ifndef DISABLE_GUI
-      if(QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
+      if (QString::fromLocal8Bit(argv[i]) == QString::fromUtf8("--no-splash")) {
         no_splash = true;
       } else {
 #endif
-        if(QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
+        if (QString::fromLocal8Bit(argv[i]).startsWith("--webui-port=")) {
           QStringList parts = QString::fromLocal8Bit(argv[i]).split("=");
-          if(parts.size() == 2) {
+          if (parts.size() == 2) {
             bool ok = false;
             int new_port = parts.last().toInt(&ok);
-            if(ok && new_port > 0 && new_port <= 65535) {
+            if (ok && new_port > 0 && new_port <= 65535) {
               Preferences().setWebUiPort(new_port);
             }
           }
@@ -254,11 +254,11 @@ int main(int argc, char *argv[]){
   }
 
 #ifndef DISABLE_GUI
-  if(pref.isSlashScreenDisabled()) {
+  if (pref.isSlashScreenDisabled()) {
     no_splash = true;
   }
   QSplashScreen *splash = 0;
-  if(!no_splash) {
+  if (!no_splash) {
     QPixmap splash_img(":/Icons/skin/splash.png");
     QPainter painter(&splash_img);
     QString version = VERSION;
@@ -280,7 +280,7 @@ int main(int argc, char *argv[]){
   app.setStyleSheet("QStatusBar::item { border-width: 0; }");
 #endif
 
-  if(!LegalNotice::userAgreesWithNotice()) {
+  if (!LegalNotice::userAgreesWithNotice()) {
     return 0;
   }
 #ifndef DISABLE_GUI
@@ -297,7 +297,7 @@ int main(int argc, char *argv[]){
   // Remove first argument (program name)
   torrentCmdLine.removeFirst();
 #ifndef QT_NO_DEBUG_OUTPUT
-  foreach(const QString &argument, torrentCmdLine) {
+  foreach (const QString &argument, torrentCmdLine) {
     qDebug() << "Command line argument:" << argument;
   }
 #endif

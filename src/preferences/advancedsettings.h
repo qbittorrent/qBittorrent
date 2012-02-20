@@ -84,7 +84,7 @@ public slots:
     // Super seeding
     pref.enableSuperSeeding(cb_super_seeding.isChecked());
     // Network interface
-    if(combo_iface.currentIndex() == 0) {
+    if (combo_iface.currentIndex() == 0) {
       // All interfaces (default)
       pref.setNetworkInterface(QString::null);
     } else {
@@ -92,7 +92,7 @@ public slots:
     }
     // Network address
     QHostAddress addr(txt_network_address.text().trimmed());
-    if(addr.isNull())
+    if (addr.isNull())
       pref.setNetworkAddress("");
     else
       pref.setNetworkAddress(addr.toString());
@@ -199,10 +199,10 @@ private slots:
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString current_iface = pref.getNetworkInterface();
     int i = 1;
-    foreach(const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
-      if(iface.flags() & QNetworkInterface::IsLoopBack) continue;
+    foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
+      if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
       combo_iface.addItem(iface.name());
-      if(!current_iface.isEmpty() && iface.name() == current_iface)
+      if (!current_iface.isEmpty() && iface.name() == current_iface)
         combo_iface.setCurrentIndex(i);
       ++i;
     }

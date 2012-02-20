@@ -42,23 +42,23 @@ void HttpResponseGenerator::setMessage(const QString& message) {
 }
 
 void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
-  if(ext == "css") {
+  if (ext == "css") {
 		setContentType("text/css");
 		return;
 	}
-  if(ext == "gif") {
+  if (ext == "gif") {
 		setContentType("image/gif");
 		return;
 	}
-	if(ext == "htm" || ext == "html")	{
+	if (ext == "htm" || ext == "html")	{
 		setContentType("text/html");
 		return;
 	}
-	if(ext == "js")	{
+	if (ext == "js")	{
 		setContentType("text/javascript");
 		return;
 	}
-  if(ext == "png") {
+  if (ext == "png") {
 		setContentType("image/x-png");
 		return;
 	}

@@ -65,17 +65,17 @@ public:
 
   static qreal getPluginVersion(QString filePath) {
     QFile plugin(filePath);
-    if(!plugin.exists()){
+    if (!plugin.exists()){
       qDebug("%s plugin does not exist, returning 0.0", qPrintable(filePath));
       return 0.0;
     }
-    if(!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if (!plugin.open(QIODevice::ReadOnly | QIODevice::Text)){
       return 0.0;
     }
     qreal version = 0.0;
     while (!plugin.atEnd()){
       QByteArray line = plugin.readLine();
-      if(line.startsWith("#VERSION: ")){
+      if (line.startsWith("#VERSION: ")){
         line = line.split(' ').last().trimmed();
         version = line.toFloat();
         qDebug("plugin %s version: %.2f", qPrintable(filePath), version);

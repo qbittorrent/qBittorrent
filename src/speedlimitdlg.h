@@ -60,10 +60,10 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
       dlg.setWindowTitle(title);
       dlg.setMaxValue(max_value/1024.);
       dlg.setDefaultValue(default_value/1024.);
-      if(dlg.exec() == QDialog::Accepted) {
+      if (dlg.exec() == QDialog::Accepted) {
         *ok = true;
         int val = dlg.getSpeedLimit();
-        if(val <= 0)
+        if (val <= 0)
           return -1;
         return val*1024;
       } else {
@@ -75,7 +75,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
   protected slots:
     void updateSpinValue(int val) const {
       qDebug("Called updateSpinValue with %d", val);
-      if(val <= 0){
+      if (val <= 0){
         spinBandwidth->setValue(0);
         spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
         spinBandwidth->setSuffix(QString::fromUtf8(""));
@@ -86,7 +86,7 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
     }
 
     void updateSliderValue(int val) const {
-      if(val <= 0) {
+      if (val <= 0) {
         spinBandwidth->setValue(0);
         spinBandwidth->setSpecialValueText(QString::fromUtf8("∞"));
         spinBandwidth->setSuffix(QString::fromUtf8(""));
@@ -96,21 +96,21 @@ class SpeedLimitDialog : public QDialog, private Ui_bandwidth_dlg {
 
     long getSpeedLimit() const {
       long val = bandwidthSlider->value();
-      if(val > 0)
+      if (val > 0)
         return val;
       return -1;
     }
 
     void setMaxValue(long val) const {
-      if(val > 0) {
+      if (val > 0) {
         bandwidthSlider->setMaximum(val);
         spinBandwidth->setMaximum(val);
       }
     }
 
     void setDefaultValue(long val) const {
-      if(val < 0) val = 0;
-      if(val > bandwidthSlider->maximum()) val = bandwidthSlider->maximum();
+      if (val < 0) val = 0;
+      if (val > bandwidthSlider->maximum()) val = bandwidthSlider->maximum();
       bandwidthSlider->setValue(val);
       updateSpinValue(val);
     }

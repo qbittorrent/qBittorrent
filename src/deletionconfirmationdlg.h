@@ -59,7 +59,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
 
   static bool askForDeletionConfirmation(bool *delete_local_files) {
     DeletionConfirmationDlg dlg;
-    if(dlg.exec() == QDialog::Accepted) {
+    if (dlg.exec() == QDialog::Accepted) {
       *delete_local_files = dlg.shouldDeleteLocalFiles();
       return true;
     }

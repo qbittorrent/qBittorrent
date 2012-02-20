@@ -122,14 +122,14 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
   this->from = from;
   rcpt = to;
   // Authentication
-  if(pref.getMailNotificationSMTPAuth()) {
+  if (pref.getMailNotificationSMTPAuth()) {
     username = pref.getMailNotificationSMTPUsername();
     password = pref.getMailNotificationSMTPPassword();
   }
 
   // Connect to SMTP server
 #ifndef QT_NO_OPENSSL
-  if(pref.getMailNotificationSMTPSSL()) {
+  if (pref.getMailNotificationSMTPSSL()) {
     socket->connectToHostEncrypted(pref.getMailNotificationSMTP(), DEFAULT_PORT_SSL);
     use_ssl = true;
   } else {
@@ -158,7 +158,7 @@ void Smtp::readyRead()
 
     switch(state) {
     case Init: {
-      if(code[0] == '2') {
+      if (code[0] == '2') {
         // Connection was successful
         ehlo();
       } else {
@@ -257,7 +257,7 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
   if (!prefix.isEmpty()) line += prefix;
   if (!value.contains("=?") && latin1->canEncode(value)) {
     bool firstWord = true;
-    foreach(const QByteArray& word, value.toAscii().split(' ')) {
+    foreach (const QByteArray& word, value.toAscii().split(' ')) {
       if (line.size() > 78) {
         rv = rv + line + "\r\n";
         line.clear();
@@ -292,7 +292,7 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
 void Smtp::ehlo()
 {
   QByteArray address = "127.0.0.1";
-  foreach(const QHostAddress& addr, QNetworkInterface::allAddresses())
+  foreach (const QHostAddress& addr, QNetworkInterface::allAddresses())
   {
     if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
       continue;
@@ -309,7 +309,7 @@ void Smtp::parseEhloResponse(const QByteArray& code, bool continued, const QStri
 {
   if (code != "250") {
     // Error
-    if(state == EhloSent) {
+    if (state == EhloSent) {
       // try to send HELO instead of EHLO
       qDebug() << "EHLO failed, trying HELO instead...";
       socket->write("helo\r\n");

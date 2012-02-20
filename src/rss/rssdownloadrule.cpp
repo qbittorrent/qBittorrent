@@ -43,26 +43,26 @@ RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 
 bool RssDownloadRule::matches(const QString &article_title) const
 {
-  foreach(const QString& token, m_mustContain) {
-    if(token.isEmpty() || token == "")
+  foreach (const QString& token, m_mustContain) {
+    if (token.isEmpty() || token == "")
       continue;
     QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
     //reg.setMinimal(false);
-    if(reg.indexIn(article_title) < 0) return false;
+    if (reg.indexIn(article_title) < 0) return false;
   }
   qDebug("Checking not matching tokens");
   // Checking not matching
-  foreach(const QString& token, m_mustNotContain) {
-    if(token.isEmpty()) continue;
+  foreach (const QString& token, m_mustNotContain) {
+    if (token.isEmpty()) continue;
     QRegExp reg(token, Qt::CaseInsensitive, m_useRegex ? QRegExp::RegExp : QRegExp::Wildcard);
-    if(reg.indexIn(article_title) > -1) return false;
+    if (reg.indexIn(article_title) > -1) return false;
   }
   return true;
 }
 
 void RssDownloadRule::setMustContain(const QString &tokens)
 {
-  if(m_useRegex)
+  if (m_useRegex)
     m_mustContain = QStringList() << tokens;
   else
     m_mustContain = tokens.split(" ");
@@ -70,7 +70,7 @@ void RssDownloadRule::setMustContain(const QString &tokens)
 
 void RssDownloadRule::setMustNotContain(const QString &tokens)
 {
-  if(m_useRegex)
+  if (m_useRegex)
     m_mustNotContain = QStringList() << tokens;
   else
     m_mustNotContain = tokens.split(QRegExp("[\\s|]"));
@@ -83,7 +83,7 @@ RssDownloadRulePtr RssDownloadRule::fromOldFormat(const QVariantHash &rule_hash,
   rule->setName(rule_name);
   rule->setMustContain(rule_hash.value("matches", "").toString());
   rule->setMustNotContain(rule_hash.value("not", "").toString());
-  if(!feed_url.isEmpty())
+  if (!feed_url.isEmpty())
     rule->setRssFeeds(QStringList() << feed_url);
   rule->setSavePath(rule_hash.value("save_path", "").toString());
   // Is enabled?
@@ -128,7 +128,7 @@ bool RssDownloadRule::operator==(const RssDownloadRule &other) {
 
 void RssDownloadRule::setSavePath(const QString &save_path)
 {
-  if(!save_path.isEmpty() && QDir(save_path) != QDir(Preferences().getSavePath()))
+  if (!save_path.isEmpty() && QDir(save_path) != QDir(Preferences().getSavePath()))
     m_savePath = save_path;
   else
     m_savePath = QString();
@@ -138,7 +138,7 @@ QStringList RssDownloadRule::findMatchingArticles(const RssFeedPtr& feed) const
 {
   QStringList ret;
   const RssArticleHash& feed_articles = feed->articleHash();
-  for(RssArticleHash::ConstIterator artIt = feed_articles.begin(); artIt != feed_articles.end(); artIt++) {
+  for (RssArticleHash::ConstIterator artIt = feed_articles.begin(); artIt != feed_articles.end(); artIt++) {
     const QString title = artIt.value()->title();
     if (matches(title))
       ret << title;

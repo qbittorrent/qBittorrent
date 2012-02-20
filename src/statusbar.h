@@ -167,11 +167,11 @@ public slots:
   void refreshStatusBar() {
     // Update connection status
     const libtorrent::session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-    if(!QBtSession::instance()->getSession()->is_listening()) {
+    if (!QBtSession::instance()->getSession()->is_listening()) {
       connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/disconnected.png")));
       connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     } else {
-      if(sessionStatus.has_incoming_connections) {
+      if (sessionStatus.has_incoming_connections) {
         // Connection OK
         connecStatusLblIcon->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/connected.png")));
         connecStatusLblIcon->setToolTip(QString::fromUtf8("<b>")+tr("Connection Status:")+QString::fromUtf8("</b><br>")+tr("Online"));
@@ -181,7 +181,7 @@ public slots:
       }
     }
     // Update Number of DHT nodes
-    if(QBtSession::instance()->isDHTEnabled()) {
+    if (QBtSession::instance()->isDHTEnabled()) {
       DHTLbl->setVisible(true);
       //statusSep1->setVisible(true);
       DHTLbl->setText(tr("DHT: %1 nodes").arg(QString::number(sessionStatus.dht_nodes)));
@@ -195,7 +195,7 @@ public slots:
   }
 
   void updateAltSpeedsBtn(bool alternative) {
-    if(alternative) {
+    if (alternative) {
       altSpeedsBtn->setIcon(QIcon(":/Icons/slow.png"));
       altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
       altSpeedsBtn->setDown(true);
@@ -218,18 +218,18 @@ public slots:
     int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();
 #endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
-    if(ok) {
+    if (ok) {
       Preferences pref;
       bool alt = pref.isAltBandwidthEnabled();
-      if(new_limit <= 0) {
+      if (new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
         QBtSession::instance()->setDownloadRateLimit(-1);
-        if(!alt)
+        if (!alt)
           pref.setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
         QBtSession::instance()->setDownloadRateLimit(new_limit);
-        if(!alt)
+        if (!alt)
           pref.setGlobalDownloadLimit(new_limit/1024.);
       }
     }
@@ -243,18 +243,18 @@ public slots:
     int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();
 #endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
-    if(ok) {
+    if (ok) {
       Preferences pref;
       bool alt = pref.isAltBandwidthEnabled();
-      if(new_limit <= 0) {
+      if (new_limit <= 0) {
         qDebug("Setting global upload rate limit to Unlimited");
         QBtSession::instance()->setUploadRateLimit(-1);
-        if(!alt)
+        if (!alt)
           Preferences().setGlobalUploadLimit(-1);
       } else {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
         QBtSession::instance()->setUploadRateLimit(new_limit);
-        if(!alt)
+        if (!alt)
           Preferences().setGlobalUploadLimit(new_limit/1024.);
       }
     }

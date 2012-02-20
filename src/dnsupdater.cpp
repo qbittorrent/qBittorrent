@@ -50,7 +50,7 @@ DNSUpdater::DNSUpdater(QObject *parent) :
   m_ipCheckTimer.start();
 
   // Check lastUpdate to avoid flooding
-  if(!m_lastIPCheckTime.isValid() ||
+  if (!m_lastIPCheckTime.isValid() ||
       m_lastIPCheckTime.secsTo(QDateTime::currentDateTime())*1000 > IP_CHECK_INTERVAL_MS) {
     checkPublicIP();
   }
@@ -79,19 +79,19 @@ void DNSUpdater::checkPublicIP()
 void DNSUpdater::ipRequestFinished(QNetworkReply *reply)
 {
   qDebug() << Q_FUNC_INFO;
-  if(reply->error()) {
+  if (reply->error()) {
     // Error
     qWarning() << Q_FUNC_INFO << "Error:" << reply->errorString();
   } else {
     // Parse response
     QRegExp ipregex("Current IP Address:\\s+([^<]+)</body>");
     QString ret = reply->readAll();
-    if(ipregex.indexIn(ret) >= 0) {
+    if (ipregex.indexIn(ret) >= 0) {
       QString ip_str = ipregex.cap(1);
       qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ip_str;
       QHostAddress new_ip(ip_str);
-      if(!new_ip.isNull()) {
-        if(m_lastIP != new_ip) {
+      if (!new_ip.isNull()) {
+        if (m_lastIP != new_ip) {
           qDebug() << Q_FUNC_INFO << "The IP address changed, report the change to DynDNS...";
           qDebug() << m_lastIP.toString() << "->" << new_ip.toString();
           m_lastIP = new_ip;
@@ -157,7 +157,7 @@ QUrl DNSUpdater::getUpdateUrl() const
 
 void DNSUpdater::ipUpdateFinished(QNetworkReply *reply)
 {
-  if(reply->error()) {
+  if (reply->error()) {
     // Error
     qWarning() << Q_FUNC_INFO << "Error:" << reply->errorString();
   } else {
@@ -174,11 +174,11 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
   qDebug() << Q_FUNC_INFO << reply;
   QString code = reply.split(" ").first();
   qDebug() << Q_FUNC_INFO << "Code:" << code;
-  if(code == "good" || code == "nochg") {
+  if (code == "good" || code == "nochg") {
     QBtSession::instance()->addConsoleMessage(tr("Your dynamic DNS was successfuly updated."), "green");
     return;
   }
-  if(code == "911" || code == "dnserr") {
+  if (code == "911" || code == "dnserr") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes."),
                                               "red");
     m_lastIP.clear();
@@ -188,30 +188,30 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
   // Everything bellow is an error, stop updating until the user updates something
   m_ipCheckTimer.stop();
   m_lastIP.clear();
-  if(code == "nohost") {
+  if (code == "nohost") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: hostname supplied does not exist under specified account."),
                                               "red");
     m_state = INVALID_CREDS;
     return;
   }
-  if(code == "badauth") {
+  if (code == "badauth") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: Invalid username/password."), "red");
     m_state = INVALID_CREDS;
     return;
   }
-  if(code == "badagent") {
+  if (code == "badagent") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org."),
                                               "red");
     m_state = FATAL;
     return;
   }
-  if(code == "!donator") {
+  if (code == "!donator") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.").arg("!donator"),
                                               "red");
     m_state = FATAL;
     return;
   }
-  if(code == "abuse") {
+  if (code == "abuse") {
     QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: Your username was blocked due to abuse."),
                                               "red");
     m_state = FATAL;
@@ -221,18 +221,18 @@ void DNSUpdater::processIPUpdateReply(const QString &reply)
 
 void DNSUpdater::updateCredentials()
 {
-  if(m_state == FATAL) return;
+  if (m_state == FATAL) return;
   Preferences pref;
   bool change = false;
   // Get DNS service information
-  if(m_service != pref.getDynDNSService()) {
+  if (m_service != pref.getDynDNSService()) {
     m_service = pref.getDynDNSService();
     change = true;
   }
-  if(m_domain != pref.getDynDomainName()) {
+  if (m_domain != pref.getDynDomainName()) {
     m_domain = pref.getDynDomainName();
     QRegExp domain_regex("^(?:(?!\\d|-)[a-zA-Z0-9\\-]{1,63}\\.)+[a-zA-Z]{2,}$");
-    if(domain_regex.indexIn(m_domain) < 0) {
+    if (domain_regex.indexIn(m_domain) < 0) {
       QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied domain name is invalid."),
                                                 "red");
       m_lastIP.clear();
@@ -242,9 +242,9 @@ void DNSUpdater::updateCredentials()
     }
     change = true;
   }
-  if(m_username != pref.getDynDNSUsername()) {
+  if (m_username != pref.getDynDNSUsername()) {
     m_username = pref.getDynDNSUsername();
-    if(m_username.length() < 4) {
+    if (m_username.length() < 4) {
       QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied username is too short."),
                                                 "red");
       m_lastIP.clear();
@@ -254,9 +254,9 @@ void DNSUpdater::updateCredentials()
     }
     change = true;
   }
-  if(m_password != pref.getDynDNSPassword()) {
+  if (m_password != pref.getDynDNSPassword()) {
     m_password = pref.getDynDNSPassword();
-    if(m_password.length() < 4) {
+    if (m_password.length() < 4) {
       QBtSession::instance()->addConsoleMessage(tr("Dynamic DNS error: supplied password is too short."),
                                                 "red");
       m_lastIP.clear();
@@ -267,7 +267,7 @@ void DNSUpdater::updateCredentials()
     change = true;
   }
 
-  if(m_state == INVALID_CREDS && change) {
+  if (m_state == INVALID_CREDS && change) {
     m_state = OK; // Try again
     m_ipCheckTimer.start();
     checkPublicIP();

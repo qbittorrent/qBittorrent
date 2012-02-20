@@ -51,7 +51,7 @@ namespace json {
     case QVariant::StringList:
     case QVariant::List: {
         QStringList strList;
-        foreach(const QVariant &var, v.toList()) {
+        foreach (const QVariant &var, v.toList()) {
           strList << toJson(var);
         }
         return "["+strList.join(",")+"]";
@@ -59,7 +59,7 @@ namespace json {
     case QVariant::String: {
         QString s = v.value<QString>();
         QString result = "\"";
-        for(int i=0; i<s.size(); ++i) {
+        for (int i=0; i<s.size(); ++i) {
           const QChar ch = s[i];
           switch(ch.toAscii())
           {
@@ -109,39 +109,39 @@ namespace json {
   QVariantMap fromJson(const QString& json) {
     qDebug("JSON is %s", qPrintable(json));
     QVariantMap m;
-    if(json.startsWith("{") && json.endsWith("}")) {
+    if (json.startsWith("{") && json.endsWith("}")) {
       QStringList couples;
       QString tmp = "";
       bool in_list = false;
-      foreach(const QChar &c, json.mid(1, json.length()-2)) {
-        if(c == ',' && !in_list) {
+      foreach (const QChar &c, json.mid(1, json.length()-2)) {
+        if (c == ',' && !in_list) {
           couples << tmp;
           tmp = "";
         } else {
-          if(c == '[')
+          if (c == '[')
             in_list = true;
-          else if(c == ']')
+          else if (c == ']')
             in_list = false;
           tmp += c;
         }
       }
-      if(!tmp.isEmpty()) couples << tmp;
+      if (!tmp.isEmpty()) couples << tmp;
 
-      foreach(const QString &couple, couples) {
+      foreach (const QString &couple, couples) {
         QStringList parts = couple.split(":");
-        if(parts.size() != 2) continue;
+        if (parts.size() != 2) continue;
         QString key = parts.first();
-        if(key.startsWith("\"") && key.endsWith("\"")) {
+        if (key.startsWith("\"") && key.endsWith("\"")) {
           key = key.mid(1, key.length()-2);
         }
         QString value_str = parts.last();
         QVariant value;
-        if(value_str.startsWith("[") && value_str.endsWith("]")) {
+        if (value_str.startsWith("[") && value_str.endsWith("]")) {
           value_str = value_str.mid(1, value_str.length()-2);
           QStringList list_elems = value_str.split(",", QString::SkipEmptyParts);
           QVariantList varlist;
-          foreach(const QString &list_val, list_elems) {
-            if(list_val.startsWith("\"") && list_val.endsWith("\"")) {
+          foreach (const QString &list_val, list_elems) {
+            if (list_val.startsWith("\"") && list_val.endsWith("\"")) {
               varlist << list_val.mid(1, list_val.length()-2).replace("\\n", "\n");
             } else {
               varlist << list_val.toInt();
@@ -149,7 +149,7 @@ namespace json {
           }
           value = varlist;
         } else {
-          if(value_str.startsWith("\"") && value_str.endsWith("\"")) {
+          if (value_str.startsWith("\"") && value_str.endsWith("\"")) {
             value_str = value_str.mid(1, value_str.length()-2).replace("\\n", "\n");
             value = value_str;
           } else {
@@ -170,10 +170,10 @@ namespace json {
 
   QString toJson(const QList<QVariantMap>& v) {
     QStringList res;
-    foreach(QVariantMap m, v) {
+    foreach (QVariantMap m, v) {
       QStringList vlist;
       QVariantMap::ConstIterator it;
-      for(it = m.constBegin(); it != m.constEnd(); it++) {
+      for (it = m.constBegin(); it != m.constEnd(); it++) {
         vlist << toJson(it.key())+":"+toJson(it.value());
       }
       res << "{"+vlist.join(",")+"}";

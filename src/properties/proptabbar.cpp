@@ -87,7 +87,7 @@ PropTabBar::PropTabBar(QWidget *parent) :
   // SIGNAL/SLOT
   connect(m_btnGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
   // Disable buttons focus
-  foreach(QAbstractButton *btn, m_btnGroup->buttons()) {
+  foreach (QAbstractButton *btn, m_btnGroup->buttons()) {
     btn->setFocusPolicy(Qt::NoFocus);
   }
 }
@@ -103,11 +103,11 @@ int PropTabBar::currentIndex() const
 
 void PropTabBar::setCurrentIndex(int index)
 {
-  if(index >= m_btnGroup->buttons().size())
+  if (index >= m_btnGroup->buttons().size())
     index = 0;
   // If asked to hide or if the currently selected tab is clicked
-  if(index < 0 || m_currentIndex == index) {
-    if(m_currentIndex >= 0) {
+  if (index < 0 || m_currentIndex == index) {
+    if (m_currentIndex >= 0) {
       m_btnGroup->button(m_currentIndex)->setStyleSheet(DEFAULT_BUTTON_CSS);
       m_currentIndex = -1;
       emit visibilityToggled(false);
@@ -115,7 +115,7 @@ void PropTabBar::setCurrentIndex(int index)
     return;
   }
   // Unselect previous tab
-  if(m_currentIndex >= 0) {
+  if (m_currentIndex >= 0) {
     m_btnGroup->button(m_currentIndex)->setStyleSheet(DEFAULT_BUTTON_CSS);
   } else {
     // Nothing was selected, show!

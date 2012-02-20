@@ -223,33 +223,33 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
   while(!xml.atEnd()) {
     xml.readNext();
 
-    if(xml.isEndElement() && xml.name() == "item")
+    if (xml.isEndElement() && xml.name() == "item")
       break;
 
-    if(xml.isStartElement()) {
-      if(xml.name() == "title") {
+    if (xml.isStartElement()) {
+      if (xml.name() == "title") {
         title = xml.readElementText();
       }
-      else if(xml.name() == "enclosure") {
-        if(xml.attributes().value("type") == "application/x-bittorrent") {
+      else if (xml.name() == "enclosure") {
+        if (xml.attributes().value("type") == "application/x-bittorrent") {
           torrentUrl = xml.attributes().value("url").toString();
         }
       }
-      else if(xml.name() == "link") {
+      else if (xml.name() == "link") {
         link = xml.readElementText();
-        if(guid.isEmpty())
+        if (guid.isEmpty())
           guid = link;
       }
-      else if(xml.name() == "description") {
+      else if (xml.name() == "description") {
         description = xml.readElementText();
       }
-      else if(xml.name() == "pubDate") {
+      else if (xml.name() == "pubDate") {
         date = RssArticle::parseDate(xml.readElementText());
       }
-      else if(xml.name() == "author") {
+      else if (xml.name() == "author") {
         author = xml.readElementText();
       }
-      else if(xml.name() == "guid") {
+      else if (xml.name() == "guid") {
         guid = xml.readElementText();
       }
     }
@@ -271,7 +271,7 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
 
 RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
   const QString guid = h.value("id").toString();
-  if(guid.isEmpty()) return RssArticlePtr();
+  if (guid.isEmpty()) return RssArticlePtr();
 
   RssArticlePtr art(new RssArticle(parent, guid));
   art->m_title = h.value("title", "").toString();
@@ -302,7 +302,7 @@ QString RssArticle::link() const {
 }
 
 QString RssArticle::description() const{
-  if(m_description.isNull())
+  if (m_description.isNull())
     return "";
   return m_description;
 }

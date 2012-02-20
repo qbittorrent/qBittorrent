@@ -64,7 +64,7 @@ public:
     const QString ip_str = misc::toQString(ip.address().to_string(ec));
     if (ec) return QString();
     QString ret;
-    if(m_cache.contains(ip_str)) {
+    if (m_cache.contains(ip_str)) {
       qDebug("Got host name from cache");
       ret = *m_cache.object(ip_str);
     } else {
@@ -77,7 +77,7 @@ public:
     boost::system::error_code ec;
     const QString ip_str = misc::toQString(ip.address().to_string(ec));
     if (ec) return;
-    if(m_cache.contains(ip_str)) {
+    if (m_cache.contains(ip_str)) {
       qDebug("Resolved host name using cache");
       emit ip_resolved(ip_str, *m_cache.object(ip_str));
       return;
@@ -93,9 +93,9 @@ private slots:
   void hostResolved(const QHostInfo& host) {
     if (host.error() == QHostInfo::NoError) {
       const QString hostname = host.hostName();
-      if(host.addresses().isEmpty() || hostname.isEmpty()) return;
+      if (host.addresses().isEmpty() || hostname.isEmpty()) return;
       const QString ip = host.addresses().first().toString();
-      if(hostname != ip) {
+      if (hostname != ip) {
         //qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
         m_cache.insert(ip, new QString(hostname));
         emit ip_resolved(ip, hostname);

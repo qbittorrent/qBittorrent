@@ -77,7 +77,7 @@ public:
     case TorrentModelItem::TR_SEEDS:
     case TorrentModelItem::TR_PEERS: {
         QString display = QString::number(index.data().toLongLong());
-        if(index.data(Qt::UserRole).toLongLong() > 0) {
+        if (index.data(Qt::UserRole).toLongLong() > 0) {
           // Scrape was successful, we have total values
           display += " ("+QString::number(index.data(Qt::UserRole).toLongLong())+")";
         }
@@ -132,7 +132,7 @@ public:
       QItemDelegate::drawBackground(painter, opt, index);
       const qlonglong limit = index.data().toLongLong();
       opt.displayAlignment = Qt::AlignRight;
-      if(limit > 0)
+      if (limit > 0)
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(limit/1024., 'f', 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)"));
       else
         QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
@@ -142,7 +142,7 @@ public:
       QItemDelegate::drawBackground(painter, opt, index);
       QString txt = misc::userFriendlyDuration(index.data().toLongLong());
       qlonglong seeding_time = index.data(Qt::UserRole).toLongLong();
-      if(seeding_time > 0)
+      if (seeding_time > 0)
         txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(seeding_time))+")";
       QItemDelegate::drawDisplay(painter, opt, opt.rect, txt);
       break;
@@ -156,7 +156,7 @@ public:
         QItemDelegate::drawBackground(painter, opt, index);
         opt.displayAlignment = Qt::AlignRight;
         const qreal ratio = index.data().toDouble();
-        if(ratio > QBtSession::MAX_RATIO)
+        if (ratio > QBtSession::MAX_RATIO)
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::fromUtf8("∞"));
         else
           QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(ratio, 'f', 2));
@@ -164,7 +164,7 @@ public:
       }
     case TorrentModelItem::TR_PRIORITY: {
         const int priority = index.data().toInt();
-        if(priority >= 0) {
+        if (priority >= 0) {
           opt.displayAlignment = Qt::AlignRight;
           QItemDelegate::paint(painter, opt, index);
         } else {
@@ -179,7 +179,7 @@ public:
         qreal progress = index.data().toDouble()*100.;
         // We don't want to display 100% unless
         // the torrent is really complete
-        if(progress > 99.94 && progress < 100.)
+        if (progress > 99.94 && progress < 100.)
           progress = 99.9;
         newopt.rect = opt.rect;
         newopt.text = QString::number(progress, 'f', 1)+"%";

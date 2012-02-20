@@ -87,7 +87,7 @@ void HttpRequestParser::writeMessage(const QByteArray& ba) {
   qDebug() << Q_FUNC_INFO << "m_data.size(): " << m_data.size();
 
   // Parse POST data
-  if(m_header.contentType() == "application/x-www-form-urlencoded") {
+  if (m_header.contentType() == "application/x-www-form-urlencoded") {
     QUrl url;
     url.setEncodedQuery(m_data);
     QListIterator<QPair<QString, QString> > i(url.queryItems());

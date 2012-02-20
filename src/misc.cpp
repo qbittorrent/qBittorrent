@@ -107,7 +107,7 @@ QString misc::QDesktopServicesDataLocation() {
     result = QString::fromWCharArray(path);
   if (!QCoreApplication::applicationName().isEmpty())
     result = result + QLatin1String("\\") + qApp->applicationName();
-  if(!result.endsWith("\\"))
+  if (!result.endsWith("\\"))
     result += "\\";
   return result;
 #else
@@ -208,16 +208,16 @@ QString misc::QDesktopServicesDownloadLocation() {
 }
 
 long long misc::freeDiskSpaceOnPath(QString path) {
-  if(path.isEmpty()) return -1;
+  if (path.isEmpty()) return -1;
   path.replace("\\", "/");
   QDir dir_path(path);
-  if(!dir_path.exists()) {
+  if (!dir_path.exists()) {
     QStringList parts = path.split("/");
     while (parts.size() > 1 && !QDir(parts.join("/")).exists()) {
       parts.removeLast();
     }
     dir_path = QDir(parts.join("/"));
-    if(!dir_path.exists()) return -1;
+    if (!dir_path.exists()) return -1;
   }
   Q_ASSERT(dir_path.exists());
 
@@ -226,7 +226,7 @@ long long misc::freeDiskSpaceOnPath(QString path) {
   struct statfs stats;
   const QString statfs_path = dir_path.path()+"/.";
   const int ret = statfs (qPrintable(statfs_path), &stats) ;
-  if(ret == 0) {
+  if (ret == 0) {
     available = ((unsigned long long)stats.f_bavail) *
         ((unsigned long long)stats.f_bsize) ;
     return available;
@@ -264,11 +264,11 @@ long long misc::freeDiskSpaceOnPath(QString path) {
 void misc::shutdownComputer(bool sleep) {
 #if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
-  if(sleep) {
+  if (sleep) {
     // Recent systems use UPower
     QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                "org.freedesktop.UPower", QDBusConnection::systemBus());
-    if(upowerIface.isValid()) {
+    if (upowerIface.isValid()) {
       upowerIface.call("Suspend");
       return;
     }
@@ -281,7 +281,7 @@ void misc::shutdownComputer(bool sleep) {
     // Recent systems use ConsoleKit
     QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                    "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
-    if(consolekitIface.isValid()) {
+    if (consolekitIface.isValid()) {
       consolekitIface.call("Stop");
       return;
     }
@@ -294,7 +294,7 @@ void misc::shutdownComputer(bool sleep) {
 #endif
 #ifdef Q_WS_MAC
   AEEventID EventToSend;
-  if(sleep)
+  if (sleep)
     EventToSend = kAESleep;
   else
     EventToSend = kAEShutDown;
@@ -336,7 +336,7 @@ void misc::shutdownComputer(bool sleep) {
 #ifdef Q_WS_WIN
   HANDLE hToken;              // handle to process token
   TOKEN_PRIVILEGES tkp;       // pointer to token structure
-  if(!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+  if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
     return;
   // Get the LUID for shutdown privilege.
   LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME,
@@ -355,7 +355,7 @@ void misc::shutdownComputer(bool sleep) {
   if (GetLastError() != ERROR_SUCCESS)
     return;
 
-  if(sleep)
+  if (sleep)
     SetSuspendState(false, false, false);
   else
     InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
@@ -372,13 +372,13 @@ QString misc::fixFileNames(QString path) {
   //qDebug() << Q_FUNC_INFO << path;
   path.replace("\\", "/");
   QStringList parts = path.split("/", QString::SkipEmptyParts);
-  if(parts.isEmpty()) return path;
+  if (parts.isEmpty()) return path;
   QString last_part = parts.takeLast();
   QList<QString>::iterator it;
-  for(it = parts.begin(); it != parts.end(); it++) {
+  for (it = parts.begin(); it != parts.end(); it++) {
     QByteArray raw_filename = it->toLocal8Bit();
     // Make sure the filename is not too long
-    if(raw_filename.size() > MAX_FILENAME_LENGTH) {
+    if (raw_filename.size() > MAX_FILENAME_LENGTH) {
       qDebug() << "Folder" << *it << "was cut because it was too long";
       raw_filename.resize(MAX_FILENAME_LENGTH);
       *it = QString::fromLocal8Bit(raw_filename.constData());
@@ -389,12 +389,12 @@ QString misc::fixFileNames(QString path) {
   // Fix the last part (file name)
   QByteArray raw_lastPart = last_part.toLocal8Bit();
   qDebug() << "Last part length:" << raw_lastPart.length();
-  if(raw_lastPart.length() > MAX_FILENAME_LENGTH) {
+  if (raw_lastPart.length() > MAX_FILENAME_LENGTH) {
     qDebug() << "Filename" << last_part << "was cut because it was too long";
     // Shorten the name, keep the file extension
     int point_index = raw_lastPart.lastIndexOf(".");
     QByteArray extension = "";
-    if(point_index >= 0) {
+    if (point_index >= 0) {
       extension = raw_lastPart.mid(point_index);
       raw_lastPart = raw_lastPart.left(point_index);
     }
@@ -408,7 +408,7 @@ QString misc::fixFileNames(QString path) {
 }
 
 QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
-  if(t->num_files() == 1) {
+  if (t->num_files() == 1) {
     // Single file torrent
 #if LIBTORRENT_VERSION_MINOR > 15
     QString path = QString::fromUtf8(t->file_at(0).path.c_str());
@@ -421,14 +421,14 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
     return QString();
   }
   QString root_folder;
-  for(int i=0; i<t->num_files(); ++i) {
+  for (int i=0; i<t->num_files(); ++i) {
 #if LIBTORRENT_VERSION_MINOR > 15
     QString path = QString::fromUtf8(t->file_at(i).path.c_str());
 #else
     QString path = QString::fromUtf8(t->file_at(i).path.string().c_str());
 #endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    if(path_parts.size() > 1) {
+    if (path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
     }
     path = fixFileNames(path_parts.join("/"));
@@ -439,7 +439,7 @@ QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
 
 QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
   torrent_info t = h.get_torrent_info();
-  if(t.num_files() == 1) {
+  if (t.num_files() == 1) {
     // Single file torrent
     // Remove possible subfolders
 #if LIBTORRENT_VERSION_MINOR > 15
@@ -452,14 +452,14 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
     return QString();
   }
   QString root_folder;
-  for(int i=0; i<t.num_files(); ++i) {
+  for (int i=0; i<t.num_files(); ++i) {
 #if LIBTORRENT_VERSION_MINOR > 15
     QString path = QString::fromUtf8(t.file_at(i).path.c_str());
 #else
     QString path = QString::fromUtf8(t.file_at(i).path.string().c_str());
 #endif
     QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    if(path_parts.size() > 1) {
+    if (path_parts.size() > 1) {
       root_folder = path_parts.takeFirst();
     }
     path = fixFileNames(path_parts.join("/"));
@@ -470,16 +470,16 @@ QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
 
 bool misc::sameFiles(const QString &path1, const QString &path2) {
   QFile f1(path1), f2(path2);
-  if(!f1.exists() || !f2.exists()) return false;
-  if(f1.size() != f2.size()) return false;
-  if(!f1.open(QIODevice::ReadOnly)) return false;
-  if(!f2.open(QIODevice::ReadOnly)) {
+  if (!f1.exists() || !f2.exists()) return false;
+  if (f1.size() != f2.size()) return false;
+  if (!f1.open(QIODevice::ReadOnly)) return false;
+  if (!f2.open(QIODevice::ReadOnly)) {
     f1.close();
     return false;
   }
   bool same = true;
   while(!f1.atEnd() && !f2.atEnd()) {
-    if(f1.read(5) != f2.read(5)) {
+    if (f1.read(5) != f2.read(5)) {
       same = false;
       break;
     }
@@ -489,34 +489,34 @@ bool misc::sameFiles(const QString &path1, const QString &path2) {
 }
 
 QString misc::updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label) {
-  if(old_label == new_label) return save_path;
+  if (old_label == new_label) return save_path;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   defaultSavePath.replace("\\", "/");
   save_path.replace("\\", "/");
 #endif
   qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
-  if(!save_path.startsWith(defaultSavePath)) return save_path;
+  if (!save_path.startsWith(defaultSavePath)) return save_path;
   QString new_save_path = save_path;
   new_save_path.replace(defaultSavePath, "");
   QStringList path_parts = new_save_path.split("/", QString::SkipEmptyParts);
-  if(path_parts.empty()) {
-    if(!new_label.isEmpty())
+  if (path_parts.empty()) {
+    if (!new_label.isEmpty())
       path_parts << new_label;
   } else {
-    if(old_label.isEmpty() || path_parts.first() != old_label) {
-      if(path_parts.first() != new_label)
+    if (old_label.isEmpty() || path_parts.first() != old_label) {
+      if (path_parts.first() != new_label)
         path_parts.prepend(new_label);
     } else {
-      if(new_label.isEmpty()) {
+      if (new_label.isEmpty()) {
         path_parts.removeAt(0);
       } else {
-        if(path_parts.first() != new_label)
+        if (path_parts.first() != new_label)
           path_parts.replace(0, new_label);
       }
     }
   }
   new_save_path = defaultSavePath;
-  if(!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
+  if (!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
   new_save_path += path_parts.join(QDir::separator());
   qDebug("New save path is %s", qPrintable(new_save_path));
   return new_save_path;
@@ -531,7 +531,7 @@ QString misc::toValidFileSystemName(QString filename) {
 }
 
 bool misc::isValidFileSystemName(const QString& filename) {
-  if(filename.isEmpty()) return false;
+  if (filename.isEmpty()) return false;
   const QRegExp regex("[\\\\/:?\"*<>|]");
   return !filename.contains(regex);
 }
@@ -542,9 +542,9 @@ QPoint misc::screenCenter(QWidget *win) {
   int scrn = 0;
   const QWidget *w = win->window();
 
-  if(w)
+  if (w)
     scrn = QApplication::desktop()->screenNumber(w);
-  else if(QApplication::desktop()->isVirtualDesktop())
+  else if (QApplication::desktop()->isVirtualDesktop())
     scrn = QApplication::desktop()->screenNumber(QCursor::pos());
   else
     scrn = QApplication::desktop()->screenNumber(win);
@@ -585,7 +585,7 @@ QString misc::searchEngineLocation() {
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
                                            + QDir::separator() + folder);
   QDir locationDir(location);
-  if(!locationDir.exists())
+  if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
   return location;
 }
@@ -594,7 +594,7 @@ QString misc::BTBackupLocation() {
   const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
                                            + QDir::separator() + "BT_backup");
   QDir locationDir(location);
-  if(!locationDir.exists())
+  if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
   return location;
 }
@@ -602,7 +602,7 @@ QString misc::BTBackupLocation() {
 QString misc::cacheLocation() {
   QString location = QDir::cleanPath(QDesktopServicesCacheLocation());
   QDir locationDir(location);
-  if(!locationDir.exists())
+  if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
   return location;
 }
@@ -612,61 +612,61 @@ QString misc::cacheLocation() {
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
 QString misc::friendlyUnit(qreal val) {
-  if(val < 0)
+  if (val < 0)
     return tr("Unknown", "Unknown (size)");
   int i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
-  if(i == 0)
+  if (i == 0)
     return QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
   return QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
 }
 
 bool misc::isPreviewable(QString extension){
-  if(extension.isEmpty()) return false;
+  if (extension.isEmpty()) return false;
   extension = extension.toUpper();
-  if(extension == "AVI") return true;
-  if(extension == "MP3") return true;
-  if(extension == "OGG") return true;
-  if(extension == "OGV") return true;
-  if(extension == "OGM") return true;
-  if(extension == "WMV") return true;
-  if(extension == "WMA") return true;
-  if(extension == "MPEG") return true;
-  if(extension == "MPG") return true;
-  if(extension == "ASF") return true;
-  if(extension == "QT") return true;
-  if(extension == "RM") return true;
-  if(extension == "RMVB") return true;
-  if(extension == "RMV") return true;
-  if(extension == "SWF") return true;
-  if(extension == "FLV") return true;
-  if(extension == "WAV") return true;
-  if(extension == "MOV") return true;
-  if(extension == "VOB") return true;
-  if(extension == "MID") return true;
-  if(extension == "AC3") return true;
-  if(extension == "MP4") return true;
-  if(extension == "MP2") return true;
-  if(extension == "AVI") return true;
-  if(extension == "FLAC") return true;
-  if(extension == "AU") return true;
-  if(extension == "MPE") return true;
-  if(extension == "MOV") return true;
-  if(extension == "MKV") return true;
-  if(extension == "AIF") return true;
-  if(extension == "AIFF") return true;
-  if(extension == "AIFC") return true;
-  if(extension == "RA") return true;
-  if(extension == "RAM") return true;
-  if(extension == "M4P") return true;
-  if(extension == "M4A") return true;
-  if(extension == "3GP") return true;
-  if(extension == "AAC") return true;
-  if(extension == "SWA") return true;
-  if(extension == "MPC") return true;
-  if(extension == "MPP") return true;
-  if(extension == "M3U") return true;
+  if (extension == "AVI") return true;
+  if (extension == "MP3") return true;
+  if (extension == "OGG") return true;
+  if (extension == "OGV") return true;
+  if (extension == "OGM") return true;
+  if (extension == "WMV") return true;
+  if (extension == "WMA") return true;
+  if (extension == "MPEG") return true;
+  if (extension == "MPG") return true;
+  if (extension == "ASF") return true;
+  if (extension == "QT") return true;
+  if (extension == "RM") return true;
+  if (extension == "RMVB") return true;
+  if (extension == "RMV") return true;
+  if (extension == "SWF") return true;
+  if (extension == "FLV") return true;
+  if (extension == "WAV") return true;
+  if (extension == "MOV") return true;
+  if (extension == "VOB") return true;
+  if (extension == "MID") return true;
+  if (extension == "AC3") return true;
+  if (extension == "MP4") return true;
+  if (extension == "MP2") return true;
+  if (extension == "AVI") return true;
+  if (extension == "FLAC") return true;
+  if (extension == "AU") return true;
+  if (extension == "MPE") return true;
+  if (extension == "MOV") return true;
+  if (extension == "MKV") return true;
+  if (extension == "AIF") return true;
+  if (extension == "AIFF") return true;
+  if (extension == "AIFC") return true;
+  if (extension == "RA") return true;
+  if (extension == "RAM") return true;
+  if (extension == "M4P") return true;
+  if (extension == "M4A") return true;
+  if (extension == "3GP") return true;
+  if (extension == "AAC") return true;
+  if (extension == "SWA") return true;
+  if (extension == "MPC") return true;
+  if (extension == "MPP") return true;
+  if (extension == "M3U") return true;
   return false;
 }
 
@@ -676,7 +676,7 @@ QString misc::bcLinkToMagnet(QString bc_link) {
   raw_bc = QByteArray::fromBase64(raw_bc); // Decode base64
   // Format is now AA/url_encoded_filename/size_bytes/info_hash/ZZ
   QStringList parts = QString(raw_bc).split("/");
-  if(parts.size() != 5) return QString::null;
+  if (parts.size() != 5) return QString::null;
   QString filename = parts.at(1);
   QString hash = parts.at(3);
   QString magnet = "magnet:?xt=urn:btih:" + hash;
@@ -688,7 +688,7 @@ QString misc::magnetUriToName(QString magnet_uri) {
   QString name = "";
   QRegExp regHex("dn=([^&]+)");
   const int pos = regHex.indexIn(magnet_uri);
-  if(pos > -1) {
+  if (pos > -1) {
     const QString found = regHex.cap(1);
     // URL decode
     name = QUrl::fromPercentEncoding(found.toLocal8Bit()).replace("+", " ");
@@ -701,10 +701,10 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   QRegExp regHex("urn:btih:([0-9A-Za-z]+)");
   // Hex
   int pos = regHex.indexIn(magnet_uri);
-  if(pos > -1) {
+  if (pos > -1) {
     const QString found = regHex.cap(1);
     qDebug() << Q_FUNC_INFO << "regex found: " << found;
-    if(found.length() == 40) {
+    if (found.length() == 40) {
       const sha1_hash sha1(QByteArray::fromHex(found.toAscii()).constData());
       qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
       return misc::toQString(sha1);
@@ -713,9 +713,9 @@ QString misc::magnetUriToHash(QString magnet_uri) {
   // Base 32
   QRegExp regBase32("urn:btih:([A-Za-z2-7=]+)");
   pos = regBase32.indexIn(magnet_uri);
-  if(pos > -1) {
+  if (pos > -1) {
     const QString found = regBase32.cap(1);
-    if(found.length() > 20 && (found.length()*5)%40 == 0) {
+    if (found.length() > 20 && (found.length()*5)%40 == 0) {
       const sha1_hash sha1(base32decode(regBase32.cap(1).toStdString()));
       hash = misc::toQString(sha1);
     }
@@ -727,14 +727,14 @@ QString misc::magnetUriToHash(QString magnet_uri) {
 // Replace ~ in path
 QString misc::expandPath(QString path) {
   path = path.trimmed();
-  if(path.isEmpty()) return path;
-  if(path.length() == 1) {
-    if(path[0] == '~' ) return QDir::homePath();
+  if (path.isEmpty()) return path;
+  if (path.length() == 1) {
+    if (path[0] == '~' ) return QDir::homePath();
   }
-  if(path[0] == '~' && path[1] == QDir::separator()) {
+  if (path[0] == '~' && path[1] == QDir::separator()) {
     path.replace(0, 1, QDir::homePath());
   } else {
-    if(QDir::isAbsolutePath(path)) {
+    if (QDir::isAbsolutePath(path)) {
       path = QDir(path).absolutePath();
     }
   }
@@ -744,27 +744,27 @@ QString misc::expandPath(QString path) {
 // Take a number of seconds and return an user-friendly
 // time duration like "1d 2h 10m".
 QString misc::userFriendlyDuration(qlonglong seconds) {
-  if(seconds < 0 || seconds >= MAX_ETA) {
+  if (seconds < 0 || seconds >= MAX_ETA) {
     return QString::fromUtf8("∞");
   }
-  if(seconds == 0) {
+  if (seconds == 0) {
     return "0";
   }
-  if(seconds < 60) {
+  if (seconds < 60) {
     return tr("< 1m", "< 1 minute");
   }
   int minutes = seconds / 60;
-  if(minutes < 60) {
+  if (minutes < 60) {
     return tr("%1m","e.g: 10minutes").arg(QString::number(minutes));
   }
   int hours = minutes / 60;
   minutes = minutes - hours*60;
-  if(hours < 24) {
+  if (hours < 24) {
     return tr("%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
   }
   int days = hours / 24;
   hours = hours - days * 24;
-  if(days < 100) {
+  if (days < 100) {
     return tr("%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
   }
   return QString::fromUtf8("∞");
@@ -785,7 +785,7 @@ QString misc::getUserIDString() {
 
 QStringList misc::toStringList(const QList<bool> &l) {
   QStringList ret;
-  foreach(const bool &b, l) {
+  foreach (const bool &b, l) {
     ret << (b ? "1" : "0");
   }
   return ret;
@@ -793,7 +793,7 @@ QStringList misc::toStringList(const QList<bool> &l) {
 
 QList<int> misc::intListfromStringList(const QStringList &l) {
   QList<int> ret;
-  foreach(const QString &s, l) {
+  foreach (const QString &s, l) {
     ret << s.toInt();
   }
   return ret;
@@ -801,7 +801,7 @@ QList<int> misc::intListfromStringList(const QStringList &l) {
 
 QList<bool> misc::boolListfromStringList(const QStringList &l) {
   QList<bool> ret;
-  foreach(const QString &s, l) {
+  foreach (const QString &s, l) {
     ret << (s=="1");
   }
   return ret;
@@ -811,13 +811,13 @@ quint64 misc::computePathSize(QString path)
 {
   // Check if it is a file
   QFileInfo fi(path);
-  if(!fi.exists()) return 0;
-  if(fi.isFile()) return fi.size();
+  if (!fi.exists()) return 0;
+  if (fi.isFile()) return fi.size();
   // Compute folder size
   quint64 size = 0;
-  foreach(const QFileInfo &subfi, QDir(path).entryInfoList(QDir::Dirs|QDir::Files)) {
-    if(subfi.fileName().startsWith(".")) continue;
-    if(subfi.isDir())
+  foreach (const QFileInfo &subfi, QDir(path).entryInfoList(QDir::Dirs|QDir::Files)) {
+    if (subfi.fileName().startsWith(".")) continue;
+    if (subfi.isDir())
       size += misc::computePathSize(subfi.absoluteFilePath());
     else
       size += subfi.size();
@@ -828,7 +828,7 @@ quint64 misc::computePathSize(QString path)
 bool misc::isValidTorrentFile(const QString &torrent_path) {
   try {
     boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(torrent_path.toUtf8().constData());
-    if(!t->is_valid() || t->num_files() == 0)
+    if (!t->is_valid() || t->num_files() == 0)
       throw std::exception();
   } catch(std::exception&) {
     return false;
@@ -842,13 +842,13 @@ bool misc::isValidTorrentFile(const QString &torrent_path) {
  */
 QString misc::branchPath(QString file_path, bool uses_slashes)
 {
-  if(!uses_slashes)
+  if (!uses_slashes)
     file_path.replace("\\", "/");
   Q_ASSERT(!file_path.contains("\\"));
-  if(file_path.endsWith("/"))
+  if (file_path.endsWith("/"))
     file_path.chop(1); // Remove trailing slash
   qDebug() << Q_FUNC_INFO << "before:" << file_path;
-  if(file_path.contains("/"))
+  if (file_path.contains("/"))
     return file_path.left(file_path.lastIndexOf('/'));
   return "";
 }
@@ -864,7 +864,7 @@ QString misc::fileName(QString file_path)
 {
   file_path.replace("\\", "/");
   const int slash_index = file_path.lastIndexOf('/');
-  if(slash_index == -1)
+  if (slash_index == -1)
     return file_path;
   return file_path.mid(slash_index+1);
 }

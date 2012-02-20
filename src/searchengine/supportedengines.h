@@ -89,7 +89,7 @@ public:
     // Save to Hard disk
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
     QStringList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
-    if(enabled) {
+    if (enabled) {
       disabled_engines.removeAll(name);
     } else {
       disabled_engines.append(name);
@@ -106,7 +106,7 @@ signals:
 
 public:
   SupportedEngines(bool has_python = true) {
-    if(has_python)
+    if (has_python)
       update();
   }
 
@@ -116,8 +116,8 @@ public:
 
   QStringList enginesEnabled() const {
     QStringList engines;
-    foreach(const SupportedEngine *engine, values()) {
-      if(engine->isEnabled())
+    foreach (const SupportedEngine *engine, values()) {
+      if (engine->isEnabled())
         engines << engine->getName();
     }
     return engines;
@@ -125,12 +125,12 @@ public:
 
   QStringList supportedCategories() const {
     QStringList supported_cat;
-    foreach(const SupportedEngine *engine, values()) {
-      if(engine->isEnabled()) {
+    foreach (const SupportedEngine *engine, values()) {
+      if (engine->isEnabled()) {
         const QStringList &s = engine->getSupportedCategories();
-        foreach(QString cat, s) {
+        foreach (QString cat, s) {
           cat = cat.trimmed();
-          if(!cat.isEmpty() && !supported_cat.contains(cat))
+          if (!cat.isEmpty() && !supported_cat.contains(cat))
             supported_cat << cat;
         }
       }
@@ -150,21 +150,21 @@ public slots:
     nova.waitForFinished();
     QString capabilities = QString(nova.readAll());
     QDomDocument xml_doc;
-    if(!xml_doc.setContent(capabilities)) {
+    if (!xml_doc.setContent(capabilities)) {
       std::cerr << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data() << std::endl;
       std::cerr << "Error: " << nova.readAllStandardError().constData() << std::endl;
       return;
     }
     QDomElement root = xml_doc.documentElement();
-    if(root.tagName() != "capabilities") {
+    if (root.tagName() != "capabilities") {
       std::cout << "Invalid XML file for Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data() << std::endl;
       return;
     }
-    for(QDomNode engine_node = root.firstChild(); !engine_node.isNull(); engine_node = engine_node.nextSibling()) {
+    for (QDomNode engine_node = root.firstChild(); !engine_node.isNull(); engine_node = engine_node.nextSibling()) {
       QDomElement engine_elem = engine_node.toElement();
-      if(!engine_elem.isNull()) {
+      if (!engine_elem.isNull()) {
         SupportedEngine *s = new SupportedEngine(engine_elem);
-        if(this->contains(s->getName())) {
+        if (this->contains(s->getName())) {
           // Already in the list
           delete s;
         } else {

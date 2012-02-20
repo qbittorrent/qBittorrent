@@ -100,7 +100,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // License
       te_license->append(QString::fromUtf8("<a name='top'></a>"));
       QFile licensefile(":/gpl.html");
-      if(licensefile.open(QIODevice::ReadOnly|QIODevice::Text)) {
+      if (licensefile.open(QIODevice::ReadOnly|QIODevice::Text)) {
         te_license->setHtml(licensefile.readAll());
         licensefile.close();
       }

@@ -148,7 +148,7 @@ bool QtLocalPeer::sendMessage(const QString &message, int timeout)
 
     QLocalSocket socket;
     bool connOk = false;
-    for(int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) {
         // Try twice, in case the other instance is just starting up
         socket.connectToServer(socketName);
         connOk = socket.waitForConnected(timeout/2);

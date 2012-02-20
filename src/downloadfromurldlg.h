@@ -50,7 +50,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       show();
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
-      if(clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive) || clip_txt.startsWith("magnet:", Qt::CaseInsensitive) || clip_txt.startsWith("bc://bt/", Qt::CaseInsensitive)) {
+      if (clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive) || clip_txt.startsWith("magnet:", Qt::CaseInsensitive) || clip_txt.startsWith("bc://bt/", Qt::CaseInsensitive)) {
         textUrls->setText(clip_txt);
       }
     }
@@ -66,15 +66,15 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
       QStringList url_list_cleaned;
-      foreach(url, url_list){
+      foreach (url, url_list){
         url = url.trimmed();
-        if(!url.isEmpty()){
-          if(url_list_cleaned.indexOf(QRegExp(url, Qt::CaseInsensitive, QRegExp::FixedString)) < 0){
+        if (!url.isEmpty()){
+          if (url_list_cleaned.indexOf(QRegExp(url, Qt::CaseInsensitive, QRegExp::FixedString)) < 0){
             url_list_cleaned << url;
           }
         }
       }
-      if(!url_list_cleaned.size()){
+      if (!url_list_cleaned.size()){
         QMessageBox::critical(0, tr("No URL entered"), tr("Please type at least one URL."));
         return;
       }

@@ -37,7 +37,7 @@
 
 PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent) : QObject(parent)
 {
-    if(!QDBusConnection::sessionBus().isConnected())
+    if (!QDBusConnection::sessionBus().isConnected())
     {
         qDebug("D-Bus: Could not connect to session bus");
         m_state = error;
@@ -134,7 +134,7 @@ void PowerManagementInhibitor::OnAsyncReply(QDBusPendingCallWatcher *call)
     {
         QDBusPendingReply<> reply = *call;
 
-        if(reply.isError())
+        if (reply.isError())
         {
             qDebug("D-Bus: Reply: Error: %s", qPrintable(reply.error().message()));
             m_state = error;
@@ -150,7 +150,7 @@ void PowerManagementInhibitor::OnAsyncReply(QDBusPendingCallWatcher *call)
     {
         QDBusPendingReply<uint> reply = *call;
 
-        if(reply.isError())
+        if (reply.isError())
         {
             qDebug("D-Bus: Reply: Error: %s", qPrintable(reply.error().message()));
 

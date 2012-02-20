@@ -79,13 +79,13 @@ void TorrentSpeedMonitor::run()
 void SpeedSample::addSample(int s)
 {
   m_speedSamples << s;
-  if(m_speedSamples.size() > max_samples)
+  if (m_speedSamples.size() > max_samples)
     m_speedSamples.removeFirst();
 }
 
 qreal SpeedSample::average() const
 {
-  if(m_speedSamples.empty()) return 0;
+  if (m_speedSamples.empty()) return 0;
   qlonglong sum = 0;
   foreach (int s, m_speedSamples) {
     sum += s;
@@ -113,9 +113,9 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
 {
   QMutexLocker locker(&m_mutex);
   QTorrentHandle h = m_session->getTorrentHandle(hash);
-  if(h.is_paused() || !m_samples.contains(hash)) return -1;
+  if (h.is_paused() || !m_samples.contains(hash)) return -1;
   const qreal speed_average = m_samples.value(hash).average();
-  if(speed_average == 0) return -1;
+  if (speed_average == 0) return -1;
   return (h.total_wanted() - h.total_done()) / speed_average;
 }
 
@@ -123,14 +123,14 @@ void TorrentSpeedMonitor::getSamples()
 {
   const std::vector<torrent_handle> torrents = m_session->getSession()->get_torrents();
   std::vector<torrent_handle>::const_iterator it;
-  for(it = torrents.begin(); it != torrents.end(); it++) {
+  for (it = torrents.begin(); it != torrents.end(); it++) {
     try {
 #if LIBTORRENT_VERSION_MINOR > 15
       torrent_status st = it->status(0x0);
-      if(!st.paused)
+      if (!st.paused)
         m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate);
 #else
-      if(!it->is_paused())
+      if (!it->is_paused())
         m_samples[misc::toQString(it->info_hash())].addSample(it->status().download_payload_rate);
 #endif
     } catch(invalid_handle&){}

@@ -50,10 +50,10 @@ ExecutionLog::ExecutionLog(QWidget *parent) :
     ui->tabBan->layout()->addWidget(m_banList);
 
     const QStringList log_msgs = QBtSession::instance()->getConsoleMessages();
-    foreach(const QString& msg, log_msgs)
+    foreach (const QString& msg, log_msgs)
       addLogMessage(msg);
     const QStringList ban_msgs = QBtSession::instance()->getPeerBanMessages();
-    foreach(const QString& msg, ban_msgs)
+    foreach (const QString& msg, ban_msgs)
       addBanMessage(msg);
     connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), SLOT(addLogMessage(QString)));
     connect(QBtSession::instance(), SIGNAL(newBanMessage(QString)), SLOT(addBanMessage(QString)));

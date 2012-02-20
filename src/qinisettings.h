@@ -56,14 +56,14 @@ public:
   QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
     QString key_tmp(key);
     QVariant ret = QSettings::value(key_tmp);
-    if(ret.isNull())
+    if (ret.isNull())
       return defaultValue;
     return ret;
   }
 
   void setValue(const QString &key, const QVariant &val) {
     QString key_tmp(key);
-    if(format() == QSettings::NativeFormat)
+    if (format() == QSettings::NativeFormat)
       key_tmp.replace("\\", "/");
     QSettings::setValue(key_tmp, val);
   }

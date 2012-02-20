@@ -42,14 +42,14 @@ IconProvider::IconProvider()
 
 IconProvider * IconProvider::instance()
 {
-  if(!m_instance)
+  if (!m_instance)
     m_instance = new IconProvider;
   return m_instance;
 }
 
 void IconProvider::drop()
 {
-  if(m_instance) {
+  if (m_instance) {
     delete m_instance;
     m_instance = 0;
   }
@@ -58,7 +58,7 @@ void IconProvider::drop()
 QIcon IconProvider::getIcon(const QString &iconId)
 {
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
-  if(m_useSystemTheme) {
+  if (m_useSystemTheme) {
     QIcon icon = QIcon::fromTheme(iconId, QIcon(":/Icons/oxygen/"+iconId+".png"));
     icon = generateDifferentSizes(icon);
     return icon;
@@ -84,14 +84,14 @@ QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
   required_sizes << QSize(16, 16) << QSize(24, 24);
   QList<QIcon::Mode> modes;
   modes << QIcon::Normal << QIcon::Active << QIcon::Selected << QIcon::Disabled;
-  foreach(const QSize& size, required_sizes) {
-    foreach(QIcon::Mode mode, modes) {
+  foreach (const QSize& size, required_sizes) {
+    foreach (QIcon::Mode mode, modes) {
       QPixmap pixoff = icon.pixmap(size, mode, QIcon::Off);
-      if(pixoff.height() > size.height())
+      if (pixoff.height() > size.height())
         pixoff = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
       new_icon.addPixmap(pixoff, mode, QIcon::Off);
       QPixmap pixon = icon.pixmap(size, mode, QIcon::On);
-      if(pixon.height() > size.height())
+      if (pixon.height() > size.height())
         pixon = pixoff.scaled(size, Qt::KeepAspectRatio,  Qt::SmoothTransformation);
       new_icon.addPixmap(pixon, mode, QIcon::On);
     }
@@ -103,11 +103,11 @@ QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
 QString IconProvider::getIconPath(const QString &iconId)
 {
 #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
-  if(m_useSystemTheme) {
+  if (m_useSystemTheme) {
     QString path = QDir::temp().absoluteFilePath(iconId+".png");
-    if(!QFile::exists(path)) {
+    if (!QFile::exists(path)) {
       const QIcon icon = QIcon::fromTheme(iconId);
-      if(icon.isNull()) return ":/Icons/oxygen/"+iconId+".png";
+      if (icon.isNull()) return ":/Icons/oxygen/"+iconId+".png";
       QPixmap px = icon.pixmap(32);
       px.save(path);
     }

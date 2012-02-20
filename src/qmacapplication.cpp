@@ -44,7 +44,7 @@ bool QMacApplication::event(QEvent * ev) {
   case QEvent::FileOpen:
     {
       QString path = static_cast<QFileOpenEvent *>(ev)->file();
-      if(path.isEmpty()) {
+      if (path.isEmpty()) {
         // Get the url instead
         path = static_cast<QFileOpenEvent *>(ev)->url().toString();
       }

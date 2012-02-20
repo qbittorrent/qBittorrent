@@ -56,7 +56,7 @@ using namespace std;
 
 #if LIBTORRENT_VERSION_MINOR < 16
 static QString boostTimeToQString(const boost::posix_time::ptime &boostDate) {
-  if(boostDate.is_not_a_date_time()) return "";
+  if (boostDate.is_not_a_date_time()) return "";
   struct std::tm tm;
   try {
     tm = boost::posix_time::to_tm(boostDate);
@@ -81,7 +81,7 @@ QString QTorrentHandle::hash() const {
 
 QString QTorrentHandle::name() const {
   QString name = TorrentPersistentData::getName(hash());
-  if(name.isEmpty()) {
+  if (name.isEmpty()) {
     name = misc::toQStringU(torrent_handle::name());
   }
   return name;
@@ -124,7 +124,7 @@ qreal QTorrentHandle::progress() const {
 #else
   torrent_status st = torrent_handle::status();
 #endif
-  if(!st.total_wanted)
+  if (!st.total_wanted)
     return 0.;
   if (st.total_wanted_done == st.total_wanted)
     return 1.;
@@ -182,19 +182,19 @@ int QTorrentHandle::num_pieces() const {
 bool QTorrentHandle::first_last_piece_first() const {
   // Detect first media file
   int index = 0;
-  for(index = 0; index < num_files(); ++index) {
+  for (index = 0; index < num_files(); ++index) {
 #if LIBTORRENT_VERSION_MINOR > 15
     QString path = misc::toQStringU(get_torrent_info().file_at(index).path);
 #else
     QString path = misc::toQStringU(get_torrent_info().file_at(index).path.string());
 #endif
     const QString ext = misc::file_extension(path);
-    if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
+    if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
       break;
     }
     ++index;
   }
-  if(index >= torrent_handle::get_torrent_info().num_files()) return false;
+  if (index >= torrent_handle::get_torrent_info().num_files()) return false;
   file_entry media_file = torrent_handle::get_torrent_info().file_at(index);
   int piece_size = torrent_handle::get_torrent_info().piece_length();
   Q_ASSERT(piece_size>0);
@@ -285,7 +285,7 @@ QStringList QTorrentHandle::url_seeds() const {
   try {
     const std::set<std::string> existing_seeds = torrent_handle::url_seeds();
     std::set<std::string>::const_iterator it;
-    for(it = existing_seeds.begin(); it != existing_seeds.end(); it++) {
+    for (it = existing_seeds.begin(); it != existing_seeds.end(); it++) {
       qDebug("URL Seed: %s", it->c_str());
       res << misc::toQString(*it);
     }
@@ -306,8 +306,8 @@ size_type QTorrentHandle::actual_size() const {
 
 bool QTorrentHandle::has_filtered_pieces() const {
   std::vector<int> piece_priorities = torrent_handle::piece_priorities();
-  for(unsigned int i = 0; i<piece_priorities.size(); ++i) {
-    if(!piece_priorities[i]) return true;
+  for (unsigned int i = 0; i<piece_priorities.size(); ++i) {
+    if (!piece_priorities[i]) return true;
   }
   return false;
 }
@@ -432,7 +432,7 @@ size_type QTorrentHandle::total_payload_upload() const {
 QStringList QTorrentHandle::absolute_files_path() const {
   QDir saveDir(save_path());
   QStringList res;
-  for(int i = 0; i<num_files(); ++i) {
+  for (int i = 0; i<num_files(); ++i) {
     res << QDir::cleanPath(saveDir.absoluteFilePath(filepath_at(i)));
   }
   return res;
@@ -442,10 +442,10 @@ QStringList QTorrentHandle::absolute_files_path_uneeded() const {
   QDir saveDir(save_path());
   QStringList res;
   std::vector<int> fp = torrent_handle::file_priorities();
-  for(uint i = 0; i < fp.size(); ++i) {
-    if(fp[i] == 0) {
+  for (uint i = 0; i < fp.size(); ++i) {
+    if (fp[i] == 0) {
       const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filepath_at(i)));
-      if(file_path.contains(".unwanted"))
+      if (file_path.contains(".unwanted"))
         res << file_path;
     }
   }
@@ -454,14 +454,14 @@ QStringList QTorrentHandle::absolute_files_path_uneeded() const {
 
 bool QTorrentHandle::has_missing_files() const {
   const QStringList paths = absolute_files_path();
-  foreach(const QString &path, paths) {
-    if(!QFile::exists(path)) return true;
+  foreach (const QString &path, paths) {
+    if (!QFile::exists(path)) return true;
   }
   return false;
 }
 
 int QTorrentHandle::queue_position() const {
-  if(torrent_handle::queue_position() < 0)
+  if (torrent_handle::queue_position() < 0)
     return -1;
   return torrent_handle::queue_position()+1;
 }
@@ -540,14 +540,14 @@ bool QTorrentHandle::priv() const {
 QString QTorrentHandle::firstFileSavePath() const {
   Q_ASSERT(has_metadata());
   QString fsave_path = TorrentPersistentData::getSavePath(hash());
-  if(fsave_path.isEmpty())
+  if (fsave_path.isEmpty())
     fsave_path = save_path();
   fsave_path.replace("\\", "/");
-  if(!fsave_path.endsWith("/"))
+  if (!fsave_path.endsWith("/"))
     fsave_path += "/";
   fsave_path += filepath_at(0);
   // Remove .!qB extension
-  if(fsave_path.endsWith(".!qB", Qt::CaseInsensitive))
+  if (fsave_path.endsWith(".!qB", Qt::CaseInsensitive))
     fsave_path.chop(4);
   return fsave_path;
 }
@@ -572,7 +572,7 @@ QString QTorrentHandle::error() const {
 void QTorrentHandle::downloading_pieces(bitfield &bf) const {
   std::vector<partial_piece_info> queue;
   torrent_handle::get_download_queue(queue);
-  for(std::vector<partial_piece_info>::iterator it=queue.begin(); it!= queue.end(); it++) {
+  for (std::vector<partial_piece_info>::iterator it=queue.begin(); it!= queue.end(); it++) {
     bf.set_bit(it->piece_index);
   }
   return;
@@ -609,22 +609,22 @@ void QTorrentHandle::pause() const {
 }
 
 void QTorrentHandle::resume() const {
-  if(has_error()) torrent_handle::clear_error();
+  if (has_error()) torrent_handle::clear_error();
   const QString torrent_hash = hash();
   bool has_persistant_error = TorrentPersistentData::hasError(torrent_hash);
   TorrentPersistentData::setErrorState(torrent_hash, false);
   bool temp_path_enabled = Preferences().isTempPathEnabled();
-  if(has_persistant_error && temp_path_enabled) {
+  if (has_persistant_error && temp_path_enabled) {
     // Torrent was supposed to be seeding, checking again in final destination
     qDebug("Resuming a torrent with error...");
     const QString final_save_path = TorrentPersistentData::getSavePath(torrent_hash);
     qDebug("Torrent final path is: %s", qPrintable(final_save_path));
-    if(!final_save_path.isEmpty())
+    if (!final_save_path.isEmpty())
       move_storage(final_save_path);
   }
   torrent_handle::auto_managed(true);
   torrent_handle::resume();
-  if(has_persistant_error && temp_path_enabled) {
+  if (has_persistant_error && temp_path_enabled) {
     // Force recheck
     torrent_handle::force_recheck();
   }
@@ -645,7 +645,7 @@ void QTorrentHandle::set_tracker_login(QString username, QString password) const
 }
 
 void QTorrentHandle::move_storage(QString new_path) const {
-  if(QDir(save_path()) == QDir(new_path)) return;
+  if (QDir(save_path()) == QDir(new_path)) return;
   TorrentPersistentData::setPreviousSavePath(hash(), save_path());
   // Create destination directory if necessary
   // or move_storage() will fail...
@@ -655,12 +655,12 @@ void QTorrentHandle::move_storage(QString new_path) const {
 }
 
 bool QTorrentHandle::save_torrent_file(QString path) const {
-  if(!has_metadata()) return false;
+  if (!has_metadata()) return false;
 
   entry meta = bdecode(torrent_handle::get_torrent_info().metadata().get(), torrent_handle::get_torrent_info().metadata().get()+torrent_handle::get_torrent_info().metadata_size());
   entry torrent_entry(entry::dictionary_t);
   torrent_entry["info"] = meta;
-  if(!torrent_handle::trackers().empty())
+  if (!torrent_handle::trackers().empty())
     torrent_entry["announce"] = torrent_handle::trackers().front().url;
 
   vector<char> out;
@@ -677,14 +677,14 @@ bool QTorrentHandle::save_torrent_file(QString path) const {
 
 void QTorrentHandle::file_priority(int index, int priority) const {
   vector<int> priorities = torrent_handle::file_priorities();
-  if(priorities[index] != priority) {
+  if (priorities[index] != priority) {
     priorities[index] = priority;
     prioritize_files(priorities);
   }
 }
 
 void QTorrentHandle::prioritize_files(const vector<int> &files) const {
-  if((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
+  if ((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
   qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
   vector<size_type> progress;
@@ -692,25 +692,25 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   qDebug() << Q_FUNC_INFO << "Changing files priorities...";
   torrent_handle::prioritize_files(files);
   qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder...";
-  for(uint i=0; i<files.size(); ++i) {
+  for (uint i=0; i<files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
-    if(files[i] == 0 && progress[i] < filesize_at(i)) {
+    if (files[i] == 0 && progress[i] < filesize_at(i)) {
       QString old_path = filepath_at(i);
       // Make sure the file does not already exists
-      if(QFile::exists(QDir(save_path()).absoluteFilePath(old_path))) {
+      if (QFile::exists(QDir(save_path()).absoluteFilePath(old_path))) {
         qWarning() << "File" << old_path << "already exists at destination.";
         qWarning() << "We do not move it to .unwanted folder";
         continue;
       }
       QString old_name = filename_at(i);
       QString parent_path = misc::branchPath(old_path);
-      if(parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
+      if (parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
         QString unwanted_abspath = QDir::cleanPath(save_path()+"/"+parent_path+"/.unwanted");
         qDebug() << "Unwanted path is" << unwanted_abspath;
         bool created = QDir().mkpath(unwanted_abspath);
 #ifdef Q_WS_WIN
         qDebug() << "unwanted folder was created:" << created;
-        if(created) {
+        if (created) {
           // Hide the folder on Windows
           qDebug() << "Hiding folder (Windows)";
           wstring win_path =  unwanted_abspath.replace("/","\\").toStdWString();
@@ -721,16 +721,16 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
 #else
         Q_UNUSED(created);
 #endif
-        if(!parent_path.isEmpty() && !parent_path.endsWith("/"))
+        if (!parent_path.isEmpty() && !parent_path.endsWith("/"))
           parent_path += "/";
         rename_file(i, parent_path+".unwanted/"+old_name);
       }
     }
     // Move wanted files back to their original folder
     qDebug() << Q_FUNC_INFO << "Moving wanted files back from .unwanted folder";
-    if(files[i] > 0) {
+    if (files[i] > 0) {
       QString parent_relpath = misc::branchPath(filepath_at(i));
-      if(QDir(parent_relpath).dirName() == ".unwanted") {
+      if (QDir(parent_relpath).dirName() == ".unwanted") {
         QString old_name = filename_at(i);
         QString new_relpath = misc::branchPath(parent_relpath);
         if (new_relpath.isEmpty())
@@ -744,16 +744,16 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     }
   }
 
-  if(was_seed && !is_seed()) {
+  if (was_seed && !is_seed()) {
     qDebug() << "Torrent is no longer SEEDING";
     // Save seed status
     TorrentPersistentData::saveSeedStatus(*this);
     // Move to temp folder if necessary
     const Preferences pref;
-    if(pref.isTempPathEnabled()) {
+    if (pref.isTempPathEnabled()) {
       QString tmp_path = pref.getTempPath();
       QString root_folder = TorrentPersistentData::getRootFolder(hash());
-      if(!root_folder.isEmpty())
+      if (!root_folder.isEmpty())
         tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
       qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << save_path();
       move_storage(tmp_path);
@@ -768,7 +768,7 @@ void QTorrentHandle::add_tracker(const announce_entry& url) const {
 void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {
   // Determine the priority to set
   int prio = 7; // MAX
-  if(!b) prio = torrent_handle::file_priority(file_index);
+  if (!b) prio = torrent_handle::file_priority(file_index);
   file_entry file = get_torrent_info().file_at(file_index);
   // Determine the first and last piece of the file
   int piece_size = torrent_handle::get_torrent_info().piece_length();
@@ -785,13 +785,13 @@ void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {
 }
 
 void QTorrentHandle::prioritize_first_last_piece(bool b) const {
-  if(!has_metadata()) return;
+  if (!has_metadata()) return;
   // Download first and last pieces first for all media files in the torrent
   int index = 0;
-  for(index = 0; index < num_files(); ++index) {
+  for (index = 0; index < num_files(); ++index) {
     const QString path = filepath_at(index);
     const QString ext = misc::file_extension(path);
-    if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
+    if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
       qDebug() << "File" << path << "is previewable, toggle downloading of first/last pieces first";
       prioritize_first_last_piece(index, b);
     }

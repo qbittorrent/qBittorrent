@@ -76,7 +76,7 @@ int HttpServer::NbFailedAttemptsForIp(const QString& ip) const {
 void HttpServer::increaseNbFailedAttemptsForIp(const QString& ip) {
   const int nb_fail = m_clientFailedAttempts.value(ip, 0) + 1;
   m_clientFailedAttempts.insert(ip, nb_fail);
-  if(nb_fail == MAX_AUTH_FAILED_ATTEMPTS) {
+  if (nb_fail == MAX_AUTH_FAILED_ATTEMPTS) {
     // Max number of failed attempts reached
     // Start ban period
     UnbanTimer* ubantimer = new UnbanTimer(ip, this);
@@ -112,9 +112,9 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
   // Add torrents
   std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
-  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(h.is_valid())
+    if (h.is_valid())
       m_eventManager->addedTorrent(h);
   }
 
@@ -217,9 +217,9 @@ void HttpServer::handleNewConnection(QTcpSocket *socket)
 void HttpServer::onTimer() {
   std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
   std::vector<torrent_handle>::iterator torrentIT;
-  for(torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
+  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if(h.is_valid())
+    if (h.is_valid())
       m_eventManager->modifiedTorrent(h);
   }
 }
@@ -245,28 +245,28 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   //qDebug("AUTH string is %s", auth.data());
   // Get user name
   QRegExp regex_user(".*username=\"([^\"]+)\".*"); // Must be a quoted string
-  if(regex_user.indexIn(auth) < 0) return false;
+  if (regex_user.indexIn(auth) < 0) return false;
   QString prop_user = regex_user.cap(1);
   //qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
-  if(prop_user != m_username) {
+  if (prop_user != m_username) {
     // User name is invalid, we can reject already
     qDebug("AUTH-PROB: Username is invalid");
     return false;
   }
   // Get realm
   QRegExp regex_realm(".*realm=\"([^\"]+)\".*"); // Must be a quoted string
-  if(regex_realm.indexIn(auth) < 0) {
+  if (regex_realm.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: Missing realm");
     return false;
   }
   QByteArray prop_realm = regex_realm.cap(1).toLocal8Bit();
-  if(prop_realm != QBT_REALM) {
+  if (prop_realm != QBT_REALM) {
     qDebug("AUTH-PROB: Wrong realm");
     return false;
   }
   // get nonce
   QRegExp regex_nonce(".*nonce=[\"]?([\\w=]+)[\"]?.*");
-  if(regex_nonce.indexIn(auth) < 0) {
+  if (regex_nonce.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: missing nonce");
     return false;
   }
@@ -274,7 +274,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   //qDebug("prop nonce is: %s", prop_nonce.data());
   // get uri
   QRegExp regex_uri(".*uri=\"([^\"]+)\".*");
-  if(regex_uri.indexIn(auth) < 0) {
+  if (regex_uri.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: Missing uri");
     return false;
   }
@@ -282,7 +282,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   //qDebug("prop uri is: %s", prop_uri.data());
   // get response
   QRegExp regex_response(".*response=[\"]?([\\w=]+)[\"]?.*");
-  if(regex_response.indexIn(auth) < 0) {
+  if (regex_response.indexIn(auth) < 0) {
     qDebug("AUTH-PROB: Missing response");
     return false;
   }
@@ -293,25 +293,25 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   md5_ha2.addData(method.toLocal8Bit() + ":" + prop_uri);
   QByteArray ha2 = md5_ha2.result().toHex();
   QByteArray response = "";
-  if(auth.contains("qop=")) {
+  if (auth.contains("qop=")) {
     QCryptographicHash md5_ha(QCryptographicHash::Md5);
     // Get nc
     QRegExp regex_nc(".*nc=[\"]?([\\w=]+)[\"]?.*");
-    if(regex_nc.indexIn(auth) < 0) {
+    if (regex_nc.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing nc");
       return false;
     }
     QByteArray prop_nc = regex_nc.cap(1).toLocal8Bit();
     //qDebug("prop nc is: %s", prop_nc.data());
     QRegExp regex_cnonce(".*cnonce=[\"]?([\\w=]+)[\"]?.*");
-    if(regex_cnonce.indexIn(auth) < 0) {
+    if (regex_cnonce.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing cnonce");
       return false;
     }
     QByteArray prop_cnonce = regex_cnonce.cap(1).toLocal8Bit();
     //qDebug("prop cnonce is: %s", prop_cnonce.data());
     QRegExp regex_qop(".*qop=[\"]?(\\w+)[\"]?.*");
-    if(regex_qop.indexIn(auth) < 0) {
+    if (regex_qop.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: missing qop");
       return false;
     }

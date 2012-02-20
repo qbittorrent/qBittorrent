@@ -63,7 +63,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(QWidget *parent): QDialog(parent), creatorT
 }
 
 TorrentCreatorDlg::~TorrentCreatorDlg() {
-  if(creatorThread)
+  if (creatorThread)
     delete creatorThread;
 }
 
@@ -71,14 +71,14 @@ void TorrentCreatorDlg::on_addFolder_button_clicked(){
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
-  if(!dir.isEmpty()) {
+  if (!dir.isEmpty()) {
     settings.setValue("CreateTorrent/last_add_path", dir);
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir.replace("/", "\\");
 #endif
     textInputPath->setText(dir);
     // Update piece size
-    if(checkAutoPieceSize->isChecked())
+    if (checkAutoPieceSize->isChecked())
       updateOptimalPieceSize();
   }
 }
@@ -87,14 +87,14 @@ void TorrentCreatorDlg::on_addFile_button_clicked(){
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
-  if(!file.isEmpty()) {
+  if (!file.isEmpty()) {
     settings.setValue("CreateTorrent/last_add_path", misc::branchPath(file));
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     file.replace("/", "\\");
 #endif
     textInputPath->setText(file);
     // Update piece size
-    if(checkAutoPieceSize->isChecked())
+    if (checkAutoPieceSize->isChecked())
       updateOptimalPieceSize();
   }
 }
@@ -108,21 +108,21 @@ void TorrentCreatorDlg::on_createButton_clicked(){
   QString input = textInputPath->text().trimmed();
   if (input.endsWith(QDir::separator()))
     input.chop(1);
-  if(input.isEmpty()){
+  if (input.isEmpty()){
     QMessageBox::critical(0, tr("No input path set"), tr("Please type an input path first"));
     return;
   }
   QStringList trackers = trackers_list->toPlainText().split("\n");
-  if(!trackers_list->toPlainText().trimmed().isEmpty())
+  if (!trackers_list->toPlainText().trimmed().isEmpty())
     saveTrackerList();
 
   QIniSettings settings("qBittorrent", "qBittorrent");
   QString last_path = settings.value("CreateTorrent/last_save_path", QDir::homePath()).toString();
 
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
-  if(!destination.isEmpty()) {
+  if (!destination.isEmpty()) {
     settings.setValue("CreateTorrent/last_save_path", misc::branchPath(destination));
-    if(!destination.toUpper().endsWith(".TORRENT"))
+    if (!destination.toUpper().endsWith(".TORRENT"))
       destination += QString::fromUtf8(".torrent");
   } else {
     return;
@@ -154,7 +154,7 @@ void TorrentCreatorDlg::handleCreationFailure(QString msg) {
 void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path) {
   // Remove busy cursor
   setCursor(QCursor(Qt::ArrowCursor));
-  if(checkStartSeeding->isChecked()) {
+  if (checkStartSeeding->isChecked()) {
     QString root_folder;
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
@@ -167,7 +167,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
     }
     QString hash = misc::toQString(t->info_hash());
     QString save_path = branch_path;
-    if(!root_folder.isEmpty()) {
+    if (!root_folder.isEmpty()) {
       save_path = QDir(save_path).absoluteFilePath(root_folder);
     }
     TorrentTempData::setSavePath(hash, save_path);
@@ -181,7 +181,7 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
 
 void TorrentCreatorDlg::on_cancelButton_clicked() {
   // End torrent creation thread
-  if(creatorThread && creatorThread->isRunning()) {
+  if (creatorThread && creatorThread->isRunning()) {
     creatorThread->abortCreation();
     creatorThread->terminate();
     // Wait for termination
@@ -219,7 +219,7 @@ void TorrentCreatorDlg::showProgressBar(bool show)
 void TorrentCreatorDlg::on_checkAutoPieceSize_clicked(bool checked)
 {
   comboPieceSize->setEnabled(!checked);
-  if(checked) {
+  if (checked) {
     updateOptimalPieceSize();
   }
 }
@@ -228,18 +228,18 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
 {
   quint64 torrent_size = misc::computePathSize(textInputPath->text());
   qDebug("Torrent size is %lld", torrent_size);
-  if(torrent_size == 0) return;
+  if (torrent_size == 0) return;
   int i = 0;
   qulonglong nb_pieces = 0;
   do {
     nb_pieces = (double)torrent_size/(m_piece_sizes.at(i)*1024.);
     qDebug("nb_pieces=%lld with piece_size=%s", nb_pieces, qPrintable(comboPieceSize->itemText(i)));
-    if(nb_pieces <= NB_PIECES_MIN) {
-      if(i > 1)
+    if (nb_pieces <= NB_PIECES_MIN) {
+      if (i > 1)
         --i;
       break;
     }
-    if(nb_pieces < NB_PIECES_MAX) {
+    if (nb_pieces < NB_PIECES_MAX) {
       qDebug("Good, nb_pieces=%lld < %d", nb_pieces, NB_PIECES_MAX);
       break;
     }

@@ -33,7 +33,7 @@
 
 QStringList RssFile::pathHierarchy() const {
   QStringList path;
-  if(parent())
+  if (parent())
     path << parent()->pathHierarchy();
   path << id();
   return path;

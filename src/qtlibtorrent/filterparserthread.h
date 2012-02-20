@@ -69,7 +69,7 @@ public:
     int ruleCount = 0;
     QFile file(filePath);
     if (file.exists()){
-      if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -79,9 +79,9 @@ public:
         QByteArray line = file.readLine();
         // Ignoring empty lines
         line = line.trimmed();
-        if(line.isEmpty()) continue;
+        if (line.isEmpty()) continue;
         // Ignoring commented lines
-        if(line.startsWith('#') || line.startsWith("//")) continue;
+        if (line.startsWith('#') || line.startsWith("//")) continue;
 
         // Line should be splitted by commas
         QList<QByteArray> partsList = line.split(',');
@@ -89,7 +89,7 @@ public:
 
         // IP Range should be splitted by a dash
         QList<QByteArray> IPs = partsList.first().split('-');
-        if(IPs.size() != 2) {
+        if (IPs.size() != 2) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("Line was %s", line.constData());
           continue;
@@ -97,30 +97,30 @@ public:
 
         boost::system::error_code ec;
         const QString strStartIP = cleanupIPAddress(IPs.at(0));
-        if(strStartIP.isEmpty()) {
+        if (strStartIP.isEmpty()) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
           continue;
         }
         libtorrent::address startAddr = libtorrent::address::from_string(qPrintable(strStartIP), ec);
-        if(ec) {
+        if (ec) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("Start IP of the range is malformated: %s", qPrintable(strStartIP));
           continue;
         }
         const QString strEndIP = cleanupIPAddress(IPs.at(1));
-        if(strEndIP.isEmpty()) {
+        if (strEndIP.isEmpty()) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("End IP of the range is malformated: %s", qPrintable(strEndIP));
           continue;
         }
         libtorrent::address endAddr = libtorrent::address::from_string(qPrintable(strEndIP), ec);
-        if(ec) {
+        if (ec) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("End IP of the range is malformated: %s", qPrintable(strEndIP));
           continue;
         }
-        if(startAddr.is_v4() != endAddr.is_v4()) {
+        if (startAddr.is_v4() != endAddr.is_v4()) {
           qDebug("Ipfilter.dat: line %d is malformed.", nbLine);
           qDebug("One IP is IPv4 and the other is IPv6!");
           continue;
@@ -128,12 +128,12 @@ public:
 
         // Check if there is an access value (apparently not mandatory)
         int nbAccess = 0;
-        if(nbElem > 1) {
+        if (nbElem > 1) {
           // There is possibly one
           nbAccess = partsList.at(1).trimmed().toInt();
         }
 
-        if(nbAccess > 127) {
+        if (nbAccess > 127) {
           // Ignoring this rule because access value is too high
           continue;
         }
@@ -155,7 +155,7 @@ public:
     int ruleCount = 0;
     QFile file(filePath);
     if (file.exists()){
-      if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -163,48 +163,48 @@ public:
       while (!file.atEnd() && !abort) {
         ++nbLine;
         QByteArray line = file.readLine().trimmed();
-        if(line.isEmpty()) continue;
+        if (line.isEmpty()) continue;
         // Ignoring commented lines
-        if(line.startsWith('#') || line.startsWith("//")) continue;
+        if (line.startsWith('#') || line.startsWith("//")) continue;
         // Line is splitted by :
         QList<QByteArray> partsList = line.split(':');
-        if(partsList.size() < 2){
+        if (partsList.size() < 2){
           qDebug("p2p file: line %d is malformed.", nbLine);
           continue;
         }
         // Get IP range
         QList<QByteArray> IPs = partsList.last().split('-');
-        if(IPs.size() != 2) {
+        if (IPs.size() != 2) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("line was: %s", line.constData());
           continue;
         }
         boost::system::error_code ec;
         QString strStartIP = cleanupIPAddress(IPs.at(0));
-        if(strStartIP.isEmpty()) {
+        if (strStartIP.isEmpty()) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
           continue;
         }
         libtorrent::address startAddr = libtorrent::address::from_string(qPrintable(strStartIP), ec);
-        if(ec) {
+        if (ec) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Start IP is invalid: %s", qPrintable(strStartIP));
           continue;
         }
         QString strEndIP = cleanupIPAddress(IPs.at(1));
-        if(strEndIP.isEmpty()) {
+        if (strEndIP.isEmpty()) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("End IP is invalid: %s", qPrintable(strStartIP));
           continue;
         }
         libtorrent::address endAddr = libtorrent::address::from_string(qPrintable(strEndIP), ec);
-        if(ec) {
+        if (ec) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("End IP is invalid: %s", qPrintable(strStartIP));
           continue;
         }
-        if(startAddr.is_v4() != endAddr.is_v4()) {
+        if (startAddr.is_v4() != endAddr.is_v4()) {
           qDebug("p2p file: line %d is malformed.", nbLine);
           qDebug("Line was: %s", line.constData());
           continue;
@@ -230,8 +230,8 @@ public:
     do {
       read = stream.readRawData(&c, 1);
       total_read += read;
-      if(read > 0) {
-        if(c != delim) {
+      if (read > 0) {
+        if (c != delim) {
           name += c;
         } else {
           // Delim found
@@ -247,7 +247,7 @@ public:
     int ruleCount = 0;
     QFile file(filePath);
     if (file.exists()){
-      if(!file.open(QIODevice::ReadOnly)){
+      if (!file.open(QIODevice::ReadOnly)){
         std::cerr << "I/O Error: Could not open ip filer file in read mode." << std::endl;
         return ruleCount;
       }
@@ -255,7 +255,7 @@ public:
       // Read header
       char buf[7];
       unsigned char version;
-      if(
+      if (
           !stream.readRawData(buf, sizeof(buf)) ||
           memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7) ||
           !stream.readRawData((char*)&version, sizeof(version))
@@ -264,13 +264,13 @@ public:
         return ruleCount;
       }
 
-      if(version==1 || version==2) {
+      if (version==1 || version==2) {
         qDebug ("p2b version 1 or 2");
         unsigned int start, end;
 
         string name;
         while(getlineInStream(stream, name, '\0') && !abort) {
-          if(
+          if (
               !stream.readRawData((char*)&start, sizeof(start)) ||
               !stream.readRawData((char*)&end, sizeof(end))
               ) {
@@ -289,26 +289,26 @@ public:
           } catch(std::exception&) {}
         }
       }
-      else if(version==3) {
+      else if (version==3) {
         qDebug ("p2b version 3");
         unsigned int namecount;
-        if(!stream.readRawData((char*)&namecount, sizeof(namecount))) {
+        if (!stream.readRawData((char*)&namecount, sizeof(namecount))) {
           std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
           return ruleCount;
         }
         namecount=ntohl(namecount);
         // Reading names although, we don't really care about them
-        for(unsigned int i=0; i<namecount; i++) {
+        for (unsigned int i=0; i<namecount; i++) {
           string name;
-          if(!getlineInStream(stream, name, '\0')) {
+          if (!getlineInStream(stream, name, '\0')) {
             std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
             return ruleCount;
           }
-          if(abort) return ruleCount;
+          if (abort) return ruleCount;
         }
         // Reading the ranges
         unsigned int rangecount;
-        if(!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
+        if (!stream.readRawData((char*)&rangecount, sizeof(rangecount))) {
           std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
           return ruleCount;
         }
@@ -316,8 +316,8 @@ public:
 
         unsigned int name, start, end;
 
-        for(unsigned int i=0; i<rangecount; i++) {
-          if(
+        for (unsigned int i=0; i<rangecount; i++) {
+          if (
               !stream.readRawData((char*)&name, sizeof(name)) ||
               !stream.readRawData((char*)&start, sizeof(start)) ||
               !stream.readRawData((char*)&end, sizeof(end))
@@ -335,7 +335,7 @@ public:
             filter.add_rule(first, last, libtorrent::ip_filter::blocked);
             ++ruleCount;
           } catch(std::exception&) {}
-          if(abort) return ruleCount;
+          if (abort) return ruleCount;
         }
       } else {
         std::cerr << "Parsing Error: The filter file is not a valid PeerGuardian P2B file." << std::endl;
@@ -354,7 +354,7 @@ public:
   void processFilterFile(QString _filePath){
     // First, import current filter
     filter = s->get_ip_filter();
-    if(isRunning()) {
+    if (isRunning()) {
       // Already parsing a filter, abort first
       abort = true;
       wait();
@@ -368,12 +368,12 @@ public:
   static void processFilterList(libtorrent::session *s, const QStringList& IPs) {
     // First, import current filter
     libtorrent::ip_filter filter = s->get_ip_filter();
-    foreach(const QString &ip, IPs) {
+    foreach (const QString &ip, IPs) {
       qDebug("Manual ban of peer %s", ip.toLocal8Bit().constData());
       boost::system::error_code ec;
       libtorrent::address addr = libtorrent::address::from_string(ip.toLocal8Bit().constData(), ec);
       Q_ASSERT(!ec);
-      if(!ec)
+      if (!ec)
         filter.add_rule(addr, addr, libtorrent::ip_filter::blocked);
     }
     s->set_ip_filter(filter);
@@ -386,7 +386,7 @@ signals:
 protected:
   QString cleanupIPAddress(QString _ip) {
     QHostAddress ip(_ip.trimmed());
-    if(ip.isNull()) {
+    if (ip.isNull()) {
       return QString();
     }
     return ip.toString();
@@ -395,11 +395,11 @@ protected:
   void run(){
     qDebug("Processing filter file");
     int ruleCount = 0;
-    if(filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
+    if (filePath.endsWith(".p2p", Qt::CaseInsensitive)) {
       // PeerGuardian p2p file
       ruleCount = parseP2PFilterFile(filePath);
     } else {
-      if(filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
+      if (filePath.endsWith(".p2b", Qt::CaseInsensitive)) {
         // PeerGuardian p2b file
         ruleCount = parseP2BFilterFile(filePath);
       } else {
@@ -407,7 +407,7 @@ protected:
         ruleCount = parseDATFilterFile(filePath);
       }
     }
-    if(abort)
+    if (abort)
       return;
     try {
       s->set_ip_filter(filter);

@@ -46,9 +46,9 @@ CookiesDlg::CookiesDlg(QWidget *parent, const QList<QByteArray> &raw_cookies) :
   ui->del_btn->setIcon(IconProvider::instance()->getIcon("list-remove"));
 
   ui->infos_lbl->setText(tr("Common keys for cookies are : '%1', '%2'.\nYou should get this information from your Web browser preferences.").arg("uid").arg("pass"));
-  foreach(const QByteArray &raw_cookie, raw_cookies) {
+  foreach (const QByteArray &raw_cookie, raw_cookies) {
     QList<QByteArray> cookie_parts = raw_cookie.split('=');
-    if(cookie_parts.size() != 2) continue;
+    if (cookie_parts.size() != 2) continue;
     const int i = ui->cookiesTable->rowCount();
     ui->cookiesTable->setRowCount(i+1);
     ui->cookiesTable->setItem(i, COOKIE_KEY, new QTableWidgetItem(cookie_parts.first().data()));
@@ -70,21 +70,21 @@ void CookiesDlg::on_add_btn_clicked() {
 void CookiesDlg::on_del_btn_clicked() {
   // Get selected cookie
   QList<QTableWidgetItem*> selection = ui->cookiesTable->selectedItems();
-  if(!selection.isEmpty()) {
+  if (!selection.isEmpty()) {
     ui->cookiesTable->removeRow(selection.first()->row());
   }
 }
 
 QList<QByteArray> CookiesDlg::getCookies() const {
   QList<QByteArray> ret;
-  for(int i=0; i<ui->cookiesTable->rowCount(); ++i) {
+  for (int i=0; i<ui->cookiesTable->rowCount(); ++i) {
     QString key;
-    if(ui->cookiesTable->item(i, COOKIE_KEY))
+    if (ui->cookiesTable->item(i, COOKIE_KEY))
       key = ui->cookiesTable->item(i, COOKIE_KEY)->text().trimmed();
     QString value;
-    if(ui->cookiesTable->item(i, COOKIE_VALUE))
+    if (ui->cookiesTable->item(i, COOKIE_VALUE))
       value = ui->cookiesTable->item(i, COOKIE_VALUE)->text().trimmed();
-    if(!key.isEmpty() && !value.isEmpty()) {
+    if (!key.isEmpty() && !value.isEmpty()) {
       const QString raw_cookie = key+"="+value;
       qDebug("Cookie: %s", qPrintable(raw_cookie));
       ret << raw_cookie.toLocal8Bit();
@@ -95,7 +95,7 @@ QList<QByteArray> CookiesDlg::getCookies() const {
 
 QList<QByteArray> CookiesDlg::askForCookies(QWidget *parent, const QList<QByteArray> &raw_cookies, bool *ok) {
   CookiesDlg dlg(parent, raw_cookies);
-  if(dlg.exec()) {
+  if (dlg.exec()) {
     *ok = true;
     return dlg.getCookies();
   }

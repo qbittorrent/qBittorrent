@@ -58,23 +58,23 @@ QList<QVariantMap> EventManager::getEventList() const {
 QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
   QList<QVariantMap> trackersInfo;
   QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-  if(h.is_valid()) {
+  if (h.is_valid()) {
     QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
     std::vector<announce_entry> vect_trackers = h.trackers();
     std::vector<announce_entry>::iterator it;
-    for(it = vect_trackers.begin(); it != vect_trackers.end(); it++) {
+    for (it = vect_trackers.begin(); it != vect_trackers.end(); it++) {
       QVariantMap tracker;
       QString tracker_url = misc::toQString(it->url);
       tracker["url"] = tracker_url;
       TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
       QString error_message = data.last_message.trimmed();
-      if(it->verified) {
+      if (it->verified) {
         tracker["status"] = tr("Working");
       } else {
-        if(it->updating && it->fails == 0) {
+        if (it->updating && it->fails == 0) {
           tracker["status"] = tr("Updating...");
         } else {
-          if(it->fails > 0) {
+          if (it->fails > 0) {
             tracker["status"] = tr("Not working");
           } else {
             tracker["status"] = tr("Not contacted yet");
@@ -92,21 +92,21 @@ QList<QVariantMap> EventManager::getPropTrackersInfo(QString hash) const {
 QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   QList<QVariantMap> files;
   QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-  if(!h.is_valid() || !h.has_metadata()) return files;
+  if (!h.is_valid() || !h.has_metadata()) return files;
   std::vector<int> priorities = h.file_priorities();
   std::vector<size_type> fp;
   h.file_progress(fp);
-  for(int i=0; i<h.num_files(); ++i) {
+  for (int i=0; i<h.num_files(); ++i) {
     QVariantMap file;
     file["name"] = h.filename_at(i);
     libtorrent::size_type size = h.filesize_at(i);
     file["size"] = misc::friendlyUnit((double)size);
-    if(size > 0)
+    if (size > 0)
       file["progress"] = fp[i]/(double)size;
     else
       file["progress"] = 1.; // Empty file...
     file["priority"] = priorities[i];
-    if(i == 0)
+    if (i == 0)
       file["is_seed"] = h.is_seed();
     files << file;
   }
@@ -116,11 +116,11 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
 void EventManager::setGlobalPreferences(QVariantMap m) {
   // UI
   Preferences pref;
-  if(m.contains("locale")) {
+  if (m.contains("locale")) {
     QString locale = m["locale"].toString();
-    if(pref.getLocale() != locale) {
+    if (pref.getLocale() != locale) {
       QTranslator *translator = new QTranslator;
-      if(translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
+      if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)){
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
       }else{
         qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
@@ -132,184 +132,184 @@ void EventManager::setGlobalPreferences(QVariantMap m) {
     }
   }
   // Downloads
-  if(m.contains("save_path"))
+  if (m.contains("save_path"))
     pref.setSavePath(m["save_path"].toString());
-  if(m.contains("temp_path_enabled"))
+  if (m.contains("temp_path_enabled"))
     pref.setTempPathEnabled(m["temp_path_enabled"].toBool());
-  if(m.contains("temp_path"))
+  if (m.contains("temp_path"))
     pref.setTempPath(m["temp_path"].toString());
-  if(m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
+  if (m.contains("scan_dirs") && m.contains("download_in_scan_dirs")) {
     QVariantList download_at_path_tmp = m["download_in_scan_dirs"].toList();
     QList<bool> download_at_path;
-    foreach(QVariant var, download_at_path_tmp) {
+    foreach (QVariant var, download_at_path_tmp) {
       download_at_path << var.toBool();
     }
     QStringList old_folders = pref.getScanDirs();
     QStringList new_folders = m["scan_dirs"].toStringList();
-    if(download_at_path.size() == new_folders.size()) {
+    if (download_at_path.size() == new_folders.size()) {
       pref.setScanDirs(new_folders);
       pref.setDownloadInScanDirs(download_at_path);
-      foreach(const QString &old_folder, old_folders) {
+      foreach (const QString &old_folder, old_folders) {
         // Update deleted folders
-        if(!new_folders.contains(old_folder)) {
+        if (!new_folders.contains(old_folder)) {
           QBtSession::instance()->getScanFoldersModel()->removePath(old_folder);
         }
       }
       int i = 0;
-      foreach(const QString &new_folder, new_folders) {
+      foreach (const QString &new_folder, new_folders) {
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
-        if(!old_folders.contains(new_folder)) {
+        if (!old_folders.contains(new_folder)) {
           QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
       }
     }
   }
-  if(m.contains("export_dir"))
+  if (m.contains("export_dir"))
     pref.setExportDir(m["export_dir"].toString());
-  if(m.contains("mail_notification_enabled"))
+  if (m.contains("mail_notification_enabled"))
     pref.setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
-  if(m.contains("mail_notification_email"))
+  if (m.contains("mail_notification_email"))
     pref.setMailNotificationEmail(m["mail_notification_email"].toString());
-  if(m.contains("mail_notification_smtp"))
+  if (m.contains("mail_notification_smtp"))
     pref.setMailNotificationSMTP(m["mail_notification_smtp"].toString());
-  if(m.contains("mail_notification_ssl_enabled"))
+  if (m.contains("mail_notification_ssl_enabled"))
     pref.setMailNotificationSMTPSSL(m["mail_notification_ssl_enabled"].toBool());
-  if(m.contains("mail_notification_auth_enabled"))
+  if (m.contains("mail_notification_auth_enabled"))
     pref.setMailNotificationSMTPAuth(m["mail_notification_auth_enabled"].toBool());
-  if(m.contains("mail_notification_username"))
+  if (m.contains("mail_notification_username"))
     pref.setMailNotificationSMTPUsername(m["mail_notification_username"].toString());
-  if(m.contains("mail_notification_password"))
+  if (m.contains("mail_notification_password"))
     pref.setMailNotificationSMTPPassword(m["mail_notification_password"].toString());
-  if(m.contains("autorun_enabled"))
+  if (m.contains("autorun_enabled"))
     pref.setAutoRunEnabled(m["autorun_enabled"].toBool());
-  if(m.contains("autorun_program"))
+  if (m.contains("autorun_program"))
     pref.setAutoRunProgram(m["autorun_program"].toString());
-  if(m.contains("preallocate_all"))
+  if (m.contains("preallocate_all"))
     pref.preAllocateAllFiles(m["preallocate_all"].toBool());
-  if(m.contains("queueing_enabled"))
+  if (m.contains("queueing_enabled"))
     pref.setQueueingSystemEnabled(m["queueing_enabled"].toBool());
-  if(m.contains("max_active_downloads"))
+  if (m.contains("max_active_downloads"))
     pref.setMaxActiveDownloads(m["max_active_downloads"].toInt());
-  if(m.contains("max_active_torrents"))
+  if (m.contains("max_active_torrents"))
     pref.setMaxActiveTorrents(m["max_active_torrents"].toInt());
-  if(m.contains("max_active_uploads"))
+  if (m.contains("max_active_uploads"))
     pref.setMaxActiveUploads(m["max_active_uploads"].toInt());
-  if(m.contains("dont_count_slow_torrents"))
+  if (m.contains("dont_count_slow_torrents"))
     pref.setIgnoreSlowTorrentsForQueueing(m["dont_count_slow_torrents"].toBool());
-  if(m.contains("incomplete_files_ext"))
+  if (m.contains("incomplete_files_ext"))
     pref.useIncompleteFilesExtension(m["incomplete_files_ext"].toBool());
   // Connection
-  if(m.contains("listen_port"))
+  if (m.contains("listen_port"))
     pref.setSessionPort(m["listen_port"].toInt());
-  if(m.contains("upnp"))
+  if (m.contains("upnp"))
     pref.setUPnPEnabled(m["upnp"].toBool());
-  if(m.contains("dl_limit"))
+  if (m.contains("dl_limit"))
     pref.setGlobalDownloadLimit(m["dl_limit"].toInt());
-  if(m.contains("up_limit"))
+  if (m.contains("up_limit"))
     pref.setGlobalUploadLimit(m["up_limit"].toInt());
-  if(m.contains("max_connec"))
+  if (m.contains("max_connec"))
     pref.setMaxConnecs(m["max_connec"].toInt());
-  if(m.contains("max_connec_per_torrent"))
+  if (m.contains("max_connec_per_torrent"))
     pref.setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
-  if(m.contains("max_uploads_per_torrent"))
+  if (m.contains("max_uploads_per_torrent"))
     pref.setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
 #if LIBTORRENT_VERSION_MINOR >= 16
-  if(m.contains("enable_utp"))
+  if (m.contains("enable_utp"))
     pref.setuTPEnabled(m["enable_utp"].toBool());
-  if(m.contains("limit_utp_rate"))
+  if (m.contains("limit_utp_rate"))
     pref.setuTPRateLimited(m["limit_utp_rate"].toBool());
 #endif
-  if(m.contains("limit_tcp_overhead"))
+  if (m.contains("limit_tcp_overhead"))
     pref.includeOverheadInLimits(m["limit_tcp_overhead"].toBool());
-  if(m.contains("alt_dl_limit"))
+  if (m.contains("alt_dl_limit"))
     pref.setAltGlobalDownloadLimit(m["alt_dl_limit"].toInt());
-  if(m.contains("alt_up_limit"))
+  if (m.contains("alt_up_limit"))
     pref.setAltGlobalUploadLimit(m["alt_up_limit"].toInt());
-  if(m.contains("scheduler_enabled"))
+  if (m.contains("scheduler_enabled"))
     pref.setSchedulerEnabled(m["scheduler_enabled"].toBool());
-  if(m.contains("schedule_from_hour") && m.contains("schedule_from_min")) {
+  if (m.contains("schedule_from_hour") && m.contains("schedule_from_min")) {
     pref.setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(),
                                      m["schedule_from_min"].toInt()));
   }
-  if(m.contains("schedule_to_hour") && m.contains("schedule_to_min")) {
+  if (m.contains("schedule_to_hour") && m.contains("schedule_to_min")) {
     pref.setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(),
                                    m["schedule_to_min"].toInt()));
   }
-  if(m.contains("scheduler_days"))
+  if (m.contains("scheduler_days"))
     pref.setSchedulerDays(scheduler_days(m["scheduler_days"].toInt()));
   // Bittorrent
-  if(m.contains("dht"))
+  if (m.contains("dht"))
     pref.setDHTEnabled(m["dht"].toBool());
-  if(m.contains("dhtSameAsBT"))
+  if (m.contains("dhtSameAsBT"))
     pref.setDHTPortSameAsBT(m["dhtSameAsBT"].toBool());
-  if(m.contains("dht_port"))
+  if (m.contains("dht_port"))
     pref.setDHTPort(m["dht_port"].toInt());
-  if(m.contains("pex"))
+  if (m.contains("pex"))
     pref.setPeXEnabled(m["pex"].toBool());
   qDebug("Pex support: %d", (int)m["pex"].toBool());
-  if(m.contains("lsd"))
+  if (m.contains("lsd"))
     pref.setLSDEnabled(m["lsd"].toBool());
-  if(m.contains("encryption"))
+  if (m.contains("encryption"))
     pref.setEncryptionSetting(m["encryption"].toInt());
 #if LIBTORRENT_VERSION_MINOR >= 16
-  if(m.contains("anonymous_mode"))
+  if (m.contains("anonymous_mode"))
     pref.enableAnonymousMode(m["anonymous_mode"].toBool());
 #endif
   // Proxy
-  if(m.contains("proxy_type"))
+  if (m.contains("proxy_type"))
     pref.setProxyType(m["proxy_type"].toInt());
-  if(m.contains("proxy_ip"))
+  if (m.contains("proxy_ip"))
     pref.setProxyIp(m["proxy_ip"].toString());
-  if(m.contains("proxy_port"))
+  if (m.contains("proxy_port"))
     pref.setProxyPort(m["proxy_port"].toUInt());
-  if(m.contains("proxy_peer_connections"))
+  if (m.contains("proxy_peer_connections"))
     pref.setProxyPeerConnections(m["proxy_peer_connections"].toBool());
-  if(m.contains("proxy_auth_enabled"))
+  if (m.contains("proxy_auth_enabled"))
     pref.setProxyAuthEnabled(m["proxy_auth_enabled"].toBool());
-  if(m.contains("proxy_username"))
+  if (m.contains("proxy_username"))
     pref.setProxyUsername(m["proxy_username"].toString());
-  if(m.contains("proxy_password"))
+  if (m.contains("proxy_password"))
     pref.setProxyPassword(m["proxy_password"].toString());
   // IP Filter
-  if(m.contains("ip_filter_enabled"))
+  if (m.contains("ip_filter_enabled"))
     pref.setFilteringEnabled(m["ip_filter_enabled"].toBool());
-  if(m.contains("ip_filter_path"))
+  if (m.contains("ip_filter_path"))
     pref.setFilter(m["ip_filter_path"].toString());
   // Web UI
-  if(m.contains("web_ui_port"))
+  if (m.contains("web_ui_port"))
     pref.setWebUiPort(m["web_ui_port"].toUInt());
-  if(m.contains("web_ui_username"))
+  if (m.contains("web_ui_username"))
     pref.setWebUiUsername(m["web_ui_username"].toString());
-  if(m.contains("web_ui_password"))
+  if (m.contains("web_ui_password"))
     pref.setWebUiPassword(m["web_ui_password"].toString());
-  if(m.contains("bypass_local_auth"))
+  if (m.contains("bypass_local_auth"))
     pref.setWebUiLocalAuthEnabled(!m["bypass_local_auth"].toBool());
-  if(m.contains("use_https"))
+  if (m.contains("use_https"))
     pref.setWebUiHttpsEnabled(m["use_https"].toBool());
 #ifndef QT_NO_OPENSSL
-  if(m.contains("ssl_key")) {
+  if (m.contains("ssl_key")) {
     QByteArray raw_key = m["ssl_key"].toString().toAscii();
     if (!QSslKey(raw_key, QSsl::Rsa).isNull())
       pref.setWebUiHttpsKey(raw_key);
   }
-  if(m.contains("ssl_cert")) {
+  if (m.contains("ssl_cert")) {
     QByteArray raw_cert = m["ssl_cert"].toString().toAscii();
     if (!QSslCertificate(raw_cert).isNull())
       pref.setWebUiHttpsCertificate(raw_cert);
   }
 #endif
   // Dyndns
-  if(m.contains("dyndns_enabled"))
+  if (m.contains("dyndns_enabled"))
     pref.setDynDNSEnabled(m["dyndns_enabled"].toBool());
-  if(m.contains("dyndns_service"))
+  if (m.contains("dyndns_service"))
     pref.setDynDNSService(m["dyndns_service"].toInt());
-  if(m.contains("dyndns_username"))
+  if (m.contains("dyndns_username"))
     pref.setDynDNSUsername(m["dyndns_username"].toString());
-  if(m.contains("dyndns_password"))
+  if (m.contains("dyndns_password"))
     pref.setDynDNSPassword(m["dyndns_password"].toString());
-  if(m.contains("dyndns_domain"))
+  if (m.contains("dyndns_domain"))
     pref.setDynDomainName(m["dyndns_domain"].toString());
   // Reload preferences
   QBtSession::instance()->configureSession();
@@ -326,7 +326,7 @@ QVariantMap EventManager::getGlobalPreferences() const {
   data["temp_path"] = pref.getTempPath();
   data["scan_dirs"] = pref.getScanDirs();
   QVariantList var_list;
-  foreach(bool b, pref.getDownloadInScanDirs()) {
+  foreach (bool b, pref.getDownloadInScanDirs()) {
     var_list << b;
   }
   data["download_in_scan_dirs"] = var_list;
@@ -412,10 +412,10 @@ QVariantMap EventManager::getGlobalPreferences() const {
 QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
   QVariantMap data;
   QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
-  if(h.is_valid() && h.has_metadata()) {
+  if (h.is_valid() && h.has_metadata()) {
     // Save path
     QString p = TorrentPersistentData::getSavePath(hash);
-    if(p.isEmpty()) p = h.save_path();
+    if (p.isEmpty()) p = h.save_path();
     data["save_path"] = p;
     // Creation date
     data["creation_date"] = h.creation_date();
@@ -426,23 +426,23 @@ QVariantMap EventManager::getPropGeneralInfo(QString hash) const {
     data["total_wasted"] = QVariant(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
     data["total_uploaded"] = QVariant(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
     data["total_downloaded"] = QVariant(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-    if(h.upload_limit() <= 0)
+    if (h.upload_limit() <= 0)
       data["up_limit"] = QString::fromUtf8("∞");
     else
       data["up_limit"] = QVariant(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-    if(h.download_limit() <= 0)
+    if (h.download_limit() <= 0)
       data["dl_limit"] = QString::fromUtf8("∞");
     else
       data["dl_limit"] =  QVariant(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
     QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
-    if(h.is_seed()) {
+    if (h.is_seed()) {
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
     }
     data["time_elapsed"] = elapsed_txt;
     data["nb_connections"] = QVariant(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
     // Update ratio info
     qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-    if(ratio > 100.)
+    if (ratio > 100.)
       data["share_ratio"] = QString::fromUtf8("∞");
     else
       data["share_ratio"] = QString(QByteArray::number(ratio, 'f', 1));
@@ -465,18 +465,18 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
   QString hash = h.hash();
   QVariantMap event;
   event["eta"] = QVariant(QString::fromUtf8("∞"));
-  if(h.is_paused()) {
-    if(h.has_error()) {
+  if (h.is_paused()) {
+    if (h.has_error()) {
       event["state"] = QVariant("error");
     } else {
-      if(h.is_seed())
+      if (h.is_seed())
         event["state"] = QVariant("pausedUP");
       else
         event["state"] = QVariant("pausedDL");
     }
   } else {
-    if(QBtSession::instance()->isQueueingEnabled() && h.is_queued()) {
-      if(h.is_seed())
+    if (QBtSession::instance()->isQueueingEnabled() && h.is_queued()) {
+      if (h.is_seed())
         event["state"] = QVariant("queuedUP");
       else
         event["state"] = QVariant("queuedDL");
@@ -485,7 +485,7 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
       {
       case torrent_status::finished:
       case torrent_status::seeding:
-        if(h.upload_payload_rate() > 0) {
+        if (h.upload_payload_rate() > 0) {
           event["state"] = QVariant("uploading");
         } else {
           event["state"] = QVariant("stalledUP");
@@ -495,7 +495,7 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
       case torrent_status::checking_files:
       case torrent_status::queued_for_checking:
       case torrent_status::checking_resume_data:
-        if(h.is_seed()) {
+        if (h.is_seed()) {
           event["state"] = QVariant("checkingUP");
         } else {
           event["state"] = QVariant("checkingDL");
@@ -503,7 +503,7 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
         break;
       case torrent_status::downloading:
       case torrent_status::downloading_metadata:
-        if(h.download_payload_rate() > 0)
+        if (h.download_payload_rate() > 0)
           event["state"] = QVariant("downloading");
         else
           event["state"] = QVariant("stalledDL");
@@ -519,8 +519,8 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
   event["size"] = QVariant(misc::friendlyUnit(h.actual_size()));
   event["progress"] = QVariant((double)h.progress());
   event["dlspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.download_payload_rate())));
-  if(QBtSession::instance()->isQueueingEnabled()) {
-    if(h.queue_position() >= 0)
+  if (QBtSession::instance()->isQueueingEnabled()) {
+    if (h.queue_position() >= 0)
       event["priority"] = QVariant(QString::number(h.queue_position()));
     else
       event["priority"] = "*";
@@ -529,16 +529,16 @@ void EventManager::modifiedTorrent(const QTorrentHandle& h)
   }
   event["upspeed"] = QVariant(tr("%1/s", "e.g. 120 KiB/s").arg(misc::friendlyUnit(h.upload_payload_rate())));
   QString seeds = QString::number(h.num_seeds());
-  if(h.num_complete() > 0)
+  if (h.num_complete() > 0)
     seeds += " ("+QString::number(h.num_complete())+")";
   event["num_seeds"] = QVariant(seeds);
   QString leechs = QString::number(h.num_peers()-h.num_seeds());
-  if(h.num_incomplete() > 0)
+  if (h.num_incomplete() > 0)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   event["num_leechs"] = QVariant(leechs);
   event["seed"] = QVariant(h.is_seed());
   qreal ratio = QBtSession::instance()->getRealRatio(hash);
-  if(ratio > 100.)
+  if (ratio > 100.)
     event["ratio"] = QString::fromUtf8("∞");
   else
     event["ratio"] = QVariant(QString::number(ratio, 'f', 1));

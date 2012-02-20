@@ -89,7 +89,7 @@ public:
 
   QList<QByteArray> getHostNameCookies(const QString &host_name) const {
     QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
-    if(!hosts_table.contains(host_name)) return QList<QByteArray>();
+    if (!hosts_table.contains(host_name)) return QList<QByteArray>();
     QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
     return raw_cookies.split(':');
   }
@@ -97,10 +97,10 @@ public:
   void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies) {
     QMap<QString, QVariant> hosts_table = value("Rss/hosts_cookies").toMap();
     QByteArray raw_cookies = "";
-    foreach(const QByteArray& cookie, cookies) {
+    foreach (const QByteArray& cookie, cookies) {
       raw_cookies += cookie + ":";
     }
-    if(raw_cookies.endsWith(":"))
+    if (raw_cookies.endsWith(":"))
       raw_cookies.chop(1);
     hosts_table.insert(host_name, raw_cookies);
     setValue("Rss/hosts_cookies", hosts_table);

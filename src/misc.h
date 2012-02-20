@@ -81,7 +81,7 @@ public:
   static inline QString file_extension(const QString &filename) {
     QString extension;
     int point_index = filename.lastIndexOf(".");
-    if(point_index >= 0) {
+    if (point_index >= 0) {
       extension = filename.mid(point_index+1);
     }
     return extension;

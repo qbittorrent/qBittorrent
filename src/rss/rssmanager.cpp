@@ -54,7 +54,7 @@ RssManager::~RssManager(){
 }
 
 void RssManager::updateRefreshInterval(uint val){
-  if(m_refreshInterval != val) {
+  if (m_refreshInterval != val) {
     m_refreshInterval = val;
     m_refreshTimer.start(m_refreshInterval*60000);
     qDebug("New RSS refresh interval is now every %dmin", m_refreshInterval);
@@ -65,20 +65,20 @@ void RssManager::loadStreamList() {
   RssSettings settings;
   const QStringList streamsUrl = settings.getRssFeedsUrls();
   const QStringList aliases =  settings.getRssFeedsAliases();
-  if(streamsUrl.size() != aliases.size()){
+  if (streamsUrl.size() != aliases.size()){
     std::cerr << "Corrupted Rss list, not loading it\n";
     return;
   }
   uint i = 0;
   qDebug() << Q_FUNC_INFO << streamsUrl;
-  foreach(QString s, streamsUrl){
+  foreach (QString s, streamsUrl){
     QStringList path = s.split("\\", QString::SkipEmptyParts);
-    if(path.empty()) continue;
+    if (path.empty()) continue;
     const QString feed_url = path.takeLast();
     qDebug() << "Feed URL:" << feed_url;
     // Create feed path (if it does not exists)
     RssFolder* feed_parent = this;
-    foreach(const QString &folder_name, path) {
+    foreach (const QString &folder_name, path) {
       qDebug() << "Adding parent folder:" << folder_name;
       feed_parent = feed_parent->addFolder(folder_name).data();
     }
@@ -86,7 +86,7 @@ void RssManager::loadStreamList() {
     qDebug() << "Adding feed to parent folder";
     RssFeedPtr stream = feed_parent->addStream(this, feed_url);
     const QString alias = aliases.at(i);
-    if(!alias.isEmpty()) {
+    if (!alias.isEmpty()) {
       stream->rename(alias);
     }
     ++i;
@@ -104,7 +104,7 @@ void RssManager::forwardFeedIconChanged(const QString &url, const QString &icon_
 
 void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folder) {
   RssFolder* src_folder = file->parent();
-  if(dest_folder != src_folder) {
+  if (dest_folder != src_folder) {
     // Remove reference in old folder
     src_folder->takeChild(file->id());
     // add to new Folder
@@ -118,9 +118,9 @@ void RssManager::saveStreamList() const {
   QStringList streamsUrl;
   QStringList aliases;
   QList<RssFeedPtr> streams = getAllFeeds();
-  foreach(const RssFeedPtr& stream, streams) {
+  foreach (const RssFeedPtr& stream, streams) {
     QString stream_path = stream->pathHierarchy().join("\\");
-    if(stream_path.isNull()) {
+    if (stream_path.isNull()) {
       stream_path = "";
     }
     qDebug("Saving stream path: %s", qPrintable(stream_path));

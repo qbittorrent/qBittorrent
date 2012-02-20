@@ -55,7 +55,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
   mp_manager = new QNetworkAccessManager(this);
   Preferences pref;
   // Proxy support
-  if(pref.isProxyEnabled()) {
+  if (pref.isProxyEnabled()) {
     QNetworkProxy proxy;
     switch(pref.getProxyType()) {
     case Proxy::SOCKS4:
@@ -69,7 +69,7 @@ ProgramUpdater::ProgramUpdater(QObject *parent) :
     proxy.setHostName(pref.getProxyIp());
     proxy.setPort(pref.getProxyPort());
     // Proxy authentication
-    if(pref.isProxyAuthEnabled()) {
+    if (pref.isProxyAuthEnabled()) {
       proxy.setUser(pref.getProxyUsername());
       proxy.setPassword(pref.getProxyPassword());
     }
@@ -101,7 +101,7 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
   disconnect(mp_manager, 0, this, 0);
   qDebug("Finished downloading the new qBittorrent updates RSS");
   QString new_version;
-  if(!reply->error()) {
+  if (!reply->error()) {
     qDebug("No download error, good.");
     QXmlStreamReader xml(reply);
     QString item_title;
@@ -117,16 +117,16 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
           in_item = true;
         }
       } else if (xml.isEndElement()) {
-        if(in_item && xml.name() == "title") {
+        if (in_item && xml.name() == "title") {
           in_title = false;
           const QString ext = misc::file_extension(item_title).toUpper();
           qDebug("Found an update with file extension: %s", qPrintable(ext));
-          if(ext == FILE_EXT) {
+          if (ext == FILE_EXT) {
             qDebug("The last update available is %s", qPrintable(item_title));
             new_version = extractVersionNumber(item_title);
-            if(!new_version.isEmpty()) {
+            if (!new_version.isEmpty()) {
               qDebug("Detected version is %s", qPrintable(new_version));
-              if(isVersionMoreRecent(new_version))
+              if (isVersionMoreRecent(new_version))
                 setUpdateUrl(item_title);
             }
             break;
@@ -135,7 +135,7 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
           in_item = false;
         }
       } else if (xml.isCharacters() && !xml.isWhitespace()) {
-        if(in_item && in_title)
+        if (in_item && in_title)
           item_title += xml.text().toString();
       }
     }
@@ -161,14 +161,14 @@ void ProgramUpdater::updateProgram()
   // Disconnect SIGNAL/SLOT
   disconnect(mp_manager, 0, this, 0);
   // Process the download
-  if(!reply->error()) {
+  if (!reply->error()) {
     // Save the file
     const QString installer_path = QDir::temp().absoluteFilePath("qbittorrent_update."+FILE_EXT.toLower());
     QFile update_installer(installer_path);
-    if(update_installer.exists()) {
+    if (update_installer.exists()) {
       update_installer.remove();
     }
-    if(update_installer.open(QIODevice::WriteOnly)) {
+    if (update_installer.open(QIODevice::WriteOnly)) {
       update_installer.write(reply->readAll());
       reply->close();
       update_installer.close();

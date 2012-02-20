@@ -73,7 +73,7 @@ void LogListWidget::appendLine(const QString &line)
   setItemWidget(item, lbl);
   const int nbLines = count();
   // Limit log size
-  if(nbLines > m_maxLines)
+  if (nbLines > m_maxLines)
     delete takeItem(nbLines - 1);
 }
 
@@ -82,7 +82,7 @@ void LogListWidget::copySelection()
   static QRegExp html_tag("<[^>]+>");
   QList<QListWidgetItem*> items = selectedItems();
   QStringList strings;
-  foreach(QListWidgetItem* it, items)
+  foreach (QListWidgetItem* it, items)
     strings << static_cast<QLabel*>(itemWidget(it))->text().replace(html_tag, "");
 
   QApplication::clipboard()->setText(strings.join("\n"));

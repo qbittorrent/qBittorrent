@@ -53,7 +53,7 @@ public:
   static void deleteTempData(QString hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    if(all_data.contains(hash)) {
+    if (all_data.contains(hash)) {
       all_data.remove(hash);
       settings.setValue("torrents-tmp", all_data);
     }
@@ -161,7 +161,7 @@ public:
     const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();
     const QList<int> list_var = misc::intListfromStringList(data.value("files_priority").toStringList());
-    foreach(const int &var, list_var) {
+    foreach (const int &var, list_var) {
       fp.push_back(var);
     }
   }
@@ -207,8 +207,8 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     QHash<QString, QVariant>::ConstIterator it;
-    for(it = all_data.constBegin(); it != all_data.constEnd(); it++) {
-      if(it.value().toHash().value("max_ratio", USE_GLOBAL_RATIO).toReal() >= 0) {
+    for (it = all_data.constBegin(); it != all_data.constEnd(); it++) {
+      if (it.value().toHash().value("max_ratio", USE_GLOBAL_RATIO).toReal() >= 0) {
         return true;
       }
     }
@@ -219,7 +219,7 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    if(!data.contains("add_date")) {
+    if (!data.contains("add_date")) {
       data["add_date"] = QDateTime::currentDateTime();
       all_data[hash] = data;
       settings.setValue("torrents", all_data);
@@ -231,7 +231,7 @@ public:
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();
     QDateTime dt = data.value("add_date").toDateTime();
-    if(!dt.isValid()) {
+    if (!dt.isValid()) {
       setAddedDate(hash);
       dt = QDateTime::currentDateTime();
     }
@@ -290,7 +290,7 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    if(h.is_seed())
+    if (h.is_seed())
       data["seed_date"] = QDateTime::currentDateTime();
     else
       data.remove("seed_date");
@@ -308,7 +308,7 @@ public:
   static void deletePersistentData(QString hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    if(all_data.contains(hash)) {
+    if (all_data.contains(hash)) {
       all_data.remove(hash);
       settings.setValue("torrents", all_data);
     }
@@ -322,12 +322,12 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     QHash<QString, QVariant> data = all_data.value(h.hash()).toHash();
     data["is_magnet"] = is_magnet;
-    if(is_magnet) {
+    if (is_magnet) {
       data["magnet_uri"] = misc::toQString(make_magnet_uri(h));
     }
     data["seed"] = h.is_seed();
     data["priority"] = h.queue_position();
-    if(save_path.isEmpty()) {
+    if (save_path.isEmpty()) {
       qDebug("TorrentPersistantData: save path is %s", qPrintable(h.save_path()));
       data["save_path"] = h.save_path();
     } else {
@@ -394,11 +394,11 @@ public:
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
     bool was_seed = data.value("seed", false).toBool();
-    if(was_seed != h.is_seed()) {
+    if (was_seed != h.is_seed()) {
       data["seed"] = !was_seed;
       all_data[h.hash()] = data;
       settings.setValue("torrents", all_data);
-      if(!was_seed) {
+      if (!was_seed) {
         // Save completion date
         saveSeedDate(h);
       }

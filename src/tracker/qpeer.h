@@ -20,7 +20,7 @@ struct QPeer {
 
   libtorrent::entry toEntry(bool no_peer_id) const {
     libtorrent::entry::dictionary_type peer_map;
-    if(!no_peer_id)
+    if (!no_peer_id)
       peer_map["id"] = libtorrent::entry(peer_id.toStdString());
     peer_map["ip"] = libtorrent::entry(ip.toStdString());
     peer_map["port"] = libtorrent::entry(port);

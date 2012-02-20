@@ -186,7 +186,7 @@ void RssFolder::removeAllSettings() {
 
 void RssFolder::saveItemsToDisk()
 {
-  foreach(const RssFilePtr& child, m_children.values()) {
+  foreach (const RssFilePtr& child, m_children.values()) {
     child->saveItemsToDisk();
   }
 }

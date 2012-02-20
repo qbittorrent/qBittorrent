@@ -70,14 +70,14 @@ using namespace libtorrent;
 
 QString GeoIPManager::geoipFolder(bool embedded) {
 #ifdef WITH_GEOIP_EMBEDDED
-  if(embedded)
+  if (embedded)
     return ":/geoip/";
   return misc::QDesktopServicesDataLocation()+"geoip"+QDir::separator();
 #else
   Q_UNUSED(embedded);
-  if(QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
+  if (QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))
     return "/usr/local/share/GeoIP/";
-  if(QFile::exists("/var/lib/GeoIP/GeoIP.dat"))
+  if (QFile::exists("/var/lib/GeoIP/GeoIP.dat"))
     return "/var/lib/GeoIP/";
   return "/usr/share/GeoIP/";
 #endif
@@ -89,22 +89,22 @@ QString GeoIPManager::geoipDBpath(bool embedded) {
 
 #ifdef WITH_GEOIP_EMBEDDED
 void GeoIPManager::exportEmbeddedDb() {
-  if(!QFile::exists(geoipDBpath(false)) || QFile(geoipDBpath(false)).size() != QFile(geoipDBpath(true)).size()) { // Export is required
+  if (!QFile::exists(geoipDBpath(false)) || QFile(geoipDBpath(false)).size() != QFile(geoipDBpath(true)).size()) { // Export is required
     qDebug("A local Geoip database update is required, proceeding...");
     // Create geoip folder is necessary
     QDir gfolder(geoipFolder(false));
-    if(!gfolder.exists()) {
-      if(!gfolder.mkpath(geoipFolder(false))) {
+    if (!gfolder.exists()) {
+      if (!gfolder.mkpath(geoipFolder(false))) {
         std::cerr << "Failed to create geoip folder at " << qPrintable(geoipFolder(false)) << std::endl;
         return;
       }
     }
     // Remove destination files
-    if(QFile::exists(geoipDBpath(false)))
+    if (QFile::exists(geoipDBpath(false)))
       QFile::remove(geoipDBpath(false));
     // Copy from executable to hard disk
     qDebug("%s -> %s", qPrintable(geoipDBpath(true)), qPrintable(geoipDBpath(false)));
-    if(!QFile::copy(geoipDBpath(true), geoipDBpath(false))) {
+    if (!QFile::copy(geoipDBpath(true), geoipDBpath(false))) {
       std::cerr << "ERROR: Failed to copy geoip.dat from executable to hard disk" << std::endl;
     }
     qDebug("Local Geoip database was updated");
@@ -116,7 +116,7 @@ void GeoIPManager::loadDatabase(session *s) {
 #ifdef WITH_GEOIP_EMBEDDED
   exportEmbeddedDb();
 #endif
-  if(QFile::exists(geoipDBpath(false))) {
+  if (QFile::exists(geoipDBpath(false))) {
     qDebug("Loading GeoIP database from %s...", qPrintable(geoipDBpath(false)));
     s->load_country_db(geoipDBpath(false).toLocal8Bit().constData());
   } else {
@@ -183,9 +183,9 @@ const char * country_name[253] =
  "Saint Barthelemy","Saint Martin"};
 
 QString GeoIPManager::CountryISOCodeToName(const char* iso) {
-  if(iso[0] == 0) return "N/A";
-  for(uint i = 0; i < num_countries; ++i) {
-    if(iso[0] == country_code[i][0] &&  iso[1] == country_code[i][1]) {
+  if (iso[0] == 0) return "N/A";
+  for (uint i = 0; i < num_countries; ++i) {
+    if (iso[0] == country_code[i][0] &&  iso[1] == country_code[i][1]) {
       return QLatin1String(country_name[i]);
     }
   }
@@ -195,7 +195,7 @@ QString GeoIPManager::CountryISOCodeToName(const char* iso) {
 
 // http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
 QIcon GeoIPManager::CountryISOCodeToIcon(const char* iso) {
-  if(iso[0] == 0 || iso[0] == '!') return QIcon();
+  if (iso[0] == 0 || iso[0] == '!') return QIcon();
   const QString isoStr = QString(QByteArray(iso, 2)).toLower();
   return QIcon(":/Icons/flags/"+isoStr+".png");
 }

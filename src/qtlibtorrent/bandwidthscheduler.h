@@ -29,7 +29,7 @@ public slots:
 
     QTime startAltSpeeds = pref.getSchedulerStartTime();
     QTime endAltSpeeds = pref.getSchedulerEndTime();
-    if(startAltSpeeds == endAltSpeeds) {
+    if (startAltSpeeds == endAltSpeeds) {
       std::cerr << "Error: bandwidth scheduler have the same start time and end time." << std::endl;
       std::cerr << "The bandwidth scheduler will be disabled" << std::endl;
       stop();
@@ -41,7 +41,7 @@ public slots:
     QTime now = QTime::currentTime();
     uint time_to_start = secsTo(now, startAltSpeeds);
     uint time_to_end = secsTo(now, endAltSpeeds);
-    if(time_to_end < time_to_start) {
+    if (time_to_end < time_to_start) {
       // We should be in alternative mode
       in_alternative_mode = true;
       // Start counting
@@ -61,9 +61,9 @@ public slots:
     // Get the day this mode was started (either today or yesterday)
     QDate current_date = QDateTime::currentDateTime().toLocalTime().date();
     int day = current_date.dayOfWeek();
-    if(in_alternative_mode) {
+    if (in_alternative_mode) {
       // It is possible that starttime was yesterday
-      if(QTime::currentTime().secsTo(pref.getSchedulerStartTime()) > 0) {
+      if (QTime::currentTime().secsTo(pref.getSchedulerStartTime()) > 0) {
         current_date.addDays(-1); // Go to yesterday
         day = current_date.day();
       }
@@ -75,17 +75,17 @@ public slots:
       emit switchToAlternativeMode(!in_alternative_mode);
       break;
     case WEEK_ENDS:
-      if(day == Qt::Saturday || day == Qt::Sunday)
+      if (day == Qt::Saturday || day == Qt::Sunday)
         emit switchToAlternativeMode(!in_alternative_mode);
       break;
     case WEEK_DAYS:
-      if(day != Qt::Saturday && day != Qt::Sunday)
+      if (day != Qt::Saturday && day != Qt::Sunday)
         emit switchToAlternativeMode(!in_alternative_mode);
       break;
     default:
       // Convert our enum index to Qt enum index
       int scheduler_day = ((int)pref.getSchedulerDays()) - 2;
-      if(day == scheduler_day)
+      if (day == scheduler_day)
         emit switchToAlternativeMode(!in_alternative_mode);
       break;
     }
@@ -101,7 +101,7 @@ private:
   // don't want that
   uint secsTo(QTime now, QTime t) {
     int diff = now.secsTo(t);
-    if(diff < 0) {
+    if (diff < 0) {
       // 86400 seconds in a day
       diff += 86400;
     }

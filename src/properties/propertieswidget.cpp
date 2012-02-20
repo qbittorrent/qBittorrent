@@ -140,7 +140,7 @@ void PropertiesWidget::showPiecesAvailability(bool show) {
   avail_pieces_lbl->setVisible(show);
   pieces_availability->setVisible(show);
   avail_average_lbl->setVisible(show);
-  if(show || (!show && !downloaded_pieces->isVisible()))
+  if (show || (!show && !downloaded_pieces->isVisible()))
     line_2->setVisible(show);
 }
 
@@ -148,12 +148,12 @@ void PropertiesWidget::showPiecesDownloaded(bool show) {
   downloaded_pieces_lbl->setVisible(show);
   downloaded_pieces->setVisible(show);
   progress_lbl->setVisible(show);
-  if(show || (!show && !pieces_availability->isVisible()))
+  if (show || (!show && !pieces_availability->isVisible()))
     line_2->setVisible(show);
 }
 
 void PropertiesWidget::setVisibility(bool visible) {
-  if(!visible && state == VISIBLE) {
+  if (!visible && state == VISIBLE) {
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     stackedProperties->setVisible(false);
     slideSizes = hSplitter->sizes();
@@ -165,7 +165,7 @@ void PropertiesWidget::setVisibility(bool visible) {
     return;
   }
 
-  if(visible && state == REDUCED) {
+  if (visible && state == REDUCED) {
     stackedProperties->setVisible(true);
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->handle(1)->setDisabled(false);
@@ -212,13 +212,13 @@ QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
 }
 
 void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
-  if(h.is_valid() && h == _h) {
+  if (h.is_valid() && h == _h) {
     QString p;
-    if(h.has_metadata() && h.num_files() == 1) {
+    if (h.has_metadata() && h.num_files() == 1) {
       p = h.firstFileSavePath();
     } else {
       p = TorrentPersistentData::getSavePath(h.hash());
-      if(p.isEmpty())
+      if (p.isEmpty())
         p = h.save_path();
     }
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
@@ -229,7 +229,7 @@ void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
 }
 
 void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
-  if(h.is_valid() && h == _h) {
+  if (h.is_valid() && h == _h) {
     loadTorrentInfos(h);
   }
 }
@@ -237,7 +237,7 @@ void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
 void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
   clear();
   h = _h;
-  if(!h.is_valid()) {
+  if (!h.is_valid()) {
     clear();
     return;
   }
@@ -250,7 +250,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
     // Hash
     hash_lbl->setText(h.hash());
     PropListModel->model()->clear();
-    if(h.has_metadata()) {
+    if (h.has_metadata()) {
       // Creation date
       lbl_creationDate->setText(h.creation_date());
       // Pieces size
@@ -273,7 +273,7 @@ void PropertiesWidget::readSettings() {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   // Restore splitter sizes
   QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
-  if(sizes_str.size() == 2) {
+  if (sizes_str.size() == 2) {
     slideSizes << sizes_str.first().toInt();
     slideSizes << sizes_str.last().toInt();
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
@@ -284,7 +284,7 @@ void PropertiesWidget::readSettings() {
   }
   const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
   m_tabBar->setCurrentIndex(current_tab);
-  if(!settings.value("TorrentProperties/Visible", false).toBool()) {
+  if (!settings.value("TorrentProperties/Visible", false).toBool()) {
     setVisibility(false);
   }
 }
@@ -295,12 +295,12 @@ void PropertiesWidget::saveSettings() {
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;
-  if(state == VISIBLE)
+  if (state == VISIBLE)
     sizes = hSplitter->sizes();
   else
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
-  if(sizes.size() == 2) {
+  if (sizes.size() == 2) {
     settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
   }
   settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
@@ -316,27 +316,27 @@ void PropertiesWidget::reloadPreferences() {
 
 void PropertiesWidget::loadDynamicData() {
   // Refresh only if the torrent handle is valid and if visible
-  if(!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
+  if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
     // Transfer infos
-    if(stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
+    if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
       wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-      if(h.upload_limit() <= 0)
+      if (h.upload_limit() <= 0)
         lbl_uplimit->setText(QString::fromUtf8("∞"));
       else
         lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-      if(h.download_limit() <= 0)
+      if (h.download_limit() <= 0)
         lbl_dllimit->setText(QString::fromUtf8("∞"));
       else
         lbl_dllimit->setText(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
-      if(h.is_seed()) {
+      if (h.is_seed()) {
         elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
       }
       lbl_elapsed->setText(elapsed_txt);
-      if(h.connections_limit() > 0)
+      if (h.connections_limit() > 0)
         lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
       else
         lbl_connections->setText(QString::number(h.num_connections()));
@@ -344,18 +344,18 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      if(ratio > QBtSession::MAX_RATIO)
+      if (ratio > QBtSession::MAX_RATIO)
         shareRatio->setText(QString::fromUtf8("∞"));
       else
         shareRatio->setText(QString(QByteArray::number(ratio, 'f', 2)));
-      if(!h.is_seed()) {
+      if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
         bitfield bf(h.get_torrent_info().num_pieces(), 0);
         h.downloading_pieces(bf);
         downloaded_pieces->setProgress(h.pieces(), bf);
         // Pieces availability
-        if(h.has_metadata() && !h.is_paused() && !h.is_queued() && !h.is_checking()) {
+        if (h.has_metadata() && !h.is_paused() && !h.is_queued() && !h.is_checking()) {
           showPiecesAvailability(true);
           std::vector<int> avail;
           h.piece_availability(avail);
@@ -366,7 +366,7 @@ void PropertiesWidget::loadDynamicData() {
         }
         // Progress
         qreal progress = h.progress()*100.;
-        if(progress > 99.94 && progress < 100.)
+        if (progress > 99.94 && progress < 100.)
           progress = 99.9;
         progress_lbl->setText(QString::number(progress, 'f', 1)+"%");
       } else {
@@ -375,19 +375,19 @@ void PropertiesWidget::loadDynamicData() {
       }
       return;
     }
-    if(stackedProperties->currentIndex() == PropTabBar::TRACKERS_TAB) {
+    if (stackedProperties->currentIndex() == PropTabBar::TRACKERS_TAB) {
       // Trackers
       trackerList->loadTrackers();
       return;
     }
-    if(stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
+    if (stackedProperties->currentIndex() == PropTabBar::PEERS_TAB) {
       // Load peers
       peersList->loadPeers(h);
       return;
     }
-    if(stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
+    if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
       // Files progress
-      if(h.is_valid() && h.has_metadata()) {
+      if (h.is_valid() && h.has_metadata()) {
         qDebug("Updating priorities in files tab");
         filesList->setUpdatesEnabled(false);
         std::vector<size_type> fp;
@@ -405,16 +405,16 @@ void PropertiesWidget::loadUrlSeeds(){
   qDebug("Loading URL seeds");
   const QStringList hc_seeds = h.url_seeds();
   // Add url seeds
-  foreach(const QString &hc_seed, hc_seeds){
+  foreach (const QString &hc_seed, hc_seeds){
     qDebug("Loading URL seed: %s", qPrintable(hc_seed));
     new QListWidgetItem(hc_seed, listWebSeeds);
   }
 }
 
 void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
-  if(!index.isValid()) return;
-  if(!h.is_valid() || !h.has_metadata()) return;
-  if(PropListModel->getType(index) == TorrentFileItem::TFILE) {
+  if (!index.isValid()) return;
+  if (!h.is_valid() || !h.has_metadata()) return;
+  if (PropListModel->getType(index) == TorrentFileItem::TFILE) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
     const QString filename = h.filepath_at(i);
@@ -422,7 +422,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     qDebug("Trying to open file at %s", qPrintable(file_path));
     // Flush data
     h.flush_cache();
-    if(QFile::exists(file_path)) {
+    if (QFile::exists(file_path)) {
       QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
@@ -442,7 +442,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     qDebug("Trying to open folder at %s", qPrintable(file_path));
     // Flush data
     h.flush_cache();
-    if(QFile::exists(file_path)) {
+    if (QFile::exists(file_path)) {
       QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
     } else {
       QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
@@ -454,15 +454,15 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
   QAction *actRename = 0;
-  if(selectedRows.size() == 1) {
+  if (selectedRows.size() == 1) {
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;
 #if LIBTORRENT_VERSION_MINOR > 15
-  if(!h.status(0x0).is_seeding) {
+  if (!h.status(0x0).is_seeding) {
 #else
-  if(!static_cast<torrent_handle>(h).is_seed()) {
+  if (!static_cast<torrent_handle>(h).is_seed()) {
 #endif
     subMenu.setTitle(tr("Priority"));
     subMenu.addAction(actionNot_downloaded);
@@ -473,24 +473,24 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&){
   }
   // Call menu
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
-  if(act) {
-    if(act == actRename) {
+  if (act) {
+    if (act == actRename) {
       renameSelectedFile();
     } else {
       int prio = 1;
-      if(act == actionHigh) {
+      if (act == actionHigh) {
         prio = prio::HIGH;
       } else {
-        if(act == actionMaximum) {
+        if (act == actionMaximum) {
           prio = prio::MAXIMUM;
         } else {
-          if(act == actionNot_downloaded) {
+          if (act == actionNot_downloaded) {
             prio = prio::IGNORED;
           }
         }
       }
       qDebug("Setting files priority");
-      foreach(QModelIndex index, selectedRows) {
+      foreach (QModelIndex index, selectedRows) {
         qDebug("Setting priority(%d) for file at row %d", prio, index.row());
         PropListModel->setData(PropListModel->index(index.row(), PRIORITY, index.parent()), prio);
       }
@@ -510,36 +510,36 @@ void PropertiesWidget::renameSelectedFile() {
                                                 tr("New name:"), QLineEdit::Normal,
                                                 index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
-    if(!misc::isValidFileSystemName(new_name_last)) {
+    if (!misc::isValidFileSystemName(new_name_last)) {
       QMessageBox::warning(this, tr("The file could not be renamed"),
                            tr("This file name contains forbidden characters, please choose a different one."),
                            QMessageBox::Ok);
       return;
     }
-    if(PropListModel->getType(index) == TorrentFileItem::TFILE) {
+    if (PropListModel->getType(index) == TorrentFileItem::TFILE) {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
-      if(!h.is_valid() || !h.has_metadata()) return;
+      if (!h.is_valid() || !h.has_metadata()) return;
       QString old_name = h.filepath_at(file_index).replace("\\", "/");
-      if(old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
+      if (old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
       QStringList path_items = old_name.split("/");
       path_items.removeLast();
       path_items << new_name_last;
       QString new_name = path_items.join("/");
-      if(old_name == new_name) {
+      if (old_name == new_name) {
         qDebug("Name did not change");
         return;
       }
       new_name = QDir::cleanPath(new_name);
       // Check if that name is already used
-      for(int i=0; i<h.num_files(); ++i) {
-        if(i == file_index) continue;
+      for (int i=0; i<h.num_files(); ++i) {
+        if (i == file_index) continue;
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
-        if(h.filepath_at(i).compare(new_name, Qt::CaseSensitive) == 0) {
+        if (h.filepath_at(i).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
-        if(h.filepath_at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
+        if (h.filepath_at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
 #endif
           // Display error message
           QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -552,9 +552,9 @@ void PropertiesWidget::renameSelectedFile() {
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
       h.rename_file(file_index, new_name);
       // Force recheck
-      if(force_recheck) h.force_recheck();
+      if (force_recheck) h.force_recheck();
       // Rename if torrent files model too
-      if(new_name_last.endsWith(".!qB"))
+      if (new_name_last.endsWith(".!qB"))
         new_name_last.chop(4);
       PropListModel->setData(index, new_name_last);
     } else {
@@ -570,15 +570,15 @@ void PropertiesWidget::renameSelectedFile() {
       path_items.removeLast();
       path_items << new_name_last;
       QString new_path = path_items.join("/");
-      if(!new_path.endsWith("/")) new_path += "/";
+      if (!new_path.endsWith("/")) new_path += "/";
       // Check for overwriting
       const int num_files = h.num_files();
-      for(int i=0; i<num_files; ++i) {
+      for (int i=0; i<num_files; ++i) {
         const QString current_name = h.filepath_at(i);
 #if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
-        if(current_name.startsWith(new_path, Qt::CaseSensitive)) {
+        if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
-        if(current_name.startsWith(new_path, Qt::CaseInsensitive)) {
+        if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #endif
           QMessageBox::warning(this, tr("The folder could not be renamed"),
                                tr("This name is already in use in this folder. Please use a different name."),
@@ -588,12 +588,12 @@ void PropertiesWidget::renameSelectedFile() {
       }
       bool force_recheck = false;
       // Replace path in all files
-      for(int i=0; i<num_files; ++i) {
+      for (int i=0; i<num_files; ++i) {
         const QString current_name = h.filepath_at(i);
-        if(current_name.startsWith(old_path)) {
+        if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
           new_name.replace(0, old_path.length(), new_path);
-          if(!force_recheck && QDir(h.save_path()).exists(new_name))
+          if (!force_recheck && QDir(h.save_path()).exists(new_name))
             force_recheck = true;
           new_name = QDir::cleanPath(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
@@ -601,7 +601,7 @@ void PropertiesWidget::renameSelectedFile() {
         }
       }
       // Force recheck
-      if(force_recheck) h.force_recheck();
+      if (force_recheck) h.force_recheck();
       // Rename folder in torrent files model too
       PropListModel->setData(index, new_name_last);
       // Remove old folder
@@ -622,9 +622,9 @@ void PropertiesWidget::askWebSeed(){
   const QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
                                                  tr("New url seed:"), QLineEdit::Normal,
                                                  QString::fromUtf8("http://www."), &ok);
-  if(!ok) return;
+  if (!ok) return;
   qDebug("Adding %s web seed", qPrintable(url_seed));
-  if(!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
+  if (!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
     QMessageBox::warning(this, tr("qBittorrent"),
                          tr("This url seed is already in the list."),
                          QMessageBox::Ok);
@@ -638,12 +638,12 @@ void PropertiesWidget::askWebSeed(){
 void PropertiesWidget::deleteSelectedUrlSeeds(){
   const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
   bool change = false;
-  foreach(const QListWidgetItem *item, selectedItems){
+  foreach (const QListWidgetItem *item, selectedItems){
     QString url_seed = item->text();
     h.remove_url_seed(url_seed);
     change = true;
   }
-  if(change){
+  if (change){
     // Refresh list
     loadUrlSeeds();
   }
@@ -658,45 +658,45 @@ bool PropertiesWidget::applyPriorities() {
   qDebug("prioritize files: %d", priorities[0]);
   h.prioritize_files(priorities);
   // Restore first/last piece first option if necessary
-  if(first_last_piece_first)
+  if (first_last_piece_first)
     h.prioritize_first_last_piece(true);
   return true;
 }
 
 
 void PropertiesWidget::on_changeSavePathButton_clicked() {
-  if(!h.is_valid()) return;
+  if (!h.is_valid()) return;
   QString new_path;
-  if(h.has_metadata() && h.num_files() == 1) {
+  if (h.has_metadata() && h.num_files() == 1) {
     new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"),  h.firstFileSavePath());
   } else {
     const QDir saveDir(TorrentPersistentData::getSavePath(h.hash()));
     new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
                                                  QFileDialog::DontConfirmOverwrite|QFileDialog::ShowDirsOnly|QFileDialog::HideNameFilterDetails);
   }
-  if(!new_path.isEmpty()){
+  if (!new_path.isEmpty()){
     // Check if savePath exists
     QString save_path_dir = new_path.replace("\\", "/");
     QString new_file_name;
-    if(h.has_metadata() && h.num_files() == 1) {
+    if (h.has_metadata() && h.num_files() == 1) {
       new_file_name = misc::fileName(save_path_dir); // New file name
       save_path_dir = misc::branchPath(save_path_dir, true); // Skip file name
     }
     QDir savePath(misc::expandPath(save_path_dir));
     // Actually move storage
-    if(!QBtSession::instance()->useTemporaryFolder() || h.is_seed()) {
-      if(!savePath.exists()) savePath.mkpath(savePath.absolutePath());
+    if (!QBtSession::instance()->useTemporaryFolder() || h.is_seed()) {
+      if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
       h.move_storage(savePath.absolutePath());
     }
     // Update save_path in dialog
     QString display_path;
-    if(h.has_metadata() && h.num_files() == 1) {
+    if (h.has_metadata() && h.num_files() == 1) {
       // Rename the file
       Q_ASSERT(!new_file_name.isEmpty());
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-      if(h.filename_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
+      if (h.filename_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
 #else
-      if(h.filename_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
+      if (h.filename_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
 #endif
         qDebug("Renaming single file to %s", qPrintable(new_file_name));
         h.rename_file(0, new_file_name);
@@ -715,7 +715,7 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
 }
 
 void PropertiesWidget::filteredFilesChanged() {
-  if(h.is_valid()) {
+  if (h.is_valid()) {
     applyPriorities();
   }
 }
