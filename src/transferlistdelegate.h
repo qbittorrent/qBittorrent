@@ -57,7 +57,7 @@ public:
 
   ~TransferListDelegate() {}
 
-  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     painter->save();
     switch(index.column()) {

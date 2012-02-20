@@ -149,7 +149,7 @@ QString FeedListWidget::getItemID(QTreeWidgetItem *item) const {
   return m_rssMapping.value(item)->id();
 }
 
-QTreeWidgetItem* FeedListWidget::getTreeItemFromUrl(const QString &url) const{
+QTreeWidgetItem* FeedListWidget::getTreeItemFromUrl(const QString &url) const {
   return m_feedsItems.value(url, 0);
 }
 

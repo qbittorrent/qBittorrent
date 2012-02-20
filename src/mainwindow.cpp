@@ -602,7 +602,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(const QTorrentHandle &h
   }
 }
 
-void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const{
+void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const {
   // Display a message box
   showNotificationBaloon(tr("Url download error"), tr("Couldn't download file at url: %1, reason: %2.").arg(url).arg(reason));
 }

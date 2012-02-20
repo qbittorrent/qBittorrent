@@ -498,11 +498,11 @@ void options_imp::saveOptions() {
   advancedSettings->saveAdvancedSettings();
 }
 
-bool options_imp::isFilteringEnabled() const{
+bool options_imp::isFilteringEnabled() const {
   return checkIPFilter->isChecked();
 }
 
-int options_imp::getProxyType() const{
+int options_imp::getProxyType() const {
   switch(comboProxyType->currentIndex()) {
   case 1:
     return Proxy::SOCKS4;
@@ -757,7 +757,7 @@ void options_imp::loadOptions() {
 
 // return min & max ports
 // [min, max]
-int options_imp::getPort() const{
+int options_imp::getPort() const {
   return spinPort->value();
 }
 
@@ -766,7 +766,7 @@ void options_imp::on_randomButton_clicked() {
   spinPort->setValue(rand() % 64512 + 1024);
 }
 
-int options_imp::getEncryptionSetting() const{
+int options_imp::getEncryptionSetting() const {
   return comboEncryption->currentIndex();
 }
 
@@ -782,12 +782,12 @@ int options_imp::getMaxActiveTorrents() const {
   return spinMaxActiveTorrents->value();
 }
 
-bool options_imp::minimizeToTray() const{
+bool options_imp::minimizeToTray() const {
   if (!checkShowSystray->isChecked()) return false;
   return checkMinimizeToSysTray->isChecked();
 }
 
-bool options_imp::closeToTray() const{
+bool options_imp::closeToTray() const {
   if (!checkShowSystray->isChecked()) return false;
   return checkCloseToSystray->isChecked();
 }
@@ -796,21 +796,21 @@ bool options_imp::isQueueingSystemEnabled() const {
   return checkEnableQueueing->isChecked();
 }
 
-bool options_imp::isDHTEnabled() const{
+bool options_imp::isDHTEnabled() const {
   return checkDHT->isChecked();
 }
 
-bool options_imp::isLSDEnabled() const{
+bool options_imp::isLSDEnabled() const {
   return checkLSD->isChecked();
 }
 
-bool options_imp::isUPnPEnabled() const{
+bool options_imp::isUPnPEnabled() const {
   return checkUPnP->isChecked();
 }
 
 // Return Download & Upload limits in kbps
 // [download,upload]
-QPair<int,int> options_imp::getGlobalBandwidthLimits() const{
+QPair<int,int> options_imp::getGlobalBandwidthLimits() const {
   int DL = -1, UP = -1;
   if (checkDownloadLimit->isChecked()) {
     DL = spinDownloadLimit->value();
@@ -826,7 +826,7 @@ bool options_imp::startMinimized() const {
   return checkStartMinimized->isChecked();
 }
 
-bool options_imp::systrayIntegration() const{
+bool options_imp::systrayIntegration() const {
   if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
   return checkShowSystray->isChecked();
 }
@@ -836,7 +836,7 @@ int options_imp::getDHTPort() const {
 }
 
 // Return Share ratio
-qreal options_imp::getMaxRatio() const{
+qreal options_imp::getMaxRatio() const {
   if (checkMaxRatio->isChecked()) {
     return spinMaxRatio->value();
   }
@@ -844,7 +844,7 @@ qreal options_imp::getMaxRatio() const{
 }
 
 // Return Save Path
-QString options_imp::getSavePath() const{
+QString options_imp::getSavePath() const {
   if (textSavePath->text().trimmed().isEmpty()) {
     QString save_path = Preferences().getSavePath();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
@@ -864,7 +864,7 @@ bool options_imp::isTempPathEnabled() const {
 }
 
 // Return max connections number
-int options_imp::getMaxConnecs() const{
+int options_imp::getMaxConnecs() const {
   if (!checkMaxConnecs->isChecked()) {
     return -1;
   }else{
@@ -872,7 +872,7 @@ int options_imp::getMaxConnecs() const{
   }
 }
 
-int options_imp::getMaxConnecsPerTorrent() const{
+int options_imp::getMaxConnecsPerTorrent() const {
   if (!checkMaxConnecsPerTorrent->isChecked()) {
     return -1;
   }else{
@@ -880,7 +880,7 @@ int options_imp::getMaxConnecsPerTorrent() const{
   }
 }
 
-int options_imp::getMaxUploadsPerTorrent() const{
+int options_imp::getMaxUploadsPerTorrent() const {
   if (!checkMaxUploadsPerTorrent->isChecked()) {
     return -1;
   }else{
@@ -916,7 +916,7 @@ void options_imp::on_buttonBox_rejected() {
   reject();
 }
 
-bool options_imp::useAdditionDialog() const{
+bool options_imp::useAdditionDialog() const {
   return checkAdditionDialog->isChecked();
 }
 
@@ -971,36 +971,36 @@ bool options_imp::isDHTPortSameAsBT() const {
 }
 
 // Proxy settings
-bool options_imp::isProxyEnabled() const{
+bool options_imp::isProxyEnabled() const {
   return comboProxyType->currentIndex();
 }
 
-bool options_imp::isProxyAuthEnabled() const{
+bool options_imp::isProxyAuthEnabled() const {
   return checkProxyAuth->isChecked();
 }
 
-QString options_imp::getProxyIp() const{
+QString options_imp::getProxyIp() const {
   return textProxyIP->text().trimmed();
 }
 
-unsigned short options_imp::getProxyPort() const{
+unsigned short options_imp::getProxyPort() const {
   return spinProxyPort->value();
 }
 
-QString options_imp::getProxyUsername() const{
+QString options_imp::getProxyUsername() const {
   QString username = textProxyUsername->text();
   username = username.trimmed();
   return username;
 }
 
-QString options_imp::getProxyPassword() const{
+QString options_imp::getProxyPassword() const {
   QString password = textProxyPassword->text();
   password = password.trimmed();
   return password;
 }
 
 // Locale Settings
-QString options_imp::getLocale() const{
+QString options_imp::getLocale() const {
   return comboI18n->itemData(comboI18n->currentIndex(), Qt::UserRole).toString();
 }
 
@@ -1145,7 +1145,7 @@ void options_imp::on_browseTempDirButton_clicked() {
 }
 
 // Return Filter object to apply to BT session
-QString options_imp::getFilter() const{
+QString options_imp::getFilter() const {
   return textFilterPath->text();
 }
 

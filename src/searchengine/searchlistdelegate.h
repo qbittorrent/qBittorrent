@@ -48,7 +48,7 @@ class SearchListDelegate: public QItemDelegate {
 
     ~SearchListDelegate() {}
 
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
       painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()) {

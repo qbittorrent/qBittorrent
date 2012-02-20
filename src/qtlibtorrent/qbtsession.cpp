@@ -709,7 +709,7 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
 }
 
 // Return the torrent handle, given its hash
-QTorrentHandle QBtSession::getTorrentHandle(const QString &hash) const{
+QTorrentHandle QBtSession::getTorrentHandle(const QString &hash) const {
   return QTorrentHandle(s->find_torrent(QStringToSha1(hash)));
 }
 
@@ -1545,7 +1545,7 @@ bool QBtSession::enableDHT(bool b) {
   return true;
 }
 
-qreal QBtSession::getRealRatio(const QString &hash) const{
+qreal QBtSession::getRealRatio(const QString &hash) const {
   QTorrentHandle h = getTorrentHandle(hash);
   if (!h.is_valid()) {
     return 0.;
@@ -1690,7 +1690,7 @@ void QBtSession::addPeerBanMessage(QString ip, bool from_ipfilter) {
   emit newBanMessage(msg);
 }
 
-bool QBtSession::isFilePreviewPossible(const QString &hash) const{
+bool QBtSession::isFilePreviewPossible(const QString &hash) const {
   // See if there are supported files in the torrent
   const QTorrentHandle h = getTorrentHandle(hash);
   if (!h.is_valid() || !h.has_metadata()) {
@@ -2550,16 +2550,16 @@ void QBtSession::recheckTorrent(const QString &hash) {
   }
 }
 
-QHash<QString, TrackerInfos> QBtSession::getTrackersInfo(const QString &hash) const{
+QHash<QString, TrackerInfos> QBtSession::getTrackersInfo(const QString &hash) const {
   return trackersInfos.value(hash, QHash<QString, TrackerInfos>());
 }
 
-int QBtSession::getListenPort() const{
+int QBtSession::getListenPort() const {
   qDebug() << Q_FUNC_INFO << s->listen_port();
   return s->listen_port();
 }
 
-session_status QBtSession::getSessionStatus() const{
+session_status QBtSession::getSessionStatus() const {
   return s->status();
 }
 
@@ -2674,14 +2674,14 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
 // Return current download rate for the BT
 // session. Payload means that it only take into
 // account "useful" part of the rate
-qreal QBtSession::getPayloadDownloadRate() const{
+qreal QBtSession::getPayloadDownloadRate() const {
   return s->status().payload_download_rate;
 }
 
 // Return current upload rate for the BT
 // session. Payload means that it only take into
 // account "useful" part of the rate
-qreal QBtSession::getPayloadUploadRate() const{
+qreal QBtSession::getPayloadUploadRate() const {
   return s->status().payload_upload_rate;
 }
 

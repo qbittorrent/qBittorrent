@@ -155,7 +155,7 @@ void TransferListWidget::setRefreshInterval(int t) {
   listModel->setRefreshInterval(t);
 }
 
-int TransferListWidget::getRowFromHash(QString hash) const{
+int TransferListWidget::getRowFromHash(QString hash) const {
   return listModel->torrentRow(hash);
 }
 

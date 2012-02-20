@@ -132,7 +132,7 @@ bool RssFeed::isLoading() const {
   return m_loading;
 }
 
-QString RssFeed::title() const{
+QString RssFeed::title() const {
   return m_title;
 }
 
@@ -143,29 +143,24 @@ void RssFeed::rename(const QString &new_name) {
 
 // Return the alias if the stream has one, the url if it has no alias
 QString RssFeed::displayName() const {
-  if (!m_alias.isEmpty()) {
-    //qDebug("getName() returned alias: %s", (const char*)alias.toLocal8Bit());
+  if (!m_alias.isEmpty())
     return m_alias;
-  }
-  if (!m_title.isEmpty()) {
-    //qDebug("getName() returned title: %s", (const char*)title.toLocal8Bit());
+  if (!m_title.isEmpty())
     return m_title;
-  }
-  //qDebug("getName() returned url: %s", (const char*)url.toLocal8Bit());
   return m_url;
 }
 
-QString RssFeed::url() const{
+QString RssFeed::url() const {
   return m_url;
 }
 
-QString RssFeed::icon() const{
+QString RssFeed::icon() const {
   if (m_downloadFailure)
     return ":/Icons/oxygen/unavailable.png";
   return m_icon;
 }
 
-bool RssFeed::hasCustomIcon() const{
+bool RssFeed::hasCustomIcon() const {
   return !m_icon.startsWith(":/");
 }
 
@@ -178,7 +173,7 @@ RssArticlePtr RssFeed::getItem(const QString &guid) const {
   return m_articles.value(guid);
 }
 
-uint RssFeed::count() const{
+uint RssFeed::count() const {
   return m_articles.size();
 }
 
@@ -189,7 +184,7 @@ void RssFeed::markAsRead() {
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
-uint RssFeed::unreadCount() const{
+uint RssFeed::unreadCount() const {
   uint nbUnread = 0;
   for (RssArticleHash::ConstIterator it=m_articles.begin(); it != m_articles.end(); it++) {
     if (!it.value()->isRead())
@@ -198,7 +193,7 @@ uint RssFeed::unreadCount() const{
   return nbUnread;
 }
 
-RssArticleList RssFeed::articleList() const{
+RssArticleList RssFeed::articleList() const {
   return m_articles.values();
 }
 
@@ -213,9 +208,8 @@ RssArticleList RssFeed::unreadArticleList() const {
 
 // download the icon from the adress
 QString RssFeed::iconUrl() const {
-  const QUrl siteUrl(m_url);
   // XXX: This works for most sites but it is not perfect
-  return QString("http://")+siteUrl.host()+QString("/favicon.ico");
+  return QString("http://")+QUrl(m_url).host()+QString("/favicon.ico");
 }
 
 void RssFeed::parseRSSChannel(QXmlStreamReader& xml)

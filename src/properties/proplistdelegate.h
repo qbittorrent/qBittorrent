@@ -65,7 +65,7 @@ public:
 
   ~PropListDelegate() {}
 
-  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const{
+  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const {
     painter->save();
     QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
     switch(index.column()) {
@@ -131,7 +131,7 @@ public:
     painter->restore();
   }
 
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const{
+  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
     QVariant value = index.data(Qt::FontRole);
     QFont fnt = value.isValid() ? qvariant_cast<QFont>(value) : option.font;
     QFontMetrics fontMetrics(fnt);

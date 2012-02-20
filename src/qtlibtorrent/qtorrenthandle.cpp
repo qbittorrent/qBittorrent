@@ -807,7 +807,7 @@ void QTorrentHandle::rename_file(int index, QString name) const {
 // Operators
 //
 
-bool QTorrentHandle::operator ==(const QTorrentHandle& new_h) const{
+bool QTorrentHandle::operator ==(const QTorrentHandle& new_h) const {
   const QString hash = misc::toQString(torrent_handle::info_hash());
   return (hash == new_h.hash());
 }
