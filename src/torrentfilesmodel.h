@@ -107,7 +107,7 @@ public:
     }
   }
 
-  TorrentFileItem(QList<QVariant> data) {
+  TorrentFileItem(const QList<QVariant>& data) {
     parentItem = 0;
     m_type = ROOT;
     Q_ASSERT(data.size() == 4);
@@ -173,6 +173,7 @@ public:
   }
 
   void setProgress(qulonglong done) {
+    Q_ASSERT (m_type != ROOT);
     if (getPriority() == 0) return;
     total_done = done;
     qulonglong size = getSize();
@@ -184,8 +185,7 @@ public:
       progress = 1.;
     Q_ASSERT(progress >= 0. && progress <= 1.);
     itemData.replace(COL_PROGRESS, progress);
-    if (parentItem)
-      parentItem->updateProgress();
+    parentItem->updateProgress();
   }
 
   qulonglong getTotalDone() const {
@@ -193,6 +193,7 @@ public:
   }
 
   qreal getProgress() const {
+    Q_ASSERT (m_type != ROOT);
     if (getPriority() == 0)
       return -1;
     qulonglong size = getSize();
@@ -313,7 +314,7 @@ public:
   }
 
   QVariant data(int column) const  {
-    if (column == COL_PROGRESS)
+    if (column == COL_PROGRESS && m_type != ROOT)
         return getProgress();
     return itemData.value(column);
   }
