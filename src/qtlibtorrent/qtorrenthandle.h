@@ -52,14 +52,14 @@ public:
   //
 
   QTorrentHandle() {}
-  explicit QTorrentHandle(libtorrent::torrent_handle h);
+  explicit QTorrentHandle(const libtorrent::torrent_handle& h);
 
   //
   // Getters
   //
   QString hash() const;
   QString name() const;
-  qreal progress() const;
+  float progress() const;
   libtorrent::bitfield pieces() const;
   QString current_tracker() const;
   bool is_paused() const;
@@ -116,7 +116,7 @@ public:
   QString firstFileSavePath() const;
   bool has_error() const;
   QString error() const;
-  void downloading_pieces(libtorrent::bitfield &bf) const;
+  void downloading_pieces(libtorrent::bitfield& bf) const;
   bool has_metadata() const;
   float distributed_copies() const;
   void file_progress(std::vector<libtorrent::size_type>& fp) const;
@@ -126,15 +126,14 @@ public:
   //
   void pause() const;
   void resume() const;
-  void remove_url_seed(QString seed) const;
-  void add_url_seed(QString seed) const;
-  void set_tracker_login(QString username, QString password) const;
-  void move_storage(QString path) const;
-  void add_tracker(const libtorrent::announce_entry& url) const;
+  void remove_url_seed(const QString& seed) const;
+  void add_url_seed(const QString& seed) const;
+  void set_tracker_login(const QString& username, const QString& password) const;
+  void move_storage(const QString& path) const;
   void prioritize_first_last_piece(bool b) const;
-  void rename_file(int index, QString name) const;
-  bool save_torrent_file(QString path) const;
-  void prioritize_files(const std::vector<int> &files) const;
+  void rename_file(int index, const QString& name) const;
+  bool save_torrent_file(const QString& path) const;
+  void prioritize_files(const std::vector<int>& files) const;
   void file_priority(int index, int priority) const;
 
   //
