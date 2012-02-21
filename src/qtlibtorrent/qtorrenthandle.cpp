@@ -169,7 +169,6 @@ bool QTorrentHandle::first_last_piece_first() const {
     if(misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
       break;
     }
-    ++index;
   }
   if(index >= torrent_handle::get_torrent_info().num_files()) return false;
   file_entry media_file = torrent_handle::get_torrent_info().file_at(index);
