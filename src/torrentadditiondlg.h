@@ -37,7 +37,7 @@
 
 #include <libtorrent/torrent_info.hpp>
 
-class TorrentFilesFilterModel;
+class TorrentContentFilterModel;
 class PropListDelegate;
 
 class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
@@ -83,7 +83,7 @@ private:
   QString defaultSavePath;
   QString old_label;
   bool appendLabelToSavePath;
-  TorrentFilesFilterModel *PropListModel;
+  TorrentContentFilterModel *PropListModel;
   PropListDelegate *PropDelegate;
   unsigned int nbFiles;
   boost::intrusive_ptr<libtorrent::torrent_info> t;

@@ -119,7 +119,9 @@ nox {
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
-              torrentfilesmodel.h \
+              torrentcontentmodel.h \
+              torrentcontentmodelitem.h \
+              torrentcontentfiltermodel.h \
               deletionconfirmationdlg.h \
               statusbar.h \
               reverseresolution.h \
@@ -142,6 +144,9 @@ nox {
   SOURCES += mainwindow.cpp \
              ico.cpp \
              transferlistwidget.cpp \
+             torrentcontentmodel.cpp \
+             torrentcontentmodelitem.cpp \
+             torrentcontentfiltermodel.cpp \
              torrentadditiondlg.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \

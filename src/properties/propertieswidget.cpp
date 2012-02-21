@@ -46,7 +46,8 @@
 #include "torrentpersistentdata.h"
 #include "qbtsession.h"
 #include "proplistdelegate.h"
-#include "torrentfilesmodel.h"
+#include "torrentcontentfiltermodel.h"
+#include "torrentcontentmodel.h"
 #include "peerlistwidget.h"
 #include "trackerlist.h"
 #include "mainwindow.h"
@@ -73,7 +74,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setEnabled(false);
 
   // Set Properties list model
-  PropListModel = new TorrentFilesFilterModel();
+  PropListModel = new TorrentContentFilterModel();
   filesList->setModel(PropListModel);
   PropDelegate = new PropListDelegate(this);
   filesList->setItemDelegate(PropDelegate);
@@ -414,7 +415,7 @@ void PropertiesWidget::loadUrlSeeds() {
 void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if (!index.isValid()) return;
   if (!h.is_valid() || !h.has_metadata()) return;
-  if (PropListModel->getType(index) == TorrentFileItem::TFILE) {
+  if (PropListModel->getType(index) == TorrentContentModelItem::TFILE) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
     const QString filename = h.filepath_at(i);
@@ -516,7 +517,7 @@ void PropertiesWidget::renameSelectedFile() {
                            QMessageBox::Ok);
       return;
     }
-    if (PropListModel->getType(index) == TorrentFileItem::TFILE) {
+    if (PropListModel->getType(index) == TorrentContentModelItem::TFILE) {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if (!h.is_valid() || !h.has_metadata()) return;

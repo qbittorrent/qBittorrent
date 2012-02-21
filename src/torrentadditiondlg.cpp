@@ -45,7 +45,8 @@
 #include <libtorrent/bencode.hpp>
 
 #include "qbtsession.h"
-#include "torrentfilesmodel.h"
+#include "torrentcontentfiltermodel.h"
+#include "torrentcontentmodel.h"
 #include "preferences.h"
 #include "transferlistwidget.h"
 #include "qinisettings.h"
@@ -67,7 +68,7 @@ torrentAdditionDialog::torrentAdditionDialog(QWidget *parent) :
   CancelButton->setIcon(IconProvider::instance()->getIcon("dialog-cancel"));
   OkButton->setIcon(IconProvider::instance()->getIcon("list-add"));
   // Set Properties list model
-  PropListModel = new TorrentFilesFilterModel(this);
+  PropListModel = new TorrentContentFilterModel(this);
   connect(PropListModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabels()));
   torrentContentList->setModel(PropListModel);
   torrentContentList->hideColumn(PROGRESS);
@@ -407,7 +408,7 @@ void torrentAdditionDialog::renameSelectedFile() {
                            QMessageBox::Ok);
       return;
     }
-    if (PropListModel->getType(index) == TorrentFileItem::TFILE) {
+    if (PropListModel->getType(index) == TorrentContentModelItem::TFILE) {
       // File renaming
       const uint file_index = PropListModel->getFileIndex(index);
       QString old_name = files_path.at(file_index);

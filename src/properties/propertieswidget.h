@@ -37,7 +37,7 @@
 
 
 class TransferListWidget;
-class TorrentFilesFilterModel;
+class TorrentContentFilterModel;
 class PropListDelegate;
 class torrent_file;
 class PeerListWidget;
@@ -101,7 +101,7 @@ private:
   QTorrentHandle h;
   QTimer *refreshTimer;
   SlideState state;
-  TorrentFilesFilterModel *PropListModel;
+  TorrentContentFilterModel *PropListModel;
   PropListDelegate *PropDelegate;
   PeerListWidget *peersList;
   TrackerList *trackerList;
