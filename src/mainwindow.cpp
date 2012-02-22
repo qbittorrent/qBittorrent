@@ -1002,7 +1002,7 @@ void MainWindow::loadPreferences(bool configure_session) {
   QBtSession::instance()->addConsoleMessage(tr("Options were saved successfully."));
   const Preferences pref;
   const bool newSystrayIntegration = pref.systrayIntegration();
-  actionLock_qBittorrent->setEnabled(newSystrayIntegration);
+  actionLock_qBittorrent->setVisible(newSystrayIntegration);
   if (newSystrayIntegration != (systrayIcon!=0)) {
     if (newSystrayIntegration) {
       // create the trayicon
