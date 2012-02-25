@@ -77,7 +77,7 @@ void IconProvider::useSystemIconTheme(bool enable)
 // It scales the icon from the theme if necessary
 // Otherwise, the UI looks broken if the icon is not available
 // in the correct size.
-QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
+QIcon IconProvider::generateDifferentSizes(const QIcon& icon)
 {
   QIcon new_icon;
   QList<QSize> required_sizes;
@@ -100,7 +100,7 @@ QIcon IconProvider::generateDifferentSizes(const QIcon &icon)
 }
 #endif
 
-QString IconProvider::getIconPath(const QString &iconId)
+QString IconProvider::getIconPath(const QString& iconId)
 {
 #if defined(Q_WS_X11)
   if (m_useSystemTheme) {

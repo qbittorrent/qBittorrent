@@ -46,7 +46,7 @@ public:
   static IconProvider* instance();
   static void drop();
   QIcon getIcon(const QString& iconId);
-  QString getIconPath(const QString &iconId);
+  QString getIconPath(const QString& iconId);
 
 #if defined(Q_WS_X11)
 public:

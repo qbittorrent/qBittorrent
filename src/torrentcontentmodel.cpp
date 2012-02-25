@@ -35,7 +35,7 @@
 #include <QDir>
 
 TorrentContentModel::TorrentContentModel(QObject *parent):
-  QAbstractItemModel(parent), m_filesIndex(0),
+  QAbstractItemModel(parent),
     m_rootItem(new TorrentContentModelItem(QList<QVariant>() << tr("Name") << tr("Size")
                                          << tr("Progress") << tr("Priority")))
 {
@@ -50,7 +50,7 @@ TorrentContentModel::~TorrentContentModel()
 void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size_type>& fp)
 {
   emit layoutAboutToBeChanged();
-  Q_ASSERT(m_filesIndex.size() == fp.size());
+  Q_ASSERT(m_filesIndex.size() == (int)fp.size());
   for (uint i=0; i<fp.size(); ++i) {
     m_filesIndex[i]->setProgress(fp[i]);
   }

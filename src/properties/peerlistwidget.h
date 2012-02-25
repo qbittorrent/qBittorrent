@@ -58,16 +58,15 @@ QT_END_NAMESPACE
 
 class PeerListWidget : public QTreeView {
   Q_OBJECT
-  Q_DISABLE_COPY(PeerListWidget)
 
 public:
   PeerListWidget(PropertiesWidget *parent);
   ~PeerListWidget();
 
 public slots:
-  void loadPeers(const QTorrentHandle &h, bool force_hostname_resolution=false);
-  QStandardItem*  addPeer(QString ip, libtorrent::peer_info peer);
-  void updatePeer(QString ip, libtorrent::peer_info peer);
+  void loadPeers(const QTorrentHandle &h, bool force_hostname_resolution = false);
+  QStandardItem*  addPeer(const QString& ip, const libtorrent::peer_info& peer);
+  void updatePeer(const QString& ip, const libtorrent::peer_info& peer);
   void handleResolved(const QString &ip, const QString &hostname);
   void updatePeerHostNameResolutionState();
   void updatePeerCountryResolutionState();
@@ -76,25 +75,25 @@ public slots:
 protected slots:
   void loadSettings();
   void saveSettings() const;
-  void showPeerListMenu(QPoint);
-  void limitUpRateSelectedPeers(QStringList peer_ips);
-  void limitDlRateSelectedPeers(QStringList peer_ips);
-  void banSelectedPeers(QStringList peer_ips);
+  void showPeerListMenu(const QPoint&);
+  void limitUpRateSelectedPeers(const QStringList& peer_ips);
+  void limitDlRateSelectedPeers(const QStringList& peer_ips);
+  void banSelectedPeers(const QStringList& peer_ips);
   void handleSortColumnChanged(int col);
 
 private:
   static QString getConnectionString(int connection_type);
 
 private:
-  QStandardItemModel *listModel;
-  PeerListDelegate *listDelegate;
-  QSortFilterProxyModel * proxyModel;
-  QHash<QString, QStandardItem*> peerItems;
-  QHash<QString, libtorrent::asio::ip::tcp::endpoint> peerEndpoints;
-  QSet<QString> missingFlags;
-  QPointer<ReverseResolution> resolver;
-  PropertiesWidget* properties;
-  bool display_flags;
+  QStandardItemModel *m_listModel;
+  PeerListDelegate *m_listDelegate;
+  QSortFilterProxyModel *m_proxyModel;
+  QHash<QString, QStandardItem*> m_peerItems;
+  QHash<QString, boost::asio::ip::tcp::endpoint> m_peerEndpoints;
+  QSet<QString> m_missingFlags;
+  QPointer<ReverseResolution> m_resolver;
+  PropertiesWidget *m_properties;
+  bool m_displayFlags;
 };
 
 #endif // PEERLISTWIDGET_H

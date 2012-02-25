@@ -59,20 +59,6 @@ public:
     qDebug("Deleting host name resolver...");
   }
 
-  QString getHostFromCache(const libtorrent::asio::ip::tcp::endpoint &ip) {
-    boost::system::error_code ec;
-    const QString ip_str = misc::toQString(ip.address().to_string(ec));
-    if (ec) return QString();
-    QString ret;
-    if (m_cache.contains(ip_str)) {
-      qDebug("Got host name from cache");
-      ret = *m_cache.object(ip_str);
-    } else {
-      ret = QString::null;
-    }
-    return ret;
-  }
-
   void resolve(const libtorrent::asio::ip::tcp::endpoint &ip) {
     boost::system::error_code ec;
     const QString ip_str = misc::toQString(ip.address().to_string(ec));
