@@ -255,10 +255,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rule name conflict</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,15 +319,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete rule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -360,6 +348,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -561,10 +561,6 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>DNSUpdater</name>
     <message>
-        <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -598,6 +594,10 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2982,11 +2982,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3008,6 +3003,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3511,6 +3511,25 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nume</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Capacitate</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Progress</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritate</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -3574,19 +3593,19 @@ Do you want to install it now?</source>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Nume</translation>
+        <translation type="obsolete">Nume</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Capacitate</translation>
+        <translation type="obsolete">Capacitate</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progress</translation>
+        <translation type="obsolete">Progress</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioritate</translation>
+        <translation type="obsolete">Prioritate</translation>
     </message>
 </context>
 <context>
@@ -4862,7 +4881,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Necunoscut</translation>
+        <translation type="obsolete">Necunoscut</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4949,11 +4968,6 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4979,6 +4993,11 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>SSL Key (*.key *.pem)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

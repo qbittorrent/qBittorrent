@@ -294,7 +294,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Ange namnet för den nya hämtningsregeln.</translation>
+        <translation type="obsolete">Ange namnet för den nya hämtningsregeln.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Lägg till ny regel...</translation>
+        <translation type="obsolete">Lägg till ny regel...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -370,7 +370,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Byt namn på regel...</translation>
+        <translation type="obsolete">Byt namn på regel...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -399,6 +399,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Jokerteckensläge: du kan använda&lt;ul&gt;&lt;li&gt;? för att matcha ett enda tecken&lt;/li&gt;&lt;li&gt;* för att matcha noll eller flera tecken&lt;/li&gt;&lt;li&gt;| använd som OR-operator&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -637,7 +649,7 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Din dynamiska DNS uppdaterades.</translation>
+        <translation type="obsolete">Din dynamiska DNS uppdaterades.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -674,6 +686,10 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Fel i dynamisk DNS: angivet lösenord är för kort.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3405,7 +3421,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Tolkade det angivna IP filtret: %1 regler tillämpades.</translation>
+        <translation type="obsolete">Tolkade det angivna IP filtret: %1 regler tillämpades.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3430,6 +3446,11 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Anonymt läge [PÅ]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3957,6 +3978,25 @@ Vill du installera den nu?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Namn</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Storlek</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Förlopp</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritet</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4020,19 +4060,19 @@ Vill du installera den nu?</translation>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Namn</translation>
+        <translation type="obsolete">Namn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Storlek</translation>
+        <translation type="obsolete">Storlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Förlopp</translation>
+        <translation type="obsolete">Förlopp</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
 </context>
 <context>
@@ -5343,7 +5383,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Okänt</translation>
+        <translation type="obsolete">Okänt</translation>
     </message>
     <message>
         <source>%1h %2m</source>
@@ -5421,7 +5461,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Tolkningen av angivet IP-filter lyckades: %1 regler har tillämpats.</translation>
+        <translation type="obsolete">Tolkningen av angivet IP-filter lyckades: %1 regler har tillämpats.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5450,6 +5490,11 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL-nyckel (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

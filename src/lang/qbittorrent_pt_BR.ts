@@ -282,7 +282,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Por favor digite o nome da nova regra de download.</translation>
+        <translation type="obsolete">Por favor digite o nome da nova regra de download.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -350,7 +350,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Adicionar nova regra...</translation>
+        <translation type="obsolete">Adicionar nova regra...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -358,7 +358,7 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Renomear regra...</translation>
+        <translation type="obsolete">Renomear regra...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -387,6 +387,18 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Modo coringa: você pode usar&lt;ul&gt;&lt;li&gt;? para atingir um caracter&lt;/li&gt;&lt;li&gt;* para atingir zero ou mais de vários caracteres&lt;/li&gt;&lt;li&gt;| é usado como como operador OR&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -650,7 +662,7 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Seu DNS dinâmico foi atualizado com sucesso.</translation>
+        <translation type="obsolete">Seu DNS dinâmico foi atualizado com sucesso.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -687,6 +699,10 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Erro de DNS dinâmico: A senha é muito pequena.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3491,7 +3507,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Analisado com sucesso o filtro de IP enviado: %1 regras foram aplicadas.</translation>
+        <translation type="obsolete">Analisado com sucesso o filtro de IP enviado: %1 regras foram aplicadas.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3516,6 +3532,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Modo anônimo [LIG]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4051,6 +4072,25 @@ Gostaria de instalar agora?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nome</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Tamanho</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Progresso</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioridade</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4114,19 +4154,19 @@ Gostaria de instalar agora?</translation>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="obsolete">Nome</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Tamanho</translation>
+        <translation type="obsolete">Tamanho</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progresso</translation>
+        <translation type="obsolete">Progresso</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioridade</translation>
+        <translation type="obsolete">Prioridade</translation>
     </message>
 </context>
 <context>
@@ -5422,7 +5462,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconhecido</translation>
+        <translation type="obsolete">Desconhecido</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -5515,7 +5555,7 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Analisado com sucesso o filtro de IP : %1 regras foram aplicadas.</translation>
+        <translation type="obsolete">Analisado com sucesso o filtro de IP : %1 regras foram aplicadas.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5544,6 +5584,11 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Chave SSL (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

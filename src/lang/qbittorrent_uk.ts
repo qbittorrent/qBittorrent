@@ -298,7 +298,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Будь ласка, введіть назву нового правила завантаження.</translation>
+        <translation type="obsolete">Будь ласка, введіть назву нового правила завантаження.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Додати нове правило...</translation>
+        <translation type="obsolete">Додати нове правило...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Перейменувати правило...</translation>
+        <translation type="obsolete">Перейменувати правило...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -403,6 +403,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Режим шаблонів: можна використовувати&lt;ul&gt;&lt;li&gt;? для позначення будь-якого символа&lt;/li&gt;&lt;li&gt;* для позначення 0 або більше символів&lt;/li&gt;&lt;li&gt;| використовується як оператор OR (або)&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -666,7 +678,7 @@ You should get this information from your Web browser preferences.</source>
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Ваш динамічний DNS був успішно оновлений.</translation>
+        <translation type="obsolete">Ваш динамічний DNS був успішно оновлений.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -703,6 +715,10 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Помилка динамічного DNS: наданий пароль закороткий.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3498,7 +3514,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Успішно розібрано даний фільтр IP: було застосовано %1 правил.</translation>
+        <translation type="obsolete">Успішно розібрано даний фільтр IP: було застосовано %1 правил.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3523,6 +3539,11 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Анонімний режим [Увімкнено]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4058,6 +4079,25 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Розмір</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Прогрес</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Пріоритет</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4121,19 +4161,19 @@ Do you want to install it now?</source>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Ім&apos;я</translation>
+        <translation type="obsolete">Ім&apos;я</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Розмір</translation>
+        <translation type="obsolete">Розмір</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Прогрес</translation>
+        <translation type="obsolete">Прогрес</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Пріоритет</translation>
+        <translation type="obsolete">Пріоритет</translation>
     </message>
 </context>
 <context>
@@ -5429,7 +5469,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Невідомо</translation>
+        <translation type="obsolete">Невідомо</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -5522,7 +5562,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Успішно розібрано даний фільтр IP: було застосовано %1 правил.</translation>
+        <translation type="obsolete">Успішно розібрано даний фільтр IP: було застосовано %1 правил.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5551,6 +5591,11 @@ However, those plugins were disabled.</source>
     <message>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Ключ SSL (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

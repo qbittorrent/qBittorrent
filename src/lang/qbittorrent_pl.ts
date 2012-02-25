@@ -299,7 +299,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Wprowadź nazwę dla tworzonej reguły.</translation>
+        <translation type="obsolete">Wprowadź nazwę dla tworzonej reguły.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -368,7 +368,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Dodaj nową...</translation>
+        <translation type="obsolete">Dodaj nową...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -376,7 +376,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Zmień nazwę...</translation>
+        <translation type="obsolete">Zmień nazwę...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -405,6 +405,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="unfinished">Tryb wzorca: można użyć &lt;ul&gt;&lt;li&gt;? dla dowolnego pojedynczego znaku&lt;/li&gt;&lt;li&gt;* dla dowolnej ilości znaków&lt;/li&gt;&lt;li&gt;Białe znaki są traktowane jako operatory OR&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -643,7 +655,7 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Pomyślnie zaktualizowano dynamiczny DNS.</translation>
+        <translation type="obsolete">Pomyślnie zaktualizowano dynamiczny DNS.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -680,6 +692,10 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Błąd dynamicznego DNS: Podane hasło jest zbyt krótkie.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3475,7 +3491,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
+        <translation type="obsolete">Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3500,6 +3516,11 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Tryb anonimowy [WŁ]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4036,6 +4057,25 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nazwa</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Rozmiar</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Postęp</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorytet</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4099,19 +4139,19 @@ Do you want to install it now?</source>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Nazwa</translation>
+        <translation type="obsolete">Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="obsolete">Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Postęp</translation>
+        <translation type="obsolete">Postęp</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
 </context>
 <context>
@@ -5389,7 +5429,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -5482,7 +5522,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
+        <translation type="obsolete">Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5512,6 +5552,11 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Klucz SSL (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

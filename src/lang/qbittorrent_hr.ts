@@ -336,7 +336,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Upišite ime novog pravila preuzimanja.</translation>
+        <translation type="obsolete">Upišite ime novog pravila preuzimanja.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -404,7 +404,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Dodaj novo pravilo</translation>
+        <translation type="obsolete">Dodaj novo pravilo</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -412,7 +412,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Preimenuj pravilo ...</translation>
+        <translation type="obsolete">Preimenuj pravilo ...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -441,6 +441,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard mode: možete koristiti&lt;ul&gt;&lt;li&gt;? za podudaranje s bilo kojim pojedinim znakom&lt;/li&gt;&lt;li&gt;* za podudaranje s nula ili više drugih znakova&lt;/li&gt;&lt;li&gt;| se koristi kao OR operator&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -708,7 +720,7 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Vaš dinamički DNS je uspješno ažuriran.</translation>
+        <translation type="obsolete">Vaš dinamički DNS je uspješno ažuriran.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -745,6 +757,10 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Greška dinamičkog DNS-a: Dana lozinka je prekratka.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3937,7 +3953,7 @@ QGroupBox {
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
+        <translation type="obsolete">Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3962,6 +3978,11 @@ QGroupBox {
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Anonimni mod [UKLJUČENO]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4505,6 +4526,25 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Ime</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Veličina</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Napredak</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritet</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4551,19 +4591,19 @@ Do you want to install it now?</source>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Ime</translation>
+        <translation type="obsolete">Ime</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veličina</translation>
+        <translation type="obsolete">Veličina</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Napredak</translation>
+        <translation type="obsolete">Napredak</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
 </context>
 <context>
@@ -5924,7 +5964,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nije poznato</translation>
+        <translation type="obsolete">Nije poznato</translation>
     </message>
     <message>
         <source>&lt; 1m</source>
@@ -6026,7 +6066,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
+        <translation type="obsolete">Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -6055,6 +6095,11 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ovo nije valjani SSL certifikat</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

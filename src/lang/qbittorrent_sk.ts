@@ -298,7 +298,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
+        <translation type="obsolete">Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Pridať nové pravidlo...</translation>
+        <translation type="obsolete">Pridať nové pravidlo...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Premenovať pravidlo...</translation>
+        <translation type="obsolete">Premenovať pravidlo...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -403,6 +403,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Režim zástupných znakov: &lt;ul&gt;&lt;li&gt;? zodpovedá ľubovoľnému jednotlivému znaku&lt;/li&gt;&lt;li&gt;* zodpovedá nula alebo viac ľubovoľným znakom&lt;/li&gt;&lt;li&gt;| sa používa ako operátor OR&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -662,7 +674,7 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>Váš dynamický DNS záznam bol úspešne aktualizovaný.</translation>
+        <translation type="obsolete">Váš dynamický DNS záznam bol úspešne aktualizovaný.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -699,6 +711,10 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Chyba dynamického DNS: Zadané heslo je príliš krátke.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3493,7 +3509,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
+        <translation type="obsolete">Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3518,6 +3534,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Anonymný režim [zapnutý]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4054,6 +4075,25 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Názov</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Veľkosť</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Priebeh</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorita</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -4117,19 +4157,19 @@ Chcete ho nainštalovať teraz?</translation>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Názov</translation>
+        <translation type="obsolete">Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Veľkosť</translation>
+        <translation type="obsolete">Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Priebeh</translation>
+        <translation type="obsolete">Priebeh</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
 </context>
 <context>
@@ -5400,7 +5440,7 @@ Tieto moduly však boli vypnuté.</translation>
     <name>misc</name>
     <message>
         <source>Unknown</source>
-        <translation>Neznámy</translation>
+        <translation type="obsolete">Neznámy</translation>
     </message>
     <message>
         <source>B</source>
@@ -5518,7 +5558,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
+        <translation type="obsolete">Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5547,6 +5587,11 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Kľúč SSL (*.key *.pem)</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

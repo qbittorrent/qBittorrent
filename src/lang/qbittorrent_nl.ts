@@ -294,7 +294,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Type de naam van de nieuwe downloadregel.</translation>
+        <translation type="obsolete">Type de naam van de nieuwe downloadregel.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Voeg een nieuwe regel toe...</translation>
+        <translation type="obsolete">Voeg een nieuwe regel toe...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -370,7 +370,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation>Hernoem regel...</translation>
+        <translation type="obsolete">Hernoem regel...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -399,6 +399,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard modus: u kan gebruikem maken van &lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;| wordt gebruikt als als OR operator&lt;li&gt;&lt;lu&gt;</translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new rule-&gt;..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule-&gt;..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -567,7 +579,7 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <name>DNSUpdater</name>
     <message>
         <source>Your dynamic DNS was successfuly updated.</source>
-        <translation>U dynamisch DNS werd succesvol geüpdate.</translation>
+        <translation type="obsolete">U dynamisch DNS werd succesvol geüpdate.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
@@ -604,6 +616,10 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <message>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Dynamische DNS error: opgegegeven wachtwoord is te kort.</translation>
+    </message>
+    <message>
+        <source>Your dynamic DNS was successfully updated.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3284,7 +3300,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
+        <translation type="obsolete">De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3309,6 +3325,11 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Anonymous mode [ON]</source>
         <translation>Anonieme modues [AAN]</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3829,6 +3850,25 @@ Wilt u het nu installeren?</translation>
     </message>
 </context>
 <context>
+    <name>TorrentContentModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Naam</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished">Grootte</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished">Voortgang</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioriteit</translation>
+    </message>
+</context>
+<context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
@@ -3892,19 +3932,19 @@ Wilt u het nu installeren?</translation>
     <name>TorrentFilesModel</name>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="obsolete">Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Voortgang</translation>
+        <translation type="obsolete">Voortgang</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioriteit</translation>
+        <translation type="obsolete">Prioriteit</translation>
     </message>
 </context>
 <context>
@@ -5160,7 +5200,7 @@ De plugins zijn uitgeschakeld.</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -5253,7 +5293,7 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
+        <translation type="obsolete">De opgegeven IP filter werd succesvol ontleed: %1 regels werden toegepast.</translation>
     </message>
     <message>
         <source>Successfully refreshed</source>
@@ -5282,6 +5322,11 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <source>This is not a valid SSL certificate.</source>
         <translation>Dit is geen geldig SSL certificaat.</translation>
+    </message>
+    <message>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
