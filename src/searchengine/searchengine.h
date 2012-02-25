@@ -94,11 +94,7 @@ protected slots:
   // Search slots
   void tab_changed(int);//to prevent the use of the download button when the tab is empty
   void on_search_button_clicked();
-#if QT_VERSION < 0x040500
-  void closeTab_button_clicked();
-#else
   void closeTab(int index);
-#endif
   void appendSearchResult(const QString &line);
   void searchFinished(int exitcode,QProcess::ExitStatus);
   void readSearchOutput();
@@ -137,9 +133,6 @@ private:
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   QPointer<SearchTab> currentSearchTab;
-#if QT_VERSION < 0x040500
-  QPushButton *closeTab_button;
-#endif
   QList<QPointer<SearchTab> > all_tab; // To store all tabs
   const SearchCategories full_cat_names;
   MainWindow *mp_mainWindow;

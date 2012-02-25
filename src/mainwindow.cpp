@@ -1077,7 +1077,7 @@ void MainWindow::loadPreferences(bool configure_session) {
   properties->reloadPreferences();
 
   // Icon provider
-#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if defined(Q_WS_X11)
   IconProvider::instance()->useSystemIconTheme(pref.useSystemIconTheme());
 #endif
 

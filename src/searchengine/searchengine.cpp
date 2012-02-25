@@ -71,17 +71,8 @@ SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(
   // new qCompleter to the search pattern
   startSearchHistory();
   createCompleter();
-#if (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
   tabWidget->setTabsClosable(true);
   connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
-#else
-  // Add close tab button
-  closeTab_button = new QPushButton();
-  closeTab_button->setIcon(IconProvider::instance()->getIcon("tab-close"));
-  closeTab_button->setFlat(true);
-  tabWidget->setCornerWidget(closeTab_button);
-  connect(closeTab_button, SIGNAL(clicked()), this, SLOT(closeTab_button_clicked()));
-#endif
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
@@ -197,9 +188,6 @@ SearchEngine::~SearchEngine() {
     downloader->waitForFinished();
     delete downloader;
   }
-#if QT_VERSION < 0x040500
-  delete closeTab_button;
-#endif
   delete searchTimeout;
   delete searchProcess;
   delete supported_engines;
@@ -339,9 +327,6 @@ void SearchEngine::on_search_button_clicked() {
   tabName.replace(QRegExp("&{1}"), "&&");
   tabWidget->addTab(currentSearchTab, tabName);
   tabWidget->setCurrentWidget(currentSearchTab);
-#if QT_VERSION < 0x040500
-  closeTab_button->setEnabled(true);
-#endif
   // if the pattern is not in the pattern
   QStringList wordList = searchHistory.stringList();
   if (wordList.indexOf(pattern) == -1) {
@@ -665,7 +650,6 @@ void SearchEngine::appendSearchResult(const QString &line) {
   goToDescBtn->setEnabled(true);
 }
 
-#if QT_VERSION >= 0x040500
 void SearchEngine::closeTab(int index) {
   if (index == tabWidget->indexOf(currentSearchTab)) {
     qDebug("Deleted current search Tab");
@@ -684,31 +668,6 @@ void SearchEngine::closeTab(int index) {
     goToDescBtn->setEnabled(false);
   }
 }
-#else
-// Clear search results list
-void SearchEngine::closeTab_button_clicked() {
-  if (all_tab.size()) {
-    qDebug("currentTab rank: %d", tabWidget->currentIndex());
-    qDebug("currentSearchTab rank: %d", tabWidget->indexOf(currentSearchTab));
-    if (tabWidget->currentIndex() == tabWidget->indexOf(currentSearchTab)) {
-      qDebug("Deleted current search Tab");
-      if (searchProcess->state() != QProcess::NotRunning) {
-        searchProcess->terminate();
-      }
-      if (searchTimeout->isActive()) {
-        searchTimeout->stop();
-      }
-      search_stopped = true;
-      currentSearchTab = 0;
-    }
-    delete all_tab.takeAt(tabWidget->currentIndex());
-    if (!all_tab.size()) {
-      closeTab_button->setEnabled(false);
-      download_button->setEnabled(false);
-    }
-  }
-}
-#endif
 
 // Download selected items in search results list
 void SearchEngine::on_download_button_clicked() {

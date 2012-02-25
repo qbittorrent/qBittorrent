@@ -17,7 +17,7 @@ enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_L
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
-                    #if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+                    #if defined(Q_WS_X11)
                       USE_ICON_THEME,
                     #endif
                       CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
@@ -36,7 +36,7 @@ private:
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox cb_update_check;
 #endif
-#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if defined(Q_WS_X11)
   QCheckBox cb_use_icon_theme;
 #endif
   QCheckBox cb_announce_all_trackers;
@@ -105,7 +105,7 @@ public slots:
     pref.setUpdateCheckEnabled(cb_update_check.isChecked());
 #endif
     // Icon theme
-#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if defined(Q_WS_X11)
     pref.useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
@@ -225,7 +225,7 @@ private slots:
     cb_update_check.setChecked(pref.isUpdateCheckEnabled());
     setRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
 #endif
-#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if defined(Q_WS_X11)
     cb_use_icon_theme.setChecked(pref.useSystemIconTheme());
     setRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
 #endif

@@ -1043,7 +1043,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), enabled);
   }
 
-#if defined(Q_WS_X11) && (QT_VERSION >= QT_VERSION_CHECK(4,6,0))
+#if defined(Q_WS_X11)
   bool useSystemIconTheme() const {
     return value(QString::fromUtf8("Preferences/Advanced/useSystemIconTheme"), true).toBool();
   }

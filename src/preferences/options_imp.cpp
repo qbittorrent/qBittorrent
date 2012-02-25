@@ -99,11 +99,7 @@ options_imp::options_imp(QWidget *parent):
 
   // Load week days (scheduler)
   for (uint i=1; i<=7; ++i) {
-#if QT_VERSION >= 0x040500
     schedule_days->addItem(QDate::longDayName(i, QDate::StandaloneFormat));
-#else
-    schedule_days->addItem(QDate::longDayName(i));
-#endif
   }
 
   // Load options
