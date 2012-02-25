@@ -3942,7 +3942,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../rss/rss.ui" line="195"/>
         <location filename="../rss/rss.ui" line="198"/>
         <source>Mark items read</source>
-        <translation>Marcar para leer</translation>
+        <translation>Marcar como leídos</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="66"/>
