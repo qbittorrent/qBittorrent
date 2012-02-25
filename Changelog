@@ -1,5 +1,6 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.10.0
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - OTHER: Drop support for libtorrent v0.14.x
+    - OTHER: Drop support for Qt 4.5
 
 * Sat Oct 08 2011 - Christophe Dumez <chris@qbittorrent.org> - v2.9.0
     - FEATURE: Add file association settings to program preferences (Windows)
