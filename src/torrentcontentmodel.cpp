@@ -35,26 +35,24 @@
 #include <QDir>
 
 TorrentContentModel::TorrentContentModel(QObject *parent):
-  QAbstractItemModel(parent), files_index(0)
+  QAbstractItemModel(parent), m_filesIndex(0),
+    m_rootItem(new TorrentContentModelItem(QList<QVariant>() << tr("Name") << tr("Size")
+                                         << tr("Progress") << tr("Priority")))
 {
-  QList<QVariant> rootData;
-  rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
-  rootItem = new TorrentContentModelItem(rootData);
 }
 
 TorrentContentModel::~TorrentContentModel()
 {
-  if (files_index)
-    delete [] files_index;
-  delete rootItem;
+  qDeleteAll(m_filesIndex);
+  delete m_rootItem;
 }
 
 void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size_type>& fp)
 {
   emit layoutAboutToBeChanged();
-  for (unsigned int i=0; i<fp.size(); ++i) {
-    Q_ASSERT(fp[i] >= 0);
-    files_index[i]->setProgress(fp[i]);
+  Q_ASSERT(m_filesIndex.size() == fp.size());
+  for (uint i=0; i<fp.size(); ++i) {
+    m_filesIndex[i]->setProgress(fp[i]);
   }
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
@@ -62,9 +60,8 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
 void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
 {
   emit layoutAboutToBeChanged();
-  for (unsigned int i=0; i<fprio.size(); ++i) {
-    //qDebug("Called updateFilesPriorities with %d", fprio[i]);
-    files_index[i]->setPriority(fprio[i]);
+  for (uint i=0; i<fprio.size(); ++i) {
+    m_filesIndex[i]->setPriority(fprio[i]);
   }
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
@@ -72,17 +69,16 @@ void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
 std::vector<int> TorrentContentModel::getFilesPriorities(unsigned int nbFiles) const
 {
   std::vector<int> prio;
-  for (unsigned int i=0; i<nbFiles; ++i) {
-    //qDebug("Called getFilesPriorities: %d", files_index[i]->getPriority());
-    prio.push_back(files_index[i]->getPriority());
+  for (uint i=0; i<nbFiles; ++i) {
+    prio.push_back(m_filesIndex[i]->getPriority());
   }
   return prio;
 }
 
 bool TorrentContentModel::allFiltered() const
 {
-  for (int i=0; i<rootItem->childCount(); ++i) {
-    if (rootItem->child(i)->getPriority() != prio::IGNORED)
+  for (int i=0; i<m_rootItem->childCount(); ++i) {
+    if (m_rootItem->child(i)->getPriority() != prio::IGNORED)
       return false;
   }
   return true;
@@ -93,7 +89,7 @@ int TorrentContentModel::columnCount(const QModelIndex& parent) const
   if (parent.isValid())
     return static_cast<TorrentContentModelItem*>(parent.internalPointer())->columnCount();
   else
-    return rootItem->columnCount();
+    return m_rootItem->columnCount();
 }
 
 bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& value, int role)
@@ -191,7 +187,7 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex& index) const
 QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-    return rootItem->data(section);
+    return m_rootItem->data(section);
 
   return QVariant();
 }
@@ -207,7 +203,7 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex& p
   TorrentContentModelItem *parentItem;
 
   if (!parent.isValid())
-    parentItem = rootItem;
+    parentItem = m_rootItem;
   else
     parentItem = static_cast<TorrentContentModelItem*>(parent.internalPointer());
   Q_ASSERT(parentItem);
@@ -228,10 +224,11 @@ QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
     return QModelIndex();
 
   TorrentContentModelItem *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
-  if (!childItem) return QModelIndex();
+  if (!childItem)
+    return QModelIndex();
   TorrentContentModelItem *parentItem = childItem->parent();
 
-  if (parentItem == rootItem)
+  if (parentItem == m_rootItem)
     return QModelIndex();
 
   return createIndex(parentItem->row(), 0, parentItem);
@@ -245,7 +242,7 @@ int TorrentContentModel::rowCount(const QModelIndex& parent) const
     return 0;
 
   if (!parent.isValid())
-    parentItem = rootItem;
+    parentItem = m_rootItem;
   else
     parentItem = static_cast<TorrentContentModelItem*>(parent.internalPointer());
 
@@ -256,11 +253,9 @@ void TorrentContentModel::clear()
 {
   qDebug("clear called");
   beginResetModel();
-  if (files_index) {
-    delete [] files_index;
-    files_index = 0;
-  }
-  rootItem->deleteAllChildren();
+  qDeleteAll(m_filesIndex);
+  m_filesIndex.clear();
+  m_rootItem->deleteAllChildren();
   endResetModel();
 }
 
@@ -273,9 +268,9 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
   emit layoutAboutToBeChanged();
   // Initialize files_index array
   qDebug("Torrent contains %d files", t.num_files());
-  files_index = new TorrentContentModelItem*[t.num_files()];
+  m_filesIndex.reserve(t.num_files());
 
-  TorrentContentModelItem *parent = this->rootItem;
+  TorrentContentModelItem *parent = m_rootItem;
   TorrentContentModelItem *root_folder = parent;
   TorrentContentModelItem *current_parent;
 
@@ -300,16 +295,15 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
       current_parent = new_parent;
     }
     // Actually create the file
-    TorrentContentModelItem *f = new TorrentContentModelItem(t, fentry, current_parent, i);
-    files_index[i] = f;
+    m_filesIndex.push_back(new TorrentContentModelItem(t, fentry, current_parent, i));
   }
   emit layoutChanged();
 }
 
 void TorrentContentModel::selectAll()
 {
-  for (int i=0; i<rootItem->childCount(); ++i) {
-    TorrentContentModelItem *child = rootItem->child(i);
+  for (int i=0; i<m_rootItem->childCount(); ++i) {
+    TorrentContentModelItem *child = m_rootItem->child(i);
     if (child->getPriority() == prio::IGNORED)
       child->setPriority(prio::NORMAL);
   }
@@ -318,8 +312,8 @@ void TorrentContentModel::selectAll()
 
 void TorrentContentModel::selectNone()
 {
-  for (int i=0; i<rootItem->childCount(); ++i) {
-    rootItem->child(i)->setPriority(prio::IGNORED);
+  for (int i=0; i<m_rootItem->childCount(); ++i) {
+    m_rootItem->child(i)->setPriority(prio::IGNORED);
   }
  emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }

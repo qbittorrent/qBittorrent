@@ -33,16 +33,13 @@
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
+#include <QVector>
 #include <QVariant>
 #include <libtorrent/torrent_info.hpp>
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModel:  public QAbstractItemModel {
   Q_OBJECT
-
-private:
-  TorrentContentModelItem *rootItem;
-  TorrentContentModelItem **files_index;
 
 public:
   TorrentContentModel(QObject *parent = 0);
@@ -71,6 +68,10 @@ signals:
 public slots:
   void selectAll();
   void selectNone();
+
+private:
+  TorrentContentModelItem *m_rootItem;
+  QVector<TorrentContentModelItem *> m_filesIndex;
 };
 
 #endif // TORRENTCONTENTMODEL_H
