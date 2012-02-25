@@ -442,17 +442,17 @@ p, li { white-space: pre-wrap; }
         <translation>新しいルール名を入力してください</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="521"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="520"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>正規表現モード: Perl ライクな正規表現を使用してください</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="525"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="524"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>ワイルドカードモード: &lt;ul&gt;&lt;li&gt;? はあらゆる 1 文字にマッチします&lt;/li&gt;&lt;li&gt;* は 0 個以上のあらゆる文字にマッチします&lt;/li&gt;&lt;li&gt;空白で区切ると AND 条件とみなされます&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="526"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>ワイルドカードモード: &lt;ul&gt;&lt;li&gt;? はあらゆる 1 文字とマッチします&lt;/li&gt;&lt;li&gt;* は 0 個以上のあらゆる文字にマッチします&lt;/li&gt;&lt;li&gt;| で区切ると OR 条件とみなされます&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -1143,8 +1143,8 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="708"/>
-        <location filename="../mainwindow.cpp" line="1208"/>
+        <location filename="../mainwindow.cpp" line="717"/>
+        <location filename="../mainwindow.cpp" line="1217"/>
         <source>Show</source>
         <translation>表示</translation>
     </message>
@@ -1186,7 +1186,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1340"/>
+        <location filename="../mainwindow.cpp" line="1354"/>
         <source>Execution Log</source>
         <translation>実行ログ</translation>
     </message>
@@ -1227,7 +1227,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1264"/>
+        <location filename="../mainwindow.cpp" line="1273"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1243,80 +1243,80 @@ No further notices will be issued.</source>
         <translation>転送</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="289"/>
         <source>Torrent file association</source>
         <translation>Torrent ファイルの関連付け</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="290"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent は Torrent ファイルやマグネットリンクを開くデフォルトアプリケーションではありません。 
 qBittorrent を Torrent ファイルおよびマグネットリンクに関連付けますか?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
-        <location filename="../mainwindow.cpp" line="410"/>
-        <location filename="../mainwindow.cpp" line="660"/>
+        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="669"/>
         <source>UI lock password</source>
         <translation>UI ロックパスワード</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="390"/>
-        <location filename="../mainwindow.cpp" line="410"/>
-        <location filename="../mainwindow.cpp" line="660"/>
+        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="669"/>
         <source>Please type the UI lock password:</source>
         <translation>UI ロックパスワードを入力してください:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
+        <location filename="../mainwindow.cpp" line="395"/>
         <source>The password should contain at least 3 characters</source>
         <translation>パスワードは 3 文字以上でなくてはなりません</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="401"/>
         <source>Password update</source>
         <translation>パスワードの更新</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="401"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>UI ロックパスワードは正常に更新されました</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="426"/>
+        <location filename="../mainwindow.cpp" line="427"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="441"/>
+        <location filename="../mainwindow.cpp" line="442"/>
         <source>Search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="451"/>
+        <location filename="../mainwindow.cpp" line="452"/>
         <source>Transfers (%1)</source>
         <translation>転送 (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="522"/>
+        <location filename="../mainwindow.cpp" line="523"/>
         <source>Download completion</source>
         <translation>ダウンロード完了</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="522"/>
+        <location filename="../mainwindow.cpp" line="523"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 はダウンロードが完了しました。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="528"/>
+        <location filename="../mainwindow.cpp" line="529"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="528"/>
+        <location filename="../mainwindow.cpp" line="529"/>
         <source>An I/O error occured for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
@@ -1325,146 +1325,146 @@ qBittorrent を Torrent ファイルおよびマグネットリンクに関連�
  理由: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="535"/>
+        <location filename="../mainwindow.cpp" line="536"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="537"/>
+        <location filename="../mainwindow.cpp" line="538"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="539"/>
+        <location filename="../mainwindow.cpp" line="540"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="542"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="590"/>
         <source>Recursive download confirmation</source>
         <translation>再帰的ダウンロードの確認</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="590"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrent %1 は Torrent ファイルを含んでいます。それらのダウンロードも開始しますか?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="582"/>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="591"/>
+        <location filename="../mainwindow.cpp" line="763"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="583"/>
-        <location filename="../mainwindow.cpp" line="753"/>
+        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>No</source>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="593"/>
         <source>Never</source>
         <translation>すべてしない</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="607"/>
         <source>Url download error</source>
         <translation>URL のダウンロード エラー</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="607"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>次の url にあるファイルをダウンロードできませんでした: %1、理由: %2。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="609"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Global Upload Speed Limit</source>
         <translation>全体のアップロード速度上限</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="628"/>
+        <location filename="../mainwindow.cpp" line="637"/>
         <source>Global Download Speed Limit</source>
         <translation>全体のダウンロード速度上限</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1119"/>
+        <location filename="../mainwindow.cpp" line="1128"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="394"/>
-        <location filename="../mainwindow.cpp" line="673"/>
+        <location filename="../mainwindow.cpp" line="395"/>
+        <location filename="../mainwindow.cpp" line="682"/>
         <source>Invalid password</source>
         <translation>不正なパスワード</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="673"/>
+        <location filename="../mainwindow.cpp" line="682"/>
         <source>The password is invalid</source>
         <translation>パスワードが正しくありません</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="708"/>
-        <location filename="../mainwindow.cpp" line="1208"/>
+        <location filename="../mainwindow.cpp" line="717"/>
+        <location filename="../mainwindow.cpp" line="1217"/>
         <source>Hide</source>
         <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="750"/>
+        <location filename="../mainwindow.cpp" line="759"/>
         <source>Exiting qBittorrent</source>
         <translation>qBittorrent の終了</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="751"/>
+        <location filename="../mainwindow.cpp" line="760"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>現在転送中のファイルがあります。。
 qBittorrent を終了しますか?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="755"/>
+        <location filename="../mainwindow.cpp" line="764"/>
         <source>Always</source>
         <translation>常に終了する</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="913"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Open Torrent Files</source>
         <translation>Torrent ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="914"/>
+        <location filename="../mainwindow.cpp" line="923"/>
         <source>Torrent Files</source>
         <translation>Torrent ファイル</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="993"/>
+        <location filename="../mainwindow.cpp" line="1002"/>
         <source>Options were saved successfully.</source>
         <translation>オプションは正常に保存されました。</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1102"/>
+        <location filename="../mainwindow.cpp" line="1111"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1105"/>
-        <location filename="../mainwindow.cpp" line="1112"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1121"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>DL 速度: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1108"/>
-        <location filename="../mainwindow.cpp" line="1114"/>
+        <location filename="../mainwindow.cpp" line="1117"/>
+        <location filename="../mainwindow.cpp" line="1123"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>UP 速度: %1 KiB/s</translation>
@@ -1475,24 +1475,24 @@ qBittorrent を終了しますか?</translation>
         <translation type="obsolete">qBittorrent %1 (DL: %2/s, UP: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1302"/>
+        <location filename="../mainwindow.cpp" line="1311"/>
         <source>A newer version is available</source>
         <translation>新しいバージョンが利用可能です</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1303"/>
+        <location filename="../mainwindow.cpp" line="1312"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>新しいバージョンの qBittorrent が Sourceforgeから入手可能です。
 qBittorrent をバージョン %1 へアップデートしますか?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1318"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Impossible のアップデートはできません</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1318"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent のアップデートに失敗しました。理由: %1</translation>
     </message>
@@ -2850,155 +2850,155 @@ qBittorrent をバージョン %1 へアップデートしますか?</translatio
         <translation>エラー: Torrent %1 にはファイルが含まれていません。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1338"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1340"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>メモ: 新しいトラッカーが既存の Torrent に追加されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1364"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1366"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>メモ: 新しい URI シードが既存の Torrent に追加されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1726"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1727"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;はあなたの IP フィルタによってブロックされました。&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1728"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1729"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;は破壊されたピースであるためアク禁になりました&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1906"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1907"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>定義されたネットワークインターフェイスが正しくありません: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1907"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
         <source>Trying any other network interface available instead.</source>
         <translation>ほかのネットワークインターフェイスの利用を試みます。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1931"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>ネットワークインターフェイス %2、IP アドレス %1 で待ち受けています...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1933"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1934"/>
         <source>Failed to listen on network interface %1</source>
         <translation>ネットワークインターフェイス %1 での待受に失敗しました</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2114"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2116"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2115"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2117"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Torrent %2 に埋めこまれたファイル %1 の再帰ダウンロード</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2211"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2213"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 Torrent ファイルをデコードできません。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2262"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければ、コンピュータはスリープモードに遷移します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければ、コンピュータは停止します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2266"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければ、 qBittorrent は終了します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2876"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2877"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>与えられた IP フィルタは正しく解析されました: %1 ルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2882"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2883"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>エラー: 与えられた IP フィルタの解析に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2161"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2162"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2162"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
         <source>Torrent size: %1</source>
         <translation>Torrent サイズ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2164"/>
         <source>Save path: %1</source>
         <translation>保存先パス: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2164"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2165"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent は %1 でダウンロードされました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2165"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>qBittorrent をご利用いただきありがとうございます。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 はダウンロードが完了しました</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2432"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2433"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>I/O error が発生しました。 &apos;%1&apos; は停止しました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2433"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2563"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2434"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2564"/>
         <source>Reason: %1</source>
         <translation>理由: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2522"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに失敗しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに成功しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2558"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2559"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Torrent %1 のファイルサイズが一致しません。停止します。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2563"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>高速再開データは Torrent %1 を拒絶しました。再度チェックしています...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2568"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2697"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2698"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -3628,22 +3628,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentFilesModel</name>
     <message>
-        <location filename="../torrentfilesmodel.h" line="345"/>
+        <location filename="../torrentfilesmodel.h" line="347"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="345"/>
+        <location filename="../torrentfilesmodel.h" line="347"/>
         <source>Size</source>
         <translation>サイズ</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="345"/>
+        <location filename="../torrentfilesmodel.h" line="347"/>
         <source>Progress</source>
         <translation>進行状況</translation>
     </message>
     <message>
-        <location filename="../torrentfilesmodel.h" line="345"/>
+        <location filename="../torrentfilesmodel.h" line="347"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
@@ -3656,33 +3656,33 @@ Please install it manually.</source>
         <translation>Torrent のインポート</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="38"/>
+        <location filename="../torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
         <translation>このアシスタントはあなたがすでにダウンロード済みの Torrent を qBittorrent で共有する際のお手伝いをします。</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="50"/>
+        <location filename="../torrentimportdlg.ui" line="65"/>
         <source>Torrent file to import:</source>
         <translation>インポートする Torrent ファイル:</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="66"/>
-        <location filename="../torrentimportdlg.ui" line="94"/>
+        <location filename="../torrentimportdlg.ui" line="81"/>
+        <location filename="../torrentimportdlg.ui" line="109"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="75"/>
+        <location filename="../torrentimportdlg.ui" line="90"/>
         <source>Content location:</source>
         <translation>コンテンツの場所:</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="106"/>
+        <location filename="../torrentimportdlg.ui" line="121"/>
         <source>Skip the data checking stage and start seeding immediately</source>
         <translation>データチェックステージをスキップし、直ちにシードを開始する</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="116"/>
+        <location filename="../torrentimportdlg.ui" line="131"/>
         <source>Import</source>
         <translation>インポート</translation>
     </message>
@@ -5009,109 +5009,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1125"/>
-        <location filename="../preferences/options_imp.cpp" line="1127"/>
-        <location filename="../preferences/options_imp.cpp" line="1142"/>
-        <location filename="../preferences/options_imp.cpp" line="1144"/>
+        <location filename="../preferences/options_imp.cpp" line="1129"/>
+        <location filename="../preferences/options_imp.cpp" line="1131"/>
+        <location filename="../preferences/options_imp.cpp" line="1146"/>
+        <location filename="../preferences/options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>保存ディレクトリの選択</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1047"/>
+        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Add directory to scan</source>
         <translation>スキャンするディレクトリの追加</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1053"/>
+        <location filename="../preferences/options_imp.cpp" line="1057"/>
         <source>Folder is already being watched.</source>
         <translation>フォルダはすでに監視されています。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1056"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Folder does not exist.</source>
         <translation>フォルダが存在しません。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1059"/>
+        <location filename="../preferences/options_imp.cpp" line="1063"/>
         <source>Folder is not readable.</source>
         <translation>フォルダが読み込み可能ではありません。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1067"/>
+        <location filename="../preferences/options_imp.cpp" line="1071"/>
         <source>Failure</source>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1067"/>
+        <location filename="../preferences/options_imp.cpp" line="1071"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>スキャンフォルダ &apos;%1&apos; の追加に失敗しました: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1090"/>
-        <location filename="../preferences/options_imp.cpp" line="1092"/>
+        <location filename="../preferences/options_imp.cpp" line="1094"/>
+        <location filename="../preferences/options_imp.cpp" line="1096"/>
         <source>Choose export directory</source>
         <translation>エクスポートディレクトリの選択</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1107"/>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
+        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1113"/>
         <source>Choose an ip filter file</source>
         <translation>IP フィルタファイルの選択</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1107"/>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
+        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1113"/>
         <source>Filters</source>
         <translation>フィルタ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1187"/>
+        <location filename="../preferences/options_imp.cpp" line="1191"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL 証明書 (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1198"/>
+        <location filename="../preferences/options_imp.cpp" line="1202"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL 鍵 (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1229"/>
+        <location filename="../preferences/options_imp.cpp" line="1233"/>
         <source>Parsing error</source>
         <translation>解析エラー</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1229"/>
+        <location filename="../preferences/options_imp.cpp" line="1233"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>与えられた IP フィルタの解析に失敗しました</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1231"/>
+        <location filename="../preferences/options_imp.cpp" line="1235"/>
         <source>Successfully refreshed</source>
         <translation>正常にリフレッシュされました</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1231"/>
+        <location filename="../preferences/options_imp.cpp" line="1235"/>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>与えられた IP フィルタは正しく解析されました: %1 ルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1300"/>
+        <location filename="../preferences/options_imp.cpp" line="1304"/>
         <source>Invalid key</source>
         <translation>不正な鍵</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1300"/>
+        <location filename="../preferences/options_imp.cpp" line="1304"/>
         <source>This is not a valid SSL key.</source>
         <translation>これは正常な SSL 鍵ではありません。</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1315"/>
+        <location filename="../preferences/options_imp.cpp" line="1319"/>
         <source>Invalid certificate</source>
         <translation>不正な証明書</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1315"/>
+        <location filename="../preferences/options_imp.cpp" line="1319"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>これは正常な SSL 証明書ではありません。</translation>
     </message>
