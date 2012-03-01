@@ -43,7 +43,6 @@ TorrentContentModel::TorrentContentModel(QObject *parent):
 
 TorrentContentModel::~TorrentContentModel()
 {
-  qDeleteAll(m_filesIndex);
   delete m_rootItem;
 }
 
