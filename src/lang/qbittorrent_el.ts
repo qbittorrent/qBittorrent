@@ -2422,124 +2422,124 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="61"/>
+        <location filename="../properties/peerlistwidget.cpp" line="63"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="62"/>
+        <location filename="../properties/peerlistwidget.cpp" line="64"/>
         <source>Connection</source>
         <translation>Σύνδεση</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="63"/>
+        <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Πελάτης</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="64"/>
+        <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="65"/>
+        <location filename="../properties/peerlistwidget.cpp" line="67"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Ταχύτητα Λήψης</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="66"/>
+        <location filename="../properties/peerlistwidget.cpp" line="68"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Ταχύτητα Αποστολής</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="67"/>
+        <location filename="../properties/peerlistwidget.cpp" line="69"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Ληφθέντα</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="68"/>
+        <location filename="../properties/peerlistwidget.cpp" line="70"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Απεσταλμένα</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="139"/>
+        <location filename="../properties/peerlistwidget.cpp" line="141"/>
         <source>Add a new peer...</source>
         <translation>Προσθήκη νέας σύνδεσης...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="148"/>
+        <location filename="../properties/peerlistwidget.cpp" line="150"/>
         <source>Copy IP</source>
         <translation>Αντιγραφή IP</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="150"/>
+        <location filename="../properties/peerlistwidget.cpp" line="152"/>
         <source>Limit download rate...</source>
         <translation>Όριο ταχύτητας λήψης...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="151"/>
+        <location filename="../properties/peerlistwidget.cpp" line="153"/>
         <source>Limit upload rate...</source>
         <translation>Όριο ταχύτητας αποστολής...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="153"/>
+        <location filename="../properties/peerlistwidget.cpp" line="155"/>
         <source>Ban peer permanently</source>
         <translation>Μόνιμο μπλοκάρισμα σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="164"/>
         <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="168"/>
         <source>Peer addition</source>
         <translation>Προσθήκη σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="164"/>
+        <location filename="../properties/peerlistwidget.cpp" line="166"/>
         <source>The peer was added to this torrent.</source>
         <translation>Η σύνδεση προστέθηκε σ&apos;αυτό το torrent.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="168"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>Η σύνδεση δεν ήταν δυνατό να προστεθεί σ&apos;αυτό το torrent.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../properties/peerlistwidget.cpp" line="199"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Είστε σίγουρος? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../properties/peerlistwidget.cpp" line="199"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Είστε σίγουρος οτι θέλετε να μπλοκάρετε μόνιμα τις επιλεγμένες συνδέσεις?</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../properties/peerlistwidget.cpp" line="200"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../properties/peerlistwidget.cpp" line="200"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="202"/>
+        <location filename="../properties/peerlistwidget.cpp" line="207"/>
         <source>Manually banning peer %1...</source>
         <translation>Χειροκίνητο μπλοκάρισμα σύνδεσης %1...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="221"/>
+        <location filename="../properties/peerlistwidget.cpp" line="231"/>
         <source>Upload rate limiting</source>
         <translation>Περιορισμός ορίου αποστολής</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="249"/>
+        <location filename="../properties/peerlistwidget.cpp" line="265"/>
         <source>Download rate limiting</source>
         <translation>Περιορισμός ορίου λήψης</translation>
     </message>
@@ -4503,128 +4503,128 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="331"/>
+        <location filename="../searchengine/searchengine.cpp" line="319"/>
         <source>Empty search pattern</source>
         <translation>Κενό πρότυπο εύρεσης</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="331"/>
+        <location filename="../searchengine/searchengine.cpp" line="319"/>
         <source>Please type a search pattern first</source>
         <translation>Παρακαλώ εισάγετε ένα σχέδιο εύρεσης πρώτα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="369"/>
-        <location filename="../searchengine/searchengine.cpp" line="465"/>
+        <location filename="../searchengine/searchengine.cpp" line="354"/>
+        <location filename="../searchengine/searchengine.cpp" line="450"/>
         <source>Results</source>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="444"/>
+        <location filename="../searchengine/searchengine.cpp" line="429"/>
         <source>Searching...</source>
         <translation>Αναζήτηση...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="212"/>
+        <location filename="../searchengine/searchengine.cpp" line="200"/>
         <source>Cut</source>
         <translation>Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="213"/>
+        <location filename="../searchengine/searchengine.cpp" line="201"/>
         <source>Copy</source>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="214"/>
+        <location filename="../searchengine/searchengine.cpp" line="202"/>
         <source>Paste</source>
         <translation>Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="215"/>
+        <location filename="../searchengine/searchengine.cpp" line="203"/>
         <source>Clear field</source>
         <translation>Εκκαθάριση πεδίου</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="216"/>
+        <location filename="../searchengine/searchengine.cpp" line="204"/>
         <source>Clear completion history</source>
         <translation>Εκκαθάριση ιστορικού φόρμας</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="235"/>
+        <location filename="../searchengine/searchengine.cpp" line="223"/>
         <source>Confirmation</source>
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="235"/>
+        <location filename="../searchengine/searchengine.cpp" line="223"/>
         <source>Are you sure you want to clear the history?</source>
         <translation>Είστε σίγουρος οτι θέλετε να καθαρίσετε το ιστορικό?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="289"/>
-        <location filename="../searchengine/searchengine.cpp" line="319"/>
-        <location filename="../searchengine/searchengine.cpp" line="320"/>
+        <location filename="../searchengine/searchengine.cpp" line="277"/>
+        <location filename="../searchengine/searchengine.cpp" line="307"/>
+        <location filename="../searchengine/searchengine.cpp" line="308"/>
         <source>Search</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="300"/>
+        <location filename="../searchengine/searchengine.cpp" line="288"/>
         <source>Missing Python Interpreter</source>
         <translation>Έλλειψη διερμηνέα Python</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="301"/>
+        <location filename="../searchengine/searchengine.cpp" line="289"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Απαιτείται το Python 2.x. για την μηχανή αναζήτησης,αλλά δεν φαίνεται να είναι εγκατεστημένο.
 Θέλετε να το εγκαταστήσετε τώρα?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="590"/>
+        <location filename="../searchengine/searchengine.cpp" line="575"/>
         <source>Search Engine</source>
         <translation>Μηχανή Αναζήτησης</translation>
     </message>
     <message>
+        <location filename="../searchengine/searchengine.cpp" line="575"/>
         <location filename="../searchengine/searchengine.cpp" line="590"/>
-        <location filename="../searchengine/searchengine.cpp" line="605"/>
         <source>Search has finished</source>
         <translation>Η αναζήτηση τελείωσε</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="596"/>
+        <location filename="../searchengine/searchengine.cpp" line="581"/>
         <source>An error occured during search...</source>
         <translation>Σφάλμα κατά την εύρεση...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="594"/>
-        <location filename="../searchengine/searchengine.cpp" line="600"/>
+        <location filename="../searchengine/searchengine.cpp" line="579"/>
+        <location filename="../searchengine/searchengine.cpp" line="585"/>
         <source>Search aborted</source>
         <translation>Αναζήτηση διεκόπη</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="177"/>
+        <location filename="../searchengine/searchengine.cpp" line="168"/>
         <source>Download error</source>
         <translation>Σφάλμα κατεβάσματος</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="177"/>
+        <location filename="../searchengine/searchengine.cpp" line="168"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Τα αρχεία εγκατάστασης του Python δεν ήταν δυνατό να κατεβαστούν, αιτία: %1
 Παρακαλώ εγκαταστήστε το χειροκίνητα.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="603"/>
+        <location filename="../searchengine/searchengine.cpp" line="588"/>
         <source>Search returned no results</source>
         <translation>Η αναζήτηση δεν έφερε αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="610"/>
+        <location filename="../searchengine/searchengine.cpp" line="595"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Αποτελέσματα</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="646"/>
-        <location filename="../searchengine/searchengine.cpp" line="652"/>
+        <location filename="../searchengine/searchengine.cpp" line="631"/>
+        <location filename="../searchengine/searchengine.cpp" line="637"/>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -4782,22 +4782,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Name</source>
         <translation type="unfinished">Όνομα</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Size</source>
         <translation type="unfinished">Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Progress</source>
         <translation type="unfinished">Πρόοδος</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Priority</source>
         <translation type="unfinished">Προτεραιότητα</translation>
     </message>
@@ -6508,109 +6508,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1122"/>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1139"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
+        <location filename="../preferences/options_imp.cpp" line="1118"/>
+        <location filename="../preferences/options_imp.cpp" line="1120"/>
+        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1137"/>
         <source>Choose a save directory</source>
         <translation>Επιλέξτε φάκελο αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1044"/>
+        <location filename="../preferences/options_imp.cpp" line="1040"/>
         <source>Add directory to scan</source>
         <translation>Προσθήκη κατηγορίας στη σάρωση</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1050"/>
+        <location filename="../preferences/options_imp.cpp" line="1046"/>
         <source>Folder is already being watched.</source>
         <translation>Αυτός ο φάκελος ήδη παρακολουθείται.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1053"/>
+        <location filename="../preferences/options_imp.cpp" line="1049"/>
         <source>Folder does not exist.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1056"/>
+        <location filename="../preferences/options_imp.cpp" line="1052"/>
         <source>Folder is not readable.</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1064"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failure</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1064"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Δεν ήταν δυνατό να προστεθεί ο Φάκελος για Σάρωση &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
+        <location filename="../preferences/options_imp.cpp" line="1083"/>
+        <location filename="../preferences/options_imp.cpp" line="1085"/>
         <source>Choose export directory</source>
         <translation>Επιλέξτε φάκελο εξαγωγής</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1102"/>
         <source>Choose an ip filter file</source>
         <translation>Επιλέξτε ένα αρχείο φίλτρου ip</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1102"/>
         <source>Filters</source>
         <translation>Φίλτρα</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1184"/>
+        <location filename="../preferences/options_imp.cpp" line="1180"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>Πιστοποιητικό SSL (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1195"/>
+        <location filename="../preferences/options_imp.cpp" line="1191"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Κλειδί SSL (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1226"/>
+        <location filename="../preferences/options_imp.cpp" line="1222"/>
         <source>Parsing error</source>
         <translation>Σφάλμα ανάλυσης</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1226"/>
+        <location filename="../preferences/options_imp.cpp" line="1222"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Αποτυχία ανάγνωσης του δοθέντος φίλτρου IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully refreshed</source>
         <translation>Επιτυχής ανανέωση</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>Invalid key</source>
         <translation>Άκυρο κλειδί</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>This is not a valid SSL key.</source>
         <translation>Αυτό δεν είναι ένα έγκυρο κλειδί SSL.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1308"/>
         <source>Invalid certificate</source>
         <translation>Άκυρο πιστοποιητικό</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1308"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Αυτό δεν είναι ένα έγκυρο πιστοποιητικό SSL.</translation>
     </message>

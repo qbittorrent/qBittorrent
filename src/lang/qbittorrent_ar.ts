@@ -2471,124 +2471,124 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="61"/>
+        <location filename="../properties/peerlistwidget.cpp" line="63"/>
         <source>IP</source>
         <translation>اي بي</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="62"/>
+        <location filename="../properties/peerlistwidget.cpp" line="64"/>
         <source>Connection</source>
         <translation>الاتصال</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="63"/>
+        <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>العميل</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="64"/>
+        <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>الحالة</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="65"/>
+        <location filename="../properties/peerlistwidget.cpp" line="67"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>سرعة التحميل</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="66"/>
+        <location filename="../properties/peerlistwidget.cpp" line="68"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>سرعة الرفع</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="67"/>
+        <location filename="../properties/peerlistwidget.cpp" line="69"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>تم تحميله</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="68"/>
+        <location filename="../properties/peerlistwidget.cpp" line="70"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>تم رفعه</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="139"/>
+        <location filename="../properties/peerlistwidget.cpp" line="141"/>
         <source>Add a new peer...</source>
         <translation>اضافة قرين جديد...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="148"/>
+        <location filename="../properties/peerlistwidget.cpp" line="150"/>
         <source>Copy IP</source>
         <translation>نسخ الايبي</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="150"/>
+        <location filename="../properties/peerlistwidget.cpp" line="152"/>
         <source>Limit download rate...</source>
         <translation>وضع حد التحميل...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="151"/>
+        <location filename="../properties/peerlistwidget.cpp" line="153"/>
         <source>Limit upload rate...</source>
         <translation>وضع حد الرفع...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="153"/>
+        <location filename="../properties/peerlistwidget.cpp" line="155"/>
         <source>Ban peer permanently</source>
         <translation>منع القرين نهائيا</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="164"/>
         <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="168"/>
         <source>Peer addition</source>
         <translation>اضافة القرناء</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="164"/>
+        <location filename="../properties/peerlistwidget.cpp" line="166"/>
         <source>The peer was added to this torrent.</source>
         <translation>تم اضافة القرين للملف.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="168"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>لم تتم اضافة القرين للملف.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../properties/peerlistwidget.cpp" line="199"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>هل أنت متأكد؟  -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="196"/>
+        <location filename="../properties/peerlistwidget.cpp" line="199"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>هل انت متأكد من رغبتك في منع القرناء؟</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../properties/peerlistwidget.cpp" line="200"/>
         <source>&amp;Yes</source>
         <translation>&amp;نعم</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="197"/>
+        <location filename="../properties/peerlistwidget.cpp" line="200"/>
         <source>&amp;No</source>
         <translation>&amp;لا</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="202"/>
+        <location filename="../properties/peerlistwidget.cpp" line="207"/>
         <source>Manually banning peer %1...</source>
         <translation>Manually banning peer %1...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="221"/>
+        <location filename="../properties/peerlistwidget.cpp" line="231"/>
         <source>Upload rate limiting</source>
         <translation>وضع حد الرفع</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="249"/>
+        <location filename="../properties/peerlistwidget.cpp" line="265"/>
         <source>Download rate limiting</source>
         <translation>وضع حد التحميل</translation>
     </message>
@@ -4550,128 +4550,128 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="212"/>
+        <location filename="../searchengine/searchengine.cpp" line="200"/>
         <source>Cut</source>
         <translation>قص</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="213"/>
+        <location filename="../searchengine/searchengine.cpp" line="201"/>
         <source>Copy</source>
         <translation>نسخ</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="214"/>
+        <location filename="../searchengine/searchengine.cpp" line="202"/>
         <source>Paste</source>
         <translation>لصق</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="215"/>
+        <location filename="../searchengine/searchengine.cpp" line="203"/>
         <source>Clear field</source>
         <translation>تفريغ الخانة</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="216"/>
+        <location filename="../searchengine/searchengine.cpp" line="204"/>
         <source>Clear completion history</source>
         <translation>تفريق تاريخ الإنتهاء</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="235"/>
+        <location filename="../searchengine/searchengine.cpp" line="223"/>
         <source>Confirmation</source>
         <translation>التأكيد</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="235"/>
+        <location filename="../searchengine/searchengine.cpp" line="223"/>
         <source>Are you sure you want to clear the history?</source>
         <translation>هل انت متأكد من رغبتك في حذف النصوص السابقة؟</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="289"/>
-        <location filename="../searchengine/searchengine.cpp" line="319"/>
-        <location filename="../searchengine/searchengine.cpp" line="320"/>
+        <location filename="../searchengine/searchengine.cpp" line="277"/>
+        <location filename="../searchengine/searchengine.cpp" line="307"/>
+        <location filename="../searchengine/searchengine.cpp" line="308"/>
         <source>Search</source>
         <translation>البحث</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="300"/>
+        <location filename="../searchengine/searchengine.cpp" line="288"/>
         <source>Missing Python Interpreter</source>
         <translation>موجه Python مفقود</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="301"/>
+        <location filename="../searchengine/searchengine.cpp" line="289"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python 2.x مطلوب من اجل إستخدام محرك البحث لاكن لا يبدو انه منصب
 هل تريد تنصيبه الآن ؟</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="331"/>
+        <location filename="../searchengine/searchengine.cpp" line="319"/>
         <source>Empty search pattern</source>
         <translation>تفريغ نمط البحث</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="331"/>
+        <location filename="../searchengine/searchengine.cpp" line="319"/>
         <source>Please type a search pattern first</source>
         <translation>الرجاء كتابة نمط البحث اولا</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="369"/>
-        <location filename="../searchengine/searchengine.cpp" line="465"/>
+        <location filename="../searchengine/searchengine.cpp" line="354"/>
+        <location filename="../searchengine/searchengine.cpp" line="450"/>
         <source>Results</source>
         <translation>النتائج</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="444"/>
+        <location filename="../searchengine/searchengine.cpp" line="429"/>
         <source>Searching...</source>
         <translation>جاري البحث...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="590"/>
+        <location filename="../searchengine/searchengine.cpp" line="575"/>
         <source>Search Engine</source>
         <translation>محرك البحث</translation>
     </message>
     <message>
+        <location filename="../searchengine/searchengine.cpp" line="575"/>
         <location filename="../searchengine/searchengine.cpp" line="590"/>
-        <location filename="../searchengine/searchengine.cpp" line="605"/>
         <source>Search has finished</source>
         <translation>انتهى البحث</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="596"/>
+        <location filename="../searchengine/searchengine.cpp" line="581"/>
         <source>An error occured during search...</source>
         <translation>حدث خطأ في البحث...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="594"/>
-        <location filename="../searchengine/searchengine.cpp" line="600"/>
+        <location filename="../searchengine/searchengine.cpp" line="579"/>
+        <location filename="../searchengine/searchengine.cpp" line="585"/>
         <source>Search aborted</source>
         <translation>إيقاف البحث</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="177"/>
+        <location filename="../searchengine/searchengine.cpp" line="168"/>
         <source>Download error</source>
         <translation>خطأ تحميل</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="177"/>
+        <location filename="../searchengine/searchengine.cpp" line="168"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>منصب برنامج Python لم يستطيع التحميل, السبب: %1 
 الرجاء التنصيب يدويا.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="603"/>
+        <location filename="../searchengine/searchengine.cpp" line="588"/>
         <source>Search returned no results</source>
         <translation>لم يجد البحث أية نتيجة</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="610"/>
+        <location filename="../searchengine/searchengine.cpp" line="595"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>النتائج</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="646"/>
-        <location filename="../searchengine/searchengine.cpp" line="652"/>
+        <location filename="../searchengine/searchengine.cpp" line="631"/>
+        <location filename="../searchengine/searchengine.cpp" line="637"/>
         <source>Unknown</source>
         <translation>غير معروف</translation>
     </message>
@@ -4809,22 +4809,22 @@ Please install it manually.</source>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Progress</source>
         <translation type="unfinished">الحالة</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="41"/>
+        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6542,109 +6542,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1087"/>
-        <location filename="../preferences/options_imp.cpp" line="1089"/>
+        <location filename="../preferences/options_imp.cpp" line="1083"/>
+        <location filename="../preferences/options_imp.cpp" line="1085"/>
         <source>Choose export directory</source>
         <translation>إختر مكان للتصدير</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1122"/>
-        <location filename="../preferences/options_imp.cpp" line="1124"/>
-        <location filename="../preferences/options_imp.cpp" line="1139"/>
-        <location filename="../preferences/options_imp.cpp" line="1141"/>
+        <location filename="../preferences/options_imp.cpp" line="1118"/>
+        <location filename="../preferences/options_imp.cpp" line="1120"/>
+        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1137"/>
         <source>Choose a save directory</source>
         <translation>إختر مكان للحفظ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1102"/>
         <source>Choose an ip filter file</source>
         <translation>إختر ملف لمنقي الاي بي</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1044"/>
+        <location filename="../preferences/options_imp.cpp" line="1040"/>
         <source>Add directory to scan</source>
         <translation>اضافة مكان الملفات المراد فحصها</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1050"/>
+        <location filename="../preferences/options_imp.cpp" line="1046"/>
         <source>Folder is already being watched.</source>
         <translation>المجلد يستعرض الآن.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1053"/>
+        <location filename="../preferences/options_imp.cpp" line="1049"/>
         <source>Folder does not exist.</source>
         <translation>المجلد غير موجود.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1056"/>
+        <location filename="../preferences/options_imp.cpp" line="1052"/>
         <source>Folder is not readable.</source>
         <translation>المجلد غير قابل للقراءة.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1064"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failure</source>
         <translation>فشل</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1064"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>فشل اضافة المجلد للفحص &apos;%1: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1102"/>
         <source>Filters</source>
         <translation>منقيات</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1184"/>
+        <location filename="../preferences/options_imp.cpp" line="1180"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL Certificate (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1195"/>
+        <location filename="../preferences/options_imp.cpp" line="1191"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL Key (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1226"/>
+        <location filename="../preferences/options_imp.cpp" line="1222"/>
         <source>Parsing error</source>
         <translation>Parsing error</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1226"/>
+        <location filename="../preferences/options_imp.cpp" line="1222"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Failed to parse the provided IP filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully refreshed</source>
         <translation>التحديث ناجح</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1228"/>
+        <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>Invalid key</source>
         <translation>مفتاح خاطئ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1297"/>
+        <location filename="../preferences/options_imp.cpp" line="1293"/>
         <source>This is not a valid SSL key.</source>
         <translation>هذا مفتاح SSL خاطئ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1308"/>
         <source>Invalid certificate</source>
         <translation>شهادة خاطئة</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1312"/>
+        <location filename="../preferences/options_imp.cpp" line="1308"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>هذه شهادة SSL خاطئة.</translation>
     </message>
