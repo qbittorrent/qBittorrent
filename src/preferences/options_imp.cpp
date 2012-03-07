@@ -1276,6 +1276,7 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Arabic: return QString::fromUtf8("عربي");
   case QLocale::Georgian: return QString::fromUtf8("ქართული");
   case QLocale::Byelorussian: return QString::fromUtf8("Беларуская");
+  case QLocale::Basque: return QString::fromUtf8("Euskara");
   case QLocale::Chinese: {
     if(country == "cn")
       return QString::fromUtf8("中文 (简体)");
