@@ -4675,7 +4675,7 @@ Please install it manually.</source>
         <translation>Շնորհակալություն բոլոր այս մարդկանց, որոնք սիրով թարգմանել են qBittorrent-ը.</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Խնդրում եմ կապնվել ինձ հետ, եթե ցանկանում եք թարգմանել qBittorrent-ը Ձեր մայրենի լեզվով։</translation>
     </message>
@@ -5500,22 +5500,22 @@ However, those plugins were disabled.</source>
         <translation>IP ֆիլտրի ներկայացումը հաջող էր. %1 կանոնները կիրառվեցին։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>Սխալ բանալի</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>Սա ճիշտ SSLբանալի չէ։</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>Սխալ վավերագիր</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Սա ճիշտ SSL վավերագիր չէ։</translation>
     </message>

@@ -5569,7 +5569,7 @@ Asenna se itse.</translation>
         <translation>Haluan kiittää seuraavia henkilöitä, jotka ovat vapaaehtoisesti kääntäneet qBittorrentin:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Ota yhteyttä minuun, jos haluat kääntää qBittorentin omalle kielellesi.</translation>
     </message>
@@ -6466,22 +6466,22 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>

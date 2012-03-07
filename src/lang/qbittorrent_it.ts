@@ -5744,7 +5744,7 @@ Per favore installalo manualmente.</translation>
         <translation>Vorrei ringraziare le seguenti persone che si sono rese volontarie per tradurre qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Per favore contattami se vorresti tradurre qBittorrent nella tua lingua.</translation>
     </message>
@@ -6642,22 +6642,22 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <translation>Il filtro IP del provider è stato analizzato correttamente: %1 le regole sono state applicate.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>Chiave non valida</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>Questa non è una chiave SSL valida.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>Certificato non valido</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Questo non è un certificato SSL valido.</translation>
     </message>

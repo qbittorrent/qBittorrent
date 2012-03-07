@@ -4387,7 +4387,7 @@ Please install it manually.</source>
         <translation>Я ўдзячны наступным людзям, якія вызваліся перакласці qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Калі ласка, звяжыцеся са мной, калі жадаеце перакласці qBittorrent на сваю мову.</translation>
     </message>
@@ -5101,23 +5101,23 @@ However, those plugins were disabled.</source>
         <translation>IP фільтр паспяхова прачытаны: ужыта %1 правілаў.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translatorcomment>Ці несапраўдны?</translatorcomment>
         <translation>Нядзейсны ключ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>Гэты SSL-ключ нядзейсны.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>Нядзейсны сертыфікат</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Гэты SSL-сертыфікат нядзейсны.</translation>
     </message>

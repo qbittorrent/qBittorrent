@@ -108,130 +108,130 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="161"/>
+        <location filename="../preferences/advancedsettings.h" line="169"/>
         <source>Disk write cache size</source>
         <translation>Diska idazketa katxe neurria</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="160"/>
+        <location filename="../preferences/advancedsettings.h" line="168"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="166"/>
+        <location filename="../preferences/advancedsettings.h" line="174"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Irteera atakak (Gutx) [0:Ezgaituta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="171"/>
+        <location filename="../preferences/advancedsettings.h" line="179"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Irteera atakak (Geh) [0:Ezgaituta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="177"/>
+        <location filename="../preferences/advancedsettings.h" line="185"/>
         <source>Recheck torrents on completion</source>
         <translation>Berregiaztatu torrentak osatutakoan</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="183"/>
+        <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Transfer list refresh interval</source>
         <translation>Eskualdaketa zerrendaren berritze epea</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="182"/>
+        <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> sm</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="52"/>
+        <location filename="../preferences/advancedsettings.h" line="56"/>
         <source>Setting</source>
         <translation>Ezarpena</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="52"/>
+        <location filename="../preferences/advancedsettings.h" line="56"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Balioa</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="186"/>
+        <location filename="../preferences/advancedsettings.h" line="194"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation> Erabaki hartzaile herrialdea (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="189"/>
+        <location filename="../preferences/advancedsettings.h" line="197"/>
         <source>Resolve peer host names</source>
         <translation> Erabaki hartzaile hostalari izenak</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="194"/>
+        <location filename="../preferences/advancedsettings.h" line="202"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Gehienezko elkarketa  erdi-ireki zenbatekoa [0:Ezgaituta]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="197"/>
+        <location filename="../preferences/advancedsettings.h" line="209"/>
         <source>Strict super seeding</source>
         <translation>Gain emaritza zorrotza</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
+        <location filename="../preferences/advancedsettings.h" line="221"/>
         <source>Network Interface (requires restart)</source>
         <translation>Sare Interfazea (berrabiaraztea beharrezkoa)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="237"/>
+        <location filename="../preferences/advancedsettings.h" line="249"/>
         <source>Exchange trackers with other peers</source>
         <translation>Aldatu aztarnariak beste hartzaileekin</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="240"/>
+        <location filename="../preferences/advancedsettings.h" line="253"/>
         <source>Always announce to all trackers</source>
         <translation>Betik iragarri aztarnari guztietara</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="199"/>
+        <location filename="../preferences/advancedsettings.h" line="211"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Edozein interfaze</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="212"/>
+        <location filename="../preferences/advancedsettings.h" line="224"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP Helbidea aztarnariei jakinarazteko (berrabiaraztea beharrezkoa)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="227"/>
         <source>Display program on-screen notifications</source>
         <translation>Erakutsi programa oharrak ikusleiho gainean</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Enable embedded tracker</source>
         <translation>Gaitu barneratutako aztarnaria</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="235"/>
         <source>Embedded tracker port</source>
         <translation>Barneratutako aztarnari ataka</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Check for software updates</source>
         <translation>Egiaztatu software eguneraketak</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="242"/>
         <source>Use system icon theme</source>
         <translation>Erabili sistemaren ikono azalgaia</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="234"/>
+        <location filename="../preferences/advancedsettings.h" line="246"/>
         <source>Confirm torrent deletion</source>
         <translation>Baieztatu torrent ezabapena</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="174"/>
+        <location filename="../preferences/advancedsettings.h" line="182"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ezikusi eskualdaketa mugak tokiko sarean</translation>
     </message>
@@ -319,9 +319,13 @@ p, li { white-space: pre-wrap; }
         <translation>Arau izen berria</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Mesedez idatzi jeisketa arauaren izen berria-&gt;</translation>
+        <translation type="obsolete">Mesedez idatzi jeisketa arauaren izen berria-&gt;</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="304"/>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="308"/>
@@ -407,18 +411,26 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="385"/>
-        <source>Add new rule-&gt;..</source>
-        <translation>Gehitu arau berria-&gt;..</translation>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
+        <source>Add new rule-&gt;..</source>
+        <translation type="obsolete">Gehitu arau berria-&gt;..</translation>
+    </message>
+    <message>
         <source>Rename rule-&gt;..</source>
-        <translation>Berrizendatu araua-&gt;..</translation>
+        <translation type="obsolete">Berrizendatu araua-&gt;..</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="391"/>
         <source>Delete rule</source>
         <translation>Ezabatu araua</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="395"/>
@@ -436,17 +448,17 @@ p, li { white-space: pre-wrap; }
         <translation>Mesedez idatzi arau izen berria</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="523"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="520"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>Regex modua: erabili Perl-bezalako adierezpen arruntak</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="527"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="524"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;Zuriuneak AND eragile bezala zenbatzen dira&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="529"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="526"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;| OR eragile bezala erabiltzen da&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -481,9 +493,13 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
 <context>
     <name>DNSUpdater</name>
     <message>
-        <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Zure DNS dinamikoa ongi eguneratu da.</translation>
+        <translation type="obsolete">Zure DNS dinamikoa ongi eguneratu da.</translation>
+    </message>
+    <message>
+        <location filename="../dnsupdater.cpp" line="178"/>
+        <source>Your dynamic DNS was successfuly updated.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
@@ -653,53 +669,56 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
 <context>
     <name>EventManager</name>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="72"/>
+        <location filename="../webui/eventmanager.cpp" line="73"/>
+        <location filename="../webui/eventmanager.cpp" line="87"/>
         <source>Working</source>
         <translation>Lanean</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="75"/>
+        <location filename="../webui/eventmanager.cpp" line="76"/>
         <source>Updating...</source>
         <translation>Eguneratzen...</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="78"/>
+        <location filename="../webui/eventmanager.cpp" line="79"/>
+        <location filename="../webui/eventmanager.cpp" line="90"/>
         <source>Not working</source>
         <translation>Lan gabe</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="80"/>
+        <location filename="../webui/eventmanager.cpp" line="81"/>
+        <location filename="../webui/eventmanager.cpp" line="92"/>
         <source>Not contacted yet</source>
         <translation>Harremandu gabe oraindik</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="427"/>
-        <location filename="../webui/eventmanager.cpp" line="428"/>
+        <location filename="../webui/eventmanager.cpp" line="442"/>
+        <location filename="../webui/eventmanager.cpp" line="443"/>
         <source>this session</source>
         <translation>saio hau</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="432"/>
-        <location filename="../webui/eventmanager.cpp" line="436"/>
+        <location filename="../webui/eventmanager.cpp" line="447"/>
+        <location filename="../webui/eventmanager.cpp" line="451"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="439"/>
+        <location filename="../webui/eventmanager.cpp" line="454"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Emarituta %1</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="442"/>
+        <location filename="../webui/eventmanager.cpp" line="457"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 geh</translation>
     </message>
     <message>
-        <location filename="../webui/eventmanager.cpp" line="521"/>
-        <location filename="../webui/eventmanager.cpp" line="530"/>
+        <location filename="../webui/eventmanager.cpp" line="536"/>
+        <location filename="../webui/eventmanager.cpp" line="545"/>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
         <translation>%1/s</translation>
@@ -1505,124 +1524,124 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="63"/>
+        <location filename="../properties/peerlistwidget.cpp" line="61"/>
         <source>IP</source>
         <translation>IP-a</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="64"/>
+        <location filename="../properties/peerlistwidget.cpp" line="62"/>
         <source>Connection</source>
         <translation>Elkarketa</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="65"/>
+        <location filename="../properties/peerlistwidget.cpp" line="63"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Bezeroa</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="66"/>
+        <location filename="../properties/peerlistwidget.cpp" line="64"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Garapena</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="67"/>
+        <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Jeisketa Abiadura</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="68"/>
+        <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Igoera Abiadura</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="69"/>
+        <location filename="../properties/peerlistwidget.cpp" line="67"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Jeitsita</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="70"/>
+        <location filename="../properties/peerlistwidget.cpp" line="68"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Igota</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="141"/>
+        <location filename="../properties/peerlistwidget.cpp" line="139"/>
         <source>Add a new peer...</source>
         <translation>Gehitu hartzaile berri bat...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="150"/>
+        <location filename="../properties/peerlistwidget.cpp" line="148"/>
         <source>Copy IP</source>
         <translation>Kopiatu IP-a</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="152"/>
+        <location filename="../properties/peerlistwidget.cpp" line="150"/>
         <source>Limit download rate...</source>
         <translation>Mugatu jeisketa neurria...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="153"/>
+        <location filename="../properties/peerlistwidget.cpp" line="151"/>
         <source>Limit upload rate...</source>
         <translation>Mugatu igoera neurria...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="155"/>
+        <location filename="../properties/peerlistwidget.cpp" line="153"/>
         <source>Ban peer permanently</source>
         <translation>Eragotzi hartzailea mugagabe</translation>
     </message>
     <message>
+        <location filename="../properties/peerlistwidget.cpp" line="164"/>
         <location filename="../properties/peerlistwidget.cpp" line="166"/>
-        <location filename="../properties/peerlistwidget.cpp" line="168"/>
         <source>Peer addition</source>
         <translation>Hartzaile gehiketa</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="164"/>
         <source>The peer was added to this torrent.</source>
         <translation>Hartzailea torrent honetara gehitu da.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="168"/>
+        <location filename="../properties/peerlistwidget.cpp" line="166"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>Hartzailea ezin da torrent honetara gehitu.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="199"/>
+        <location filename="../properties/peerlistwidget.cpp" line="196"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Zihur zaude? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="199"/>
+        <location filename="../properties/peerlistwidget.cpp" line="196"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Zihur zaude mugagabe eragoztea nahi dituzula hautatutako hartzaileak?</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="200"/>
+        <location filename="../properties/peerlistwidget.cpp" line="197"/>
         <source>&amp;Yes</source>
         <translation>&amp;Bai</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="200"/>
+        <location filename="../properties/peerlistwidget.cpp" line="197"/>
         <source>&amp;No</source>
         <translation>&amp;Ez</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="207"/>
+        <location filename="../properties/peerlistwidget.cpp" line="202"/>
         <source>Manually banning peer %1...</source>
         <translation>Eskuzko hartzaile eragoztea %1...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="231"/>
+        <location filename="../properties/peerlistwidget.cpp" line="221"/>
         <source>Upload rate limiting</source>
         <translation>Igoera neurri mugapena</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="265"/>
+        <location filename="../properties/peerlistwidget.cpp" line="249"/>
         <source>Download rate limiting</source>
         <translation>Jeisketa neurri mugapena</translation>
     </message>
@@ -2327,15 +2346,15 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="75"/>
-        <location filename="../previewselect.cpp" line="109"/>
-        <location filename="../previewselect.cpp" line="115"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Preview impossible</source>
         <translation>Aurreikuspena ezinezkoa</translation>
     </message>
     <message>
         <location filename="../previewselect.cpp" line="75"/>
-        <location filename="../previewselect.cpp" line="109"/>
-        <location filename="../previewselect.cpp" line="115"/>
+        <location filename="../previewselect.cpp" line="110"/>
+        <location filename="../previewselect.cpp" line="116"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Barkatu, ezin dugu agiri hau aurreikusi</translation>
     </message>
@@ -2529,112 +2548,112 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <translation>Ez jeitsi</translation>
     </message>
     <message>
+        <location filename="../properties/propertieswidget.cpp" line="324"/>
         <location filename="../properties/propertieswidget.cpp" line="325"/>
-        <location filename="../properties/propertieswidget.cpp" line="326"/>
         <source>this session</source>
         <translation>saio hau</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="330"/>
-        <location filename="../properties/propertieswidget.cpp" line="334"/>
+        <location filename="../properties/propertieswidget.cpp" line="329"/>
+        <location filename="../properties/propertieswidget.cpp" line="333"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="337"/>
+        <location filename="../properties/propertieswidget.cpp" line="336"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Emarituta %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="341"/>
+        <location filename="../properties/propertieswidget.cpp" line="340"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 geh</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
-        <location filename="../properties/propertieswidget.cpp" line="449"/>
+        <location filename="../properties/propertieswidget.cpp" line="430"/>
+        <location filename="../properties/propertieswidget.cpp" line="452"/>
         <source>I/O Error</source>
         <translation>S/I Akatsa</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="430"/>
         <source>This file does not exist yet.</source>
         <translation>Agiri hau ez dago oraindik.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="449"/>
+        <location filename="../properties/propertieswidget.cpp" line="452"/>
         <source>This folder does not exist yet.</source>
         <translation>Agiritegi hau ez dago oraindik.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="459"/>
+        <location filename="../properties/propertieswidget.cpp" line="462"/>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="468"/>
+        <location filename="../properties/propertieswidget.cpp" line="471"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="510"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
         <source>Rename the file</source>
         <translation>Berrizendatu agiri hau</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="511"/>
+        <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>New name:</source>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="515"/>
-        <location filename="../properties/propertieswidget.cpp" line="546"/>
+        <location filename="../properties/propertieswidget.cpp" line="518"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>The file could not be renamed</source>
         <translation>Agiria ezin da berrizendatu</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="516"/>
+        <location filename="../properties/propertieswidget.cpp" line="519"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="547"/>
-        <location filename="../properties/propertieswidget.cpp" line="585"/>
+        <location filename="../properties/propertieswidget.cpp" line="550"/>
+        <location filename="../properties/propertieswidget.cpp" line="588"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="584"/>
+        <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>The folder could not be renamed</source>
         <translation>Agiritegia ezin da berrizendatua izan</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="623"/>
+        <location filename="../properties/propertieswidget.cpp" line="626"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Url emaritza berria</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="624"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>New url seed:</source>
         <translation>Url emaritza berria:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="629"/>
+        <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="630"/>
+        <location filename="../properties/propertieswidget.cpp" line="633"/>
         <source>This url seed is already in the list.</source>
         <translation>Url emaritza hau jadanik zerrendan dago.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="672"/>
         <location filename="../properties/propertieswidget.cpp" line="675"/>
+        <location filename="../properties/propertieswidget.cpp" line="678"/>
         <source>Choose save path</source>
         <translation>Hautatu gordetze helburua</translation>
     </message>
@@ -2664,317 +2683,322 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <translation>qBittorrenten muga ataka: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="386"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="388"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP erabiltzaile ordezkaria da, %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="411"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Anonymous mode [ON]</source>
         <translation>Izengabeko modua [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="443"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="449"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>%1 IP helbidea aztarnariei jakinarazten...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT sostengua [BAI], ataka: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="501"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="509"/>
         <source>DHT support [OFF]</source>
         <translation>DHT sostengua [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
         <source>PeX support [ON]</source>
         <translation>HaX sostengua [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>PeX support [OFF]</source>
         <translation>HaX sostengua [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="510"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Berrabiaraztea beharrezkoa HaX sostengua aldatzeko</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Tokiko Hartzaile Haurkikuntza sostengua [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
         <source>Encryption support [ON]</source>
         <translation>Enkripataketa sostengua [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
         <source>Encryption support [FORCED]</source>
         <translation>Enkripataketa sostengua [BEHARTUTA]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="540"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="548"/>
         <source>Encryption support [OFF]</source>
         <translation>Enkripataketa sostengua [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="601"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="609"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Barneratutako Aztarnaria [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="603"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="611"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Hutsegitea barneratutako aztarnaria abiaraztean!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="614"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Barneratutako Aztarnaria [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="660"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="668"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Web EI %1 atakan ari da aditzen</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="662"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="670"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Web Erabiltzaile Interfaze Akatsa - Ezinezkoa Web EI %1 atakara lotzea</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="797"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="805"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik eta diska gogorretik kendu da.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="799"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="807"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik kendu da.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="881"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="889"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; ez da magnet URI baliozkoa.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="897"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1020"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1025"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1027"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="905"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1028"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1035"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; jadanik jeisketa zerrendan dago.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1174"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1182"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1179"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; berrekinda. (berrekite azkarra)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2216"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2262"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Ordenagailua orain lotaratu egingo da ez baduzu hurrengo 15 segundutan ezeztatzen... </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2218"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2264"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Ordenagailua orain itzali egingo da ez baduzu hurrengo 15 segundutan ezeztatzen... </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2220"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2266"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent orain irten egingo da ez baduzu hurrengo 15 segundutan ezeztatzen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2778"/>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2877"/>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2784"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="obsolete">Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2883"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Akatsa: Hutsegitea emandako IP iragazkia aztertzerakoan.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="953"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1176"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1184"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="961"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1181"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1189"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1194"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; gehituta jeisketa zerrendara.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="377"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="379"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>UPnP / NAT-PMP sostengua [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="380"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="382"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>UPnP / NAT-PMP sostengua [EZ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="523"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Tokiko Hartzaile Haurkikuntza sostengua [BAI]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="988"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="996"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="998"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1004"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1006"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Ezinezkoa torrent agiria dekodeatzea: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1002"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1010"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Agiri hau hondatuta dago edo ez da torrent bat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1043"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Akatsa: %1 torrentak ez du agiririk.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1331"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1340"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Oharra: aztarnari berriak gehitu dira torrentera.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1366"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Oharra: URL emaritza berriak gehitu dira torrentera.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1686"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1727"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zure IP iragazkiagaitik blokeatu da.&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1688"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1729"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;eragotzia izan da atal hondatuengaitik&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1862"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1907"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Zehaztutako sare interfazea baliogabea da: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1863"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Saiatu ordezko beste sare interfaze eskuragarri batekin.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1886"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1931"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>%1 IP helbidean aditzen, sare interfazea %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1889"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1934"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Hutsegitea %1 sare interfazean aditzerakoan</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2070"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2072"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2115"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2117"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>%1 agiriaren jeisketa mugagabea %2 torrentean barneratuta</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Ezinezkoa %1 torrent agiria dekodeatzea.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2117"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2162"/>
         <source>Torrent name: %1</source>
         <translation>Torrent izena: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2118"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
         <source>Torrent size: %1</source>
         <translation>Torrent neurria: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2119"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2164"/>
         <source>Save path: %1</source>
         <translation>Gordetze helburua: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2120"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2165"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrenta jeitsi da, %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2121"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Mila esker qBittorrent erabiltzeagaitik.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 jeisketa amaitu du</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2374"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2433"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>S/I akats bat gertatu da, &apos;%1&apos; pausatuta.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2375"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2486"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2434"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2564"/>
         <source>Reason: %1</source>
         <translation>Zergaitia: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2450"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Ataka mapaketa hutsegitea, mezua: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2455"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Ataka mapaketa ongi burutu da, mezua: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2481"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2559"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Agiri neurriak ez datoz bat %1 torrentarekin, pausatzen.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2485"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2563"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Berrekite azkarreko datuak baztertuak izan dira %1 torrentean, berrriro egiaztatzen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2491"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2569"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url emaritza bigizta hutsegitea url honetan: %1, mezua: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2620"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2698"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; jeisten, mesedez itxaron...</translation>
@@ -3184,17 +3208,17 @@ p, li { white-space: pre-wrap; }
         <translation>Izen hau jadanik beste gai batek darabil, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="516"/>
+        <location filename="../rss/rss_imp.cpp" line="514"/>
         <source>Date: </source>
         <translation>Eguna: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="519"/>
+        <location filename="../rss/rss_imp.cpp" line="517"/>
         <source>Author: </source>
         <translation>Egilea: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="565"/>
+        <location filename="../rss/rss_imp.cpp" line="563"/>
         <source>Unread</source>
         <translation>Irakurri gabea</translation>
     </message>
@@ -3202,7 +3226,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="297"/>
+        <location filename="../rss/rssfeed.cpp" line="316"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>%1 torrenta berezgaitasunez jeisten %2 RSS harpidetzatik...</translation>
     </message>
@@ -3294,126 +3318,126 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="200"/>
+        <location filename="../searchengine/searchengine.cpp" line="212"/>
         <source>Cut</source>
         <translation>Ebaki</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="201"/>
+        <location filename="../searchengine/searchengine.cpp" line="213"/>
         <source>Copy</source>
         <translation>Kopiatu</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="202"/>
+        <location filename="../searchengine/searchengine.cpp" line="214"/>
         <source>Paste</source>
         <translation>Itsatsi</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="203"/>
+        <location filename="../searchengine/searchengine.cpp" line="215"/>
         <source>Clear field</source>
         <translation>Garbitu eremua</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="204"/>
+        <location filename="../searchengine/searchengine.cpp" line="216"/>
         <source>Clear completion history</source>
         <translation>Garbitu osaketa historia</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="223"/>
+        <location filename="../searchengine/searchengine.cpp" line="235"/>
         <source>Confirmation</source>
         <translation>Baieztapena</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="223"/>
+        <location filename="../searchengine/searchengine.cpp" line="235"/>
         <source>Are you sure you want to clear the history?</source>
         <translation>Zihur zaude historia garbitzea nahi duzula?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="277"/>
-        <location filename="../searchengine/searchengine.cpp" line="307"/>
-        <location filename="../searchengine/searchengine.cpp" line="308"/>
+        <location filename="../searchengine/searchengine.cpp" line="289"/>
+        <location filename="../searchengine/searchengine.cpp" line="319"/>
+        <location filename="../searchengine/searchengine.cpp" line="320"/>
         <source>Search</source>
         <translation>Bilatu</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="288"/>
+        <location filename="../searchengine/searchengine.cpp" line="300"/>
         <source>Missing Python Interpreter</source>
         <translation>Python Interprete Gabe</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="289"/>
+        <location filename="../searchengine/searchengine.cpp" line="301"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python 2.x beharrezkoa da bilaketa gailua erabiltzeko baina ez dago ezarrita.Orain ezartzea nahi duzu?</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="319"/>
+        <location filename="../searchengine/searchengine.cpp" line="331"/>
         <source>Empty search pattern</source>
         <translation>Bilaketa eredua hutsik</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="319"/>
+        <location filename="../searchengine/searchengine.cpp" line="331"/>
         <source>Please type a search pattern first</source>
         <translation>Mesedez idatzi bilaketa eredua lehenik</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="354"/>
-        <location filename="../searchengine/searchengine.cpp" line="450"/>
+        <location filename="../searchengine/searchengine.cpp" line="369"/>
+        <location filename="../searchengine/searchengine.cpp" line="465"/>
         <source>Results</source>
         <translation>Emaitzak</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="429"/>
+        <location filename="../searchengine/searchengine.cpp" line="444"/>
         <source>Searching...</source>
         <translation>Bilatzen...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="575"/>
+        <location filename="../searchengine/searchengine.cpp" line="594"/>
         <source>Search Engine</source>
         <translation>Bilaketa Gailua</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="575"/>
-        <location filename="../searchengine/searchengine.cpp" line="590"/>
+        <location filename="../searchengine/searchengine.cpp" line="594"/>
+        <location filename="../searchengine/searchengine.cpp" line="609"/>
         <source>Search has finished</source>
         <translation>Bilaketa amaitu da</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="581"/>
+        <location filename="../searchengine/searchengine.cpp" line="600"/>
         <source>An error occured during search...</source>
         <translation>Akats bat gertatu da bilaketan...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="579"/>
-        <location filename="../searchengine/searchengine.cpp" line="585"/>
+        <location filename="../searchengine/searchengine.cpp" line="598"/>
+        <location filename="../searchengine/searchengine.cpp" line="604"/>
         <source>Search aborted</source>
         <translation>Bilaketa utzita</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="168"/>
+        <location filename="../searchengine/searchengine.cpp" line="177"/>
         <source>Download error</source>
         <translation>Jeisketa akatsa</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="168"/>
+        <location filename="../searchengine/searchengine.cpp" line="177"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1Mesedeez ezerri eskuz.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="588"/>
+        <location filename="../searchengine/searchengine.cpp" line="607"/>
         <source>Search returned no results</source>
         <translation>Bilaketak ez du emaitzik itzuli</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="595"/>
+        <location filename="../searchengine/searchengine.cpp" line="614"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Emaitzak</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="631"/>
-        <location filename="../searchengine/searchengine.cpp" line="637"/>
+        <location filename="../searchengine/searchengine.cpp" line="650"/>
+        <location filename="../searchengine/searchengine.cpp" line="656"/>
         <source>Unknown</source>
         <translation>Ezezaguna</translation>
     </message>
@@ -3543,24 +3567,20 @@ Please install it manually.</source>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Name</source>
-        <translation>Izena</translation>
+        <translation type="obsolete">Izena</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="39"/>
         <source>Size</source>
-        <translation>Neurria</translation>
+        <translation type="obsolete">Neurria</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Progress</source>
-        <translation>Garapena</translation>
+        <translation type="obsolete">Garapena</translation>
     </message>
     <message>
-        <location filename="../torrentcontentmodel.cpp" line="40"/>
         <source>Priority</source>
-        <translation>Lehentasuna</translation>
+        <translation type="obsolete">Lehentasuna</translation>
     </message>
 </context>
 <context>
@@ -3598,7 +3618,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="165"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="178"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="180"/>
         <source>Torrent creation</source>
         <translation>Torrent sortzea</translation>
     </message>
@@ -3613,9 +3633,32 @@ Please install it manually.</source>
         <translation>Sortutako torrent agiria baliogabea da. Ez da jeisketa zerrendara gehitu.</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="178"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="180"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrenta ongi sortu da:</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentFilesModel</name>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="347"/>
+        <source>Name</source>
+        <translation type="unfinished">Izena</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="347"/>
+        <source>Size</source>
+        <translation type="unfinished">Neurria</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="347"/>
+        <source>Progress</source>
+        <translation type="unfinished">Garapena</translation>
+    </message>
+    <message>
+        <location filename="../torrentfilesmodel.h" line="347"/>
+        <source>Priority</source>
+        <translation type="unfinished">Lehentasuna</translation>
     </message>
 </context>
 <context>
@@ -3657,39 +3700,39 @@ Please install it manually.</source>
         <translation>Inportatu</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="67"/>
+        <location filename="../torrentimportdlg.cpp" line="70"/>
         <source>Torrent file to import</source>
         <translation>Inportatzeko torrent agiria</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="67"/>
+        <location filename="../torrentimportdlg.cpp" line="70"/>
         <source>Torrent files (*.torrent)</source>
         <translation>Torrent agiriak (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="92"/>
+        <location filename="../torrentimportdlg.cpp" line="95"/>
         <source>%1 Files</source>
         <comment>%1 is a file extension (e.g. PDF)</comment>
         <translation>%1 Agiriak</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="94"/>
+        <location filename="../torrentimportdlg.cpp" line="97"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
         <translation>Mesedez eman %1-ren kokalekua</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="129"/>
+        <location filename="../torrentimportdlg.cpp" line="134"/>
         <source>Please point to the location of the torrent: %1</source>
         <translation>Mesedez hautatu torrentaren kokalekua: %1</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="233"/>
+        <location filename="../torrentimportdlg.cpp" line="242"/>
         <source>Invalid torrent file</source>
         <translation>Torrent agiri baliogabea</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="233"/>
+        <location filename="../torrentimportdlg.cpp" line="242"/>
         <source>This is not a valid torrent file.</source>
         <translation>Hau ez da torrent agiri baliozkoa.</translation>
     </message>
@@ -3850,7 +3893,8 @@ Please install it manually.</source>
         <location filename="../properties/trackerlist.cpp" line="205"/>
         <location filename="../properties/trackerlist.cpp" line="215"/>
         <location filename="../properties/trackerlist.cpp" line="221"/>
-        <location filename="../properties/trackerlist.cpp" line="251"/>
+        <location filename="../properties/trackerlist.cpp" line="252"/>
+        <location filename="../properties/trackerlist.cpp" line="270"/>
         <source>Working</source>
         <translation>Lanean</translation>
     </message>
@@ -3867,32 +3911,34 @@ Please install it manually.</source>
         <translation>Torrent hau pribatua da</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="255"/>
+        <location filename="../properties/trackerlist.cpp" line="256"/>
         <source>Updating...</source>
         <translation>Eguneratzen...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="259"/>
+        <location filename="../properties/trackerlist.cpp" line="260"/>
+        <location filename="../properties/trackerlist.cpp" line="274"/>
         <source>Not working</source>
         <translation>Lan gabe</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="262"/>
+        <location filename="../properties/trackerlist.cpp" line="263"/>
+        <location filename="../properties/trackerlist.cpp" line="277"/>
         <source>Not contacted yet</source>
         <translation>Harremandu gabe oraindik</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="330"/>
+        <location filename="../properties/trackerlist.cpp" line="345"/>
         <source>Add a new tracker...</source>
         <translation>Gehitu aztarnari berri bat...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="333"/>
+        <location filename="../properties/trackerlist.cpp" line="348"/>
         <source>Remove tracker</source>
         <translation>Kendu aztarnaria</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="336"/>
+        <location filename="../properties/trackerlist.cpp" line="351"/>
         <source>Force reannounce</source>
         <translation>Behartu berriragarpena</translation>
     </message>
@@ -4104,7 +4150,7 @@ Please install it manually.</source>
         <translation>Zutabe ikusgarritasuna</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="759"/>
+        <location filename="../transferlistwidget.cpp" line="767"/>
         <source>Label</source>
         <translation>Etiketa</translation>
     </message>
@@ -4124,150 +4170,150 @@ Please install it manually.</source>
         <translation>Torrent Igoera Abiadura Muga</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="588"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>New Label</source>
         <translation>Etiketa Berria</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="588"/>
+        <location filename="../transferlistwidget.cpp" line="590"/>
         <source>Label:</source>
         <translation>Etiketa:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="593"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Invalid label name</source>
         <translation>Etiketa izen baliogabea</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="593"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Mesedez ez erabili hizkirri berezirik etiketa izenean.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="609"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>Rename</source>
         <translation>Berrizendatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="609"/>
+        <location filename="../transferlistwidget.cpp" line="611"/>
         <source>New name:</source>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="643"/>
+        <location filename="../transferlistwidget.cpp" line="645"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Berrekin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="645"/>
+        <location filename="../transferlistwidget.cpp" line="647"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Pausatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="647"/>
+        <location filename="../transferlistwidget.cpp" line="649"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Ezabatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="649"/>
+        <location filename="../transferlistwidget.cpp" line="651"/>
         <source>Preview file...</source>
         <translation>Agiri aurreikuspena...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="651"/>
+        <location filename="../transferlistwidget.cpp" line="653"/>
         <source>Limit share ratio...</source>
         <translation>Mugatu elkarbanatze maila...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="653"/>
+        <location filename="../transferlistwidget.cpp" line="655"/>
         <source>Limit upload rate...</source>
         <translation>Mugatu igoera neurria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="655"/>
+        <location filename="../transferlistwidget.cpp" line="657"/>
         <source>Limit download rate...</source>
         <translation>Mugatu jeisketa neurria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Open destination folder</source>
         <translation>Ireki helmuga agiritegia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="659"/>
+        <location filename="../transferlistwidget.cpp" line="661"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Mugitu gora</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="661"/>
+        <location filename="../transferlistwidget.cpp" line="663"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Mugitu behera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="663"/>
+        <location filename="../transferlistwidget.cpp" line="665"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Mugitu gorenera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="665"/>
+        <location filename="../transferlistwidget.cpp" line="667"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Mugitu behrerenera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="667"/>
+        <location filename="../transferlistwidget.cpp" line="669"/>
         <source>Set location...</source>
         <translation>Ezarri kokalekua...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="802"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="669"/>
+        <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Force recheck</source>
         <translation>Behartu berregiaztapena</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="671"/>
+        <location filename="../transferlistwidget.cpp" line="673"/>
         <source>Copy magnet link</source>
         <translation>Kopiatu magnet lotura</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="673"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Super seeding mode</source>
         <translation>Gain emaritza modua</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="676"/>
+        <location filename="../transferlistwidget.cpp" line="680"/>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="678"/>
+        <location filename="../transferlistwidget.cpp" line="682"/>
         <source>Download in sequential order</source>
         <translation>Jeitsi sekuentzialki</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="681"/>
+        <location filename="../transferlistwidget.cpp" line="685"/>
         <source>Download first and last piece first</source>
         <translation>Jeitsi lehen eta azken atala lehenik</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="760"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Berria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="761"/>
+        <location filename="../transferlistwidget.cpp" line="769"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Berrezarri</translation>
@@ -4349,7 +4395,7 @@ Please install it manually.</source>
         <translation>qBittorrent itzultzen lagundu duten hurrengo boluntarioei eskerrak ematea nahi dizkiet:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Mesedeez jarri harremanetan nirekin qBittorrent zure hizkuntzara itzultzea nahi baduzu.</translation>
     </message>
@@ -4928,19 +4974,29 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <translation>Jeisketak</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="763"/>
+        <location filename="../misc.cpp" line="776"/>
+        <location filename="../misc.cpp" line="781"/>
+        <location filename="../misc.cpp" line="785"/>
+        <location filename="../misc.cpp" line="788"/>
+        <location filename="../misc.cpp" line="793"/>
+        <location filename="../misc.cpp" line="796"/>
+        <source>Unknown</source>
+        <translation type="unfinished">Ezezaguna</translation>
+    </message>
+    <message>
+        <location filename="../misc.cpp" line="836"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1o %2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="768"/>
+        <location filename="../misc.cpp" line="841"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1e %2o</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="616"/>
+        <location filename="../misc.cpp" line="664"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Ezezaguna</translation>
@@ -4951,13 +5007,13 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <translation>qBittorrentek orain ordenagailua itzaliko du jeisketa guztiak osatu direlako.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="754"/>
+        <location filename="../misc.cpp" line="827"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="758"/>
+        <location filename="../misc.cpp" line="831"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
@@ -4966,109 +5022,114 @@ Edonola, plugin hauek ezgaituta daude.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1083"/>
-        <location filename="../preferences/options_imp.cpp" line="1085"/>
+        <location filename="../preferences/options_imp.cpp" line="1094"/>
+        <location filename="../preferences/options_imp.cpp" line="1096"/>
         <source>Choose export directory</source>
         <translation>Hautatu esportatzeko zuzenbidea</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1118"/>
-        <location filename="../preferences/options_imp.cpp" line="1120"/>
-        <location filename="../preferences/options_imp.cpp" line="1135"/>
-        <location filename="../preferences/options_imp.cpp" line="1137"/>
+        <location filename="../preferences/options_imp.cpp" line="1129"/>
+        <location filename="../preferences/options_imp.cpp" line="1131"/>
+        <location filename="../preferences/options_imp.cpp" line="1146"/>
+        <location filename="../preferences/options_imp.cpp" line="1148"/>
         <source>Choose a save directory</source>
         <translation>Hautatu gordetzeko zuzenbide bat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1100"/>
-        <location filename="../preferences/options_imp.cpp" line="1102"/>
+        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1113"/>
         <source>Choose an ip filter file</source>
         <translation>Hautatu ip iragazki agiri bat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1040"/>
+        <location filename="../preferences/options_imp.cpp" line="1051"/>
         <source>Add directory to scan</source>
         <translation>Gehitu zuzenbidea mihaketara</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1046"/>
+        <location filename="../preferences/options_imp.cpp" line="1057"/>
         <source>Folder is already being watched.</source>
         <translation>Agiritegia jadanik ikuskatuta dago.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1049"/>
+        <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Folder does not exist.</source>
         <translation>Agiritegia ez dago.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1052"/>
+        <location filename="../preferences/options_imp.cpp" line="1063"/>
         <source>Folder is not readable.</source>
         <translation>Agiritegia ez da irakurgarria.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="1071"/>
         <source>Failure</source>
         <translation>Hutsegitea</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1060"/>
+        <location filename="../preferences/options_imp.cpp" line="1071"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Hutsegitea Agiritegi Mihaketa gehitzean &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1100"/>
-        <location filename="../preferences/options_imp.cpp" line="1102"/>
+        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1113"/>
         <source>Filters</source>
         <translation>Iragazkiak</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1180"/>
+        <location filename="../preferences/options_imp.cpp" line="1191"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL Egiaztagiria (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1191"/>
+        <location filename="../preferences/options_imp.cpp" line="1202"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL Giltza (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1222"/>
+        <location filename="../preferences/options_imp.cpp" line="1233"/>
         <source>Parsing error</source>
         <translation>Azterketa akatsa</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1222"/>
+        <location filename="../preferences/options_imp.cpp" line="1233"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Hutsegitea emandako IP iragazkia aztertzerakoan</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1224"/>
+        <location filename="../preferences/options_imp.cpp" line="1235"/>
         <source>Successfully refreshed</source>
         <translation>Ongi berrituta</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1224"/>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <location filename="../preferences/options_imp.cpp" line="1235"/>
+        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1293"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation type="obsolete">Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>Giltza baliogabea</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1293"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>Hau ez da SSL giltza baliozko bat.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1308"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>Egiaztagiri baliogabea</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1308"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Hau ez da SSL egiaztagiri baliozko bat.</translation>
     </message>
@@ -5161,129 +5222,129 @@ Edonola, plugin hauek ezgaituta daude.</translation>
 <context>
     <name>torrentAdditionDialog</name>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="209"/>
+        <location filename="../torrentadditiondlg.cpp" line="211"/>
         <source>Unable to decode magnet link:</source>
         <translation>Ezinezkoa magnet lotura dekodeatzea:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="215"/>
+        <location filename="../torrentadditiondlg.cpp" line="217"/>
         <source>Magnet Link</source>
         <translation>Magnet Lotura</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="258"/>
-        <location filename="../torrentadditiondlg.cpp" line="261"/>
+        <location filename="../torrentadditiondlg.cpp" line="260"/>
+        <location filename="../torrentadditiondlg.cpp" line="263"/>
         <source>Unable to decode torrent file:</source>
         <translation>Ezinezkoa torrent agiria dekodeatzea:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="357"/>
+        <location filename="../torrentadditiondlg.cpp" line="359"/>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="361"/>
+        <location filename="../torrentadditiondlg.cpp" line="363"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="401"/>
+        <location filename="../torrentadditiondlg.cpp" line="403"/>
         <source>Rename the file</source>
         <translation>Berrizendatu agiria</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="402"/>
+        <location filename="../torrentadditiondlg.cpp" line="404"/>
         <source>New name:</source>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="406"/>
-        <location filename="../torrentadditiondlg.cpp" line="436"/>
+        <location filename="../torrentadditiondlg.cpp" line="408"/>
+        <location filename="../torrentadditiondlg.cpp" line="438"/>
         <source>The file could not be renamed</source>
         <translation>Agiria ezin da berrizendatu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="407"/>
+        <location filename="../torrentadditiondlg.cpp" line="409"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="437"/>
-        <location filename="../torrentadditiondlg.cpp" line="471"/>
+        <location filename="../torrentadditiondlg.cpp" line="439"/>
+        <location filename="../torrentadditiondlg.cpp" line="473"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="470"/>
+        <location filename="../torrentadditiondlg.cpp" line="472"/>
         <source>The folder could not be renamed</source>
         <translation>Agiritegia ezin da berrizendatua izan</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="518"/>
+        <location filename="../torrentadditiondlg.cpp" line="520"/>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
         <translation>(%1 gelditzen dira torreta jeitsi ondoren)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="521"/>
+        <location filename="../torrentadditiondlg.cpp" line="523"/>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
         <translation>(%1 gehiago behar dira jeisteko)</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="536"/>
-        <location filename="../torrentadditiondlg.cpp" line="551"/>
+        <location filename="../torrentadditiondlg.cpp" line="538"/>
         <location filename="../torrentadditiondlg.cpp" line="553"/>
+        <location filename="../torrentadditiondlg.cpp" line="555"/>
         <source>Choose save path</source>
         <translation>Hautatu gordetzeko helburua</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="609"/>
         <source>Empty save path</source>
         <translation>Gordetze helburua hutsik</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="607"/>
+        <location filename="../torrentadditiondlg.cpp" line="609"/>
         <source>Please enter a save path</source>
         <translation>Mesedez sartu gordetze helburu bat</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="689"/>
+        <location filename="../torrentadditiondlg.cpp" line="693"/>
         <source>Save path creation error</source>
         <translation>Gordetze helburu sortze akatsa</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="689"/>
+        <location filename="../torrentadditiondlg.cpp" line="693"/>
         <source>Could not create the save path</source>
         <translation>Ezin da gordetze helburua sortu</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="628"/>
+        <location filename="../torrentadditiondlg.cpp" line="630"/>
         <source>Invalid label name</source>
         <translation>Etiketa izen baliogabea</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="628"/>
+        <location filename="../torrentadditiondlg.cpp" line="630"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Mesedez ez erabili hizkirri berezirik etiketa izenean.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="673"/>
         <source>Seeding mode error</source>
         <translation>Emaritza modu akatsa</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="670"/>
+        <location filename="../torrentadditiondlg.cpp" line="673"/>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
         <translation>Agiri egiaztapenari jauzi egitea hautatu dezakezu. Edonola, tokiko agiriak ez dirudi daudenik oraingo helmuga agiritegian. Mesedez ezgaitu ezaugarri hau edo eguneratu gordetze helburua.</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="676"/>
+        <location filename="../torrentadditiondlg.cpp" line="680"/>
         <source>Invalid file selection</source>
         <translation>Agiri hautapen baliogabea</translation>
     </message>
     <message>
-        <location filename="../torrentadditiondlg.cpp" line="676"/>
+        <location filename="../torrentadditiondlg.cpp" line="680"/>
         <source>You must select at least one file in the torrent</source>
         <translation>Torrenteko agiri bat behintzat hautatu behar duzu</translation>
     </message>

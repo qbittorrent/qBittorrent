@@ -4373,7 +4373,7 @@ Please install it manually.</source>
         <translation>მინდა მადლობა გადავუხადო შემდეგ ადამიანებს რომლებმაც qBittorrent-ის თარგმნაში მიიღო მონაწილეობა:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>გთხოვთ დამიკავშირდით თუ qBittorrent-ის თქვენს ენაზე გადათარგმნა გსურთ.</translation>
     </message>
@@ -5087,22 +5087,22 @@ However, those plugins were disabled.</source>
         <translation>მოწოდებული IP ფილტრის ანალიზი წარმატებით დასრულდა: მიღებულ იქნა %1 წესი.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>არასწორი გასაღები</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>ეს არ არის სწორი SSL გასაღები.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>არასწორი სერთიფიკატი</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>ეს არ არის სწორი SSL სერთიფიკატი.</translation>
     </message>

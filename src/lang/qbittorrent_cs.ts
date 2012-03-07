@@ -5719,7 +5719,7 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Chtěl bych poděkovat následujícím lidem, kteří dobrovolně přeložili qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Kontaktujte mě, prosím, pokud byste chtěli přeložit qBittorrent do svého jazyka.</translation>
     </message>
@@ -6610,22 +6610,22 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <translation>Úspěšně obnoveno</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>Neplatný klíč</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>Toto není platný SSL klíč.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>Neplatný certifikát</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Toto není platný SSL certifikát.</translation>
     </message>

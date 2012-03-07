@@ -5699,7 +5699,7 @@ Please install it manually.</source>
         <translation>اريد شكر المتطوعون في ترجمة هذا البرنامج:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="98"/>
+        <location filename="../about_imp.h" line="99"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>الرجاء الاتصال  بي اذا اردت ترجمة البرنامج الى لغتك.</translation>
     </message>
@@ -6595,22 +6595,22 @@ However, those plugins were disabled.</source>
         <translation>التحديث ناجح</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>Invalid key</source>
         <translation>مفتاح خاطئ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1304"/>
+        <location filename="../preferences/options_imp.cpp" line="1305"/>
         <source>This is not a valid SSL key.</source>
         <translation>هذا مفتاح SSL خاطئ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>Invalid certificate</source>
         <translation>شهادة خاطئة</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1319"/>
+        <location filename="../preferences/options_imp.cpp" line="1320"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>هذه شهادة SSL خاطئة.</translation>
     </message>
