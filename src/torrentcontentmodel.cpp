@@ -252,7 +252,6 @@ void TorrentContentModel::clear()
 {
   qDebug("clear called");
   beginResetModel();
-  qDeleteAll(m_filesIndex);
   m_filesIndex.clear();
   m_rootItem->deleteAllChildren();
   endResetModel();
