@@ -2745,7 +2745,10 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     emit newDownloadedTorrent(file_path, url);
   } else {
     url_skippingDlg.removeAt(index);
-    addTorrent(file_path, false, url, false);
+    QTorrentHandle h = addTorrent(file_path, false, url, false);
+    // Pause torrent if necessary
+    if (h.is_valid() && addInPause && Preferences().useAdditionDialog())
+        h.pause();
   }
 }
 
