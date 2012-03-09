@@ -2,6 +2,7 @@
     - BUGFIX: Fix download first/last pieces state reporting
     - BUGFIX: Fix name of progress column in torrent content panel
     - BUGFIX: Disable system tray icon on Mac OS X
+    - BUGFIX: RSS downloader should not ignore "Do not start automatically" rule (closes #946910)
     - I18N: Add Basque translation
 
 * Sat Feb 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.5
