@@ -275,6 +275,7 @@ void AutomatedRssDownloader::saveEditedRule()
   }
   RssDownloadRulePtr rule = m_ruleList->getRule(m_editedRule->text());
   if (!rule) {
+    rule = RssDownloadRulePtr(new RssDownloadRule);
     rule->setName(m_editedRule->text());
   }
   if (m_editedRule->checkState() == Qt::Unchecked)
