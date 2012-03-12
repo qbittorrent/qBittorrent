@@ -78,20 +78,20 @@ void HttpConnection::handleDownloadFailure(const QString& url,
 }
 
 void HttpConnection::read() {
-  QByteArray input = m_socket->readAll();
+  static QByteArray input;
+  input.append(m_socket->readAll());
 
   // Parse HTTP request header
   int header_end = input.indexOf("\r\n\r\n");
   if (header_end < 0) {
-    qDebug() << Q_FUNC_INFO << "missing double-CRLF";
-    m_generator.setStatusLine(400, "Bad Request");
-    write();
+    // Partial request waiting for the rest
     return;
   }
   QByteArray header = input.left(header_end);
   m_parser.writeHeader(header);
   if (m_parser.isError()) {
-    qDebug() << Q_FUNC_INFO << "header parsing error";
+    qWarning() << Q_FUNC_INFO << "header parsing error";
+    input.clear();
     m_generator.setStatusLine(400, "Bad Request");
     write();
     return;
@@ -99,29 +99,30 @@ void HttpConnection::read() {
 
   // Parse HTTP request message
   if (m_parser.header().hasContentLength())  {
-    QByteArray message = input.mid(header_end + 4);
-    int expected_length = m_parser.header().contentLength();
+    const int expected_length = m_parser.header().contentLength();
+    QByteArray message = input.mid(header_end + 4, expected_length);
+    input = input.mid(header_end + 4 + expected_length);
 
     if (expected_length > 100000) {
+      qWarning() << "Bad request: message too long";
       m_generator.setStatusLine(400, "Bad Request");
+      input.clear();
       write();
       return;
     }
 
-    bool is_reading = true;
-    while (message.length() < expected_length && is_reading) {
-      disconnect(m_socket, SIGNAL(readyRead()), this, SLOT(read()));
-      is_reading = m_socket->waitForReadyRead(2000);
-      if (is_reading) {
-        message.append(m_socket->readAll());
-      }
-      connect(m_socket, SIGNAL(readyRead()), this, SLOT(read()));
+    if (message.length() < expected_length) {
+      // Message too short, waiting for the rest
+      return;
     }
+
     m_parser.writeMessage(message);
+  } else {
+    input.clear();
   }
 
-  if(m_parser.isError()) {
-    qDebug() << Q_FUNC_INFO << "message parsing error";
+  if (m_parser.isError()) {
+    qWarning() << Q_FUNC_INFO << "message parsing error";
     m_generator.setStatusLine(400, "Bad Request");
     write();
   } else {
