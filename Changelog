@@ -3,6 +3,7 @@
     - BUGFIX: Fix name of progress column in torrent content panel
     - BUGFIX: Disable system tray icon on Mac OS X
     - BUGFIX: RSS downloader should not ignore "Do not start automatically" rule (closes #946910)
+    - BUGFIX: Fix DHT port setting in Web UI (Closes #952182)
     - I18N: Add Basque translation
 
 * Sat Feb 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.5
