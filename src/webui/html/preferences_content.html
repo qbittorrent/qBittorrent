@@ -923,7 +923,7 @@ applyPreferences = function() {
   }
   // Bittorrent
   settings.set('dht', $('dht_checkbox').getProperty('checked'));
-  settings.set('dhtSameAsBT', $('DHTPortDiffThanBT_checkbox').getProperty('checked'));
+  settings.set('dhtSameAsBT', !$('DHTPortDiffThanBT_checkbox').getProperty('checked'));
   settings.set('dht_port', $('DHTPort_txt').getProperty('value').toInt());
   settings.set('pex', $('pex_checkbox').getProperty('checked'));
   settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
