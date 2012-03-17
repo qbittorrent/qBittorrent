@@ -850,7 +850,7 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
       misc::safeRemove(uneeded_file);
       const QString parent_folder = misc::branchPath(uneeded_file);
       qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
-      misc::removeEmptyFolder(parent_folder);
+      QDir().rmpath(parent_folder);
     }
   }
   // Remove it from torrent backup directory
