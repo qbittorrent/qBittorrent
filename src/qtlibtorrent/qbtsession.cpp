@@ -779,7 +779,7 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
 
 // Return the torrent handle, given its hash
 QTorrentHandle QBtSession::getTorrentHandle(const QString &hash) const{
-  return QTorrentHandle(s->find_torrent(misc::QStringToSha1(hash)));
+  return QTorrentHandle(s->find_torrent(QStringToSha1(hash)));
 }
 
 bool QBtSession::hasActiveTorrents() const {
@@ -963,7 +963,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   Q_ASSERT(magnet_uri.startsWith("magnet:", Qt::CaseInsensitive));
 
   // Check for duplicate torrent
-  if(s->find_torrent(misc::QStringToSha1(hash)).is_valid()) {
+  if(s->find_torrent(QStringToSha1(hash)).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
     return h;
