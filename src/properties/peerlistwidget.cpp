@@ -222,8 +222,8 @@ void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
   bool ok = false;
   int cur_limit = -1;
 #if LIBTORRENT_VERSION_MINOR > 15
-  boost::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
-                                                                     boost::asio::ip::tcp::endpoint());
+  boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
+                                                                  boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_upload_limit(first_ep);
 #endif
@@ -257,8 +257,8 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
   bool ok = false;
   int cur_limit = -1;
 #if LIBTORRENT_VERSION_MINOR > 15
-  boost::asio::ip::tcp::endpoint first_ep = peerEndpoints.value(peer_ips.first(),
-                                                                     boost::asio::ip::tcp::endpoint());
+  boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
+                                                                  boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_download_limit(first_ep);
 #endif
