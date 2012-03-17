@@ -97,6 +97,58 @@ static libtorrent::sha1_hash QStringToSha1(const QString& s) {
   return ret;
 }
 
+/**
+ * Remove an empty folder tree.
+ *
+ * This function will also remove .DS_Store files on Mac OS and
+ * Thumbs.db on Windows.
+ */
+static bool smartRemoveEmptyFolderTree(const QString& dir_path)
+{
+  qDebug() << Q_FUNC_INFO << dir_path;
+  if (dir_path.isEmpty())
+    return false;
+
+  QDir dir(dir_path);
+  if (!dir.exists())
+    return true;
+
+  // Remove Files created by the OS
+#if defined Q_WS_MAC
+  QFile::remove(dir_path + QLatin1String("/.DS_Store"));
+#elif defined Q_WS_WIN
+  QFile::remove(dir_path + QLatin1String("/Thumbs.db"));
+#endif
+
+  QFileInfoList sub_files = dir.entryInfoList();
+  foreach (const QFileInfo& info, sub_files) {
+    QString sub_name = info.fileName();
+    if (sub_name == "." || sub_name == "..")
+      continue;
+
+    QString sub_path = info.absoluteFilePath();
+    qDebug() << Q_FUNC_INFO << "sub file: " << sub_path;
+    if (info.isDir()) {
+      if (!smartRemoveEmptyFolderTree(sub_path)) {
+        qWarning() << Q_FUNC_INFO << "Failed to remove folder: " << sub_path;
+        return false;
+      }
+    } else {
+      if (info.isHidden()) {
+        qDebug() << Q_FUNC_INFO << "Removing hidden file: " << sub_path;
+        if (!QFile::remove(sub_path)) {
+          qWarning() << Q_FUNC_INFO << "Failed to remove " << sub_path;
+          return false;
+        }
+      } else {
+        qWarning() << Q_FUNC_INFO << "Folder is not empty, aborting. Found: " << sub_path;
+      }
+    }
+  }
+  qDebug() << Q_FUNC_INFO << "Calling rmdir on " << dir_path;
+  return QDir().rmdir(dir_path);
+}
+
 // Main constructor
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
@@ -764,8 +816,10 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
   if (delete_local_files) {
     if (h.has_metadata()) {
       QDir save_dir(h.save_path());
-      if (save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath)))
+      if (save_dir != QDir(defaultSavePath) && (defaultTempPath.isEmpty() || save_dir != QDir(defaultTempPath))) {
         savePathsToRemove[hash] = save_dir.absolutePath();
+        qDebug() << "Save path to remove (async): " << save_dir.absolutePath();
+      }
     }
     s->remove_torrent(h, session::delete_files);
   } else {
@@ -2288,7 +2342,7 @@ void QBtSession::readAlerts() {
         if (savePathsToRemove.contains(hash)) {
           const QString dirpath = savePathsToRemove.take(hash);
           qDebug() << "Removing save path: " << dirpath << "...";
-          bool ok = QDir().rmdir(dirpath);
+          bool ok = smartRemoveEmptyFolderTree(dirpath);
           Q_UNUSED(ok);
           qDebug() << "Folder was removed: " << ok;
         }
