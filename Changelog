@@ -1,4 +1,4 @@
-* unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.6
+* Sat Mar 17 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.6
     - BUGFIX: Fix download first/last pieces state reporting
     - BUGFIX: Fix name of progress column in torrent content panel
     - BUGFIX: Disable system tray icon on Mac OS X
