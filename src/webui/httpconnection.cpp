@@ -84,6 +84,7 @@ void HttpConnection::read() {
   // Parse HTTP request header
   int header_end = input.indexOf("\r\n\r\n");
   if (header_end < 0) {
+    qDebug() << "Partial request: \n" << input;
     // Partial request waiting for the rest
     return;
   }
@@ -101,7 +102,6 @@ void HttpConnection::read() {
   if (m_parser.header().hasContentLength())  {
     const int expected_length = m_parser.header().contentLength();
     QByteArray message = input.mid(header_end + 4, expected_length);
-    input = input.mid(header_end + 4 + expected_length);
 
     if (expected_length > 100000) {
       qWarning() << "Bad request: message too long";
@@ -113,10 +113,13 @@ void HttpConnection::read() {
 
     if (message.length() < expected_length) {
       // Message too short, waiting for the rest
+      qDebug() << "Partial message:\n" << message;
       return;
     }
 
     m_parser.writeMessage(message);
+
+    input = input.mid(header_end + 4 + expected_length);
   } else {
     input.clear();
   }
