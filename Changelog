@@ -1,3 +1,6 @@
+* Sun Mar 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.7
+    - BUGFIX: Fix important HTTP request parsing bug (Web UI)
+
 * Sat Mar 17 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.6
     - BUGFIX: Fix download first/last pieces state reporting
     - BUGFIX: Fix name of progress column in torrent content panel
