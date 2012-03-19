@@ -79,7 +79,7 @@ const int UNLEN = 256;
 #endif
 #endif // DISABLE_GUI
 
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
 #include <QDesktopServices>
 #endif
 
@@ -160,7 +160,8 @@ QString misc::QDesktopServicesCacheLocation() {
 }
 
 QString misc::QDesktopServicesDownloadLocation() {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+  // as long as it stays WinXP like we do the same on OS/2
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
