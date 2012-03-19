@@ -27,7 +27,6 @@ First you need to create the conf.pri file in the same dir as this readme.os2 is
 the conf.pri file has the following content:
 
 ##### conf.pri content beginn #####
-PREFIX = .
 BINDIR = ./bin
 INCDIR = ./include
 LIBDIR = ./lib

@@ -11,7 +11,7 @@ QBittorrent installation
 
 3. INSTALLATION
 
-4. CONTACT
+4. BUGREPORTS
 
 5. CREDITS
 
@@ -29,47 +29,76 @@ Welcome to QBittorrent port for OS/2 and eComStation.
 2. REQUIREMENTS
 ===============
 
-* klibc 0.6.3 or later
+The following requirements can be installed either by rpm or by zip files.
 
-    ftp://ftp.netlabs.org/pub/gcc/libc-0_6_3-csd3.wpi
+RPM Installation:
 
-* openssl 1.0
- 
-    ftp://ftp.netlabs.org/pub/unixos2/ssl10.zip
+klibc
+-----
 
-* Qt4 dll
+  1. yum install libc
 
-    see http://svn.netlabs.org/qt4 for more information whats needed and where to get the latest
+openssl 1.0
+-----------
+
+  1. yum install openssl
+
+pthread
+-------
+
+  1. yum install pthread
+
+GCC4Core
+--------
+
+  1. yum install libgcc
+  2. yum install gcc-stack-protector
+  3. yum install gcc-stdc++-shared-library
+  4. yum install gcc-supc++-shared-library
+
+Qt4 dll
+-------
+
+  1. yum install libqt4
+
+
+ZIP Installation:
+
+klibc
+-----
+
+  1. Download klibc 0.6.4 or better (see http://svn.netlabs.org/libc for more information)
+  2. Install the files to your libpath eg x:\ecs\dll
+
+openssl 1.0
+-----------
+
+  1. Download the zip file from http://rpm.netlabs.org/release/00/zip
+  2. Install the files to your libpath eg. x:\ecs\dll
+
+pthread
+-------
+
+  1. Download pthread 2012-03-13 or better from http://rpm.netlabs.org/release/00/zip
+  2. Install the files to your libpath eg. x:\ecs\dll
+
+GCC4Core
+--------
+
+  1. Download GCC4Core 1.2.1 or better from http://ftp.netlabs.org/pub/gcc
+  2. Install the files to your libpath eg. x:\ecs\dll
+
+Qt4 dll
+-------
+
+  1. Download Qt4 4.7.3 or better (see http://svn.netlabs.org/qt4 for more information)
+  2. Install the files according to the readme
 
 
 3. INSTALLATION
 ===============
           
 To install QBittorrent, do the following:
-
-klibc
------
-
-  1. Download klibc 0.6.3 csd3 or later.
-  2. Install the package by double-clicking on the WPI file.
-
-
-openssl 1.0
------------
-
-  1. Download the zip file
-  2. Install the files to your libpath eg. x:\ecs\dll
-
-Qt4 dll
--------
-
-  1. Download the package
-  2. Install the package by double-clicking on the wpi file.
-
-
-
-QBittorrent
------------
 
   1. Create a directory for QBittorrent.
   2. Extract the QBittorrent package to the new directory.
@@ -78,16 +107,11 @@ QBittorrent
   5. Happy torrenting
   
 
+4. BUGREPORTS
+=============
 
-4. CONTACT
-==========
-
-Please send bugreports to:
-
-  ecs@aroa.ch
-
+Please create bugreports at http://svn.netlabs.org/qtapps
 Only bug reports with a reproducable bug are accepted. :-)
-
 
 
 5. CREDITS
@@ -121,6 +145,20 @@ development, you can do so in one of the following ways:
 
 7. HISTORY
 ==========
+
+2012-03-15
+
+  * updated to 2.9.5 code level of QBittorrent
+
+2011-09-26
+
+  * updated to 2.8.5 code level of QBittorrent
+  * updated to Qt 4.7.3
+
+2011-06-20
+
+  * updated to 2.7.3 code level of QBittorrent
+  * updated libtorrent to 0.15.6 level
 
 2010-12-23
 
