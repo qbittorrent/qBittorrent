@@ -50,6 +50,7 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
 {
   emit layoutAboutToBeChanged();
   Q_ASSERT(m_filesIndex.size() == (int)fp.size());
+  if (m_filesIndex.size() != (int)fp.size()) return;
   for (uint i=0; i<fp.size(); ++i) {
     m_filesIndex[i]->setProgress(fp[i]);
   }
@@ -59,16 +60,18 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
 void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
 {
   emit layoutAboutToBeChanged();
+  Q_ASSERT(m_filesIndex.size() == (int)fprio.size());
+  if (m_filesIndex.size() != (int)fprio.size()) return;
   for (uint i=0; i<fprio.size(); ++i) {
     m_filesIndex[i]->setPriority(fprio[i]);
   }
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
 
-std::vector<int> TorrentContentModel::getFilesPriorities(unsigned int nbFiles) const
+std::vector<int> TorrentContentModel::getFilesPriorities() const
 {
   std::vector<int> prio;
-  for (uint i=0; i<nbFiles; ++i) {
+  for (uint i=0; i<m_filesIndex.size(); ++i) {
     prio.push_back(m_filesIndex[i]->getPriority());
   }
   return prio;

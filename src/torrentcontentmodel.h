@@ -47,7 +47,7 @@ public:
 
   void updateFilesProgress(const std::vector<libtorrent::size_type>& fp);
   void updateFilesPriorities(const std::vector<int> &fprio);
-  std::vector<int> getFilesPriorities(unsigned int nbFiles) const;
+  std::vector<int> getFilesPriorities() const;
   bool allFiltered() const;
   virtual int columnCount(const QModelIndex &parent=QModelIndex()) const;
   virtual bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
