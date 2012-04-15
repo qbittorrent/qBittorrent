@@ -30,13 +30,8 @@
      </property>
      <property name="font">
       <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
        <weight>75</weight>
-       <italic>false</italic>
        <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
       </font>
      </property>
      <property name="text">
@@ -259,12 +254,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <spacer>
        <property name="orientation">

@@ -1,10 +1,8 @@
-<ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>preview</class>
- <widget class="QDialog" name="preview" >
-  <property name="geometry" >
+ <widget class="QDialog" name="preview">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,82 +10,65 @@
     <height>256</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Preview selection</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QLabel" name="lbl_title" >
-     <property name="minimumSize" >
+    <widget class="QLabel" name="lbl_title">
+     <property name="minimumSize">
       <size>
        <width>0</width>
        <height>37</height>
       </size>
      </property>
-     <property name="maximumSize" >
+     <property name="maximumSize">
       <size>
        <width>16777215</width>
        <height>37</height>
       </size>
      </property>
-     <property name="font" >
+     <property name="font">
       <font>
-       <family>Sans Serif</family>
-       <pointsize>14</pointsize>
        <weight>75</weight>
-       <italic>false</italic>
        <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
       </font>
      </property>
-     <property name="text" >
+     <property name="text">
       <string>File preview</string>
      </property>
-     <property name="alignment" >
+     <property name="alignment">
       <set>Qt::AlignHCenter|Qt::AlignTop</set>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label" >
-     <property name="maximumSize" >
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
       <size>
        <width>16777215</width>
        <height>42</height>
       </size>
      </property>
-     <property name="text" >
-      <string>The following files support previewing, &lt;br>please select one of them:</string>
+     <property name="text">
+      <string>The following files support previewing, &lt;br&gt;please select one of them:</string>
      </property>
-     <property name="alignment" >
+     <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTreeView" name="previewList" />
+    <widget class="QTreeView" name="previewList"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
-      <number>6</number>
-     </property>
+    <layout class="QHBoxLayout">
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -96,25 +77,25 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="previewButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="previewButton">
+       <property name="text">
         <string>Preview</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -126,7 +107,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections>
   <connection>
@@ -135,11 +115,11 @@
    <receiver>preview</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>296</x>
      <y>245</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>179</x>
      <y>282</y>
     </hint>

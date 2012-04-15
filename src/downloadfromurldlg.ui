@@ -14,31 +14,14 @@
    <string>Download from urls</string>
   </property>
   <layout class="QVBoxLayout">
-   <property name="spacing">
-    <number>6</number>
-   </property>
-   <property name="margin">
-    <number>9</number>
-   </property>
    <item>
     <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <widget class="QLabel" name="downloadURL_lbl">
        <property name="font">
         <font>
-         <family>Sans Serif</family>
-         <pointsize>12</pointsize>
          <weight>75</weight>
-         <italic>false</italic>
          <bold>true</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
         </font>
        </property>
        <property name="text">
@@ -65,13 +48,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Sans Serif</family>
-       <pointsize>9</pointsize>
-       <weight>50</weight>
        <italic>true</italic>
-       <bold>false</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
       </font>
      </property>
      <property name="text">
@@ -81,12 +58,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <spacer>
        <property name="orientation">
