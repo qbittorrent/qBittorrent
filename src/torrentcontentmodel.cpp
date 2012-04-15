@@ -71,7 +71,7 @@ void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
 std::vector<int> TorrentContentModel::getFilesPriorities() const
 {
   std::vector<int> prio;
-  for (uint i=0; i<m_filesIndex.size(); ++i) {
+  for (int i=0; i<m_filesIndex.size(); ++i) {
     prio.push_back(m_filesIndex[i]->getPriority());
   }
   return prio;
