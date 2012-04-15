@@ -36,50 +36,29 @@
 #include "proptabbar.h"
 #include "iconprovider.h"
 
-#ifdef Q_WS_MAC
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 8px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); color: palette(highlighted-text); margin-left: 0px; margin-right: 8px;}"
-#else
-#define DEFAULT_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px; margin-left: 0px; margin-right: 3px;}"
-#define SELECTED_BUTTON_CSS "QPushButton {border: 1px solid #888;border-radius: 2px; padding: 4px;background-color: palette(highlight); color: palette(highlighted-text); margin-left: 0px; margin-right: 3px;}"
-#endif
-
-const int BTN_ICON_SIZE = 16;
-
 PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
 {
   m_btnGroup = new QButtonGroup(this);
-  setContentsMargins(0, 4, 0, 4);
   // General tab
   QPushButton *main_infos_button = new QPushButton(IconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
   main_infos_button->setShortcut(QKeySequence(QString::fromUtf8("Alt+P")));
-  main_infos_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  main_infos_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(main_infos_button);
   m_btnGroup->addButton(main_infos_button, MAIN_TAB);
   // Trackers tab
   QPushButton *trackers_button = new QPushButton(IconProvider::instance()->getIcon("network-server"), tr("Trackers"), parent);
-  trackers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  trackers_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(trackers_button);
   m_btnGroup->addButton(trackers_button, TRACKERS_TAB);
   // Peers tab
   QPushButton *peers_button = new QPushButton(IconProvider::instance()->getIcon("edit-find-user"), tr("Peers"), parent);
-  peers_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  peers_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(peers_button);
   m_btnGroup->addButton(peers_button, PEERS_TAB);
   // URL seeds tab
   QPushButton *urlseeds_button = new QPushButton(IconProvider::instance()->getIcon("network-server"), tr("HTTP Sources"), parent);
-  urlseeds_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  urlseeds_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(urlseeds_button);
   m_btnGroup->addButton(urlseeds_button, URLSEEDS_TAB);
   // Files tab
   QPushButton *files_button = new QPushButton(IconProvider::instance()->getIcon("inode-directory"), tr("Content"), parent);
-  files_button->setStyleSheet(DEFAULT_BUTTON_CSS);
-  files_button->setIconSize(QSize(BTN_ICON_SIZE, BTN_ICON_SIZE));
   addWidget(files_button);
   m_btnGroup->addButton(files_button, FILES_TAB);
   // Spacer
@@ -108,7 +87,7 @@ void PropTabBar::setCurrentIndex(int index)
   // If asked to hide or if the currently selected tab is clicked
   if (index < 0 || m_currentIndex == index) {
     if (m_currentIndex >= 0) {
-      m_btnGroup->button(m_currentIndex)->setStyleSheet(DEFAULT_BUTTON_CSS);
+      m_btnGroup->button(m_currentIndex)->setDown(false);
       m_currentIndex = -1;
       emit visibilityToggled(false);
     }
@@ -116,13 +95,13 @@ void PropTabBar::setCurrentIndex(int index)
   }
   // Unselect previous tab
   if (m_currentIndex >= 0) {
-    m_btnGroup->button(m_currentIndex)->setStyleSheet(DEFAULT_BUTTON_CSS);
+    m_btnGroup->button(m_currentIndex)->setDown(false);
   } else {
     // Nothing was selected, show!
     emit visibilityToggled(true);
   }
   // Select the new button
-  m_btnGroup->button(index)->setStyleSheet(SELECTED_BUTTON_CSS);
+  m_btnGroup->button(index)->setDown(true);
   m_currentIndex = index;
   // Emit the signal
   emit tabChanged(index);
