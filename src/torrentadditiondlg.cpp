@@ -200,8 +200,8 @@ void torrentAdditionDialog::showLoadMagnetURI(QString magnet_uri) {
 
   // Disable Save path combox and browse button
   // Save path should be default for magnet links
-  savePathTxt->setEnabled(false);
-  browseButton->setEnabled(false);
+  savePathTxt->setEnabled(true);
+  browseButton->setEnabled(true);
 
   // Get torrent hash
   hash = misc::magnetUriToHash(magnet_uri);
@@ -528,22 +528,23 @@ void torrentAdditionDialog::updateDiskSpaceLabels() {
 }
 
 void torrentAdditionDialog::on_browseButton_clicked() {
-  Q_ASSERT(!is_magnet);
   QString new_path;
   QString root_folder;
   const QString label_name = comboLabel->currentText();
-  if (t->num_files() == 1) {
-    new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText(), QString(), 0, QFileDialog::DontConfirmOverwrite);
-    if (!new_path.isEmpty()) {
-      QStringList path_parts = new_path.replace("\\", "/").split("/");
-      const QString filename = path_parts.takeLast();
-      // Append label
-      if (QDir(path_parts.join(QDir::separator())) == QDir(defaultSavePath) && !label_name.isEmpty())
-        path_parts << label_name;
-      // Append file name
-      path_parts << filename;
-      // Construct new_path
-      new_path = path_parts.join(QDir::separator());
+  if (!is_magnet) {
+    if (t->num_files() == 1) {
+      new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText(), QString(), 0, QFileDialog::DontConfirmOverwrite);
+      if (!new_path.isEmpty()) {
+        QStringList path_parts = new_path.replace("\\", "/").split("/");
+        const QString filename = path_parts.takeLast();
+        // Append label
+        if (QDir(path_parts.join(QDir::separator())) == QDir(defaultSavePath) && !label_name.isEmpty())
+          path_parts << label_name;
+        // Append file name
+        path_parts << filename;
+        // Construct new_path
+        new_path = path_parts.join(QDir::separator());
+      }
     }
   } else {
     QString truncated_path = getCurrentTruncatedSavePath(&root_folder);
