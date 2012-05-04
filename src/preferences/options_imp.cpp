@@ -600,7 +600,8 @@ void options_imp::loadOptions() {
   actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
   // End Downloads preferences
   // Connection preferences
-  spinPort->setValue(pref.getSessionPort());
+  // select a value to random port
+  spinPort->setValue(rand() % 64512 + 1024);
   checkUPnP->setChecked(pref.isUPnPEnabled());
   intValue = pref.getGlobalDownloadLimit();
   if (intValue > 0) {
