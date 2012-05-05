@@ -5,6 +5,7 @@ DATADIR = /usr/local/share
 # Use pkg-config to get all necessary libtorrent DEFINES
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
+DEFINES += BOOST_ASIO_DYN_LINK
 
 # Special include/libs paths (macports)
 INCLUDEPATH += /usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include
