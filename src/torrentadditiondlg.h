@@ -46,8 +46,8 @@ class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
 public:
   torrentAdditionDialog(QWidget *parent);
   ~torrentAdditionDialog();
-  void showLoadMagnetURI(QString magnet_uri);
-  void showLoad(QString filePath, QString from_url=QString::null);
+  void showLoadMagnetURI(const QString& magnet_uri);
+  void showLoad(const QString& m_filePath, const QString& m_fromUrl = QString());
   QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
   QString getTruncatedSavePath(QString save_path, QString* root_folder_or_file_name = 0) const;
   bool allFiltered() const;
@@ -76,21 +76,21 @@ private:
   void saveSettings();
 
 private:
-  QString fileName;
-  QString hash;
-  QString filePath;
-  QString from_url;
-  QString defaultSavePath;
-  QString old_label;
-  bool appendLabelToSavePath;
-  TorrentContentFilterModel *PropListModel;
-  PropListDelegate *PropDelegate;
-  unsigned int nbFiles;
-  boost::intrusive_ptr<libtorrent::torrent_info> t;
-  QStringList files_path;
-  bool is_magnet;
-  int hidden_height;
-  QStringList path_history;
+  QString m_fileName;
+  QString m_hash;
+  QString m_filePath;
+  QString m_fromUrl;
+  QString m_defaultSavePath;
+  QString m_oldLabel;
+  bool m_appendLabelToSavePath;
+  TorrentContentFilterModel *m_propListModel;
+  PropListDelegate *m_propListDelegate;
+  unsigned int m_nbFiles;
+  boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
+  QStringList m_filesPath;
+  bool m_isMagnet;
+  int m_hiddenHeight;
+  QStringList m_pathHistory;
   bool m_showContentList;
 };
 

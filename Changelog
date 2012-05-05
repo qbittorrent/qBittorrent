@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
+    - FEATURE: Add the ability to choose the save path when using magnet links (mutoso)
     - OTHER: Drop support for libtorrent v0.14.x
     - OTHER: Drop support for Qt 4.5
 
