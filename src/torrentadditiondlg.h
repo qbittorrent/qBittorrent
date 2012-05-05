@@ -47,7 +47,7 @@ public:
   torrentAdditionDialog(QWidget *parent);
   ~torrentAdditionDialog();
   void showLoadMagnetURI(const QString& magnet_uri);
-  void showLoad(const QString& m_filePath, const QString& m_fromUrl = QString());
+  void showLoadTorrent(const QString& filePath, const QString& fromUrl = QString());
   QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
   QString getTruncatedSavePath(QString save_path, QString* root_folder_or_file_name = 0) const;
   bool allFiltered() const;

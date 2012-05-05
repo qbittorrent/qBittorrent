@@ -226,7 +226,7 @@ void torrentAdditionDialog::showLoadMagnetURI(const QString& magnet_uri) {
   show();
 }
 
-void torrentAdditionDialog::showLoad(const QString& filePath, const QString& from_url) {
+void torrentAdditionDialog::showLoadTorrent(const QString& filePath, const QString& from_url) {
   m_isMagnet = false;
 
   // This is an URL to a local file, switch to local path

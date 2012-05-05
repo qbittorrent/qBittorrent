@@ -888,7 +888,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
       torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
       if (file.startsWith("file:", Qt::CaseInsensitive))
         file = QUrl(file).toLocalFile();
-      dialog->showLoad(file);
+      dialog->showLoadTorrent(file);
     }else{
       QBtSession::instance()->addTorrent(file);
     }
@@ -927,7 +927,7 @@ void MainWindow::on_actionOpen_triggered() {
     for (uint i=0; i<listSize; ++i) {
       if (useTorrentAdditionDialog) {
         torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        dialog->showLoad(pathsList.at(i));
+        dialog->showLoadTorrent(pathsList.at(i));
       }else{
         QBtSession::instance()->addTorrent(pathsList.at(i));
       }
@@ -969,7 +969,7 @@ void MainWindow::processParams(const QStringList& params) {
       } else {
         if (useTorrentAdditionDialog) {
           torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-          dialog->showLoad(param);
+          dialog->showLoadTorrent(param);
         }else{
           QBtSession::instance()->addTorrent(param);
         }
@@ -987,7 +987,7 @@ void MainWindow::processDownloadedFiles(QString path, QString url) {
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   if (useTorrentAdditionDialog) {
     torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-    dialog->showLoad(path, url);
+    dialog->showLoadTorrent(path, url);
   }else{
     QBtSession::instance()->addTorrent(path, false, url);
   }
