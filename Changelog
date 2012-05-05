@@ -1,5 +1,9 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.8
+* Sat May 5 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.8
     - BUGFIX: Various UI style fixes
+    - BUGFIX: Fix compilation with gcc 4.7
+    - BUGFIX: Fix possible compilation error with msvc (Windows)
+    - BUGFIX: Fix compilation on OS/2
+    - I18N: Update Italian translation
 
 * Sun Mar 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.7
     - BUGFIX: Fix important HTTP request parsing bug (Web UI)
