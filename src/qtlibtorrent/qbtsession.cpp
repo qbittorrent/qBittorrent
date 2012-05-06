@@ -80,6 +80,7 @@
 #include <queue>
 #include <string.h>
 #include "dnsupdater.h"
+#include "options_imp.h"
 
 using namespace libtorrent;
 
@@ -334,13 +335,25 @@ void QBtSession::setQueueingEnabled(bool enable) {
 void QBtSession::configureSession() {
   qDebug("Configuring session");
   const Preferences pref;
-  // * Ports binding
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref.getSessionPort();
-  if (old_listenPort != new_listenPort) {
-    qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
-    setListeningPort(new_listenPort);
-    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
+  if(pref.useRandomPort()) // to check if the randomPort checkbox is selected
+  {
+      const unsigned short randomPort = rand() % 64512 + 1024;
+      //std::cout<<"port:"<<randomPort<<endl;
+      setListeningPort(randomPort);
+  }
+  else
+  {
+      // * Ports binding
+      //const unsigned short old_listenPort = getListenPort();
+      //const unsigned short new_listenPort = pref.getSessionPort();
+
+      if (old_listenPort != new_listenPort) {
+        qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
+        setListeningPort(new_listenPort);
+        addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
+      }
   }
 
   // Downloads
@@ -1546,7 +1559,7 @@ void QBtSession::loadSessionState() {
   // bdecode
   lazy_entry e;
 #if LIBTORRENT_VERSION_MINOR > 15
-  libtorrent::error_code ec;
+  error_code ec;
   lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
   if (!ec) {
 #else
@@ -1898,7 +1911,7 @@ void QBtSession::setListeningPort(int port) {
   Preferences pref;
   std::pair<int,int> ports(port, port);
 #if LIBTORRENT_VERSION_MINOR > 15
-  libtorrent::error_code ec;
+  error_code ec;
 #endif
   const QString iface_name = pref.getNetworkInterface();
   if (iface_name.isEmpty()) {
