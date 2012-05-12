@@ -526,20 +526,18 @@ void torrentAdditionDialog::on_browseButton_clicked() {
   QString new_path;
   QString root_folder;
   const QString label_name = comboLabel->currentText();
-  if (!m_isMagnet) {
-    if (m_torrentInfo->num_files() == 1) {
-      new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText(), QString(), 0, QFileDialog::DontConfirmOverwrite);
-      if (!new_path.isEmpty()) {
-        QStringList path_parts = new_path.replace("\\", "/").split("/");
-        const QString filename = path_parts.takeLast();
-        // Append label
-        if (QDir(path_parts.join(QDir::separator())) == QDir(m_defaultSavePath) && !label_name.isEmpty())
-          path_parts << label_name;
-        // Append file name
-        path_parts << filename;
-        // Construct new_path
-        new_path = path_parts.join(QDir::separator());
-      }
+  if (!m_isMagnet && m_torrentInfo->num_files() == 1) {
+    new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"), savePathTxt->currentText(), QString(), 0, QFileDialog::DontConfirmOverwrite);
+    if (!new_path.isEmpty()) {
+      QStringList path_parts = new_path.replace("\\", "/").split("/");
+      const QString filename = path_parts.takeLast();
+      // Append label
+      if (QDir(path_parts.join(QDir::separator())) == QDir(m_defaultSavePath) && !label_name.isEmpty())
+        path_parts << label_name;
+      // Append file name
+      path_parts << filename;
+      // Construct new_path
+      new_path = path_parts.join(QDir::separator());
     }
   } else {
     QString truncated_path = getCurrentTruncatedSavePath(&root_folder);
