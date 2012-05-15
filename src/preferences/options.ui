@@ -178,7 +178,7 @@
              <x>0</x>
              <y>0</y>
              <width>486</width>
-             <height>626</height>
+             <height>638</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -277,12 +277,6 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QFormLayout" name="formLayout_3">
-                  <property name="fieldGrowthPolicy">
-                   <enum>QFormLayout::ExpandingFieldsGrow</enum>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
                   <item row="0" column="0">
                    <widget class="QLabel" name="lblDlList_2">
                     <property name="text">
@@ -515,7 +509,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
+             <width>486</width>
              <height>952</height>
             </rect>
            </property>
