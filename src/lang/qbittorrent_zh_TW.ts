@@ -119,6 +119,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">設為預設儲存路徑</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">標籤:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">註解:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">高</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">最高</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">不要下載</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O 錯誤</translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">選擇儲存路徑</translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">重新命名檔案</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">新名稱:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished">此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished">此資料夾無法被重新命名</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">重新命名...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">優先度</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4884,83 +5032,83 @@ Do you want to install it now?</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>增加 torrent 對話框</translation>
+        <translation type="obsolete">增加 torrent 對話框</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>儲存路徑:</translation>
+        <translation type="obsolete">儲存路徑:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>torrent 內容:</translation>
+        <translation type="obsolete">torrent 內容:</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>以暫停狀態增加到下載清單</translation>
+        <translation type="obsolete">以暫停狀態增加到下載清單</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>增加</translation>
+        <translation type="obsolete">增加</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="obsolete">取消</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>一般</translation>
+        <translation type="obsolete">一般</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>高</translation>
+        <translation type="obsolete">高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>最高</translation>
+        <translation type="obsolete">最高</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>torrent 大小:</translation>
+        <translation type="obsolete">torrent 大小:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="obsolete">未知</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>剩餘磁碟空間:</translation>
+        <translation type="obsolete">剩餘磁碟空間:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>按照順序下載 (較慢但較好預覽)</translation>
+        <translation type="obsolete">按照順序下載 (較慢但較好預覽)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>停止檔案檢查並立刻開始做種</translation>
+        <translation type="obsolete">停止檔案檢查並立刻開始做種</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>標籤:</translation>
+        <translation type="obsolete">標籤:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>全部選擇</translation>
+        <translation type="obsolete">全部選擇</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>全部不選</translation>
+        <translation type="obsolete">全部不選</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>不要下載</translation>
+        <translation type="obsolete">不要下載</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation>設為預設儲存路徑</translation>
+        <translation type="obsolete">設為預設儲存路徑</translation>
     </message>
 </context>
 <context>
@@ -5716,101 +5864,101 @@ However, those plugins were disabled.</source>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>無法解碼 torrent 檔案:</translation>
+        <translation type="obsolete">無法解碼 torrent 檔案:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>選擇儲存路徑</translation>
+        <translation type="obsolete">選擇儲存路徑</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>輸入儲存路徑</translation>
+        <translation type="obsolete">輸入儲存路徑</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>請輸入儲存路徑</translation>
+        <translation type="obsolete">請輸入儲存路徑</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>建立儲存路徑錯誤</translation>
+        <translation type="obsolete">建立儲存路徑錯誤</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>無法建立儲存路徑</translation>
+        <translation type="obsolete">無法建立儲存路徑</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>無效的選擇檔案</translation>
+        <translation type="obsolete">無效的選擇檔案</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>你必須至少選擇 torrent 裡的一個檔案</translation>
+        <translation type="obsolete">你必須至少選擇 torrent 裡的一個檔案</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>優先度</translation>
+        <translation type="obsolete">優先度</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(在 torrent 下載後還剩下 %1)</translation>
+        <translation type="obsolete">(在 torrent 下載後還剩下 %1)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(還有 %1 需要下載)</translation>
+        <translation type="obsolete">(還有 %1 需要下載)</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>做種模式錯誤</translation>
+        <translation type="obsolete">做種模式錯誤</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>你選擇跳過檔案檢查。然而, 本地檔案似乎不在目的地資料夾中。請停用此功能或更新儲存路徑。</translation>
+        <translation type="obsolete">你選擇跳過檔案檢查。然而, 本地檔案似乎不在目的地資料夾中。請停用此功能或更新儲存路徑。</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>重新命名...</translation>
+        <translation type="obsolete">重新命名...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>新名稱:</translation>
+        <translation type="obsolete">新名稱:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>檔案無法重新命名</translation>
+        <translation type="obsolete">檔案無法重新命名</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
+        <translation type="obsolete">此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>此資料夾無法被重新命名</translation>
+        <translation type="obsolete">此資料夾無法被重新命名</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>重新命名檔案</translation>
+        <translation type="obsolete">重新命名檔案</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>無法解碼磁性連結:</translation>
+        <translation type="obsolete">無法解碼磁性連結:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>磁性連結</translation>
+        <translation type="obsolete">磁性連結</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>無效的標籤名稱</translation>
+        <translation type="obsolete">無效的標籤名稱</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>標籤名稱請不要使用任何特殊字元。</translation>
+        <translation type="obsolete">標籤名稱請不要使用任何特殊字元。</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
+        <translation type="obsolete">檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
     </message>
 </context>
 </TS>

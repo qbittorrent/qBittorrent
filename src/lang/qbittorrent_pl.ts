@@ -119,6 +119,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">Ustaw jako domyślną ścieżkę zapisu</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Etykieta:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentarz:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Wysoki</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maksymalny</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">Nie pobieraj</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">Błąd We/Wy</translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Wybierz katalog docelowy</translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">Zmień nazwę pliku</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Nowa nazwa:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished">Nie można zmienić nazwy pliku</translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">Nazwa pliku zawiera zabronione znaki, proszę wybrać inną nazwę.</translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished">Wybrana nazwa jest już używana w tym katalogu. Proszę wybrać inną nazwę.</translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished">Nie można zmienić nazwy katalogu</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">Zmień nazwę...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorytet</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4856,83 +5004,83 @@ Do you want to install it now?</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Dodatkowe informacje o pliku torrent</translation>
+        <translation type="obsolete">Dodatkowe informacje o pliku torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Katalog docelowy:</translation>
+        <translation type="obsolete">Katalog docelowy:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Rozmiar torrenta:</translation>
+        <translation type="obsolete">Rozmiar torrenta:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation type="obsolete">Nieznany</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Wolne miejsce na dysku:</translation>
+        <translation type="obsolete">Wolne miejsce na dysku:</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Zawartość torrenta:</translation>
+        <translation type="obsolete">Zawartość torrenta:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Pobierz w kolejności sekwencyjnej (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
+        <translation type="obsolete">Pobierz w kolejności sekwencyjnej (wolniejsze ale lepsze przy korzystaniu z opcji podglądu)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>Dodaj tylko do listy pobierania (bez rozpoczynania pobierania)</translation>
+        <translation type="obsolete">Dodaj tylko do listy pobierania (bez rozpoczynania pobierania)</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Dodaj</translation>
+        <translation type="obsolete">Dodaj</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Anuluj</translation>
+        <translation type="obsolete">Anuluj</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normalny</translation>
+        <translation type="obsolete">Normalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Wysoki</translation>
+        <translation type="obsolete">Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maksymalny</translation>
+        <translation type="obsolete">Maksymalny</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Pomiń sprawdzanie danych i natychmiast rozpocznij wysyłanie</translation>
+        <translation type="obsolete">Pomiń sprawdzanie danych i natychmiast rozpocznij wysyłanie</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Etykieta:</translation>
+        <translation type="obsolete">Etykieta:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Zaznacz wszystko</translation>
+        <translation type="obsolete">Zaznacz wszystko</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Odznacz wszystko</translation>
+        <translation type="obsolete">Odznacz wszystko</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>Nie pobieraj</translation>
+        <translation type="obsolete">Nie pobieraj</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Ustaw jako domyślną ścieżkę zapisu</translation>
+        <translation type="obsolete">Ustaw jako domyślną ścieżkę zapisu</translation>
     </message>
 </context>
 <context>
@@ -5665,101 +5813,101 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Problem z odkodowaniem pliku torrent:</translation>
+        <translation type="obsolete">Problem z odkodowaniem pliku torrent:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Wybierz katalog docelowy</translation>
+        <translation type="obsolete">Wybierz katalog docelowy</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 po pobraniu torrenta)</translation>
+        <translation type="obsolete">(%1 po pobraniu torrenta)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(aby pobrać torrenta potrzeba jeszcze %1 wolnego miejsca)</translation>
+        <translation type="obsolete">(aby pobrać torrenta potrzeba jeszcze %1 wolnego miejsca)</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Niepoprawny katalog docelowy</translation>
+        <translation type="obsolete">Niepoprawny katalog docelowy</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Podaj katalog docelowy</translation>
+        <translation type="obsolete">Podaj katalog docelowy</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Błąd tworzenia katalogu docelowego</translation>
+        <translation type="obsolete">Błąd tworzenia katalogu docelowego</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nie można założyć katalogu docelowego</translation>
+        <translation type="obsolete">Nie można założyć katalogu docelowego</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Wybrano niepoprawny plik</translation>
+        <translation type="obsolete">Wybrano niepoprawny plik</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>Musisz wybrać przynajmniej jeden plik z pliku torrent</translation>
+        <translation type="obsolete">Musisz wybrać przynajmniej jeden plik z pliku torrent</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorytet</translation>
+        <translation type="obsolete">Priorytet</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Błąd trybu rozsiewania</translation>
+        <translation type="obsolete">Błąd trybu rozsiewania</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierań. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
+        <translation type="obsolete">Wybrano pomijanie sprawdzania pliku, jednak pliki lokalne prawdopodobnie nie istnieją w aktualnym katalogu pobierań. Należy wyłączyć tą opcję lub zaktualizować katalog zapisu.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Zmień nazwę...</translation>
+        <translation type="obsolete">Zmień nazwę...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Nowa nazwa:</translation>
+        <translation type="obsolete">Nowa nazwa:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Nie można zmienić nazwy pliku</translation>
+        <translation type="obsolete">Nie można zmienić nazwy pliku</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Wybrana nazwa jest już używana w tym katalogu. Proszę wybrać inną nazwę.</translation>
+        <translation type="obsolete">Wybrana nazwa jest już używana w tym katalogu. Proszę wybrać inną nazwę.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Nie można zmienić nazwy katalogu</translation>
+        <translation type="obsolete">Nie można zmienić nazwy katalogu</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Zmień nazwę pliku</translation>
+        <translation type="obsolete">Zmień nazwę pliku</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>Nie można odczytać adresu magnet:</translation>
+        <translation type="obsolete">Nie można odczytać adresu magnet:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Adres magnet</translation>
+        <translation type="obsolete">Adres magnet</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Nieprawidłowa nazwa etykiety</translation>
+        <translation type="obsolete">Nieprawidłowa nazwa etykiety</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Nie należy używać żadnych znaków specjalnych w nazwach etykiet.</translation>
+        <translation type="obsolete">Nie należy używać żadnych znaków specjalnych w nazwach etykiet.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Nazwa pliku zawiera zabronione znaki, proszę wybrać inną nazwę.</translation>
+        <translation type="obsolete">Nazwa pliku zawiera zabronione znaki, proszę wybrać inną nazwę.</translation>
     </message>
 </context>
 </TS>

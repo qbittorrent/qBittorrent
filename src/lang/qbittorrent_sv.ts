@@ -119,6 +119,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">Ange som standardsökväg för sparade filer</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Etikett:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Kommentar:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Hög</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">Hämta inte</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Välj sökväg att spara i</translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">Byt namn på filen</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Nytt namn:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished">Det gick inte att byta namn på filen</translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished">Det gick inte att byta namn på mappen</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">Byt namn...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritet</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4771,83 +4919,83 @@ Vill du installera den nu?</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Lägg till torrent-fil</translation>
+        <translation type="obsolete">Lägg till torrent-fil</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Sökväg att spara i:</translation>
+        <translation type="obsolete">Sökväg att spara i:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Innehåll:</translation>
+        <translation type="obsolete">Innehåll:</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>Lägg till i hämtningslistan i pausat tillstånd</translation>
+        <translation type="obsolete">Lägg till i hämtningslistan i pausat tillstånd</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Lägg till</translation>
+        <translation type="obsolete">Lägg till</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <translation type="obsolete">Avbryt</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Hög</translation>
+        <translation type="obsolete">Hög</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximalt</translation>
+        <translation type="obsolete">Maximalt</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Torrentstorlek:</translation>
+        <translation type="obsolete">Torrentstorlek:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Okänd</translation>
+        <translation type="obsolete">Okänd</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Ledigt diskutrymme:</translation>
+        <translation type="obsolete">Ledigt diskutrymme:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Hämta i sekventiell ordning (långsammare men bra för förhandsvisning)</translation>
+        <translation type="obsolete">Hämta i sekventiell ordning (långsammare men bra för förhandsvisning)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Hoppa över filkontroll och börja distribuera direkt</translation>
+        <translation type="obsolete">Hoppa över filkontroll och börja distribuera direkt</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Etikett:</translation>
+        <translation type="obsolete">Etikett:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Markera allt</translation>
+        <translation type="obsolete">Markera allt</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Markera ingen</translation>
+        <translation type="obsolete">Markera ingen</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>Hämta inte</translation>
+        <translation type="obsolete">Hämta inte</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation>Ange som standardsökväg för sparade filer</translation>
+        <translation type="obsolete">Ange som standardsökväg för sparade filer</translation>
     </message>
 </context>
 <context>
@@ -5603,101 +5751,101 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Kunde inte avkoda torrent-fil:</translation>
+        <translation type="obsolete">Kunde inte avkoda torrent-fil:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Välj sökväg att spara i</translation>
+        <translation type="obsolete">Välj sökväg att spara i</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Tom sökväg för att spara i</translation>
+        <translation type="obsolete">Tom sökväg för att spara i</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Ange en sökväg att spara i</translation>
+        <translation type="obsolete">Ange en sökväg att spara i</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Fel vid skapandet av sökväg</translation>
+        <translation type="obsolete">Fel vid skapandet av sökväg</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kunde inte skapa sökväg att spara i</translation>
+        <translation type="obsolete">Kunde inte skapa sökväg att spara i</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Ogiltig filmarkering</translation>
+        <translation type="obsolete">Ogiltig filmarkering</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>Du måste välja åtminstone en fil i torrent-filen</translation>
+        <translation type="obsolete">Du måste välja åtminstone en fil i torrent-filen</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 kvar efter torrenthämtning)</translation>
+        <translation type="obsolete">(%1 kvar efter torrenthämtning)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(%1 ytterligare krävs för att hämta)</translation>
+        <translation type="obsolete">(%1 ytterligare krävs för att hämta)</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Fel i distributionsläge</translation>
+        <translation type="obsolete">Fel i distributionsläge</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>Du valde att hoppa över filkontroll. Dock verkar lokala filerna inte finnas i den aktuella destinationsmappen. Inaktivera denna funktion eller uppdatera sökvägen.</translation>
+        <translation type="obsolete">Du valde att hoppa över filkontroll. Dock verkar lokala filerna inte finnas i den aktuella destinationsmappen. Inaktivera denna funktion eller uppdatera sökvägen.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Byt namn...</translation>
+        <translation type="obsolete">Byt namn...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Nytt namn:</translation>
+        <translation type="obsolete">Nytt namn:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Det gick inte att byta namn på filen</translation>
+        <translation type="obsolete">Det gick inte att byta namn på filen</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Detta namn används redan i denna mapp. Välj ett annat namn.</translation>
+        <translation type="obsolete">Detta namn används redan i denna mapp. Välj ett annat namn.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Det gick inte att byta namn på mappen</translation>
+        <translation type="obsolete">Det gick inte att byta namn på mappen</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Byt namn på filen</translation>
+        <translation type="obsolete">Byt namn på filen</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>Kunde inte avkoda magnet-länk:</translation>
+        <translation type="obsolete">Kunde inte avkoda magnet-länk:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Magnet-länk</translation>
+        <translation type="obsolete">Magnet-länk</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
+        <translation type="obsolete">Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Ogiltigt etikettnamn</translation>
+        <translation type="obsolete">Ogiltigt etikettnamn</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Använd inte några specialtecken i etikettnamnet.</translation>
+        <translation type="obsolete">Använd inte några specialtecken i etikettnamnet.</translation>
     </message>
 </context>
 </TS>

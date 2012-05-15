@@ -119,6 +119,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">Nastaviť ako predvolenú cestu pre uloženie</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Označenie:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentár:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Vysoká</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maximálna</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">Nesťahovať</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">Premenovať súbor</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Nový názov:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">Premenovať...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Priorita</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4868,83 +5016,83 @@ Chcete ho nainštalovať teraz?</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Dialóg pre pridanie torrentu</translation>
+        <translation type="obsolete">Dialóg pre pridanie torrentu</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Uložiť kam:</translation>
+        <translation type="obsolete">Uložiť kam:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Obsah torrentu:</translation>
+        <translation type="obsolete">Obsah torrentu:</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>Pridať do zoznamu sťahovaných v stave pozastavený</translation>
+        <translation type="obsolete">Pridať do zoznamu sťahovaných v stave pozastavený</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Pridať</translation>
+        <translation type="obsolete">Pridať</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Storno</translation>
+        <translation type="obsolete">Storno</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normálna</translation>
+        <translation type="obsolete">Normálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Vysoká</translation>
+        <translation type="obsolete">Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximálna</translation>
+        <translation type="obsolete">Maximálna</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Veľkosť torrentu:</translation>
+        <translation type="obsolete">Veľkosť torrentu:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Neznáma</translation>
+        <translation type="obsolete">Neznáma</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Voľné miesto na disku:</translation>
+        <translation type="obsolete">Voľné miesto na disku:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Sťahovať v postupnom poradí (pomalšie, ale lepšie pre náhľady)</translation>
+        <translation type="obsolete">Sťahovať v postupnom poradí (pomalšie, ale lepšie pre náhľady)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Preskočiť kontrolu súborov a začať seedovať okamžite</translation>
+        <translation type="obsolete">Preskočiť kontrolu súborov a začať seedovať okamžite</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Označenie:</translation>
+        <translation type="obsolete">Označenie:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Vybrať všetky</translation>
+        <translation type="obsolete">Vybrať všetky</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Nevybrať nič</translation>
+        <translation type="obsolete">Nevybrať nič</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>Nesťahovať</translation>
+        <translation type="obsolete">Nesťahovať</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation>Nastaviť ako predvolenú cestu pre uloženie</translation>
+        <translation type="obsolete">Nastaviť ako predvolenú cestu pre uloženie</translation>
     </message>
 </context>
 <context>
@@ -5700,101 +5848,101 @@ Tieto moduly však boli vypnuté.</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Nemohol som dekódovať torrent súbor:</translation>
+        <translation type="obsolete">Nemohol som dekódovať torrent súbor:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Zvoľte cestu pre uloženie</translation>
+        <translation type="obsolete">Zvoľte cestu pre uloženie</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Prázdna cesta pre uloženie</translation>
+        <translation type="obsolete">Prázdna cesta pre uloženie</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Prosím, zadajte cestu pre uloženie</translation>
+        <translation type="obsolete">Prosím, zadajte cestu pre uloženie</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Chyba pri vytváraní cesty pre uloženie</translation>
+        <translation type="obsolete">Chyba pri vytváraní cesty pre uloženie</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nemohol som vytvoriť cestu pre uloženie</translation>
+        <translation type="obsolete">Nemohol som vytvoriť cestu pre uloženie</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Neplatný výber súboru</translation>
+        <translation type="obsolete">Neplatný výber súboru</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>Musíte vybrať aspoň jeden súbor z torrentu</translation>
+        <translation type="obsolete">Musíte vybrať aspoň jeden súbor z torrentu</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorita</translation>
+        <translation type="obsolete">Priorita</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(po stiahnutí torrentu zostane %1)</translation>
+        <translation type="obsolete">(po stiahnutí torrentu zostane %1)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(na stiahnutie treba ďalších %1)</translation>
+        <translation type="obsolete">(na stiahnutie treba ďalších %1)</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Chyba režimu seedovania</translation>
+        <translation type="obsolete">Chyba režimu seedovania</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>Rozhodli ste sa preskočiť kontrolu súborov. Zdá sa však, že lokálne súbory neexistujú v aktuálnom cieľovom priečinku torrentu. Prosím, vypnite túto možnosť alebo aktualizujte cieľovú cestu.</translation>
+        <translation type="obsolete">Rozhodli ste sa preskočiť kontrolu súborov. Zdá sa však, že lokálne súbory neexistujú v aktuálnom cieľovom priečinku torrentu. Prosím, vypnite túto možnosť alebo aktualizujte cieľovú cestu.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Premenovať...</translation>
+        <translation type="obsolete">Premenovať...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Nový názov:</translation>
+        <translation type="obsolete">Nový názov:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Nepodarilo sa premenovať súbor</translation>
+        <translation type="obsolete">Nepodarilo sa premenovať súbor</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Tento názov už používa iná položka. Prosím, zvoľte iný názov.</translation>
+        <translation type="obsolete">Tento názov už používa iná položka. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Nepodarilo sa premenovať adresár</translation>
+        <translation type="obsolete">Nepodarilo sa premenovať adresár</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Premenovať súbor</translation>
+        <translation type="obsolete">Premenovať súbor</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>Nepodarilo sa dekódovať odkaz Magnet:</translation>
+        <translation type="obsolete">Nepodarilo sa dekódovať odkaz Magnet:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Odkaz Magnet</translation>
+        <translation type="obsolete">Odkaz Magnet</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Neplatný názov označenia</translation>
+        <translation type="obsolete">Neplatný názov označenia</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Prosím, nepoužívajte v názve označenia špeciálne znaky.</translation>
+        <translation type="obsolete">Prosím, nepoužívajte v názve označenia špeciálne znaky.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
+        <translation type="obsolete">Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
     </message>
 </context>
 </TS>

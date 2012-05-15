@@ -119,6 +119,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">Stel in als standaard pad om op te slaan</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Label:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Opmerkingen:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normaal</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Hoog</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Maximum</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">Download niet</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O Fout</translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished">Kies opslag pad</translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">Hernoem het bestand</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Nieuwe naam:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished">Deze map kon niet hernoemd worden</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioriteit</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4603,83 +4751,83 @@ Wilt u het nu installeren?</translation>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Torrent toevoegen dialoog</translation>
+        <translation type="obsolete">Torrent toevoegen dialoog</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Opslag pad:</translation>
+        <translation type="obsolete">Opslag pad:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Torrent grootte:</translation>
+        <translation type="obsolete">Torrent grootte:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="obsolete">Onbekend</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Vrije schijfruimte:</translation>
+        <translation type="obsolete">Vrije schijfruimte:</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Torrent inhoud:</translation>
+        <translation type="obsolete">Torrent inhoud:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Download in sequentiële volgorde (langzamer maar goed om voorbeeld weer te geven)</translation>
+        <translation type="obsolete">Download in sequentiële volgorde (langzamer maar goed om voorbeeld weer te geven)</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>Aan download lijst toevoegen in pauze stand</translation>
+        <translation type="obsolete">Aan download lijst toevoegen in pauze stand</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Toevoegen</translation>
+        <translation type="obsolete">Toevoegen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation type="obsolete">Annuleren</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normaal</translation>
+        <translation type="obsolete">Normaal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Hoog</translation>
+        <translation type="obsolete">Hoog</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Maximum</translation>
+        <translation type="obsolete">Maximum</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Sla het controleren van het bestand over en start onmiddellijk met het seeden</translation>
+        <translation type="obsolete">Sla het controleren van het bestand over en start onmiddellijk met het seeden</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Label:</translation>
+        <translation type="obsolete">Label:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Selecteer alles</translation>
+        <translation type="obsolete">Selecteer alles</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Selecteer geen</translation>
+        <translation type="obsolete">Selecteer geen</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>Download niet</translation>
+        <translation type="obsolete">Download niet</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation>Stel in als standaard pad om op te slaan</translation>
+        <translation type="obsolete">Stel in als standaard pad om op te slaan</translation>
     </message>
 </context>
 <context>
@@ -5436,101 +5584,97 @@ selecteer alstublieft een er van:</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Torrentfile kan niet gedecodeerd worden:</translation>
+        <translation type="obsolete">Torrentfile kan niet gedecodeerd worden:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Kies opslag pad</translation>
+        <translation type="obsolete">Kies opslag pad</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 over na torrent download)</translation>
+        <translation type="obsolete">(%1 over na torrent download)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(%1 extra is nodig om te downloaden)</translation>
+        <translation type="obsolete">(%1 extra is nodig om te downloaden)</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Leeg opslag pad</translation>
+        <translation type="obsolete">Leeg opslag pad</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Geef alstublieft een opslag pad</translation>
+        <translation type="obsolete">Geef alstublieft een opslag pad</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Opslag pad aanmaak fout</translation>
+        <translation type="obsolete">Opslag pad aanmaak fout</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kon het opslag pad niet aanmaken</translation>
+        <translation type="obsolete">Kon het opslag pad niet aanmaken</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Ongeldige bestand selectie</translation>
+        <translation type="obsolete">Ongeldige bestand selectie</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>U moet tenminste een bestand in de torrent selecteren</translation>
+        <translation type="obsolete">U moet tenminste een bestand in de torrent selecteren</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioriteit</translation>
+        <translation type="obsolete">Prioriteit</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Seeding modus fout</translation>
+        <translation type="obsolete">Seeding modus fout</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>U kiest ervoor om bestandscontrole over te slaan. Alhoewel, lokale bestanden blijken niet te bestaan in de huidige bestemmingsmap. Gelieve deze feature uit te schakelen of update het opslagpad.</translation>
+        <translation type="obsolete">U kiest ervoor om bestandscontrole over te slaan. Alhoewel, lokale bestanden blijken niet te bestaan in de huidige bestemmingsmap. Gelieve deze feature uit te schakelen of update het opslagpad.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Hernoemen...</translation>
+        <translation type="obsolete">Hernoemen...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Nieuwe naam:</translation>
+        <translation type="obsolete">Nieuwe naam:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Dit bestand kon niet hernoemd worden</translation>
+        <translation type="obsolete">Dit bestand kon niet hernoemd worden</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Deze naam bestaat reeds in deze map. Gelieve een andere naam te gebruiken.</translation>
+        <translation type="obsolete">Deze naam bestaat reeds in deze map. Gelieve een andere naam te gebruiken.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Deze map kon niet hernoemd worden</translation>
+        <translation type="obsolete">Deze map kon niet hernoemd worden</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Hernoem het bestand</translation>
-    </message>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation></translation>
+        <translation type="obsolete">Hernoem het bestand</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Magnetlink</translation>
+        <translation type="obsolete">Magnetlink</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Ongeldige labelnaam</translation>
+        <translation type="obsolete">Ongeldige labelnaam</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Gelieve geen speciale characters te gebruiken in de labelnaam.</translation>
+        <translation type="obsolete">Gelieve geen speciale characters te gebruiken in de labelnaam.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Deze bestandsnaam bevat verboden character, gelieve een andere te kiezen.</translation>
+        <translation type="obsolete">Deze bestandsnaam bevat verboden character, gelieve een andere te kiezen.</translation>
     </message>
 </context>
 </TS>

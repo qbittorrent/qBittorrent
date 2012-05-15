@@ -87,6 +87,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Etiket:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Yorum:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Normal</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Yüksek</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">İndirme</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished">Dosyayı yeniden adlandır</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Yeni ad:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished">Dosya yeniden adlandırılamadı</translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">Yeniden adlandır...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Öncelik</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -4720,83 +4868,79 @@ Do you want to install it now?</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Torrent ekleme kutusu</translation>
+        <translation type="obsolete">Torrent ekleme kutusu</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Kaydetme yolu:</translation>
+        <translation type="obsolete">Kaydetme yolu:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Torrent içeriği:</translation>
+        <translation type="obsolete">Torrent içeriği:</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>İndirme listesine duraklatılmış durumda ekle</translation>
+        <translation type="obsolete">İndirme listesine duraklatılmış durumda ekle</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Ekle</translation>
+        <translation type="obsolete">Ekle</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Vazgeç</translation>
+        <translation type="obsolete">Vazgeç</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="obsolete">Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Yüksek</translation>
+        <translation type="obsolete">Yüksek</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>En Yüksek</translation>
+        <translation type="obsolete">En Yüksek</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Torent boyutu:</translation>
+        <translation type="obsolete">Torent boyutu:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Bilinmeyen</translation>
+        <translation type="obsolete">Bilinmeyen</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Boş disk alanı:</translation>
+        <translation type="obsolete">Boş disk alanı:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Doğru düzende indir (yavaş ama önizleme için iyi)</translation>
+        <translation type="obsolete">Doğru düzende indir (yavaş ama önizleme için iyi)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Dosya denetlemeyi atla ve hemen göndermeye başla</translation>
+        <translation type="obsolete">Dosya denetlemeyi atla ve hemen göndermeye başla</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Etiket:</translation>
+        <translation type="obsolete">Etiket:</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Tümünü Seç</translation>
+        <translation type="obsolete">Tümünü Seç</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Hiçbirini Seçme</translation>
+        <translation type="obsolete">Hiçbirini Seçme</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>İndirme</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">İndirme</translation>
     </message>
 </context>
 <context>
@@ -5543,101 +5687,101 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Torrent dosyası çözülemiyor:</translation>
+        <translation type="obsolete">Torrent dosyası çözülemiyor:</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Kayıt klasörünü seçin</translation>
+        <translation type="obsolete">Kayıt klasörünü seçin</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Boş kayıt yolu</translation>
+        <translation type="obsolete">Boş kayıt yolu</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Lütfen bir kayıt yolu girin</translation>
+        <translation type="obsolete">Lütfen bir kayıt yolu girin</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Kayıt yolu oluşturulmada hata</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulmada hata</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Kayıt yolu oluşturulamıyor</translation>
+        <translation type="obsolete">Kayıt yolu oluşturulamıyor</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Geçersiz dosya seçimi</translation>
+        <translation type="obsolete">Geçersiz dosya seçimi</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>Torrent içinde en az bir dosya seçmek zorundasınız</translation>
+        <translation type="obsolete">Torrent içinde en az bir dosya seçmek zorundasınız</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Öncelik</translation>
+        <translation type="obsolete">Öncelik</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(torentin indirilmesinden sonra %1 kalacak)</translation>
+        <translation type="obsolete">(torentin indirilmesinden sonra %1 kalacak)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(indirilmesi için %1 daha gerekli)</translation>
+        <translation type="obsolete">(indirilmesi için %1 daha gerekli)</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Gönderme kipi hatası</translation>
+        <translation type="obsolete">Gönderme kipi hatası</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>Dosya denetlemeyi es geçtiniz. Buna rağmen yerel dosyanın mevcut hedef klasör içinde bulunmadığı gözüküyor. Lütfen bu özelliği etkisizleştirin ya da kaydetme yolunu güncelleyin.</translation>
+        <translation type="obsolete">Dosya denetlemeyi es geçtiniz. Buna rağmen yerel dosyanın mevcut hedef klasör içinde bulunmadığı gözüküyor. Lütfen bu özelliği etkisizleştirin ya da kaydetme yolunu güncelleyin.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Yeniden adlandır...</translation>
+        <translation type="obsolete">Yeniden adlandır...</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Yeni ad:</translation>
+        <translation type="obsolete">Yeni ad:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Dosya yeniden adlandırılamadı</translation>
+        <translation type="obsolete">Dosya yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Bu ad klasör içinde başka bir öğe tarafından kullanılıyor, Lütfen başka bir ad seçin.</translation>
+        <translation type="obsolete">Bu ad klasör içinde başka bir öğe tarafından kullanılıyor, Lütfen başka bir ad seçin.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Klasör yeniden adlandırılamadı</translation>
+        <translation type="obsolete">Klasör yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Dosyayı yeniden adlandır</translation>
+        <translation type="obsolete">Dosyayı yeniden adlandır</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>İlişik bağlantı kodu çözümlenemedi:</translation>
+        <translation type="obsolete">İlişik bağlantı kodu çözümlenemedi:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>İlişik Bağlantı</translation>
+        <translation type="obsolete">İlişik Bağlantı</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Geçersiz etiket adı</translation>
+        <translation type="obsolete">Geçersiz etiket adı</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Lütfen etiket adı içinde hiçbir özel karakter kullanmayınız.</translation>
+        <translation type="obsolete">Lütfen etiket adı içinde hiçbir özel karakter kullanmayınız.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
+        <translation type="obsolete">Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
     </message>
 </context>
 </TS>

@@ -157,6 +157,154 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>AddNewTorrentDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set as default save path</source>
+        <translation type="unfinished">Postavi kao uobičajenu putanju spremanja</translation>
+    </message>
+    <message>
+        <source>Never show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation type="unfinished">Oznaka:</translation>
+    </message>
+    <message>
+        <source>Skip hash check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished">Komentar:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished">Visok</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation type="unfinished">Najviši</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished">Ne preuzimaj</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <comment>Other save path...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I/O Error</source>
+        <translation type="unfinished">I/O greška</translation>
+    </message>
+    <message>
+        <source>The torrent file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This magnet link was not recognized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk space: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose save path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename the file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished">Novo ime:</translation>
+    </message>
+    <message>
+        <source>The file could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This file name contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished">Preimenuj ...</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished">Prioritet</translation>
+    </message>
+</context>
+<context>
     <name>AdvancedSettings</name>
     <message>
         <source>Property</source>
@@ -5346,67 +5494,67 @@ Do you want to install it now?</source>
     <name>addTorrentDialog</name>
     <message>
         <source>Torrent addition dialog</source>
-        <translation>Dijalog dodavanja torrenta</translation>
+        <translation type="obsolete">Dijalog dodavanja torrenta</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Putanja za spremanje:</translation>
+        <translation type="obsolete">Putanja za spremanje:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Torrent size:</source>
-        <translation>Veličina torrenta:</translation>
+        <translation type="obsolete">Veličina torrenta:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nije poznato</translation>
+        <translation type="obsolete">Nije poznato</translation>
     </message>
     <message>
         <source>Free disk space:</source>
-        <translation>Slobodan prostor na disku:</translation>
+        <translation type="obsolete">Slobodan prostor na disku:</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation>Oznaka:</translation>
+        <translation type="obsolete">Oznaka:</translation>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Sadržaj torrenta:</translation>
+        <translation type="obsolete">Sadržaj torrenta:</translation>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation>Preuzmi u sekvencijskom poretku (sporije, ali dobro za pregledavanje)</translation>
+        <translation type="obsolete">Preuzmi u sekvencijskom poretku (sporije, ali dobro za pregledavanje)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation>Preskoči provjeru datoteke i trenutno započni seedanje</translation>
+        <translation type="obsolete">Preskoči provjeru datoteke i trenutno započni seedanje</translation>
     </message>
     <message>
         <source>Add to download list in paused state</source>
-        <translation>Dodaj popisu preuzimanja u zaustavljenom stanju</translation>
+        <translation type="obsolete">Dodaj popisu preuzimanja u zaustavljenom stanju</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Dodaj</translation>
+        <translation type="obsolete">Dodaj</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Odustani</translation>
+        <translation type="obsolete">Odustani</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Uobičajen</translation>
+        <translation type="obsolete">Uobičajen</translation>
     </message>
     <message>
         <source>High</source>
-        <translation>Visok</translation>
+        <translation type="obsolete">Visok</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Najviši</translation>
+        <translation type="obsolete">Najviši</translation>
     </message>
     <message>
         <source>Collapse all</source>
@@ -5422,19 +5570,19 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Odaberi sve</translation>
+        <translation type="obsolete">Odaberi sve</translation>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Ne odaberi ništa</translation>
+        <translation type="obsolete">Ne odaberi ništa</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation>Ne preuzimaj</translation>
+        <translation type="obsolete">Ne preuzimaj</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation>Postavi kao uobičajenu putanju spremanja</translation>
+        <translation type="obsolete">Postavi kao uobičajenu putanju spremanja</translation>
     </message>
 </context>
 <context>
@@ -6208,101 +6356,101 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <name>torrentAdditionDialog</name>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation>Nije moguće dekodirati magnet link:</translation>
+        <translation type="obsolete">Nije moguće dekodirati magnet link:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation>Magnet link</translation>
+        <translation type="obsolete">Magnet link</translation>
     </message>
     <message>
         <source>Unable to decode torrent file:</source>
-        <translation>Nije moguće dekodirati torrent datoteku:</translation>
+        <translation type="obsolete">Nije moguće dekodirati torrent datoteku:</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Preimenuj ...</translation>
+        <translation type="obsolete">Preimenuj ...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="obsolete">Prioritet</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation>Preimenuj datoteku</translation>
+        <translation type="obsolete">Preimenuj datoteku</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Novo ime:</translation>
+        <translation type="obsolete">Novo ime:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation>Datoteku nije moguće preimenovati</translation>
+        <translation type="obsolete">Datoteku nije moguće preimenovati</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Datoteka sadrži nedopuštene znakove. Izaberite drukčije znakove. </translation>
+        <translation type="obsolete">Datoteka sadrži nedopuštene znakove. Izaberite drukčije znakove. </translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Ime se već koristi u toj mapi. Koristite drugo ime.</translation>
+        <translation type="obsolete">Ime se već koristi u toj mapi. Koristite drugo ime.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation>Mapu nije moguće preimenovati</translation>
+        <translation type="obsolete">Mapu nije moguće preimenovati</translation>
     </message>
     <message>
         <source>(%1 left after torrent download)</source>
         <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation>(%1 ostalo nakon preuzimanja torrenta)</translation>
+        <translation type="obsolete">(%1 ostalo nakon preuzimanja torrenta)</translation>
     </message>
     <message>
         <source>(%1 more are required to download)</source>
         <comment>e.g. (100MiB more are required to download)</comment>
-        <translation>(%1 više je potrebno za preuzimanje)</translation>
+        <translation type="obsolete">(%1 više je potrebno za preuzimanje)</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Izaberite putanju za spremanje</translation>
+        <translation type="obsolete">Izaberite putanju za spremanje</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation>Ispraznite putanju za spremanje</translation>
+        <translation type="obsolete">Ispraznite putanju za spremanje</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation>Upišite putanju za spremanje</translation>
+        <translation type="obsolete">Upišite putanju za spremanje</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation>Greška prilikom kreiranja putanje za spremanje</translation>
+        <translation type="obsolete">Greška prilikom kreiranja putanje za spremanje</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation>Nije moguće kreirati putanju za spremanje</translation>
+        <translation type="obsolete">Nije moguće kreirati putanju za spremanje</translation>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Neispravano ime oznake</translation>
+        <translation type="obsolete">Neispravano ime oznake</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Nemojte koristiti nijedan poseban znak u imenu oznake.</translation>
+        <translation type="obsolete">Nemojte koristiti nijedan poseban znak u imenu oznake.</translation>
     </message>
     <message>
         <source>Seeding mode error</source>
-        <translation>Greška seeding moda</translation>
+        <translation type="obsolete">Greška seeding moda</translation>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation>Izabrali ste preskočiti provjeru datoteke. Ipak, čini se da lokalne datoteke ne postoje u trenutnoj odredišnoj mapi. Onemogućite ovu značajku ili ažurirajte putanju za spremanje.</translation>
+        <translation type="obsolete">Izabrali ste preskočiti provjeru datoteke. Ipak, čini se da lokalne datoteke ne postoje u trenutnoj odredišnoj mapi. Onemogućite ovu značajku ili ažurirajte putanju za spremanje.</translation>
     </message>
     <message>
         <source>Invalid file selection</source>
-        <translation>Neispravan odabir datoteke</translation>
+        <translation type="obsolete">Neispravan odabir datoteke</translation>
     </message>
     <message>
         <source>You must select at least one file in the torrent</source>
-        <translation>Morate izabrati najmanje jednu datoteku u torrentu</translation>
+        <translation type="obsolete">Morate izabrati najmanje jednu datoteku u torrentu</translation>
     </message>
 </context>
 </TS>
