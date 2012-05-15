@@ -78,6 +78,15 @@ public:
     return QString(out);
   }
 
+  static inline QString toDisplayPath(const QString& path) {
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    QString ret = path;
+    return ret.replace("/", "\\");
+#else
+    return path;
+#endif
+  }
+
   static inline QString file_extension(const QString &filename) {
     QString extension;
     int point_index = filename.lastIndexOf(".");
@@ -95,8 +104,6 @@ public:
 
   static quint64 computePathSize(QString path);
 
-  static QString truncateRootFolder(boost::intrusive_ptr<libtorrent::torrent_info> t);
-  static QString truncateRootFolder(libtorrent::torrent_handle h);
   static QString fixFileNames(QString path);
 
   static QString updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label);
@@ -127,7 +134,8 @@ public:
   // value must be given in bytes
   static QString friendlyUnit(qreal val);
   static bool isPreviewable(QString extension);
-  static QString branchPath(QString file_path, bool uses_slashes=false);
+  static QString branchPath(const QString& file_path, QString* removed = 0);
+  static bool sameFileNames(const QString& first, const QString& second);
   static QString fileName(QString file_path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
@@ -145,6 +153,12 @@ public:
   static QList<bool> boolListfromStringList(const QStringList &l);
 
   static bool isValidTorrentFile(const QString &path);
+
+#if LIBTORRENT_VERSION_MINOR < 16
+  static QString toQString(const boost::posix_time::ptime& boostDate);
+#else
+  static QString toQString(time_t t);
+#endif
 };
 
 //  Trick to get a portable sleep() function

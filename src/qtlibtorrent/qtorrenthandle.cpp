@@ -54,21 +54,6 @@
 using namespace libtorrent;
 using namespace std;
 
-#if LIBTORRENT_VERSION_MINOR < 16
-static QString boostTimeToQString(const boost::posix_time::ptime &boostDate) {
-  if (boostDate.is_not_a_date_time()) return "";
-  struct std::tm tm;
-  try {
-    tm = boost::posix_time::to_tm(boostDate);
-  } catch(std::exception e) {
-      return "";
-  }
-  const time_t t = mktime(&tm);
-  const QDateTime dt = QDateTime::fromTime_t(t);
-  return dt.toString(Qt::DefaultLocaleLongDate);
-}
-#endif
-
 static QPair<int, int> get_file_extremity_pieces(const torrent_info& t, int file_index)
 {
   const int num_pieces = t.num_pieces();
@@ -109,15 +94,10 @@ QString QTorrentHandle::name() const {
 QString QTorrentHandle::creation_date() const {
 #if LIBTORRENT_VERSION_MINOR > 15
   boost::optional<time_t> t = torrent_handle::get_torrent_info().creation_date();
-  if (t)
-      return QDateTime::fromTime_t(*t).toString(Qt::DefaultLocaleLongDate);
-  return "";
+  return t ? misc::toQString(*t) : "";
 #else
   boost::optional<boost::posix_time::ptime> boostDate = torrent_handle::get_torrent_info().creation_date();
-  if (boostDate) {
-      return boostTimeToQString(*boostDate);
-  }
-  return "";
+  return boostDate ? misc::boostTimeToQString(*boostDate) : "";
 #endif
 }
 
@@ -777,9 +757,6 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     const Preferences pref;
     if (pref.isTempPathEnabled()) {
       QString tmp_path = pref.getTempPath();
-      QString root_folder = TorrentPersistentData::getRootFolder(hash());
-      if (!root_folder.isEmpty())
-        tmp_path = QDir(tmp_path).absoluteFilePath(root_folder);
       qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << save_path();
       move_storage(tmp_path);
     }

@@ -152,7 +152,7 @@ static bool smartRemoveEmptyFolderTree(const QString& dir_path)
 // Main constructor
 QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
-    preAllocateAll(false), addInPause(false), global_ratio_limit(-1),
+    preAllocateAll(false), global_ratio_limit(-1),
     LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
     torrentExport(false)
@@ -319,10 +319,6 @@ void QBtSession::handleDownloadFailure(QString url, QString reason) {
   savepathLabel_fromurl.remove(qurl);
 }
 
-void QBtSession::startTorrentsInPause(bool b) {
-  addInPause = b;
-}
-
 void QBtSession::setQueueingEnabled(bool enable) {
   if (queueingEnabled != enable) {
     qDebug("Queueing system is changing state...");
@@ -354,7 +350,6 @@ void QBtSession::configureSession() {
   setAppendLabelToSavePath(pref.appendTorrentLabel());
   setAppendqBExtension(pref.useIncompleteFilesExtension());
   preAllocateAllFiles(pref.preAllocateAllFiles());
-  startTorrentsInPause(pref.addTorrentsInPause());
   // * Export Dir
   const bool newTorrentExport = pref.isTorrentExportEnabled();
   if (torrentExport != newTorrentExport) {
@@ -929,6 +924,7 @@ void QBtSession::loadTorrentSettings(QTorrentHandle& h) {
 }
 
 QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
+  Preferences pref;
   QTorrentHandle h;
   const QString hash(misc::magnetUriToHash(magnet_uri));
   if (hash.isEmpty()) {
@@ -999,7 +995,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   if (!resumed) {
     loadTorrentTempData(h, savePath, true);
   }
-  if (!addInPause || (Preferences().useAdditionDialog())) {
+  if (!pref.addTorrentsInPause()) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1012,6 +1008,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
 // Add a torrent to the Bittorrent session
 QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString from_url, bool resumed) {
   QTorrentHandle h;
+  Preferences pref;
 
   // Check if BT_backup directory exists
   const QDir torrentBackup(misc::BTBackupLocation());
@@ -1102,9 +1099,6 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   }
 
   // Actually add the torrent
-  QString root_folder = misc::truncateRootFolder(t);
-  qDebug("Truncated root folder: %s", qPrintable(root_folder));
-
   add_torrent_params p = initializeAddTorrentParams(hash);
   p.ti = t;
 
@@ -1139,21 +1133,17 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     // Enforcing the save path defined before URL download (from RSS for example)
     QPair<QString, QString> savePath_label = savepathLabel_fromurl.take(QUrl::fromEncoded(from_url.toUtf8()));
     if (savePath_label.first.isEmpty())
-      savePath = getSavePath(hash, fromScanDir, path, root_folder);
+      savePath = getSavePath(hash, fromScanDir, path);
     else
       savePath = savePath_label.first;
     // Remember label
     TorrentTempData::setLabel(hash, savePath_label.second);
   } else {
-    savePath = getSavePath(hash, fromScanDir, path, root_folder);
+    savePath = getSavePath(hash, fromScanDir, path);
   }
   if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    if (!root_folder.isEmpty()) {
-      if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-      torrent_tmp_path += root_folder;
-    }
     p.save_path = torrent_tmp_path.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if (!QDir(torrent_tmp_path).exists()) QDir().mkpath(torrent_tmp_path);
@@ -1178,8 +1168,6 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         QFile::remove(path);
     return h;
   }
-  // Remember root folder
-  TorrentPersistentData::setRootFolder(hash, root_folder);
 
   // If temp path is enabled, move torrent
   // XXX: The torrent is moved after the torrent_checked_alert
@@ -1213,7 +1201,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       exportTorrentFile(h);
   }
 
-  if (!fastResume && (!addInPause || (Preferences().useAdditionDialog() && !fromScanDir))) {
+  if (!fastResume && !pref.addTorrentsInPause()) {
     // Start torrent because it was added in paused state
     h.resume();
   }
@@ -1229,19 +1217,10 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     else
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    QString displayed_path = path;
-    displayed_path.replace("/", "\\");
     if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(displayed_path));
+      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(misc::toDisplayPath(path)));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(displayed_path));
-#else
-    if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(path));
-    else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(path));
-#endif
+      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(misc::toDisplayPath(path)));
   }
 
   // Send torrent addition signal
@@ -1794,12 +1773,7 @@ void QBtSession::setDefaultTempPath(QString temppath) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
-        QString root_folder = TorrentPersistentData::getRootFolder(h.hash());
         QString torrent_tmp_path = temppath.replace("\\", "/");
-        if (!root_folder.isEmpty()) {
-          if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-          torrent_tmp_path += root_folder;
-        }
         qDebug("Moving torrent to its temp save path: %s", qPrintable(torrent_tmp_path));
         h.move_storage(torrent_tmp_path);
       }
@@ -2391,26 +2365,7 @@ void QBtSession::readAlerts() {
         // Append .!qB to incomplete files
         if (appendqBExtension)
           appendqBextensionToTorrent(h, true);
-        // Truncate root folder
-        const QString root_folder = misc::truncateRootFolder(p->handle);
-        TorrentPersistentData::setRootFolder(h.hash(), root_folder);
-        qDebug() << "magnet root folder is:" <<  root_folder;
 
-        // Move to a subfolder corresponding to the torrent root folder if necessary
-        if (!root_folder.isEmpty()) {
-          if (!h.is_seed() && !defaultTempPath.isEmpty()) {
-            qDebug("Incomplete torrent in temporary folder case");
-            QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-            if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-            torrent_tmp_path += root_folder;
-            qDebug() << "Moving torrent to" << torrent_tmp_path;
-            h.move_storage(torrent_tmp_path);
-          } else {
-            qDebug() << "Incomplete torrent in destination folder case";
-            QString save_path = h.save_path();
-            h.move_storage(QDir(save_path).absoluteFilePath(root_folder));
-          }
-        }
         emit metadataReceived(h);
         if (h.is_paused()) {
           // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
@@ -2570,12 +2525,7 @@ void QBtSession::readAlerts() {
           const QDir save_dir(getSavePath(h.hash()));
           if (current_dir == save_dir) {
             qDebug("Moving the torrent to the temp directory...");
-            QString root_folder = TorrentPersistentData::getRootFolder(hash);
             QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-            if (!root_folder.isEmpty()) {
-              if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-              torrent_tmp_path += root_folder;
-            }
             h.move_storage(torrent_tmp_path);
           }
         }
@@ -2617,7 +2567,7 @@ session_status QBtSession::getSessionStatus() const {
   return s->status();
 }
 
-QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString filePath, QString root_folder) {
+QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString filePath) {
   QString savePath;
   if (TorrentTempData::hasTempData(hash)) {
     savePath = TorrentTempData::getSavePath(hash);
@@ -2635,14 +2585,12 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
   } else {
     savePath = TorrentPersistentData::getSavePath(hash);
     qDebug("SavePath got from persistant data is %s", qPrintable(savePath));
-    bool append_root_folder = false;
     if (savePath.isEmpty()) {
       if (fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath)) {
         savePath = QFileInfo(filePath).dir().path();
       } else {
         savePath = defaultSavePath;
       }
-      append_root_folder = true;
     }
     if (!fromScanDir && appendLabelToSavePath) {
       const QString label = TorrentPersistentData::getLabel(hash);
@@ -2650,12 +2598,6 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
         qDebug("Torrent label is %s", qPrintable(label));
         savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
       }
-    }
-    if (append_root_folder && !root_folder.isEmpty()) {
-      // Append torrent root folder to the save path
-      savePath = QDir(savePath).absoluteFilePath(root_folder);
-      qDebug("Torrent root folder is %s", qPrintable(root_folder));
-      TorrentPersistentData::saveSavePath(hash, savePath);
     }
     qDebug("getSavePath, got save_path from persistent data: %s", qPrintable(savePath));
   }
@@ -2702,6 +2644,7 @@ void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QStrin
 
 // Add to Bittorrent session the downloaded torrent file
 void QBtSession::processDownloadedFile(QString url, QString file_path) {
+  Preferences pref;
   const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toUtf8()));
   if (index < 0) {
     // Add file to torrent download list
@@ -2723,7 +2666,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     url_skippingDlg.removeAt(index);
     QTorrentHandle h = addTorrent(file_path, false, url, false);
     // Pause torrent if necessary
-    if (h.is_valid() && addInPause && Preferences().useAdditionDialog())
+    if (h.is_valid() && pref.addTorrentsInPause() && Preferences().useAdditionDialog())
         h.pause();
   }
 }

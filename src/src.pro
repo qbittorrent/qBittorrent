@@ -131,7 +131,6 @@ nox {
               previewselect.h \
               previewlistdelegate.h \
               downloadfromurldlg.h \
-              torrentadditiondlg.h \
               trackerlogin.h \
               hidabletabwidget.h \
               sessionapplication.h \
@@ -139,7 +138,8 @@ nox {
               executionlog.h \
               iconprovider.h \
               updownratiodlg.h \
-              loglistwidget.h
+              loglistwidget.h \
+              addnewtorrentdialog.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -147,14 +147,14 @@ nox {
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
              torrentcontentfiltermodel.cpp \
-             torrentadditiondlg.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \
              executionlog.cpp \
              previewselect.cpp \
              iconprovider.cpp \
              updownratiodlg.cpp \
-             loglistwidget.cpp
+             loglistwidget.cpp \
+             addnewtorrentdialog.cpp
 
   win32 {
     HEADERS += programupdater.h
@@ -174,12 +174,12 @@ nox {
            preview.ui \
            login.ui \
            downloadfromurldlg.ui \
-           torrentadditiondlg.ui \
            bandwidth_limit.ui \
            updownratiodlg.ui \
            confirmdeletiondlg.ui \
            torrentimportdlg.ui \
-           executionlog.ui
+           executionlog.ui \
+           addnewtorrentdialog.ui
 }
 
 DESTDIR = .

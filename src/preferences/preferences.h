@@ -242,11 +242,11 @@ public:
   }
 
   bool useAdditionDialog() const {
-    return value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), false).toBool();
+    return value(QString::fromUtf8("Preferences/Downloads/NewAdditionDialog"), true).toBool();
   }
 
   void useAdditionDialog(bool b) {
-    setValue("Preferences/Downloads/AdditionDialog", b);
+    setValue("Preferences/Downloads/NewAdditionDialog", b);
   }
 
   bool addTorrentsInPause() const {

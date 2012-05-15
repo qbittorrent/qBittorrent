@@ -254,22 +254,6 @@ public:
     return data.value("has_error", false).toBool();
   }
 
-  static void setRootFolder(QString hash, QString root_folder) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    data["root_folder"] = root_folder;
-    all_data[hash] = data;
-    settings.setValue("torrents", all_data);
-  }
-
-  static QString getRootFolder(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    return data.value("root_folder").toString();
-  }
-
   static void setPreviousSavePath(QString hash, QString previous_path) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents").toHash();

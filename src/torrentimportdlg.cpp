@@ -233,8 +233,6 @@ void TorrentImportDlg::loadTorrent(const QString &torrent_path)
     QMessageBox::warning(this, tr("Invalid torrent file"), tr("This is not a valid torrent file."));
     return;
   }
-  // The torrent file is valid
-  misc::truncateRootFolder(t);
   // Update display
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   QString tmp = torrent_path;

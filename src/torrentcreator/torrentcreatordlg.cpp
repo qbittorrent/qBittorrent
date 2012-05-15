@@ -155,21 +155,16 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
   // Remove busy cursor
   setCursor(QCursor(Qt::ArrowCursor));
   if (checkStartSeeding->isChecked()) {
-    QString root_folder;
     // Create save path temp data
     boost::intrusive_ptr<torrent_info> t;
     try {
       t = new torrent_info(path.toUtf8().data());
-      root_folder = misc::truncateRootFolder(t);
     } catch(std::exception&) {
       QMessageBox::critical(0, tr("Torrent creation"), tr("Created torrent file is invalid. It won't be added to download list."));
       return;
     }
     QString hash = misc::toQString(t->info_hash());
     QString save_path = branch_path;
-    if (!root_folder.isEmpty()) {
-      save_path = QDir(save_path).absoluteFilePath(root_folder);
-    }
     TorrentTempData::setSavePath(hash, save_path);
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);

@@ -141,7 +141,6 @@ public slots:
   void setDHTPort(int dht_port);
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
-  void startTorrentsInPause(bool b);
   void setDefaultTempPath(QString temppath);
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(const QTorrentHandle &h);
@@ -168,7 +167,7 @@ public slots:
   void recursiveTorrentDownload(const QTorrentHandle &h);
 
 private:
-  QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null, QString root_folder=QString::null);
+  QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null);
   bool loadFastResumeData(const QString &hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle &h);
   void loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet);
@@ -235,7 +234,6 @@ private:
   QStringList peerBanMessages;
   // Settings
   bool preAllocateAll;
-  bool addInPause;
   qreal global_ratio_limit;
   int high_ratio_action;
   bool LSDEnabled;

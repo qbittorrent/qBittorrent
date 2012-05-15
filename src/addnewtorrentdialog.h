@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2012  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,70 +28,59 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TORRENTADDITION_H
-#define TORRENTADDITION_H
+#ifndef ADDNEWTORRENTDIALOG_H
+#define ADDNEWTORRENTDIALOG_H
 
-#include <QStringList>
-
-#include "ui_torrentadditiondlg.h"
-
+#include <QDialog>
+#include <QUrl>
 #include <libtorrent/torrent_info.hpp>
 
-class TorrentContentFilterModel;
+namespace Ui {
+class AddNewTorrentDialog;
+}
+class TorrentContentModel;
 class PropListDelegate;
 
-class torrentAdditionDialog : public QDialog, private Ui_addTorrentDialog{
+class AddNewTorrentDialog : public QDialog
+{
   Q_OBJECT
-
+  
 public:
-  torrentAdditionDialog(QWidget *parent);
-  ~torrentAdditionDialog();
-  void showLoadMagnetURI(const QString& magnet_uri);
-  void showLoadTorrent(const QString& filePath, const QString& fromUrl = QString());
-  QString getCurrentTruncatedSavePath(QString* root_folder_or_file_name = 0) const;
-  QString getTruncatedSavePath(QString save_path, QString* root_folder_or_file_name = 0) const;
-  bool allFiltered() const;
+  ~AddNewTorrentDialog();
 
-public slots:
-  void displayContentListMenu(const QPoint&);
+  static void showTorrent(const QString& torrent_path, const QString& from_url = QString());
+  static void showMagnet(const QString& torrent_link);
+
+private slots:
+  void showAdvancedSettings(bool show);
+  void displayContentTreeMenu(const QPoint&);
+  void on_buttonBox_accepted();
+  void updateDiskSpaceLabel();
+  void onSavePathChanged(int);
+  void relayout();
   void renameSelectedFile();
-  void updateDiskSpaceLabels();
-  void on_browseButton_clicked();
-  void on_CancelButton_clicked();
-  void savePiecesPriorities();
-  void on_OkButton_clicked();
-  void hideTorrentContent();
-  void limitDialogWidth();
-  void saveTruncatedPathHistory();
+  void setdialogPosition();
+
+private:
+  explicit AddNewTorrentDialog(QWidget *parent = 0);
+  bool loadTorrent(const QString& torrent_path, const QString& from_url);
+  bool loadMagnet(const QString& magnet_uri);
   void loadSavePathHistory();
-  void updateLabelInSavePath(QString label);
-  void updateSavePathCurrentText();
-  void resetComboLabelIndex(QString text);
-
-protected:
-  void closeEvent(QCloseEvent *event);
+  void saveSavePathHistory() const;
+  int indexOfSavePath(const QString& save_path);
+  void updateFileNameInSavePaths(const QString& new_filename);
 
 private:
-  void readSettings();
-  void saveSettings();
-
-private:
-  QString m_fileName;
-  QString m_hash;
+  Ui::AddNewTorrentDialog *ui;
+  TorrentContentModel *m_contentModel;
+  PropListDelegate *m_contentDelegate;
+  bool m_isMagnet;
   QString m_filePath;
-  QString m_fromUrl;
-  QString m_defaultSavePath;
-  QString m_oldLabel;
-  bool m_appendLabelToSavePath;
-  TorrentContentFilterModel *m_propListModel;
-  PropListDelegate *m_propListDelegate;
-  unsigned int m_nbFiles;
+  QString m_url;
+  QString m_hash;
   boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
   QStringList m_filesPath;
-  bool m_isMagnet;
-  int m_hiddenHeight;
-  QStringList m_pathHistory;
-  bool m_showContentList;
+  bool m_hasRenamedFile;
 };
 
-#endif
+#endif // ADDNEWTORRENTDIALOG_H

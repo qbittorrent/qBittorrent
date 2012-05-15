@@ -50,7 +50,7 @@
 #include "misc.h"
 #include "torrentcreatordlg.h"
 #include "downloadfromurldlg.h"
-#include "torrentadditiondlg.h"
+#include "addnewtorrentdialog.h"
 #include "searchengine.h"
 #include "rss_imp.h"
 #include "qbtsession.h"
@@ -875,22 +875,16 @@ void MainWindow::dropEvent(QDropEvent *event) {
       file = misc::bcLinkToMagnet(file);
     }
     if (file.startsWith("magnet:", Qt::CaseInsensitive)) {
-      if (useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        dialog->showLoadMagnetURI(file);
-      } else {
+      if (useTorrentAdditionDialog)
+        AddNewTorrentDialog::showMagnet(file);
+      else
         QBtSession::instance()->addMagnetUri(file);
-      }
-      continue;
-    }
-    // Local file
-    if (useTorrentAdditionDialog) {
-      torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-      if (file.startsWith("file:", Qt::CaseInsensitive))
-        file = QUrl(file).toLocalFile();
-      dialog->showLoadTorrent(file);
-    }else{
-      QBtSession::instance()->addTorrent(file);
+    } else {
+      // Local file
+      if (useTorrentAdditionDialog)
+        AddNewTorrentDialog::showTorrent(file);
+      else
+        QBtSession::instance()->addTorrent(file);
     }
   }
 }
@@ -925,12 +919,10 @@ void MainWindow::on_actionOpen_triggered() {
     const bool useTorrentAdditionDialog = pref.useAdditionDialog();
     const uint listSize = pathsList.size();
     for (uint i=0; i<listSize; ++i) {
-      if (useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        dialog->showLoadTorrent(pathsList.at(i));
-      }else{
+      if (useTorrentAdditionDialog)
+        AddNewTorrentDialog::showTorrent(pathsList.at(i));
+      else
         QBtSession::instance()->addTorrent(pathsList.at(i));
-      }
     }
     // Save last dir to remember it
     QStringList top_dir = pathsList.at(0).split(QDir::separator());
@@ -960,19 +952,15 @@ void MainWindow::processParams(const QStringList& params) {
         param = misc::bcLinkToMagnet(param);
       }
       if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
-        if (useTorrentAdditionDialog) {
-          torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-          dialog->showLoadMagnetURI(param);
-        } else {
+        if (useTorrentAdditionDialog)
+          AddNewTorrentDialog::showMagnet(param);
+        else
           QBtSession::instance()->addMagnetUri(param);
-        }
       } else {
-        if (useTorrentAdditionDialog) {
-          torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-          dialog->showLoadTorrent(param);
-        }else{
+        if (useTorrentAdditionDialog)
+          AddNewTorrentDialog::showTorrent(param);
+        else
           QBtSession::instance()->addTorrent(param);
-        }
       }
     }
   }
@@ -985,12 +973,10 @@ void MainWindow::addTorrent(QString path) {
 void MainWindow::processDownloadedFiles(QString path, QString url) {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog) {
-    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-    dialog->showLoadTorrent(path, url);
-  }else{
+  if (useTorrentAdditionDialog)
+    AddNewTorrentDialog::showTorrent(path, url);
+  else
     QBtSession::instance()->addTorrent(path, false, url);
-  }
 }
 
 void MainWindow::optionsSaved() {
@@ -1164,15 +1150,12 @@ void MainWindow::downloadFromURLList(const QStringList& url_list) {
       url = misc::bcLinkToMagnet(url);
     }
     if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
-      if (useTorrentAdditionDialog) {
-        torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
-        dialog->showLoadMagnetURI(url);
-      } else {
+      if (useTorrentAdditionDialog)
+        AddNewTorrentDialog::showMagnet(url);
+      else
         QBtSession::instance()->addMagnetUri(url);
-      }
-    } else {
+    } else
       QBtSession::instance()->downloadFromUrl(url);
-    }
   }
 }
 

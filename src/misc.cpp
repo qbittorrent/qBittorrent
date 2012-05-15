@@ -408,67 +408,6 @@ QString misc::fixFileNames(QString path) {
   return parts.join("/");
 }
 
-QString misc::truncateRootFolder(boost::intrusive_ptr<torrent_info> t) {
-  if (t->num_files() == 1) {
-    // Single file torrent
-#if LIBTORRENT_VERSION_MINOR > 15
-    QString path = QString::fromUtf8(t->file_at(0).path.c_str());
-#else
-    QString path = QString::fromUtf8(t->file_at(0).path.string().c_str());
-#endif
-    // Remove possible subfolders
-    path = fixFileNames(fileName(path));
-    t->rename_file(0, path.toUtf8().data());
-    return QString();
-  }
-  QString root_folder;
-  for (int i=0; i<t->num_files(); ++i) {
-#if LIBTORRENT_VERSION_MINOR > 15
-    QString path = QString::fromUtf8(t->file_at(i).path.c_str());
-#else
-    QString path = QString::fromUtf8(t->file_at(i).path.string().c_str());
-#endif
-    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    if (path_parts.size() > 1) {
-      root_folder = path_parts.takeFirst();
-    }
-    path = fixFileNames(path_parts.join("/"));
-    t->rename_file(i, path.toUtf8().data());
-  }
-  return root_folder;
-}
-
-QString misc::truncateRootFolder(libtorrent::torrent_handle h) {
-  torrent_info t = h.get_torrent_info();
-  if (t.num_files() == 1) {
-    // Single file torrent
-    // Remove possible subfolders
-#if LIBTORRENT_VERSION_MINOR > 15
-    QString path = QString::fromUtf8(t.file_at(0).path.c_str());
-#else
-    QString path = QString::fromUtf8(t.file_at(0).path.string().c_str());
-#endif
-    path = fixFileNames(fileName(path));
-    t.rename_file(0, path.toUtf8().data());
-    return QString();
-  }
-  QString root_folder;
-  for (int i=0; i<t.num_files(); ++i) {
-#if LIBTORRENT_VERSION_MINOR > 15
-    QString path = QString::fromUtf8(t.file_at(i).path.c_str());
-#else
-    QString path = QString::fromUtf8(t.file_at(i).path.string().c_str());
-#endif
-    QStringList path_parts = path.split("/", QString::SkipEmptyParts);
-    if (path_parts.size() > 1) {
-      root_folder = path_parts.takeFirst();
-    }
-    path = fixFileNames(path_parts.join("/"));
-    h.rename_file(i, path.toUtf8().data());
-  }
-  return root_folder;
-}
-
 bool misc::sameFiles(const QString &path1, const QString &path2) {
   QFile f1(path1), f2(path2);
   if (!f1.exists() || !f2.exists()) return false;
@@ -837,21 +776,27 @@ bool misc::isValidTorrentFile(const QString &torrent_path) {
   return true;
 }
 
-/**
- * Returns a path constructed from all the elements of file_path except the last.
- * A typical use is to obtain the parent path for a path supplied by the user.
- */
-QString misc::branchPath(QString file_path, bool uses_slashes)
+QString misc::branchPath(const QString& file_path, QString* removed)
 {
-  if (!uses_slashes)
-    file_path.replace("\\", "/");
-  Q_ASSERT(!file_path.contains("\\"));
-  if (file_path.endsWith("/"))
-    file_path.chop(1); // Remove trailing slash
-  qDebug() << Q_FUNC_INFO << "before:" << file_path;
-  if (file_path.contains("/"))
-    return file_path.left(file_path.lastIndexOf('/'));
-  return "";
+  QString ret = file_path;
+  if (ret.endsWith("/") || ret.endsWith("\\"))
+    ret.chop(1);
+  const int slashIndex = ret.lastIndexOf(QRegExp("[/\\\\]"));
+  if (slashIndex >= 0) {
+    if (removed)
+      *removed = ret.mid(slashIndex + 1);
+    ret = ret.left(slashIndex);
+  }
+  return ret;
+}
+
+bool misc::sameFileNames(const QString &first, const QString &second)
+{
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+  return QString::compare(first, second, Qt::CaseSensitive) == 0;
+#else
+  return QString::compare(first, second, Qt::CaseInsensitive) == 0;
+#endif
 }
 
 bool misc::isUrl(const QString &s)
@@ -929,3 +874,23 @@ QString misc::parseHtmlLinks(const QString &raw_text)
 
   return result;
 }
+
+#if LIBTORRENT_VERSION_MINOR < 16
+QString misc::toQString(const boost::posix_time::ptime& boostDate) {
+  if (boostDate.is_not_a_date_time()) return "";
+  struct std::tm tm;
+  try {
+    tm = boost::posix_time::to_tm(boostDate);
+  } catch(std::exception e) {
+      return "";
+  }
+  const time_t t = mktime(&tm);
+  const QDateTime dt = QDateTime::fromTime_t(t);
+  return dt.toString(Qt::DefaultLocaleLongDate);
+}
+#else
+QString misc::toQString(time_t t)
+{
+  return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
+}
+#endif
