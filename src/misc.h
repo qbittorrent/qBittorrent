@@ -78,70 +78,28 @@ public:
     return QString(out);
   }
 
-  static inline QString toDisplayPath(const QString& path) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    QString ret = path;
-    return ret.replace("/", "\\");
-#else
-    return path;
-#endif
-  }
-
-  static inline QString file_extension(const QString &filename) {
-    QString extension;
-    int point_index = filename.lastIndexOf(".");
-    if (point_index >= 0) {
-      extension = filename.mid(point_index+1);
-    }
-    return extension;
-  }
-
 #ifndef DISABLE_GUI
   static void shutdownComputer(bool sleep=false);
 #endif
 
   static QString parseHtmlLinks(const QString &raw_text);
 
-  static quint64 computePathSize(QString path);
-
-  static QString fixFileNames(QString path);
-
-  static QString updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString &old_label, const QString &new_label);
-
-  static bool sameFiles(const QString &path1, const QString &path2);
   static bool isUrl(const QString &s);
-  static QString toValidFileSystemName(QString filename);
-  static bool isValidFileSystemName(const QString& filename);
-
-  /* Ported from Qt4 to drop dependency on QtGui */
-  static QString QDesktopServicesDataLocation();
-  static QString QDesktopServicesCacheLocation();
-  static QString QDesktopServicesDownloadLocation();
-  /* End of Qt4 code */
 
 #ifndef DISABLE_GUI
   // Get screen center
   static QPoint screenCenter(QWidget *win);
 #endif
   static int pythonVersion();
-  static QString searchEngineLocation();
-  static QString BTBackupLocation();
-  static QString cacheLocation();
-  static long long freeDiskSpaceOnPath(QString path);
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
   static QString friendlyUnit(qreal val);
   static bool isPreviewable(QString extension);
-  static QString branchPath(const QString& file_path, QString* removed = 0);
-  static bool sameFileNames(const QString& first, const QString& second);
-  static QString fileName(QString file_path);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);
   static QString bcLinkToMagnet(QString bc_link);
-  // Replace ~ in path
-  static QString expandPath(QString path);
   // Take a number of seconds and return an user-friendly
   // time duration like "1d 2h 10m".
   static QString userFriendlyDuration(qlonglong seconds);
@@ -151,8 +109,6 @@ public:
   static QStringList toStringList(const QList<bool> &l);
   static QList<int> intListfromStringList(const QStringList &l);
   static QList<bool> boolListfromStringList(const QStringList &l);
-
-  static bool isValidTorrentFile(const QString &path);
 
 #if LIBTORRENT_VERSION_MINOR < 16
   static QString toQString(const boost::posix_time::ptime& boostDate);

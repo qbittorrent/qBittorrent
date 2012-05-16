@@ -38,6 +38,7 @@
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "iconprovider.h"
+#include "fs_utils.h"
 
 using namespace libtorrent;
 
@@ -79,12 +80,12 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
   if (t->num_files() == 1) {
     // Single file torrent
 #if LIBTORRENT_VERSION_MINOR > 15
-    const QString file_name = misc::fileName(misc::toQStringU(t->file_at(0).path));
+    const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
 #else
     const QString file_name = misc::toQStringU(t->file_at(0).path.filename());
 #endif
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
-    QString extension = misc::file_extension(file_name);
+    QString extension = fsutils::fileExtension(file_name);
     qDebug("File extension is : %s", qPrintable(extension));
     QString filter;
     if (!extension.isEmpty()) {

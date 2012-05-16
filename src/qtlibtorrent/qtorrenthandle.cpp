@@ -34,6 +34,7 @@
 #include <QDir>
 #include <QByteArray>
 #include <math.h>
+#include "fs_utils.h"
 #include "misc.h"
 #include "preferences.h"
 #include "qtorrenthandle.h"
@@ -189,7 +190,7 @@ bool QTorrentHandle::first_last_piece_first() const {
 #else
     QString path = misc::toQStringU(t.file_at(index).path.string());
 #endif
-    const QString ext = misc::file_extension(path);
+    const QString ext = fsutils::fileExtension(path);
     if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0)
       break;
   }
@@ -316,7 +317,7 @@ int QTorrentHandle::num_files() const {
 QString QTorrentHandle::filename_at(unsigned int index) const {
   Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
 #if LIBTORRENT_VERSION_MINOR > 15
-  return misc::fileName(filepath_at(index));
+  return fsutils::fileName(filepath_at(index));
 #else
   return misc::toQStringU(torrent_handle::get_torrent_info().file_at(index).path.leaf());
 #endif
@@ -708,7 +709,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
         continue;
       }
       QString old_name = filename_at(i);
-      QString parent_path = misc::branchPath(old_path);
+      QString parent_path = fsutils::branchPath(old_path);
       if (parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
         QString unwanted_abspath = QDir::cleanPath(save_path()+"/"+parent_path+"/.unwanted");
         qDebug() << "Unwanted path is" << unwanted_abspath;
@@ -734,10 +735,10 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     // Move wanted files back to their original folder
     qDebug() << Q_FUNC_INFO << "Moving wanted files back from .unwanted folder";
     if (files[i] > 0) {
-      QString parent_relpath = misc::branchPath(filepath_at(i));
+      QString parent_relpath = fsutils::branchPath(filepath_at(i));
       if (QDir(parent_relpath).dirName() == ".unwanted") {
         QString old_name = filename_at(i);
-        QString new_relpath = misc::branchPath(parent_relpath);
+        QString new_relpath = fsutils::branchPath(parent_relpath);
         if (new_relpath.isEmpty())
             rename_file(i, old_name);
         else
@@ -778,7 +779,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) const {
   const uint nbfiles = num_files();
   for (uint index = 0; index < nbfiles; ++index) {
     const QString path = filepath_at(index);
-    const QString ext = misc::file_extension(path);
+    const QString ext = fsutils::fileExtension(path);
     if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0) {
       qDebug() << "File" << path << "is previewable, toggle downloading of first/last pieces first";
       prioritize_first_last_piece(index, b);

@@ -39,8 +39,9 @@
 #include <QProcess>
 #include <QDir>
 #include <QApplication>
+#include <QDebug>
 
-#include "misc.h"
+#include "fs_utils.h"
 #include "qinisettings.h"
 
 class SearchCategories: public QObject, public QHash<QString, QString> {
@@ -143,7 +144,7 @@ public slots:
     QProcess nova;
     nova.setEnvironment(QProcess::systemEnvironment());
     QStringList params;
-    params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
+    params << fsutils::searchEngineLocation()+QDir::separator()+"nova2.py";
     params << "--capabilities";
     nova.start("python", params, QIODevice::ReadOnly);
     nova.waitForStarted();
@@ -151,13 +152,13 @@ public slots:
     QString capabilities = QString(nova.readAll());
     QDomDocument xml_doc;
     if (!xml_doc.setContent(capabilities)) {
-      std::cerr << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data() << std::endl;
-      std::cerr << "Error: " << nova.readAllStandardError().constData() << std::endl;
+      qWarning() << "Could not parse Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
+      qWarning() << "Error: " << nova.readAllStandardError().constData();
       return;
     }
     QDomElement root = xml_doc.documentElement();
     if (root.tagName() != "capabilities") {
-      std::cout << "Invalid XML file for Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data() << std::endl;
+      qWarning() << "Invalid XML file for Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
       return;
     }
     for (QDomNode engine_node = root.firstChild(); !engine_node.isNull(); engine_node = engine_node.nextSibling()) {

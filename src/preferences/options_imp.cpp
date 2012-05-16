@@ -45,7 +45,7 @@
 
 #include "options_imp.h"
 #include "preferences.h"
-#include "misc.h"
+#include "fs_utils.h"
 #include "advancedsettings.h"
 #include "scannedfoldersmodel.h"
 #include "qinisettings.h"
@@ -852,11 +852,11 @@ QString options_imp::getSavePath() const {
 #endif
     textSavePath->setText(save_path);
   }
-  return misc::expandPath(textSavePath->text());
+  return fsutils::expandPath(textSavePath->text());
 }
 
 QString options_imp::getTempPath() const {
-  return misc::expandPath(textTempPath->text());
+  return fsutils::expandPath(textTempPath->text());
 }
 
 bool options_imp::isTempPathEnabled() const {
@@ -1018,7 +1018,7 @@ void options_imp::setLocale(const QString &localeStr) {
 
 QString options_imp::getExportDir() const {
   if (checkExportDir->isChecked())
-    return misc::expandPath(textExportDir->text());
+    return fsutils::expandPath(textExportDir->text());
   return QString();
 }
 
@@ -1076,7 +1076,7 @@ void options_imp::handleScanFolderViewSelectionChanged() {
 }
 
 void options_imp::on_browseExportDirButton_clicked() {
-  const QString export_path = misc::expandPath(textExportDir->text());
+  const QString export_path = fsutils::expandPath(textExportDir->text());
   QDir exportDir(export_path);
   QString dir;
   if (!export_path.isEmpty() && exportDir.exists()) {
@@ -1093,7 +1093,7 @@ void options_imp::on_browseExportDirButton_clicked() {
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  const QString filter_path = misc::expandPath(textFilterPath->text());
+  const QString filter_path = fsutils::expandPath(textFilterPath->text());
   QDir filterDir(filter_path);
   QString ipfilter;
   if (!filter_path.isEmpty() && filterDir.exists()) {
@@ -1111,7 +1111,7 @@ void options_imp::on_browseFilterButton_clicked() {
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked() {
-  const QString save_path = misc::expandPath(textSavePath->text());
+  const QString save_path = fsutils::expandPath(textSavePath->text());
   QDir saveDir(save_path);
   QString dir;
   if (!save_path.isEmpty() && saveDir.exists()) {
@@ -1128,7 +1128,7 @@ void options_imp::on_browseSaveDirButton_clicked() {
 }
 
 void options_imp::on_browseTempDirButton_clicked() {
-  const QString temp_path = misc::expandPath(textTempPath->text());
+  const QString temp_path = fsutils::expandPath(textTempPath->text());
   QDir tempDir(temp_path);
   QString dir;
   if (!temp_path.isEmpty() && tempDir.exists()) {

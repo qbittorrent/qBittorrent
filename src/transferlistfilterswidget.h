@@ -49,6 +49,7 @@
 #include "qinisettings.h"
 #include "torrentmodel.h"
 #include "iconprovider.h"
+#include "fs_utils.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -302,7 +303,7 @@ protected slots:
   }
 
   void addLabel(QString label) {
-    label = misc::toValidFileSystemName(label.trimmed());
+    label = fsutils::toValidFileSystemName(label.trimmed());
     if (label.isEmpty() || customLabels.contains(label)) return;
     QListWidgetItem *newLabel = new QListWidgetItem();
     newLabel->setText(label + " (0)");
@@ -349,7 +350,7 @@ protected slots:
           invalid = false;
           label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
           if (ok && !label.isEmpty()) {
-            if (misc::isValidFileSystemName(label)) {
+            if (fsutils::isValidFileSystemName(label)) {
               addLabel(label);
             } else {
               QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));

@@ -21,7 +21,7 @@
 #endif
 #endif
 
-#include "misc.h"
+#include "fs_utils.h"
 
 #ifndef CIFS_MAGIC_NUMBER
 #define CIFS_MAGIC_NUMBER 0xFF534D42
@@ -226,7 +226,7 @@ protected slots:
         m_partialTorrents.remove(torrent_path);
         continue;
       }
-      if (misc::isValidTorrentFile(torrent_path)) {
+      if (fsutils::isValidTorrentFile(torrent_path)) {
         no_longer_partial << torrent_path;
          m_partialTorrents.remove(torrent_path);
       } else {
@@ -271,7 +271,7 @@ private:
     const QStringList files = dir.entryList(m_filters, QDir::Files, QDir::Unsorted);
     foreach (const QString &file, files) {
       const QString file_abspath = dir.absoluteFilePath(file);
-      if (misc::isValidTorrentFile(file_abspath)) {
+      if (fsutils::isValidTorrentFile(file_abspath)) {
         torrents << file_abspath;
       } else {
         if (!m_partialTorrents.contains(file_abspath)) {

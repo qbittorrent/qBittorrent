@@ -57,6 +57,7 @@
 #include "proptabbar.h"
 #include "iconprovider.h"
 #include "lineedit.h"
+#include "fs_utils.h"
 
 using namespace libtorrent;
 
@@ -511,7 +512,7 @@ void PropertiesWidget::renameSelectedFile() {
                                                 tr("New name:"), QLineEdit::Normal,
                                                 index.data().toString(), &ok);
   if (ok && !new_name_last.isEmpty()) {
-    if (!misc::isValidFileSystemName(new_name_last)) {
+    if (!fsutils::isValidFileSystemName(new_name_last)) {
       QMessageBox::warning(this, tr("The file could not be renamed"),
                            tr("This file name contains forbidden characters, please choose a different one."),
                            QMessageBox::Ok);
@@ -680,9 +681,9 @@ void PropertiesWidget::on_changeSavePathButton_clicked() {
     QString save_path_dir = new_path.replace("\\", "/");
     QString new_file_name;
     if (h.has_metadata() && h.num_files() == 1) {
-      save_path_dir = misc::branchPath(save_path_dir, &new_file_name); // Skip file name
+      save_path_dir = fsutils::branchPath(save_path_dir, &new_file_name); // Skip file name
     }
-    QDir savePath(misc::expandPath(save_path_dir));
+    QDir savePath(fsutils::expandPath(save_path_dir));
     // Actually move storage
     if (!QBtSession::instance()->useTemporaryFolder() || h.is_seed()) {
       if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());

@@ -42,6 +42,7 @@
 #include "torrentspeedmonitor.h"
 #include "qbtsession.h"
 #include "misc.h"
+#include "fs_utils.h"
 #include "downloadthread.h"
 #include "filterparserthread.h"
 #include "preferences.h"
@@ -826,13 +827,13 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
     foreach (const QString &uneeded_file, uneeded_files) {
       qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));
       QFile::remove(uneeded_file);
-      const QString parent_folder = misc::branchPath(uneeded_file);
+      const QString parent_folder = fsutils::branchPath(uneeded_file);
       qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
       QDir().rmpath(parent_folder);
     }
   }
   // Remove it from torrent backup directory
-  QDir torrentBackup(misc::BTBackupLocation());
+  QDir torrentBackup(fsutils::BTBackupLocation());
   QStringList filters;
   filters << hash+".*";
   const QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
@@ -900,7 +901,7 @@ void QBtSession::resumeTorrent(const QString &hash) {
 }
 
 bool QBtSession::loadFastResumeData(const QString &hash, std::vector<char> &buf) {
-  const QString fastresume_path = QDir(misc::BTBackupLocation()).absoluteFilePath(hash+QString(".fastresume"));
+  const QString fastresume_path = QDir(fsutils::BTBackupLocation()).absoluteFilePath(hash+QString(".fastresume"));
   qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
   QFile fastresume_file(fastresume_path);
   if (!fastresume_file.open(QIODevice::ReadOnly)) return false;
@@ -931,7 +932,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
     addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
     return h;
   }
-  const QDir torrentBackup(misc::BTBackupLocation());
+  const QDir torrentBackup(fsutils::BTBackupLocation());
   if (resumed) {
     // Load metadata
     const QString torrent_path = torrentBackup.absoluteFilePath(hash+".torrent");
@@ -1011,7 +1012,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   Preferences pref;
 
   // Check if BT_backup directory exists
-  const QDir torrentBackup(misc::BTBackupLocation());
+  const QDir torrentBackup(fsutils::BTBackupLocation());
   if (!torrentBackup.exists()) return h;
 
   // Fix the input path if necessary
@@ -1218,9 +1219,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
     if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(misc::toDisplayPath(path)));
+      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(fsutils::toDisplayPath(path)));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(misc::toDisplayPath(path)));
+      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(fsutils::toDisplayPath(path)));
   }
 
   // Send torrent addition signal
@@ -1230,11 +1231,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
 void QBtSession::exportTorrentFile(const QTorrentHandle &h) {
   Q_ASSERT(torrentExport);
-  QString torrent_path = QDir(misc::BTBackupLocation()).absoluteFilePath(h.hash()+".torrent");
+  QString torrent_path = QDir(fsutils::BTBackupLocation()).absoluteFilePath(h.hash()+".torrent");
   QDir exportPath(Preferences().getExportDir());
   if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
     QString new_torrent_path = exportPath.absoluteFilePath(h.name()+".torrent");
-    if (QFile::exists(new_torrent_path) && misc::sameFiles(torrent_path, new_torrent_path)) {
+    if (QFile::exists(new_torrent_path) && fsutils::sameFiles(torrent_path, new_torrent_path)) {
       // Append hash to torrent name to make it unique
       new_torrent_path = exportPath.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
     }
@@ -1399,7 +1400,7 @@ void QBtSession::exportTorrentFiles(QString path) {
       return;
     }
   }
-  QDir torrentBackup(misc::BTBackupLocation());
+  QDir torrentBackup(fsutils::BTBackupLocation());
   std::vector<torrent_handle> handles = s->get_torrents();
   std::vector<torrent_handle>::iterator itr;
   for (itr=handles.begin(); itr != handles.end(); itr++) {
@@ -1412,7 +1413,7 @@ void QBtSession::exportTorrentFiles(QString path) {
     if (QFile::exists(src_path)) {
       QString dst_path = exportDir.absoluteFilePath(h.name()+".torrent");
       if (QFile::exists(dst_path)) {
-        if (!misc::sameFiles(src_path, dst_path)) {
+        if (!fsutils::sameFiles(src_path, dst_path)) {
           dst_path = exportDir.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
         } else {
           qDebug("Torrent Export: Destination file exists, skipping...");
@@ -1508,7 +1509,7 @@ void QBtSession::enableLSD(bool b) {
 }
 
 void QBtSession::loadSessionState() {
-  const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  const QString state_path = fsutils::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   if (!QFile::exists(state_path)) return;
   if (QFile(state_path).size() == 0) {
     // Remove empty invalid state file
@@ -1537,7 +1538,7 @@ void QBtSession::loadSessionState() {
 
 void QBtSession::saveSessionState() {
   qDebug("Saving session state to disk...");
-  const QString state_path = misc::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
+  const QString state_path = fsutils::cacheLocation()+QDir::separator()+QString::fromUtf8("ses_state");
   entry session_state;
   s->save_state(session_state);
   vector<char> out;
@@ -1674,7 +1675,7 @@ void QBtSession::saveFastResumeData() {
     // Saving fast resume data was successful
     --num_resume_data;
     if (!rd->resume_data) continue;
-    QDir torrentBackup(misc::BTBackupLocation());
+    QDir torrentBackup(fsutils::BTBackupLocation());
     const QTorrentHandle h(rd->handle);
     if (!h.is_valid()) continue;
     try {
@@ -1731,7 +1732,7 @@ bool QBtSession::isFilePreviewPossible(const QString &hash) const {
   }
   const unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
-    const QString extension = misc::file_extension(h.filename_at(i));
+    const QString extension = fsutils::fileExtension(h.filename_at(i));
     if (misc::isPreviewable(extension))
       return true;
   }
@@ -1814,7 +1815,7 @@ void QBtSession::changeLabelInTorrentSavePath(const QTorrentHandle &h, QString o
   if (!appendLabelToSavePath) return;
   QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
   if (!old_save_path.startsWith(defaultSavePath)) return;
-  QString new_save_path = misc::updateLabelInSavePath(defaultSavePath, old_save_path, old_label, new_label);
+  QString new_save_path = fsutils::updateLabelInSavePath(defaultSavePath, old_save_path, old_label, new_label);
   if (new_save_path != old_save_path) {
     // Move storage
     qDebug("Moving storage to %s", qPrintable(new_save_path));
@@ -1829,7 +1830,7 @@ void QBtSession::appendLabelToTorrentSavePath(const QTorrentHandle& h) {
   if (label.isEmpty()) return;
   // Current save path
   QString old_save_path = TorrentPersistentData::getSavePath(h.hash());
-  QString new_save_path = misc::updateLabelInSavePath(defaultSavePath, old_save_path, "", label);
+  QString new_save_path = fsutils::updateLabelInSavePath(defaultSavePath, old_save_path, "", label);
   if (old_save_path != new_save_path) {
     // Move storage
     QDir().mkpath(new_save_path);
@@ -2270,7 +2271,7 @@ void QBtSession::readAlerts() {
       }
     }
     else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a.get())) {
-      const QDir torrentBackup(misc::BTBackupLocation());
+      const QDir torrentBackup(fsutils::BTBackupLocation());
       const QTorrentHandle h(p->handle);
       if (h.is_valid() && p->resume_data) {
         const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
@@ -2356,7 +2357,7 @@ void QBtSession::readAlerts() {
       if (h.is_valid()) {
         qDebug("Received metadata for %s", qPrintable(h.hash()));
         // Save metadata
-        const QDir torrentBackup(misc::BTBackupLocation());
+        const QDir torrentBackup(fsutils::BTBackupLocation());
         if (!QFile::exists(torrentBackup.absoluteFilePath(h.hash()+QString(".torrent"))))
           h.save_torrent_file(torrentBackup.absoluteFilePath(h.hash()+QString(".torrent")));
         // Copy the torrent file to the export folder
@@ -2578,7 +2579,7 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
       qDebug("appendLabelToSavePath is true");
       const QString label = TorrentTempData::getLabel(hash);
       if (!label.isEmpty()) {
-        savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
+        savePath = fsutils::updateLabelInSavePath(defaultSavePath, savePath, "", label);
       }
     }
     qDebug("getSavePath, got save_path from temp data: %s", qPrintable(savePath));
@@ -2596,14 +2597,14 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
       const QString label = TorrentPersistentData::getLabel(hash);
       if (!label.isEmpty()) {
         qDebug("Torrent label is %s", qPrintable(label));
-        savePath = misc::updateLabelInSavePath(defaultSavePath, savePath, "", label);
+        savePath = fsutils::updateLabelInSavePath(defaultSavePath, savePath, "", label);
       }
     }
     qDebug("getSavePath, got save_path from persistent data: %s", qPrintable(savePath));
   }
   // Clean path
   savePath.replace("\\", "/");
-  savePath = misc::expandPath(savePath);
+  savePath = fsutils::expandPath(savePath);
   if (!savePath.endsWith("/"))
     savePath += "/";
   return savePath;
@@ -2694,7 +2695,7 @@ void QBtSession::applyEncryptionSettings(pe_settings se) {
 // backup directory
 void QBtSession::startUpTorrents() {
   qDebug("Resuming unfinished torrents");
-  const QDir torrentBackup(misc::BTBackupLocation());
+  const QDir torrentBackup(fsutils::BTBackupLocation());
   const QStringList known_torrents = TorrentPersistentData::knownTorrents();
 
   // Safety measure because some people reported torrent loss since

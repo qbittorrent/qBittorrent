@@ -60,6 +60,7 @@
 #include "propertieswidget.h"
 #include "qinisettings.h"
 #include "iconprovider.h"
+#include "fs_utils.h"
 
 using namespace libtorrent;
 
@@ -230,7 +231,7 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   if (!dir.isNull()) {
     qDebug("New path is %s", qPrintable(dir));
     // Check if savePath exists
-    QDir savePath(misc::expandPath(dir));
+    QDir savePath(fsutils::expandPath(dir));
     qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
     foreach (const QString & hash, hashes) {
       // Actually move storage
@@ -587,7 +588,7 @@ void TransferListWidget::askNewLabelForSelection() {
     invalid = false;
     const QString label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok);
     if (ok && !label.isEmpty()) {
-      if (misc::isValidFileSystemName(label)) {
+      if (fsutils::isValidFileSystemName(label)) {
         setSelectionLabel(label);
       } else {
         QMessageBox::warning(this, tr("Invalid label name"), tr("Please don't use any special characters in the label name."));

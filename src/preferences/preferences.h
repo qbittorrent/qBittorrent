@@ -46,6 +46,7 @@
 #endif
 
 #include "misc.h"
+#include "fs_utils.h"
 #include "qinisettings.h"
 
 #define QBT_REALM "Web UI Access"
@@ -185,7 +186,7 @@ public:
     QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
     if (!save_path.isEmpty())
       return save_path;
-    return misc::QDesktopServicesDownloadLocation();
+    return fsutils::QDesktopServicesDownloadLocation();
   }
 
   void setSavePath(const QString &save_path) {

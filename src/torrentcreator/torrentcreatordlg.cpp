@@ -34,6 +34,7 @@
 
 #include "torrentpersistentdata.h"
 #include "torrentcreatordlg.h"
+#include "fs_utils.h"
 #include "misc.h"
 #include "qinisettings.h"
 #include "torrentcreatorthread.h"
@@ -88,7 +89,7 @@ void TorrentCreatorDlg::on_addFile_button_clicked() {
   QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
   if (!file.isEmpty()) {
-    settings.setValue("CreateTorrent/last_add_path", misc::branchPath(file));
+    settings.setValue("CreateTorrent/last_add_path", fsutils::branchPath(file));
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     file.replace("/", "\\");
 #endif
@@ -121,7 +122,7 @@ void TorrentCreatorDlg::on_createButton_clicked() {
 
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if (!destination.isEmpty()) {
-    settings.setValue("CreateTorrent/last_save_path", misc::branchPath(destination));
+    settings.setValue("CreateTorrent/last_save_path", fsutils::branchPath(destination));
     if (!destination.toUpper().endsWith(".TORRENT"))
       destination += QString::fromUtf8(".torrent");
   } else {
@@ -221,7 +222,7 @@ void TorrentCreatorDlg::on_checkAutoPieceSize_clicked(bool checked)
 
 void TorrentCreatorDlg::updateOptimalPieceSize()
 {
-  quint64 torrent_size = misc::computePathSize(textInputPath->text());
+  quint64 torrent_size = fsutils::computePathSize(textInputPath->text());
   qDebug("Torrent size is %lld", torrent_size);
   if (torrent_size == 0) return;
   int i = 0;

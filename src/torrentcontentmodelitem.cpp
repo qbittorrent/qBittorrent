@@ -29,6 +29,7 @@
  */
 
 #include "misc.h"
+#include "fs_utils.h"
 #include "torrentcontentmodelitem.h"
 #include <QDebug>
 
@@ -41,7 +42,7 @@ TorrentContentModelItem::TorrentContentModelItem(const libtorrent::torrent_info 
   Q_ASSERT(parent);
 
 #if LIBTORRENT_VERSION_MINOR >= 16
-  QString name = misc::fileName(misc::toQStringU(t.files().file_path(f)));
+  QString name = fsutils::fileName(misc::toQStringU(t.files().file_path(f)));
 #else
   Q_UNUSED(t);
   QString name = misc::toQStringU(f.path.filename());

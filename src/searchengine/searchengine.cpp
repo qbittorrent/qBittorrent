@@ -51,6 +51,7 @@
 #include "searchengine.h"
 #include "qbtsession.h"
 #include "downloadthread.h"
+#include "fs_utils.h"
 #include "misc.h"
 #include "preferences.h"
 #include "searchlistdelegate.h"
@@ -341,7 +342,7 @@ void SearchEngine::on_search_button_clicked() {
   // Getting checked search engines
   QStringList params;
   search_stopped = false;
-  params << misc::searchEngineLocation()+QDir::separator()+"nova2.py";
+  params << fsutils::searchEngineLocation()+QDir::separator()+"nova2.py";
   params << supported_engines->enginesEnabled().join(",");
   qDebug("Search with category: %s", qPrintable(selectedCategory()));
   params << selectedCategory();
@@ -416,7 +417,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
     connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
     downloaders << downloadProcess;
     QStringList params;
-    params << misc::searchEngineLocation()+QDir::separator()+"nova2dl.py";
+    params << fsutils::searchEngineLocation()+QDir::separator()+"nova2dl.py";
     params << engine_url;
     params << torrent_url;
     // Launch search
@@ -470,7 +471,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
 void SearchEngine::updateNova() {
   qDebug("Updating nova");
   // create nova directory if necessary
-  QDir search_dir(misc::searchEngineLocation());
+  QDir search_dir(fsutils::searchEngineLocation());
   QString nova_folder = misc::pythonVersion() >= 3 ? "nova3" : "nova";
   QFile package_file(search_dir.absoluteFilePath("__init__.py"));
   package_file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -533,7 +534,7 @@ void SearchEngine::updateNova() {
     }
     QFile::copy(":/"+nova_folder+"/sgmllib3.py", filePath);
   }
-  QDir destDir(QDir(misc::searchEngineLocation()).absoluteFilePath("engines"));
+  QDir destDir(QDir(fsutils::searchEngineLocation()).absoluteFilePath("engines"));
   QDir shipped_subDir(":/"+nova_folder+"/engines/");
   QStringList files = shipped_subDir.entryList();
   foreach (const QString &file, files) {

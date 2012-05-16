@@ -95,6 +95,7 @@ include (preferences/preferences.pri)
 }
 
 HEADERS += misc.h \
+           fs_utils.h \
            downloadthread.h \
            stacktrace.h \
            torrentpersistentdata.h \
@@ -109,6 +110,7 @@ SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \
            misc.cpp \
+           fs_utils.cpp \
            smtp.cpp \
            dnsupdater.cpp
 
