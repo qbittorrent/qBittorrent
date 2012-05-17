@@ -72,7 +72,7 @@
        <bool>false</bool>
       </property>
       <property name="currentRow">
-       <number>-1</number>
+       <number>0</number>
       </property>
       <item>
        <property name="text">
@@ -509,7 +509,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>486</width>
+             <width>482</width>
              <height>952</height>
             </rect>
            </property>
@@ -1413,7 +1413,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>395</width>
+             <width>363</width>
              <height>480</height>
             </rect>
            </property>
