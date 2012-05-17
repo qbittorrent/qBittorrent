@@ -163,6 +163,7 @@ MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindo
 
   // Transfer List tab
   transferList = new TransferListWidget(hSplitter, this, QBtSession::instance());
+  transferList->setFocusPolicy(Qt::NoFocus);
   properties = new PropertiesWidget(hSplitter, this, transferList);
   transferListFilters = new TransferListFiltersWidget(vSplitter, transferList);
   hSplitter->addWidget(transferList);
