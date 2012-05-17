@@ -42,6 +42,7 @@
 #include <QPoint>
 #include <QFile>
 #include <QDir>
+#include <QCoreApplication>
 #ifndef DISABLE_GUI
 #include <QIcon>
 #endif
@@ -49,8 +50,9 @@
 const qlonglong MAX_ETA = 8640000;
 
 /*  Miscellaneaous functions that can be useful */
-class misc : public QObject{
-  Q_OBJECT
+class misc
+{
+  Q_DECLARE_TR_FUNCTIONS(misc)
 
 private:
   misc(); // Forbidden
