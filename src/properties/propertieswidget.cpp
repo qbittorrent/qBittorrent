@@ -245,7 +245,6 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
   try {
     // Save path
     updateSavePath(h);
-    changeSavePathButton->setEnabled(h.has_metadata());
     // Hash
     hash_lbl->setText(h.hash());
     PropListModel->model()->clear();
@@ -660,56 +659,6 @@ bool PropertiesWidget::applyPriorities() {
   if (first_last_piece_first)
     h.prioritize_first_last_piece(true);
   return true;
-}
-
-
-void PropertiesWidget::on_changeSavePathButton_clicked() {
-  if (!h.is_valid()) return;
-  QString new_path;
-  if (h.has_metadata() && h.num_files() == 1) {
-    new_path = QFileDialog::getSaveFileName(this, tr("Choose save path"),  h.firstFileSavePath());
-  } else {
-    const QDir saveDir(TorrentPersistentData::getSavePath(h.hash()));
-    new_path = QFileDialog::getExistingDirectory(this, tr("Choose save path"), saveDir.absolutePath(),
-                                                 QFileDialog::DontConfirmOverwrite|QFileDialog::ShowDirsOnly|QFileDialog::HideNameFilterDetails);
-  }
-  if (!new_path.isEmpty()) {
-    // Check if savePath exists
-    QString save_path_dir = new_path.replace("\\", "/");
-    QString new_file_name;
-    if (h.has_metadata() && h.num_files() == 1) {
-      save_path_dir = fsutils::branchPath(save_path_dir, &new_file_name); // Skip file name
-    }
-    QDir savePath(fsutils::expandPath(save_path_dir));
-    // Actually move storage
-    if (!QBtSession::instance()->useTemporaryFolder() || h.is_seed()) {
-      if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
-      h.move_storage(savePath.absolutePath());
-    }
-    // Update save_path in dialog
-    QString display_path;
-    if (h.has_metadata() && h.num_files() == 1) {
-      // Rename the file
-      Q_ASSERT(!new_file_name.isEmpty());
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-      if (h.filename_at(0).compare(new_file_name, Qt::CaseInsensitive) != 0) {
-#else
-      if (h.filename_at(0).compare(new_file_name, Qt::CaseSensitive) != 0) {
-#endif
-        qDebug("Renaming single file to %s", qPrintable(new_file_name));
-        h.rename_file(0, new_file_name);
-        // Also rename it in the files list model
-        PropListModel->setData(PropListModel->index(0, 0), new_file_name);
-      }
-      display_path = h.firstFileSavePath();
-    } else {
-      display_path = savePath.absolutePath();
-    }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    display_path.replace("/", "\\");
-#endif
-    save_path->setText(display_path);
-  }
 }
 
 void PropertiesWidget::filteredFilesChanged() {

@@ -79,7 +79,6 @@ protected slots:
   void askWebSeed();
   void deleteSelectedUrlSeeds();
   void displayFilesListMenu(const QPoint& pos);
-  void on_changeSavePathButton_clicked();
   void filteredFilesChanged();
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
