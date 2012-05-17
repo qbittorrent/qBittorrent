@@ -70,7 +70,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
 
   state = VISIBLE;
-  setEnabled(false);
 
   // Set Properties list model
   PropListModel = new TorrentFilesFilterModel();
@@ -204,7 +203,6 @@ void PropertiesWidget::clear() {
   PropListModel->model()->clear();
   showPiecesAvailability(false);
   showPiecesDownloaded(false);
-  setEnabled(false);
 }
 
 QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
@@ -241,7 +239,6 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
     clear();
     return;
   }
-  setEnabled(true);
 
   try {
     // Save path
