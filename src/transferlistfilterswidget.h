@@ -192,8 +192,10 @@ public:
     vLayout->setContentsMargins(0, 4, 0, 4);
     statusFilters = new StatusFiltersWidget(this);
     vLayout->addWidget(statusFilters);
+    statusFilters->setFocusPolicy(Qt::NoFocus);
     labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
+    labelFilters->setFocusPolicy(Qt::NoFocus);
     setLayout(vLayout);
     labelFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     statusFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
