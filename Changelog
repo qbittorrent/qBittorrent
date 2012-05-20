@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.9
     - BUGFIX: More reliable RSS feed parsing (closes #1001777)
     - BUGFIX: Better support for cookies in RSS
+    - BUGFIX: Make sure show/hide text in tray icon menu is correct
 
 * Sat May 5 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.8
     - BUGFIX: Various UI style fixes
