@@ -64,8 +64,7 @@ public:
     // Accept drop
     setAcceptDrops(true);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
-    setAttribute(Qt::WA_NoSystemBackground, true);
-    setStyleSheet("background: transparent");
+    setStyleSheet("QListWidget { background: transparent; border: 0 }");
   }
 
   // Redefine addItem() to make sure the list stays sorted
@@ -162,7 +161,7 @@ public:
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     // Height is fixed (sizeHint().height() is used)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    setStyleSheet("background: transparent");
+    setStyleSheet("QListWidget { background: transparent; border: 0 }");
   }
 
 protected:
