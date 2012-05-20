@@ -230,11 +230,8 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
       if (xml.attributes().value("type") == "application/x-bittorrent")
         torrentUrl = xml.attributes().value("url").toString();
     }
-    else if (xml.name() == "link") {
+    else if (xml.name() == "link")
       link = xml.readElementText();
-      if (guid.isEmpty())
-        guid = link;
-    }
     else if (xml.name() == "description")
       description = xml.readElementText();
     else if (xml.name() == "pubDate")
