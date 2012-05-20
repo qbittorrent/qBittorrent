@@ -42,6 +42,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <QLabel>
 
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
@@ -62,6 +63,7 @@ public:
     // Accept drop
     setAcceptDrops(true);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    setStyleSheet("QListWidget { background: transparent; border: 0 }");
   }
 
   // Redefine addItem() to make sure the list stays sorted
@@ -158,13 +160,14 @@ public:
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     // Height is fixed (sizeHint().height() is used)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    setStyleSheet("QListWidget { background: transparent; border: 0 }");
   }
 
 protected:
   QSize sizeHint() const {
     QSize size = QListWidget::sizeHint();
     // Height should be exactly the height of the content
-    size.setHeight(contentsSize().height() + 2 * frameWidth());
+    size.setHeight(contentsSize().height() + 2 * frameWidth() + 6);
     return size;
   }
 
@@ -190,9 +193,20 @@ public:
     // Construct lists
     vLayout = new QVBoxLayout();
     vLayout->setContentsMargins(0, 4, 0, 4);
+    QFont font;
+    font.setBold(true);
+    font.setCapitalization(QFont::SmallCaps);
+    QLabel *torrentsLabel = new QLabel(tr("Torrents"));
+    torrentsLabel->setIndent(2);
+    torrentsLabel->setFont(font);
+    vLayout->addWidget(torrentsLabel);
     statusFilters = new StatusFiltersWidget(this);
     vLayout->addWidget(statusFilters);
     statusFilters->setFocusPolicy(Qt::NoFocus);
+    QLabel *labelsLabel = new QLabel(tr("Labels"));
+    labelsLabel->setIndent(2);
+    labelsLabel->setFont(font);
+    vLayout->addWidget(labelsLabel);
     labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
     labelFilters->setFocusPolicy(Qt::NoFocus);
