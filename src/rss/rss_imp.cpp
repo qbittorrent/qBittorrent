@@ -339,10 +339,10 @@ void RSSImp::downloadTorrent() {
       }
     }
     qDebug("Loaded %d cookies for RSS item\n", cookies.size());
-    if (article->hasAttachment()) {
-      QBtSession::instance()->downloadFromUrl(article->torrentUrl(), cookies);
+    if (article.hasAttachment()) {
+      QBtSession::instance()->downloadFromUrl(article.torrentUrl(), cookies);
     } else {
-      QBtSession::instance()->downloadFromUrl(article->link(), cookies);
+      QBtSession::instance()->downloadFromUrl(article.link(), cookies);
     }
   }
 }
