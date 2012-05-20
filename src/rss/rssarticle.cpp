@@ -31,6 +31,7 @@
 #include <QRegExp>
 #include <QVariant>
 #include <QStringList>
+#include <QDebug>
 
 #include <iostream>
 
@@ -246,8 +247,17 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
       xml.skipCurrentElement();
   }
 
-  if (guid.isEmpty())
-    return RssArticlePtr();
+  if (guid.isEmpty()) {
+    // Item does not have a guid, fall back to some other identifier
+    if (!link.isEmpty())
+      guid = link;
+    else if (!title.isEmpty())
+      guid = title;
+    else {
+      qWarning() << "Item has no guid, link or title, ignoring it...";
+      return RssArticlePtr();
+    }
+  }
 
   RssArticlePtr art(new RssArticle(parent, guid));
   art->m_title = title;
