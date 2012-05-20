@@ -98,7 +98,7 @@ QString QTorrentHandle::creation_date() const {
   return t ? misc::toQString(*t) : "";
 #else
   boost::optional<boost::posix_time::ptime> boostDate = torrent_handle::get_torrent_info().creation_date();
-  return boostDate ? misc::boostTimeToQString(*boostDate) : "";
+  return boostDate ? misc::toQString(*boostDate) : "";
 #endif
 }
 
