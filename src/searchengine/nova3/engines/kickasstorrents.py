@@ -1,4 +1,4 @@
-#VERSION: 1.21
+#VERSION: 1.22
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@ class kickasstorrents(object):
     self.results = []
 
   def download_torrent(self, info):
-    print(download_file(info))
+    print(download_file(info, info))
 
   def search(self, what, cat='all'):
     ret = []
