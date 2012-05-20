@@ -80,9 +80,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   foreach (const QString& label, customLabels) {
     ui->label_combo->addItem(label);
   }
-
   showAdvancedSettings(false);
-  QTimer::singleShot(0, this, SLOT(setdialogPosition()));
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
@@ -127,7 +125,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
     ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb)+1)->widget());
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   }
-  QTimer::singleShot(0, this, SLOT(relayout()));
+  relayout();
 }
 
 bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString& from_url)
@@ -203,6 +201,9 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     }
   }
 
+  // Set dialog position
+  setdialogPosition();
+
   return true;
 }
 
@@ -219,6 +220,9 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   // Set dialog title
   QString torrent_name = misc::magnetUriToName(m_url);
   setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
+
+  // Set dialog position
+  setdialogPosition();
 
   return true;
 }
@@ -334,13 +338,14 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
   }
   // Toggle default save path setting checkbox visibility
   ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != defaultSaveDir);
-  QTimer::singleShot(0, this, SLOT(relayout()));
+  relayout();
   // Remember index
   old_index = ui->save_path_combo->currentIndex();
 }
 
 void AddNewTorrentDialog::relayout()
 {
+  qApp->processEvents();
   int min_width = minimumWidth();
   setMinimumWidth(width());
   adjustSize();
@@ -447,7 +452,12 @@ void AddNewTorrentDialog::renameSelectedFile()
 
 void AddNewTorrentDialog::setdialogPosition()
 {
-  move(QPoint(misc::screenCenter(this).x(), 0));
+  qApp->processEvents();
+  QPoint center(misc::screenCenter(this));
+  center.ry() -= 120;
+  if (center.y() < 0)
+    center.setY(0);
+  move(center);
 }
 
 void AddNewTorrentDialog::loadSavePathHistory()
