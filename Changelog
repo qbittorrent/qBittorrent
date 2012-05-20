@@ -3,6 +3,9 @@
     - BUGFIX: Better support for cookies in RSS
     - BUGFIX: Make sure show/hide text in tray icon menu is correct
     - COSMETIC: Improve style of left panel
+    - COSMETIC: Never disable properties panel
+    - COSMETIC: Make sure first tab is initially selected in options dialog
+    - COSMETIC: Fix a few focus issues on Mac OS X
 
 * Sat May 5 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.8
     - BUGFIX: Various UI style fixes
