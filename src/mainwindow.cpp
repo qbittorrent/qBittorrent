@@ -715,7 +715,6 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
       hide();
     }
   }
-  actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
 }
 
 // Display About Dialog
@@ -1193,12 +1192,17 @@ void MainWindow::updateAltSpeedsBtn(bool alternative) {
   actionUse_alternative_speed_limits->setChecked(alternative);
 }
 
+void MainWindow::updateTrayIconMenu()
+{
+  actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
+}
+
 QMenu* MainWindow::getTrayIconMenu() {
   if (myTrayIconMenu)
     return myTrayIconMenu;
   // Tray icon Menu
   myTrayIconMenu = new QMenu(this);
-  actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
+  connect(myTrayIconMenu, SIGNAL(aboutToShow()), SLOT(updateTrayIconMenu()));
   myTrayIconMenu->addAction(actionToggleVisibility);
   myTrayIconMenu->addSeparator();
   myTrayIconMenu->addAction(actionOpen);
