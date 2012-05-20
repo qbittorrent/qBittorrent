@@ -32,7 +32,6 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkProxy>
-#include <QNetworkCookie>
 #include <QNetworkCookieJar>
 
 #include "downloadthread.h"
@@ -109,39 +108,21 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
   reply->deleteLater();
 }
 
-#ifndef DISABLE_GUI
-void DownloadThread::loadCookies(const QString &host_name, QString url) {
-  const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(host_name);
-  QNetworkCookieJar *cookie_jar = m_networkManager.cookieJar();
-  QList<QNetworkCookie> cookies;
-  qDebug("Loading cookies for host name: %s", qPrintable(host_name));
-  foreach(const QByteArray& raw_cookie, raw_cookies) {
-    QList<QByteArray> cookie_parts = raw_cookie.split('=');
-    if(cookie_parts.size() == 2) {
-      qDebug("Loading cookie: %s", raw_cookie.constData());
-      cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
-    }
-  }
-  cookie_jar->setCookiesFromUrl(cookies, url);
-  m_networkManager.setCookieJar(cookie_jar);
-}
-#endif
-
-void DownloadThread::downloadTorrentUrl(const QString &url) {
+void DownloadThread::downloadTorrentUrl(const QString &url, const QList<QNetworkCookie>& cookies)
+{
   // Process request
-  QNetworkReply *reply = downloadUrl(url);
+  QNetworkReply *reply = downloadUrl(url, cookies);
   connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
 }
 
-QNetworkReply* DownloadThread::downloadUrl(const QString &url){
+QNetworkReply* DownloadThread::downloadUrl(const QString &url, const QList<QNetworkCookie>& cookies) {
   // Update proxy settings
   applyProxySettings();
-#ifndef DISABLE_GUI
-  // Load cookies
-  QString host_name = QUrl::fromEncoded(url.toUtf8()).host();
-  if(!host_name.isEmpty())
-    loadCookies(host_name, url);
-#endif
+  // Set cookies
+  if (!cookies.empty()) {
+    qDebug("Setting %d cookies for url: %s", cookies.size(), qPrintable(url));
+    m_networkManager.cookieJar()->setCookiesFromUrl(cookies, url);
+  }
   // Process download request
   qDebug("url is %s", qPrintable(url));
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());

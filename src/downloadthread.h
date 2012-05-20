@@ -32,6 +32,7 @@
 #define DOWNLOADTHREAD_H
 
 #include <QNetworkReply>
+#include <QNetworkCookie>
 #include <QObject>
 #include <QHash>
 #include <QSslError>
@@ -45,8 +46,8 @@ class DownloadThread : public QObject {
 
 public:
   DownloadThread(QObject* parent = 0);
-  QNetworkReply* downloadUrl(const QString &url);
-  void downloadTorrentUrl(const QString &url);
+  QNetworkReply* downloadUrl(const QString &url, const QList<QNetworkCookie>& raw_cookies = QList<QNetworkCookie>());
+  void downloadTorrentUrl(const QString &url, const QList<QNetworkCookie>& raw_cookies = QList<QNetworkCookie>());
   //void setProxy(QString IP, int port, QString username, QString password);
 
 signals:
@@ -63,9 +64,6 @@ private slots:
 private:
   QString errorCodeToString(QNetworkReply::NetworkError status);
   void applyProxySettings();
-#ifndef DISABLE_GUI
-  void loadCookies(const QString &host_name, QString url);
-#endif
 
 private:
   QNetworkAccessManager m_networkManager;

@@ -124,13 +124,14 @@ void RSSImp::on_actionManage_cookies_triggered() {
   Q_ASSERT(!m_feedList->selectedItems().empty());
   // Get feed hostname
   QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
-  QString feed_hostname = QUrl::fromEncoded(feed_url.toLocal8Bit()).host();
+  QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
   qDebug("RSS Feed hostname is: %s", qPrintable(feed_hostname));
   Q_ASSERT(!feed_hostname.isEmpty());
   bool ok = false;
   RssSettings settings;
   QList<QByteArray> raw_cookies = CookiesDlg::askForCookies(this, settings.getHostNameCookies(feed_hostname), &ok);
-  if(ok) {
+  if (ok) {
+    qDebug() << "Settings cookies for host name: " << feed_hostname;
     settings.setHostNameCookies(feed_hostname, raw_cookies);
   }
 }
@@ -325,10 +326,23 @@ void RSSImp::downloadTorrent() {
   foreach(const QListWidgetItem* item, selected_items) {
     const RssArticle article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
-    if(article.hasAttachment()) {
-      QBtSession::instance()->downloadFromUrl(article.torrentUrl());
+    // Load possible cookies
+    QList<QNetworkCookie> cookies;
+    QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
+    QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
+    const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(feed_hostname);
+    foreach (const QByteArray& raw_cookie, raw_cookies) {
+      QList<QByteArray> cookie_parts = raw_cookie.split('=');
+      if (cookie_parts.size() == 2) {
+        qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
+        cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+      }
+    }
+    qDebug("Loaded %d cookies for RSS item\n", cookies.size());
+    if (article->hasAttachment()) {
+      QBtSession::instance()->downloadFromUrl(article->torrentUrl(), cookies);
     } else {
-      QBtSession::instance()->downloadFromUrl(article.link());
+      QBtSession::instance()->downloadFromUrl(article->link(), cookies);
     }
   }
 }

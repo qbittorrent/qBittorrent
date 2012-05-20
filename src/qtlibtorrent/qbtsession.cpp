@@ -2757,7 +2757,8 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
 // Take an url string to a torrent file,
 // download the torrent file to a tmp location, then
 // add it to download list
-void QBtSession::downloadFromUrl(const QString &url) {
+void QBtSession::downloadFromUrl(const QString &url, const QList<QNetworkCookie>& cookies)
+{
   addConsoleMessage(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(url)
                   #ifndef DISABLE_GUI
                     , QPalette::WindowText
@@ -2765,7 +2766,7 @@ void QBtSession::downloadFromUrl(const QString &url) {
                     );
   //emit aboutToDownloadFromUrl(url);
   // Launch downloader thread
-  downloader->downloadTorrentUrl(url);
+  downloader->downloadTorrentUrl(url, cookies);
 }
 
 void QBtSession::downloadFromURLList(const QStringList& urls) {

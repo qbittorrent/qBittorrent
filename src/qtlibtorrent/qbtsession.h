@@ -41,6 +41,7 @@
 #endif
 #include <QPointer>
 #include <QTimer>
+#include <QNetworkCookie>
 
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
@@ -107,7 +108,7 @@ public slots:
   QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false);
   void loadSessionState();
   void saveSessionState();
-  void downloadFromUrl(const QString &url);
+  void downloadFromUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
   void deleteTorrent(const QString &hash, bool delete_local_files = false);
   void startUpTorrents();
   void recheckTorrent(const QString &hash);
