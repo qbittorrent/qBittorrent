@@ -206,10 +206,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,6 +260,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Пріоритет</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3252,7 +3252,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Виберіть шлях збереження</translation>
+        <translation type="obsolete">Виберіть шлях збереження</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4713,6 +4713,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation>Видалити торренти</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5599,6 +5607,13 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Завантаження</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5660,7 +5675,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Завантаження</translation>
+        <translation type="obsolete">Завантаження</translation>
     </message>
 </context>
 <context>

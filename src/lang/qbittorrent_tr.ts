@@ -180,10 +180,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,6 +234,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Öncelik</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3111,7 +3111,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Kayıt yolunu seçin</translation>
+        <translation type="obsolete">Kayıt yolunu seçin</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4568,6 +4568,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation>Torrentleri Sil</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5458,6 +5466,13 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">İndirilenler</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5519,7 +5534,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>İndirilenler</translation>
+        <translation type="obsolete">İndirilenler</translation>
     </message>
 </context>
 <context>

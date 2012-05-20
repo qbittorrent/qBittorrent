@@ -206,10 +206,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,6 +260,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">优先</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3260,7 +3260,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>选择保存路径</translation>
+        <translation type="obsolete">选择保存路径</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4717,6 +4717,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation>删除torrent</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5603,6 +5611,13 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">下载</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5664,7 +5679,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">下载</translation>
+        <translation type="obsolete">下载</translation>
     </message>
 </context>
 <context>

@@ -190,10 +190,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -248,6 +244,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioridade</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3245,7 +3245,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Escolha um caminho de salvamento</translation>
+        <translation type="obsolete">Escolha um caminho de salvamento</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4706,6 +4706,14 @@ Gostaria de instalar agora?</translation>
         <source>Delete torrents</source>
         <translation>Remover torrents</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5592,6 +5600,13 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Downloads</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5653,7 +5668,7 @@ Portanto os plugins foram desabilitados.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Downloads</translation>
+        <translation type="obsolete">Downloads</translation>
     </message>
 </context>
 <context>

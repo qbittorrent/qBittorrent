@@ -206,10 +206,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,6 +260,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Priorytet</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3229,7 +3229,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Wybierz katalog docelowy</translation>
+        <translation type="obsolete">Wybierz katalog docelowy</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4693,6 +4693,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation>Usuń torrenty</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5559,6 +5567,13 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Pobieranie</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5620,7 +5635,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Pobieranie</translation>
+        <translation type="obsolete">Pobieranie</translation>
     </message>
 </context>
 <context>

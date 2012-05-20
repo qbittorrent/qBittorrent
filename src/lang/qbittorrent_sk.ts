@@ -206,10 +206,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,6 +260,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Priorita</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3243,7 +3243,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Zvoľte cieľový adresár</translation>
+        <translation type="obsolete">Zvoľte cieľový adresár</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4709,6 +4709,14 @@ Chcete ho nainštalovať teraz?</translation>
         <source>Delete torrents</source>
         <translation>Zmazať torrenty</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5595,6 +5603,13 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Sťahovania</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>Unknown</source>
@@ -5656,7 +5671,7 @@ Tieto moduly však boli vypnuté.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Sťahovania</translation>
+        <translation type="obsolete">Sťahovania</translation>
     </message>
 </context>
 <context>

@@ -244,10 +244,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -302,6 +298,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3802,7 +3802,7 @@ QGroupBox {
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Izaberite putanju za spremanje</translation>
+        <translation type="obsolete">Izaberite putanju za spremanje</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -5151,6 +5151,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation>Izbriši torrente</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -6089,6 +6097,13 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Preuzimanja</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -6160,7 +6175,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Preuzimanja</translation>
+        <translation type="obsolete">Preuzimanja</translation>
     </message>
 </context>
 <context>

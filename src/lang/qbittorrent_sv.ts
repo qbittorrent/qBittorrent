@@ -206,10 +206,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,6 +260,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritet</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3159,7 +3159,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Välj sökväg att spara i</translation>
+        <translation type="obsolete">Välj sökväg att spara i</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4612,6 +4612,14 @@ Vill du installera den nu?</translation>
         <source>Delete torrents</source>
         <translation>Ta bort torrentfiler</translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -5498,6 +5506,13 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Hämtningar</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5559,7 +5574,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Hämtningar</translation>
+        <translation type="obsolete">Hämtningar</translation>
     </message>
 </context>
 <context>

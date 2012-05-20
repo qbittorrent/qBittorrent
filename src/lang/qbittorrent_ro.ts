@@ -174,10 +174,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to load the torrent: &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -232,6 +228,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Priority</source>
         <translation type="unfinished">Prioritate</translation>
+    </message>
+    <message>
+        <source>Failed to load the torrent: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2712,7 +2712,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation>Alegeţi calea de salvare</translation>
+        <translation type="obsolete">Alegeţi calea de salvare</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4135,6 +4135,14 @@ Do you want to install it now?</source>
         <source>Delete torrents</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Torrents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -4985,6 +4993,13 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
 </context>
 <context>
+    <name>fsutils</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished">Descărcări</translation>
+    </message>
+</context>
+<context>
     <name>misc</name>
     <message>
         <source>B</source>
@@ -5046,7 +5061,7 @@ Numai acele adăugate de dvs. pot fi dezinstalate.
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Descărcări</translation>
+        <translation type="obsolete">Descărcări</translation>
     </message>
 </context>
 <context>
