@@ -111,6 +111,7 @@ protected slots:
   void notifyOfUpdate(QString);
   void showConnectionSettings();
   void minimizeWindow();
+  void updateTrayIconMenu();
   // Keyboard shortcuts
   void createKeyboardShortcuts();
   void displayTransferTab() const;
