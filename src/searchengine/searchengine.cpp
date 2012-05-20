@@ -407,6 +407,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
     qDebug("Converting bc link to magnet link");
     torrent_url = misc::bcLinkToMagnet(torrent_url);
   }
+  qDebug() << Q_FUNC_INFO << torrent_url;
   if (torrent_url.startsWith("magnet:")) {
     QStringList urls;
     urls << torrent_url;
