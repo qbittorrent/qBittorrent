@@ -229,6 +229,13 @@ RssArticle::RssArticle(RssFeed* parent, QXmlStreamReader& xml)
       }
     }
   }
+  // If guid is empty, fall back to some other identifier
+  if (d->guid.isEmpty()) {
+    if (!d->link.isEmpty())
+      d->guid = d->link;
+    else if (!d->title.isEmpty())
+      d->guid = d->title;
+  }
 }
 
 RssArticle::RssArticle(RssFeed* parent, const QString &guid) {

@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.9
+    - BUGFIX: More reliable RSS feed parsing (closes #1001777)
+
 * Sat May 5 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.8
     - BUGFIX: Various UI style fixes
     - BUGFIX: Fix compilation with gcc 4.7
