@@ -338,11 +338,10 @@ class TorrentFilesModel:  public QAbstractItemModel {
 
 private:
   TorrentFileItem *rootItem;
-  TorrentFileItem **files_index;
+  std::vector<TorrentFileItem *> files_index;
 
 public:
   TorrentFilesModel(QObject *parent=0): QAbstractItemModel(parent) {
-    files_index = 0;
     QList<QVariant> rootData;
     rootData << tr("Name") << tr("Size") << tr("Progress") << tr("Priority");
     rootItem = new TorrentFileItem(rootData);
@@ -350,13 +349,16 @@ public:
 
   ~TorrentFilesModel() {
     qDebug() << Q_FUNC_INFO << "ENTER";
-    delete [] files_index;
     delete rootItem;
     qDebug() << Q_FUNC_INFO << "EXIT";
   }
 
-  void updateFilesProgress(std::vector<libtorrent::size_type> fp) {
+  void updateFilesProgress(const std::vector<libtorrent::size_type>& fp) {
     emit layoutAboutToBeChanged();
+
+    if (fp.size() != files_index.size())
+      return;
+
     for(unsigned int i=0; i<fp.size(); ++i) {
       Q_ASSERT(fp[i] >= 0);
       files_index[i]->setProgress(fp[i]);
@@ -366,6 +368,10 @@ public:
 
   void updateFilesPriorities(const std::vector<int> &fprio) {
     emit layoutAboutToBeChanged();
+
+    if (fprio.size() != files_index.size())
+      return;
+
     for(unsigned int i=0; i<fprio.size(); ++i) {
       //qDebug("Called updateFilesPriorities with %d", fprio[i]);
       files_index[i]->setPriority(fprio[i]);
@@ -373,9 +379,9 @@ public:
     emit dataChanged(index(0,0), index(rowCount(), columnCount()));
   }
 
-  std::vector<int> getFilesPriorities(unsigned int nbFiles) const {
+  std::vector<int> getFilesPriorities() const {
     std::vector<int> prio;
-    for(unsigned int i=0; i<nbFiles; ++i) {
+    for(unsigned int i=0; i<files_index.size(); ++i) {
       //qDebug("Called getFilesPriorities: %d", files_index[i]->getPriority());
       prio.push_back(files_index[i]->getPriority());
     }
@@ -541,10 +547,7 @@ public:
   void clear() {
     qDebug("clear called");
     beginResetModel();
-    if(files_index) {
-      delete [] files_index;
-      files_index = 0;
-    }
+    files_index.clear();
     rootItem->deleteAllChildren();
     endResetModel();
   }
@@ -555,7 +558,7 @@ public:
     emit layoutAboutToBeChanged();
     // Initialize files_index array
     qDebug("Torrent contains %d files", t.num_files());
-    files_index = new TorrentFileItem*[t.num_files()];
+    files_index.reserve(t.num_files());
 
     TorrentFileItem *parent = this->rootItem;
     TorrentFileItem *root_folder = parent;
@@ -582,8 +585,7 @@ public:
         current_parent = new_parent;
       }
       // Actually create the file
-      TorrentFileItem *f = new TorrentFileItem(t, fentry, current_parent, i);
-      files_index[i] = f;
+      files_index.push_back(new TorrentFileItem(t, fentry, current_parent, i));
     }
     emit layoutChanged();
   }

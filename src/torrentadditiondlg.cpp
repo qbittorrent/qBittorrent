@@ -501,10 +501,8 @@ void torrentAdditionDialog::updateDiskSpaceLabels() {
     // Determine torrent size
     qulonglong torrent_size = 0;
     if(t->num_files() > 1) {
-      const unsigned int nbFiles = t->num_files();
-      const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(nbFiles);
-
-      for(unsigned int i=0; i<nbFiles; ++i) {
+      const std::vector<int> priorities = PropListModel->model()->getFilesPriorities();
+      for(unsigned int i=0; i<priorities.size(); ++i) {
         if(priorities[i] > 0)
           torrent_size += t->file_at(i).size;
       }
@@ -598,7 +596,7 @@ bool torrentAdditionDialog::allFiltered() const {
 void torrentAdditionDialog::savePiecesPriorities(){
   qDebug("Saving pieces priorities");
   Q_ASSERT(!is_magnet);
-  const std::vector<int> priorities = PropListModel->model()->getFilesPriorities(t->num_files());
+  const std::vector<int> priorities = PropListModel->model()->getFilesPriorities();
   TorrentTempData::setFilesPriority(hash, priorities);
 }
 
