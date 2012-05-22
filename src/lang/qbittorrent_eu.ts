@@ -209,96 +209,96 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="143"/>
+        <location filename="../addnewtorrentdialog.cpp" line="141"/>
         <source>I/O Error</source>
         <translation type="unfinished">S/I Akatsa</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="143"/>
+        <location filename="../addnewtorrentdialog.cpp" line="141"/>
         <source>The torrent file does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="151"/>
+        <location filename="../addnewtorrentdialog.cpp" line="149"/>
         <source>Invalid torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="151"/>
+        <location filename="../addnewtorrentdialog.cpp" line="149"/>
         <source>Failed to load the torrent: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="161"/>
+        <location filename="../addnewtorrentdialog.cpp" line="159"/>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="215"/>
+        <location filename="../addnewtorrentdialog.cpp" line="216"/>
         <source>Invalid magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="215"/>
+        <location filename="../addnewtorrentdialog.cpp" line="216"/>
         <source>This magnet link was not recognized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="221"/>
+        <location filename="../addnewtorrentdialog.cpp" line="222"/>
         <source>Magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="282"/>
+        <location filename="../addnewtorrentdialog.cpp" line="286"/>
         <source>Disk space: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="300"/>
-        <location filename="../addnewtorrentdialog.cpp" line="307"/>
-        <location filename="../addnewtorrentdialog.cpp" line="309"/>
+        <location filename="../addnewtorrentdialog.cpp" line="304"/>
+        <location filename="../addnewtorrentdialog.cpp" line="311"/>
+        <location filename="../addnewtorrentdialog.cpp" line="313"/>
         <source>Choose save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="357"/>
+        <location filename="../addnewtorrentdialog.cpp" line="362"/>
         <source>Rename the file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="358"/>
+        <location filename="../addnewtorrentdialog.cpp" line="363"/>
         <source>New name:</source>
         <translation type="unfinished">Izen berria:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="362"/>
-        <location filename="../addnewtorrentdialog.cpp" line="388"/>
+        <location filename="../addnewtorrentdialog.cpp" line="367"/>
+        <location filename="../addnewtorrentdialog.cpp" line="393"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished">Agiria ezin da berrizendatu</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="368"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished">Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="389"/>
-        <location filename="../addnewtorrentdialog.cpp" line="424"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="429"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished">Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="423"/>
+        <location filename="../addnewtorrentdialog.cpp" line="428"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished">Agiritegia ezin da berrizendatua izan</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="470"/>
+        <location filename="../addnewtorrentdialog.cpp" line="480"/>
         <source>Rename...</source>
         <translation type="unfinished">Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="474"/>
+        <location filename="../addnewtorrentdialog.cpp" line="484"/>
         <source>Priority</source>
         <translation type="unfinished">Lehentasuna</translation>
     </message>
@@ -732,118 +732,118 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
 <context>
     <name>DownloadThread</name>
     <message>
-        <location filename="../downloadthread.cpp" line="102"/>
-        <location filename="../downloadthread.cpp" line="106"/>
+        <location filename="../downloadthread.cpp" line="101"/>
+        <location filename="../downloadthread.cpp" line="105"/>
         <source>I/O Error</source>
         <translation>S/I Akatsa</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="213"/>
+        <location filename="../downloadthread.cpp" line="194"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Hurreneko hostalari izena ez da aurkitu (hostalari-izen baliogabea)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="215"/>
+        <location filename="../downloadthread.cpp" line="196"/>
         <source>The operation was canceled</source>
         <translation>Eragiketa ezeztatua izan da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="217"/>
+        <location filename="../downloadthread.cpp" line="198"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Hurruneko zerbitzariak elkarketa azkarregi itxi du, erantzuna osorik  jaso eta prozesatu aurretik</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="219"/>
+        <location filename="../downloadthread.cpp" line="200"/>
         <source>The connection to the remote server timed out</source>
         <translation>Hurruneko zerbitzariarekiko elkarketa denboraz kanpo</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="221"/>
+        <location filename="../downloadthread.cpp" line="202"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SLL/TLS eskuemate hutsegitea</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="223"/>
+        <location filename="../downloadthread.cpp" line="204"/>
         <source>The remote server refused the connection</source>
         <translation>Hurruneko zerbitzariak elkarketa baztertu du</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="225"/>
+        <location filename="../downloadthread.cpp" line="206"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Proxy zerbitzariarekiko elkarketa baztertua izan da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="227"/>
+        <location filename="../downloadthread.cpp" line="208"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy zerbitzariak elkarketa azkarregi itxi du</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="229"/>
+        <location filename="../downloadthread.cpp" line="210"/>
         <source>The proxy host name was not found</source>
         <translation>Proxy hostalari izena ez da aurkitu</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="231"/>
+        <location filename="../downloadthread.cpp" line="212"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Proxyarekiko elkarketa denboraz kanpo edo proxyak ez dio garaiz erantzun bidalitako eskabideari</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="233"/>
+        <location filename="../downloadthread.cpp" line="214"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
         <translation>Proxyak egiaztapena behar du eskabidea burutzeko baina ez du onartu eskainitako nortasunik</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="235"/>
+        <location filename="../downloadthread.cpp" line="216"/>
         <source>The access to the remote content was denied (401)</source>
         <translation>Hurruneko edukirako sarbidea ukatua izan da (401)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="237"/>
+        <location filename="../downloadthread.cpp" line="218"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Hurruneko edukian eskabidetutako eragiketa ez dago baimenduta</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="239"/>
+        <location filename="../downloadthread.cpp" line="220"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Hurruneko edukia ez da aurkitu zerbitzarian (404)</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="241"/>
+        <location filename="../downloadthread.cpp" line="222"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
         <translation>Hurruneko zerbitzariak egiaztapena behar du edukia zerbitzatzeko baina ez du onartu emandako nortasunik </translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="243"/>
+        <location filename="../downloadthread.cpp" line="224"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Sare Sarbide API-k ezin du eskabidea burutu protokoloa ez delako ezaguna </translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="245"/>
+        <location filename="../downloadthread.cpp" line="226"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Eskabidetutako eragiketa baliogabea da protokolo honentzat</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="247"/>
+        <location filename="../downloadthread.cpp" line="228"/>
         <source>An unknown network-related error was detected</source>
         <translation>Sareari-buruzko akats ezezagun bat atzeman da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="249"/>
+        <location filename="../downloadthread.cpp" line="230"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Proxyari-buruzko akats ezezagun bat atzeman da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="251"/>
+        <location filename="../downloadthread.cpp" line="232"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Hurruneko edukiari buruzko akats ezezagun bat atzeman da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="253"/>
+        <location filename="../downloadthread.cpp" line="234"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Protokolo matxura bat atzeman da</translation>
     </message>
     <message>
-        <location filename="../downloadthread.cpp" line="255"/>
+        <location filename="../downloadthread.cpp" line="236"/>
         <source>Unknown error</source>
         <translation>akats ezezaguna</translation>
     </message>
@@ -1355,8 +1355,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <location filename="../mainwindow.cpp" line="1201"/>
+        <location filename="../mainwindow.cpp" line="1197"/>
         <source>Show</source>
         <translation>Erakutsi</translation>
     </message>
@@ -1398,7 +1397,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1338"/>
+        <location filename="../mainwindow.cpp" line="1342"/>
         <source>Execution Log</source>
         <translation>Ekintza Oharra</translation>
     </message>
@@ -1414,7 +1413,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1257"/>
+        <location filename="../mainwindow.cpp" line="1261"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -1546,13 +1545,13 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="592"/>
-        <location filename="../mainwindow.cpp" line="764"/>
+        <location filename="../mainwindow.cpp" line="763"/>
         <source>Yes</source>
         <translation>Bai</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="593"/>
-        <location filename="../mainwindow.cpp" line="763"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>No</source>
         <translation>Ez</translation>
     </message>
@@ -1582,7 +1581,7 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
         <translation>Jeisketa Abiadura Muga Orokorra</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1115"/>
+        <location filename="../mainwindow.cpp" line="1114"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[J: %1/s, I: %2/s] qBittorrent %3</translation>
@@ -1599,81 +1598,80 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
         <translation>Sarhitza baliogabea da</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="718"/>
-        <location filename="../mainwindow.cpp" line="1201"/>
+        <location filename="../mainwindow.cpp" line="1197"/>
         <source>Hide</source>
         <translation>Ezkutatu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="760"/>
+        <location filename="../mainwindow.cpp" line="759"/>
         <source>Exiting qBittorrent</source>
         <translation>qBittorrentetik irtetzen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="761"/>
+        <location filename="../mainwindow.cpp" line="760"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Agiri batzuk orain eskualdatzen ari daude.
 Zihur zaude qBittorrent uztea nahi duzula?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="765"/>
+        <location filename="../mainwindow.cpp" line="764"/>
         <source>Always</source>
         <translation>Betik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="917"/>
+        <location filename="../mainwindow.cpp" line="916"/>
         <source>Open Torrent Files</source>
         <translation>Ireki Torrent Agiriak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="918"/>
+        <location filename="../mainwindow.cpp" line="917"/>
         <source>Torrent Files</source>
         <translation>Torrent Agiriak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
+        <location filename="../mainwindow.cpp" line="988"/>
         <source>Options were saved successfully.</source>
         <translation>Aukerak ongi gorde dira.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1098"/>
+        <location filename="../mainwindow.cpp" line="1097"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1101"/>
-        <location filename="../mainwindow.cpp" line="1108"/>
+        <location filename="../mainwindow.cpp" line="1100"/>
+        <location filename="../mainwindow.cpp" line="1107"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>JE abiadura: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1104"/>
-        <location filename="../mainwindow.cpp" line="1110"/>
+        <location filename="../mainwindow.cpp" line="1103"/>
+        <location filename="../mainwindow.cpp" line="1109"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>IG abiadura: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1295"/>
+        <location filename="../mainwindow.cpp" line="1299"/>
         <source>A newer version is available</source>
         <translation>Bertsio berriago bat eskuragarri dago</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1296"/>
+        <location filename="../mainwindow.cpp" line="1300"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>qBittorrent bertsio berriago bat eskuragarri dago Sourceforgen.
 Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1311"/>
+        <location filename="../mainwindow.cpp" line="1315"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Ezinezkoa qBittorrent eguneratzea</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1311"/>
+        <location filename="../mainwindow.cpp" line="1315"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrentek huts egin dugu eguneratzean, zergaitia: %1</translation>
     </message>
@@ -2994,13 +2992,13 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <translation>qBittorrent orain irten egingo da ez baduzu hurrengo 15 segundutan ezeztatzen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2779"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2780"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2785"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2786"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Akatsa: Hutsegitea emandako IP iragazkia aztertzerakoan.</translation>
     </message>
@@ -3168,7 +3166,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <translation>Url emaritza bigizta hutsegitea url honetan: %1, mezua: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2617"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2618"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; jeisten, mesedez itxaron...</translation>
@@ -3284,111 +3282,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="203"/>
+        <location filename="../rss/rss_imp.cpp" line="204"/>
         <source>Please type a rss stream url</source>
         <translation>Mesedez idatzi rss jario url bat</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="203"/>
+        <location filename="../rss/rss_imp.cpp" line="204"/>
         <source>Stream URL:</source>
         <translation>Jario URL-a:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="237"/>
-        <location filename="../rss/rss_imp.cpp" line="241"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Zihur zaude? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>&amp;Yes</source>
         <translation>&amp;Bai</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>&amp;No</source>
         <translation>&amp;Ez</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="149"/>
+        <location filename="../rss/rss_imp.cpp" line="150"/>
         <source>Please choose a folder name</source>
         <translation>Mesedez hautatu agiritegi izen bat</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="149"/>
+        <location filename="../rss/rss_imp.cpp" line="150"/>
         <source>Folder name:</source>
         <translation>Agiritegi izena:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="149"/>
+        <location filename="../rss/rss_imp.cpp" line="150"/>
         <source>New folder</source>
         <translation>Agiritegi berria</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="170"/>
+        <location filename="../rss/rss_imp.cpp" line="171"/>
         <source>Overwrite attempt</source>
         <translation>Gainidazketa saiakera</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="171"/>
+        <location filename="../rss/rss_imp.cpp" line="172"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>Ezin duzu %1 gaia gainidatzi.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="208"/>
+        <location filename="../rss/rss_imp.cpp" line="209"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="209"/>
+        <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>This rss feed is already in the list.</source>
         <translation>RSS harpidetza hau jadanik zerrendan dago.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="237"/>
+        <location filename="../rss/rss_imp.cpp" line="238"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Zihur zaude osagai hauek zerrendatik ezabatzea nahi dituzula?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="241"/>
+        <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Zihur zaude osagai hau zerrendatik ezabatzea nahi duzula?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="357"/>
+        <location filename="../rss/rss_imp.cpp" line="371"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Mesedez hautatu izen berri bat RSS harpidetza honentzat</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="357"/>
+        <location filename="../rss/rss_imp.cpp" line="371"/>
         <source>New feed name:</source>
         <translation>Harpidetza berriaren izena:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="361"/>
+        <location filename="../rss/rss_imp.cpp" line="375"/>
         <source>Name already in use</source>
         <translation>Izena jadanik erabilia da</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="361"/>
+        <location filename="../rss/rss_imp.cpp" line="375"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Izen hau jadanik beste gai batek darabil, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="516"/>
+        <location filename="../rss/rss_imp.cpp" line="530"/>
         <source>Date: </source>
         <translation>Eguna: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="519"/>
+        <location filename="../rss/rss_imp.cpp" line="533"/>
         <source>Author: </source>
         <translation>Egilea: </translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="565"/>
+        <location filename="../rss/rss_imp.cpp" line="579"/>
         <source>Unread</source>
         <translation>Irakurri gabea</translation>
     </message>
@@ -3552,34 +3550,34 @@ Do you want to install it now?</source>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="355"/>
-        <location filename="../searchengine/searchengine.cpp" line="451"/>
+        <location filename="../searchengine/searchengine.cpp" line="452"/>
         <source>Results</source>
         <translation>Emaitzak</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="430"/>
+        <location filename="../searchengine/searchengine.cpp" line="431"/>
         <source>Searching...</source>
         <translation>Bilatzen...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="576"/>
+        <location filename="../searchengine/searchengine.cpp" line="577"/>
         <source>Search Engine</source>
         <translation>Bilaketa Gailua</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="576"/>
-        <location filename="../searchengine/searchengine.cpp" line="591"/>
+        <location filename="../searchengine/searchengine.cpp" line="577"/>
+        <location filename="../searchengine/searchengine.cpp" line="592"/>
         <source>Search has finished</source>
         <translation>Bilaketa amaitu da</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="582"/>
+        <location filename="../searchengine/searchengine.cpp" line="583"/>
         <source>An error occured during search...</source>
         <translation>Akats bat gertatu da bilaketan...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="580"/>
-        <location filename="../searchengine/searchengine.cpp" line="586"/>
+        <location filename="../searchengine/searchengine.cpp" line="581"/>
+        <location filename="../searchengine/searchengine.cpp" line="587"/>
         <source>Search aborted</source>
         <translation>Bilaketa utzita</translation>
     </message>
@@ -3595,19 +3593,19 @@ Please install it manually.</source>
         <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1Mesedeez ezerri eskuz.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="589"/>
+        <location filename="../searchengine/searchengine.cpp" line="590"/>
         <source>Search returned no results</source>
         <translation>Bilaketak ez du emaitzik itzuli</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="596"/>
+        <location filename="../searchengine/searchengine.cpp" line="597"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Emaitzak</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="632"/>
-        <location filename="../searchengine/searchengine.cpp" line="638"/>
+        <location filename="../searchengine/searchengine.cpp" line="633"/>
+        <location filename="../searchengine/searchengine.cpp" line="639"/>
         <source>Unknown</source>
         <translation>Ezezaguna</translation>
     </message>
@@ -4197,105 +4195,105 @@ Please install it manually.</source>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="201"/>
+        <location filename="../transferlistfilterswidget.h" line="200"/>
         <source>Torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="208"/>
+        <location filename="../transferlistfilterswidget.h" line="207"/>
         <source>Labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="223"/>
-        <location filename="../transferlistfilterswidget.h" line="305"/>
+        <location filename="../transferlistfilterswidget.h" line="222"/>
+        <location filename="../transferlistfilterswidget.h" line="304"/>
         <source>All</source>
         <translation>Denak</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="226"/>
-        <location filename="../transferlistfilterswidget.h" line="306"/>
+        <location filename="../transferlistfilterswidget.h" line="225"/>
+        <location filename="../transferlistfilterswidget.h" line="305"/>
         <source>Downloading</source>
         <translation>Jeisten</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="229"/>
-        <location filename="../transferlistfilterswidget.h" line="307"/>
+        <location filename="../transferlistfilterswidget.h" line="228"/>
+        <location filename="../transferlistfilterswidget.h" line="306"/>
         <source>Completed</source>
         <translation>Osatuta</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="232"/>
-        <location filename="../transferlistfilterswidget.h" line="308"/>
+        <location filename="../transferlistfilterswidget.h" line="231"/>
+        <location filename="../transferlistfilterswidget.h" line="307"/>
         <source>Paused</source>
         <translation>Pausatuta</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="235"/>
-        <location filename="../transferlistfilterswidget.h" line="309"/>
+        <location filename="../transferlistfilterswidget.h" line="234"/>
+        <location filename="../transferlistfilterswidget.h" line="308"/>
         <source>Active</source>
         <translation>Ekinean</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="238"/>
-        <location filename="../transferlistfilterswidget.h" line="310"/>
+        <location filename="../transferlistfilterswidget.h" line="237"/>
+        <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Inactive</source>
         <translation>Geldituta</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="252"/>
-        <location filename="../transferlistfilterswidget.h" line="487"/>
+        <location filename="../transferlistfilterswidget.h" line="251"/>
+        <location filename="../transferlistfilterswidget.h" line="486"/>
         <source>All labels</source>
         <translation>Etiketa guztiak</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="255"/>
-        <location filename="../transferlistfilterswidget.h" line="488"/>
+        <location filename="../transferlistfilterswidget.h" line="254"/>
+        <location filename="../transferlistfilterswidget.h" line="487"/>
         <source>Unlabeled</source>
         <translation>Etiketatu gabe</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="337"/>
+        <location filename="../transferlistfilterswidget.h" line="336"/>
         <source>Remove label</source>
         <translation>Kendu etiketa</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="338"/>
+        <location filename="../transferlistfilterswidget.h" line="337"/>
         <source>Add label...</source>
         <translation>Gehitu etiketa...</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="340"/>
+        <location filename="../transferlistfilterswidget.h" line="339"/>
         <source>Resume torrents</source>
         <translation>Berrekin torrentak</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="341"/>
+        <location filename="../transferlistfilterswidget.h" line="340"/>
         <source>Pause torrents</source>
         <translation>Pausatu torrentak</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="342"/>
+        <location filename="../transferlistfilterswidget.h" line="341"/>
         <source>Delete torrents</source>
         <translation>Ezabatu torrentak</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="368"/>
+        <location filename="../transferlistfilterswidget.h" line="367"/>
         <source>New Label</source>
         <translation>Etiketa Berria</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="368"/>
+        <location filename="../transferlistfilterswidget.h" line="367"/>
         <source>Label:</source>
         <translation>Etiketa:</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="373"/>
+        <location filename="../transferlistfilterswidget.h" line="372"/>
         <source>Invalid label name</source>
         <translation>Etiketa izen baliogabea</translation>
     </message>
     <message>
-        <location filename="../transferlistfilterswidget.h" line="373"/>
+        <location filename="../transferlistfilterswidget.h" line="372"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Mesedez ez erabili hizkirri berezirik etiketa izenean.</translation>
     </message>
@@ -4303,12 +4301,12 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="526"/>
+        <location filename="../transferlistwidget.cpp" line="528"/>
         <source>Column visibility</source>
         <translation>Zutabe ikusgarritasuna</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="760"/>
+        <location filename="../transferlistwidget.cpp" line="762"/>
         <source>Label</source>
         <translation>Etiketa</translation>
     </message>
@@ -4318,160 +4316,160 @@ Please install it manually.</source>
         <translation>Hautatu gordetzeko helburua</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="451"/>
+        <location filename="../transferlistwidget.cpp" line="453"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrent Jeisketa Abiadura Muga</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="484"/>
+        <location filename="../transferlistwidget.cpp" line="486"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrent Igoera Abiadura Muga</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="591"/>
         <source>New Label</source>
         <translation>Etiketa Berria</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="589"/>
+        <location filename="../transferlistwidget.cpp" line="591"/>
         <source>Label:</source>
         <translation>Etiketa:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="596"/>
         <source>Invalid label name</source>
         <translation>Etiketa izen baliogabea</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="594"/>
+        <location filename="../transferlistwidget.cpp" line="596"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Mesedez ez erabili hizkirri berezirik etiketa izenean.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="612"/>
         <source>Rename</source>
         <translation>Berrizendatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="610"/>
+        <location filename="../transferlistwidget.cpp" line="612"/>
         <source>New name:</source>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="644"/>
+        <location filename="../transferlistwidget.cpp" line="646"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Berrekin</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="646"/>
+        <location filename="../transferlistwidget.cpp" line="648"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Pausatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="648"/>
+        <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Ezabatu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="650"/>
+        <location filename="../transferlistwidget.cpp" line="652"/>
         <source>Preview file...</source>
         <translation>Agiri aurreikuspena...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="652"/>
+        <location filename="../transferlistwidget.cpp" line="654"/>
         <source>Limit share ratio...</source>
         <translation>Mugatu elkarbanatze maila...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="654"/>
+        <location filename="../transferlistwidget.cpp" line="656"/>
         <source>Limit upload rate...</source>
         <translation>Mugatu igoera neurria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="656"/>
+        <location filename="../transferlistwidget.cpp" line="658"/>
         <source>Limit download rate...</source>
         <translation>Mugatu jeisketa neurria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="658"/>
+        <location filename="../transferlistwidget.cpp" line="660"/>
         <source>Open destination folder</source>
         <translation>Ireki helmuga agiritegia</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="660"/>
+        <location filename="../transferlistwidget.cpp" line="662"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Mugitu gora</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="662"/>
+        <location filename="../transferlistwidget.cpp" line="664"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Mugitu behera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="664"/>
+        <location filename="../transferlistwidget.cpp" line="666"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Mugitu gorenera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="666"/>
+        <location filename="../transferlistwidget.cpp" line="668"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Mugitu behrerenera</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="668"/>
+        <location filename="../transferlistwidget.cpp" line="670"/>
         <source>Set location...</source>
         <translation>Ezarri kokalekua...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="803"/>
+        <location filename="../transferlistwidget.cpp" line="805"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="670"/>
+        <location filename="../transferlistwidget.cpp" line="672"/>
         <source>Force recheck</source>
         <translation>Behartu berregiaztapena</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="672"/>
+        <location filename="../transferlistwidget.cpp" line="674"/>
         <source>Copy magnet link</source>
         <translation>Kopiatu magnet lotura</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="674"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Super seeding mode</source>
         <translation>Gain emaritza modua</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="677"/>
+        <location filename="../transferlistwidget.cpp" line="679"/>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="679"/>
+        <location filename="../transferlistwidget.cpp" line="681"/>
         <source>Download in sequential order</source>
         <translation>Jeitsi sekuentzialki</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="682"/>
+        <location filename="../transferlistwidget.cpp" line="684"/>
         <source>Download first and last piece first</source>
         <translation>Jeitsi lehen eta azken atala lehenik</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="761"/>
+        <location filename="../transferlistwidget.cpp" line="763"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Berria...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="762"/>
+        <location filename="../transferlistwidget.cpp" line="764"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Berrezarri</translation>

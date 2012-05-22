@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>Boost:</source>
-        <translation type="unfinished"></translation>
+        <translation>Destek:</translation>
     </message>
     <message>
         <source>Libtorrent:</source>
@@ -96,148 +96,148 @@ p, li { white-space: pre-wrap; }
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>İletişim Kutusu</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Farklı kaydet</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Öntanımlı kayıt yolu olarak ayarla</translation>
+        <translation>Öntanımlı kayıt yolu olarak ayarla</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir daha gösterme</translation>
     </message>
     <message utf8="true">
         <source>▼</source>
-        <translation type="unfinished"></translation>
+        <translation>▼</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ayarları</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenti başlat</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Etiket:</translation>
+        <translation>Etiket:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Bozulma denetimini atla</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Bilgisi</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boyut:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Yorum:</translation>
+        <translation>Yorum:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarih:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Yüksek</translation>
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>En Yüksek</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">İndirme</translation>
+        <translation>İndirme</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Başka kayıt yolu...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>G/Ç Hatası</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent dosyası mevcut değil.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut değil</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz ilişik bağlantı</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu ilişik bağlantı tanımlanamadı</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>İlişik Bağlantı</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk boyutu: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt yolunu seç</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Dosyayı yeniden adlandır</translation>
+        <translation>Dosyayı yeniden adlandır</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Yeni ad:</translation>
+        <translation>Yeni ad:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished">Dosya yeniden adlandırılamadı</translation>
+        <translation>Dosya yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
+        <translation>Bu dosya adı yasak karakterler içeriyor, lütfen başka bir ad seçin.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu dosya adı mevcut dizin içinde zaten kullanılıyor. Lütfen başka bir ad kullanın.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dizin yeniden adlandırılamadı</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Yeniden adlandır...</translation>
+        <translation>Yeniden adlandır...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Öncelik</translation>
+        <translation>Öncelik</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent yüklenemedi: %1</translation>
     </message>
 </context>
 <context>
@@ -1904,11 +1904,11 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
     </message>
     <message>
         <source>&amp;Resume</source>
-        <translation>&amp;_Devam et</translation>
+        <translation>&amp;Devam et</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
-        <translation>&amp;_Tümüne Devam et</translation>
+        <translation>&amp;Tümüne Devam et</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -2128,11 +2128,11 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>&amp;Add torrent file...</source>
-        <translation>Torrent dosyası &amp;_ekle...</translation>
+        <translation>Torrent dosyası &amp;ekle...</translation>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation>&amp;_Bağlantıyı torrente ekle...</translation>
+        <translation>&amp;Bağlantıyı torrente ekle...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
@@ -2468,7 +2468,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Tip:</translation>
+        <translation>Tür:</translation>
     </message>
     <message>
         <source>(None)</source>
@@ -2743,19 +2743,19 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Daha çok eş bulmak için DHT&apos;yi başlat</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT ve BitTorrent için farklı bir port kullan</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Daha çok eş bulmak için Eş Değişimi&apos;ni etkinleştir</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Daha çok eş bulmak için Yerel Eş Keşfedici&apos;yi etkinleştir</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -2791,7 +2791,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentler etkinken sistemin uykuya geçmesini engelle</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
@@ -2867,7 +2867,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation>Oran Sınırını Paylaş</translation>
+        <translation>Paylaşım Oranı Sınırı</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -2899,7 +2899,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>Oran sınırını, aktarım ek yükü olarak değerlendir</translation>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
@@ -4570,11 +4570,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentler</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiketler</translation>
     </message>
 </context>
 <context>
@@ -4819,7 +4819,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation>Oran sınırı ayarlama</translation>
+        <translation>Oran sınırı ayarla</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
@@ -5469,7 +5469,7 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">İndirilenler</translation>
+        <translation>İndirilenler</translation>
     </message>
 </context>
 <context>
