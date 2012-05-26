@@ -41,28 +41,17 @@ class EventManager : public QObject
   Q_OBJECT
   Q_DISABLE_COPY(EventManager)
 
-private:
-  QHash<QString, QVariantMap> event_list;
-
 protected:
   void update(QVariantMap event);
 
 public:
   EventManager(QObject *parent);
-  QList<QVariantMap> getEventList() const;
-  QVariantMap getPropGeneralInfo(QString hash) const;
-  QList<QVariantMap> getPropTrackersInfo(QString hash) const;
   QList<QVariantMap> getPropFilesInfo(QString hash) const;
   QVariantMap getGlobalPreferences() const;
   void setGlobalPreferences(QVariantMap m);
 
 signals:
   void localeChanged(const QString &locale);
-
-public slots:
-  void addedTorrent(const QTorrentHandle& h);
-  void deletedTorrent(QString hash);
-  void modifiedTorrent(const QTorrentHandle& h);
 };
 
 #endif

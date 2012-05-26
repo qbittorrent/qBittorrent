@@ -89,7 +89,7 @@ void HttpServer::resetNbFailedAttemptsForIp(const QString& ip) {
   m_clientFailedAttempts.remove(ip);
 }
 
-HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
+HttpServer::HttpServer(QObject* parent) : QTcpServer(parent),
   m_eventManager(new EventManager(this)) {
 
   const Preferences pref;
@@ -108,23 +108,6 @@ HttpServer::HttpServer(int msec, QObject* parent) : QTcpServer(parent),
     m_key = QSslKey(pref.getWebUiHttpsKey(), QSsl::Rsa);
   }
 #endif
-
-  // Add torrents
-  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if (h.is_valid())
-      m_eventManager->addedTorrent(h);
-  }
-
-  //connect QBtSession::instance() to manager
-  connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), m_eventManager, SLOT(addedTorrent(QTorrentHandle)));
-  connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), m_eventManager, SLOT(deletedTorrent(QString)));
-
-  //set timer
-  connect(&m_timer, SIGNAL(timeout()), SLOT(onTimer()));
-  m_timer.start(msec);
 
   // Additional translations for Web UI
   QString a = tr("File");
@@ -212,16 +195,6 @@ void HttpServer::handleNewConnection(QTcpSocket *socket)
   connect(connection, SIGNAL(resumeTorrent(QString)), QBtSession::instance(), SLOT(resumeTorrent(QString)));
   connect(connection, SIGNAL(pauseAllTorrents()), QBtSession::instance(), SLOT(pauseAllTorrents()));
   connect(connection, SIGNAL(resumeAllTorrents()), QBtSession::instance(), SLOT(resumeAllTorrents()));
-}
-
-void HttpServer::onTimer() {
-  std::vector<torrent_handle> torrents = QBtSession::instance()->getTorrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); torrentIT++) {
-    QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if (h.is_valid())
-      m_eventManager->modifiedTorrent(h);
-  }
 }
 
 QString HttpServer::generateNonce() const {

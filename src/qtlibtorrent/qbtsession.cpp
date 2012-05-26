@@ -682,7 +682,7 @@ void QBtSession::initWebUi() {
         httpServer->close();
       }
     } else {
-      httpServer = new HttpServer(3000, this);
+      httpServer = new HttpServer(this);
     }
 
 #ifndef QT_NO_OPENSSL

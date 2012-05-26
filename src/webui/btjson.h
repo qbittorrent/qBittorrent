@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2012, Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,19 +28,23 @@
  * Contact : chris@qbittorrent.org
  */
 
+#ifndef BTJSON_H
+#define BTJSON_H
 
-#ifndef JSON_H
-#define JSON_H
+#include <QCoreApplication>
+#include <QString>
 
-#include <QVariant>
+class btjson {
+  Q_DECLARE_TR_FUNCTIONS(misc)
 
-namespace json {
+private:
+  btjson() {}
 
-  QString toJson(const QVariant& v);
-  QString toJson(const QVariantMap& m); // TODO: Remove
-  QString toJson(const QList<QVariantMap>& v); // TODO: Remove
-  QVariantMap fromJson(const QString& json);
+public:
+  static QString getTorrents();
+  static QString getTrackersForTorrent(const QString& hash);
+  static QString getPropertiesForTorrent(const QString& hash);
+  static QString getFilesForTorrent(const QString& hash);
+}; // class btjson
 
-} // namespace json
-
-#endif
+#endif // BTJSON_H

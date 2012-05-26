@@ -55,7 +55,7 @@ public:
 protected slots:
   void write();
   void respond();
-  void respondJson();
+  void respondTorrentsJson();
   void respondGenPropertiesJson(const QString& hash);
   void respondTrackersPropertiesJson(const QString& hash);
   void respondFilesPropertiesJson(const QString& hash);

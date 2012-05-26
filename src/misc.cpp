@@ -236,15 +236,20 @@ int misc::pythonVersion() {
 // use Binary prefix standards from IEC 60027-2
 // see http://en.wikipedia.org/wiki/Kilobyte
 // value must be given in bytes
-QString misc::friendlyUnit(qreal val) {
+QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (val < 0)
     return tr("Unknown", "Unknown (size)");
   int i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
+  QString ret;
   if (i == 0)
-    return QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
-  return QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
+    ret = QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
+  else
+    ret = QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
+  if (is_speed)
+    ret += tr("/s", "per second");
+  return ret;
 }
 
 bool misc::isPreviewable(QString extension) {

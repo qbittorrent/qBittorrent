@@ -97,7 +97,7 @@ public:
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
-  static QString friendlyUnit(qreal val);
+  static QString friendlyUnit(qreal val, bool is_speed = false);
   static bool isPreviewable(QString extension);
   static QString magnetUriToName(QString magnet_uri);
   static QString magnetUriToHash(QString magnet_uri);

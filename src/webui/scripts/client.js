@@ -232,7 +232,7 @@ window.addEvent('load', function(){
   
 	var ajaxfn = function(){
 		var queueing_enabled = false;
-		var url = 'json/events';
+		var url = 'json/torrents';
 		if (!waiting){
 			waiting=true;
 			var request = new Request.JSON({

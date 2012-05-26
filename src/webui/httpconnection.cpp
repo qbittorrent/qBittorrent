@@ -34,6 +34,7 @@
 #include "eventmanager.h"
 #include "preferences.h"
 #include "json.h"
+#include "btjson.h"
 #include "qbtsession.h"
 #include "misc.h"
 #ifndef DISABLE_GUI
@@ -242,8 +243,8 @@ void HttpConnection::respond() {
 
   if (list.size() >= 2) {
     if (list[0] == "json") {
-      if (list[1] == "events") {
-        respondJson();
+      if (list[1] == "torrents") {
+        respondTorrentsJson();
         return;
       }
       if (list.size() > 2) {
@@ -337,39 +338,31 @@ void HttpConnection::respondNotFound() {
   write();
 }
 
-void HttpConnection::respondJson() {
-  EventManager* manager =  m_httpserver->eventManager();
-  QString string = json::toJson(manager->getEventList());
+void HttpConnection::respondTorrentsJson() {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(btjson::getTorrents());
   write();
 }
 
 void HttpConnection::respondGenPropertiesJson(const QString& hash) {
-  EventManager* manager =  m_httpserver->eventManager();
-  QString string = json::toJson(manager->getPropGeneralInfo(hash));
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(btjson::getPropertiesForTorrent(hash));
   write();
 }
 
 void HttpConnection::respondTrackersPropertiesJson(const QString& hash) {
-  EventManager* manager =  m_httpserver->eventManager();
-  QString string = json::toJson(manager->getPropTrackersInfo(hash));
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(btjson::getTrackersForTorrent(hash));
   write();
 }
 
 void HttpConnection::respondFilesPropertiesJson(const QString& hash) {
-  EventManager* manager =  m_httpserver->eventManager();
-  QString string = json::toJson(manager->getPropFilesInfo(hash));
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(btjson::getFilesForTorrent(hash));
   write();
 }
 

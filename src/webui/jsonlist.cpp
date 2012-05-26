@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2012, Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,19 +28,37 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include "jsonlist.h"
+#include "json.h"
 
-#ifndef JSON_H
-#define JSON_H
+JsonList::JsonList() : m_dirty(false)
+{
+}
 
-#include <QVariant>
+const QString& JsonList::toString() const
+{
+  static QString str;
+  if (m_dirty) {
+    str = "[" + m_items.join(",") + "]";
+    m_dirty = false;
+  }
+  return str;
+}
 
-namespace json {
+void JsonList::clear()
+{
+  m_items.clear();
+  m_dirty = true;
+}
 
-  QString toJson(const QVariant& v);
-  QString toJson(const QVariantMap& m); // TODO: Remove
-  QString toJson(const QList<QVariantMap>& v); // TODO: Remove
-  QVariantMap fromJson(const QString& json);
+void JsonList::append(const QVariant& val)
+{
+  m_items.append(json::toJson(val));
+  m_dirty = true;
+}
 
-} // namespace json
-
-#endif
+void JsonList::append(const JsonDict& dict)
+{
+  m_items.append(dict.toString());
+  m_dirty = true;
+}
