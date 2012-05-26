@@ -37,12 +37,11 @@ JsonList::JsonList() : m_dirty(false)
 
 const QString& JsonList::toString() const
 {
-  static QString str;
   if (m_dirty) {
-    str = "[" + m_items.join(",") + "]";
+    m_json = "[" + m_items.join(",") + "]";
     m_dirty = false;
   }
-  return str;
+  return m_json;
 }
 
 void JsonList::clear()

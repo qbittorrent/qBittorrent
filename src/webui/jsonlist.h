@@ -45,6 +45,7 @@ public:
 
 private:
   mutable bool m_dirty;
+  mutable QString m_json;
   QStringList m_items;
 };
 

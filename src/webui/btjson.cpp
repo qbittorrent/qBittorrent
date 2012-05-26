@@ -49,6 +49,16 @@ using namespace libtorrent;
   cacheTimer.start(); \
   VAR.clear()
 
+#define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
+  static VARTYPE VAR; \
+  static QString prev_hash; \
+  static QElapsedTimer cacheTimer; \
+  if (prev_hash == HASH && !cacheTimer.hasExpired(DUR)) \
+    return VAR.toString(); \
+  prev_hash = HASH; \
+  cacheTimer.start(); \
+  VAR.clear()
+
 // Numerical constants
 static const int CACHE_DURATION_MS = 1500; // 1500ms
 
@@ -196,7 +206,7 @@ QString btjson::getTorrents()
  */
 QString btjson::getTrackersForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE(JsonList, tracker_list, CACHE_DURATION_MS);
+  CACHED_VARIABLE_FOR_HASH(JsonList, tracker_list, CACHE_DURATION_MS, hash);
   try {
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
     QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(hash);
@@ -223,8 +233,8 @@ QString btjson::getTrackersForTorrent(const QString& hash)
 
       tracker_list.append(tracker_dict);
     }
-  } catch(const std::exception&) {
-    qWarning() << "getTrackersForTorrent() called with invalid torrent";
+  } catch(const std::exception& e) {
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
     return QString();
   }
 
@@ -251,7 +261,7 @@ QString btjson::getTrackersForTorrent(const QString& hash)
  */
 QString btjson::getPropertiesForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE(JsonDict, data, CACHE_DURATION_MS);
+  CACHED_VARIABLE_FOR_HASH(JsonDict, data, CACHE_DURATION_MS, hash);
   try {
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
@@ -284,7 +294,8 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
     data.add(KEY_PROP_CONNECT_COUNT, QString(QString::number(h.num_connections()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit())) + ")"));
     const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
     data.add(KEY_PROP_RATIO, ratio > 100. ? QString::fromUtf8("∞") : QString::number(ratio, 'f', 1));
-  } catch(const std::exception&) {
+  } catch(const std::exception& e) {
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
     return QString();
   }
 
@@ -304,7 +315,7 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
  */
 QString btjson::getFilesForTorrent(const QString& hash)
 {
-  CACHED_VARIABLE(JsonList, file_list, CACHE_DURATION_MS);
+  CACHED_VARIABLE_FOR_HASH(JsonList, file_list, CACHE_DURATION_MS, hash);
   try {
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
     if (!h.has_metadata())
@@ -325,7 +336,8 @@ QString btjson::getFilesForTorrent(const QString& hash)
 
       file_list.append(file_dict);
     }
-  } catch (const std::exception&) {
+  } catch (const std::exception& e) {
+    qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
     return QString();
   }
 

@@ -49,10 +49,9 @@ void JsonDict::add(const QString& key, const QVariant& value)
 
 const QString& JsonDict::toString() const
 {
-  static QString str;
   if (m_dirty) {
-    str = "{" + m_items.join(",") + "}";
+    m_json = "{" + m_items.join(",") + "}";
     m_dirty = false;
   }
-  return str;
+  return m_json;
 }
