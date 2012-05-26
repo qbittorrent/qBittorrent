@@ -218,8 +218,8 @@ window.addEvent('load', function(){
                     },
                     onSuccess: function(info) {
                       if(info) {
-                        $("DlInfos").set('html', info.DlInfos);
-                        $("UpInfos").set('html', info.UpInfos);
+                        $("DlInfos").set('html', info.dl_info);
+                        $("UpInfos").set('html', info.up_info);
                         waitingTrInfo=false;
                         loadTransferInfo.delay(3000);
                       }

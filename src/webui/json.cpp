@@ -94,16 +94,6 @@ QString json::toJson(const QVariant& v) {
   }
 }
 
-// TODO: Remove
-QString json::toJson(const QVariantMap& m) {
-  QStringList vlist;
-  QVariantMap::ConstIterator it;
-  for (it = m.constBegin(); it != m.constEnd(); it++) {
-    vlist << toJson(it.key())+":"+toJson(it.value());
-  }
-  return "{"+vlist.join(",")+"}";
-}
-
 QVariantMap json::fromJson(const QString& json) {
   qDebug("JSON is %s", qPrintable(json));
   QVariantMap m;
@@ -164,18 +154,4 @@ QVariantMap json::fromJson(const QString& json) {
     }
   }
   return m;
-}
-
-// TODO: Remove
-QString json::toJson(const QList<QVariantMap>& v) {
-  QStringList res;
-  foreach (QVariantMap m, v) {
-    QStringList vlist;
-    QVariantMap::ConstIterator it;
-    for (it = m.constBegin(); it != m.constEnd(); it++) {
-      vlist << toJson(it.key())+":"+toJson(it.value());
-    }
-    res << "{"+vlist.join(",")+"}";
-  }
-  return "["+res.join(",")+"]";
 }

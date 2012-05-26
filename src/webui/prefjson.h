@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2006-2012  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,30 +28,20 @@
  * Contact : chris@qbittorrent.org
  */
 
+#ifndef PREFJSON_H
+#define PREFJSON_H
 
-#ifndef EVENTMANAGER_H
-#define EVENTMANAGER_H
+#include <QString>
 
-#include "qtorrenthandle.h"
-#include <QHash>
-#include <QVariant>
-
-class EventManager : public QObject
+class prefjson
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(EventManager)
-
-protected:
-  void update(QVariantMap event);
+private:
+  prefjson();
 
 public:
-  EventManager(QObject *parent);
-  QList<QVariantMap> getPropFilesInfo(QString hash) const;
-  QVariantMap getGlobalPreferences() const;
-  void setGlobalPreferences(QVariantMap m);
+  static QString getPreferences();
+  static void setPreferences(const QString& json);
 
-signals:
-  void localeChanged(const QString &locale);
 };
 
-#endif
+#endif // PREFJSON_H

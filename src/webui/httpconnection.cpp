@@ -31,10 +31,9 @@
 
 #include "httpconnection.h"
 #include "httpserver.h"
-#include "eventmanager.h"
 #include "preferences.h"
-#include "json.h"
 #include "btjson.h"
+#include "prefjson.h"
 #include "qbtsession.h"
 #include "misc.h"
 #ifndef DISABLE_GUI
@@ -160,7 +159,8 @@ void HttpConnection::translateDocument(QString& data) {
       QByteArray word = regex.cap(1).toLocal8Bit();
 
       QString translation = word;
-      if (m_httpserver->isTranslationNeeded()) {
+      bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
+      if (isTranslationNeeded) {
         int context_index = 0;
         do {
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
@@ -367,23 +367,16 @@ void HttpConnection::respondFilesPropertiesJson(const QString& hash) {
 }
 
 void HttpConnection::respondPreferencesJson() {
-  EventManager* manager =  m_httpserver->eventManager();
-  QString string = json::toJson(manager->getGlobalPreferences());
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(prefjson::getPreferences());
   write();
 }
 
 void HttpConnection::respondGlobalTransferInfoJson() {
-  QVariantMap info;
-  session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-  info["DlInfos"] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download));
-  info["UpInfos"] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload));
-  QString string = json::toJson(info);
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
-  m_generator.setMessage(string);
+  m_generator.setMessage(btjson::getTransferInfo());
   write();
 }
 
@@ -464,9 +457,7 @@ void HttpConnection::respondCommand(const QString& command) {
     return;
   }
   if (command == "setPreferences") {
-    QString json_str = m_parser.post("json");
-    EventManager* manager =  m_httpserver->eventManager();
-    manager->setGlobalPreferences(json::fromJson(json_str));
+    prefjson::setPreferences(m_parser.post("json"));
     return;
   }
   if (command == "setFilePrio") {

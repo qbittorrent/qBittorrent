@@ -31,7 +31,6 @@
 
 #include "httpserver.h"
 #include "httpconnection.h"
-#include "eventmanager.h"
 #include "qbtsession.h"
 #include <QCryptographicHash>
 #include <QTime>
@@ -89,16 +88,14 @@ void HttpServer::resetNbFailedAttemptsForIp(const QString& ip) {
   m_clientFailedAttempts.remove(ip);
 }
 
-HttpServer::HttpServer(QObject* parent) : QTcpServer(parent),
-  m_eventManager(new EventManager(this)) {
+HttpServer::HttpServer(QObject* parent) : QTcpServer(parent)
+{
 
   const Preferences pref;
 
   m_username = pref.getWebUiUsername().toLocal8Bit();
   m_passwordSha1 = pref.getWebUiPassword().toLocal8Bit();
   m_localAuthEnabled = pref.isWebUiLocalAuthEnabled();
-  m_needsTranslation = !Preferences().getLocale().startsWith("en");
-  connect(m_eventManager, SIGNAL(localeChanged(QString)), SLOT(onLocaleChanged(QString)));
 
   // HTTPS-related
 #ifndef QT_NO_OPENSSL
@@ -141,7 +138,6 @@ HttpServer::HttpServer(QObject* parent) : QTcpServer(parent),
 }
 
 HttpServer::~HttpServer() {
-  delete m_eventManager;
 }
 
 #ifndef QT_NO_OPENSSL
@@ -301,22 +297,10 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   return prop_response == response;
 }
 
-EventManager* HttpServer::eventManager() const {
-  return m_eventManager;
-}
-
 void HttpServer::setlocalAuthEnabled(bool enabled) {
   m_localAuthEnabled = enabled;
 }
 
 bool HttpServer::isLocalAuthEnabled() const {
   return m_localAuthEnabled;
-}
-
-bool HttpServer::isTranslationNeeded() {
-  return m_needsTranslation;
-}
-
-void HttpServer::onLocaleChanged(const QString &locale) {
-  m_needsTranslation = !locale.startsWith("en");
 }

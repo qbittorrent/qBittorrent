@@ -45,6 +45,7 @@ public:
   static QString getTrackersForTorrent(const QString& hash);
   static QString getPropertiesForTorrent(const QString& hash);
   static QString getFilesForTorrent(const QString& hash);
+  static QString getTransferInfo();
 }; // class btjson
 
 #endif // BTJSON_H

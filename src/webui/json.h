@@ -37,8 +37,6 @@
 namespace json {
 
   QString toJson(const QVariant& v);
-  QString toJson(const QVariantMap& m); // TODO: Remove
-  QString toJson(const QList<QVariantMap>& v); // TODO: Remove
   QVariantMap fromJson(const QString& json);
 
 } // namespace json

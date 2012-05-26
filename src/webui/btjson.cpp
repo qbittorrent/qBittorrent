@@ -103,6 +103,10 @@ static const char KEY_FILE_PROGRESS[] = "progress";
 static const char KEY_FILE_PRIORITY[] = "priority";
 static const char KEY_FILE_IS_SEED[] = "is_seed";
 
+// TransferInfo keys
+static const char KEY_TRANSFER_DLSPEED[] = "dl_info";
+static const char KEY_TRANSFER_UPSPEED[] = "up_info";
+
 static JsonDict toJson(const QTorrentHandle& h)
 {
   JsonDict ret;
@@ -342,4 +346,21 @@ QString btjson::getFilesForTorrent(const QString& hash)
   }
 
   return file_list.toString();
+}
+
+/**
+ * Returns the global transfer information in JSON format.
+ *
+ * The return value is a JSON-formatted dictionary.
+ * The dictionary keys are:
+ *   - "dl_info": Global download info
+ *   - "up_info": Global upload info
+ */
+QString btjson::getTransferInfo()
+{
+  CACHED_VARIABLE(JsonDict, info, CACHE_DURATION_MS);
+  session_status sessionStatus = QBtSession::instance()->getSessionStatus();
+  info.add(KEY_TRANSFER_DLSPEED, tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download)));
+  info.add(KEY_TRANSFER_UPSPEED, tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload)));
+  return info.toString();
 }
