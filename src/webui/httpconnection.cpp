@@ -103,7 +103,7 @@ void HttpConnection::read() {
     const int expected_length = m_parser.header().contentLength();
     QByteArray message = input.mid(header_end + 4, expected_length);
 
-    if (expected_length > 100000) {
+    if (expected_length > 10000000) {
       qWarning() << "Bad request: message too long";
       m_generator.setStatusLine(400, "Bad Request");
       input.clear();
