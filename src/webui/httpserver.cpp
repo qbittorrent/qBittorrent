@@ -55,7 +55,7 @@ public:
     setInterval(BAN_TIME);
   }
 
-  inline QString peerIp() const { return m_peerIp; }
+  inline const QString& peerIp() const { return m_peerIp; }
 
 private:
   QString m_peerIp;
@@ -93,8 +93,8 @@ HttpServer::HttpServer(QObject* parent) : QTcpServer(parent)
 
   const Preferences pref;
 
-  m_username = pref.getWebUiUsername().toLocal8Bit();
-  m_passwordSha1 = pref.getWebUiPassword().toLocal8Bit();
+  m_username = pref.getWebUiUsername().toUtf8();
+  m_passwordSha1 = pref.getWebUiPassword().toUtf8();
   m_localAuthEnabled = pref.isWebUiLocalAuthEnabled();
 
   // HTTPS-related
@@ -195,7 +195,7 @@ void HttpServer::handleNewConnection(QTcpSocket *socket)
 
 QString HttpServer::generateNonce() const {
   QCryptographicHash md5(QCryptographicHash::Md5);
-  md5.addData(QTime::currentTime().toString("hhmmsszzz").toLocal8Bit());
+  md5.addData(QTime::currentTime().toString("hhmmsszzz").toUtf8());
   md5.addData(":");
   md5.addData(QBT_REALM);
   return md5.result().toHex();
@@ -203,8 +203,8 @@ QString HttpServer::generateNonce() const {
 
 void HttpServer::setAuthorization(const QString& username,
                                   const QString& password_sha1) {
-  m_username = username.toLocal8Bit();
-  m_passwordSha1 = password_sha1.toLocal8Bit();
+  m_username = username.toUtf8();
+  m_passwordSha1 = password_sha1.toUtf8();
 }
 
 // Parse HTTP AUTH string
@@ -216,7 +216,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
   QRegExp regex_user(".*username=\"([^\"]+)\".*"); // Must be a quoted string
   if (regex_user.indexIn(auth) < 0) return false;
   QString prop_user = regex_user.cap(1);
-  //qDebug("AUTH: Proposed username is %s, real username is %s", prop_user.toLocal8Bit().data(), username.data());
+  //qDebug("AUTH: Proposed username is %s, real username is %s", qPrintable(prop_user), username.data());
   if (prop_user != m_username) {
     // User name is invalid, we can reject already
     qDebug("AUTH-PROB: Username is invalid");
@@ -228,7 +228,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
     qDebug("AUTH-PROB: Missing realm");
     return false;
   }
-  QByteArray prop_realm = regex_realm.cap(1).toLocal8Bit();
+  QByteArray prop_realm = regex_realm.cap(1).toUtf8();
   if (prop_realm != QBT_REALM) {
     qDebug("AUTH-PROB: Wrong realm");
     return false;
@@ -239,7 +239,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
     qDebug("AUTH-PROB: missing nonce");
     return false;
   }
-  QByteArray prop_nonce = regex_nonce.cap(1).toLocal8Bit();
+  QByteArray prop_nonce = regex_nonce.cap(1).toUtf8();
   //qDebug("prop nonce is: %s", prop_nonce.data());
   // get uri
   QRegExp regex_uri(".*uri=\"([^\"]+)\".*");
@@ -247,7 +247,7 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
     qDebug("AUTH-PROB: Missing uri");
     return false;
   }
-  QByteArray prop_uri = regex_uri.cap(1).toLocal8Bit();
+  QByteArray prop_uri = regex_uri.cap(1).toUtf8();
   //qDebug("prop uri is: %s", prop_uri.data());
   // get response
   QRegExp regex_response(".*response=[\"]?([\\w=]+)[\"]?.*");
@@ -255,11 +255,11 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
     qDebug("AUTH-PROB: Missing response");
     return false;
   }
-  QByteArray prop_response = regex_response.cap(1).toLocal8Bit();
+  QByteArray prop_response = regex_response.cap(1).toUtf8();
   //qDebug("prop response is: %s", prop_response.data());
   // Compute correct reponse
   QCryptographicHash md5_ha2(QCryptographicHash::Md5);
-  md5_ha2.addData(method.toLocal8Bit() + ":" + prop_uri);
+  md5_ha2.addData(method.toUtf8() + ":" + prop_uri);
   QByteArray ha2 = md5_ha2.result().toHex();
   QByteArray response = "";
   if (auth.contains("qop=")) {
@@ -270,21 +270,21 @@ bool HttpServer::isAuthorized(const QByteArray& auth,
       qDebug("AUTH-PROB: qop but missing nc");
       return false;
     }
-    QByteArray prop_nc = regex_nc.cap(1).toLocal8Bit();
+    QByteArray prop_nc = regex_nc.cap(1).toUtf8();
     //qDebug("prop nc is: %s", prop_nc.data());
     QRegExp regex_cnonce(".*cnonce=[\"]?([\\w=]+)[\"]?.*");
     if (regex_cnonce.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: qop but missing cnonce");
       return false;
     }
-    QByteArray prop_cnonce = regex_cnonce.cap(1).toLocal8Bit();
+    QByteArray prop_cnonce = regex_cnonce.cap(1).toUtf8();
     //qDebug("prop cnonce is: %s", prop_cnonce.data());
     QRegExp regex_qop(".*qop=[\"]?(\\w+)[\"]?.*");
     if (regex_qop.indexIn(auth) < 0) {
       qDebug("AUTH-PROB: missing qop");
       return false;
     }
-    QByteArray prop_qop = regex_qop.cap(1).toLocal8Bit();
+    QByteArray prop_qop = regex_qop.cap(1).toUtf8();
     //qDebug("prop qop is: %s", prop_qop.data());
     md5_ha.addData(m_passwordSha1+":"+prop_nonce+":"+prop_nc+":"+prop_cnonce+":"+prop_qop+":"+ha2);
     response = md5_ha.result().toHex();

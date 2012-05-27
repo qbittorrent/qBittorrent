@@ -156,7 +156,7 @@ void HttpConnection::translateDocument(QString& data) {
     i = regex.indexIn(data, i);
     if (i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
-      QByteArray word = regex.cap(1).toLocal8Bit();
+      QByteArray word = regex.cap(1).toUtf8();
 
       QString translation = word;
       bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
@@ -201,7 +201,7 @@ void HttpConnection::respond() {
     }
     //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
     if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0
-        || !m_httpserver->isAuthorized(auth.toLocal8Bit(), m_parser.header().method())) {
+        || !m_httpserver->isAuthorized(auth.toUtf8(), m_parser.header().method())) {
       // Update failed attempt counter
       m_httpserver->increaseNbFailedAttemptsForIp(peer_ip);
       qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail);
@@ -394,7 +394,7 @@ void HttpConnection::respondCommand(const QString& command) {
         if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
           emit MagnetReadyToBeDownloaded(url);
         } else {
-          qDebug("Downloading url: %s", (const char*)url.toLocal8Bit());
+          qDebug("Downloading url: %s", qPrintable(url));
           emit UrlReadyToBeDownloaded(url);
         }
       }

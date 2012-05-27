@@ -150,7 +150,7 @@ QVariantMap json::fromJson(const QString& json) {
         }
       }
       m.insert(key, value);
-      qDebug("%s:%s", key.toLocal8Bit().data(), value_str.toLocal8Bit().data());
+      qDebug("%s:%s", qPrintable(key), qPrintable(value_str));
     }
   }
   return m;
