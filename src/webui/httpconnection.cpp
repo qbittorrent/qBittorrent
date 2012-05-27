@@ -220,7 +220,7 @@ void HttpConnection::respond() {
     qDebug("Returning favicon");
     QFile favicon(":/Icons/skin/qbittorrent16.png");
     if (favicon.open(QIODevice::ReadOnly)) {
-      QByteArray data = favicon.readAll();
+      const QByteArray data = favicon.readAll();
       favicon.close();
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("png");
@@ -474,9 +474,9 @@ void HttpConnection::respondCommand(const QString& command) {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
 #if LIBTORRENT_VERSION_MINOR > 15
-    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
+    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
 #else
-    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->upload_rate_limit()));
+    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->upload_rate_limit()));
 #endif
     write();
     return;
@@ -485,9 +485,9 @@ void HttpConnection::respondCommand(const QString& command) {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
 #if LIBTORRENT_VERSION_MINOR > 15
-    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
+    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
 #else
-    m_generator.setMessage(QString::number(QBtSession::instance()->getSession()->download_rate_limit()));
+    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->download_rate_limit()));
 #endif
     write();
     return;
@@ -498,7 +498,7 @@ void HttpConnection::respondCommand(const QString& command) {
     if (h.is_valid()) {
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("html");
-      m_generator.setMessage(QString::number(h.upload_limit()));
+      m_generator.setMessage(QByteArray::number(h.upload_limit()));
       write();
     }
     return;
@@ -509,7 +509,7 @@ void HttpConnection::respondCommand(const QString& command) {
     if (h.is_valid()) {
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("html");
-      m_generator.setMessage(QString::number(h.download_limit()));
+      m_generator.setMessage(QByteArray::number(h.download_limit()));
       write();
     }
     return;

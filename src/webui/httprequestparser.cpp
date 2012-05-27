@@ -45,11 +45,11 @@ bool HttpRequestParser::isError() const {
   return m_error;
 }
 
-QString HttpRequestParser::url() const {
+const QString& HttpRequestParser::url() const {
   return m_path;
 }
 
-QByteArray HttpRequestParser::message() const {
+const QByteArray& HttpRequestParser::message() const {
   return m_data;
 }
 

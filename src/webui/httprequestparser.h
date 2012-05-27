@@ -32,7 +32,8 @@
 #ifndef HTTPREQUESTPARSER_H
 #define HTTPREQUESTPARSER_H
 
-#include<QHttpRequestHeader>
+#include <QHttpRequestHeader>
+#include <QHash>
 
 class HttpRequestParser {
 
@@ -40,22 +41,22 @@ public:
   HttpRequestParser();
   ~HttpRequestParser();
   bool isError() const;
-  QString url() const;
-  QByteArray message() const;
+  const QString& url() const;
+  const QByteArray& message() const;
   QString get(const QString& key) const;
   QString post(const QString& key) const;
   const QByteArray& torrent() const;
   void writeHeader(const QByteArray& ba);
   void writeMessage(const QByteArray& ba);
-  inline QHttpRequestHeader& header() { return m_header; }
+  inline const QHttpRequestHeader& header() const { return m_header; }
 
 private:
   QHttpRequestHeader m_header;
   bool m_error;
   QByteArray m_data;
   QString m_path;
-  QMap<QString, QString> m_postMap;
-  QMap<QString, QString> m_getMap;
+  QHash<QString, QString> m_postMap;
+  QHash<QString, QString> m_getMap;
   QByteArray m_torrentContent;
 };
 
