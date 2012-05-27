@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.10
     - BUGFIX: Fix possible crash when showing torrent content (closes #1002586)
     - BUGFIX: Remove 100kb limit for torrent file size in Web UI
+    - BUGFIX: Fix ratio limiting bug (closes #835217)
 
 * Sun May 20 - Christophe Dumez <chris@qbittorrent.org> - v2.9.9
     - BUGFIX: More reliable RSS feed parsing (closes #1001777)
