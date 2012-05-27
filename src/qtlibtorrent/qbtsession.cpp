@@ -272,10 +272,10 @@ void QBtSession::processBigRatios() {
       const QString hash = h.hash();
       const qreal ratio = getRealRatio(hash);
       qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
-      if (ratio_limit == TorrentPersistentData::NO_RATIO_LIMIT)
-        continue;
       if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO)
         ratio_limit = global_ratio_limit;
+      if (ratio_limit == TorrentPersistentData::NO_RATIO_LIMIT)
+        continue;
       qDebug("Ratio: %f (limit: %f)", ratio, ratio_limit);
       Q_ASSERT(ratio_limit >= 0.f);
       if (ratio <= MAX_RATIO && ratio >= ratio_limit) {
