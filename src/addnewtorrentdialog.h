@@ -35,9 +35,12 @@
 #include <QUrl>
 #include <libtorrent/torrent_info.hpp>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class AddNewTorrentDialog;
 }
+QT_END_NAMESPACE
+
 class TorrentContentModel;
 class PropListDelegate;
 
