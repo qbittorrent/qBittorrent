@@ -37,8 +37,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui {
     class ExecutionLog;
 }
-class LogListWidget;
 QT_END_NAMESPACE
+class LogListWidget;
 
 class ExecutionLog : public QWidget
 {
