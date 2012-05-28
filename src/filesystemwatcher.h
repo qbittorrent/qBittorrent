@@ -22,6 +22,7 @@
 #endif
 
 #include "fs_utils.h"
+#include "misc.h"
 
 #ifndef CIFS_MAGIC_NUMBER
 #define CIFS_MAGIC_NUMBER 0xFF534D42
@@ -118,7 +119,7 @@ private:
 
 public:
   FileSystemWatcher(QObject *parent): QFileSystemWatcher(parent) {
-    m_filters << "*.torrent";
+    m_filters << "*.torrent" << "*.magnet";
     connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(scanLocalFolder(QString)));
   }
 
@@ -271,7 +272,13 @@ private:
     const QStringList files = dir.entryList(m_filters, QDir::Files, QDir::Unsorted);
     foreach (const QString &file, files) {
       const QString file_abspath = dir.absoluteFilePath(file);
-      if (fsutils::isValidTorrentFile(file_abspath)) {
+      if (file_abspath.endsWith(".magnet")) {
+        QFile f(file_abspath);
+        if (f.open(QIODevice::ReadOnly)
+            && !misc::magnetUriToHash(QString::fromLocal8Bit(f.readAll())).isEmpty()) {
+          torrents << file_abspath;
+        }
+      } else if (fsutils::isValidTorrentFile(file_abspath)) {
         torrents << file_abspath;
       } else {
         if (!m_partialTorrents.contains(file_abspath)) {

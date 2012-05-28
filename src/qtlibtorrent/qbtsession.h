@@ -105,7 +105,7 @@ public:
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
-  QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false);
+  QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false, bool fromScanDir=false, const QString &filePath=QString());
   void loadSessionState();
   void saveSessionState();
   void downloadFromUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());

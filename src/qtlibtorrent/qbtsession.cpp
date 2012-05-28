@@ -924,7 +924,7 @@ void QBtSession::loadTorrentSettings(QTorrentHandle& h) {
 #endif
 }
 
-QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
+QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool fromScanDir, const QString &filePath) {
   Preferences pref;
   QTorrentHandle h;
   const QString hash(misc::magnetUriToHash(magnet_uri));
@@ -952,7 +952,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   add_torrent_params p = initializeAddTorrentParams(hash);
 
   // Get save path
-  const QString savePath(getSavePath(hash, false));
+  const QString savePath(getSavePath(hash, fromScanDir, filePath));
   if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
@@ -1742,6 +1742,17 @@ bool QBtSession::isFilePreviewPossible(const QString &hash) const {
 void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
   foreach (const QString &file, pathList) {
     qDebug("File %s added", qPrintable(file));
+    if (file.endsWith(".magnet")) {
+      QFile f(file);
+      if (!f.open(QIODevice::ReadOnly)) {
+        qDebug("Failed to open magnet file: %s", qPrintable(f.errorString()));
+      } else {
+        const QString link = QString::fromLocal8Bit(f.readAll());
+        addMagnetUri(link, false, true, file);
+        f.remove();
+      }
+      continue;
+    }
     try {
       torrent_info t(file.toUtf8().constData());
       if (t.is_valid())
