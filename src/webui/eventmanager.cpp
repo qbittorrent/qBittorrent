@@ -109,7 +109,10 @@ QList<QVariantMap> EventManager::getPropFilesInfo(QString hash) const {
   h.file_progress(fp);
   for(int i=0; i<h.num_files(); ++i) {
     QVariantMap file;
-    file["name"] = h.filename_at(i);
+    QString fileName = h.filename_at(i);
+    if (fileName.endsWith(".!qB"))
+      fileName.chop(4);
+    file["name"] = fileName;
     libtorrent::size_type size = h.filesize_at(i);
     file["size"] = misc::friendlyUnit((double)size);
     if(size > 0)
