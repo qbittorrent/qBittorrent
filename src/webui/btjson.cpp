@@ -330,7 +330,10 @@ QString btjson::getFilesForTorrent(const QString& hash)
     h.file_progress(fp);
     for (int i = 0; i < h.num_files(); ++i) {
       JsonDict file_dict;
-      file_dict.add(KEY_FILE_NAME, h.filename_at(i));
+      QString fileName = h.filename_at(i);
+      if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
+        fileName.chop(4);
+      file_dict.add(KEY_FILE_NAME, fileName);
       const size_type size = h.filesize_at(i);
       file_dict.add(KEY_FILE_SIZE, misc::friendlyUnit(size));
       file_dict.add(KEY_FILE_PROGRESS, (size > 0) ? (fp[i] / (double) size) : 1.);
