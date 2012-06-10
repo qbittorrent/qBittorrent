@@ -25,7 +25,7 @@
 	setUpLimit = function() {
 		var limit = $("uplimitUpdatevalue").get('html').toInt() * 1024;
 		if(hash == "global") {
-			new Request({url: '/command/setGlobalUpLimit',
+			new Request({url: 'command/setGlobalUpLimit',
 				    method: 'post',
 				    data: {'limit': limit},
 				    onComplete: function() {
@@ -33,7 +33,7 @@
 				    }
 			}).send();
 		}else {
-			new Request({url: '/command/setTorrentUpLimit',
+			new Request({url: 'command/setTorrentUpLimit',
 				    method: 'post',
 				    data: {'hash': hash, 'limit': limit},
 				    onComplete: function() {

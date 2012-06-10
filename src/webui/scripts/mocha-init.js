@@ -152,7 +152,7 @@ initializeWindows = function(){
 		var h = myTable.selectedIds();
 		/*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
 			h.each(function(item, index){
-				new Request({url: '/command/delete', method: 'post', data: {hash: item}}).send();
+				new Request({url: 'command/delete', method: 'post', data: {hash: item}}).send();
 			});
 		}*/
 		if(h.length) {
@@ -180,7 +180,7 @@ initializeWindows = function(){
 		var h = myTable.selectedIds();
 		if(h.length){
 			h.each(function(hash, index){
-			  new Request({url: '/command/pause', method: 'post', data: {hash: hash}}).send();
+			  new Request({url: 'command/pause', method: 'post', data: {hash: hash}}).send();
 			});
 		}
 	};
@@ -189,7 +189,7 @@ initializeWindows = function(){
 		var h = myTable.selectedIds();
 		if(h.length){
 			h.each(function(hash, index){
-			  new Request({url: '/command/resume', method: 'post', data: {hash: hash}}).send();
+			  new Request({url: 'command/resume', method: 'post', data: {hash: hash}}).send();
 			});
 		}
 	};
@@ -198,7 +198,7 @@ initializeWindows = function(){
 		var h = myTable.selectedIds();
 		if(h.length){
 			h.each(function(hash, index){
-			  new Request({url: '/command/recheck', method: 'post', data: {hash: hash}}).send();
+			  new Request({url: 'command/recheck', method: 'post', data: {hash: hash}}).send();
 			});
 		}
 	};
@@ -209,14 +209,14 @@ initializeWindows = function(){
 			var h = myTable.selectedIds();
 			if(h.length){
 				h.each(function(hash, index){
-				  new Request({url: '/command/'+item, method: 'post', data: {hash: hash}}).send();
+				  new Request({url: 'command/'+item, method: 'post', data: {hash: hash}}).send();
 				});
 			}
 		});
 		
 		addClickEvent(item+'All', function(e){
 			new Event(e).stop();
-			new Request({url: '/command/'+item+'all'}).send();
+			new Request({url: 'command/'+item+'all'}).send();
 		});
 	});
 
@@ -230,7 +230,7 @@ initializeWindows = function(){
 	setPriorityFN = function(cmd) {
 		var h = myTable.selectedIds();
 		if(h.length) {
-			new Request({url: '/command/'+cmd, method: 'post', data: {hashes: h.join("|")}}).send();
+			new Request({url: 'command/'+cmd, method: 'post', data: {hashes: h.join("|")}}).send();
 		}
 	}
 	
