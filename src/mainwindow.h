@@ -70,7 +70,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow{
 
 public:
   // Construct / Destruct
-  MainWindow(QWidget *parent=0, QStringList torrentCmdLine=QStringList());
+  MainWindow(QWidget *parent=0, const QStringList& torrentCmdLine = QStringList());
   ~MainWindow();
   // Methods
   QWidget* getCurrentTabWidget() const;

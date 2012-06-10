@@ -95,7 +95,7 @@ using namespace libtorrent;
  *****************************************************/
 
 // Constructor
-MainWindow::MainWindow(QWidget *parent, QStringList torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false) {
+MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false) {
   setupUi(this);
 
   Preferences pref;
