@@ -12,7 +12,7 @@
 	$('addTrackersButton').addEvent('click', function(e){
 		new Event(e).stop();
 		var hash = new URI().getData('hash');
-		new Request({url: '/command/addTrackers', method: 'post', data: {hash: hash, urls: $('trackersUrls').value},
+		new Request({url: 'command/addTrackers', method: 'post', data: {hash: hash, urls: $('trackersUrls').value},
 			onComplete: function() {
 				window.parent.document.getElementById('trackersPage').parentNode.removeChild(window.parent.document.getElementById('trackersPage'));
 			}

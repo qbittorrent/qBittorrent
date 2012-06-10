@@ -1043,7 +1043,7 @@ applyPreferences = function() {
   // Send it to qBT
   var json_str = JSON.encode(settings);
 
-  new Request({url: '/command/setPreferences',
+  new Request({url: 'command/setPreferences',
 			    method: 'post',
 			    data: {'json': json_str,
                                    },

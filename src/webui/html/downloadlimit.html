@@ -25,7 +25,7 @@
 	setDlLimit = function() {
 		var limit = $("dllimitUpdatevalue").get('html').toInt() * 1024;
 		if(hash == "global") {
-			new Request({url: '/command/setGlobalDlLimit',
+			new Request({url: 'command/setGlobalDlLimit',
 				    method: 'post',
 				    data: {'limit': limit},
 				    onComplete: function() {
@@ -33,7 +33,7 @@
 				    }
 			}).send();
 		} else {
-			new Request({url: '/command/setTorrentDlLimit',
+			new Request({url: 'command/setTorrentDlLimit',
 				    method: 'post',
 				    data: {'hash': hash, 'limit': limit},
 				    onComplete: function() {

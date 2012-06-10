@@ -45,9 +45,9 @@ window.addEvent('domready', function(){
         });
 	$('confirmBtn').addEvent('click', function(e){
 		new Event(e).stop();
-		var cmd = '/command/delete';
+		var cmd = 'command/delete';
                 if($('deleteFromDiskCB').get('checked'))
-			 cmd = '/command/deletePerm';
+			 cmd = 'command/deletePerm';
                 new Request({url: cmd, 
                              method: 'post', 
                              data: {hashes: hashes.join('|')},

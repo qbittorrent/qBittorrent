@@ -22,7 +22,7 @@ MochaUI.extend({
 			// Get global upload limit
 			var maximum = 500;
 			var req = new Request({
-				url: '/command/getGlobalUpLimit',
+				url: 'command/getGlobalUpLimit',
 				method: 'post',
 				data: {},
 				onSuccess: function(data) {
@@ -64,7 +64,7 @@ MochaUI.extend({
 						}
 					} else {
 						var req = new Request({
-							url: '/command/getTorrentUpLimit',
+							url: 'command/getTorrentUpLimit',
 							method: 'post',
 							data: {hash: hash},
 							onSuccess: function(data) {
@@ -109,7 +109,7 @@ MochaUI.extend({
 			// Get global upload limit
 			var maximum = 500;
 			var req = new Request({
-				url: '/command/getGlobalDlLimit',
+				url: 'command/getGlobalDlLimit',
 				method: 'post',
 				data: {},
 				onSuccess: function(data) {
@@ -151,7 +151,7 @@ MochaUI.extend({
 						}
 					} else {
 						var req = new Request({
-							url: '/command/getTorrentDlLimit',
+							url: 'command/getTorrentDlLimit',
 							method: 'post',
 							data: {hash: hash},
 							onSuccess: function(data) {
