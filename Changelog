@@ -3,6 +3,7 @@
     - BUGFIX: Remove 100kb limit for torrent file size in Web UI
     - BUGFIX: Fix ratio limiting bug (closes #835217)
     - BUGFIX: Do not display .!qB file extensions in Web UI
+    - BUGFIX: Stop using absolute URLs in Web UI ajax requests (closes #1011226)
 
 * Sun May 20 - Christophe Dumez <chris@qbittorrent.org> - v2.9.9
     - BUGFIX: More reliable RSS feed parsing (closes #1001777)
