@@ -60,7 +60,7 @@ void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
 		return;
 	}
   if (ext == "png") {
-		setContentType("image/x-png");
+		setContentType("image/png");
 		return;
 	}
 }
