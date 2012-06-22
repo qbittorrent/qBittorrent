@@ -906,42 +906,42 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
+        <translation type="obsolete">%1/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation>Çalışıyor</translation>
+        <translation type="obsolete">Çalışıyor</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Güncelleniyor...</translation>
+        <translation type="obsolete">Güncelleniyor...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Çalışmıyor</translation>
+        <translation type="obsolete">Çalışmıyor</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Daha bağlanılamadı</translation>
+        <translation type="obsolete">Daha bağlanılamadı</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation>bu oturum</translation>
+        <translation type="obsolete">bu oturum</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <translation type="obsolete">/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Gönderme zamanı: %1</translation>
+        <translation type="obsolete">Gönderme zamanı: %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>azami: %1</translation>
+        <translation type="obsolete">azami: %1</translation>
     </message>
 </context>
 <context>
@@ -1581,13 +1581,13 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translatorcomment>İndirme hızı: x KB/s - Aktarılan: x MB</translatorcomment>
-        <translation>İND: %1/s - Top: %2</translation>
+        <translation type="obsolete">İND: %1/s - Top: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translatorcomment>Gönderme hızı: x KB/s - Aktarılan: x MB</translatorcomment>
-        <translation>GÖN: %1/s - Top: %2</translation>
+        <translation type="obsolete">GÖN: %1/s - Top: %2</translation>
     </message>
 </context>
 <context>
@@ -5535,6 +5535,51 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">İndirilenler</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished">Çalışıyor</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished">Güncelleniyor...</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished">Çalışmıyor</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished">Daha bağlanılamadı</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished">bu oturum</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">azami: %1</translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">İND: %1/s - Top: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">GÖN: %1/s - Top: %2</translation>
     </message>
 </context>
 <context>

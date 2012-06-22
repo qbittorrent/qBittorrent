@@ -880,42 +880,42 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
+        <translation type="obsolete">%1/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation>Bezig</translation>
+        <translation type="obsolete">Bezig</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Updating...</translation>
+        <translation type="obsolete">Updating...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Niet bezig</translation>
+        <translation type="obsolete">Niet bezig</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Nog niet gecontacteerd</translation>
+        <translation type="obsolete">Nog niet gecontacteerd</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation>Deze sessie</translation>
+        <translation type="obsolete">Deze sessie</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <translation type="obsolete">/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Geseed voor %1</translation>
+        <translation type="obsolete">Geseed voor %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>%1 max</translation>
+        <translation type="obsolete">%1 max</translation>
     </message>
 </context>
 <context>
@@ -1497,12 +1497,12 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>D: %1/s - O: %2</translation>
+        <translation type="obsolete">D: %1/s - O: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>U: %1/s - O: %2</translation>
+        <translation type="obsolete">U: %1/s - O: %2</translation>
     </message>
 </context>
 <context>
@@ -5407,6 +5407,51 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">Downloads</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished">Bezig</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished">Updating...</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished">Niet bezig</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished">Nog niet gecontacteerd</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished">Deze sessie</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished">Geseed voor %1</translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">%1 max</translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">D: %1/s - O: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">U: %1/s - O: %2</translation>
     </message>
 </context>
 <context>

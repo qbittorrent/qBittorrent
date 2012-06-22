@@ -979,42 +979,42 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/с</translation>
+        <translation type="obsolete">%1/с</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation>Работает</translation>
+        <translation type="obsolete">Работает</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Обновляется...</translation>
+        <translation type="obsolete">Обновляется...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Не работает</translation>
+        <translation type="obsolete">Не работает</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Не соединился</translation>
+        <translation type="obsolete">Не соединился</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation>эта сессия</translation>
+        <translation type="obsolete">эта сессия</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/с</translation>
+        <translation type="obsolete">/с</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Раздается %1</translation>
+        <translation type="obsolete">Раздается %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>%1 макс</translation>
+        <translation type="obsolete">%1 макс</translation>
     </message>
 </context>
 <context>
@@ -1714,12 +1714,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Скач: %1/с - Перед: %2</translation>
+        <translation type="obsolete">Скач: %1/с - Перед: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Отдача: %1/с - Перед: %2</translation>
+        <translation type="obsolete">Отдача: %1/с - Перед: %2</translation>
     </message>
 </context>
 <context>
@@ -5748,6 +5748,51 @@ However, those plugins were disabled.</source>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">Загрузки</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation type="unfinished">/с</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished">Работает</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished">Обновляется...</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished">Не работает</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished">Не соединился</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished">эта сессия</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished">Раздается %1</translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">%1 макс</translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Скач: %1/с - Перед: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Отдача: %1/с - Перед: %2</translation>
     </message>
 </context>
 <context>

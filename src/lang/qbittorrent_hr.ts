@@ -1020,43 +1020,43 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     <name>EventManager</name>
     <message>
         <source>Working</source>
-        <translation>Radi</translation>
+        <translation type="obsolete">Radi</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Ažuriranje ...</translation>
+        <translation type="obsolete">Ažuriranje ...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Ne radi</translation>
+        <translation type="obsolete">Ne radi</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Nije još kontaktirano</translation>
+        <translation type="obsolete">Nije još kontaktirano</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation>ova sesija</translation>
+        <translation type="obsolete">ova sesija</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <translation type="obsolete">/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Seedano za %1</translation>
+        <translation type="obsolete">Seedano za %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>%1 najviše</translation>
+        <translation type="obsolete">%1 najviše</translation>
     </message>
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
+        <translation type="obsolete">%1/s</translation>
     </message>
 </context>
 <context>
@@ -1775,12 +1775,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Preuzimanje: %1/s - Preuzeto: %2</translation>
+        <translation type="obsolete">Preuzimanje: %1/s - Preuzeto: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Slanje: %1/s - Poslano: %2</translation>
+        <translation type="obsolete">Slanje: %1/s - Poslano: %2</translation>
     </message>
 </context>
 <context>
@@ -6176,6 +6176,51 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">Preuzimanja</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished">Radi</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished">Ažuriranje ...</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished">Ne radi</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished">ova sesija</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished">Seedano za %1</translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">%1 najviše</translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Preuzimanje: %1/s - Preuzeto: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Slanje: %1/s - Poslano: %2</translation>
     </message>
 </context>
 <context>

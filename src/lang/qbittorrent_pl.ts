@@ -956,42 +956,42 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     <message>
         <source>%1/s</source>
         <comment>e.g. 120 KiB/s</comment>
-        <translation>%1/s</translation>
+        <translation type="obsolete">%1/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation>Działa</translation>
+        <translation type="obsolete">Działa</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Aktualizowanie...</translation>
+        <translation type="obsolete">Aktualizowanie...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation>Nie działa</translation>
+        <translation type="obsolete">Nie działa</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Niesprawdzony</translation>
+        <translation type="obsolete">Niesprawdzony</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation>w tej sesji</translation>
+        <translation type="obsolete">w tej sesji</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
-        <translation>/s</translation>
+        <translation type="obsolete">/s</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Rozsiewany przez %1</translation>
+        <translation type="obsolete">Rozsiewany przez %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>max %1</translation>
+        <translation type="obsolete">max %1</translation>
     </message>
 </context>
 <context>
@@ -1668,12 +1668,12 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Pobieranie: %1/s - Pobrano: %2</translation>
+        <translation type="obsolete">Pobieranie: %1/s - Pobrano: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Wysyłanie: %1/s - Wysłano: %2</translation>
+        <translation type="obsolete">Wysyłanie: %1/s - Wysłano: %2</translation>
     </message>
 </context>
 <context>
@@ -5636,6 +5636,51 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">Pobieranie</translation>
+    </message>
+    <message>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation type="unfinished">/s</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished">Działa</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished">Aktualizowanie...</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished">Nie działa</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished">Niesprawdzony</translation>
+    </message>
+    <message>
+        <source>this session</source>
+        <translation type="unfinished">w tej sesji</translation>
+    </message>
+    <message>
+        <source>Seeded for %1</source>
+        <comment>e.g. Seeded for 3m10s</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 max</source>
+        <comment>e.g. 10 max</comment>
+        <translation type="unfinished">max %1</translation>
+    </message>
+    <message>
+        <source>D: %1/s - T: %2</source>
+        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Pobieranie: %1/s - Pobrano: %2</translation>
+    </message>
+    <message>
+        <source>U: %1/s - T: %2</source>
+        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
+        <translation type="unfinished">Wysyłanie: %1/s - Wysłano: %2</translation>
     </message>
 </context>
 <context>
