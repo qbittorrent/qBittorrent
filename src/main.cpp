@@ -307,6 +307,9 @@ int main(int argc, char *argv[]){
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
+#ifdef Q_WS_MAC
+  static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
+#endif // Q_WS_MAC
 #else
   // Load Headless class
   HeadlessLoader loader(torrentCmdLine);

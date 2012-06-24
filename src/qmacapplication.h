@@ -31,12 +31,14 @@
 #define QMACAPPLICATION_H
 
 #include "qtsingleapplication.h"
+#include <QStringList>
 
 class QMacApplication : public QtSingleApplication
 {
   Q_OBJECT
 public:
   explicit QMacApplication(QString appid, int &argc, char** argv);
+  void setReadyToProcessEvents();
 
 signals:
   void newFileOpenMacEvent(const QString &path);
@@ -44,6 +46,9 @@ signals:
 protected:
   bool event(QEvent *);
 
+private:
+  bool m_readyToProcessEvents;
+  QStringList m_torrentsQueue;
 };
 
 #endif // QMACAPPLICATION_H
