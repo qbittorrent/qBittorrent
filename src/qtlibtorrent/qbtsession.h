@@ -161,7 +161,7 @@ public slots:
 #endif
   void addPeerBanMessage(QString msg, bool from_ipfilter);
   void processDownloadedFile(QString, QString);
-  void addMagnetSkipAddDlg(const QString& uri);
+  void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString());
   void addMagnetInteractive(const QString& uri);
   void downloadFromURLList(const QStringList& urls);
   void configureSession();
