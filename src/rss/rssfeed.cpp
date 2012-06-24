@@ -314,7 +314,10 @@ void RssFeed::downloadMatchingArticleTorrents() {
       item.markAsRead();
       // Download the torrent
       QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item.title()).arg(displayName()));
-      QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
+      if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
+        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url);
+      else
+        QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
     }
   }
 }

@@ -2775,7 +2775,12 @@ void QBtSession::downloadFromURLList(const QStringList& urls) {
   }
 }
 
-void QBtSession::addMagnetSkipAddDlg(QString uri) {
+void QBtSession::addMagnetInteractive(const QString& uri)
+{
+  emit newMagnetLink(uri);
+}
+
+void QBtSession::addMagnetSkipAddDlg(const QString& uri) {
   addMagnetUri(uri, false);
 }
 

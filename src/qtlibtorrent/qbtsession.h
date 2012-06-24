@@ -164,7 +164,8 @@ public slots:
 #endif
   void addPeerBanMessage(QString msg, bool from_ipfilter);
   void processDownloadedFile(QString, QString);
-  void addMagnetSkipAddDlg(QString uri);
+  void addMagnetSkipAddDlg(const QString& uri);
+  void addMagnetInteractive(const QString& uri);
   void downloadFromURLList(const QStringList& urls);
   void configureSession();
   void banIP(QString ip);
@@ -205,6 +206,7 @@ signals:
   void trackerError(const QString &hash, QString time, QString msg);
   void trackerAuthenticationRequired(const QTorrentHandle& h);
   void newDownloadedTorrent(QString path, QString url);
+  void newMagnetLink(const QString& link);
   void updateFileSize(const QString &hash);
   void downloadFromUrlFailure(QString url, QString reason);
   void torrentFinishedChecking(const QTorrentHandle& h);
