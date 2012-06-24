@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v2.9.10
     - BUGFIX: Fix possible crash when showing torrent content (closes #1002586)
+    - BUGFIX: Add support for RSS feeds using magnet links (closes #1016379)
     - BUGFIX: Remove 100kb limit for torrent file size in Web UI
     - BUGFIX: Fix ratio limiting bug (closes #835217)
     - BUGFIX: Do not display .!qB file extensions in Web UI
