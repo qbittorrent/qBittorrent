@@ -326,23 +326,32 @@ void RSSImp::downloadTorrent() {
   foreach (const QListWidgetItem* item, selected_items) {
     RssArticlePtr article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
-    // Load possible cookies
-    QList<QNetworkCookie> cookies;
-    QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
-    QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
-    const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(feed_hostname);
-    foreach (const QByteArray& raw_cookie, raw_cookies) {
-      QList<QByteArray> cookie_parts = raw_cookie.split('=');
-      if (cookie_parts.size() == 2) {
-        qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
-        cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+
+    QString torrentLink;
+    if (article->hasAttachment())
+      torrentLink = article->torrentUrl();
+    else
+      torrentLink = article->link();
+
+    // Check if it is a magnet link
+    if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive))
+      QBtSession::instance()->addMagnetInteractive(torrentLink);
+    else {
+      // Load possible cookies
+      QList<QNetworkCookie> cookies;
+      QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
+      QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
+      const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(feed_hostname);
+      foreach (const QByteArray& raw_cookie, raw_cookies) {
+        QList<QByteArray> cookie_parts = raw_cookie.split('=');
+        if (cookie_parts.size() == 2) {
+          qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
+          cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+        }
       }
-    }
-    qDebug("Loaded %d cookies for RSS item\n", cookies.size());
-    if (article->hasAttachment()) {
-      QBtSession::instance()->downloadFromUrl(article->torrentUrl(), cookies);
-    } else {
-      QBtSession::instance()->downloadFromUrl(article->link(), cookies);
+      qDebug("Loaded %d cookies for RSS item\n", cookies.size());
+
+      QBtSession::instance()->downloadFromUrl(torrentLink, cookies);
     }
   }
 }
