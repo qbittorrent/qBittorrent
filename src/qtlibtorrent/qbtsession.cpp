@@ -181,7 +181,7 @@ QBtSession::QBtSession()
   const QString peer_id = "qB";
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
-  std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
+  //std::cout << "Peer ID: " << fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string() << std::endl;
   addConsoleMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
   // Set severity level of libtorrent session
@@ -445,7 +445,7 @@ void QBtSession::configureSession() {
   // * Session settings
   session_settings sessionSettings = s->settings();
   sessionSettings.user_agent = "qBittorrent "VERSION;
-  std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
+  //std::cout << "HTTP user agent is " << sessionSettings.user_agent << std::endl;
   addConsoleMessage(tr("HTTP user agent is %1").arg(misc::toQString(sessionSettings.user_agent)));
 
   sessionSettings.upnp_ignore_nonrouters = true;
