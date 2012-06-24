@@ -52,6 +52,8 @@
 	<string>qbittorrent</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2006-2012 Christophe Dumez</string>
 	<key>UTExportedTypeDeclarations</key>
