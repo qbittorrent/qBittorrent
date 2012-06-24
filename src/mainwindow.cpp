@@ -997,9 +997,10 @@ void MainWindow::processNewMagnetLink(const QString& link)
 {
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog)
-    AddNewTorrentDialog::showMagnet(link);
-  else
+  if (useTorrentAdditionDialog) {
+    torrentAdditionDialog *dialog = new torrentAdditionDialog(this);
+    dialog->showLoadMagnetURI(link);
+  } else
     QBtSession::instance()->addMagnetUri(link);
 }
 

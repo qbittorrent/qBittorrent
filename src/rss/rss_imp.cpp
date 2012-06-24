@@ -327,11 +327,7 @@ void RSSImp::downloadTorrent() {
     const RssArticle article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
 
-    QString torrentLink;
-    if (article->hasAttachment())
-      torrentLink = article->torrentUrl();
-    else
-      torrentLink = article->link();
+    QString torrentLink = article.hasAttachment() ? article.torrentUrl() : article.link();
 
     // Check if it is a magnet link
     if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive))
