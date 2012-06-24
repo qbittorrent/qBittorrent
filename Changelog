@@ -6,6 +6,7 @@
     - BUGFIX: Do not display .!qB file extensions in Web UI
     - BUGFIX: Stop using absolute URLs in Web UI ajax requests (closes #1011226)
     - BUGFIX: Fix torrent association and loading on Mac OS X (closes #1011229)
+    - BUGFIX: Fix unreversible "Minimize to tray" on some window managers (closes #917825)
 
 * Sun May 20 - Christophe Dumez <chris@qbittorrent.org> - v2.9.9
     - BUGFIX: More reliable RSS feed parsing (closes #1001777)
