@@ -972,7 +972,17 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed) {
   add_torrent_params p = initializeAddTorrentParams(hash);
 
   // Get save path
-  const QString savePath(getSavePath(hash, false));
+  QString savePath;
+  if (!resumed && savepathLabel_fromurl.contains(magnet_uri)) {
+    QPair<QString, QString> savePath_label = savepathLabel_fromurl.take(magnet_uri);
+    if(!savePath_label.first.isEmpty())
+      savePath = savePath_label.first;
+    // Remember label
+    if(!savePath_label.second.isEmpty())
+      TorrentTempData::setLabel(hash, savePath_label.second);
+  }
+  if (savePath.isEmpty())
+    savePath = getSavePath(hash, false);
   if(!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
@@ -2780,14 +2790,17 @@ void QBtSession::addMagnetInteractive(const QString& uri)
   emit newMagnetLink(uri);
 }
 
-void QBtSession::addMagnetSkipAddDlg(const QString& uri) {
+void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_path, const QString& label) {
+  if (!save_path.isEmpty() || !label.isEmpty())
+    savepathLabel_fromurl[uri] = qMakePair(save_path, label);
   addMagnetUri(uri, false);
 }
 
 void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label) {
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
-  savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
+  if (!save_path.isEmpty() || !label.isEmpty())
+    savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
   downloader->downloadTorrentUrl(url);

@@ -315,7 +315,7 @@ void RssFeed::downloadMatchingArticleTorrents() {
       // Download the torrent
       QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(item.title()).arg(displayName()));
       if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
-        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url);
+        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule.savePath(), matching_rule.label());
       else
         QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule.savePath(), matching_rule.label());
     }
