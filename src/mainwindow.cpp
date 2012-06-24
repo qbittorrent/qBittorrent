@@ -702,13 +702,6 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
           return;
       }
       show();
-      if(isMinimized()) {
-        if(isMaximized()) {
-          showMaximized();
-        }else{
-          showNormal();
-        }
-      }
       raise();
       activateWindow();
     }else{
@@ -818,7 +811,7 @@ bool MainWindow::event(QEvent * e) {
         // Iconify if there is no modal window
         if(!has_modal_window) {
           qDebug("Minimize to Tray enabled, hiding!");
-          e->accept();
+          e->ignore();
           QTimer::singleShot(0, this, SLOT(hide()));
           return true;
         }
