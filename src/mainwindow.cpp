@@ -701,9 +701,10 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
         if(!unlockUI())
           return;
       }
+      // Make sure the window is not minimized
+      setWindowState(windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+      // Then show it
       show();
-      raise();
-      activateWindow();
     }else{
       hide();
     }
