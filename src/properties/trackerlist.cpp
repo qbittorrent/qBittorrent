@@ -81,9 +81,9 @@ TrackerList::~TrackerList() {
 }
 
 QList<QTreeWidgetItem*> TrackerList::getSelectedTrackerItems() const {
-  QList<QTreeWidgetItem*> selected_items = selectedItems();
+  const QList<QTreeWidgetItem*> selected_items = selectedItems();
   QList<QTreeWidgetItem*> selected_trackers;
-  foreach (QTreeWidgetItem *item, selectedItems()) {
+  foreach (QTreeWidgetItem *item, selectedItems) {
     if (indexOfTopLevelItem(item) >= NB_STICKY_ITEM) { // Ignore STICKY ITEMS
       selected_trackers << item;
     }
@@ -188,11 +188,12 @@ void TrackerList::clear() {
 void TrackerList::loadStickyItems(const QTorrentHandle &h) {
   // XXX: libtorrent should provide this info...
   // Count peers from DHT, LSD, PeX
-  uint nb_dht=0, nb_lsd=0, nb_pex=0;
+  uint nb_dht = 0, nb_lsd = 0, nb_pex = 0;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
-  std::vector<peer_info>::iterator it;
-  for (it=peers.begin(); it!=peers.end(); it++) {
+  std::vector<peer_info>::iterator it = peers.begin();
+  std::vector<peer_info>::iterator end = peers.end();
+  for ( ; it != end; ++it) {
     if (it->source & peer_info::dht)
       ++nb_dht;
     if (it->source & peer_info::lsd)
@@ -233,7 +234,9 @@ void TrackerList::loadTrackers() {
   QHash<QString, TrackerInfos> trackers_data = QBtSession::instance()->getTrackersInfo(h.hash());
   QStringList old_trackers_urls = tracker_items.keys();
   const std::vector<announce_entry> trackers = h.trackers();
-  for (std::vector<announce_entry>::const_iterator it = trackers.begin(); it != trackers.end(); it++) {
+  std::vector<announce_entry>::const_iterator it = trackers.begin();
+  std::vector<announce_entry>::const_iterator end = trackers.end();
+  for ( ; it != end; ++it) {
     QString tracker_url = misc::toQString(it->url);
     QTreeWidgetItem *item = tracker_items.value(tracker_url, 0);
     if (!item) {
