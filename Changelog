@@ -1,3 +1,6 @@
+* Unreleased -  Christophe Dumez <chris@qbittorrent.org> - v2.9.11
+    - BUGFIX: Fix unreversible "Minimize to tray" on some window managers
+
 * Sun Jun 24 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.10
     - BUGFIX: Fix possible crash when showing torrent content (closes #1002586)
     - BUGFIX: Add support for RSS feeds using magnet links (closes #1016379)
