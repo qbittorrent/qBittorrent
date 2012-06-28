@@ -83,7 +83,7 @@ TrackerList::~TrackerList() {
 QList<QTreeWidgetItem*> TrackerList::getSelectedTrackerItems() const {
   const QList<QTreeWidgetItem*> selected_items = selectedItems();
   QList<QTreeWidgetItem*> selected_trackers;
-  foreach (QTreeWidgetItem *item, selectedItems) {
+  foreach (QTreeWidgetItem *item, selected_items) {
     if (indexOfTopLevelItem(item) >= NB_STICKY_ITEM) { // Ignore STICKY ITEMS
       selected_trackers << item;
     }
