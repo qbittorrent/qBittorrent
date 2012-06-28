@@ -556,7 +556,7 @@ void QTorrentHandle::downloading_pieces(bitfield &bf) const {
 
 bool QTorrentHandle::has_metadata() const {
 #if LIBTORRENT_VERSION_MINOR > 15
-  return torrent_handle::status(query_distributed_copies).has_metadata;
+  return torrent_handle::status(0x0).has_metadata;
 #else
   return torrent_handle::has_metadata();
 #endif
@@ -564,7 +564,7 @@ bool QTorrentHandle::has_metadata() const {
 
 float QTorrentHandle::distributed_copies() const {
 #if LIBTORRENT_VERSION_MINOR > 15
-return torrent_handle::status(0x0).distributed_copies;
+return torrent_handle::status(query_distributed_copies).distributed_copies;
 #else
   return torrent_handle::status().distributed_copies;
 #endif
