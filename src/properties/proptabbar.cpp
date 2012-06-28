@@ -39,6 +39,7 @@
 PropTabBar::PropTabBar(QWidget *parent) :
   QHBoxLayout(parent), m_currentIndex(-1)
 {
+  setSpacing(2);
   m_btnGroup = new QButtonGroup(this);
   // General tab
   QPushButton *main_infos_button = new QPushButton(IconProvider::instance()->getIcon("document-properties"), tr("General"), parent);
