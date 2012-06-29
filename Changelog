@@ -1,6 +1,7 @@
 * Unreleased -  Christophe Dumez <chris@qbittorrent.org> - v2.9.11
     - BUGFIX: Fix unreversible "Minimize to tray" on some window managers
     - BUGFIX: Fix torrent availability computation (closes #988869)
+    - BUGFIX: Bring window to front after restoring from systray
 
 * Sun Jun 24 2012 - Christophe Dumez <chris@qbittorrent.org> - v2.9.10
     - BUGFIX: Fix possible crash when showing torrent content (closes #1002586)
