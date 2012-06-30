@@ -56,7 +56,9 @@
 #include <sys/vfs.h>
 #endif
 #else
+#include <shlobj.h>
 #include <winbase.h>
+#include <QDesktopServices>
 #endif
 
 using namespace libtorrent;
