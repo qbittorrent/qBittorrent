@@ -64,6 +64,9 @@ public:
     setAcceptDrops(true);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     setStyleSheet("QListWidget { background: transparent; border: 0 }");
+#if defined(Q_WS_MAC)
+    setAttribute(Qt::WA_MacShowFocusRect, false);
+#endif
   }
 
   // Redefine addItem() to make sure the list stays sorted
@@ -161,6 +164,9 @@ public:
     // Height is fixed (sizeHint().height() is used)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     setStyleSheet("QListWidget { background: transparent; border: 0 }");
+#if defined(Q_WS_MAC)
+    setAttribute(Qt::WA_MacShowFocusRect, false);
+#endif
   }
 
 protected:
@@ -202,14 +208,12 @@ public:
     vLayout->addWidget(torrentsLabel);
     statusFilters = new StatusFiltersWidget(this);
     vLayout->addWidget(statusFilters);
-    statusFilters->setFocusPolicy(Qt::NoFocus);
     QLabel *labelsLabel = new QLabel(tr("Labels"));
     labelsLabel->setIndent(2);
     labelsLabel->setFont(font);
     vLayout->addWidget(labelsLabel);
     labelFilters = new LabelFiltersList(this);
     vLayout->addWidget(labelFilters);
-    labelFilters->setFocusPolicy(Qt::NoFocus);
     setLayout(vLayout);
     labelFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     statusFilters->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
