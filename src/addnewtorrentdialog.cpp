@@ -151,7 +151,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
   }
 
   // Set dialog title
-  setWindowTitle(misc::toQString(m_torrentInfo->name()));
+  setWindowTitle(misc::toQStringU(m_torrentInfo->name()));
 
   // Set torrent information
   QString comment = misc::toQString(m_torrentInfo->comment());
