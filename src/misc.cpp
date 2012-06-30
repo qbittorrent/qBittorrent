@@ -47,7 +47,6 @@
 #endif
 
 #ifdef Q_WS_WIN
-#include <shlobj.h>
 #include <windows.h>
 #include <PowrProf.h>
 const int UNLEN = 256;
@@ -67,10 +66,6 @@ const int UNLEN = 256;
 #include <QDBusMessage>
 #endif
 #endif // DISABLE_GUI
-
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-#include <QDesktopServices>
-#endif
 
 using namespace libtorrent;
 

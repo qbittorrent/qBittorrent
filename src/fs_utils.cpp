@@ -58,6 +58,9 @@
 #else
 #include <shlobj.h>
 #include <winbase.h>
+#endif
+
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
 #include <QDesktopServices>
 #endif
 
