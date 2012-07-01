@@ -615,17 +615,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
-        <source>Rename rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">ახალი წესის დამატება...</translation>
+        <translation type="unfinished">ახალი წესის დამატება...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -633,8 +624,9 @@ p, li { white-space: pre-wrap; }
         <translation>წესის წაშლა</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="obsolete">წესის გადარქმევა...</translation>
+        <translation type="unfinished">წესის გადარქმევა...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

@@ -595,17 +595,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
-        <source>Rename rule-&gt;..</source>
+        <source>Add new rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
         <source>Delete rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
+        <source>Rename rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

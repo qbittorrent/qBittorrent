@@ -651,17 +651,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
-        <source>Rename rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">Přidat nové pravidlo...</translation>
+        <translation type="unfinished">Přidat nové pravidlo...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -669,8 +660,9 @@ p, li { white-space: pre-wrap; }
         <translation>Smazat pravidlo</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="obsolete">Přejmenovat pravidlo...</translation>
+        <translation type="unfinished">Přejmenovat pravidlo...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

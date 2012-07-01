@@ -620,18 +620,17 @@ p, li { white-space: pre-wrap; }
         <translation>Пазначаны файл правілаў чамусьці не імпартуецца</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
         <source>Add new rule-&gt;..</source>
-        <translation>Дадаць новае правіла-&gt;..</translation>
+        <translation type="obsolete">Дадаць новае правіла-&gt;..</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule-&gt;..</source>
-        <translation>Пераназваць правіла-&gt;..</translation>
+        <translation type="obsolete">Пераназваць правіла-&gt;..</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
         <source>Add new rule...</source>
-        <translation type="obsolete">Дадаць новае правіла...</translation>
+        <translation type="unfinished">Дадаць новае правіла...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -639,8 +638,9 @@ p, li { white-space: pre-wrap; }
         <translation>Выдаліць правіла</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="obsolete">Перайменаваць правіла...</translation>
+        <translation type="unfinished">Перайменаваць правіла...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

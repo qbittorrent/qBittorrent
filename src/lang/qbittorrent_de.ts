@@ -647,17 +647,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
-        <source>Rename rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">Neue Regel hinzufügen...</translation>
+        <translation type="unfinished">Neue Regel hinzufügen...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -665,8 +656,9 @@ p, li { white-space: pre-wrap; }
         <translation>Regel löschen</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="obsolete">Regel umbenennen...</translation>
+        <translation type="unfinished">Regel umbenennen...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

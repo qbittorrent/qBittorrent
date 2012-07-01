@@ -508,7 +508,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">Adicionar nova regra...</translation>
+        <translation type="unfinished">Adicionar nova regra...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -516,7 +516,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="obsolete">Renomear regra...</translation>
+        <translation type="unfinished">Renomear regra...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -548,14 +548,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename rule-&gt;..</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

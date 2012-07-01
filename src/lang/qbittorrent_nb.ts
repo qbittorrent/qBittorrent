@@ -652,18 +652,17 @@ p, li { white-space: pre-wrap; }
         <translation>Importering av den valgte regelfilen mislyktes</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
         <source>Add new rule-&gt;..</source>
-        <translation>Legg til ny regel-&gt;..</translation>
+        <translation type="obsolete">Legg til ny regel-&gt;..</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule-&gt;..</source>
-        <translation>Omdøp regel-&gt;..</translation>
+        <translation type="obsolete">Omdøp regel-&gt;..</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
         <source>Add new rule...</source>
-        <translation type="obsolete">Legg til ny regel...</translation>
+        <translation type="unfinished">Legg til ny regel...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -671,8 +670,9 @@ p, li { white-space: pre-wrap; }
         <translation>Slett regel</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="obsolete">Omdøp regel...</translation>
+        <translation type="unfinished">Omdøp regel...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

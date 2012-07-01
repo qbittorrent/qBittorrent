@@ -503,11 +503,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add new rule-&gt;..</source>
+        <source>Add new rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rename rule-&gt;..</source>
+        <source>Rename rule...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

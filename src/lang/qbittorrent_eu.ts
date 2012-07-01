@@ -605,18 +605,26 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
-        <source>Add new rule-&gt;..</source>
-        <translation>Gehitu arau berria-&gt;..</translation>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
+        <source>Add new rule-&gt;..</source>
+        <translation type="obsolete">Gehitu arau berria-&gt;..</translation>
+    </message>
+    <message>
         <source>Rename rule-&gt;..</source>
-        <translation>Berrizendatu araua-&gt;..</translation>
+        <translation type="obsolete">Berrizendatu araua-&gt;..</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
         <source>Delete rule</source>
         <translation>Ezabatu araua</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>

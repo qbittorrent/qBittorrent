@@ -524,11 +524,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule-&gt;..</source>
-        <translation>Yeni kural ekle-&gt;..</translation>
+        <translation type="obsolete">Yeni kural ekle-&gt;..</translation>
     </message>
     <message>
         <source>Rename rule-&gt;..</source>
-        <translation>Kuralı yeniden adlandır-&gt;..</translation>
+        <translation type="obsolete">Kuralı yeniden adlandır-&gt;..</translation>
+    </message>
+    <message>
+        <source>Add new rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

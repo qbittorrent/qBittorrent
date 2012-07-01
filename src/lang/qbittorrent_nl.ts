@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">Voeg een nieuwe regel toe...</translation>
+        <translation type="unfinished">Voeg een nieuwe regel toe...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -528,7 +528,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="obsolete">Hernoem regel...</translation>
+        <translation type="unfinished">Hernoem regel...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -560,14 +560,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename rule-&gt;..</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

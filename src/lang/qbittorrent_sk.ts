@@ -115,155 +115,161 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pokročilý klient siete BitTorrent naprogramovaný v C++, založený na sade nástrojov Qt4 a libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Domovská stránka: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sledovanie chýb: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent na Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialóg</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť ako</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Nastaviť ako predvolenú cestu pre uloženie</translation>
+        <translation>Nastaviť ako predvolenú cestu pre uloženie</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Už nikdy nezobrazovať</translation>
     </message>
     <message utf8="true">
         <source>▼</source>
-        <translation type="unfinished"></translation>
+        <translation>▼</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia torrentu</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť torrent</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Označenie:</translation>
+        <translation>Označenie:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskočiť kontrolu hašu</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informácie o torrente</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Komentár:</translation>
+        <translation>Komentár:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normálna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Vysoká</translation>
+        <translation>Vysoká</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Maximálna</translation>
+        <translation>Maximálna</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Nesťahovať</translation>
+        <translation>Nesťahovať</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Iná...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>V/V chyba</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor .torrent zatiaľ neexistuje.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedostupný</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný odkaz Magnet</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento odkaz Magnet nebol rozpoznaný</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz Magnet</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Miesto na disku: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte cieľový adresár</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Premenovať súbor</translation>
+        <translation>Premenovať súbor</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Nový názov:</translation>
+        <translation>Nový názov:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné premenovať súbor</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
+        <translation>Tento názov súboru obsahuje nepovolené znaky. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov sa v tomto adresári už používa. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebolo možné premenovať priečinok</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Premenovať...</translation>
+        <translation>Premenovať...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodarilo sa načítať torrent: %1</translation>
     </message>
 </context>
 <context>
@@ -524,7 +530,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="obsolete">Pridať nové pravidlo...</translation>
+        <translation type="unfinished">Pridať nové pravidlo...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -532,7 +538,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="obsolete">Premenovať pravidlo...</translation>
+        <translation type="unfinished">Premenovať pravidlo...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -564,15 +570,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania-&gt;</translation>
     </message>
     <message>
         <source>Add new rule-&gt;..</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Pridať nové pravidlo-&gt;..</translation>
     </message>
     <message>
         <source>Rename rule-&gt;..</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Premenovať pravidlo-&gt;..</translation>
     </message>
 </context>
 <context>
@@ -872,7 +878,7 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váš dynamický DNS záznam bol úspešne aktualizovaný.</translation>
     </message>
 </context>
 <context>
@@ -3696,7 +3702,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
 </context>
 <context>
@@ -4236,19 +4242,19 @@ Chcete ho nainštalovať teraz?</translation>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Veľkosť</translation>
+        <translation>Veľkosť</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Priebeh</translation>
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorita</translation>
+        <translation>Priorita</translation>
     </message>
 </context>
 <context>
@@ -4711,11 +4717,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenty</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Označenia</translation>
     </message>
 </context>
 <context>
@@ -5606,7 +5612,7 @@ Tieto moduly však boli vypnuté.</translation>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Sťahovania</translation>
+        <translation>Sťahovania</translation>
     </message>
 </context>
 <context>
@@ -5676,47 +5682,47 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Pracuje sa</translation>
+        <translation>Pracuje sa</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Prebieha aktualizácia...</translation>
+        <translation>Prebieha aktualizácia...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">Nefunguje</translation>
+        <translation>Nepracuje sa</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Zatiaľ nekontaktovaný</translation>
+        <translation>Zatiaľ nekontaktovaný</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">táto relácia</translation>
+        <translation>táto relácia</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seedovanie trvalo %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation>max. %1</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Sťah.: %1/s - Pren.: %2</translation>
+        <translation>Sťah.: %1/s - Pren.: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Nahr.: %1/s - Pren.: %2</translation>
+        <translation>Nahr.: %1/s - Pren.: %2</translation>
     </message>
 </context>
 <context>
@@ -5809,7 +5815,7 @@ Tieto moduly však boli vypnuté.</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
 </context>
 <context>
