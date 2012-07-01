@@ -5,6 +5,7 @@
     - COSMETIC: Improve style of left panel
     - BUGFIX: Lower panels no longer gets disabled
     - BUGFIX: Major code refactoring and various optimizations.
+    - BUGFIX: No longer strip root folder from torrent files
     - OTHER: Drop support for libtorrent v0.14.x
     - OTHER: Drop support for Qt 4.5
 
