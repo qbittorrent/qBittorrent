@@ -149,11 +149,6 @@ p, li { white-space: pre-wrap; }
         <source>Never show again</source>
         <translation>Больш ніколі не паказваць</translation>
     </message>
-    <message utf8="true">
-        <location filename="../addnewtorrentdialog.ui" line="65"/>
-        <source>▼</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="75"/>
         <source>Torrent settings</source>

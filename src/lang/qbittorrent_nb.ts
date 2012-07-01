@@ -166,9 +166,8 @@ p, li { white-space: pre-wrap; }
         <translation>Aldri vis igjen</translation>
     </message>
     <message utf8="true">
-        <location filename="../addnewtorrentdialog.ui" line="65"/>
         <source>▼</source>
-        <translation>▼</translation>
+        <translation type="obsolete">▼</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="75"/>

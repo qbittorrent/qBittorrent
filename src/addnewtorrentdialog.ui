@@ -62,7 +62,7 @@
    <item>
     <widget class="QToolButton" name="adv_button">
      <property name="text">
-      <string>▼</string>
+      <string notr="true">▼</string>
      </property>
      <property name="checkable">
       <bool>true</bool>

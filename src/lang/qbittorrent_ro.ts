@@ -104,10 +104,6 @@ p, li { white-space: pre-wrap; }
         <source>Never show again</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <source>▼</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Torrent settings</source>
         <translation type="unfinished"></translation>

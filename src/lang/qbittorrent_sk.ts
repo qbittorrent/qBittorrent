@@ -144,7 +144,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message utf8="true">
         <source>▼</source>
-        <translation>▼</translation>
+        <translation type="obsolete">▼</translation>
     </message>
     <message>
         <source>Torrent settings</source>
