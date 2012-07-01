@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog
     - FEATURE: Add the ability to choose the save path when using magnet links (mutoso)
+    - FEATURE: Add support for adding multiple local torrents at once (Web UI)
     - COSMETIC: Improve style of left panel
     - BUGFIX: Lower panels no longer gets disabled
     - OTHER: Drop support for libtorrent v0.14.x

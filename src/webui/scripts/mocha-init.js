@@ -3,14 +3,14 @@
 	ATTACH MOCHA LINK EVENTS
 	Notes: Here is where you define your windows and the events that open them.
 	If you are not using links to run Mocha methods you can remove this function.
-	
+
 	If you need to add link events to links within windows you are creating, do
 	it in the onContentLoaded function of the new window.
 
    ----------------------------------------------------------------- */
 
 initializeWindows = function(){
-	
+
 	function addClickEvent(el, fn){
 		['Link','Button'].each(function(item) {
 			if ($(el+item)){
@@ -18,7 +18,7 @@ initializeWindows = function(){
 			}
 		});
 	}
-	
+
 	addClickEvent('download', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -36,7 +36,7 @@ initializeWindows = function(){
 			height: 300
 		});
 	});
-	
+
 	addClickEvent('preferences', function(e) {
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -58,7 +58,7 @@ initializeWindows = function(){
 			height: 300
 		});
 	});
-	
+
 	addClickEvent('upload', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -72,10 +72,10 @@ initializeWindows = function(){
 			paddingVertical: 0,
 			paddingHorizontal: 0,
 			width: 600,
-			height: 170
+			height: 130
 		});
 	});
-	
+
 	globalUploadLimitFN = function() {
 		new MochaUI.Window({
 				id: 'uploadLimitPage',
@@ -91,7 +91,7 @@ initializeWindows = function(){
 				height: 80
 			});
 	}
-	
+
 	uploadLimitFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -111,7 +111,7 @@ initializeWindows = function(){
 			});
 		}
 	};
-	
+
 	globalDownloadLimitFN = function() {
 		new MochaUI.Window({
 				id: 'downloadLimitPage',
@@ -127,7 +127,7 @@ initializeWindows = function(){
 				height: 80
 			});
 	}
-	
+
 	downloadLimitFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -147,7 +147,7 @@ initializeWindows = function(){
 			});
 		}
 	};
-	
+
 	deleteFN = function() {
 		var h = myTable.selectedIds();
 		/*if(h.length && confirm('_(Are you sure you want to delete the selected torrents from the transfer list?)')) {
@@ -175,7 +175,7 @@ initializeWindows = function(){
 		new Event(e).stop();
 		deleteFN();
 	});
-	
+
 	pauseFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -184,7 +184,7 @@ initializeWindows = function(){
 			});
 		}
 	};
-	
+
 	startFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -193,7 +193,7 @@ initializeWindows = function(){
 			});
 		}
 	};
-	
+
 	recheckFN = function() {
 		var h = myTable.selectedIds();
 		if(h.length){
@@ -213,7 +213,7 @@ initializeWindows = function(){
 				});
 			}
 		});
-		
+
 		addClickEvent(item+'All', function(e){
 			new Event(e).stop();
 			new Request({url: 'command/'+item+'all'}).send();
@@ -226,14 +226,14 @@ initializeWindows = function(){
 			setPriorityFN(item);
 		});
 	});
-	
+
 	setPriorityFN = function(cmd) {
 		var h = myTable.selectedIds();
 		if(h.length) {
 			new Request({url: 'command/'+cmd, method: 'post', data: {hashes: h.join("|")}}).send();
 		}
 	}
-	
+
 	addClickEvent('bug', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -245,7 +245,7 @@ initializeWindows = function(){
 			height: 400
 		});
 	});
-	
+
 	addClickEvent('site', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -257,7 +257,7 @@ initializeWindows = function(){
 			height: 400
 		});
 	});
-	
+
 	addClickEvent('docs', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -269,7 +269,7 @@ initializeWindows = function(){
 			height: 400
 		});
 	});
-	
+
 	addClickEvent('about', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
@@ -282,7 +282,7 @@ initializeWindows = function(){
 			padding: 10
 		});
 	});
-	
+
 	// Deactivate menu header links
 	$$('a.returnFalse').each(function(el){
 		el.addEvent('click', function(e){

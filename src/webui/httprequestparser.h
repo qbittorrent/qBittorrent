@@ -45,7 +45,7 @@ public:
   const QByteArray& message() const;
   QString get(const QString& key) const;
   QString post(const QString& key) const;
-  const QByteArray& torrent() const;
+  const QList<QByteArray>& torrents() const;
   void writeHeader(const QByteArray& ba);
   void writeMessage(const QByteArray& ba);
   inline const QHttpRequestHeader& header() const { return m_header; }
@@ -57,7 +57,7 @@ private:
   QString m_path;
   QHash<QString, QString> m_postMap;
   QHash<QString, QString> m_getMap;
-  QByteArray m_torrentContent;
+  QList<QByteArray> m_torrents;
 };
 
 #endif

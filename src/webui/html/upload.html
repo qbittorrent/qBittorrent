@@ -6,19 +6,58 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 <script type="text/javascript">
+
 function hideAll() {
   window.parent.closeWindows();
 }
+
+function uploadFiles(files) {
+	var xhr = new XMLHttpRequest();
+	if (xhr.upload) {
+		// file received/failed
+		xhr.onreadystatechange = function(e) {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200)
+					hideAll();
+				else
+					alert("Upload Failed!");
+			}
+		};
+		// start upload
+		var formData = new FormData();
+		for (var i = 0, file; file = files[i]; ++i) {
+    	formData.append(file.name, file);
+    }
+		xhr.open("POST", "command/upload", true);
+		xhr.send(formData);
+	}
+}
+// file selection
+function fileSelectHandler(e) {
+	// fetch FileList object
+	var files = e.target.files || e.dataTransfer.files;
+	// process all File objects
+	uploadFiles(files);
+}
+
+window.addEvent('load', function() {
+  $('fileselect').addEvent('change', fileSelectHandler);
+  // is XHR2 available?
+	var xhr = new XMLHttpRequest();
+	if (xhr.upload) {
+		$('submitbutton').addClass("invisible");
+	}
+});
 </script>
 </head>
 <body>
+<br/>
 <iframe id="upload_frame" name="upload_frame" style="width:1px;height:1px;border:0px;" src="javascript:false;"></iframe>
-<center>
-	<h1 class="vcenter"><img class="vcenter" title="Download local torrent" src="theme/list-add"/>_(Download local torrent)</h1>
 <form action="command/upload" enctype="multipart/form-data" method="post" id="uploadForm" target="upload_frame">
-  <input type="file" name="torrentfile" id="torrentfile" size="40"/><br/><br/>
-  <input type="submit" value="_(Download)" id="upButton"/>
+<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" /><br/>
+<div id="submitbutton">
+    <button type="submit">_(Upload Torrents)</button>
+</div
 </form>
-</center>
 </body>
 </html>

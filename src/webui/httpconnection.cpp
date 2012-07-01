@@ -419,23 +419,26 @@ void HttpConnection::respondCommand(const QString& command) {
   }
   if (command == "upload") {
     qDebug() << Q_FUNC_INFO << "upload";
-    // Get a unique filename
-    QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
-    tmpfile->setAutoRemove(false);
-    if (tmpfile->open()) {
-      QString filePath = tmpfile->fileName();
-      tmpfile->write(m_parser.torrent());
-      tmpfile->close();
-      // XXX: tmpfile needs to be deleted on Windows before using the file
-      // or it will complain that the file is used by another process.
-      delete tmpfile;
-      emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
-      // Clean up
-      QFile::remove(filePath);
-    } else {
-      std::cerr << "I/O Error: Could not create temporary file" << std::endl;
-      delete tmpfile;
-      return;
+    const QList<QByteArray>& torrents = m_parser.torrents();
+    foreach(const QByteArray& torrentContent, torrents) {
+      // Get a unique filename
+      QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+      tmpfile->setAutoRemove(false);
+      if (tmpfile->open()) {
+        QString filePath = tmpfile->fileName();
+        tmpfile->write(torrentContent);
+        tmpfile->close();
+        // XXX: tmpfile needs to be deleted on Windows before using the file
+        // or it will complain that the file is used by another process.
+        delete tmpfile;
+        emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
+        // Clean up
+        QFile::remove(filePath);
+      } else {
+        std::cerr << "I/O Error: Could not create temporary file" << std::endl;
+        delete tmpfile;
+        return;
+      }
     }
     // Prepare response
     m_generator.setStatusLine(200, "OK");
