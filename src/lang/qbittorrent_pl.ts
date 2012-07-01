@@ -453,7 +453,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Wprowadź nazwę dla tworzonej reguły.</translation>
+        <translation type="unfinished">Wprowadź nazwę dla tworzonej reguły.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -559,10 +559,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="unfinished">Tryb wzorca: można użyć &lt;ul&gt;&lt;li&gt;? dla dowolnego pojedynczego znaku&lt;/li&gt;&lt;li&gt;* dla dowolnej ilości znaków&lt;/li&gt;&lt;li&gt;Białe znaki są traktowane jako operatory OR&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

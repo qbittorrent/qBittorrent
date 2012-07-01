@@ -436,7 +436,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Por favor digite o nome da nova regra de download.</translation>
+        <translation type="unfinished">Por favor digite o nome da nova regra de download.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -541,10 +541,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Modo coringa: você pode usar&lt;ul&gt;&lt;li&gt;? para atingir um caracter&lt;/li&gt;&lt;li&gt;* para atingir zero ou mais de vários caracteres&lt;/li&gt;&lt;li&gt;| é usado como como operador OR&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

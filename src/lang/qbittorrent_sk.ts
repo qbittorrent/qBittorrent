@@ -462,7 +462,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
+        <translation type="unfinished">Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -570,7 +570,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania-&gt;</translation>
+        <translation type="obsolete">Prosím, napíšte nový názov pre tonto pravidlo sťahovania-&gt;</translation>
     </message>
     <message>
         <source>Add new rule-&gt;..</source>

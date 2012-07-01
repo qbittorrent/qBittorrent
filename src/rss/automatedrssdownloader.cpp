@@ -302,7 +302,7 @@ void AutomatedRssDownloader::saveEditedRule()
 void AutomatedRssDownloader::on_addRuleBtn_clicked()
 {
   // Ask for a rule name
-  const QString rule_name = QInputDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule->"));
+  const QString rule_name = QInputDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule."));
   if (rule_name.isEmpty()) return;
   // Check if this rule name already exists
   if (m_ruleList->getRule(rule_name)) {

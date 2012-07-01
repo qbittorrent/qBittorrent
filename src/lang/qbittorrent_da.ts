@@ -503,7 +503,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
-        <source>Please type the name of the new download rule-&gt;</source>
+        <source>Please type the name of the new download rule.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

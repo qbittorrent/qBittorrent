@@ -518,13 +518,9 @@ p, li { white-space: pre-wrap; }
         <translation>新しいルール名</translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">新しいダウンロードルールの名前を入力してください。</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished">新しいダウンロードルールの名前を入力してください。</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

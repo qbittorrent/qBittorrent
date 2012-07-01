@@ -490,7 +490,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Upišite ime novog pravila preuzimanja.</translation>
+        <translation type="unfinished">Upišite ime novog pravila preuzimanja.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -595,10 +595,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard mode: možete koristiti&lt;ul&gt;&lt;li&gt;? za podudaranje s bilo kojim pojedinim znakom&lt;/li&gt;&lt;li&gt;* za podudaranje s nula ili više drugih znakova&lt;/li&gt;&lt;li&gt;| se koristi kao OR operator&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Lütfen yeni indirme kuralı adını yazın-&gt;</translation>
+        <translation type="obsolete">Lütfen yeni indirme kuralı adını yazın-&gt;</translation>
     </message>
     <message>
         <source>Add new rule-&gt;..</source>
@@ -536,6 +536,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -495,15 +495,15 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add new rule...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rename rule...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please type the name of the new download rule.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

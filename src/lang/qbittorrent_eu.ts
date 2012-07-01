@@ -512,9 +512,13 @@ p, li { white-space: pre-wrap; }
         <translation>Arau izen berria</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Mesedez idatzi jeisketa arauaren izen berria-&gt;</translation>
+        <translation type="obsolete">Mesedez idatzi jeisketa arauaren izen berria-&gt;</translation>
+    </message>
+    <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

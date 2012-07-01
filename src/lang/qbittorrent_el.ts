@@ -552,13 +552,9 @@ p, li { white-space: pre-wrap; }
         <translation>Όνομα νέου κανόνα</translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Παρακαλώ εισάγετε το όνομα του νέου κανόνα κατεβασμάτων.</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished">Παρακαλώ εισάγετε το όνομα του νέου κανόνα κατεβασμάτων.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

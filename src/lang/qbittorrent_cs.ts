@@ -554,13 +554,9 @@ p, li { white-space: pre-wrap; }
         <translation>Nový název pravidla</translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Napište název nového pravidla stahování, prosím.</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished">Napište název nového pravidla stahování, prosím.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

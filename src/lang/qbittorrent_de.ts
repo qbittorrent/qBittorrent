@@ -550,13 +550,9 @@ p, li { white-space: pre-wrap; }
         <translation>Neuer Regelname</translation>
     </message>
     <message>
-        <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Bitte geben Sie einen neuen Namen für die Downloadregel ein.</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Please type the name of the new download rule.</source>
+        <translation type="unfinished">Bitte geben Sie einen neuen Namen für die Downloadregel ein.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

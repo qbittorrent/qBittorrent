@@ -524,13 +524,13 @@ p, li { white-space: pre-wrap; }
         <translation>Новае імя правіла</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Калі ласка, дайце імя новаму правілу сцягвання.</translation>
+        <translation type="unfinished">Калі ласка, дайце імя новаму правілу сцягвання.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Калі ласка, дайце імя новаму правілу сцягвання-&gt;</translation>
+        <translation type="obsolete">Калі ласка, дайце імя новаму правілу сцягвання-&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

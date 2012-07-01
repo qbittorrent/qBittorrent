@@ -560,13 +560,13 @@ p, li { white-space: pre-wrap; }
         <translation>Navn på ny regel</translation>
     </message>
     <message>
+        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Vennligst skriv navnet på den nye nedlastingsregelen.</translation>
+        <translation type="unfinished">Vennligst skriv navnet på den nye nedlastingsregelen.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation>Vennligst skriv navnet på den nye nedlastingsregelen-&gt;</translation>
+        <translation type="obsolete">Vennligst skriv navnet på den nye nedlastingsregelen-&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="309"/>

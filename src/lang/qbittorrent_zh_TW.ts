@@ -453,7 +453,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">請輸入新下載規則的名稱。</translation>
+        <translation type="unfinished">請輸入新下載規則的名稱。</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -558,10 +558,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>萬用字元模式: 你可以使用&lt;ul&gt;&lt;li&gt;? 來配對任何單一字元&lt;/li&gt;&lt;li&gt;* 來配對零或多個字元&lt;/li&gt;&lt;li&gt;| 視為 &quot;或&quot; 運算子&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

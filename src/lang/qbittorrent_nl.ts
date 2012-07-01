@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="obsolete">Type de naam van de nieuwe downloadregel.</translation>
+        <translation type="unfinished">Type de naam van de nieuwe downloadregel.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -553,10 +553,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Wildcard modus: u kan gebruikem maken van &lt;ul&gt;&lt;li&gt;? om één enkel teken voor te stellen&lt;/li&gt;&lt;li&gt;* om nul of meerdere tekens voor te stellen&lt;li&gt;&lt;li&gt;| wordt gebruikt als als OR operator&lt;li&gt;&lt;lu&gt;</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
