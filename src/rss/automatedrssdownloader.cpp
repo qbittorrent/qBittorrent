@@ -383,7 +383,7 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
 {
   Q_UNUSED(pos);
   QMenu menu;
-  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule->.."));
+  QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add new rule..."));
   QAction *delAct = 0;
   QAction *renameAct = 0;
   const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
@@ -391,7 +391,7 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
     if (selection.count() == 1) {
       delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete rule"));
       menu.addSeparator();
-      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule->.."));
+      renameAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename rule..."));
     } else {
       delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Delete selected rules"));
     }
