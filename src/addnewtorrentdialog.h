@@ -41,7 +41,7 @@ class AddNewTorrentDialog;
 }
 QT_END_NAMESPACE
 
-class TorrentContentModel;
+class TorrentContentFilterModel;
 class PropListDelegate;
 
 class AddNewTorrentDialog : public QDialog
@@ -75,7 +75,7 @@ private:
 
 private:
   Ui::AddNewTorrentDialog *ui;
-  TorrentContentModel *m_contentModel;
+  TorrentContentFilterModel *m_contentModel;
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
   QString m_filePath;

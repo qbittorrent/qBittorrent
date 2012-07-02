@@ -32,6 +32,7 @@
 #include "ui_addnewtorrentdialog.h"
 #include "proplistdelegate.h"
 #include "torrentcontentmodel.h"
+#include "torrentcontentfiltermodel.h"
 #include "preferences.h"
 #include "qinisettings.h"
 #include "torrentpersistentdata.h"
@@ -174,7 +175,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
   // Prepare content tree
   if (m_torrentInfo->num_files() > 1) {
-    m_contentModel = new TorrentContentModel(this);
+    m_contentModel = new TorrentContentFilterModel(this);
     connect(m_contentModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
     ui->content_tree->setModel(m_contentModel);
     ui->content_tree->hideColumn(PROGRESS);
@@ -184,7 +185,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     connect(ui->content_tree, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayContentTreeMenu(const QPoint&)));
 
     // List files in torrent
-    m_contentModel->setupModelData(*m_torrentInfo);
+    m_contentModel->model()->setupModelData(*m_torrentInfo);
 
     // Expand root folder
     ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
@@ -272,7 +273,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
   // Determine torrent size
   qulonglong torrent_size = 0;
   if (m_contentModel) {
-    const std::vector<int> priorities = m_contentModel->getFilesPriorities();
+    const std::vector<int> priorities = m_contentModel->model()->getFilesPriorities();
     Q_ASSERT(priorities.size() == (uint) m_torrentInfo->num_files());
     for (uint i=0; i<priorities.size(); ++i) {
       if (priorities[i] > 0)
@@ -531,7 +532,7 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
 
   // Save file priorities
   if (m_contentModel)
-    TorrentTempData::setFilesPriority(m_hash, m_contentModel->getFilesPriorities());
+    TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
 
   // Rename files if necessary
   if (m_hasRenamedFile)
