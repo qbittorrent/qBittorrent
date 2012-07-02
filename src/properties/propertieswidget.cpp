@@ -259,6 +259,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
       loadUrlSeeds();
       // List files in torrent
       PropListModel->model()->setupModelData(h.get_torrent_info());
+      filesList->setExpanded(PropListModel->index(0, 0), true);
     }
   } catch(invalid_handle& e) {
 
