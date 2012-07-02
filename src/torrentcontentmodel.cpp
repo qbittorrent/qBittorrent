@@ -109,7 +109,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
         item->setPriority(prio::IGNORED);
       else
         item->setPriority(prio::NORMAL);
-      emit dataChanged(this->index(0,0), this->index(rowCount(), columnCount()));
+      emit dataChanged(this->index(0,0), this->index(rowCount()-1, columnCount()-1));
       emit filteredFilesChanged();
     }
     return true;
