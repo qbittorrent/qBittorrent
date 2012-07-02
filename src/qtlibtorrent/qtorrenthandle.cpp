@@ -551,6 +551,18 @@ QString QTorrentHandle::firstFileSavePath() const {
   return fsave_path;
 }
 
+QString QTorrentHandle::root_path() const
+{
+  if (num_files() < 2)
+    return save_path();
+   QString first_filepath = filepath_at(0);
+   const int slashIndex = first_filepath.indexOf(QRegExp("[/\\\\]"));
+   QString root_folder;
+   if (slashIndex >= 0)
+     return QDir(save_path()).absoluteFilePath(first_filepath.left(slashIndex));
+   return save_path();
+}
+
 bool QTorrentHandle::has_error() const {
 #if LIBTORRENT_VERSION_MINOR > 15
   torrent_status st = torrent_handle::status(0x0);

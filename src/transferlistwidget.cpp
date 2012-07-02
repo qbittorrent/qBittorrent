@@ -402,16 +402,16 @@ void TransferListWidget::hidePriorityColumn(bool hide) {
 }
 
 void TransferListWidget::openSelectedTorrentsFolder() const {
-  QStringList pathsList;
+  QSet<QString> pathsList;
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach (const QString &hash, hashes) {
     const QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if (h.is_valid()) {
-      const QString savePath = h.save_path();
-      qDebug("Opening path at %s", qPrintable(savePath));
-      if (!pathsList.contains(savePath)) {
-        pathsList.append(savePath);
-        QDesktopServices::openUrl(QUrl::fromLocalFile(savePath));
+      QString rootFolder = h.root_path();
+      qDebug("Opening path at %s", qPrintable(rootFolder));
+      if (!pathsList.contains(rootFolder)) {
+        pathsList.insert(rootFolder);
+        QDesktopServices::openUrl(QUrl::fromLocalFile(rootFolder));
       }
     }
   }
