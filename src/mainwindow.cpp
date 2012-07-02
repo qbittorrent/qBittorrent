@@ -255,9 +255,13 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   readSettings();
 
   if (!ui_locked) {
-    if (pref.startMinimized() && systrayIcon)
-      showMinimized();
-    else {
+    if (pref.startMinimized() && systrayIcon) {
+      show();
+      minimizeWindow();
+      // XXX: Using showMinimized() makes it impossible to restore
+      // the window if "Minimize to systray" is enabled.
+      //showMinimized();
+    } else {
       show();
       activateWindow();
       raise();
