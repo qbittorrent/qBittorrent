@@ -557,7 +557,6 @@ QString QTorrentHandle::root_path() const
     return save_path();
    QString first_filepath = filepath_at(0);
    const int slashIndex = first_filepath.indexOf(QRegExp("[/\\\\]"));
-   QString root_folder;
    if (slashIndex >= 0)
      return QDir(save_path()).absoluteFilePath(first_filepath.left(slashIndex));
    return save_path();
