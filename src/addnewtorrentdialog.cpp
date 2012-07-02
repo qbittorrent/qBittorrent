@@ -176,7 +176,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
   // Prepare content tree
   if (m_torrentInfo->num_files() > 1) {
     m_contentModel = new TorrentContentFilterModel(this);
-    connect(m_contentModel, SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
+    connect(m_contentModel->model(), SIGNAL(filteredFilesChanged()), SLOT(updateDiskSpaceLabel()));
     ui->content_tree->setModel(m_contentModel);
     ui->content_tree->hideColumn(PROGRESS);
     m_contentDelegate = new PropListDelegate();
