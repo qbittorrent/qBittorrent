@@ -504,11 +504,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Olağan anlatımlar kullan</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished">Regex kipi: Perl gibi düzenli anlatımlar kullan</translation>
+        <translation>Regex kipi: Perl gibi düzenli anlatımlar kullan</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
@@ -532,15 +532,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni kural ekle...</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuralı yeniden adlandır...</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen yeni indirme kuralı adını yazın.</translation>
     </message>
 </context>
 <context>
@@ -2747,7 +2747,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Yönelticimden gönderirken UPnP / NAT-PMP portunu kullan</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -2883,7 +2883,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Portumu yönelticimden yönlendirirken UPnP / NAT-PMP kullan</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -2935,7 +2935,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlanmamış dosya adlarında .!qB soneki olsun</translation>
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
@@ -4827,7 +4827,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation>Grup düğmesi</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
@@ -5551,47 +5551,47 @@ Bununla birlikte, o eklentiler devre dışı.</translation>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Çalışıyor</translation>
+        <translation>Çalışıyor</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Güncelleniyor...</translation>
+        <translation>Güncelleniyor...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">Çalışmıyor</translation>
+        <translation>Çalışmıyor</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Daha bağlanılamadı</translation>
+        <translation>Daha bağlanılamadı</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">bu oturum</translation>
+        <translation>bu oturum</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gönderildiği zaman: %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">azami: %1</translation>
+        <translation>azami: %1</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">İND: %1/s - Top: %2</translation>
+        <translation>İnd: %1/s - Top: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">GÖN: %1/s - Top: %2</translation>
+        <translation>Gön: %1/s - Top: %2</translation>
     </message>
 </context>
 <context>
