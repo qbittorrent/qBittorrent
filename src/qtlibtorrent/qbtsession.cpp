@@ -1271,7 +1271,7 @@ add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
     p.storage_mode = storage_mode_sparse;
 
   // Priorities
-#if LIBTORRENT_VERSION_MINOR > 15
+/*#if LIBTORRENT_VERSION_MINOR > 15
   if (TorrentTempData::hasTempData(hash)) {
     std::vector<int> fp;
     TorrentTempData::getFilesPriority(hash, fp);
@@ -1283,7 +1283,7 @@ add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
       p.file_priorities = fp_conv;
     }
   }
-#endif
+#endif*/
 
   // Start in pause
   p.paused = true;
@@ -1303,12 +1303,10 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
 
     // The following is useless for newly added magnet
     if (!magnet) {
-#if LIBTORRENT_VERSION_MINOR < 16
       // Files priorities
       vector<int> fp;
       TorrentTempData::getFilesPriority(hash, fp);
       h.prioritize_files(fp);
-#endif
 
       // Prioritize first/last piece
       h.prioritize_first_last_piece(TorrentTempData::isSequential(hash));
