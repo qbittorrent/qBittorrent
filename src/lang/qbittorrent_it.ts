@@ -226,102 +226,102 @@ p, li { white-space: pre-wrap; }
         <translation>Non scaricare</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="69"/>
+        <location filename="../addnewtorrentdialog.cpp" line="70"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Altro...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="141"/>
+        <location filename="../addnewtorrentdialog.cpp" line="142"/>
         <source>I/O Error</source>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="141"/>
+        <location filename="../addnewtorrentdialog.cpp" line="142"/>
         <source>The torrent file does not exist.</source>
         <translation>Il file torrent non esiste.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="149"/>
+        <location filename="../addnewtorrentdialog.cpp" line="150"/>
         <source>Invalid torrent</source>
         <translation>Torrent non valido</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="149"/>
+        <location filename="../addnewtorrentdialog.cpp" line="150"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Caricamento torrent %1 fallito</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="159"/>
+        <location filename="../addnewtorrentdialog.cpp" line="160"/>
         <source>Not available</source>
         <translation>Non disponibile</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="216"/>
+        <location filename="../addnewtorrentdialog.cpp" line="217"/>
         <source>Invalid magnet link</source>
         <translation>Magnet link non valido</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="216"/>
+        <location filename="../addnewtorrentdialog.cpp" line="217"/>
         <source>This magnet link was not recognized</source>
         <translation>Questo magnet link non è stato riconosciuto</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="222"/>
+        <location filename="../addnewtorrentdialog.cpp" line="223"/>
         <source>Magnet link</source>
         <translation>Magnet link</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="286"/>
+        <location filename="../addnewtorrentdialog.cpp" line="287"/>
         <source>Disk space: %1</source>
         <translation>Spazio su disco: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="304"/>
-        <location filename="../addnewtorrentdialog.cpp" line="311"/>
-        <location filename="../addnewtorrentdialog.cpp" line="313"/>
+        <location filename="../addnewtorrentdialog.cpp" line="305"/>
+        <location filename="../addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../addnewtorrentdialog.cpp" line="314"/>
         <source>Choose save path</source>
         <translation>Scegliere una directory di salvataggio</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="362"/>
+        <location filename="../addnewtorrentdialog.cpp" line="363"/>
         <source>Rename the file</source>
         <translation>Rinomina file</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="364"/>
         <source>New name:</source>
         <translation>Nuovo nome:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="367"/>
-        <location filename="../addnewtorrentdialog.cpp" line="393"/>
+        <location filename="../addnewtorrentdialog.cpp" line="368"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>The file could not be renamed</source>
         <translation>Impossibile rinominare il file</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
+        <location filename="../addnewtorrentdialog.cpp" line="369"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Questo nome contiene caratteri sconosciuti, per favore scegline un altro.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
+        <location filename="../addnewtorrentdialog.cpp" line="430"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Questo nome è già in uso in questa cartella. Per favore sceglierne un altro.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="428"/>
+        <location filename="../addnewtorrentdialog.cpp" line="429"/>
         <source>The folder could not be renamed</source>
         <translation>La cartella non può essere rinominata</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="480"/>
+        <location filename="../addnewtorrentdialog.cpp" line="481"/>
         <source>Rename...</source>
         <translation>Rinomina...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="484"/>
+        <location filename="../addnewtorrentdialog.cpp" line="485"/>
         <source>Priority</source>
         <translation>Priorità</translation>
     </message>
@@ -3869,7 +3869,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <translation type="obsolete">File</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="465"/>
+        <location filename="../properties/propertieswidget.cpp" line="466"/>
         <source>Priority</source>
         <translation>Priorità</translation>
     </message>
@@ -3889,101 +3889,101 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="322"/>
         <location filename="../properties/propertieswidget.cpp" line="323"/>
+        <location filename="../properties/propertieswidget.cpp" line="324"/>
         <source>this session</source>
         <translation>questa sessione</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="327"/>
-        <location filename="../properties/propertieswidget.cpp" line="331"/>
+        <location filename="../properties/propertieswidget.cpp" line="328"/>
+        <location filename="../properties/propertieswidget.cpp" line="332"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="334"/>
+        <location filename="../properties/propertieswidget.cpp" line="335"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Condiviso per %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="338"/>
+        <location filename="../properties/propertieswidget.cpp" line="339"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>Max %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="426"/>
-        <location filename="../properties/propertieswidget.cpp" line="446"/>
+        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="447"/>
         <source>I/O Error</source>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="426"/>
+        <location filename="../properties/propertieswidget.cpp" line="427"/>
         <source>This file does not exist yet.</source>
         <translation>Questo file non esiste ancora.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="446"/>
+        <location filename="../properties/propertieswidget.cpp" line="447"/>
         <source>This folder does not exist yet.</source>
         <translation>Questa cartella non esiste ancora.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="456"/>
+        <location filename="../properties/propertieswidget.cpp" line="457"/>
         <source>Rename...</source>
         <translation>Rinomina...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="507"/>
+        <location filename="../properties/propertieswidget.cpp" line="508"/>
         <source>Rename the file</source>
         <translation>Rinomina file</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="508"/>
+        <location filename="../properties/propertieswidget.cpp" line="509"/>
         <source>New name:</source>
         <translation>Nuovo nome:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="512"/>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
         <source>The file could not be renamed</source>
         <translation>Impossibile rinominare il file</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Il nome di questo file contiene caratteri vietati, per favore scegli un nome  differente.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
-        <location filename="../properties/propertieswidget.cpp" line="582"/>
+        <location filename="../properties/propertieswidget.cpp" line="545"/>
+        <location filename="../properties/propertieswidget.cpp" line="583"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Questo nome è già in uso in questa cartella. Per favore sceglierne un altro.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="581"/>
+        <location filename="../properties/propertieswidget.cpp" line="582"/>
         <source>The folder could not be renamed</source>
         <translation>Impossibile rinominare cartella</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="620"/>
+        <location filename="../properties/propertieswidget.cpp" line="621"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nuovo seed web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="621"/>
+        <location filename="../properties/propertieswidget.cpp" line="622"/>
         <source>New url seed:</source>
         <translation>Nuovo seed web:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="626"/>
+        <location filename="../properties/propertieswidget.cpp" line="627"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="628"/>
         <source>This url seed is already in the list.</source>
         <translation>Questo seed web è già nella lista.</translation>
     </message>
