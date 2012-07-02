@@ -82,7 +82,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;BitTorrent bezero aurreratu bat C++en  programatuta, Qt4 toolkit eta libtorrent-rasterbar-en ohinarrituta. &lt;br /&gt;&lt;br /&gt;Copyrighta ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Webgunea: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Garbiketa Aztarnaria: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Eztabaidagunea: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="190"/>
@@ -120,182 +120,186 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Elkarrizketa</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="32"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Gorde honela</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="48"/>
         <source>Set as default save path</source>
-        <translation type="unfinished">Ezarri berezko gordetze helburu bezala</translation>
+        <translation>Ezarri berezko gordetze helburu bezala</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="58"/>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez erakutsi berriro</translation>
+    </message>
+    <message utf8="true">
+        <source>▼</source>
+        <translation type="obsolete">▼</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="75"/>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent ezarpenak</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="81"/>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasi torrenta</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="93"/>
         <source>Label:</source>
-        <translation type="unfinished">Etiketa:</translation>
+        <translation>Etiketa:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="112"/>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Jausi hash egiaztapena</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="122"/>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Argibideak</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="130"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neurria:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="144"/>
         <source>Comment:</source>
-        <translation type="unfinished">Aipamena:</translation>
+        <translation>Aipamena:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="158"/>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eguna:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="220"/>
         <source>Normal</source>
-        <translation type="unfinished">Arrunta</translation>
+        <translation>Arrunta</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="225"/>
         <source>High</source>
-        <translation type="unfinished">Handia</translation>
+        <translation>Handia</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="230"/>
         <source>Maximum</source>
-        <translation type="unfinished">Gehiena</translation>
+        <translation>Gehiena</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="235"/>
         <source>Do not download</source>
-        <translation type="unfinished">Ez jeitsi</translation>
+        <translation>Ez jeitsi</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="69"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Besterik...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="141"/>
         <source>I/O Error</source>
-        <translation type="unfinished">S/I Akatsa</translation>
+        <translation>S/I Akatsa</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="141"/>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent agiria ez dago.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="149"/>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent baliogabea</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="149"/>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hutsegitea torreta gertatzerakoan: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="159"/>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Eskuraezina</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="216"/>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet lotura baliogabea</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="216"/>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet lotura hau ez da ezagutu</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="222"/>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet lotura</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskako tokia: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="304"/>
         <location filename="../addnewtorrentdialog.cpp" line="311"/>
         <location filename="../addnewtorrentdialog.cpp" line="313"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Hautatu gordetze helburua</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="362"/>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Berrizendatu agiria</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="363"/>
         <source>New name:</source>
-        <translation type="unfinished">Izen berria:</translation>
+        <translation>Izen berria:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="367"/>
         <location filename="../addnewtorrentdialog.cpp" line="393"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished">Agiria ezin da berrizendatu</translation>
+        <translation>Agiria ezin da berrizendatu</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="368"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
+        <translation>Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <location filename="../addnewtorrentdialog.cpp" line="429"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished">Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
+        <translation>Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="428"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">Agiritegia ezin da berrizendatua izan</translation>
+        <translation>Agiritegia ezin da berrizendatu</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="480"/>
         <source>Rename...</source>
-        <translation type="unfinished">Berrizendatu...</translation>
+        <translation>Berrizendatu...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="484"/>
         <source>Priority</source>
-        <translation type="unfinished">Lehentasuna</translation>
+        <translation>Lehentasuna</translation>
     </message>
 </context>
 <context>
@@ -513,7 +517,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="obsolete">Mesedez idatzi jeisketa arauaren izen berria-&gt;</translation>
+        <translation type="obsolete">Mesedez idatzi jeisketa arau berriaren izena-&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
@@ -858,44 +862,12 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
 <context>
     <name>EventManager</name>
     <message>
-        <source>Working</source>
-        <translation type="obsolete">Lanean</translation>
+        <source>General</source>
+        <translation type="obsolete">Orokorra</translation>
     </message>
     <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Eguneratzen...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Lan gabe</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Harremandu gabe oraindik</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation type="obsolete">saio hau</translation>
-    </message>
-    <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation type="obsolete">/s</translation>
-    </message>
-    <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="obsolete">Emarituta %1</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation type="obsolete">%1 geh</translation>
-    </message>
-    <message>
-        <source>%1/s</source>
-        <comment>e.g. 120 KiB/s</comment>
-        <translation type="obsolete">%1/s</translation>
+        <source>Blocked IPs</source>
+        <translation type="obsolete">Eragotzitako IP-ak</translation>
     </message>
 </context>
 <context>
@@ -903,12 +875,12 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../executionlog.ui" line="27"/>
         <source>General</source>
-        <translation>Orokorra</translation>
+        <translation type="unfinished">Orokorra</translation>
     </message>
     <message>
         <location filename="../executionlog.ui" line="33"/>
         <source>Blocked IPs</source>
-        <translation>Eragotzitako IP-ak</translation>
+        <translation type="unfinished">Eragotzitako IP-ak</translation>
     </message>
 </context>
 <context>
@@ -921,7 +893,7 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation>Irakurri gabea</translation>
+        <translation>Irakurri gabeak</translation>
     </message>
 </context>
 <context>
@@ -958,16 +930,6 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
         <location filename="../webui/httpconnection.cpp" line="189"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Zure IP helbidea eragotzia izan da egiaztapen saiakera askoren ondoren.</translation>
-    </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">J: %1/s - G: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">I: %1/s - G: %2</translation>
     </message>
 </context>
 <context>
@@ -1279,7 +1241,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../mainwindow.ui" line="64"/>
         <source>Auto-Shutdown on downloads completion</source>
-        <translation>Berez-Itzalketa jeisketak osotutakoan</translation>
+        <translation>Berez-Itzalketa jeisketak osatutakoan</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -2254,7 +2216,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="913"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Zerbitzari honek elkarketa segurua behar  du (SSL)</translation>
+        <translation>Zerbitzari honek elkarketa segurua behar du (SSL)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="925"/>
@@ -2300,7 +2262,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../preferences/options.ui" line="1685"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>hemendik</translation>
+        <translation>Hemendik</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1753"/>
@@ -2821,10 +2783,6 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <source>This url seed is already in the list.</source>
         <translation>Url emaritza hau jadanik zerrendan dago.</translation>
     </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Hautatu gordetze helburua</translation>
-    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -2894,7 +2852,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="566"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Tokiko Hartzaile Haurkikuntza sostengua [EZ]</translation>
+        <translation>Tokiko Hartzaile Aurkikuntza sostengua [EZ]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="578"/>
@@ -2988,7 +2946,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2809"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+        <translation>Emandako IP iragazkia ongi aztertu da: %1 arau ezarri dira.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2815"/>
@@ -3016,7 +2974,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="563"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>Tokiko Hartzaile Haurkikuntza sostengua [BAI]</translation>
+        <translation>Tokiko Hartzaile Aurkikuntza sostengua [BAI]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
@@ -4190,12 +4148,12 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistfilterswidget.h" line="206"/>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentak</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="212"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labelak</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="226"/>
@@ -4565,89 +4523,6 @@ Please install it manually.</source>
         <location filename="../properties/peer.ui" line="59"/>
         <source>Port</source>
         <translation>Ataka</translation>
-    </message>
-</context>
-<context>
-    <name>addTorrentDialog</name>
-    <message>
-        <source>Torrent addition dialog</source>
-        <translation type="obsolete">Torrent gehitze elkarrizketa</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Gordetze helburua:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="obsolete">Ezarri berezko gordetze helburu bezala</translation>
-    </message>
-    <message>
-        <source>Torrent size:</source>
-        <translation type="obsolete">Torrent neurria:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Ezezaguna</translation>
-    </message>
-    <message>
-        <source>Free disk space:</source>
-        <translation type="obsolete">Diskako toki askea:</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation type="obsolete">Etiketa:</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation type="obsolete">Torrent edukia:</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Hautatu Denak</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation type="obsolete">Ez Hautatu Ezer</translation>
-    </message>
-    <message>
-        <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Jeitsi sekuentzialki (astiroagoa baina ona aurreikuspenerako)</translation>
-    </message>
-    <message>
-        <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Jauzi agiri egiaztapena eta hasi emaritza berehala</translation>
-    </message>
-    <message>
-        <source>Add to download list in paused state</source>
-        <translation type="obsolete">Gehitu jeisketa zerrendara pausatuta egoeran</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Gehitu</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Ezeztatu</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Arrunta</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation type="obsolete">Handia</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation type="obsolete">Gehiena</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation type="obsolete">Ez jeitsi</translation>
     </message>
 </context>
 <context>
@@ -5068,7 +4943,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../fs_utils.cpp" line="444"/>
         <location filename="../fs_utils.cpp" line="456"/>
         <source>Downloads</source>
-        <translation type="unfinished">Jeisketak</translation>
+        <translation>Jeisketak</translation>
     </message>
 </context>
 <context>
@@ -5134,7 +5009,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../misc.cpp" line="246"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="362"/>
@@ -5151,52 +5026,52 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../webui/btjson.cpp" line="227"/>
         <source>Working</source>
-        <translation type="unfinished">Lanean</translation>
+        <translation>Lanean</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="230"/>
         <source>Updating...</source>
-        <translation type="unfinished">Eguneratzen...</translation>
+        <translation>Eguneratzen...</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="232"/>
         <source>Not working</source>
-        <translation type="unfinished">Lan gabe</translation>
+        <translation>Lan gabe</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="232"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Harremandu gabe oraindik</translation>
+        <translation>Harremandu gabe oraindik</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="284"/>
         <location filename="../webui/btjson.cpp" line="285"/>
         <source>this session</source>
-        <translation type="unfinished">saio hau</translation>
+        <translation>saio honetan</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="296"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Emarituta %1</translation>
+        <translation>Emarituta %1</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="298"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 geh</translation>
+        <translation>%1 geh</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="366"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">J: %1/s - G: %2</translation>
+        <translation>J: %1/s - G: %2</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="367"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">I: %1/s - G: %2</translation>
+        <translation>I: %1/s - G: %2</translation>
     </message>
 </context>
 <context>
@@ -5286,7 +5161,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Emandako IP iragazkia ongi aztertu da: %1 arauak ezarri dira.</translation>
+        <translation>Emandako IP iragazkia ongi aztertu da: %1 araua ezarri dira.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1294"/>
@@ -5392,107 +5267,6 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../searchengine/search.ui" line="165"/>
         <source>Search engines...</source>
         <translation>Bilaketa gailuak...</translation>
-    </message>
-</context>
-<context>
-    <name>torrentAdditionDialog</name>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Ezinezkoa magnet lotura dekodeatzea:</translation>
-    </message>
-    <message>
-        <source>Magnet Link</source>
-        <translation type="obsolete">Magnet Lotura</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file:</source>
-        <translation type="obsolete">Ezinezkoa torrent agiria dekodeatzea:</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="obsolete">Berrizendatu...</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Lehentasuna</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">Berrizendatu agiria</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Izen berria:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">Agiria ezin da berrizendatu</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="obsolete">Agiritegia ezin da berrizendatua izan</translation>
-    </message>
-    <message>
-        <source>(%1 left after torrent download)</source>
-        <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="obsolete">(%1 gelditzen dira torreta jeitsi ondoren)</translation>
-    </message>
-    <message>
-        <source>(%1 more are required to download)</source>
-        <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="obsolete">(%1 gehiago behar dira jeisteko)</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Hautatu gordetzeko helburua</translation>
-    </message>
-    <message>
-        <source>Empty save path</source>
-        <translation type="obsolete">Gordetze helburua hutsik</translation>
-    </message>
-    <message>
-        <source>Please enter a save path</source>
-        <translation type="obsolete">Mesedez sartu gordetze helburu bat</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Gordetze helburu sortze akatsa</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Ezin da gordetze helburua sortu</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation type="obsolete">Etiketa izen baliogabea</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="obsolete">Mesedez ez erabili hizkirri berezirik etiketa izenean.</translation>
-    </message>
-    <message>
-        <source>Seeding mode error</source>
-        <translation type="obsolete">Emaritza modu akatsa</translation>
-    </message>
-    <message>
-        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Agiri egiaztapenari jauzi egitea hautatu dezakezu. Edonola, tokiko agiriak ez dirudi daudenik oraingo helmuga agiritegian. Mesedez ezgaitu ezaugarri hau edo eguneratu gordetze helburua.</translation>
-    </message>
-    <message>
-        <source>Invalid file selection</source>
-        <translation type="obsolete">Agiri hautapen baliogabea</translation>
-    </message>
-    <message>
-        <source>You must select at least one file in the torrent</source>
-        <translation type="obsolete">Torrenteko agiri bat behintzat hautatu behar duzu</translation>
     </message>
 </context>
 </TS>
