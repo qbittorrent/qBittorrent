@@ -115,151 +115,157 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Клієнт BitTorrent, запрограмований на C++, на основі Qt4 та libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Захищено авторським правом ©2006-2012 Крістоф Думез&lt;br /&gt;&lt;br /&gt;Домашня сторінка: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Повідомити про помилку: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Форум: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent на Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Діалогове вікно</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти як</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Зробити стандартним шляхом збереження</translation>
+        <translation>Зробити стандартним шляхом збереження</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Більше ніколи не показувати</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування торрента</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустити торрент</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Мітка:</translation>
+        <translation>Мітка:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропустити перевірку хешу</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Інформація про торрент</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Коментар:</translation>
+        <translation>Коментар:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Нормальний</translation>
+        <translation>Нормальний</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Високий</translation>
+        <translation>Високий</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Максимальний</translation>
+        <translation>Максимальний</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Не завантажувати</translation>
+        <translation>Не завантажувати</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Інший...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Помилка вводу/виводу</translation>
+        <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цей файл торрента не існує.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоректний торрент</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Недоступно</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильне магнітне посилання</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Це магнітне посилання не було розпізнано</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Магнітне посилання</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Місця на диску: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Виберіть шлях збереження</translation>
+        <translation>Виберіть шлях збереження</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Перейменувати файл</translation>
+        <translation>Перейменувати файл</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова назва:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished">Файл не вдалося перейменувати</translation>
+        <translation>Файл не вдалося перейменувати</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Це ім&apos;я файла містить заборонені символи. Будь ласка, виберіть інше.</translation>
+        <translation>Ця назва файлу містить заборонені символи. Будь ласка, виберіть іншу.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ця назва вже використовується в даній папці. Будь ласка, виберіть іншу.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Цю папку не вдалося перейменувати</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Перейменувати...</translation>
+        <translation>Перейменувати...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Пріоритет</translation>
+        <translation>Пріоритет</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалось завантажити торрент: %1</translation>
     </message>
 </context>
 <context>
@@ -452,7 +458,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Будь ласка, введіть назву нового правила завантаження.</translation>
+        <translation>Будь ласка, введіть назву нового правила завантаження.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -520,7 +526,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished">Додати нове правило...</translation>
+        <translation>Додати нове правило...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -528,7 +534,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished">Перейменувати правило...</translation>
+        <translation>Перейменувати правило...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -860,7 +866,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваш динамічний DNS було успішно оновлено.</translation>
     </message>
 </context>
 <context>
@@ -3335,7 +3341,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Це ім&apos;я вже використовується в цій папці. Будь ласка, виберіть інше ім&apos;я.</translation>
+        <translation>Ця назва файлу використовується в даній папці. Будь ласка, виберіть іншу назву.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
@@ -3347,7 +3353,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Це ім&apos;я файла містить заборонені символи. Будь ласка, виберіть інше.</translation>
+        <translation>Ця назва файлу містить заборонені символи. Будь ласка, виберіть іншу.</translation>
     </message>
     <message>
         <source>I/O Error</source>
@@ -3685,7 +3691,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Успішно оброблено наданий фільтр IP: застосовано %1 правил.</translation>
     </message>
 </context>
 <context>
@@ -3819,7 +3825,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This rss feed is already in the list.</source>
-        <translation>Цей rss-стрічка вже є в списку.</translation>
+        <translation>Ця подача RSS вже є в списку.</translation>
     </message>
     <message>
         <source>Date: </source>
@@ -3851,19 +3857,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Будь ласка, виберіть нове ім&apos;я для цієї RSS-подачі</translation>
+        <translation>Будь ласка, виберіть нову назву для цієї RSS-подачі</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation>Нове ім&apos;я подачі:</translation>
+        <translation>Нова назва подачі:</translation>
     </message>
     <message>
         <source>Name already in use</source>
-        <translation>Ім&apos;я вже використовується</translation>
+        <translation>Назва вже використовується</translation>
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Це ім&apos;я вже використовується. Будь ласка, виберіть інше ім&apos;я.</translation>
+        <translation>Ця назва вже використовується. Будь ласка, виберіть іншу.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
@@ -4100,7 +4106,7 @@ Do you want to install it now?</source>
     <message>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation>Ім&apos;я</translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Size</source>
@@ -4224,19 +4230,19 @@ Do you want to install it now?</source>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Розмір</translation>
+        <translation>Розмір</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Прогрес</translation>
+        <translation>Прогрес</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Пріоритет</translation>
+        <translation>Пріоритет</translation>
     </message>
 </context>
 <context>
@@ -4699,11 +4705,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Торренти</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Мітки</translation>
     </message>
 </context>
 <context>
@@ -4822,7 +4828,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Нове ім&apos;я:</translation>
+        <translation>Нова назва:</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -4830,7 +4836,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Invalid label name</source>
-        <translation>Неправильне ім&apos;я мітки</translation>
+        <translation>Неправильна назва мітки</translation>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
@@ -5454,7 +5460,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Name</source>
-        <translation>Ім&apos;я</translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Url</source>
@@ -5594,7 +5600,7 @@ However, those plugins were disabled.</source>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Завантаження</translation>
+        <translation>Завантаження</translation>
     </message>
 </context>
 <context>
@@ -5664,47 +5670,47 @@ However, those plugins were disabled.</source>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Працюю</translation>
+        <translation>Працює</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Оновлюю...</translation>
+        <translation>Оновлюю...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Не працює</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Ще не зв’язувався</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished"></translation>
+        <translation>ця сесія</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Роздавав %1</translation>
+        <translation>Роздавав %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished"></translation>
+        <translation>Максимум %1</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Зав.: %1/с (%2)</translation>
+        <translation>Зав.: %1/с (%2)</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Вив.: %1/с (%2)</translation>
+        <translation>Вив.: %1/с (%2)</translation>
     </message>
 </context>
 <context>
@@ -5797,7 +5803,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Успішно оброблено наданий фільтр IP: застосовано %1 правил.</translation>
     </message>
 </context>
 <context>
