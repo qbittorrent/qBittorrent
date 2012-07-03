@@ -100,6 +100,12 @@ void AddNewTorrentDialog::loadState()
   QByteArray state = settings.value("treeHeaderState").toByteArray();
   if (!state.isEmpty())
     ui->content_tree->header()->restoreState(state);
+  int width = settings.value("width", -1).toInt();
+  if (width >= 0) {
+    QRect geo = geometry();
+    geo.setWidth(width);
+    setGeometry(geo);
+  }
 }
 
 void AddNewTorrentDialog::saveState()
@@ -109,6 +115,7 @@ void AddNewTorrentDialog::saveState()
   if (m_contentModel)
     settings.setValue("treeHeaderState", ui->content_tree->header()->saveState());
   settings.setValue("y", pos().y());
+  settings.setValue("width", width());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
