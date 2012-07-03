@@ -62,6 +62,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
 {
   ui->setupUi(this);
 
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   Preferences pref;
   ui->start_torrent_cb->setChecked(!pref.addTorrentsInPause());
   ui->save_path_combo->addItem(fsutils::toDisplayPath(pref.getSavePath()));
@@ -71,18 +72,15 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
   ui->default_save_path_cb->setVisible(false); // Default path is selected by default
 
-  // Signal / slots
-  connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
-
   // Load labels
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   const QStringList customLabels = settings.value("TransferListFilters/customLabels", QStringList()).toStringList();
   ui->label_combo->addItem("");
   foreach (const QString& label, customLabels) {
     ui->label_combo->addItem(label);
   }
-  showAdvancedSettings(false);
   loadState();
+  // Signal / slots
+  connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
@@ -106,6 +104,7 @@ void AddNewTorrentDialog::loadState()
     geo.setWidth(width);
     setGeometry(geo);
   }
+  ui->adv_button->setChecked(settings.value("expanded", false).toBool());
 }
 
 void AddNewTorrentDialog::saveState()
@@ -116,6 +115,7 @@ void AddNewTorrentDialog::saveState()
     settings.setValue("treeHeaderState", ui->content_tree->header()->saveState());
   settings.setValue("y", pos().y());
   settings.setValue("width", width());
+  settings.setValue("expanded", ui->adv_button->isChecked());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
@@ -229,6 +229,8 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     }
   }
 
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
   // Set dialog position
   setdialogPosition();
 
@@ -249,6 +251,8 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   QString torrent_name = misc::magnetUriToName(m_url);
   setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
 
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
   // Set dialog position
   setdialogPosition();
 
