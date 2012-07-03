@@ -82,13 +82,32 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
     ui->label_combo->addItem(label);
   }
   showAdvancedSettings(false);
+  loadState();
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
+  saveState();
   delete ui;
   if (m_contentModel)
     delete m_contentModel;
+}
+
+void AddNewTorrentDialog::loadState()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
+  QByteArray state = settings.value("treeHeaderState").toByteArray();
+  if (!state.isEmpty())
+    ui->content_tree->header()->restoreState(state);
+}
+
+void AddNewTorrentDialog::saveState()
+{
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
+  if (m_contentModel)
+    settings.setValue("treeHeaderState", ui->content_tree->header()->saveState());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
