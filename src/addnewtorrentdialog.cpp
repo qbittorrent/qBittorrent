@@ -108,6 +108,7 @@ void AddNewTorrentDialog::saveState()
   settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
   if (m_contentModel)
     settings.setValue("treeHeaderState", ui->content_tree->header()->saveState());
+  settings.setValue("y", pos().y());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
@@ -474,9 +475,16 @@ void AddNewTorrentDialog::setdialogPosition()
 {
   qApp->processEvents();
   QPoint center(misc::screenCenter(this));
-  center.ry() -= 120;
-  if (center.y() < 0)
-    center.setY(0);
+  // Adjust y
+  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  int y = settings.value("AddNewTorrentDialog/y", -1).toInt();
+  if (y >= 0) {
+    center.setY(y);
+  } else {
+    center.ry() -= 120;
+    if (center.y() < 0)
+      center.setY(0);
+  }
   move(center);
 }
 
