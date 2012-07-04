@@ -194,102 +194,102 @@ p, li { white-space: pre-wrap; }
         <translation>ダウンロードしない</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="70"/>
+        <location filename="../addnewtorrentdialog.cpp" line="71"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>その他...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
         <translation>Torrent ファイルが存在しません。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Invalid torrent</source>
         <translation>無効な Torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Torrent: %1 の読み込みに失敗しました</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="160"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Not available</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
         <translation>無効なマグネットリンク</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
         <translation>このマグネットリンクは認識されませんでした</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
         <translation>マグネットリンク</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
         <translation>ディスクの空き容量: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="305"/>
-        <location filename="../addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../addnewtorrentdialog.cpp" line="336"/>
+        <location filename="../addnewtorrentdialog.cpp" line="343"/>
+        <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
         <translation>保存先の選択</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>Rename the file</source>
         <translation>ファイル名の変更</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
         <source>New name:</source>
         <translation>新しい名前:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../addnewtorrentdialog.cpp" line="425"/>
         <source>The file could not be renamed</source>
         <translation>ファイル名を変更できませんでした</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../addnewtorrentdialog.cpp" line="400"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>ファイル名に使用できない文字が含まれています。別の文字を選択してください。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../addnewtorrentdialog.cpp" line="430"/>
+        <location filename="../addnewtorrentdialog.cpp" line="426"/>
+        <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>同じ名前のファイルがこのフォルダ内に存在します。別の名前を指定してください。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>フォルダ名を変更できませんでした</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../addnewtorrentdialog.cpp" line="519"/>
         <source>Rename...</source>
         <translation>名前の変更...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../addnewtorrentdialog.cpp" line="523"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>

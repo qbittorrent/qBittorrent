@@ -93,7 +93,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation type="unfinished">qBittorrent został zbudowany z użyciem następujących bibliotek:</translation>
+        <translation>qBittorrent został zbudowany z użyciem następujących bibliotek:</translation>
     </message>
     <message>
         <source>Qt:</source>
@@ -115,151 +115,157 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Klient sieci bittorrent napisany w języku C++, wykorzystuje biblioteki Qt4 i libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Strona domowa: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Śledzenie błędów: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz jako</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Ustaw jako domyślną ścieżkę zapisu</translation>
+        <translation>Ustaw jako domyślną ścieżkę zapisu</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Nigdy więcej nie pokazuj</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia torrenta</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rozpocznij pobieranie</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Etykieta:</translation>
+        <translation>Etykieta:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomiń sprawdzanie danych</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o torrencie</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Komentarz:</translation>
+        <translation>Komentarz:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Data:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normalny</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Wysoki</translation>
+        <translation>Wysoki</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Maksymalny</translation>
+        <translation>Maksymalny</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Nie pobieraj</translation>
+        <translation>Nie pobieraj</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Inna...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Błąd We/Wy</translation>
+        <translation>Błąd We/Wy</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik torrent nie istnieje.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowy torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Niedostępne</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprawidłowy odnośnik magnet</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Odnośnik magnet nie został rozpoznany</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Odnośnik magnet</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Miejsce na dysku: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Wybierz katalog docelowy</translation>
+        <translation>Wybierz ścieżkę zapisu</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Zmień nazwę pliku</translation>
+        <translation>Zmień nazwę pliku</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Nowa nazwa:</translation>
+        <translation>Nowa nazwa:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished">Nie można zmienić nazwy pliku</translation>
+        <translation>Nie można zmienić nazwy pliku</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Nazwa pliku zawiera zabronione znaki, proszę wybrać inną nazwę.</translation>
+        <translation>Nazwa pliku zawiera zabronione znaki, proszę wybrać inną nazwę.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished">Wybrana nazwa jest już używana w tym katalogu. Proszę wybrać inną nazwę.</translation>
+        <translation>Wybrana nazwa jest już używana w tym katalogu. Proszę wybrać inną nazwę.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">Nie można zmienić nazwy katalogu</translation>
+        <translation>Nie można zmienić nazwy katalogu</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Zmień nazwę...</translation>
+        <translation>Zmień nazwę...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorytet</translation>
+        <translation>Priorytet</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wczytać torrenta: %1</translation>
     </message>
 </context>
 <context>
@@ -378,11 +384,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Exchange trackers with other peers</source>
-        <translation type="unfinished">Wymieniaj adresy trackerów z innymi partnerami</translation>
+        <translation>Wymieniaj adresy trackerów z innymi partnerami</translation>
     </message>
     <message>
         <source>Always announce to all trackers</source>
-        <translation type="unfinished">Zawsze ogłaszaj do wszystkich trackerów</translation>
+        <translation>Zawsze ogłaszaj do wszystkich trackerów</translation>
     </message>
 </context>
 <context>
@@ -837,7 +843,7 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie zaktualizowano dynamiczny DNS.</translation>
     </message>
 </context>
 <context>
@@ -848,11 +854,11 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     </message>
     <message>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">Nie odnaleziono nazwy zdalnego hosta (nieprawidłowa nazwa hosta)</translation>
+        <translation>Nie odnaleziono nazwy zdalnego hosta (nieprawidłowa nazwa hosta)</translation>
     </message>
     <message>
         <source>The operation was canceled</source>
-        <translation type="unfinished">Operacja została anulowana</translation>
+        <translation>Operacja została anulowana</translation>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
@@ -908,11 +914,11 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">API dostępu do sieci nie może zaakceptować żądania ponieważ protokół jest nieznany</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Żądana operacja jest nieprawidłowa dla tego protokołu</translation>
     </message>
     <message>
         <source>An unknown network-related error was detected</source>
@@ -1680,7 +1686,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Pobierz pliki torrent z adresu www lub magnet</translation>
+        <translation>Pobierz pliki torrent z odnośnika www lub magnet</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -1765,15 +1771,15 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>HTTP Server</source>
-        <translation type="unfinished">Serwer www</translation>
+        <translation>Serwer www</translation>
     </message>
     <message>
         <source>Torrent path</source>
-        <translation type="unfinished">Ścieżka torrenta</translation>
+        <translation>Ścieżka torrenta</translation>
     </message>
     <message>
         <source>Torrent name</source>
-        <translation type="unfinished">Nazwa torrenta</translation>
+        <translation>Nazwa torrenta</translation>
     </message>
     <message>
         <source>The following parameters are supported:</source>
@@ -1822,7 +1828,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <name>LogListWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">Kopiuj</translation>
+        <translation>Kopiuj</translation>
     </message>
 </context>
 <context>
@@ -2023,7 +2029,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent nie jest domyślnym programem do obsługi plików torrent i linków Magnet.
+        <translation>qBittorrent nie jest domyślnym programem do obsługi plików torrent i odnośników Magnet.
 Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
     </message>
     <message>
@@ -2876,7 +2882,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Inhibit system sleep when torrents are active</source>
-        <translation type="unfinished">Nie pozwalaj na usypianie systemu gdy są aktywne torrenty</translation>
+        <translation>Nie pozwalaj na usypianie systemu gdy są aktywne torrenty</translation>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
@@ -2884,7 +2890,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation type="unfinished">Pytaj o potwierdzenie przy wyjściu</translation>
+        <translation>Pytaj o potwierdzenie przy wyjściu</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -2977,11 +2983,11 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished">Ogólne limity prędkości</translation>
+        <translation>Ogólne limity prędkości</translation>
     </message>
     <message>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished">Stosuj limity prędkości do połączeń uTP</translation>
+        <translation>Stosuj limity prędkości do połączeń uTP</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -2992,7 +2998,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
-        <translation type="unfinished">Alternatywne ogólne limity prędkości</translation>
+        <translation>Alternatywne ogólne limity prędkości</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
@@ -3040,19 +3046,19 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>File association</source>
-        <translation type="unfinished">Skojarzenie plików</translation>
+        <translation>Skojarzenie plików</translation>
     </message>
     <message>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished">Używaj qBittorrent z plikami .torrent</translation>
+        <translation>Używaj qBittorrent z plikami .torrent</translation>
     </message>
     <message>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished">Używaj qBittorrent z adresami magnet</translation>
+        <translation>Używaj qBittorrent z odnośnikami magnet</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished">Nie wliczaj wolnych torrentów do tych limitów</translation>
+        <translation>Nie wliczaj wolnych torrentów do tych limitów</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
@@ -3409,7 +3415,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished">HTTP user agent: %1</translation>
+        <translation>Identyfikator HTTP (UA): %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
@@ -3487,7 +3493,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; jest niepoprawnym adresem magnet.</translation>
+        <translation>&apos;%1&apos; jest niepoprawnym odnośnikiem magnet.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
@@ -3645,15 +3651,15 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished">Komputer zostanie uśpiony jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
+        <translation>Komputer zostanie uśpiony jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
     </message>
     <message>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished">Komputer zostanie wyłączony jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
+        <translation>Komputer zostanie wyłączony jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished">Działanie qBittorrent zostanie zakończone jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
+        <translation>Działanie qBittorrent zostanie zakończone jeśli nie anulujesz akcji w ciągu 15 sekund...</translation>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
@@ -3662,7 +3668,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
 </context>
 <context>
@@ -4104,7 +4110,7 @@ Do you want to install it now?</source>
     <name>ShutdownConfirmDlg</name>
     <message>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished">Potwierdzenie zamykania</translation>
+        <translation>Potwierdzenie zamykania</translation>
     </message>
 </context>
 <context>
@@ -4186,11 +4192,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished">Kliknij aby przełączyć na alternatywne limity prędkości</translation>
+        <translation>Kliknij aby przełączyć na alternatywne limity prędkości</translation>
     </message>
     <message>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished">Kliknij aby przełączyć na normalne limity prędkości</translation>
+        <translation>Kliknij aby przełączyć na normalne limity prędkości</translation>
     </message>
     <message>
         <source>%1/s</source>
@@ -4202,19 +4208,19 @@ Do you want to install it now?</source>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Rozmiar</translation>
+        <translation>Rozmiar</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Postęp</translation>
+        <translation>Postęp</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Priorytet</translation>
+        <translation>Priorytet</translation>
     </message>
 </context>
 <context>
@@ -4679,11 +4685,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenty</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etykiety</translation>
     </message>
 </context>
 <context>
@@ -4707,7 +4713,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopiuj adres magnet</translation>
+        <translation>Kopiuj odnośnik magnet</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -4916,23 +4922,24 @@ Do you want to install it now?</source>
     <name>UpDownRatioDlg</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished">Ograniczanie współczynnika udziału</translation>
+        <translation>Ograniczanie współczynnika udziału</translation>
     </message>
     <message>
         <source>Use global ratio limit</source>
-        <translation type="unfinished">Użyj globalnego limitu</translation>
+        <translation>Użyj globalnego limitu</translation>
     </message>
     <message>
         <source>buttonGroup</source>
+        <translatorcomment>I bet Author forget renaming it :P</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
-        <translation type="unfinished">Ustaw bez limitu</translation>
+        <translation>Ustaw bez limitu</translation>
     </message>
     <message>
         <source>Set ratio limit to</source>
-        <translation type="unfinished">Ustaw limit na</translation>
+        <translation>Ustaw limit na</translation>
     </message>
 </context>
 <context>
@@ -5624,47 +5631,47 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Działa</translation>
+        <translation>Działa</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Aktualizowanie...</translation>
+        <translation>Aktualizowanie...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">Nie działa</translation>
+        <translation>Nie działa</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Niesprawdzony</translation>
+        <translation>Niesprawdzony</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">w tej sesji</translation>
+        <translation>w tej sesji</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wysyłany przez %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">max %1</translation>
+        <translation>max %1</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Pobieranie: %1/s - Pobrano: %2</translation>
+        <translation>Pobieranie: %1/s - Pobrano: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Wysyłanie: %1/s - Wysłano: %2</translation>
+        <translation>Wysyłanie: %1/s - Wysłano: %2</translation>
     </message>
 </context>
 <context>
@@ -5737,15 +5744,15 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
     <message>
         <source>This is not a valid SSL key.</source>
-        <translation type="unfinished">To nie jest poprawny klucz SSL.</translation>
+        <translation>To nie jest poprawny klucz SSL.</translation>
     </message>
     <message>
         <source>Invalid certificate</source>
-        <translation type="unfinished">Niepoprawny certyfikat</translation>
+        <translation>Niepoprawny certyfikat</translation>
     </message>
     <message>
         <source>This is not a valid SSL certificate.</source>
-        <translation type="unfinished">To nie jest poprawny certyfikat SSL.</translation>
+        <translation>To nie jest poprawny certyfikat SSL.</translation>
     </message>
     <message>
         <source>SSL Certificate (*.crt *.pem)</source>
@@ -5758,7 +5765,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
 </context>
 <context>

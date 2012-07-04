@@ -188,102 +188,102 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Älä lataa</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="70"/>
+        <location filename="../addnewtorrentdialog.cpp" line="71"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O-virhe</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Invalid torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="160"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="305"/>
-        <location filename="../addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../addnewtorrentdialog.cpp" line="336"/>
+        <location filename="../addnewtorrentdialog.cpp" line="343"/>
+        <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
         <translation type="unfinished">Valitse tallennuskansio</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>Rename the file</source>
         <translation type="unfinished">Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
         <source>New name:</source>
         <translation type="unfinished">Uusi nimi:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../addnewtorrentdialog.cpp" line="425"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished">Tiedostoa ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../addnewtorrentdialog.cpp" line="400"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished">Tiedostonimi sisältää kiellettyjä merkkejä, valitse toinen.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../addnewtorrentdialog.cpp" line="430"/>
+        <location filename="../addnewtorrentdialog.cpp" line="426"/>
+        <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished">Nimi on jo käytössä tässä kansiossa. Käytä toista nimeä.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished">Kansiota ei voitu nimetä uudelleen</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../addnewtorrentdialog.cpp" line="519"/>
         <source>Rename...</source>
         <translation type="unfinished">Nimeä uudelleen...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../addnewtorrentdialog.cpp" line="523"/>
         <source>Priority</source>
         <translation type="unfinished">Prioriteetti</translation>
     </message>

@@ -230,102 +230,102 @@ p, li { white-space: pre-wrap; }
         <translation>Ne pas télécharger</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="70"/>
+        <location filename="../addnewtorrentdialog.cpp" line="71"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Autre...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>I/O Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
         <translation>The fichier torrent n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Invalid torrent</source>
         <translation>Torrent invalide</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Impossible de charger le torrent : %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="160"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Not available</source>
         <translation>Pas disponible</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
         <translation>Lien magnet invalide</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
         <translation>Ce lien magnet n&apos;a pas été reconnu</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
         <translation>Lien magnet</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
         <translation>Espace disque : %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="305"/>
-        <location filename="../addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../addnewtorrentdialog.cpp" line="336"/>
+        <location filename="../addnewtorrentdialog.cpp" line="343"/>
+        <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
         <translation>Choix du répertoire de destination</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>Rename the file</source>
         <translation>Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../addnewtorrentdialog.cpp" line="425"/>
         <source>The file could not be renamed</source>
         <translation>Le fichier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../addnewtorrentdialog.cpp" line="400"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ce nom de fichier contient des caractères interdits, veuillez en choisir un autre.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../addnewtorrentdialog.cpp" line="430"/>
+        <location filename="../addnewtorrentdialog.cpp" line="426"/>
+        <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ce nom de fichier est déjà utilisé dans ce dossier. Veuillez utiliser un autre nom.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>Le dossier n&apos;a pas pu être renommé</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../addnewtorrentdialog.cpp" line="519"/>
         <source>Rename...</source>
         <translation>Renommer...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../addnewtorrentdialog.cpp" line="523"/>
         <source>Priority</source>
         <translation>Priorité</translation>
     </message>

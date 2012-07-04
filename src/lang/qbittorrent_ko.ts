@@ -194,103 +194,103 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">다운로드 하지 않</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="70"/>
+        <location filename="../addnewtorrentdialog.cpp" line="71"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translatorcomment>다른곳에 저장하기...</translatorcomment>
         <translation type="unfinished">다른곳...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O 에러</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
         <translation type="unfinished">토런트 파일이 존재하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Invalid torrent</source>
         <translation type="unfinished">잘못된 토런트</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
         <translation type="unfinished">%1토런트를 불러오는데 실패했습니다</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="160"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Not available</source>
         <translation type="unfinished">가능하지 않습니다</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
         <translation type="unfinished">잘못된 마그넷 주소</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
         <translation type="unfinished">이 마그넷 링크는 승인되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
         <translation type="unfinished">마그넷 링크</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
         <translation type="unfinished">디스크 용량: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="305"/>
-        <location filename="../addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../addnewtorrentdialog.cpp" line="336"/>
+        <location filename="../addnewtorrentdialog.cpp" line="343"/>
+        <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
         <translation type="unfinished">저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>Rename the file</source>
         <translation type="unfinished">파일이름 변경하기</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
         <source>New name:</source>
         <translation type="unfinished">새 이름:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../addnewtorrentdialog.cpp" line="425"/>
         <source>The file could not be renamed</source>
         <translation type="unfinished">이 파일의 이름을 변경할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../addnewtorrentdialog.cpp" line="400"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation type="unfinished">파일이름에 넣을수 없는 문자가 포함되었습니다. 다른걸로 바꿔주세요.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../addnewtorrentdialog.cpp" line="430"/>
+        <location filename="../addnewtorrentdialog.cpp" line="426"/>
+        <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation type="unfinished">이 파일이름은 중복됩니다. 다른 이름으로 바꿔주세요.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation type="unfinished">폴더이름을 변경할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../addnewtorrentdialog.cpp" line="519"/>
         <source>Rename...</source>
         <translation type="unfinished">이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../addnewtorrentdialog.cpp" line="523"/>
         <source>Priority</source>
         <translation type="unfinished">우선순위</translation>
     </message>

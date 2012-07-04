@@ -227,102 +227,102 @@ p, li { white-space: pre-wrap; }
         <translation>Չբեռնել</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="70"/>
+        <location filename="../addnewtorrentdialog.cpp" line="71"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Այլ...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>I/O Error</source>
         <translation>Սխալ</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="142"/>
+        <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
         <translation>Torrent ֆայլը գոյություն չունի</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Invalid torrent</source>
         <translation>Սխալ torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="150"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
         <translation>%1 torrent ֆայլի բացման սխալ</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="160"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Not available</source>
         <translation>Հասանելի չէ</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
         <translation>Սխալ magnet հղում</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
         <translation>magnet հղումը չի վերականգնվել</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
         <translation>Magnet հղում</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
         <translation>Պնակի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="305"/>
-        <location filename="../addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../addnewtorrentdialog.cpp" line="314"/>
+        <location filename="../addnewtorrentdialog.cpp" line="336"/>
+        <location filename="../addnewtorrentdialog.cpp" line="343"/>
+        <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
         <translation>Ընտրեք պահպանելու տեղը</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="363"/>
+        <location filename="../addnewtorrentdialog.cpp" line="394"/>
         <source>Rename the file</source>
         <translation>Անվանափոխել</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="364"/>
+        <location filename="../addnewtorrentdialog.cpp" line="395"/>
         <source>New name:</source>
         <translation>Նոր անուն.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="368"/>
-        <location filename="../addnewtorrentdialog.cpp" line="394"/>
+        <location filename="../addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../addnewtorrentdialog.cpp" line="425"/>
         <source>The file could not be renamed</source>
         <translation>Ֆայլը չի կարող անվանփոխվել</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="369"/>
+        <location filename="../addnewtorrentdialog.cpp" line="400"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ֆայլի անունը պարունակում է արգելված նշաններ, ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../addnewtorrentdialog.cpp" line="430"/>
+        <location filename="../addnewtorrentdialog.cpp" line="426"/>
+        <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Այս անունով արդեն առկա է։ Ընտրեք այլ անուն։</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="429"/>
+        <location filename="../addnewtorrentdialog.cpp" line="460"/>
         <source>The folder could not be renamed</source>
         <translation>Թղթապանակը չի կարող անվանափոխվել</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="481"/>
+        <location filename="../addnewtorrentdialog.cpp" line="519"/>
         <source>Rename...</source>
         <translation>Անվանափոխել...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="485"/>
+        <location filename="../addnewtorrentdialog.cpp" line="523"/>
         <source>Priority</source>
         <translation>Առաջ-ը</translation>
     </message>
