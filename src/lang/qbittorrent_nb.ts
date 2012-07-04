@@ -4549,13 +4549,13 @@ Vennligst installer det manuelt.</translation>
         <location filename="../transferlistfilterswidget.h" line="229"/>
         <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Downloading</source>
-        <translation>Laster ned</translation>
+        <translation>Lastes ned</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="232"/>
         <location filename="../transferlistfilterswidget.h" line="310"/>
         <source>Completed</source>
-        <translation>Fullført</translation>
+        <translation>Fullførte</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="235"/>
@@ -4567,13 +4567,13 @@ Vennligst installer det manuelt.</translation>
         <location filename="../transferlistfilterswidget.h" line="238"/>
         <location filename="../transferlistfilterswidget.h" line="312"/>
         <source>Active</source>
-        <translation>Aktiv</translation>
+        <translation>Aktive</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="241"/>
         <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Inactive</source>
-        <translation>Inaktiv</translation>
+        <translation>Inaktive</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="255"/>
@@ -4585,7 +4585,7 @@ Vennligst installer det manuelt.</translation>
         <location filename="../transferlistfilterswidget.h" line="258"/>
         <location filename="../transferlistfilterswidget.h" line="491"/>
         <source>Unlabeled</source>
-        <translation>Ingen etikett</translation>
+        <translation>Etikettløse</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="340"/>
