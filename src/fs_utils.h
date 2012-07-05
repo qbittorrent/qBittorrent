@@ -57,6 +57,7 @@ static bool sameFileNames(const QString& first, const QString& second);
 static QString expandPath(const QString& path);
 static bool isValidTorrentFile(const QString& path);
 static bool smartRemoveEmptyFolderTree(const QString& dir_path);
+static bool forceRemove(const QString& file_path);
 
 /* Ported from Qt4 to drop dependency on QtGui */
 static QString QDesktopServicesDataLocation();

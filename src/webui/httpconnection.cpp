@@ -433,7 +433,7 @@ void HttpConnection::respondCommand(const QString& command) {
         delete tmpfile;
         emit torrentReadyToBeDownloaded(filePath, false, QString(), false);
         // Clean up
-        QFile::remove(filePath);
+        fsutils::forceRemove(filePath);
       } else {
         std::cerr << "I/O Error: Could not create temporary file" << std::endl;
         delete tmpfile;

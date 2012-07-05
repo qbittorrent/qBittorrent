@@ -130,9 +130,9 @@ bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
 
   // Remove Files created by the OS
 #if defined Q_WS_MAC
-  QFile::remove(dir_path + QLatin1String("/.DS_Store"));
+  fsutils::forceRemove(dir_path + QLatin1String("/.DS_Store"));
 #elif defined Q_WS_WIN
-  QFile::remove(dir_path + QLatin1String("/Thumbs.db"));
+  fsutils::forceRemove(dir_path + QLatin1String("/Thumbs.db"));
 #endif
 
   QFileInfoList sub_files = dir.entryInfoList();
@@ -151,7 +151,7 @@ bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
     } else {
       if (info.isHidden()) {
         qDebug() << Q_FUNC_INFO << "Removing hidden file: " << sub_path;
-        if (!QFile::remove(sub_path)) {
+        if (!fsutils::forceRemove(sub_path)) {
           qWarning() << Q_FUNC_INFO << "Failed to remove " << sub_path;
           return false;
         }
@@ -162,6 +162,22 @@ bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
   }
   qDebug() << Q_FUNC_INFO << "Calling rmdir on " << dir_path;
   return QDir().rmdir(dir_path);
+}
+
+/**
+ * Removes the file with the given file_path.
+ *
+ * This function will try to fix the file permissions before removing it.
+ */
+bool fsutils::forceRemove(const QString& file_path)
+{
+  QFile f(file_path);
+  if (!f.exists())
+    return true;
+  // Make sure we have read/write permissions
+  f.setPermissions(f.permissions()|QFile::ReadOwner|QFile::WriteOwner|QFile::ReadUser|QFile::WriteUser);
+  // Remove the file
+  return f.remove();
 }
 
 /**

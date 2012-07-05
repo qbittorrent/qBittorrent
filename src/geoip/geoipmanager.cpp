@@ -101,7 +101,7 @@ void GeoIPManager::exportEmbeddedDb() {
     }
     // Remove destination files
     if (QFile::exists(geoipDBpath(false)))
-      QFile::remove(geoipDBpath(false));
+      fsutils::forceRemove(geoipDBpath(false));
     // Copy from executable to hard disk
     qDebug("%s -> %s", qPrintable(geoipDBpath(true)), qPrintable(geoipDBpath(false)));
     if (!QFile::copy(geoipDBpath(true), geoipDBpath(false))) {

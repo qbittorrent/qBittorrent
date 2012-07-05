@@ -76,7 +76,7 @@ void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   input_path = _input_path;
   save_path = _save_path;
   if (QFile(save_path).exists())
-    QFile::remove(save_path);
+    fsutils::forceRemove(save_path);
   trackers = _trackers;
   url_seeds = _url_seeds;
   comment = _comment;

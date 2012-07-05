@@ -38,6 +38,7 @@
 #include "misc.h"
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
+#include "fs_utils.h"
 
 RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   m_manager(manager), m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
@@ -57,7 +58,7 @@ RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
 
 RssFeed::~RssFeed() {
   if (!m_icon.startsWith(":/") && QFile::exists(m_icon))
-    QFile::remove(m_icon);
+    fsutils::forceRemove(m_icon);
 }
 
 void RssFeed::saveItemsToDisk() {

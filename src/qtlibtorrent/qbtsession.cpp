@@ -774,7 +774,7 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
     // Remove unneeded and incomplete files
     foreach (const QString &uneeded_file, uneeded_files) {
       qDebug("Removing uneeded file: %s", qPrintable(uneeded_file));
-      QFile::remove(uneeded_file);
+      fsutils::forceRemove(uneeded_file);
       const QString parent_folder = fsutils::branchPath(uneeded_file);
       qDebug("Attempt to remove parent folder (if empty): %s", qPrintable(parent_folder));
       QDir().rmpath(parent_folder);
@@ -786,7 +786,7 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
   filters << hash+".*";
   const QStringList files = torrentBackup.entryList(filters, QDir::Files, QDir::Unsorted);
   foreach (const QString &file, files) {
-    QFile::remove(torrentBackup.absoluteFilePath(file));
+    fsutils::forceRemove(torrentBackup.absoluteFilePath(file));
   }
   TorrentPersistentData::deletePersistentData(hash);
   // Remove tracker errors
@@ -998,7 +998,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
       addConsoleMessage(QString::fromLocal8Bit(e.what()), "red");
       //emit invalidTorrent(from_url);
-      QFile::remove(path);
+      fsutils::forceRemove(path);
     }else{
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
       QString displayed_path = path;
@@ -1012,7 +1012,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     addConsoleMessage(tr("This file is either corrupted or this isn't a torrent."),QString::fromUtf8("red"));
     if (fromScanDir) {
       // Remove file
-      QFile::remove(path);
+      fsutils::forceRemove(path);
     }
     return h;
   }
@@ -1044,7 +1044,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
     // Delete file if temporary
     if (!from_url.isNull() || fromScanDir)
-        QFile::remove(path);
+        fsutils::forceRemove(path);
     return h;
   }
 
@@ -1053,7 +1053,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
     // Delete file if temporary
     if (!from_url.isNull() || fromScanDir)
-        QFile::remove(path);
+        fsutils::forceRemove(path);
     return h;
   }
 
@@ -1124,7 +1124,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if (!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
     if (!from_url.isNull())
-        QFile::remove(path);
+        fsutils::forceRemove(path);
     return h;
   }
 
@@ -1167,7 +1167,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   // If temporary file, remove it
   if (!from_url.isNull() || fromScanDir)
-      QFile::remove(path);
+      fsutils::forceRemove(path);
 
   // Display console message
   if (!from_url.isNull()) {
@@ -1469,7 +1469,7 @@ void QBtSession::loadSessionState() {
   if (!QFile::exists(state_path)) return;
   if (QFile(state_path).size() == 0) {
     // Remove empty invalid state file
-    QFile::remove(state_path);
+    fsutils::forceRemove(state_path);
     return;
   }
   QFile state_file(state_path);
@@ -1641,7 +1641,7 @@ void QBtSession::saveFastResumeData() {
       const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
       QFile resume_file(filepath);
       if (resume_file.exists())
-        QFile::remove(filepath);
+        fsutils::forceRemove(filepath);
       if (!out.empty() && resume_file.open(QIODevice::WriteOnly)) {
         resume_file.write(&out[0], out.size());
         resume_file.close();
@@ -2244,7 +2244,7 @@ void QBtSession::readAlerts() {
         const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
         QFile resume_file(filepath);
         if (resume_file.exists())
-          QFile::remove(filepath);
+          fsutils::forceRemove(filepath);
         qDebug("Saving fastresume data in %s", qPrintable(filepath));
         vector<char> out;
         bencode(back_inserter(out), *p->resume_data);
