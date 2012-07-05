@@ -113,6 +113,58 @@ bool fsutils::isValidTorrentFile(const QString& torrent_path) {
 }
 
 /**
+ * Remove an empty folder tree.
+ *
+ * This function will also remove .DS_Store files on Mac OS and
+ * Thumbs.db on Windows.
+ */
+bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
+{
+  qDebug() << Q_FUNC_INFO << dir_path;
+  if (dir_path.isEmpty())
+    return false;
+
+  QDir dir(dir_path);
+  if (!dir.exists())
+    return true;
+
+  // Remove Files created by the OS
+#if defined Q_WS_MAC
+  QFile::remove(dir_path + QLatin1String("/.DS_Store"));
+#elif defined Q_WS_WIN
+  QFile::remove(dir_path + QLatin1String("/Thumbs.db"));
+#endif
+
+  QFileInfoList sub_files = dir.entryInfoList();
+  foreach (const QFileInfo& info, sub_files) {
+    QString sub_name = info.fileName();
+    if (sub_name == "." || sub_name == "..")
+      continue;
+
+    QString sub_path = info.absoluteFilePath();
+    qDebug() << Q_FUNC_INFO << "sub file: " << sub_path;
+    if (info.isDir()) {
+      if (!smartRemoveEmptyFolderTree(sub_path)) {
+        qWarning() << Q_FUNC_INFO << "Failed to remove folder: " << sub_path;
+        return false;
+      }
+    } else {
+      if (info.isHidden()) {
+        qDebug() << Q_FUNC_INFO << "Removing hidden file: " << sub_path;
+        if (!QFile::remove(sub_path)) {
+          qWarning() << Q_FUNC_INFO << "Failed to remove " << sub_path;
+          return false;
+        }
+      } else {
+        qWarning() << Q_FUNC_INFO << "Folder is not empty, aborting. Found: " << sub_path;
+      }
+    }
+  }
+  qDebug() << Q_FUNC_INFO << "Calling rmdir on " << dir_path;
+  return QDir().rmdir(dir_path);
+}
+
+/**
  * Returns the size of a file.
  * If the file is a folder, it will compute its size based on its content.
  *
