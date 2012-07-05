@@ -115,151 +115,157 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;一個使用 C++ 編寫, 基於 QT4 以及 libtorrent-rasterbar 的進階 Bittorrent 客戶端。 &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;首頁: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;論壇: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>對話</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存為</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">設為預設儲存路徑</translation>
+        <translation>設為預設儲存路徑</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>不要再顯示</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>torrent 設定</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>開始 torrent</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">標籤:</translation>
+        <translation>標籤:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>跳過完整性檢查</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>torrent 資訊</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>大小:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">註解:</translation>
+        <translation>註解:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>日期:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">最高</translation>
+        <translation>最高</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">不要下載</translation>
+        <translation>不要下載</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>其他...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O 錯誤</translation>
+        <translation>I/O 錯誤</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>此 torrent 檔案不存在。</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的 torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>不可得</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的磁性連結</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>無法辨識此磁性連結</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>磁性連結</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>磁碟空間: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">選擇儲存路徑</translation>
+        <translation>選擇儲存路徑</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">重新命名檔案</translation>
+        <translation>重新命名檔案</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">新名稱:</translation>
+        <translation>新名稱:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案無法重新命名</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
+        <translation>檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished">此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
+        <translation>此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">此資料夾無法被重新命名</translation>
+        <translation>此資料夾無法被重新命名</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">重新命名...</translation>
+        <translation>重新命名...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法載入 torrent: %1</translation>
     </message>
 </context>
 <context>
@@ -453,7 +459,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">請輸入新下載規則的名稱。</translation>
+        <translation>請輸入新下載規則的名稱。</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -521,7 +527,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished">增加新規則...</translation>
+        <translation>增加新規則...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -529,7 +535,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished">重新命名規則...</translation>
+        <translation>重新命名規則...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -861,7 +867,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>你的動態 DNS 更新成功。</translation>
     </message>
 </context>
 <context>
@@ -1858,7 +1864,7 @@ No further notices will be issued.</source>
     <name>LogListWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished">複製</translation>
+        <translation>複製</translation>
     </message>
 </context>
 <context>
@@ -3697,7 +3703,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>分析 IP 過濾檔案成功: 已套用 %1 個規則。</translation>
     </message>
 </context>
 <context>
@@ -4236,19 +4242,19 @@ Do you want to install it now?</source>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">大小</translation>
+        <translation>大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">進度</translation>
+        <translation>進度</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">優先度</translation>
+        <translation>優先度</translation>
     </message>
 </context>
 <context>
@@ -4711,11 +4717,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>標籤</translation>
     </message>
 </context>
 <context>
@@ -5606,7 +5612,7 @@ However, those plugins were disabled.</source>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">下載</translation>
+        <translation>下載</translation>
     </message>
 </context>
 <context>
@@ -5676,47 +5682,47 @@ However, those plugins were disabled.</source>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">有效</translation>
+        <translation>有效</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">更新中...</translation>
+        <translation>更新中...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">無效</translation>
+        <translation>無效</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished">尚未連接</translation>
+        <translation>尚未連接</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">此作業階段</translation>
+        <translation>此作業階段</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">已做種 %1</translation>
+        <translation>已做種 %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">最大 %1</translation>
+        <translation>最大 %1</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">下載速度: %1/s - 已傳輸: %2</translation>
+        <translation>下載速度: %1/s - 已傳輸: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">上傳速度: %1/s - 已傳輸: %2</translation>
+        <translation>上傳速度: %1/s - 已傳輸: %2</translation>
     </message>
 </context>
 <context>
@@ -5809,7 +5815,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>分析 IP 過濾檔案成功: 已套用 %1 個規則。</translation>
     </message>
 </context>
 <context>
