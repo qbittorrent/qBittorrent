@@ -369,6 +369,7 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
     connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
   }
   // Toggle default save path setting checkbox visibility
+  ui->default_save_path_cb->setChecked(false);
   ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != defaultSaveDir);
   relayout();
   // Remember index
@@ -593,6 +594,6 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
   saveSavePathHistory();
   // Save settings
   pref.useAdditionDialog(!ui->never_show_cb->isChecked());
-  if (ui->default_save_path_cb->isVisible() && ui->default_save_path_cb->isChecked())
+  if (ui->default_save_path_cb->isChecked())
     pref.setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
 }
