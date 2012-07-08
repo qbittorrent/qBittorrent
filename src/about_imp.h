@@ -95,7 +95,7 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Spanish:</u> Francisco Luque Contreras (frannoe@ya.com)</li>\
           <li><u>Swedish:</u> Daniel Nylander (po@danielnylander.se)</li>\
           <li><u>Turkish:</u> Hasan YILMAZ (iletisim@hedefturkce.com) and Erdem Bingöl (erdem84@gmail.com)</li>\
-          <li><u>Ukrainian:</u> Andrey Shpachenko (masterfix@users.sourceforge.net) and Oleh Prypin (blaxpirit@gmail.com)</li></ul>");
+          <li><u>Ukrainian:</u> Oleh Prypin (blaxpirit@gmail.com)</li></ul>");
       trans_txt += "<p>"+tr("Please contact me if you would like to translate qBittorrent into your own language.")+"</p>";
       te_translation->setHtml(trans_txt);
       // License
