@@ -115,151 +115,157 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Een geavanceerde BitTorrent client geprogrammeerd in C++, gebaseerd op Qt4 toolkit en libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Venster</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslaan als</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Stel in als standaard pad om op te slaan</translation>
+        <translation>Stel in als standaard pad om op te slaan</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet opnieuw tonen</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentinstellingen</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Start torrent</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Label:</translation>
+        <translation>Label:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Sla hash check over</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent Informatie</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grootte:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Opmerkingen:</translation>
+        <translation>Opmerkingen:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normaal</translation>
+        <translation>Normaal</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Hoog</translation>
+        <translation>Hoog</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Maximum</translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Download niet</translation>
+        <translation>Niet downloaden</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Andere...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O Fout</translation>
+        <translation>I/O Fout</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het torrent-bestand bestaat niet.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet beschikbaar</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige magnet link</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Deze magnet link werd niet herkend</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet link</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Schijf grootte: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Kies opslag pad</translation>
+        <translation>Kies opslag pad</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Hernoem het bestand</translation>
+        <translation>Hernoem het bestand</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Nieuwe naam:</translation>
+        <translation>Nieuwe naam:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit bestand kon niet hernoemd worden</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deze bestandsnaam bevat verboden karakters, gelieve een andere te kiezen.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deze baan bestaat reeds in deze map. Gelieve een andere naam te gebruiken.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">Deze map kon niet hernoemd worden</translation>
+        <translation>Deze map kon niet hernoemd worden</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hernoem...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioriteit</translation>
+        <translation>Prioriteit</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gefaald bij het laden van torrent: %1</translation>
     </message>
 </context>
 <context>
@@ -448,7 +454,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Type de naam van de nieuwe downloadregel.</translation>
+        <translation>Type de naam van de nieuwe downloadregel.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -516,7 +522,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished">Voeg een nieuwe regel toe...</translation>
+        <translation>Voeg een nieuwe regel toe...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -524,7 +530,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished">Hernoem regel...</translation>
+        <translation>Hernoem regel...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -761,7 +767,7 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>U dynamisch DNS werd succesvol geupdate.</translation>
     </message>
 </context>
 <context>
@@ -3471,7 +3477,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>De meegegeven IP filter werd succesvol verwerkt: %1 regels werden toegepast.</translation>
     </message>
 </context>
 <context>
@@ -3995,19 +4001,19 @@ Wilt u het nu installeren?</translation>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Voortgang</translation>
+        <translation>Voortgang</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioriteit</translation>
+        <translation>Prioriteit</translation>
     </message>
 </context>
 <context>
@@ -4470,11 +4476,11 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
 </context>
 <context>
@@ -5325,7 +5331,7 @@ De plugins zijn uitgeschakeld.</translation>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Downloads</translation>
+        <translation>Downloads</translation>
     </message>
 </context>
 <context>
@@ -5395,47 +5401,47 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Bezig</translation>
+        <translation>Bezig</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Updating...</translation>
+        <translation>Updating...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">Niet bezig</translation>
+        <translation>Niet bezig</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished">Nog niet gecontacteerd</translation>
+        <translation>Nog niet gecontacteerd</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">Deze sessie</translation>
+        <translation>Deze sessie</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Geseed voor %1</translation>
+        <translation>Geseed voor %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 max</translation>
+        <translation>%1 max</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">D: %1/s - O: %2</translation>
+        <translation>D: %1/s - O: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">U: %1/s - O: %2</translation>
+        <translation>U: %1/s - O: %2</translation>
     </message>
 </context>
 <context>
@@ -5528,7 +5534,7 @@ De plugins zijn uitgeschakeld.</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>The meegegeven IP filter werd succesvol verwerkt: %1 regels werden toegepast.</translation>
     </message>
 </context>
 <context>
