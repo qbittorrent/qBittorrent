@@ -288,15 +288,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>Вихідні порти (мін.) [0: Вимкнено]</translation>
+        <translation>Вихідні порти (нижня межа) [0: Вимкнено]</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>Вихідні порти (макс.) [0: Вимкнено]</translation>
+        <translation>Вихідні порти (верхня межа) [0: Вимкнено]</translation>
     </message>
     <message>
         <source>Ignore transfer limits on local network</source>
-        <translation>Ігнорувати ліміти швидкості для локальної мережі</translation>
+        <translation>Ігнорувати обмеження швидкості для локальної мережі</translation>
     </message>
     <message>
         <source>Include TCP/IP overhead in transfer limits</source>
@@ -333,7 +333,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation>Мережевий Інтерфейс (потребує перезапуску)</translation>
+        <translation>Мережевий інтерфейс (потребує перезапуску)</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -366,7 +366,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Confirm torrent deletion</source>
-        <translation>Підтвердити видалення торрента</translation>
+        <translation>Підтверджувати видалення торрентів</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart)</source>
@@ -838,11 +838,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Помилка динамічного DNS: Неправильний логін/пароль.</translation>
+        <translation>Помилка динамічного DNS: Неправильний логін або пароль.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Помилка динамічного DNS: qBittorrent додано в чорний список сервісу; будь ласка, повідомте про помилку на http://bugs.qbittorrent.org.</translation>
+        <translation>Помилка динамічного DNS: qBittorrent додано в чорний список сервісу; будь ласка, повідомте про це на http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
@@ -1670,14 +1670,14 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Це ризик безпеки, будь ласка, встановіть пароль в налаштуваннях програми.</translation>
+        <translation>Це ризик безпеки, будь ласка, змініть пароль в налаштуваннях програми.</translation>
     </message>
 </context>
 <context>
     <name>HttpConnection</name>
     <message>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation>Вашу IP-адресу було заблоковано, через те, що було здійснено забагато спроб автентифікації.</translation>
+        <translation>Вашу IP-адресу було заблоковано через те, що було здійснено забагато спроб автентифікації.</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
@@ -1859,7 +1859,7 @@ No further notices will be issued.</source>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Редагувати</translation>
+        <translation>&amp;Торренти</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1879,11 +1879,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Decrease priority</source>
-        <translation>Зменшити приорітет</translation>
+        <translation>Зменшити пріоритет</translation>
     </message>
     <message>
         <source>Increase priority</source>
-        <translation>Збільшити приорітет</translation>
+        <translation>Збільшити пріоритет</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
@@ -1911,15 +1911,15 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translation>Створювач &amp;торрентів</translation>
+        <translation>&amp;Створення торрентів</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
-        <translation>Встановити ліміт вивантаження...</translation>
+        <translation>Встановити обмеження вивантаження...</translation>
     </message>
     <message>
         <source>Set download limit...</source>
-        <translation>Встановити ліміт завантаження...</translation>
+        <translation>Встановити обмеження завантаження...</translation>
     </message>
     <message>
         <source>Set global download limit...</source>
@@ -1935,7 +1935,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
-        <translation>&amp;Верхня панель</translation>
+        <translation>Верхню &amp;панель</translation>
     </message>
     <message>
         <source>Display top tool bar</source>
@@ -1987,7 +1987,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Search &amp;engine</source>
-        <translation>По&amp;шуковик</translation>
+        <translation>&amp;Пошуковик</translation>
     </message>
     <message>
         <source>Log viewer</source>
@@ -2670,7 +2670,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>No action</source>
-        <translation>Без дії</translation>
+        <translation>Нічого не робити</translation>
     </message>
     <message>
         <source>Options</source>
@@ -2682,11 +2682,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation>Дія при подвійному клацанні</translation>
+        <translation>Дія при подвійному клацанні на торрент</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation>Завантажую торренти:</translation>
+        <translation>Якщо завантажується:</translation>
     </message>
     <message>
         <source>Start / Stop</source>
@@ -2728,7 +2728,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation>Не починати заантаження автоматично</translation>
+        <translation>Не починати завантаження автоматично</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -2797,7 +2797,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>then</source>
-        <translation>тоді</translation>
+        <translation>а тоді</translation>
     </message>
     <message>
         <source>Pause them</source>
@@ -2841,7 +2841,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Start / Stop Torrent</source>
-        <translation>Почати / зупинити торрент</translation>
+        <translation>Запустити або зупинити торрент</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
@@ -2853,7 +2853,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Увімкнути DHT (децентралізовану мережу, щоб знаходити більше пірів</translation>
+        <translation>Увімкнути DHT (децентралізовану мережу), щоб знаходити більше пірів</translation>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
@@ -2909,11 +2909,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Bypass authentication for localhost</source>
-        <translation>Обходити автентифікацію для localhost</translation>
+        <translation>Уникати автентифікації для localhost</translation>
     </message>
     <message>
         <source>Ask for program exit confirmation</source>
-        <translation>Вимагати підверрдження виходу з програми</translation>
+        <translation>Вимагати підтвердження виходу з програми</translation>
     </message>
     <message>
         <source>Use monochrome system tray icon (requires restart)</source>
@@ -2937,7 +2937,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Нормальний</translation>
+        <translation>Звичайний</translation>
     </message>
     <message>
         <source>Monochrome (Dark theme)</source>
@@ -3017,7 +3017,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Застосовувати обмеження і до протоколу передачі</translation>
+        <translation>Застосовувати обмеження до протоколу передачі</translation>
     </message>
     <message>
         <source>Alternative Global Rate Limits</source>
@@ -3270,11 +3270,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>UP limit:</source>
-        <translation>Ліміт вив.:</translation>
+        <translation>Ліміт вивантаження:</translation>
     </message>
     <message>
         <source>DL limit:</source>
-        <translation>Ліміт зав.:</translation>
+        <translation>Ліміт завантаження:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
@@ -3398,7 +3398,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Torrent content:</source>
-        <translation>Вміст торренту:</translation>
+        <translation>Вміст торрента:</translation>
     </message>
 </context>
 <context>
@@ -3438,7 +3438,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
-        <translation>Браузер користувача: %1</translation>
+        <translation>Назва програми (HTTP): %1</translation>
     </message>
     <message>
         <source>Using a disk cache size of %1 MiB</source>
@@ -3486,7 +3486,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation>Вбудований трекер [увімкнено]</translation>
+        <translation>Вбудований трекер [Увімкнено]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
@@ -3494,7 +3494,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Вбудований трекер [вимкнено]</translation>
+        <translation>Вбудований трекер [Вимкнено]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
@@ -3801,7 +3801,7 @@ p, li { white-space: pre-wrap; }
     <name>RSSImp</name>
     <message>
         <source>Please type a rss stream url</source>
-        <translation>Будь-ласка, введіть url потоку rss</translation>
+        <translation>Будь-ласка, введіть URL потоку RSS</translation>
     </message>
     <message>
         <source>Stream URL:</source>
@@ -3959,7 +3959,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Download here</source>
-        <translation>Завантажувати сюди</translation>
+        <translation>Завантажувати до</translation>
     </message>
 </context>
 <context>
@@ -4290,7 +4290,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Створення торренту</translation>
+        <translation>Створення торрента</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
@@ -4505,11 +4505,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Working</source>
-        <translation>Працюю</translation>
+        <translation>Працює</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Вимкнено</translation>
+        <translation>Вимкнений</translation>
     </message>
     <message>
         <source>This torrent is private</source>
@@ -4595,7 +4595,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Зупинено</translation>
+        <translation>Зупинені</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -4641,7 +4641,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Downloading</source>
-        <translation>Завантажую</translation>
+        <translation>Завантажуються</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -4681,7 +4681,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Будь ласка, не використовуйте спеціальні символи в назві мітки.</translation>
+        <translation>Будь ласка, не використовуйте особливі символи в назві мітки.</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -4840,7 +4840,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation>Будь ласка, не використовуйте спеціальних символів в назві мітки.</translation>
+        <translation>Будь ласка, не використовуйте особливі символи в назві мітки.</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -4946,7 +4946,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>buttonGroup</source>
-        <translation></translation>
+        <translation>Група кнопок</translation>
     </message>
     <message>
         <source>Set no ratio limit</source>
@@ -4996,7 +4996,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Будь-ласка зв&apos;яжітся зі мною, якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
+        <translation>Будь-ласка зв&apos;яжіться зі мною, якщо ви бажаєте перекласти qBittorrent на вашу мову.</translation>
     </message>
 </context>
 <context>
@@ -5509,7 +5509,7 @@ Do you want to install it now?</source>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation>Деякі плагіни не можуть бути видалені, тому що вони є частиною qBittorrent.
+        <translation>Деякі плагіни не вдалось видалити, тому що вони є частиною qBittorrent.
 Можна видалити лише ті плагіни, які ви встановили власноруч.
 Тим не менше, ці плагіни вимкнено.</translation>
     </message>
@@ -5690,7 +5690,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>this session</source>
-        <translation>ця сесія</translation>
+        <translation>цієї сесії</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
@@ -5717,7 +5717,7 @@ However, those plugins were disabled.</source>
     <name>options_imp</name>
     <message>
         <source>Choose a save directory</source>
-        <translation>Виберіть директорію для збереження</translation>
+        <translation>Виберіть папку для збереження</translation>
     </message>
     <message>
         <source>Choose an ip filter file</source>
@@ -5733,7 +5733,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Add directory to scan</source>
-        <translation></translation>
+        <translation>Додати папку спостерігання</translation>
     </message>
     <message>
         <source>Folder is already being watched.</source>
@@ -5895,7 +5895,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation>Іти до сторінки опису</translation>
+        <translation>Сторінка опису</translation>
     </message>
 </context>
 <context>
