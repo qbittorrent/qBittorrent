@@ -214,31 +214,32 @@ void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
   qDebug() << Q_FUNC_INFO;
   Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
 
-  while (xml.readNextStartElement()) {
-    if (xml.name() == "title") {
-      m_title = xml.readElementText();
-      if (m_alias == url())
-        rename(m_title);
-    }
-    else if (xml.name() == "image") {
-      QString icon_path = xml.attributes().value("url").toString();
-      if (!icon_path.isEmpty()) {
-        m_iconUrl = icon_path;
-        m_manager->rssDownloader()->downloadUrl(m_iconUrl);
+  while(!xml.atEnd()) {
+    xml.readNext();
+
+    if (xml.isStartElement()) {
+      if (xml.name() == "title") {
+        m_title = xml.readElementText();
+        if (m_alias == url())
+          rename(m_title);
       }
-    }
-    else if (xml.name() == "item") {
-      RssArticlePtr article = xmlToRssArticle(this, xml);
-      qDebug() << "Found RSS Item, valid: " << (article ? "True" : "False");
-      if (article) {
-        QString guid = article->guid();
-        if (m_articles.contains(guid) && m_articles[guid]->isRead())
-          article->markAsRead();
-        m_articles[guid] = article;
+      else if (xml.name() == "image") {
+        QString icon_path = xml.attributes().value("url").toString();
+        if (!icon_path.isEmpty()) {
+          m_iconUrl = icon_path;
+          m_manager->rssDownloader()->downloadUrl(m_iconUrl);
+        }
       }
-    } else {
-      qDebug() << "Skipping RSS tag: " << xml.name();
-      xml.skipCurrentElement();
+      else if (xml.name() == "item") {
+        RssArticlePtr article = xmlToRssArticle(this, xml);
+        qDebug() << "Found RSS Item, valid: " << (article ? "True" : "False");
+        if (article) {
+          QString guid = article->guid();
+          if (m_articles.contains(guid) && m_articles[guid]->isRead())
+            article->markAsRead();
+          m_articles[guid] = article;
+        }
+      }
     }
   }
 }

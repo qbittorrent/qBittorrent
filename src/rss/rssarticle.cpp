@@ -221,28 +221,29 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
   QDateTime date;
   QString author;
 
-  Q_ASSERT(xml.isStartElement() && xml.name() == "item");
+  while(!xml.atEnd()) {
+    xml.readNext();
 
-  while (xml.readNextStartElement()) {
-    if (xml.name() == "title")
-      title = xml.readElementText();
-    else if (xml.name() == "enclosure") {
-      if (xml.attributes().value("type") == "application/x-bittorrent")
-        torrentUrl = xml.attributes().value("url").toString();
-    }
-    else if (xml.name() == "link")
-      link = xml.readElementText();
-    else if (xml.name() == "description")
-      description = xml.readElementText();
-    else if (xml.name() == "pubDate")
-      date = RssArticle::parseDate(xml.readElementText());
-    else if (xml.name() == "author")
-      author = xml.readElementText();
-    else if (xml.name() == "guid")
-      guid = xml.readElementText();
-    else {
-      qDebug() << "Skipping item tag: " << xml.name();
-      xml.skipCurrentElement();
+    if(xml.isEndElement() && xml.name() == "item")
+            break;
+
+    if (xml.isStartElement()) {
+      if (xml.name() == "title")
+        title = xml.readElementText();
+      else if (xml.name() == "enclosure") {
+        if (xml.attributes().value("type") == "application/x-bittorrent")
+          torrentUrl = xml.attributes().value("url").toString();
+      }
+      else if (xml.name() == "link")
+        link = xml.readElementText();
+      else if (xml.name() == "description")
+        description = xml.readElementText();
+      else if (xml.name() == "pubDate")
+        date = RssArticle::parseDate(xml.readElementText());
+      else if (xml.name() == "author")
+        author = xml.readElementText();
+      else if (xml.name() == "guid")
+        guid = xml.readElementText();
     }
   }
 
