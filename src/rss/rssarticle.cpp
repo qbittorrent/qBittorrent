@@ -240,8 +240,10 @@ RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml)
       author = xml.readElementText();
     else if (xml.name() == "guid")
       guid = xml.readElementText();
-    else
+    else {
+      qDebug() << "Skipping item tag: " << xml.name();
       xml.skipCurrentElement();
+    }
   }
 
   if (guid.isEmpty()) {

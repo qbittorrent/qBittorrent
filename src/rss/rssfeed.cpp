@@ -229,6 +229,7 @@ void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
     }
     else if (xml.name() == "item") {
       RssArticlePtr article = xmlToRssArticle(this, xml);
+      qDebug() << "Found RSS Item, valid: " << (article ? "True" : "False");
       if (article) {
         QString guid = article->guid();
         if (m_articles.contains(guid) && m_articles[guid]->isRead())
