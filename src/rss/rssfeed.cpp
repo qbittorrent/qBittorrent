@@ -258,15 +258,19 @@ bool RssFeed::parseRSS(QIODevice* device)
           parseRSSChannel(xml);
           found_channel = true;
           break;
-        } else
+        } else {
+          qDebug() << "Skip rss item: " << xml.name();
           xml.skipCurrentElement();
+        }
       }
       break;
-    } else
+    } else {
+      qDebug() << "Skip root item: " << xml.name();
       xml.skipCurrentElement();
+    }
   }
 
-  if (xml.error()) {
+  if (xml.hasError()) {
     qWarning() << "Error parsing RSS document: " << xml.errorString();
   }
 

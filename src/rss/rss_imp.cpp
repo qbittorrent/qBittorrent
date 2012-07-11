@@ -184,7 +184,7 @@ void RSSImp::on_newFeedButton_clicked() {
     if (parent_item == m_feedList->stickyUnreadItem()) {
       parent_item = 0;
     } else {
-      if (m_feedList->isFolder(parent_item))
+      if (!m_feedList->isFolder(parent_item))
         parent_item = parent_item->parent();
     }
   }

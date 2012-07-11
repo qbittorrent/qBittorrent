@@ -69,7 +69,10 @@ RssFolderPtr RssFolder::addFolder(const QString &name) {
 }
 
 RssFeedPtr RssFolder::addStream(RssManager* manager, const QString &url) {
+  qDebug() << Q_FUNC_INFO << manager << url;
   RssFeedPtr stream(new RssFeed(manager, this, url));
+  Q_ASSERT(stream);
+  qDebug() << "Stream URL is " << stream->url();
   Q_ASSERT(!m_children.contains(stream->url()));
   m_children[stream->url()] = stream;
   stream->refresh();
