@@ -339,12 +339,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../preferences/advancedsettings.h" line="182"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation>밀리세컨</translation>
+        <translation type="unfinished">밀리세컨드</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="52"/>
         <source>Setting</source>
-        <translation type="unfinished">설정정</translation>
+        <translation type="unfinished">설정</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="52"/>
@@ -847,13 +847,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">쿠키 관리</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">키</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="41"/>
@@ -865,7 +865,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">같은 키를 가진 쿠키입니다 : &apos;%1&apos;, &apos;%2&apos;.
+쓰시는 웹브라우저에서 더 많은 정보를 얻으실수 있습니다.</translation>
     </message>
 </context>
 <context>
@@ -873,52 +874,52 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">당신의 동적 DNA가 성공적으로 업데이트 되었습니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류: 서비스가 잠시 불가능합니다. 30분후에 끝날것입니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 에러: 제공받은 호스트이름이 특정 계정에서 존재하지 않습니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 에러: 잘못된 사용자명/비밀번호입니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="203"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류 : 큐빗토런트는 이 서비스를 블랙리스트에 올렸습니다. http://bugs.qbittorrent.org에 버그를 신고 해주세요.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="209"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>동적 DNS 에러: %!이 서비스에서 반송되었습니다. http://bugs.qbittorrent.org에 버그를 신고해주세요.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="215"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류 : 당신의 사용자명이 악용되어 차단되었습니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="236"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류: 제공받는 도메인 이름이 잘못되었습니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="248"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류: 제공받은 사용자명이 너무 짧습니다.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="260"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">동적 DNS 오류: 제공받은 비밀번호가 너무 짧습니다.</translation>
     </message>
 </context>
 <context>
@@ -932,7 +933,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../downloadthread.cpp" line="194"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">리모트 호스트(remote host)를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
+        <translation type="unfinished">원격 호스트를 찾을 수 없습니다(잘못된 호스트 이름)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="196"/>
@@ -942,92 +943,92 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../downloadthread.cpp" line="198"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">리모트 서버(Remote server)으로 부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
+        <translation type="unfinished">원격 서버로부터 회신을 다 받기 전에 연결이 닫혔습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="200"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">리모트 서버(Remote Server) 연결 타임아웃</translation>
+        <translation type="unfinished">원격 서버 연결 타임아웃</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="202"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL/TLS 핸드쉐이크 (handshake) 실패</translation>
+        <translation type="unfinished">SSL/TLS 핸드쉐이크 실패</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="204"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">리모트 서버(Remote Server) 연결 거부</translation>
+        <translation type="unfinished">리모트 서버 연결 거부</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="206"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">프락시 서버가 연결을 거부하였음</translation>
+        <translation type="unfinished">프록시 서버가 연결을 거부하였음</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="208"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">프락시 서버 연결을 영구적으로 제한하였음</translation>
+        <translation type="unfinished">프록시 서버 연결을 영구적으로 제한하였음</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="210"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">프락시 서버 이름을 찾을 수 없음</translation>
+        <translation type="unfinished">프록시 서버 이름을 찾을 수 없음</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="212"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">프락시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃(Timeout) 되었습니다</translation>
+        <translation type="unfinished">프록시 서버에 요청하신 작업에 대한 회신을 받기 전에 연결이 타임아웃 되었습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="214"/>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="unfinished">요청하신 작업을 하기 위해선 프락시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="unfinished">요청하신 작업을 하기 위해선 프록시 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="216"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">리모트 자료(Remote content) 접속이 거부됨(401)</translation>
+        <translation type="unfinished">원격 자료 접속이 거부됨(401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="218"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">리모트 자료(Remote content)에 요청하신 작업은 허용되지 않습니다</translation>
+        <translation type="unfinished">원격 자료에 요청하신 작업은 허용되지 않습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="220"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">리모트 자료(Remote content)가 서버에 없습니다(404)</translation>
+        <translation type="unfinished">원격 자료가 서버에 없습니다(404)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="222"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">자료에 접근하기 위해선 리모트 서버읜 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
+        <translation type="unfinished">자료에 접근하기 위해선 리모트 서버의 인증과정을 거쳐합니다. 하지만 입력하신 인증은 인정되지 않았습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="224"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API( Network Access API)가 사용하실수 없습니다</translation>
+        <translation type="unfinished">알려지지 않은 프로토콜 사용으로 인해 네트워크 접촉 API를 사용하실수 없습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="226"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">요청하신 작업은 현재 사용중에 프로토콜에 적당하지 않습니다</translation>
+        <translation type="unfinished">요청하신 작업은 현재 사용중인 프로토콜에 적당하지 않습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="228"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">네트웍크 관련 오류가 감지 되었습니다</translation>
+        <translation type="unfinished">네트워크 관련 오류가 감지 되었습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="230"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">프락시 관련 오류가 감지되었습니다</translation>
+        <translation type="unfinished">프록시 관련 오류가 감지되었습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="232"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">리모트 자료(Remote content)관련된 오류가 감지되었습니다</translation>
+        <translation type="unfinished">리모트 자료 관련 오류가 감지되었습니다</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="234"/>
@@ -2473,7 +2474,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="392"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">알림영역에서 큐빗토런트 최소화하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="402"/>
@@ -2524,7 +2525,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="439"/>
         <source>File association</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">파일 연결</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="445"/>
@@ -2539,7 +2540,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="468"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">전원 관리</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="474"/>
@@ -2555,7 +2556,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="545"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다운로드 자동으로 시작하지 말기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="561"/>
@@ -2575,17 +2576,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="628"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">디스크에 모든 파일을 미리 배정해두기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="635"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완료되지 않은 토런트는 여기에 보관됩니다:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="688"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">자동적으로 추가된 토런트는:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="741"/>
@@ -2595,12 +2596,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="840"/>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다운로드 완료시 E-mail 알림</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="854"/>
         <source>Destination email:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">E-mail 주소:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="864"/>
@@ -2615,22 +2616,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="925"/>
         <source>Run an external program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">토런트 완료시 외부 프로그램 가동</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="982"/>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">포트 리스닝</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1032"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">내 라우터의 UPnP / NAT-PMP 포트 포워드를 사용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1263"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">그렇지만, 프록시 서버는 트래커 연결에만 사용됩니다</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1266"/>
@@ -2640,22 +2641,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1379"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">필터 다시 불러오기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1532"/>
         <source>Enable bandwidth management (uTP)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">연결대역 관리 활성화 (uTP)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1836"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사생활</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1842"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">DHT를 사용하여 더 많은 피어 찾기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1851"/>
@@ -2665,32 +2666,32 @@ Would you like to update qBittorrent to version %1?</source>
     <message utf8="true">
         <location filename="../preferences/options.ui" line="1912"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">지원가능한 클라이언트(µTorrent, Vuze, ...)와 피어 교완하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1915"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">피어 교환으로 더 많은 사용자 찾기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1928"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">로컬 피어 찾기로 더 많은 피어 찾기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1940"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">암호화 모드:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1948"/>
         <source>Prefer encryption</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사전 암호화</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1953"/>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">암호화 요구</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1958"/>
@@ -2700,7 +2701,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1983"/>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">익명 모드 사용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1990"/>
@@ -2710,12 +2711,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2129"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이 제한을 받는 느린 토런트는 세지 않기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2150"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">시드 토런트가 이 비율에 도달시</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2182"/>
@@ -2725,22 +2726,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2193"/>
         <source>Pause them</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">일시정지 하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2198"/>
         <source>Remove them</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">제거하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2247"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">웹 유저 인터페이스(원격 제어) 사용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2296"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">내 라우터의 UPnP / NAT-PMP 포트 포워드를 사용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2306"/>
@@ -2760,7 +2761,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2337"/>
         <source>Certificate:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">인증서:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2390"/>
@@ -2770,7 +2771,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2424"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;인증서에 대한 정보&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2469"/>
@@ -2790,12 +2791,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2528"/>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">등록하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2537"/>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">도메인 이름:</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -2976,7 +2977,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1167"/>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">프록시 서버</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1338"/>
@@ -2992,12 +2993,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1753"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">언제:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1925"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">로컬 네트워크상의 피어 보기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1183"/>
@@ -3061,12 +3062,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1542"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">uTP 연결에 대한 비율 제한 적용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1549"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">트랜스포트 오버헤드에 비율제한 적용하기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1562"/>
@@ -3076,7 +3077,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1668"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다른 비율 제한 사용을 예정해두기</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2015"/>
@@ -3150,7 +3151,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/proplistdelegate.h" line="109"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished">혼합</translation>
+        <translation>혼합</translation>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="118"/>
@@ -3202,7 +3203,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="438"/>
         <source>Torrent hash:</source>
-        <translation>토렌트 헤쉬(Hash):</translation>
+        <translation type="unfinished">토런트 해쉬:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="524"/>
@@ -3669,12 +3670,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1321"/>
         <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="unfinished">참고: 새 트렉커가 토렌트에 추가 되었습니다.</translation>
+        <translation type="unfinished">참고: 새 트래커가 토런트에 추가 되었습니다.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1347"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="unfinished">참고: 새 URL 완전체 공유자가 토렌트에 추가 되었습니다.</translation>
+        <translation type="unfinished">참고: 새 URL 완전체 공유자가 토런트에 추가 되었습니다.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1676"/>
@@ -3891,11 +3892,11 @@ Would you like to update qBittorrent to version %1?</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;토렌트:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(다운로드하려면 더블 클릭하세요)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;토런트:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(다운로드하시려면 더블 클릭하세요)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Article title</source>
@@ -4066,7 +4067,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="298"/>
+        <location filename="../rss/rssfeed.cpp" line="306"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished">RSS 피드(%2)에서 자동으로 자료(%1) 다운하기...</translation>
     </message>
@@ -4232,7 +4233,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="224"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation type="unfinished">정말 기록들을 지우시겠습니까?</translation>
+        <translation type="unfinished">정말 이전 기록들을 지우시겠습니까?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="278"/>
@@ -4244,13 +4245,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="289"/>
         <source>Missing Python Interpreter</source>
-        <translation type="unfinished">파이선 인터프리터가 빠졌습니다</translation>
+        <translation type="unfinished">파이선 인터프리터가 없습니다</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="290"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished">검색엔진을 사용하기 위해선 파이썬 2.x 버전이 필요로 하지만, 설치가 안되어 있는거 같습니다.
+        <translation type="unfinished">검색엔진을 사용하기 위해선 파이선 2.x 버전이 필요로 하지만, 설치가 안되어 있는거 같습니다.
 파이선을 설치하시겠습니까?</translation>
     </message>
     <message>
@@ -4386,7 +4387,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="150"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation type="unfinished">큐빗토런트를 재시작해 주십시오</translation>
+        <translation type="unfinished">큐빗토런트는 재시작을 필요로 합니다</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="160"/>
@@ -4429,7 +4430,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished">클릭하여 다른 속도 제한으로 바꾸십시오</translation>
+        <translation type="unfinished">클릭하여 대체 속도 제한으로 바꾸십시오</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="200"/>
@@ -4483,12 +4484,12 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="74"/>
         <source>Select a folder to add to the torrent</source>
-        <translation type="unfinished">토텐트를 추가할 폴더를 지정해 주십시오</translation>
+        <translation type="unfinished">토런트를 추가할 폴더를 지정해 주십시오</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="90"/>
         <source>Select a file to add to the torrent</source>
-        <translation type="unfinished">토렌트에 추가할 파일을 선택하십시오</translation>
+        <translation type="unfinished">토런트에 추가할 파일을 선택하십시오</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -4520,7 +4521,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Select destination torrent file</source>
-        <translation type="unfinished">토렌트 파일을 저장할 위치 지정</translation>
+        <translation type="unfinished">토런트 파일을 저장할 위치 지정</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
@@ -4532,22 +4533,22 @@ Please install it manually.</source>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent creation</source>
-        <translation type="unfinished">토렌트 생성</translation>
+        <translation type="unfinished">토런트 생성</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="unfinished">토렌트 생성이 실패하였습니다, 이유: %1</translation>
+        <translation type="unfinished">토런트 생성이 실패하였습니다, 이유: %1</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished">토렌트 파일 목록 생성하기(다운로드 목록에 추가하지 않음).</translation>
+        <translation type="unfinished">토런트 파일 목록 생성하기(다운로드 목록에 추가하지 않음).</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent was created successfully:</source>
-        <translation type="unfinished">토렌트가 성공적으로 생성되었습니다:</translation>
+        <translation type="unfinished">토런트가 성공적으로 생성되었습니다:</translation>
     </message>
 </context>
 <context>
@@ -4973,7 +4974,7 @@ Please install it manually.</source>
         <location filename="../transferlistfilterswidget.h" line="229"/>
         <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Downloading</source>
-        <translation>다운로딩 중</translation>
+        <translation type="unfinished">다운로드 중</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="232"/>
@@ -5313,29 +5314,29 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">토런트 업로드/다운로드 비율 제한</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">전역 비율 제한 사용하기</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">버튼그룹</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">비율 제한 없음</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다음 비율로 제한하기</translation>
     </message>
 </context>
 <context>
@@ -5533,7 +5534,7 @@ Please install it manually.</source>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished">하드디스크에서도 파일을 삭제하시겠습니까?</translation>
+        <translation>하드디스크에서도 파일을 삭제하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -6086,7 +6087,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation type="unfinished">모든 다운로드가 끝나고 시스템을 종료합니다.</translation>
+        <translation type="unfinished">큐빗토런트는 모든 다운로드가 끝나고 시스템을 종료합니다.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="73"/>

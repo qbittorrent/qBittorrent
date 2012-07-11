@@ -3900,7 +3900,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="298"/>
+        <location filename="../rss/rssfeed.cpp" line="306"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation type="unfinished">Henter automatisk %1 torrent fra %2 RSS feed...</translation>
     </message>
