@@ -211,6 +211,7 @@ QString RssFeed::iconUrl() const {
 
 void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
 {
+  qDebug() << Q_FUNC_INFO;
   Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
 
   while (xml.readNextStartElement()) {
@@ -234,8 +235,10 @@ void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
           article->markAsRead();
         m_articles[guid] = article;
       }
-    } else
+    } else {
+      qDebug() << "Skipping RSS tag: " << xml.name();
       xml.skipCurrentElement();
+    }
   }
 }
 
@@ -262,8 +265,12 @@ bool RssFeed::parseRSS(QIODevice* device)
       xml.skipCurrentElement();
   }
 
+  if (xml.error()) {
+    qWarning() << "Error parsing RSS document: " << xml.errorString();
+  }
+
   if (!found_channel) {
-    qDebug() << m_url << " is not a valid RSS feed";
+    qWarning() << m_url << " is not a valid RSS feed";
     return false;
   }
 
