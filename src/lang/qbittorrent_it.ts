@@ -92,8 +92,8 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un client avanzato BitTorrent programmato in C++, basato sul Qt4 Toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Segnala Bug: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -148,7 +148,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation>Finestra di dialogo</translation>
+        <translation>Dialogo</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="32"/>
@@ -163,7 +163,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="58"/>
         <source>Never show again</source>
-        <translation>Non mostrare ancora</translation>
+        <translation>Non visualizzare più</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="75"/>
@@ -239,7 +239,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="169"/>
         <source>The torrent file does not exist.</source>
-        <translation>Il file torrent non esiste.</translation>
+        <translation>Il file torrent non esiste</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="177"/>
@@ -249,7 +249,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Caricamento torrent %1 fallito</translation>
+        <translation>Impossibile caricare il torrent: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="187"/>
@@ -259,29 +259,29 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>Invalid magnet link</source>
-        <translation>Magnet link non valido</translation>
+        <translation>Collegamento magnet non valido</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="246"/>
         <source>This magnet link was not recognized</source>
-        <translation>Questo magnet link non è stato riconosciuto</translation>
+        <translation>Collegamento magnet non riconosciuto</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="252"/>
         <source>Magnet link</source>
-        <translation>Magnet link</translation>
+        <translation>Collegamento Magnet</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="318"/>
         <source>Disk space: %1</source>
-        <translation>Spazio su disco: %1</translation>
+        <translation>Spazio disco: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="336"/>
         <location filename="../addnewtorrentdialog.cpp" line="343"/>
         <location filename="../addnewtorrentdialog.cpp" line="345"/>
         <source>Choose save path</source>
-        <translation>Scegliere una directory di salvataggio</translation>
+        <translation>Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="395"/>
@@ -302,18 +302,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="401"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation>Questo nome contiene caratteri sconosciuti, per favore scegline un altro.</translation>
+        <translation>Questo nome file contiene caratteri proibiti. Scegli un nome differente.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="427"/>
         <location filename="../addnewtorrentdialog.cpp" line="462"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Questo nome è già in uso in questa cartella. Per favore sceglierne un altro.</translation>
+        <translation>Questo nome è già in uso in questa cartella. Scegli un altro nome.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>The folder could not be renamed</source>
-        <translation>La cartella non può essere rinominata</translation>
+        <translation>La cartelal non può essere rinominata</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="520"/>
@@ -394,7 +394,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="183"/>
         <source>Transfer list refresh interval</source>
-        <translation>Aggiorna lista trasferimenti torrent</translation>
+        <translation>Aggiorna elenco trasferimenti torrent</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="182"/>
@@ -441,7 +441,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Display program on-screen notifications</source>
-        <translation>Mostra notifiche del programma nello schermo</translation>
+        <translation>Visualizza notifiche del programma nello schermo</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="226"/>
@@ -451,7 +451,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Use system icon theme</source>
-        <translation>Usa icone di sistema</translation>
+        <translation>Usa tema icone di sistema</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="234"/>
@@ -460,11 +460,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="obsolete">Mostra fumetti di notifiche del programma</translation>
+        <translation type="obsolete">Visualizza fumetti di notifiche del programma</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="obsolete">Mostra fumetti di notifiche dei programmi</translation>
+        <translation type="obsolete">Visualizza fumetti di notifiche dei programmi</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="218"/>
@@ -579,17 +579,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="327"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation>Sei sicuro che vuoi rimuovere la regola di download di nome %1?</translation>
+        <translation>Rimuovere la regola di download con nome %1?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="329"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Sei sicuro che vuoi rimuovere la regola di download selezionata?</translation>
+        <translation>Rimuovere la regola di download selezionata?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="330"/>
         <source>Rule deletion confirmation</source>
-        <translation>Conferma cancellazione della regola</translation>
+        <translation>Conferma eliminazione della regola</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
@@ -604,17 +604,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="354"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>La lista è vuota, non c&apos;è niente da esportare.</translation>
+        <translation>L&apos;elenco è vuoto, non c&apos;è niente da esportare.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="358"/>
         <source>Where would you like to save the list?</source>
-        <translation>Dove si vuole salvare la lista?</translation>
+        <translation>Dove si vuole salvare l&apos;elenco?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="358"/>
         <source>Rules list (*.rssrules)</source>
-        <translation>Lista regole (*.rssrules)</translation>
+        <translation>Elenco regole (*.rssrules)</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="363"/>
@@ -634,7 +634,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="371"/>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation>Lista regole (*.rssrules *.filters)</translation>
+        <translation>Elenco regole (*.rssrules *.filters)</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="375"/>
@@ -788,13 +788,13 @@ p, li { white-space: pre-wrap; }
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translatorcomment>&apos;xxx.avi&apos; è stato rimosso...</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti e dal disco.</translation>
+        <translation type="obsolete">&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti e dal disco.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translatorcomment>&apos;xxx.avi&apos; è stato rimosso</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti.</translation>
+        <translation type="obsolete">&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
@@ -803,8 +803,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translatorcomment>per esempio: &apos;xxx.avi&apos; è già nella lista di download.</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; è già nella lista dei download.</translation>
+        <translatorcomment>per esempio: &apos;xxx.avi&apos; è già nell&apos;elenco download.</translatorcomment>
+        <translation type="obsolete">&apos;%1&apos; è già nell&apos;elenco download.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
@@ -815,8 +815,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translatorcomment>&apos;/home/y/xxx.torrent&apos; è stato aggiunto alla lista di download.</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
+        <translatorcomment>&apos;/home/y/xxx.torrent&apos; è stato aggiunto all&apos;elenco download.</translatorcomment>
+        <translation type="obsolete">&apos;%1&apos; è stato aggiunto all&apos;elenco download.</translation>
     </message>
     <message>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
@@ -990,7 +990,7 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Il tuo DNS dinamico è stato aggiornato.</translation>
+        <translation>Il tuo DNS dinamico è stato aggiornato corretttamente.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
@@ -1523,13 +1523,13 @@ Motivo: %2</translation>
     </message>
     <message>
         <source>A newer version is available</source>
-        <translation type="obsolete">Una nuova versione è disponibile</translation>
+        <translation type="obsolete">E&apos; disponibile una nuova versione</translation>
     </message>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="obsolete">Una nuova versione di qBittorrent è disponibile su Sourceforge.
-Vuoi aggiornare qBittorrent alla versione %1?</translation>
+        <translation type="obsolete">E&apos; disponibile una nuova versione di qBittorrent in Sourceforge.
+Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <source>Impossible to update qBittorrent</source>
@@ -1603,7 +1603,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation type="obsolete">Alcuni file sono ancora in trasferimento.
-Sei sicuro di voler chiudere qBittorrent?</translation>
+Chiudere qBittorrent?</translation>
     </message>
     <message>
         <source>Options were saved successfully.</source>
@@ -1938,7 +1938,7 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="116"/>
         <source>Torrent files were correctly added to download list.</source>
-        <translation>Torrent aggiunti correttamente alla lista dei download.</translation>
+        <translation>Torrent aggiunti correttamente all&apos;elenco download.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="117"/>
@@ -1953,7 +1953,7 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Sei sicuro di voler cancellare i torrent selezionati dalla lista dei trasferimenti e dal disco?</translation>
+        <translation>Eliminare i torrent selezionati dall&apos;elenco dei trasferimenti e dal disco?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="120"/>
@@ -2270,7 +2270,7 @@ Non verranno emessi avvisi.</translation>
         <location filename="../mainwindow.ui" line="370"/>
         <location filename="../mainwindow.cpp" line="1207"/>
         <source>Show</source>
-        <translation>Mostra</translation>
+        <translation>Visualizza</translation>
     </message>
     <message>
         <source>&amp;Log viewer...</source>
@@ -2343,7 +2343,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="258"/>
         <source>Display top tool bar</source>
-        <translation>Mostra barra degli strumenti in alto</translation>
+        <translation>Visualizza barra degli strumenti in alto</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="266"/>
@@ -2353,7 +2353,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="269"/>
         <source>Show transfer speed in title bar</source>
-        <translation>Mostra barra dei trasferimenti</translation>
+        <translation>Visualizza barra dei trasferimenti</translation>
     </message>
     <message>
         <source>Preview file</source>
@@ -2577,7 +2577,7 @@ Motivo: %2</translation>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Alcuni file sono ancora in trasferimento.
-Sei sicuro di voler chiudere qBittorrent?</translation>
+Chiudere qBittorrent?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="764"/>
@@ -2626,14 +2626,14 @@ Sei sicuro di voler chiudere qBittorrent?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1309"/>
         <source>A newer version is available</source>
-        <translation>Una nuova versione è disponibile</translation>
+        <translation>E&apos; disponibile una nuova versione</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1310"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation>Una nuova versione di qBittorrent è disponibile su Sourceforge.
-Vuoi aggiornare qBittorrent alla versione %1?</translation>
+        <translation>E&apos; disponibile una nuova versione di qBittorrent in Sourceforge.
+Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1325"/>
@@ -2765,7 +2765,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="199"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Sei sicuro di voler bannare permanentemente il peer selezionato?</translation>
+        <translation>Bannare permanentemente il peer selezionato?</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="200"/>
@@ -3024,7 +3024,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Show splash screen on start up</source>
-        <translation>Mostra schermata di avvio in fase di start up</translation>
+        <translation>Visualizza schermata di avvio in fase di start up</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="366"/>
@@ -3033,7 +3033,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <source>Show qBittorrent icon in notification area</source>
-        <translation type="obsolete">Mostra l&apos;icona di qBittorrent nell&apos;area di notifica</translation>
+        <translation type="obsolete">Visualizza l&apos;icona di qBittorrent nell&apos;area di notifica</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="392"/>
@@ -3049,7 +3049,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="535"/>
         <source>Display torrent content and some options</source>
-        <translation>Mostra il contenuto del torrent ed alcune opzioni</translation>
+        <translation>Visualizza il contenuto del torrent ed alcune opzioni</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -3293,7 +3293,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="383"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>Mostra qBittorrent nell&apos;area di notifica</translation>
+        <translation>Visualizza qBittorrent nell&apos;area di notifica</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="468"/>
@@ -3985,7 +3985,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="628"/>
         <source>This url seed is already in the list.</source>
-        <translation>Questo seed web è già nella lista.</translation>
+        <translation>Questo seed web è già nell&apos;elenco.</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -4128,13 +4128,13 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="795"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti e dal disco.</translation>
+        <translation>&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti e dal disco.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="797"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; è stato rimosso dalla lista dei trasferimenti.</translation>
+        <translation>&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="880"/>
@@ -4148,7 +4148,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1037"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translation>&apos;%1&apos; è già nella lista dei download.</translation>
+        <translation>&apos;%1&apos; è già nell&apos;elenco download.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1175"/>
@@ -4163,7 +4163,7 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1182"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translation>&apos;%1&apos; è stato aggiunto alla lista dei download.</translation>
+        <translation>&apos;%1&apos; è stato aggiunto all&apos;elenco download.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="373"/>
@@ -4266,23 +4266,23 @@ Vuoi aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>Il computer andrà in modalità riposo a meno che tu neghi per i prossimi 15 secondi...</translation>
+        <translation>Il computer andrà in modalità riposo a meno che tu annulli l&apos;operazione nei prossimi 15 secondi...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2214"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>Il computer verrà spento a meno che tu neghi entro i prossimi 15 secondi...</translation>
+        <translation>Il computer verrà spento a meno che che tu annulli l&apos;operazione nei prossimi 15 secondi...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2216"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>qBittorrent adesso si chiude a meno che tu neghi entro i prossimi 15 secondi...</translation>
+        <translation>qBittorrent adesso si chiude a meno che tu annulli l&apos;operazione nei prossimi 15 secondi...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2755"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Il filtro IP fornito è stato correttamente analizzato: le regole %1 sono state applicate.</translation>
+        <translation>Analisi filtro IP completata: sono state applicate %1 regole.</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
@@ -4559,22 +4559,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>This rss feed is already in the list.</source>
-        <translation>Questo feed rss è già nella lista.</translation>
+        <translation>Questo feed rss è già nell&apos;elenco.</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="238"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Sei sicuro di voler cancellare questi elementi dalla lista?</translation>
+        <translation>Eliminare questi elementi dall&apos;elenco?</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="242"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Sei sicuro di voler cancellare questo elemento dalla lista?</translation>
+        <translation>Eliminare questo elemento dall&apos;elenco?</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="380"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Per favore scegliere un nuovo nome per questo Feed RSS</translation>
+        <translation>Scegli un nuovo nome per questo Feed RSS</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="380"/>
@@ -4617,7 +4617,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="306"/>
+        <location filename="../rss/rssfeed.cpp" line="311"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Download automatico del torrent %1 dal Feed RSS %2...</translation>
     </message>
@@ -4795,7 +4795,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="224"/>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Sei sicuro di voler cancellare la cronologia?</translation>
+        <translation>Azzerare la cronologia?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="278"/>
@@ -5105,7 +5105,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation>Il torrent creato non è valido. Non sarà aggiunto alla lista dei download.</translation>
+        <translation>Il torrent creato non è valido. Non sarà aggiunto all&apos;elenco download.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
@@ -5421,12 +5421,12 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackersadditiondlg.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation>Lista dei tracker da aggiungere (uno per riga):</translation>
+        <translation>Elenco dei tracker da aggiungere (uno per riga):</translation>
     </message>
     <message utf8="true">
         <location filename="../properties/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>URL lista compatibile µTorrent:</translation>
+        <translation>URL elenco compatibile µTorrent:</translation>
     </message>
     <message>
         <location filename="../properties/trackersadditiondlg.h" line="81"/>
@@ -5456,7 +5456,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackersadditiondlg.h" line="132"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation>Non è stato possibile scaricare la lista dei tracker, motivo: %1</translation>
+        <translation>Non è stato possibile scaricare l&apos;elenco dei tracker, motivo: %1</translation>
     </message>
 </context>
 <context>
@@ -5919,7 +5919,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../main.cpp" line="74"/>
         <source>displays program version</source>
-        <translation>mostra la versione del programma</translation>
+        <translation>visualizza la versione del programma</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="76"/>
@@ -5929,7 +5929,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>displays this help message</source>
-        <translation>mostra questo messaggio di aiuto</translation>
+        <translation>visualizza questo messaggio di aiuto</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="79"/>
@@ -6110,7 +6110,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Sei sicuro di voler cancellare i torrent selezionati dalla lista dei trasferimenti?</translation>
+        <translation>Eliminare i torrent selezionati dall&apos;elenco trasferimenti?</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="67"/>
@@ -6311,7 +6311,7 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Il torrent creato non è valido. Non sarà aggiunto alla lista dei download.</translation>
+        <translation type="obsolete">Il torrent creato non è valido. Non sarà aggiunto all&apos;elenco download.</translation>
     </message>
 </context>
 <context>
@@ -6783,7 +6783,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../webui/btjson.cpp" line="298"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation>%1 massimo</translation>
+        <translation>max %1</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="366"/>
@@ -6836,7 +6836,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Impossibile aggiungere lo scan alla cartella &apos;%1: %2</translation>
+        <translation>Impossibile aggiungere amalisi cartella &apos;%1: %2</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1083"/>
@@ -6885,7 +6885,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../preferences/options_imp.cpp" line="1224"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Il filtro IP fornito è stato correttamente analizzato: le regole %1 sono state applicate.</translation>
+        <translation>Completata analisi filtro IP: sono state applicate %1 regole.</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
