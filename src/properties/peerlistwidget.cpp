@@ -312,7 +312,7 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
   h.get_peer_info(peers);
   std::vector<peer_info>::const_iterator itr;
   QSet<QString> old_peers_set = m_peerItems.keys().toSet();
-  for (itr = peers.begin(); itr != peers.end(); itr++) {
+  for (itr = peers.begin(); itr != peers.end(); ++itr) {
     peer_info peer = *itr;
     QString peer_ip = misc::toQString(peer.ip.address().to_string(ec));
     if (ec) continue;

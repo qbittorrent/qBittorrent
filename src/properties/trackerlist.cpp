@@ -313,7 +313,7 @@ void TrackerList::deleteSelectedTrackers() {
   std::vector<announce_entry> remaining_trackers;
   std::vector<announce_entry> trackers = h.trackers();
   std::vector<announce_entry>::iterator it;
-  for (it = trackers.begin(); it != trackers.end(); it++) {
+  for (it = trackers.begin(); it != trackers.end(); ++it) {
     if (!urls_to_remove.contains(misc::toQString((*it).url))) {
       remaining_trackers.push_back(*it);
     }

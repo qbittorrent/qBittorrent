@@ -282,7 +282,7 @@ QStringList QTorrentHandle::url_seeds() const {
   try {
     const std::set<std::string> existing_seeds = torrent_handle::url_seeds();
     std::set<std::string>::const_iterator it;
-    for (it = existing_seeds.begin(); it != existing_seeds.end(); it++) {
+    for (it = existing_seeds.begin(); it != existing_seeds.end(); ++it) {
       qDebug("URL Seed: %s", it->c_str());
       res << misc::toQString(*it);
     }
@@ -582,7 +582,7 @@ QString QTorrentHandle::error() const {
 void QTorrentHandle::downloading_pieces(bitfield &bf) const {
   std::vector<partial_piece_info> queue;
   torrent_handle::get_download_queue(queue);
-  for (std::vector<partial_piece_info>::const_iterator it=queue.begin(); it!= queue.end(); it++) {
+  for (std::vector<partial_piece_info>::const_iterator it=queue.begin(); it!= queue.end(); ++it) {
     bf.set_bit(it->piece_index);
   }
   return;

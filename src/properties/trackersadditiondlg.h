@@ -90,7 +90,7 @@ public slots:
     std::vector<libtorrent::announce_entry>::iterator itr = tor_trackers.begin();
     while(itr != tor_trackers.end()) {
       existingTrackers << QUrl(misc::toQString(itr->url));
-      itr++;
+      ++itr;
     }
     // Load from current user list
     QStringList tmp = trackers_list->toPlainText().split("\n");

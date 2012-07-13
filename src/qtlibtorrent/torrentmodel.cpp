@@ -206,7 +206,7 @@ void TorrentModel::populate() {
   // Load the torrents
   std::vector<torrent_handle> torrents = QBtSession::instance()->getSession()->get_torrents();
   std::vector<torrent_handle>::const_iterator it;
-  for (it = torrents.begin(); it != torrents.end(); it++) {
+  for (it = torrents.begin(); it != torrents.end(); ++it) {
     addTorrent(QTorrentHandle(*it));
   }
   // Refresh timer
@@ -315,7 +315,7 @@ int TorrentModel::torrentRow(const QString &hash) const
 {
   QList<TorrentModelItem*>::const_iterator it;
   int row = 0;
-  for (it = m_torrents.constBegin(); it != m_torrents.constEnd(); it++) {
+  for (it = m_torrents.constBegin(); it != m_torrents.constEnd(); ++it) {
     if ((*it)->hash() == hash) return row;
     ++row;
   }
@@ -396,7 +396,7 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
 {
   TorrentStatusReport report;
   QList<TorrentModelItem*>::const_iterator it;
-  for (it = m_torrents.constBegin(); it != m_torrents.constEnd(); it++) {
+  for (it = m_torrents.constBegin(); it != m_torrents.constEnd(); ++it) {
     switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
     case TorrentModelItem::STATE_DOWNLOADING:
       ++report.nb_active;

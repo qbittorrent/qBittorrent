@@ -67,7 +67,7 @@ public:
     QStringList pieces_priority;
     while(pp_it != pp.end()) {
       pieces_priority << QString::number(*pp_it);
-      pp_it++;
+      ++pp_it;
     }
     data["files_priority"] = pieces_priority;
     all_data[hash] = data;
