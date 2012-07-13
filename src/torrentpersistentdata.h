@@ -63,9 +63,11 @@ public:
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    std::vector<int>::const_iterator pp_it = pp.begin();
     QStringList pieces_priority;
-    while(pp_it != pp.end()) {
+
+    std::vector<int>::const_iterator pp_it = pp.begin();
+    std::vector<int>::const_iterator pp_itend = pp.end();
+    while(pp_it != pp_itend) {
       pieces_priority << QString::number(*pp_it);
       ++pp_it;
     }
@@ -206,8 +208,9 @@ public:
   static bool hasPerTorrentRatioLimit() {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant>::ConstIterator it;
-    for (it = all_data.constBegin(); it != all_data.constEnd(); it++) {
+    QHash<QString, QVariant>::ConstIterator it = all_data.constBegin();
+    QHash<QString, QVariant>::ConstIterator itend = all_data.constEnd();
+    for ( ; it != itend; ++it) {
       if (it.value().toHash().value("max_ratio", USE_GLOBAL_RATIO).toReal() >= 0) {
         return true;
       }

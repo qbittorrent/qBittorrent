@@ -310,9 +310,11 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
   boost::system::error_code ec;
   std::vector<peer_info> peers;
   h.get_peer_info(peers);
-  std::vector<peer_info>::const_iterator itr;
   QSet<QString> old_peers_set = m_peerItems.keys().toSet();
-  for (itr = peers.begin(); itr != peers.end(); ++itr) {
+
+  std::vector<peer_info>::const_iterator itr = peers.begin();
+  std::vector<peer_info>::const_iterator itrend = peers.end();
+  for ( ; itr != itrend; ++itr) {
     peer_info peer = *itr;
     QString peer_ip = misc::toQString(peer.ip.address().to_string(ec));
     if (ec) continue;

@@ -214,8 +214,10 @@ QString fsutils::fixFileNames(const QString& path)
   QList<QByteArray> parts = raw_path.split('/');
   if (parts.isEmpty()) return path;
   QByteArray last_part = parts.takeLast();
-  QList<QByteArray>::iterator it;
-  for (it = parts.begin(); it != parts.end(); ++it) {
+  
+  QList<QByteArray>::iterator it = parts.begin();
+  QList<QByteArray>::iterator itend = parts.end();
+  for ( ; it != itend; ++it) {
     // Make sure the filename is not too long
     if (it->size() > MAX_FILENAME_BYTES) {
       qWarning() << "Folder" << *it << "was cut because it was too long";
