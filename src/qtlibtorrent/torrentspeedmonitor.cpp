@@ -122,8 +122,10 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
 void TorrentSpeedMonitor::getSamples()
 {
   const std::vector<torrent_handle> torrents = m_session->getSession()->get_torrents();
-  std::vector<torrent_handle>::const_iterator it;
-  for (it = torrents.begin(); it != torrents.end(); ++it) {
+
+  std::vector<torrent_handle>::const_iterator it = torrents.begin();
+  std::vector<torrent_handle>::const_iterator itend = torrents.end();
+  for ( ; it != itend; ++it) {
     try {
 #if LIBTORRENT_VERSION_MINOR > 15
       torrent_status st = it->status(0x0);
