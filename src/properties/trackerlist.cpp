@@ -202,7 +202,7 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
       ++nb_pex;
   }
   // load DHT information
-  if (QBtSession::instance()->isDHTEnabled() && h.has_metadata() && !h.priv()) {
+  if (QBtSession::instance()->isDHTEnabled() && !h.priv()) {
     dht_item->setText(COL_STATUS, tr("Working"));
   } else {
     dht_item->setText(COL_STATUS, tr("Disabled"));
