@@ -87,8 +87,10 @@ public slots:
     QList<QUrl> existingTrackers;
     // Load from torrent handle
     std::vector<libtorrent::announce_entry> tor_trackers = h.trackers();
+
     std::vector<libtorrent::announce_entry>::iterator itr = tor_trackers.begin();
-    while(itr != tor_trackers.end()) {
+    std::vector<libtorrent::announce_entry>::iterator itrend = tor_trackers.end();
+    while(itr != itrend) {
       existingTrackers << QUrl(misc::toQString(itr->url));
       ++itr;
     }

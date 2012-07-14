@@ -212,8 +212,10 @@ void QBtSession::preAllocateAllFiles(bool b) {
 void QBtSession::processBigRatios() {
   qDebug("Process big ratios...");
   std::vector<torrent_handle> torrents = s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     const QTorrentHandle h(*torrentIT);
     if (!h.is_valid()) continue;
     if (h.is_seed()) {
@@ -359,8 +361,10 @@ void QBtSession::configureSession() {
     }
     // Update torrent handles
     std::vector<torrent_handle> torrents = s->get_torrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+    std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+    std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+    for ( ; torrentIT != torrentITend; ++torrentIT) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (h.is_valid())
         h.resolve_countries(resolve_countries);
@@ -711,8 +715,10 @@ QTorrentHandle QBtSession::getTorrentHandle(const QString &hash) const {
 
 bool QBtSession::hasActiveTorrents() const {
   std::vector<torrent_handle> torrents = s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     const QTorrentHandle h(*torrentIT);
     if (h.is_valid() && !h.is_paused() && !h.is_queued())
       return true;
@@ -722,8 +728,10 @@ bool QBtSession::hasActiveTorrents() const {
 
 bool QBtSession::hasDownloadingTorrents() const {
   std::vector<torrent_handle> torrents = s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     if (torrentIT->is_valid()) {
       try {
         const torrent_status::state_t state = torrentIT->status().state;
@@ -802,8 +810,10 @@ void QBtSession::deleteTorrent(const QString &hash, bool delete_local_files) {
 
 void QBtSession::pauseAllTorrents() {
   std::vector<torrent_handle> torrents = s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     try {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_paused()) {
@@ -820,8 +830,10 @@ std::vector<torrent_handle> QBtSession::getTorrents() const {
 
 void QBtSession::resumeAllTorrents() {
   std::vector<torrent_handle> torrents = s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     try {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (h.is_paused()) {
@@ -1324,8 +1336,10 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
   const QStringList old_urlseeds = h_ex.url_seeds();
 #if LIBTORRENT_VERSION_MINOR > 15
   std::vector<web_seed_entry> new_urlseeds = t->web_seeds();
-  std::vector<web_seed_entry>::iterator it;
-  for (it = new_urlseeds.begin(); it != new_urlseeds.end(); it++) {
+
+  std::vector<web_seed_entry>::iterator it = new_urlseeds.begin();
+  std::vector<web_seed_entry>::iterator itend = new_urlseeds.end();
+  for ( ; it != itend; ++it) {
     const QString new_url = misc::toQString(it->url.c_str());
     if (!old_urlseeds.contains(new_url)) {
       urlseeds_added = true;
@@ -1334,8 +1348,10 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
   }
 #else
   std::vector<std::string> new_urlseeds = t->url_seeds();
-  std::vector<std::string>::iterator it;
-  for (it = new_urlseeds.begin(); it != new_urlseeds.end(); ++it) {
+
+  std::vector<std::string>::iterator it = new_urlseeds.begin();
+  std::vector<std::string>::iterator itend = new_urlseeds.end();
+  for ( ; it != itend; ++it) {
     const QString new_url = misc::toQString(it->c_str());
     if (!old_urlseeds.contains(new_url)) {
       urlseeds_added = true;
@@ -1358,8 +1374,10 @@ void QBtSession::exportTorrentFiles(QString path) {
   }
   QDir torrentBackup(fsutils::BTBackupLocation());
   std::vector<torrent_handle> handles = s->get_torrents();
-  std::vector<torrent_handle>::iterator itr;
-  for (itr=handles.begin(); itr != handles.end(); ++itr) {
+
+  std::vector<torrent_handle>::iterator itr=handles.begin();
+  std::vector<torrent_handle>::iterator itrend=handles.end();
+  for ( ; itr != itrend; ++itr) {
     const QTorrentHandle h(*itr);
     if (!h.is_valid()) {
       std::cerr << "Torrent Export: torrent is invalid, skipping..." << std::endl;
@@ -1399,8 +1417,10 @@ void QBtSession::setMaxConnectionsPerTorrent(int max) {
   qDebug() << Q_FUNC_INFO << max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
-  std::vector<torrent_handle>::const_iterator it;
-  for (it = handles.begin(); it != handles.end(); ++it) {
+
+  std::vector<torrent_handle>::const_iterator it = handles.begin();
+  std::vector<torrent_handle>::const_iterator itend = handles.end();
+  for ( ; it != itend; ++it) {
     if (!it->is_valid())
       continue;
     try {
@@ -1413,8 +1433,10 @@ void QBtSession::setMaxUploadsPerTorrent(int max) {
   qDebug() << Q_FUNC_INFO << max;
   // Apply this to all session torrents
   std::vector<torrent_handle> handles = s->get_torrents();
-  std::vector<torrent_handle>::const_iterator it;
-  for (it = handles.begin(); it != handles.end(); ++it) {
+
+  std::vector<torrent_handle>::const_iterator it = handles.begin();
+  std::vector<torrent_handle>::const_iterator itend = handles.end();
+  for ( ; it != itend; ++it) {
     if (!it->is_valid())
       continue;
     try {
@@ -1564,8 +1586,10 @@ qreal QBtSession::getRealRatio(const QString &hash) const {
 // Called periodically
 void QBtSession::saveTempFastResumeData() {
   std::vector<torrent_handle> torrents =  s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     try {
       if (!h.is_valid() || !h.has_metadata() /*|| h.is_seed() || h.is_paused()*/) continue;
@@ -1590,8 +1614,10 @@ void QBtSession::saveFastResumeData() {
   // Pause session
   s->pause();
   std::vector<torrent_handle> torrents =  s->get_torrents();
-  std::vector<torrent_handle>::iterator torrentIT;
-  for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+  std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+  std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+  for ( ; torrentIT != torrentITend; ++torrentIT) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     if (!h.is_valid() || !h.has_metadata()) continue;
     try {
@@ -1726,8 +1752,10 @@ void QBtSession::setDefaultTempPath(QString temppath) {
     // Disabling temp dir
     // Moving all torrents to their destination folder
     std::vector<torrent_handle> torrents = s->get_torrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+    std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+    std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+    for ( ; torrentIT != torrentITend; ++torrentIT) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       h.move_storage(getSavePath(h.hash()));
@@ -1736,8 +1764,10 @@ void QBtSession::setDefaultTempPath(QString temppath) {
     qDebug("Enabling default temp path...");
     // Moving all downloading torrents to temporary save path
     std::vector<torrent_handle> torrents = s->get_torrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+    std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+    std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+    for ( ; torrentIT != torrentITend; ++torrentIT) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
@@ -1811,8 +1841,10 @@ void QBtSession::setAppendLabelToSavePath(bool append) {
     if (appendLabelToSavePath) {
       // Move torrents storage to sub folder with label name
       std::vector<torrent_handle> torrents = s->get_torrents();
-      std::vector<torrent_handle>::iterator torrentIT;
-      for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+      std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+      std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+      for ( ; torrentIT != torrentITend; ++torrentIT) {
         QTorrentHandle h = QTorrentHandle(*torrentIT);
         appendLabelToTorrentSavePath(h);
       }
@@ -1825,8 +1857,10 @@ void QBtSession::setAppendqBExtension(bool append) {
     appendqBExtension = !appendqBExtension;
     // append or remove .!qB extension for incomplete files
     std::vector<torrent_handle> torrents = s->get_torrents();
-    std::vector<torrent_handle>::iterator torrentIT;
-    for (torrentIT = torrents.begin(); torrentIT != torrents.end(); ++torrentIT) {
+
+    std::vector<torrent_handle>::iterator torrentIT = torrents.begin();
+    std::vector<torrent_handle>::iterator torrentITend = torrents.end();
+    for ( ; torrentIT != torrentITend; ++torrentIT) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       appendqBextensionToTorrent(h, appendqBExtension);
     }
@@ -2473,8 +2507,10 @@ void QBtSession::readAlerts() {
       qDebug() << "Sucessfully listening on" << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
       // Force reannounce on all torrents because some trackers blacklist some ports
       std::vector<torrent_handle> torrents = s->get_torrents();
-      std::vector<torrent_handle>::iterator it;
-      for (it = torrents.begin(); it != torrents.end(); ++it) {
+
+      std::vector<torrent_handle>::iterator it = torrents.begin();
+      std::vector<torrent_handle>::iterator itend = torrents.end();
+      for ( ; it != itend; ++it) {
         it->force_reannounce();
       }
       emit listenSucceeded();
