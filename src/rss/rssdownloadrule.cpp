@@ -122,7 +122,10 @@ QStringList RssDownloadRule::findMatchingArticles(const RssFeedPtr& feed) const
 {
   QStringList ret;
   const RssArticleHash& feed_articles = feed->articleHash();
-  for (RssArticleHash::ConstIterator artIt = feed_articles.begin(); artIt != feed_articles.end(); artIt++) {
+
+  RssArticleHash::ConstIterator artIt = feed_articles.begin();
+  RssArticleHash::ConstIterator artItend = feed_articles.end();
+  for ( ; artIt != artItend ; ++artIt) {
     const QString title = artIt.value()->title();
     if (matches(title))
       ret << title;

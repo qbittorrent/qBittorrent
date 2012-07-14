@@ -75,7 +75,9 @@ QVariantHash RssDownloadRuleList::toVariantHash() const
 
 void RssDownloadRuleList::loadRulesFromVariantHash(const QVariantHash &h)
 {
-  for (QVariantHash::ConstIterator it = h.begin(); it != h.end(); it++) {
+  QVariantHash::ConstIterator it = h.begin();
+  QVariantHash::ConstIterator itend = h.end();
+  for ( ; it != itend; ++it) {
     RssDownloadRulePtr rule = RssDownloadRule::fromVariantHash(it.value().toHash());
     if (rule && !rule->name().isEmpty())
       saveRule(rule);
