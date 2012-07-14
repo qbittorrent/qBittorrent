@@ -67,7 +67,10 @@ void RssFeed::saveItemsToDisk() {
     return;
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QVariantList old_items;
-  for (RssArticleHash::ConstIterator it=m_articles.begin(); it != m_articles.end(); it++) {
+
+  RssArticleHash::ConstIterator it=m_articles.begin();
+  RssArticleHash::ConstIterator itend=m_articles.end();
+  for ( ; it != itend; ++it) {
     old_items << it.value()->toHash();
   }
   qDebug("Saving %d old items for feed %s", old_items.size(), displayName().toLocal8Bit().data());
@@ -175,7 +178,9 @@ uint RssFeed::count() const {
 }
 
 void RssFeed::markAsRead() {
-  for (RssArticleHash::ConstIterator it=m_articles.begin(); it != m_articles.end(); it++) {
+  RssArticleHash::ConstIterator it=m_articles.begin();
+  RssArticleHash::ConstIterator itend=m_articles.end();
+  for ( ; it != itend; ++it) {
     it.value()->markAsRead();
   }
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
@@ -183,7 +188,10 @@ void RssFeed::markAsRead() {
 
 uint RssFeed::unreadCount() const {
   uint nbUnread = 0;
-  for (RssArticleHash::ConstIterator it=m_articles.begin(); it != m_articles.end(); it++) {
+
+  RssArticleHash::ConstIterator it=m_articles.begin();
+  RssArticleHash::ConstIterator itend=m_articles.end();
+  for ( ; it != itend; ++it) {
     if (!it.value()->isRead())
       ++nbUnread;
   }
@@ -196,7 +204,10 @@ RssArticleList RssFeed::articleList() const {
 
 RssArticleList RssFeed::unreadArticleList() const {
   RssArticleList unread_news;
-  for (RssArticleHash::ConstIterator it = m_articles.begin(); it != m_articles.end(); it++) {
+
+  RssArticleHash::ConstIterator it = m_articles.begin();
+  RssArticleHash::ConstIterator itend = m_articles.end();
+  for ( ; it != itend; ++it) {
     if (!it.value()->isRead())
       unread_news << it.value();
   }
@@ -296,7 +307,10 @@ bool RssFeed::parseRSS(QIODevice* device)
 void RssFeed::downloadMatchingArticleTorrents() {
   Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   RssDownloadRuleList *download_rules = m_manager->downloadRules();
-  for (RssArticleHash::ConstIterator it = m_articles.begin(); it != m_articles.end(); it++) {
+
+  RssArticleHash::ConstIterator it = m_articles.begin();
+  RssArticleHash::ConstIterator itend = m_articles.end();
+  for ( ; it != itend; ++it) {
     RssArticlePtr article = it.value();
     // Skip read articles
     if (article->isRead())
