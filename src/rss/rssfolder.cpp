@@ -44,7 +44,10 @@ RssFolder::~RssFolder() {
 
 unsigned int RssFolder::unreadCount() const {
   uint nb_unread = 0;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+  
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     nb_unread += it.value()->unreadCount();
   }
   return nb_unread;
@@ -81,14 +84,19 @@ RssFeedPtr RssFolder::addStream(RssManager* manager, const QString &url) {
 
 // Refresh All Children
 void RssFolder::refresh() {
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     it.value()->refresh();
   }
 }
 
 RssArticleList RssFolder::articleList() const {
   RssArticleList news;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     news << it.value()->articleList();
   }
   return news;
@@ -96,7 +104,10 @@ RssArticleList RssFolder::articleList() const {
 
 RssArticleList RssFolder::unreadArticleList() const {
   RssArticleList unread_news;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     unread_news << it.value()->unreadArticleList();
   }
   return unread_news;
@@ -108,7 +119,10 @@ RssFileList RssFolder::getContent() const {
 
 unsigned int RssFolder::getNbFeeds() const {
   uint nbFeeds = 0;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(it.value()))
       nbFeeds += folder->getNbFeeds();
     else
@@ -133,14 +147,19 @@ void RssFolder::rename(const QString &new_name) {
 }
 
 void RssFolder::markAsRead() {
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     it.value()->markAsRead();
   }
 }
 
 RssFeedList RssFolder::getAllFeeds() const {
   RssFeedList streams;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     if (RssFeedPtr feed = qSharedPointerDynamicCast<RssFeed>(it.value())) {
       streams << feed;
     } else if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(it.value())) {
@@ -152,7 +171,10 @@ RssFeedList RssFolder::getAllFeeds() const {
 
 QHash<QString, RssFeedPtr> RssFolder::getAllFeedsAsHash() const {
   QHash<QString, RssFeedPtr> ret;
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     if (RssFeedPtr feed = qSharedPointerDynamicCast<RssFeed>(it.value())) {
       qDebug() << Q_FUNC_INFO << feed->url();
       ret[feed->url()] = feed;
@@ -182,7 +204,9 @@ void RssFolder::removeAllItems() {
 }
 
 void RssFolder::removeAllSettings() {
-  for (RssFileHash::ConstIterator it = m_children.begin(); it != m_children.end(); it++) {
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
     it.value()->removeAllSettings();
   }
 }
