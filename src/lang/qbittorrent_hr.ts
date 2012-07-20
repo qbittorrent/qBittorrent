@@ -153,151 +153,157 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qBitTirrent je napredni BitTorrent klijent pisan u C++ -u, baziran na Qt4 programskom alatu i libtorrent-rasterbaru. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Početna stranica: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent na Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dijalog</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi kao</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Postavi kao uobičajenu putanju spremanja</translation>
+        <translation>Postavi kao uobičajenu putanju spremanja</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pokazuj više</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavke torrenta</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Započni torrent</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Oznaka:</translation>
+        <translation>Oznaka:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Preskoči provjeru smjese</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacije o torrentu</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veličina:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Komentar:</translation>
+        <translation>Komentar:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Uobičajen</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Visok</translation>
+        <translation>Visok</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Najviši</translation>
+        <translation>Najviši</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Ne preuzimaj</translation>
+        <translation>Ne preuzimaj</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ostali ...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O greška</translation>
+        <translation>I/O greška</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent datoteka ne postoji.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Neispravan torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nije dostupan</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesispravan magnet link</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovaj magnet link nije prepoznat</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet link</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Prostor na disku:%1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Izaberite putanju spremanja</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Preimenuj datoteku</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Novo ime:</translation>
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteku nije moguće preimenovati</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovo ime datoteke sadrži zabranjene znakove. Izaberite druge.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime se već koristi u toj mapi. Koristite drugo ime.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapu nije moguće preimenovati</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Preimenuj ...</translation>
+        <translation>Preimenuj ...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspješno učitavanje torrenta: %1</translation>
     </message>
 </context>
 <context>
@@ -490,7 +496,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Upišite ime novog pravila preuzimanja.</translation>
+        <translation>Upišite ime novog pravila preuzimanja.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -558,7 +564,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished">Dodaj novo pravilo</translation>
+        <translation>Dodaj novo pravilo...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -566,7 +572,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished">Preimenuj pravilo ...</translation>
+        <translation>Preimenuj pravilo ...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -902,7 +908,7 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaš dinamički DNS je uspješno ažuriran.</translation>
     </message>
 </context>
 <context>
@@ -4124,7 +4130,7 @@ QGroupBox {
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
 </context>
 <context>
@@ -4671,19 +4677,19 @@ Do you want to install it now?</source>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Ime</translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Veličina</translation>
+        <translation>Veličina</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished">Napredak</translation>
+        <translation>Napredak</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Prioritet</translation>
+        <translation>Prioritet</translation>
     </message>
 </context>
 <context>
@@ -5137,11 +5143,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenti</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Oznake</translation>
     </message>
 </context>
 <context>
@@ -6084,7 +6090,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Preuzimanja</translation>
+        <translation>Preuzimanja</translation>
     </message>
 </context>
 <context>
@@ -6164,47 +6170,47 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/s</translation>
+        <translation>/s</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished">Radi</translation>
+        <translation>Radi</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished">Ažuriranje ...</translation>
+        <translation>Ažuriranje ...</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished">Ne radi</translation>
+        <translation>Ne radi</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Još nije kontaktirano</translation>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">ova sesija</translation>
+        <translation>ova sesija</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Seedano za %1</translation>
+        <translation>Seedano za %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 najviše</translation>
+        <translation>%1 najviše</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Preuzimanje: %1/s - Preuzeto: %2</translation>
+        <translation>Preuzimanje: %1/s - Preuzeto: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Slanje: %1/s - Poslano: %2</translation>
+        <translation>Slanje: %1/s - Poslano: %2</translation>
     </message>
 </context>
 <context>
@@ -6301,7 +6307,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
 </context>
 <context>
