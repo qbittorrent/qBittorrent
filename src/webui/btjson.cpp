@@ -35,9 +35,13 @@
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 #include <QElapsedTimer>
+#endif
 
 using namespace libtorrent;
+
+#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 
 #define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
   static VARTYPE VAR; \
@@ -58,6 +62,16 @@ using namespace libtorrent;
   prev_hash = HASH; \
   cacheTimer.start(); \
   VAR.clear()
+
+#else
+// We don't support caching for Qt < 4.7 at the moment
+#define CACHED_VARIABLE(VARTYPE, VAR, DUR) \
+  VARTYPE VAR
+
+#define CACHED_VARIABLE_FOR_HASH(VARTYPE, VAR, DUR, HASH) \
+  VARTYPE VAR
+
+#endif
 
 // Numerical constants
 static const int CACHE_DURATION_MS = 1500; // 1500ms
