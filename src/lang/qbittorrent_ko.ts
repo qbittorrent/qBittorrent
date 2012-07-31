@@ -6164,51 +6164,51 @@ However, those plugins were disabled.</source>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="227"/>
+        <location filename="../webui/btjson.cpp" line="241"/>
         <source>Working</source>
         <translation type="unfinished">동작중</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="230"/>
+        <location filename="../webui/btjson.cpp" line="244"/>
         <source>Updating...</source>
         <translation type="unfinished">업데이트중...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="232"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Not working</source>
         <translation type="unfinished">동작하지 않음</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="232"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Not contacted yet</source>
         <translation type="unfinished">아직 접속되지 않음</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="284"/>
-        <location filename="../webui/btjson.cpp" line="285"/>
+        <location filename="../webui/btjson.cpp" line="298"/>
+        <location filename="../webui/btjson.cpp" line="299"/>
         <source>this session</source>
         <translation type="unfinished">이 세션</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="296"/>
+        <location filename="../webui/btjson.cpp" line="310"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">%1동안 시드를 함</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="298"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished">최고 %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="366"/>
+        <location filename="../webui/btjson.cpp" line="380"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">다운: %1/s - 전송됨: %2</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="367"/>
+        <location filename="../webui/btjson.cpp" line="381"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished">업: %1/s - 전송됨: %2</translation>
