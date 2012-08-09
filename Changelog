@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
+* Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog
     - FEATURE: Add the ability to choose the save path when using magnet links (mutoso)
     - FEATURE: Add support for adding multiple local torrents at once (Web UI)
