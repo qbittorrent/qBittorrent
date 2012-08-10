@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.1
+    - BUGFIX: Fix possible crash when adding a tracker to a magnet torrent without metadata (Closes #1034254)
+
 * Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog
     - FEATURE: Add the ability to choose the save path when using magnet links (mutoso)
