@@ -28,6 +28,7 @@
  * Contact : chris@qbittorrent.org
  */
 
+#include <QDebug>
 #include "sessionapplication.h"
 
 SessionApplication::SessionApplication(const QString &id, int &argc, char **argv) :
@@ -41,4 +42,14 @@ QtSingleApplication(id, argc, argv)
 void SessionApplication::commitData(QSessionManager & manager) {
   Q_UNUSED(manager);
   emit sessionIsShuttingDown();
+}
+
+bool SessionApplication::notify(QObject* receiver, QEvent* event) {
+  try {
+    return QApplication::notify(receiver, event);
+  } catch(const std::exception& e) {
+    qCritical() << "Exception thrown:" << e.what() << ", receiver: " << receiver->objectName();
+    receiver->dumpObjectInfo();
+  }
+  return false;
 }

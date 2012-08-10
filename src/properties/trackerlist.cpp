@@ -186,6 +186,28 @@ void TrackerList::clear() {
 }
 
 void TrackerList::loadStickyItems(const QTorrentHandle &h) {
+  // load DHT information
+  if (QBtSession::instance()->isDHTEnabled() && (!h.has_metadata() || !h.priv())) {
+    dht_item->setText(COL_STATUS, tr("Working"));
+  } else {
+    dht_item->setText(COL_STATUS, tr("Disabled"));
+  }
+  if (h.has_metadata() && h.priv()) {
+    dht_item->setText(COL_MSG, tr("This torrent is private"));
+  }
+
+  // Load PeX Information
+  if (QBtSession::instance()->isPexEnabled())
+    pex_item->setText(COL_STATUS, tr("Working"));
+  else
+    pex_item->setText(COL_STATUS, tr("Disabled"));
+
+  // Load LSD Information
+  if (QBtSession::instance()->isLSDEnabled())
+    lsd_item->setText(COL_STATUS, tr("Working"));
+  else
+    lsd_item->setText(COL_STATUS, tr("Disabled"));
+
   // XXX: libtorrent should provide this info...
   // Count peers from DHT, LSD, PeX
   uint nb_dht = 0, nb_lsd = 0, nb_pex = 0;
@@ -201,27 +223,8 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
     if (it->source & peer_info::pex)
       ++nb_pex;
   }
-  // load DHT information
-  if (QBtSession::instance()->isDHTEnabled() && !h.priv()) {
-    dht_item->setText(COL_STATUS, tr("Working"));
-  } else {
-    dht_item->setText(COL_STATUS, tr("Disabled"));
-  }
   dht_item->setText(COL_PEERS, QString::number(nb_dht));
-  if (h.has_metadata() && h.priv()) {
-    dht_item->setText(COL_MSG, tr("This torrent is private"));
-  }
-  // Load PeX Information
-  if (QBtSession::instance()->isPexEnabled())
-    pex_item->setText(COL_STATUS, tr("Working"));
-  else
-    pex_item->setText(COL_STATUS, tr("Disabled"));
   pex_item->setText(COL_PEERS, QString::number(nb_pex));
-  // Load LSD Information
-  if (QBtSession::instance()->isLSDEnabled())
-    lsd_item->setText(COL_STATUS, tr("Working"));
-  else
-    lsd_item->setText(COL_STATUS, tr("Disabled"));
   lsd_item->setText(COL_PEERS, QString::number(nb_lsd));
 }
 

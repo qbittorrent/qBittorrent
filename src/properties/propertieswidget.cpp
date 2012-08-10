@@ -396,7 +396,9 @@ void PropertiesWidget::loadDynamicData() {
         filesList->setUpdatesEnabled(true);
       }
     }
-  } catch(invalid_handle e) {}
+  } catch(const invalid_handle& e) {
+    qWarning() << "Caught exception in PropertiesWidget::loadDynamicData(): " << e.what();
+  }
 }
 
 void PropertiesWidget::loadUrlSeeds() {
