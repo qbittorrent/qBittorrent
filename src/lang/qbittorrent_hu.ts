@@ -3761,7 +3761,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation type="obsolete">Fájlok</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>Elsőbbség</translation>
     </message>
@@ -3806,76 +3806,76 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>I/O Hiba</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>A fájl még nem létezik.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>A könyvtár még nem létezik.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>Átnevezés...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="508"/>
+        <location filename="../properties/propertieswidget.cpp" line="510"/>
         <source>Rename the file</source>
         <translation>Fájl átnevezése</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="511"/>
         <source>New name:</source>
         <translation>Új név:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="546"/>
         <source>The file could not be renamed</source>
         <translation>A fájlt nem lehet átnevezni</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ez a név tiltott karaktereket tartalmaz, kérlek válassz másik nevet.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="545"/>
-        <location filename="../properties/propertieswidget.cpp" line="583"/>
+        <location filename="../properties/propertieswidget.cpp" line="547"/>
+        <location filename="../properties/propertieswidget.cpp" line="585"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ilyen fájl már van a könyvtárban. Kérlek válassz másik nevet.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="582"/>
+        <location filename="../properties/propertieswidget.cpp" line="584"/>
         <source>The folder could not be renamed</source>
         <translation>A könyvtárat nem lehet átnevezni</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="621"/>
+        <location filename="../properties/propertieswidget.cpp" line="623"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Új url forrás</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="622"/>
+        <location filename="../properties/propertieswidget.cpp" line="624"/>
         <source>New url seed:</source>
         <translation>Új url seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="629"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="630"/>
         <source>This url seed is already in the list.</source>
         <translation>Már letöltés alatt ez az url forrás.</translation>
     </message>
@@ -4150,28 +4150,28 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation>Fájl ismételt letöltése %1 beágyazva a torrentbe %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2196"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2197"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Megfejthetetlen torrent: %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>A számítógép alvó állapotba kerül, hacsak nem állítod le 15 másodpercen belül...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>A számítógép kikapcsol, hacsak nem állítod le 15 másodpercen belül...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>A qBittorent kilép, hacsak nem vonod vissza 15 másodpercen belül...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2791"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2796"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4182,7 +4182,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation type="obsolete">IP szűrő sikeresen megnyitva: %1 elfogadva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2797"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Hiba: az IP szűrő megnyitása sikertelen.</translation>
     </message>
@@ -4218,43 +4218,43 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation>[qBittorrent] %1 letöltése befejeződött</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2385"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>I/O hiba történt, &apos;%1&apos; megállítva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2387"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2498"/>
         <source>Reason: %1</source>
         <translation>Mivel: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2462"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikertelen, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2466"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port felderítése sikeres, hibaüzenet: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2493"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>A fájl mérete nem megfelelő ennél a torrentnél: %1, leállítva.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2496"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hibás ellenőrző adat ennél a torrentnél: %1, újraellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Url forrás meghatározása sikertelen: %1, hibaüzenet: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2621"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2626"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
@@ -5253,52 +5253,52 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>[LSD]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="206"/>
-        <location filename="../properties/trackerlist.cpp" line="216"/>
-        <location filename="../properties/trackerlist.cpp" line="222"/>
-        <location filename="../properties/trackerlist.cpp" line="254"/>
+        <location filename="../properties/trackerlist.cpp" line="191"/>
+        <location filename="../properties/trackerlist.cpp" line="201"/>
+        <location filename="../properties/trackerlist.cpp" line="207"/>
+        <location filename="../properties/trackerlist.cpp" line="257"/>
         <source>Working</source>
         <translation>Kapcsolódva</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="208"/>
-        <location filename="../properties/trackerlist.cpp" line="218"/>
-        <location filename="../properties/trackerlist.cpp" line="224"/>
+        <location filename="../properties/trackerlist.cpp" line="193"/>
+        <location filename="../properties/trackerlist.cpp" line="203"/>
+        <location filename="../properties/trackerlist.cpp" line="209"/>
         <source>Disabled</source>
         <translation>Tilt</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="212"/>
+        <location filename="../properties/trackerlist.cpp" line="196"/>
         <source>This torrent is private</source>
         <translation>Ez egy privát torrent</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="258"/>
+        <location filename="../properties/trackerlist.cpp" line="261"/>
         <source>Updating...</source>
         <translation>Frissítés...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="262"/>
+        <location filename="../properties/trackerlist.cpp" line="265"/>
         <source>Not working</source>
         <translation>Nincs kapcsolódva</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="265"/>
+        <location filename="../properties/trackerlist.cpp" line="268"/>
         <source>Not contacted yet</source>
         <translation>Még nem kapcsolódott</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="335"/>
+        <location filename="../properties/trackerlist.cpp" line="338"/>
         <source>Add a new tracker...</source>
         <translation>Új tracker hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="338"/>
+        <location filename="../properties/trackerlist.cpp" line="341"/>
         <source>Remove tracker</source>
         <translation>Tracker eltávolítása</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="341"/>
+        <location filename="../properties/trackerlist.cpp" line="344"/>
         <source>Force reannounce</source>
         <translation>Kényszerített újraközlés</translation>
     </message>

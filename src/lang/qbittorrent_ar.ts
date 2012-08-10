@@ -3880,81 +3880,81 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished">%1 اقصى</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>خطأ إدخال/إخراج</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>هذا الملف غير موجود بعد.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>هذا المجلد غير موجود بعد.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>تغيير التسمية...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>الأولوية</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="508"/>
+        <location filename="../properties/propertieswidget.cpp" line="510"/>
         <source>Rename the file</source>
         <translation>تغيير تسمية الملف</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="511"/>
         <source>New name:</source>
         <translation>الاسم الجديد:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="546"/>
         <source>The file could not be renamed</source>
         <translation>لا يمكن تغيير تسمية الملف</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>هذا الاسم يحتوي أحرف ممنوع استخدامها في التسمية، رجاءً اختر واحدا مختلفا.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="545"/>
-        <location filename="../properties/propertieswidget.cpp" line="583"/>
+        <location filename="../properties/propertieswidget.cpp" line="547"/>
+        <location filename="../properties/propertieswidget.cpp" line="585"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>هذا الاسم مستخدم بالفعل في هذا المجلد، رجاءً استخدم اسما مختلفا.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="582"/>
+        <location filename="../properties/propertieswidget.cpp" line="584"/>
         <source>The folder could not be renamed</source>
         <translation>لا يمكن تغيير تسمية المجلد</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="621"/>
+        <location filename="../properties/propertieswidget.cpp" line="623"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished">New url seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="622"/>
+        <location filename="../properties/propertieswidget.cpp" line="624"/>
         <source>New url seed:</source>
         <translation type="unfinished">New url seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="629"/>
         <source>qBittorrent</source>
         <translation>كيوبت‎تورنت</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="630"/>
         <source>This url seed is already in the list.</source>
         <translation type="unfinished">This url seed is already in the list.</translation>
     </message>
@@ -4229,28 +4229,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Recursive download of file %1 embedded in torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2196"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2197"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>غير قادر على فك تشفير ملف التورنت %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>سيتم ايقاف الكمبيوتر خلال 15 ثانية ما لم تلغى العملية...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>سيتم اطفاء الكمبيوتر خلال 15 ثانية ما لم تلغى العملية...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>سيتم إغلاق البرنامج خلال 15 ثانية ما لم تلغي العملية...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2791"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2796"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4261,7 +4261,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Successfuly parsed the provided IP filter: %1 rules were applied.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2797"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Error: Failed to parse the provided IP filter.</translation>
     </message>
@@ -4297,43 +4297,43 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[كيوبت‎تورنت] انتهى تنزيل &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2385"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>حدث خطا في الإدخال/الإخراج، تم إلباث &quot; %1&quot;.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2387"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2498"/>
         <source>Reason: %1</source>
         <translation>السبب: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2462"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2466"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished">UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2493"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation type="unfinished">File sizes mismatch for torrent %1, pausing it.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2496"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation type="unfinished">Fast resume data was rejected for torrent %1, البحث مجددا...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation type="unfinished">Url seed lookup failed for url: %1, message: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2621"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2626"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>يجري تنزيل &quot;%1&quot;، يرجى الانتظار...</translation>
@@ -5312,52 +5312,52 @@ Please install it manually.</source>
         <translation>[LSD]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="206"/>
-        <location filename="../properties/trackerlist.cpp" line="216"/>
-        <location filename="../properties/trackerlist.cpp" line="222"/>
-        <location filename="../properties/trackerlist.cpp" line="254"/>
+        <location filename="../properties/trackerlist.cpp" line="191"/>
+        <location filename="../properties/trackerlist.cpp" line="201"/>
+        <location filename="../properties/trackerlist.cpp" line="207"/>
+        <location filename="../properties/trackerlist.cpp" line="257"/>
         <source>Working</source>
         <translation>يعمل</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="208"/>
-        <location filename="../properties/trackerlist.cpp" line="218"/>
-        <location filename="../properties/trackerlist.cpp" line="224"/>
+        <location filename="../properties/trackerlist.cpp" line="193"/>
+        <location filename="../properties/trackerlist.cpp" line="203"/>
+        <location filename="../properties/trackerlist.cpp" line="209"/>
         <source>Disabled</source>
         <translation>تعطيل</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="212"/>
+        <location filename="../properties/trackerlist.cpp" line="196"/>
         <source>This torrent is private</source>
         <translation>هذا التورنت خاص</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="258"/>
+        <location filename="../properties/trackerlist.cpp" line="261"/>
         <source>Updating...</source>
         <translation>تحديث...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="262"/>
+        <location filename="../properties/trackerlist.cpp" line="265"/>
         <source>Not working</source>
         <translation>لا تعمل</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="265"/>
+        <location filename="../properties/trackerlist.cpp" line="268"/>
         <source>Not contacted yet</source>
         <translation>لم يتصل بعد</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="335"/>
+        <location filename="../properties/trackerlist.cpp" line="338"/>
         <source>Add a new tracker...</source>
         <translation>إضافة تراكر جديد...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="338"/>
+        <location filename="../properties/trackerlist.cpp" line="341"/>
         <source>Remove tracker</source>
         <translation>إزالة التراكر</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="341"/>
+        <location filename="../properties/trackerlist.cpp" line="344"/>
         <source>Force reannounce</source>
         <translation>Force reannounce</translation>
     </message>

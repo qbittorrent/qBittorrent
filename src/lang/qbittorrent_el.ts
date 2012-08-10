@@ -3766,7 +3766,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Αρχεία</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
@@ -3811,76 +3811,76 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>μέγιστο %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>I/O Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>Αυτό το αρχείο δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>Αυτός ο φάκελος δεν υπάρχει ακόμα.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="508"/>
+        <location filename="../properties/propertieswidget.cpp" line="510"/>
         <source>Rename the file</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="511"/>
         <source>New name:</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="546"/>
         <source>The file could not be renamed</source>
         <translation>Αυτό το αρχείο δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Αυτό το όνομα αρχείου περιέχει απαγορευμένους χαρακτήρες, παρακαλώ επιλέξτε ένα διαφορετικό.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="545"/>
-        <location filename="../properties/propertieswidget.cpp" line="583"/>
+        <location filename="../properties/propertieswidget.cpp" line="547"/>
+        <location filename="../properties/propertieswidget.cpp" line="585"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται σ&apos;αυτό το φάκελο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="582"/>
+        <location filename="../properties/propertieswidget.cpp" line="584"/>
         <source>The folder could not be renamed</source>
         <translation>Αυτός ο φάκελος δεν είναι δυνατό να μετονομαστεί</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="621"/>
+        <location filename="../properties/propertieswidget.cpp" line="623"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Νέο url διαμοιρασμού</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="622"/>
+        <location filename="../properties/propertieswidget.cpp" line="624"/>
         <source>New url seed:</source>
         <translation>Νέο url διαμοιρασμού:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="627"/>
+        <location filename="../properties/propertieswidget.cpp" line="629"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="628"/>
+        <location filename="../properties/propertieswidget.cpp" line="630"/>
         <source>This url seed is already in the list.</source>
         <translation>Αυτό το url διαμοιρασμού είναι ήδη στη λίστα.</translation>
     </message>
@@ -4155,28 +4155,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2196"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2197"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2246"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα τεθεί σε λειτουργία αναμονής εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα απενεργοποιηθεί εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>Το qBittorrent θα κλείσει, εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2791"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2796"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4187,7 +4187,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Η ανάγνωση του δοθέντος IP φίλτρου ήταν επιτυχής: %1 κανόνες εφαρμόστηκαν.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2797"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Σφάλμα: Αποτυχία ανάγνωσης του δοθέντος φίλτρου IP.</translation>
     </message>
@@ -4223,43 +4223,43 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Το κατέβασμα του [qBittorrent] %1 τελείωσε</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2385"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2387"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2498"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2462"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2466"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2493"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Τα μεγέθη των αρχείων δεν είναι σε αντιστοιχία για το τόρεντ %1, γίνεται παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2496"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2621"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2626"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -5259,52 +5259,52 @@ Please install it manually.</source>
         <translation>[LSD]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="206"/>
-        <location filename="../properties/trackerlist.cpp" line="216"/>
-        <location filename="../properties/trackerlist.cpp" line="222"/>
-        <location filename="../properties/trackerlist.cpp" line="254"/>
+        <location filename="../properties/trackerlist.cpp" line="191"/>
+        <location filename="../properties/trackerlist.cpp" line="201"/>
+        <location filename="../properties/trackerlist.cpp" line="207"/>
+        <location filename="../properties/trackerlist.cpp" line="257"/>
         <source>Working</source>
         <translation>Σε λειτουργία</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="208"/>
-        <location filename="../properties/trackerlist.cpp" line="218"/>
-        <location filename="../properties/trackerlist.cpp" line="224"/>
+        <location filename="../properties/trackerlist.cpp" line="193"/>
+        <location filename="../properties/trackerlist.cpp" line="203"/>
+        <location filename="../properties/trackerlist.cpp" line="209"/>
         <source>Disabled</source>
         <translation>Απενεργοποιημένο</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="212"/>
+        <location filename="../properties/trackerlist.cpp" line="196"/>
         <source>This torrent is private</source>
         <translation>Αυτό το torrent είναι προσωπικό</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="258"/>
+        <location filename="../properties/trackerlist.cpp" line="261"/>
         <source>Updating...</source>
         <translation>Ανανέωση...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="262"/>
+        <location filename="../properties/trackerlist.cpp" line="265"/>
         <source>Not working</source>
         <translation>Δεν λειτουργεί</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="265"/>
+        <location filename="../properties/trackerlist.cpp" line="268"/>
         <source>Not contacted yet</source>
         <translation>Δεν επικοινώνησε ακόμα</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="335"/>
+        <location filename="../properties/trackerlist.cpp" line="338"/>
         <source>Add a new tracker...</source>
         <translation>Προσθήκη νέου ιχνηλάτη...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="338"/>
+        <location filename="../properties/trackerlist.cpp" line="341"/>
         <source>Remove tracker</source>
         <translation>Αφαίρεση ιχνηλάτη</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="341"/>
+        <location filename="../properties/trackerlist.cpp" line="344"/>
         <source>Force reannounce</source>
         <translation>Υποχρεωτική ανακοίνωση ξανά</translation>
     </message>
