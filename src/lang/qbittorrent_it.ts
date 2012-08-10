@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>The folder could not be renamed</source>
-        <translation>La cartella non può essere rinominata</translation>
+        <translation>La cartelal non può essere rinominata</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="520"/>
@@ -990,7 +990,7 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Il tuo DNS dinamico è stato aggiornato correttamente.</translation>
+        <translation>Il tuo DNS dinamico è stato aggiornato corretttamente.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
@@ -6836,7 +6836,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1060"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Impossibile aggiungere analisi cartella &apos;%1: %2</translation>
+        <translation>Impossibile aggiungere amalisi cartella &apos;%1: %2</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1083"/>
