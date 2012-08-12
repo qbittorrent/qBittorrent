@@ -322,7 +322,7 @@ protected slots:
     }
   }
 
-  void addLabel(QString label) {
+  void addLabel(QString& label) {
     label = fsutils::toValidFileSystemName(label.trimmed());
     if (label.isEmpty() || customLabels.contains(label)) return;
     QListWidgetItem *newLabel = new QListWidgetItem();
