@@ -1619,10 +1619,13 @@ void QBtSession::saveFastResumeData() {
   std::vector<torrent_handle>::iterator torrentITend = torrents.end();
   for ( ; torrentIT != torrentITend; ++torrentIT) {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
-    if (!h.is_valid() || !h.has_metadata()) continue;
+    if (!h.is_valid())
+      continue;
     try {
       if (isQueueingEnabled())
         TorrentPersistentData::savePriority(h);
+      if (!h.has_metadata())
+        continue;
       // Actually with should save fast resume data for paused files too
       //if (h.is_paused()) continue;
       if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
