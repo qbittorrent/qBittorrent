@@ -66,9 +66,6 @@
 
 using namespace libtorrent;
 
-// EXT2/3/4 file systems support a maximum of 255 bytes for filenames.
-const int MAX_FILENAME_BYTES = 255;
-
 /**
  * Converts a path to a string suitable for display.
  * This function makes sure the directory separator used is consistent
@@ -202,54 +199,6 @@ qint64 fsutils::computePathSize(const QString& path)
       size += subfi.size();
   }
   return size;
-}
-
-/**
- * Fixes the given file path by shortening the file names if too long.
- */
-QString fsutils::fixFileNames(const QString& path)
-{
-  QByteArray raw_path = path.toLocal8Bit();
-  raw_path.replace("\\", "/");
-  QList<QByteArray> parts = raw_path.split('/');
-  if (parts.isEmpty()) return path;
-  QByteArray last_part = parts.takeLast();
-  
-  QList<QByteArray>::iterator it = parts.begin();
-  QList<QByteArray>::iterator itend = parts.end();
-  for ( ; it != itend; ++it) {
-    // Make sure the filename is not too long
-    if (it->size() > MAX_FILENAME_BYTES) {
-      qWarning() << "Folder" << *it << "was cut because it was too long";
-      it->resize(MAX_FILENAME_BYTES);
-      qWarning() << "New folder name is" << *it;
-      Q_ASSERT(it->length() == MAX_FILENAME_BYTES);
-    }
-  }
-  // Fix the last part (file name)
-  qDebug() << "Last part length:" << last_part.length();
-  if (last_part.length() > MAX_FILENAME_BYTES) {
-    qWarning() << "Filename" << last_part << "was cut because it was too long";
-    // Shorten the name, keep the file extension
-    const int point_index = last_part.lastIndexOf(".");
-    QByteArray extension = "";
-    if (point_index >= 0) {
-      extension = last_part.mid(point_index);
-      last_part = last_part.left(point_index);
-    }
-    last_part.resize(MAX_FILENAME_BYTES - extension.length());
-    last_part += extension;
-    Q_ASSERT(last_part.length() == MAX_FILENAME_BYTES);
-    qWarning() << "New file name is" << last_part;
-  }
-
-  QString ret;
-  foreach(const QByteArray& part, parts) {
-    ret += QString::fromLocal8Bit(part.constData()) + "/";
-  }
-  ret += QString::fromLocal8Bit(last_part.constData());
-
-  return ret;
 }
 
 /**

@@ -46,7 +46,6 @@ static QString toDisplayPath(const QString& path);
 static QString fileExtension(const QString& filename);
 static QString fileName(const QString& file_path);
 static qint64 computePathSize(const QString& path);
-static QString fixFileNames(const QString& path);
 static bool sameFiles(const QString& path1, const QString& path2);
 static QString updateLabelInSavePath(QString defaultSavePath, QString save_path, const QString& old_label, const QString& new_label);
 static QString toValidFileSystemName(QString filename);
