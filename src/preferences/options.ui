@@ -509,7 +509,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
+             <width>486</width>
              <height>952</height>
             </rect>
            </property>
@@ -969,7 +969,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
+             <width>486</width>
              <height>577</height>
             </rect>
            </property>
@@ -1413,7 +1413,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>363</width>
+             <width>486</width>
              <height>480</height>
             </rect>
            </property>
@@ -1987,7 +1987,7 @@
                  <item>
                   <widget class="QLabel" name="label_anonymous">
                    <property name="text">
-                    <string> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</string>
+                    <string> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
                    </property>
                   </widget>
                  </item>
