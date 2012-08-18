@@ -268,7 +268,7 @@ void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
   if (feedUrl != m_url)
     return;
 
-  rename(title);
+  m_title = title;
 }
 
 void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& articleData)
