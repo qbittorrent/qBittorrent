@@ -108,6 +108,11 @@ void RssManager::loadStreamList() {
   qDebug("NB RSS streams loaded: %d", streamsUrl.size());
 }
 
+void RssManager::forwardFeedContentChanged(const QString& url)
+{
+  emit feedContentChanged(url);
+}
+
 void RssManager::forwardFeedInfosChanged(const QString &url, const QString &display_name, uint nbUnread) {
   emit feedInfosChanged(url, display_name, nbUnread);
 }

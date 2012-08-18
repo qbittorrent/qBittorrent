@@ -605,18 +605,25 @@ void RSSImp::updateFeedIcon(const QString &url, const QString &icon_path) {
   item->setData(0,Qt::DecorationRole, QVariant(QIcon(icon_path)));
 }
 
-void RSSImp::updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread) {
+void RSSImp::updateFeedInfos(const QString& url, const QString& display_name, uint nbUnread)
+{
   qDebug() << Q_FUNC_INFO << display_name;
   QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
   RssFeedPtr stream = qSharedPointerCast<RssFeed>(m_feedList->getRSSItem(item));
-  item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread, 10)+ QString(")"));
+  item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread)+ QString(")"));
   if (!stream->isLoading())
-    item->setData(0,Qt::DecorationRole, QVariant(QIcon(stream->icon())));
+    item->setData(0, Qt::DecorationRole, QVariant(QIcon(stream->icon())));
   // Update parent
   if (item->parent())
     updateItemInfos(item->parent());
   // Update Unread item
   updateItemInfos(m_feedList->stickyUnreadItem());
+}
+
+void RSSImp::onFeedContentChanged(const QString& url)
+{
+  qDebug() << Q_FUNC_INFO << url;
+  QTreeWidgetItem *item = m_feedList->getTreeItemFromUrl(url);
   // If the feed is selected, update the displayed news
   if (m_feedList->currentItem() == item ) {
     refreshArticleList(item);
@@ -662,11 +669,12 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent), m_rssManager(new RssManager) 
   refreshArticleList(m_feedList->currentItem());
 
   loadFoldersOpenState();
-  connect(m_rssManager.data(), SIGNAL(feedInfosChanged(QString, QString, unsigned int)), this, SLOT(updateFeedInfos(QString, QString, unsigned int)));
-  connect(m_rssManager.data(), SIGNAL(feedIconChanged(QString, QString)), this, SLOT(updateFeedIcon(QString, QString)));
+  connect(m_rssManager.data(), SIGNAL(feedInfosChanged(QString, QString, unsigned int)), SLOT(updateFeedInfos(QString, QString, unsigned int)));
+  connect(m_rssManager.data(), SIGNAL(feedContentChanged(QString)), SLOT(onFeedContentChanged(QString)));
+  connect(m_rssManager.data(), SIGNAL(feedIconChanged(QString, QString)), SLOT(updateFeedIcon(QString, QString)));
 
-  connect(m_feedList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayRSSListMenu(const QPoint&)));
-  connect(listArticles, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayItemsListMenu(const QPoint&)));
+  connect(m_feedList, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(displayRSSListMenu(const QPoint&)));
+  connect(listArticles, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(displayItemsListMenu(const QPoint&)));
 
   // Feeds list actions
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));

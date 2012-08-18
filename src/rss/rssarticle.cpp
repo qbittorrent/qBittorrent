@@ -33,6 +33,7 @@
 #include <iostream>
 
 #include "rssarticle.h"
+#include "rssfeed.h"
 
 // public constructor
 RssArticle::RssArticle(RssFeed* parent, const QString &guid):
@@ -102,7 +103,11 @@ bool RssArticle::isRead() const {
 }
 
 void RssArticle::markAsRead() {
+  if (m_read)
+    return;
+
   m_read = true;
+  m_parent->decrementUnreadCount();
 }
 
 const QString& RssArticle::guid() const

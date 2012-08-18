@@ -43,7 +43,7 @@
 
 RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   m_manager(manager), m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
-  m_dirty(false), m_inErrorState(false), m_loading(false) {
+  m_unreadCount(0), m_dirty(false), m_inErrorState(false), m_loading(false) {
   qDebug() << Q_FUNC_INFO << url;
   m_url = QUrl::fromEncoded(url.toUtf8()).toString();
   // Listen for new RSS downloads
@@ -97,6 +97,8 @@ void RssFeed::loadItemsFromDisk() {
     RssArticlePtr rss_item = hashToRssArticle(this, item);
     if (rss_item) {
       m_articles.insert(rss_item->guid(), rss_item);
+      if (!rss_item->isRead())
+        ++m_unreadCount;
     }
   }
 }
@@ -190,19 +192,13 @@ void RssFeed::markAsRead() {
   for ( ; it != itend; ++it) {
     it.value()->markAsRead();
   }
+  m_unreadCount = 0;
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
-uint RssFeed::unreadCount() const {
-  uint nbUnread = 0;
-
-  RssArticleHash::ConstIterator it=m_articles.begin();
-  RssArticleHash::ConstIterator itend=m_articles.end();
-  for ( ; it != itend; ++it) {
-    if (!it.value()->isRead())
-      ++nbUnread;
-  }
-  return nbUnread;
+uint RssFeed::unreadCount() const
+{
+  return m_unreadCount;
 }
 
 RssArticleList RssFeed::articleList() const {
@@ -235,7 +231,10 @@ void RssFeed::removeOldArticles() {
     RssManager::sortArticleListByDateDesc(listItems);
     const int excess = nb_articles - max_articles;
     for (uint i=nb_articles-excess; i<nb_articles; ++i) {
-      m_articles.remove(listItems.at(i)->guid());
+      RssArticlePtr article = m_articles.take(listItems.at(i)->guid());
+      // Update unreadCount
+      if (!article->isRead())
+        --m_unreadCount;
     }
   }
 }
@@ -258,7 +257,7 @@ void RssFeed::handleDownloadFailure(const QString &url, const QString& error) {
   if (url != m_url) return;
   m_inErrorState = true;
   m_loading = false;
-  m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount); // XXX: Ugly
   qWarning() << "Failed to download RSS feed at" << url;
   qWarning() << "Reason:" << error;
 }
@@ -268,7 +267,14 @@ void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
   if (feedUrl != m_url)
     return;
 
+  if (m_title == title)
+    return;
+
   m_title = title;
+
+  // Notify that we now have something better than a URL to display
+  if (m_alias.isEmpty())
+    m_manager->forwardFeedInfosChanged(feedUrl, title, m_unreadCount);
 }
 
 void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& articleData)
@@ -301,9 +307,14 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
         QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
     }
   }
+  // Update unreadCount if necessary
+  if (!article->isRead())
+    ++m_unreadCount;
+
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
   // FIXME: We should forward the information here but this would seriously decrease
   // performance with current design.
-  //m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+  //m_manager->forwardFeedContentChanged(m_url);
 }
 
 void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& error)
@@ -311,12 +322,25 @@ void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& e
   if (feedUrl != m_url)
     return;
 
+  if (!error.isEmpty()) {
+    qWarning() << "Failed to parse RSS feed at" << feedUrl;
+    qWarning() << "Reason:" << error;
+  }
+
   // Make sure we limit the number of articles
   removeOldArticles();
 
   m_loading = false;
   m_inErrorState = !error.isEmpty();
-  m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
+  // XXX: Would not be needed if we did this in handleNewArticle() instead
+  m_manager->forwardFeedContentChanged(m_url);
 
   saveItemsToDisk();
+}
+
+void RssFeed::decrementUnreadCount()
+{
+  --m_unreadCount;
 }

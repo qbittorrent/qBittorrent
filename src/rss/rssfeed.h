@@ -73,6 +73,7 @@ public:
   virtual RssArticleList articleList() const;
   const RssArticleHash& articleHash() const { return m_articles; }
   virtual RssArticleList unreadArticleList() const;
+  void decrementUnreadCount();
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
@@ -95,7 +96,7 @@ private:
   QString m_alias;
   QString m_icon;
   QString m_iconUrl;
-  bool m_read;
+  uint m_unreadCount;
   bool m_dirty;
   bool m_inErrorState;
   bool m_loading;

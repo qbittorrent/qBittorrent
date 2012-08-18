@@ -64,6 +64,9 @@ public:
   virtual void removeAllSettings() = 0;
   virtual void saveItemsToDisk() = 0;
   QStringList pathHierarchy() const;
+
+protected:
+  uint m_unreadCount;
 };
 
 #endif // RSSFILE_H

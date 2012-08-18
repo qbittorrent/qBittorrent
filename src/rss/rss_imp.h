@@ -68,6 +68,7 @@ private slots:
   void refreshTextBrowser();
   void updateFeedIcon(const QString &url, const QString &icon_path);
   void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
+  void onFeedContentChanged(const QString& url);
   void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
   void updateItemInfos(QTreeWidgetItem *item);
   void openNewsUrl();
