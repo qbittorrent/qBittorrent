@@ -201,7 +201,7 @@ int main(int argc, char *argv[]) {
   bool no_splash = false;
 #else
   if(shouldDaemonize && daemon(1, 0) != 0) {
-    qCritical("Something went wrong while transforming into a daemon, exiting...");
+    qCritical("Something went wrong while daemonizing, exiting...");
     return EXIT_FAILURE;
   }
 #endif
