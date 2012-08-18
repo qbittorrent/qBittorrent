@@ -168,11 +168,8 @@ int main(int argc, char *argv[]) {
       for(int j=i; j<argc; j++) {
         argv[j] = argv[j+1];
       }
+      i--;
     }
-  }
-  if(shouldDaemonize && daemon(1, 0) != 0) {
-    qCritical("Something went wrong while transforming into a daemon, exiting...");
-    return EXIT_FAILURE;
   }
   QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
 #else
@@ -202,6 +199,11 @@ int main(int argc, char *argv[]) {
   Preferences pref;
 #ifndef DISABLE_GUI
   bool no_splash = false;
+#else
+  if(shouldDaemonize && daemon(1, 0) != 0) {
+    qCritical("Something went wrong while transforming into a daemon, exiting...");
+    return EXIT_FAILURE;
+  }
 #endif
 
   // Load translation
