@@ -35,10 +35,13 @@
 #include "rssfeed.h"
 #include "rssarticle.h"
 #include "rssdownloadrulelist.h"
+#include "rssparser.h"
 #include "downloadthread.h"
 
 RssManager::RssManager():
-  m_rssDownloader(new DownloadThread(this)), m_downloadRules(new RssDownloadRuleList)
+  m_rssDownloader(new DownloadThread(this)),
+  m_downloadRules(new RssDownloadRuleList),
+  m_rssParser(new RssParser(this))
 {
   connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
@@ -48,14 +51,20 @@ RssManager::RssManager():
 RssManager::~RssManager() {
   qDebug("Deleting RSSManager...");
   delete m_downloadRules;
+  delete m_rssParser;
   saveItemsToDisk();
   saveStreamList();
   qDebug("RSSManager deleted");
 }
 
-DownloadThread *RssManager::rssDownloader() const
+DownloadThread* RssManager::rssDownloader() const
 {
   return m_rssDownloader;
+}
+
+RssParser* RssManager::rssParser() const
+{
+  return m_rssParser;
 }
 
 void RssManager::updateRefreshInterval(uint val) {

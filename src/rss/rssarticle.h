@@ -48,7 +48,7 @@ public:
   RssArticle(RssFeed* parent, const QString &guid);
   // Accessors
   bool hasAttachment() const;
-  QString guid() const;
+  const QString& guid() const;
   RssFeed* parent() const;
   QString title() const;
   QString author() const;
@@ -62,11 +62,7 @@ public:
   // Serialization
   QVariantHash toHash() const;
 
-  friend RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml);
   friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
-
-private:
-  static QDateTime parseDate(const QString &string);
 
 private:
   RssFeed* m_parent;

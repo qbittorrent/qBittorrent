@@ -402,17 +402,17 @@ void RSSImp::refreshSelectedItems() {
     // Update icons
     if (item == m_feedList->stickyUnreadItem()) {
       foreach (QTreeWidgetItem *feed, m_feedList->getAllFeedItems()) {
-        feed->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        feed->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       }
       file->refresh();
       break;
     } else {
       if (qSharedPointerDynamicCast<RssFeed>(file)) {
-        item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+        item->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       } else if (qSharedPointerDynamicCast<RssFolder>(file)) {
         // Update feeds in the folder
         foreach (QTreeWidgetItem *feed, m_feedList->getAllFeedItems(item)) {
-          feed->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
+          feed->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
         }
       }
     }

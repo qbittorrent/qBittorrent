@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez, Arnaud Demaiziere
+ * Copyright (C) 2012  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,55 +25,49 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact: chris@qbittorrent.org, arnaud@qbittorrent.org
+ * Contact : chris@qbittorrent.org
  */
 
-#ifndef RSSMANAGER_H
-#define RSSMANAGER_H
+#ifndef RSSPARSER_H
+#define RSSPARSER_H
 
-#include <QTimer>
-#include <QSharedPointer>
+#include "rssarticle.h"
+#include <QMutex>
+#include <QQueue>
+#include <QThread>
+#include <QWaitCondition>
 
-#include "rssfolder.h"
+struct ParsingJob;
 
-class DownloadThread;
-class RssDownloadRuleList;
-class RssParser;
-
-class RssManager;
-typedef QSharedPointer<RssManager> RssManagerPtr;
-
-class RssManager: public RssFolder {
+class RssParser : public QThread
+{
   Q_OBJECT
 
 public:
-  RssManager();
-  virtual ~RssManager();
-
-  DownloadThread* rssDownloader() const;
-  RssParser* rssParser() const;
-  static void sortArticleListByDateDesc(RssArticleList& news_list);
-
-  RssDownloadRuleList* downloadRules() const;
-
-public slots:
-  void loadStreamList();
-  void saveStreamList() const;
-  void forwardFeedInfosChanged(const QString &url, const QString &aliasOrUrl, uint nbUnread);
-  void forwardFeedIconChanged(const QString &url, const QString &icon_path);
-  void moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folder);
-  void updateRefreshInterval(uint val);
+  explicit RssParser(QObject *parent = 0);
+  virtual ~RssParser();
 
 signals:
-  void feedInfosChanged(const QString &url, const QString &display_name, uint nbUnread);
-  void feedIconChanged(const QString &url, const QString &icon_path);
+  void newArticle(const QString& feedUrl, const QVariantHash& rssArticle);
+  void feedTitle(const QString& feedUrl, const QString& title);
+  void feedParsingFinished(const QString& feedUrl, const QString& error);
+
+public slots:
+  void parseRssFile(const QString& feedUrl, const QString& filePath);
+
+protected:
+  virtual void run();
+  static QDateTime parseDate(const QString& string);
+  void parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl);
+  void parseRSSChannel(QXmlStreamReader& xml, const QString& feedUrl);
+  void parseRSS(const ParsingJob& job);
+  void reportFailure(const ParsingJob& job, const QString& error);
 
 private:
-  QTimer m_refreshTimer;
-  uint m_refreshInterval;
-  DownloadThread *m_rssDownloader;
-  RssDownloadRuleList *m_downloadRules;
-  RssParser* m_rssParser;
+  bool m_running;
+  QMutex m_mutex;
+  QQueue<ParsingJob> m_queue;
+  QWaitCondition m_waitCondition;
 };
 
-#endif // RSSMANAGER_H
+#endif // RSSPARSER_H

@@ -33,6 +33,7 @@
 
 #include <QHash>
 #include <QSharedPointer>
+#include <QVariantHash>
 #include <QXmlStreamReader>
 
 #include "rssfile.h"
@@ -76,13 +77,12 @@ public:
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
   void handleDownloadFailure(const QString &url, const QString& error);
+  void handleFeedTitle(const QString& feedUrl, const QString& title);
+  void handleNewArticle(const QString& feedUrl, const QVariantHash& article);
+  void handleFeedParsingFinished(const QString& feedUrl, const QString& error);
 
 private:
-  bool parseRSS(QIODevice* device);
-  void parseRSSChannel(QXmlStreamReader& xml);
   void removeOldArticles();
-  bool parseXmlFile(const QString &file_path);
-  void downloadMatchingArticleTorrents();
   QString iconUrl() const;
   void loadItemsFromDisk();
 
@@ -97,7 +97,7 @@ private:
   QString m_iconUrl;
   bool m_read;
   bool m_refreshed;
-  bool m_downloadFailure;
+  bool m_inErrorState;
   bool m_loading;
 
 };

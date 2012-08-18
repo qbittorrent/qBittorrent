@@ -35,6 +35,7 @@
 #include "rssfolder.h"
 #include "rsssettings.h"
 #include "rssarticle.h"
+#include "rssparser.h"
 #include "misc.h"
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
@@ -42,12 +43,16 @@
 
 RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   m_manager(manager), m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
-  m_refreshed(false), m_downloadFailure(false), m_loading(false) {
+  m_refreshed(false), m_inErrorState(false), m_loading(false) {
   qDebug() << Q_FUNC_INFO << url;
   m_url = QUrl::fromEncoded(url.toUtf8()).toString();
   // Listen for new RSS downloads
   connect(manager->rssDownloader(), SIGNAL(downloadFinished(QString,QString)), SLOT(handleFinishedDownload(QString,QString)));
   connect(manager->rssDownloader(), SIGNAL(downloadFailure(QString,QString)), SLOT(handleDownloadFailure(QString,QString)));
+  connect(manager->rssParser(), SIGNAL(feedTitle(QString,QString)), SLOT(handleFeedTitle(QString,QString)));
+  connect(manager->rssParser(), SIGNAL(newArticle(QString,QVariantHash)), SLOT(handleNewArticle(QString,QVariantHash)));
+  connect(manager->rssParser(), SIGNAL(feedParsingFinished(QString,QString)), SLOT(handleFeedParsingFinished(QString,QString)));
+
   // Download the RSS Feed icon
   m_iconUrl = iconUrl();
   manager->rssDownloader()->downloadUrl(m_iconUrl);
@@ -155,7 +160,7 @@ QString RssFeed::url() const {
 }
 
 QString RssFeed::icon() const {
-  if (m_downloadFailure)
+  if (m_inErrorState)
     return ":/Icons/oxygen/unavailable.png";
   return m_icon;
 }
@@ -220,117 +225,6 @@ QString RssFeed::iconUrl() const {
   return QString("http://")+QUrl(m_url).host()+QString("/favicon.ico");
 }
 
-void RssFeed::parseRSSChannel(QXmlStreamReader& xml)
-{
-  qDebug() << Q_FUNC_INFO;
-  Q_ASSERT(xml.isStartElement() && xml.name() == "channel");
-
-  while(!xml.atEnd()) {
-    xml.readNext();
-
-    if (xml.isStartElement()) {
-      if (xml.name() == "title") {
-        m_title = xml.readElementText();
-        if (m_alias == url())
-          rename(m_title);
-      }
-      else if (xml.name() == "image") {
-        QString icon_path = xml.attributes().value("url").toString();
-        if (!icon_path.isEmpty()) {
-          m_iconUrl = icon_path;
-          m_manager->rssDownloader()->downloadUrl(m_iconUrl);
-        }
-      }
-      else if (xml.name() == "item") {
-        RssArticlePtr article = xmlToRssArticle(this, xml);
-        qDebug() << "Found RSS Item, valid: " << (article ? "True" : "False");
-        if (article) {
-          QString guid = article->guid();
-          if (m_articles.contains(guid) && m_articles[guid]->isRead())
-            article->markAsRead();
-          m_articles[guid] = article;
-        }
-      }
-    }
-  }
-}
-
-// read and create items from a rss document
-bool RssFeed::parseRSS(QIODevice* device)
-{
-  qDebug("Parsing RSS file...");
-  QXmlStreamReader xml(device);
-
-  bool found_channel = false;
-  while (xml.readNextStartElement()) {
-    if (xml.name() == "rss") {
-      // Find channels
-      while (xml.readNextStartElement()) {
-        if (xml.name() == "channel") {
-          parseRSSChannel(xml);
-          found_channel = true;
-          break;
-        } else {
-          qDebug() << "Skip rss item: " << xml.name();
-          xml.skipCurrentElement();
-        }
-      }
-      break;
-    } else {
-      qDebug() << "Skip root item: " << xml.name();
-      xml.skipCurrentElement();
-    }
-  }
-
-  if (xml.hasError()) {
-    qWarning() << "Error parsing RSS document: " << xml.errorString();
-  }
-
-  if (!found_channel) {
-    qWarning() << m_url << " is not a valid RSS feed";
-    return false;
-  }
-
-  // Make sure we limit the number of articles
-  removeOldArticles();
-
-  // RSS Feed Downloader
-  if (RssSettings().isRssDownloadingEnabled())
-    downloadMatchingArticleTorrents();
-
-  // Save items to disk (for safety)
-  saveItemsToDisk();
-
-  return true;
-}
-
-void RssFeed::downloadMatchingArticleTorrents() {
-  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
-  RssDownloadRuleList *download_rules = m_manager->downloadRules();
-
-  RssArticleHash::ConstIterator it = m_articles.begin();
-  RssArticleHash::ConstIterator itend = m_articles.end();
-  for ( ; it != itend; ++it) {
-    RssArticlePtr article = it.value();
-    // Skip read articles
-    if (article->isRead())
-      continue;
-    // Check if the item should be automatically downloaded
-    RssDownloadRulePtr matching_rule = download_rules->findMatchingRule(m_url, article->title());
-    if (matching_rule) {
-      // Torrent was downloaded, consider article as read
-      article->markAsRead();
-      // Download the torrent
-      QString torrent_url = article->hasAttachment() ? article->torrentUrl() : article->link();
-      QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
-      if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
-        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
-      else
-        QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
-    }
-  }
-}
-
 void RssFeed::removeOldArticles() {
   const uint max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   const uint nb_articles = m_articles.size();
@@ -344,37 +238,12 @@ void RssFeed::removeOldArticles() {
   }
 }
 
-// existing and opening test after download
-bool RssFeed::parseXmlFile(const QString &file_path) {
-  qDebug("openRss() called");
-  QFile fileRss(file_path);
-  if (!fileRss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    qDebug("openRss error: open failed, no file or locked, %s", qPrintable(file_path));
-    if (QFile::exists(file_path))
-      fileRss.remove();
-    return false;
-  }
-
-  // start reading the xml
-  bool ret = parseRSS(&fileRss);
-  fileRss.close();
-  if (QFile::exists(file_path))
-    fileRss.remove();
-  return ret;
-}
-
 // read and store the downloaded rss' informations
 void RssFeed::handleFinishedDownload(const QString& url, const QString &file_path) {
   if (url == m_url) {
     qDebug() << Q_FUNC_INFO << "Successfully downloaded RSS feed at" << url;
-    m_downloadFailure = false;
-    m_loading = false;
     // Parse the download RSS
-    if (parseXmlFile(file_path)) {
-      m_refreshed = true;
-      m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
-      qDebug() << Q_FUNC_INFO << "Feed parsed successfully";
-    }
+    m_manager->rssParser()->parseRssFile(m_url, file_path);
   }
   else if (url == m_iconUrl) {
     m_icon = file_path;
@@ -385,9 +254,66 @@ void RssFeed::handleFinishedDownload(const QString& url, const QString &file_pat
 
 void RssFeed::handleDownloadFailure(const QString &url, const QString& error) {
   if (url != m_url) return;
-  m_downloadFailure = true;
+  m_inErrorState = true;
   m_loading = false;
   m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
   qWarning() << "Failed to download RSS feed at" << url;
   qWarning() << "Reason:" << error;
+}
+
+void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
+{
+  if (feedUrl != m_url)
+    return;
+
+  rename(title);
+}
+
+void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& articleData)
+{
+  if (feedUrl != m_url)
+    return;
+  m_refreshed = true;
+
+  const QString guid = articleData["id"].toString();
+  if (m_articles.contains(guid))
+    return;
+
+  RssArticlePtr article = hashToRssArticle(this, articleData);
+  Q_ASSERT(article);
+  m_articles[guid] = article;
+
+  // Download torrent if necessary.
+  if (RssSettings().isRssDownloadingEnabled()) {
+    RssDownloadRulePtr matching_rule = m_manager->downloadRules()->findMatchingRule(m_url, article->title());
+    if (matching_rule) {
+      // Torrent was downloaded, consider article as read
+      article->markAsRead();
+      // Download the torrent
+      QString torrent_url = article->hasAttachment() ? article->torrentUrl() : article->link();
+      QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
+      if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
+        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
+      else
+        QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
+    }
+  }
+  // FIXME: We should forward the information here but this would seriously decrease
+  // performance with current design.
+  //m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+}
+
+void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& error)
+{
+  if (feedUrl != m_url)
+    return;
+
+  // Make sure we limit the number of articles
+  removeOldArticles();
+
+  m_loading = false;
+  m_inErrorState = !error.isEmpty();
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), unreadCount()); // XXX: Ugly
+
+  saveItemsToDisk();
 }
