@@ -46,6 +46,7 @@
 #include "rssmanager.h"
 #include "rssfolder.h"
 #include "rssarticle.h"
+#include "rssparser.h"
 #include "rssfeed.h"
 #include "rsssettings.h"
 #include "automatedrssdownloader.h"
@@ -260,6 +261,11 @@ void RSSImp::deleteSelectedItems() {
       while (parent && parent != m_feedList->invisibleRootItem()) {
         updateItemInfos (parent);
         parent = parent->parent();
+      }
+      // Clear feed data from RSS parser (possible caching).
+      RssFeed* rssFeed = dynamic_cast<RssFeed*>(rss_item.data());
+      if (rssFeed) {
+        m_rssManager->rssParser()->clearFeedData(rssFeed->url());
       }
     }
     m_rssManager->saveStreamList();

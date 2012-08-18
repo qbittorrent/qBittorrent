@@ -221,6 +221,13 @@ void RssParser::parseRssFile(const QString& feedUrl, const QString& filePath)
   m_mutex.unlock();
 }
 
+void RssParser::clearFeedData(const QString &feedUrl)
+{
+  m_mutex.lock();
+  m_lastBuildDates.remove(feedUrl);
+  m_mutex.unlock();
+}
+
 void RssParser::run()
 {
   while (m_running) {
@@ -299,6 +306,17 @@ void RssParser::parseRSSChannel(QXmlStreamReader& xml, const QString& feedUrl)
       if (xml.name() == "title") {
         QString title = xml.readElementText();
         emit feedTitle(feedUrl, title);
+      }
+      else if (xml.name() == "lastBuildDate") {
+        QString lastBuildDate = xml.readElementText();
+        if (!lastBuildDate.isEmpty()) {
+          QMutexLocker locker(&m_mutex);
+          if (m_lastBuildDates.value(feedUrl, "") == lastBuildDate) {
+            qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
+            return;
+          }
+          m_lastBuildDates[feedUrl] = lastBuildDate;
+        }
       }
       else if (xml.name() == "item") {
         parseRssArticle(xml, feedUrl);

@@ -54,6 +54,7 @@ signals:
 
 public slots:
   void parseRssFile(const QString& feedUrl, const QString& filePath);
+  void clearFeedData(const QString& feedUrl);
 
 protected:
   virtual void run();
@@ -68,6 +69,7 @@ private:
   QMutex m_mutex;
   QQueue<ParsingJob> m_queue;
   QWaitCondition m_waitCondition;
+  QHash<QString/*feedUrl*/, QString/*lastBuildDate*/> m_lastBuildDates; // Optimization
 };
 
 #endif // RSSPARSER_H
