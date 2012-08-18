@@ -160,18 +160,18 @@ int main(int argc, char *argv[]) {
   // Create Application
   QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
-  bool becomedaemon = false;
+  bool shouldDaemonize = false;
   for(int i=1; i<argc; i++) {
     if(strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--daemon") == 0) {
-      becomedaemon = true;
+      shouldDaemonize = true;
       argc--;
       for(int j=i; j<argc; j++) {
         argv[j] = argv[j+1];
       }
     }
   }
-  if(becomedaemon && daemon(1, 0) != 0) {
-    std::cerr << "Something went wrong while transforming into a daemon, exiting...";
+  if(shouldDaemonize && daemon(1, 0) != 0) {
+    qCritical("Something went wrong while transforming into a daemon, exiting...");
     return EXIT_FAILURE;
   }
   QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
