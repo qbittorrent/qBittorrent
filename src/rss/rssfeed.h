@@ -96,7 +96,7 @@ private:
   QString m_icon;
   QString m_iconUrl;
   bool m_read;
-  bool m_refreshed;
+  bool m_dirty;
   bool m_inErrorState;
   bool m_loading;
 

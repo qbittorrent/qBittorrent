@@ -43,7 +43,7 @@
 
 RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   m_manager(manager), m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
-  m_refreshed(false), m_inErrorState(false), m_loading(false) {
+  m_dirty(false), m_inErrorState(false), m_loading(false) {
   qDebug() << Q_FUNC_INFO << url;
   m_url = QUrl::fromEncoded(url.toUtf8()).toString();
   // Listen for new RSS downloads
@@ -68,8 +68,10 @@ RssFeed::~RssFeed() {
 
 void RssFeed::saveItemsToDisk() {
   qDebug() << Q_FUNC_INFO << m_url;
-  if (!m_refreshed)
+  if (!m_dirty)
     return;
+  m_dirty = false;
+
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QVariantList old_items;
 
@@ -273,11 +275,12 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
 {
   if (feedUrl != m_url)
     return;
-  m_refreshed = true;
 
   const QString guid = articleData["id"].toString();
   if (m_articles.contains(guid))
     return;
+
+  m_dirty = true;
 
   RssArticlePtr article = hashToRssArticle(this, articleData);
   Q_ASSERT(article);
