@@ -64,7 +64,7 @@ private slots:
   void renameFiles();
   void refreshSelectedItems();
   void copySelectedFeedsURL();
-  void refreshArticleList(QTreeWidgetItem* item);
+  void populateArticleList(QTreeWidgetItem* item);
   void refreshTextBrowser();
   void updateFeedIcon(const QString &url, const QString &icon_path);
   void updateFeedInfos(const QString &url, const QString &display_name, uint nbUnread);
@@ -83,6 +83,9 @@ private slots:
   void on_actionManage_cookies_triggered();
   void on_settingsButton_clicked();
   void on_rssDownloaderBtn_clicked();
+
+private:
+  static QListWidgetItem* createArticleListItem(const RssArticlePtr& article);
 
 private:
   RssManagerPtr m_rssManager;
