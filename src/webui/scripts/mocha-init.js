@@ -286,7 +286,7 @@ initializeWindows = function(){
 	addClickEvent('shutdown', function(e){
 		new Event(e).stop();
 		new Request({url: 'command/shutdown'}).send();
-		document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>qBittorrent-nox has been shutdown.</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>qBittorrent-nox has been shutdown.</h1></body></html>");	//TODO Can someone with artistic skills put a pretty webpage here
+		document.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>_(qBittorrent has been shutdown.)</title><style type=\"text/css\">body { text-align: center; }</style></head><body><h1>_(qBittorrent has been shutdown.)</h1></body></html>");	//TODO Can someone with artistic skills put a pretty webpage here
 		stop();
 	});
 
