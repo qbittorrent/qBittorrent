@@ -135,6 +135,7 @@ HttpServer::HttpServer(QObject* parent) : QTcpServer(parent)
   a = tr("The following parameters are supported:");
   a = tr("Torrent path");
   a = tr("Torrent name");
+  a = tr("qBittorrent has been shutdown.");
 }
 
 HttpServer::~HttpServer() {

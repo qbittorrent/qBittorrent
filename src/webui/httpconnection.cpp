@@ -596,6 +596,7 @@ void HttpConnection::respondCommand(const QString& command) {
     return;
   }
   if (command == "shutdown") {
+    qDebug() << "Shutdown request from Web UI";
     qApp->exit();
   }
 }
