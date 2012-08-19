@@ -59,8 +59,8 @@ public:
   virtual RssFolder* parent() const = 0;
   virtual void setParent(RssFolder* parent) = 0;
   virtual void refresh() = 0;
-  virtual RssArticleList articleList() const = 0;
-  virtual RssArticleList unreadArticleList() const = 0;
+  virtual RssArticleList articleListByDateDesc() const = 0;
+  virtual RssArticleList unreadArticleListByDateDesc() const = 0;
   virtual void removeAllSettings() = 0;
   virtual void saveItemsToDisk() = 0;
   QStringList pathHierarchy() const;

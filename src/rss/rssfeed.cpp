@@ -41,6 +41,11 @@
 #include "downloadthread.h"
 #include "fs_utils.h"
 
+bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
+{
+  return left->date() > right->date();
+}
+
 RssFeed::RssFeed(RssManager* manager, RssFolder* parent, const QString &url):
   m_manager(manager), m_parent(parent), m_icon(":/Icons/oxygen/application-rss+xml.png"),
   m_unreadCount(0), m_dirty(false), m_inErrorState(false), m_loading(false) {
@@ -95,11 +100,30 @@ void RssFeed::loadItemsFromDisk() {
   foreach (const QVariant &var_it, old_items) {
     QHash<QString, QVariant> item = var_it.toHash();
     RssArticlePtr rss_item = hashToRssArticle(this, item);
-    if (rss_item) {
-      m_articles.insert(rss_item->guid(), rss_item);
-      if (!rss_item->isRead())
-        ++m_unreadCount;
-    }
+    if (rss_item)
+      addArticle(rss_item);
+  }
+}
+
+void RssFeed::addArticle(const RssArticlePtr& article)
+{
+  Q_ASSERT(!m_articles.contains(article->guid()));
+  // Update unreadCount
+  if (!article->isRead())
+    ++m_unreadCount;
+  // Insert in hash table
+  m_articles[article->guid()] = article;
+  // Insertion sort
+  RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
+  m_articlesByDate.insert(lowerBound, article);
+  // Restrict size
+  const int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
+  if (m_articlesByDate.size() > max_articles) {
+    RssArticlePtr oldestArticle = m_articlesByDate.takeLast();
+    m_articles.remove(oldestArticle->guid());
+    // Update unreadCount
+    if (!oldestArticle->isRead())
+      --m_unreadCount;
   }
 }
 
@@ -201,18 +225,18 @@ uint RssFeed::unreadCount() const
   return m_unreadCount;
 }
 
-RssArticleList RssFeed::articleList() const {
-  return m_articles.values();
+RssArticleList RssFeed::articleListByDateDesc() const {
+  return m_articlesByDate;
 }
 
-RssArticleList RssFeed::unreadArticleList() const {
+RssArticleList RssFeed::unreadArticleListByDateDesc() const {
   RssArticleList unread_news;
 
-  RssArticleHash::ConstIterator it = m_articles.begin();
-  RssArticleHash::ConstIterator itend = m_articles.end();
+  RssArticleList::ConstIterator it = m_articlesByDate.begin();
+  RssArticleList::ConstIterator itend = m_articlesByDate.end();
   for ( ; it != itend; ++it) {
-    if (!it.value()->isRead())
-      unread_news << it.value();
+    if (!(*it)->isRead())
+      unread_news << *it;
   }
   return unread_news;
 }
@@ -221,22 +245,6 @@ RssArticleList RssFeed::unreadArticleList() const {
 QString RssFeed::iconUrl() const {
   // XXX: This works for most sites but it is not perfect
   return QString("http://")+QUrl(m_url).host()+QString("/favicon.ico");
-}
-
-void RssFeed::removeOldArticles() {
-  const uint max_articles = RssSettings().getRSSMaxArticlesPerFeed();
-  const uint nb_articles = m_articles.size();
-  if (nb_articles > max_articles) {
-    RssArticleList listItems = m_articles.values();
-    RssManager::sortArticleListByDateDesc(listItems);
-    const int excess = nb_articles - max_articles;
-    for (uint i=nb_articles-excess; i<nb_articles; ++i) {
-      RssArticlePtr article = m_articles.take(listItems.at(i)->guid());
-      // Update unreadCount
-      if (!article->isRead())
-        --m_unreadCount;
-    }
-  }
 }
 
 // read and store the downloaded rss' informations
@@ -290,7 +298,7 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
 
   RssArticlePtr article = hashToRssArticle(this, articleData);
   Q_ASSERT(article);
-  m_articles[guid] = article;
+  addArticle(article);
 
   // Download torrent if necessary.
   if (RssSettings().isRssDownloadingEnabled()) {
@@ -307,9 +315,6 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
         QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
     }
   }
-  // Update unreadCount if necessary
-  if (!article->isRead())
-    ++m_unreadCount;
 
   m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
   // FIXME: We should forward the information here but this would seriously decrease
@@ -326,9 +331,6 @@ void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& e
     qWarning() << "Failed to parse RSS feed at" << feedUrl;
     qWarning() << "Reason:" << error;
   }
-
-  // Make sure we limit the number of articles
-  removeOldArticles();
 
   m_loading = false;
   m_inErrorState = !error.isEmpty();

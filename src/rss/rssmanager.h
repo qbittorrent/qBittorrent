@@ -52,7 +52,6 @@ public:
 
   DownloadThread* rssDownloader() const;
   RssParser* rssParser() const;
-  static void sortArticleListByDateDesc(RssArticleList& news_list);
 
   RssDownloadRuleList* downloadRules() const;
 

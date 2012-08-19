@@ -490,11 +490,9 @@ void RSSImp::refreshArticleList(QTreeWidgetItem* item) {
   qDebug("Getting the list of news");
   RssArticleList news;
   if (rss_item == m_rssManager)
-    news = rss_item->unreadArticleList();
+    news = rss_item->unreadArticleListByDateDesc();
   else if (rss_item)
-    news = rss_item->articleList();
-  // Sort
-  RssManager::sortArticleListByDateDesc(news);
+    news = rss_item->articleListByDateDesc();
   // Clear the list first
   textBrowser->clear();
   m_currentArticle = 0;

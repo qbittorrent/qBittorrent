@@ -62,8 +62,8 @@ public:
   virtual QString displayName() const;
   virtual QString id() const;
   bool hasChild(const QString &childId);
-  virtual RssArticleList articleList() const;
-  virtual RssArticleList unreadArticleList() const;
+  virtual RssArticleList articleListByDateDesc() const;
+  virtual RssArticleList unreadArticleListByDateDesc() const;
   virtual void removeAllSettings();
   virtual void saveItemsToDisk();
   void removeAllItems();

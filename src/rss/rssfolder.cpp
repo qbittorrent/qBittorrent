@@ -91,24 +91,28 @@ void RssFolder::refresh() {
   }
 }
 
-RssArticleList RssFolder::articleList() const {
+RssArticleList RssFolder::articleListByDateDesc() const {
   RssArticleList news;
 
   RssFileHash::ConstIterator it = m_children.begin();
   RssFileHash::ConstIterator itend = m_children.end();
   for ( ; it != itend; ++it) {
-    news << it.value()->articleList();
+    int n = news.size();
+    news << it.value()->articleListByDateDesc();
+    std::inplace_merge(news.begin(), news.begin() + n, news.end(), rssArticleDateRecentThan);
   }
   return news;
 }
 
-RssArticleList RssFolder::unreadArticleList() const {
+RssArticleList RssFolder::unreadArticleListByDateDesc() const {
   RssArticleList unread_news;
 
   RssFileHash::ConstIterator it = m_children.begin();
   RssFileHash::ConstIterator itend = m_children.end();
   for ( ; it != itend; ++it) {
-    unread_news << it.value()->unreadArticleList();
+    int n = unread_news.size();
+    unread_news << it.value()->unreadArticleListByDateDesc();
+    std::inplace_merge(unread_news.begin(), unread_news.begin() + n, unread_news.end(), rssArticleDateRecentThan);
   }
   return unread_news;
 }

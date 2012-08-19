@@ -45,6 +45,8 @@ typedef QHash<QString, RssArticlePtr> RssArticleHash;
 typedef QSharedPointer<RssFeed> RssFeedPtr;
 typedef QList<RssFeedPtr> RssFeedList;
 
+bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right);
+
 class RssFeed: public QObject, public RssFile {
   Q_OBJECT
 
@@ -70,9 +72,9 @@ public:
   uint count() const;
   virtual void markAsRead();
   virtual uint unreadCount() const;
-  virtual RssArticleList articleList() const;
+  virtual RssArticleList articleListByDateDesc() const;
   const RssArticleHash& articleHash() const { return m_articles; }
-  virtual RssArticleList unreadArticleList() const;
+  virtual RssArticleList unreadArticleListByDateDesc() const;
   void decrementUnreadCount();
 
 private slots:
@@ -83,14 +85,15 @@ private slots:
   void handleFeedParsingFinished(const QString& feedUrl, const QString& error);
 
 private:
-  void removeOldArticles();
   QString iconUrl() const;
   void loadItemsFromDisk();
+  void addArticle(const RssArticlePtr& article);
 
 private:
   RssManager* m_manager;
   RssArticleHash m_articles;
-  RssFolder *m_parent;
+  RssArticleList m_articlesByDate; // Articles sorted by date (more recent first)
+  RssFolder* m_parent;
   QString m_title;
   QString m_url;
   QString m_alias;

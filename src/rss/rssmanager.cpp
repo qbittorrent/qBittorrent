@@ -151,15 +151,6 @@ void RssManager::saveStreamList() const {
   settings.setRssFeedsAliases(aliases);
 }
 
-static bool laterItemDate(const RssArticlePtr& a, const RssArticlePtr& b)
-{
-  return (a->date() > b->date());
-}
-
-void RssManager::sortArticleListByDateDesc(RssArticleList& news_list) {
-  qSort(news_list.begin(), news_list.end(), laterItemDate);
-}
-
 RssDownloadRuleList *RssManager::downloadRules() const
 {
   Q_ASSERT(m_downloadRules);
