@@ -1950,6 +1950,11 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>დაშიფვრის გამორთვა</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="1990"/>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="2030"/>
         <source>Maximum active downloads:</source>
         <translation>მაქსიმალური აქტიური ჩამოტვირთვები:</translation>
@@ -2342,9 +2347,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>ანონიმური რეჟიმის ჩართვა</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1990"/>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;მეტი ინფორმაცია&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;მეტი ინფორმაცია&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2129"/>
@@ -2974,22 +2978,22 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>&apos;%1&apos; გაგრძელდა. (სწრაფი გაგრძელება)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>კომპიუტერი ახლა გადავა ძილის რეჟიმში, თქვენ ამის გასაუქმებლად გაქვთ 15 წამი...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>კომპიუტერი ახლა გამოირთვება, თქვენ ამის გასაუქმებლად გაქვთ 15 წამი...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2254"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent ახლა გამოვა, თქვენ ამის გასუქმებლად გაქვთ 15 წამი...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2796"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2799"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -3000,7 +3004,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">მოწოდებული IP ფილტრი წარმატებით გაანალიზდა: მიღებული იქნა %1 წესი.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>შეცდომა: მოწოდებული IP ფილტრის ანალიზი ჩაიშალა.</translation>
     </message>
@@ -3056,119 +3060,119 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>შენიშვნა: არსებულ ტორენტს დაემატა ახალი სიდერების ბმულები.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1702"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1705"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;დაიბლოკა თქვენი IP ფილტრის მიხედვით&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;დაიბლოკა დაზიანებული ნაწილების გამო&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>განსაზღვრული ქსელის ინტერფეისი არასწორია: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1893"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
         <source>Trying any other network interface available instead.</source>
         <translation>ნებისმიერი სხვა ქსელის ინტერფეისის ცდა.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1916"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>%1 IP მისამართის მოსმენა %2 ქსელის ინტერფეისზე...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1922"/>
         <source>Failed to listen on network interface %1</source>
         <translation>ქსელის ინტერფეისის მოსმენა ჩაიშალა %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2100"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2102"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation> %2 ტორენტში ჩადგმული %1 ფაილის რეკურსიული ჩამოტვირთვა ჩაიშალა</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2197"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2202"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 ტორენტ ფაილის გაშიფვრა ვერ მოხერხდა.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2147"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
         <source>Torrent name: %1</source>
         <translation>ტორენტის სახელი: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2148"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2151"/>
         <source>Torrent size: %1</source>
         <translation>ტორენტის ზომა: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2152"/>
         <source>Save path: %1</source>
         <translation>შესანახი მდებარეობა: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2153"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>ტორენტის ჩამოტვირთვის დრო არის %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2151"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2154"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>მადლობას გიხდით qBittorrent-ის გამოყენებისთვის.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2154"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2157"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 -ის ჩამოტვირთვა დასრულდა</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2389"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>დაფიქსირდა I/O შეცდომა, &apos;%1 დაპაუზდა.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2387"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2498"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2390"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2501"/>
         <source>Reason: %1</source>
         <translation>მიზეზი: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2462"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2465"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: პორტის განლაგება ჩაიშალა, შეტყობინება: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2470"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: პორტის განლაგება წარმატებით დასრულდა, შეტყობინება: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2493"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2496"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>%1 ტორენტის ფაილის ზომები არ , მოხდება მისი დაპაუზება.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>სწრაფი გაგრძელებების მონაცემები უარყოფილი იქნა %1 ტორენტის მიერ, მოწმედება ხელახლა...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2506"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>სიდის ბმულით მოძებნა ჩაიშალა ბმულისთვის: %1, შეტყობინება: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2626"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2629"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1 იტვირთება, გთხოვთ დაელოდეთ...</translation>
@@ -3288,111 +3292,111 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="204"/>
+        <location filename="../rss/rss_imp.cpp" line="205"/>
         <source>Please type a rss stream url</source>
         <translation>გთხოვთ შეიყვანეთ RSS არხის ბმული</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="204"/>
+        <location filename="../rss/rss_imp.cpp" line="205"/>
         <source>Stream URL:</source>
         <translation>არხის ბმული:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>დარწმუნებული ხართ? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="239"/>
-        <location filename="../rss/rss_imp.cpp" line="243"/>
+        <location filename="../rss/rss_imp.cpp" line="240"/>
+        <location filename="../rss/rss_imp.cpp" line="244"/>
         <source>&amp;Yes</source>
         <translation>&amp;დიახ</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="239"/>
-        <location filename="../rss/rss_imp.cpp" line="243"/>
+        <location filename="../rss/rss_imp.cpp" line="240"/>
+        <location filename="../rss/rss_imp.cpp" line="244"/>
         <source>&amp;No</source>
         <translation>&amp;არა</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>Please choose a folder name</source>
         <translation>გთხოვთ აირჩიეთ საქაღალდის სახელი</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>Folder name:</source>
         <translation>საქაღალდის სახელი:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>New folder</source>
         <translation>ახალი საქაღალდე</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="171"/>
+        <location filename="../rss/rss_imp.cpp" line="172"/>
         <source>Overwrite attempt</source>
         <translation>გადაწერის მცდელობა</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="172"/>
+        <location filename="../rss/rss_imp.cpp" line="173"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translation>თქვენ არ შეგიძლიათ %1 ელემენტზე გადაწერა.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="209"/>
+        <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="210"/>
+        <location filename="../rss/rss_imp.cpp" line="211"/>
         <source>This rss feed is already in the list.</source>
         <translation>ეს RSS არხი უკვე სიაშია.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>დარწმუნებული ხართ რომ სიიდან ამ ელემენტების წაშლა გსურთ?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>დარწმუნებული ხართ რომ სიიდან ამ ელემენტის წაშლა გსურთ?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="380"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>გთხოვთ აირჩიეთ ახალი სახელი ამ RSS არხისთვის</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="380"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>New feed name:</source>
         <translation>არხის ახალი სახელი:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="384"/>
+        <location filename="../rss/rss_imp.cpp" line="390"/>
         <source>Name already in use</source>
         <translation>სახელი უკვე გამოიყენება</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="384"/>
+        <location filename="../rss/rss_imp.cpp" line="390"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>ეს სახელი უკვე გამოიყენება სხვა ელემენტის მიერ, გთხოვთ აირჩიეთ სხვა სახელი.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="539"/>
+        <location filename="../rss/rss_imp.cpp" line="543"/>
         <source>Date: </source>
         <translation>თარიღი:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="542"/>
+        <location filename="../rss/rss_imp.cpp" line="546"/>
         <source>Author: </source>
         <translation>ავტორი:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="588"/>
+        <location filename="../rss/rss_imp.cpp" line="592"/>
         <source>Unread</source>
         <translation>წაუკითხავი</translation>
     </message>
@@ -3400,9 +3404,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="325"/>
+        <location filename="../rss/rssfeed.cpp" line="311"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>%1 ტორენტის ავტომატურად ჩამოტვირთვა %2 RSS არხიდან...</translation>
+    </message>
+</context>
+<context>
+    <name>RssParser</name>
+    <message>
+        <location filename="../rss/rssparser.cpp" line="334"/>
+        <source>Failed to open downloaded RSS file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/rssparser.cpp" line="366"/>
+        <source>Invalid RSS feed at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5098,9 +5115,9 @@ However, those plugins were disabled.</source>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../fs_utils.cpp" line="486"/>
-        <location filename="../fs_utils.cpp" line="514"/>
-        <location filename="../fs_utils.cpp" line="526"/>
+        <location filename="../fs_utils.cpp" line="435"/>
+        <location filename="../fs_utils.cpp" line="463"/>
+        <location filename="../fs_utils.cpp" line="475"/>
         <source>Downloads</source>
         <translation type="unfinished">ჩამოტვირთვები</translation>
     </message>

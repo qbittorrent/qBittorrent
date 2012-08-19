@@ -3149,7 +3149,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3978,6 +3982,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation type="obsolete">Нема доступних описа</translation>
+    </message>
+</context>
+<context>
+    <name>RssParser</name>
+    <message>
+        <source>Failed to open downloaded RSS file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid RSS feed at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

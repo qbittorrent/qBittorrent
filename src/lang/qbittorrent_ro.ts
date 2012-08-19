@@ -2570,7 +2570,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3361,6 +3361,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation type="obsolete">Descrierea nu este disponobilă</translation>
+    </message>
+</context>
+<context>
+    <name>RssParser</name>
+    <message>
+        <source>Failed to open downloaded RSS file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid RSS feed at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

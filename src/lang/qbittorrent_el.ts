@@ -2974,7 +2974,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1990"/>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4116,67 +4116,67 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Σημείωση: νέοι διαμοιραστές μέσω URL προστέθηκαν στο ήδη υπάρχον torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1702"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1705"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;μπλοκαρίστηκε εξαιτίας του φίλτρου IP σας&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1704"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;απαγορεύτηκε εξαιτίας κατεστραμμένων κομματιών&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1895"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Το δικτυακό interface που ορίσατε είναι άκυρο: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1893"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1896"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Δοκιμή κάθε άλλου δικτυακού interface.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1916"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Αναμονή στην διεύθυνση ΙΡ %1 στο interface δικτύου %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1922"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Αποτυχία αναμονής στο interface δικτύου %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2100"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2102"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Προγραμματισμένο κατέβασμα του αρχείου %1,που βρίσκεται στο torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2197"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2202"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Αδύνατο να αποκωδικοποιηθεί το αρχείο torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2247"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα τεθεί σε λειτουργία αναμονής εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2252"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Ο υπολογιστής θα απενεργοποιηθεί εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2254"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>Το qBittorrent θα κλείσει, εκτός αν το ακυρώσετε στα επόμενα 15 δευτερόλεπτα...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2796"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2799"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4187,79 +4187,79 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Η ανάγνωση του δοθέντος IP φίλτρου ήταν επιτυχής: %1 κανόνες εφαρμόστηκαν.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Σφάλμα: Αποτυχία ανάγνωσης του δοθέντος φίλτρου IP.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2147"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
         <source>Torrent name: %1</source>
         <translation>Όνομα τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2148"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2151"/>
         <source>Torrent size: %1</source>
         <translation>Μέγεθος τόρεντ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2152"/>
         <source>Save path: %1</source>
         <translation>Διαδρομή αποθήκευσης: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2153"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Το τόρεντ κατέβηκε σε %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2151"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2154"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Σας ευχαριστούμε που χρησιμοποιείτε το qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2154"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2157"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>Το κατέβασμα του [qBittorrent] %1 τελείωσε</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2386"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2389"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ένα σφάλμα I/O προέκυψε, το &apos;%1&apos; είναι σε παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2387"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2498"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2390"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2501"/>
         <source>Reason: %1</source>
         <translation>Αιτία: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2462"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2465"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Σφάλμα χαρτογράφησης θυρών, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2470"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Χαρτογράφηση θυρών επιτυχής, μήνυμα: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2493"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2496"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Τα μεγέθη των αρχείων δεν είναι σε αντιστοιχία για το τόρεντ %1, γίνεται παύση.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Γρήγορη επανεκκίνηση αρχείων απορρίφθηκε για το torrent %1, γίνεται επανέλεγχος...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2503"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2506"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Αποτυχία ελέγχου url διαμοιρασμού για το url: %1, μήνυμα: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2626"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2629"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Κατέβασμα του &apos;%1&apos;, παρακαλώ περιμένετε...</translation>
@@ -4395,112 +4395,112 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RSSImp</name>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="204"/>
+        <location filename="../rss/rss_imp.cpp" line="205"/>
         <source>Please type a rss stream url</source>
         <translation>Παρακαλώ εισάγετε ένα url τροφοδοσίας rss</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="204"/>
+        <location filename="../rss/rss_imp.cpp" line="205"/>
         <source>Stream URL:</source>
         <translation>URL τροφοδοσίας:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Είστε σίγουρος? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="239"/>
-        <location filename="../rss/rss_imp.cpp" line="243"/>
+        <location filename="../rss/rss_imp.cpp" line="240"/>
+        <location filename="../rss/rss_imp.cpp" line="244"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="239"/>
-        <location filename="../rss/rss_imp.cpp" line="243"/>
+        <location filename="../rss/rss_imp.cpp" line="240"/>
+        <location filename="../rss/rss_imp.cpp" line="244"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>Please choose a folder name</source>
         <translation>Παρακαλώ επιλέξτε ένα όνομα φακέλου</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>Folder name:</source>
         <translation>Όνομα φακέλου:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="150"/>
+        <location filename="../rss/rss_imp.cpp" line="151"/>
         <source>New folder</source>
         <translation>Νέος φάκελος</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="171"/>
+        <location filename="../rss/rss_imp.cpp" line="172"/>
         <source>Overwrite attempt</source>
         <translation>Προσπάθεια επαννεγγραφής</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="172"/>
+        <location filename="../rss/rss_imp.cpp" line="173"/>
         <source>You cannot overwrite %1 item.</source>
         <comment>You cannot overwrite myFolder item.</comment>
         <translatorcomment>Δεν προρείτε να επανεγγράψετε το myFolder αντικείμενο.</translatorcomment>
         <translation>Δεν μπορείτε να επανεγγράψετε το %1 αντικείμενο.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="209"/>
+        <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="210"/>
+        <location filename="../rss/rss_imp.cpp" line="211"/>
         <source>This rss feed is already in the list.</source>
         <translation>Αυτή η τροφοδοσία rss είναι ήδη στη λίστα.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="238"/>
+        <location filename="../rss/rss_imp.cpp" line="239"/>
         <source>Are you sure you want to delete these elements from the list?</source>
         <translation>Είστε σίγουρος οτι θέλετε να διαγράψετε αυτά τα στοιχεία από τη λίστα?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="242"/>
+        <location filename="../rss/rss_imp.cpp" line="243"/>
         <source>Are you sure you want to delete this element from the list?</source>
         <translation>Είστε σίγουρος οτι θέλετε να διαγράψετε αυτό το στοιχείο από τη λίστα?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="380"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Παρακαλώ επιλέξτε ένα νέο όνομα για αυτή την παροχή RSS</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="380"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>New feed name:</source>
         <translation>Νέο όνομα παροχής:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="384"/>
+        <location filename="../rss/rss_imp.cpp" line="390"/>
         <source>Name already in use</source>
         <translation>Το όνομα ήδη χρησιμοποιείται</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="384"/>
+        <location filename="../rss/rss_imp.cpp" line="390"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Αυτό το όνομα ήδη χρησιμοποιείται από ένα άλλο αντικείμενο. Παρακαλώ επιλέξτε ένα άλλο.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="539"/>
+        <location filename="../rss/rss_imp.cpp" line="543"/>
         <source>Date: </source>
         <translation> Ημερομηνία:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="542"/>
+        <location filename="../rss/rss_imp.cpp" line="546"/>
         <source>Author: </source>
         <translation> Δημιουργός:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="588"/>
+        <location filename="../rss/rss_imp.cpp" line="592"/>
         <source>Unread</source>
         <translation>Μη διαβασμένο</translation>
     </message>
@@ -4515,7 +4515,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="325"/>
+        <location filename="../rss/rssfeed.cpp" line="311"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Αυτόματη λήψη του torrent %1 από την παροχή RSS %2...</translation>
     </message>
@@ -4525,6 +4525,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No description available</source>
         <translation type="obsolete">Δεν υπάρχει διαθέσιμη περιγραφή</translation>
+    </message>
+</context>
+<context>
+    <name>RssParser</name>
+    <message>
+        <location filename="../rss/rssparser.cpp" line="334"/>
+        <source>Failed to open downloaded RSS file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rss/rssparser.cpp" line="366"/>
+        <source>Invalid RSS feed at %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6550,9 +6563,9 @@ However, those plugins were disabled.</source>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../fs_utils.cpp" line="486"/>
-        <location filename="../fs_utils.cpp" line="514"/>
-        <location filename="../fs_utils.cpp" line="526"/>
+        <location filename="../fs_utils.cpp" line="435"/>
+        <location filename="../fs_utils.cpp" line="463"/>
+        <location filename="../fs_utils.cpp" line="475"/>
         <source>Downloads</source>
         <translation type="unfinished">Λήψεις</translation>
     </message>
