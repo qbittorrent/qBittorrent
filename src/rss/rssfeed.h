@@ -51,7 +51,7 @@ class RssFeed: public QObject, public RssFile {
   Q_OBJECT
 
 public:
-  RssFeed(RssManager* manager, RssFolder* m_parent, const QString &url);
+  RssFeed(RssManager* manager, RssFolder* m_parent, const QString& url);
   virtual ~RssFeed();
   virtual RssFolder* parent() const { return m_parent; }
   virtual void setParent(RssFolder* parent) { m_parent = parent; }
@@ -59,7 +59,6 @@ public:
   virtual QString id() const { return m_url; }
   virtual void removeAllSettings();
   virtual void saveItemsToDisk();
-  void setLoading(bool val);
   bool isLoading() const;
   QString title() const;
   virtual void rename(const QString &alias);

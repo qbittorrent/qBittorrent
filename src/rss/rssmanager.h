@@ -52,7 +52,6 @@ public:
 
   DownloadThread* rssDownloader() const;
   RssParser* rssParser() const;
-
   RssDownloadRuleList* downloadRules() const;
 
 public slots:

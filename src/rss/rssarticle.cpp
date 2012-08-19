@@ -36,7 +36,7 @@
 #include "rssfeed.h"
 
 // public constructor
-RssArticle::RssArticle(RssFeed* parent, const QString &guid):
+RssArticle::RssArticle(RssFeed* parent, const QString& guid):
   m_parent(parent), m_guid(guid), m_read(false) {}
 
 bool RssArticle::hasAttachment() const {
@@ -56,9 +56,10 @@ QVariantHash RssArticle::toHash() const {
   return item;
 }
 
-RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &h) {
+RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& h) {
   const QString guid = h.value("id").toString();
-  if (guid.isEmpty()) return RssArticlePtr();
+  if (guid.isEmpty())
+    return RssArticlePtr();
 
   RssArticlePtr art(new RssArticle(parent, guid));
   art->m_title = h.value("title", "").toString();
@@ -76,25 +77,25 @@ RssFeed* RssArticle::parent() const {
   return m_parent;
 }
 
-QString RssArticle::author() const {
+const QString& RssArticle::author() const {
   return m_author;
 }
 
-QString RssArticle::torrentUrl() const {
+const QString& RssArticle::torrentUrl() const {
   return m_torrentUrl.isEmpty() ? m_link : m_torrentUrl;
 }
 
-QString RssArticle::link() const {
+const QString& RssArticle::link() const {
   return m_link;
 }
 
-QString RssArticle::description() const {
+const QString& RssArticle::description() const {
   if (m_description.isNull())
     return "";
   return m_description;
 }
 
-QDateTime RssArticle::date() const {
+const QDateTime& RssArticle::date() const {
   return m_date;
 }
 
@@ -115,7 +116,7 @@ const QString& RssArticle::guid() const
   return m_guid;
 }
 
-QString RssArticle::title() const
+const QString& RssArticle::title() const
 {
   return m_title;
 }

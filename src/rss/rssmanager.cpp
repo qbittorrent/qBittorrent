@@ -38,14 +38,16 @@
 #include "rssparser.h"
 #include "downloadthread.h"
 
+static const int MSECS_PER_MIN = 60000;
+
 RssManager::RssManager():
   m_rssDownloader(new DownloadThread(this)),
   m_downloadRules(new RssDownloadRuleList),
   m_rssParser(new RssParser(this))
 {
-  connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
+  connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
-  m_refreshTimer.start(m_refreshInterval*60000);
+  m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
 RssManager::~RssManager()
