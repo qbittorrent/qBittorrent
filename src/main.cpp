@@ -74,6 +74,8 @@ public:
     std::cout << '\t' << prg_name << " --version: " << qPrintable(tr("displays program version")) << std::endl;
 #ifndef DISABLE_GUI
     std::cout << '\t' << prg_name << " --no-splash: " << qPrintable(tr("disable splash screen")) << std::endl;
+#else
+    std::cout << '\t' << prg_name << " -d | --daemon: " << qPrintable(tr("run in daemon-mode (background)")) << std::endl;
 #endif
     std::cout << '\t' << prg_name << " --help: " << qPrintable(tr("displays this help message")) << std::endl;
     std::cout << '\t' << prg_name << " --webui-port=x: " << qPrintable(tr("changes the webui port (current: %1)").arg(QString::number(Preferences().getWebUiPort()))) << std::endl;
@@ -158,6 +160,17 @@ int main(int argc, char *argv[]) {
   // Create Application
   QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
+  bool shouldDaemonize = false;
+  for(int i=1; i<argc; i++) {
+    if(strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--daemon") == 0) {
+      shouldDaemonize = true;
+      argc--;
+      for(int j=i; j<argc; j++) {
+        argv[j] = argv[j+1];
+      }
+      i--;
+    }
+  }
   QtSingleCoreApplication app("qBittorrent-"+uid, argc, argv);
 #else
   SessionApplication app("qBittorrent-"+uid, argc, argv);
@@ -186,6 +199,11 @@ int main(int argc, char *argv[]) {
   Preferences pref;
 #ifndef DISABLE_GUI
   bool no_splash = false;
+#else
+  if(shouldDaemonize && daemon(1, 0) != 0) {
+    qCritical("Something went wrong while daemonizing, exiting...");
+    return EXIT_FAILURE;
+  }
 #endif
 
   // Load translation
