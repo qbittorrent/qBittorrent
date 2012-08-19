@@ -57,7 +57,7 @@ public slots:
 
 private slots:
   void on_newFeedButton_clicked();
-  void on_updateAllButton_clicked();
+  void refreshAllFeeds();
   void on_markReadButton_clicked();
   void displayRSSListMenu(const QPoint&);
   void displayItemsListMenu(const QPoint&);

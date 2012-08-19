@@ -320,7 +320,7 @@ void RSSImp::saveFoldersOpenState() {
 }
 
 // refresh all streams by a button
-void RSSImp::on_updateAllButton_clicked() {
+void RSSImp::refreshAllFeeds() {
   foreach (QTreeWidgetItem *item, m_feedList->getAllFeedItems()) {
     item->setData(0,Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
   }
@@ -402,23 +402,20 @@ void RSSImp::refreshSelectedItems() {
     RssFilePtr file = m_feedList->getRSSItem(item);
     // Update icons
     if (item == m_feedList->stickyUnreadItem()) {
-      foreach (QTreeWidgetItem *feed, m_feedList->getAllFeedItems()) {
-        feed->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-      }
-      file->refresh();
-      break;
+      refreshAllFeeds();
+      return;
     } else {
+      if (!file->refresh())
+        continue;
+      // Update UI
       if (qSharedPointerDynamicCast<RssFeed>(file)) {
         item->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
       } else if (qSharedPointerDynamicCast<RssFolder>(file)) {
         // Update feeds in the folder
-        foreach (QTreeWidgetItem *feed, m_feedList->getAllFeedItems(item)) {
+        foreach (QTreeWidgetItem *feed, m_feedList->getAllFeedItems(item))
           feed->setData(0, Qt::DecorationRole, QVariant(QIcon(":/Icons/loading.png")));
-        }
       }
     }
-    // Actually refresh
-    file->refresh();
   }
 }
 
@@ -688,7 +685,8 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent), m_rssManager(new RssManager) 
   connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedItems()));
   connect(actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
-  connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(on_updateAllButton_clicked()));
+  connect(actionUpdate_all_feeds, SIGNAL(triggered()), this, SLOT(refreshAllFeeds()));
+  connect(updateAllButton, SIGNAL(clicked()), SLOT(refreshAllFeeds()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
   connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
   // News list actions
@@ -731,5 +729,5 @@ void RSSImp::on_rssDownloaderBtn_clicked()
   AutomatedRssDownloader dlg(m_rssManager, this);
   dlg.exec();
   if (dlg.isRssDownloaderEnabled())
-    on_updateAllButton_clicked();
+    refreshAllFeeds();
 }

@@ -83,12 +83,15 @@ RssFeedPtr RssFolder::addStream(RssManager* manager, const QString &url) {
 }
 
 // Refresh All Children
-void RssFolder::refresh() {
+bool RssFolder::refresh() {
   RssFileHash::ConstIterator it = m_children.begin();
   RssFileHash::ConstIterator itend = m_children.end();
+  bool refreshed = false;
   for ( ; it != itend; ++it) {
-    it.value()->refresh();
+    if (it.value()->refresh())
+      refreshed = true;
   }
+  return refreshed;
 }
 
 RssArticleList RssFolder::articleListByDateDesc() const {

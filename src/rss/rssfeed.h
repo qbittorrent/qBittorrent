@@ -55,7 +55,7 @@ public:
   virtual ~RssFeed();
   virtual RssFolder* parent() const { return m_parent; }
   virtual void setParent(RssFolder* parent) { m_parent = parent; }
-  void refresh();
+  bool refresh();
   virtual QString id() const { return m_url; }
   virtual void removeAllSettings();
   virtual void saveItemsToDisk();

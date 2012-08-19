@@ -127,14 +127,15 @@ void RssFeed::addArticle(const RssArticlePtr& article)
   }
 }
 
-void RssFeed::refresh() {
+bool RssFeed::refresh() {
   if (m_loading) {
     qWarning() << Q_FUNC_INFO << "Feed" << this->displayName() << "is already being refreshed, ignoring request";
-    return;
+    return false;
   }
   m_loading = true;
   // Download the RSS again
   m_manager->rssDownloader()->downloadUrl(m_url);
+  return true;
 }
 
 void RssFeed::removeAllSettings() {

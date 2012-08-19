@@ -58,7 +58,7 @@ public:
   virtual void markAsRead() = 0;
   virtual RssFolder* parent() const = 0;
   virtual void setParent(RssFolder* parent) = 0;
-  virtual void refresh() = 0;
+  virtual bool refresh() = 0;
   virtual RssArticleList articleListByDateDesc() const = 0;
   virtual RssArticleList unreadArticleListByDateDesc() const = 0;
   virtual void removeAllSettings() = 0;

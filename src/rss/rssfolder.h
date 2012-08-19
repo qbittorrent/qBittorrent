@@ -71,7 +71,7 @@ public:
   RssFilePtr takeChild(const QString &childId);
 
 public slots:
-  virtual void refresh();
+  virtual bool refresh();
   void addFile(const RssFilePtr& item);
   void removeChild(const QString &childId);
   virtual void rename(const QString &new_name);
