@@ -72,7 +72,7 @@ private slots:
   void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
   void updateItemInfos(QTreeWidgetItem *item);
   void openNewsUrl();
-  void downloadTorrent();
+  void downloadSelectedTorrents();
   void fillFeedsList(QTreeWidgetItem *parent=0, const RssFolderPtr& rss_parent = RssFolderPtr());
   void saveSlidersPosition();
   void restoreSlidersPosition();

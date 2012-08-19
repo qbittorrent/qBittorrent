@@ -307,7 +307,7 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
       // Torrent was downloaded, consider article as read
       article->markAsRead();
       // Download the torrent
-      QString torrent_url = article->hasAttachment() ? article->torrentUrl() : article->link();
+      QString torrent_url = article->torrentUrl();
       QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
       if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
         QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());

@@ -327,18 +327,13 @@ void RSSImp::on_updateAllButton_clicked() {
   m_rssManager->refresh();
 }
 
-void RSSImp::downloadTorrent() {
+void RSSImp::downloadSelectedTorrents() {
   QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
   foreach (const QListWidgetItem* item, selected_items) {
     RssArticlePtr article =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
         ->getItem(item->data(Article::IdRole).toString());
 
-    QString torrentLink;
-    if (article->hasAttachment())
-      torrentLink = article->torrentUrl();
-    else
-      torrentLink = article->link();
-
+    QString torrentLink = article->torrentUrl();
     // Check if it is a magnet link
     if (torrentLink.startsWith("magnet:", Qt::CaseInsensitive))
       QBtSession::instance()->addMagnetInteractive(torrentLink);
@@ -698,14 +693,14 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent), m_rssManager(new RssManager) 
   connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
   // News list actions
   connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openNewsUrl()));
-  connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadTorrent()));
+  connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
 
   connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
   connect(m_feedList, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
   connect(m_feedList, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
   connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
-  connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadTorrent()));
+  connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));
 
   // Refresh all feeds
   m_rssManager->refresh();

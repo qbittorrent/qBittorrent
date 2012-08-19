@@ -81,7 +81,7 @@ QString RssArticle::author() const {
 }
 
 QString RssArticle::torrentUrl() const {
-  return m_torrentUrl;
+  return m_torrentUrl.isEmpty() ? m_link : m_torrentUrl;
 }
 
 QString RssArticle::link() const {
