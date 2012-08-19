@@ -76,7 +76,6 @@ private:
   bool m_read;
 };
 
-RssArticlePtr xmlToRssArticle(RssFeed* parent, QXmlStreamReader& xml);
 RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash &hash);
 
 #endif // RSSARTICLE_H
