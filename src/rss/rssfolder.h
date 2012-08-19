@@ -61,6 +61,7 @@ public:
   QHash<QString, RssFeedPtr> getAllFeedsAsHash() const;
   virtual QString displayName() const;
   virtual QString id() const;
+  virtual QIcon icon() const;
   bool hasChild(const QString &childId);
   virtual RssArticleList articleListByDateDesc() const;
   virtual RssArticleList unreadArticleListByDateDesc() const;

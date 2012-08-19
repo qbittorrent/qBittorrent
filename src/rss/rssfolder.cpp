@@ -30,6 +30,7 @@
 
 #include <QDebug>
 
+#include "iconprovider.h"
 #include "rssfolder.h"
 #include "rssarticle.h"
 #include "qbtsession.h"
@@ -225,8 +226,14 @@ void RssFolder::saveItemsToDisk()
   }
 }
 
-QString RssFolder::id() const {
+QString RssFolder::id() const
+{
   return m_name;
+}
+
+QIcon RssFolder::icon() const
+{
+  return IconProvider::instance()->getIcon("inode-directory");
 }
 
 bool RssFolder::hasChild(const QString &childId) {

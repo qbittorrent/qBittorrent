@@ -188,10 +188,11 @@ QString RssFeed::url() const {
   return m_url;
 }
 
-QString RssFeed::icon() const {
+QIcon RssFeed::icon() const
+{
   if (m_inErrorState)
-    return ":/Icons/oxygen/unavailable.png";
-  return m_icon;
+    return QIcon(":/Icons/oxygen/unavailable.png");
+  return QIcon(m_icon);
 }
 
 bool RssFeed::hasCustomIcon() const {

@@ -150,17 +150,14 @@ void RSSImp::askNewFolder() {
   bool ok;
   QString new_name = QInputDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
   if (ok) {
-    RssFolderPtr new_folder = rss_parent->addFolder(new_name);
-    QTreeWidgetItem* folder_item;
+    RssFolderPtr newFolder = rss_parent->addFolder(new_name);
+    QTreeWidgetItem* folderItem = createFolderListItem(newFolder);
     if (parent_item)
-      folder_item = new QTreeWidgetItem(parent_item);
+      parent_item->addChild(folderItem);
     else
-      folder_item = new QTreeWidgetItem(m_feedList);
+      m_feedList->addTopLevelItem(folderItem);
     // Notify TreeWidget
-    m_feedList->itemAdded(folder_item, new_folder);
-    // Set Text
-    folder_item->setText(0, new_folder->displayName() + QString::fromUtf8("  (0)"));
-    folder_item->setData(0,Qt::DecorationRole, QVariant(IconProvider::instance()->getIcon("inode-directory")));
+    m_feedList->itemAdded(folderItem, newFolder);
     // Expand parent folder to display new folder
     if (parent_item)
       parent_item->setExpanded(true);
@@ -357,8 +354,8 @@ void RSSImp::downloadSelectedTorrents() {
   }
 }
 
-// open the url of the news in a browser
-void RSSImp::openNewsUrl() {
+// open the url of the selected RSS articles in the Web browser
+void RSSImp::openSelectedArticlesUrls() {
   QList<QListWidgetItem *> selected_items = listArticles->selectedItems();
   foreach (const QListWidgetItem* item, selected_items) {
     RssArticlePtr news =  m_feedList->getRSSItemFromUrl(item->data(Article::FeedUrlRole).toString())
@@ -370,10 +367,10 @@ void RSSImp::openNewsUrl() {
 }
 
 //right-click on stream : give it an alias
-void RSSImp::renameFiles() {
+void RSSImp::renameSelectedRssFile() {
   QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
   Q_ASSERT(selectedItems.size() == 1);
-  QTreeWidgetItem *item = selectedItems.at(0);
+  QTreeWidgetItem* item = selectedItems.first();
   RssFilePtr rss_item = m_feedList->getRSSItem(item);
   bool ok;
   QString newName;
@@ -388,14 +385,14 @@ void RSSImp::renameFiles() {
     } else {
       return;
     }
-  }while(!ok);
+  } while (!ok);
   // Rename item
   rss_item->rename(newName);
   // Update TreeWidget
   updateItemInfos(item);
 }
 
-//right-click on stream : refresh it
+// right-click on stream : refresh it
 void RSSImp::refreshSelectedItems() {
   QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
   foreach (QTreeWidgetItem* item, selectedItems) {
@@ -432,40 +429,48 @@ void RSSImp::copySelectedFeedsURL() {
 
 void RSSImp::on_markReadButton_clicked() {
   QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
-  QTreeWidgetItem* item;
-  foreach (item, selectedItems) {
+  foreach (QTreeWidgetItem* item, selectedItems) {
     RssFilePtr rss_item = m_feedList->getRSSItem(item);
+    Q_ASSERT(rss_item);
     rss_item->markAsRead();
     updateItemInfos(item);
   }
-  if (selectedItems.size())
+  // Update article list
+  if (!selectedItems.isEmpty())
     populateArticleList(m_feedList->currentItem());
 }
 
-void RSSImp::fillFeedsList(QTreeWidgetItem *parent, const RssFolderPtr& rss_parent) {
+QTreeWidgetItem* RSSImp::createFolderListItem(const RssFilePtr& rssFile)
+{
+  Q_ASSERT(rssFile);
+  QTreeWidgetItem* item = new QTreeWidgetItem;
+  item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName()+ QString::fromUtf8("  (")+QString::number(rssFile->unreadCount(), 10)+QString(")")));
+  item->setData(0, Qt::DecorationRole, rssFile->icon());
+
+  return item;
+}
+
+void RSSImp::fillFeedsList(QTreeWidgetItem* parent, const RssFolderPtr& rss_parent) {
   QList<RssFilePtr> children;
   if (parent) {
     children = rss_parent->getContent();
   } else {
     children = m_rssManager->getContent();
   }
-  foreach (const RssFilePtr& rss_child, children) {
-    QTreeWidgetItem* item;
-    if (!parent)
-      item = new QTreeWidgetItem(m_feedList);
+  foreach (const RssFilePtr& rssFile, children) {
+    QTreeWidgetItem* item = createFolderListItem(rssFile);
+    Q_ASSERT(item);
+    if (parent)
+      parent->addChild(item);
     else
-      item = new QTreeWidgetItem(parent);
-    item->setData(0, Qt::DisplayRole, QVariant(rss_child->displayName()+ QString::fromUtf8("  (")+QString::number(rss_child->unreadCount(), 10)+QString(")")));
+      m_feedList->addTopLevelItem(item);
+
     // Notify TreeWidget of item addition
-    m_feedList->itemAdded(item, rss_child);
-    // Set Icon
-    if (qSharedPointerDynamicCast<RssFeed>(rss_child)) {
-      item->setData(0,Qt::DecorationRole, QVariant(QIcon(QString::fromUtf8(":/Icons/loading.png"))));
-    } else if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(rss_child)) {
-      item->setData(0,Qt::DecorationRole, QVariant(IconProvider::instance()->getIcon("inode-directory")));
-      // Recurvive call to load sub folders/files
+    m_feedList->itemAdded(item, rssFile);
+
+    // Recursive call if this is a folder.
+    if (RssFolderPtr folder = qSharedPointerDynamicCast<RssFolder>(rssFile))
       fillFeedsList(item, folder);
-    }
   }
 }
 
@@ -615,7 +620,7 @@ void RSSImp::updateFeedInfos(const QString& url, const QString& display_name, ui
   RssFeedPtr stream = qSharedPointerCast<RssFeed>(m_feedList->getRSSItem(item));
   item->setText(0, display_name + QString::fromUtf8("  (") + QString::number(nbUnread)+ QString(")"));
   if (!stream->isLoading())
-    item->setData(0, Qt::DecorationRole, QVariant(QIcon(stream->icon())));
+    item->setData(0, Qt::DecorationRole, QVariant(stream->icon()));
   // Update parent
   if (item->parent())
     updateItemInfos(item->parent());
@@ -681,7 +686,7 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent), m_rssManager(new RssManager) 
 
   // Feeds list actions
   connect(actionDelete, SIGNAL(triggered()), this, SLOT(deleteSelectedItems()));
-  connect(actionRename, SIGNAL(triggered()), this, SLOT(renameFiles()));
+  connect(actionRename, SIGNAL(triggered()), this, SLOT(renameSelectedRssFile()));
   connect(actionUpdate, SIGNAL(triggered()), this, SLOT(refreshSelectedItems()));
   connect(actionNew_folder, SIGNAL(triggered()), this, SLOT(askNewFolder()));
   connect(actionNew_subscription, SIGNAL(triggered()), this, SLOT(on_newFeedButton_clicked()));
@@ -690,7 +695,7 @@ RSSImp::RSSImp(QWidget *parent) : QWidget(parent), m_rssManager(new RssManager) 
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
   connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
   // News list actions
-  connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openNewsUrl()));
+  connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openSelectedArticlesUrls()));
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
 
   connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
