@@ -1,5 +1,6 @@
 * unreleased - - Christophe Dumez <chris@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
+    - FEATURE: Add "Shutdown qBittorrent" button to Web UI (ngaro)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
 
 * Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0

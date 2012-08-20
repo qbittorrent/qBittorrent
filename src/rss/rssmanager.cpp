@@ -38,17 +38,20 @@
 #include "rssparser.h"
 #include "downloadthread.h"
 
+static const int MSECS_PER_MIN = 60000;
+
 RssManager::RssManager():
   m_rssDownloader(new DownloadThread(this)),
   m_downloadRules(new RssDownloadRuleList),
   m_rssParser(new RssParser(this))
 {
-  connect(&m_refreshTimer, SIGNAL(timeout()), this, SLOT(refresh()));
+  connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
   m_refreshInterval = RssSettings().getRSSRefreshInterval();
-  m_refreshTimer.start(m_refreshInterval*60000);
+  m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
-RssManager::~RssManager() {
+RssManager::~RssManager()
+{
   qDebug("Deleting RSSManager...");
   delete m_downloadRules;
   delete m_rssParser;
@@ -67,7 +70,8 @@ RssParser* RssManager::rssParser() const
   return m_rssParser;
 }
 
-void RssManager::updateRefreshInterval(uint val) {
+void RssManager::updateRefreshInterval(uint val)
+{
   if (m_refreshInterval != val) {
     m_refreshInterval = val;
     m_refreshTimer.start(m_refreshInterval*60000);
@@ -75,7 +79,8 @@ void RssManager::updateRefreshInterval(uint val) {
   }
 }
 
-void RssManager::loadStreamList() {
+void RssManager::loadStreamList()
+{
   RssSettings settings;
   const QStringList streamsUrl = settings.getRssFeedsUrls();
   const QStringList aliases =  settings.getRssFeedsAliases();
@@ -113,35 +118,38 @@ void RssManager::forwardFeedContentChanged(const QString& url)
   emit feedContentChanged(url);
 }
 
-void RssManager::forwardFeedInfosChanged(const QString &url, const QString &display_name, uint nbUnread) {
-  emit feedInfosChanged(url, display_name, nbUnread);
+void RssManager::forwardFeedInfosChanged(const QString& url, const QString& displayName, uint unreadCount)
+{
+  emit feedInfosChanged(url, displayName, unreadCount);
 }
 
-void RssManager::forwardFeedIconChanged(const QString &url, const QString &icon_path) {
-  emit feedIconChanged(url, icon_path);
+void RssManager::forwardFeedIconChanged(const QString& url, const QString& iconPath)
+{
+  emit feedIconChanged(url, iconPath);
 }
 
-void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& dest_folder) {
+void RssManager::moveFile(const RssFilePtr& file, const RssFolderPtr& destinationFolder)
+{
   RssFolder* src_folder = file->parent();
-  if (dest_folder != src_folder) {
+  if (destinationFolder != src_folder) {
     // Remove reference in old folder
     src_folder->takeChild(file->id());
     // add to new Folder
-    dest_folder->addFile(file);
+    destinationFolder->addFile(file);
   } else {
     qDebug("Nothing to move, same destination folder");
   }
 }
 
-void RssManager::saveStreamList() const {
+void RssManager::saveStreamList() const
+{
   QStringList streamsUrl;
   QStringList aliases;
   RssFeedList streams = getAllFeeds();
   foreach (const RssFeedPtr& stream, streams) {
     QString stream_path = stream->pathHierarchy().join("\\");
-    if (stream_path.isNull()) {
+    if (stream_path.isNull())
       stream_path = "";
-    }
     qDebug("Saving stream path: %s", qPrintable(stream_path));
     streamsUrl << stream_path;
     aliases << stream->displayName();
@@ -151,7 +159,7 @@ void RssManager::saveStreamList() const {
   settings.setRssFeedsAliases(aliases);
 }
 
-RssDownloadRuleList *RssManager::downloadRules() const
+RssDownloadRuleList* RssManager::downloadRules() const
 {
   Q_ASSERT(m_downloadRules);
   return m_downloadRules;

@@ -595,6 +595,10 @@ void HttpConnection::respondCommand(const QString& command) {
     QBtSession::instance()->recheckTorrent(m_parser.post("hash"));
     return;
   }
+  if (command == "shutdown") {
+    qDebug() << "Shutdown request from Web UI";
+    qApp->exit();
+  }
 }
 
 void HttpConnection::decreaseTorrentsPriority(const QStringList &hashes) {
