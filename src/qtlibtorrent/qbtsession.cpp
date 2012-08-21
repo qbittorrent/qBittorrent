@@ -104,7 +104,8 @@ QBtSession::QBtSession()
     preAllocateAll(false), global_ratio_limit(-1),
     LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
-    torrentExport(false)
+    m_torrentExportEnabled(false),
+    m_finishedTorrentExportEnabled(false)
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
@@ -301,15 +302,19 @@ void QBtSession::configureSession() {
   setAppendLabelToSavePath(pref.appendTorrentLabel());
   setAppendqBExtension(pref.useIncompleteFilesExtension());
   preAllocateAllFiles(pref.preAllocateAllFiles());
-  // * Export Dir
-  const bool newTorrentExport = pref.isTorrentExportEnabled();
-  if (torrentExport != newTorrentExport) {
-    torrentExport = newTorrentExport;
-    if (torrentExport) {
+  // * Torrent export directory
+  const bool torrentExportEnabled = pref.isTorrentExportEnabled();
+  if (m_torrentExportEnabled != torrentExportEnabled) {
+    m_torrentExportEnabled = torrentExportEnabled;
+    if (m_torrentExportEnabled) {
       qDebug("Torrent export is enabled, exporting the current torrents");
-      exportTorrentFiles(pref.getExportDir());
+      exportTorrentFiles(pref.getTorrentExportDir());
     }
   }
+  // * Finished Torrent export directory
+  const bool finishedTorrentExportEnabled = pref.isFinishedTorrentExportEnabled();
+  if (m_finishedTorrentExportEnabled != finishedTorrentExportEnabled)
+    m_finishedTorrentExportEnabled = finishedTorrentExportEnabled;
   // Connection
   // * Global download limit
   const bool alternative_speeds = pref.isAltBandwidthEnabled();
@@ -884,7 +889,10 @@ void QBtSession::loadTorrentSettings(QTorrentHandle& h) {
 #endif
 }
 
-QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool fromScanDir, const QString &filePath) {
+QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool fromScanDir, const QString &filePath)
+{
+  Q_UNUSED(fromScanDir);
+  Q_UNUSED(filePath);
   Preferences pref;
   QTorrentHandle h;
   const QString hash(misc::magnetUriToHash(magnet_uri));
@@ -1168,7 +1176,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     if (path != newFile)
       QFile::copy(path, newFile);
     // Copy the torrent file to the export folder
-    if (torrentExport)
+    if (m_torrentExportEnabled)
       exportTorrentFile(h);
   }
 
@@ -1199,10 +1207,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   return h;
 }
 
-void QBtSession::exportTorrentFile(const QTorrentHandle &h) {
-  Q_ASSERT(torrentExport);
+void QBtSession::exportTorrentFile(const QTorrentHandle& h, TorrentExportFolder folder) {
+  Q_ASSERT((folder == RegularTorrentExportFolder && m_torrentExportEnabled) ||
+           (folder == FinishedTorrentExportFolder && m_finishedTorrentExportEnabled));
   QString torrent_path = QDir(fsutils::BTBackupLocation()).absoluteFilePath(h.hash()+".torrent");
-  QDir exportPath(Preferences().getExportDir());
+  QDir exportPath(folder == RegularTorrentExportFolder ? Preferences().getTorrentExportDir() : Preferences().getFinishedTorrentExportDir());
   if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
     QString new_torrent_path = exportPath.absoluteFilePath(h.name()+".torrent");
     if (QFile::exists(new_torrent_path) && fsutils::sameFiles(torrent_path, new_torrent_path)) {
@@ -1210,7 +1219,6 @@ void QBtSession::exportTorrentFile(const QTorrentHandle &h) {
       new_torrent_path = exportPath.absoluteFilePath(h.name()+"-"+h.hash()+".torrent");
     }
     QFile::copy(torrent_path, new_torrent_path);
-    //h.save_torrent_file(torrent_path);
   }
 }
 
@@ -1364,7 +1372,7 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
 }
 
 void QBtSession::exportTorrentFiles(QString path) {
-  Q_ASSERT(torrentExport);
+  Q_ASSERT(m_torrentExportEnabled);
   QDir exportDir(path);
   if (!exportDir.exists()) {
     if (!exportDir.mkpath(exportDir.absolutePath())) {
@@ -2236,6 +2244,9 @@ void QBtSession::readAlerts() {
             // AutoRun program
             if (pref.isAutoRunEnabled())
               autoRunExternalProgram(h, will_shutdown);
+            // Move .torrent file to another folder
+            if (pref.isFinishedTorrentExportEnabled())
+                exportTorrentFile(h, FinishedTorrentExportFolder);
             // Mail notification
             if (pref.isMailNotificationEnabled())
               sendNotificationEmail(h);
@@ -2366,7 +2377,7 @@ void QBtSession::readAlerts() {
           if (!QFile::exists(torrentBackup.absoluteFilePath(h.hash()+QString(".torrent"))))
             h.save_torrent_file(torrentBackup.absoluteFilePath(h.hash()+QString(".torrent")));
           // Copy the torrent file to the export folder
-          if (torrentExport)
+          if (m_torrentExportEnabled)
             exportTorrentFile(h);
           // Append .!qB to incomplete files
           if (appendqBExtension)

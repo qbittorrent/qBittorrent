@@ -276,18 +276,33 @@ public:
   }
 
   bool isTorrentExportEnabled() const {
-    return !value(QString::fromUtf8("Preferences/Downloads/TorrentExport"), QString()).toString().isEmpty();
+    return !value(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), QString()).toString().isEmpty();
   }
 
-  QString getExportDir() const {
-    return value(QString::fromUtf8("Preferences/Downloads/TorrentExport"), QString()).toString();
+  QString getTorrentExportDir() const {
+    return value(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), QString()).toString();
   }
 
-  void setExportDir(QString path) {
+  void setTorrentExportDir(QString path) {
     path = path.trimmed();
     if (path.isEmpty())
       path = QString();
-    setValue(QString::fromUtf8("Preferences/Downloads/TorrentExport"), path);
+    setValue(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), path);
+  }
+
+  bool isFinishedTorrentExportEnabled() const {
+    return !value(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), QString()).toString().isEmpty();
+  }
+
+  QString getFinishedTorrentExportDir() const {
+    return value(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), QString()).toString();
+  }
+
+  void setFinishedTorrentExportDir(QString path) {
+    path = path.trimmed();
+    if (path.isEmpty())
+      path = QString();
+    setValue(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), path);
   }
 
   bool isMailNotificationEnabled() const {

@@ -63,6 +63,11 @@ class DNSUpdater;
 
 const int MAX_LOG_MESSAGES = 100;
 
+enum TorrentExportFolder {
+  RegularTorrentExportFolder,
+  FinishedTorrentExportFolder
+};
+
 class QBtSession : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QBtSession)
@@ -187,7 +192,7 @@ private slots:
   void autoRunExternalProgram(const QTorrentHandle &h, bool async=true);
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
-  void exportTorrentFile(const QTorrentHandle &h);
+  void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
   void initWebUi();
   void handleIPFilterParsed(int ruleCount);
   void handleIPFilterError();
@@ -245,7 +250,8 @@ private:
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;
-  bool torrentExport;
+  bool m_torrentExportEnabled;
+  bool m_finishedTorrentExportEnabled;
   bool appendqBExtension;
   QString defaultSavePath;
   QString defaultTempPath;

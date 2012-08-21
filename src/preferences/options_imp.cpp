@@ -161,7 +161,9 @@ options_imp::options_imp(QWidget *parent):
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -395,11 +397,14 @@ void options_imp::saveOptions() {
   pref.addTorrentsInPause(addTorrentsInPause());
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
-  QString export_dir = getExportDir();
+  QString export_dir = getTorrentExportDir();
+  QString export_dir_fin = getFinishedTorrentExportDir();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+  export_dir_fin.replace("\\", "/");
   export_dir.replace("\\", "/");
 #endif
-  pref.setExportDir(export_dir);
+  pref.setTorrentExportDir(export_dir);
+  pref.setFinishedTorrentExportDir(export_dir_fin);
   pref.setMailNotificationEnabled(groupMailNotification->isChecked());
   pref.setMailNotificationEmail(dest_email_txt->text());
   pref.setMailNotificationSMTP(smtp_server_txt->text());
@@ -569,7 +574,7 @@ void options_imp::loadOptions() {
   checkAdditionDialog->setChecked(pref.useAdditionDialog());
   checkStartPaused->setChecked(pref.addTorrentsInPause());
 
-  strValue = pref.getExportDir();
+  strValue = pref.getTorrentExportDir();
   if (strValue.isEmpty()) {
     // Disable
     checkExportDir->setChecked(false);
@@ -580,6 +585,19 @@ void options_imp::loadOptions() {
     strValue.replace("/", "\\");
 #endif
     textExportDir->setText(strValue);
+  }
+
+  strValue = pref.getFinishedTorrentExportDir();
+  if (strValue.isEmpty()) {
+    // Disable
+    checkExportDirFin->setChecked(false);
+  } else {
+    // enable
+    checkExportDirFin->setChecked(true);
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    strValue.replace("/", "\\");
+#endif
+    textExportDirFin->setText(strValue);
   }
   groupMailNotification->setChecked(pref.isMailNotificationEnabled());
   dest_email_txt->setText(pref.getMailNotificationEmail());
@@ -1016,9 +1034,15 @@ void options_imp::setLocale(const QString &localeStr) {
   comboI18n->setCurrentIndex(index);
 }
 
-QString options_imp::getExportDir() const {
+QString options_imp::getTorrentExportDir() const {
   if (checkExportDir->isChecked())
     return fsutils::expandPath(textExportDir->text());
+  return QString();
+}
+
+QString options_imp::getFinishedTorrentExportDir() const {
+  if (checkExportDirFin->isChecked())
+    return fsutils::expandPath(textExportDirFin->text());
   return QString();
 }
 
@@ -1075,21 +1099,28 @@ void options_imp::handleScanFolderViewSelectionChanged() {
   removeScanFolderButton->setEnabled(!scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
 }
 
-void options_imp::on_browseExportDirButton_clicked() {
-  const QString export_path = fsutils::expandPath(textExportDir->text());
-  QDir exportDir(export_path);
+QString options_imp::askForExportDir(const QString& currentExportPath)
+{
+  QDir currentExportDir(fsutils::expandPath(currentExportPath));
   QString dir;
-  if (!export_path.isEmpty() && exportDir.exists()) {
-    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), exportDir.absolutePath());
+  if (!currentExportPath.isEmpty() && currentExportDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), currentExportDir.absolutePath());
   } else {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
   }
-  if (!dir.isNull()) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir.replace("/", "\\");
-#endif
-    textExportDir->setText(dir);
-  }
+  return dir;
+}
+
+void options_imp::on_browseExportDirButton_clicked() {
+  const QString newExportDir = askForExportDir(textExportDir->text());
+  if (!newExportDir.isNull())
+    textExportDir->setText(fsutils::toDisplayPath(newExportDir));
+}
+
+void options_imp::on_browseExportDirFinButton_clicked() {
+  const QString newExportDir = askForExportDir(textExportDirFin->text());
+  if (!newExportDir.isNull())
+    textExportDirFin->setText(fsutils::toDisplayPath(newExportDir));
 }
 
 void options_imp::on_browseFilterButton_clicked() {

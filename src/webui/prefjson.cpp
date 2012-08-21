@@ -63,7 +63,7 @@ QString prefjson::getPreferences()
   }
   data.add("download_in_scan_dirs", var_list);
   data.add("export_dir_enabled", pref.isTorrentExportEnabled());
-  data.add("export_dir", pref.getExportDir());
+  data.add("export_dir", pref.getTorrentExportDir());
   data.add("mail_notification_enabled", pref.isMailNotificationEnabled());
   data.add("mail_notification_email", pref.getMailNotificationEmail());
   data.add("mail_notification_smtp", pref.getMailNotificationSMTP());
@@ -198,7 +198,7 @@ void prefjson::setPreferences(const QString& json)
     }
   }
   if (m.contains("export_dir"))
-    pref.setExportDir(m["export_dir"].toString());
+    pref.setTorrentExportDir(m["export_dir"].toString());
   if (m.contains("mail_notification_enabled"))
     pref.setMailNotificationEnabled(m["mail_notification_enabled"].toBool());
   if (m.contains("mail_notification_email"))
