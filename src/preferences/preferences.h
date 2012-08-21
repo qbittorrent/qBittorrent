@@ -559,11 +559,11 @@ public:
   }
 
   bool isuTPRateLimited() const {
-    return value(QString::fromUtf8("Preferences/Bittorrent/uTP_rate_limiting"), false).toBool();
+    return value(QString::fromUtf8("Preferences/Bittorrent/uTP_rate_limited"), true).toBool();
   }
 
   void setuTPRateLimited(bool enabled) {
-    setValue("Preferences/Bittorrent/uTP_rate_limiting", enabled);
+    setValue("Preferences/Bittorrent/uTP_rate_limited", enabled);
   }
 
   bool isDHTEnabled() const {
