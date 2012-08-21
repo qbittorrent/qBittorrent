@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.1
+* Tue Aug 21 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.1
     - BUGFIX: Fix possible crash when adding a tracker to a magnet torrent without metadata (Closes #1034254)
     - BUGFIX: Remember queue position for torrents without metadata (closes #17)
     - BUGFIX: Fix crash when using unauthorized characters in label names (closes #19)
