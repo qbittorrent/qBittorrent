@@ -3,6 +3,7 @@
     - BUGFIX: Remember queue position for torrents without metadata (closes #17)
     - BUGFIX: Fix crash when using unauthorized characters in label names (closes #19)
     - BUGFIX: Fix search plugins updating (closes #25)
+    - BUGFIX: Make uTP connections rate limited by default
 
 * Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog
