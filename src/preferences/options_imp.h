@@ -74,6 +74,7 @@ private slots:
   void on_IpFilterRefreshBtn_clicked();
   void handleIPFilterParsed(bool error, int ruleCount);
   void on_browseExportDirButton_clicked();
+  void on_browseExportDirFinButton_clicked();
   void on_browseFilterButton_clicked();
   void on_browseSaveDirButton_clicked();
   void on_browseTempDirButton_clicked();
@@ -108,6 +109,7 @@ private:
   bool useAdditionDialog() const;
   bool addTorrentsInPause() const;
   QString getExportDir() const;
+  QString getExportDirFin() const;
   int getActionOnDblClOnTorrentDl() const;
   int getActionOnDblClOnTorrentFn() const;
   // Connection options

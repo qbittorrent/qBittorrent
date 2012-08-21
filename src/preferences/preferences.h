@@ -290,6 +290,21 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/TorrentExport"), path);
   }
 
+  bool isTorrentExportFinalEnabled() const {
+    return !value(QString::fromUtf8("Preferences/Downloads/TorrentFinishExport"), QString()).toString().isEmpty();
+  }
+
+  QString getExportDirFinal() const {
+    return value(QString::fromUtf8("Preferences/Downloads/TorrentFinishExport"), QString()).toString();
+  }
+
+  void setExportDirFinal(QString path) {
+    path = path.trimmed();
+    if (path.isEmpty())
+      path = QString();
+    setValue(QString::fromUtf8("Preferences/Downloads/TorrentFinishExport"), path);
+  }
+
   bool isMailNotificationEnabled() const {
     return value(QString::fromUtf8("Preferences/MailNotification/enabled"), false).toBool();
   }
