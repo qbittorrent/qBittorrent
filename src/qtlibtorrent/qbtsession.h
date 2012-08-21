@@ -188,6 +188,7 @@ private slots:
   void cleanUpAutoRunProcess(int);
   void mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void exportTorrentFile(const QTorrentHandle &h);
+  void exportTorrentFileFinal(const QTorrentHandle &h);
   void initWebUi();
   void handleIPFilterParsed(int ruleCount);
   void handleIPFilterError();
@@ -246,6 +247,7 @@ private:
   bool queueingEnabled;
   bool appendLabelToSavePath;
   bool torrentExport;
+  bool torrentExportFinal;
   bool appendqBExtension;
   QString defaultSavePath;
   QString defaultTempPath;

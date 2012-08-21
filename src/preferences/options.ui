@@ -157,7 +157,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabOptionPage1">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -176,9 +176,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>486</width>
-             <height>638</height>
+             <y>-145</y>
+             <width>491</width>
+             <height>674</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -508,9 +508,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>486</width>
-             <height>952</height>
+             <y>-309</y>
+             <width>501</width>
+             <height>999</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -561,9 +561,6 @@
                <string>Hard Disk</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
                <item>
                 <widget class="QGroupBox" name="groupBox_3">
                  <property name="title">
@@ -818,6 +815,55 @@
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QGroupBox" name="checkExportDirFin">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::StrongFocus</enum>
+                 </property>
+                 <property name="title">
+                  <string>Move .torrent files for finished downloads to:</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_13">
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLineEdit" name="textExportDirFin"/>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QToolButton" name="browseExportDirFinButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>22</width>
+                      <height>22</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>27</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string notr="true">...</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -969,8 +1015,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>486</width>
-             <height>577</height>
+             <width>451</width>
+             <height>524</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1413,8 +1459,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>486</width>
-             <height>480</height>
+             <width>398</width>
+             <height>458</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1825,8 +1871,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>557</width>
-             <height>555</height>
+             <width>546</width>
+             <height>524</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2236,8 +2282,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>426</width>
-             <height>611</height>
+             <width>436</width>
+             <height>553</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2613,8 +2659,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>64</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -161,7 +161,9 @@ options_imp::options_imp(QWidget *parent):
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(textExportDir, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(textExportDirFin, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   connect(actionTorrentDlOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(actionTorrentFnOnDblClBox, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkTempFolder, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -396,10 +398,13 @@ void options_imp::saveOptions() {
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
   QString export_dir = getExportDir();
+  QString export_dir_fin = getExportDirFin();
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+  export_dir_fin.replace("\\", "/");
   export_dir.replace("\\", "/");
 #endif
   pref.setExportDir(export_dir);
+  pref.setExportDirFinal(export_dir_fin);
   pref.setMailNotificationEnabled(groupMailNotification->isChecked());
   pref.setMailNotificationEmail(dest_email_txt->text());
   pref.setMailNotificationSMTP(smtp_server_txt->text());
@@ -580,6 +585,19 @@ void options_imp::loadOptions() {
     strValue.replace("/", "\\");
 #endif
     textExportDir->setText(strValue);
+  }
+
+  strValue = pref.getExportDirFinal();
+  if (strValue.isEmpty()) {
+    // Disable
+    checkExportDirFin->setChecked(false);
+  } else {
+    // enable
+    checkExportDirFin->setChecked(true);
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    strValue.replace("/", "\\");
+#endif
+    textExportDirFin->setText(strValue);
   }
   groupMailNotification->setChecked(pref.isMailNotificationEnabled());
   dest_email_txt->setText(pref.getMailNotificationEmail());
@@ -1022,6 +1040,12 @@ QString options_imp::getExportDir() const {
   return QString();
 }
 
+QString options_imp::getExportDirFin() const {
+  if (checkExportDirFin->isChecked())
+    return fsutils::expandPath(textExportDirFin->text());
+  return QString();
+}
+
 // Return action on double-click on a downloading torrent set in options
 int options_imp::getActionOnDblClOnTorrentDl() const {
   if (actionTorrentDlOnDblClBox->currentIndex() < 1)
@@ -1089,6 +1113,23 @@ void options_imp::on_browseExportDirButton_clicked() {
     dir.replace("/", "\\");
 #endif
     textExportDir->setText(dir);
+  }
+}
+
+void options_imp::on_browseExportDirFinButton_clicked() {
+  const QString export_path = fsutils::expandPath(textExportDir->text());
+  QDir exportDir(export_path);
+  QString dir;
+  if (!export_path.isEmpty() && exportDir.exists()) {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), exportDir.absolutePath());
+  } else {
+    dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
+  }
+  if (!dir.isNull()) {
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    dir.replace("/", "\\");
+#endif
+    textExportDirFin->setText(dir);
   }
 }
 
