@@ -284,6 +284,7 @@ void HttpConnection::respond() {
         // actually shutting down.
         m_generator.setStatusLine(200, "OK");
         write();
+        qApp->processEvents();
         // Exit application
         qApp->exit();
       } else {
