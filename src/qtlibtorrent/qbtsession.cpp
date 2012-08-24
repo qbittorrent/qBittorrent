@@ -864,11 +864,16 @@ bool QBtSession::loadFastResumeData(const QString &hash, std::vector<char> &buf)
   const QString fastresume_path = QDir(fsutils::BTBackupLocation()).absoluteFilePath(hash+QString(".fastresume"));
   qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
   QFile fastresume_file(fastresume_path);
-  if (!fastresume_file.open(QIODevice::ReadOnly)) return false;
+  if (fastresume_file.size() <= 0)
+    return false;
+  if (!fastresume_file.open(QIODevice::ReadOnly))
+    return false;
   const QByteArray content = fastresume_file.readAll();
   const int content_size = content.size();
+  Q_ASSERT(content_size > 0);
   buf.resize(content_size);
   memcpy(&buf[0], content.data(), content_size);
+  fastresume_file.close();
   return true;
 }
 
