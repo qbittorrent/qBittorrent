@@ -107,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   // Setting icons
 #if defined(Q_WS_X11)
   if (Preferences().useSystemIconTheme())
-    setWindowIcon(QIcon::fromTheme("qbittorrent", QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
+    setWindowIcon(QIcon::fromTheme("qbittorrent", QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png"))));
   else
 #else
     setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
@@ -712,7 +712,7 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
           return;
       }
       // Make sure the window is not minimized
-      setWindowState(windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+      setWindowState(windowState() & (~Qt::WindowMinimized | Qt::WindowActive));
       // Then show it
       show();
       raise();
