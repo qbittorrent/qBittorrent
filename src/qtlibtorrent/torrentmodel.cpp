@@ -37,14 +37,15 @@
 using namespace libtorrent;
 
 TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
+  : m_torrent(h)
+  , m_addedTime(TorrentPersistentData::getAddedDate(h.hash()))
+  , m_seedTime(TorrentPersistentData::getSeedDate(h.hash()))
+  , m_label(TorrentPersistentData::getLabel(h.hash()))
+  , m_name(TorrentPersistentData::getName(h.hash()))
+  , m_hash(h.hash())
 {
-  m_torrent = h;
-  m_hash = h.hash();
-  m_name = TorrentPersistentData::getName(h.hash());
-  if (m_name.isEmpty()) m_name = h.name();
-  m_addedTime = TorrentPersistentData::getAddedDate(h.hash());
-  m_seedTime = TorrentPersistentData::getSeedDate(h.hash());
-  m_label = TorrentPersistentData::getLabel(h.hash());
+  if (m_name.isEmpty())
+    m_name = h.name();
 }
 
 TorrentModelItem::State TorrentModelItem::state() const
