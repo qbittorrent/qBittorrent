@@ -57,7 +57,6 @@ public:
   void setName(const QString& name);
 
   qulonglong size() const;
-  void setSize(qulonglong size);
   qulonglong totalDone() const;
 
   void setProgress(qulonglong done);

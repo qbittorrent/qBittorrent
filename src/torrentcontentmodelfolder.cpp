@@ -170,5 +170,9 @@ void TorrentContentModelFolder::updateSize()
     if (child->priority() != prio::IGNORED)
       size += child->size();
   }
-  setSize(size);
+
+  if (size != m_size) {
+    m_size = size;
+    m_parentItem->updateSize();
+  }
 }

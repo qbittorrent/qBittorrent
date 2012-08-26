@@ -124,12 +124,6 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     case TorrentContentModelItem::COL_NAME:
       item->setName(value.toString());
       break;
-    case TorrentContentModelItem::COL_SIZE:
-      item->setSize(value.toULongLong());
-      break;
-    case TorrentContentModelItem::COL_PROGRESS:
-      item->setProgress(value.toDouble());
-      break;
     case TorrentContentModelItem::COL_PRIO:
       item->setPriority(value.toInt());
       break;
