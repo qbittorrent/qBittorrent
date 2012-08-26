@@ -60,6 +60,7 @@ void TorrentContentModelItem::setName(const QString& name)
 qulonglong TorrentContentModelItem::size() const
 {
   Q_ASSERT(!isRootItem());
+
   return m_size;
 }
 

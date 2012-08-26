@@ -124,21 +124,14 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
 
   m_priority = new_prio;
 
-  // Update parent
-  if (update_parent) {
-    m_parentItem->updateSize();
-    m_parentItem->updateProgress();
+  // Update parent priority
+  if (update_parent)
     m_parentItem->updatePriority();
-  }
 
   // Update children
   if (m_priority != prio::PARTIAL) {
-    qDebug("Updating children items");
-    foreach (TorrentContentModelItem* child, m_childItems) {
-      // Do not update the parent since
-      // the parent is causing the update
+    foreach (TorrentContentModelItem* child, m_childItems)
       child->setPriority(m_priority, false);
-    }
   }
 
   updateSize();
