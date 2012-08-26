@@ -28,58 +28,59 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TORRENTCONTENTMODELITEM_H
-#define TORRENTCONTENTMODELITEM_H
+#include "torrentcontentmodelfile.h"
+#include "torrentcontentmodelfolder.h"
+#include "fs_utils.h"
+#include "misc.h"
 
-#include <QList>
-#include <QVariant>
-#include <libtorrent/torrent_info.hpp>
+TorrentContentModelFile::TorrentContentModelFile(const libtorrent::torrent_info& t,
+                                                 const libtorrent::file_entry& f,
+                                                 TorrentContentModelFolder* parent,
+                                                 int file_index)
+  : TorrentContentModelItem(parent)
+  , m_fileIndex(file_index)
+{
+  Q_ASSERT(parent);
 
-namespace prio {
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
+#if LIBTORRENT_VERSION_MINOR >= 16
+  m_name = fsutils::fileName(misc::toQStringU(t.files().file_path(f)));
+#else
+  m_name = misc::toQStringU(f.path.filename());
+#endif
+
+  // Do not display incomplete extensions
+  if (m_name.endsWith(".!qB"))
+    m_name.chop(4);
+
+  m_size = (qulonglong)f.size;
+
+  // Update parent
+  m_parentItem->appendChild(this);
+  m_parentItem->updateSize();
 }
 
-class TorrentContentModelFolder;
+int TorrentContentModelFile::fileIndex() const
+{
+  return m_fileIndex;
+}
 
-class TorrentContentModelItem {
-public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, NB_COL};
-  enum ItemType { FileType, FolderType };
+void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
+{
+  Q_ASSERT(new_prio != prio::PARTIAL);
 
-  TorrentContentModelItem(TorrentContentModelFolder* parent);
-  virtual ~TorrentContentModelItem();
+  if (m_priority == new_prio)
+    return;
 
-  inline bool isRootItem() const { return !m_parentItem; }
-  TorrentContentModelFolder* parent() const;
-  virtual ItemType itemType() const = 0;
+  m_priority = new_prio;
 
-  QString name() const;
-  void setName(const QString& name);
+  // Reset progress if priority is 0
+  if (m_priority == 0)
+    setProgress(0);
 
-  qulonglong size() const;
-  void setSize(qulonglong size);
-  qulonglong totalDone() const;
-
-  void setProgress(qulonglong done);
-  float progress() const;
-
-  int priority() const;
-  virtual void setPriority(int new_prio, bool update_parent = true) = 0;
-
-  int columnCount() const;
-  QVariant data(int column) const;
-  int row() const;
-
-protected:
-  TorrentContentModelFolder* m_parentItem;
-  // Root item members
-  QList<QVariant> m_itemData;
-  // Non-root item members
-  QString m_name;
-  qulonglong m_size;
-  float m_progress;
-  int m_priority;
-  qulonglong m_totalDone;
-};
-
-#endif // TORRENTCONTENTMODELITEM_H
+  // Update parent
+  if (update_parent) {
+    m_parentItem->updateSize();
+    m_parentItem->updateProgress();
+    m_parentItem->updatePriority();
+  }
+}

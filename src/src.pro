@@ -123,6 +123,8 @@ nox {
               transferlistfilterswidget.h \
               torrentcontentmodel.h \
               torrentcontentmodelitem.h \
+              torrentcontentmodelfolder.h \
+              torrentcontentmodelfile.h \
               torrentcontentfiltermodel.h \
               deletionconfirmationdlg.h \
               statusbar.h \
@@ -148,6 +150,8 @@ nox {
              transferlistwidget.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
+             torrentcontentmodelfolder.cpp \
+             torrentcontentmodelfile.cpp \
              torrentcontentfiltermodel.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \

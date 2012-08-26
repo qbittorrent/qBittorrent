@@ -28,58 +28,25 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TORRENTCONTENTMODELITEM_H
-#define TORRENTCONTENTMODELITEM_H
+#ifndef TORRENTCONTENTMODELFILE_H
+#define TORRENTCONTENTMODELFILE_H
 
-#include <QList>
-#include <QVariant>
-#include <libtorrent/torrent_info.hpp>
+#include "torrentcontentmodelitem.h"
 
-namespace prio {
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
-}
-
-class TorrentContentModelFolder;
-
-class TorrentContentModelItem {
+class TorrentContentModelFile : public TorrentContentModelItem
+{
 public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, NB_COL};
-  enum ItemType { FileType, FolderType };
+  TorrentContentModelFile(const libtorrent::torrent_info& t,
+                          const libtorrent::file_entry& f,
+                          TorrentContentModelFolder* parent,
+                          int file_index);
 
-  TorrentContentModelItem(TorrentContentModelFolder* parent);
-  virtual ~TorrentContentModelItem();
+  int fileIndex() const;
+  void setPriority(int new_prio, bool update_parent = true);
+  ItemType itemType() const { return FileType; }
 
-  inline bool isRootItem() const { return !m_parentItem; }
-  TorrentContentModelFolder* parent() const;
-  virtual ItemType itemType() const = 0;
-
-  QString name() const;
-  void setName(const QString& name);
-
-  qulonglong size() const;
-  void setSize(qulonglong size);
-  qulonglong totalDone() const;
-
-  void setProgress(qulonglong done);
-  float progress() const;
-
-  int priority() const;
-  virtual void setPriority(int new_prio, bool update_parent = true) = 0;
-
-  int columnCount() const;
-  QVariant data(int column) const;
-  int row() const;
-
-protected:
-  TorrentContentModelFolder* m_parentItem;
-  // Root item members
-  QList<QVariant> m_itemData;
-  // Non-root item members
-  QString m_name;
-  qulonglong m_size;
-  float m_progress;
-  int m_priority;
-  qulonglong m_totalDone;
+private:
+  int m_fileIndex;
 };
 
-#endif // TORRENTCONTENTMODELITEM_H
+#endif // TORRENTCONTENTMODELFILE_H

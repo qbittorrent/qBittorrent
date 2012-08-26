@@ -44,7 +44,7 @@ public:
   virtual ~TorrentContentFilterModel();
 
   TorrentContentModel* model() const;
-  TorrentContentModelItem::FileType getType(const QModelIndex& index) const;
+  TorrentContentModelItem::ItemType itemType(const QModelIndex& index) const;
   int getFileIndex(const QModelIndex& index) const;
   virtual QModelIndex parent(const QModelIndex& child) const;
 
@@ -59,7 +59,7 @@ public slots:
   void selectNone();
 
 private:
-  TorrentContentModel *m_model;
+  TorrentContentModel* m_model;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H

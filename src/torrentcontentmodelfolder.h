@@ -28,58 +28,39 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef TORRENTCONTENTMODELITEM_H
-#define TORRENTCONTENTMODELITEM_H
+#ifndef TORRENTCONTENTMODELFOLDER_H
+#define TORRENTCONTENTMODELFOLDER_H
 
-#include <QList>
-#include <QVariant>
-#include <libtorrent/torrent_info.hpp>
+#include "torrentcontentmodelitem.h"
 
-namespace prio {
-enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, PARTIAL=-1};
-}
-
-class TorrentContentModelFolder;
-
-class TorrentContentModelItem {
+class TorrentContentModelFolder : public TorrentContentModelItem
+{
 public:
-  enum TreeItemColumns {COL_NAME, COL_SIZE, COL_PROGRESS, COL_PRIO, NB_COL};
-  enum ItemType { FileType, FolderType };
+  // Folder constructor
+  TorrentContentModelFolder(const QString& name, TorrentContentModelFolder* parent);
 
-  TorrentContentModelItem(TorrentContentModelFolder* parent);
-  virtual ~TorrentContentModelItem();
+  // Invisible root item constructor
+  TorrentContentModelFolder(const QList<QVariant>& data);
 
-  inline bool isRootItem() const { return !m_parentItem; }
-  TorrentContentModelFolder* parent() const;
-  virtual ItemType itemType() const = 0;
+  ~TorrentContentModelFolder();
 
-  QString name() const;
-  void setName(const QString& name);
+  ItemType itemType() const { return FolderType; }
 
-  qulonglong size() const;
-  void setSize(qulonglong size);
-  qulonglong totalDone() const;
+  void updateSize();
+  void updateProgress();
+  void updatePriority();
 
-  void setProgress(qulonglong done);
-  float progress() const;
+  void setPriority(int new_prio, bool update_parent = true);
 
-  int priority() const;
-  virtual void setPriority(int new_prio, bool update_parent = true) = 0;
+  void deleteAllChildren();
+  const QList<TorrentContentModelItem*>& children() const;
+  void appendChild(TorrentContentModelItem* item);
+  TorrentContentModelItem* child(int row) const;
+  TorrentContentModelFolder* childFolderWithName(const QString& name) const;
+  int childCount() const;
 
-  int columnCount() const;
-  QVariant data(int column) const;
-  int row() const;
-
-protected:
-  TorrentContentModelFolder* m_parentItem;
-  // Root item members
-  QList<QVariant> m_itemData;
-  // Non-root item members
-  QString m_name;
-  qulonglong m_size;
-  float m_progress;
-  int m_priority;
-  qulonglong m_totalDone;
+private:
+  QList<TorrentContentModelItem*> m_childItems;
 };
 
-#endif // TORRENTCONTENTMODELITEM_H
+#endif // TORRENTCONTENTMODELFOLDER_H
