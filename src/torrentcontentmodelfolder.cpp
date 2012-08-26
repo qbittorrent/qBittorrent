@@ -124,10 +124,6 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
 
   m_priority = new_prio;
 
-  // Reset progress if priority is IGNORED
-  if (m_priority == prio::IGNORED)
-    setProgress(0);
-
   // Update parent
   if (update_parent) {
     m_parentItem->updateSize();
@@ -154,14 +150,14 @@ void TorrentContentModelFolder::updateProgress()
   if (isRootItem())
     return;
 
-  m_totalDone = 0;
+  qulonglong total_done = 0;
   foreach (TorrentContentModelItem* child, m_childItems) {
     if (child->priority() > 0)
-      m_totalDone += child->totalDone();
+      total_done += child->totalDone();
   }
 
-  Q_ASSERT(m_totalDone <= m_size);
-  setProgress(m_totalDone);
+  Q_ASSERT(total_done <= m_size);
+  setProgress(total_done);
 }
 
 void TorrentContentModelFolder::updateSize()

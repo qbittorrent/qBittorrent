@@ -76,8 +76,6 @@ void TorrentContentModelItem::setSize(qulonglong size)
 void TorrentContentModelItem::setProgress(qulonglong done)
 {
   Q_ASSERT(!isRootItem());
-  if (m_priority == prio::IGNORED)
-    return;
 
   m_totalDone = done;
   Q_ASSERT(m_totalDone <= m_size);
@@ -94,7 +92,7 @@ float TorrentContentModelItem::progress() const
 {
   Q_ASSERT(!isRootItem());
   if (m_priority == prio::IGNORED)
-    return -1;
+    return 0;
 
   if (m_size > 0)
     return m_totalDone / (double) m_size;

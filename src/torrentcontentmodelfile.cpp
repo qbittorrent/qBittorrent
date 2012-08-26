@@ -73,10 +73,6 @@ void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
 
   m_priority = new_prio;
 
-  // Reset progress if priority is 0
-  if (m_priority == 0)
-    setProgress(0);
-
   // Update parent
   if (update_parent) {
     m_parentItem->updateSize();
