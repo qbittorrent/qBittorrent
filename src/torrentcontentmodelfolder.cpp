@@ -166,8 +166,8 @@ void TorrentContentModelFolder::updateProgress()
     if (child->priority() > 0)
       m_totalDone += child->totalDone();
   }
-  //qDebug("Folder: total_done: %llu/%llu", total_done, getSize());
-  Q_ASSERT(m_totalDone <= size());
+
+  Q_ASSERT(m_totalDone <= m_size);
   setProgress(m_totalDone);
 }
 

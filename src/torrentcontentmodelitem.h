@@ -77,7 +77,6 @@ protected:
   // Non-root item members
   QString m_name;
   qulonglong m_size;
-  float m_progress;
   int m_priority;
   qulonglong m_totalDone;
 };

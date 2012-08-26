@@ -36,7 +36,6 @@
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder* parent)
   : m_parentItem(parent)
-  , m_progress(0)
   , m_priority(prio::NORMAL)
   , m_totalDone(0)
 {
@@ -82,13 +81,6 @@ void TorrentContentModelItem::setProgress(qulonglong done)
 
   m_totalDone = done;
   Q_ASSERT(m_totalDone <= m_size);
-  qreal progress;
-  if (m_size > 0)
-    progress = m_totalDone / (double) m_size;
-  else
-    progress = 1.;
-  Q_ASSERT(progress >= 0. && progress <= 1.);
-  m_progress = progress;
   m_parentItem->updateProgress();
 }
 
@@ -131,7 +123,7 @@ QVariant TorrentContentModelItem::data(int column) const
   case COL_PRIO:
     return m_priority;
   case COL_PROGRESS:
-    return progress(); // XXX: m_progress ?
+    return progress();
   case COL_SIZE:
     return m_size;
   default:
