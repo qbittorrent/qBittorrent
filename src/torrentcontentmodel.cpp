@@ -57,7 +57,7 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
 
-void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
+void TorrentContentModel::updateFilesPriorities(const std::vector<int>& fprio)
 {
   emit layoutAboutToBeChanged();
   Q_ASSERT(m_filesIndex.size() == (int)fprio.size());
@@ -71,8 +71,9 @@ void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
 std::vector<int> TorrentContentModel::getFilesPriorities() const
 {
   std::vector<int> prio;
-  for (int i=0; i<m_filesIndex.size(); ++i) {
-    prio.push_back(m_filesIndex[i]->getPriority());
+  prio.reserve(m_filesIndex.size());
+  foreach (const TorrentContentModelItem* file, m_filesIndex) {
+    prio.push_back(file->getPriority());
   }
   return prio;
 }
@@ -147,7 +148,7 @@ TorrentContentModelItem::FileType TorrentContentModel::getType(const QModelIndex
 
 int TorrentContentModel::getFileIndex(const QModelIndex& index)
 {
-  TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+  TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
   return item->getFileIndex();
 }
 
@@ -238,7 +239,7 @@ QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
 
 int TorrentContentModel::rowCount(const QModelIndex& parent) const
 {
-  TorrentContentModelItem *parentItem;
+  TorrentContentModelItem* parentItem;
 
   if (parent.column() > 0)
     return 0;
@@ -260,7 +261,7 @@ void TorrentContentModel::clear()
   endResetModel();
 }
 
-void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
+void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
 {
   qDebug("setup model data called");
   if (t.num_files() == 0)
@@ -271,28 +272,28 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
   qDebug("Torrent contains %d files", t.num_files());
   m_filesIndex.reserve(t.num_files());
 
-  TorrentContentModelItem *parent = m_rootItem;
-  TorrentContentModelItem *root_folder = parent;
-  TorrentContentModelItem *current_parent;
+  TorrentContentModelItem* parent = m_rootItem;
+  TorrentContentModelItem* root_folder = parent;
+  TorrentContentModelItem* current_parent;
 
   // Iterate over files
   for (int i=0; i<t.num_files(); ++i) {
-    libtorrent::file_entry fentry = t.file_at(i);
+    const libtorrent::file_entry& fentry = t.file_at(i);
     current_parent = root_folder;
 #if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = QDir::cleanPath(misc::toQStringU(fentry.path)).replace("\\", "/");
+    QString path = misc::toQStringU(fentry.path);
 #else
-    QString path = QDir::cleanPath(misc::toQStringU(fentry.path.string())).replace("\\", "/");
+    QString path = misc::toQStringU(fentry.path.string());
 #endif
     // Iterate of parts of the path to create necessary folders
-    QStringList pathFolders = path.split("/");
-    pathFolders.removeAll(".unwanted");
-    pathFolders.takeLast();
-    foreach (const QString &pathPart, pathFolders) {
-      TorrentContentModelItem *new_parent = current_parent->childWithName(pathPart);
-      if (!new_parent) {
+    QStringList pathFolders = path.split(QRegExp("[/\\\\]"), QString::SkipEmptyParts);
+    pathFolders.removeLast();
+    foreach (const QString& pathPart, pathFolders) {
+      if (pathPart == ".unwanted")
+        continue;
+      TorrentContentModelItem* new_parent = current_parent->childWithName(pathPart);
+      if (!new_parent)
         new_parent = new TorrentContentModelItem(pathPart, current_parent);
-      }
       current_parent = new_parent;
     }
     // Actually create the file
@@ -304,7 +305,7 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
 void TorrentContentModel::selectAll()
 {
   for (int i=0; i<m_rootItem->childCount(); ++i) {
-    TorrentContentModelItem *child = m_rootItem->child(i);
+    TorrentContentModelItem* child = m_rootItem->child(i);
     if (child->getPriority() == prio::IGNORED)
       child->setPriority(prio::NORMAL);
   }

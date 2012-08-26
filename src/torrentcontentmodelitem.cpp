@@ -252,15 +252,15 @@ void TorrentContentModelItem::updatePriority()
       return;
     }
   }
-  // All child items have the same priorrity
-  // Update mine if necessary
+  // All child items have the same priority
+  // Update own if necessary
   if (prio != getPriority())
     setPriority(prio);
 }
 
 TorrentContentModelItem* TorrentContentModelItem::childWithName(const QString& name) const
 {
-  foreach (TorrentContentModelItem *child, m_childItems) {
+  foreach (TorrentContentModelItem* child, m_childItems) {
     if (child->getName() == name)
       return child;
   }
@@ -272,7 +272,7 @@ bool TorrentContentModelItem::isFolder() const
   return (m_type==FOLDER);
 }
 
-void TorrentContentModelItem::appendChild(TorrentContentModelItem *item)
+void TorrentContentModelItem::appendChild(TorrentContentModelItem* item)
 {
   Q_ASSERT(item);
   Q_ASSERT(m_type != TFILE);
@@ -285,7 +285,7 @@ void TorrentContentModelItem::appendChild(TorrentContentModelItem *item)
   m_childItems.insert(i, item);
 }
 
-TorrentContentModelItem* TorrentContentModelItem::child(int row)
+TorrentContentModelItem* TorrentContentModelItem::child(int row) const
 {
   //Q_ASSERT(row >= 0 && row < childItems.size());
   return m_childItems.value(row, 0);
@@ -315,7 +315,7 @@ int TorrentContentModelItem::row() const
   return 0;
 }
 
-TorrentContentModelItem* TorrentContentModelItem::parent()
+TorrentContentModelItem* TorrentContentModelItem::parent() const
 {
   return m_parentItem;
 }

@@ -234,13 +234,12 @@ void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
   }
 }
 
-void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
+void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
+{
   clear();
   h = _h;
-  if (!h.is_valid()) {
-    clear();
+  if (!h.is_valid())
     return;
-  }
 
   try {
     // Save path
@@ -261,9 +260,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
       PropListModel->model()->setupModelData(h.get_torrent_info());
       filesList->setExpanded(PropListModel->index(0, 0), true);
     }
-  } catch(invalid_handle& e) {
-
-  }
+  } catch(const invalid_handle& e) { }
   // Load dynamic data
   loadDynamicData();
 }
