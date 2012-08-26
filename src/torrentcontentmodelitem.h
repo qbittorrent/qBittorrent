@@ -80,18 +80,18 @@ public:
   bool isFolder() const;
 
   void appendChild(TorrentContentModelItem *item);
-  TorrentContentModelItem *child(int row);
+  TorrentContentModelItem* child(int row) const;
   int childCount() const;
   int columnCount() const;
   QVariant data(int column) const;
   int row() const;
 
-  TorrentContentModelItem *parent();
+  TorrentContentModelItem* parent() const;
   void deleteAllChildren();
   const QList<TorrentContentModelItem*>& children() const;
 
 private:
-  TorrentContentModelItem *m_parentItem;
+  TorrentContentModelItem* m_parentItem;
   FileType m_type;
   QList<TorrentContentModelItem*> m_childItems;
   QList<QVariant> m_itemData;

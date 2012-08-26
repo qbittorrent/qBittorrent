@@ -70,8 +70,8 @@ public slots:
   void selectNone();
 
 private:
-  TorrentContentModelItem *m_rootItem;
-  QVector<TorrentContentModelItem *> m_filesIndex;
+  TorrentContentModelItem* m_rootItem;
+  QVector<TorrentContentModelItem*> m_filesIndex;
 };
 
 #endif // TORRENTCONTENTMODEL_H
