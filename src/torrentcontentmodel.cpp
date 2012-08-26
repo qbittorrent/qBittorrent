@@ -113,7 +113,7 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     qDebug("setData(%s, %d", qPrintable(item->name()), value.toInt());
     if (item->priority() != value.toInt()) {
       if (value.toInt() == Qt::PartiallyChecked)
-        item->setPriority(prio::PARTIAL);
+        item->setPriority(prio::MIXED);
       else if (value.toInt() == Qt::Unchecked)
         item->setPriority(prio::IGNORED);
       else
@@ -171,7 +171,7 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
   if (index.column() == 0 && role == Qt::CheckStateRole) {
     if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
       return Qt::Unchecked;
-    if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::PARTIAL)
+    if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::MIXED)
       return Qt::PartiallyChecked;
     return Qt::Checked;
   }

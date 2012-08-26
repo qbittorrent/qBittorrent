@@ -66,7 +66,7 @@ int TorrentContentModelFile::fileIndex() const
 
 void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
 {
-  Q_ASSERT(new_prio != prio::PARTIAL);
+  Q_ASSERT(new_prio != prio::MIXED);
 
   if (m_priority == new_prio)
     return;

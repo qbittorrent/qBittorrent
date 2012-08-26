@@ -106,14 +106,13 @@ void TorrentContentModelFolder::updatePriority()
   const int prio = m_childItems.first()->priority();
   for (int i=1; i<m_childItems.size(); ++i) {
     if (m_childItems.at(i)->priority() != prio) {
-      setPriority(prio::PARTIAL);
+      setPriority(prio::MIXED);
       return;
     }
   }
   // All child items have the same priority
   // Update own if necessary
-  if (prio != m_priority)
-    setPriority(prio);
+  setPriority(prio);
 }
 
 void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
@@ -128,7 +127,7 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
     m_parentItem->updatePriority();
 
   // Update children
-  if (m_priority != prio::PARTIAL) {
+  if (m_priority != prio::MIXED) {
     foreach (TorrentContentModelItem* child, m_childItems)
       child->setPriority(m_priority, false);
   }
