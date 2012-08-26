@@ -43,6 +43,7 @@ public:
 
   int fileIndex() const;
   void setPriority(int new_prio, bool update_parent = true);
+  void setProgress(qulonglong done);
   ItemType itemType() const { return FileType; }
 
 private:

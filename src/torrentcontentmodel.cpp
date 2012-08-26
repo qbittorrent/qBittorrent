@@ -80,7 +80,7 @@ std::vector<int> TorrentContentModel::getFilesPriorities() const
 {
   std::vector<int> prio;
   prio.reserve(m_filesIndex.size());
-  foreach (const TorrentContentModelItem* file, m_filesIndex) {
+  foreach (const TorrentContentModelFile* file, m_filesIndex) {
     prio.push_back(file->priority());
   }
   return prio;
@@ -88,7 +88,7 @@ std::vector<int> TorrentContentModel::getFilesPriorities() const
 
 bool TorrentContentModel::allFiltered() const
 {
-  foreach (const TorrentContentModelItem* fileItem, m_filesIndex) {
+  foreach (const TorrentContentModelFile* fileItem, m_filesIndex) {
     if (fileItem->priority() != prio::IGNORED)
       return false;
   }
@@ -125,7 +125,8 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
   }
 
   if (role == Qt::EditRole) {
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    Q_ASSERT(index.isValid());
+    TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     switch(index.column()) {
     case TorrentContentModelItem::COL_NAME:
       item->setName(value.toString());
@@ -155,7 +156,7 @@ int TorrentContentModel::getFileIndex(const QModelIndex& index)
   return item->fileIndex();
 }
 
-QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
+QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
 {
   if (!index.isValid())
     return QVariant();

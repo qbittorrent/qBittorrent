@@ -63,15 +63,6 @@ qulonglong TorrentContentModelItem::size() const
   return m_size;
 }
 
-void TorrentContentModelItem::setProgress(qulonglong done)
-{
-  Q_ASSERT(!isRootItem());
-
-  m_totalDone = done;
-  Q_ASSERT(m_totalDone <= m_size);
-  m_parentItem->updateProgress();
-}
-
 qulonglong TorrentContentModelItem::totalDone() const
 {
   Q_ASSERT(!isRootItem());

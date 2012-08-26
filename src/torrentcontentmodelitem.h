@@ -59,7 +59,6 @@ public:
   qulonglong size() const;
   qulonglong totalDone() const;
 
-  void setProgress(qulonglong done);
   float progress() const;
 
   int priority() const;

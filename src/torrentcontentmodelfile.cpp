@@ -80,3 +80,10 @@ void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
     m_parentItem->updatePriority();
   }
 }
+
+void TorrentContentModelFile::setProgress(qulonglong done)
+{
+  m_totalDone = done;
+  Q_ASSERT(m_totalDone <= m_size);
+  m_parentItem->updateProgress();
+}

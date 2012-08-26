@@ -157,7 +157,10 @@ void TorrentContentModelFolder::updateProgress()
   }
 
   Q_ASSERT(total_done <= m_size);
-  setProgress(total_done);
+  if (total_done != m_totalDone) {
+    m_totalDone = total_done;
+    m_parentItem->updateProgress();
+  }
 }
 
 void TorrentContentModelFolder::updateSize()

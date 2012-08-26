@@ -38,6 +38,8 @@
 #include <libtorrent/torrent_info.hpp>
 #include "torrentcontentmodelitem.h"
 
+class TorrentContentModelFile;
+
 class TorrentContentModel:  public QAbstractItemModel {
   Q_OBJECT
 
@@ -71,7 +73,7 @@ public slots:
 
 private:
   TorrentContentModelFolder* m_rootItem;
-  QVector<TorrentContentModelItem*> m_filesIndex;
+  QVector<TorrentContentModelFile*> m_filesIndex;
 };
 
 #endif // TORRENTCONTENTMODEL_H
