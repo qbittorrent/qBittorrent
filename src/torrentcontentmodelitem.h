@@ -45,8 +45,7 @@ public:
   enum FileType {TFILE, FOLDER, ROOT};
 
   // File Construction
-  TorrentContentModelItem(const libtorrent::torrent_info &t,
-                          const libtorrent::file_entry &f,
+  TorrentContentModelItem(const libtorrent::file_entry &f,
                           TorrentContentModelItem *parent,
                           int file_index);
   // Folder constructor

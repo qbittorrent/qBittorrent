@@ -33,16 +33,15 @@
 #include "torrentcontentmodelitem.h"
 #include <QDebug>
 
-TorrentContentModelItem::TorrentContentModelItem(const libtorrent::torrent_info &t,
-                                 const libtorrent::file_entry &f,
-                                 TorrentContentModelItem *parent,
-                                 int file_index):
+TorrentContentModelItem::TorrentContentModelItem(const libtorrent::file_entry &f,
+                                                 TorrentContentModelItem *parent,
+                                                 int file_index):
   m_parentItem(parent), m_type(TFILE), m_fileIndex(file_index), m_totalDone(0)
 {
   Q_ASSERT(parent);
 
 #if LIBTORRENT_VERSION_MINOR >= 16
-  QString name = fsutils::fileName(misc::toQStringU(t.files().file_path(f)));
+  QString name = fsutils::fileName(misc::toQStringU(f.path.c_str()));
 #else
   Q_UNUSED(t);
   QString name = misc::toQStringU(f.path.filename());
