@@ -33,8 +33,7 @@
 #include "fs_utils.h"
 #include "misc.h"
 
-TorrentContentModelFile::TorrentContentModelFile(const libtorrent::torrent_info& t,
-                                                 const libtorrent::file_entry& f,
+TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f,
                                                  TorrentContentModelFolder* parent,
                                                  int file_index)
   : TorrentContentModelItem(parent)
@@ -43,7 +42,7 @@ TorrentContentModelFile::TorrentContentModelFile(const libtorrent::torrent_info&
   Q_ASSERT(parent);
 
 #if LIBTORRENT_VERSION_MINOR >= 16
-  m_name = fsutils::fileName(misc::toQStringU(t.files().file_path(f)));
+  m_name = fsutils::fileName(misc::toQStringU(f.path.c_str()));
 #else
   m_name = misc::toQStringU(f.path.filename());
 #endif

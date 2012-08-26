@@ -36,8 +36,7 @@
 class TorrentContentModelFile : public TorrentContentModelItem
 {
 public:
-  TorrentContentModelFile(const libtorrent::torrent_info& t,
-                          const libtorrent::file_entry& f,
+  TorrentContentModelFile(const libtorrent::file_entry& f,
                           TorrentContentModelFolder* parent,
                           int file_index);
 

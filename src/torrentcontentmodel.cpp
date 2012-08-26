@@ -296,7 +296,7 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
       current_parent = new_parent;
     }
     // Actually create the file
-    m_filesIndex.push_back(new TorrentContentModelFile(t, fentry, current_parent, i));
+    m_filesIndex.push_back(new TorrentContentModelFile(fentry, current_parent, i));
   }
   emit layoutChanged();
 }
