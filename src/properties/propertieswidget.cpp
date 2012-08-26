@@ -259,6 +259,8 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
       // List files in torrent
       PropListModel->model()->setupModelData(h.get_torrent_info());
       filesList->setExpanded(PropListModel->index(0, 0), true);
+      // Load file priorities
+      PropListModel->model()->updateFilesPriorities(h.file_priorities());
     }
   } catch(const invalid_handle& e) { }
   // Load dynamic data
@@ -388,8 +390,11 @@ void PropertiesWidget::loadDynamicData() {
         filesList->setUpdatesEnabled(false);
         std::vector<size_type> fp;
         h.file_progress(fp);
-        PropListModel->model()->updateFilesPriorities(h.file_priorities());
         PropListModel->model()->updateFilesProgress(fp);
+        // XXX: We don't update file priorities regularly for performance
+        // reasons. This means that priorities will not be updated if
+        // set from the Web UI.
+        // PropListModel->model()->updateFilesPriorities(h.file_priorities());
         filesList->setUpdatesEnabled(true);
       }
     }
