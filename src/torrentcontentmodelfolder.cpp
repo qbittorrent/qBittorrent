@@ -70,14 +70,7 @@ const QList<TorrentContentModelItem*>& TorrentContentModelFolder::children() con
 void TorrentContentModelFolder::appendChild(TorrentContentModelItem* item)
 {
   Q_ASSERT(item);
-
-  int i=0;
-  for ( ; i < m_childItems.size(); ++i) {
-    QString newchild_name = item->name();
-    if (QString::localeAwareCompare(newchild_name, m_childItems.at(i)->name()) < 0)
-      break;
-  }
-  m_childItems.insert(i, item);
+  m_childItems.append(item);
 }
 
 TorrentContentModelItem* TorrentContentModelFolder::child(int row) const
