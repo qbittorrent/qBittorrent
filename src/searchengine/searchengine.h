@@ -44,6 +44,7 @@
 class DownloadThread;
 class SearchEngine;
 class MainWindow;
+class LineEdit;
 
 QT_BEGIN_NAMESPACE
 class QTimer;
@@ -122,6 +123,7 @@ private slots:
 
 private:
   // Search related
+  LineEdit* search_pattern;
   QProcess *searchProcess;
   QList<QProcess*> downloaders;
   bool search_stopped;

@@ -58,12 +58,19 @@
 #include "qinisettings.h"
 #include "mainwindow.h"
 #include "iconprovider.h"
+#include "lineedit.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 
 /*SEARCH ENGINE START*/
-SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(parent) {
+SearchEngine::SearchEngine(MainWindow* parent)
+  : QWidget(parent)
+  , search_pattern(new LineEdit)
+  , mp_mainWindow(parent)
+{
   setupUi(this);
+  searchBarLayout->insertWidget(0, search_pattern);
+  connect(search_pattern, SIGNAL(returnPressed()), search_button, SLOT(click()));
   // Icons
   search_button->setIcon(IconProvider::instance()->getIcon("edit-find"));
   download_button->setIcon(IconProvider::instance()->getIcon("download"));
@@ -98,6 +105,7 @@ SearchEngine::SearchEngine(MainWindow *parent) : QWidget(parent), mp_mainWindow(
         );
   // Fill in category combobox
   fillCatCombobox();
+
   connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));
   connect(search_pattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
 }
@@ -189,6 +197,7 @@ SearchEngine::~SearchEngine() {
     downloader->waitForFinished();
     delete downloader;
   }
+  delete search_pattern;
   delete searchTimeout;
   delete searchProcess;
   delete supported_engines;

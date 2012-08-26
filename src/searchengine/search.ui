@@ -15,20 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLineEdit" name="search_pattern">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>22</height>
-        </size>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::CustomContextMenu</enum>
-       </property>
-      </widget>
-     </item>
+    <layout class="QHBoxLayout" name="searchBarLayout">
      <item>
       <widget class="QComboBox" name="comboCategory"/>
      </item>
@@ -112,20 +99,8 @@
    </item>
    <item>
     <layout class="QVBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <layout class="QHBoxLayout">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
        <item>
         <widget class="QPushButton" name="download_button">
          <property name="enabled">
@@ -173,22 +148,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>search_pattern</sender>
-   <signal>returnPressed()</signal>
-   <receiver>search_button</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>421</x>
-     <y>37</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>685</x>
-     <y>45</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
