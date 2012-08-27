@@ -52,9 +52,6 @@ TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f
     m_name.chop(4);
 
   m_size = (qulonglong)f.size;
-
-  // Add to parent
-  m_parentItem->appendChild(this);
 }
 
 int TorrentContentModelFile::fileIndex() const

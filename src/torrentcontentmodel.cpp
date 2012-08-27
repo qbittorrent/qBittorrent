@@ -291,12 +291,16 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
       if (pathPart == ".unwanted")
         continue;
       TorrentContentModelFolder* new_parent = current_parent->childFolderWithName(pathPart);
-      if (!new_parent)
+      if (!new_parent) {
         new_parent = new TorrentContentModelFolder(pathPart, current_parent);
+        current_parent->appendChild(new_parent);
+      }
       current_parent = new_parent;
     }
     // Actually create the file
-    m_filesIndex.push_back(new TorrentContentModelFile(fentry, current_parent, i));
+    TorrentContentModelFile* fileItem = new TorrentContentModelFile(fentry, current_parent, i);
+    current_parent->appendChild(fileItem);
+    m_filesIndex.push_back(fileItem);
   }
   emit layoutChanged();
 }

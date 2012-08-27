@@ -38,9 +38,6 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString& name, Torren
   // Do not display incomplete extensions
   if (m_name.endsWith(".!qB"))
     m_name.chop(4);
-
-  // Add to parent
-  m_parentItem->appendChild(this);
 }
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QList<QVariant>& data)
