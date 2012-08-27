@@ -36,6 +36,7 @@
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder* parent)
   : m_parentItem(parent)
+  , m_size(0)
   , m_priority(prio::NORMAL)
   , m_totalDone(0)
 {

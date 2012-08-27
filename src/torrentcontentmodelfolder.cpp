@@ -39,7 +39,7 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString& name, Torren
   if (m_name.endsWith(".!qB"))
     m_name.chop(4);
 
-  // Update parent
+  // Add to parent
   m_parentItem->appendChild(this);
 }
 
@@ -71,6 +71,9 @@ void TorrentContentModelFolder::appendChild(TorrentContentModelItem* item)
 {
   Q_ASSERT(item);
   m_childItems.append(item);
+  // Update own size
+  if (item->itemType() == FileType)
+    increaseSize(item->size());
 }
 
 TorrentContentModelItem* TorrentContentModelFolder::child(int row) const
@@ -132,7 +135,6 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
       child->setPriority(m_priority, false);
   }
 
-  updateSize();
   updateProgress();
 }
 
@@ -154,19 +156,11 @@ void TorrentContentModelFolder::updateProgress()
   }
 }
 
-void TorrentContentModelFolder::updateSize()
+void TorrentContentModelFolder::increaseSize(qulonglong delta)
 {
   if (isRootItem())
     return;
 
-  qulonglong size = 0;
-  foreach (TorrentContentModelItem* child, m_childItems) {
-    if (child->priority() != prio::IGNORED)
-      size += child->size();
-  }
-
-  if (size != m_size) {
-    m_size = size;
-    m_parentItem->updateSize();
-  }
+  m_size += delta;
+  m_parentItem->increaseSize(delta);
 }

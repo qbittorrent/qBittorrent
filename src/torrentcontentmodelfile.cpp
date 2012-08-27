@@ -53,9 +53,8 @@ TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f
 
   m_size = (qulonglong)f.size;
 
-  // Update parent
+  // Add to parent
   m_parentItem->appendChild(this);
-  m_parentItem->updateSize();
 }
 
 int TorrentContentModelFile::fileIndex() const
@@ -74,7 +73,6 @@ void TorrentContentModelFile::setPriority(int new_prio, bool update_parent)
 
   // Update parent
   if (update_parent) {
-    m_parentItem->updateSize();
     m_parentItem->updateProgress();
     m_parentItem->updatePriority();
   }

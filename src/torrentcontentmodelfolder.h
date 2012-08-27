@@ -46,7 +46,7 @@ public:
 
   ItemType itemType() const { return FolderType; }
 
-  void updateSize();
+  void increaseSize(qulonglong delta);
   void updateProgress();
   void updatePriority();
 
