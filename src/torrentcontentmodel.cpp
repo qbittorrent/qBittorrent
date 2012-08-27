@@ -59,6 +59,8 @@ void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size
   for (uint i = 0; i < fp.size(); ++i) {
     m_filesIndex[i]->setProgress(fp[i]);
   }
+  // Update folders progress in the tree
+  m_rootItem->recalculateProgress();
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
 
@@ -118,6 +120,8 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
         item->setPriority(prio::IGNORED);
       else
         item->setPriority(prio::NORMAL);
+      // Update folders progress in the tree
+      m_rootItem->recalculateProgress();
       emit dataChanged(this->index(0,0), this->index(rowCount()-1, columnCount()-1));
       emit filteredFilesChanged();
     }

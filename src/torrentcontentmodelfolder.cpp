@@ -131,25 +131,22 @@ void TorrentContentModelFolder::setPriority(int new_prio, bool update_parent)
     foreach (TorrentContentModelItem* child, m_childItems)
       child->setPriority(m_priority, false);
   }
-
-  updateProgress();
 }
 
-void TorrentContentModelFolder::updateProgress()
+void TorrentContentModelFolder::recalculateProgress()
 {
-  if (isRootItem())
-    return;
-
-  qulonglong total_done = 0;
+  qulonglong totalDone = 0;
   foreach (TorrentContentModelItem* child, m_childItems) {
-    if (child->priority() > 0)
-      total_done += child->totalDone();
+    if (child->priority() != prio::IGNORED) {
+      if (child->itemType() == FolderType)
+        static_cast<TorrentContentModelFolder*>(child)->recalculateProgress();
+      totalDone += child->totalDone();
+    }
   }
 
-  Q_ASSERT(total_done <= m_size);
-  if (total_done != m_totalDone) {
-    m_totalDone = total_done;
-    m_parentItem->updateProgress();
+  if (!isRootItem()) {
+    m_totalDone = totalDone;
+    Q_ASSERT(m_totalDone <= m_size);
   }
 }
 

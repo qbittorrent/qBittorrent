@@ -47,7 +47,7 @@ public:
   ItemType itemType() const { return FolderType; }
 
   void increaseSize(qulonglong delta);
-  void updateProgress();
+  void recalculateProgress();
   void updatePriority();
 
   void setPriority(int new_prio, bool update_parent = true);
