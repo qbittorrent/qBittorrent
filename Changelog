@@ -4,6 +4,7 @@
     - BUGFIX: Fix crash when a fastresume file is empty (closes #52)
     - BUGFIX: Fix encoding problem for detected XDG Download folder (closes #53)
     - BUGFIX: Improve performance when showing torrent content panel (Improves #24)
+    - BUGFIX: Fix label-based filtering of torrents whose label contains special characters
 
 * Tue Aug 21 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.1
     - BUGFIX: Fix possible crash when adding a tracker to a magnet torrent without metadata (Closes #1034254)
