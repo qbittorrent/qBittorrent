@@ -78,7 +78,7 @@ public slots:
   void previewSelectedTorrents();
   void hidePriorityColumn(bool hide);
   void displayDLHoSMenu(const QPoint&);
-  void applyNameFilter(QString name);
+  void applyNameFilter(const QString& name);
   void applyStatusFilter(int f);
   void applyLabelFilter(QString label);
   void previewFile(QString filePath);
