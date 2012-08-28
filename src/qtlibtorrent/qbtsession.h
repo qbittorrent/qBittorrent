@@ -107,6 +107,8 @@ public:
   inline bool isLSDEnabled() const { return LSDEnabled; }
   inline bool isPexEnabled() const { return PeXEnabled; }
   inline bool isQueueingEnabled() const { return queueingEnabled; }
+  bool isRandomPortset() { return randomPortSet; };
+  void setRandomPortset(bool set);
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -257,6 +259,7 @@ private:
   bool m_torrentExportEnabled;
   bool m_finishedTorrentExportEnabled;
   bool appendqBExtension;
+  bool randomPortSet;
   QString defaultSavePath;
   QString defaultTempPath;
   // IP filtering
