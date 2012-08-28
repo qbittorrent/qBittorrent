@@ -71,6 +71,7 @@ public:
 
 public:
   // General options
+  
   QString getLocale() const {
     return value(QString::fromUtf8("Preferences/General/Locale"), "en_GB").toString();
   }
@@ -78,7 +79,7 @@ public:
   void setLocale(const QString &locale) {
     setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
-
+  
   bool useProgramNotification() const {
     return value(QString::fromUtf8("Preferences/General/ProgramNotification"), true).toBool();
   }
@@ -117,6 +118,14 @@ public:
 
   void setAlternatingRowColors(bool b) {
     setValue("Preferences/General/AlternatingRowColors", b);
+  }
+
+  bool useRandomPort() const {
+    return value(QString::fromUtf8("Preferences/General/RandomPort"), true).toBool();
+  }
+
+  void setRandomPort(bool b) {
+    setValue("Preferences/General/RandomPort", b);
   }
 
   bool systrayIntegration() const {

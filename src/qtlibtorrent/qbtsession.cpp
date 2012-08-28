@@ -162,6 +162,7 @@ QBtSession::QBtSession()
   , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
     m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0)
 {
+  setRandomPortset(false);
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
   connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
@@ -330,17 +331,32 @@ void QBtSession::setQueueingEnabled(bool enable) {
   }
 }
 
+void QBtSession::setRandomPortset(bool set) {
+        randomPortSet = set;
+}
+
 // Set BT session configuration
 void QBtSession::configureSession() {
   qDebug("Configuring session");
-  const Preferences pref;
-  // * Ports binding
+  //removed the constant modifier for Preferences
+  Preferences pref;
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref.getSessionPort();
-  if (old_listenPort != new_listenPort) {
-    qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
-    setListeningPort(new_listenPort);
+  if(pref.useRandomPort() && !isRandomPortset()) { // to check if the randomPort checkbox is selected
+    setRandomPortset(true);
+    srand(time(0));
+    const unsigned short randomPort = rand() % USHRT_MAX + 1025;
+    setListeningPort(randomPort);
     addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
+    pref.setSessionPort(randomPort);
+  } else {
+      // * Ports binding
+
+      if (old_listenPort != new_listenPort) {
+        qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
+        setListeningPort(new_listenPort);
+        addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
+      }
   }
 
   // Downloads
@@ -1546,7 +1562,7 @@ void QBtSession::loadSessionState() {
   // bdecode
   lazy_entry e;
 #if LIBTORRENT_VERSION_MINOR > 15
-  libtorrent::error_code ec;
+  error_code ec;
   lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
   if (!ec) {
 #else
@@ -1898,7 +1914,7 @@ void QBtSession::setListeningPort(int port) {
   Preferences pref;
   std::pair<int,int> ports(port, port);
 #if LIBTORRENT_VERSION_MINOR > 15
-  libtorrent::error_code ec;
+  error_code ec;
 #endif
   const QString iface_name = pref.getNetworkInterface();
   if (iface_name.isEmpty()) {

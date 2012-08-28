@@ -137,6 +137,8 @@ options_imp::options_imp(QWidget *parent):
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  //add checkbox for random port
+  connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -361,6 +363,8 @@ void options_imp::saveOptions() {
   // General preferences
   pref.setLocale(locale);
   pref.setAlternatingRowColors(checkAltRowColors->isChecked());
+  //set random port
+  pref.setRandomPort(checkRandomPort->isChecked());
   pref.setSystrayIntegration(systrayIntegration());
   pref.setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
   pref.setCloseToTray(closeToTray());
@@ -530,6 +534,8 @@ void options_imp::loadOptions() {
   const Preferences pref;
   setLocale(pref.getLocale());
   checkAltRowColors->setChecked(pref.useAlternatingRowColors());
+  //get random port
+  checkRandomPort->setChecked(pref.useRandomPort());
   checkShowSystray->setChecked(pref.systrayIntegration());
   checkShowSplash->setChecked(!pref.isSlashScreenDisabled());
   if (checkShowSystray->isChecked()) {
@@ -765,6 +771,7 @@ void options_imp::on_randomButton_clicked() {
   // Range [1024: 65535]
   spinPort->setValue(rand() % 64512 + 1024);
 }
+
 
 int options_imp::getEncryptionSetting() const {
   return comboEncryption->currentIndex();
