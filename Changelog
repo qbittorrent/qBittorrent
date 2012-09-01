@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.2
+* Sat Sep 1 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.2
     - FEATURE: Add "clear" functionality to search field (closes #59)
     - BUGFIX: Attempt to use qBittorrent icon from theme if available (closes #49)
     - BUGFIX: Fix crash when a fastresume file is empty (closes #52)
