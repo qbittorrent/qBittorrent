@@ -77,8 +77,7 @@ public:
     QIniSettings::sync();
   }
 
-  // General options
-  
+  // General options  
   QString getLocale() const {
     return value(QString::fromUtf8("Preferences/General/Locale"), "en_GB").toString();
   }
@@ -86,7 +85,7 @@ public:
   void setLocale(const QString &locale) {
     setValue(QString::fromUtf8("Preferences/General/Locale"), locale);
   }
-  
+
   bool useProgramNotification() const {
     return value(QString::fromUtf8("Preferences/General/ProgramNotification"), true).toBool();
   }
@@ -128,11 +127,11 @@ public:
   }
 
   bool useRandomPort() const {
-    return value(QString::fromUtf8("Preferences/General/RandomPort"), true).toBool();
+    return value(QString::fromUtf8("Preferences/General/UseRandomPort"), false).toBool();
   }
 
   void setRandomPort(bool b) {
-    setValue("Preferences/General/RandomPort", b);
+    setValue("Preferences/General/UseRandomPort", b);
   }
 
   bool systrayIntegration() const {
@@ -1049,6 +1048,7 @@ public:
     if (value <= 0) value = -1;
     setValue(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), value);
   }
+
 
   void setNetworkInterface(const QString& iface) {
     setValue(QString::fromUtf8("Preferences/Connection/Interface"), iface);

@@ -113,9 +113,9 @@ QBtSession::QBtSession()
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
   , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
-    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0)
+    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0),
+    m_randomPortEnabled(false)
 {
-  setRandomPortset(false);
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
   connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
@@ -282,27 +282,24 @@ void QBtSession::setQueueingEnabled(bool enable) {
   }
 }
 
-void QBtSession::setRandomPortset(bool set) {
-        randomPortSet = set;
-}
-
 // Set BT session configuration
 void QBtSession::configureSession() {
   qDebug("Configuring session");
-  //removed the constant modifier for Preferences
   Preferences pref;
   const unsigned short old_listenPort = getListenPort();
   const unsigned short new_listenPort = pref.getSessionPort();
-  if(pref.useRandomPort() && !isRandomPortset()) { // to check if the randomPort checkbox is selected
-    setRandomPortset(true);
-    srand(time(0));
-    const unsigned short randomPort = rand() % USHRT_MAX + 1025;
-    setListeningPort(randomPort);
-    addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
-    pref.setSessionPort(randomPort);
+  if (pref.useRandomPort()) { // to check if the randomPort checkbox is selected
+      if (!m_randomPortEnabled) {
+          m_randomPortEnabled = true;
+          srand(time(0));
+          const unsigned short randomPort = rand() % USHRT_MAX + 1025;
+          setListeningPort(randomPort);
+          addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));
+          pref.setSessionPort(randomPort);
+      }
   } else {
       // * Ports binding
-
+      m_randomPortEnabled = false;
       if (old_listenPort != new_listenPort) {
         qDebug("Session port changes in program preferences: %d -> %d", old_listenPort, new_listenPort);
         setListeningPort(new_listenPort);
