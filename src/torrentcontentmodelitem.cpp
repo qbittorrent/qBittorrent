@@ -43,7 +43,6 @@ TorrentContentModelItem::TorrentContentModelItem(const libtorrent::file_entry &f
 #if LIBTORRENT_VERSION_MINOR >= 16
   QString name = fsutils::fileName(misc::toQStringU(f.path.c_str()));
 #else
-  Q_UNUSED(t);
   QString name = misc::toQStringU(f.path.filename());
 #endif
   // Do not display incomplete extensions
