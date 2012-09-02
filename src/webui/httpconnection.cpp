@@ -285,7 +285,7 @@ void HttpConnection::respond() {
   }
 
   // Icons from theme
-  qDebug() << "list[0]" << list[0];
+  //qDebug() << "list[0]" << list[0];
   if (list[0] == "theme" && list.size() == 2) {
 #ifdef DISABLE_GUI
     url = ":/Icons/oxygen/"+list[1]+".png";
@@ -381,6 +381,7 @@ void HttpConnection::respondGlobalTransferInfoJson() {
 }
 
 void HttpConnection::respondCommand(const QString& command) {
+  qDebug() << Q_FUNC_INFO << command;
   if (command == "download") {
     QString urls = m_parser.post("urls");
     QStringList list = urls.split('\n');
@@ -422,7 +423,7 @@ void HttpConnection::respondCommand(const QString& command) {
     const QList<QByteArray>& torrents = m_parser.torrents();
     foreach(const QByteArray& torrentContent, torrents) {
       // Get a unique filename
-      QTemporaryFile *tmpfile = new QTemporaryFile (QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
+      QTemporaryFile *tmpfile = new QTemporaryFile(QDir::temp().absoluteFilePath("qBT-XXXXXX.torrent"));
       tmpfile->setAutoRemove(false);
       if (tmpfile->open()) {
         QString filePath = tmpfile->fileName();
