@@ -32,8 +32,8 @@
 #include "misc.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
-#include "torrentcontentmodelFolder.h"
-#include "torrentcontentmodelFile.h"
+#include "torrentcontentmodelfolder.h"
+#include "torrentcontentmodelfile.h"
 #include <QDir>
 
 TorrentContentModel::TorrentContentModel(QObject *parent):
