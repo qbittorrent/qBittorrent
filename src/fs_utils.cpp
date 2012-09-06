@@ -401,7 +401,7 @@ QString fsutils::QDesktopServicesDataLocation() {
 }
 
 QString fsutils::QDesktopServicesCacheLocation() {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   return QDesktopServicesDataLocation() + QLatin1String("\\cache");
 #else
 #ifdef Q_WS_MAC

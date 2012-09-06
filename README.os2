@@ -42,10 +42,23 @@ LIBS += -Lx:/trees/libtorrent/trunk/src/.libs \
 
 Of course all the above path references have to be adjusted to your build env.
 
-It should now be easy to build qBittorrent:
+Now you can either do a normal build or a shadow build. A shadow build has the
+advantage that no created files are in the same dir as the sources are.
+
+For a normal build do the following:
 
 Simply type:
 $ qmake
+
+Followed by:
+$ make
+
+For a shadow build do the following:
+given your sources are in x:\trees\qbittorrent\trunk create a 
+x:\trees\qbittorrent\build directory
+
+Now switch to the created directory and type:
+$ qmake ..\trunk
 
 Followed by:
 $ make
