@@ -705,6 +705,8 @@ void options_imp::loadOptions() {
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
 #if LIBTORRENT_VERSION_MINOR > 15
   checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
+  /* make sure ui matches options */
+  toggleAnonymousMode(checkAnonymousMode->isChecked());
 #endif
   // Ratio limit
   floatValue = pref.getGlobalMaxRatio();
