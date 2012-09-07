@@ -414,6 +414,8 @@ void QBtSession::configureSession() {
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
     addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
+  } else {
+    addConsoleMessage(tr("Anonymous mode [OFF]"), "blue");
   }
 #endif
   // Queueing System
