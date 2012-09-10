@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.3
     - BUGFIX: Bypass cache when uploading a torrent file in Web UI (closes #68)
+    - BUGFIX: "Completed On" column is not updated until restart (closes #84)
 
 * Sat Sep 1 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.2
     - FEATURE: Add "clear" functionality to search field (closes #59)
