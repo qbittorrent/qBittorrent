@@ -30,7 +30,6 @@
 
 #include <QStandardItemModel>
 #include <QHeaderView>
-#include <QCompleter>
 #include <QMessageBox>
 #include <QTemporaryFile>
 #include <QSystemTrayIcon>
@@ -76,9 +75,6 @@ SearchEngine::SearchEngine(MainWindow* parent)
   download_button->setIcon(IconProvider::instance()->getIcon("download"));
   goToDescBtn->setIcon(IconProvider::instance()->getIcon("application-x-mswinurl"));
   enginesButton->setIcon(IconProvider::instance()->getIcon("preferences-system-network"));
-  // new qCompleter to the search pattern
-  startSearchHistory();
-  createCompleter();
   tabWidget->setTabsClosable(true);
   connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
   // Boolean initialization
@@ -106,7 +102,6 @@ SearchEngine::SearchEngine(MainWindow* parent)
   // Fill in category combobox
   fillCatCombobox();
 
-  connect(search_pattern, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(displayPatternContextMenu(QPoint)));
   connect(search_pattern, SIGNAL(textEdited(QString)), this, SLOT(searchTextEdited(QString)));
 }
 
@@ -185,8 +180,6 @@ QString SearchEngine::selectedCategory() const {
 
 SearchEngine::~SearchEngine() {
   qDebug("Search destruction");
-  // save the searchHistory for later uses
-  saveSearchHistory();
   searchProcess->kill();
   searchProcess->waitForFinished();
   foreach (QProcess *downloader, downloaders) {
@@ -201,53 +194,6 @@ SearchEngine::~SearchEngine() {
   delete searchTimeout;
   delete searchProcess;
   delete supported_engines;
-  if (searchCompleter)
-    delete searchCompleter;
-}
-
-void SearchEngine::displayPatternContextMenu(QPoint) {
-  QMenu myMenu(this);
-  QAction cutAct(IconProvider::instance()->getIcon("edit-cut"), tr("Cut"), &myMenu);
-  QAction copyAct(IconProvider::instance()->getIcon("edit-copy"), tr("Copy"), &myMenu);
-  QAction pasteAct(IconProvider::instance()->getIcon("edit-paste"), tr("Paste"), &myMenu);
-  QAction clearAct(IconProvider::instance()->getIcon("edit-clear"), tr("Clear field"), &myMenu);
-  QAction clearHistoryAct(IconProvider::instance()->getIcon("edit-clear-history"), tr("Clear completion history"), &myMenu);
-  bool hasCopyAct = false;
-  if (search_pattern->hasSelectedText()) {
-    myMenu.addAction(&cutAct);
-    myMenu.addAction(&copyAct);
-    hasCopyAct = true;
-  }
-  if (qApp->clipboard()->mimeData()->hasText()) {
-    myMenu.addAction(&pasteAct);
-    hasCopyAct = true;
-  }
-  if (hasCopyAct)
-    myMenu.addSeparator();
-  myMenu.addAction(&clearHistoryAct);
-  myMenu.addAction(&clearAct);
-  QAction *act = myMenu.exec(QCursor::pos());
-  if (act != 0) {
-    if (act == &clearHistoryAct) {
-      // Ask for confirmation
-      if (QMessageBox::question(this, tr("Confirmation"), tr("Are you sure you want to clear the history?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-        // Clear history
-        searchHistory.setStringList(QStringList());
-      }
-    }
-    else if (act == &pasteAct) {
-      search_pattern->paste();
-    }
-    else if (act == &cutAct) {
-      search_pattern->cut();
-    }
-    else if (act == &copyAct) {
-      search_pattern->copy();
-    }
-    else if (act == &clearAct) {
-      search_pattern->clear();
-    }
-  }
 }
 
 void SearchEngine::tab_changed(int t)
@@ -268,18 +214,6 @@ void SearchEngine::tab_changed(int t)
 void SearchEngine::on_enginesButton_clicked() {
   engineSelectDlg *dlg = new engineSelectDlg(this, supported_engines);
   connect(dlg, SIGNAL(enginesChanged()), this, SLOT(fillCatCombobox()));
-}
-
-// get the last searchs from a QIniSettings to a QStringList
-void SearchEngine::startSearchHistory() {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  searchHistory.setStringList(settings.value("Search/searchHistory",QStringList()).toStringList());
-}
-
-// Save the history list into the QIniSettings for the next session
-void SearchEngine::saveSearchHistory() {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("Search/searchHistory",searchHistory.stringList());
 }
 
 void SearchEngine::searchTextEdited(QString) {
@@ -337,16 +271,6 @@ void SearchEngine::on_search_button_clicked() {
   tabName.replace(QRegExp("&{1}"), "&&");
   tabWidget->addTab(currentSearchTab, tabName);
   tabWidget->setCurrentWidget(currentSearchTab);
-  // if the pattern is not in the pattern
-  QStringList wordList = searchHistory.stringList();
-  if (wordList.indexOf(pattern) == -1) {
-    //update the searchHistory list
-    wordList.append(pattern);
-    // verify the max size of the history
-    if (wordList.size() > SEARCHHISTORY_MAXSIZE)
-      wordList = wordList.mid(wordList.size()/2);
-    searchHistory.setStringList(wordList);
-  }
 
   // Getting checked search engines
   QStringList params;
@@ -365,14 +289,6 @@ void SearchEngine::on_search_button_clicked() {
   // Launch search
   searchProcess->start("python", params, QIODevice::ReadOnly);
   searchTimeout->start(180000); // 3min
-}
-
-void SearchEngine::createCompleter() {
-  if (searchCompleter)
-    delete searchCompleter;
-  searchCompleter = new QCompleter(&searchHistory);
-  searchCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-  search_pattern->setCompleter(searchCompleter);
 }
 
 void SearchEngine::propagateSectionResized(int index, int , int newsize) {
