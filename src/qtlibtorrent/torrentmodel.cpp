@@ -114,7 +114,7 @@ bool TorrentModelItem::setData(int column, const QVariant &value, int role)
 {
   qDebug() << Q_FUNC_INFO << column << value;
   if (role != Qt::DisplayRole) return false;
-  // Label and Name columns can be edited
+  // Label, seed date and Name columns can be edited
   switch(column) {
   case TR_NAME:
     m_name = value.toString();
@@ -129,6 +129,10 @@ bool TorrentModelItem::setData(int column, const QVariant &value, int role)
       emit labelChanged(old_label, new_label);
     }
     return true;
+  }
+  case TR_SEED_DATE: {
+      m_seedTime = value.toDateTime();
+      return true;
   }
   default:
     break;
@@ -219,7 +223,7 @@ void TorrentModel::populate() {
   connect(QBtSession::instance(), SIGNAL(addedTorrent(QTorrentHandle)), SLOT(addTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(torrentAboutToBeRemoved(QTorrentHandle)), SLOT(handleTorrentAboutToBeRemoved(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(deletedTorrent(QString)), SLOT(removeTorrent(QString)));
-  connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(finishedTorrent(QTorrentHandle)), SLOT(handleFinishedTorrent(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(metadataReceived(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
@@ -376,6 +380,17 @@ void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)
   if (row >= 0) {
     notifyTorrentChanged(row);
   }
+}
+
+void TorrentModel::handleFinishedTorrent(const QTorrentHandle& h)
+{
+  const int row = torrentRow(h.hash());
+  if (row < 0)
+    return;
+
+  // Update completion date
+  m_torrents[row]->setData(TorrentModelItem::TR_SEED_DATE, QDateTime::currentDateTime(), Qt::DisplayRole);
+  notifyTorrentChanged(row);
 }
 
 void TorrentModel::notifyTorrentChanged(int row)
