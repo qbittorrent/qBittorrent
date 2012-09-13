@@ -1738,6 +1738,10 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <source>The following parameters are supported:</source>
         <translation>Följande parametrar stöds:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3012,6 +3016,10 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3913,23 +3921,23 @@ p, li { white-space: pre-wrap; }
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation>Klipp ut</translation>
+        <translation type="obsolete">Klipp ut</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopiera</translation>
+        <translation type="obsolete">Kopiera</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Klistra in</translation>
+        <translation type="obsolete">Klistra in</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Töm fältet</translation>
+        <translation type="obsolete">Töm fältet</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Töm kompletteringshistorik</translation>
+        <translation type="obsolete">Töm kompletteringshistorik</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
@@ -4002,11 +4010,11 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Bekräftelse</translation>
+        <translation type="obsolete">Bekräftelse</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Är du säker på att du vill tömma historiken?</translation>
+        <translation type="obsolete">Är du säker på att du vill tömma historiken?</translation>
     </message>
 </context>
 <context>
@@ -4890,6 +4898,10 @@ Vill du installera den nu?</translation>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[filer eller url:er]: hämtar de torrenter som skickats av användaren (valfri)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

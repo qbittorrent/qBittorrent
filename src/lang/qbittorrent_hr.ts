@@ -1892,6 +1892,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>The following parameters are supported:</source>
         <translation>Podržani su sljedeći parametri:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3518,6 +3522,10 @@ QGroupBox {
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4467,23 +4475,23 @@ p, li { white-space: pre-wrap; }
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation>Izreži</translation>
+        <translation type="obsolete">Izreži</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopiraj</translation>
+        <translation type="obsolete">Kopiraj</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Zalijepi</translation>
+        <translation type="obsolete">Zalijepi</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Očisti polje</translation>
+        <translation type="obsolete">Očisti polje</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Izbriši povijest upotpunjavanja</translation>
+        <translation type="obsolete">Izbriši povijest upotpunjavanja</translation>
     </message>
     <message>
         <source>Search</source>
@@ -4556,11 +4564,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Potvrda</translation>
+        <translation type="obsolete">Potvrda</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Jeste li sigurni da želite izbrisati povijest?</translation>
+        <translation type="obsolete">Jeste li sigurni da želite izbrisati povijest?</translation>
     </message>
 </context>
 <context>
@@ -5471,6 +5479,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[datoteke ili URL-ovi]: preuzima torrente koje je korisnik dopustio (neobavezno)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

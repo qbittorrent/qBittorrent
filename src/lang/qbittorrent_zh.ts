@@ -1819,6 +1819,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>The following parameters are supported:</source>
         <translation>支持以下参数:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3103,6 +3107,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4040,23 +4048,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>剪切</translation>
+        <translation type="obsolete">剪切</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>复制</translation>
+        <translation type="obsolete">复制</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>粘贴</translation>
+        <translation type="obsolete">粘贴</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>清除信息</translation>
+        <translation type="obsolete">清除信息</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>清除搜索历史</translation>
+        <translation type="obsolete">清除搜索历史</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4113,11 +4121,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>确认</translation>
+        <translation type="obsolete">确认</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>您确定要清楚历史记录吗?</translation>
+        <translation type="obsolete">您确定要清楚历史记录吗?</translation>
     </message>
 </context>
 <context>
@@ -5001,6 +5009,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[文件或urls]:下载用户批准的torrents (可选)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

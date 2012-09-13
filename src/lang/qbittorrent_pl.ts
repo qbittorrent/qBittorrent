@@ -1785,6 +1785,10 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <source>The following parameters are supported:</source>
         <translation>Obsługiwane są poniższe parametry:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3072,6 +3076,10 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4014,23 +4022,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Wytnij</translation>
+        <translation type="obsolete">Wytnij</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopiuj</translation>
+        <translation type="obsolete">Kopiuj</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Wklej</translation>
+        <translation type="obsolete">Wklej</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Wyczyść pole</translation>
+        <translation type="obsolete">Wyczyść pole</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Wyczyść historię</translation>
+        <translation type="obsolete">Wyczyść historię</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4087,11 +4095,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Potwierdzenie</translation>
+        <translation type="obsolete">Potwierdzenie</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Czy na pewno wyczyścić historię?</translation>
+        <translation type="obsolete">Czy na pewno wyczyścić historię?</translation>
     </message>
 </context>
 <context>
@@ -4982,6 +4990,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[pliki lub adresy URL]: pobieranie plików torrent podanych przez użytkownika (opcjonalnie)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

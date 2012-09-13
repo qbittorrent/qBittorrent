@@ -1614,6 +1614,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source>The following parameters are supported:</source>
         <translation>De volgende parameters worden ondersteund:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2893,6 +2897,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3807,23 +3815,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Knippen</translation>
+        <translation type="obsolete">Knippen</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopiëren</translation>
+        <translation type="obsolete">Kopiëren</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Plakken</translation>
+        <translation type="obsolete">Plakken</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Veld wissen</translation>
+        <translation type="obsolete">Veld wissen</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Wis aanvulgeschiedenis</translation>
+        <translation type="obsolete">Wis aanvulgeschiedenis</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -3880,11 +3888,11 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Bevestiging</translation>
+        <translation type="obsolete">Bevestiging</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Bent u zeker dat u de geschiedenis wilt wissen?</translation>
+        <translation type="obsolete">Bent u zeker dat u de geschiedenis wilt wissen?</translation>
     </message>
 </context>
 <context>
@@ -4728,6 +4736,10 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[bestanden of urls]: download de torrent doorgegeven door de gebruiker (optioneel)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

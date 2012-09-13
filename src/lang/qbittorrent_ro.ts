@@ -1379,6 +1379,10 @@ Sunteți siguri că doriți să închideți qBittorrent?</translation>
         <source>The following parameters are supported:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2573,6 +2577,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3470,23 +3478,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Tăiere</translation>
+        <translation type="obsolete">Tăiere</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copiere</translation>
+        <translation type="obsolete">Copiere</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Pune</translation>
+        <translation type="obsolete">Pune</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Ștergerea cîmpului</translation>
+        <translation type="obsolete">Ștergerea cîmpului</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Șterge istoria de completare</translation>
+        <translation type="obsolete">Șterge istoria de completare</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -3537,14 +3545,6 @@ Please install it manually.</source>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4401,6 +4401,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[files or urls]: downloads the torrents passed by the user (optional)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

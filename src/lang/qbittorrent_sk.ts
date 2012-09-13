@@ -1824,6 +1824,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>The following parameters are supported:</source>
         <translation>Nasledovné parametre sú podporované:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3106,6 +3110,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4048,23 +4056,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Vystrihnúť</translation>
+        <translation type="obsolete">Vystrihnúť</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopírovať</translation>
+        <translation type="obsolete">Kopírovať</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Vložiť</translation>
+        <translation type="obsolete">Vložiť</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Vyčistiť pole</translation>
+        <translation type="obsolete">Vyčistiť pole</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Vyčistiť históriu dopĺňania</translation>
+        <translation type="obsolete">Vyčistiť históriu dopĺňania</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4121,11 +4129,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Potvrdenie</translation>
+        <translation type="obsolete">Potvrdenie</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Ste si istý, že chcete vymazať históriu?</translation>
+        <translation type="obsolete">Ste si istý, že chcete vymazať históriu?</translation>
     </message>
 </context>
 <context>
@@ -5009,6 +5017,10 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[súbory alebo URL]: stiahne uvedené torrenty (nepovinné)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
