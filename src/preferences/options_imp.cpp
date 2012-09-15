@@ -132,13 +132,12 @@ options_imp::options_imp(QWidget *parent):
   // Connect signals / slots
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(toggleAnonymousMode(bool)));
+  connect(checkRandomPort, SIGNAL(toggled(bool)), spinPort, SLOT(setDisabled(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
   connect(comboI18n, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkAltRowColors, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  // add checkbox for random port
-  connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkShowSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -180,6 +179,7 @@ options_imp::options_imp(QWidget *parent):
   connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -363,8 +363,6 @@ void options_imp::saveOptions() {
   // General preferences
   pref.setLocale(locale);
   pref.setAlternatingRowColors(checkAltRowColors->isChecked());
-  // set random port
-  pref.setRandomPort(checkRandomPort->isChecked());
   pref.setSystrayIntegration(systrayIntegration());
   pref.setTrayIconStyle(TrayIcon::Style(comboTrayIcon->currentIndex()));
   pref.setCloseToTray(closeToTray());
@@ -418,6 +416,7 @@ void options_imp::saveOptions() {
   // End Downloads preferences
   // Connection preferences
   pref.setSessionPort(getPort());
+  pref.setRandomPort(checkRandomPort->isChecked());
   pref.setUPnPEnabled(isUPnPEnabled());
   const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
   pref.setGlobalDownloadLimit(down_up_limit.first);
@@ -534,8 +533,6 @@ void options_imp::loadOptions() {
   const Preferences pref;
   setLocale(pref.getLocale());
   checkAltRowColors->setChecked(pref.useAlternatingRowColors());
-  // get random port
-  checkRandomPort->setChecked(pref.useRandomPort());
   checkShowSystray->setChecked(pref.systrayIntegration());
   checkShowSplash->setChecked(!pref.isSlashScreenDisabled());
   if (checkShowSystray->isChecked()) {
@@ -608,6 +605,7 @@ void options_imp::loadOptions() {
   // Connection preferences
   spinPort->setValue(pref.getSessionPort());
   checkUPnP->setChecked(pref.isUPnPEnabled());
+  checkRandomPort->setChecked(pref.useRandomPort());
   intValue = pref.getGlobalDownloadLimit();
   if (intValue > 0) {
     // Enabled

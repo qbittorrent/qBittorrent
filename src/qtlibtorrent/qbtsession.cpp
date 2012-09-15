@@ -1559,7 +1559,7 @@ void QBtSession::loadSessionState() {
   // bdecode
   lazy_entry e;
 #if LIBTORRENT_VERSION_MINOR > 15
-  error_code ec;
+  libtorrent::error_code ec;
   lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
   if (!ec) {
 #else
@@ -1911,7 +1911,7 @@ void QBtSession::setListeningPort(int port) {
   Preferences pref;
   std::pair<int,int> ports(port, port);
 #if LIBTORRENT_VERSION_MINOR > 15
-  error_code ec;
+  libtorrent::error_code ec;
 #endif
   const QString iface_name = pref.getNetworkInterface();
   if (iface_name.isEmpty()) {

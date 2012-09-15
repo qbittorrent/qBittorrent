@@ -263,16 +263,6 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkRandomPort">
-                 <property name="text">
-                  <string>Use random port to communicate</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QGroupBox" name="groupBox_7">
                  <property name="font">
                   <font>
@@ -1058,6 +1048,16 @@
                    </property>
                    <property name="checked">
                     <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="checkRandomPort">
+                   <property name="text">
+                    <string>Use random port to communicate</string>
+                   </property>
+                   <property name="checked">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
