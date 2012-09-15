@@ -3089,7 +3089,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Більше інформації&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Більше інформації&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3693,6 +3697,10 @@ Would you like to update qBittorrent to version %1?</source>
         <comment>%1 is a number</comment>
         <translation>Успішно оброблено наданий фільтр IP: застосовано %1 правил.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4021,23 +4029,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Вирізати</translation>
+        <translation type="obsolete">Вирізати</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Копіювати</translation>
+        <translation type="obsolete">Копіювати</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Вставити</translation>
+        <translation type="obsolete">Вставити</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Очистити поле</translation>
+        <translation type="obsolete">Очистити поле</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Очистити історію автозавершення</translation>
+        <translation type="obsolete">Очистити історію автозавершення</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4094,11 +4102,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Підтвердження</translation>
+        <translation type="obsolete">Підтвердження</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Ви впевнені, що хочете очистити історію?</translation>
+        <translation type="obsolete">Ви впевнені, що хочете очистити історію?</translation>
     </message>
 </context>
 <context>

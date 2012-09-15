@@ -3100,7 +3100,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Ďalšie informácie&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Ďalšie informácie&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3704,6 +3708,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <comment>%1 is a number</comment>
         <translation>Poskytnutý filter IP úspešne spracovaný: %1 pravidiel bolo použitých.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4033,23 +4041,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Vystrihnúť</translation>
+        <translation type="obsolete">Vystrihnúť</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopírovať</translation>
+        <translation type="obsolete">Kopírovať</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Vložiť</translation>
+        <translation type="obsolete">Vložiť</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Vyčistiť pole</translation>
+        <translation type="obsolete">Vyčistiť pole</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Vyčistiť históriu dopĺňania</translation>
+        <translation type="obsolete">Vyčistiť históriu dopĺňania</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4106,11 +4114,11 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Potvrdenie</translation>
+        <translation type="obsolete">Potvrdenie</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Ste si istý, že chcete vymazať históriu?</translation>
+        <translation type="obsolete">Ste si istý, že chcete vymazať históriu?</translation>
     </message>
 </context>
 <context>

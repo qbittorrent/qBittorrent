@@ -3149,7 +3149,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3759,6 +3763,10 @@ Would you like to update qBittorrent to version %1?</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4081,24 +4089,24 @@ p, li { white-space: pre-wrap; }
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation>Исеци</translation>
+        <translation type="obsolete">Исеци</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Копирај</translation>
+        <translation type="obsolete">Копирај</translation>
     </message>
     <message>
         <source>Paste</source>
         <translatorcomment>Пренеси,Налепи</translatorcomment>
-        <translation>Додај</translation>
+        <translation type="obsolete">Додај</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Обриши поље</translation>
+        <translation type="obsolete">Обриши поље</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Обриши комплетну историју</translation>
+        <translation type="obsolete">Обриши комплетну историју</translation>
     </message>
     <message>
         <source>Search</source>
@@ -4171,11 +4179,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Потврђивање</translation>
+        <translation type="obsolete">Потврђивање</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Да ли сте сигурни да желите да обришете историјат?</translation>
+        <translation type="obsolete">Да ли сте сигурни да желите да обришете историјат?</translation>
     </message>
 </context>
 <context>

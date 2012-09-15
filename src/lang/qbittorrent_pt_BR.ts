@@ -3082,7 +3082,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Mais informação&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Mais informação&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3686,6 +3690,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <comment>%1 is a number</comment>
         <translation>Filtro de IP analisado com sucesso: %1 regras foram aplicadas.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4014,23 +4022,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Corta</translation>
+        <translation type="obsolete">Corta</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copia</translation>
+        <translation type="obsolete">Copia</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Cola</translation>
+        <translation type="obsolete">Cola</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Limpa campo</translation>
+        <translation type="obsolete">Limpa campo</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Limpar lista dos completados</translation>
+        <translation type="obsolete">Limpar lista dos completados</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4087,11 +4095,11 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Confirmação</translation>
+        <translation type="obsolete">Confirmação</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Deseja realmente limpar o histórico?</translation>
+        <translation type="obsolete">Deseja realmente limpar o histórico?</translation>
     </message>
 </context>
 <context>

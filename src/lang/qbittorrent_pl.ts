@@ -3066,7 +3066,11 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Więcej informacji&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Więcej informacji&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3670,6 +3674,10 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <comment>%1 is a number</comment>
         <translation>Pomyślnie przetworzono podany filtr IP: zastosowano %1 reguł.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -3999,23 +4007,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Wytnij</translation>
+        <translation type="obsolete">Wytnij</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopiuj</translation>
+        <translation type="obsolete">Kopiuj</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Wklej</translation>
+        <translation type="obsolete">Wklej</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Wyczyść pole</translation>
+        <translation type="obsolete">Wyczyść pole</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Wyczyść historię</translation>
+        <translation type="obsolete">Wyczyść historię</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4072,11 +4080,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Potwierdzenie</translation>
+        <translation type="obsolete">Potwierdzenie</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Czy na pewno wyczyścić historię?</translation>
+        <translation type="obsolete">Czy na pewno wyczyścić historię?</translation>
     </message>
 </context>
 <context>

@@ -2983,7 +2983,11 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Daha fazla bilgi&lt;/a&gt;)</translation>
+        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Daha fazla bilgi&lt;/a&gt;)</translation>
+    </message>
+    <message>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3569,6 +3573,10 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <comment>%1 is a number</comment>
         <translation>Sağlanan IP süzgeci başarıyla ayrıştırıldı: %1 kural kabul edildi.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -3897,23 +3905,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Kes</translation>
+        <translation type="obsolete">Kes</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopyala</translation>
+        <translation type="obsolete">Kopyala</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Yapıştır</translation>
+        <translation type="obsolete">Yapıştır</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Temizle</translation>
+        <translation type="obsolete">Temizle</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Tamamlanma geçmişini temizle</translation>
+        <translation type="obsolete">Tamamlanma geçmişini temizle</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -3970,11 +3978,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Doğrulama</translation>
+        <translation type="obsolete">Doğrulama</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Geçmişi temizlemek istediğinize emin misiniz?</translation>
+        <translation type="obsolete">Geçmişi temizlemek istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
