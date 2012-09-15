@@ -938,7 +938,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   }
   if (savePath.isEmpty())
     savePath = getSavePath(hash, false);
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -1127,7 +1127,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path);
   }
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
