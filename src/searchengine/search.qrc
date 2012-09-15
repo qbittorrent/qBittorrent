@@ -16,7 +16,6 @@
   <file>nova/engines/isohunt.py</file>
   <file>nova/engines/kickasstorrents.png</file>
   <file>nova/engines/kickasstorrents.py</file>
-  <file>nova/engines/limetorrents.py</file>
   <file>nova/engines/mininova.png</file>
   <file>nova/engines/mininova.py</file>
   <file>nova/engines/piratebay.png</file>
