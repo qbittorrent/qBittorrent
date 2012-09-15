@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.23
+#VERSION: 1.30
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -41,6 +41,10 @@ import sys
 import threading
 import os
 import glob
+
+if os.name == 'nt':
+	from ctypes import WINFUNCTYPE, windll, POINTER, byref, c_int
+	from ctypes.wintypes import LPWSTR, LPCWSTR
 
 THREADED = True
 CATEGORIES = ('all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books')
@@ -132,8 +136,18 @@ if __name__ == '__main__':
 	
 	if cat not in CATEGORIES:
 		raise SystemExit('Invalid category!')
-	
-	what = '+'.join(sys.argv[3:])
+
+	search_tokens = sys.argv[3:]
+	if os.name == 'nt':
+		# We need this trick on Windows to get UTF-8 encoded arguments
+		GetCommandLineW = WINFUNCTYPE(LPWSTR)(("GetCommandLineW", windll.kernel32))
+		CommandLineToArgvW = WINFUNCTYPE(POINTER(LPWSTR), LPCWSTR, POINTER(c_int)) (("CommandLineToArgvW", windll.shell32))
+		argc = c_int(0)
+		argv_unicode = CommandLineToArgvW(GetCommandLineW(), byref(argc))
+		argv = [argv_unicode[i].encode('utf-8') for i in range(0, argc.value)]
+		search_tokens = argv[3:]
+
+	what = '+'.join(search_tokens)
 	
 	threads = []
 	for engine in engines_list:
