@@ -443,6 +443,12 @@ void SearchEngine::updateNova() {
   removePythonScriptIfExists(filePath);
   QFile::copy(":/"+nova_folder+"/socks.py", filePath);
 
+  if (nova_folder == "nova") {
+    filePath = search_dir.absoluteFilePath("fix_encoding.py");
+    removePythonScriptIfExists(filePath);
+    QFile::copy(":/"+nova_folder+"/fix_encoding.py", filePath);
+  }
+
   if (nova_folder == "nova3") {
     filePath = search_dir.absoluteFilePath("sgmllib3.py");
     removePythonScriptIfExists(filePath);

@@ -26,7 +26,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-#VERSION: 1.23
+#VERSION: 1.31
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -41,6 +41,8 @@ import sys
 import threading
 import os
 import glob
+
+import fix_encoding
 
 THREADED = True
 CATEGORIES = ('all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books')
@@ -111,6 +113,9 @@ class EngineLauncher(threading.Thread):
 				self.engine.search(self.what)
 
 if __name__ == '__main__':
+	# Make sure we enforce utf-8 encoding
+	fix_encoding.fix_encoding()
+
 	if len(sys.argv) < 2:
 		raise SystemExit('./nova2.py [all|engine1[,engine2]*] <category> <keywords>\navailable engines: %s'%
 				(','.join(supported_engines)))
