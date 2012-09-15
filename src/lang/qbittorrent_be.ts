@@ -3623,24 +3623,24 @@ Do you want to install it now?</source>
         <translation>Ідзе пошук...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="486"/>
+        <location filename="../searchengine/searchengine.cpp" line="492"/>
         <source>Search Engine</source>
         <translation>Пашукавік</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="486"/>
-        <location filename="../searchengine/searchengine.cpp" line="501"/>
+        <location filename="../searchengine/searchengine.cpp" line="492"/>
+        <location filename="../searchengine/searchengine.cpp" line="507"/>
         <source>Search has finished</source>
         <translation>Пошук скончаны</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="492"/>
+        <location filename="../searchengine/searchengine.cpp" line="498"/>
         <source>An error occured during search...</source>
         <translation>Падчас пошуку ўзнікла памылка...</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="490"/>
         <location filename="../searchengine/searchengine.cpp" line="496"/>
+        <location filename="../searchengine/searchengine.cpp" line="502"/>
         <source>Search aborted</source>
         <translation>Пошук перапынены</translation>
     </message>
@@ -3657,19 +3657,19 @@ Please install it manually.</source>
 Усталюйце яго самастойна.</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="499"/>
+        <location filename="../searchengine/searchengine.cpp" line="505"/>
         <source>Search returned no results</source>
         <translation>Пошук не даў вынікаў</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="506"/>
+        <location filename="../searchengine/searchengine.cpp" line="512"/>
         <source>Results</source>
         <comment>i.e: Search results</comment>
         <translation>Вынікі</translation>
     </message>
     <message>
-        <location filename="../searchengine/searchengine.cpp" line="542"/>
         <location filename="../searchengine/searchengine.cpp" line="548"/>
+        <location filename="../searchengine/searchengine.cpp" line="554"/>
         <source>Unknown</source>
         <translation>Невядома</translation>
     </message>
@@ -4640,7 +4640,7 @@ Please install it manually.</source>
         <translation>Я ўдзячны наступным людзям, якія вызваліся перакласці qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="99"/>
+        <location filename="../about_imp.h" line="100"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Калі ласка, звяжыцеся са мной, калі жадаеце перакласці qBittorrent на сваю мову.</translation>
     </message>
@@ -5394,23 +5394,23 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">IP фільтр паспяхова прачытаны: ужыта %1 правілаў.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1327"/>
+        <location filename="../preferences/options_imp.cpp" line="1328"/>
         <source>Invalid key</source>
         <translatorcomment>Ці несапраўдны?</translatorcomment>
         <translation>Нядзейсны ключ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1327"/>
+        <location filename="../preferences/options_imp.cpp" line="1328"/>
         <source>This is not a valid SSL key.</source>
         <translation>Гэты SSL-ключ нядзейсны.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1342"/>
+        <location filename="../preferences/options_imp.cpp" line="1343"/>
         <source>Invalid certificate</source>
         <translation>Нядзейсны сертыфікат</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1342"/>
+        <location filename="../preferences/options_imp.cpp" line="1343"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Гэты SSL-сертыфікат нядзейсны.</translation>
     </message>
