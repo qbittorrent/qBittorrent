@@ -229,7 +229,7 @@ int main(int argc, char *argv[]) {
   }
   app.installTranslator(&translator);
 #ifndef DISABLE_GUI
-  if (locale.startsWith("ar")) {
+  if (locale.startsWith("ar") || locale.startsWith("he")) {
     qDebug("Right to Left mode");
     app.setLayoutDirection(Qt::RightToLeft);
   } else {
