@@ -3581,6 +3581,10 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <comment>%1 is a number</comment>
         <translation>Sağlanan IP süzgeci başarıyla ayrıştırıldı: %1 kural kabul edildi.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>

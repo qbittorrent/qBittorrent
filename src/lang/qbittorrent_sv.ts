@@ -3606,6 +3606,10 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
