@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.3
+    - BUGFIX: Fix issue with temporary directory not being taken into consideration (closes #94)
     - BUGFIX: Bypass cache when uploading a torrent file in Web UI (closes #68)
     - BUGFIX: "Completed On" column is not updated until restart (closes #84)
     - BUGFIX: Fix possible build error on some systems
