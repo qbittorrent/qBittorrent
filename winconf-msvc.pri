@@ -13,5 +13,5 @@ CONFIG(debug, debug|release) {
 }
 
 LIBS += advapi32.lib shell32.lib crypt32.lib
-LIBS += libeay32MD.lib ssleay32MD.lib
+LIBS += libeay32.lib ssleay32.lib
 LIBS += PowrProf.lib

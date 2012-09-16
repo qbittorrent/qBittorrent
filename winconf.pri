@@ -2,7 +2,7 @@
 
 #Point this to the boost include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_51_0)
-#Point this to the libtorrent include folser
+#Point this to the libtorrent include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_16/include)
 
 #Point this to the boost lib folder
