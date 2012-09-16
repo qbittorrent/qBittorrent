@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.3
+* Sun Sep 16 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.3
     - BUGFIX: Fix issue with temporary directory not being taken into consideration (closes #94)
     - BUGFIX: Address encoding issues when using search engine on Windows (closes #29)
     - BUGFIX: Bypass cache when uploading a torrent file in Web UI (closes #68)
