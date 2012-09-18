@@ -938,7 +938,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   }
   if (savePath.isEmpty())
     savePath = getSavePath(hash, false);
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -968,12 +968,6 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     return h;
   }
   Q_ASSERT(h.hash() == hash);
-
-  // If temp path is enabled, move torrent
-  if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    h.move_storage(defaultTempPath);
-  }
 
   loadTorrentSettings(h);
 
@@ -1127,7 +1121,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path);
   }
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -1154,19 +1148,6 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         fsutils::forceRemove(path);
     return h;
   }
-
-  // If temp path is enabled, move torrent
-  // XXX: The torrent is moved after the torrent_checked_alert
-  // is received to make sure we don't move a completed torrent (#602938)
-  /*if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    if (!root_folder.isEmpty()) {
-      if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-      torrent_tmp_path += root_folder;
-    }
-    h.move_storage(torrent_tmp_path);
-  }*/
 
   loadTorrentSettings(h);
 
