@@ -12,8 +12,7 @@ translations
 	qt_cs.qm
 	qt_da.qm
 	qt_de.qm
-	qt_es.qm
-	qt_fa.qm
+	qt_es.qm	
 	qt_fi.qm
 	qt_fr.qm
 	qt_gl.qm
@@ -28,8 +27,7 @@ translations
 	qt_pt.qm
 	qt_pt_BR.qm
 	qt_ru.qm
-	qt_sk.qm
-	qt_sl.qm
+	qt_sk.qm	
 	qt_sv.qm
 	qt_tr.qm
 	qt_uk.qm
