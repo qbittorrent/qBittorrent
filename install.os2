@@ -146,6 +146,11 @@ development, you can do so in one of the following ways:
 7. HISTORY
 ==========
 
+2012-09-19
+
+  * updated to 3.0.4 code level of QBittorrent
+  * updated libtorrent to 0.16.3 level
+
 2012-09-06
 
   * updated to 3.0.2 code level of QBittorrent
