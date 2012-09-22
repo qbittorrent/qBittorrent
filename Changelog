@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.4
+    - Disabling systray icon no longer disables file association settings (closes #114)
+
 * Tue Sep 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.4
     - BUGFIX: Fix issue with downloads starting from scratch on startup if temporary
       directory setting is enabled.
