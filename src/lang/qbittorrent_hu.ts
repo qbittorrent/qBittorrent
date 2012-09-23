@@ -3098,7 +3098,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2470"/>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -2467,7 +2467,7 @@
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUIInfo">
                     <property name="text">
-                     <string>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
+                     <string>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
                     </property>
                     <property name="openExternalLinks">
                      <bool>true</bool>

@@ -2460,8 +2460,8 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2470"/>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Información sobre certificados&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Información sobre certificados&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2539"/>
