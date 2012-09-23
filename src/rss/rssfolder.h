@@ -70,6 +70,7 @@ public:
   void removeAllItems();
   void renameChildFolder(const QString &old_name, const QString &new_name);
   RssFilePtr takeChild(const QString &childId);
+  void recheckRssItemsForDownload();
 
 public slots:
   virtual bool refresh();

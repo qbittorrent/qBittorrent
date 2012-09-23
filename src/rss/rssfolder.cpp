@@ -251,3 +251,12 @@ RssFilePtr RssFolder::takeChild(const QString &childId)
 {
   return m_children.take(childId);
 }
+
+void RssFolder::recheckRssItemsForDownload()
+{
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
+    it.value()->recheckRssItemsForDownload();
+  }
+}

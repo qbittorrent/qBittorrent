@@ -54,7 +54,7 @@ public:
   const QString& author() const;
   const QString& torrentUrl() const;
   const QString& link() const;
-  const QString& description() const;
+  QString description() const;
   const QDateTime& date() const;
   bool isRead() const;
   // Setters
