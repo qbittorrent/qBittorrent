@@ -2205,17 +2205,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Вісець у вобласці абвестак</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="439"/>
+        <location filename="../preferences/options.ui" line="442"/>
         <source>File association</source>
         <translation>Асацыяцыя файлаў</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="445"/>
+        <location filename="../preferences/options.ui" line="448"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Выкарыстоўваць qBittorrent для файлаў .torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="452"/>
+        <location filename="../preferences/options.ui" line="455"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Выкарыстоўваць qBittorrent для Magnet-спасылак</translation>
     </message>
@@ -3003,38 +3003,38 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="923"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1051"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1056"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1058"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1061"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1063"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; ужо ў спісе сцягванняў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1188"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; узноўлены (хуткае ўзнаўленне)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2277"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Зараз кампутар прыпыніцца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translatorcomment>Альтэрнатыва: &quot;Калі вы гэта не скасуеце, праз 15 секунд кампутар адключыцца...&quot;. Але, мяркую, найважнейшая частка &quot;Зараз кампутар адключыцца&quot; павінна стаяць першай.</translatorcomment>
         <translation>Зараз кампутар адключыцца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2253"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>Зараз qBittorrent закрыецца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2798"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP фільтр паспяхова прачытаны: ужыта %1 правілаў.</translation>
@@ -3045,14 +3045,14 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">IP фільтр паспяхова прачытаны: ужыта %1 правілаў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2804"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Памылка: не атрымалася прачытаць гэты IP-фільтр.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="983"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="988"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1190"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; дададзены да спісу сцягванняў.</translation>
@@ -3073,147 +3073,148 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Выяўленне лакальных піраў [Укл]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1019"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1027"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1029"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1024"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1032"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1034"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Не атрымалася дэкадаваць Torrent-файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1038"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Альбо файл пашкоджаны, альбо гэта не Torrent-файл.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1074"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1079"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Памылка: торэнт %1 не змяшчае ніводнага файла.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1329"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Заўвага: да існуючага торэнта дададзены новыя трэкеры.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1359"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1387"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Заўвага: да існуючага торэнта дададзены новыя адрасы сідаў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1701"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1729"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;заблакаваны ў адпаведнасці з IP-фільтрам&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1703"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1731"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;заблакаваны з-за пашкоджаных кавалкаў&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1891"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Вызначаны сеткавы інтэрфэйс недапушчальны: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>Trying any other network interface available instead.</source>
         <translation>Выконваецца спроба выкарыстаць іншы сеткавы інтэрфэйс.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1915"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Праслухоўванне IP адраса %1 на сеткавым інтэрфэйсе %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Не атрымалася праслухаць сеткавы інтэрфэйс %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2099"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2101"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>У торэнт %2 убудавана рэкурсіўнае сцягванне файла %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2196"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Не атрымалася дэкадаваць Torrent-файл %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2146"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2174"/>
         <source>Torrent name: %1</source>
         <translation>Імя торэнта: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2147"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
         <source>Torrent size: %1</source>
         <translation>Памер торэнта: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2148"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
         <source>Save path: %1</source>
         <translation>Шлях захавання: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2177"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Торэнт быў сцягнуты за %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Дзякуй, што выкарыстоўваеце qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2153"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2181"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] Сцягванне %1 скончана</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2388"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2416"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Памылка ўводу/вываду. &apos;%1&apos; спынены.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2389"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2417"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>Reason: %1</source>
         <translation>Прычына: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2464"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: не атрымалася перанакіраваць парты, паведамленне: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2469"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: перанакіраванне партаў паспяхова адбылося, паведамленне: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Разыходжанне памераў файлаў торэнта %1, торэнт спынены.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2499"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Хуткае аднаўленне даных торэнта %1 не атрымалася, новая праверка...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2505"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2533"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Не знайшлося сіда па адрасу: %1, паведамленне: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2628"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2656"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сцягванне &apos;%1&apos;, калі ласка, пачакайце...</translation>
@@ -3447,7 +3448,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="339"/>
+        <location filename="../rss/rssfeed.cpp" line="327"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Аўтаматычна сцягнуць торэнт %1 з RSS-стужкі %2...</translation>
     </message>
@@ -5210,13 +5211,13 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Сцягванні</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="371"/>
+        <location filename="../misc.cpp" line="387"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1г %2хв</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="376"/>
+        <location filename="../misc.cpp" line="392"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1дз %2г</translation>
@@ -5237,13 +5238,13 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Невядома</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="362"/>
+        <location filename="../misc.cpp" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1хв</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="366"/>
+        <location filename="../misc.cpp" line="382"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1хв</translation>

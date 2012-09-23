@@ -2109,17 +2109,17 @@ qBittorrent をバージョン %1 へアップデートしますか?</translatio
         <translation>qBittorrent を通知エリアに表示する</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="439"/>
+        <location filename="../preferences/options.ui" line="442"/>
         <source>File association</source>
         <translation>ファイルの関連付け</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="445"/>
+        <location filename="../preferences/options.ui" line="448"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>.torrent ファイルに qBittorrent for を使用する</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="452"/>
+        <location filename="../preferences/options.ui" line="455"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>マグネットリンクに qBittorrent を使用する</translation>
     </message>
@@ -2906,30 +2906,30 @@ qBittorrent をバージョン %1 へアップデートしますか?</translatio
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="923"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1051"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1056"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1058"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1061"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1063"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; はすでにダウンロードリストにあります。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1188"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2798"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP フィルターの解析に成功しました: %1 ルールが適用されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="983"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="988"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1190"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; がダウンロードリストに追加されました。</translation>
@@ -2955,167 +2955,168 @@ qBittorrent をバージョン %1 へアップデートしますか?</translatio
         <translation>ローカルピア検出 [オン]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1019"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1027"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1029"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1024"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1032"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1034"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1038"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>このファイルは壊れているか Torrent ではないかのどちらかです。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1074"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1079"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>エラー: Torrent %1 にはファイルが含まれていません。</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1329"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>メモ: 新しいトラッカーが既存の Torrent に追加されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1359"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1387"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>メモ: 新しい URI シードが既存の Torrent に追加されました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1701"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1729"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;は IP フィルターによってブロックされました。&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1703"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1731"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;は破壊されたピースであるためアク禁になりました&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1891"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>定義されたネットワークインターフェイスが正しくありません: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>Trying any other network interface available instead.</source>
         <translation>ほかのネットワークインターフェイスの利用を試みます。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1915"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>ネットワークインターフェイス %2、IP アドレス %1 で待ち受けています...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
         <source>Failed to listen on network interface %1</source>
         <translation>ネットワークインターフェイス %1 での待受に失敗しました</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2099"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2101"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Torrent %2 に埋めこまれたファイル %1 の再帰ダウンロード</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2196"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 Torrent ファイルをデコードできません。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2249"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2277"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければ コンピューターはスリープモードに遷移します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2251"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければコンピューターは停止します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2253"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>15 秒以内にキャンセルされなければ、 qBittorrent は終了します...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2804"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>エラー: 与えられた IP フィルターの解析に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2146"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2174"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2147"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
         <source>Torrent size: %1</source>
         <translation>Torrent サイズ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2148"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
         <source>Save path: %1</source>
         <translation>保存先パス: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2149"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2177"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent は %1 でダウンロードされました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2150"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>qBittorrent をご利用いただきありがとうございます。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2153"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2181"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 はダウンロードが完了しました</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2388"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2416"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>I/O error が発生しました。 &apos;%1&apos; は停止しました。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2389"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2500"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2417"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>Reason: %1</source>
         <translation>理由: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2464"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに失敗しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2469"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: ポートマッピングに成功しました。メッセージ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2495"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Torrent %1 のファイルサイズが一致しません。停止します。</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2499"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>高速再開データは Torrent %1 を拒絶しました。再度チェックしています...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2505"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2533"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>次の url の url シードの参照に失敗しました: %1、メッセージ: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2628"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2656"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
@@ -3347,7 +3348,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="339"/>
+        <location filename="../rss/rssfeed.cpp" line="327"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>%1 Torrent を %2 RSS フィードから自動的にダウンロードしています...</translation>
     </message>
@@ -5000,13 +5001,13 @@ However, those plugins were disabled.</source>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="371"/>
+        <location filename="../misc.cpp" line="387"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1時間 %2分</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="376"/>
+        <location filename="../misc.cpp" line="392"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1日 %2時間</translation>
@@ -5023,13 +5024,13 @@ However, those plugins were disabled.</source>
         <translation>すべてのダウンロードが完了したので qBittorrent はコンピューターをシャットダウンします。</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="362"/>
+        <location filename="../misc.cpp" line="378"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 分</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="366"/>
+        <location filename="../misc.cpp" line="382"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分</translation>
