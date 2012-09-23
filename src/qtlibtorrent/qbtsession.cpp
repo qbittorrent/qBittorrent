@@ -913,6 +913,11 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   if (s->find_torrent(QStringToSha1(hash)).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+    // Check if the torrent contains trackers or url seeds we don't know about
+    // and add them
+    QTorrentHandle h_ex = getTorrentHandle(hash);
+    mergeTorrents(h_ex, magnet_uri);
+
     return h;
   }
 
@@ -1291,6 +1296,29 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
     TorrentPersistentData::saveTorrentPersistentData(h, QString::null, magnet);
   else
     TorrentPersistentData::saveTorrentPersistentData(h, savePath, magnet);
+}
+
+void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
+{
+  QList<QUrl> new_trackers = misc::magnetUriToTrackers(magnet_uri);
+  bool trackers_added = false;
+  foreach (const QUrl& new_tracker, new_trackers) {
+    bool found = false;
+    std::vector<announce_entry> existing_trackers = h_ex.trackers();
+    foreach (const announce_entry& existing_tracker, existing_trackers) {
+      if (new_tracker == QUrl(existing_tracker.url.c_str())) {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      h_ex.add_tracker(announce_entry(new_tracker.toString().toStdString()));
+      trackers_added = true;
+    }
+  }
+  if (trackers_added)
+    addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
 }
 
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {

@@ -42,6 +42,7 @@
 #include <QPoint>
 #include <QFile>
 #include <QDir>
+#include <QUrl>
 #include <QCoreApplication>
 #ifndef DISABLE_GUI
 #include <QIcon>
@@ -99,8 +100,9 @@ public:
   // value must be given in bytes
   static QString friendlyUnit(qreal val, bool is_speed = false);
   static bool isPreviewable(QString extension);
-  static QString magnetUriToName(QString magnet_uri);
-  static QString magnetUriToHash(QString magnet_uri);
+  static QString magnetUriToName(const QString& magnet_uri);
+  static QString magnetUriToHash(const QString& magnet_uri);
+  static QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
   static QString bcLinkToMagnet(QString bc_link);
   // Take a number of seconds and return an user-friendly
   // time duration like "1d 2h 10m".
