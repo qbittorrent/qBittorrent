@@ -191,7 +191,8 @@ private slots:
   void sendNotificationEmail(const QTorrentHandle &h);
   void autoRunExternalProgram(const QTorrentHandle &h, bool async=true);
   void cleanUpAutoRunProcess(int);
-  void mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
+  void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
+  void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
   void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
   void initWebUi();
   void handleIPFilterParsed(int ruleCount);
