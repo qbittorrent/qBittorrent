@@ -54,9 +54,9 @@ TorrentContentModel* TorrentContentFilterModel::model() const
   return m_model;
 }
 
-TorrentContentModelItem::FileType TorrentContentFilterModel::getType(const QModelIndex& index) const
+TorrentContentModelItem::ItemType TorrentContentFilterModel::itemType(const QModelIndex& index) const
 {
-  return m_model->getType(mapToSource(index));
+  return m_model->itemType(mapToSource(index));
 }
 
 int TorrentContentFilterModel::getFileIndex(const QModelIndex& index) const
@@ -74,7 +74,7 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex& child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
 {
-  if (m_model->getType(m_model->index(source_row, 0, source_parent)) == TorrentContentModelItem::FOLDER) {
+  if (m_model->itemType(m_model->index(source_row, 0, source_parent)) == TorrentContentModelItem::FolderType) {
     // always accept folders, since we want to filter their children
     return true;
   }

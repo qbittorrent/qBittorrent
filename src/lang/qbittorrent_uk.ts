@@ -1809,6 +1809,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>The following parameters are supported:</source>
         <translation>Підтримуються наступні параметри:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3064,8 +3068,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ключ:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Інформація про сертифікати&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Інформація про сертифікати&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3093,6 +3097,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3697,6 +3705,10 @@ Would you like to update qBittorrent to version %1?</source>
         <comment>%1 is a number</comment>
         <translation>Успішно оброблено наданий фільтр IP: застосовано %1 правил.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4036,23 +4048,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Вирізати</translation>
+        <translation type="obsolete">Вирізати</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Копіювати</translation>
+        <translation type="obsolete">Копіювати</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Вставити</translation>
+        <translation type="obsolete">Вставити</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Очистити поле</translation>
+        <translation type="obsolete">Очистити поле</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Очистити історію автозавершення</translation>
+        <translation type="obsolete">Очистити історію автозавершення</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -4109,11 +4121,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Підтвердження</translation>
+        <translation type="obsolete">Підтвердження</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Ви впевнені, що хочете очистити історію?</translation>
+        <translation type="obsolete">Ви впевнені, що хочете очистити історію?</translation>
     </message>
 </context>
 <context>
@@ -4997,6 +5009,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[файли або URL&apos;и]: завантажує торренти, вказані користувачем (необов&apos;язково)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

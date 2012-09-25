@@ -414,6 +414,8 @@ void QBtSession::configureSession() {
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
     addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
+  } else {
+    addConsoleMessage(tr("Anonymous mode [OFF]"), "blue");
   }
 #endif
   // Queueing System
@@ -869,11 +871,16 @@ bool QBtSession::loadFastResumeData(const QString &hash, std::vector<char> &buf)
   const QString fastresume_path = QDir(fsutils::BTBackupLocation()).absoluteFilePath(hash+QString(".fastresume"));
   qDebug("Trying to load fastresume data: %s", qPrintable(fastresume_path));
   QFile fastresume_file(fastresume_path);
-  if (!fastresume_file.open(QIODevice::ReadOnly)) return false;
+  if (fastresume_file.size() <= 0)
+    return false;
+  if (!fastresume_file.open(QIODevice::ReadOnly))
+    return false;
   const QByteArray content = fastresume_file.readAll();
   const int content_size = content.size();
+  Q_ASSERT(content_size > 0);
   buf.resize(content_size);
   memcpy(&buf[0], content.data(), content_size);
+  fastresume_file.close();
   return true;
 }
 
@@ -914,6 +921,11 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   if (s->find_torrent(QStringToSha1(hash)).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+    // Check if the torrent contains trackers or url seeds we don't know about
+    // and add them
+    QTorrentHandle h_ex = getTorrentHandle(hash);
+    mergeTorrents(h_ex, magnet_uri);
+
     return h;
   }
 
@@ -931,7 +943,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   }
   if (savePath.isEmpty())
     savePath = getSavePath(hash, false);
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -961,12 +973,6 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     return h;
   }
   Q_ASSERT(h.hash() == hash);
-
-  // If temp path is enabled, move torrent
-  if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    h.move_storage(defaultTempPath);
-  }
 
   loadTorrentSettings(h);
 
@@ -1120,7 +1126,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path);
   }
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -1147,19 +1153,6 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         fsutils::forceRemove(path);
     return h;
   }
-
-  // If temp path is enabled, move torrent
-  // XXX: The torrent is moved after the torrent_checked_alert
-  // is received to make sure we don't move a completed torrent (#602938)
-  /*if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    if (!root_folder.isEmpty()) {
-      if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-      torrent_tmp_path += root_folder;
-    }
-    h.move_storage(torrent_tmp_path);
-  }*/
 
   loadTorrentSettings(h);
 
@@ -1311,6 +1304,29 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
     TorrentPersistentData::saveTorrentPersistentData(h, QString::null, magnet);
   else
     TorrentPersistentData::saveTorrentPersistentData(h, savePath, magnet);
+}
+
+void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
+{
+  QList<QUrl> new_trackers = misc::magnetUriToTrackers(magnet_uri);
+  bool trackers_added = false;
+  foreach (const QUrl& new_tracker, new_trackers) {
+    bool found = false;
+    std::vector<announce_entry> existing_trackers = h_ex.trackers();
+    foreach (const announce_entry& existing_tracker, existing_trackers) {
+      if (new_tracker == QUrl(existing_tracker.url.c_str())) {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      h_ex.add_tracker(announce_entry(new_tracker.toString().toStdString()));
+      trackers_added = true;
+    }
+  }
+  if (trackers_added)
+    addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
 }
 
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {

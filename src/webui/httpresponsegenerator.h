@@ -37,7 +37,7 @@
 class HttpResponseGenerator : public QHttpResponseHeader
 {
 
-	public:
+public:
     void setMessage(const QByteArray& message);
     void setMessage(const QString& message);
     void setContentTypeByExt(const QString& ext);

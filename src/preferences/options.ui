@@ -176,7 +176,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-161</y>
              <width>486</width>
              <height>638</height>
             </rect>
@@ -433,27 +433,27 @@
                     </item>
                    </layout>
                   </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupFileAssociation">
+                 <property name="title">
+                  <string>File association</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_28">
                   <item>
-                   <widget class="QGroupBox" name="groupFileAssociation">
-                    <property name="title">
-                     <string>File association</string>
+                   <widget class="QCheckBox" name="checkAssociateTorrents">
+                    <property name="text">
+                     <string>Use qBittorrent for .torrent files</string>
                     </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_28">
-                     <item>
-                      <widget class="QCheckBox" name="checkAssociateTorrents">
-                       <property name="text">
-                        <string>Use qBittorrent for .torrent files</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QCheckBox" name="checkAssociateMagnetLinks">
-                       <property name="text">
-                        <string>Use qBittorrent for magnet links</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkAssociateMagnetLinks">
+                    <property name="text">
+                     <string>Use qBittorrent for magnet links</string>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -508,8 +508,8 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-373</y>
-             <width>486</width>
+             <y>0</y>
+             <width>482</width>
              <height>1025</height>
             </rect>
            </property>
@@ -1459,7 +1459,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>395</width>
+             <width>359</width>
              <height>480</height>
             </rect>
            </property>
@@ -2467,7 +2467,7 @@
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUIInfo">
                     <property name="text">
-                     <string>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
+                     <string>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</string>
                     </property>
                     <property name="openExternalLinks">
                      <bool>true</bool>
@@ -2659,8 +2659,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>74</width>
+             <height>24</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

@@ -723,6 +723,8 @@ void options_imp::loadOptions() {
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
 #if LIBTORRENT_VERSION_MINOR > 15
   checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
+  /* make sure ui matches options */
+  toggleAnonymousMode(checkAnonymousMode->isChecked());
 #endif
   // Ratio limit
   floatValue = pref.getGlobalMaxRatio();
@@ -1293,6 +1295,7 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Ukrainian: return QString::fromUtf8("Українська");
   case QLocale::Russian: return QString::fromUtf8("Русский");
   case QLocale::Japanese: return QString::fromUtf8("日本語");
+  case QLocale::Hebrew: return QString::fromUtf8("עברית");
   case QLocale::Arabic: return QString::fromUtf8("عربي");
   case QLocale::Georgian: return QString::fromUtf8("ქართული");
   case QLocale::Byelorussian: return QString::fromUtf8("Беларуская");

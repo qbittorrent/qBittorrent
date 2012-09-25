@@ -234,13 +234,12 @@ void PropertiesWidget::updateTorrentInfos(const QTorrentHandle& _h) {
   }
 }
 
-void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
+void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
+{
   clear();
   h = _h;
-  if (!h.is_valid()) {
-    clear();
+  if (!h.is_valid())
     return;
-  }
 
   try {
     // Save path
@@ -260,10 +259,10 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle &_h) {
       // List files in torrent
       PropListModel->model()->setupModelData(h.get_torrent_info());
       filesList->setExpanded(PropListModel->index(0, 0), true);
+      // Load file priorities
+      PropListModel->model()->updateFilesPriorities(h.file_priorities());
     }
-  } catch(invalid_handle& e) {
-
-  }
+  } catch(const invalid_handle& e) { }
   // Load dynamic data
   loadDynamicData();
 }
@@ -391,8 +390,11 @@ void PropertiesWidget::loadDynamicData() {
         filesList->setUpdatesEnabled(false);
         std::vector<size_type> fp;
         h.file_progress(fp);
-        PropListModel->model()->updateFilesPriorities(h.file_priorities());
         PropListModel->model()->updateFilesProgress(fp);
+        // XXX: We don't update file priorities regularly for performance
+        // reasons. This means that priorities will not be updated if
+        // set from the Web UI.
+        // PropListModel->model()->updateFilesPriorities(h.file_priorities());
         filesList->setUpdatesEnabled(true);
       }
     }
@@ -415,7 +417,7 @@ void PropertiesWidget::loadUrlSeeds() {
 void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
   if (!index.isValid()) return;
   if (!h.is_valid() || !h.has_metadata()) return;
-  if (PropListModel->getType(index) == TorrentContentModelItem::TFILE) {
+  if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
     const QString filename = h.filepath_at(i);
@@ -517,7 +519,7 @@ void PropertiesWidget::renameSelectedFile() {
                            QMessageBox::Ok);
       return;
     }
-    if (PropListModel->getType(index) == TorrentContentModelItem::TFILE) {
+    if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if (!h.is_valid() || !h.has_metadata()) return;

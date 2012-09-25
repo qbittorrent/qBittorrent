@@ -38,6 +38,8 @@
 #include <libtorrent/torrent_info.hpp>
 #include "torrentcontentmodelitem.h"
 
+class TorrentContentModelFile;
+
 class TorrentContentModel:  public QAbstractItemModel {
   Q_OBJECT
 
@@ -51,7 +53,7 @@ public:
   bool allFiltered() const;
   virtual int columnCount(const QModelIndex &parent=QModelIndex()) const;
   virtual bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
-  TorrentContentModelItem::FileType getType(const QModelIndex& index) const;
+  TorrentContentModelItem::ItemType itemType(const QModelIndex& index) const;
   int getFileIndex(const QModelIndex& index);
   virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
   virtual Qt::ItemFlags flags(const QModelIndex& index) const;
@@ -70,8 +72,8 @@ public slots:
   void selectNone();
 
 private:
-  TorrentContentModelItem *m_rootItem;
-  QVector<TorrentContentModelItem *> m_filesIndex;
+  TorrentContentModelFolder* m_rootItem;
+  QVector<TorrentContentModelFile*> m_filesIndex;
 };
 
 #endif // TORRENTCONTENTMODEL_H

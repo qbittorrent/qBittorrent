@@ -123,6 +123,8 @@ nox {
               transferlistfilterswidget.h \
               torrentcontentmodel.h \
               torrentcontentmodelitem.h \
+              torrentcontentmodelfolder.h \
+              torrentcontentmodelfile.h \
               torrentcontentfiltermodel.h \
               deletionconfirmationdlg.h \
               statusbar.h \
@@ -148,6 +150,8 @@ nox {
              transferlistwidget.cpp \
              torrentcontentmodel.cpp \
              torrentcontentmodelitem.cpp \
+             torrentcontentmodelfolder.cpp \
+             torrentcontentmodelfile.cpp \
              torrentcontentfiltermodel.cpp \
              sessionapplication.cpp \
              torrentimportdlg.cpp \
@@ -229,4 +233,5 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_lt.ts \
                $$LANG_PATH/qbittorrent_ka.ts \
                $$LANG_PATH/qbittorrent_be.ts \
-               $$LANG_PATH/qbittorrent_eu.ts
+               $$LANG_PATH/qbittorrent_eu.ts \
+               $$LANG_PATH/qbittorrent_he.ts

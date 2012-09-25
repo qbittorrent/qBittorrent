@@ -1722,6 +1722,10 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <source>The following parameters are supported:</source>
         <translation>İzleyen değiştirgeler destekleniyor:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -2958,8 +2962,8 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <translation>Anahtar:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Sertifikalar hakkında bilgi&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Sertifikalar hakkında bilgi&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -2987,6 +2991,10 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3573,6 +3581,10 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <comment>%1 is a number</comment>
         <translation>Sağlanan IP süzgeci başarıyla ayrıştırıldı: %1 kural kabul edildi.</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -3912,23 +3924,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cut</source>
-        <translation>Kes</translation>
+        <translation type="obsolete">Kes</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopyala</translation>
+        <translation type="obsolete">Kopyala</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>Yapıştır</translation>
+        <translation type="obsolete">Yapıştır</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>Temizle</translation>
+        <translation type="obsolete">Temizle</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>Tamamlanma geçmişini temizle</translation>
+        <translation type="obsolete">Tamamlanma geçmişini temizle</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -3985,11 +3997,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Doğrulama</translation>
+        <translation type="obsolete">Doğrulama</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>Geçmişi temizlemek istediğinize emin misiniz?</translation>
+        <translation type="obsolete">Geçmişi temizlemek istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -4878,6 +4890,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[dosya ya da url]: kullanıcı tarafından seçilen torentleri indirir (seçime bağlı)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

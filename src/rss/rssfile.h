@@ -65,6 +65,7 @@ public:
   virtual RssArticleList unreadArticleListByDateDesc() const = 0;
   virtual void removeAllSettings() = 0;
   virtual void saveItemsToDisk() = 0;
+  virtual void recheckRssItemsForDownload() = 0;
   QStringList pathHierarchy() const;
 
 protected:

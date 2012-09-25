@@ -80,8 +80,9 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Georgian:</u> Beqa Arabuli (arabulibeqa@yahoo.com)</li>\
           <li><u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net)</li>\
           <li><u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)</li>\
+          <li><u>Hebrew:</u> David Deutsch (d.deffo@gmail.com)</li>\
           <li><u>Hungarian:</u> Majoros Péter (majoros.peterj@gmail.com)</li>\
-          <li><u>Italian:</u> Matteo Sechi (bu17714@gmail.com)</li>\
+          <li><u>Italian:</u> bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)</li>\
           <li><u>Japanese:</u> Masato Hashimoto (cabezon.hashimoto@gmail.com)</li>\
           <li><u>Korean:</u> Jin Woo Sin (jin828sin@users.sourceforge.net)</li>\
           <li><u>Lithuanian:</u> Naglis Jonaitis (njonaitis@gmail.com)</li>\

@@ -88,12 +88,12 @@
 */
 QtLockedFile::QtLockedFile()
     : QFile()
+    , m_lock_mode(NoLock)
 {
 #ifdef Q_OS_WIN
     wmutex = 0;
     rmutex = 0;
 #endif
-    m_lock_mode = NoLock;
 }
 
 /*!
@@ -105,12 +105,12 @@ QtLockedFile::QtLockedFile()
 */
 QtLockedFile::QtLockedFile(const QString &name)
     : QFile(name)
+    , m_lock_mode(NoLock)
 {
 #ifdef Q_OS_WIN
     wmutex = 0;
     rmutex = 0;
 #endif
-    m_lock_mode = NoLock;
 }
 
 /*!

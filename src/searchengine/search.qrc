@@ -1,55 +1,56 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
+  <file>nova/fix_encoding.py</file>
+  <file>nova/helpers.py</file>
   <file>nova/nova2.py</file>
+  <file>nova/nova2dl.py</file>
   <file>nova/novaprinter.py</file>
   <file>nova/socks.py</file>
-  <file>nova/nova2dl.py</file>
-  <file>nova/helpers.py</file>
-  <file>nova/engines/vertor.png</file>
+  <file>nova/engines/btdigg.png</file>
+  <file>nova/engines/btdigg.py</file>
+  <file>nova/engines/btjunkie.png</file>
+  <file>nova/engines/btjunkie.py</file>
+  <file>nova/engines/extratorrent.png</file>
+  <file>nova/engines/extratorrent.py</file>
+  <file>nova/engines/isohunt.png</file>
+  <file>nova/engines/isohunt.py</file>
   <file>nova/engines/kickasstorrents.png</file>
+  <file>nova/engines/kickasstorrents.py</file>
   <file>nova/engines/mininova.png</file>
   <file>nova/engines/mininova.py</file>
-  <file>nova/engines/torrentdownloads.png</file>
-  <file>nova/engines/isohunt.png</file>
-  <file>nova/engines/torrentreactor.py</file>
-  <file>nova/engines/btjunkie.png</file>
-  <file>nova/engines/extratorrent.py</file>
+  <file>nova/engines/piratebay.png</file>
   <file>nova/engines/piratebay.py</file>
+  <file>nova/engines/torrentdownloads.png</file>
   <file>nova/engines/torrentdownloads.py</file>
   <file>nova/engines/torrentreactor.png</file>
-  <file>nova/engines/isohunt.py</file>
-  <file>nova/engines/btdigg.py</file>
-  <file>nova/engines/btjunkie.py</file>
-  <file>nova/engines/kickasstorrents.py</file>
-  <file>nova/engines/extratorrent.png</file>
-  <file>nova/engines/piratebay.png</file>
+  <file>nova/engines/torrentreactor.py</file>
+  <file>nova/engines/vertor.png</file>
   <file>nova/engines/vertor.py</file>
-  <file>nova/engines/btdigg.png</file>
-  <file>nova3/sgmllib3.py</file>
-  <file>nova3/nova2.py</file>
-  <file>nova3/novaprinter.py</file>
-  <file>nova3/socks.py</file>
-  <file>nova3/nova2dl.py</file>
   <file>nova3/helpers.py</file>
-  <file>nova3/engines/vertor.png</file>
+  <file>nova3/nova2.py</file>
+  <file>nova3/nova2dl.py</file>
+  <file>nova3/novaprinter.py</file>
+  <file>nova3/sgmllib3.py</file>
+  <file>nova3/socks.py</file>
+  <file>nova3/engines/btdigg.png</file>
+  <file>nova3/engines/btdigg.py</file>
+  <file>nova3/engines/btjunkie.png</file>
+  <file>nova3/engines/btjunkie.py</file>
+  <file>nova3/engines/extratorrent.png</file>
+  <file>nova3/engines/extratorrent.py</file>
+  <file>nova3/engines/isohunt.png</file>
+  <file>nova3/engines/isohunt.py</file>
   <file>nova3/engines/kickasstorrents.png</file>
+  <file>nova3/engines/kickasstorrents.py</file>
   <file>nova3/engines/mininova.png</file>
   <file>nova3/engines/mininova.py</file>
-  <file>nova3/engines/torrentdownloads.png</file>
-  <file>nova3/engines/isohunt.png</file>
-  <file>nova3/engines/torrentreactor.py</file>
-  <file>nova3/engines/btjunkie.png</file>
-  <file>nova3/engines/extratorrent.py</file>
+  <file>nova3/engines/piratebay.png</file>
   <file>nova3/engines/piratebay.py</file>
+  <file>nova3/engines/torrentdownloads.png</file>
   <file>nova3/engines/torrentdownloads.py</file>
   <file>nova3/engines/torrentreactor.png</file>
-  <file>nova3/engines/isohunt.py</file>
-  <file>nova3/engines/btdigg.py</file>
-  <file>nova3/engines/btjunkie.py</file>
-  <file>nova3/engines/kickasstorrents.py</file>
-  <file>nova3/engines/extratorrent.png</file>
-  <file>nova3/engines/piratebay.png</file>
+  <file>nova3/engines/torrentreactor.py</file>
+  <file>nova3/engines/vertor.png</file>
   <file>nova3/engines/vertor.py</file>
-  <file>nova3/engines/btdigg.png</file>
 </qresource>
 </RCC>

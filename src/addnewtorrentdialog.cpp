@@ -402,7 +402,7 @@ void AddNewTorrentDialog::renameSelectedFile()
                            QMessageBox::Ok);
       return;
     }
-    if (m_contentModel->getType(index) == TorrentContentModelItem::TFILE) {
+    if (m_contentModel->itemType(index) == TorrentContentModelItem::FileType) {
       // File renaming
       const int file_index = m_contentModel->getFileIndex(index);
       QString old_name = m_filesPath.at(file_index);

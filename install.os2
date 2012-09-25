@@ -67,7 +67,7 @@ ZIP Installation:
 klibc
 -----
 
-  1. Download klibc 0.6.4 or better (see http://svn.netlabs.org/libc for more information)
+  1. Download klibc 0.6.5 or better (see http://svn.netlabs.org/libc for more information)
   2. Install the files to your libpath eg x:\ecs\dll
 
 openssl 1.0
@@ -145,6 +145,19 @@ development, you can do so in one of the following ways:
 
 7. HISTORY
 ==========
+
+2012-09-19
+
+  * updated to 3.0.4 code level of QBittorrent
+  * updated libtorrent to 0.16.3 level
+
+2012-09-06
+
+  * updated to 3.0.2 code level of QBittorrent
+
+2012-05-14
+
+  * updated to 2.9.8 code level of QBittorrent
 
 2012-03-15
 

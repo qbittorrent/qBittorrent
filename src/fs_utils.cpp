@@ -401,7 +401,7 @@ QString fsutils::QDesktopServicesDataLocation() {
 }
 
 QString fsutils::QDesktopServicesCacheLocation() {
-#ifdef Q_WS_WIN
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   return QDesktopServicesDataLocation() + QLatin1String("\\cache");
 #else
 #ifdef Q_WS_MAC
@@ -445,6 +445,9 @@ QString fsutils::QDesktopServicesDownloadLocation() {
   QString user_dirs_file = config_path + "/user-dirs.dirs";
   if (QFile::exists(user_dirs_file)) {
     QSettings settings(user_dirs_file, QSettings::IniFormat);
+    // We need to force UTF-8 encoding here since this is not
+    // the default for Ini files.
+    settings.setIniCodec("UTF-8");
     QString xdg_download_dir = settings.value("XDG_DOWNLOAD_DIR").toString();
     if (!xdg_download_dir.isEmpty()) {
       // Resolve $HOME environment variables

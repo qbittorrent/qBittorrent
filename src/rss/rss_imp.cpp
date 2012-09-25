@@ -761,6 +761,8 @@ void RSSImp::on_rssDownloaderBtn_clicked()
 {
   AutomatedRssDownloader dlg(m_rssManager, this);
   dlg.exec();
-  if (dlg.isRssDownloaderEnabled())
+  if (dlg.isRssDownloaderEnabled()) {
+    m_rssManager->recheckRssItemsForDownload();
     refreshAllFeeds();
+  }
 }

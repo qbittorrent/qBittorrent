@@ -44,6 +44,7 @@
 class DownloadThread;
 class SearchEngine;
 class MainWindow;
+class LineEdit;
 
 QT_BEGIN_NAMESPACE
 class QTimer;
@@ -99,15 +100,11 @@ protected slots:
   void searchFinished(int exitcode,QProcess::ExitStatus);
   void readSearchOutput();
   void searchStarted();
-  void startSearchHistory();
   void updateNova();
-  void saveSearchHistory();
   void on_enginesButton_clicked();
   void propagateSectionResized(int index, int oldsize , int newsize);
   void saveResultsColumnsWidth();
   void downloadFinished(int exitcode, QProcess::ExitStatus);
-  void displayPatternContextMenu(QPoint);
-  void createCompleter();
   void fillCatCombobox();
   void searchTextEdited(QString);
 #ifdef Q_WS_WIN
@@ -122,14 +119,13 @@ private slots:
 
 private:
   // Search related
+  LineEdit* search_pattern;
   QProcess *searchProcess;
   QList<QProcess*> downloaders;
   bool search_stopped;
   bool no_search_results;
   QByteArray search_result_line_truncated;
   unsigned long nb_search_results;
-  QPointer<QCompleter> searchCompleter;
-  QStringListModel searchHistory;
   SupportedEngines *supported_engines;
   QTimer *searchTimeout;
   QPointer<SearchTab> currentSearchTab;

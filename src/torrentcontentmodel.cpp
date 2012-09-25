@@ -32,11 +32,13 @@
 #include "misc.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
+#include "torrentcontentmodelfolder.h"
+#include "torrentcontentmodelfile.h"
 #include <QDir>
 
 TorrentContentModel::TorrentContentModel(QObject *parent):
   QAbstractItemModel(parent),
-    m_rootItem(new TorrentContentModelItem(QList<QVariant>() << tr("Name") << tr("Size")
+    m_rootItem(new TorrentContentModelFolder(QList<QVariant>() << tr("Name") << tr("Size")
                                          << tr("Progress") << tr("Priority")))
 {
 }
@@ -48,39 +50,48 @@ TorrentContentModel::~TorrentContentModel()
 
 void TorrentContentModel::updateFilesProgress(const std::vector<libtorrent::size_type>& fp)
 {
-  emit layoutAboutToBeChanged();
   Q_ASSERT(m_filesIndex.size() == (int)fp.size());
-  if (m_filesIndex.size() != (int)fp.size()) return;
-  for (uint i=0; i<fp.size(); ++i) {
+  // XXX: Why is this necessary?
+  if (m_filesIndex.size() != (int)fp.size())
+    return;
+
+  emit layoutAboutToBeChanged();
+  for (uint i = 0; i < fp.size(); ++i) {
     m_filesIndex[i]->setProgress(fp[i]);
   }
+  // Update folders progress in the tree
+  m_rootItem->recalculateProgress();
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
 }
 
-void TorrentContentModel::updateFilesPriorities(const std::vector<int> &fprio)
+void TorrentContentModel::updateFilesPriorities(const std::vector<int>& fprio)
 {
-  emit layoutAboutToBeChanged();
   Q_ASSERT(m_filesIndex.size() == (int)fprio.size());
-  if (m_filesIndex.size() != (int)fprio.size()) return;
-  for (uint i=0; i<fprio.size(); ++i) {
+  // XXX: Why is this necessary?
+  if (m_filesIndex.size() != (int)fprio.size())
+    return;
+
+  emit layoutAboutToBeChanged();
+  for (uint i = 0; i < fprio.size(); ++i) {
     m_filesIndex[i]->setPriority(fprio[i]);
   }
-  emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+  emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
 std::vector<int> TorrentContentModel::getFilesPriorities() const
 {
   std::vector<int> prio;
-  for (int i=0; i<m_filesIndex.size(); ++i) {
-    prio.push_back(m_filesIndex[i]->getPriority());
+  prio.reserve(m_filesIndex.size());
+  foreach (const TorrentContentModelFile* file, m_filesIndex) {
+    prio.push_back(file->priority());
   }
   return prio;
 }
 
 bool TorrentContentModel::allFiltered() const
 {
-  for (int i=0; i<m_rootItem->childCount(); ++i) {
-    if (m_rootItem->child(i)->getPriority() != prio::IGNORED)
+  foreach (const TorrentContentModelFile* fileItem, m_filesIndex) {
+    if (fileItem->priority() != prio::IGNORED)
       return false;
   }
   return true;
@@ -101,14 +112,16 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
 
   if (index.column() == 0 && role == Qt::CheckStateRole) {
     TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
-    qDebug("setData(%s, %d", qPrintable(item->getName()), value.toInt());
-    if (item->getPriority() != value.toInt()) {
+    qDebug("setData(%s, %d", qPrintable(item->name()), value.toInt());
+    if (item->priority() != value.toInt()) {
       if (value.toInt() == Qt::PartiallyChecked)
-        item->setPriority(prio::PARTIAL);
+        item->setPriority(prio::MIXED);
       else if (value.toInt() == Qt::Unchecked)
         item->setPriority(prio::IGNORED);
       else
         item->setPriority(prio::NORMAL);
+      // Update folders progress in the tree
+      m_rootItem->recalculateProgress();
       emit dataChanged(this->index(0,0), this->index(rowCount()-1, columnCount()-1));
       emit filteredFilesChanged();
     }
@@ -116,16 +129,11 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
   }
 
   if (role == Qt::EditRole) {
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    Q_ASSERT(index.isValid());
+    TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     switch(index.column()) {
     case TorrentContentModelItem::COL_NAME:
       item->setName(value.toString());
-      break;
-    case TorrentContentModelItem::COL_SIZE:
-      item->setSize(value.toULongLong());
-      break;
-    case TorrentContentModelItem::COL_PROGRESS:
-      item->setProgress(value.toDouble());
       break;
     case TorrentContentModelItem::COL_PRIO:
       item->setPriority(value.toInt());
@@ -136,29 +144,30 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     emit dataChanged(index, index);
     return true;
   }
+
   return false;
 }
 
-TorrentContentModelItem::FileType TorrentContentModel::getType(const QModelIndex& index) const
+TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelIndex& index) const
 {
-  const TorrentContentModelItem *item = static_cast<const TorrentContentModelItem*>(index.internalPointer());
-  return item->getType();
+  return static_cast<const TorrentContentModelItem*>(index.internalPointer())->itemType();
 }
 
 int TorrentContentModel::getFileIndex(const QModelIndex& index)
 {
-  TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
-  return item->getFileIndex();
+  TorrentContentModelFile* item = dynamic_cast<TorrentContentModelFile*>(static_cast<TorrentContentModelItem*>(index.internalPointer()));
+  Q_ASSERT(item);
+  return item->fileIndex();
 }
 
-QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
+QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
 {
   if (!index.isValid())
     return QVariant();
 
-  TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+  TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
   if (index.column() == 0 && role == Qt::DecorationRole) {
-    if (item->isFolder())
+    if (item->itemType() == TorrentContentModelItem::FolderType)
       return IconProvider::instance()->getIcon("inode-directory");
     else
       return IconProvider::instance()->getIcon("text-plain");
@@ -166,7 +175,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
   if (index.column() == 0 && role == Qt::CheckStateRole) {
     if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
       return Qt::Unchecked;
-    if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::PARTIAL)
+    if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::MIXED)
       return Qt::PartiallyChecked;
     return Qt::Checked;
   }
@@ -181,8 +190,9 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex& index) const
   if (!index.isValid())
     return 0;
 
-  if (getType(index) == TorrentContentModelItem::FOLDER)
+  if (itemType(index) == TorrentContentModelItem::FolderType)
     return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
+
   return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
 }
 
@@ -202,22 +212,20 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex& p
   if (column >= TorrentContentModelItem::NB_COL)
     return QModelIndex();
 
-  TorrentContentModelItem *parentItem;
-
+  TorrentContentModelFolder* parentItem;
   if (!parent.isValid())
     parentItem = m_rootItem;
   else
-    parentItem = static_cast<TorrentContentModelItem*>(parent.internalPointer());
+    parentItem = static_cast<TorrentContentModelFolder*>(parent.internalPointer());
   Q_ASSERT(parentItem);
+
   if (row >= parentItem->childCount())
     return QModelIndex();
 
-  TorrentContentModelItem *childItem = parentItem->child(row);
-  if (childItem) {
+  TorrentContentModelItem* childItem = parentItem->child(row);
+  if (childItem)
     return createIndex(row, column, childItem);
-  } else {
-    return QModelIndex();
-  }
+  return QModelIndex();
 }
 
 QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
@@ -225,11 +233,11 @@ QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
   if (!index.isValid())
     return QModelIndex();
 
-  TorrentContentModelItem *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
+  TorrentContentModelItem* childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
   if (!childItem)
     return QModelIndex();
-  TorrentContentModelItem *parentItem = childItem->parent();
 
+  TorrentContentModelItem *parentItem = childItem->parent();
   if (parentItem == m_rootItem)
     return QModelIndex();
 
@@ -238,17 +246,16 @@ QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
 
 int TorrentContentModel::rowCount(const QModelIndex& parent) const
 {
-  TorrentContentModelItem *parentItem;
-
   if (parent.column() > 0)
     return 0;
 
+  TorrentContentModelFolder* parentItem;
   if (!parent.isValid())
     parentItem = m_rootItem;
   else
-    parentItem = static_cast<TorrentContentModelItem*>(parent.internalPointer());
+    parentItem = dynamic_cast<TorrentContentModelFolder*>(static_cast<TorrentContentModelItem*>(parent.internalPointer()));
 
-  return parentItem->childCount();
+  return parentItem ? parentItem->childCount() : 0;
 }
 
 void TorrentContentModel::clear()
@@ -260,7 +267,7 @@ void TorrentContentModel::clear()
   endResetModel();
 }
 
-void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
+void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
 {
   qDebug("setup model data called");
   if (t.num_files() == 0)
@@ -271,32 +278,33 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
   qDebug("Torrent contains %d files", t.num_files());
   m_filesIndex.reserve(t.num_files());
 
-  TorrentContentModelItem *parent = m_rootItem;
-  TorrentContentModelItem *root_folder = parent;
-  TorrentContentModelItem *current_parent;
-
+  TorrentContentModelFolder* current_parent;
   // Iterate over files
-  for (int i=0; i<t.num_files(); ++i) {
-    libtorrent::file_entry fentry = t.file_at(i);
-    current_parent = root_folder;
+  for (int i = 0; i < t.num_files(); ++i) {
+    const libtorrent::file_entry& fentry = t.file_at(i);
+    current_parent = m_rootItem;
 #if LIBTORRENT_VERSION_MINOR >= 16
-    QString path = QDir::cleanPath(misc::toQStringU(fentry.path)).replace("\\", "/");
+    QString path = misc::toQStringU(fentry.path);
 #else
-    QString path = QDir::cleanPath(misc::toQStringU(fentry.path.string())).replace("\\", "/");
+    QString path = misc::toQStringU(fentry.path.string());
 #endif
     // Iterate of parts of the path to create necessary folders
-    QStringList pathFolders = path.split("/");
-    pathFolders.removeAll(".unwanted");
-    pathFolders.takeLast();
-    foreach (const QString &pathPart, pathFolders) {
-      TorrentContentModelItem *new_parent = current_parent->childWithName(pathPart);
+    QStringList pathFolders = path.split(QRegExp("[/\\\\]"), QString::SkipEmptyParts);
+    pathFolders.removeLast();
+    foreach (const QString& pathPart, pathFolders) {
+      if (pathPart == ".unwanted")
+        continue;
+      TorrentContentModelFolder* new_parent = current_parent->childFolderWithName(pathPart);
       if (!new_parent) {
-        new_parent = new TorrentContentModelItem(pathPart, current_parent);
+        new_parent = new TorrentContentModelFolder(pathPart, current_parent);
+        current_parent->appendChild(new_parent);
       }
       current_parent = new_parent;
     }
     // Actually create the file
-    m_filesIndex.push_back(new TorrentContentModelItem(t, fentry, current_parent, i));
+    TorrentContentModelFile* fileItem = new TorrentContentModelFile(fentry, current_parent, i);
+    current_parent->appendChild(fileItem);
+    m_filesIndex.push_back(fileItem);
   }
   emit layoutChanged();
 }
@@ -304,11 +312,11 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info &t)
 void TorrentContentModel::selectAll()
 {
   for (int i=0; i<m_rootItem->childCount(); ++i) {
-    TorrentContentModelItem *child = m_rootItem->child(i);
-    if (child->getPriority() == prio::IGNORED)
+    TorrentContentModelItem* child = m_rootItem->child(i);
+    if (child->priority() == prio::IGNORED)
       child->setPriority(prio::NORMAL);
   }
-  emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+  emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
 void TorrentContentModel::selectNone()
@@ -316,5 +324,5 @@ void TorrentContentModel::selectNone()
   for (int i=0; i<m_rootItem->childCount(); ++i) {
     m_rootItem->child(i)->setPriority(prio::IGNORED);
   }
- emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+ emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }

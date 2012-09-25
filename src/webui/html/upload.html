@@ -7,31 +7,30 @@
 	<script type="text/javascript" src="scripts/mootools-1.2-core-yc.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-function hideAll() {
-  window.parent.closeWindows();
+function stateChangeHandler() {
+	if (this.readyState == this.DONE) {
+		if (this.status == 200)
+			window.parent.closeWindows();
+		else
+			alert("Upload Failed!");
+	}
 }
 
 function uploadFiles(files) {
 	var xhr = new XMLHttpRequest();
 	if (xhr.upload) {
-		// file received/failed
-		xhr.onreadystatechange = function(e) {
-			if (xhr.readyState == 4) {
-				if (xhr.status == 200)
-					hideAll();
-				else
-					alert("Upload Failed!");
-			}
-		};
 		// start upload
 		var formData = new FormData();
-		for (var i = 0, file; file = files[i]; ++i) {
-    	formData.append(file.name, file);
-    }
-		xhr.open("POST", "command/upload", true);
+		for (var i = 0, file; file = files[i]; ++i)
+			formData.append(file.name, file);
+		xhr.onreadystatechange = stateChangeHandler;
+		xhr.open("POST", "command/upload");
+		// Bypass cache
+		xhr.setRequestHeader("Cache-Control", "no-cache");
 		xhr.send(formData);
 	}
 }
+
 // file selection
 function fileSelectHandler(e) {
 	// fetch FileList object
@@ -44,9 +43,8 @@ window.addEvent('load', function() {
   $('fileselect').addEvent('change', fileSelectHandler);
   // is XHR2 available?
 	var xhr = new XMLHttpRequest();
-	if (xhr.upload) {
+	if (xhr.upload)
 		$('submitbutton').addClass("invisible");
-	}
 });
 </script>
 </head>

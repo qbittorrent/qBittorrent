@@ -1821,6 +1821,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>The following parameters are supported:</source>
         <translation>支援以下的參數:</translation>
     </message>
+    <message>
+        <source>qBittorrent has been shutdown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LegalNotice</name>
@@ -3076,8 +3080,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>鑰匙:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3105,6 +3109,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3709,6 +3717,10 @@ Would you like to update qBittorrent to version %1?</source>
         <comment>%1 is a number</comment>
         <translation>分析 IP 過濾檔案成功: 已套用 %1 個規則。</translation>
     </message>
+    <message>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RSS</name>
@@ -4032,23 +4044,23 @@ p, li { white-space: pre-wrap; }
     <name>SearchEngine</name>
     <message>
         <source>Cut</source>
-        <translation>剪下</translation>
+        <translation type="obsolete">剪下</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>複製</translation>
+        <translation type="obsolete">複製</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation>貼上</translation>
+        <translation type="obsolete">貼上</translation>
     </message>
     <message>
         <source>Clear field</source>
-        <translation>清除欄位</translation>
+        <translation type="obsolete">清除欄位</translation>
     </message>
     <message>
         <source>Clear completion history</source>
-        <translation>清除已完成的紀錄</translation>
+        <translation type="obsolete">清除已完成的紀錄</translation>
     </message>
     <message>
         <source>Empty search pattern</source>
@@ -4121,11 +4133,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>確認</translation>
+        <translation type="obsolete">確認</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the history?</source>
-        <translation>你確定要刪除紀錄嗎?</translation>
+        <translation type="obsolete">你確定要刪除紀錄嗎?</translation>
     </message>
 </context>
 <context>
@@ -5009,6 +5021,10 @@ Do you want to install it now?</source>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
         <translation>[檔案或 URLs]: 不經由使用者下載 torrent (選擇性)</translation>
+    </message>
+    <message>
+        <source>run in daemon-mode (background)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

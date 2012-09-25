@@ -856,11 +856,11 @@ void TransferListWidget::applyLabelFilter(QString label) {
     return;
   }
   qDebug("Applying Label filter: %s", qPrintable(label));
-  labelFilterModel->setFilterRegExp(QRegExp("^"+label+"$", Qt::CaseSensitive));
+  labelFilterModel->setFilterRegExp(QRegExp("^" + QRegExp::escape(label) + "$", Qt::CaseSensitive));
 }
 
-void TransferListWidget::applyNameFilter(QString name) {
-  nameFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive));
+void TransferListWidget::applyNameFilter(const QString& name) {
+  nameFilterModel->setFilterRegExp(QRegExp(QRegExp::escape(name), Qt::CaseInsensitive));
 }
 
 void TransferListWidget::applyStatusFilter(int f) {

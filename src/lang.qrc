@@ -1,40 +1,41 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-  <file>lang/qbittorrent_nl.qm</file>
-  <file>lang/qbittorrent_hu.qm</file>
-  <file>lang/qbittorrent_ru.qm</file>
-  <file>lang/qbittorrent_zh_TW.qm</file>
-  <file>lang/qbittorrent_tr.qm</file>
-  <file>lang/qbittorrent_fi.qm</file>
-  <file>lang/qbittorrent_sk.qm</file>
-  <file>lang/qbittorrent_ja.qm</file>
-  <file>lang/qbittorrent_el.qm</file>
+  <file>lang/qbittorrent_ar.qm</file>
+  <file>lang/qbittorrent_be.qm</file>
+  <file>lang/qbittorrent_bg.qm</file>
   <file>lang/qbittorrent_ca.qm</file>
-  <file>lang/qbittorrent_pt.qm</file>
-  <file>lang/qbittorrent_it.qm</file>
+  <file>lang/qbittorrent_cs.qm</file>
+  <file>lang/qbittorrent_da.qm</file>
+  <file>lang/qbittorrent_de.qm</file>
+  <file>lang/qbittorrent_el.qm</file>
+  <file>lang/qbittorrent_en.qm</file>
+  <file>lang/qbittorrent_es.qm</file>
+  <file>lang/qbittorrent_eu.qm</file>
+  <file>lang/qbittorrent_fi.qm</file>
   <file>lang/qbittorrent_fr.qm</file>
+  <file>lang/qbittorrent_gl.qm</file>
+  <file>lang/qbittorrent_he.qm</file>
+  <file>lang/qbittorrent_hr.qm</file>
+  <file>lang/qbittorrent_hu.qm</file>
+  <file>lang/qbittorrent_hy.qm</file>
+  <file>lang/qbittorrent_it.qm</file>
+  <file>lang/qbittorrent_ja.qm</file>
+  <file>lang/qbittorrent_ka.qm</file>
+  <file>lang/qbittorrent_ko.qm</file>
+  <file>lang/qbittorrent_lt.qm</file>
+  <file>lang/qbittorrent_nb.qm</file>
+  <file>lang/qbittorrent_nl.qm</file>
+  <file>lang/qbittorrent_pl.qm</file>
+  <file>lang/qbittorrent_pt.qm</file>
+  <file>lang/qbittorrent_pt_BR.qm</file>
+  <file>lang/qbittorrent_ro.qm</file>
+  <file>lang/qbittorrent_ru.qm</file>
+  <file>lang/qbittorrent_sk.qm</file>
+  <file>lang/qbittorrent_sr.qm</file>
+  <file>lang/qbittorrent_sv.qm</file>
+  <file>lang/qbittorrent_tr.qm</file>
   <file>lang/qbittorrent_uk.qm</file>
   <file>lang/qbittorrent_zh.qm</file>
-  <file>lang/qbittorrent_lt.qm</file>
-  <file>lang/qbittorrent_ko.qm</file>
-  <file>lang/qbittorrent_nb.qm</file>
-  <file>lang/qbittorrent_sv.qm</file>
-  <file>lang/qbittorrent_de.qm</file>
-  <file>lang/qbittorrent_gl.qm</file>
-  <file>lang/qbittorrent_sr.qm</file>
-  <file>lang/qbittorrent_pt_BR.qm</file>
-  <file>lang/qbittorrent_da.qm</file>
-  <file>lang/qbittorrent_cs.qm</file>
-  <file>lang/qbittorrent_hy.qm</file>
-  <file>lang/qbittorrent_pl.qm</file>
-  <file>lang/qbittorrent_bg.qm</file>
-  <file>lang/qbittorrent_ar.qm</file>
-  <file>lang/qbittorrent_es.qm</file>
-  <file>lang/qbittorrent_en.qm</file>
-  <file>lang/qbittorrent_hr.qm</file>
-  <file>lang/qbittorrent_ro.qm</file>
-  <file>lang/qbittorrent_ka.qm</file>
-  <file>lang/qbittorrent_be.qm</file>
-  <file>lang/qbittorrent_eu.qm</file>
+  <file>lang/qbittorrent_zh_TW.qm</file>
 </qresource>
 </RCC>
