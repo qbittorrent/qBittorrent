@@ -1041,7 +1041,7 @@ Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent itzali egin da.</translation>
     </message>
 </context>
 <context>
@@ -1878,7 +1878,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2036"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Argibide gehiago&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2076"/>
@@ -2174,7 +2174,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="830"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiatu amaitutako jeisketa .torrent agiriak hona:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="886"/>
@@ -2660,7 +2660,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../properties/propertieswidget.cpp" line="322"/>
         <location filename="../properties/propertieswidget.cpp" line="323"/>
         <source>this session</source>
-        <translation>saio hau</translation>
+        <translation>saio honetan</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="327"/>
@@ -2798,7 +2798,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="418"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Izengabeko modua [EZ]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="450"/>
@@ -3338,12 +3338,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="334"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hutsegitea jeitsitako RSS agiria irekitzerakoan.</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="366"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baliogabeko RSS harpidetza: %1.</translation>
     </message>
 </context>
 <context>
@@ -4465,7 +4465,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>ekin daemon-moduan (barrenean)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="80"/>
