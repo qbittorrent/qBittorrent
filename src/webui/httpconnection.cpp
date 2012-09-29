@@ -77,17 +77,19 @@ void HttpConnection::handleDownloadFailure(const QString& url,
             << qPrintable(reason) << std::endl;
 }
 
-void HttpConnection::read() {
+void HttpConnection::read()
+{
   m_receivedData.append(m_socket->readAll());
 
   // Parse HTTP request header
-  int header_end = m_receivedData.indexOf("\r\n\r\n");
+  const int header_end = m_receivedData.indexOf("\r\n\r\n");
   if (header_end < 0) {
     qDebug() << "Partial request: \n" << m_receivedData;
     // Partial request waiting for the rest
     return;
   }
-  QByteArray header = m_receivedData.left(header_end);
+
+  const QByteArray header = m_receivedData.left(header_end);
   m_parser.writeHeader(header);
   if (m_parser.isError()) {
     qWarning() << Q_FUNC_INFO << "header parsing error";
@@ -102,7 +104,7 @@ void HttpConnection::read() {
     const int expected_length = m_parser.header().contentLength();
     QByteArray message = m_receivedData.mid(header_end + 4, expected_length);
 
-    if (expected_length > 10000000) {
+    if (expected_length > 10000000 /* ~10MB */) {
       qWarning() << "Bad request: message too long";
       m_generator.setStatusLine(400, "Bad Request");
       m_receivedData.clear();
@@ -117,7 +119,6 @@ void HttpConnection::read() {
     }
 
     m_parser.writeMessage(message);
-
     m_receivedData = m_receivedData.mid(header_end + 4 + expected_length);
   } else {
     m_receivedData.clear();
@@ -132,7 +133,8 @@ void HttpConnection::read() {
   }
 }
 
-void HttpConnection::write() {
+void HttpConnection::write()
+{
   m_socket->write(m_generator.toByteArray());
   m_socket->disconnectFromHost();
 }
