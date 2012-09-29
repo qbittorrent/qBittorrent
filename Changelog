@@ -2,6 +2,7 @@
     - BUGFIX: Disabling systray icon no longer disables file association settings (closes #114)
     - BUGFIX: Import new trackers from magnet link in case of duplicate torrent (closes #111)
     - BUGFIX: Fix "Skip hash check" feature in torrent import dialog (closes #128)
+    - BUGFIX: Several Web UI connection fixes
     - BUGFIX: Add Basque locale to Web UI
 
 * Tue Sep 18 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.4
