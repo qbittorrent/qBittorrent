@@ -143,6 +143,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
 #endif
     bool size_mismatch = false;
     QDir content_dir(m_contentPath);
+    content_dir.cdUp();
     // Check file sizes
     for (int i=0; i<t->num_files(); ++i) {
 #if LIBTORRENT_VERSION_MINOR > 15
