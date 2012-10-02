@@ -1999,7 +1999,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation>П&amp;риостановить Все</translation>
+        <translation>П&amp;риостановить все</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -2237,12 +2237,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Скач.: %1 КиБ/с</translation>
+        <translation>Приём: %1 КиБ/с</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Отдача.: %1 КиБ/с</translation>
+        <translation>Отдача: %1 КиБ/с</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
