@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QSharedPointer>
 #include <QXmlStreamReader>
+#include <QNetworkCookie>
 
 #include "rssfile.h"
 
@@ -85,6 +86,7 @@ private:
   void downloadMatchingArticleTorrents();
   QString iconUrl() const;
   void loadItemsFromDisk();
+  QList<QNetworkCookie> feedCookies() const;
 
 private:
   RssManager* m_manager;

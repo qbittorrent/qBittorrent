@@ -94,6 +94,12 @@ void RssFeed::loadItemsFromDisk() {
   }
 }
 
+QList<QNetworkCookie> RssFeed::feedCookies() const
+{
+  QString feed_hostname = QUrl::fromEncoded(m_url.toUtf8()).host();
+  return RssSettings().getHostNameQNetworkCookies(feed_hostname);
+}
+
 void RssFeed::refresh() {
   if (m_loading) {
     qWarning() << Q_FUNC_INFO << "Feed" << this->displayName() << "is already being refreshed, ignoring request";
@@ -101,7 +107,7 @@ void RssFeed::refresh() {
   }
   m_loading = true;
   // Download the RSS again
-  m_manager->rssDownloader()->downloadUrl(m_url);
+  m_manager->rssDownloader()->downloadUrl(m_url, feedCookies());
 }
 
 void RssFeed::removeAllSettings() {
