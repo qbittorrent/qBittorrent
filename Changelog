@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
+* Sun Oct 7 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
     - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
     - BUGFIX: Do not store created torrent in memory before writing it to a file (closes #133)
     - BUGFIX: No longer fallback to ANY interface if the user-selected interface cannot be found (closes #143)
