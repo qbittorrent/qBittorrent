@@ -927,11 +927,11 @@ public:
   }
 
   uint diskCacheSize() const {
-    return value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 0).toUInt();
   }
 
   void setDiskCacheSize(uint size) {
-    setValue(QString::fromUtf8("Preferences/Downloads/DiskCache"), size);
+    setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
   uint outgoingPortsMin() const {
