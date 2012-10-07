@@ -4972,6 +4972,14 @@ Do you want to install it now?</source>
         <source>Limit share ratio...</source>
         <translation>限制分享率...</translation>
     </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>

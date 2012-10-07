@@ -4691,6 +4691,14 @@ Wilt u het nu installeren?</translation>
         <source>Limit share ratio...</source>
         <translation>Limiet deel ratio...</translation>
     </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDlg</name>
