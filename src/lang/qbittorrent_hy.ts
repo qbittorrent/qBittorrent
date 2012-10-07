@@ -405,17 +405,17 @@ p, li { white-space: pre-wrap; }
         <translation>Որոշված գերփոխանցումը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Network Interface (requires restart)</source>
         <translation>Ցանցի միջներեսը (պահանջում է վերագործարկում)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="237"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Exchange trackers with other peers</source>
         <translation>Փոխել ուղղորդիչները այլ peer-երով</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="240"/>
+        <location filename="../preferences/advancedsettings.h" line="248"/>
         <source>Always announce to all trackers</source>
         <translation>Միշտ տեղեկացնել բոլոր ուղղորդիչներին</translation>
     </message>
@@ -426,12 +426,12 @@ p, li { white-space: pre-wrap; }
         <translation>Ցանկացած միջներես</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="212"/>
+        <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Ուղորդիչների հաշվետվության IP-ն (պահ. է վերագործարկում)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Display program on-screen notifications</source>
         <translation>Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
     </message>
@@ -440,27 +440,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Ցուցադրել ծրագրի տեղեկացումների պատուհանները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="226"/>
         <source>Enable embedded tracker</source>
         <translation>Միացնել ուղղորդիչի արգելումը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="231"/>
         <source>Embedded tracker port</source>
         <translation>Արգելված ուղղորդիչի դարպասը</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="234"/>
         <source>Check for software updates</source>
         <translation>Ստուգել ծրագրի թարմացումները</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Use system icon theme</source>
         <translation>Օգտ. համակարգային պատկերով թեման</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="234"/>
+        <location filename="../preferences/advancedsettings.h" line="242"/>
         <source>Confirm torrent deletion</source>
         <translation>Հաստատեք torrent-ի ջնջումը</translation>
     </message>
@@ -1008,7 +1008,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="189"/>
+        <location filename="../webui/httpconnection.cpp" line="190"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ձեր IP հասցեն արգելվել է՝ մի շարք անհաջող ներկայացումներից հետո։</translation>
     </message>
@@ -3327,50 +3327,49 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>Trying any other network interface available instead.</source>
-        <translation>Հասանելի է այլ ցանցային միջներես։</translation>
+        <translation type="obsolete">Հասանելի է այլ ցանցային միջներես։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1937"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Ստանում է %1 IP հասցեից՝ հետևյալ ցանցում՝ %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1940"/>
         <source>Failed to listen on network interface %1</source>
         <translation>Սխալ՝ %1 ցանցային միջներեսից ստանալիս</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2121"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2123"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>%1 ֆայլի ձեռադիր բեռնումը արգելված է %2 ֆայլում</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2218"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2220"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2277"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Այժմ համակարգիչը կանցնի &quot;քուն&quot; վիճակի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2273"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Այժմ համակարգիչը կանջատվի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2275"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent-ը կփակվի 15 վայրկյանից...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2820"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Հաջողությամբ ստուգվել է IP ֆիլտրը. %1 կանոնները կիրառվել են։</translation>
@@ -3381,79 +3380,79 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Հաջողությամբ կիրառվել է IP ֆիլտրը. %1 կանոններ կիրառվել են։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2174"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
         <source>Torrent name: %1</source>
         <translation>Torrent-ի անունը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>Torrent size: %1</source>
         <translation>Torrent-ի չափը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
         <source>Save path: %1</source>
         <translation>Պահպանելու տեղը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2177"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2171"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent-ը բեռնվել է  %1ում։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2172"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Շնորհակալություն qBittorrent-ը օգտագործելու համար։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2181"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1-ի բեռնումը ավարտվեց</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2416"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2410"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Ն/Ա սխալ, &apos;%1&apos; դադարի մեջ է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2417"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2522"/>
         <source>Reason: %1</source>
         <translation>Պատճառը. %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2486"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը ձախողվեց, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2491"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP. Դարպասի որոշումը հաջող էր, հաղորդագրությունը՝ %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2517"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Ֆայլի չափը չի համապատասխանում %1 torrent-ին, դադարեցվում է։</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2521"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Վերսկսումը մերժվել է %1 torrent-ի համար, նորից է սկսվում...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2533"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Հղման փոխանցումը ձախողվեց %1 հղումների համար, հաղորդագրությունը՝ %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2656"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2650"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
@@ -4237,12 +4236,12 @@ Please install it manually.</source>
         <translation>Նշեք տեղադրությունը. %1</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>Invalid torrent file</source>
         <translation>Սխալ torrent ֆայլ</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>This is not a valid torrent file.</source>
         <translation>Սա ճիշտ torrent ֆայլ չէ։</translation>
     </message>

@@ -364,17 +364,17 @@ p, li { white-space: pre-wrap; }
         <translation>הקפדה על הפצה מוגברת</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
+        <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Network Interface (requires restart)</source>
         <translation>מנשק רשת (דורש אתחול)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="237"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Exchange trackers with other peers</source>
         <translation>החלף טראקרים עם עמיתים אחרים</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="240"/>
+        <location filename="../preferences/advancedsettings.h" line="248"/>
         <source>Always announce to all trackers</source>
         <translation>הודע תמיד לכל הטראקרים</translation>
     </message>
@@ -385,37 +385,37 @@ p, li { white-space: pre-wrap; }
         <translation>כל מנשק שהוא</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="212"/>
+        <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>כתובת IP לדיווח לטראקרים (דורש אתחול)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="223"/>
         <source>Display program on-screen notifications</source>
         <translation>תצוגת הודעות מהתוכנה בהודעה על המסך</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="226"/>
         <source>Enable embedded tracker</source>
         <translation>אפשר טראקר מוטמע</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="231"/>
         <source>Embedded tracker port</source>
         <translation>פורט לטראקר מוטמע</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="234"/>
         <source>Check for software updates</source>
         <translation>בדיקת עדכוני תוכנה</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Use system icon theme</source>
         <translation>שימוש בצלמית ערכת הנושא של המערכת</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="234"/>
+        <location filename="../preferences/advancedsettings.h" line="242"/>
         <source>Confirm torrent deletion</source>
         <translation>וודא מחיקת טורנט</translation>
     </message>
@@ -895,7 +895,7 @@ You should get this information from your Web browser preferences.</source>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="189"/>
+        <location filename="../webui/httpconnection.cpp" line="190"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>ה IP שלך נחסם לאחר שבוצעו מדי הרבה נסיונות כושלים לאמתו אותו.</translation>
     </message>
@@ -2913,28 +2913,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>%1 הותחל מחדש. (התחלה מהירה)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2277"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>המחשב יעבור עכשיו למצב שינה אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2273"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>המחשב עכשיו ייכבה אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2275"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent עכשיו ייצא אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2820"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>מסנן הIP שסופק נותח בהצלחה: הוחלו %1 כללים.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>שגיאה: ניתוח מסנן הIP שסופק נכשל.</translation>
     </message>
@@ -3008,102 +3008,101 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>מנשק הרשת שהוגדר אינו זמין: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>Trying any other network interface available instead.</source>
-        <translation>מנסה כל מנשק רשת אחר שזמין במקום זאת.</translation>
+        <translation type="obsolete">מנסה כל מנשק רשת אחר שזמין במקום זאת.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1937"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>מאזין לכתובת IP %1 במנשק רשת %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1940"/>
         <source>Failed to listen on network interface %1</source>
         <translation>האזנה על מנשק רשת %1 נכשלה</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2121"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2123"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>הורדה חוזרת על עצמה של קובץ %1 שנמצא בתוך טורנט %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2218"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2220"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>לא מצליח לפענח קובץ טורנט %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2174"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
         <source>Torrent name: %1</source>
         <translation>שם טורנט: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>Torrent size: %1</source>
         <translation>גודל טורנט: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
         <source>Save path: %1</source>
         <translation>שמור נתיב: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2177"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2171"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>הטורנט ירד ב: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2172"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>תודה על השימוש בqBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2181"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 סיים לרדת</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2416"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2410"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>התרחשה שגיאת I/O, %1 הושהה.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2417"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2522"/>
         <source>Reason: %1</source>
         <translation>סיבה: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2486"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: מיפוי הפורט נכשל, הודעה:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2491"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: מיפוי הפורט הצליח, הודעה:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2517"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>גודלי הקבצים לא מתאימים לטורנט %1, משהה אותו.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2521"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>נתונים להתחלה מחדש מהירה נדחו עבור טורנט %1, בודק שוב...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2533"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>חיפוש מפיצי Url נכשל עבור Url %1, הודעה: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2656"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2650"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>מוריד %1, נא להמתין...</translation>
@@ -3824,12 +3823,12 @@ Please install it manually.</source>
         <translation>נא להצביע על המיקום של הטורנט %1</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>Invalid torrent file</source>
         <translation>שם טורנט לא חוקי</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>This is not a valid torrent file.</source>
         <translation>קובץ טורנט זה אינו תקף.</translation>
     </message>

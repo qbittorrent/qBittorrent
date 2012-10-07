@@ -3642,7 +3642,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Tentando outra interface de rede disponível.</translation>
+        <translation type="obsolete">Tentando outra interface de rede disponível.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

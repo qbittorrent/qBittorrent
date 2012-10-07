@@ -3530,7 +3530,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Bunun yerine başka bir ağ arayüzü deneyin.</translation>
+        <translation type="obsolete">Bunun yerine başka bir ağ arayüzü deneyin.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

@@ -3660,7 +3660,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Namiesto toho sa skúša ľubovoľné iné sieťové rozhranie.</translation>
+        <translation type="obsolete">Namiesto toho sa skúša ľubovoľné iné sieťové rozhranie.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

@@ -3550,7 +3550,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Försöker istället på andra tillgängliga nätverksgränssnitt.</translation>
+        <translation type="obsolete">Försöker istället på andra tillgängliga nätverksgränssnitt.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

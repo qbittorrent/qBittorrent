@@ -3661,7 +3661,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>嘗試其他可得的網路介面。</translation>
+        <translation type="obsolete">嘗試其他可得的網路介面。</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

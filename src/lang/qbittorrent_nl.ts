@@ -3435,7 +3435,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Probeer een andere beeschikbaar netwerkinterface in de plaats.</translation>
+        <translation type="obsolete">Probeer een andere beeschikbaar netwerkinterface in de plaats.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

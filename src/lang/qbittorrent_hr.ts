@@ -4088,7 +4088,7 @@ QGroupBox {
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Isprobavanje bilo kojeg drugog mrežnog sučelje umjesto raspoloživog.</translation>
+        <translation type="obsolete">Isprobavanje bilo kojeg drugog mrežnog sučelje umjesto raspoloživog.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
