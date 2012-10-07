@@ -122,6 +122,7 @@ options_imp::options_imp(QWidget *parent):
 #endif
 
 #ifndef Q_WS_WIN
+  checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
 #if LIBTORRENT_VERSION_MINOR < 16
@@ -141,6 +142,9 @@ options_imp::options_imp(QWidget *parent):
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#ifdef Q_WS_WIN
+  connect(checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#endif
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -372,6 +376,7 @@ void options_imp::saveOptions() {
   pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
 #ifdef Q_WS_WIN
+  pref.setStartup(Startup());
   // Windows: file association settings
   Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
   Preferences::setMagnetLinkAssoc(checkAssociateMagnetLinks->isChecked());
@@ -546,6 +551,7 @@ void options_imp::loadOptions() {
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
 #ifdef Q_WS_WIN
+  checkStartup->setChecked(pref.Startup());
   // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
   checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
@@ -973,6 +979,12 @@ void options_imp::enableProxy(int index) {
 bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
 }
+
+#ifdef Q_WS_WIN
+bool options_imp::Startup() const {
+  return checkStartup->isChecked();
+}
+#endif
 
 bool options_imp::preventFromSuspend() const {
   return checkPreventFromSuspend->isChecked();
