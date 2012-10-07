@@ -3,6 +3,7 @@
     - BUGFIX: Do not store created torrent in memory before writing it to a file (closes #133)
     - BUGFIX: No longer fallback to ANY interface if the user-selected interface cannot be found (closes #143)
     - BUGFIX: Fix timezone parsing in RSS (closes #136)
+    - BUGFIX: Fix cookie support for RSS feeds (closes #119)
 
 * Sun Sep 30 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.5
     - BUGFIX: Disabling systray icon no longer disables file association settings (closes #114)
