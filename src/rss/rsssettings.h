@@ -32,6 +32,7 @@
 #define RSSSETTINGS_H
 
 #include <QStringList>
+#include <QNetworkCookie>
 #include "qinisettings.h"
 
 class RssSettings: public QIniSettings{
@@ -92,6 +93,19 @@ public:
     if (!hosts_table.contains(host_name)) return QList<QByteArray>();
     QByteArray raw_cookies = hosts_table.value(host_name).toByteArray();
     return raw_cookies.split(':');
+  }
+
+  QList<QNetworkCookie> getHostNameQNetworkCookies(const QString& host_name) const {
+    QList<QNetworkCookie> cookies;
+    const QList<QByteArray> raw_cookies = getHostNameCookies(host_name);
+    foreach (const QByteArray& raw_cookie, raw_cookies) {
+      QList<QByteArray> cookie_parts = raw_cookie.split('=');
+      if (cookie_parts.size() == 2) {
+        qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
+        cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
+      }
+    }
+    return cookies;
   }
 
   void setHostNameCookies(const QString &host_name, const QList<QByteArray> &cookies) {
