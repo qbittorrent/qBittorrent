@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
+    - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
+
 * Sun Sep 30 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.5
     - BUGFIX: Disabling systray icon no longer disables file association settings (closes #114)
     - BUGFIX: Import new trackers from magnet link in case of duplicate torrent (closes #111)
