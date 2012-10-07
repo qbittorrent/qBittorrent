@@ -3707,7 +3707,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Пробајте неки други доступни мрежни интрфејс уместо тога.</translation>
+        <translation type="obsolete">Пробајте неки други доступни мрежни интрфејс уместо тога.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

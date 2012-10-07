@@ -3695,7 +3695,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Пробуем другой достпуный сетевой интерфейс.</translation>
+        <translation type="obsolete">Пробуем другой достпуный сетевой интерфейс.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>

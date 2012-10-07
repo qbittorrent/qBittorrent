@@ -3618,7 +3618,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Testowanie innego interfejsu sieciowego.</translation>
+        <translation type="obsolete">Testowanie innego interfejsu sieciowego.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
