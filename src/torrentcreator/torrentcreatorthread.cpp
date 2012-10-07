@@ -48,6 +48,8 @@
 #include <boost/filesystem/fstream.hpp>
 #endif
 #include <boost/bind.hpp>
+#include <iostream>
+#include <fstream>
 
 using namespace libtorrent;
 #if LIBTORRENT_VERSION_MINOR < 16
@@ -127,17 +129,13 @@ void TorrentCreatorThread::run() {
     if (abort) return;
     // create the torrent and print it to out
     qDebug("Saving to %s", qPrintable(save_path));
-    std::vector<char> torrent;
-    bencode(back_inserter(torrent), t.generate());
-    QFile outfile(save_path);
-    if (!torrent.empty() && outfile.open(QIODevice::WriteOnly)) {
-      outfile.write(&torrent[0], torrent.size());
-      outfile.close();
-      emit updateProgress(100);
-      emit creationSuccess(save_path, parent_path);
-    } else {
+    std::ofstream outfile(save_path.toLocal8Bit().constData());
+    if (outfile.fail())
       throw std::exception();
-    }
+    bencode(std::ostream_iterator<char>(outfile), t.generate());
+    outfile.close();
+    emit updateProgress(100);
+    emit creationSuccess(save_path, parent_path);
   } catch (std::exception& e) {
     emit creationFailure(QString::fromLocal8Bit(e.what()));
   }
