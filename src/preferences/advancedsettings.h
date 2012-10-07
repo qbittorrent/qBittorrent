@@ -55,6 +55,8 @@ public:
     horizontalHeader()->setStretchLastSection(true);
     verticalHeader()->setVisible(false);
     setRowCount(ROW_COUNT);
+    // Signals
+    connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
     // Load settings
     loadAdvancedSettings();
   }
@@ -151,13 +153,22 @@ private:
   }
 
 private slots:
-  void loadAdvancedSettings() {
+  void updateCacheSpinSuffix(int value)
+  {
+    if (value <= 0)
+      spin_cache.setSuffix(tr(" (auto)"));
+    else
+      spin_cache.setSuffix(tr(" MiB"));
+  }
+
+  void loadAdvancedSettings()
+  {
     const Preferences pref;
     // Disk write cache
-    spin_cache.setMinimum(1);
-    spin_cache.setMaximum(200);
+    spin_cache.setMinimum(0);
+    spin_cache.setMaximum(2048);
     spin_cache.setValue(pref.diskCacheSize());
-    spin_cache.setSuffix(tr(" MiB"));
+    updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
