@@ -1917,12 +1917,6 @@ void QBtSession::setListeningPort(int port) {
   if (!network_iface.isValid()) {
     qDebug("Invalid network interface: %s", qPrintable(iface_name));
     addConsoleMessage(tr("The network interface defined is invalid: %1").arg(iface_name), "red");
-    addConsoleMessage(tr("Trying any other network interface available instead."));
-#if LIBTORRENT_VERSION_MINOR > 15
-    s->listen_on(ports, ec);
-#else
-    s->listen_on(ports);
-#endif
     return;
   }
   QString ip;

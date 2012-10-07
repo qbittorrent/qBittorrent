@@ -198,13 +198,21 @@ private slots:
     // Network interface
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString current_iface = pref.getNetworkInterface();
+    bool interface_exists = current_iface.isEmpty();
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
       combo_iface.addItem(iface.name());
-      if (!current_iface.isEmpty() && iface.name() == current_iface)
+      if (!current_iface.isEmpty() && iface.name() == current_iface) {
         combo_iface.setCurrentIndex(i);
+        interface_exists = true;
+      }
       ++i;
+    }
+    // Saved interface does not exist, show it anyway
+    if (!interface_exists) {
+      combo_iface.addItem(current_iface);
+      combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
     // Network address
