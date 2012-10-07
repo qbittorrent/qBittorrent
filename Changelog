@@ -1,5 +1,6 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
     - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
+    - BUGFIX: Do not store created torrent in memory before writing it to a file (closes #133)
 
 * Sun Sep 30 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.5
     - BUGFIX: Disabling systray icon no longer disables file association settings (closes #114)
