@@ -351,6 +351,13 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
                <item>
+                <widget class="QCheckBox" name="checkStartup">
+                 <property name="text">
+                  <string>Start qBittorrent on Windows start up</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkShowSplash">
                  <property name="text">
                   <string>Show splash screen on start up</string>

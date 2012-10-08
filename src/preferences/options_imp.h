@@ -101,6 +101,9 @@ private:
   bool startMinimized() const;
   bool isSlashScreenDisabled() const;
   bool preventFromSuspend() const;
+#ifdef Q_WS_WIN
+  bool Startup() const;
+#endif
   // Downloads
   QString getSavePath() const;
   bool isTempPathEnabled() const;
