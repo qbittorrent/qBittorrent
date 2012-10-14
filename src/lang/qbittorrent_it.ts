@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>The folder could not be renamed</source>
-        <translation>La cartelal non può essere rinominata</translation>
+        <translation>La cartella non può essere rinominata</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="520"/>
@@ -360,7 +360,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="159"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation>(auto)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="177"/>
@@ -1309,7 +1309,7 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     </message>
     <message>
         <source>Please choose a name for this filter</source>
-        <translation type="obsolete">Per favore scegliere un nome per questo filtro</translation>
+        <translation type="obsolete">Per favore scegli un nome per questo filtro</translation>
     </message>
     <message>
         <source>Filter name:</source>
@@ -1329,7 +1329,7 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="obsolete">Scegliere una cartella per il salvataggio</translation>
+        <translation type="obsolete">Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Filter testing error</source>
@@ -3228,7 +3228,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Esegui qBittorent all&apos;avvio di Windows</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="449"/>
@@ -3983,7 +3983,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../properties/propertieswidget.cpp" line="549"/>
         <location filename="../properties/propertieswidget.cpp" line="587"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Questo nome è già in uso in questa cartella. Per favore sceglierne un altro.</translation>
+        <translation>Questo nome è già in uso in questa cartella. Per favore scegli un altro nome.</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="586"/>
@@ -4013,7 +4013,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="obsolete">Scegliere una dcartella per il salvataggio</translation>
+        <translation type="obsolete">Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -4557,7 +4557,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="153"/>
         <source>Please choose a folder name</source>
-        <translation>Per favore scegliere un nome cartella</translation>
+        <translation>Per favore scegli un nome cartella</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="153"/>
@@ -4618,7 +4618,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Questo nome è già in uso da un altro elemento, per favore sceglierne un altro.</translation>
+        <translation>Questo nome è già in uso da un altro elemento. Per favore scegli un altro nome.</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="562"/>
@@ -5113,7 +5113,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>Please type an input path first</source>
-        <translation>Per favore scegliere prima un percorso da inserire</translation>
+        <translation>Per favore scegli prima un percorso da inserire</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
@@ -5230,7 +5230,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentimportdlg.cpp" line="130"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation>Si prega di scegliere il percorso del torrent: %1</translation>
+        <translation>Per favore scegli il percorso del torrent: %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="235"/>
@@ -5749,7 +5749,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="232"/>
         <source>Choose save path</source>
-        <translation>Scegliere una cartella per il salvataggio</translation>
+        <translation>Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -5772,12 +5772,12 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Conferma ricontrollo</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Confermi di voler ricontrollare i torrent selezionati?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="595"/>
@@ -6085,7 +6085,7 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Salta il controllo file e inizia subito la distribuzione</translation>
+        <translation type="obsolete">Salta il controllo file e inizia subito la condivisione</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -6324,7 +6324,7 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation type="obsolete">Per favore scegliere prima un percorso da inserire</translation>
+        <translation type="obsolete">Per favore scegli prima un percorso da inserire</translation>
     </message>
     <message>
         <source>Torrent creation</source>
@@ -6861,7 +6861,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../preferences/options_imp.cpp" line="1180"/>
         <location filename="../preferences/options_imp.cpp" line="1182"/>
         <source>Choose a save directory</source>
-        <translation>Scegliere una cartella per il salvataggio</translation>
+        <translation>Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1078"/>
@@ -6903,7 +6903,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../preferences/options_imp.cpp" line="1145"/>
         <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Choose an ip filter file</source>
-        <translation>Scegliere un file ip filter</translation>
+        <translation>Scegli un file filtro</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1145"/>
@@ -7006,7 +7006,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation>I seguenti file supportano l&apos;anteprima, &lt;br&gt;per favore sceglierne uno:</translation>
+        <translation>I seguenti file supportano l&apos;anteprima, &lt;br&gt;per favore scegliene uno:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="82"/>
@@ -7084,7 +7084,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="obsolete">Scegliere una cartella di salvataggio</translation>
+        <translation type="obsolete">Scegli una cartella di salvataggio</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
@@ -7112,11 +7112,11 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">Il nome di questo file contiene caratteri vietati, per favore scegliere un altro nome.</translation>
+        <translation type="obsolete">Il nome di questo file contiene caratteri vietati. Per favore scegli un altro nome.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">Questo nome è già in uso in questa cartella. Per favore sceglierne un altro.</translation>
+        <translation type="obsolete">Questo nome è già in uso in questa cartella. Per favore scegli un altro nome.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
