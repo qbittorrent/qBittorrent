@@ -402,7 +402,8 @@ void QBtSession::configureSession() {
   sessionSettings.announce_to_all_trackers = announce_to_all;
   sessionSettings.announce_to_all_tiers = announce_to_all;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
-  sessionSettings.cache_size = pref.diskCacheSize()*64;
+  int cache_size = pref.diskCacheSize();
+  sessionSettings.cache_size = cache_size ? pref.diskCacheSize() * 64 : -1;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
   // Disable OS cache to avoid memory problems (uTorrent behavior)
 #ifdef Q_WS_WIN
@@ -1917,12 +1918,6 @@ void QBtSession::setListeningPort(int port) {
   if (!network_iface.isValid()) {
     qDebug("Invalid network interface: %s", qPrintable(iface_name));
     addConsoleMessage(tr("The network interface defined is invalid: %1").arg(iface_name), "red");
-    addConsoleMessage(tr("Trying any other network interface available instead."));
-#if LIBTORRENT_VERSION_MINOR > 15
-    s->listen_on(ports, ec);
-#else
-    s->listen_on(ports);
-#endif
     return;
   }
   QString ip;

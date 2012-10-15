@@ -88,6 +88,7 @@ private:
   HttpServer *m_httpserver;
   HttpRequestParser m_parser;
   HttpResponseGenerator m_generator;
+  QByteArray m_receivedData;
 };
 
 #endif

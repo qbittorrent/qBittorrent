@@ -46,8 +46,8 @@ class DownloadThread : public QObject {
 
 public:
   DownloadThread(QObject* parent = 0);
-  QNetworkReply* downloadUrl(const QString &url, const QList<QNetworkCookie>& raw_cookies = QList<QNetworkCookie>());
-  void downloadTorrentUrl(const QString &url, const QList<QNetworkCookie>& raw_cookies = QList<QNetworkCookie>());
+  QNetworkReply* downloadUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
+  void downloadTorrentUrl(const QString &url, const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
   //void setProxy(QString IP, int port, QString username, QString password);
 
 signals:

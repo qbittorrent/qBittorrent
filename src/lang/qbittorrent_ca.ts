@@ -331,37 +331,37 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Valor</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="161"/>
+        <location filename="../preferences/advancedsettings.h" line="172"/>
         <source>Disk write cache size</source>
         <translation>Mida cache del Disc</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="160"/>
+        <location filename="../preferences/advancedsettings.h" line="161"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="166"/>
+        <location filename="../preferences/advancedsettings.h" line="177"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Ports de sortida (Min) [0: Desactivat]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="171"/>
+        <location filename="../preferences/advancedsettings.h" line="182"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Ports de sortida (Max) [0: Desactivat]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="177"/>
+        <location filename="../preferences/advancedsettings.h" line="188"/>
         <source>Recheck torrents on completion</source>
         <translation>Verificar Torrents completats</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="183"/>
+        <location filename="../preferences/advancedsettings.h" line="194"/>
         <source>Transfer list refresh interval</source>
         <translation>Interval de refresc de la llista de transferència</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="182"/>
+        <location filename="../preferences/advancedsettings.h" line="193"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
@@ -378,53 +378,58 @@ p, li { white-space: pre-wrap; }
         <translation>Valor</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="186"/>
+        <location filename="../preferences/advancedsettings.h" line="159"/>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="197"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Mostrar Parells per Països (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="189"/>
+        <location filename="../preferences/advancedsettings.h" line="200"/>
         <source>Resolve peer host names</source>
         <translation>Mostrar Parells per nom de Host</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="194"/>
+        <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Capacitat màxima de connexions obertes [0: Desactivat]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="197"/>
+        <location filename="../preferences/advancedsettings.h" line="208"/>
         <source>Strict super seeding</source>
         <translation>Sembra super estricta</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="209"/>
+        <location filename="../preferences/advancedsettings.h" line="228"/>
         <source>Network Interface (requires restart)</source>
         <translation>Selecció de Xarxa (cal reiniciar)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="237"/>
+        <location filename="../preferences/advancedsettings.h" line="256"/>
         <source>Exchange trackers with other peers</source>
         <translation>Intercanvi de parells amb altres trackers</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="240"/>
+        <location filename="../preferences/advancedsettings.h" line="259"/>
         <source>Always announce to all trackers</source>
         <translation>Comunicar sempre amb tots els trackers</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="199"/>
+        <location filename="../preferences/advancedsettings.h" line="210"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Qualsevol Xarxa</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="212"/>
+        <location filename="../preferences/advancedsettings.h" line="231"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Adreça IP per a informe d&apos;incidències als trackers (cal reiniciar)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="215"/>
+        <location filename="../preferences/advancedsettings.h" line="234"/>
         <source>Display program on-screen notifications</source>
         <translation>Visualització en pantalla de les notificacions</translation>
     </message>
@@ -433,27 +438,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mostrar globus de notificació</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="218"/>
+        <location filename="../preferences/advancedsettings.h" line="237"/>
         <source>Enable embedded tracker</source>
         <translation>Habilitar integració de tracker</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="223"/>
+        <location filename="../preferences/advancedsettings.h" line="242"/>
         <source>Embedded tracker port</source>
         <translation>Port d&apos;integració de tracker</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="226"/>
+        <location filename="../preferences/advancedsettings.h" line="245"/>
         <source>Check for software updates</source>
         <translation>Comprovar si hi ha actualitzacions</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="249"/>
         <source>Use system icon theme</source>
         <translation>Utilitza icones del tema actual</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="234"/>
+        <location filename="../preferences/advancedsettings.h" line="253"/>
         <source>Confirm torrent deletion</source>
         <translation>Confirmeu la supressió del torrent</translation>
     </message>
@@ -462,7 +467,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mostra globus de notificació</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="174"/>
+        <location filename="../preferences/advancedsettings.h" line="185"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ignora límits de transferència de la xarxa local</translation>
     </message>
@@ -1611,7 +1616,7 @@ Està segur que vol sortir?</translation>
 <context>
     <name>HttpConnection</name>
     <message>
-        <location filename="../webui/httpconnection.cpp" line="189"/>
+        <location filename="../webui/httpconnection.cpp" line="190"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Després de molts intents de connexió, sembla ser que la teva direcció IP  ha estat restringida.</translation>
     </message>
@@ -2596,12 +2601,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Opcions sobre arxius del Sistema</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="781"/>
+        <location filename="../preferences/options.ui" line="788"/>
         <source>Copy .torrent files to:</source>
         <translation>Copiar arxius. Torrent a:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="986"/>
+        <location filename="../preferences/options.ui" line="993"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -2618,28 +2623,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Gestió de Cues</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2076"/>
+        <location filename="../preferences/options.ui" line="2083"/>
         <source>Maximum active downloads:</source>
         <translation>Màxim d&apos;arxius Baixant:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2096"/>
+        <location filename="../preferences/options.ui" line="2103"/>
         <source>Maximum active uploads:</source>
         <translation>Màxim d&apos;arxius Pujant:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2116"/>
+        <location filename="../preferences/options.ui" line="2123"/>
         <source>Maximum active torrents:</source>
         <translation>Màxim d&apos;arxius Torrents:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="526"/>
+        <location filename="../preferences/options.ui" line="533"/>
         <source>When adding a torrent</source>
         <translation>En afegir un torrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="20"/>
-        <location filename="../preferences/options.ui" line="1572"/>
+        <location filename="../preferences/options.ui" line="1579"/>
         <source>Options</source>
         <translation>Opcions</translation>
     </message>
@@ -2678,12 +2683,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Escriptori</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="356"/>
+        <location filename="../preferences/options.ui" line="363"/>
         <source>Show splash screen on start up</source>
         <translation>Mostra pantalla de benvinguda en iniciar</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="366"/>
+        <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
         <translation>Iniciar qBittorrent minimitzat</translation>
     </message>
@@ -2696,38 +2701,38 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Utilitza icona monocromàtic a la safata del sistema (cal reinicar)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="392"/>
+        <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Minimitzar qBittorrent en l&apos;àrea de notificació</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="402"/>
+        <location filename="../preferences/options.ui" line="409"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>En tancar qBittorrent deixeu actiu en l&apos;àrea de notificació</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="411"/>
+        <location filename="../preferences/options.ui" line="418"/>
         <source>Tray icon style:</source>
         <translation>Estil de la icona al panell:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="419"/>
+        <location filename="../preferences/options.ui" line="426"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="424"/>
+        <location filename="../preferences/options.ui" line="431"/>
         <source>Monochrome (Dark theme)</source>
         <translation>Monochrome (Dark theme)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="429"/>
+        <location filename="../preferences/options.ui" line="436"/>
         <source>Monochrome (Light theme)</source>
         <translation>Monochrome (Light theme)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="373"/>
+        <location filename="../preferences/options.ui" line="380"/>
         <source>Ask for program exit confirmation</source>
         <translation>Demanar confirmació per sortir del programa</translation>
     </message>
@@ -2742,68 +2747,73 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Llista de Transferència</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="383"/>
+        <location filename="../preferences/options.ui" line="356"/>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
         <translation>Mostra qBittorrent en l&apos;àrea de notificació</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="442"/>
+        <location filename="../preferences/options.ui" line="449"/>
         <source>File association</source>
         <translation>Associació d&apos;arxius</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="448"/>
+        <location filename="../preferences/options.ui" line="455"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Utilitza qBittorrent per als arxius .torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="455"/>
+        <location filename="../preferences/options.ui" line="462"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Utilitza qBittorrent per als magnet links</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="468"/>
+        <location filename="../preferences/options.ui" line="475"/>
         <source>Power Management</source>
         <translation>Administració d&apos;energia</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="474"/>
+        <location filename="../preferences/options.ui" line="481"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation>Desactivar la suspensió de l&apos;equip quan encara queden torrents actius</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="535"/>
+        <location filename="../preferences/options.ui" line="542"/>
         <source>Display torrent content and some options</source>
         <translation>Mostrar el contingut del Torrent i opcions</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="545"/>
+        <location filename="../preferences/options.ui" line="552"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>No iniciar la descàrrega de forma automàtica</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="561"/>
+        <location filename="../preferences/options.ui" line="568"/>
         <source>Hard Disk</source>
         <translation>Disc Dur</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="567"/>
+        <location filename="../preferences/options.ui" line="574"/>
         <source>Save files to location:</source>
         <translation>Guardar els arxius en la seva ubicació:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="615"/>
+        <location filename="../preferences/options.ui" line="622"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>Afegir l&apos;etiqueta del torrent a la ruta on es guarda</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="625"/>
+        <location filename="../preferences/options.ui" line="632"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Pre-assignar espai al disc per a tots els arxius</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="632"/>
+        <location filename="../preferences/options.ui" line="639"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Mantenir Torrents incomplets a:</translation>
     </message>
@@ -2812,82 +2822,82 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Afegir l&apos;extensió.!qB als noms dels arxius incomplets</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="685"/>
+        <location filename="../preferences/options.ui" line="692"/>
         <source>Automatically add torrents from:</source>
         <translation>Carregar automàticament arxius Torrents des de:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="738"/>
+        <location filename="../preferences/options.ui" line="745"/>
         <source>Add folder...</source>
         <translation>Afegeix carpeta...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="830"/>
+        <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="886"/>
+        <location filename="../preferences/options.ui" line="893"/>
         <source>Email notification upon download completion</source>
         <translation>Avisa&apos;m per correu electrònic de la finalització de les descàrregues</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="900"/>
+        <location filename="../preferences/options.ui" line="907"/>
         <source>Destination email:</source>
         <translation>Adreça de correu electrònic:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="910"/>
+        <location filename="../preferences/options.ui" line="917"/>
         <source>SMTP server:</source>
         <translation>Servidor SMTP:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="959"/>
+        <location filename="../preferences/options.ui" line="966"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>El servidor requereix una connexió segura (SSL)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="971"/>
+        <location filename="../preferences/options.ui" line="978"/>
         <source>Run an external program on torrent completion</source>
         <translation>Executar un programa extern en acabar el torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1309"/>
+        <location filename="../preferences/options.ui" line="1316"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Per contra, el servidor proxy s&apos;utilitzarà només per les connexions tracker</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1312"/>
+        <location filename="../preferences/options.ui" line="1319"/>
         <source>Use proxy for peer connections</source>
         <translation>Utilitza proxy per a les connexions entre parells</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1470"/>
+        <location filename="../preferences/options.ui" line="1477"/>
         <source>Global Rate Limits</source>
         <translation>Límits globals de Ràtio</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1588"/>
+        <location filename="../preferences/options.ui" line="1595"/>
         <source>Apply rate limit to uTP connections</source>
         <translation>Aplicar límit de ràtio per a connexions uTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1595"/>
+        <location filename="../preferences/options.ui" line="1602"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Aplicar límit de ràtio per transport sobrecarregat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1608"/>
+        <location filename="../preferences/options.ui" line="1615"/>
         <source>Alternative Global Rate Limits</source>
         <translation>Límits de Ràtio Global alternatiu</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1714"/>
+        <location filename="../preferences/options.ui" line="1721"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>Programar l&apos;ús de límits de ràtio alternativa</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2029"/>
+        <location filename="../preferences/options.ui" line="2036"/>
         <source>Enable anonymous mode</source>
         <translation>Activar manera anònima</translation>
     </message>
@@ -2896,57 +2906,57 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Més informació&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2175"/>
+        <location filename="../preferences/options.ui" line="2182"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>No comptar amb torrents lents fora d&apos;aquests límits</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2352"/>
+        <location filename="../preferences/options.ui" line="2359"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Utilitza HTTPS en lloc de HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2395"/>
+        <location filename="../preferences/options.ui" line="2402"/>
         <source>Import SSL Certificate</source>
         <translation>Importació de certificats SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2448"/>
+        <location filename="../preferences/options.ui" line="2455"/>
         <source>Import SSL Key</source>
         <translation>Importar clau SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2383"/>
+        <location filename="../preferences/options.ui" line="2390"/>
         <source>Certificate:</source>
         <translation>Certificat:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2436"/>
+        <location filename="../preferences/options.ui" line="2443"/>
         <source>Key:</source>
         <translation>Clau:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2470"/>
+        <location filename="../preferences/options.ui" line="2477"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informació sobre els certificats&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2539"/>
+        <location filename="../preferences/options.ui" line="2546"/>
         <source>Update my dynamic domain name</source>
         <translation>Actualitzar el meu nom de domini dinàmic</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2551"/>
+        <location filename="../preferences/options.ui" line="2558"/>
         <source>Service:</source>
         <translation>Servei:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2574"/>
+        <location filename="../preferences/options.ui" line="2581"/>
         <source>Register</source>
         <translation>Registre</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2583"/>
+        <location filename="../preferences/options.ui" line="2590"/>
         <source>Domain name:</source>
         <translation>Nom de domini:</translation>
     </message>
@@ -2955,7 +2965,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Utilitzeu %f per a passar el torrent la ruta dels paràmetres</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1078"/>
+        <location filename="../preferences/options.ui" line="1085"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Utilitza UPnP / NAT-PMP reenviament de ports del router</translation>
     </message>
@@ -2964,62 +2974,62 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Servidor Proxy</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1425"/>
+        <location filename="../preferences/options.ui" line="1432"/>
         <source>Reload the filter</source>
         <translation>Actualització del filtre</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1578"/>
+        <location filename="../preferences/options.ui" line="1585"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation>Habilitar gestió d&apos;ample de banda (uTP)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1882"/>
+        <location filename="../preferences/options.ui" line="1889"/>
         <source>Privacy</source>
         <translation>Privacitat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1888"/>
+        <location filename="../preferences/options.ui" line="1895"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Activar DHT (xarxa descentralitzada) per trobar més parells</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1897"/>
+        <location filename="../preferences/options.ui" line="1904"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Utilitza difrentes port per DHT i BitTorrent</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1958"/>
+        <location filename="../preferences/options.ui" line="1965"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Intercanviar parells amb clients Bittorrent compatibles (μTorrent, Vuze,...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1961"/>
+        <location filename="../preferences/options.ui" line="1968"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Habilitar intercanvi de parells (PEX) per trobar més parells</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1974"/>
+        <location filename="../preferences/options.ui" line="1981"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Habilitar Trobat Local de Pares per trobar més parells</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1986"/>
+        <location filename="../preferences/options.ui" line="1993"/>
         <source>Encryption mode:</source>
         <translation>Mode de xifrat:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1994"/>
+        <location filename="../preferences/options.ui" line="2001"/>
         <source>Prefer encryption</source>
         <translation>Preferència de xifrat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1999"/>
+        <location filename="../preferences/options.ui" line="2006"/>
         <source>Require encryption</source>
         <translation>Necessiten xifrat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2004"/>
+        <location filename="../preferences/options.ui" line="2011"/>
         <source>Disable encryption</source>
         <translation>Deshabilitar xifrat</translation>
     </message>
@@ -3028,37 +3038,37 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Límit ratio compartició</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2196"/>
+        <location filename="../preferences/options.ui" line="2203"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Ratio compartició de llavors Torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2228"/>
+        <location filename="../preferences/options.ui" line="2235"/>
         <source>then</source>
         <translation>després</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2239"/>
+        <location filename="../preferences/options.ui" line="2246"/>
         <source>Pause them</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2244"/>
+        <location filename="../preferences/options.ui" line="2251"/>
         <source>Remove them</source>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2293"/>
+        <location filename="../preferences/options.ui" line="2300"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Habilitar interfície Web d&apos;usuari (Control remot)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2342"/>
+        <location filename="../preferences/options.ui" line="2349"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Utilitza UPnP / NAT-PMP per transmetre al port del meu router</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2515"/>
+        <location filename="../preferences/options.ui" line="2522"/>
         <source>Bypass authentication for localhost</source>
         <translation>Eludir la autenticació per localhost</translation>
     </message>
@@ -3067,12 +3077,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Port d&apos;escolta</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1036"/>
+        <location filename="../preferences/options.ui" line="1043"/>
         <source>Port used for incoming connections:</source>
         <translation>Port utilitzat per a connexions entrants:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1056"/>
+        <location filename="../preferences/options.ui" line="1063"/>
         <source>Random</source>
         <translation>Aleatori</translation>
     </message>
@@ -3089,37 +3099,37 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Límit de connexions</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1099"/>
+        <location filename="../preferences/options.ui" line="1106"/>
         <source>Global maximum number of connections:</source>
         <translation>Nombre global màxim de connexions:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1125"/>
+        <location filename="../preferences/options.ui" line="1132"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Nombre màxim de connexions per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1148"/>
+        <location filename="../preferences/options.ui" line="1155"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Nombre màxim de slots de pujada per torrent:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1488"/>
-        <location filename="../preferences/options.ui" line="1643"/>
+        <location filename="../preferences/options.ui" line="1495"/>
+        <location filename="../preferences/options.ui" line="1650"/>
         <source>Upload:</source>
         <translation>Pujada:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1524"/>
-        <location filename="../preferences/options.ui" line="1670"/>
+        <location filename="../preferences/options.ui" line="1531"/>
+        <location filename="../preferences/options.ui" line="1677"/>
         <source>Download:</source>
         <translation>Baixada:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1517"/>
-        <location filename="../preferences/options.ui" line="1550"/>
-        <location filename="../preferences/options.ui" line="1663"/>
-        <location filename="../preferences/options.ui" line="1690"/>
+        <location filename="../preferences/options.ui" line="1524"/>
+        <location filename="../preferences/options.ui" line="1557"/>
+        <location filename="../preferences/options.ui" line="1670"/>
+        <location filename="../preferences/options.ui" line="1697"/>
         <source>KiB/s</source>
         <translation></translation>
     </message>
@@ -3148,23 +3158,23 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Límits de velocitat global alternativa</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1755"/>
+        <location filename="../preferences/options.ui" line="1762"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1807"/>
+        <location filename="../preferences/options.ui" line="1814"/>
         <source>Every day</source>
         <translation>Tots</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1812"/>
+        <location filename="../preferences/options.ui" line="1819"/>
         <source>Week days</source>
         <translation>Dies laborals</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1817"/>
+        <location filename="../preferences/options.ui" line="1824"/>
         <source>Week ends</source>
         <translation>Caps de setmana</translation>
     </message>
@@ -3181,7 +3191,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Utilitzar un port diferent per a la DHT i Bittorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1917"/>
+        <location filename="../preferences/options.ui" line="1924"/>
         <source>DHT port:</source>
         <translation>Port DHT:</translation>
     </message>
@@ -3210,7 +3220,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Comunicacions HTTP (Trackers, Llavors de Web, Motors de Cerca)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1255"/>
+        <location filename="../preferences/options.ui" line="1262"/>
         <source>Host:</source>
         <translation></translation>
     </message>
@@ -3219,37 +3229,37 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Comunicacions Parelles</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1234"/>
+        <location filename="../preferences/options.ui" line="1241"/>
         <source>SOCKS4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1221"/>
+        <location filename="../preferences/options.ui" line="1228"/>
         <source>Type:</source>
         <translation>Tipus:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="748"/>
+        <location filename="../preferences/options.ui" line="755"/>
         <source>Remove folder</source>
         <translation>Esborrar carpeta</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1028"/>
+        <location filename="../preferences/options.ui" line="1035"/>
         <source>Listening Port</source>
         <translation>Port d&apos;escolta</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1093"/>
+        <location filename="../preferences/options.ui" line="1100"/>
         <source>Connections Limits</source>
         <translation>Límits de connexió</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1213"/>
+        <location filename="../preferences/options.ui" line="1220"/>
         <source>Proxy Server</source>
         <translation>Servidor Proxy</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1384"/>
+        <location filename="../preferences/options.ui" line="1391"/>
         <source>IP Filtering</source>
         <translation>filtrat IP</translation>
     </message>
@@ -3258,18 +3268,18 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Calendari per utilització dels límits de velocitat alternativa</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1731"/>
+        <location filename="../preferences/options.ui" line="1738"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>des de</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1799"/>
+        <location filename="../preferences/options.ui" line="1806"/>
         <source>When:</source>
         <translation>Quan:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1971"/>
+        <location filename="../preferences/options.ui" line="1978"/>
         <source>Look for peers on your local network</source>
         <translation>Podeu cercar parells a la teva xarxa local</translation>
     </message>
@@ -3278,71 +3288,71 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Protocol d&apos;encriptació:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1229"/>
+        <location filename="../preferences/options.ui" line="1236"/>
         <source>(None)</source>
         <translation>(Cap)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1244"/>
+        <location filename="../preferences/options.ui" line="1251"/>
         <source>HTTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1281"/>
-        <location filename="../preferences/options.ui" line="2307"/>
+        <location filename="../preferences/options.ui" line="1288"/>
+        <location filename="../preferences/options.ui" line="2314"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="920"/>
-        <location filename="../preferences/options.ui" line="1322"/>
-        <location filename="../preferences/options.ui" line="2483"/>
+        <location filename="../preferences/options.ui" line="927"/>
+        <location filename="../preferences/options.ui" line="1329"/>
+        <location filename="../preferences/options.ui" line="2490"/>
         <source>Authentication</source>
         <translation>Autentificació</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="678"/>
+        <location filename="../preferences/options.ui" line="685"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Afegeix .!qB com extensió per als fitxers incomplets</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="932"/>
-        <location filename="../preferences/options.ui" line="1336"/>
-        <location filename="../preferences/options.ui" line="2522"/>
-        <location filename="../preferences/options.ui" line="2597"/>
+        <location filename="../preferences/options.ui" line="939"/>
+        <location filename="../preferences/options.ui" line="1343"/>
+        <location filename="../preferences/options.ui" line="2529"/>
+        <location filename="../preferences/options.ui" line="2604"/>
         <source>Username:</source>
         <translation>Nom d&apos;Usuari:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="942"/>
-        <location filename="../preferences/options.ui" line="1356"/>
-        <location filename="../preferences/options.ui" line="2529"/>
-        <location filename="../preferences/options.ui" line="2611"/>
+        <location filename="../preferences/options.ui" line="949"/>
+        <location filename="../preferences/options.ui" line="1363"/>
+        <location filename="../preferences/options.ui" line="2536"/>
+        <location filename="../preferences/options.ui" line="2618"/>
         <source>Password:</source>
         <translation>Contrasenya:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1239"/>
+        <location filename="../preferences/options.ui" line="1246"/>
         <source>SOCKS5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1396"/>
+        <location filename="../preferences/options.ui" line="1403"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Ruta de Filtre (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2036"/>
+        <location filename="../preferences/options.ui" line="2043"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2061"/>
+        <location filename="../preferences/options.ui" line="2068"/>
         <source>Torrent Queueing</source>
         <translation>Torrents en Cua</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2185"/>
+        <location filename="../preferences/options.ui" line="2192"/>
         <source>Share Ratio Limiting</source>
         <translation>Límit de Ràtio de Compartició</translation>
     </message>
@@ -3782,28 +3792,28 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Mida cache del Disc %1 MiB</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="503"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Suport per a DHT [Encesa], port: UPD/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="508"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="505"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="509"/>
         <source>DHT support [OFF]</source>
         <translation>Suport per a DHT [Apagat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="512"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
         <source>PeX support [ON]</source>
         <translation>Suport per a PeX [Encesa]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="514"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>PeX support [OFF]</source>
         <translation>Suport PeX [Apagat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="517"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>És necessari reiniciar per activar suport PeX</translation>
     </message>
@@ -3812,87 +3822,87 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Estat local de Parells [Encesa]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Suport per a estat local de Parells [Apagat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="537"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
         <source>Encryption support [ON]</source>
         <translation>Suport per a encriptat [Encesa]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="542"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
         <source>Encryption support [FORCED]</source>
         <translation>Suport per a encriptat [forçat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="547"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="548"/>
         <source>Encryption support [OFF]</source>
         <translation>Suport per a encriptat [Apagat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="608"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="609"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Integrador de Tracker [Encès]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="610"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="611"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Error en iniciar l&apos;integrat de Tracker!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="613"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="614"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Integrador de Tracker  [Apagat]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="667"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="668"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Port d&apos;escolta d&apos;Interfície Usuari Web %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="669"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="670"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Error interfície d&apos;Usuari Web - No es pot enllaçar al port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="810"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="811"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; Va ser eliminat de la llista de transferència i del disc.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="812"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="813"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; Va ser eliminat de la llista de transferència.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="907"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="908"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; no és una URI vàlida.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="923"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1056"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1061"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1063"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="924"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1057"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1062"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1064"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; ja està en la llista de descàrregues.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1188"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1189"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1194"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; reiniciat. (reinici ràpid)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="988"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1190"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1191"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1196"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; agregat a la llista de descàrregues.</translation>
@@ -3908,116 +3918,115 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Suport UPnP / NAT-PMP [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="416"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Anonymous mode [ON]</source>
         <translation>Mode anònim [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="418"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="419"/>
         <source>Anonymous mode [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="450"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>Adreça IP d&apos;Infomes %1 de trackers...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="522"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="523"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Suport Trobat Local de Pares [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1024"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1032"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1034"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1025"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1035"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Impossible descodificar l&apos;arxiu torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1038"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1039"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Aquest arxiu pot ser corrupte, o no ser un torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1079"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1080"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Error: aquest torrent %1 no conté cap fitxer.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1329"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1330"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1358"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Nota: nous Trackers s&apos;han afegit al torrent existent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1387"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1388"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Nota: noves llavors URL s&apos;han afegit al Torrent existent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1729"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1730"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;va ser bloquejat a causa del filtre IP&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1731"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1732"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;Va ser bloquejat a causa de fragments corruptes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1919"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>La interfície de la xarxa definida no és vàlida:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>Trying any other network interface available instead.</source>
-        <translation>Tractant qualsevol interfície de xarxa disponibles en el seu lloc.</translation>
+        <translation type="obsolete">Tractant qualsevol interfície de xarxa disponibles en el seu lloc.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1943"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Escoltant l&apos;adreça IP %1 de la interfície de xarxa %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1946"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
         <source>Failed to listen on network interface %1</source>
         <translation>No s&apos;ha pogut escoltar la interfície de xarxa %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2127"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2122"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descàrrega recursiva d&apos;arxiu %1 incrustada en Torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2219"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2221"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>No es pot descodificar %1 arxiu torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2277"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2272"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>L&apos;equip entrarà en 15 segons en estat de suspensió, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2274"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>L&apos;equip s&apos;apagarà en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2281"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2276"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent serà tancat en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2826"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2821"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4028,79 +4037,79 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Anàlisi reeixit de filtratge IP: %1 normes aplicades.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2832"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2827"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Error: No s&apos;ha pogut analitzar el filtratge IP.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2174"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>Torrent name: %1</source>
         <translation>Nom del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
         <source>Torrent size: %1</source>
         <translation>Mida del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2171"/>
         <source>Save path: %1</source>
         <translation>Guardar ruta: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2177"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2172"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>El torrernt es va descarregar a %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2173"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Gràcies per utilitzar qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2181"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 s&apos;ha finalitzat les descàrregues</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2416"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>Error E/S ocorregut, &apos;%1&apos; pausat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2417"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2412"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>Reason: %1</source>
         <translation>Raó: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2487"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Va fallar el mapatge del port, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2497"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapatge del port reeixit, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2518"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>La mida del fitxer no coincideix amb el torrent %1, pausat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2522"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Es van negar les dades per a reinici ràpid del torrent: %1, verificant de nou... </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2533"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Va fallar la recerca de llavor per l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2656"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2651"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarregant &apos;%1&apos;, si us plau esperi...</translation>
@@ -4310,37 +4319,37 @@ p, li { white-space: pre-wrap; }
         <translation>Segur que vols esborrar aquest element de la llista?</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="391"/>
+        <location filename="../rss/rss_imp.cpp" line="382"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Si us plau, elegeixi un nou nom per al Canal RSS</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="391"/>
+        <location filename="../rss/rss_imp.cpp" line="382"/>
         <source>New feed name:</source>
         <translation>Nom del nou Canal:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="395"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>Name already in use</source>
         <translation>Aquest nom ja es troba en ús</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="395"/>
+        <location filename="../rss/rss_imp.cpp" line="386"/>
         <source>This name is already used by another item, please choose another one.</source>
         <translation>Aquest nom ja s&apos;està usant, si us plau, elegeixi un altre.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="571"/>
+        <location filename="../rss/rss_imp.cpp" line="562"/>
         <source>Date: </source>
         <translation>Data:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="574"/>
+        <location filename="../rss/rss_imp.cpp" line="565"/>
         <source>Author: </source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="623"/>
+        <location filename="../rss/rss_imp.cpp" line="614"/>
         <source>Unread</source>
         <translation>No llegits</translation>
     </message>
@@ -4355,7 +4364,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="327"/>
+        <location filename="../rss/rssfeed.cpp" line="333"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Descarregar automàtica %1 Torrent %2 Canal RSS...</translation>
     </message>
@@ -4370,12 +4379,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssParser</name>
     <message>
-        <location filename="../rss/rssparser.cpp" line="334"/>
+        <location filename="../rss/rssparser.cpp" line="335"/>
         <source>Failed to open downloaded RSS file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rss/rssparser.cpp" line="366"/>
+        <location filename="../rss/rssparser.cpp" line="367"/>
         <source>Invalid RSS feed at %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4942,12 +4951,12 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Si us plau, elegeixi la ubicació del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>Invalid torrent file</source>
         <translation>Arxiu torrent no vàlid</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.cpp" line="234"/>
+        <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>This is not a valid torrent file.</source>
         <translation>Això no és un arxiu torrent vàlid.</translation>
     </message>
@@ -5382,7 +5391,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation type="obsolete">Temps estimat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="529"/>
+        <location filename="../transferlistwidget.cpp" line="532"/>
         <source>Column visibility</source>
         <translation>Visibilitat de columnes</translation>
     </message>
@@ -5422,7 +5431,7 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation type="obsolete">Ratio</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="763"/>
+        <location filename="../transferlistwidget.cpp" line="766"/>
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
@@ -5474,150 +5483,160 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation>Límit de velocitat de Pujada Torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="592"/>
+        <location filename="../transferlistwidget.cpp" line="520"/>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="520"/>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>New Label</source>
         <translation>Nova Etiqueta</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="592"/>
+        <location filename="../transferlistwidget.cpp" line="595"/>
         <source>Label:</source>
         <translation>Etiqueta:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="597"/>
+        <location filename="../transferlistwidget.cpp" line="600"/>
         <source>Invalid label name</source>
         <translation>Nom d&apos;Etiqueta no vàlid</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="597"/>
+        <location filename="../transferlistwidget.cpp" line="600"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Si us plau, no utilitzi caràcters especials per al nom de l&apos;Etiqueta.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="613"/>
+        <location filename="../transferlistwidget.cpp" line="616"/>
         <source>Rename</source>
         <translation>Rebatejar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="613"/>
+        <location filename="../transferlistwidget.cpp" line="616"/>
         <source>New name:</source>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="647"/>
+        <location filename="../transferlistwidget.cpp" line="650"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Reprende</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="649"/>
+        <location filename="../transferlistwidget.cpp" line="652"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="651"/>
+        <location filename="../transferlistwidget.cpp" line="654"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="653"/>
+        <location filename="../transferlistwidget.cpp" line="656"/>
         <source>Preview file...</source>
         <translation>Previsualitzar arxiu...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="655"/>
+        <location filename="../transferlistwidget.cpp" line="658"/>
         <source>Limit share ratio...</source>
         <translation>Límit ràtio compartició ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="660"/>
         <source>Limit upload rate...</source>
         <translation>Taxa límit de Pujada...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="659"/>
+        <location filename="../transferlistwidget.cpp" line="662"/>
         <source>Limit download rate...</source>
         <translation>Taxa límit de Baixada...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="806"/>
+        <location filename="../transferlistwidget.cpp" line="809"/>
         <source>Priority</source>
         <translation>Prioritat</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="661"/>
+        <location filename="../transferlistwidget.cpp" line="664"/>
         <source>Open destination folder</source>
         <translation>Obrir carpeta destí</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="663"/>
+        <location filename="../transferlistwidget.cpp" line="666"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Moure amunt</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="665"/>
+        <location filename="../transferlistwidget.cpp" line="668"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Moure avall</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="667"/>
+        <location filename="../transferlistwidget.cpp" line="670"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Moure al principi</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="669"/>
+        <location filename="../transferlistwidget.cpp" line="672"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Moure al final</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="671"/>
+        <location filename="../transferlistwidget.cpp" line="674"/>
         <source>Set location...</source>
         <translation>Establir una destinació...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="673"/>
+        <location filename="../transferlistwidget.cpp" line="676"/>
         <source>Force recheck</source>
         <translation>Forçar verificació de arxiu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="675"/>
+        <location filename="../transferlistwidget.cpp" line="678"/>
         <source>Copy magnet link</source>
         <translation>Copiar magnet link</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="677"/>
+        <location filename="../transferlistwidget.cpp" line="680"/>
         <source>Super seeding mode</source>
         <translation>Mode de SuperSembra</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="680"/>
+        <location filename="../transferlistwidget.cpp" line="683"/>
         <source>Rename...</source>
         <translation>Rebatejar...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="682"/>
+        <location filename="../transferlistwidget.cpp" line="685"/>
         <source>Download in sequential order</source>
         <translation>Descarregar en ordre seqüencial</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="685"/>
+        <location filename="../transferlistwidget.cpp" line="688"/>
         <source>Download first and last piece first</source>
         <translation>Descarregar primer, primeres i últimes parts</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="764"/>
+        <location filename="../transferlistwidget.cpp" line="767"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Nou...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="765"/>
+        <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Reset Etiquetas</translation>
@@ -6549,109 +6568,109 @@ De qualsevol manera, aquests plugins van ser deshabilitats.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
-        <location filename="../preferences/options_imp.cpp" line="1153"/>
-        <location filename="../preferences/options_imp.cpp" line="1168"/>
-        <location filename="../preferences/options_imp.cpp" line="1170"/>
+        <location filename="../preferences/options_imp.cpp" line="1163"/>
+        <location filename="../preferences/options_imp.cpp" line="1165"/>
+        <location filename="../preferences/options_imp.cpp" line="1180"/>
+        <location filename="../preferences/options_imp.cpp" line="1182"/>
         <source>Choose a save directory</source>
         <translation>Seleccioni un directori per guardar</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1078"/>
         <source>Add directory to scan</source>
         <translation>Afegir directori per escanejar</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
+        <location filename="../preferences/options_imp.cpp" line="1084"/>
         <source>Folder is already being watched.</source>
         <translation>Aquesta carpeta ja està seleccionada per escanejar.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1075"/>
+        <location filename="../preferences/options_imp.cpp" line="1087"/>
         <source>Folder does not exist.</source>
         <translation>La carpeta no existeix.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1078"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
         <source>Folder is not readable.</source>
         <translation>La carpeta no és llegible.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1098"/>
         <source>Failure</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1098"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>No es pot escanejar aquesta carpetes &apos;%1&apos;:%2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
-        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1121"/>
+        <location filename="../preferences/options_imp.cpp" line="1123"/>
         <source>Choose export directory</source>
         <translation>Seleccioni directori d&apos;exportació</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1133"/>
-        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1145"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Choose an ip filter file</source>
         <translation>Seleccioni un arxiu de filtre d&apos;ip</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1133"/>
-        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1145"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1213"/>
+        <location filename="../preferences/options_imp.cpp" line="1225"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>Certificat SSL (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1224"/>
+        <location filename="../preferences/options_imp.cpp" line="1236"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Clau SSL (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1255"/>
+        <location filename="../preferences/options_imp.cpp" line="1267"/>
         <source>Parsing error</source>
         <translation>Error d&apos;anàlisi</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1255"/>
+        <location filename="../preferences/options_imp.cpp" line="1267"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>No s&apos;ha pogut analitzar el filtratge IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1257"/>
+        <location filename="../preferences/options_imp.cpp" line="1269"/>
         <source>Successfully refreshed</source>
         <translation>Actualitzat amb èxit</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1257"/>
+        <location filename="../preferences/options_imp.cpp" line="1269"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1328"/>
+        <location filename="../preferences/options_imp.cpp" line="1340"/>
         <source>Invalid key</source>
         <translation>Clau no vàlida</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1328"/>
+        <location filename="../preferences/options_imp.cpp" line="1340"/>
         <source>This is not a valid SSL key.</source>
         <translation>Aquesta no és una clau SSL vàlida.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1343"/>
+        <location filename="../preferences/options_imp.cpp" line="1355"/>
         <source>Invalid certificate</source>
         <translation>Certificat no vàlid</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1343"/>
+        <location filename="../preferences/options_imp.cpp" line="1355"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Aquest no és un Certificat SSL vàlid.</translation>
     </message>

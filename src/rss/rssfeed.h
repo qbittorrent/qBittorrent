@@ -35,6 +35,7 @@
 #include <QSharedPointer>
 #include <QVariantHash>
 #include <QXmlStreamReader>
+#include <QNetworkCookie>
 
 #include "rssfile.h"
 
@@ -90,6 +91,7 @@ private:
   void loadItemsFromDisk();
   void addArticle(const RssArticlePtr& article);
   void downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article);
+  QList<QNetworkCookie> feedCookies() const;
 
 private:
   RssManager* m_manager;

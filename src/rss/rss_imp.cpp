@@ -347,19 +347,10 @@ void RSSImp::downloadSelectedTorrents()
       QBtSession::instance()->addMagnetInteractive(torrentLink);
     else {
       // Load possible cookies
-      QList<QNetworkCookie> cookies;
       QString feed_url = m_feedList->getItemID(m_feedList->selectedItems().first());
       QString feed_hostname = QUrl::fromEncoded(feed_url.toUtf8()).host();
-      const QList<QByteArray> raw_cookies = RssSettings().getHostNameCookies(feed_hostname);
-      foreach (const QByteArray& raw_cookie, raw_cookies) {
-        QList<QByteArray> cookie_parts = raw_cookie.split('=');
-        if (cookie_parts.size() == 2) {
-          qDebug("Loading cookie: %s = %s", cookie_parts.first().constData(), cookie_parts.last().constData());
-          cookies << QNetworkCookie(cookie_parts.first(), cookie_parts.last());
-        }
-      }
+      QList<QNetworkCookie> cookies = RssSettings().getHostNameQNetworkCookies(feed_hostname);
       qDebug("Loaded %d cookies for RSS item\n", cookies.size());
-
       QBtSession::instance()->downloadFromUrl(torrentLink, cookies);
     }
   }

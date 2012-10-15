@@ -136,6 +136,12 @@ void RssFeed::addArticle(const RssArticlePtr& article)
   }
 }
 
+QList<QNetworkCookie> RssFeed::feedCookies() const
+{
+  QString feed_hostname = QUrl::fromEncoded(m_url.toUtf8()).host();
+  return RssSettings().getHostNameQNetworkCookies(feed_hostname);
+}
+
 bool RssFeed::refresh()
 {
   if (m_loading) {
@@ -144,7 +150,7 @@ bool RssFeed::refresh()
   }
   m_loading = true;
   // Download the RSS again
-  m_manager->rssDownloader()->downloadUrl(m_url);
+  m_manager->rssDownloader()->downloadUrl(m_url, feedCookies());
   return true;
 }
 

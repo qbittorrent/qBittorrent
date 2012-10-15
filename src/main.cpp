@@ -179,12 +179,13 @@ int main(int argc, char *argv[]) {
   // Check if qBittorrent is already running for this user
   if (app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
+    // Read torrents given on command line
+    QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
     QString message;
-    for (int a = 1; a < argc; ++a) {
-      QString p = QString::fromLocal8Bit(argv[a]);
-      if (p.startsWith("--")) continue;
-      message += p;
+    for (int a = 1; a < torrentCmdLine.size(); ++a) {
+      if (torrentCmdLine[a].startsWith("--")) continue;
+      message += torrentCmdLine[a];
       if (a < argc-1)
         message += "|";
     }

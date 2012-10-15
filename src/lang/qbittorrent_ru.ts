@@ -93,7 +93,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Эта версия qBittorrent была создана с использованием следующих библиотек:</translation>
+        <translation>Эта версия qBittorrent была собрана с использованием следующих библиотек:</translation>
     </message>
     <message>
         <source>Qt:</source>
@@ -115,151 +115,158 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Продвинутый BitTorrent клиент, написанный на C++. Использует фреймворк Qt4 и библиотеку libtorrent (rasterbar). &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Домашняя страница: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Баг-трекер: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Форум: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent на Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>where is it shown?</translatorcomment>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как</translation>
     </message>
     <message>
         <source>Set as default save path</source>
-        <translation type="unfinished">Установить как путь сохранения по умолчанию</translation>
+        <translation>Установить как путь сохранения по умолчанию</translation>
     </message>
     <message>
         <source>Never show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не показывать</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройки торрента</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустить торрент</translation>
     </message>
     <message>
         <source>Label:</source>
-        <translation type="unfinished">Метка:</translation>
+        <translation>Метка:</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation type="unfinished"></translation>
+        <translation>Не проверять контрольную сумму</translation>
     </message>
     <message>
         <source>Torrent Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Сведения о торренте</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер:</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished">Комментарий:</translation>
+        <translation>Комментарий:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата:</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished">Высокий</translation>
+        <translation>Высокий</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished">Максимальный</translation>
+        <translation>Максимальный</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished">Не загружать</translation>
+        <translation>Не загружать</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Другой путь...</translation>
     </message>
     <message>
         <source>I/O Error</source>
-        <translation type="unfinished">Ошибка ввода/вывода</translation>
+        <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торрент-файл не существует.</translation>
     </message>
     <message>
         <source>Invalid torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Некорректный торрент</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished"></translation>
+        <translation>Недоступно</translation>
     </message>
     <message>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильная magnet ссылка</translation>
     </message>
     <message>
         <source>This magnet link was not recognized</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet-ссылка не распознана</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet ссылка</translation>
     </message>
     <message>
         <source>Disk space: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Места на диске: %1</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished">Выберите путь сохранения</translation>
+        <translation>Выберите путь сохранения</translation>
     </message>
     <message>
         <source>Rename the file</source>
-        <translation type="unfinished">Переименовать файл</translation>
+        <translation>Переименовать файл</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished">Новое имя:</translation>
+        <translation>Новое имя:</translation>
     </message>
     <message>
         <source>The file could not be renamed</source>
-        <translation type="unfinished">Файл не может быть переименован</translation>
+        <translation>Файл не может быть переименован</translation>
     </message>
     <message>
         <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Имя файла содержит недопустимые символы. Пожалуйста, выберите другое.</translation>
+        <translation>Имя файла содержит недопустимые символы. Пожалуйста, выберите другое.</translation>
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished">Файл с таким именем уже существует в этой папке. Используйте другое имя.</translation>
+        <translation>Файл с таким именем уже существует в этой папке. Пожалуйста, задайте другое.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">Папка не может быть переименована</translation>
+        <translation>Папка не может быть переименована</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished">Переименовать...</translation>
+        <translation>Переименовать...</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Failed to load the torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить торрент: %1</translation>
     </message>
 </context>
 <context>
@@ -282,7 +289,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Disk write cache size</source>
-        <translation>Дисковый кеш записи</translation>
+        <translation>Кеш для записи на диск</translation>
     </message>
     <message>
         <source> MiB</source>
@@ -327,7 +334,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
-        <translation>Сетевой интерфейс (Требует перезагрузки)</translation>
+        <translation>Сетевой интерфейс (требуется перезапуск)</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -387,6 +394,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Всегда анонсировать на все трекеры</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -432,7 +443,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Matching RSS articles</source>
-        <translation>Совпадающие RSS заголовки</translation>
+        <translation>Подходящие RSS заголовки</translation>
     </message>
     <message>
         <source>Save to a different directory</source>
@@ -456,7 +467,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Введите имя нового правила скачивания.</translation>
+        <translation>Введите имя нового правила скачивания.</translation>
     </message>
     <message>
         <source>Rule name conflict</source>
@@ -488,11 +499,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>Список пуст. Нечего экспортировать.</translation>
+        <translation>Список пуст, экспортировать нечего.</translation>
     </message>
     <message>
         <source>Where would you like to save the list?</source>
-        <translation>Куда вы хотите соранить список?</translation>
+        <translation>Куда вы хотите сохранить список?</translation>
     </message>
     <message>
         <source>Rules list (*.rssrules)</source>
@@ -524,7 +535,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished">Добавить правило...</translation>
+        <translation>Добавить правило...</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -532,7 +543,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished">Переименовать правило...</translation>
+        <translation>Переименовать правило...</translation>
     </message>
     <message>
         <source>Delete selected rules</source>
@@ -824,7 +835,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Ошибка Dynamic DNS: Служба временно не доступна. Попробую соединиться через 30 минут.</translation>
+        <translation>Ошибка Dynamic DNS: служба временно не доступна. Попробую соединиться через 30 минут.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
@@ -832,7 +843,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Ошибка Dynamic DNS: Неверное имя пользователя/пароль.</translation>
+        <translation>Ошибка Dynamic DNS: Неверный логин или пароль.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
@@ -840,11 +851,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Ошибка Dynamic DNS: %1 было возвращено службой. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
+        <translation>Ошибка Dynamic DNS: служба вернула %1. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Ошибка Dynamic DNS: Ваше имя пользователя было блокировано из-за злоупотребления.</translation>
+        <translation>Ошибка Dynamic DNS: ваш аккаунт был заблокирован из-за злоупотребления.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
@@ -860,7 +871,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваш dynamic DNS был успешно обновлён.</translation>
     </message>
 </context>
 <context>
@@ -879,11 +890,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Удаленный сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
+        <translation>Сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <source>The connection to the remote server timed out</source>
-        <translation>Время соединения с удаленным сервером вышло</translation>
+        <translation>Время соединения с сервером вышло</translation>
     </message>
     <message>
         <source>SSL/TLS handshake failed</source>
@@ -891,7 +902,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>The remote server refused the connection</source>
-        <translation>Удаленный сервер отклонил соединение</translation>
+        <translation>Сервер отклонил соединение</translation>
     </message>
     <message>
         <source>The connection to the proxy server was refused</source>
@@ -927,11 +938,11 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
+        <translation>Удаленный сервер требует аутентификации для отдачи данных, но указанные учетные данные не были приняты</translation>
     </message>
     <message>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>API сетевого доступа не может выполнить запрос, потому что протокол не известен</translation>
+        <translation>API сетевого доступа не может выполнить запрос, потому что протокол неизвестен</translation>
     </message>
     <message>
         <source>The requested operation is invalid for this protocol</source>
@@ -1206,7 +1217,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
     <message>
         <source>Unread</source>
-        <translation>Не прочитано</translation>
+        <translation>Не прочитанные</translation>
     </message>
 </context>
 <context>
@@ -1674,7 +1685,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Чтобы управлять qBittorrent откройте браузер по адресу http://localhost:%1</translation>
+        <translation>Чтобы управлять qBittorrent, откройте браузер по адресу http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
@@ -1682,7 +1693,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Пароль администратора Web интерфейса все еще пароль по умолчанию: %1</translation>
+        <translation>Пароль администратора Web интерфейса все еще является паролем по умолчанию: %1</translation>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
@@ -1726,7 +1737,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Скачативать торренты с их URL и Magnet ссылок</translation>
+        <translation>Скачивать торренты с их URL или Magnet ссылок</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -1750,7 +1761,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Вы уверены что хотите удалить выделенные торренты из списка и с жесткого диска?</translation>
+        <translation>Вы уверены, что хотите удалить выделенные торренты из списка и с жесткого диска?</translation>
     </message>
     <message>
         <source>Download rate limit must be greater than 0 or disabled.</source>
@@ -1774,7 +1785,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не возможно сохранить настройки, qBittorrent возможно недоступен.</translation>
+        <translation>Не возможно сохранить настройки, возможно, qBittorrent недоступен.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1827,7 +1838,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent был закрыт.</translation>
     </message>
 </context>
 <context>
@@ -1852,7 +1863,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent - программа для обмена файлами. Когда вы запускаете торрент, данные становятся доступными другим участникам обмена для отдачи. Конечно, любые данные которые вы отдаете на обмен только ваша ответственность.
+        <translation>qBittorrent - программа для обмена файлами. Когда вы запускаете торрент, данные становятся доступны другим участникам обмена. Вы раздаёте весь контент исключительно под вашу личную ответственность.
 
 Больше это уведомление не будет показано.</translation>
     </message>
@@ -1879,7 +1890,7 @@ No further notices will be issued.</source>
     <name>MainWindow</name>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Изменить</translation>
+        <translation>П&amp;равка</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1932,8 +1943,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
-        <translatorcomment>Создатель такой создатель... Но ничего лучше придумать не могу, в голову приходят только &apos;создавалка&apos; и &apos;создавайка&apos; (создавайка мне торрент! ^_^)</translatorcomment>
-        <translation>Мастер &amp;создания Torrent-а</translation>
+        <translation>&amp;Создать торрент</translation>
     </message>
     <message>
         <source>Set upload limit...</source>
@@ -1976,7 +1986,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Альтернативные лимиты скорости</translation>
+        <translation>Альтернативные ограничения скорости</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -1993,7 +2003,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation>П&amp;риостановить Все</translation>
+        <translation>П&amp;риостановить все</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -2015,7 +2025,7 @@ No further notices will be issued.</source>
     <message>
         <source>Search &amp;engine</source>
         <translatorcomment>Исходя из следущего (хотя я лично целиком и полностью за &apos;Поисковый движок&apos;)</translatorcomment>
-        <translation>По&amp;исковик</translation>
+        <translation>По&amp;иск</translation>
     </message>
     <message>
         <source>Log viewer</source>
@@ -2060,7 +2070,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Если вам нравится qBittorrent, пожалуйста - пожертвуйте!</translation>
+        <translation>Если вам нравится qBittorrent, пожалуйста, пожертвуйте!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
@@ -2073,11 +2083,11 @@ No further notices will be issued.</source>
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Передачи</translation>
+        <translation>Торренты</translation>
     </message>
     <message>
         <source>Torrent file association</source>
-        <translation>Привязки торрент-файлов</translation>
+        <translation>Ассоциации торрент-файлов</translation>
     </message>
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
@@ -2111,7 +2121,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Transfers (%1)</source>
-        <translation>Передачи (%1)</translation>
+        <translation>Торренты (%1)</translation>
     </message>
     <message>
         <source>Download completion</source>
@@ -2231,12 +2241,12 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Скач.: %1 КиБ/с</translation>
+        <translation>Приём: %1 КиБ/с</translation>
     </message>
     <message>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Отдача.: %1 КиБ/с</translation>
+        <translation>Отдача: %1 КиБ/с</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2267,7 +2277,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation>Добавит &amp;ссылку к торренту...</translation>
+        <translation>Добавить &amp;ссылку к торренту...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
@@ -2299,7 +2309,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Выключено</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>The password should contain at least 3 characters</source>
@@ -2316,7 +2326,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[Скач: %1/с, Отд: %2/с] qBittorrent %3</translation>
+        <translation>[Приём: %1/с, Отдача: %2/с] qBittorrent %3</translation>
     </message>
 </context>
 <context>
@@ -2327,7 +2337,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The IP you provided is invalid.</source>
-        <translation>IP который вы указали неправилен.</translation>
+        <translation>Вы указали неправильный IP.</translation>
     </message>
 </context>
 <context>
@@ -2376,7 +2386,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Заблокировать пир навсегда</translation>
+        <translation>Заблокировать пира навсегда</translation>
     </message>
     <message>
         <source>Peer addition</source>
@@ -2384,11 +2394,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The peer was added to this torrent.</source>
-        <translation>Пир был добавлен к этому torrent.</translation>
+        <translation>Пир был добавлен к этому торренту.</translation>
     </message>
     <message>
         <source>The peer could not be added to this torrent.</source>
-        <translation>Пир не может быть добавлен к этому torrent.</translation>
+        <translation>Пир не может быть добавлен к этому торренту.</translation>
     </message>
     <message>
         <source>Are you sure? -- qBittorrent</source>
@@ -2396,7 +2406,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Вы уверены что хотите навсегда заблокировать выделенные пиры?</translation>
+        <translation>Вы уверены, что хотите навсегда заблокировать выделенных пиров?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -2408,20 +2418,20 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Manually banning peer %1...</source>
-        <translation>Заблокировать пир %1 вручную...</translation>
+        <translation>Заблокировать пира %1 вручную...</translation>
     </message>
     <message>
         <source>Upload rate limiting</source>
-        <translation>Ограничение соотношения отдачи</translation>
+        <translation>Ограничение скорости отдачи</translation>
     </message>
     <message>
         <source>Download rate limiting</source>
-        <translation>Ограничение соотношения скачивания</translation>
+        <translation>Ограничение скорости скачивания</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
         <translatorcomment>Исходя из предыдущего. Хотя мне больше нравится &apos;Добавить пира&apos;, пиры - они ведь живые...</translatorcomment>
-        <translation>Добавить новый пир...</translation>
+        <translation>Добавить нового пира...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
@@ -2476,7 +2486,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>(Requires restart)</source>
-        <translation>(Требует перезагрузки)</translation>
+        <translation>(Требует перезапуска)</translation>
     </message>
     <message>
         <source>Visual style:</source>
@@ -2509,7 +2519,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Максимальное число активных torrent:</translation>
+        <translation>Максимальное число активных торрентов:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -2517,7 +2527,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Display torrent content and some options</source>
-        <translation>Отображать содержимое torrentа и некоторые настройки</translation>
+        <translation>Отображать содержимое торрента и некоторые настройки</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -2549,11 +2559,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максимальное число соединений на torrent:</translation>
+        <translation>Максимальное число соединений на торрент:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Максимальное количество слотов отдачи на torrent:</translation>
+        <translation>Максимальное количество слотов отдачи на торрент:</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -2763,7 +2773,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translatorcomment>Коряво, коряво...</translatorcomment>
-        <translation>Закрывать qBittorrent в облать уведомлений</translation>
+        <translation>Закрывать qBittorrent в область уведомлений</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -2773,7 +2783,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Save files to location:</source>
         <translatorcomment>А надо ли &apos;расположение&apos;? И имхо &apos;по умолчанию&apos; здесь будет очень к месту.</translatorcomment>
-        <translation>Сохранять файлы по умолчанию в:</translation>
+        <translation>Сохранять по умолчанию файлы в:</translation>
     </message>
     <message>
         <source>Append the label of the torrent to the save path</source>
@@ -2782,7 +2792,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Pre-allocate disk space for all files</source>
         <translatorcomment>Или &apos;Предварительно резервировать&apos; будет правильнее?</translatorcomment>
-        <translation>Предварительно зарезервировать место для всех файлов</translation>
+        <translation>Предварительно резервировать место для всех файлов</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -2820,7 +2830,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Look for peers on your local network</source>
-        <translation>Искать пиры в вашей локальной сети</translation>
+        <translation>Искать пиров в вашей локальной сети</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
@@ -2838,7 +2848,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Seed torrents until their ratio reaches</source>
         <translatorcomment>Или тут лучше &apos;соотношение&apos;? Или &apos;рейтинг&apos;?</translatorcomment>
-        <translation>Раздавать торренты пока их соотношение загрузка/раздача не достигнет</translation>
+        <translation>Раздавать торренты, пока их соотношение загрузка/раздача не достигнет</translation>
     </message>
     <message>
         <source>then</source>
@@ -2855,11 +2865,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message utf8="true">
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Обмен пирами с совместиыми клиентами Bittorrent (µTorrent, Vuze, ...)</translation>
+        <translation>Обмен пирами с совместимыми клиентами Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Сообщать об окончании загрузки по Email</translation>
+        <translation>Сообщать об окончании загрузки по почте</translation>
     </message>
     <message>
         <source>Destination email:</source>
@@ -2903,11 +2913,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation>Использовать разные порты для DHT и Bittorrent</translation>
+        <translation>Использовать разные порты для DHT и BitTorrent</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Включить Обмен пирами (PeX), чтобы найти больше пиров</translation>
+        <translation>Включить обмен пирами (PeX), чтобы найти больше пиров</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
@@ -2999,7 +3009,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Этот сервер требует защищённое соединение (SSL)</translation>
+        <translation>Этот сервер требует защищённого соединения (SSL)</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
@@ -3051,7 +3061,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Обновлять моё динамическое доменное имя</translation>
+        <translation>Обновлять моё динамическое DNS имя</translation>
     </message>
     <message>
         <source>Service:</source>
@@ -3127,7 +3137,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>File association</source>
-        <translation>Привязка файлов</translation>
+        <translation>Ассоциации файлов</translation>
     </message>
     <message>
         <source>Use qBittorrent for .torrent files</source>
@@ -3151,10 +3161,14 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Подробнее&lt;/a&gt;)</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation>Копировать .torrent файлы завершённых закачек в:</translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3217,7 +3231,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation>Смешанные</translation>
+        <translation>Смешанный</translation>
     </message>
 </context>
 <context>
@@ -3228,7 +3242,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Трэкеры</translation>
+        <translation>Трекеры</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3255,11 +3269,11 @@ Would you like to update qBittorrent to version %1?</source>
     <name>PropertiesWidget</name>
     <message>
         <source>Save path:</source>
-        <translation>Путь сохранения:</translation>
+        <translation>Путь:</translation>
     </message>
     <message>
         <source>Torrent hash:</source>
-        <translation>Хэш torrentа:</translation>
+        <translation>Хеш:</translation>
     </message>
     <message>
         <source>Comment:</source>
@@ -3267,7 +3281,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Share ratio:</source>
-        <translation>Соотношение раздачи:</translation>
+        <translation>Коэффициент:</translation>
     </message>
     <message>
         <source>General</source>
@@ -3304,7 +3318,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This url seed is already in the list.</source>
-        <translation>Этот URL раздающего уже в списке.</translation>
+        <translation>Этот URL уже в списке.</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -3332,15 +3346,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation>Потрачено:</translation>
+        <translation>Излишки:</translation>
     </message>
     <message>
         <source>UP limit:</source>
-        <translation>Отд. огр:</translation>
+        <translation>Лимит отдачи:</translation>
     </message>
     <message>
         <source>DL limit:</source>
-        <translation>Загр. огр:</translation>
+        <translation>Лимит загрузки:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
@@ -3356,7 +3370,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Created on:</source>
-        <translation>Создан на:</translation>
+        <translation>Создан:</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3376,7 +3390,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>this session</source>
-        <translation>эта сессия</translation>
+        <translation>в эту сессию</translation>
     </message>
     <message>
         <source>%1 max</source>
@@ -3447,7 +3461,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Select None</source>
-        <translation>Выбрать ничего</translation>
+        <translation>Сбросить выделение</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -3460,7 +3474,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Время активности:</translation>
+        <translation>Активен:</translation>
     </message>
     <message>
         <source>Torrent content:</source>
@@ -3484,7 +3498,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent привязан к порту: TCP/%1</translation>
+        <translation>qBittorrent использует порт: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -3512,7 +3526,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Поддержка DHT [Вкл.], порт: UDP/%1</translation>
+        <translation>Поддержка DHT [Вкл], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
@@ -3564,21 +3578,21 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation>Web интерфейс прослушивает порт %1</translation>
+        <translation>Web интерфейс слушает порт %1</translation>
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Ошибка Web интерфейса - Не могу привязаться к порту %1</translation>
+        <translation>Ошибка Web интерфейса - невозможно занять порт %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
+        <translation>&apos;%1&apos; был удален из списка торрентов и с жесткого диска.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка передач.</translation>
+        <translation>&apos;%1&apos; был удален из списка торрентов.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
@@ -3592,7 +3606,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>%1 возобновлен. (быстрое возобновление)</translation>
+        <translation>%1 возобновлен (быстрое возобновление).</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
@@ -3606,11 +3620,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Этот файл либо поврежден, либо это не торрент-файл.</translation>
+        <translation>Этот файл либо поврежден, либо не является торрент-файлом.</translation>
     </message>
     <message>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Ошибка: Торрент %1 не содержит никаких файлов.</translation>
+        <translation>Ошибка: торрент %1 не содержит никаких файлов.</translation>
     </message>
     <message>
         <source>Note: new trackers were added to the existing torrent.</source>
@@ -3633,7 +3647,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Рекурсивная загрузка файла %1 встроенна в торрент %2</translation>
+        <translation>Рекурсивная загрузка файла %1 встроена в торрент %2</translation>
     </message>
     <message>
         <source>Unable to decode %1 torrent file.</source>
@@ -3654,7 +3668,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Торрент был скачен за %1.</translation>
+        <translation>Торрент был загружен за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
@@ -3686,7 +3700,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
+        <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверяем заново...</translation>
     </message>
     <message>
         <source>Url seed lookup failed for url: %1, message: %2</source>
@@ -3695,7 +3709,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Скачивание &apos;%1&apos;, подождите...</translation>
+        <translation>Скачиваем &apos;%1&apos;, подождите...</translation>
     </message>
     <message>
         <source>The network interface defined is invalid: %1</source>
@@ -3703,15 +3717,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Пробуем другой достпуный сетевой интерфейс.</translation>
+        <translation type="obsolete">Пробуем другой доступный сетевой интерфейс.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation>Слушаем на IP адресе %1 на сетевом интерфейсе %2...</translation>
+        <translation>Слушаем на IP адресе %1 сетевого интерфейса %2...</translation>
     </message>
     <message>
         <source>Failed to listen on network interface %1</source>
-        <translation>Не возможно слушать сетевой интерфейс %1</translation>
+        <translation>Невозможно слушать сетевой интерфейс %1</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
@@ -3732,11 +3746,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Ошибка: Не возможно разобрать фильтр IP.</translation>
+        <translation>Ошибка: невозможно разобрать фильтр IP.</translation>
     </message>
     <message>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation>Сообщаю IP адрес %1 трекерам...</translation>
+        <translation>Сообщаем IP адрес %1 трекерам...</translation>
     </message>
     <message>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
@@ -3748,7 +3762,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>Сейчас qBittorrent будет завершен, если вы не отмените это в течение следующих 15 секунд...</translation>
+        <translation>qBittorrent закроется, если вы не отмените это в течение следующих 15 секунд...</translation>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
@@ -3757,11 +3771,11 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Успешно прочитан фильтр IP: %1 правил применено.</translation>
     </message>
     <message>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Анонимный режим [Выкл]</translation>
     </message>
 </context>
 <context>
@@ -3800,7 +3814,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>Открыть новый URL</translation>
+        <translatorcomment>Не нашёл, где используется :( По-моему, под &quot;news&quot; в оригинале имелось в виду что-то другое :)</translatorcomment>
+        <translation type="unfinished">Открыть новый URL</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
@@ -3920,11 +3935,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Вы уверены что хотите удалить эти элементы из списка?</translation>
+        <translation>Вы уверены, что хотите удалить эти элементы из списка?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Вы уверены что хотите удалить этот элемент из списка?</translation>
+        <translation>Вы уверены, что хотите удалить этот элемент из списка?</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3940,7 +3955,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Это имя уже используется. Выберите другое.</translation>
+        <translation>Это имя уже используется. Выберите, пожалуйста, другое.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
@@ -3953,7 +3968,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unread</source>
-        <translation>Не прочитано</translation>
+        <translation>Непрочитанные</translation>
     </message>
 </context>
 <context>
@@ -3967,7 +3982,7 @@ p, li { white-space: pre-wrap; }
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Автоматически загрузить %1 торрент с %2 RSS канала...</translation>
+        <translation>Автоматически загружаем %1 торрент с %2 RSS канала...</translation>
     </message>
 </context>
 <context>
@@ -3981,11 +3996,11 @@ p, li { white-space: pre-wrap; }
     <name>RssParser</name>
     <message>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при открытии скачанного RSS файла.</translation>
     </message>
     <message>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неправильный RSS канал %1.</translation>
     </message>
 </context>
 <context>
@@ -4092,7 +4107,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please type a search pattern first</source>
-        <translation>Пожалуйста, наберите сначала шаблон поиска</translation>
+        <translation>Пожалуйста, задайте сначала шаблон поиска</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4173,8 +4188,8 @@ Please install it manually.</source>
     <message>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Python 2.x требуется для использования поисковиков, но не похоже что он установлен.
-Хотите ли Вы установить его сечас?</translation>
+        <translation>Python 2.x требуется для использования поисковиков, но, видимо, он не установлен.
+Хотите установить его сечас?</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -4295,7 +4310,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent был обновлен и нуждается в перезапуске, чтобы изменение вступили в силу.</translation>
+        <translation>qBittorrent был обновлен и нуждается в перезапуске, чтобы изменения вступили в силу.</translation>
     </message>
     <message>
         <source>Click to switch to alternative speed limits</source>
@@ -4315,30 +4330,30 @@ Do you want to install it now?</source>
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Размер</translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished">Приоритет</translation>
+        <translation>Приоритет</translation>
     </message>
 </context>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
         <source>Select a folder to add to the torrent</source>
-        <translation>Выберите папку для добавления в torrent</translation>
+        <translation>Выберите папку для добавления в торрент</translation>
     </message>
     <message>
         <source>Select a file to add to the torrent</source>
-        <translation>Выберите файл для добавления в torrent</translation>
+        <translation>Выберите файл для добавления в торрент</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -4359,15 +4374,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>No input path set</source>
-        <translation>Не установлен входной путь</translation>
+        <translation type="unfinished">Не задано содержимое</translation>
     </message>
     <message>
         <source>Please type an input path first</source>
-        <translation>Пожалуйста, сначала введите путь источника</translation>
+        <translation type="unfinished">Пожалуйста, сначала выберите содержимое</translation>
     </message>
     <message>
         <source>Select destination torrent file</source>
-        <translation>Выберите torrent файл назначения</translation>
+        <translation>Выберите торрент файл назначения</translation>
     </message>
     <message>
         <source>Torrent Files</source>
@@ -4375,11 +4390,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent creation</source>
-        <translation>Создание Torrent-а</translation>
+        <translation>Создание торрента</translation>
     </message>
     <message>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Создание torrent-а не завершено, причина: %1</translation>
+        <translation>Создать торрента не удалось, причина: %1</translation>
     </message>
     <message>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
@@ -4387,7 +4402,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent успешно создан:</translation>
+        <translation>Торрент успешно создан:</translation>
     </message>
 </context>
 <context>
@@ -4417,8 +4432,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translatorcomment>dont understand phrase</translatorcomment>
-        <translation>Помошник поможет вам настроить раздачу торрента, который вы уже скачали.</translation>
+        <translation>Здесь можно настроить раздачу торрента, который вы когда-либо скачали.</translation>
     </message>
     <message>
         <source>Torrent file to import:</source>
@@ -4430,7 +4444,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Content location:</source>
-        <translation>Размещение содержимого:</translation>
+        <translation>Содержимое:</translation>
     </message>
     <message>
         <source>Skip the data checking stage and start seeding immediately</source>
@@ -4456,7 +4470,7 @@ Do you want to install it now?</source>
     <message>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation>Укажите размещение %1</translation>
+        <translation>Укажите, где находится %1</translation>
     </message>
     <message>
         <source>Please point to the location of the torrent: %1</source>
@@ -4468,7 +4482,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>This is not a valid torrent file.</source>
-        <translation>Это не правильный торрент файл.</translation>
+        <translation>Это неправильный торрент файл.</translation>
     </message>
 </context>
 <context>
@@ -4496,7 +4510,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Источники</translation>
+        <translation>Сиды</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -4506,22 +4520,22 @@ Do you want to install it now?</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Скорость скач</translation>
+        <translation>Приём</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость отдачи</translation>
+        <translation>Отдача</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Соотношение</translation>
+        <translation>Коэфф.</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Ост. времени</translation>
+        <translation>Осталось</translation>
     </message>
     <message>
         <source>Label</source>
@@ -4535,11 +4549,11 @@ Do you want to install it now?</source>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Закончен</translation>
+        <translation>Завершён</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation>Трэкер</translation>
+        <translation>Трекер</translation>
     </message>
     <message>
         <source>Down Limit</source>
@@ -4603,7 +4617,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Выключено</translation>
+        <translation>Выключен</translation>
     </message>
     <message>
         <source>This torrent is private</source>
@@ -4619,7 +4633,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Не соединился</translation>
+        <translation>Еще не соединился</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -4647,7 +4661,7 @@ Do you want to install it now?</source>
     </message>
     <message utf8="true">
         <source>µTorrent compatible list URL:</source>
-        <translation>URL списка совместимого с µTorrent:</translation>
+        <translation>URL списка, совместимого с µTorrent:</translation>
     </message>
     <message>
         <source>I/O Error</source>
@@ -4678,11 +4692,11 @@ Do you want to install it now?</source>
     <name>TransferListDelegate</name>
     <message>
         <source>Downloading</source>
-        <translation>Скачивание</translation>
+        <translation>Скачивается</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>Приостановлен</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -4692,7 +4706,7 @@ Do you want to install it now?</source>
     <message>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation>Раздача</translation>
+        <translation>Раздаётся</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -4702,7 +4716,7 @@ Do you want to install it now?</source>
     <message>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Проверка</translation>
+        <translation>Проверяется</translation>
     </message>
     <message>
         <source>/s</source>
@@ -4728,11 +4742,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Downloading</source>
-        <translation>Скачивание</translation>
+        <translation>Скачивающиеся</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation>Завершено</translation>
+        <translation>Завершённые</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4740,7 +4754,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Inactive</source>
-        <translation>Не активные</translation>
+        <translation>Неактивные</translation>
     </message>
     <message>
         <source>All labels</source>
@@ -4772,7 +4786,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>Приостановленные</translation>
     </message>
     <message>
         <source>Add label...</source>
@@ -4792,11 +4806,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Торренты</translation>
     </message>
     <message>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Метки</translation>
     </message>
 </context>
 <context>
@@ -4907,7 +4921,7 @@ Do you want to install it now?</source>
     <message>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Восстановить метку</translation>
+        <translation>Сбросить</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -4964,7 +4978,7 @@ Do you want to install it now?</source>
     <message>
         <source>Set location...</source>
         <translatorcomment>Блин, до чего же коряво! Может лучше &apos;Переместить файлы&apos;?</translatorcomment>
-        <translation>Установить размещение...</translation>
+        <translation>Переместить...</translation>
     </message>
     <message>
         <source>Preview file...</source>
@@ -4996,7 +5010,7 @@ Do you want to install it now?</source>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>На самый низ</translation>
+        <translation>В самый низ</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -5024,6 +5038,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>Ограничить коэффициент раздачи...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5074,11 +5096,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation>[файлы или ссылки]: скачать торренты указанные пользователем (опционально)</translation>
+        <translation>[файлы или ссылки]: скачать указанные пользователем торренты (опционально)</translation>
     </message>
     <message>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>работать в режиме службы (в фоне)</translation>
     </message>
 </context>
 <context>
@@ -5089,7 +5111,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Я хочу поблагодарить следующих людей, кто вызвался перевести qBittorrent:</translation>
+        <translation>Я хочу поблагодарить следующих людей, вызвавшихся перевести qBittorrent:</translation>
     </message>
     <message>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
@@ -5198,11 +5220,11 @@ Do you want to install it now?</source>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
-        <translation>Аутентификация Трэкера</translation>
+        <translation>Аутентификация трекера</translation>
     </message>
     <message>
         <source>Tracker:</source>
-        <translation>Трэкер:</translation>
+        <translation>Трекер:</translation>
     </message>
     <message>
         <source>Login</source>
@@ -5233,7 +5255,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Вы уверены что хотите удалить выделенные торренты из списка передач?</translation>
+        <translation>Вы уверены, что хотите удалить выделенные торренты из списка закачек?</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -5241,7 +5263,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Также удалить файлы и с жесткого диска</translation>
+        <translation>Также удалить файлы на жестком диске</translation>
     </message>
 </context>
 <context>
@@ -5252,11 +5274,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Torrent Creation Tool</source>
-        <translation>Инструмент для создания Torrent-ов</translation>
+        <translation>Инструмент для создания торрентов</translation>
     </message>
     <message>
         <source>Torrent file creation</source>
-        <translation>Создание Torrent файла</translation>
+        <translation>Создание торрент файла</translation>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
@@ -5272,7 +5294,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
-        <translation>Файл или папка для добавления в torrent:</translation>
+        <translation>Файл или папка для добавления в торрент:</translation>
     </message>
     <message>
         <source>Piece size:</source>
@@ -5312,7 +5334,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>Закрытый (не будет передаваться через безтрекерную сеть / DHT при включении)</translation>
+        <translation>Закрытый (не будет раздаваться через безтрекерную сеть DHT при включении)</translation>
     </message>
     <message>
         <source>Start seeding after creation</source>
@@ -5431,7 +5453,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Download from urls</source>
-        <translation>Загрузить Torrent(ы) из URL(s)</translation>
+        <translation>Загрузить торренты из URL ссылок</translation>
     </message>
     <message>
         <source>No URL entered</source>
@@ -5439,15 +5461,15 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Please type at least one URL.</source>
-        <translation>Пожалуйста введите минимум один URL.</translation>
+        <translation>Пожалуйста, введите минимум один URL.</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation>Добавить ссылки торрент</translation>
+        <translation>Добавить торрент-ссылки</translation>
     </message>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation>Поддреживаются HTTP и Magnet ссылки</translation>
+        <translation>Поддерживаются HTTP и Magnet ссылки</translation>
     </message>
 </context>
 <context>
@@ -5593,7 +5615,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Вы можете получить новые плагины поиска здесь: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Вы можете скачать новые плагины поиска здесь: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -5608,11 +5630,11 @@ Do you want to install it now?</source>
 However, those plugins were disabled.</source>
         <translation>Некоторые плагины не могут быть удалены, так как включены в qBittorrent.
 Удалены могут быть лишь те, что вы установили сами.
-Но все равно, эти плагины будут отключены.</translation>
+Тем не менее, эти плагины были отключены.</translation>
     </message>
     <message>
         <source>Uninstall success</source>
-        <translation>Удаление произведено</translation>
+        <translation>Успешно удалено</translation>
     </message>
     <message>
         <source>Select search plugins</source>
@@ -5650,7 +5672,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Плагин поискового движка %1 не может быть обновлен, осталась старая версия.</translation>
+        <translation>Плагин поискового движка %1 не может быть обновлен, оставляем старую версию.</translation>
     </message>
     <message>
         <source>%1 search engine plugin could not be installed.</source>
@@ -5697,7 +5719,7 @@ However, those plugins were disabled.</source>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">Загрузки</translation>
+        <translation>Загрузки</translation>
     </message>
 </context>
 <context>
@@ -5749,12 +5771,12 @@ However, those plugins were disabled.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ч%2м</translation>
+        <translation>%1ч %2м</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1д%2ч</translation>
+        <translation>%1д %2ч</translation>
     </message>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
@@ -5767,7 +5789,7 @@ However, those plugins were disabled.</source>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
     <message>
         <source>Working</source>
@@ -5787,27 +5809,27 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>this session</source>
-        <translation type="unfinished">эта сессия</translation>
+        <translation>за эту сессию</translation>
     </message>
     <message>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Раздается %1</translation>
+        <translation>Раздается %1</translation>
     </message>
     <message>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 макс</translation>
+        <translation>%1 макс</translation>
     </message>
     <message>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Скач: %1/с - Перед: %2</translation>
+        <translation>Приём: %1/с - Передано: %2</translation>
     </message>
     <message>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Отдача: %1/с - Перед: %2</translation>
+        <translation>Отдача: %1/с - Передано: %2</translation>
     </message>
 </context>
 <context>
@@ -5858,7 +5880,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Не возможно разобрать данный фильтр IP</translation>
+        <translation>Невозможно разобрать данный IP фильтр</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
@@ -5887,7 +5909,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>This is not a valid SSL key.</source>
-        <translation>Это не действительный SSL ключ.</translation>
+        <translation>Это недействительный SSL ключ.</translation>
     </message>
     <message>
         <source>Invalid certificate</source>
@@ -5895,12 +5917,12 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Это не действительный SSL сертификат.</translation>
+        <translation>Это недействительный SSL сертификат.</translation>
     </message>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Указанный IP фильтр был успешно проанализирован. Применено %1 правил.</translation>
     </message>
 </context>
 <context>
@@ -5919,7 +5941,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Web link</source>
-        <translation>Веб ссылка</translation>
+        <translation>Ссылка</translation>
     </message>
 </context>
 <context>

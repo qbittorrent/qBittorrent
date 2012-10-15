@@ -390,6 +390,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Zawsze ogłaszaj do wszystkich trackerów</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -3080,6 +3084,10 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -3626,7 +3634,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Testowanie innego interfejsu sieciowego.</translation>
+        <translation type="obsolete">Testowanie innego interfejsu sieciowego.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4943,6 +4951,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>Ogranicz współczynnik udziału...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

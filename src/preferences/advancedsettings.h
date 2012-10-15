@@ -55,6 +55,8 @@ public:
     horizontalHeader()->setStretchLastSection(true);
     verticalHeader()->setVisible(false);
     setRowCount(ROW_COUNT);
+    // Signals
+    connect(&spin_cache, SIGNAL(valueChanged(int)), SLOT(updateCacheSpinSuffix(int)));
     // Load settings
     loadAdvancedSettings();
   }
@@ -151,13 +153,22 @@ private:
   }
 
 private slots:
-  void loadAdvancedSettings() {
+  void updateCacheSpinSuffix(int value)
+  {
+    if (value <= 0)
+      spin_cache.setSuffix(tr(" (auto)"));
+    else
+      spin_cache.setSuffix(tr(" MiB"));
+  }
+
+  void loadAdvancedSettings()
+  {
     const Preferences pref;
     // Disk write cache
-    spin_cache.setMinimum(1);
-    spin_cache.setMaximum(200);
+    spin_cache.setMinimum(0);
+    spin_cache.setMaximum(2048);
     spin_cache.setValue(pref.diskCacheSize());
-    spin_cache.setSuffix(tr(" MiB"));
+    updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
@@ -198,13 +209,21 @@ private slots:
     // Network interface
     combo_iface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString current_iface = pref.getNetworkInterface();
+    bool interface_exists = current_iface.isEmpty();
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
       combo_iface.addItem(iface.name());
-      if (!current_iface.isEmpty() && iface.name() == current_iface)
+      if (!current_iface.isEmpty() && iface.name() == current_iface) {
         combo_iface.setCurrentIndex(i);
+        interface_exists = true;
+      }
       ++i;
+    }
+    // Saved interface does not exist, show it anyway
+    if (!interface_exists) {
+      combo_iface.addItem(current_iface);
+      combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);
     // Network address

@@ -181,6 +181,24 @@ public:
     setValue("Preferences/General/PreventFromSuspend", b);
   }
 
+#ifdef Q_WS_WIN
+  bool Startup() const {
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    return settings.contains("qBittorrent");
+  }
+
+  void setStartup(bool b) {
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    if (b) {
+        const QString bin_path = "\""+qApp->applicationFilePath().replace("/", "\\")+"\"";
+        settings.setValue("qBittorrent", bin_path);
+    }
+    else {
+        settings.remove("qBittorrent");
+    }
+  }
+#endif
+
   // Downloads
   QString getSavePath() const {
     QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
@@ -927,11 +945,11 @@ public:
   }
 
   uint diskCacheSize() const {
-    return value(QString::fromUtf8("Preferences/Downloads/DiskCache"), 16).toUInt();
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 0).toUInt();
   }
 
   void setDiskCacheSize(uint size) {
-    setValue(QString::fromUtf8("Preferences/Downloads/DiskCache"), size);
+    setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
   uint outgoingPortsMin() const {
