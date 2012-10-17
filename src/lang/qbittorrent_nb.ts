@@ -390,7 +390,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="159"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (auto)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="197"/>
@@ -2375,7 +2375,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Start qBittorrent ved Windows oppstart</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -4726,12 +4726,12 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Sjekk på nytt bekreftelse</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil sjekke valgte torrent(er) på nytt?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="595"/>
