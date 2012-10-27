@@ -952,6 +952,14 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
+  uint endBlockSize() const {
+    return value(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), 2).toUInt();
+  }
+
+  void setEndBlockSize(uint val) {
+    setValue(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), val);
+  }
+
   uint outgoingPortsMin() const {
     return value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();
   }
