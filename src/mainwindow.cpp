@@ -100,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   Preferences pref;
   ui_locked = pref.isUILocked();
+  is_unlocking = false;
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = pref.speedInTitleBar();
   // Clean exit on log out
@@ -707,8 +708,14 @@ void MainWindow::toggleVisibility(QSystemTrayIcon::ActivationReason e) {
   if (e == QSystemTrayIcon::Trigger || e == QSystemTrayIcon::DoubleClick) {
     if (isHidden()) {
       if (ui_locked) {
+        // prevent multiple unlock requests
+        if (is_unlocking)
+          return;
         // Ask for UI lock password
-        if (!unlockUI())
+        is_unlocking = true;
+        bool unlocked = unlockUI();
+        is_unlocking = false;
+        if (!unlocked)
           return;
       }
       // Make sure the window is not minimized
