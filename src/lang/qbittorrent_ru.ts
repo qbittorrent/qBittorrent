@@ -3167,6 +3167,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Копировать .torrent файлы завершённых закачек в:</translation>
     </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>

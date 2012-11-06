@@ -1806,17 +1806,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>ללא פעולה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="678"/>
+        <location filename="../preferences/options.ui" line="685"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>הוסף סיומת qB לקבצים לא גמורים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="781"/>
+        <location filename="../preferences/options.ui" line="788"/>
         <source>Copy .torrent files to:</source>
         <translation>העתקת קבצי .torrent ל:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="986"/>
+        <location filename="../preferences/options.ui" line="993"/>
         <source>The following parameters are supported:
 &lt;ul&gt;
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
@@ -1828,87 +1828,87 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1093"/>
+        <location filename="../preferences/options.ui" line="1100"/>
         <source>Connections Limits</source>
         <translation>הגבלת מהירות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1213"/>
+        <location filename="../preferences/options.ui" line="1220"/>
         <source>Proxy Server</source>
         <translation>שרת פרוקסי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1470"/>
+        <location filename="../preferences/options.ui" line="1477"/>
         <source>Global Rate Limits</source>
         <translation>הגבלות קצב כללי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1588"/>
+        <location filename="../preferences/options.ui" line="1595"/>
         <source>Apply rate limit to uTP connections</source>
         <translation>החל הגבלת קצב לחיבורי uTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1595"/>
+        <location filename="../preferences/options.ui" line="1602"/>
         <source>Apply rate limit to transport overhead</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1608"/>
+        <location filename="../preferences/options.ui" line="1615"/>
         <source>Alternative Global Rate Limits</source>
         <translation>הגבלות קצב כללי חילופיות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1714"/>
+        <location filename="../preferences/options.ui" line="1721"/>
         <source>Schedule the use of alternative rate limits</source>
         <translation>תזמון שימוש בהגבלות קצב חילופיות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1974"/>
+        <location filename="../preferences/options.ui" line="1981"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>אפשר גילוי של עמיתים מקומיים כדי למצוא יותר עמיתים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1986"/>
+        <location filename="../preferences/options.ui" line="1993"/>
         <source>Encryption mode:</source>
         <translation>מצב הצפנה:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1994"/>
+        <location filename="../preferences/options.ui" line="2001"/>
         <source>Prefer encryption</source>
         <translation>העדף הצפנה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1999"/>
+        <location filename="../preferences/options.ui" line="2006"/>
         <source>Require encryption</source>
         <translation>דרוש הצפנה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2004"/>
+        <location filename="../preferences/options.ui" line="2011"/>
         <source>Disable encryption</source>
         <translation>בטל אפשרות הצפנה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2036"/>
+        <location filename="../preferences/options.ui" line="2043"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2076"/>
+        <location filename="../preferences/options.ui" line="2083"/>
         <source>Maximum active downloads:</source>
         <translation>מספר מרבי של הורדות פעילות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2096"/>
+        <location filename="../preferences/options.ui" line="2103"/>
         <source>Maximum active uploads:</source>
         <translation>מספר מרבי של העלאות פעילות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2116"/>
+        <location filename="../preferences/options.ui" line="2123"/>
         <source>Maximum active torrents:</source>
         <translation>מספר מרבי של טורנטים פעילים:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="526"/>
+        <location filename="../preferences/options.ui" line="533"/>
         <source>When adding a torrent</source>
         <translation>כאשר טורנט מתווסף</translation>
     </message>
@@ -1924,109 +1924,109 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>שפה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="535"/>
+        <location filename="../preferences/options.ui" line="542"/>
         <source>Display torrent content and some options</source>
         <translation>תצוגת תוכן הטורנט וכמה אפשרויות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1036"/>
+        <location filename="../preferences/options.ui" line="1043"/>
         <source>Port used for incoming connections:</source>
         <translation>פורט בשימוש לחיבורים נכנסים:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1056"/>
+        <location filename="../preferences/options.ui" line="1063"/>
         <source>Random</source>
         <translation>אקראי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1099"/>
+        <location filename="../preferences/options.ui" line="1106"/>
         <source>Global maximum number of connections:</source>
         <translation>מספר מרבי של חיבורים כלליים:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1125"/>
+        <location filename="../preferences/options.ui" line="1132"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>מספר מרבי של חיבורים לכל טורנט:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1148"/>
+        <location filename="../preferences/options.ui" line="1155"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>מספר מרבי לחריצי העלאה לכל טורנט:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1488"/>
-        <location filename="../preferences/options.ui" line="1643"/>
+        <location filename="../preferences/options.ui" line="1495"/>
+        <location filename="../preferences/options.ui" line="1650"/>
         <source>Upload:</source>
         <translation>העלאה:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1524"/>
-        <location filename="../preferences/options.ui" line="1670"/>
+        <location filename="../preferences/options.ui" line="1531"/>
+        <location filename="../preferences/options.ui" line="1677"/>
         <source>Download:</source>
         <translation>הורדה:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1517"/>
-        <location filename="../preferences/options.ui" line="1550"/>
-        <location filename="../preferences/options.ui" line="1663"/>
-        <location filename="../preferences/options.ui" line="1690"/>
+        <location filename="../preferences/options.ui" line="1524"/>
+        <location filename="../preferences/options.ui" line="1557"/>
+        <location filename="../preferences/options.ui" line="1670"/>
+        <location filename="../preferences/options.ui" line="1697"/>
         <source>KiB/s</source>
         <translation>קב/ש</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="748"/>
+        <location filename="../preferences/options.ui" line="755"/>
         <source>Remove folder</source>
         <translation>הסרת תיקייה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1755"/>
+        <location filename="../preferences/options.ui" line="1762"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>ל</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1807"/>
+        <location filename="../preferences/options.ui" line="1814"/>
         <source>Every day</source>
         <translation>כל יום</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1812"/>
+        <location filename="../preferences/options.ui" line="1819"/>
         <source>Week days</source>
         <translation>ימות השבוע</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1817"/>
+        <location filename="../preferences/options.ui" line="1824"/>
         <source>Week ends</source>
         <translation>סופי-שבוע</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1917"/>
+        <location filename="../preferences/options.ui" line="1924"/>
         <source>DHT port:</source>
         <translation>פורט DHT:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="1958"/>
+        <location filename="../preferences/options.ui" line="1965"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>החלפה של עמיתים עם לקוחות תואמים (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1255"/>
+        <location filename="../preferences/options.ui" line="1262"/>
         <source>Host:</source>
         <translation>מארח:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1234"/>
+        <location filename="../preferences/options.ui" line="1241"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1221"/>
+        <location filename="../preferences/options.ui" line="1228"/>
         <source>Type:</source>
         <translation>סוג:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="20"/>
-        <location filename="../preferences/options.ui" line="1572"/>
+        <location filename="../preferences/options.ui" line="1579"/>
         <source>Options</source>
         <translation>אפשרויות</translation>
     </message>
@@ -2057,48 +2057,48 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>שולחן עבודה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="356"/>
+        <location filename="../preferences/options.ui" line="363"/>
         <source>Show splash screen on start up</source>
         <translation>הצג ספלאש בעת הפעלה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="366"/>
+        <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
         <translation>התחל את qBittorrent ממוזער</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="392"/>
+        <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>מזער את qBittorrent לאזור ההודעות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="402"/>
+        <location filename="../preferences/options.ui" line="409"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>סגור את qBittorrent לאזור ההודעות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="411"/>
+        <location filename="../preferences/options.ui" line="418"/>
         <source>Tray icon style:</source>
         <translation>סגנון צלמית במגש:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="419"/>
+        <location filename="../preferences/options.ui" line="426"/>
         <source>Normal</source>
         <translation>רגיל</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="424"/>
+        <location filename="../preferences/options.ui" line="431"/>
         <source>Monochrome (Dark theme)</source>
         <translation>מונוכרום (ערכת נושא כהה)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="429"/>
+        <location filename="../preferences/options.ui" line="436"/>
         <source>Monochrome (Light theme)</source>
         <translation>מונוכרום (ערכת נושא בהירה)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="373"/>
+        <location filename="../preferences/options.ui" line="380"/>
         <source>Ask for program exit confirmation</source>
         <translation>וודא לפני יציאה מהתוכנה</translation>
     </message>
@@ -2113,269 +2113,274 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>רשימת העברה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="383"/>
+        <location filename="../preferences/options.ui" line="356"/>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
         <translation>הצגת qBittorrent באזור ההודעות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="442"/>
+        <location filename="../preferences/options.ui" line="449"/>
         <source>File association</source>
         <translation>שיוך קובץ</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="448"/>
+        <location filename="../preferences/options.ui" line="455"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>שימוש בqBittorrent ל קבצי .torrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="455"/>
+        <location filename="../preferences/options.ui" line="462"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>שימוש בqBittorrent לקישורי מגנט</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="468"/>
+        <location filename="../preferences/options.ui" line="475"/>
         <source>Power Management</source>
         <translation>ניהול צריכת חשמל</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="474"/>
+        <location filename="../preferences/options.ui" line="481"/>
         <source>Inhibit system sleep when torrents are active</source>
         <translation>עיכוב מצב שינה כשיש טורנטים פעילים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="545"/>
+        <location filename="../preferences/options.ui" line="552"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>לא להתחיל את ההורדה באופן אוטומטי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="561"/>
+        <location filename="../preferences/options.ui" line="568"/>
         <source>Hard Disk</source>
         <translation>דיסק קשיח</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="567"/>
+        <location filename="../preferences/options.ui" line="574"/>
         <source>Save files to location:</source>
         <translation>שמירת הקבצים למיקום:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="615"/>
+        <location filename="../preferences/options.ui" line="622"/>
         <source>Append the label of the torrent to the save path</source>
         <translation>הוסף את תוית הטורנט לנתיב השמירה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="625"/>
+        <location filename="../preferences/options.ui" line="632"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>מצא מקום פנוי בדיסק לפני ההורדה עבור כל הקבצים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="632"/>
+        <location filename="../preferences/options.ui" line="639"/>
         <source>Keep incomplete torrents in:</source>
         <translation>שמירת טורנטים לא גמורים ב:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="685"/>
+        <location filename="../preferences/options.ui" line="692"/>
         <source>Automatically add torrents from:</source>
         <translation>הוספת טורנטים באופן אוטומטי מ:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="738"/>
+        <location filename="../preferences/options.ui" line="745"/>
         <source>Add folder...</source>
         <translation>הוספת תיקייה...</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="830"/>
+        <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="886"/>
+        <location filename="../preferences/options.ui" line="893"/>
         <source>Email notification upon download completion</source>
         <translation>הודעה בדוא&quot;ל כאשר הורדה מסתיימת</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="900"/>
+        <location filename="../preferences/options.ui" line="907"/>
         <source>Destination email:</source>
         <translation>דוא&quot;ל יעד:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="910"/>
+        <location filename="../preferences/options.ui" line="917"/>
         <source>SMTP server:</source>
         <translation>שרת SMTP:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="959"/>
+        <location filename="../preferences/options.ui" line="966"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>שרת זה דורש חיבור מאובטח (SSL)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="971"/>
+        <location filename="../preferences/options.ui" line="978"/>
         <source>Run an external program on torrent completion</source>
         <translation>הפעל תוכנית חיצונית כאשר טורנט מסתיים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1028"/>
+        <location filename="../preferences/options.ui" line="1035"/>
         <source>Listening Port</source>
         <translation>פורט האזנה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1078"/>
+        <location filename="../preferences/options.ui" line="1085"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>השתמש בקידום פורט UPnP / NAT-PMP מהנתב שלי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1309"/>
+        <location filename="../preferences/options.ui" line="1316"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>אחרת, שרת הפרוקסי משתמש רק לחיבורי טראקר</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1312"/>
+        <location filename="../preferences/options.ui" line="1319"/>
         <source>Use proxy for peer connections</source>
         <translation>השתמש בפרוקסי לחיבורי עמית</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1384"/>
+        <location filename="../preferences/options.ui" line="1391"/>
         <source>IP Filtering</source>
         <translation>סינון IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1425"/>
+        <location filename="../preferences/options.ui" line="1432"/>
         <source>Reload the filter</source>
         <translation>טעינת המסנן מחדש</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1578"/>
+        <location filename="../preferences/options.ui" line="1585"/>
         <source>Enable bandwidth management (uTP)</source>
         <translation>אפשר ניהול רוחב-פס (uTP)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1731"/>
+        <location filename="../preferences/options.ui" line="1738"/>
         <source>from</source>
         <extracomment>from (time1 to time2)</extracomment>
         <translation>מ </translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1799"/>
+        <location filename="../preferences/options.ui" line="1806"/>
         <source>When:</source>
         <translation>מתי:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1882"/>
+        <location filename="../preferences/options.ui" line="1889"/>
         <source>Privacy</source>
         <translation>פרטיות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1888"/>
+        <location filename="../preferences/options.ui" line="1895"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>אפשר DHT (רשתות מבוזרות) כדי למצוא עוד עמיתים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1897"/>
+        <location filename="../preferences/options.ui" line="1904"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>השתמש בפורט שונה לDHT וBitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1961"/>
+        <location filename="../preferences/options.ui" line="1968"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>אפשר החלפת עמיתים (PeX) כדי למצוא יותר עמיתים</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1971"/>
+        <location filename="../preferences/options.ui" line="1978"/>
         <source>Look for peers on your local network</source>
         <translation>חיפוש עמיתים על הרשת המקומית שלך</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2029"/>
+        <location filename="../preferences/options.ui" line="2036"/>
         <source>Enable anonymous mode</source>
         <translation>אפשר מצב אנונימי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2175"/>
+        <location filename="../preferences/options.ui" line="2182"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>אל תחשב טורנטים איטיים בהגבלות אלו</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2196"/>
+        <location filename="../preferences/options.ui" line="2203"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>הפץ טורנט עד שיחס השיתוף שלהם משתווה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2228"/>
+        <location filename="../preferences/options.ui" line="2235"/>
         <source>then</source>
         <translation>לאחר מכן</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2239"/>
+        <location filename="../preferences/options.ui" line="2246"/>
         <source>Pause them</source>
         <translation>השהה אותם</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2244"/>
+        <location filename="../preferences/options.ui" line="2251"/>
         <source>Remove them</source>
         <translation>הסר אותם</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2342"/>
+        <location filename="../preferences/options.ui" line="2349"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>השתמש ב UPnP / NAT-PMP כדי להעביר הלאה את הפורט מהנתב שלי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2352"/>
+        <location filename="../preferences/options.ui" line="2359"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>שימוש בHTTPS במקום ב HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2395"/>
+        <location filename="../preferences/options.ui" line="2402"/>
         <source>Import SSL Certificate</source>
         <translation>יבוא אישורי SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2448"/>
+        <location filename="../preferences/options.ui" line="2455"/>
         <source>Import SSL Key</source>
         <translation>יבוא מפתחות SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2383"/>
+        <location filename="../preferences/options.ui" line="2390"/>
         <source>Certificate:</source>
         <translation>אישור:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2436"/>
+        <location filename="../preferences/options.ui" line="2443"/>
         <source>Key:</source>
         <translation>מפתח:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2470"/>
+        <location filename="../preferences/options.ui" line="2477"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2515"/>
+        <location filename="../preferences/options.ui" line="2522"/>
         <source>Bypass authentication for localhost</source>
         <translation>התעלמות מאימות למארח מקומי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2539"/>
+        <location filename="../preferences/options.ui" line="2546"/>
         <source>Update my dynamic domain name</source>
         <translation>עדכון שם הדומיין הדינמי שלי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2551"/>
+        <location filename="../preferences/options.ui" line="2558"/>
         <source>Service:</source>
         <translation>שרות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2574"/>
+        <location filename="../preferences/options.ui" line="2581"/>
         <source>Register</source>
         <translation>רישום</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2583"/>
+        <location filename="../preferences/options.ui" line="2590"/>
         <source>Domain name:</source>
         <translation>שם דומיין:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1229"/>
+        <location filename="../preferences/options.ui" line="1236"/>
         <source>(None)</source>
         <translation>(כלום)</translation>
     </message>
@@ -2385,61 +2390,61 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1244"/>
+        <location filename="../preferences/options.ui" line="1251"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1281"/>
-        <location filename="../preferences/options.ui" line="2307"/>
+        <location filename="../preferences/options.ui" line="1288"/>
+        <location filename="../preferences/options.ui" line="2314"/>
         <source>Port:</source>
         <translation>פורט:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="920"/>
-        <location filename="../preferences/options.ui" line="1322"/>
-        <location filename="../preferences/options.ui" line="2483"/>
+        <location filename="../preferences/options.ui" line="927"/>
+        <location filename="../preferences/options.ui" line="1329"/>
+        <location filename="../preferences/options.ui" line="2490"/>
         <source>Authentication</source>
         <translation>אימות</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="932"/>
-        <location filename="../preferences/options.ui" line="1336"/>
-        <location filename="../preferences/options.ui" line="2522"/>
-        <location filename="../preferences/options.ui" line="2597"/>
+        <location filename="../preferences/options.ui" line="939"/>
+        <location filename="../preferences/options.ui" line="1343"/>
+        <location filename="../preferences/options.ui" line="2529"/>
+        <location filename="../preferences/options.ui" line="2604"/>
         <source>Username:</source>
         <translation>שם משתמש:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="942"/>
-        <location filename="../preferences/options.ui" line="1356"/>
-        <location filename="../preferences/options.ui" line="2529"/>
-        <location filename="../preferences/options.ui" line="2611"/>
+        <location filename="../preferences/options.ui" line="949"/>
+        <location filename="../preferences/options.ui" line="1363"/>
+        <location filename="../preferences/options.ui" line="2536"/>
+        <location filename="../preferences/options.ui" line="2618"/>
         <source>Password:</source>
         <translation>סיסמא:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2061"/>
+        <location filename="../preferences/options.ui" line="2068"/>
         <source>Torrent Queueing</source>
         <translation>רשימת התמנה של טורנט</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2185"/>
+        <location filename="../preferences/options.ui" line="2192"/>
         <source>Share Ratio Limiting</source>
         <translation>הגבלת יחס שיתוף</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2293"/>
+        <location filename="../preferences/options.ui" line="2300"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>אפשר מנשק משתמש אינטרנטי (שלט רחוק)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1239"/>
+        <location filename="../preferences/options.ui" line="1246"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1396"/>
+        <location filename="../preferences/options.ui" line="1403"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>סנן נתיב ( .dat, .p2p, .p2b):</translation>
     </message>
@@ -5089,109 +5094,109 @@ However, those plugins were disabled.</source>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
-        <location filename="../preferences/options_imp.cpp" line="1111"/>
+        <location filename="../preferences/options_imp.cpp" line="1121"/>
+        <location filename="../preferences/options_imp.cpp" line="1123"/>
         <source>Choose export directory</source>
         <translation>בחירת תיקייה לייצוא</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1151"/>
-        <location filename="../preferences/options_imp.cpp" line="1153"/>
-        <location filename="../preferences/options_imp.cpp" line="1168"/>
-        <location filename="../preferences/options_imp.cpp" line="1170"/>
+        <location filename="../preferences/options_imp.cpp" line="1163"/>
+        <location filename="../preferences/options_imp.cpp" line="1165"/>
+        <location filename="../preferences/options_imp.cpp" line="1180"/>
+        <location filename="../preferences/options_imp.cpp" line="1182"/>
         <source>Choose a save directory</source>
         <translation>בחירת תיקייה לשמירה</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1133"/>
-        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1145"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Choose an ip filter file</source>
         <translation>בחירת קובץ מסנן IP</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1066"/>
+        <location filename="../preferences/options_imp.cpp" line="1078"/>
         <source>Add directory to scan</source>
         <translation>הוספת תיקייה לסריקה</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1072"/>
+        <location filename="../preferences/options_imp.cpp" line="1084"/>
         <source>Folder is already being watched.</source>
         <translation>תיקייה זו כבר נצפית.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1075"/>
+        <location filename="../preferences/options_imp.cpp" line="1087"/>
         <source>Folder does not exist.</source>
         <translation>תיקייה לא קיימת.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1078"/>
+        <location filename="../preferences/options_imp.cpp" line="1090"/>
         <source>Folder is not readable.</source>
         <translation>התיקייה לא ניתנת לקריאה.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1098"/>
         <source>Failure</source>
         <translation>כשלון</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1086"/>
+        <location filename="../preferences/options_imp.cpp" line="1098"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>סריקת התיקייה &apos;%1&apos; נכשלה: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1133"/>
-        <location filename="../preferences/options_imp.cpp" line="1135"/>
+        <location filename="../preferences/options_imp.cpp" line="1145"/>
+        <location filename="../preferences/options_imp.cpp" line="1147"/>
         <source>Filters</source>
         <translation>מסננים</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1213"/>
+        <location filename="../preferences/options_imp.cpp" line="1225"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>אישור SSL (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1224"/>
+        <location filename="../preferences/options_imp.cpp" line="1236"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>מפתח SSL (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1255"/>
+        <location filename="../preferences/options_imp.cpp" line="1267"/>
         <source>Parsing error</source>
         <translation>שגיאת ניתוח</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1255"/>
+        <location filename="../preferences/options_imp.cpp" line="1267"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>לא הצליח לנתח את מסנן ה IP שסופק</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1257"/>
+        <location filename="../preferences/options_imp.cpp" line="1269"/>
         <source>Successfully refreshed</source>
         <translation>רוענן בהצלחה</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1257"/>
+        <location filename="../preferences/options_imp.cpp" line="1269"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>מסנן ה IP שסופק נותח בהצלחה: %1 כללים הוחלו.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1328"/>
+        <location filename="../preferences/options_imp.cpp" line="1340"/>
         <source>Invalid key</source>
         <translation>מפתח לא תקף</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1328"/>
+        <location filename="../preferences/options_imp.cpp" line="1340"/>
         <source>This is not a valid SSL key.</source>
         <translation>מפתח SSL זה אינו תקף.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1343"/>
+        <location filename="../preferences/options_imp.cpp" line="1355"/>
         <source>Invalid certificate</source>
         <translation>אישור לא תקף</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1343"/>
+        <location filename="../preferences/options_imp.cpp" line="1355"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>אישור SSL זה אינו תקף.</translation>
     </message>

@@ -3118,6 +3118,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
