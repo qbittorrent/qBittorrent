@@ -907,7 +907,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">[qBittorrent] %1 est terminé</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
@@ -1470,9 +1470,9 @@ Voulez-vous corriger cela ?</translation>
         <translation type="obsolete">Fin du téléchargement</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">En erreur E/S s&apos;est produite pour le torrent %1
 Raison : %2</translation>
@@ -2443,9 +2443,9 @@ Voulez-vous corriger cela ?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>En erreur E/S s&apos;est produite pour le torrent %1
 Raison : %2</translation>
@@ -4326,7 +4326,7 @@ Voulez-vous effectuer la mise à jour à la version %1 ?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Une erreur E/S s&apos;est produite, &apos;%1&apos; a été mis en pause.</translation>
     </message>
     <message>
@@ -4834,7 +4834,7 @@ Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Une erreur s&apos;est produite lors de la recherche...</translation>
     </message>
     <message>

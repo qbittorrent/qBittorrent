@@ -537,7 +537,7 @@ void MainWindow::finishedTorrent(const QTorrentHandle& h) const {
 // Notification when disk is full
 void MainWindow::fullDiskError(const QTorrentHandle& h, QString msg) const {
   if (!h.is_valid()) return;
-  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
+  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent %1.\n Reason: %2", "e.g: An error occurred for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
 }
 
 void MainWindow::createKeyboardShortcuts() {

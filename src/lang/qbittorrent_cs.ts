@@ -899,7 +899,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">[qBittorrent] bylo dokončeno stahování %1</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
@@ -1560,9 +1560,9 @@ Chcete asociovat qBittorrent se soubory .torrent a Magnet odkazů?</translation>
         <translation type="obsolete">Kompletace  stahování</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Došlo k chybě I/O u torrentu %1.
  Důvod: %2</translation>
@@ -2452,9 +2452,9 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Došlo k chybě I/O u torrentu %1.
  Důvod: %2</translation>
@@ -4335,7 +4335,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Došlo k chybě I/O, &apos;%1&apos; je pozastaven.</translation>
     </message>
     <message>
@@ -4843,7 +4843,7 @@ Chcete jej nyní nainstalovat?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Během hledání nastala chyba...</translation>
     </message>
     <message>

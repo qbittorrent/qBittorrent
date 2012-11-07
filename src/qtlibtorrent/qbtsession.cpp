@@ -2408,7 +2408,7 @@ void QBtSession::readAlerts() {
         if (h.is_valid()) {
           h.pause();
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
-          addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
+          addConsoleMessage(tr("An I/O error occurred, '%1' paused.").arg(h.name()));
           addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
           if (h.is_valid()) {
             emit fullDiskError(h, misc::toQString(p->message()));

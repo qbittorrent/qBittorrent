@@ -197,7 +197,7 @@ SearchEngine::~SearchEngine() {
 }
 
 void SearchEngine::tab_changed(int t)
-{//when we switch from a tab that is not empty to another that is empty the download button 
+{//when we switch from a tab that is not empty to another that is empty the download button
   //doesn't have to be available
   if (t>-1)
   {//-1 = no more tab
@@ -495,7 +495,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
 #ifdef Q_WS_WIN
     search_status->setText(tr("Search aborted"));
 #else
-    search_status->setText(tr("An error occured during search..."));
+    search_status->setText(tr("An error occurred during search..."));
 #endif
   }else{
     if (search_stopped) {

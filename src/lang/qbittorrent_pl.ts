@@ -745,7 +745,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
@@ -1247,9 +1247,9 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Wystąpił błąd We/Wy dla pliku torrent %1.
 Powód: %2</translation>
@@ -2083,9 +2083,9 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
         <translation>Błąd We/Wy</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Wystąpił błąd We/Wy dla pliku torrent %1.
 Powód: %2</translation>
@@ -3596,7 +3596,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <translation>[qBittorrent] %1 został pobrany</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
@@ -4061,7 +4061,7 @@ p, li { white-space: pre-wrap; }
         <translation>Wyszukiwanie zakończone</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Wystąpił błąd podczas wyszukiwania...</translation>
     </message>
     <message>
