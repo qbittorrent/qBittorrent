@@ -82,13 +82,13 @@ RssDownloadRulePtr RssDownloadRule::fromVariantHash(const QVariantHash &rule_has
 {
   RssDownloadRulePtr rule(new RssDownloadRule);
   rule->setName(rule_hash.value("name").toString());
+  rule->setUseRegex(rule_hash.value("use_regex", false).toBool());
   rule->setMustContain(rule_hash.value("must_contain").toString());
   rule->setMustNotContain(rule_hash.value("must_not_contain").toString());
   rule->setRssFeeds(rule_hash.value("affected_feeds").toStringList());
   rule->setEnabled(rule_hash.value("enabled", false).toBool());
   rule->setSavePath(rule_hash.value("save_path").toString());
   rule->setLabel(rule_hash.value("label_assigned").toString());
-  rule->setUseRegex(rule_hash.value("use_regex", false).toBool());
   return rule;
 }
 
