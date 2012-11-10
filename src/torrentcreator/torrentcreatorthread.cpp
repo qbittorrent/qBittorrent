@@ -129,7 +129,7 @@ void TorrentCreatorThread::run() {
     if (abort) return;
     // create the torrent and print it to out
     qDebug("Saving to %s", qPrintable(save_path));
-    std::ofstream outfile(save_path.toLocal8Bit().constData());
+    std::ofstream outfile(save_path.toLocal8Bit().constData(), std::ios_base::out|std::ios_base::binary);
     if (outfile.fail())
       throw std::exception();
     bencode(std::ostream_iterator<char>(outfile), t.generate());
