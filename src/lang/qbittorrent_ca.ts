@@ -897,7 +897,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">[qBittorrent] %1 s&apos;ha finalitzat les descàrregues</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Error E/S ocorregut, &apos;%1&apos; pausat.</translation>
     </message>
     <message>
@@ -1453,9 +1453,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="obsolete">Descàrrega completada</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Es va produir un Error d&apos;Entrada/Sortida, torrent %1.
 Raó: %2</translation>
@@ -2203,9 +2203,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Es va produir un Error d&apos;Entrada/Sortida, torrent %1.
 Raó: %2</translation>
@@ -4074,7 +4074,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Error E/S ocorregut, &apos;%1&apos; pausat.</translation>
     </message>
     <message>
@@ -4582,7 +4582,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Va ocórrer un error durant la recerca...</translation>
     </message>
     <message>
