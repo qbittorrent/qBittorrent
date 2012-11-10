@@ -743,7 +743,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">注意:新URL种子被添加到现有的torrent.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">出现输入/输出错误,&apos;%1&apos;暂停.</translation>
     </message>
     <message>
@@ -1270,9 +1270,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">torrent %1 出现输入/输出错误.
 原因: %2</translation>
@@ -2115,9 +2115,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>输入/输出错误</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>torrent %1 出现输入/输出错误.
 原因: %2</translation>
@@ -3627,7 +3627,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[qBittorrent] %1下载完毕.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>出现输入/输出错误,&apos;%1&apos;暂停.</translation>
     </message>
     <message>
@@ -4087,7 +4087,7 @@ p, li { white-space: pre-wrap; }
         <translation>搜索完毕</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>搜索中出现错误...</translation>
     </message>
     <message>

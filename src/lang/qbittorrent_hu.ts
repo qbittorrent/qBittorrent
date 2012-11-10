@@ -848,7 +848,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mivel: %1</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">I/O hiba történt, &apos;%1&apos; megállítva.</translation>
     </message>
     <message>
@@ -1403,9 +1403,9 @@ Szeretnéd alapértelmezetté tenni?</translation>
         <translation type="obsolete">Elkészült letöltés</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">I/O hiba történt ennél a torrentnél %1.
 Oka: %2</translation>
@@ -2369,9 +2369,9 @@ Szeretnéd alapértelmezetté tenni?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>I/O hiba történt ennél a torrentnél %1.
 Oka: %2</translation>
@@ -4244,7 +4244,7 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>I/O hiba történt, &apos;%1&apos; megállítva.</translation>
     </message>
     <message>
@@ -4752,7 +4752,7 @@ Szeretnéd most telepíteni?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Hiba a keresés közben...</translation>
     </message>
     <message>

@@ -733,7 +733,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
@@ -1244,9 +1244,9 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
         <translation type="obsolete">Kunde inte hämta fil från url:en: %1, anledning: %2.</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Ett in-/ut-fel inträffade för torrentfilen %1.
  Anledning: %2</translation>
@@ -2028,9 +2028,9 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <translation>In-/ut-fel</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Ett in-/ut-fel inträffade för torrentfilen %1.
  Anledning: %2</translation>
@@ -3520,7 +3520,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>[qBittorrent] %1 har hämtats färdigt</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
@@ -3976,7 +3976,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sökningen är färdig</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Ett fel inträffade under sökningen...</translation>
     </message>
     <message>

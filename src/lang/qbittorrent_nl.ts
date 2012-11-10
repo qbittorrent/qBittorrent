@@ -1176,9 +1176,9 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
         <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Een I/O fout trad op voor torrent %1. Reden: %2</translation>
     </message>
@@ -1906,9 +1906,9 @@ Wilt u qBittorrent associëren met torrentbestanden en Magnetlinks?</translation
         <translation>I/O Fout</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Een I/O fout trad op voor torrent %1. Reden: %2</translation>
     </message>
@@ -3405,7 +3405,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>[qBittorrent] %1 is klaar met downloaden</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>I/O fout gebeurd, &apos;%1&apos; gepauzeerd.</translation>
     </message>
     <message>
@@ -3854,7 +3854,7 @@ p, li { white-space: pre-wrap; }
         <translation>Zoeken is klaar</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Een fout trad op tijdens zoeken...</translation>
     </message>
     <message>

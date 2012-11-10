@@ -727,7 +727,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nota: nova URL de seed foi adicionada ao torrent existente.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
     <message>
@@ -1254,9 +1254,9 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Erro de I/O no torrent %1.
 Motivo: %2</translation>
@@ -2101,9 +2101,9 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
         <translation>Erro de I/O</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Ocorreu um erro de I/O no torrent %1.
 Motivo: %2</translation>
@@ -3612,7 +3612,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation>[qBittorrent] %1 terminou o download</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
     <message>
@@ -4076,7 +4076,7 @@ p, li { white-space: pre-wrap; }
         <translation>Busca finalizada</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Um erro ocorreu durante a busca...</translation>
     </message>
     <message>
