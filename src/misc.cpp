@@ -254,8 +254,8 @@ bool misc::isPreviewable(const QString& extension) {
     multimedia_extensions.insert("AAC");
     multimedia_extensions.insert("AC3");
     multimedia_extensions.insert("AIF");
-    multimedia_extensions.insert("AIFF");
     multimedia_extensions.insert("AIFC");
+    multimedia_extensions.insert("AIFF");
     multimedia_extensions.insert("ASF");
     multimedia_extensions.insert("AU");
     multimedia_extensions.insert("AVI");
@@ -271,14 +271,14 @@ bool misc::isPreviewable(const QString& extension) {
     multimedia_extensions.insert("MP2");
     multimedia_extensions.insert("MP3");
     multimedia_extensions.insert("MP4");
+    multimedia_extensions.insert("MPC");
     multimedia_extensions.insert("MPE");
     multimedia_extensions.insert("MPEG");
-    multimedia_extensions.insert("MPC");
     multimedia_extensions.insert("MPG");
     multimedia_extensions.insert("MPP");
     multimedia_extensions.insert("OGG");
-    multimedia_extensions.insert("OGV");
     multimedia_extensions.insert("OGM");
+    multimedia_extensions.insert("OGV");
     multimedia_extensions.insert("QT");
     multimedia_extensions.insert("RA");
     multimedia_extensions.insert("RAM");
@@ -289,8 +289,8 @@ bool misc::isPreviewable(const QString& extension) {
     multimedia_extensions.insert("SWF");
     multimedia_extensions.insert("VOB");
     multimedia_extensions.insert("WAV");
-    multimedia_extensions.insert("WMV");
     multimedia_extensions.insert("WMA");
+    multimedia_extensions.insert("WMV");
   }
 
   if (extension.isEmpty())
