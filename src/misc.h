@@ -99,7 +99,7 @@ public:
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
   static QString friendlyUnit(qreal val, bool is_speed = false);
-  static bool isPreviewable(QString extension);
+  static bool isPreviewable(const QString& extension);
   static QString magnetUriToName(const QString& magnet_uri);
   static QString magnetUriToHash(const QString& magnet_uri);
   static QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
