@@ -349,7 +349,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QMenu menu;
   // Add actions
   QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-  QAction *copyAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Copy tracker url"));
+  QAction *copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
   QAction *delAct = 0;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
