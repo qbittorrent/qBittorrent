@@ -297,25 +297,16 @@ void TrackerList::askForTrackers() {
   }
 }
 
-// Copy tracker URL to clipboard
 void TrackerList::copyTrackerUrl() {
-    qDebug()<<"Copy tracker URL to clipboard";
-    QTorrentHandle h = properties->getCurrentTorrent();
-    if (!h.is_valid()) {
-      clear();
-      return;
-    }
     QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
     if (selected_items.isEmpty()) return;
-    QString urls_to_copy;
+    QStringList urls_to_copy;
     foreach (QTreeWidgetItem *item, selected_items) {
       QString tracker_url = item->data(COL_URL, Qt::DisplayRole).toString();
-      qDebug()<<QString("Copy ")+tracker_url;
-      urls_to_copy += tracker_url/*.prepend(QString(" "))*/;
-      delete item;
+      qDebug() << QString("Copy: ") + tracker_url;
+      urls_to_copy << tracker_url;
     }
-    QApplication::clipboard()->setText(urls_to_copy);
-    qDebug()<<"Tracker URL copied clipboard!";
+    QApplication::clipboard()->setText(urls_to_copy.join("\n"));
 }
 
 
@@ -358,7 +349,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QMenu menu;
   // Add actions
   QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-  QAction *copyAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Copy tracker url..."));
+  QAction *copyAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Copy tracker url"));
   QAction *delAct = 0;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
