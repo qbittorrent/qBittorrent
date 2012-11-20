@@ -743,7 +743,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Нові URL-сіди було додано до існуючого торрента.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
     </message>
     <message>
@@ -1270,9 +1270,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Сталася помилка вводу/виводу для торрента %1. Причина: %2</translation>
     </message>
@@ -2107,9 +2107,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>Помилка вводу/виводу</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Сталася помилка вводу/виводу для торрента %1.
 Причина: %2</translation>
@@ -3619,7 +3619,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[qBittorrent] Завантаження &quot;%1&quot; завершено</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Сталася помилка вводу/виводу, &apos;%1&apos; зупинено.</translation>
     </message>
     <message>
@@ -4083,7 +4083,7 @@ p, li { white-space: pre-wrap; }
         <translation>Пошук закінчено</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Під час пошуку сталася помилка...</translation>
     </message>
     <message>

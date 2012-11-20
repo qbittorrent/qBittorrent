@@ -721,7 +721,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Not: yeni URL eşleri varolan torente eklendi.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
@@ -1215,9 +1215,9 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translatorcomment>G/Ç: Girdi/Çıktı</translatorcomment>
         <translation type="obsolete">%1 torrenti için bir G/Ç hatası meydana geldi.
@@ -2012,9 +2012,9 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <translation>Girdi/Çıktı Hatası</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>%1 torrenti için bir G/Ç hatası meydana geldi.
  Sebep: %2</translation>
@@ -3500,7 +3500,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <translation>[qBittorrent] %1 indirilmesi bitti</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
@@ -3959,7 +3959,7 @@ p, li { white-space: pre-wrap; }
         <translation>Arama bitti</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Arama yapılırken bir hata oluştu...</translation>
     </message>
     <message>

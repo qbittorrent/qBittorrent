@@ -743,7 +743,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Разлог: %1</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
     </message>
     <message>
@@ -1300,9 +1300,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">Немогуће преузети фајл са url: %1, разлог: %2.</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translatorcomment>н.пр.: Догодила се грешка са торентом xxx.avi. Разлог: диск је пун.</translatorcomment>
         <translation type="obsolete">Нека И/О грешка се догодила са торентом %1.
@@ -2151,9 +2151,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>И/О Грешка</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Нека И/О грешка се догодила са торентом %1.
  Разлог: %2</translation>
@@ -3685,7 +3685,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[qBittorrent] %1 је завршио преузимање</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
     </message>
     <message>
@@ -4164,7 +4164,7 @@ p, li { white-space: pre-wrap; }
         <translation>Претраживање је завршено</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Нека грешка се догодила током претраге...</translation>
     </message>
     <message>

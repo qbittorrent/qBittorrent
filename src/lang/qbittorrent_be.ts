@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Адмысловы BitTorrent кліент, які напісаны на C++ і грунтуецца на бібліятэках Qt4 і libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Крыстоф Дюмэ&lt;br /&gt;&lt;br /&gt;Старонка ў сеціве: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Форум: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent у Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -152,7 +152,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="75"/>
         <source>Torrent settings</source>
-        <translation>Налады торэнта</translation>
+        <translation>Настаўленні торэнта</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="81"/>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="159"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (аўта)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="197"/>
@@ -413,7 +413,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="234"/>
         <source>Display program on-screen notifications</source>
-        <translation>Паказваць экранныя абвесткі</translation>
+        <translation>Паказваць экранныя абвяшчэнні</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="237"/>
@@ -531,7 +531,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished">Калі ласка, дайце імя новаму правілу сцягвання.</translation>
+        <translation>Калі ласка, дайце імя новаму правілу сцягвання.</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule-&gt;</source>
@@ -630,7 +630,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
         <source>Add new rule...</source>
-        <translation type="unfinished">Дадаць новае правіла...</translation>
+        <translation>Дадаць новае правіла...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
@@ -640,7 +640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
         <source>Rename rule...</source>
-        <translation type="unfinished">Перайменаваць правіла...</translation>
+        <translation>Пераназваць правіла...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="396"/>
@@ -697,7 +697,7 @@ p, li { white-space: pre-wrap; }
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation>Частыя ключы для cookies: &apos;%1&apos;, &apos;%2&apos;.
-Вам трэба ўзяць гэтую інфармацыю з наладаў Web-браўзера.</translation>
+Вам трэба ўзяць гэтую інфармацыю з настаўленняў Web-аглядальніка.</translation>
     </message>
 </context>
 <context>
@@ -970,7 +970,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../headlessloader.h" line="60"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Рызыка бяспекі. Калі ласка, паспрабуйце змяніць свой пароль у наладах праграмы.</translation>
+        <translation>Рызыка бяспекі. Калі ласка, паспрабуйце змяніць свой пароль у настаўленнях праграмы.</translation>
     </message>
 </context>
 <context>
@@ -1071,7 +1071,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не атрымалася захаваць налады. Магчыма, qBittorrent недасяжны.</translation>
+        <translation>Не атрымалася захаваць настаўленні. Магчыма, qBittorrent недасяжны.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="126"/>
@@ -1137,7 +1137,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent быў закрыты.</translation>
     </message>
 </context>
 <context>
@@ -1145,7 +1145,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../main.cpp" line="95"/>
         <source>Legal Notice</source>
-        <translation>Афіцыйная абвестка</translation>
+        <translation>Афіцыйная перасцярога</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="96"/>
@@ -1155,7 +1155,7 @@ You should get this information from your Web browser preferences.</source>
 No further notices will be issued.</source>
         <translation>qBittorrent - праграма для абмену файламі. Пасля запуску торэнта яго даныя стануць даступныя іншым удзельнікам для раздачы. Любое змесціва вы робіце агульным пад вашу асабістую адказнасць.
 
-Ніякіх дадатковых абвестак паказвацца не будзе.</translation>
+Ніякіх дадатковых перасцярог паказвацца не будзе.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="97"/>
@@ -1165,7 +1165,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../main.cpp" line="108"/>
         <source>Legal notice</source>
-        <translation>Афіцыйная абвестка</translation>
+        <translation>Афіцыйная перасцярога</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="109"/>
@@ -1225,7 +1225,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="151"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Налады...</translation>
+        <translation>&amp;Настаўленні...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="161"/>
@@ -1524,9 +1524,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Памылка ўводу/вываду для торэнта %1.
  Прычына: %2</translation>
@@ -1654,7 +1654,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../mainwindow.cpp" line="1004"/>
         <source>Options were saved successfully.</source>
-        <translation>Налады паспяхова захаваныя.</translation>
+        <translation>Настаўленні паспяхова захаваныя.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1113"/>
@@ -1981,7 +1981,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2043"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Даведацца больш&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2083"/>
@@ -2018,7 +2018,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="542"/>
         <source>Display torrent content and some options</source>
-        <translation>Паказваць змесціва торэнта і некаторыя налады</translation>
+        <translation>Паказваць змесціва торэнта і некаторыя настаўленні</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1043"/>
@@ -2120,7 +2120,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="20"/>
         <location filename="../preferences/options.ui" line="1579"/>
         <source>Options</source>
-        <translation>Налады</translation>
+        <translation>Настаўленні</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="274"/>
@@ -2161,18 +2161,18 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Пры згортванні пераходзіць у вобласць абвестак</translation>
+        <translation>Пры згортванні пераходзіць у вобласць абвяшчэнняў</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="409"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Пры закрыцці пераходзіць у вобласць абвестак</translation>
+        <translation>Пры закрыцці пераходзіць у вобласць абвяшчэнняў</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="418"/>
         <source>Tray icon style:</source>
-        <translation>Стыль значка ў вобласці абвестак:</translation>
+        <translation>Стыль значка ў вобласці абвяшчэнняў:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="426"/>
@@ -2207,12 +2207,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Запускаць qBittorrent падчас запуску Windows </translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>Вісець у вобласці абвестак</translation>
+        <translation>Вісець у вобласці абвяшчэнняў</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="449"/>
@@ -2285,7 +2285,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Капіяваць .torrent файлы скончаных сцягванняў у:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="893"/>
@@ -2915,7 +2915,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="419"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Ананімны рэжым [Адкл]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="451"/>
@@ -3188,7 +3188,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Памылка ўводу/вываду. &apos;%1&apos; спынены.</translation>
     </message>
     <message>
@@ -3262,7 +3262,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../rss/rss.ui" line="102"/>
         <source>Settings...</source>
-        <translation>Налады...</translation>
+        <translation>Настаўленні...</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="124"/>
@@ -3318,7 +3318,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss.ui" line="208"/>
         <source>Open news URL</source>
-        <translation>Адкрыць новы URL</translation>
+        <translation>Адкрыць URL навін</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="213"/>
@@ -3467,12 +3467,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="335"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не атрымалася адкрыць сцягнуты файл RSS.</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="367"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нядзейсны RSS канал %1.</translation>
     </message>
 </context>
 <context>
@@ -3480,7 +3480,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="14"/>
         <source>RSS Reader Settings</source>
-        <translation>Налады чытання RSS</translation>
+        <translation>Настаўленні чытання RSS</translation>
     </message>
     <message>
         <location filename="../rss/rsssettingsdlg.ui" line="47"/>
@@ -3645,7 +3645,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Падчас пошуку ўзнікла памылка...</translation>
     </message>
     <message>
@@ -3914,7 +3914,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Гэтае акно дапаможа вам наладзіць раздачу торэнта, які вы ўжо сцягнулі.</translation>
+        <translation>Гэтае акно дапаможа вам наставіць раздачу торэнта, які вы ўжо сцягнулі.</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="65"/>
@@ -4422,12 +4422,12 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Пацверджанне пераправеркі</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="520"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы упэўненыя, што жадаеце пераправерыць вылучаныя торэнты?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="595"/>
@@ -4629,7 +4629,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="78"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>працаваць ў рэжыме дэмана (у фоне)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="80"/>
@@ -5223,20 +5223,20 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="246"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished">/с</translation>
+        <translation>/с</translation>
     </message>
     <message>
         <source>Downloads</source>
         <translation type="obsolete">Сцягванні</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="387"/>
+        <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1г %2хв</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="392"/>
+        <location filename="../misc.cpp" line="396"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1дз %2г</translation>
@@ -5257,13 +5257,13 @@ However, those plugins were disabled.</source>
         <translation type="obsolete">Невядома</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="378"/>
+        <location filename="../misc.cpp" line="382"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1хв</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="386"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1хв</translation>
@@ -5271,52 +5271,52 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../webui/btjson.cpp" line="241"/>
         <source>Working</source>
-        <translation type="unfinished">Працуе</translation>
+        <translation>Працуе</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="244"/>
         <source>Updating...</source>
-        <translation type="unfinished">Абнаўляецца...</translation>
+        <translation>Абнаўляецца...</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="246"/>
         <source>Not working</source>
-        <translation type="unfinished">Не працуе</translation>
+        <translation>Не працуе</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="246"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Яшчэ не злучыўся</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="298"/>
         <location filename="../webui/btjson.cpp" line="299"/>
         <source>this session</source>
-        <translation type="unfinished">гэтая сесія</translation>
+        <translation>гэтая сесія</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="310"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="unfinished">Раздаецца %1</translation>
+        <translation>Раздаецца %1</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="312"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
-        <translation type="unfinished">%1 макс</translation>
+        <translation>%1 макс</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="380"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Х.сц: %1/с - Пер: %2</translation>
+        <translation>Хутк.сцягв: %1/с - Перадана: %2</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="381"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished">Х.пер.: %1/с - Пер: %2</translation>
+        <translation>Хутк.разд.: %1/с - Перадана: %2</translation>
     </message>
 </context>
 <context>

@@ -743,7 +743,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Примечание: новые URL сидов были добавлены к существующему торренту.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
@@ -1272,9 +1272,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Произошла ошибка ввода/вывода для торрента %1.
 Причина: %2</translation>
@@ -2138,9 +2138,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>Ошибка ввода/вывода</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Произошла ошибка ввода/вывода для торрента %1.
 Причина: %2</translation>
@@ -3679,7 +3679,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[qBittorrent] скачивание %1 завершено</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
@@ -4146,7 +4146,7 @@ p, li { white-space: pre-wrap; }
         <translation>Поиск завершен</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Во время поиска произошла ошибка...</translation>
     </message>
     <message>
