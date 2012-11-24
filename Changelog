@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.7
     - BUGFIX: Update max write cache size to 2048MB and set it to automatic by default (closes #148)
     - BUGFIX: Add m4v to the list of previewable file extensions (closes #216)
+    - BUGFIX: Fix "Couldn't set environment variable..." message on start up (closes #245)
 
 * Sun Oct 7 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
     - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
