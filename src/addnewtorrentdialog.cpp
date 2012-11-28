@@ -594,6 +594,8 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
   saveSavePathHistory();
   // Save settings
   pref.useAdditionDialog(!ui->never_show_cb->isChecked());
-  if (ui->default_save_path_cb->isChecked())
+  if (ui->default_save_path_cb->isChecked()) {
     pref.setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
+    QBtSession::instance()->configureSession();
+  }
 }
