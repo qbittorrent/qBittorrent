@@ -225,7 +225,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     QString single_file_relpath = misc::toQStringU(m_torrentInfo->file_at(0).path.string());
 #endif
     for (int i=0; i<ui->save_path_combo->count()-1; ++i) {
-      ui->save_path_combo->setItemText(i, QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath));
+      ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
     }
   }
 
