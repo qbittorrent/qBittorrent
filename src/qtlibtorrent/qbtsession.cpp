@@ -1765,9 +1765,17 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
   }
 }
 
-void QBtSession::setDefaultTempPath(QString temppath) {
-  if (defaultTempPath == temppath)
+void QBtSession::setDefaultSavePath(const QString &savepath) {
+  if (savepath.isEmpty())
     return;
+
+  defaultSavePath = QDir::fromNativeSeparators(savepath);
+}
+
+void QBtSession::setDefaultTempPath(const QString &temppath) {
+  if (QDir(defaultTempPath) == QDir(temppath))
+    return;
+
   if (temppath.isEmpty()) {
     // Disabling temp dir
     // Moving all torrents to their destination folder
@@ -1791,13 +1799,13 @@ void QBtSession::setDefaultTempPath(QString temppath) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
-        QString torrent_tmp_path = temppath.replace("\\", "/");
-        qDebug("Moving torrent to its temp save path: %s", qPrintable(torrent_tmp_path));
+        QString torrent_tmp_path = QDir::fromNativeSeparators(temppath);
+        qDebug("Moving torrent to its temp save path: %s", qPrintable(fsutils::toDisplayPath(torrent_tmp_path)));
         h.move_storage(torrent_tmp_path);
       }
     }
   }
-  defaultTempPath = temppath;
+  defaultTempPath = QDir::fromNativeSeparators(temppath);
 }
 
 void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {

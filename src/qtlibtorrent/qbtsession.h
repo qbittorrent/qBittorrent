@@ -142,7 +142,8 @@ public slots:
   void setDHTPort(int dht_port);
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
-  void setDefaultTempPath(QString temppath);
+  void setDefaultSavePath(const QString &savepath);
+  void setDefaultTempPath(const QString &temppath);
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(const QTorrentHandle &h);
   void changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label);
