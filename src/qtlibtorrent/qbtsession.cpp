@@ -403,7 +403,7 @@ void QBtSession::configureSession() {
   sessionSettings.announce_to_all_tiers = announce_to_all;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
   int cache_size = pref.diskCacheSize();
-  sessionSettings.cache_size = cache_size ? pref.diskCacheSize() * 64 : -1;
+  sessionSettings.cache_size = cache_size ? cache_size * 64 : -1;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
   // Disable OS cache to avoid memory problems (uTorrent behavior)
 #ifdef Q_WS_WIN
