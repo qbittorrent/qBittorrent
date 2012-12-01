@@ -73,12 +73,7 @@ using namespace libtorrent;
  */
 QString fsutils::toDisplayPath(const QString& path)
 {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
- QString ret = path;
- return ret.replace("/", "\\");
-#else
- return path;
-#endif
+  return QDir::toNativeSeparators(path);
 }
 
 /**
