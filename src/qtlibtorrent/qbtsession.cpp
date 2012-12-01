@@ -1774,14 +1774,16 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
 }
 
 void QBtSession::setDefaultSavePath(const QString &savepath) {
-  if (defaultSavePath == savepath || savepath.isEmpty())
+  if (QDir(defaultSavePath) == QDir(savepath) || savepath.isEmpty())
     return;
+
   defaultSavePath = QDir::fromNativeSeparators(savepath);
 }
 
 void QBtSession::setDefaultTempPath(const QString &temppath) {
-  if (defaultTempPath == temppath)
+  if (QDir(defaultTempPath) == QDir(temppath))
     return;
+
   if (temppath.isEmpty()) {
     // Disabling temp dir
     // Moving all torrents to their destination folder
