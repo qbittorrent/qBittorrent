@@ -1774,7 +1774,7 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
 }
 
 void QBtSession::setDefaultSavePath(const QString &savepath) {
-  if (QDir(defaultSavePath) == QDir(savepath) || savepath.isEmpty())
+  if (savepath.isEmpty())
     return;
 
   defaultSavePath = QDir::fromNativeSeparators(savepath);
