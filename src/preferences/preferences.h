@@ -945,7 +945,7 @@ public:
   }
 
   uint diskCacheSize() const {
-    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 0).toUInt();
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 16).toUInt();
   }
 
   void setDiskCacheSize(uint size) {
