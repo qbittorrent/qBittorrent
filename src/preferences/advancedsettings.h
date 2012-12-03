@@ -13,7 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OS_WRITE_CACHE, OS_READ_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -29,7 +29,7 @@ class AdvancedSettings: public QTableWidget {
 
 private:
   QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
-  QCheckBox cb_write_cache, cb_read_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
+  QCheckBox cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext;
   QComboBox combo_iface;
@@ -69,8 +69,6 @@ public slots:
     Preferences pref;
     // Disk write cache
     pref.setDiskCacheSize(spin_cache.value());
-    pref.disableOSWriteCache(cb_write_cache.isChecked());
-    pref.disableOSReadCache(cb_read_cache.isChecked());
     // Outgoing ports
     pref.setOutgoingPortsMin(outgoing_ports_min.value());
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
@@ -172,12 +170,6 @@ private slots:
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
-    // OS write cache
-    cb_write_cache.setChecked(pref.disableOSWriteCache());
-    setRow(OS_WRITE_CACHE, tr("Disable OS caching of disk writes"), &cb_write_cache);
-    // OS read cache
-    cb_read_cache.setChecked(pref.disableOSReadCache());
-    setRow(OS_READ_CACHE, tr("Disable OS caching of disk reads"), &cb_read_cache);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);
