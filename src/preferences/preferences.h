@@ -952,6 +952,22 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
+  bool disableOSWriteCache() const {
+    return value(QString::fromUtf8("Preferences/Advanced/DisableOSWriteCache"), false).toBool();
+  }
+
+  void disableOSWriteCache(bool disable) {
+    setValue(QString::fromUtf8("Preferences/Advanced/DisableOSWriteCache"), disable);
+  }
+
+  bool disableOSReadCache() const {
+    return value(QString::fromUtf8("Preferences/Advanced/DisableOSReadCache"), false).toBool();
+  }
+
+  void disableOSReadCache(bool disable) {
+    setValue(QString::fromUtf8("Preferences/Advanced/DisableOSReadCache"), disable);
+  }
+
   uint outgoingPortsMin() const {
     return value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();
   }
