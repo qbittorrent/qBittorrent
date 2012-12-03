@@ -136,6 +136,12 @@ void RssFeed::addArticle(const RssArticlePtr& article)
   }
 }
 
+QList<QNetworkCookie> RssFeed::feedCookies() const
+{
+  QString feed_hostname = QUrl::fromEncoded(m_url.toUtf8()).host();
+  return RssSettings().getHostNameQNetworkCookies(feed_hostname);
+}
+
 bool RssFeed::refresh()
 {
   if (m_loading) {
@@ -144,7 +150,7 @@ bool RssFeed::refresh()
   }
   m_loading = true;
   // Download the RSS again
-  m_manager->rssDownloader()->downloadUrl(m_url);
+  m_manager->rssDownloader()->downloadUrl(m_url, feedCookies());
   return true;
 }
 
@@ -313,6 +319,34 @@ void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
     m_manager->forwardFeedInfosChanged(feedUrl, title, m_unreadCount);
 }
 
+void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article)
+{
+  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
+  RssDownloadRulePtr matching_rule = rules->findMatchingRule(m_url, article->title());
+  if (!matching_rule)
+    return;
+
+  // Torrent was downloaded, consider article as read
+  article->markAsRead();
+  // Download the torrent
+  const QString& torrent_url = article->torrentUrl();
+  QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
+  if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
+    QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
+  else
+    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
+}
+
+void RssFeed::recheckRssItemsForDownload()
+{
+  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
+  RssDownloadRuleList* rules = m_manager->downloadRules();
+  foreach (const RssArticlePtr& article, m_articlesByDate) {
+    if (!article->isRead())
+      downloadArticleTorrentIfMatching(rules, article);
+  }
+}
+
 void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& articleData)
 {
   if (feedUrl != m_url)
@@ -329,20 +363,8 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
   addArticle(article);
 
   // Download torrent if necessary.
-  if (RssSettings().isRssDownloadingEnabled()) {
-    RssDownloadRulePtr matching_rule = m_manager->downloadRules()->findMatchingRule(m_url, article->title());
-    if (matching_rule) {
-      // Torrent was downloaded, consider article as read
-      article->markAsRead();
-      // Download the torrent
-      QString torrent_url = article->torrentUrl();
-      QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
-      if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
-        QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
-      else
-        QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
-    }
-  }
+  if (RssSettings().isRssDownloadingEnabled())
+    downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
 
   m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
   // FIXME: We should forward the information here but this would seriously decrease

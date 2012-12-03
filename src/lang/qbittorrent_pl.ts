@@ -390,6 +390,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Zawsze ogłaszaj do wszystkich trackerów</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -741,7 +745,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Uwaga: nowe URL seedów zostały dodane do istniejącego torrenta.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
@@ -1243,9 +1247,9 @@ Informacje te powinny zostać pobrane z ustawień przeglądarki internetowej.</t
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Wystąpił błąd We/Wy dla pliku torrent %1.
 Powód: %2</translation>
@@ -2079,9 +2083,9 @@ Czy powiązać qBittorrent z plikami torrent i linkami Magnet?</translation>
         <translation>Błąd We/Wy</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Wystąpił błąd We/Wy dla pliku torrent %1.
 Powód: %2</translation>
@@ -3045,8 +3049,8 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <translation>Klucz:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informacja na temat certyfikatów&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informacja na temat certyfikatów&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3078,6 +3082,10 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3588,7 +3596,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
         <translation>[qBittorrent] %1 został pobrany</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Wystąpił błąd We/Wy, &apos;%1&apos; wstrzymany.</translation>
     </message>
     <message>
@@ -3626,7 +3634,7 @@ Ignoruj narzuty protokołu TCP/IP w limitach prędkości</translatorcomment>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Testowanie innego interfejsu sieciowego.</translation>
+        <translation type="obsolete">Testowanie innego interfejsu sieciowego.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4053,7 +4061,7 @@ p, li { white-space: pre-wrap; }
         <translation>Wyszukiwanie zakończone</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Wystąpił błąd podczas wyszukiwania...</translation>
     </message>
     <message>
@@ -4943,6 +4951,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>Ogranicz współczynnik udziału...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

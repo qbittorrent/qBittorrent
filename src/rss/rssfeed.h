@@ -35,11 +35,13 @@
 #include <QSharedPointer>
 #include <QVariantHash>
 #include <QXmlStreamReader>
+#include <QNetworkCookie>
 
 #include "rssfile.h"
 
 class RssFeed;
 class RssManager;
+class RssDownloadRuleList;
 
 typedef QHash<QString, RssArticlePtr> RssArticleHash;
 typedef QSharedPointer<RssFeed> RssFeedPtr;
@@ -75,6 +77,7 @@ public:
   const RssArticleHash& articleHash() const { return m_articles; }
   virtual RssArticleList unreadArticleListByDateDesc() const;
   void decrementUnreadCount();
+  void recheckRssItemsForDownload();
 
 private slots:
   void handleFinishedDownload(const QString& url, const QString &file_path);
@@ -87,6 +90,8 @@ private:
   QString iconUrl() const;
   void loadItemsFromDisk();
   void addArticle(const RssArticlePtr& article);
+  void downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article);
+  QList<QNetworkCookie> feedCookies() const;
 
 private:
   RssManager* m_manager;

@@ -359,6 +359,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Her zaman tüm izleyicilere bildir</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -717,7 +721,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Not: yeni URL eşleri varolan torente eklendi.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
@@ -1211,9 +1215,9 @@ Bu bilgiyi ağ tarayıcınızın yeğlenenler kısmından almalısınız.</trans
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translatorcomment>G/Ç: Girdi/Çıktı</translatorcomment>
         <translation type="obsolete">%1 torrenti için bir G/Ç hatası meydana geldi.
@@ -2008,9 +2012,9 @@ qBittorrent&apos;u bunlarla ilişkilendirmek ister misiniz?</translation>
         <translation>Girdi/Çıktı Hatası</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>%1 torrenti için bir G/Ç hatası meydana geldi.
  Sebep: %2</translation>
@@ -2962,8 +2966,8 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <translation>Anahtar:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Sertifikalar hakkında bilgi&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Sertifikalar hakkında bilgi&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -2995,6 +2999,10 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3492,7 +3500,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
         <translation>[qBittorrent] %1 indirilmesi bitti</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Bir G/Ç hatası meydana geldi, &apos;%1&apos; duraklatıldı.</translation>
     </message>
     <message>
@@ -3530,7 +3538,7 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Bunun yerine başka bir ağ arayüzü deneyin.</translation>
+        <translation type="obsolete">Bunun yerine başka bir ağ arayüzü deneyin.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -3951,7 +3959,7 @@ p, li { white-space: pre-wrap; }
         <translation>Arama bitti</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Arama yapılırken bir hata oluştu...</translation>
     </message>
     <message>
@@ -4840,6 +4848,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>Paylaşım oranını sınırla...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

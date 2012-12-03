@@ -65,7 +65,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
   Preferences pref;
   ui->start_torrent_cb->setChecked(!pref.addTorrentsInPause());
-  ui->save_path_combo->addItem(fsutils::toDisplayPath(pref.getSavePath()));
+  ui->save_path_combo->addItem(fsutils::toDisplayPath(pref.getSavePath()), pref.getSavePath());
   loadSavePathHistory();
   ui->save_path_combo->insertSeparator(ui->save_path_combo->count());
   ui->save_path_combo->addItem(tr("Other...", "Other save path..."));
@@ -225,7 +225,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     QString single_file_relpath = misc::toQStringU(m_torrentInfo->file_at(0).path.string());
 #endif
     for (int i=0; i<ui->save_path_combo->count()-1; ++i) {
-      ui->save_path_combo->setItemText(i, QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath));
+      ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
     }
   }
 
@@ -594,6 +594,8 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
   saveSavePathHistory();
   // Save settings
   pref.useAdditionDialog(!ui->never_show_cb->isChecked());
-  if (ui->default_save_path_cb->isChecked())
+  if (ui->default_save_path_cb->isChecked()) {
     pref.setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
+    QBtSession::instance()->setDefaultSavePath(pref.getSavePath());
+  }
 }

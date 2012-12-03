@@ -389,6 +389,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Kondig altijd aan naar alle trackers</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -1172,9 +1176,9 @@ U zou informatie moeten krijgen van u Webbrowser voorkeuren.</translation>
         <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Een I/O fout trad op voor torrent %1. Reden: %2</translation>
     </message>
@@ -1902,9 +1906,9 @@ Wilt u qBittorrent associëren met torrentbestanden en Magnetlinks?</translation
         <translation>I/O Fout</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Een I/O fout trad op voor torrent %1. Reden: %2</translation>
     </message>
@@ -2866,8 +2870,8 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>Key:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informatie over certificaten&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informatie over certificaten&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -2899,6 +2903,10 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3397,7 +3405,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
         <translation>[qBittorrent] %1 is klaar met downloaden</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>I/O fout gebeurd, &apos;%1&apos; gepauzeerd.</translation>
     </message>
     <message>
@@ -3435,7 +3443,7 @@ Wil u qBittorrent updaten naar versie %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Probeer een andere beeschikbaar netwerkinterface in de plaats.</translation>
+        <translation type="obsolete">Probeer een andere beeschikbaar netwerkinterface in de plaats.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -3846,7 +3854,7 @@ p, li { white-space: pre-wrap; }
         <translation>Zoeken is klaar</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Een fout trad op tijdens zoeken...</translation>
     </message>
     <message>
@@ -4690,6 +4698,14 @@ Wilt u het nu installeren?</translation>
     <message>
         <source>Limit share ratio...</source>
         <translation>Limiet deel ratio...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

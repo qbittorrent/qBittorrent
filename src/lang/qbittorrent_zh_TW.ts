@@ -393,6 +393,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>總是發佈到全部的 tracker</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -740,7 +744,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">備註: URL 種子已增加到現有 torrent 中。</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">發生 I/O 錯誤, &apos;%1&apos; 已暫停。</translation>
     </message>
     <message>
@@ -1264,9 +1268,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Torrent %1 發生了 I/O 錯誤。
 原因: %2</translation>
@@ -2115,9 +2119,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Torrent %1 發生了 I/O 錯誤。
 原因: %2</translation>
@@ -3080,8 +3084,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>鑰匙:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3113,6 +3117,10 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3623,7 +3631,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>[qBittorrent] 已下載完成 %1</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>發生 I/O 錯誤, &apos;%1&apos; 已暫停。</translation>
     </message>
     <message>
@@ -3661,7 +3669,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>嘗試其他可得的網路介面。</translation>
+        <translation type="obsolete">嘗試其他可得的網路介面。</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4087,7 +4095,7 @@ p, li { white-space: pre-wrap; }
         <translation>搜尋完成</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>搜尋時發生錯誤...</translation>
     </message>
     <message>
@@ -4971,6 +4979,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>限制分享率...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

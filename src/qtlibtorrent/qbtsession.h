@@ -147,7 +147,8 @@ public slots:
   void setDHTPort(int dht_port);
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
-  void setDefaultTempPath(QString temppath);
+  void setDefaultSavePath(const QString &savepath);
+  void setDefaultTempPath(const QString &temppath);
   void setAppendLabelToSavePath(bool append);
   void appendLabelToTorrentSavePath(const QTorrentHandle &h);
   void changeLabelInTorrentSavePath(const QTorrentHandle &h, QString old_label, QString new_label);
@@ -191,7 +192,8 @@ private slots:
   void sendNotificationEmail(const QTorrentHandle &h);
   void autoRunExternalProgram(const QTorrentHandle &h, bool async=true);
   void cleanUpAutoRunProcess(int);
-  void mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
+  void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
+  void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
   void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
   void initWebUi();
   void handleIPFilterParsed(int ruleCount);

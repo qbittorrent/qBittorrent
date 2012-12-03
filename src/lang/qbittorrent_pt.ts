@@ -377,6 +377,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Sempre anunciar para todos os trackers</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -723,7 +727,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nota: nova URL de seed foi adicionada ao torrent existente.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
     <message>
@@ -1250,9 +1254,9 @@ Você deve buscar essa informação nas preferências do seu navegador.</transla
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Erro de I/O no torrent %1.
 Motivo: %2</translation>
@@ -2097,9 +2101,9 @@ Gostaria de associar o qBittorrent para arquivos torrent e links magnéticos?</t
         <translation>Erro de I/O</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Ocorreu um erro de I/O no torrent %1.
 Motivo: %2</translation>
@@ -3061,8 +3065,8 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation>Chave:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informações sobre certificados&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informações sobre certificados&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3094,6 +3098,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3604,7 +3612,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation>[qBittorrent] %1 terminou o download</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Um erro de I/O aconteceu, &apos;%1&apos; foi pausado.</translation>
     </message>
     <message>
@@ -3642,7 +3650,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Tentando outra interface de rede disponível.</translation>
+        <translation type="obsolete">Tentando outra interface de rede disponível.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4068,7 +4076,7 @@ p, li { white-space: pre-wrap; }
         <translation>Busca finalizada</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Um erro ocorreu durante a busca...</translation>
     </message>
     <message>
@@ -4952,6 +4960,14 @@ Gostaria de instalar agora?</translation>
     <message>
         <source>Limit share ratio...</source>
         <translation>Taxa de limite de compartilhamento...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

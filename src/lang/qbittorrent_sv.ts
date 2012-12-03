@@ -383,6 +383,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Annonsera alltid till alla bevakare</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -729,7 +733,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Observera: nya URL-distributörer lades till i den befintliga torrentfilen.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
@@ -1240,9 +1244,9 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
         <translation type="obsolete">Kunde inte hämta fil från url:en: %1, anledning: %2.</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Ett in-/ut-fel inträffade för torrentfilen %1.
  Anledning: %2</translation>
@@ -2024,9 +2028,9 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <translation>In-/ut-fel</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Ett in-/ut-fel inträffade för torrentfilen %1.
  Anledning: %2</translation>
@@ -2985,8 +2989,8 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Nyckel:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3018,6 +3022,10 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3512,7 +3520,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>[qBittorrent] %1 har hämtats färdigt</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Ett in-/ut-fel inträffade, &quot;%1&quot; har pausats.</translation>
     </message>
     <message>
@@ -3550,7 +3558,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Försöker istället på andra tillgängliga nätverksgränssnitt.</translation>
+        <translation type="obsolete">Försöker istället på andra tillgängliga nätverksgränssnitt.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -3968,7 +3976,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sökningen är färdig</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Ett fel inträffade under sökningen...</translation>
     </message>
     <message>
@@ -4852,6 +4860,14 @@ Vill du installera den nu?</translation>
     <message>
         <source>Limit share ratio...</source>
         <translation>Begränsa utdelningsförhållande...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

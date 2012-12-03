@@ -178,13 +178,14 @@ QDateTime RssParser::parseDate(const QString &string) {
   QDate qdate(year, month+1, day);   // convert date, and check for out-of-range
   if (!qdate.isValid())
     return QDateTime::currentDateTime();
-  QDateTime result(qdate, QTime(hour, minute, second));
-  if (!result.isValid()
-      ||  (dayOfWeek >= 0  &&  result.date().dayOfWeek() != dayOfWeek+1))
-    return QDateTime::currentDateTime();    // invalid date/time, or weekday doesn't correspond with date
-  if (!offset) {
-    result.setTimeSpec(Qt::UTC);
-  }
+  QTime qTime(hour, minute, second);
+
+  QDateTime result(qdate, qTime, Qt::UTC);
+  if (offset)
+    result = result.addSecs(-offset);
+  if (!result.isValid())
+    return QDateTime::currentDateTime();    // invalid date/time
+
   if (leapSecond) {
     // Validate a leap second time. Leap seconds are inserted after 23:59:59 UTC.
     // Convert the time to UTC and check that it is 00:00:00.

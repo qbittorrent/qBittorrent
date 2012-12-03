@@ -397,6 +397,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Vždy oznamovať všetkým trackerom</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -755,7 +759,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Pozn.: Do existujúceho torrentu boli pridané nové URL seedy.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
     </message>
     <message>
@@ -1275,9 +1279,9 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
         <translation type="obsolete">Vyhľadávanie</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Vyskytla sa V/V chyba pri torrente %1.
  Dôvod: %2</translation>
@@ -2114,9 +2118,9 @@ Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation
         <translation>V/V Chyba</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Vyskytla sa V/V chyba pri torrente %1.
  Dôvod: %2</translation>
@@ -3079,8 +3083,8 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <translation>Kľúč:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -3112,6 +3116,10 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3622,7 +3630,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <translation>[qBittorrent] sťahovanie %1 bolo dokončené</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Vyskytla sa V/V chyba, „%1“ pozastavené.</translation>
     </message>
     <message>
@@ -3660,7 +3668,7 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Namiesto toho sa skúša ľubovoľné iné sieťové rozhranie.</translation>
+        <translation type="obsolete">Namiesto toho sa skúša ľubovoľné iné sieťové rozhranie.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4087,7 +4095,7 @@ p, li { white-space: pre-wrap; }
         <translation>Hľadanie skončené</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
@@ -4971,6 +4979,14 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Limit share ratio...</source>
         <translation>Obmedzenie pomeru zdieľania...</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

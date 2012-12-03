@@ -66,6 +66,7 @@ const QList<QByteArray>& HttpRequestParser::torrents() const {
 }
 
 void HttpRequestParser::writeHeader(const QByteArray& ba) {
+  m_error = false;
   // Parse header
   m_header = QHttpRequestHeader(ba);
   QUrl url = QUrl::fromEncoded(m_header.path().toAscii());
@@ -94,7 +95,7 @@ static QList<QByteArray> splitRawData(QByteArray rawData, const QByteArray& sep)
 void HttpRequestParser::writeMessage(const QByteArray& ba) {
   // Parse message content
   Q_ASSERT (m_header.hasContentLength());
-
+  m_error = false;
   m_data = ba;
   qDebug() << Q_FUNC_INFO << "m_data.size(): " << m_data.size();
 

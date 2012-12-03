@@ -402,7 +402,8 @@ void QBtSession::configureSession() {
   sessionSettings.announce_to_all_trackers = announce_to_all;
   sessionSettings.announce_to_all_tiers = announce_to_all;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
-  sessionSettings.cache_size = pref.diskCacheSize()*64;
+  int cache_size = pref.diskCacheSize();
+  sessionSettings.cache_size = cache_size ? cache_size * 64 : -1;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
   // Disabling the OS disk cache is intended to reduce memory usage (especially when checking files) but might be unreliable
   sessionSettings.disk_io_write_mode = pref.disableOSWriteCache() ? session_settings::disable_os_cache : session_settings::enable_os_cache;
@@ -918,6 +919,11 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   if (s->find_torrent(QStringToSha1(hash)).is_valid()) {
     qDebug("/!\\ Torrent is already in download list");
     addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+    // Check if the torrent contains trackers or url seeds we don't know about
+    // and add them
+    QTorrentHandle h_ex = getTorrentHandle(hash);
+    mergeTorrents(h_ex, magnet_uri);
+
     return h;
   }
 
@@ -935,7 +941,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   }
   if (savePath.isEmpty())
     savePath = getSavePath(hash, false);
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addMagnetURI: Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -965,12 +971,6 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     return h;
   }
   Q_ASSERT(h.hash() == hash);
-
-  // If temp path is enabled, move torrent
-  if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    h.move_storage(defaultTempPath);
-  }
 
   loadTorrentSettings(h);
 
@@ -1124,7 +1124,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } else {
     savePath = getSavePath(hash, fromScanDir, path);
   }
-  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash) && !resumed) {
+  if (!defaultTempPath.isEmpty() && !TorrentPersistentData::isSeed(hash)) {
     qDebug("addTorrent::Temp folder is enabled.");
     QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
     p.save_path = torrent_tmp_path.toUtf8().constData();
@@ -1151,19 +1151,6 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
         fsutils::forceRemove(path);
     return h;
   }
-
-  // If temp path is enabled, move torrent
-  // XXX: The torrent is moved after the torrent_checked_alert
-  // is received to make sure we don't move a completed torrent (#602938)
-  /*if (!defaultTempPath.isEmpty() && !resumed) {
-    qDebug("Temp folder is enabled, moving new torrent to temp folder");
-    QString torrent_tmp_path = defaultTempPath.replace("\\", "/");
-    if (!root_folder.isEmpty()) {
-      if (!torrent_tmp_path.endsWith("/")) torrent_tmp_path += "/";
-      torrent_tmp_path += root_folder;
-    }
-    h.move_storage(torrent_tmp_path);
-  }*/
 
   loadTorrentSettings(h);
 
@@ -1315,6 +1302,29 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
     TorrentPersistentData::saveTorrentPersistentData(h, QString::null, magnet);
   else
     TorrentPersistentData::saveTorrentPersistentData(h, savePath, magnet);
+}
+
+void QBtSession::mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri)
+{
+  QList<QUrl> new_trackers = misc::magnetUriToTrackers(magnet_uri);
+  bool trackers_added = false;
+  foreach (const QUrl& new_tracker, new_trackers) {
+    bool found = false;
+    std::vector<announce_entry> existing_trackers = h_ex.trackers();
+    foreach (const announce_entry& existing_tracker, existing_trackers) {
+      if (new_tracker == QUrl(existing_tracker.url.c_str())) {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      h_ex.add_tracker(announce_entry(new_tracker.toString().toStdString()));
+      trackers_added = true;
+    }
+  }
+  if (trackers_added)
+    addConsoleMessage(tr("Note: new trackers were added to the existing torrent."));
 }
 
 void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torrent_info> t) {
@@ -1760,9 +1770,17 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
   }
 }
 
-void QBtSession::setDefaultTempPath(QString temppath) {
-  if (defaultTempPath == temppath)
+void QBtSession::setDefaultSavePath(const QString &savepath) {
+  if (savepath.isEmpty())
     return;
+
+  defaultSavePath = QDir::fromNativeSeparators(savepath);
+}
+
+void QBtSession::setDefaultTempPath(const QString &temppath) {
+  if (QDir(defaultTempPath) == QDir(temppath))
+    return;
+
   if (temppath.isEmpty()) {
     // Disabling temp dir
     // Moving all torrents to their destination folder
@@ -1786,13 +1804,13 @@ void QBtSession::setDefaultTempPath(QString temppath) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
-        QString torrent_tmp_path = temppath.replace("\\", "/");
-        qDebug("Moving torrent to its temp save path: %s", qPrintable(torrent_tmp_path));
+        QString torrent_tmp_path = QDir::fromNativeSeparators(temppath);
+        qDebug("Moving torrent to its temp save path: %s", qPrintable(fsutils::toDisplayPath(torrent_tmp_path)));
         h.move_storage(torrent_tmp_path);
       }
     }
   }
-  defaultTempPath = temppath;
+  defaultTempPath = QDir::fromNativeSeparators(temppath);
 }
 
 void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {
@@ -1905,12 +1923,6 @@ void QBtSession::setListeningPort(int port) {
   if (!network_iface.isValid()) {
     qDebug("Invalid network interface: %s", qPrintable(iface_name));
     addConsoleMessage(tr("The network interface defined is invalid: %1").arg(iface_name), "red");
-    addConsoleMessage(tr("Trying any other network interface available instead."));
-#if LIBTORRENT_VERSION_MINOR > 15
-    s->listen_on(ports, ec);
-#else
-    s->listen_on(ports);
-#endif
     return;
   }
   QString ip;
@@ -2401,7 +2413,7 @@ void QBtSession::readAlerts() {
         if (h.is_valid()) {
           h.pause();
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
-          addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
+          addConsoleMessage(tr("An I/O error occurred, '%1' paused.").arg(h.name()));
           addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
           if (h.is_valid()) {
             emit fullDiskError(h, misc::toQString(p->message()));

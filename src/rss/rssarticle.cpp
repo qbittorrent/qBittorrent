@@ -89,10 +89,9 @@ const QString& RssArticle::link() const {
   return m_link;
 }
 
-const QString& RssArticle::description() const {
-  if (m_description.isNull())
-    return "";
-  return m_description;
+QString RssArticle::description() const
+{
+  return m_description.isNull() ? "" : m_description;
 }
 
 const QDateTime& RssArticle::date() const {

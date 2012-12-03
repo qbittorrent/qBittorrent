@@ -431,6 +431,10 @@ p, li { white-space: pre-wrap; }
         <source>Always announce to all trackers</source>
         <translation>Uvijek obavijesti sve trackere</translation>
     </message>
+    <message>
+        <source> (auto)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
@@ -777,7 +781,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Preuzimanje &apos;%1&apos;, pričekajte ...</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation type="obsolete">Dogodila se I/O greška. &apos;%1&apos; pauziran.</translation>
     </message>
     <message>
@@ -1313,8 +1317,8 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
         <translation type="obsolete">I/O greška</translation>
     </message>
     <message>
-        <source>An error occured (full disk?), &apos;%1&apos; paused.</source>
-        <comment>e.g: An error occured (full disk?), &apos;xxx.avi&apos; paused.</comment>
+        <source>An error occurred (full disk?), &apos;%1&apos; paused.</source>
+        <comment>e.g: An error occurred (full disk?), &apos;xxx.avi&apos; paused.</comment>
         <translation type="obsolete">Dogodila se greška (pun disk?), &apos;%1&apos; zaustavljeno.</translation>
     </message>
     <message>
@@ -1339,9 +1343,9 @@ Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translati
         <translation type="obsolete">Nije moguće preuzeti datoteku sa: %1, razlog: %2.</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Dogodila se I/O greška za torrent %1
 Razlog: %2</translation>
@@ -2282,9 +2286,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>I/O greška</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Dogodila se I/O greška za torrent %1
 Razlog: %2</translation>
@@ -3491,7 +3495,7 @@ QGroupBox {
         <translation>Ključ:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation></translation>
     </message>
     <message>
@@ -3524,6 +3528,10 @@ QGroupBox {
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start qBittorrent on Windows start up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4050,7 +4058,7 @@ QGroupBox {
         <translation>[qBittorrent] %1 je preuzet</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Dogodila se I/O greška. &apos;%1&apos; pauziran.</translation>
     </message>
     <message>
@@ -4088,7 +4096,7 @@ QGroupBox {
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation>Isprobavanje bilo kojeg drugog mrežnog sučelje umjesto raspoloživog.</translation>
+        <translation type="obsolete">Isprobavanje bilo kojeg drugog mrežnog sučelje umjesto raspoloživog.</translation>
     </message>
     <message>
         <source>Listening on IP address %1 on network interface %2...</source>
@@ -4526,7 +4534,7 @@ p, li { white-space: pre-wrap; }
         <translation>Potraga je gotova</translation>
     </message>
     <message>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Dogodila se greška za vrijeme potrage ...</translation>
     </message>
     <message>
@@ -5433,6 +5441,14 @@ Do you want to install it now?</source>
     <message>
         <source>Limit share ratio...</source>
         <translation>Limit omjera djeljenja</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
