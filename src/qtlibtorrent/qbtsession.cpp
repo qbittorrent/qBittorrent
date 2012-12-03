@@ -404,12 +404,9 @@ void QBtSession::configureSession() {
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
   sessionSettings.cache_size = pref.diskCacheSize()*64;
   qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
-  // Disable OS cache to avoid memory problems (uTorrent behavior)
-#ifdef Q_WS_WIN
-  // Fixes huge memory usage on Windows 7 (especially when checking files)
-  sessionSettings.disk_io_write_mode = session_settings::disable_os_cache;
-  sessionSettings.disk_io_read_mode = session_settings::disable_os_cache;
-#endif
+  // Disabling the OS disk cache is intended to reduce memory usage (especially when checking files) but might be unreliable
+  sessionSettings.disk_io_write_mode = pref.disableOSWriteCache() ? session_settings::disable_os_cache : session_settings::enable_os_cache;
+  sessionSettings.disk_io_read_mode = pref.disableOSReadCache() ? session_settings::disable_os_cache : session_settings::enable_os_cache;
 #if LIBTORRENT_VERSION_MINOR > 15
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
