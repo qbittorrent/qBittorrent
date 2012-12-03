@@ -4,6 +4,7 @@
     - BUGFIX: Fix "Couldn't set environment variable..." message on start up (closes #245)
     - BUGFIX: Use right path separator in torrent addition dialog on Windows
     - BUGFIX: Fix "Set as default save path" setting (closes #254)
+    - BUGFIX: Reenable disk cache on Windows since the memory issue seems to be gone
 
 * Sun Oct 7 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
     - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
