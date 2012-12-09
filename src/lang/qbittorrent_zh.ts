@@ -2255,11 +2255,11 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Add &amp;link to torrent...</source>
-        <translation>向torrent添加链接...</translation>
+        <translation type="unfinished">通过链接添加torrent...</translation>
     </message>
     <message>
         <source>Import existing torrent...</source>
-        <translation>导出现有的torrent...</translation>
+        <translation type="unfinished">导入现有的torrent...</translation>
     </message>
     <message>
         <source>Execution &amp;Log</source>
@@ -3065,7 +3065,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Import SSL Certificate</source>
-        <translation>导入 SSL 证书</translation>
+        <translation type="unfinished">导入 SSL 证书</translation>
     </message>
     <message>
         <source>Import SSL Key</source>
