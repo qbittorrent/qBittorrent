@@ -1780,7 +1780,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation>用于对内连接的端口必须大于1024且小于65535.</translation>
+        <translation type="unfinished">用于传入连接的端口必须大于1024且小于65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
@@ -2485,15 +2485,15 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>使激活的下载最大化:</translation>
+        <translation type="unfinished">使激活的下载任务个数最大化:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>使激活的上传最大化:</translation>
+        <translation type="unfinished">使激活的上传任务个数最大化:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>使激活的torrents最大化:</translation>
+        <translation type="unfinished">使激活的torrent个数最大化:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -2776,7 +2776,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation>IP过滤中</translation>
+        <translation type="unfinished">IP过滤中</translation>
     </message>
     <message>
         <source>Schedule the use of alternative speed limits</source>
@@ -2861,7 +2861,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>使用UPnP / NAT-PMP端口从路由器转发</translation>
+        <translation type="unfinished">由路由器的UPnP / NAT-PMP端口转发</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -3005,7 +3005,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>使用UPnP / NAT-PMP 从路由器转发转发端口</translation>
+        <translation type="unfinished">使用UPnP / NAT-PMP 让路由器转发端口</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
