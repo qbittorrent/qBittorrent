@@ -3347,7 +3347,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="obsolete">Aggiungi .l&apos;estensione !qB ai file incompleti</translation>
+        <translation type="obsolete">Aggiungi estensione .!qB ai file incompleti</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="692"/>
@@ -5273,7 +5273,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="251"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Seeds</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="252"/>
@@ -5331,24 +5331,24 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="261"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Limite di download</translation>
+        <translation>Limite download</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="262"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Limiti di upload</translation>
+        <translation>Limite upload</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="263"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Quantità dati scaricati</translation>
+        <translation>Dati scaricati</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
         <comment>Dati scaricati</comment>
-        <translation type="obsolete">Quantità dati scaricati (in MB)</translation>
+        <translation type="obsolete">Dati scaricati (in MB)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="264"/>
@@ -5373,7 +5373,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="62"/>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="63"/>
@@ -5705,7 +5705,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Seeds</translation>
+        <translation type="obsolete">Seed</translation>
     </message>
     <message>
         <source>Peers</source>
