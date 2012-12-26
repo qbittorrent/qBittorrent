@@ -99,9 +99,10 @@ void PreviewSelect::on_previewButton_clicked() {
   // Flush data
   h.flush_cache();
 
+  QStringList absolute_paths(h.absolute_files_path());
   QString path;
   foreach (index, selectedIndexes) {
-    path = h.absolute_files_path().at(indexes.at(index.row()));
+    path = absolute_paths.at(indexes.at(index.row()));
     // File
     if (QFile::exists(path)) {
       emit readyToPreviewFile(path);

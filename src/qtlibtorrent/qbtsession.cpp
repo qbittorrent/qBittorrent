@@ -1270,20 +1270,11 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
       // Update file names
       const QStringList files_path = TorrentTempData::getFilesPath(hash);
       bool force_recheck = false;
+      QDir  base_dir(h.save_path());
       if (files_path.size() == h.num_files()) {
         for (int i=0; i<h.num_files(); ++i) {
-          QString old_path = h.absolute_files_path().at(i);
-          old_path.replace("\\", "/");
-          if (!QFile::exists(old_path)) {
-            // Remove old parent folder manually since we will
-            // not get a file_renamed alert
-            QStringList parts = old_path.split("/", QString::SkipEmptyParts);
-            parts.removeLast();
-            if (!parts.empty())
-              QDir().rmpath(parts.join("/"));
-          }
           const QString &path = files_path.at(i);
-          if (!force_recheck && QDir(h.save_path()).exists(path))
+          if (!force_recheck && base_dir.exists(path))
             force_recheck = true;
           qDebug("Renaming file to %s", qPrintable(path));
           h.rename_file(i, path);
