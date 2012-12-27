@@ -190,7 +190,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_UPLIMIT:
     return m_torrent.upload_limit();
   case TR_AMOUNT_DOWNLOADED:
-    return static_cast<qlonglong>(m_torrent.total_wanted_done());
+    return static_cast<qlonglong>(m_torrent.all_time_download());
   case TR_AMOUNT_UPLOADED:
     return static_cast<qlonglong>(m_torrent.all_time_upload());
   case TR_AMOUNT_LEFT:
