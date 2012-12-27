@@ -62,6 +62,7 @@ public:
     painter->save();
     switch(index.column()) {
     case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
+    case TorrentModelItem::TR_AMOUNT_UPLOADED:
     case TorrentModelItem::TR_AMOUNT_LEFT:
     case TorrentModelItem::TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
