@@ -45,3 +45,8 @@ else {
 
 DEFINES += WITH_GEOIP_EMBEDDED
 message("On Windows, GeoIP database must be embedded.")
+
+CONFIG(static) {
+	DEFINES += QBT_STATIC_QT
+	QTPLUGIN += qico
+}
