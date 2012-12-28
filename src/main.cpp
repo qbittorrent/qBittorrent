@@ -34,6 +34,10 @@
 #include <QLibraryInfo>
 
 #ifndef DISABLE_GUI
+#if defined(QBT_STATIC_QT)
+#include <QtPlugin>
+Q_IMPORT_PLUGIN(qico)
+#endif
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QStyle>
