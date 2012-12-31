@@ -6127,7 +6127,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Elimina anche il relativo file nell&apos;hard disk</translation>
+        <translation>Elimina anche il relativo file nel disco fisso</translation>
     </message>
 </context>
 <context>
@@ -6596,7 +6596,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
         <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation type="unfinished">E&apos; già installa una versione più recente del plugin di ricerca %1.</translation>
+        <translation>E&apos; già installa una versione più recente del plugin di ricerca %1.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="394"/>
