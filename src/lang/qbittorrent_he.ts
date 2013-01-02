@@ -1888,17 +1888,17 @@ Would you like to update qBittorrent to version %1?</source>
         <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2030"/>
+        <location filename="../preferences/options.ui" line="2033"/>
         <source>Maximum active downloads:</source>
         <translation>מספר מרבי של הורדות פעילות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2050"/>
+        <location filename="../preferences/options.ui" line="2053"/>
         <source>Maximum active uploads:</source>
         <translation>מספר מרבי של העלאות פעילות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2070"/>
+        <location filename="../preferences/options.ui" line="2073"/>
         <source>Maximum active torrents:</source>
         <translation>מספר מרבי של טורנטים פעילים:</translation>
     </message>
@@ -2280,87 +2280,87 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>אפשר מצב אנונימי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2129"/>
+        <location filename="../preferences/options.ui" line="2132"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>אל תחשב טורנטים איטיים בהגבלות אלו</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2150"/>
+        <location filename="../preferences/options.ui" line="2153"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>הפץ טורנט עד שיחס השיתוף שלהם משתווה</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2182"/>
+        <location filename="../preferences/options.ui" line="2185"/>
         <source>then</source>
         <translation>לאחר מכן</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2193"/>
+        <location filename="../preferences/options.ui" line="2196"/>
         <source>Pause them</source>
         <translation>השהה אותם</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2198"/>
+        <location filename="../preferences/options.ui" line="2201"/>
         <source>Remove them</source>
         <translation>הסר אותם</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2296"/>
+        <location filename="../preferences/options.ui" line="2299"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>השתמש ב UPnP / NAT-PMP כדי להעביר הלאה את הפורט מהנתב שלי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2306"/>
+        <location filename="../preferences/options.ui" line="2309"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>שימוש בHTTPS במקום ב HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2349"/>
+        <location filename="../preferences/options.ui" line="2352"/>
         <source>Import SSL Certificate</source>
         <translation>יבוא אישורי SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2402"/>
+        <location filename="../preferences/options.ui" line="2405"/>
         <source>Import SSL Key</source>
         <translation>יבוא מפתחות SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2337"/>
+        <location filename="../preferences/options.ui" line="2340"/>
         <source>Certificate:</source>
         <translation>אישור:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2390"/>
+        <location filename="../preferences/options.ui" line="2393"/>
         <source>Key:</source>
         <translation>מפתח:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2424"/>
+        <location filename="../preferences/options.ui" line="2427"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2469"/>
+        <location filename="../preferences/options.ui" line="2472"/>
         <source>Bypass authentication for localhost</source>
         <translation>התעלמות מאימות למארח מקומי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2493"/>
+        <location filename="../preferences/options.ui" line="2496"/>
         <source>Update my dynamic domain name</source>
         <translation>עדכון שם הדומיין הדינמי שלי</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2505"/>
+        <location filename="../preferences/options.ui" line="2508"/>
         <source>Service:</source>
         <translation>שרות:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2528"/>
+        <location filename="../preferences/options.ui" line="2531"/>
         <source>Register</source>
         <translation>רישום</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2537"/>
+        <location filename="../preferences/options.ui" line="2540"/>
         <source>Domain name:</source>
         <translation>שם דומיין:</translation>
     </message>
@@ -2381,45 +2381,45 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1235"/>
-        <location filename="../preferences/options.ui" line="2261"/>
+        <location filename="../preferences/options.ui" line="2264"/>
         <source>Port:</source>
         <translation>פורט:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="874"/>
         <location filename="../preferences/options.ui" line="1276"/>
-        <location filename="../preferences/options.ui" line="2437"/>
+        <location filename="../preferences/options.ui" line="2440"/>
         <source>Authentication</source>
         <translation>אימות</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="886"/>
         <location filename="../preferences/options.ui" line="1290"/>
-        <location filename="../preferences/options.ui" line="2476"/>
-        <location filename="../preferences/options.ui" line="2551"/>
+        <location filename="../preferences/options.ui" line="2479"/>
+        <location filename="../preferences/options.ui" line="2554"/>
         <source>Username:</source>
         <translation>שם משתמש:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="896"/>
         <location filename="../preferences/options.ui" line="1310"/>
-        <location filename="../preferences/options.ui" line="2483"/>
-        <location filename="../preferences/options.ui" line="2565"/>
+        <location filename="../preferences/options.ui" line="2486"/>
+        <location filename="../preferences/options.ui" line="2568"/>
         <source>Password:</source>
         <translation>סיסמא:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2015"/>
+        <location filename="../preferences/options.ui" line="2018"/>
         <source>Torrent Queueing</source>
         <translation>רשימת התמנה של טורנט</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2139"/>
+        <location filename="../preferences/options.ui" line="2142"/>
         <source>Share Ratio Limiting</source>
         <translation>הגבלת יחס שיתוף</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2247"/>
+        <location filename="../preferences/options.ui" line="2250"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>אפשר מנשק משתמש אינטרנטי (שלט רחוק)</translation>
     </message>
@@ -2789,154 +2789,154 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>נציג משתמש HTTP הוא %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="412"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="406"/>
         <source>Anonymous mode [ON]</source>
         <translation>מצב אנונימי [פעיל]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="414"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="408"/>
         <source>Anonymous mode [OFF]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="446"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="440"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>מדווח כתובת IP %1 לטראקרים...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="498"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="492"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>תמיכת DHT [פעיל], פורט :UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="500"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="494"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="498"/>
         <source>DHT support [OFF]</source>
         <translation>תמיכת DHT [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="508"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
         <source>PeX support [ON]</source>
         <translation>תמיכת PeX [פעיל]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="510"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
         <source>PeX support [OFF]</source>
         <translation>תמיכת PeX [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>נדרש אתחול כדי לשנות מצב תמיכת PeX</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="521"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>תמיכה בגילוי עמיתים מקומיים [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="533"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
         <source>Encryption support [ON]</source>
         <translation>תמיכה בהצפנה [פעיל]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="532"/>
         <source>Encryption support [FORCED]</source>
         <translation>תמיכה בהצפנה [כפוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="537"/>
         <source>Encryption support [OFF]</source>
         <translation>תמיכה בהצפנה [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="604"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="598"/>
         <source>Embedded Tracker [ON]</source>
         <translation>טראקר מוטמע [פעיל]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="600"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>נכשלה ההפעלה של הטראקר המוטמע!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="609"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="603"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>טראקר מוטמע [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="663"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="657"/>
         <source>The Web UI is listening on port %1</source>
         <translation>מנשק האינטרנט מאזין בפורט %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="665"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="659"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>שגיאת מנשק משתמש אינטרנט - לא מצליח לקשר את מנשק האינטרנט לפורט %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="806"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="800"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>%1 הוסר מרשימת ההעברה והדיסק קשיח.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="808"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="802"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>%1 הוסר מרשימת ההעברה.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="900"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="894"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>%1 אינו URI מגנטי חוקי.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="916"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1054"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1056"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="910"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1043"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1048"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>%1 כבר קיים ברשמית ההורדות.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1181"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1186"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1175"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1180"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>%1 הותחל מחדש. (התחלה מהירה)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>המחשב יעבור עכשיו למצב שינה אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2263"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>המחשב עכשיו ייכבה אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2265"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2267"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent עכשיו ייצא אלא אם כן זה יבוטל תוך 15 שניות...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2810"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2812"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>מסנן הIP שסופק נותח בהצלחה: הוחלו %1 כללים.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2816"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2818"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>שגיאה: ניתוח מסנן הIP שסופק נכשל.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="981"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1183"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1188"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="975"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1177"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1182"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>%1 נוסף לרשמית ההורדות.</translation>
@@ -2952,53 +2952,53 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>תמיכת UPnP / NAT-PMP [כבוי]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="512"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>תמיכה בגילוי עמיתים מקומיים [פעיל]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1017"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1025"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1027"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1011"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1019"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1021"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>לא מצליח לפענח קובץ טורנט: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1031"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1025"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>קובץ זה פגום או שאינו קובץ טורנט.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1072"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1066"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>שגיאה: הטורנט %1 לא מכיל שום קובץ.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1322"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1350"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1316"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1344"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>שים לב: טראקרים חדשים נוספו לטורנט הקיים.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1380"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1374"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>שים לב: מפיצי URL חדשים נוספו לטורנט הקיים.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1722"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1716"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt; נחסם בגלל מסנן הIP שלך &gt;/i&lt; </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1724"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1718"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;נחסם בשל חלקים פגומים&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1912"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1914"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>מנשק הרשת שהוגדר אינו זמין: %1</translation>
     </message>
@@ -3007,97 +3007,97 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">מנסה כל מנשק רשת אחר שזמין במקום זאת.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1932"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>מאזין לכתובת IP %1 במנשק רשת %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1933"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1935"/>
         <source>Failed to listen on network interface %1</source>
         <translation>האזנה על מנשק רשת %1 נכשלה</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2114"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2116"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2118"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>הורדה חוזרת על עצמה של קובץ %1 שנמצא בתוך טורנט %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2211"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2213"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2215"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>לא מצליח לפענח קובץ טורנט %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2161"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
         <source>Torrent name: %1</source>
         <translation>שם טורנט: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2162"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2164"/>
         <source>Torrent size: %1</source>
         <translation>גודל טורנט: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2163"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2165"/>
         <source>Save path: %1</source>
         <translation>שמור נתיב: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2164"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>הטורנט ירד ב: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2165"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2167"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>תודה על השימוש בqBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 סיים לרדת</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2400"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2402"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
         <translation>התרחשה שגיאת I/O, %1 הושהה.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2401"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2512"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2403"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2514"/>
         <source>Reason: %1</source>
         <translation>סיבה: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2476"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2478"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: מיפוי הפורט נכשל, הודעה:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2481"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2483"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: מיפוי הפורט הצליח, הודעה:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2507"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2509"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>גודלי הקבצים לא מתאימים לטורנט %1, משהה אותו.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2511"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2513"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>נתונים להתחלה מחדש מהירה נדחו עבור טורנט %1, בודק שוב...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2517"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2519"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>חיפוש מפיצי Url נכשל עבור Url %1, הודעה: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>מוריד %1, נא להמתין...</translation>
@@ -4928,9 +4928,9 @@ However, those plugins were disabled.</source>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../fs_utils.cpp" line="435"/>
-        <location filename="../fs_utils.cpp" line="466"/>
-        <location filename="../fs_utils.cpp" line="478"/>
+        <location filename="../fs_utils.cpp" line="430"/>
+        <location filename="../fs_utils.cpp" line="461"/>
+        <location filename="../fs_utils.cpp" line="473"/>
         <source>Downloads</source>
         <translation>הורדות</translation>
     </message>
@@ -4974,13 +4974,13 @@ However, those plugins were disabled.</source>
         <translation>/ש</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="387"/>
+        <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 ש %2 ד</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="392"/>
+        <location filename="../misc.cpp" line="396"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1ימים %2 ש</translation>
@@ -4997,13 +4997,13 @@ However, those plugins were disabled.</source>
         <translation>qBittorrent יכבה כעת את המחשב היות שכל ההורדות הסתיימו.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="378"/>
+        <location filename="../misc.cpp" line="382"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>פחות מדקה</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="386"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 דקות</translation>
