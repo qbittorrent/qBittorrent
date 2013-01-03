@@ -4583,7 +4583,7 @@ Do you want to install it now?</source>
     <message>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Отдано</translation>
     </message>
 </context>
 <context>
