@@ -1,4 +1,4 @@
-#VERSION: 1.22
+#VERSION: 1.23
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,7 @@ from helpers import retrieve_url, download_file
 import json
 
 class kickasstorrents(object):
-  url = 'http://www.kat.ph'
+  url = 'https://kat.ph'
   name = 'kickasstorrents'
   supported_categories = {'all': '', 'movies': 'Movies', 'tv': 'TV', 'music': 'Music', 'games': 'Games', 'software': 'Applications'}
 
