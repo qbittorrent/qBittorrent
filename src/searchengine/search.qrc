@@ -18,8 +18,6 @@
   <file>nova/engines/mininova.py</file>
   <file>nova/engines/piratebay.png</file>
   <file>nova/engines/piratebay.py</file>
-  <file>nova/engines/torrentdownloads.png</file>
-  <file>nova/engines/torrentdownloads.py</file>
   <file>nova/engines/torrentreactor.png</file>
   <file>nova/engines/torrentreactor.py</file>
   <file>nova/engines/vertor.png</file>
@@ -42,8 +40,6 @@
   <file>nova3/engines/mininova.py</file>
   <file>nova3/engines/piratebay.png</file>
   <file>nova3/engines/piratebay.py</file>
-  <file>nova3/engines/torrentdownloads.png</file>
-  <file>nova3/engines/torrentdownloads.py</file>
   <file>nova3/engines/torrentreactor.png</file>
   <file>nova3/engines/torrentreactor.py</file>
   <file>nova3/engines/vertor.png</file>
