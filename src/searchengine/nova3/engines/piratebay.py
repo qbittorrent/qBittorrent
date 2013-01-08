@@ -1,4 +1,4 @@
-#VERSION: 1.50
+#VERSION: 1.51
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -31,7 +31,7 @@ import sgmllib3
 from helpers import retrieve_url, download_file
 
 class piratebay(object):
-	url = 'http://thepiratebay.se'
+	url = 'https://thepiratebay.se'
 	name = 'The Pirate Bay'
 	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
 
@@ -57,7 +57,7 @@ class piratebay(object):
 			if params['href'].startswith('/torrent/'):
 				self.current_item = {}
 				self.td_counter = 0
-				self.current_item['desc_link'] = 'http://thepiratebay.se'+params['href'].strip()
+				self.current_item['desc_link'] = self.url + params['href'].strip()
 				self.in_name = True
 			elif params['href'].startswith('magnet:'):
 				self.current_item['link']=params['href'].strip()
