@@ -53,9 +53,6 @@ public:
     setupUi(this);
     // Icons
     uTorrentListButton->setIcon(IconProvider::instance()->getIcon("download"));
-    // As a default, use torrentz.com link
-    list_url->setText("http://www.torrentz.com/announce_"+h.hash());
-    list_url->setCursorPosition(0);
   }
 
   ~TrackersAdditionDlg() {}
