@@ -1,4 +1,4 @@
-#VERSION: 1.41
+#VERSION: 1.42
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -60,8 +60,8 @@ class isohunt(object):
 					torrent_infos['name'] = re.sub('<.*?>', '', torrent_infos['name'])
 					torrent_infos['engine_url'] = self.url
 					torrent_code = torrent_infos['link']
-					torrent_infos['link'] = 'http://isohunt.com/download/'+torrent_code
-					torrent_infos['desc_link'] = 'http://isohunt.com/torrent_details/'+torrent_code+'/dvdrip?tab=summary'
+					torrent_infos['link'] = self.url + '/download/' + torrent_code
+					torrent_infos['desc_link'] = self.url + '/torrent_details/' + torrent_code + '/dvdrip?tab=summary'
 					prettyPrinter(torrent_infos)
 					res = res + 1
 			if res == 0:
