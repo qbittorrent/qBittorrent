@@ -128,7 +128,7 @@ p, li { white-space: pre-wrap; }
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Dialog</source>
-        <translatorcomment>where is it shown?</translatorcomment>
+        <translatorcomment>looks like its in&quot; addnewtorrentdialog.ui&quot; @ line 26; I don&apos;t think it&apos;s used anywhere.</translatorcomment>
         <translation type="unfinished">Dialog</translation>
     </message>
     <message>
@@ -396,7 +396,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (авто)</translation>
     </message>
 </context>
 <context>
@@ -3169,7 +3169,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Запускать qBittorrent вместе с Windows</translation>
     </message>
 </context>
 <context>
@@ -3606,7 +3606,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translation>%1 возобновлен (быстрое возобновление).</translation>
+        <translation>%1 возобновлен. (быстрое возобновление)</translation>
     </message>
     <message>
         <source>&apos;%1&apos; added to download list.</source>
@@ -3814,8 +3814,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open news URL</source>
-        <translatorcomment>Не нашёл, где используется :( По-моему, под &quot;news&quot; в оригинале имелось в виду что-то другое :)</translatorcomment>
-        <translation type="unfinished">Открыть новый URL</translation>
+        <translatorcomment>Открывает элемент фида в браузере</translatorcomment>
+        <translation type="unfinished">Открыть URL в браузере</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
@@ -5046,11 +5046,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Подтвердите повторную проверку</translation>
     </message>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы уверены, что хотите выполнить повторную проверку выбранных торрентов?</translation>
     </message>
 </context>
 <context>
