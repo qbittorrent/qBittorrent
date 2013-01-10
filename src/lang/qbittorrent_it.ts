@@ -5349,7 +5349,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="266"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dati inviati</translation>
     </message>
     <message>
         <source>Amount downloaded</source>
