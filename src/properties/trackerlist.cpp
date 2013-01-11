@@ -40,6 +40,7 @@
 #include "trackerlist.h"
 #include "propertieswidget.h"
 #include "trackersadditiondlg.h"
+#include "trackereditdlg.h"
 #include "iconprovider.h"
 #include "qbtsession.h"
 #include "qinisettings.h"
@@ -345,6 +346,21 @@ void TrackerList::copySelectedTrackers() {
   qApp->clipboard()->setText(urls_to_copy.join("\n"));
 }
 
+void TrackerList::editSelectedTracker() {
+  QTorrentHandle h = properties->getCurrentTorrent();
+  if (!h.is_valid()) return;
+
+  QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+  if (selected_items.isEmpty()) return;
+  // During multi-select only process item selected last
+  QString tracker_URI = selected_items.last()->data(COL_URL, Qt::DisplayRole).toString();
+  if (!TrackerEditDlg::editSelectedTracker(h,tracker_URI))
+    return;
+
+  h.force_reannounce();
+  loadTrackers();
+}
+
 void TrackerList::showTrackerListMenu(QPoint) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) return;
@@ -354,9 +370,11 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
   QAction *delAct = 0;
   QAction *cpyAct = 0;
+  QAction *editAct = 0;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
     cpyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"),tr("Copy selected tracker URI(s) to clipboard"));
+    editAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URI"));
   }
   menu.addSeparator();
   QAction *reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce"));
@@ -372,6 +390,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
   if (act == cpyAct) {
     copySelectedTrackers();
+    return;
+  }
+  if (act == editAct) {
+    editSelectedTracker();
     return;
   }
   if (act == reannounceAct) {
