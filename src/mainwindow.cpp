@@ -659,6 +659,13 @@ void MainWindow::on_actionSet_global_download_limit_triggered() {
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void MainWindow::on_actionExit_triggered() {
+  // UI locking enforcement.
+  if (isHidden() && ui_locked) {
+    // Ask for UI lock password
+    if (!unlockUI())
+      return;
+  }
+
   force_exit = true;
   close();
 }
