@@ -35,9 +35,7 @@ InstallDirRegKey HKLM Software\qbittorrent InstallLocation
 RequestExecutionLevel admin
 
 ;--------------------------------
-
-; Pages
-;Interface Settings
+;General Settings
 !define MUI_ABORTWARNING
 !define MUI_HEADERIMAGE
 !define MUI_COMPONENTSPAGE_NODESC
@@ -45,17 +43,28 @@ RequestExecutionLevel admin
 !define MUI_LICENSEPAGE_CHECKBOX
 !define MUI_LANGDLL_ALLLANGUAGES
 
+;--------------------------------
+;Remember the unistaller/installer language
+!define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
+!define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent" 
+!define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
+
+;--------------------------------
+;Installer Pages
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "license.txt"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 
-
-
+;--------------------------------
+;Uninstaller Pages
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_COMPONENTS
 !insertmacro MUI_UNPAGE_INSTFILES
+
+;--------------------------------
+;Languages
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Afrikaans"
@@ -313,3 +322,12 @@ Section /o "un.Remove configuration files"
   System::Call 'shell32::SHGetSpecialFolderPath(i $HWNDPARENT, t .r1, i ${CSIDL_LOCALAPPDATA}, i0)i.r0'
   RMDir /r "$1\qBittorrent\"
 SectionEnd
+
+;--------------------------------
+;Uninstaller Functions
+
+Function un.onInit
+
+  !insertmacro MUI_UNGETLANGUAGE
+  
+FunctionEnd
