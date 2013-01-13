@@ -9,6 +9,7 @@
     - BUGFIX: Use https links in search plugins when possible
     - BUGFIX: Bump Mootools to v1.4.5 (Web UI)
     - BUGFIX: Require password to exit qBittorrent from tray icon when locked (closes #311)
+    - BUGFIX: Fix possible crash in loadPeers() (closes #222)
 
 * Sun Oct 7 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.6
     - BUGFIX: Fix unicode support for command-line arguments on Windows (closes #139)
