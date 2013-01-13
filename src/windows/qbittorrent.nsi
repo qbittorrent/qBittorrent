@@ -279,16 +279,15 @@ Section "un.Remove files"
   Delete "$INSTDIR\translations\qt_zh_TW.qm"   
   Delete "$INSTDIR\uninst.exe"
   
-  ; Remove directories used
-  RMDir "$SMPROGRAMS\qBittorrent"
-  RMDir "$INSTDIR\translations"
+  ; Remove directories used  
+  RMDir /r "$INSTDIR\translations"
   RMDir "$INSTDIR"
 SectionEnd
 
 Section "un.Remove shortcuts"
   SectionIn RO
 ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\qBittorrent\*.*"
+  RMDir /r "$SMPROGRAMS\qBittorrent"
   Delete "$DESKTOP\qBittorrent.lnk"
 SectionEnd
 
