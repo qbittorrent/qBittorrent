@@ -49,7 +49,7 @@ private:
 public:
   TrackerEditDlg(QTorrentHandle h, QString tracker_URI, QWidget *parent=0) : QDialog(parent), h(h) {
     setupUi(this);
-    this->m_tracker_URI=tracker_URI;
+    this->m_tracker_URI = tracker_URI.trimmed();
     this->tracker_URI_edit->setText(m_tracker_URI);
     connect(this->button_OK,SIGNAL(clicked()),this,SLOT(TrackerEditDlg::on_button_OK_clicked()));
     connect(this->button_Cancel,SIGNAL(clicked()),this,SLOT(TrackerEditDlg::on_button_Cancel_clicked()));
@@ -73,25 +73,37 @@ private:
   bool replaceTracker() {
     if (!h.is_valid()) return false;
 
-    QString new_URI = this->tracker_URI_edit->text();
+    QString new_URI = this->tracker_URI_edit->text().trimmed();
     if (new_URI.isEmpty()
         || new_URI == this->m_tracker_URI) return false;
 
     std::vector<announce_entry> trackers = h.trackers();
+    if (trackers.empty()) return false;
+
+    std::vector<announce_entry> new_trackers;
 
     std::vector<announce_entry>::iterator it = trackers.begin();
     std::vector<announce_entry>::iterator itend = trackers.end();
-    std::vector<announce_entry>::iterator it_match = itend;
+    bool match = false;
+
     for ( ; it != itend; ++it) {
       if (new_URI == misc::toQString((*it).url))
         return false; // Tracker already exists; silently ignoring
-      if (this->m_tracker_URI == misc::toQString((*it).url))
-        it_match = it; // Cannot quit cycle yet; same tracker might be on the list further
-    }
-    if (it_match == itend) return false;
 
-    (*it_match).url = new_URI.toStdString();
-    h.replace_trackers(trackers);
+      announce_entry URI(*it);
+
+      if (this->m_tracker_URI == misc::toQString((*it).url) && !match) {
+        announce_entry new_URI(new_URI.toStdString());
+        URI = new_URI;
+        URI.tier = (*it).tier;
+        match = true;
+      }
+
+      new_trackers.push_back(URI);
+    }
+    if (match == false) return false; // Found no tracker to replace
+
+    h.replace_trackers(new_trackers);
     return true;
   }
 
