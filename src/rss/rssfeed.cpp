@@ -395,4 +395,5 @@ void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& e
 void RssFeed::decrementUnreadCount()
 {
   --m_unreadCount;
+  m_dirty = true;
 }
