@@ -59,6 +59,7 @@ private slots:
   void on_newFeedButton_clicked();
   void refreshAllFeeds();
   void on_markReadButton_clicked();
+  void on_markUnreadButton_clicked();
   void displayRSSListMenu(const QPoint&);
   void displayItemsListMenu(const QPoint&);
   void renameSelectedRssFile();
@@ -71,6 +72,7 @@ private slots:
   void onFeedContentChanged(const QString& url);
   void updateItemsInfos(const QList<QTreeWidgetItem*> &items);
   void updateItemInfos(QTreeWidgetItem *item);
+  void markSelectedArticleUnread();
   void openSelectedArticlesUrls();
   void downloadSelectedTorrents();
   void fillFeedsList(QTreeWidgetItem *parent=0, const RssFolderPtr& rss_parent = RssFolderPtr());

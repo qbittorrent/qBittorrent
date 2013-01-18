@@ -223,6 +223,22 @@ p, li { white-space: pre-wrap; }
     <string>Manage cookies...</string>
    </property>
   </action>
+  <action name="actionMark_items_unread">
+   <property name="text">
+    <string>Mark items unread</string>
+   </property>
+   <property name="toolTip">
+    <string>Mark items unread</string>
+   </property>
+  </action>
+  <action name="actionMark_item_unread">
+   <property name="text">
+    <string>Mark item unread</string>
+   </property>
+   <property name="toolTip">
+    <string>Mark item unread</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

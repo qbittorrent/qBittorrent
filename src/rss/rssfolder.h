@@ -78,6 +78,7 @@ public slots:
   void removeChild(const QString &childId);
   virtual void rename(const QString &new_name);
   virtual void markAsRead();
+  virtual void markAsUnread();
 
 private:
   RssFolder *m_parent;

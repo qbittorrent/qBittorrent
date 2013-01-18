@@ -74,6 +74,8 @@ void RSSImp::displayRSSListMenu(const QPoint& pos)
   if (selectedItems.size() > 0) {
     myRSSListMenu.addAction(actionUpdate);
     myRSSListMenu.addAction(actionMark_items_read);
+    // Will require better synchronization with rss downloader
+    // myRSSListMenu.addAction(actionMark_items_unread);
     myRSSListMenu.addSeparator();
     if (selectedItems.size() == 1) {
       if (m_feedList->getRSSItem(selectedItems.first()) != m_rssManager) {
@@ -114,6 +116,8 @@ void RSSImp::displayItemsListMenu(const QPoint&)
         break;
       }
     }
+    myItemListMenu.addAction(actionMark_item_unread);
+    myItemListMenu.addSeparator();
     if (has_attachment)
       myItemListMenu.addAction(actionDownload_torrent);
     myItemListMenu.addAction(actionOpen_news_URL);
@@ -334,6 +338,24 @@ void RSSImp::refreshAllFeeds()
   m_rssManager->refresh();
 }
 
+void RSSImp::markSelectedArticleUnread()
+{
+  QList<QListWidgetItem*> selected_items = listArticles->selectedItems();
+
+  if(!selected_items.isEmpty()){
+    QListWidgetItem* selected_item = selected_items.last();
+
+    RssArticlePtr article =  m_feedList->getRSSItemFromUrl(selected_item->data(Article::FeedUrlRole).toString())
+        ->getItem(selected_item->data(Article::IdRole).toString());
+    article->markAsUnread();
+    QTreeWidgetItem* curFeed = m_feedList->currentItem();
+
+    updateItemInfos(m_feedList->stickyUnreadItem());
+    updateItemInfos(m_feedList->getTreeItemFromUrl(selected_item->data(Article::FeedUrlRole).toString()));
+    populateArticleList(curFeed);
+  }
+}
+
 void RSSImp::downloadSelectedTorrents()
 {
   QList<QListWidgetItem*> selected_items = listArticles->selectedItems();
@@ -440,6 +462,20 @@ void RSSImp::on_markReadButton_clicked()
     RssFilePtr rss_item = m_feedList->getRSSItem(item);
     Q_ASSERT(rss_item);
     rss_item->markAsRead();
+    updateItemInfos(item);
+  }
+  // Update article list
+  if (!selectedItems.isEmpty())
+    populateArticleList(m_feedList->currentItem());
+}
+
+void RSSImp::on_markUnreadButton_clicked()
+{
+  QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
+  foreach (QTreeWidgetItem* item, selectedItems) {
+    RssFilePtr rss_item = m_feedList->getRSSItem(item);
+    Q_ASSERT(rss_item);
+    rss_item->markAsUnread();
     updateItemInfos(item);
   }
   // Update article list
@@ -567,12 +603,15 @@ void RSSImp::refreshTextBrowser()
   html += "</div>";
   html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->description()+"</div>";
   textBrowser->setHtml(html);
-  article->markAsRead();
-  item->setData(Article::ColorRole, QVariant(QColor("grey")));
-  item->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
-  // Decrement feed nb unread news
-  updateItemInfos(m_feedList->stickyUnreadItem());
-  updateItemInfos(m_feedList->getTreeItemFromUrl(item->data(Article::FeedUrlRole).toString()));
+  if(!article->isRead()){
+    article->markAsRead();
+    item->setData(Article::ColorRole, QVariant(QColor("grey")));
+    item->setData(Article::IconRole, QVariant(QIcon(":/Icons/sphere.png")));
+
+    // Decrement feed nb unread news
+    updateItemInfos(m_feedList->stickyUnreadItem());
+    updateItemInfos(m_feedList->getTreeItemFromUrl(item->data(Article::FeedUrlRole).toString()));
+  }
 }
 
 void RSSImp::saveSlidersPosition()
@@ -672,6 +711,8 @@ RSSImp::RSSImp(QWidget *parent) :
   actionDownload_torrent->setIcon(IconProvider::instance()->getIcon("download"));
   actionManage_cookies->setIcon(IconProvider::instance()->getIcon("preferences-web-browser-cookies"));
   actionMark_items_read->setIcon(IconProvider::instance()->getIcon("mail-mark-read"));
+  actionMark_items_unread->setIcon(IconProvider::instance()->getIcon("mail-mark-unread"));
+  actionMark_item_unread->setIcon(IconProvider::instance()->getIcon("mail-mark-unread"));
   actionNew_folder->setIcon(IconProvider::instance()->getIcon("folder-new"));
   actionNew_subscription->setIcon(IconProvider::instance()->getIcon("list-add"));
   actionOpen_news_URL->setIcon(IconProvider::instance()->getIcon("application-x-mswinurl"));
@@ -711,7 +752,9 @@ RSSImp::RSSImp(QWidget *parent) :
   connect(updateAllButton, SIGNAL(clicked()), SLOT(refreshAllFeeds()));
   connect(actionCopy_feed_URL, SIGNAL(triggered()), this, SLOT(copySelectedFeedsURL()));
   connect(actionMark_items_read, SIGNAL(triggered()), this, SLOT(on_markReadButton_clicked()));
+  connect(actionMark_items_unread, SIGNAL(triggered()), this, SLOT(on_markUnreadButton_clicked()));
   // News list actions
+  connect(actionMark_item_unread, SIGNAL(triggered()), this, SLOT(markSelectedArticleUnread()));
   connect(actionOpen_news_URL, SIGNAL(triggered()), this, SLOT(openSelectedArticlesUrls()));
   connect(actionDownload_torrent, SIGNAL(triggered()), this, SLOT(downloadSelectedTorrents()));
 
