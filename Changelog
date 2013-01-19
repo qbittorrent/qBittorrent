@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
+    - BUGFIX: Fix support for --no-splash command line argument
+
 * Sat Jan 19 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.7
     - BUGFIX: Update max write cache size to 2048MB and set it to automatic by default (closes #148)
     - BUGFIX: Add m4v to the list of previewable file extensions (closes #216)
