@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.32
+#VERSION: 1.33
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -64,9 +64,9 @@ def retrieve_url(url):
     response = urllib.request.urlopen(url)
     dat = response.read()
     # Check if it is gzipped
-    if dat[:2] == '\037\213':
+    if dat[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = StringIO.StringIO(dat)
+        compressedstream = io.BytesIO(dat)
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
