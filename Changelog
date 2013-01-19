@@ -2,6 +2,7 @@
     - BUGFIX: Fix support for --no-splash command line argument
     - BUGFIX: Fix compilation error with libtorrent v0.15
     - BUGFIX: Fix search issues with Python3
+    - BUGFIX: Fix dead link about certificates in program preferences
 
 * Sat Jan 19 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.7
     - BUGFIX: Update max write cache size to 2048MB and set it to automatic by default (closes #148)
