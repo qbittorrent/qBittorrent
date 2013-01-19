@@ -392,8 +392,10 @@ void QBtSession::configureSession() {
 
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
+#if LIBTORRENT_VERSION_MINOR > 15
   // Disable support for SSL torrents for now
   sessionSettings.ssl_listen = 0;
+#endif
   // To prevent ISPs from blocking seeding
   sessionSettings.lazy_bitfields = true;
   // Speed up exit
