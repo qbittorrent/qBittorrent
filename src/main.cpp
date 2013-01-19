@@ -316,17 +316,17 @@ int main(int argc, char *argv[]) {
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
-  QStringList torrentCmdLine = app.arguments();
-  // Remove first argument (program name)
-  torrentCmdLine.removeFirst();
-#ifndef QT_NO_DEBUG_OUTPUT
-  foreach (const QString &argument, torrentCmdLine) {
-    qDebug() << "Command line argument:" << argument;
+  QStringList torrents;
+  QStringList appArguments = app.arguments();
+  for (int i = 1; i < appArguments.size(); ++i) {
+    if (!appArguments[i].startsWith("--")) {
+      qDebug() << "Command line argument:" << appArguments[i];
+      torrents << appArguments[i];
+    }
   }
-#endif
 
 #ifndef DISABLE_GUI
-  MainWindow window(0, torrentCmdLine);
+  MainWindow window(0, torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
@@ -335,7 +335,7 @@ int main(int argc, char *argv[]) {
 #endif // Q_WS_MAC
 #else
   // Load Headless class
-  HeadlessLoader loader(torrentCmdLine);
+  HeadlessLoader loader(torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &loader, SLOT(processParams(const QString&)));
 #endif

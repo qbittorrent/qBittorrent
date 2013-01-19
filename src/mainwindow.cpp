@@ -957,9 +957,6 @@ void MainWindow::processParams(const QStringList& params) {
   const bool useTorrentAdditionDialog = pref.useAdditionDialog();
   foreach (QString param, params) {
     param = param.trimmed();
-    if (param.startsWith("--"))
-      continue;
-
     if (misc::isUrl(param)) {
       QBtSession::instance()->downloadFromUrl(param);
     }else{
