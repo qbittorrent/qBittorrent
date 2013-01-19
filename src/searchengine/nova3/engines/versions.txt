@@ -1,0 +1,8 @@
+isohunt: 1.42
+torrentreactor: 1.32
+mininova: 1.50
+piratebay: 1.52
+vertor: 1.3
+extratorrent: 1.1
+kickasstorrents: 1.23
+btdigg: 1.21
