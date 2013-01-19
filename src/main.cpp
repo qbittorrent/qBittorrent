@@ -65,6 +65,12 @@ Q_IMPORT_PLUGIN(qico)
 #include "stacktrace.h"
 #endif
 
+#if defined(Q_OS_WIN) && defined(STACKTRACE_WIN)
+#include <signal.h>
+#include "stacktrace_win.h"
+#include "stacktrace_win_dlg.h"
+#endif
+
 #include <stdlib.h>
 #include "misc.h"
 #include "preferences.h"
@@ -125,7 +131,7 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -140,19 +146,31 @@ void sigtermHandler(int) {
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
   raise(SIGSEGV);
 }
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
   raise(SIGABRT);
 }
 #endif
@@ -293,7 +311,7 @@ int main(int argc, char *argv[]) {
 #ifndef DISABLE_GUI
   app.setQuitOnLastWindowClosed(false);
 #endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);

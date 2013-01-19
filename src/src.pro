@@ -235,3 +235,34 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_be.ts \
                $$LANG_PATH/qbittorrent_eu.ts \
                $$LANG_PATH/qbittorrent_he.ts
+
+# Windows Stacktrace support
+strace_win:win32:{
+  contains(QMAKE_HOST.arch, x86):{
+    # i686 arch requires frame pointer preservation
+    win32-g++:{
+      QMAKE_CXXFLAGS_RELEASE += -fno-omit-frame-pointer
+      QMAKE_CXXFLAGS_DEBUG += -fno-omit-frame-pointer
+    }
+    win32-msvc*:{
+      QMAKE_CXXFLAGS_RELEASE += -Oy-
+      QMAKE_CXXFLAGS_DEBUG += -Oy-
+    }
+  }
+  
+  # Generate debug info in release builds
+  release:{
+    win32-g++:QMAKE_CXXFLAGS_RELEASE += -g
+    win32-msvc*:{
+      QMAKE_CXXFLAGS_RELEASE += -Zi
+      QMAKE_LFLAGS += "/DEBUG"
+    }
+  }
+
+  DEFINES += STACKTRACE_WIN
+  LIBS += dbghelp.lib
+
+  FORMS += stacktrace_win_dlg.ui
+  HEADERS += stacktrace_win.h \
+             stacktrace_win_dlg.h
+}
