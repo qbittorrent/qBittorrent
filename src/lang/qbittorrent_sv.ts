@@ -2985,8 +2985,8 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Nyckel:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -4450,7 +4450,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Tvinga annonsering igen</translation>
+        <translation type="obsolete">Tvinga annonsering igen</translation>
     </message>
 </context>
 <context>

@@ -3079,8 +3079,8 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <translation>Kľúč:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informácie o certifikátoch&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -4569,7 +4569,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Vynútiť opätovné ohlásenie</translation>
+        <translation type="obsolete">Vynútiť opätovné ohlásenie</translation>
     </message>
 </context>
 <context>

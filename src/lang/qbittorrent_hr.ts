@@ -3491,7 +3491,7 @@ QGroupBox {
         <translation>Ključ:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation></translation>
     </message>
     <message>
@@ -4991,7 +4991,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Prisili ponovno objavljivanje</translation>
+        <translation type="obsolete">Prisili ponovno objavljivanje</translation>
     </message>
 </context>
 <context>

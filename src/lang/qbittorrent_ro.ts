@@ -2550,7 +2550,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3965,10 +3965,6 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

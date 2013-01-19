@@ -3061,8 +3061,8 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation>Chave:</translation>
     </message>
     <message>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.1/ssl/ssl_faq.html#aboutcerts&gt;Informações sobre certificados&lt;/a&gt;</translation>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Informações sobre certificados&lt;/a&gt;</translation>
     </message>
     <message>
         <source>File association</source>
@@ -4550,7 +4550,7 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Força reanuncio</translation>
+        <translation type="obsolete">Força reanuncio</translation>
     </message>
 </context>
 <context>
