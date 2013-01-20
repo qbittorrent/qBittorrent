@@ -42,12 +42,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="183"/>
         <source>Country:</source>
-        <translation>Paese:</translation>
+        <translation>Nazione:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="202"/>
         <source>E-mail:</source>
-        <translation>E-mail:</translation>
+        <translation>Email:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="276"/>
@@ -57,7 +57,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="288"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Questa versione di qBittorrent è stata costruita con le seguenti librerie:</translation>
+        <translation>Questa versione di qBittorrent è stata sviluppata con le seguenti librerie:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="307"/>
@@ -92,9 +92,9 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un client BitTorrent avanzato sviluppato in C++, basato sugli strumenti di sviluppo Qt4 e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent in Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="190"/>
@@ -140,7 +140,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="233"/>
         <source>Thanks to</source>
-        <translation>Grazie a</translation>
+        <translation>Ringraziamenti</translation>
     </message>
 </context>
 <context>
@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="461"/>
         <source>The folder could not be renamed</source>
-        <translation>La cartelal non può essere rinominata</translation>
+        <translation>La cartella non può essere rinominata</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="520"/>
@@ -339,7 +339,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="172"/>
         <source>Disk write cache size</source>
-        <translation>Dimensione cache di scrittura su disco</translation>
+        <translation>Dimensione cache scrittura su disco</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="161"/>
@@ -415,12 +415,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="200"/>
         <source>Resolve peer host names</source>
-        <translation>Risolvi gli host name dei peer</translation>
+        <translation>Risolvi i nomi host dei peer</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Massimo numero di connesioni semi aperte [0: Disabilitato]</translation>
+        <translation>Massimo numero di connessioni semi aperte [0: Disabilitato]</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="208"/>
@@ -441,7 +441,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="231"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>Indirizzo Ip da riportare ai tracker</translation>
+        <translation>Indirizzo IP da riportare ai tracker (richiede riavvio)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="234"/>
@@ -474,12 +474,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="237"/>
         <source>Enable embedded tracker</source>
-        <translation>Abilita i tracker connessi</translation>
+        <translation>Abilita tracker incorporato</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="242"/>
         <source>Embedded tracker port</source>
-        <translation>Porte tracker collegate</translation>
+        <translation>Porta tracker incorporato</translation>
     </message>
 </context>
 <context>
@@ -599,7 +599,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
         <source>Destination directory</source>
-        <translation>Cartella di destinazione</translation>
+        <translation>Cartella destinazione</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="354"/>
@@ -793,7 +793,7 @@ p, li { white-space: pre-wrap; }
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translatorcomment>&apos;xxx.avi&apos; è stato rimosso...</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti e dal disco.</translation>
+        <translation type="obsolete">&apos;%1&apos; è stato rimosso dall&apos;elenco dei trasferimenti e dal disco fisso.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list.</source>
@@ -803,7 +803,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&apos;%1&apos; non è un URI magnetico valido.</translation>
+        <translation type="obsolete">&apos;%1&apos; non è un URL magnet valido.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is already in download list.</source>
@@ -1329,7 +1329,7 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="obsolete">Scegli una cartella di salvataggio</translation>
+        <translation type="obsolete">Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Filter testing error</source>
@@ -1470,8 +1470,8 @@ Si consiglia di controllare questa informazione nelle preferenze del tuo browser
     <message>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="obsolete">qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di torrent e magnet links.
-Vuoi associare qBittorrent ai file .torrent e ai magnet links?</translation>
+        <translation type="obsolete">qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di file torrent e collegamenti magnet.
+Vuoi associare qBittorrent ai file .torrent e ai collegamenti magnet?</translation>
     </message>
     <message>
         <source>Password update</source>
@@ -1928,12 +1928,12 @@ Chiudere qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="113"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Scarica torrent da indirizzo web o link magnetico</translation>
+        <translation>Scarica torrent da URL o da collegamento magnet</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="114"/>
         <source>Only one link per line</source>
-        <translation>Solo un link per riga</translation>
+        <translation>Solo un collegamento per riga</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="115"/>
@@ -1958,7 +1958,7 @@ Chiudere qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Eliminare i torrent selezionati dall&apos;elenco dei trasferimenti e dal disco?</translation>
+        <translation>Eliminare i torrent selezionati dall&apos;elenco dei trasferimenti e dal disco fisso?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="120"/>
@@ -2039,7 +2039,7 @@ Chiudere qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="135"/>
         <source>The following parameters are supported:</source>
-        <translation>I seguenti parametri sono supportati:</translation>
+        <translation>Sono supportati:i seguenti parametri</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="136"/>
@@ -2081,7 +2081,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../main.cpp" line="111"/>
         <source>Cancel</source>
-        <translation>Cancella</translation>
+        <translation>Anuulla</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="112"/>
@@ -2152,7 +2152,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="190"/>
         <source>Torrent &amp;creator</source>
-        <translation>Creatore &amp;Torrent</translation>
+        <translation>Crea &amp;Torrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
@@ -2177,7 +2177,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="171"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Cancella</translation>
+        <translation>&amp;Elimina</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="322"/>
@@ -2218,7 +2218,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Aggiungi &amp;link al torrent...</translation>
+        <translation>Aggiungi co&amp;llegamento al torrent...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
@@ -2228,28 +2228,28 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>&amp;Documentation</source>
-        <translation>&amp;Documentazione</translation>
+        <translation>Gui&amp;da in linea</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="215"/>
         <source>Set global download limit...</source>
-        <translation>Imposta limiti di download globali...</translation>
+        <translation>Imposta limite globale di download...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="220"/>
         <source>Set global upload limit...</source>
-        <translation>Imposta limiti di upload globali...</translation>
+        <translation>Imposta limite globale di upload...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <source>Execution &amp;Log</source>
-        <translation>&amp;Log di esecuzione</translation>
+        <translation>&amp;Registro attività</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
         <location filename="../mainwindow.cpp" line="1365"/>
         <source>Execution Log</source>
-        <translation>Log di esecuzione</translation>
+        <translation>Registro attività</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -2405,8 +2405,8 @@ Non verranno emessi avvisi.</translation>
         <location filename="../mainwindow.cpp" line="301"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di torrent e magnet links.
-Vuoi associare qBittorrent ai file .torrent e ai magnet links?</translation>
+        <translation>qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di file torrent o collegamenti magnet.
+Vuoi associare qBittorrent ai file .torrent e ai collegamenti magnet?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="402"/>
@@ -2921,27 +2921,27 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1424"/>
         <source>Global Rate Limits</source>
-        <translation>Limiti Frequenza Globale</translation>
+        <translation>Limiti globali velocità</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1542"/>
         <source>Apply rate limit to uTP connections</source>
-        <translation>Applica limiti di frequenza alle connessioni uTP</translation>
+        <translation>Applica limiti velocità alle connessioni uTP</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1549"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Applica limiti di frequenza ai trasporti sovraccarico</translation>
+        <translation>Applica limiti di velocità al sovreccaarico di trasferimento</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1562"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>Limiti di Frequenza Globale alternativi</translation>
+        <translation>Limiti globale di velocità alternativi</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1668"/>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Organizza l&apos;uso di limti di frequenza alternativi</translation>
+        <translation>Organizza l&apos;uso di limti di velocità alternativi</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1928"/>
@@ -2999,7 +2999,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="274"/>
         <source>Action on double-click</source>
-        <translation>Azioni con il doppio click</translation>
+        <translation>Azioni con il doppio clic</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="283"/>
@@ -3029,7 +3029,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Show splash screen on start up</source>
-        <translation>Visualizza schermata di avvio in fase di start up</translation>
+        <translation>Visualizza schermata di avvio all&apos;esecuzione del programma</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="366"/>
@@ -3192,7 +3192,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
         <location filename="../preferences/options.ui" line="79"/>
         <location filename="../preferences/options.ui" line="82"/>
         <source>Behavior</source>
-        <translation>Comportamento</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="115"/>
@@ -3207,7 +3207,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="196"/>
         <source>User Interface Language:</source>
-        <translation>Lingua di interfaccia d&apos;uso:</translation>
+        <translation>Lingua interfaccia utente:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="252"/>
@@ -3233,7 +3233,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="455"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>Usa qBittorrent per link magnetici</translation>
+        <translation>Usa qBittorrent per collegamenti magnet</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="681"/>
@@ -3293,7 +3293,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="373"/>
         <source>Ask for program exit confirmation</source>
-        <translation>Chiedi per la conferma di chiusura del programma</translation>
+        <translation>Chiedi conferma per la chiusura del programma</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="383"/>
@@ -3313,17 +3313,17 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="561"/>
         <source>Hard Disk</source>
-        <translation>Disco Rigido</translation>
+        <translation>Disco fisso</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="570"/>
         <source>Save files to location:</source>
-        <translation>Salva file nella posizione:</translation>
+        <translation>Salva file nel percorso:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="618"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation>Aggiungere l&apos;etichetta del torrent per salvare il percorso</translation>
+        <translation>Aggiungi l&apos;etichetta del torrent per salvare il percorso</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="628"/>
@@ -3333,7 +3333,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="635"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Tieni torrent incompleti in:</translation>
+        <translation>Salva torrent incompleti in:</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files&apos; names</source>
@@ -3357,7 +3357,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="854"/>
         <source>Destination email:</source>
-        <translation>Destinazione e-mail:</translation>
+        <translation>Email destinazione:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="864"/>
@@ -3367,7 +3367,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="925"/>
         <source>Run an external program on torrent completion</source>
-        <translation>Avvia </translation>
+        <translation>Esegui un programma esterno a download completato</translation>
     </message>
     <message>
         <source>Use %f to pass the torrent path in parameters</source>
@@ -3376,7 +3376,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1032"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Usa port forwarding di UPnP / NAT-PMP dal mio router</translation>
+        <translation>Usa port forwarding UPnP / NAT-PMP del router</translation>
     </message>
     <message>
         <source>Proxy server</source>
@@ -3469,12 +3469,12 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2142"/>
         <source>Share Ratio Limiting</source>
-        <translation>Limitazione Rapporto di Condivisione</translation>
+        <translation>Limita rapporto di condivisione</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2299"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Usa UPnP /NAT-PMP per inoltrare la porta dal mio router</translation>
+        <translation>Usa UPnP /NAT-PMP per inoltrare la porta del router</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2309"/>
@@ -3611,7 +3611,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2250"/>
         <source>Enable Web User Interface (Remote control)</source>
-        <translation>Abilita l&apos;interfaccia utente internet (Controllo remoto)</translation>
+        <translation>Abilita interfaccia utente internet (controllo remoto)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1193"/>
@@ -3712,7 +3712,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/proptabbar.cpp" line="45"/>
         <source>General</source>
-        <translation>Generali</translation>
+        <translation>Generale</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="50"/>
@@ -3727,7 +3727,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/proptabbar.cpp" line="58"/>
         <source>HTTP Sources</source>
-        <translation>Codici HTTP</translation>
+        <translation>Sorgenti HTTP</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="62"/>
@@ -3748,7 +3748,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="346"/>
         <source>Save path:</source>
-        <translation>Directory di salvataggio:</translation>
+        <translation>Cartella salvataggio:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="438"/>
@@ -3998,15 +3998,15 @@ Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="obsolete">Scegli una cartella di salvataggio</translation>
+        <translation type="obsolete">Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="obsolete">Errore nella creazione della directory di salvataggio</translation>
+        <translation type="obsolete">Errore nella creazione della cartella di salvataggio</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="obsolete">Impossibile creare la directory di salvataggio</translation>
+        <translation type="obsolete">Impossibile creare la cartella di salvataggio</translation>
     </message>
 </context>
 <context>
@@ -4148,7 +4148,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="898"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation>&apos;%1&apos; non è un URI magnetico valido.</translation>
+        <translation>&apos;%1&apos; non è un URL magnet valido.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="914"/>
@@ -4929,7 +4929,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../statusbar.h" line="67"/>
         <location filename="../statusbar.h" line="180"/>
         <source>Connection status:</source>
-        <translation>Stato della connessione:</translation>
+        <translation>Stato connessione:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="67"/>
@@ -4956,18 +4956,18 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../statusbar.h" line="150"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation>qBittorrent ha bisogno di essere riavviato</translation>
+        <translation>E&apos; necessario riavviare qBittorrent</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="160"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent è stato appena aggiornato e ha bisogno di riavviarsi per rendere effettive le modifiche.</translation>
+        <translation>qBittorrent è stato appena aggiornato e deve essere riavviato per rendere effettive le modifiche.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="172"/>
         <location filename="../statusbar.h" line="177"/>
         <source>Connection Status:</source>
-        <translation>Stato della connessione:</translation>
+        <translation>Stato connessione:</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="172"/>
@@ -5149,7 +5149,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Questo assistente ti aiuterà a condividere un torrent che hai appena scaricato con qBittorrent.</translation>
+        <translation>L&apos;assistente ti aiuterà a condividere un torrent che hai appena scaricato con qBittorrent.</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="65"/>
@@ -5170,7 +5170,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../torrentimportdlg.ui" line="121"/>
         <source>Skip the data checking stage and start seeding immediately</source>
-        <translation>Salta la fase di verifica dei dati e iniziare immediatamente il seeding</translation>
+        <translation>Salta la fase di verifica dei dati e inizia immediatamente il seeding</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="131"/>
@@ -5197,7 +5197,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../torrentimportdlg.cpp" line="95"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation>Fornire la posizione di %1</translation>
+        <translation>Indica il percorso di %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="130"/>
@@ -5233,13 +5233,13 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="249"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>% Completo</translation>
+        <translation>% completo</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="250"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation>Status</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="251"/>
@@ -5275,7 +5275,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="256"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>ETA</translation>
+        <translation>Tempo stimato</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="257"/>
@@ -5321,7 +5321,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="264"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Quantità rimanente</translation>
+        <translation>Dati da scaricare</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="265"/>
@@ -5340,7 +5340,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="62"/>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="63"/>
@@ -5499,7 +5499,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../transferlistdelegate.h" line="113"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Controllo in corso</translation>
+        <translation>Controllo...</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="127"/>
@@ -5715,15 +5715,15 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="232"/>
         <source>Choose save path</source>
-        <translation>Scegli una cartella di salvataggio</translation>
+        <translation>Scegli una cartella per il salvataggio</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="obsolete">Errore nella creazione della directory di salvataggio</translation>
+        <translation type="obsolete">Errore nella creazione della cartella di salvataggio</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="obsolete">Impossibile creare la directory di salvataggio</translation>
+        <translation type="obsolete">Impossibile creare la cartella di salvataggio</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="454"/>
@@ -5781,7 +5781,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../transferlistwidget.cpp" line="651"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Cancella</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="653"/>
@@ -5840,7 +5840,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Set location...</source>
-        <translation>Seleziona locazione...</translation>
+        <translation>Imposta percorso...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="673"/>
@@ -5850,7 +5850,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="675"/>
         <source>Copy magnet link</source>
-        <translation>Copia link magnetico</translation>
+        <translation>Copia collegamento magnet</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="677"/>
@@ -5992,7 +5992,7 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="obsolete">Directory di salvataggio:</translation>
+        <translation type="obsolete">Cartella di salvataggio:</translation>
     </message>
     <message>
         <source>...</source>
@@ -6036,7 +6036,7 @@ Per favore installalo manualmente.</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Salta il controllo file e inizia subito la distribuzione</translation>
+        <translation type="obsolete">Salta il controllo file e inizia subito la condivisione</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -6111,7 +6111,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Conferma di cancellazione - qBittorrent</translation>
+        <translation>Conferma di eliminazione - qBittorrent</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
@@ -6126,7 +6126,7 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Elimina anche il relativo file nell&apos;hard disk</translation>
+        <translation>Elimina anche il relativo file dal disco fisso</translation>
     </message>
 </context>
 <context>
@@ -6333,12 +6333,12 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
-        <translation>Aggiungi link torrent</translation>
+        <translation>Aggiungi collegamento torrent</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation>Sono supportati sia HTTP che Magnet Link</translation>
+        <translation>Sono supportati collegamenti HTTP e magnet</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -6842,7 +6842,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1062"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
-        <translation>Impossibile aggiungere amalisi cartella &apos;%1: %2</translation>
+        <translation>Impossibile aggiungere cartella da analizzare &apos;%1: %2</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1085"/>
@@ -6939,7 +6939,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="42"/>
         <source>Web link</source>
-        <translation>Link</translation>
+        <translation>Collegamento web</translation>
     </message>
 </context>
 <context>
@@ -7039,11 +7039,11 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Impossibile decifrare il link magnetico:</translation>
+        <translation type="obsolete">Impossibile decifrare il collegamento magnet:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
-        <translation type="obsolete">Link magnetico</translation>
+        <translation type="obsolete">Collegamento magnet</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -7085,19 +7085,19 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     </message>
     <message>
         <source>Empty save path</source>
-        <translation type="obsolete">Directory di salvataggio vuota</translation>
+        <translation type="obsolete">Cartella di salvataggio vuota</translation>
     </message>
     <message>
         <source>Please enter a save path</source>
-        <translation type="obsolete">Inserire per favore una directory di salvataggio</translation>
+        <translation type="obsolete">Inserire per favore una cartella di salvataggio</translation>
     </message>
     <message>
         <source>Save path creation error</source>
-        <translation type="obsolete">Errore nella creazione della directory di salvataggio</translation>
+        <translation type="obsolete">Errore nella creazione della cartella di salvataggio</translation>
     </message>
     <message>
         <source>Could not create the save path</source>
-        <translation type="obsolete">Impossibile creare la directory di salvataggio</translation>
+        <translation type="obsolete">Impossibile creare la cartella di salvataggio</translation>
     </message>
     <message>
         <source>Invalid label name</source>
