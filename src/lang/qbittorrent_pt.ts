@@ -4593,7 +4593,7 @@ Instalar agora?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Obrigar novo anúncio</translation>
+        <translation type="obsolete">Obrigar novo anúncio</translation>
     </message>
 </context>
 <context>

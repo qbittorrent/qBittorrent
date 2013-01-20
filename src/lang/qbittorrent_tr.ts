@@ -4461,7 +4461,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Yeniden duyurmaya çalış</translation>
+        <translation type="obsolete">Yeniden duyurmaya çalış</translation>
     </message>
 </context>
 <context>

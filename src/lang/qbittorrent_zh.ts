@@ -4589,7 +4589,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>强制再次连接</translation>
+        <translation type="obsolete">强制再次连接</translation>
     </message>
 </context>
 <context>

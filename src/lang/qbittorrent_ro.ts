@@ -3995,10 +3995,6 @@ Do you want to install it now?</source>
         <source>Remove tracker</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

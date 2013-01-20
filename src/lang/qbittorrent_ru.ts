@@ -4651,7 +4651,7 @@ Do you want to install it now?</source>
     <message>
         <source>Force reannounce</source>
         <translatorcomment>Коряво &gt;_&lt;</translatorcomment>
-        <translation>Переанонсировать принудительно</translation>
+        <translation type="obsolete">Переанонсировать принудительно</translation>
     </message>
 </context>
 <context>

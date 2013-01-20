@@ -5019,7 +5019,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Prisili ponovno objavljivanje</translation>
+        <translation type="obsolete">Prisili ponovno objavljivanje</translation>
     </message>
 </context>
 <context>

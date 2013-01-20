@@ -4578,7 +4578,7 @@ Gostaria de instalar agora?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Força reanuncio</translation>
+        <translation type="obsolete">Força reanuncio</translation>
     </message>
 </context>
 <context>

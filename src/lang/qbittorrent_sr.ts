@@ -4668,7 +4668,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Форсирано реобјављивање</translation>
+        <translation type="obsolete">Форсирано реобјављивање</translation>
     </message>
 </context>
 <context>

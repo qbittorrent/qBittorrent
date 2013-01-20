@@ -4585,7 +4585,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Примусово переанонсувати</translation>
+        <translation type="obsolete">Примусово переанонсувати</translation>
     </message>
 </context>
 <context>

@@ -4597,7 +4597,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>強迫重新公告</translation>
+        <translation type="obsolete">強迫重新公告</translation>
     </message>
 </context>
 <context>

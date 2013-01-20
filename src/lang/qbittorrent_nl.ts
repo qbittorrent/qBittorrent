@@ -4356,7 +4356,7 @@ Wilt u het nu installeren?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Forceer heraankondiging</translation>
+        <translation type="obsolete">Forceer heraankondiging</translation>
     </message>
 </context>
 <context>

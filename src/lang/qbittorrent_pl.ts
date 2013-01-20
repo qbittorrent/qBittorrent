@@ -4565,7 +4565,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Sprawdź tracker</translation>
+        <translation type="obsolete">Sprawdź tracker</translation>
     </message>
 </context>
 <context>

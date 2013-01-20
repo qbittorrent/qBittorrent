@@ -4597,7 +4597,7 @@ Chcete ho nainštalovať teraz?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Vynútiť opätovné ohlásenie</translation>
+        <translation type="obsolete">Vynútiť opätovné ohlásenie</translation>
     </message>
 </context>
 <context>

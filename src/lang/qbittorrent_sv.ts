@@ -4478,7 +4478,7 @@ Vill du installera den nu?</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Tvinga annonsering igen</translation>
+        <translation type="obsolete">Tvinga annonsering igen</translation>
     </message>
 </context>
 <context>
