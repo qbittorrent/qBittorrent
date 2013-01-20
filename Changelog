@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
+* Sun Jan 20 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
     - BUGFIX: Fix support for --no-splash command line argument
     - BUGFIX: Fix compilation error with libtorrent v0.15
     - BUGFIX: Fix search issues with Python3
