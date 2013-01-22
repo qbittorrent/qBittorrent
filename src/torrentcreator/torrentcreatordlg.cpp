@@ -141,7 +141,7 @@ void TorrentCreatorDlg::on_createButton_clicked() {
   connect(creatorThread, SIGNAL(creationSuccess(QString, QString)), this, SLOT(handleCreationSuccess(QString, QString)));
   connect(creatorThread, SIGNAL(creationFailure(QString)), this, SLOT(handleCreationFailure(QString)));
   connect(creatorThread, SIGNAL(updateProgress(int)), this, SLOT(updateProgressBar(int)));
-  creatorThread->create(input, destination, trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
+  creatorThread->create(input, QDir::toNativeSeparators(destination), trackers, url_seeds, comment, check_private->isChecked(), getPieceSize());
 }
 
 void TorrentCreatorDlg::handleCreationFailure(QString msg) {
