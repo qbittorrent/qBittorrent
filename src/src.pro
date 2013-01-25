@@ -256,7 +256,10 @@ strace_win:win32:{
   
   # Generate debug info in release builds
   release:{
-    win32-g++:QMAKE_CXXFLAGS_RELEASE += -g
+    #win32-g++:{
+    #  QMAKE_CXXFLAGS_RELEASE += -g
+    #  QMAKE_LFLAGS_RELEASE -= -Wl,-s
+    #}
     win32-msvc*:{
       QMAKE_CXXFLAGS_RELEASE += -Zi
       QMAKE_LFLAGS += "/DEBUG"
@@ -264,7 +267,8 @@ strace_win:win32:{
   }
 
   DEFINES += STACKTRACE_WIN
-  LIBS += dbghelp.lib
+  win32-msvc*:LIBS += dbghelp.lib
+  win32-g++:LIBS += libdbghelp
 
   FORMS += stacktrace_win_dlg.ui
   HEADERS += stacktrace_win.h \

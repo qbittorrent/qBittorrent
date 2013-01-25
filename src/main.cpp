@@ -154,9 +154,11 @@ void sigsegvHandler(int) {
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
 #else
+#ifdef STACKTRACE_WIN
   StraceDlg dlg;
   dlg.setStacktraceString(straceWin::getBacktrace());
   dlg.exec();
+#endif
 #endif
   raise(SIGSEGV);
 }
@@ -169,9 +171,11 @@ void sigabrtHandler(int) {
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
 #else
+#ifdef STACKTRACE_WIN
   StraceDlg dlg;
   dlg.setStacktraceString(straceWin::getBacktrace());
   dlg.exec();
+#endif
 #endif
   raise(SIGABRT);
 }
