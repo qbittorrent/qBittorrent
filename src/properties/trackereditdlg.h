@@ -93,8 +93,8 @@ private:
       announce_entry URI(*it);
 
       if (this->m_tracker_URI == misc::toQString((*it).url) && !match) {
-        announce_entry new_URI(new_URI.toStdString());
-        URI = new_URI;
+        announce_entry temp_URI(new_URI.toStdString());
+        URI = temp_URI;
         URI.tier = (*it).tier;
         match = true;
       }
