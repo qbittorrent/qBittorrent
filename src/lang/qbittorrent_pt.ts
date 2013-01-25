@@ -115,13 +115,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Uma aplicação BitTorrent desenvolvida em C++, baseada em Qt4 e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Direitos de autor ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Página web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Uma aplicação BitTorrent desenvolvida em C++, baseada nas ferramentas Qt4 e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Direitos de autor ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Página web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Registo de erros: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Fórum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {3C?} {4.0/?} {3.?} {40/?} {1&quot;?} {13p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {4 ?} {2006-2013 ?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0000f?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP)</source>
@@ -325,7 +325,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Número máxio de ligações semi-abertas [0: inativo]</translation>
+        <translation>Número máximo de ligações semi-abertas [0: inativo]</translation>
     </message>
     <message>
         <source>Strict super seeding</source>
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program on-screen notifications</source>
-        <translation>Exibir notificações no ecrã</translation>
+        <translation>Mostrar notificações no ecrã</translation>
     </message>
     <message>
         <source>Setting</source>
@@ -554,11 +554,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation>Utilizar expressões normais</translation>
+        <translation>Utilizar expressões regulares</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation>Modo regex:utilizar expressões normais Perl</translation>
+        <translation>Modo regex:utilizar expressões regulares Perl</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
@@ -834,7 +834,7 @@ Deve obter estas informações nas preferências do seu navegador web.</translat
     </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Erro de DNS dinâmico: o serviço está temporariamente indisponível. NOva tentativa dentro de 30 minutos.</translation>
+        <translation>Erro de DNS dinâmico: o serviço está temporariamente indisponível. Nova tentativa dentro de 30 minutos.</translation>
     </message>
     <message>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
@@ -921,7 +921,7 @@ Deve obter estas informações nas preferências do seu navegador web.</translat
     </message>
     <message>
         <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation>O proxy requer autenticação mas não aceitou as credenciais indicadas</translation>
+        <translation>O proxy requer a autenticação do pedido mas não aceitou as credenciais indicadas</translation>
     </message>
     <message>
         <source>The access to the remote content was denied (401)</source>
@@ -1672,7 +1672,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Para controlar o qBittorrent, aceda a http://localhost:%1</translation>
+        <translation>Para controlar o qBittorrent com a interface web, aceda a http://localhost:%1</translation>
     </message>
     <message>
         <source>The Web UI administrator user name is: %1</source>
@@ -1680,11 +1680,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>A senha administrador da interface é: %1</translation>
+        <translation>A senha de administrador da interface web é: %1</translation>
     </message>
     <message>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>Este é um risco de segurança.  Por favor considere mudar sua senha nas preferências do programa.</translation>
+        <translation>Este é um risco de segurança.  Por favor considere mudar a sua senha nas preferências do programa.</translation>
     </message>
 </context>
 <context>
@@ -1748,7 +1748,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>tem a certeza que quer eliminar os torrents selecionados da lista de transferências e do disco?</translation>
+        <translation>Tem a certeza que quer eliminar os torrents selecionados da lista de transferências e do disco?</translation>
     </message>
     <message>
         <source>Download rate limit must be greater than 0 or disabled.</source>
@@ -1985,7 +1985,7 @@ Esta será a única vez que recebe este aviso.</translation>
     </message>
     <message>
         <source>P&amp;ause All</source>
-        <translation>P&amp;ausar tudo</translation>
+        <translation>P&amp;arar tudo</translation>
     </message>
     <message>
         <source>Visit &amp;Website</source>
@@ -2240,7 +2240,7 @@ Tem a certeza que quer sair?</translation>
     <message>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation>Está disponível uma nova versão do qBittorrent no Sourceforge.
+        <translation>Está disponível uma nova versão do qBittorrent.
 Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
@@ -2313,7 +2313,8 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro de I/O no torrent %1.
+Motivo: %2</translation>
     </message>
 </context>
 <context>
@@ -2825,7 +2826,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Pause them</source>
-        <translation>Pausa</translation>
+        <translation>Parar</translation>
     </message>
     <message>
         <source>Remove them</source>
@@ -3482,19 +3483,19 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Suporte DHT [Ativo], porta: UDP/%1</translation>
+        <translation>Suporte DHT [ON], porta: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
-        <translation>Suporte DHT [Inativo]</translation>
+        <translation>Suporte DHT [OFF]</translation>
     </message>
     <message>
         <source>PeX support [ON]</source>
-        <translation>Suporte PeX [Ativo]</translation>
+        <translation>Suporte PeX [ON]</translation>
     </message>
     <message>
         <source>PeX support [OFF]</source>
-        <translation>Suporte PeX [Inativo]</translation>
+        <translation>Suporte PeX [OFF]</translation>
     </message>
     <message>
         <source>Restart is required to toggle PeX support</source>
@@ -3506,11 +3507,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>Suporte Local Peer Discovery [Ativo]</translation>
+        <translation>Suporte Local Peer Discovery [OFF]</translation>
     </message>
     <message>
         <source>Encryption support [ON]</source>
-        <translation>Suporte a codificação [Ativo]</translation>
+        <translation>Suporte a codificação [ON]</translation>
     </message>
     <message>
         <source>Encryption support [FORCED]</source>
@@ -3518,11 +3519,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Encryption support [OFF]</source>
-        <translation>Suporte a codificação [Inativo]</translation>
+        <translation>Suporte a codificação [OFF]</translation>
     </message>
     <message>
         <source>Embedded Tracker [ON]</source>
-        <translation>Tracker embutido [Ativo]</translation>
+        <translation>Tracker embutido [ON]</translation>
     </message>
     <message>
         <source>Failed to start the embedded tracker!</source>
@@ -3530,7 +3531,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Tracker embutido [Inativo]</translation>
+        <translation>Tracker embutido [OFF]</translation>
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
@@ -3685,15 +3686,15 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>Suporte UPnp/NAT-PMP [Ativo]</translation>
+        <translation>Suporte UPnp/NAT-PMP [ON]</translation>
     </message>
     <message>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>Suporte UPnp/NAT-PMP [Inativo]</translation>
+        <translation>Suporte UPnp/NAT-PMP [OFF]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>Suporte Local Peer Discovery [Ativo]</translation>
+        <translation>Suporte Local Peer Discovery [ON]</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
@@ -3722,7 +3723,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Anonymous mode [ON]</source>
-        <translation>Modo anónimo [Ativo]</translation>
+        <translation>Modo anónimo [ON]</translation>
     </message>
     <message>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
@@ -3731,11 +3732,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     </message>
     <message>
         <source>Anonymous mode [OFF]</source>
-        <translation>Modo anónimo [Ativo]</translation>
+        <translation>Modo anónimo [OFF]</translation>
     </message>
     <message>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro de I/O, %1 foi parado.</translation>
     </message>
 </context>
 <context>
@@ -4157,7 +4158,7 @@ Instalar agora?</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro durante a procura...</translation>
     </message>
 </context>
 <context>
@@ -4253,7 +4254,7 @@ Instalar agora?</translation>
     </message>
     <message>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Desligado. Normalmente isto significa que o qBittorrent não conseguiu ativara porta selecionada para ligações recebidas.</translation>
+        <translation>Desligado. Normalmente isto significa que o qBittorrent não conseguiu ativar a porta selecionada para ligações recebidas.</translation>
     </message>
     <message>
         <source>Click to disable alternative speed limits</source>
@@ -4542,7 +4543,7 @@ Instalar agora?</translation>
     <message>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dados enviados</translation>
     </message>
 </context>
 <context>
@@ -4761,7 +4762,7 @@ Instalar agora?</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausar torrents</translation>
+        <translation>Parar torrents</translation>
     </message>
     <message>
         <source>Delete torrents</source>
@@ -4986,7 +4987,7 @@ Instalar agora?</translation>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Pausar</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <source>Delete</source>
