@@ -14,6 +14,8 @@
   <file>nova/engines/isohunt.py</file>
   <file>nova/engines/kickasstorrents.png</file>
   <file>nova/engines/kickasstorrents.py</file>
+  <file>nova/engines/legittorrents.png</file>
+  <file>nova/engines/legittorrents.py</file>
   <file>nova/engines/mininova.png</file>
   <file>nova/engines/mininova.py</file>
   <file>nova/engines/piratebay.png</file>
@@ -36,6 +38,8 @@
   <file>nova3/engines/isohunt.py</file>
   <file>nova3/engines/kickasstorrents.png</file>
   <file>nova3/engines/kickasstorrents.py</file>
+  <file>nova3/engines/legittorrents.png</file>
+  <file>nova3/engines/legittorrents.py</file>
   <file>nova3/engines/mininova.png</file>
   <file>nova3/engines/mininova.py</file>
   <file>nova3/engines/piratebay.png</file>
