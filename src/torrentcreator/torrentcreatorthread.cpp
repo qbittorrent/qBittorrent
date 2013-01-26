@@ -132,7 +132,7 @@ void TorrentCreatorThread::run() {
 #ifdef _MSC_VER
     wchar_t *wsave_path = new wchar_t[save_path.length()+1];
     int len = save_path.toWCharArray(wsave_path);
-    wsave_path[len+1] = '\0';
+    wsave_path[len] = '\0';
     std::ofstream outfile(wsave_path, std::ios_base::out|std::ios_base::binary);
     delete[] wsave_path;
 #else
