@@ -1042,6 +1042,14 @@ public:
   QString getNetworkInterface() const {
     return value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
   }
+  
+  void setNetworkInterfaceName(const QString& iface) {
+    setValue(QString::fromUtf8("Preferences/Connection/InterfaceName"), iface);
+  }
+
+  QString getNetworkInterfaceName() const {
+    return value(QString::fromUtf8("Preferences/Connection/InterfaceName"), QString()).toString();
+  }
 
   void setNetworkAddress(const QString& addr) {
     setValue(QString::fromUtf8("Preferences/Connection/InetAddress"), addr);
