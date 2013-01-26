@@ -1043,7 +1043,6 @@ public:
     return value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
   }
   
-#if QT_VERSION >= QT_VERSION_CHECK(4,5,0)
   void setNetworkInterfaceName(const QString& iface) {
     setValue(QString::fromUtf8("Preferences/Connection/InterfaceName"), iface);
   }
@@ -1051,7 +1050,6 @@ public:
   QString getNetworkInterfaceName() const {
     return value(QString::fromUtf8("Preferences/Connection/InterfaceName"), QString()).toString();
   }
-#endif
 
   void setNetworkAddress(const QString& addr) {
     setValue(QString::fromUtf8("Preferences/Connection/InetAddress"), addr);
