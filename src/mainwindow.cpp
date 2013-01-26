@@ -960,6 +960,16 @@ void MainWindow::processParams(const QStringList& params) {
     if (misc::isUrl(param)) {
       QBtSession::instance()->downloadFromUrl(param);
     }else{
+      if(param.startsWith("qbt://show")) {
+        if(ui_locked) {
+          if(!unlockUI())
+            return;
+        }
+        show();
+        activateWindow();
+        raise();
+        return; // Do not process more params
+      }
       if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
         qDebug("Converting bc link to magnet link");
         param = misc::bcLinkToMagnet(param);
