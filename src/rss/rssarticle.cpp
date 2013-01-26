@@ -110,6 +110,16 @@ void RssArticle::markAsRead() {
   m_parent->decrementUnreadCount();
 }
 
+void RssArticle::markAsUnread() {
+  if (!m_read)
+    return;
+
+  m_read = false;
+  m_parent->incrementUnreadCount();
+  // Workaround: inform auto downloader about unread marking
+  m_parent->recheckRssItemsForDownload();
+}
+
 const QString& RssArticle::guid() const
 {
   return m_guid;

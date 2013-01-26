@@ -248,6 +248,21 @@ void RssFeed::markAsRead()
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
+void RssFeed::markAsUnread()
+{
+  RssArticleHash::ConstIterator it = m_articles.begin();
+  RssArticleHash::ConstIterator itend = m_articles.end();
+  for ( ; it != itend; ++it) {
+    it.value()->markAsUnread();
+  }
+
+  qint32 articleNum = m_articles.size();
+  m_unreadCount = ( articleNum > 0 ?
+                      articleNum:
+                      0 );
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
+}
+
 uint RssFeed::unreadCount() const
 {
   return m_unreadCount;
@@ -395,4 +410,11 @@ void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& e
 void RssFeed::decrementUnreadCount()
 {
   --m_unreadCount;
+  m_dirty = true;
+}
+
+void RssFeed::incrementUnreadCount()
+{
+  ++m_unreadCount;
+  m_dirty = true;
 }

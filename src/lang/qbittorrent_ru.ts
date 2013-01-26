@@ -3931,11 +3931,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Date: </source>
-        <translation>Дата:</translation>
+        <translation>Дата: </translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation>Автор:</translation>
+        <translation>Автор: </translation>
     </message>
     <message>
         <source>Please choose a folder name</source>

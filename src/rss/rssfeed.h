@@ -72,11 +72,13 @@ public:
   RssArticlePtr getItem(const QString &guid) const;
   uint count() const;
   virtual void markAsRead();
+  virtual void markAsUnread();
   virtual uint unreadCount() const;
   virtual RssArticleList articleListByDateDesc() const;
   const RssArticleHash& articleHash() const { return m_articles; }
   virtual RssArticleList unreadArticleListByDateDesc() const;
   void decrementUnreadCount();
+  void incrementUnreadCount();
   void recheckRssItemsForDownload();
 
 private slots:

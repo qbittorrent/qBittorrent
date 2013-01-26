@@ -59,6 +59,7 @@ public:
   bool isRead() const;
   // Setters
   void markAsRead();
+  void markAsUnread();
   // Serialization
   QVariantHash toHash() const;
 

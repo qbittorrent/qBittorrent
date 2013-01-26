@@ -162,6 +162,14 @@ void RssFolder::markAsRead() {
   }
 }
 
+void RssFolder::markAsUnread() {
+  RssFileHash::ConstIterator it = m_children.begin();
+  RssFileHash::ConstIterator itend = m_children.end();
+  for ( ; it != itend; ++it) {
+    it.value()->markAsUnread();
+  }
+}
+
 RssFeedList RssFolder::getAllFeeds() const {
   RssFeedList streams;
 

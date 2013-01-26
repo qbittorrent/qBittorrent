@@ -58,6 +58,7 @@ public:
   virtual QIcon icon() const = 0;
   virtual void rename(const QString &new_name) = 0;
   virtual void markAsRead() = 0;
+  virtual void markAsUnread() = 0;
   virtual RssFolder* parent() const = 0;
   virtual void setParent(RssFolder* parent) = 0;
   virtual bool refresh() = 0;
