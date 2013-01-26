@@ -1,4 +1,5 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
+    - BUGFIX: Raise qBittorrent windows when another instance is launched
     - OTHER: Add search plugin for Legit Torrents
 
 * Sun Jan 20 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
