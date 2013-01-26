@@ -1,3 +1,6 @@
+* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
+    - OTHER: Add search plugin for Legit Torrents
+
 * Sun Jan 20 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
     - BUGFIX: Fix support for --no-splash command line argument
     - BUGFIX: Fix compilation error with libtorrent v0.15
