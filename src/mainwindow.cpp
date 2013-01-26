@@ -960,7 +960,7 @@ void MainWindow::processParams(const QStringList& params) {
     if (misc::isUrl(param)) {
       QBtSession::instance()->downloadFromUrl(param);
     }else{
-      if(param.startsWith("qbt://show", Qt::CaseInsensitive)) {
+      if(param.startsWith("qbt://show")) {
         if(ui_locked) {
           if(!unlockUI())
             return;
