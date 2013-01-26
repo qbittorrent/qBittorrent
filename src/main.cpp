@@ -197,6 +197,8 @@ int main(int argc, char *argv[]) {
       qDebug("Passing program parameters to running instance...");
       qDebug("Message: %s", qPrintable(message));
       app.sendMessage(message);
+    } else { // Raise main window
+      app.sendMessage("qbt://show");
     }
     return 0;
   }
