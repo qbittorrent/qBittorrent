@@ -62,6 +62,12 @@ Section "un.$(remove_registry)" ;"un.Remove registry keys"
   DeleteRegKey HKLM "Software\qbittorrent"
 SectionEnd
 
+Section "un.$(remove_firewall)" ;
+
+  nsisFirewall::RemoveAuthorizedApplication "$INSTDIR\qbittorrent.exe"
+  
+SectionEnd
+
 Section /o "un.$(remove_conf)" ;"un.Remove configuration files"
   System::Call 'shell32::SHGetSpecialFolderPath(i $HWNDPARENT, t .r1, i ${CSIDL_APPDATA}, i0)i.r0'  
   RMDir /r "$1\qBittorrent"
