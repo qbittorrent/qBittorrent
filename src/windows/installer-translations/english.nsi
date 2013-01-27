@@ -10,6 +10,8 @@ LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
 LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
+;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
+LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 
 
 ;------------------------------------
@@ -25,3 +27,5 @@ LangString remove_associations ${LANG_ENGLISH} "Remove file associations"
 LangString remove_registry ${LANG_ENGLISH} "Remove registry keys"
 ;LangString remove_conf ${LANG_ENGLISH} "Remove configuration files"
 LangString remove_conf ${LANG_ENGLISH} "Remove configuration files"
+;LangString remove_firewall ${LANG_ENGLISH} "Remove Windows Firewall rule"
+LangString remove_firewall ${LANG_ENGLISH} "Remove Windows Firewall rule"

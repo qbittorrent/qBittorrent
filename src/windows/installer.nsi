@@ -92,6 +92,12 @@ Section $(inst_magnet) ;"Open magnet links with qBittorrent"
   
 SectionEnd
 
+Section $(inst_firewall)
+
+  nsisFirewall::AddAuthorizedApplication "$INSTDIR\qbittorrent.exe" "qBittorrent" 
+    
+SectionEnd
+
 ;--------------------------------
 
 Function .onInit	
