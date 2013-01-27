@@ -90,3 +90,17 @@ Function un.onInit
   !insertmacro MUI_UNGETLANGUAGE
   
 FunctionEnd
+
+Function un.check_instance
+
+    check:
+    FindProcDLL::FindProc "qbittorrent.exe"
+    StrCmp $R0 "1" 0 notfound
+    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(uninst_warning) IDRETRY check IDCANCEL done
+
+    done:
+    Abort
+    
+    notfound:
+    
+FunctionEnd

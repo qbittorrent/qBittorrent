@@ -107,7 +107,7 @@ SectionEnd
 
 ;--------------------------------
 
-Function .onInit	
+Function .onInit    
     ;Search if qBittorrent is already installed.
     FindFirst $0 $1 "$INSTDIR\uninst.exe"
     FindClose $0
@@ -127,4 +127,18 @@ Function .onInit
     done:    
     !insertmacro MUI_LANGDLL_DISPLAY
 	
+FunctionEnd
+
+Function check_instance
+
+    check:
+    FindProcDLL::FindProc "qbittorrent.exe"
+    StrCmp $R0 "1" 0 notfound
+    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) IDRETRY check IDCANCEL done
+
+    done:
+    Abort
+    
+    notfound:
+    
 FunctionEnd
