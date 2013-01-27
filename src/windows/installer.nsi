@@ -1,3 +1,21 @@
+Section "-hidden"
+
+    ;Search if qBittorrent is already installed.
+    FindFirst $0 $1 "$INSTDIR\uninst.exe"
+    FindClose $0
+    StrCmp $1 "" done    
+    
+    uninst:
+    ;Run the uninstaller of the previous install.    
+    ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
+    Delete "$INSTDIR\uninst.exe"
+    
+  
+    done:
+
+SectionEnd
+
+
 Section $(inst_qbt_req) ;"qBittorrent (required)"
 
   SectionIn RO
@@ -108,23 +126,7 @@ SectionEnd
 ;--------------------------------
 
 Function .onInit    
-    ;Search if qBittorrent is already installed.
-    FindFirst $0 $1 "$INSTDIR\uninst.exe"
-    FindClose $0
-    StrCmp $1 "" done
     
-    ;Display a confirmation dialog
-    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
-    "qBittorrent is already installed. $\n$\nClick $\"OK$\" to remove the \
-    previous version or $\"Cancel$\" to cancel this upgrade." IDOK uninst
-    Abort
-    
-    
-    uninst:
-    ;Run the uninstaller of the previous install.
-	ExecWait '"$INSTDIR\uninst.exe" _?=$INSTDIR'
-			
-    done:    
     !insertmacro MUI_LANGDLL_DISPLAY
 	
 FunctionEnd
