@@ -65,6 +65,7 @@ RequestExecutionLevel admin
 ;Installer Pages
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "license.txt"
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE check_instance
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -73,6 +74,7 @@ RequestExecutionLevel admin
 ;--------------------------------
 ;Uninstaller Pages
 !insertmacro MUI_UNPAGE_CONFIRM
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE un.check_instance
 !insertmacro MUI_UNPAGE_COMPONENTS
 !insertmacro MUI_UNPAGE_INSTFILES
 
