@@ -45,9 +45,16 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayName" "qBittorrent ${PROG_VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "UninstallString" '"$INSTDIR\uninst.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayIcon" '"$INSTDIR\qbittorrent.exe",0'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "Publisher" "Christophe Dumez"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "URLInfoAbout" "http://www.qbittorrent.org"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayVersion" "${PROG_VERSION}"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "NoRepair" 1
   WriteUninstaller "uninst.exe"  
+  ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
+  IntFmt $0 "0x%08X" $0
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "EstimatedSize" "$0"
   
 SectionEnd
 
