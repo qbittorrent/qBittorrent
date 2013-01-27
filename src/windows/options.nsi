@@ -19,7 +19,7 @@ XPStyle on
 !define PROG_VERSION "3.0.3"
 
 ; The name of the installer
-Name "qBittorrent"
+Name "qBittorrent ${PROG_VERSION}"
 
 ; The file to write
 OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
