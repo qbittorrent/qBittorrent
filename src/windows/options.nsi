@@ -24,6 +24,15 @@ Name "qBittorrent ${PROG_VERSION}"
 ; The file to write
 OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
 
+;Installer Version Information
+VIAddVersionKey "ProductName" "qBittorrent"
+VIAddVersionKey "CompanyName" "Christophe Dumez"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2012 Christophe Dumez"
+VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
+VIAddVersionKey "FileVersion" "${PROG_VERSION}"
+
+VIProductVersion "${PROG_VERSION}.0"
+
 ; The default installation directory
 InstallDir $PROGRAMFILES\qBittorrent
 
