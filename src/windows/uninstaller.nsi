@@ -64,6 +64,7 @@ SectionEnd
 
 Section "un.$(remove_firewall)" ;
 
+  DetailPrint $(remove_firewallinfo)
   nsisFirewall::RemoveAuthorizedApplication "$INSTDIR\qbittorrent.exe"
   
 SectionEnd
