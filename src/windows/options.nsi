@@ -7,6 +7,7 @@ SetCompressorDictSize 64
 XPStyle on
 
 !include "MUI.nsh" 
+!include "FileFunc.nsh"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
