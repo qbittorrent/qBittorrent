@@ -6,7 +6,8 @@ Section "-hidden"
     StrCmp $1 "" done    
     
     uninst:
-    ;Run the uninstaller of the previous install.    
+    ;Run the uninstaller of the previous install.
+    DetailPrint $(inst_unist)    
     ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
     Delete "$INSTDIR\uninst.exe"
     
@@ -119,6 +120,7 @@ SectionEnd
 
 Section $(inst_firewall)
 
+  DetailPrint $(inst_firewallinfo)
   nsisFirewall::AddAuthorizedApplication "$INSTDIR\qbittorrent.exe" "qBittorrent" 
     
 SectionEnd
