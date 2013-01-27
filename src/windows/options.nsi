@@ -18,6 +18,8 @@ XPStyle on
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
 !define PROG_VERSION "3.0.3"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\qbittorrent.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Launch qBittorrent"
 
 ; The name of the installer
 Name "qBittorrent ${PROG_VERSION}"
@@ -66,6 +68,7 @@ RequestExecutionLevel admin
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
 
 ;--------------------------------
 ;Uninstaller Pages
