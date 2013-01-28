@@ -83,7 +83,7 @@ void RssFeed::saveItemsToDisk()
   qDebug() << Q_FUNC_INFO << m_url;
   if (!m_dirty)
     return;
-  m_dirty = false;
+  markAsDirty(false);
 
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QVariantList old_items;
@@ -248,6 +248,11 @@ void RssFeed::markAsRead()
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
+void RssFeed::markAsDirty(bool dirty)
+{
+  m_dirty = dirty;
+}
+
 uint RssFeed::unreadCount() const
 {
   return m_unreadCount;
@@ -356,7 +361,7 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
   if (m_articles.contains(guid))
     return;
 
-  m_dirty = true;
+  markAsDirty();
 
   RssArticlePtr article = hashToRssArticle(this, articleData);
   Q_ASSERT(article);

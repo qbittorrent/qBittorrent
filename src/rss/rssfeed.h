@@ -72,6 +72,7 @@ public:
   RssArticlePtr getItem(const QString &guid) const;
   uint count() const;
   virtual void markAsRead();
+  void markAsDirty(bool dirty = true);
   virtual uint unreadCount() const;
   virtual RssArticleList articleListByDateDesc() const;
   const RssArticleHash& articleHash() const { return m_articles; }
