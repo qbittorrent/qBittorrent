@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS += src
 
 include(version.pri)
+include(qm_gen.pri)
 
 # Dist
 dist.commands += rm -fR ../$${PROJECT_NAME}-$${PROJECT_VERSION}/ &&

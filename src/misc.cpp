@@ -247,52 +247,56 @@ QString misc::friendlyUnit(qreal val, bool is_speed) {
   return ret;
 }
 
-bool misc::isPreviewable(QString extension) {
-  if (extension.isEmpty()) return false;
-  extension = extension.toUpper();
-  if (extension == "AVI") return true;
-  if (extension == "MP3") return true;
-  if (extension == "OGG") return true;
-  if (extension == "OGV") return true;
-  if (extension == "OGM") return true;
-  if (extension == "WMV") return true;
-  if (extension == "WMA") return true;
-  if (extension == "MPEG") return true;
-  if (extension == "MPG") return true;
-  if (extension == "ASF") return true;
-  if (extension == "QT") return true;
-  if (extension == "RM") return true;
-  if (extension == "RMVB") return true;
-  if (extension == "RMV") return true;
-  if (extension == "SWF") return true;
-  if (extension == "FLV") return true;
-  if (extension == "WAV") return true;
-  if (extension == "MOV") return true;
-  if (extension == "VOB") return true;
-  if (extension == "MID") return true;
-  if (extension == "AC3") return true;
-  if (extension == "MP4") return true;
-  if (extension == "MP2") return true;
-  if (extension == "AVI") return true;
-  if (extension == "FLAC") return true;
-  if (extension == "AU") return true;
-  if (extension == "MPE") return true;
-  if (extension == "MOV") return true;
-  if (extension == "MKV") return true;
-  if (extension == "AIF") return true;
-  if (extension == "AIFF") return true;
-  if (extension == "AIFC") return true;
-  if (extension == "RA") return true;
-  if (extension == "RAM") return true;
-  if (extension == "M4P") return true;
-  if (extension == "M4A") return true;
-  if (extension == "3GP") return true;
-  if (extension == "AAC") return true;
-  if (extension == "SWA") return true;
-  if (extension == "MPC") return true;
-  if (extension == "MPP") return true;
-  if (extension == "M3U") return true;
-  return false;
+bool misc::isPreviewable(const QString& extension) {
+  static QSet<QString> multimedia_extensions;
+  if (multimedia_extensions.empty()) {
+    multimedia_extensions.insert("3GP");
+    multimedia_extensions.insert("AAC");
+    multimedia_extensions.insert("AC3");
+    multimedia_extensions.insert("AIF");
+    multimedia_extensions.insert("AIFC");
+    multimedia_extensions.insert("AIFF");
+    multimedia_extensions.insert("ASF");
+    multimedia_extensions.insert("AU");
+    multimedia_extensions.insert("AVI");
+    multimedia_extensions.insert("FLAC");
+    multimedia_extensions.insert("FLV");
+    multimedia_extensions.insert("M3U");
+    multimedia_extensions.insert("M4A");
+    multimedia_extensions.insert("M4P");
+    multimedia_extensions.insert("M4V");
+    multimedia_extensions.insert("MID");
+    multimedia_extensions.insert("MKV");
+    multimedia_extensions.insert("MOV");
+    multimedia_extensions.insert("MP2");
+    multimedia_extensions.insert("MP3");
+    multimedia_extensions.insert("MP4");
+    multimedia_extensions.insert("MPC");
+    multimedia_extensions.insert("MPE");
+    multimedia_extensions.insert("MPEG");
+    multimedia_extensions.insert("MPG");
+    multimedia_extensions.insert("MPP");
+    multimedia_extensions.insert("OGG");
+    multimedia_extensions.insert("OGM");
+    multimedia_extensions.insert("OGV");
+    multimedia_extensions.insert("QT");
+    multimedia_extensions.insert("RA");
+    multimedia_extensions.insert("RAM");
+    multimedia_extensions.insert("RM");
+    multimedia_extensions.insert("RMV");
+    multimedia_extensions.insert("RMVB");
+    multimedia_extensions.insert("SWA");
+    multimedia_extensions.insert("SWF");
+    multimedia_extensions.insert("VOB");
+    multimedia_extensions.insert("WAV");
+    multimedia_extensions.insert("WMA");
+    multimedia_extensions.insert("WMV");
+  }
+
+  if (extension.isEmpty())
+    return false;
+
+  return multimedia_extensions.contains(extension.toUpper());
 }
 
 QString misc::bcLinkToMagnet(QString bc_link) {

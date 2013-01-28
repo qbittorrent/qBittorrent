@@ -22,7 +22,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-#VERSION: 1.31
+#VERSION: 1.33
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -63,6 +63,13 @@ def retrieve_url(url):
     """ Return the content of the url page as a string """
     response = urllib.request.urlopen(url)
     dat = response.read()
+    # Check if it is gzipped
+    if dat[:2] == b'\x1f\x8b':
+        # Data is gzip encoded, decode it
+        compressedstream = io.BytesIO(dat)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        extracted_data = gzipper.read()
+        dat = extracted_data
     info = response.info()
     charset = 'utf-8'
     try:

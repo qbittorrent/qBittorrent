@@ -392,6 +392,10 @@ void QBtSession::configureSession() {
 
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
+#if LIBTORRENT_VERSION_MINOR > 15
+  // Disable support for SSL torrents for now
+  sessionSettings.ssl_listen = 0;
+#endif
   // To prevent ISPs from blocking seeding
   sessionSettings.lazy_bitfields = true;
   // Speed up exit
@@ -403,14 +407,8 @@ void QBtSession::configureSession() {
   sessionSettings.announce_to_all_tiers = announce_to_all;
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
   int cache_size = pref.diskCacheSize();
-  sessionSettings.cache_size = cache_size ? pref.diskCacheSize() * 64 : -1;
-  qDebug() << "Using a disk cache size of" << pref.diskCacheSize() << "MiB";
-  // Disable OS cache to avoid memory problems (uTorrent behavior)
-#ifdef Q_WS_WIN
-  // Fixes huge memory usage on Windows 7 (especially when checking files)
-  sessionSettings.disk_io_write_mode = session_settings::disable_os_cache;
-  sessionSettings.disk_io_read_mode = session_settings::disable_os_cache;
-#endif
+  sessionSettings.cache_size = cache_size ? cache_size * 64 : -1;
+  qDebug() << "Using a disk cache size of" << cache_size << "MiB";
 #if LIBTORRENT_VERSION_MINOR > 15
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
@@ -1276,20 +1274,11 @@ void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool m
       // Update file names
       const QStringList files_path = TorrentTempData::getFilesPath(hash);
       bool force_recheck = false;
+      QDir  base_dir(h.save_path());
       if (files_path.size() == h.num_files()) {
         for (int i=0; i<h.num_files(); ++i) {
-          QString old_path = h.absolute_files_path().at(i);
-          old_path.replace("\\", "/");
-          if (!QFile::exists(old_path)) {
-            // Remove old parent folder manually since we will
-            // not get a file_renamed alert
-            QStringList parts = old_path.split("/", QString::SkipEmptyParts);
-            parts.removeLast();
-            if (!parts.empty())
-              QDir().rmpath(parts.join("/"));
-          }
           const QString &path = files_path.at(i);
-          if (!force_recheck && QDir(h.save_path()).exists(path))
+          if (!force_recheck && base_dir.exists(path))
             force_recheck = true;
           qDebug("Renaming file to %s", qPrintable(path));
           h.rename_file(i, path);
@@ -1773,9 +1762,17 @@ void QBtSession::addTorrentsFromScanFolder(QStringList &pathList) {
   }
 }
 
-void QBtSession::setDefaultTempPath(QString temppath) {
-  if (defaultTempPath == temppath)
+void QBtSession::setDefaultSavePath(const QString &savepath) {
+  if (savepath.isEmpty())
     return;
+
+  defaultSavePath = QDir::fromNativeSeparators(savepath);
+}
+
+void QBtSession::setDefaultTempPath(const QString &temppath) {
+  if (QDir(defaultTempPath) == QDir(temppath))
+    return;
+
   if (temppath.isEmpty()) {
     // Disabling temp dir
     // Moving all torrents to their destination folder
@@ -1799,13 +1796,13 @@ void QBtSession::setDefaultTempPath(QString temppath) {
       QTorrentHandle h = QTorrentHandle(*torrentIT);
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
-        QString torrent_tmp_path = temppath.replace("\\", "/");
-        qDebug("Moving torrent to its temp save path: %s", qPrintable(torrent_tmp_path));
+        QString torrent_tmp_path = QDir::fromNativeSeparators(temppath);
+        qDebug("Moving torrent to its temp save path: %s", qPrintable(fsutils::toDisplayPath(torrent_tmp_path)));
         h.move_storage(torrent_tmp_path);
       }
     }
   }
-  defaultTempPath = temppath;
+  defaultTempPath = QDir::fromNativeSeparators(temppath);
 }
 
 void QBtSession::appendqBextensionToTorrent(const QTorrentHandle &h, bool append) {
@@ -2408,7 +2405,7 @@ void QBtSession::readAlerts() {
         if (h.is_valid()) {
           h.pause();
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
-          addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
+          addConsoleMessage(tr("An I/O error occurred, '%1' paused.").arg(h.name()));
           addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
           if (h.is_valid()) {
             emit fullDiskError(h, misc::toQString(p->message()));

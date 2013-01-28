@@ -537,7 +537,7 @@ void MainWindow::finishedTorrent(const QTorrentHandle& h) const {
 // Notification when disk is full
 void MainWindow::fullDiskError(const QTorrentHandle& h, QString msg) const {
   if (!h.is_valid()) return;
-  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occured for torrent %1.\n Reason: %2", "e.g: An error occured for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
+  showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error"), tr("An I/O error occurred for torrent %1.\n Reason: %2", "e.g: An error occurred for torrent xxx.avi.\n Reason: disk is full.").arg(h.name()).arg(msg));
 }
 
 void MainWindow::createKeyboardShortcuts() {
@@ -659,6 +659,13 @@ void MainWindow::on_actionSet_global_download_limit_triggered() {
 // Necessary if we want to close the window
 // in one time if "close to systray" is enabled
 void MainWindow::on_actionExit_triggered() {
+  // UI locking enforcement.
+  if (isHidden() && ui_locked) {
+    // Ask for UI lock password
+    if (!unlockUI())
+      return;
+  }
+
   force_exit = true;
   close();
 }
@@ -953,6 +960,16 @@ void MainWindow::processParams(const QStringList& params) {
     if (misc::isUrl(param)) {
       QBtSession::instance()->downloadFromUrl(param);
     }else{
+      if(param.startsWith("qbt://show")) {
+        if(ui_locked) {
+          if(!unlockUI())
+            return;
+        }
+        show();
+        activateWindow();
+        raise();
+        return; // Do not process more params
+      }
       if (param.startsWith("bc://bt/", Qt::CaseInsensitive)) {
         qDebug("Converting bc link to magnet link");
         param = misc::bcLinkToMagnet(param);

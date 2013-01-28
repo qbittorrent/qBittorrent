@@ -354,8 +354,6 @@ void TrackerList::showTrackerListMenu(QPoint) {
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
   }
-  menu.addSeparator();
-  QAction *reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce"));
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addAct) {
@@ -368,10 +366,6 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
   if (act == delAct) {
     deleteSelectedTrackers();
-    return;
-  }
-  if (act == reannounceAct) {
-    properties->getCurrentTorrent().force_reannounce();
     return;
   }
 }

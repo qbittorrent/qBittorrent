@@ -34,6 +34,10 @@
 #include <QLibraryInfo>
 
 #ifndef DISABLE_GUI
+#if defined(QBT_STATIC_QT)
+#include <QtPlugin>
+Q_IMPORT_PLUGIN(qico)
+#endif
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QStyle>
@@ -59,6 +63,12 @@
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
+#endif
+
+#if defined(Q_OS_WIN) && defined(STACKTRACE_WIN)
+#include <signal.h>
+#include "stacktrace_win.h"
+#include "stacktrace_win_dlg.h"
 #endif
 
 #include <stdlib.h>
@@ -123,7 +133,7 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -138,19 +148,35 @@ void sigtermHandler(int) {
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
+#endif
   raise(SIGSEGV);
 }
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
+#endif
   raise(SIGABRT);
 }
 #endif
@@ -193,6 +219,8 @@ int main(int argc, char *argv[]) {
       qDebug("Passing program parameters to running instance...");
       qDebug("Message: %s", qPrintable(message));
       app.sendMessage(message);
+    } else { // Raise main window
+      app.sendMessage("qbt://show");
     }
     return 0;
   }
@@ -291,7 +319,7 @@ int main(int argc, char *argv[]) {
   }
 #endif
   // Set environment variable
-  if (qputenv("QBITTORRENT", QByteArray(VERSION))) {
+  if (!qputenv("QBITTORRENT", QByteArray(VERSION))) {
     std::cerr << "Couldn't set environment variable...\n";
   }
 
@@ -305,24 +333,24 @@ int main(int argc, char *argv[]) {
 #ifndef DISABLE_GUI
   app.setQuitOnLastWindowClosed(false);
 #endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
-  QStringList torrentCmdLine = app.arguments();
-  // Remove first argument (program name)
-  torrentCmdLine.removeFirst();
-#ifndef QT_NO_DEBUG_OUTPUT
-  foreach (const QString &argument, torrentCmdLine) {
-    qDebug() << "Command line argument:" << argument;
+  QStringList torrents;
+  QStringList appArguments = app.arguments();
+  for (int i = 1; i < appArguments.size(); ++i) {
+    if (!appArguments[i].startsWith("--")) {
+      qDebug() << "Command line argument:" << appArguments[i];
+      torrents << appArguments[i];
+    }
   }
-#endif
 
 #ifndef DISABLE_GUI
-  MainWindow window(0, torrentCmdLine);
+  MainWindow window(0, torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
@@ -331,7 +359,7 @@ int main(int argc, char *argv[]) {
 #endif // Q_WS_MAC
 #else
   // Load Headless class
-  HeadlessLoader loader(torrentCmdLine);
+  HeadlessLoader loader(torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &loader, SLOT(processParams(const QString&)));
 #endif

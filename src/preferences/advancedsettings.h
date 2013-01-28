@@ -89,8 +89,10 @@ public slots:
     if (combo_iface.currentIndex() == 0) {
       // All interfaces (default)
       pref.setNetworkInterface(QString::null);
+      pref.setNetworkInterfaceName(QString::null);
     } else {
-      pref.setNetworkInterface(combo_iface.currentText());
+      pref.setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
+      pref.setNetworkInterfaceName(combo_iface.currentText());
     }
     // Network address
     QHostAddress addr(txt_network_address.text().trimmed());
@@ -213,7 +215,7 @@ private slots:
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
-      combo_iface.addItem(iface.name());
+      combo_iface.addItem(iface.humanReadableName(),iface.name());
       if (!current_iface.isEmpty() && iface.name() == current_iface) {
         combo_iface.setCurrentIndex(i);
         interface_exists = true;
@@ -222,7 +224,7 @@ private slots:
     }
     // Saved interface does not exist, show it anyway
     if (!interface_exists) {
-      combo_iface.addItem(current_iface);
+      combo_iface.addItem(pref.getNetworkInterfaceName(),current_iface);
       combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);

@@ -108,6 +108,7 @@ void RssArticle::markAsRead() {
 
   m_read = true;
   m_parent->decrementUnreadCount();
+  m_parent->markAsDirty();
 }
 
 const QString& RssArticle::guid() const

@@ -1,4 +1,4 @@
-#VERSION: 1.31
+#VERSION: 1.32
 #AUTHORS: Gekko Dam Beer (gekko04@users.sourceforge.net)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -99,7 +99,7 @@ class torrentreactor(object):
 		while True and i<11:
 			results = []
 			parser = self.SimpleSGMLParser(results, self.url)
-			dat = retrieve_url(self.url+'/search.php?search=&words=%s&cid=%s&sid=&type=1&orderby=a.seeds&asc=0&skip=%s'%(what, self.supported_categories[cat], (i*35)))
+			dat = retrieve_url(self.url+'/ts.php?search=&words=%s&cid=%s&sid=&type=1&orderby=a.seeds&asc=0&skip=%s'%(what, self.supported_categories[cat], (i*35)))
 			parser.feed(dat)
 			parser.close()
 			if len(results) <= 0:

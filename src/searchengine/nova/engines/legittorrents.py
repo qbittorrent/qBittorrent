@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.01
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -27,86 +27,58 @@
 
 
 from novaprinter import prettyPrinter
-from helpers import retrieve_url
-import StringIO, gzip, urllib2, tempfile
+from helpers import retrieve_url, download_file
 import sgmllib
 import re
-import os
 
-class torrentdownloads(object):
-  url = 'http://www.torrentdownloads.net'
-  name = 'TorrentDownloads'
-  supported_categories = {'all': '0', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'books': '2'}
+class legittorrents(object):
+  url = 'http://www.legittorrents.info'
+  name = 'legittorrents'
+  supported_categories = {'all': '', 'movies': '1', 'tv': '13', 'music': '2', 'games': '3', 'anime': '5', 'books': '6'}
 
   def __init__(self):
     self.results = []
-    #self.parser = self.SimpleSGMLParser(self.results, self.url)
+    self.parser = self.SimpleSGMLParser(self.results, self.url)
 
-  def download_torrent(self, url):
-    """ Download file at url and write it to a file, return the path to the file and the url """
-    file, path = tempfile.mkstemp()
-    file = os.fdopen(file, "w")
-    # Download url
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
-    dat = response.read()
-    # Check if it is gzipped
-    if dat[:2] == '\037\213':
-        # Data is gzip encoded, decode it
-        compressedstream = StringIO.StringIO(dat)
-        gzipper = gzip.GzipFile(fileobj=compressedstream)
-        extracted_data = gzipper.read()
-        dat = extracted_data
-        
-    # Write it to a file
-    file.write(dat.strip())
-    file.close()
-    # return file path
-    print path+" "+url
+  def download_torrent(self, info):
+    print download_file(info)
 
   class SimpleSGMLParser(sgmllib.SGMLParser):
-    def __init__(self, results, url, what, *args):
+    def __init__(self, results, url, *args):
       sgmllib.SGMLParser.__init__(self)
       self.url = url
-      self.li_counter = None
+      self.td_counter = None
       self.current_item = None
+      self.start_name = False
       self.results = results
-      self.what = what.upper().split('+')
-      if len(self.what) == 0:
-        self.what = None
-      
+
     def start_a(self, attr):
       params = dict(attr)
-      #print params
-      if params.has_key('href') and params['href'].startswith("http://www.torrentdownloads.net/torrent/"):
+      if params.has_key('href') and params['href'].startswith('download.php?'):
+        self.current_item['link'] = self.url + params['href'].strip()
+      elif params.has_key('href') and params['href'].startswith('index.php?page=torrent-details'):
         self.current_item = {}
-        self.li_counter = 0
-        self.current_item['desc_link'] = params['href'].strip()
-        self.current_item['link']=params['href'].strip().replace('/torrent', '/download', 1)
-    
+        self.td_counter = 0
+        self.current_item['desc_link'] = self.url + params['href'].strip()
+
     def handle_data(self, data):
-      if self.li_counter == 0:
+      if self.td_counter == 0:
         if not self.current_item.has_key('name'):
-          self.current_item['name'] = ''
-        self.current_item['name']+= data
-      elif self.li_counter == 1:
-        if not self.current_item.has_key('size'):
-          self.current_item['size'] = ''
-        self.current_item['size']+= data.strip().replace("&nbsp;", " ")
-      elif self.li_counter == 2:
+          self.current_item['name'] = data.strip()
+      elif self.td_counter == 3:
         if not self.current_item.has_key('seeds'):
           self.current_item['seeds'] = ''
         self.current_item['seeds']+= data.strip()
-      elif self.li_counter == 3:
+      elif self.td_counter == 4:
         if not self.current_item.has_key('leech'):
           self.current_item['leech'] = ''
         self.current_item['leech']+= data.strip()
-      
-    def start_li(self,attr):
-        if isinstance(self.li_counter,int):
-          self.li_counter += 1
-          if self.li_counter > 3:
-            self.li_counter = None
+
+    def start_td(self,attr):
+        if isinstance(self.td_counter,int):
+          self.td_counter += 1
+          if self.td_counter > 5:
+            self.td_counter = None
             # Display item
             if self.current_item:
               self.current_item['engine_url'] = self.url
@@ -114,22 +86,18 @@ class torrentdownloads(object):
                 self.current_item['seeds'] = 0
               if not self.current_item['leech'].isdigit():
                 self.current_item['leech'] = 0
-              # Search should use AND operator as a default
-              tmp = self.current_item['name'].upper();
-              if self.what is not None:
-                for w in self.what:
-                  if tmp.find(w) < 0: return
+              self.current_item['size'] = ''
               prettyPrinter(self.current_item)
               self.results.append('a')
 
   def search(self, what, cat='all'):
     ret = []
     i = 1
-    while i<11:
+    while True and i<11:
       results = []
-      parser = self.SimpleSGMLParser(results, self.url, what)
-      dat = retrieve_url(self.url+'/search/?page=%d&search=%s&s_cat=%s&srt=seeds&pp=50&order=desc'%(i, what, self.supported_categories[cat]))
-      results_re = re.compile('(?s)<div class="torrentlist">.*')
+      parser = self.SimpleSGMLParser(results, self.url)
+      dat = retrieve_url(self.url+'/index.php?page=torrents&search=%s&category=%s&active=1&order=3&by=2&pages=%d'%(what, self.supported_categories[cat], i))
+      results_re = re.compile('(?s)<table width="100%" class="lista">.*')
       for match in results_re.finditer(dat):
         res_tab = match.group(0)
         parser.feed(res_tab)
@@ -138,4 +106,4 @@ class torrentdownloads(object):
       if len(results) <= 0:
         break
       i += 1
-      
+
