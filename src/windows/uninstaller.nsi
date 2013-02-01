@@ -49,9 +49,25 @@ SectionEnd
 
 Section "un.$(remove_associations)" ;"un.Remove file associations"
   SectionIn RO
+  ReadRegStr $0 HKEY_CLASSES_ROOT ".torrent" ""
+  StrCmp $0 "qBittorrent" torrent 0
+  DetailPrint "$(uninst_tor_warn) $0"
+  Goto qbt
+  torrent:
   DeleteRegKey HKEY_CLASSES_ROOT ".torrent"
+  
+  qbt:
   DeleteRegKey HKEY_CLASSES_ROOT "qBittorrent"  
+  
+  ReadRegStr $0 HKEY_CLASSES_ROOT "Magnet\shell\open\command" ""
+  StrCmp $0 '"$INSTDIR\qbittorrent.exe" "%1"' magnet 0
+  DetailPrint "$(uninst_mag_warn) $0"
+  Goto done
+  
+  magnet:
   DeleteRegKey HKEY_CLASSES_ROOT "Magnet"
+  
+  done:
   System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
 SectionEnd
 
