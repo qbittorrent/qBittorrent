@@ -268,6 +268,14 @@ public:
     setValue("Preferences/Downloads/NewAdditionDialog", b);
   }
 
+  bool loadMetaDataMagnet() const {
+    return value(QString::fromUtf8("Preferences/Downloads/loadMetaDataMagnet"), true).toBool();
+  }
+
+  void loadMetaDataMagnet(bool b) {
+    setValue("Preferences/Downloads/loadMetaDataMagnet", b);
+  }
+
   bool addTorrentsInPause() const {
     return value(QString::fromUtf8("Preferences/Downloads/StartInPause"), false).toBool();
   }

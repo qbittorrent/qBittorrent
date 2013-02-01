@@ -33,7 +33,9 @@
 
 #include <QDialog>
 #include <QUrl>
+#include <QtConcurrentRun>
 #include <libtorrent/torrent_info.hpp>
+#include "qtorrenthandle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -74,18 +76,23 @@ private:
   void updateFileNameInSavePaths(const QString& new_filename);
   void loadState();
   void saveState();
+  void getMetaData();
 
 private:
   Ui::AddNewTorrentDialog *ui;
   TorrentContentFilterModel *m_contentModel;
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
+  bool m_loadMetaMagnet;
+  bool m_isMetaMagnetReady;
+  bool m_isExit;
   QString m_filePath;
   QString m_url;
   QString m_hash;
   boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
   QStringList m_filesPath;
   bool m_hasRenamedFile;
+  QTorrentHandle torrentHandle;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

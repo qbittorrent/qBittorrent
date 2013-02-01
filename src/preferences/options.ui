@@ -157,7 +157,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabOptionPage1">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -176,9 +176,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-161</y>
-             <width>486</width>
-             <height>638</height>
+             <y>0</y>
+             <width>494</width>
+             <height>686</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -516,8 +516,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
-             <height>1025</height>
+             <width>505</width>
+             <height>1027</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -533,10 +533,7 @@
                <string>When adding a torrent</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_5">
-               <property name="bottomMargin">
-                <number>9</number>
-               </property>
-               <item row="0" column="0" colspan="2">
+               <item row="0" column="0">
                 <widget class="QCheckBox" name="checkAdditionDialog">
                  <property name="text">
                   <string>Display torrent content and some options</string>
@@ -547,6 +544,16 @@
                 </widget>
                </item>
                <item row="1" column="0">
+                <widget class="QCheckBox" name="loadMetaForMagnet">
+                 <property name="text">
+                  <string>Load meta-data for magnet links when adding torrent</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="text">
                   <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
@@ -1022,8 +1029,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
-             <height>577</height>
+             <width>463</width>
+             <height>520</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1466,8 +1473,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>359</width>
-             <height>480</height>
+             <width>373</width>
+             <height>454</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1879,7 +1886,7 @@
              <x>0</x>
              <y>0</y>
              <width>557</width>
-             <height>555</height>
+             <height>516</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2292,8 +2299,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>426</width>
-             <height>611</height>
+             <width>452</width>
+             <height>549</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2669,8 +2676,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>74</width>
-             <height>24</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
