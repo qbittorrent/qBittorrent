@@ -35,7 +35,7 @@ installer-translations
 translations
 	qt_ar.qm
 	...
-	(all the .qm files found here in every source release)
+	(all the .qm files found in src/qt-translations in every source release)
 	qt_zh_TW.qm
 installer.nsi
 license.txt
