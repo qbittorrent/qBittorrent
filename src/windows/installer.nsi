@@ -3,9 +3,8 @@ Section "-hidden"
     ;Search if qBittorrent is already installed.
     FindFirst $0 $1 "$INSTDIR\uninst.exe"
     FindClose $0
-    StrCmp $1 "" done    
-    
-    uninst:
+    StrCmp $1 "" done
+        
     ;Run the uninstaller of the previous install.
     DetailPrint $(inst_unist)    
     ExecWait '"$INSTDIR\uninst.exe" /S _?=$INSTDIR'
