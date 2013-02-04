@@ -122,12 +122,10 @@ void AddNewTorrentDialog::saveState()
   settings.setValue("expanded", ui->adv_button->isChecked());
 }
 
-void AddNewTorrentDialog::getMetaData()
+void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
 {
-  torrentHandle = QBtSession::instance()->addMagnetUri(m_url, false);
-//TODO: may be do this in another thread?
   qDebug()<<"Wait for meta-data";
-  while(!torrentHandle.has_metadata()) {
+  while(!m_torrentHandle.has_metadata()) {
       if(m_isExit) {
           qDebug()<<"Exit from meta-thread";
           return;
@@ -135,8 +133,8 @@ void AddNewTorrentDialog::getMetaData()
       sleep(.1);
     }
 
-  torrentHandle.pause();
-  m_torrentInfo = const_cast<libtorrent::torrent_info*>(&torrentHandle.get_torrent_info());
+  //m_torrentHandle.pause();
+  m_torrentInfo = const_cast<libtorrent::torrent_info*>(&m_torrentHandle.get_torrent_info());
 
   // Set dialog title
   setWindowTitle(misc::toQStringU(m_torrentInfo->name()));
@@ -324,7 +322,8 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   }
   // load meta for magnet link
   if(m_loadMetaMagnet) {
-      QtConcurrent::run(this, &AddNewTorrentDialog::getMetaData);
+      QtConcurrent::run(this, &AddNewTorrentDialog::getMetaData, QBtSession::instance()->addMagnetUri(m_url, false));
+      //QTorrentHandle m_torrentHandle = QBtSession::instance()->addMagnetUri(m_url, false);
   }
 
   // Set dialog title
@@ -640,37 +639,50 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
   // Save Temporary data about torrent
   QString save_path = ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString();
   TorrentTempData::setSavePath(m_hash, save_path);
-  if (ui->skip_check_cb->isChecked()) {
-    // TODO: Check if destination actually exists
-    TorrentTempData::setSeedingMode(m_hash, true);
+
+  if(!m_loadMetaMagnet) {
+    if (ui->skip_check_cb->isChecked()) {
+      // TODO: Check if destination actually exists
+      TorrentTempData::setSeedingMode(m_hash, true);
+    }
+
+    // Label
+    const QString label = ui->label_combo->currentText();
+    if (!label.isEmpty())
+      TorrentTempData::setLabel(m_hash, label);
+
+    // Save file priorities
+    if (m_contentModel)
+      TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
+
+    // Rename files if necessary
+    if (m_hasRenamedFile)
+      TorrentTempData::setFilesPath(m_hash, m_filesPath);
+
+    // Temporary override of addInPause setting
+    bool old_addInPause = pref.addTorrentsInPause();
+    pref.addTorrentsInPause(!ui->start_torrent_cb->isChecked());
+    pref.sync();
+
+    // Add torrent
+    if (m_isMagnet)
+      QBtSession::instance()->addMagnetUri(m_url, false);
+    else
+      QBtSession::instance()->addTorrent(m_filePath, false, m_url);
+
+    // Restore addInPause setting
+    pref.addTorrentsInPause(old_addInPause);
+  } else {
+    //change existing torrent params
+      QTorrentHandle m_Handle = QBtSession::instance()->getTorrentHandle(m_hash);
+
+      // Label
+      const QString label = ui->label_combo->currentText();
+      if (!label.isEmpty()) ;
+        TorrentTempData::setLabel(m_hash, label);
+
+        m_Handle.get_torrent_info();
   }
-
-  // Label
-  const QString label = ui->label_combo->currentText();
-  if (!label.isEmpty())
-    TorrentTempData::setLabel(m_hash, label);
-
-  // Save file priorities
-  if (m_contentModel)
-    TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
-
-  // Rename files if necessary
-  if (m_hasRenamedFile)
-    TorrentTempData::setFilesPath(m_hash, m_filesPath);
-
-  // Temporary override of addInPause setting
-  bool old_addInPause = pref.addTorrentsInPause();
-  pref.addTorrentsInPause(!ui->start_torrent_cb->isChecked());
-  pref.sync();
-
-  // Add torrent
-  if (m_isMagnet)
-    QBtSession::instance()->addMagnetUri(m_url, false);
-  else
-    QBtSession::instance()->addTorrent(m_filePath, false, m_url);
-
-  // Restore addInPause setting
-  pref.addTorrentsInPause(old_addInPause);
 
   saveSavePathHistory();
   // Save settings
@@ -679,4 +691,12 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
     pref.setSavePath(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
     QBtSession::instance()->setDefaultSavePath(pref.getSavePath());
   }
+}
+
+void AddNewTorrentDialog::on_buttonBox_rejected()
+{
+  //rejected, if Magnet meta dowloading stop it and remove torrent from session
+  if(m_isMagnet && m_loadMetaMagnet) {
+      QBtSession::instance()->deleteTorrent(m_hash, true);
+    }
 }

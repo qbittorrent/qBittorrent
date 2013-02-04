@@ -60,11 +60,13 @@ private slots:
   void showAdvancedSettings(bool show);
   void displayContentTreeMenu(const QPoint&);
   void on_buttonBox_accepted();
+  void on_buttonBox_rejected();
   void updateDiskSpaceLabel();
   void onSavePathChanged(int);
   void relayout();
   void renameSelectedFile();
   void setdialogPosition();
+
 
 private:
   explicit AddNewTorrentDialog(QWidget *parent = 0);
@@ -76,7 +78,7 @@ private:
   void updateFileNameInSavePaths(const QString& new_filename);
   void loadState();
   void saveState();
-  void getMetaData();
+  void getMetaData(QTorrentHandle m_torrentHandle);
 
 private:
   Ui::AddNewTorrentDialog *ui;
@@ -92,7 +94,6 @@ private:
   boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
   QStringList m_filesPath;
   bool m_hasRenamedFile;
-  QTorrentHandle torrentHandle;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H
