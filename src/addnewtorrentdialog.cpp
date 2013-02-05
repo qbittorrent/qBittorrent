@@ -674,14 +674,27 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
     pref.addTorrentsInPause(old_addInPause);
   } else {
     //change existing torrent params
-      QTorrentHandle m_Handle = QBtSession::instance()->getTorrentHandle(m_hash);
+    QTorrentHandle m_Handle = QBtSession::instance()->getTorrentHandle(m_hash);
 
-      // Label
-      const QString label = ui->label_combo->currentText();
-      if (!label.isEmpty()) ;
-        TorrentTempData::setLabel(m_hash, label);
+    //SavePath
+    if (!save_path.isNull()) {
+      qDebug("New path is %s", qPrintable(save_path));
+      // Check if savePath exists
+      QDir savePath(fsutils::expandPath(save_path));
+      qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
 
-        m_Handle.get_torrent_info();
+      // Actually move storage
+      if (!QBtSession::instance()->useTemporaryFolder() || m_Handle.is_seed()) {
+        if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
+          m_Handle.move_storage(savePath.absolutePath());
+        } else {
+          TorrentPersistentData::saveSavePath(m_Handle.hash(), savePath.absolutePath());
+          //main_window->getProperties()->updateSavePath(h);
+        }
+    }
+
+    //Files priorities
+    m_Handle.file_priorities() = m_contentModel->model()->getFilesPriorities();
   }
 
   saveSavePathHistory();
