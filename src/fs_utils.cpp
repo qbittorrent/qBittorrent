@@ -84,7 +84,7 @@ QString fsutils::fileExtension(const QString &filename)
   QString holder;
   int point_index = filename.lastIndexOf(".");
   if (point_index >= 0) {
-    QString holder = filename.mid(point_index + 1);
+    holder = filename.mid(point_index + 1);
     if (holder == "!qB") {
       holder = filename.mid(0, point_index);
       point_index = holder.lastIndexOf(".");
