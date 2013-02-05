@@ -39,6 +39,7 @@
 #include "misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
+#include "fs_utils.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
   setupUi(this);
@@ -58,7 +59,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
     QString fileName = h.filename_at(i);
-    QString extension = fileName.split(QString::fromUtf8(".")).last().toUpper();
+    QString extension = fsutils::fileExtension(fileName).toUpper();
     if (misc::isPreviewable(extension)) {
       int row = previewListModel->rowCount();
       previewListModel->insertRow(row);
