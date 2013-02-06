@@ -126,6 +126,7 @@ void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
 {
   qDebug()<<"Wait for meta-data";
   while(!m_torrentHandle.has_metadata()) {
+      // this function work in another thread
       if(m_isExit) {
           qDebug()<<"Exit from meta-thread";
           return;
@@ -133,7 +134,6 @@ void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
       sleep(.1);
     }
 
-  //m_torrentHandle.pause();
   m_torrentInfo = const_cast<libtorrent::torrent_info*>(&m_torrentHandle.get_torrent_info());
 
   // Set dialog title
@@ -642,7 +642,6 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
 
   if(!m_loadMetaMagnet) {
     if (ui->skip_check_cb->isChecked()) {
-      // TODO: Check if destination actually exists
       TorrentTempData::setSeedingMode(m_hash, true);
     }
 
@@ -672,29 +671,31 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
 
     // Restore addInPause setting
     pref.addTorrentsInPause(old_addInPause);
-  } else {
-    //change existing torrent params
+  } else { //change existing torrent params
     QTorrentHandle m_Handle = QBtSession::instance()->getTorrentHandle(m_hash);
 
-    //SavePath
+    //Setting new params
     if (!save_path.isNull()) {
       qDebug("New path is %s", qPrintable(save_path));
       // Check if savePath exists
       QDir savePath(fsutils::expandPath(save_path));
       qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
 
-      // Actually move storage
       if (!QBtSession::instance()->useTemporaryFolder() || m_Handle.is_seed()) {
+        //move storage
         if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
           m_Handle.move_storage(savePath.absolutePath());
+          //Files priorities
+          if (m_contentModel)
+            m_Handle.prioritize_files(m_contentModel->model()->getFilesPriorities());
         } else {
+          //move storage
           TorrentPersistentData::saveSavePath(m_Handle.hash(), savePath.absolutePath());
-          //main_window->getProperties()->updateSavePath(h);
+          //Files priorities
+          if (m_contentModel)
+            TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
         }
-    }
-
-    //Files priorities
-    m_Handle.file_priorities() = m_contentModel->model()->getFilesPriorities();
+     }
   }
 
   saveSavePathHistory();
@@ -708,7 +709,7 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
 
 void AddNewTorrentDialog::on_buttonBox_rejected()
 {
-  //rejected, if Magnet meta dowloading stop it and remove torrent from session
+  //rejected, if Magnet meta dowloaded remove torrent from session with files
   if(m_isMagnet && m_loadMetaMagnet) {
       QBtSession::instance()->deleteTorrent(m_hash, true);
     }
