@@ -511,7 +511,7 @@ void PropertiesWidget::renameSelectedFile() {
   bool ok;
   QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
                                                 tr("New name:"), QLineEdit::Normal,
-                                                index.data().toString(), &ok);
+                                                index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {
     if (!fsutils::isValidFileSystemName(new_name_last)) {
       QMessageBox::warning(this, tr("The file could not be renamed"),
