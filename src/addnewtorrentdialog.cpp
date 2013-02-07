@@ -131,7 +131,7 @@ void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
           qDebug()<<"Exit from meta-thread";
           return;
         }
-      sleep(.1);
+      sleep(1);
     }
 
   m_torrentInfo = const_cast<libtorrent::torrent_info*>(&m_torrentHandle.get_torrent_info());
@@ -188,8 +188,8 @@ void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
   }
 
   m_isMetaMagnetReady = true;
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
+  //QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  //showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
@@ -211,8 +211,8 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
   if (show) {
     ui->adv_button->setText(QString::fromUtf8("▲"));
     ui->settings_group->setVisible(true);
-    ui->info_group->setVisible(!m_isMagnet || m_isMetaMagnetReady);
-    if ((!m_isMagnet || m_isMetaMagnetReady) && (m_torrentInfo->num_files() > 1)) {
+    ui->info_group->setVisible(!m_isMagnet || m_loadMetaMagnet);
+    if ((!m_isMagnet || m_loadMetaMagnet) && (m_loadMetaMagnet || m_torrentInfo->num_files() > 1 )) {
       ui->content_tree->setVisible(true);
       setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     } else {
@@ -227,6 +227,7 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
     ui->buttonsHLayout->insertWidget(0, layout()->takeAt(layout()->indexOf(ui->never_show_cb)+1)->widget());
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   }
+
   relayout();
 }
 
@@ -684,10 +685,11 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
       if (!QBtSession::instance()->useTemporaryFolder() || m_Handle.is_seed()) {
         //move storage
         if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
-          m_Handle.move_storage(savePath.absolutePath());
-          //Files priorities
-          if (m_contentModel)
-            m_Handle.prioritize_files(m_contentModel->model()->getFilesPriorities());
+        m_Handle.move_storage(savePath.absolutePath());
+
+        //Files priorities
+        if (m_contentModel)
+          m_Handle.prioritize_files(m_contentModel->model()->getFilesPriorities());
         } else {
           //move storage
           TorrentPersistentData::saveSavePath(m_Handle.hash(), savePath.absolutePath());
@@ -695,6 +697,10 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
           if (m_contentModel)
             TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
         }
+      // TODO: find the way to update mainaplication
+      const QString label = ui->label_combo->currentText();
+      if (!label.isEmpty())
+        TorrentTempData::setLabel(m_hash, label);
      }
   }
 
