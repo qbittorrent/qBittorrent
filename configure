@@ -456,6 +456,7 @@ public:
     QDir libDir(path);
     QStringList filters;
     filters << "libboost_"+lib+"*-mt*.so";
+    filters << "libboost_"+lib+"*-mt*.dylib";
     QStringList result = libDir.entryList(filters, QDir::Files);
     if(!result.empty()) {
       name = result.first().mid(3);
@@ -465,6 +466,7 @@ public:
       // Fall back to non -mt boost lib
       filters.clear();
       filters << "libboost_"+lib+"*.so";
+      filters << "libboost_"+lib+"*.dylib";
       result = libDir.entryList(filters, QDir::Files);
       if(!result.empty()) {
         name = result.first().mid(3);
