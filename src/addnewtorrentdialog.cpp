@@ -58,7 +58,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   m_contentModel(0),
   m_contentDelegate(0),
   m_isMagnet(false),
-  m_isMetaMagnetReady(false),
   m_isExit(false),
   m_hasRenamedFile(false)
 {
@@ -186,10 +185,6 @@ void AddNewTorrentDialog::getMetaData(QTorrentHandle m_torrentHandle)
       ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
     }
   }
-
-  m_isMetaMagnetReady = true;
-  //QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  //showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
 }
 
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
@@ -672,15 +667,14 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
 
     // Restore addInPause setting
     pref.addTorrentsInPause(old_addInPause);
+
   } else { //change existing torrent params
     QTorrentHandle m_Handle = QBtSession::instance()->getTorrentHandle(m_hash);
 
     //Setting new params
     if (!save_path.isNull()) {
-      qDebug("New path is %s", qPrintable(save_path));
       // Check if savePath exists
       QDir savePath(fsutils::expandPath(save_path));
-      qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
 
       if (!QBtSession::instance()->useTemporaryFolder() || m_Handle.is_seed()) {
         //move storage
@@ -690,14 +684,14 @@ void AddNewTorrentDialog::on_buttonBox_accepted()
         //Files priorities
         if (m_contentModel)
           m_Handle.prioritize_files(m_contentModel->model()->getFilesPriorities());
-        } else {
-          //move storage
-          TorrentPersistentData::saveSavePath(m_Handle.hash(), savePath.absolutePath());
-          //Files priorities
-          if (m_contentModel)
-            TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
+      } else {
+        //move storage
+        TorrentPersistentData::saveSavePath(m_Handle.hash(), savePath.absolutePath());
+        //Files priorities
+        if (m_contentModel)
+          TorrentTempData::setFilesPriority(m_hash, m_contentModel->model()->getFilesPriorities());
         }
-      // TODO: find the way to update mainaplication
+      // TODO: find the way to update TransferListWidget label without reboot
       const QString label = ui->label_combo->currentText();
       if (!label.isEmpty())
         TorrentTempData::setLabel(m_hash, label);

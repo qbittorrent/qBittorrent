@@ -86,7 +86,6 @@ private:
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
   bool m_loadMetaMagnet;
-  bool m_isMetaMagnetReady;
   bool m_isExit;
   QString m_filePath;
   QString m_url;
