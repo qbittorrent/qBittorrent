@@ -33,6 +33,7 @@
 
 #include <QTreeWidget>
 #include <QList>
+#include <QClipboard>
 
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
@@ -69,6 +70,7 @@ public slots:
   void loadStickyItems(const QTorrentHandle &h);
   void loadTrackers();
   void askForTrackers();
+  void copyTrackerUrl();
   void deleteSelectedTrackers();
   void showTrackerListMenu(QPoint);
   void loadSettings();
