@@ -3364,31 +3364,31 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>PreviewSelect</name>
     <message>
-        <location filename="../previewselect.cpp" line="48"/>
+        <location filename="../previewselect.cpp" line="49"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="49"/>
+        <location filename="../previewselect.cpp" line="50"/>
         <source>Size</source>
         <translation>Mida</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="50"/>
+        <location filename="../previewselect.cpp" line="51"/>
         <source>Progress</source>
         <translation>Progrés</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="75"/>
-        <location filename="../previewselect.cpp" line="110"/>
-        <location filename="../previewselect.cpp" line="116"/>
+        <location filename="../previewselect.cpp" line="78"/>
+        <location filename="../previewselect.cpp" line="113"/>
+        <location filename="../previewselect.cpp" line="119"/>
         <source>Preview impossible</source>
         <translation>Impossible vista prèvia</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="75"/>
-        <location filename="../previewselect.cpp" line="110"/>
-        <location filename="../previewselect.cpp" line="116"/>
+        <location filename="../previewselect.cpp" line="78"/>
+        <location filename="../previewselect.cpp" line="113"/>
+        <location filename="../previewselect.cpp" line="119"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Ho sento, no es pot realitzar una vista prèvia d&apos;aquest arxiu</translation>
     </message>
@@ -3979,7 +3979,7 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;Va ser bloquejat a causa de fragments corruptes&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1917"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1920"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>La interfície de la xarxa definida no és vàlida:%1</translation>
     </message>
@@ -3988,45 +3988,45 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Tractant qualsevol interfície de xarxa disponibles en el seu lloc.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1935"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Escoltant l&apos;adreça IP %1 de la interfície de xarxa %2...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1941"/>
         <source>Failed to listen on network interface %1</source>
         <translation>No s&apos;ha pogut escoltar la interfície de xarxa %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2119"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2121"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2122"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descàrrega recursiva d&apos;arxiu %1 incrustada en Torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2216"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2218"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2219"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2221"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>No es pot descodificar %1 arxiu torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2269"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2272"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>L&apos;equip entrarà en 15 segons en estat de suspensió, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2271"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2274"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>L&apos;equip s&apos;apagarà en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2273"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2276"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent serà tancat en 15 segons, a menys que ho cancel...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2818"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2821"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
@@ -4037,79 +4037,79 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="obsolete">Anàlisi reeixit de filtratge IP: %1 normes aplicades.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2824"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2827"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Error: No s&apos;ha pogut analitzar el filtratge IP.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2166"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
         <source>Torrent name: %1</source>
         <translation>Nom del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2167"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
         <source>Torrent size: %1</source>
         <translation>Mida del torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2168"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2171"/>
         <source>Save path: %1</source>
         <translation>Guardar ruta: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2169"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2172"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>El torrernt es va descarregar a %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2170"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2173"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Gràcies per utilitzar qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2173"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2176"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 s&apos;ha finalitzat les descàrregues</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2408"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2411"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Error E/S ocorregut, &apos;%1&apos; pausat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2409"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2520"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2412"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>Reason: %1</source>
         <translation>Raó: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2484"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2487"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Va fallar el mapatge del port, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2489"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapatge del port reeixit, missatge: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2518"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>La mida del fitxer no coincideix amb el torrent %1, pausat.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2522"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Es van negar les dades per a reinici ràpid del torrent: %1, verificant de nou... </translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2528"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Va fallar la recerca de llavor per l&apos;Url: %1, missatge: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2651"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descarregant &apos;%1&apos;, si us plau esperi...</translation>
@@ -4364,7 +4364,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RssFeed</name>
     <message>
-        <location filename="../rss/rssfeed.cpp" line="333"/>
+        <location filename="../rss/rssfeed.cpp" line="338"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Descarregar automàtica %1 Torrent %2 Canal RSS...</translation>
     </message>
@@ -5085,82 +5085,87 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
 <context>
     <name>TrackerList</name>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="61"/>
+        <location filename="../properties/trackerlist.cpp" line="62"/>
         <source>URL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="62"/>
+        <location filename="../properties/trackerlist.cpp" line="63"/>
         <source>Status</source>
         <translation>Estat</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="63"/>
+        <location filename="../properties/trackerlist.cpp" line="64"/>
         <source>Peers</source>
         <translation>Parells</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="64"/>
+        <location filename="../properties/trackerlist.cpp" line="65"/>
         <source>Message</source>
         <translation>Missatge</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="66"/>
+        <location filename="../properties/trackerlist.cpp" line="67"/>
         <source>[DHT]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="69"/>
+        <location filename="../properties/trackerlist.cpp" line="70"/>
         <source>[PeX]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="72"/>
+        <location filename="../properties/trackerlist.cpp" line="73"/>
         <source>[LSD]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="191"/>
-        <location filename="../properties/trackerlist.cpp" line="201"/>
-        <location filename="../properties/trackerlist.cpp" line="207"/>
-        <location filename="../properties/trackerlist.cpp" line="257"/>
+        <location filename="../properties/trackerlist.cpp" line="192"/>
+        <location filename="../properties/trackerlist.cpp" line="202"/>
+        <location filename="../properties/trackerlist.cpp" line="208"/>
+        <location filename="../properties/trackerlist.cpp" line="258"/>
         <source>Working</source>
         <translation>Treballant</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="193"/>
-        <location filename="../properties/trackerlist.cpp" line="203"/>
-        <location filename="../properties/trackerlist.cpp" line="209"/>
+        <location filename="../properties/trackerlist.cpp" line="194"/>
+        <location filename="../properties/trackerlist.cpp" line="204"/>
+        <location filename="../properties/trackerlist.cpp" line="210"/>
         <source>Disabled</source>
         <translation>Deshabilitat</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="196"/>
+        <location filename="../properties/trackerlist.cpp" line="197"/>
         <source>This torrent is private</source>
         <translation>Aquest torrent és privat</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="261"/>
+        <location filename="../properties/trackerlist.cpp" line="262"/>
         <source>Updating...</source>
         <translation>Actualitzant...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="265"/>
+        <location filename="../properties/trackerlist.cpp" line="266"/>
         <source>Not working</source>
         <translation>Aturat</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="268"/>
+        <location filename="../properties/trackerlist.cpp" line="269"/>
         <source>Not contacted yet</source>
         <translation>Encara sense connexió</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="338"/>
+        <location filename="../properties/trackerlist.cpp" line="352"/>
         <source>Add a new tracker...</source>
         <translation>Afegir nou tracker...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="341"/>
+        <location filename="../properties/trackerlist.cpp" line="353"/>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="356"/>
         <source>Remove tracker</source>
         <translation>Esborrar traker</translation>
     </message>

@@ -4612,6 +4612,10 @@ Instalar agora?</translation>
         <source>Force reannounce</source>
         <translation type="obsolete">Obrigar novo anúncio</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

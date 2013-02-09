@@ -4480,6 +4480,10 @@ Vill du installera den nu?</translation>
         <source>Force reannounce</source>
         <translation type="obsolete">Tvinga annonsering igen</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

@@ -4615,6 +4615,10 @@ Chcete ho nainštalovať teraz?</translation>
         <source>Force reannounce</source>
         <translation type="obsolete">Vynútiť opätovné ohlásenie</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

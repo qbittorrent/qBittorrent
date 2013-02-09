@@ -4583,6 +4583,10 @@ Do you want to install it now?</source>
         <source>Force reannounce</source>
         <translation type="obsolete">Sprawdź tracker</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

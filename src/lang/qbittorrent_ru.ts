@@ -4669,6 +4669,10 @@ Do you want to install it now?</source>
         <translatorcomment>Коряво &gt;_&lt;</translatorcomment>
         <translation type="obsolete">Переанонсировать принудительно</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
