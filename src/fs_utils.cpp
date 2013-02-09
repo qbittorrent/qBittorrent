@@ -81,18 +81,8 @@ QString fsutils::toDisplayPath(const QString& path)
  */
 QString fsutils::fileExtension(const QString &filename)
 {
-  QString holder;
-  int point_index = filename.lastIndexOf(".");
-  if (point_index >= 0) {
-    holder = filename.mid(point_index + 1);
-    if (holder == "!qB") {
-      holder = filename.mid(0, point_index);
-      point_index = holder.lastIndexOf(".");
-      holder = (point_index >= 0) ? holder.mid(point_index + 1) : QString();
-    }
-    return holder;
-  }
-  return QString();
+  const int point_index = filename.lastIndexOf(".");
+  return (point_index >= 0) ? filename.mid(point_index + 1) : QString();
 }
 
 QString fsutils::fileName(const QString& file_path)

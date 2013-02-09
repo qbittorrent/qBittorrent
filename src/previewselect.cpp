@@ -59,6 +59,8 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
     QString fileName = h.filename_at(i);
+    if (fileName.endsWith(".!qB"))
+      fileName.chop(4);
     QString extension = fsutils::fileExtension(fileName).toUpper();
     if (misc::isPreviewable(extension)) {
       int row = previewListModel->rowCount();
