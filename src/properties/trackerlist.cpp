@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QAction>
 #include <QColor>
+#include <QDebug>
 #include <libtorrent/version.hpp>
 #include <libtorrent/peer_info.hpp>
 #include "trackerlist.h"
