@@ -372,7 +372,7 @@ void TrackerList::editSelectedTracker() {
       QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
       return;
     }
-    else if (new_tracker_url == tracker_url)
+    if (new_tracker_url == tracker_url)
       return;
 
     std::vector<announce_entry> trackers = h.trackers();
