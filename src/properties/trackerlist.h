@@ -72,6 +72,7 @@ public slots:
   void askForTrackers();
   void copyTrackerUrl();
   void deleteSelectedTrackers();
+  void editSelectedTracker();
   void showTrackerListMenu(QPoint);
   void loadSettings();
   void saveSettings() const;

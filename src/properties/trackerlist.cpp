@@ -35,6 +35,8 @@
 #include <QAction>
 #include <QColor>
 #include <QDebug>
+#include <QInputDialog>
+#include <QUrl>
 #include <libtorrent/version.hpp>
 #include <libtorrent/peer_info.hpp>
 #include "trackerlist.h"
@@ -343,6 +345,65 @@ void TrackerList::deleteSelectedTrackers() {
   loadTrackers();
 }
 
+void TrackerList::editSelectedTracker() {
+  try {
+    QTorrentHandle h = properties->getCurrentTorrent();
+
+    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+    if (selected_items.isEmpty())
+      return;
+    // During multi-select only process item selected last
+    QUrl tracker_url = selected_items.last()->text(COL_URL);
+
+    QInputDialog editDlg(this);
+    editDlg.setInputMode(QInputDialog::TextInput);
+    editDlg.setLabelText(tr("Tracker URL:"));
+    editDlg.setWindowTitle(tr("Tracker editing"));
+    editDlg.setTextValue(tracker_url.toString());
+    QSize dlgSize = editDlg.size();
+    dlgSize.setWidth(350);
+    editDlg.resize(dlgSize);
+
+    if(!editDlg.exec())
+      return;
+
+    QUrl new_tracker_url = editDlg.textValue().trimmed();
+    if (!new_tracker_url.isValid()) {
+      QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
+      return;
+    }
+    if (new_tracker_url == tracker_url)
+      return;
+
+    std::vector<announce_entry> trackers = h.trackers();
+    std::vector<announce_entry>::iterator it = trackers.begin();
+    std::vector<announce_entry>::iterator itend = trackers.end();
+    bool match = false;
+
+    for ( ; it != itend; ++it) {
+      if (new_tracker_url == QUrl(misc::toQString(it->url))) {
+        QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
+        return;
+      }
+
+      if (tracker_url == QUrl(misc::toQString(it->url)) && !match) {
+        announce_entry new_entry(new_tracker_url.toString().toStdString());
+        new_entry.tier = it->tier;
+        match = true;
+        *it = new_entry;
+      }
+    }
+
+    h.replace_trackers(trackers);
+    h.force_reannounce();
+    h.force_dht_announce();
+  } catch(invalid_handle&) {
+    return;
+  }
+
+  loadTrackers();
+}
+
 void TrackerList::showTrackerListMenu(QPoint) {
   QTorrentHandle h = properties->getCurrentTorrent();
   if (!h.is_valid()) return;
@@ -350,10 +411,13 @@ void TrackerList::showTrackerListMenu(QPoint) {
   QMenu menu;
   // Add actions
   QAction *addAct = menu.addAction(IconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-  QAction *copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
+  QAction *copyAct = 0;
   QAction *delAct = 0;
+  QAction *editAct = 0;
   if (!getSelectedTrackerItems().isEmpty()) {
     delAct = menu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
+    copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
+    editAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
@@ -367,6 +431,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
   if (act == delAct) {
     deleteSelectedTrackers();
+    return;
+  }
+  if (act == editAct) {
+    editSelectedTracker();
     return;
   }
 }
