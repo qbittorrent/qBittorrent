@@ -2,8 +2,7 @@ INCLUDEPATH += $$PWD
 
 FORMS += $$PWD/propertieswidget.ui \
          $$PWD/trackersadditiondlg.ui \
-         $$PWD/peer.ui \
-         $$PWD/trackereditdlg.ui
+         $$PWD/peer.ui
 
 HEADERS += $$PWD/propertieswidget.h \
            $$PWD/peerlistwidget.h \
@@ -14,8 +13,7 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/peeraddition.h \
            $$PWD/trackersadditiondlg.h \
            $$PWD/pieceavailabilitybar.h \
-           $$PWD/proptabbar.h \
-           $$PWD/trackereditdlg.h
+           $$PWD/proptabbar.h
 
 SOURCES += $$PWD/propertieswidget.cpp \
            $$PWD/peerlistwidget.cpp \
