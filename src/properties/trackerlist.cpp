@@ -346,59 +346,61 @@ void TrackerList::deleteSelectedTrackers() {
 }
 
 void TrackerList::editSelectedTracker() {
-  QTorrentHandle h = properties->getCurrentTorrent();
-  if (!h.is_valid())
-    return;
+  try {
+    QTorrentHandle h = properties->getCurrentTorrent();
 
-  QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
-  if (selected_items.isEmpty()) return;
-  // During multi-select only process item selected last
-  QUrl tracker_url = selected_items.last()->text(COL_URL);
+    QList<QTreeWidgetItem *> selected_items = getSelectedTrackerItems();
+    if (selected_items.isEmpty())
+      return;
+    // During multi-select only process item selected last
+    QUrl tracker_url = selected_items.last()->text(COL_URL);
 
-  QInputDialog editDlg(this);
-  editDlg.setInputMode(QInputDialog::TextInput);
-  editDlg.setLabelText(tr("Tracker URL:"));
-  editDlg.setWindowTitle(tr("Edit Tracker Dialog"));
-  editDlg.setTextValue(tracker_url.toString());
-  QSize dlgSize = editDlg.size();
-  dlgSize.setWidth(350);
-  editDlg.resize(dlgSize);
+    QInputDialog editDlg(this);
+    editDlg.setInputMode(QInputDialog::TextInput);
+    editDlg.setLabelText(tr("Tracker URL:"));
+    editDlg.setWindowTitle(tr("Tracker editing"));
+    editDlg.setTextValue(tracker_url.toString());
+    QSize dlgSize = editDlg.size();
+    dlgSize.setWidth(350);
+    editDlg.resize(dlgSize);
 
-  bool dlgResult = editDlg.exec();
-  if(!dlgResult)
-    return;
+    if(!editDlg.exec())
+      return;
 
-  if (!h.is_valid())
-    return;
-
-  QUrl new_tracker_url = editDlg.textValue().trimmed();
-  if (new_tracker_url.isEmpty() || !new_tracker_url.isValid() || new_tracker_url == tracker_url)
-    return;
-
-  std::vector<announce_entry> trackers = h.trackers();
-  if (trackers.empty())
-    return;
-
-  std::vector<announce_entry>::iterator it = trackers.begin();
-  std::vector<announce_entry>::iterator itend = trackers.end();
-  bool match = false;
-
-  for ( ; it != itend; ++it) {
-    if (new_tracker_url == QUrl(misc::toQString(it->url)))
-      return; // Tracker already exists; silently ignoring
-
-    if (tracker_url == QUrl(misc::toQString(it->url)) && !match) {
-      announce_entry temp_URI(new_tracker_url.toString().toStdString());
-      temp_URI.tier = it->tier;
-      match = true;
-      *it = temp_URI;
+    QUrl new_tracker_url = editDlg.textValue().trimmed();
+    if (!new_tracker_url.isValid()) {
+      QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
+      return;
     }
-  }
-  if (!match)
-    return; // Found no tracker to replace
+    else if (new_tracker_url == tracker_url)
+      return;
 
-  h.replace_trackers(trackers);
-  h.force_reannounce();
+    std::vector<announce_entry> trackers = h.trackers();
+    std::vector<announce_entry>::iterator it = trackers.begin();
+    std::vector<announce_entry>::iterator itend = trackers.end();
+    bool match = false;
+
+    for ( ; it != itend; ++it) {
+      if (new_tracker_url == QUrl(misc::toQString(it->url))) {
+        QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
+        return;
+      }
+
+      if (tracker_url == QUrl(misc::toQString(it->url)) && !match) {
+        announce_entry new_entry(new_tracker_url.toString().toStdString());
+        new_entry.tier = it->tier;
+        match = true;
+        *it = new_entry;
+      }
+    }
+
+    h.replace_trackers(trackers);
+    h.force_reannounce();
+    h.force_dht_announce();
+  } catch(invalid_handle&) {
+    return;
+  }
+
   loadTrackers();
 }
 
