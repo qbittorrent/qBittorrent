@@ -4671,7 +4671,31 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копировать URL в буфер</translation>
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation>URL трекера:</translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation type="unfinished">Редактирование трекера</translation>
+    </message>
+    <message>
+        <source>Tracker editing failed</source>
+        <translation type="unfinished">Ошибка редактирования</translation>
+    </message>
+    <message>
+        <source>The tracker URL entered is invalid.</source>
+        <translation type="unfinished">Введен неверный URL трекера.</translation>
+    </message>
+    <message>
+        <source>The tracker URL already exists.</source>
+        <translation type="unfinished">Трекер с введенным URL уже существует.</translation>
+    </message>
+    <message>
+        <source>Edit selected tracker URL</source>
+        <translation type="unfinished">Изменить URL</translation>
     </message>
 </context>
 <context>
@@ -5744,7 +5768,7 @@ However, those plugins were disabled.</source>
     <name>errorDialog</name>
     <message>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Детали сбоя</translation>
     </message>
 </context>
 <context>
