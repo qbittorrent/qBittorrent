@@ -994,19 +994,16 @@ void MainWindow::addTorrent(QString path) {
 }
 
 void MainWindow::processDownloadedFiles(QString path, QString url) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog)
+  Preferences pref;
+  if (pref.useAdditionDialog())
     AddNewTorrentDialog::showTorrent(path, url);
   else
     QBtSession::instance()->addTorrent(path, false, url);
 }
 
-void MainWindow::processNewMagnetLink(const QString& link)
-{
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog)
+void MainWindow::processNewMagnetLink(const QString& link) {
+  Preferences pref;
+  if (pref.useAdditionDialog())
     AddNewTorrentDialog::showMagnet(link);
   else
     QBtSession::instance()->addMagnetUri(link);
