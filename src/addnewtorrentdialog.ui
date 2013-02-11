@@ -134,7 +134,7 @@
         <item row="0" column="1">
          <widget class="QLabel" name="size_lbl">
           <property name="text">
-           <string notr="true">xx GB (xx GB available)</string>
+           <string>wait...</string>
           </property>
          </widget>
         </item>
@@ -148,7 +148,7 @@
         <item row="1" column="1">
          <widget class="QLabel" name="comment_lbl">
           <property name="text">
-           <string notr="true">comment</string>
+           <string>wait...</string>
           </property>
          </widget>
         </item>
@@ -162,7 +162,7 @@
         <item row="2" column="1">
          <widget class="QLabel" name="date_lbl">
           <property name="text">
-           <string notr="true">02/03/2012 20:30</string>
+           <string>wait...</string>
           </property>
          </widget>
         </item>
