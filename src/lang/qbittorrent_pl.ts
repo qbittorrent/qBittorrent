@@ -4587,6 +4587,30 @@ Do you want to install it now?</source>
         <source>Copy tracker url</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tracker editing failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The tracker URL entered is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The tracker URL already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit selected tracker URL</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
