@@ -4615,6 +4615,10 @@ Do you want to install it now?</source>
         <source>Force reannounce</source>
         <translation type="obsolete">強迫重新公告</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>

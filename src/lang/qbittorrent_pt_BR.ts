@@ -4596,6 +4596,10 @@ Gostaria de instalar agora?</translation>
         <source>Force reannounce</source>
         <translation type="obsolete">Força reanuncio</translation>
     </message>
+    <message>
+        <source>Copy tracker url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
