@@ -323,7 +323,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
 void AddNewTorrentDialog::onSavePathChanged(int index)
 {
   static int old_index = 0;
-  static QDir defaultSaveDir(ui->save_path_combo->itemData(0).toString());
+  Preferences pref;
 
   if (index == (ui->save_path_combo->count() - 1)) {
     disconnect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(onSavePathChanged(int)));
@@ -370,7 +370,7 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
   }
   // Toggle default save path setting checkbox visibility
   ui->default_save_path_cb->setChecked(false);
-  ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != defaultSaveDir);
+  ui->default_save_path_cb->setVisible(QDir(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString()) != pref.getSavePath());
   relayout();
   // Remember index
   old_index = ui->save_path_combo->currentIndex();
