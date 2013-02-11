@@ -4499,7 +4499,7 @@ Vennligst installer det manuelt.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier sporer-nettadresse</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
@@ -5677,7 +5677,7 @@ Disse programtilleggene ble derimot deaktivert.</translation>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Krasj info</translation>
     </message>
 </context>
 <context>
