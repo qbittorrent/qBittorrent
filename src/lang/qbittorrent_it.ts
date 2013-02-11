@@ -5388,87 +5388,118 @@ Per favore installalo manualmente.</translation>
 <context>
     <name>TrackerList</name>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="62"/>
+        <location filename="../properties/trackerlist.cpp" line="64"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="63"/>
+        <location filename="../properties/trackerlist.cpp" line="65"/>
         <source>Status</source>
         <translation>Stato</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="64"/>
+        <location filename="../properties/trackerlist.cpp" line="66"/>
         <source>Peers</source>
         <translation>Peer</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="65"/>
+        <location filename="../properties/trackerlist.cpp" line="67"/>
         <source>Message</source>
         <translation>Messaggio</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="67"/>
+        <location filename="../properties/trackerlist.cpp" line="69"/>
         <source>[DHT]</source>
         <translation>[DHT]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="70"/>
+        <location filename="../properties/trackerlist.cpp" line="72"/>
         <source>[PeX]</source>
         <translation>[PeX]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="73"/>
+        <location filename="../properties/trackerlist.cpp" line="75"/>
         <source>[LSD]</source>
         <translation>[LSD]</translation>
-    </message>
-    <message>
-        <location filename="../properties/trackerlist.cpp" line="192"/>
-        <location filename="../properties/trackerlist.cpp" line="202"/>
-        <location filename="../properties/trackerlist.cpp" line="208"/>
-        <location filename="../properties/trackerlist.cpp" line="258"/>
-        <source>Working</source>
-        <translation>In funzione</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="194"/>
         <location filename="../properties/trackerlist.cpp" line="204"/>
         <location filename="../properties/trackerlist.cpp" line="210"/>
+        <location filename="../properties/trackerlist.cpp" line="260"/>
+        <source>Working</source>
+        <translation>In funzione</translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="196"/>
+        <location filename="../properties/trackerlist.cpp" line="206"/>
+        <location filename="../properties/trackerlist.cpp" line="212"/>
         <source>Disabled</source>
         <translation>Disattivata</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="197"/>
+        <location filename="../properties/trackerlist.cpp" line="199"/>
         <source>This torrent is private</source>
         <translation>Questo torrent è privato</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="262"/>
+        <location filename="../properties/trackerlist.cpp" line="264"/>
         <source>Updating...</source>
         <translation>In aggiornamento...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="266"/>
+        <location filename="../properties/trackerlist.cpp" line="268"/>
         <source>Not working</source>
         <translation>Non in funzione</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="269"/>
+        <location filename="../properties/trackerlist.cpp" line="271"/>
         <source>Not contacted yet</source>
         <translation>Non ancora contattato</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="352"/>
+        <location filename="../properties/trackerlist.cpp" line="360"/>
+        <source>Tracker URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="361"/>
+        <source>Tracker editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="372"/>
+        <location filename="../properties/trackerlist.cpp" line="385"/>
+        <source>Tracker editing failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="372"/>
+        <source>The tracker URL entered is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="385"/>
+        <source>The tracker URL already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="413"/>
         <source>Add a new tracker...</source>
         <translation>Aggiungi un nuovo tracker...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="353"/>
+        <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="356"/>
+        <location filename="../properties/trackerlist.cpp" line="420"/>
+        <source>Edit selected tracker URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/trackerlist.cpp" line="418"/>
         <source>Remove tracker</source>
         <translation>Rimuovi tracker</translation>
     </message>
