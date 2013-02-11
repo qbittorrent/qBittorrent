@@ -86,6 +86,12 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(ui->lineNotContains, SIGNAL(textEdited(QString)), SLOT(updateMustNotLineValidity()));
   Q_ASSERT(ok);
+  ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMatchingArticles()));
+  Q_ASSERT(ok);
+  ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMustLineValidity()));
+  Q_ASSERT(ok);
+  ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMustNotLineValidity()));
+  Q_ASSERT(ok);
   updateRuleDefinitionBox();
   updateFeedList();
 }
