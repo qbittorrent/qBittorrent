@@ -1435,6 +1435,14 @@ public:
   void setCreateTorDimensions(const QByteArray &data) {
     setValue(QString::fromUtf8("CreateTorrent/dimensions"), data);
   }
+
+  bool getNotificationBaloons() const {
+    return value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
+  }
+
+  void setNotificationBaloons(const bool &data) {
+    setValue(QString::fromUtf8("Preferences/General/NotificationBaloons"), data);
+  }
 };
 
 #endif // PREFERENCES_H
