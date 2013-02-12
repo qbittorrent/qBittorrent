@@ -1355,6 +1355,14 @@ public:
   void setSearchEnginesDisabled(const QStringList &data) {
     setValue(QString::fromUtf8("SearchEngines/disabledEngines"), data);
   }
+
+  QString getSearchResultColsW() const {
+    return value(QString::fromUtf8("SearchResultsColsWidth"), QString()).toString();
+  }
+
+  void setSearchResultColsW(const QString &data) {
+    setValue(QString::fromUtf8("SearchResultsColsWidth"), data);
+  }
 };
 
 #endif // PREFERENCES_H
