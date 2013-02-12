@@ -300,13 +300,13 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
 }
 
 void options_imp::loadWindowState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
-  QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
+  Preferences pref;
+  resize(pref.getStateSize(sizeFittingScreen()));
+  QPoint p = pref.getStatePos();
   if (!p.isNull())
     move(p);
   // Load slider size
-  const QStringList sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
+  const QStringList sizes_str = pref.getStateHSpliterSizes();
   // Splitter size
   QList<int> sizes;
   if (sizes_str.size() == 2) {
@@ -320,14 +320,14 @@ void options_imp::loadWindowState() {
 }
 
 void options_imp::saveWindowState() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue(QString::fromUtf8("Preferences/State/size"), size());
-  settings.setValue(QString::fromUtf8("Preferences/State/pos"), pos());
+  Preferences pref;
+  pref.setStateSize(size());
+  pref.setStatePos(pos());
   // Splitter size
   QStringList sizes_str;
   sizes_str << QString::number(hsplitter->sizes().first());
   sizes_str << QString::number(hsplitter->sizes().last());
-  settings.setValue(QString::fromUtf8("Preferences/State/hSplitterSizes"), sizes_str);
+  pref.setStateHSpliterSizes(sizes_str);
 }
 
 QSize options_imp::sizeFittingScreen() const {
