@@ -1379,6 +1379,30 @@ public:
   void setRssHSplitterSizes(const QByteArray &data) {
     setValue(QString::fromUtf8("RssFeedDownloader/hsplitterSizes"), data);
   }
+
+  QStringList getRssOpenFolders() const {
+    return value(QString::fromUtf8("Rss/open_folders"), QStringList()).toStringList();
+  }
+
+  void setRssOpenFolders(const QStringList &data) {
+    setValue(QString::fromUtf8("Rss/open_folders"), data);
+  }
+
+  QByteArray getRssSplitterH() const {
+    return value(QString::fromUtf8("rss/splitter_h"), QByteArray()).toByteArray();
+  }
+
+  void setRssSplitterH(const QByteArray &data) {
+    setValue(QString::fromUtf8("rss/splitter_h"), data);
+  }
+
+  QByteArray getRssSplitterV() const {
+    return value(QString::fromUtf8("rss/splitter_v"), QByteArray()).toByteArray();
+  }
+
+  void setRssSplitterV(const QByteArray &data) {
+    setValue(QString::fromUtf8("rss/splitter_v"), data);
+  }
 };
 
 #endif // PREFERENCES_H
