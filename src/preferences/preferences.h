@@ -1363,6 +1363,22 @@ public:
   void setSearchResultColsW(const QString &data) {
     setValue(QString::fromUtf8("SearchResultsColsWidth"), data);
   }
+
+  QByteArray getRssGeometry() const {
+    return value(QString::fromUtf8("RssFeedDownloader/geometry")).toByteArray();
+  }
+
+  void setRssGeometry(const QByteArray &data) {
+    setValue(QString::fromUtf8("RssFeedDownloader/geometry"), data);
+  }
+
+  QByteArray getRssHSplitterSizes() const {
+    return value(QString::fromUtf8("RssFeedDownloader/hsplitterSizes")).toByteArray();
+  }
+
+  void setRssHSplitterSizes(const QByteArray &data) {
+    setValue(QString::fromUtf8("RssFeedDownloader/hsplitterSizes"), data);
+  }
 };
 
 #endif // PREFERENCES_H
