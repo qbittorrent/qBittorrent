@@ -1301,11 +1301,19 @@ public:
   }
 
   QStringList getStateHSpliterSizes() const {
-    return value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
+    return value(QString::fromUtf8("Preferences/State/hSplitterSizes"), QStringList()).toStringList();
   }
 
   void setStateHSpliterSizes(const QStringList &data) {
-    setValue("Preferences/State/hSplitterSizes", data);
+    setValue(QString::fromUtf8("Preferences/State/hSplitterSizes"), data);
+  }
+
+  QByteArray getTrackersTrackerListState() const {
+    return value(QString::fromUtf8("TorrentProperties/Trackers/TrackerListState")).toByteArray();
+  }
+
+  void setTrackersTrackerListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Trackers/TrackerListState"), data);
   }
 };
 
