@@ -38,20 +38,6 @@ class QIniSettings : public QSettings {
   Q_DISABLE_COPY (QIniSettings)
 
 public:
-  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
-#ifdef Q_WS_WIN
-      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
-#else
-      QSettings(organization, application, parent)
-#endif
-  {
-
-  }
-
-  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
-
-  }
-
 #ifdef Q_WS_WIN
   QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
     QString key_tmp(key);
@@ -68,6 +54,21 @@ public:
     QSettings::setValue(key_tmp, val);
   }
 #endif
+
+protected:
+  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
+#ifdef Q_WS_WIN
+      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
+#else
+      QSettings(organization, application, parent)
+#endif
+  {
+
+  }
+
+  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
+
+  }
 };
 
 #endif // QINISETTINGS_H
