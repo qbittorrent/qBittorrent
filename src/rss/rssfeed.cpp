@@ -40,6 +40,7 @@
 #include "rssdownloadrulelist.h"
 #include "downloadthread.h"
 #include "fs_utils.h"
+#include "qbittorrent-rss.h"
 
 bool rssArticleDateRecentThan(const RssArticlePtr& left, const RssArticlePtr& right)
 {
@@ -85,7 +86,7 @@ void RssFeed::saveItemsToDisk()
     return;
   markAsDirty(false);
 
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
+  Qbittorrent_rss qbt_rss;
   QVariantList old_items;
 
   RssArticleHash::ConstIterator it = m_articles.begin();
@@ -94,15 +95,15 @@ void RssFeed::saveItemsToDisk()
     old_items << it.value()->toHash();
   }
   qDebug("Saving %d old items for feed %s", old_items.size(), qPrintable(displayName()));
-  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+  QHash<QString, QVariant> all_old_items = qbt_rss.getOldItems();
   all_old_items[m_url] = old_items;
-  qBTRSS.setValue("old_items", all_old_items);
+  qbt_rss.setOldItems(all_old_items);
 }
 
 void RssFeed::loadItemsFromDisk()
 {
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  QHash<QString, QVariant> all_old_items = qBTRSS.value("old_items", QHash<QString, QVariant>()).toHash();
+  Qbittorrent_rss qbt_rss;
+  QHash<QString, QVariant> all_old_items = qbt_rss.getOldItems();
   const QVariantList old_items = all_old_items.value(m_url, QVariantList()).toList();
   qDebug("Loading %d old items for feed %s", old_items.size(), qPrintable(displayName()));
 
@@ -157,21 +158,21 @@ bool RssFeed::refresh()
 void RssFeed::removeAllSettings()
 {
   qDebug() << "Removing all settings / history for feed: " << m_url;
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  QVariantHash feeds_w_downloader = qBTRSS.value("downloader_on", QVariantHash()).toHash();
+  Qbittorrent_rss qbt_rss;
+  QVariantHash feeds_w_downloader = qbt_rss.getDownloaderOn();
   if (feeds_w_downloader.contains(m_url)) {
     feeds_w_downloader.remove(m_url);
-    qBTRSS.setValue("downloader_on", feeds_w_downloader);
+    qbt_rss.setDownloaderOn(feeds_w_downloader);
   }
-  QVariantHash all_feeds_filters = qBTRSS.value("feed_filters", QVariantHash()).toHash();
+  QVariantHash all_feeds_filters = qbt_rss.getFeedFilters();
   if (all_feeds_filters.contains(m_url)) {
     all_feeds_filters.remove(m_url);
-    qBTRSS.setValue("feed_filters", all_feeds_filters);
+    qbt_rss.setFeedFilters(all_feeds_filters);
   }
-  QVariantHash all_old_items = qBTRSS.value("old_items", QVariantHash()).toHash();
+  QVariantHash all_old_items = qbt_rss.getOldItems();
   if (all_old_items.contains(m_url)) {
       all_old_items.remove(m_url);
-      qBTRSS.setValue("old_items", all_old_items);
+      qbt_rss.setOldItems(all_old_items);
   }
 }
 
