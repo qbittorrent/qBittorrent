@@ -53,7 +53,7 @@ public:
     return value(QString::fromUtf8("downloader_on"), QVariantHash()).toHash();
   }
 
-  QVariantHash setDownloaderOn(const QVariantHash &data) {
+  void setDownloaderOn(const QVariantHash &data) {
     setValue(QString::fromUtf8("downloader_on"), data);
   }
 
@@ -61,8 +61,16 @@ public:
     return value(QString::fromUtf8("feed_filters"), QVariantHash()).toHash();
   }
 
-  QVariantHash setFeedFilters(const QVariantHash &data) {
+  void setFeedFilters(const QVariantHash &data) {
     setValue(QString::fromUtf8("feed_filters"), data);
+  }
+
+  QVariantHash getDownloadRules() const {
+    return value(QString::fromUtf8("download_rules"), QVariantHash()).toHash();
+  }
+
+  void setDownloadRules(const QVariantHash &data) {
+    setValue(QString::fromUtf8("download_rules"), data);
   }
 };
 
