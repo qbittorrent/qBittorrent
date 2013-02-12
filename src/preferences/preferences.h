@@ -1315,6 +1315,38 @@ public:
   void setTrackersTrackerListState(const QByteArray &data) {
     setValue(QString::fromUtf8("TorrentProperties/Trackers/TrackerListState"), data);
   }
+
+  QStringList getTorPropSplitterSizes() const {
+    return value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  }
+
+  void setTorPropSplitterSizes(const QString &data) {
+    setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), data);
+  }
+
+  bool getTorPropVisible() const {
+    return value(QString::fromUtf8("TorrentProperties/Visible"), false).toBool();
+  }
+
+  void setTorPropVisible(const bool &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Visible"), data);
+  }
+
+  QByteArray getTorPropFileListState() const {
+    return value(QString::fromUtf8("TorrentProperties/FilesListState")).toByteArray();
+  }
+
+  void setTorPropFileListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/FilesListState"), data);
+  }
+
+  int getTorPropCurTab() const {
+    return value(QString::fromUtf8("TorrentProperties/CurrentTab")).toInt();
+  }
+
+  void setTorPropCurTab(const int &data) {
+    setValue(QString::fromUtf8("TorrentProperties/CurrentTab"), data);
+  }
 };
 
 #endif // PREFERENCES_H
