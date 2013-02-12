@@ -107,7 +107,8 @@ HEADERS += misc.h \
            scannedfoldersmodel.h \
            qinisettings.h \
            smtp.h \
-           dnsupdater.h
+           dnsupdater.h \
+           qbittorrent-resume.h
 
 
 SOURCES += main.cpp \
