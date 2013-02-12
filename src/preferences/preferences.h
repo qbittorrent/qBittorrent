@@ -1347,6 +1347,14 @@ public:
   void setTorPropCurTab(const int &data) {
     setValue(QString::fromUtf8("TorrentProperties/CurrentTab"), data);
   }
+
+  QStringList getSearchEnginesDisabled() const {
+    return value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
+  }
+
+  void setSearchEnginesDisabled(const QStringList &data) {
+    setValue(QString::fromUtf8("SearchEngines/disabledEngines"), data);
+  }
 };
 
 #endif // PREFERENCES_H
