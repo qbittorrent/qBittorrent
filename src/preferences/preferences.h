@@ -1283,6 +1283,30 @@ public:
   void setTrayIconStyle(TrayIcon::Style style) {
     setValue(QString::fromUtf8("Preferences/Advanced/TrayIconStyle"), style);
   }
+
+  QSize getStateSize(const QSize &fallback) const {
+    return value(QString::fromUtf8("Preferences/State/size"), fallback).toSize();
+  }
+
+  void setStateSize(const QSize &data) {
+    setValue(QString::fromUtf8("Preferences/State/size"), data);
+  }
+
+  QPoint getStatePos() const {
+    return value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
+  }
+
+  void setStatePos(const QPoint &data) {
+    setValue(QString::fromUtf8("Preferences/State/pos"), data);
+  }
+
+  QStringList getStateHSpliterSizes() const {
+    return value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
+  }
+
+  void setStateHSpliterSizes(const QStringList &data) {
+    setValue("Preferences/State/hSplitterSizes", data);
+  }
 };
 
 #endif // PREFERENCES_H
