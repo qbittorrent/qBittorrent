@@ -1403,6 +1403,38 @@ public:
   void setRssSplitterV(const QByteArray &data) {
     setValue(QString::fromUtf8("rss/splitter_v"), data);
   }
+
+  QString getCreateTorLastAddPath() const {
+    return value(QString::fromUtf8("CreateTorrent/last_add_path"), QDir::homePath()).toString();
+  }
+
+  void setCreateTorLastAddPath(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_add_path"), data);
+  }
+
+  QString getCreateTorLastSavePath() const {
+    return value(QString::fromUtf8("CreateTorrent/last_save_path"), QDir::homePath()).toString();
+  }
+
+  void setCreateTorLastSavePath(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_save_path"), data);
+  }
+
+  QString getCreateTorTrackerList() const {
+    return value(QString::fromUtf8("CreateTorrent/TrackerList"), QString()).toString();
+  }
+
+  void setCreateTorTrackerList(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_save_path"), data);
+  }
+
+  QByteArray getCreateTorDimensions() const {
+    return value(QString::fromUtf8("CreateTorrent/dimensions")).toByteArray();
+  }
+
+  void setCreateTorDimensions(const QByteArray &data) {
+    setValue(QString::fromUtf8("CreateTorrent/dimensions"), data);
+  }
 };
 
 #endif // PREFERENCES_H
