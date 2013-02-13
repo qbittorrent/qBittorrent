@@ -245,7 +245,7 @@ public:
   }
 
   QString lastLocationPath() const {
-    return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString();
+    return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QDir::homePath()).toString();
 }
 
   void setLastLocationPath(const QString &path) {
@@ -1462,6 +1462,22 @@ public:
 
   void setSelectedFilterIndex(const int &data) {
     setValue(QString::fromUtf8("TransferListFilters/selectedFilterIndex"), data);
+  }
+
+  QByteArray getMainGeometry() const {
+    return value(QString::fromUtf8("MainWindow/geometry")).toByteArray();
+  }
+
+  void setMainGeometry(const QByteArray &data) {
+    setValue(QString::fromUtf8("MainWindow/geometry"), data);
+  }
+
+  QByteArray getMainVSplitterState() const {
+    return value(QString::fromUtf8("MainWindow/vsplitterState")).toByteArray();
+  }
+
+  void setMainVSplitterState(const QByteArray &data) {
+    setValue(QString::fromUtf8("MainWindow/vsplitterState"), data);
   }
 };
 
