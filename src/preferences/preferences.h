@@ -1099,6 +1099,10 @@ public:
     return value("TransferListFilters/customLabels").toStringList();
   }
 
+  void setTorrentLabels(const QStringList &data) {
+    setValue("TransferListFilters/customLabels", data);
+  }
+
   void addTorrentLabel(const QString& label) {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.contains(label))
@@ -1450,6 +1454,14 @@ public:
 
   void setTorPropPeerListState(const QByteArray &data) {
     setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListState"), data);
+  }
+
+  int getSelectedFilterIndex() const {
+    return value(QString::fromUtf8("TransferListFilters/selectedFilterIndex")).toInt();
+  }
+
+  void setSelectedFilterIndex(const int &data) {
+    setValue(QString::fromUtf8("TransferListFilters/selectedFilterIndex"), data);
   }
 };
 
