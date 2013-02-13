@@ -1547,6 +1547,14 @@ public:
   void setImportDimensions(const QByteArray &data) {
     setValue(QString::fromUtf8("TorrentImportDlg/dimensions"), data);
   }
+
+  bool getLegal() const {
+    return value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool();
+  }
+
+  void setLegal(bool const &data) {
+    setValue(QString::fromUtf8("LegalNotice/Accepted"), data);
+  }
 };
 
 #endif // PREFERENCES_H

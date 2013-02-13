@@ -58,7 +58,6 @@ Q_IMPORT_PLUGIN(qico)
 #endif
 
 #include "preferences.h"
-#include "qinisettings.h"
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
 #include <signal.h>
 #include <execinfo.h>
@@ -98,8 +97,8 @@ class LegalNotice: public QObject {
 
 public:
   static bool userAgreesWithNotice() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    if (settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
+    Preferences pref;
+    if (pref.getLegal()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI
     std::cout << std::endl << "*** " << qPrintable(tr("Legal Notice")) << " ***" << std::endl;
@@ -108,7 +107,7 @@ public:
     char ret = getchar(); // Read pressed key
     if (ret == 'y' || ret == 'Y') {
       // Save the answer
-      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      pref.setLegal(true);
       return true;
     }
     return false;
@@ -123,7 +122,7 @@ public:
     msgBox.exec();
     if (msgBox.clickedButton() == agree_button) {
       // Save the answer
-      settings.setValue(QString::fromUtf8("LegalNotice/Accepted"), true);
+      pref.setLegal(true);
       return true;
     }
     return false;
