@@ -1555,6 +1555,22 @@ public:
   void setLegal(bool const &data) {
     setValue(QString::fromUtf8("LegalNotice/Accepted"), data);
   }
+
+  QDateTime getDNSLastUpdate() const {
+    return value(QString::fromUtf8("DNSUpdater/lastUpdateTime")).toDateTime();
+  }
+
+  void setDNSLastUpdate(const QDateTime &data) {
+    setValue(QString::fromUtf8("DNSUpdater/lastUpdateTime"), data);
+  }
+
+  QString getDNSLastIP() const {
+    return value(QString::fromUtf8("DNSUpdater/lastIP")).toString();
+  }
+
+  void setDNSLastIP(const QString &data) {
+    setValue(QString::fromUtf8("DNSUpdater/lastIP"), data);
+  }
 };
 
 #endif // PREFERENCES_H

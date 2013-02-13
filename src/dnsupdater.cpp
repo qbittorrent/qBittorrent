@@ -40,9 +40,9 @@ DNSUpdater::DNSUpdater(QObject *parent) :
   updateCredentials();
 
   // Load saved settings from previous session
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  m_lastIPCheckTime = settings.value("DNSUpdater/lastUpdateTime").toDateTime();
-  m_lastIP = QHostAddress(settings.value("DNSUpdater/lastIP").toString());
+  Preferences pref;
+  m_lastIPCheckTime = pref.getDNSLastUpdate();
+  m_lastIP = QHostAddress(pref.getDNSLastIP());
 
   // Start IP checking timer
   m_ipCheckTimer.setInterval(IP_CHECK_INTERVAL_MS);
@@ -58,9 +58,9 @@ DNSUpdater::DNSUpdater(QObject *parent) :
 
 DNSUpdater::~DNSUpdater() {
   // Save lastupdate time and last ip
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("DNSUpdater/lastUpdateTime", m_lastIPCheckTime);
-  settings.setValue("DNSUpdater/lastIP", m_lastIP.toString());
+  Preferences pref;
+  pref.setDNSLastUpdate(m_lastIPCheckTime);
+  pref.setDNSLastIP(m_lastIP.toString());
 }
 
 void DNSUpdater::checkPublicIP()
