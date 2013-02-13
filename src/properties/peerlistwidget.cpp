@@ -44,7 +44,6 @@
 #include <QMenu>
 #include <QClipboard>
 #include <vector>
-#include "qinisettings.h"
 
 using namespace libtorrent;
 
@@ -295,13 +294,13 @@ void PeerListWidget::clear() {
 }
 
 void PeerListWidget::loadSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  header()->restoreState(settings.value("TorrentProperties/Peers/PeerListState").toByteArray());
+  Preferences pref;
+  header()->restoreState(pref.getTorPropPeerListState());
 }
 
 void PeerListWidget::saveSettings() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentProperties/Peers/PeerListState", header()->saveState());
+  Preferences pref;
+  pref.setTorPropPeerListState(header()->saveState());
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {

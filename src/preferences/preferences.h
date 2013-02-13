@@ -1443,6 +1443,14 @@ public:
   void setNotificationBaloons(const bool &data) {
     setValue(QString::fromUtf8("Preferences/General/NotificationBaloons"), data);
   }
+
+  QByteArray getTorPropPeerListState() const {
+    return value(QString::fromUtf8("TorrentProperties/Peers/PeerListState")).toByteArray();
+  }
+
+  void setTorPropPeerListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListState"), data);
+  }
 };
 
 #endif // PREFERENCES_H
