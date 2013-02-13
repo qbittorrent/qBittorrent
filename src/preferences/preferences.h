@@ -1531,6 +1531,10 @@ public:
   QString getImportContentLastDir() const {
     return value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
   }
+  
+  QString getImportContentLastDir() const {
+    return value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+  }
 
   void setImportContentLastDir(const QString &data) {
     setValue(QString::fromUtf8("TorrentImport/LastContentDir"), data);
