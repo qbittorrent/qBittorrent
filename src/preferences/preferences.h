@@ -1479,6 +1479,14 @@ public:
   void setMainVSplitterState(const QByteArray &data) {
     setValue(QString::fromUtf8("MainWindow/vsplitterState"), data);
   }
+
+  QByteArray getTransListHeaderState() const {
+    return value(QString::fromUtf8("TransferList/HeaderState")).toByteArray();
+  }
+
+  void setTransListHeaderState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TransferList/HeaderState"), data);
+  }
 };
 
 #endif // PREFERENCES_H
