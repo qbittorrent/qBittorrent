@@ -1487,6 +1487,62 @@ public:
   void setTransListHeaderState(const QByteArray &data) {
     setValue(QString::fromUtf8("TransferList/HeaderState"), data);
   }
+
+  QByteArray getDiagHeaderState() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/treeHeaderState")).toByteArray();
+  }
+
+  void setDiagHeaderState(const QByteArray &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/treeHeaderState"), data);
+  }
+
+  int getDiagW() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/width"), -1).toInt();
+  }
+
+  void setDiagW(const int &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/width"), data);
+  }
+
+  bool getDiagExpanded() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/expanded"), false).toBool();
+  }
+
+  void setDiagExpanded(const bool &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/expanded"), data);
+  }
+
+  int getDiagY() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/y")).toInt();
+  }
+
+  void setDiagY(const int &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/y"), data);
+  }
+
+  QStringList getDiagHistory() const {
+    return value(QString::fromUtf8("TorrentAdditionDlg/save_path_history")).toStringList();
+  }
+
+  void setDiagHistory(const QStringList &data) {
+    setValue(QString::fromUtf8("TorrentAdditionDlg/save_path_history"), data);
+  }
+
+  QString getImportContentLastDir() const {
+    return value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+  }
+
+  void setImportContentLastDir(const QString &data) {
+    setValue(QString::fromUtf8("TorrentImport/LastContentDir"), data);
+  }
+
+  QByteArray getImportDimensions() const {
+    return value(QString::fromUtf8("TorrentImportDlg/dimensions")).toByteArray();
+  }
+
+  void setImportDimensions(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentImportDlg/dimensions"), data);
+  }
 };
 
 #endif // PREFERENCES_H
