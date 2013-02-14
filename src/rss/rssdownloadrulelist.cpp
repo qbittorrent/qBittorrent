@@ -34,7 +34,7 @@
 
 #include "rssdownloadrulelist.h"
 #include "rsssettings.h"
-#include "qinisettings.h"
+#include "qbittorrent-rss.h"
 
 RssDownloadRuleList::RssDownloadRuleList()
 {
@@ -54,14 +54,14 @@ RssDownloadRulePtr RssDownloadRuleList::findMatchingRule(const QString &feed_url
 
 void RssDownloadRuleList::saveRulesToStorage()
 {
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  qBTRSS.setValue("download_rules", toVariantHash());
+  Qbittorrent_rss qbt_rss;
+  qbt_rss.setDownloadRules(toVariantHash());
 }
 
 void RssDownloadRuleList::loadRulesFromStorage()
 {
-  QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
-  loadRulesFromVariantHash(qBTRSS.value("download_rules").toHash());
+  Qbittorrent_rss qbt_rss;
+  loadRulesFromVariantHash(qbt_rss.getDownloadRules());
 }
 
 QVariantHash RssDownloadRuleList::toVariantHash() const

@@ -66,7 +66,6 @@
 #include "propertieswidget.h"
 #include "statusbar.h"
 #include "hidabletabwidget.h"
-#include "qinisettings.h"
 #include "torrentimportdlg.h"
 #include "rsssettings.h"
 #include "torrentmodel.h"
@@ -491,30 +490,27 @@ void MainWindow::tab_changed(int new_tab) {
 }
 
 void MainWindow::writeSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.beginGroup(QString::fromUtf8("MainWindow"));
-  settings.setValue("geometry", saveGeometry());
+  Preferences pref;
+  pref.setMainGeometry(saveGeometry());
   // Splitter size
-  settings.setValue(QString::fromUtf8("vsplitterState"), vSplitter->saveState());
-  settings.endGroup();
+  pref.setMainVSplitterState(vSplitter->saveState());
   properties->saveSettings();
 }
 
 void MainWindow::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.beginGroup(QString::fromUtf8("MainWindow"));
-  if (settings.contains("geometry")) {
-    if (restoreGeometry(settings.value("geometry").toByteArray()))
+  Preferences pref;
+  const QByteArray geo(pref.getMainGeometry());
+  if (!geo.isEmpty()) {
+    if (restoreGeometry(geo))
       m_posInitialized = true;
   }
-  const QByteArray splitterState = settings.value("vsplitterState").toByteArray();
+  const QByteArray splitterState = pref.getMainVSplitterState();
   if (splitterState.isEmpty()) {
     // Default sizes
     vSplitter->setSizes(QList<int>() << 120 << vSplitter->width()-120);
   } else {
     vSplitter->restoreState(splitterState);
-  }
-  settings.endGroup();
+  }  
 }
 
 void MainWindow::balloonClicked() {
@@ -921,12 +917,11 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 // Display a dialog to allow user to add
 // torrents to download list
 void MainWindow::on_actionOpen_triggered() {
-  Preferences pref;
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  Preferences pref;  
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList pathsList = QFileDialog::getOpenFileNames(0,
-                                                              tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
+                                                              tr("Open Torrent Files"), pref.lastLocationPath(),
                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if (!pathsList.empty()) {
     const bool useTorrentAdditionDialog = pref.useAdditionDialog();
@@ -940,7 +935,7 @@ void MainWindow::on_actionOpen_triggered() {
     // Save last dir to remember it
     QStringList top_dir = pathsList.at(0).split(QDir::separator());
     top_dir.removeLast();
-    settings.setValue(QString::fromUtf8("MainWindowLastDir"), top_dir.join(QDir::separator()));
+    pref.setLastLocationPath(top_dir.join(QDir::separator()));
   }
 }
 
@@ -994,9 +989,8 @@ void MainWindow::addTorrent(QString path) {
 }
 
 void MainWindow::processDownloadedFiles(QString path, QString url) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog)
+  Preferences pref;
+  if (pref.useAdditionDialog())
     AddNewTorrentDialog::showTorrent(path, url);
   else
     QBtSession::instance()->addTorrent(path, false, url);
@@ -1004,9 +998,8 @@ void MainWindow::processDownloadedFiles(QString path, QString url) {
 
 void MainWindow::processNewMagnetLink(const QString& link)
 {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
-  if (useTorrentAdditionDialog)
+  Preferences pref;
+  if (pref.useAdditionDialog())
     AddNewTorrentDialog::showMagnet(link);
   else
     QBtSession::instance()->addMagnetUri(link);
@@ -1175,15 +1168,14 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
  *****************************************************/
 
 void MainWindow::downloadFromURLList(const QStringList& url_list) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
+  Preferences pref;
   foreach (QString url, url_list) {
     if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {
       qDebug("Converting bc link to magnet link");
       url = misc::bcLinkToMagnet(url);
     }
     if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
-      if (useTorrentAdditionDialog)
+      if (pref.useAdditionDialog())
         AddNewTorrentDialog::showMagnet(url);
       else
         QBtSession::instance()->addMagnetUri(url);

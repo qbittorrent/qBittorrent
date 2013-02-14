@@ -54,7 +54,6 @@
 #include "misc.h"
 #include "preferences.h"
 #include "searchlistdelegate.h"
-#include "qinisettings.h"
 #include "mainwindow.h"
 #include "iconprovider.h"
 #include "lineedit.h"
@@ -301,12 +300,12 @@ void SearchEngine::propagateSectionResized(int index, int , int newsize) {
 void SearchEngine::saveResultsColumnsWidth() {
   if (all_tab.size() > 0) {
     QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-    QIniSettings settings("qBittorrent", "qBittorrent");
+    Preferences pref;
     QStringList width_list;
     QStringList new_width_list;
     short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
 
-    QString line = settings.value("SearchResultsColsWidth", QString()).toString();
+    QString line = pref.getSearchResultColsW();
     if (!line.isEmpty()) {
       width_list = line.split(' ');
     }
@@ -323,7 +322,7 @@ void SearchEngine::saveResultsColumnsWidth() {
         new_width_list << QString::number(treeview->columnWidth(i));
       }
     }
-    settings.setValue("SearchResultsColsWidth", new_width_list.join(" "));
+    pref.setSearchResultColsW(new_width_list.join(" "));
   }
 }
 
@@ -486,8 +485,8 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   if (searchTimeout->isActive()) {
     searchTimeout->stop();
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
+  Preferences pref;
+  bool useNotificationBalloons = pref.getNotificationBaloons();
   if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
     mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }

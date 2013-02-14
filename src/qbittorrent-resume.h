@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2013  sledgehammer_999
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,47 +28,33 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef QINISETTINGS_H
-#define QINISETTINGS_H
+#ifndef QBITTORRENTRESUME_H
+#define QBITTORRENTRESUME_H
 
-#include <QSettings>
+#include "qinisettings.h"
 
-class QIniSettings : public QSettings {
-  Q_OBJECT
-  Q_DISABLE_COPY (QIniSettings)
+class Qbittorrent_resume : public QIniSettings {
+  Q_DISABLE_COPY(Qbittorrent_resume)
 
 public:
-#ifdef Q_WS_WIN
-  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
-    QString key_tmp(key);
-    QVariant ret = QSettings::value(key_tmp);
-    if (ret.isNull())
-      return defaultValue;
-    return ret;
+  Qbittorrent_resume() : QIniSettings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume")) {
+    qDebug() << "Qbittorrent_resume constructor";
   }
 
-  void setValue(const QString &key, const QVariant &val) {
-    QString key_tmp(key);
-    if (format() == QSettings::NativeFormat)
-      key_tmp.replace("\\", "/");
-    QSettings::setValue(key_tmp, val);
-  }
-#endif
-
-protected:
-  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
-#ifdef Q_WS_WIN
-      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
-#else
-      QSettings(organization, application, parent)
-#endif
-  {
-
+  QHash<QString, QVariant> getTorrentsTmp() const {
+    return value(QString::fromUtf8("torrents-tmp")).toHash();
   }
 
-  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
+  void setTorrentsTmp(const QHash<QString, QVariant> &data) {
+    setValue(QString::fromUtf8("torrents-tmp"), data);
+  }
 
+  QHash<QString, QVariant> getTorrents() const {
+    return value(QString::fromUtf8("torrents")).toHash();
+  }
+
+  void setTorrents(const QHash<QString, QVariant> &data) {
+    setValue(QString::fromUtf8("torrents"), data);
   }
 };
-
-#endif // QINISETTINGS_H
+#endif // QBITTORRENTRESUME_H

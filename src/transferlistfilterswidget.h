@@ -47,7 +47,6 @@
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "torrentmodel.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
@@ -281,16 +280,15 @@ public:
   }
 
   void saveSettings() const {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
+    Preferences pref;
+    pref.setSelectedFilterIndex(statusFilters->currentRow());
     //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
-    settings.setValue("customLabels", QVariant(customLabels.keys()));
+    pref.setTorrentLabels(customLabels.keys());
   }
 
   void loadSettings() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-    statusFilters->setCurrentRow(settings.value("TransferListFilters/selectedFilterIndex", 0).toInt());
+    Preferences pref;
+    statusFilters->setCurrentRow(pref.getSelectedFilterIndex());
     const QStringList label_list = Preferences().getTorrentLabels();
     foreach (const QString &label, label_list) {
       customLabels.insert(label, 0);

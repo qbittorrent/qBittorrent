@@ -58,7 +58,6 @@
 #include "torrentmodel.h"
 #include "deletionconfirmationdlg.h"
 #include "propertieswidget.h"
-#include "qinisettings.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
 
@@ -181,12 +180,6 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
   Q_ASSERT(index.isValid());
   Q_ASSERT(index.model() == labelFilterModel);
   return nameFilterModel->mapFromSource(statusFilterModel->mapFromSource(labelFilterModel->mapFromSource(index)));
-}
-
-
-QStringList TransferListWidget::getCustomLabels() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  return settings.value("TransferListFilters/customLabels", QStringList()).toStringList();
 }
 
 void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
@@ -761,7 +754,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   if (selectedIndexes.size() == 1)
     listMenu.addAction(&actionRename);
   // Label Menu
-  QStringList customLabels = getCustomLabels();
+  Preferences pref;
+  QStringList customLabels = pref.getTorrentLabels();
   customLabels.sort();
   QList<QAction*> labelActions;
   QMenu *labelMenu = listMenu.addMenu(IconProvider::instance()->getIcon("view-categories"), tr("Label"));
@@ -900,14 +894,14 @@ void TransferListWidget::applyStatusFilter(int f) {
 
 void TransferListWidget::saveSettings()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("TransferList/HeaderState", header()->saveState());
+  Preferences pref;
+  pref.setTransListHeaderState(header()->saveState());
 }
 
 bool TransferListWidget::loadSettings()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  bool ok = header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
+  Preferences pref;
+  bool ok = header()->restoreState(pref.getTransListHeaderState());
   if (!ok) {
     header()->resizeSection(0, 200); // Default
   }

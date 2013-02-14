@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2013  sledgehammer_999
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,47 +28,50 @@
  * Contact : chris@qbittorrent.org
  */
 
-#ifndef QINISETTINGS_H
-#define QINISETTINGS_H
+#ifndef QBITTORRENTRSS_H
+#define QBITTORRENTRSS_H
 
-#include <QSettings>
+#include "qinisettings.h"
 
-class QIniSettings : public QSettings {
-  Q_OBJECT
-  Q_DISABLE_COPY (QIniSettings)
+class Qbittorrent_rss : public QIniSettings {
+  Q_DISABLE_COPY(Qbittorrent_rss)
 
 public:
-#ifdef Q_WS_WIN
-  QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
-    QString key_tmp(key);
-    QVariant ret = QSettings::value(key_tmp);
-    if (ret.isNull())
-      return defaultValue;
-    return ret;
+  Qbittorrent_rss() : QIniSettings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-rss")) {
+    qDebug() << "Qbittorrent_rss constructor";
   }
 
-  void setValue(const QString &key, const QVariant &val) {
-    QString key_tmp(key);
-    if (format() == QSettings::NativeFormat)
-      key_tmp.replace("\\", "/");
-    QSettings::setValue(key_tmp, val);
-  }
-#endif
-
-protected:
-  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
-#ifdef Q_WS_WIN
-      QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
-#else
-      QSettings(organization, application, parent)
-#endif
-  {
-
+  QHash<QString, QVariant> getOldItems() const {
+    return value(QString::fromUtf8("old_items"), QHash<QString, QVariant>()).toHash();
   }
 
-  QIniSettings(const QString &fileName, Format format, QObject *parent = 0 ) : QSettings(fileName, format, parent) {
+  void setOldItems(const QHash<QString, QVariant> &data) {
+    setValue(QString::fromUtf8("old_items"), data);
+  }
 
+  QVariantHash getDownloaderOn() const {
+    return value(QString::fromUtf8("downloader_on"), QVariantHash()).toHash();
+  }
+
+  void setDownloaderOn(const QVariantHash &data) {
+    setValue(QString::fromUtf8("downloader_on"), data);
+  }
+
+  QVariantHash getFeedFilters() const {
+    return value(QString::fromUtf8("feed_filters"), QVariantHash()).toHash();
+  }
+
+  void setFeedFilters(const QVariantHash &data) {
+    setValue(QString::fromUtf8("feed_filters"), data);
+  }
+
+  QVariantHash getDownloadRules() const {
+    return value(QString::fromUtf8("download_rules"), QVariantHash()).toHash();
+  }
+
+  void setDownloadRules(const QVariantHash &data) {
+    setValue(QString::fromUtf8("download_rules"), data);
   }
 };
 
-#endif // QINISETTINGS_H
+#endif // QBITTORRENTRSS_H

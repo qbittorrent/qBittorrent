@@ -53,7 +53,7 @@
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "proptabbar.h"
 #include "iconprovider.h"
 #include "lineedit.h"
@@ -268,28 +268,27 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
 }
 
 void PropertiesWidget::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  Preferences pref;
   // Restore splitter sizes
-  QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  QStringList sizes_str = pref.getTorPropSplitterSizes();
   if (sizes_str.size() == 2) {
     slideSizes << sizes_str.first().toInt();
     slideSizes << sizes_str.last().toInt();
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
-  if (!filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray())) {
+  if (!filesList->header()->restoreState(pref.getTorPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
-  const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
-  m_tabBar->setCurrentIndex(current_tab);
-  if (!settings.value("TorrentProperties/Visible", false).toBool()) {
-    setVisibility(false);
-  }
+  const int current_tab = pref.getTorPropCurTab();
+  m_tabBar->setCurrentIndex(current_tab);  
+  setVisibility(pref.getTorPropVisible());
+
 }
 
 void PropertiesWidget::saveSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
-  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  Preferences pref;
+  pref.setTorPropVisible(state==VISIBLE);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;
@@ -299,11 +298,11 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if (sizes.size() == 2) {
-    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
+    pref.setTorPropSplitterSizes(QString::number(sizes.first())+','+QString::number(sizes.last()));
   }
-  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
+  pref.setTorPropFileListState(filesList->header()->saveState());
   // Remember current tab
-  settings.setValue("TorrentProperties/CurrentTab", m_tabBar->currentIndex());
+  pref.setTorPropCurTab(m_tabBar->currentIndex());
 }
 
 void PropertiesWidget::reloadPreferences() {
