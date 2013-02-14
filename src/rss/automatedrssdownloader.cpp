@@ -40,7 +40,6 @@
 #include "rsssettings.h"
 #include "rssdownloadrulelist.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 #include "iconprovider.h"
@@ -102,10 +101,10 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 void AutomatedRssDownloader::loadSettings()
 {
   // load dialog geometry
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
+  Preferences pref;
+  restoreGeometry(pref.getRssGeometry());
   ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
-  ui->hsplitter->restoreState(settings.value("RssFeedDownloader/hsplitterSizes").toByteArray());
+  ui->hsplitter->restoreState(pref.getRssHSplitterSizes());
   // Display download rules
   loadRulesList();
 }
@@ -114,9 +113,9 @@ void AutomatedRssDownloader::saveSettings()
 {
   RssSettings().setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
   // Save dialog geometry
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("RssFeedDownloader/geometry", saveGeometry());
-  settings.setValue("RssFeedDownloader/hsplitterSizes", ui->hsplitter->saveState());
+  Preferences pref;
+  pref.setRssGeometry(saveGeometry());
+  pref.setRssHSplitterSizes(ui->hsplitter->saveState());
 }
 
 void AutomatedRssDownloader::loadRulesList()

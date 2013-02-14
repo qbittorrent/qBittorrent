@@ -245,7 +245,7 @@ public:
   }
 
   QString lastLocationPath() const {
-    return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString();
+    return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QDir::homePath()).toString();
 }
 
   void setLastLocationPath(const QString &path) {
@@ -1099,6 +1099,10 @@ public:
     return value("TransferListFilters/customLabels").toStringList();
   }
 
+  void setTorrentLabels(const QStringList &data) {
+    setValue("TransferListFilters/customLabels", data);
+  }
+
   void addTorrentLabel(const QString& label) {
     QStringList labels = value("TransferListFilters/customLabels").toStringList();
     if (!labels.contains(label))
@@ -1282,6 +1286,290 @@ public:
   }
   void setTrayIconStyle(TrayIcon::Style style) {
     setValue(QString::fromUtf8("Preferences/Advanced/TrayIconStyle"), style);
+  }
+
+  QSize getStateSize(const QSize &fallback) const {
+    return value(QString::fromUtf8("Preferences/State/size"), fallback).toSize();
+  }
+
+  void setStateSize(const QSize &data) {
+    setValue(QString::fromUtf8("Preferences/State/size"), data);
+  }
+
+  QPoint getStatePos() const {
+    return value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
+  }
+
+  void setStatePos(const QPoint &data) {
+    setValue(QString::fromUtf8("Preferences/State/pos"), data);
+  }
+
+  QStringList getStateHSpliterSizes() const {
+    return value(QString::fromUtf8("Preferences/State/hSplitterSizes"), QStringList()).toStringList();
+  }
+
+  void setStateHSpliterSizes(const QStringList &data) {
+    setValue(QString::fromUtf8("Preferences/State/hSplitterSizes"), data);
+  }
+
+  QByteArray getTrackersTrackerListState() const {
+    return value(QString::fromUtf8("TorrentProperties/Trackers/TrackerListState")).toByteArray();
+  }
+
+  void setTrackersTrackerListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Trackers/TrackerListState"), data);
+  }
+
+  QStringList getTorPropSplitterSizes() const {
+    return value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  }
+
+  void setTorPropSplitterSizes(const QString &data) {
+    setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), data);
+  }
+
+  bool getTorPropVisible() const {
+    return value(QString::fromUtf8("TorrentProperties/Visible"), false).toBool();
+  }
+
+  void setTorPropVisible(const bool &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Visible"), data);
+  }
+
+  QByteArray getTorPropFileListState() const {
+    return value(QString::fromUtf8("TorrentProperties/FilesListState")).toByteArray();
+  }
+
+  void setTorPropFileListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/FilesListState"), data);
+  }
+
+  int getTorPropCurTab() const {
+    return value(QString::fromUtf8("TorrentProperties/CurrentTab")).toInt();
+  }
+
+  void setTorPropCurTab(const int &data) {
+    setValue(QString::fromUtf8("TorrentProperties/CurrentTab"), data);
+  }
+
+  QStringList getSearchEnginesDisabled() const {
+    return value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
+  }
+
+  void setSearchEnginesDisabled(const QStringList &data) {
+    setValue(QString::fromUtf8("SearchEngines/disabledEngines"), data);
+  }
+
+  QString getSearchResultColsW() const {
+    return value(QString::fromUtf8("SearchResultsColsWidth"), QString()).toString();
+  }
+
+  void setSearchResultColsW(const QString &data) {
+    setValue(QString::fromUtf8("SearchResultsColsWidth"), data);
+  }
+
+  QByteArray getRssGeometry() const {
+    return value(QString::fromUtf8("RssFeedDownloader/geometry")).toByteArray();
+  }
+
+  void setRssGeometry(const QByteArray &data) {
+    setValue(QString::fromUtf8("RssFeedDownloader/geometry"), data);
+  }
+
+  QByteArray getRssHSplitterSizes() const {
+    return value(QString::fromUtf8("RssFeedDownloader/hsplitterSizes")).toByteArray();
+  }
+
+  void setRssHSplitterSizes(const QByteArray &data) {
+    setValue(QString::fromUtf8("RssFeedDownloader/hsplitterSizes"), data);
+  }
+
+  QStringList getRssOpenFolders() const {
+    return value(QString::fromUtf8("Rss/open_folders"), QStringList()).toStringList();
+  }
+
+  void setRssOpenFolders(const QStringList &data) {
+    setValue(QString::fromUtf8("Rss/open_folders"), data);
+  }
+
+  QByteArray getRssSplitterH() const {
+    return value(QString::fromUtf8("rss/splitter_h"), QByteArray()).toByteArray();
+  }
+
+  void setRssSplitterH(const QByteArray &data) {
+    setValue(QString::fromUtf8("rss/splitter_h"), data);
+  }
+
+  QByteArray getRssSplitterV() const {
+    return value(QString::fromUtf8("rss/splitter_v"), QByteArray()).toByteArray();
+  }
+
+  void setRssSplitterV(const QByteArray &data) {
+    setValue(QString::fromUtf8("rss/splitter_v"), data);
+  }
+
+  QString getCreateTorLastAddPath() const {
+    return value(QString::fromUtf8("CreateTorrent/last_add_path"), QDir::homePath()).toString();
+  }
+
+  void setCreateTorLastAddPath(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_add_path"), data);
+  }
+
+  QString getCreateTorLastSavePath() const {
+    return value(QString::fromUtf8("CreateTorrent/last_save_path"), QDir::homePath()).toString();
+  }
+
+  void setCreateTorLastSavePath(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_save_path"), data);
+  }
+
+  QString getCreateTorTrackerList() const {
+    return value(QString::fromUtf8("CreateTorrent/TrackerList"), QString()).toString();
+  }
+
+  void setCreateTorTrackerList(const QString &data) {
+    setValue(QString::fromUtf8("CreateTorrent/last_save_path"), data);
+  }
+
+  QByteArray getCreateTorDimensions() const {
+    return value(QString::fromUtf8("CreateTorrent/dimensions")).toByteArray();
+  }
+
+  void setCreateTorDimensions(const QByteArray &data) {
+    setValue(QString::fromUtf8("CreateTorrent/dimensions"), data);
+  }
+
+  bool getNotificationBaloons() const {
+    return value(QString::fromUtf8("Preferences/General/NotificationBaloons"), true).toBool();
+  }
+
+  void setNotificationBaloons(const bool &data) {
+    setValue(QString::fromUtf8("Preferences/General/NotificationBaloons"), data);
+  }
+
+  QByteArray getTorPropPeerListState() const {
+    return value(QString::fromUtf8("TorrentProperties/Peers/PeerListState")).toByteArray();
+  }
+
+  void setTorPropPeerListState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentProperties/Peers/PeerListState"), data);
+  }
+
+  int getSelectedFilterIndex() const {
+    return value(QString::fromUtf8("TransferListFilters/selectedFilterIndex")).toInt();
+  }
+
+  void setSelectedFilterIndex(const int &data) {
+    setValue(QString::fromUtf8("TransferListFilters/selectedFilterIndex"), data);
+  }
+
+  QByteArray getMainGeometry() const {
+    return value(QString::fromUtf8("MainWindow/geometry")).toByteArray();
+  }
+
+  void setMainGeometry(const QByteArray &data) {
+    setValue(QString::fromUtf8("MainWindow/geometry"), data);
+  }
+
+  QByteArray getMainVSplitterState() const {
+    return value(QString::fromUtf8("MainWindow/vsplitterState")).toByteArray();
+  }
+
+  void setMainVSplitterState(const QByteArray &data) {
+    setValue(QString::fromUtf8("MainWindow/vsplitterState"), data);
+  }
+
+  QByteArray getTransListHeaderState() const {
+    return value(QString::fromUtf8("TransferList/HeaderState")).toByteArray();
+  }
+
+  void setTransListHeaderState(const QByteArray &data) {
+    setValue(QString::fromUtf8("TransferList/HeaderState"), data);
+  }
+
+  QByteArray getDiagHeaderState() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/treeHeaderState")).toByteArray();
+  }
+
+  void setDiagHeaderState(const QByteArray &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/treeHeaderState"), data);
+  }
+
+  int getDiagW() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/width"), -1).toInt();
+  }
+
+  void setDiagW(const int &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/width"), data);
+  }
+
+  bool getDiagExpanded() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/expanded"), false).toBool();
+  }
+
+  void setDiagExpanded(const bool &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/expanded"), data);
+  }
+
+  int getDiagY() const {
+    return value(QString::fromUtf8("AddNewTorrentDialog/y")).toInt();
+  }
+
+  void setDiagY(const int &data) {
+    setValue(QString::fromUtf8("AddNewTorrentDialog/y"), data);
+  }
+
+  QStringList getDiagHistory() const {
+    return value(QString::fromUtf8("TorrentAdditionDlg/save_path_history")).toStringList();
+  }
+
+  void setDiagHistory(const QStringList &data) {
+    setValue(QString::fromUtf8("TorrentAdditionDlg/save_path_history"), data);
+  }
+
+  QString getImportContentLastDir() const {
+    return value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+  }
+  
+  QString getImportContentLastDir() const {
+    return value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+  }
+
+  void setImportContentLastDir(const QString &data) {
+    setValue(QString::fromUtf8("TorrentImport/LastContentDir"), data);
+  }
+
+  QByteArray getImportDimensions() const {
+    return value(QString::fromUtf8("TorrentImportDlg/dimensions")).toByteArray();
+  }
+
+  void setImportDimensions(const QByteArray &data) {
+    setValue(QString::fromUtf8("TorrentImportDlg/dimensions"), data);
+  }
+
+  bool getLegal() const {
+    return value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool();
+  }
+
+  void setLegal(bool const &data) {
+    setValue(QString::fromUtf8("LegalNotice/Accepted"), data);
+  }
+
+  QDateTime getDNSLastUpdate() const {
+    return value(QString::fromUtf8("DNSUpdater/lastUpdateTime")).toDateTime();
+  }
+
+  void setDNSLastUpdate(const QDateTime &data) {
+    setValue(QString::fromUtf8("DNSUpdater/lastUpdateTime"), data);
+  }
+
+  QString getDNSLastIP() const {
+    return value(QString::fromUtf8("DNSUpdater/lastIP")).toString();
+  }
+
+  void setDNSLastIP(const QString &data) {
+    setValue(QString::fromUtf8("DNSUpdater/lastIP"), data);
   }
 };
 
