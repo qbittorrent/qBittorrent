@@ -295,12 +295,12 @@ void PeerListWidget::clear() {
 }
 
 void PeerListWidget::loadSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   header()->restoreState(settings.value("TorrentProperties/Peers/PeerListState").toByteArray());
 }
 
 void PeerListWidget::saveSettings() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.setValue("TorrentProperties/Peers/PeerListState", header()->saveState());
 }
 

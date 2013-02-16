@@ -108,7 +108,7 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 void AutomatedRssDownloader::loadSettings()
 {
   // load dialog geometry
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
   ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
   ui->hsplitter->restoreState(settings.value("RssFeedDownloader/hsplitterSizes").toByteArray());
@@ -120,7 +120,7 @@ void AutomatedRssDownloader::saveSettings()
 {
   RssSettings().setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
   // Save dialog geometry
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.setValue("RssFeedDownloader/geometry", saveGeometry());
   settings.setValue("RssFeedDownloader/hsplitterSizes", ui->hsplitter->saveState());
 }

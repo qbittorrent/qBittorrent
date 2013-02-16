@@ -268,7 +268,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
 }
 
 void PropertiesWidget::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   // Restore splitter sizes
   QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
   if (sizes_str.size() == 2) {
@@ -288,7 +288,7 @@ void PropertiesWidget::readSettings() {
 }
 
 void PropertiesWidget::saveSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());

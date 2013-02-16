@@ -62,7 +62,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
 {
   ui->setupUi(this);
 
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   Preferences pref;
   ui->start_torrent_cb->setChecked(!pref.addTorrentsInPause());
   ui->save_path_combo->addItem(fsutils::toDisplayPath(pref.getSavePath()), pref.getSavePath());
@@ -93,7 +93,7 @@ AddNewTorrentDialog::~AddNewTorrentDialog()
 
 void AddNewTorrentDialog::loadState()
 {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
   QByteArray state = settings.value("treeHeaderState").toByteArray();
   if (!state.isEmpty())
@@ -109,7 +109,7 @@ void AddNewTorrentDialog::loadState()
 
 void AddNewTorrentDialog::saveState()
 {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
   if (m_contentModel)
     settings.setValue("treeHeaderState", ui->content_tree->header()->saveState());
@@ -229,7 +229,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     }
   }
 
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
   // Set dialog position
   setdialogPosition();
@@ -251,7 +251,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   QString torrent_name = misc::magnetUriToName(m_url);
   setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
 
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
   // Set dialog position
   setdialogPosition();
@@ -262,7 +262,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
   QDir selected_save_path(ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString());
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   // Get current history
   QStringList history = settings.value("TorrentAdditionDlg/save_path_history").toStringList();
   QList<QDir> history_dirs;
@@ -488,7 +488,7 @@ void AddNewTorrentDialog::setdialogPosition()
   qApp->processEvents();
   QPoint center(misc::screenCenter(this));
   // Adjust y
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   int y = settings.value("AddNewTorrentDialog/y", -1).toInt();
   if (y >= 0) {
     center.setY(y);
@@ -502,7 +502,7 @@ void AddNewTorrentDialog::setdialogPosition()
 
 void AddNewTorrentDialog::loadSavePathHistory()
 {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   QDir default_save_path(Preferences().getSavePath());
   // Load save path history
   QStringList raw_path_history = settings.value("TorrentAdditionDlg/save_path_history").toStringList();

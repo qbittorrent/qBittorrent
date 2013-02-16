@@ -301,7 +301,7 @@ void SearchEngine::propagateSectionResized(int index, int , int newsize) {
 void SearchEngine::saveResultsColumnsWidth() {
   if (all_tab.size() > 0) {
     QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-    QIniSettings settings("qBittorrent", "qBittorrent");
+    QIniSettings settings;
     QStringList width_list;
     QStringList new_width_list;
     short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
@@ -486,7 +486,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   if (searchTimeout->isActive()) {
     searchTimeout->stop();
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
   if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
     mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));

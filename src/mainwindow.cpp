@@ -491,7 +491,7 @@ void MainWindow::tab_changed(int new_tab) {
 }
 
 void MainWindow::writeSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   settings.setValue("geometry", saveGeometry());
   // Splitter size
@@ -501,7 +501,7 @@ void MainWindow::writeSettings() {
 }
 
 void MainWindow::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.beginGroup(QString::fromUtf8("MainWindow"));
   if (settings.contains("geometry")) {
     if (restoreGeometry(settings.value("geometry").toByteArray()))
@@ -922,7 +922,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 // torrents to download list
 void MainWindow::on_actionOpen_triggered() {
   Preferences pref;
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   // Open File Open Dialog
   // Note: it is possible to select more than one file
   const QStringList pathsList = QFileDialog::getOpenFileNames(0,
@@ -1172,7 +1172,7 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
  *****************************************************/
 
 void MainWindow::downloadFromURLList(const QStringList& url_list) {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   const bool useTorrentAdditionDialog = settings.value(QString::fromUtf8("Preferences/Downloads/AdditionDialog"), true).toBool();
   foreach (QString url, url_list) {
     if (url.startsWith("bc://bt/", Qt::CaseInsensitive)) {

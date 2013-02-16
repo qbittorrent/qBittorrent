@@ -98,7 +98,7 @@ class LegalNotice: public QObject {
 
 public:
   static bool userAgreesWithNotice() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     if (settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI

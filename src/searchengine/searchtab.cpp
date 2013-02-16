@@ -106,7 +106,7 @@ QHeaderView* SearchTab::header() const {
 }
 
 bool SearchTab::loadColWidthResultsList() {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   QString line = settings.value("SearchResultsColsWidth", QString()).toString();
   if (line.isEmpty())
     return false;

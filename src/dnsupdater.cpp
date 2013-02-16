@@ -40,7 +40,7 @@ DNSUpdater::DNSUpdater(QObject *parent) :
   updateCredentials();
 
   // Load saved settings from previous session
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   m_lastIPCheckTime = settings.value("DNSUpdater/lastUpdateTime").toDateTime();
   m_lastIP = QHostAddress(settings.value("DNSUpdater/lastIP").toString());
 
@@ -58,7 +58,7 @@ DNSUpdater::DNSUpdater(QObject *parent) :
 
 DNSUpdater::~DNSUpdater() {
   // Save lastupdate time and last ip
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.setValue("DNSUpdater/lastUpdateTime", m_lastIPCheckTime);
   settings.setValue("DNSUpdater/lastIP", m_lastIP.toString());
 }

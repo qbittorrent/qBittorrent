@@ -440,7 +440,7 @@ void TrackerList::showTrackerListMenu(QPoint) {
 }
 
 void TrackerList::loadSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   if (!header()->restoreState(settings.value("TorrentProperties/Trackers/TrackerListState").toByteArray())) {
     setColumnWidth(0, 30);
     setColumnWidth(1, 300);
@@ -448,6 +448,6 @@ void TrackerList::loadSettings() {
 }
 
 void TrackerList::saveSettings() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.setValue("TorrentProperties/Trackers/TrackerListState", header()->saveState());
 }

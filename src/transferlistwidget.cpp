@@ -185,7 +185,7 @@ inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) c
 
 
 QStringList TransferListWidget::getCustomLabels() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   return settings.value("TransferListFilters/customLabels", QStringList()).toStringList();
 }
 
@@ -900,13 +900,13 @@ void TransferListWidget::applyStatusFilter(int f) {
 
 void TransferListWidget::saveSettings()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.setValue("TransferList/HeaderState", header()->saveState());
 }
 
 bool TransferListWidget::loadSettings()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   bool ok = header()->restoreState(settings.value("TransferList/HeaderState").toByteArray());
   if (!ok) {
     header()->resizeSection(0, 200); // Default

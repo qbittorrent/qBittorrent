@@ -281,7 +281,7 @@ void RSSImp::deleteSelectedItems()
 
 void RSSImp::loadFoldersOpenState()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.beginGroup("Rss");
   QStringList open_folders = settings.value("open_folders", QStringList()).toStringList();
   settings.endGroup();
@@ -320,7 +320,7 @@ void RSSImp::saveFoldersOpenState()
     qDebug("saving open folder: %s", qPrintable(path));
     open_folders << path;
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.beginGroup("Rss");
   settings.setValue("open_folders", open_folders);
   settings.endGroup();
@@ -578,7 +578,7 @@ void RSSImp::refreshTextBrowser()
 void RSSImp::saveSlidersPosition()
 {
   // Remember sliders positions
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.setValue("rss/splitter_h", splitter_h->saveState());
   settings.setValue("rss/splitter_v", splitter_v->saveState());
   qDebug("Splitters position saved");
@@ -586,7 +586,7 @@ void RSSImp::saveSlidersPosition()
 
 void RSSImp::restoreSlidersPosition()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   QByteArray pos_h = settings.value("rss/splitter_h", QByteArray()).toByteArray();
   if (!pos_h.isNull()) {
     splitter_h->restoreState(pos_h);

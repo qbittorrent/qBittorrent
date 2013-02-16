@@ -75,7 +75,7 @@ public:
     full_name = engine_elem.elementsByTagName("name").at(0).toElement().text();
     url = engine_elem.elementsByTagName("url").at(0).toElement().text();
     supported_categories = engine_elem.elementsByTagName("categories").at(0).toElement().text().split(" ");
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     QStringList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
     enabled = !disabled_engines.contains(name);
   }
@@ -88,7 +88,7 @@ public:
   void setEnabled(bool _enabled) {
     enabled = _enabled;
     // Save to Hard disk
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     QStringList disabled_engines = settings.value(QString::fromUtf8("SearchEngines/disabledEngines"), QStringList()).toStringList();
     if (enabled) {
       disabled_engines.removeAll(name);
