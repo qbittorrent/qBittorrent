@@ -53,7 +53,6 @@
 #endif
 #include "torrentpersistentdata.h"
 #include "httpserver.h"
-#include "qinisettings.h"
 #include "bandwidthscheduler.h"
 #include <libtorrent/version.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -2790,8 +2789,8 @@ void QBtSession::startUpTorrents() {
         addTorrent(torrentBackup.path()+QDir::separator()+hash+".torrent", false, QString(), true);
     }
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
-  settings.setValue("ported_to_new_savepath_system", true);
+  Preferences pref;
+  pref.setValue("ported_to_new_savepath_system", true);
   qDebug("Unfinished torrents resumed");
 }
 
