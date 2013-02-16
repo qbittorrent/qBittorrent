@@ -62,15 +62,21 @@ namespace DNS {
 enum Service { DYNDNS, NOIP, NONE = -1 };
 }
 
-class Preferences : public QIniSettings {
+class Preferences : private QIniSettings {
   Q_DISABLE_COPY(Preferences)
 
 public:
-  Preferences() : QIniSettings("qBittorrent", "qBittorrent") {
+  Preferences()
+    : QIniSettings("qBittorrent", "qBittorrent")
+  {
     qDebug() << "Preferences constructor";
   }
 
-public:
+  void sync()
+  {
+    QIniSettings::sync();
+  }
+
   // General options
   QString getLocale() const {
     return value(QString::fromUtf8("Preferences/General/Locale"), "en_GB").toString();
