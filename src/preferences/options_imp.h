@@ -110,6 +110,7 @@ private:
   QString getTempPath() const;
   bool preAllocateAllFiles() const;
   bool useAdditionDialog() const;
+  bool loadMetaDataForMagnet() const;
   bool addTorrentsInPause() const;
   QString getTorrentExportDir() const;
   QString getFinishedTorrentExportDir() const;
