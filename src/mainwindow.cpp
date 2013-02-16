@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = pref.speedInTitleBar();
   // Clean exit on log out
-  connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()));
+  connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
   // Setting icons
 #if defined(Q_WS_X11)
   if (Preferences().useSystemIconTheme())
@@ -328,14 +328,31 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 }
 
 void MainWindow::deleteBTSession() {
+#ifdef Q_OS_WIN
+  HMODULE result = LoadLibrary(TEXT("User32.dll"));
+  typedef BOOL (WINAPI *DEFER_FUNC)(HWND, LPCWSTR);
+  typedef BOOL (WINAPI *RESUME_FUNC)(HWND);
+  DEFER_FUNC DeferSessionEnd = NULL;
+  RESUME_FUNC ResumeSessionEnd = NULL;
+  if(result) {
+    DeferSessionEnd = (DEFER_FUNC) GetProcAddress(result, "ShutdownBlockReasonCreate");
+    ResumeSessionEnd = (RESUME_FUNC) GetProcAddress(result, "ShutdownBlockReasonDestroy");
+    if(DeferSessionEnd && ResumeSessionEnd)
+      DeferSessionEnd(this->winId(), TEXT("Saving data..."));
+  }
+#endif
   guiUpdater->stop();
   status_bar->stopTimer();
   QBtSession::drop();
   m_pwr->setActivityState(false);
   // Save window size, columns size
   writeSettings();
-  // Accept exit
-  qApp->exit();
+#ifdef Q_OS_WIN
+  if(result) {
+    if(DeferSessionEnd && ResumeSessionEnd)
+      ResumeSessionEnd(this->winId());
+  }
+#endif
 }
 
 // Destructor
