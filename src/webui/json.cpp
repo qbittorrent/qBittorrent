@@ -114,7 +114,10 @@ QVariantMap json::fromJson(const QString& json) {
     if (!tmp.isEmpty()) couples << tmp;
 
     foreach (const QString &couple, couples) {
-      QStringList parts = couple.split(":");
+      QStringList parts;
+      qint32 jsonSep = couple.indexOf(":");
+      parts << couple.mid(0, jsonSep);
+      parts << couple.mid(jsonSep + 1);
       if (parts.size() != 2) continue;
       QString key = parts.first();
       if (key.startsWith("\"") && key.endsWith("\"")) {
