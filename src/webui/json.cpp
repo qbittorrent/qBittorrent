@@ -133,7 +133,12 @@ QVariantMap json::fromJson(const QString& json) {
           if (list_val.startsWith("\"") && list_val.endsWith("\"")) {
             varlist << list_val.mid(1, list_val.length()-2).replace("\\n", "\n");
           } else {
-            varlist << list_val.toInt();
+            if (list_val.compare(("false"), Qt::CaseInsensitive) == 0)
+              varlist << false;
+            else if (list_val.compare(("true"), Qt::CaseInsensitive) == 0)
+              varlist << true;
+            else
+              varlist << list_val.toInt();
           }
         }
         value = varlist;
