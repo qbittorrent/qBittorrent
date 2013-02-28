@@ -57,6 +57,8 @@ ExecutionLog::ExecutionLog(QWidget *parent) :
       addBanMessage(msg);
     connect(QBtSession::instance(), SIGNAL(newConsoleMessage(QString)), SLOT(addLogMessage(QString)));
     connect(QBtSession::instance(), SIGNAL(newBanMessage(QString)), SLOT(addBanMessage(QString)));
+    connect(m_logList, SIGNAL(logCleared()), QBtSession::instance(), SLOT(clearConsoleMessages()));
+    connect(m_banList, SIGNAL(logCleared()), QBtSession::instance(), SLOT(clearPeerBanMessages()));
 }
 
 ExecutionLog::~ExecutionLog()
