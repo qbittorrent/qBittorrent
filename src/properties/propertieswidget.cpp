@@ -66,8 +66,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setupUi(this);
 
   // Icons
-  deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
-  addWS_button->setIcon(IconProvider::instance()->getIcon("list-add"));
   trackerUpButton->setIcon(IconProvider::instance()->getIcon("go-up"));
   trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
 
@@ -92,8 +90,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
-  connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
-  connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
