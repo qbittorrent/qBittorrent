@@ -2675,14 +2675,14 @@ void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_pat
   addMagnetUri(uri, false);
 }
 
-void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label) {
+void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
   //emit aboutToDownloadFromUrl(url);
   const QUrl qurl = QUrl::fromEncoded(url.toUtf8());
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[qurl] = qMakePair(save_path, label);
   url_skippingDlg << qurl;
   // Launch downloader thread
-  downloader->downloadTorrentUrl(url);
+  downloader->downloadTorrentUrl(url, cookies);
 }
 
 // Add to Bittorrent session the downloaded torrent file
