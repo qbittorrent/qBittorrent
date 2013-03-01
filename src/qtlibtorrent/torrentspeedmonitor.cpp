@@ -124,18 +124,18 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
   QMutexLocker locker(&m_mutex);
   QTorrentHandle h = m_session->getTorrentHandle(hash);
   if (h.is_paused() || !m_samples.contains(hash))
-    return -1;
+    return MAX_ETA;
 
   const QPair<qreal, qreal> speed_average = m_samples.value(hash).average();
 
   if(h.is_seed()) {
     if (speed_average.second == 0)
-      return -1;
+      return MAX_ETA;
 
     bool _unused;
     qreal max_ratio = m_session->getMaxRatioPerTorrent(hash, &_unused);
     if (max_ratio < 0)
-      return -1;
+      return MAX_ETA;
 
     libtorrent::size_type realDL = h.all_time_download();
     if (realDL <= 0)
@@ -144,7 +144,7 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
     return (realDL * max_ratio - h.all_time_upload()) / speed_average.second;
   } else {
     if (speed_average.first == 0)
-      return -1;
+      return MAX_ETA;
 
     return (h.total_wanted() - h.total_done()) / speed_average.first;
   }
