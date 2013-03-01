@@ -42,15 +42,15 @@ class SpeedSample {
 
 public:
   SpeedSample() {}
-  void addSample(int s);
-  qreal average() const;
+  void addSample(qint32 speedDL, qint32 speedUL);
+  QPair<qreal, qreal> average() const;
   void clear();
 
 private:
   static const int max_samples = 30;
 
 private:
-  QList<int> m_speedSamples;
+  QList<QPair<qint32, qint32> > m_speedSamples;
 };
 
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session) :
@@ -76,21 +76,31 @@ void TorrentSpeedMonitor::run()
   } while(!m_abort);
 }
 
-void SpeedSample::addSample(int s)
+void SpeedSample::addSample(qint32 speedDL, qint32 speedUL)
 {
-  m_speedSamples << s;
+  m_speedSamples << qMakePair(speedDL, speedUL);
   if (m_speedSamples.size() > max_samples)
     m_speedSamples.removeFirst();
 }
 
-qreal SpeedSample::average() const
+QPair<qreal, qreal> SpeedSample::average() const
 {
-  if (m_speedSamples.empty()) return 0;
-  qlonglong sum = 0;
-  foreach (int s, m_speedSamples) {
-    sum += s;
+  if (m_speedSamples.empty())
+    return qMakePair(0., 0.);
+
+  qlonglong sumDL = 0, sumUL =0;
+
+  QPair<qint32, qint32> p;
+  foreach (p, m_speedSamples) {
+    sumDL += p.first;
+    sumUL += p.second;
   }
-  return sum/static_cast<float>(m_speedSamples.size());
+
+  qreal numSamples = m_speedSamples.size();
+  return qMakePair(
+        (sumDL/numSamples),
+        (sumUL/numSamples));
+
 }
 
 void SpeedSample::clear()
@@ -113,10 +123,31 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
 {
   QMutexLocker locker(&m_mutex);
   QTorrentHandle h = m_session->getTorrentHandle(hash);
-  if (h.is_paused() || !m_samples.contains(hash)) return -1;
-  const qreal speed_average = m_samples.value(hash).average();
-  if (speed_average == 0) return -1;
-  return (h.total_wanted() - h.total_done()) / speed_average;
+  if (h.is_paused() || !m_samples.contains(hash))
+    return -1;
+
+  const QPair<qreal, qreal> speed_average = m_samples.value(hash).average();
+
+  if(h.is_seed()) {
+    if (speed_average.second == 0)
+      return -1;
+
+    bool _unused;
+    qreal max_ratio = m_session->getMaxRatioPerTorrent(hash, &_unused);
+    if (max_ratio < 0)
+      return -1;
+
+    libtorrent::size_type realDL = h.all_time_download();
+    if (realDL <= 0)
+      realDL = h.total_wanted();
+
+    return (realDL * max_ratio - h.all_time_upload()) / speed_average.second;
+  } else {
+    if (speed_average.first == 0)
+      return -1;
+
+    return (h.total_wanted() - h.total_done()) / speed_average.first;
+  }
 }
 
 void TorrentSpeedMonitor::getSamples()
@@ -130,10 +161,10 @@ void TorrentSpeedMonitor::getSamples()
 #if LIBTORRENT_VERSION_MINOR > 15
       torrent_status st = it->status(0x0);
       if (!st.paused)
-        m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate);
+        m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate, st.upload_payload_rate);
 #else
       if (!it->is_paused())
-        m_samples[misc::toQString(it->info_hash())].addSample(it->status().download_payload_rate);
+        m_samples[misc::toQString(it->info_hash())].addSample(it->status().download_payload_rate, it->status().upload_payload_rate);
 #endif
     } catch(invalid_handle&) {}
   }
