@@ -36,6 +36,9 @@ CONFIG(debug, debug|release) {
   DEFINES += NDEBUG
 }
 
+#Enable backtrace support
+CONFIG += strace_win
+
 strace_win:{
   DEFINES += STACKTRACE_WIN
   FORMS += stacktrace_win_dlg.ui
