@@ -65,7 +65,7 @@ Q_IMPORT_PLUGIN(qico)
 #include "stacktrace.h"
 #endif
 
-#if defined(Q_OS_WIN) && defined(STACKTRACE_WIN)
+#ifdef STACKTRACE_WIN
 #include <signal.h>
 #include "stacktrace_win.h"
 #include "stacktrace_win_dlg.h"
@@ -131,7 +131,7 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -315,7 +315,7 @@ int main(int argc, char *argv[]) {
 #ifndef DISABLE_GUI
   app.setQuitOnLastWindowClosed(false);
 #endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_OS_WIN)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);
