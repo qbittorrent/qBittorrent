@@ -1,3 +1,16 @@
+strace_win:{
+  contains(QMAKE_HOST.arch, x86):{
+    # i686 arch requires frame pointer preservation
+    QMAKE_CXXFLAGS_RELEASE += -Oy-
+    QMAKE_CXXFLAGS_DEBUG += -Oy-
+  }
+  release:{
+    QMAKE_CXXFLAGS_RELEASE += -Zi
+    QMAKE_LFLAGS += "/DEBUG"
+  }
+  LIBS += dbghelp.lib
+}
+
 RC_FILE = qbittorrent.rc
 
 # Enable Wide characters
