@@ -36,6 +36,13 @@ CONFIG(debug, debug|release) {
   DEFINES += NDEBUG
 }
 
+strace_win:{
+  DEFINES += STACKTRACE_WIN
+  FORMS += stacktrace_win_dlg.ui
+  HEADERS += stacktrace_win.h \
+             stacktrace_win_dlg.h
+}
+
 win32-g++ {
   include(winconf-mingw.pri)
 }

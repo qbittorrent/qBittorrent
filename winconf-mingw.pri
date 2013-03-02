@@ -1,3 +1,16 @@
+strace_win:{
+  contains(QMAKE_HOST.arch, x86):{
+    # i686 arch requires frame pointer preservation
+    QMAKE_CXXFLAGS_RELEASE += -fno-omit-frame-pointer
+    QMAKE_CXXFLAGS_DEBUG += -fno-omit-frame-pointer
+  }
+  release:{
+    #QMAKE_CXXFLAGS_RELEASE += -g
+    #QMAKE_LFLAGS_RELEASE -= -Wl,-s
+  }
+  LIBS += libdbghelp
+}
+
 RC_FILE = qbittorrent_mingw.rc
 
 #You need to link with libtorrent > 0.15.5 (or svn) and you must
