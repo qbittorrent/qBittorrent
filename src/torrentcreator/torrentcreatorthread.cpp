@@ -113,8 +113,13 @@ void TorrentCreatorThread::run() {
     foreach (const QString &seed, url_seeds) {
       t.add_url_seed(seed.trimmed().toStdString());
     }
+    qint32 tier = 0;
     foreach (const QString &tracker, trackers) {
-      t.add_tracker(tracker.trimmed().toStdString());
+      if (tracker.isEmpty()) {
+        ++tier;
+        continue;
+      }
+      t.add_tracker(tracker.trimmed().toStdString(), tier);
     }
     if (abort) return;
     // calculate the hash for all pieces
