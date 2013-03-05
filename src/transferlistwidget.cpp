@@ -390,8 +390,8 @@ void TransferListWidget::copySelectedMagnetURIs() const {
   const QStringList hashes = getSelectedTorrentsHashes();
   foreach (const QString &hash, hashes) {
     const QTorrentHandle h = BTSession->getTorrentHandle(hash);
-    if (h.is_valid() && h.has_metadata())
-      magnet_uris << misc::toQString(make_magnet_uri(h.get_torrent_info()));
+    if (h.is_valid())
+      magnet_uris << misc::toQString(make_magnet_uri(h));
   }
   qApp->clipboard()->setText(magnet_uris.join("\n"));
 }
@@ -810,8 +810,7 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     prioMenu->addAction(&actionBottomPriority);
   }
   listMenu.addSeparator();
-  if (one_has_metadata)
-    listMenu.addAction(&actionCopy_magnet_link);
+  listMenu.addAction(&actionCopy_magnet_link);
   // Call menu
   QAction *act = 0;
   act = listMenu.exec(QCursor::pos());
