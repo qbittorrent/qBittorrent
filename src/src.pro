@@ -60,6 +60,9 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 # filesystem v3 is the default.
 DEFINES += BOOST_FILESYSTEM_VERSION=2
 
+# We need lz to gunzip HTTP responses.
+LIBS += -lz
+
 INCLUDEPATH += $$PWD
 
 
