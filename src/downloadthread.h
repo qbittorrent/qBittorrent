@@ -36,6 +36,7 @@
 #include <QObject>
 #include <QHash>
 #include <QSslError>
+#include <zlib.h>
 
 QT_BEGIN_NAMESPACE
 class QNetworkAccessManager;
@@ -62,6 +63,7 @@ private slots:
 #endif
 
 private:
+  static QByteArray gUncompress(Bytef *inData, size_t len);
   QString errorCodeToString(QNetworkReply::NetworkError status);
   void applyProxySettings();
 
