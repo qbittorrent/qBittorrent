@@ -66,8 +66,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setupUi(this);
 
   // Icons
-  deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
-  addWS_button->setIcon(IconProvider::instance()->getIcon("list-add"));
   trackerUpButton->setIcon(IconProvider::instance()->getIcon("go-up"));
   trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
 
@@ -91,8 +89,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
-  connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
-  connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
+  connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
@@ -503,6 +500,34 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   }
 }
 
+void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
+  QMenu seedMenu;
+  QModelIndexList rows = listWebSeeds->selectionModel()->selectedRows();
+  QAction *actAdd = seedMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
+  QAction *actDel = 0;
+  QAction *actCpy = 0;
+  QAction *actEdit = 0;
+
+  if (rows.size()) {
+    actDel = seedMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+    seedMenu.addSeparator();
+    actCpy = seedMenu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
+    actEdit = seedMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+  }
+
+  const QAction *act = seedMenu.exec(QCursor::pos());
+  if (act) {
+    if (act == actAdd)
+      askWebSeed();
+    else if (act == actDel)
+      deleteSelectedUrlSeeds();
+    else if (act == actCpy)
+      copySelectedWebSeedsToClipboard();
+    else if (act == actEdit)
+      editWebSeed();
+  }
+}
+
 void PropertiesWidget::renameSelectedFile() {
   const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
   Q_ASSERT(selectedIndexes.size() == 1);
@@ -633,7 +658,8 @@ void PropertiesWidget::askWebSeed() {
                          QMessageBox::Ok);
     return;
   }
-  h.add_url_seed(url_seed);
+  if (h.is_valid())
+    h.add_url_seed(url_seed);
   // Refresh the seeds list
   loadUrlSeeds();
 }
@@ -643,13 +669,55 @@ void PropertiesWidget::deleteSelectedUrlSeeds() {
   bool change = false;
   foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
-    h.remove_url_seed(url_seed);
-    change = true;
+    try {
+      h.remove_url_seed(url_seed);
+      change = true;
+    } catch (invalid_handle&) {}
   }
   if (change) {
     // Refresh list
     loadUrlSeeds();
   }
+}
+
+void PropertiesWidget::copySelectedWebSeedsToClipboard() const {
+  const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
+  if (selected_items.isEmpty())
+    return;
+
+  QStringList urls_to_copy;
+  foreach (QListWidgetItem *item, selected_items)
+    urls_to_copy << item->text();
+
+  QApplication::clipboard()->setText(urls_to_copy.join("\n"));
+}
+
+void PropertiesWidget::editWebSeed() {
+  const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
+  if (selected_items.isEmpty())
+    return;
+
+  const QListWidgetItem *selected_item = selected_items.last();
+  const QString old_seed = selected_item->text();
+  bool result;
+  const QString new_seed = QInputDialog::getText(this, tr("Web seed editing"),
+                                                 tr("Web seed URL:"), QLineEdit::Normal,
+                                                 old_seed, &result);
+  if (!result)
+    return;
+
+  if (!listWebSeeds->findItems(new_seed, Qt::MatchFixedString).empty()) {
+    QMessageBox::warning(this, tr("qBittorrent"),
+                         tr("This url seed is already in the list."),
+                         QMessageBox::Ok);
+    return;
+  }
+
+  try {
+    h.remove_url_seed(old_seed);
+    h.add_url_seed(new_seed);
+    loadUrlSeeds();
+  } catch (invalid_handle&) {}
 }
 
 bool PropertiesWidget::applyPriorities() {
