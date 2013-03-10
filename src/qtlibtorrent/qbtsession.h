@@ -166,6 +166,8 @@ public slots:
   void addConsoleMessage(QString msg, QColor color=QApplication::palette().color(QPalette::WindowText));
 #endif
   void addPeerBanMessage(QString msg, bool from_ipfilter);
+  void clearConsoleMessages() { consoleMessages.clear(); }
+  void clearPeerBanMessages() { peerBanMessages.clear(); }
   void processDownloadedFile(QString, QString);
   void addMagnetSkipAddDlg(const QString& uri, const QString& save_path = QString(), const QString& label = QString());
   void addMagnetInteractive(const QString& uri);
