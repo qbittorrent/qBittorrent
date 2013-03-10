@@ -135,7 +135,7 @@ float QTorrentHandle::progress() const {
 
 bitfield QTorrentHandle::pieces() const {
 #if LIBTORRENT_VERSION_MINOR > 15
-  return torrent_handle::status(0x0).pieces;
+  return torrent_handle::status(torrent_handle::query_pieces).pieces;
 #else
   return torrent_handle::status().pieces;
 #endif
