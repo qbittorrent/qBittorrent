@@ -126,7 +126,7 @@ public slots:
   void disableIPFilter();
   void setQueueingEnabled(bool enable);
   void handleDownloadFailure(QString url, QString reason);
-  void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString());
+  void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(), const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
   // Session configuration - Setters
   void setListeningPort(int port);
   void setMaxConnections(int maxConnec);
