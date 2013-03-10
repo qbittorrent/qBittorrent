@@ -76,9 +76,7 @@ QString json::toJson(const QVariant& v) {
         result += "\\t";
         break;
       case '\"':
-      case '\'':
       case '\\':
-      case '&':
         result += '\\';
       case '\0':
       default:
