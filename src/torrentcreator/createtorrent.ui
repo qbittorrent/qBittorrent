@@ -123,6 +123,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string comment="A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.">You can separate tracker tiers / groups with an empty line.</string>
+       </property>
        <property name="acceptRichText">
         <bool>false</bool>
        </property>
