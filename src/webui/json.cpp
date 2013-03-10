@@ -115,10 +115,10 @@ QVariantMap json::fromJson(const QString& json) {
 
     foreach (const QString &couple, couples) {
       QStringList parts;
-      qint32 jsonSep = couple.indexOf(":");
-      parts << couple.mid(0, jsonSep);
+      int jsonSep = couple.indexOf(":");
+      parts << couple.left(jsonSep);
       parts << couple.mid(jsonSep + 1);
-      if (parts.size() != 2) continue;
+      Q_ASSERT(parts.size() == 2);
       QString key = parts.first();
       if (key.startsWith("\"") && key.endsWith("\"")) {
         key = key.mid(1, key.length()-2);
@@ -133,9 +133,9 @@ QVariantMap json::fromJson(const QString& json) {
           if (list_val.startsWith("\"") && list_val.endsWith("\"")) {
             varlist << list_val.mid(1, list_val.length()-2).replace("\\n", "\n");
           } else {
-            if (list_val.compare(("false"), Qt::CaseInsensitive) == 0)
+            if (list_val.compare("false", Qt::CaseInsensitive) == 0)
               varlist << false;
-            else if (list_val.compare(("true"), Qt::CaseInsensitive) == 0)
+            else if (list_val.compare("true", Qt::CaseInsensitive) == 0)
               varlist << true;
             else
               varlist << list_val.toInt();
