@@ -40,6 +40,7 @@
 #include "rsssettings.h"
 #endif
 #include "qinisettings.h"
+#include <zlib.h>
 
 /** Download Thread **/
 
@@ -48,6 +49,56 @@ DownloadThread::DownloadThread(QObject* parent) : QObject(parent) {
 #ifndef QT_NO_OPENSSL
   connect(&m_networkManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
+}
+
+QByteArray DownloadThread::gUncompress(Bytef *inData, size_t len) {
+  if (len <= 4) {
+    qWarning("gUncompress: Input data is truncated");
+    return QByteArray();
+  }
+
+  QByteArray result;
+
+  z_stream strm;
+  static const int CHUNK_SIZE = 1024;
+  char out[CHUNK_SIZE];
+
+  /* allocate inflate state */
+  strm.zalloc = Z_NULL;
+  strm.zfree = Z_NULL;
+  strm.opaque = Z_NULL;
+  strm.avail_in = len;
+  strm.next_in = inData;
+
+  #define windowBits 15
+  #define ENABLE_ZLIB_GZIP 32
+
+  int ret = inflateInit2(&strm, windowBits|ENABLE_ZLIB_GZIP ); // gzip decoding
+  if (ret != Z_OK)
+    return QByteArray();
+
+  // run inflate()
+  do {
+    strm.avail_out = CHUNK_SIZE;
+    strm.next_out = reinterpret_cast<unsigned char*>(out);
+
+    ret = inflate(&strm, Z_NO_FLUSH);
+    Q_ASSERT(ret != Z_STREAM_ERROR); // state not clobbered
+
+    switch (ret) {
+      case Z_NEED_DICT:
+      case Z_DATA_ERROR:
+      case Z_MEM_ERROR:
+        (void) inflateEnd(&strm);
+        return QByteArray();
+    }
+
+    result.append(out, CHUNK_SIZE - strm.avail_out);
+  } while (!strm.avail_out);
+
+  // clean up and return
+  inflateEnd(&strm);
+  return result;
 }
 
 void DownloadThread::processDlFinished(QNetworkReply* reply) {
@@ -72,7 +123,8 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
     const QString newUrlString = newUrl.toString();
     qDebug("Redirecting from %s to %s", qPrintable(url), qPrintable(newUrlString));
     m_redirectMapping.insert(newUrlString, url);
-    downloadUrl(newUrlString);
+    // redirecting with first cookies
+    downloadUrl(newUrlString, m_networkManager.cookieJar()->cookiesForUrl(url));
     reply->deleteLater();
     return;
   }
@@ -87,8 +139,12 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
     QString filePath = tmpfile->fileName();
     qDebug("Temporary filename is: %s", qPrintable(filePath));
     if (reply->isOpen() || reply->open(QIODevice::ReadOnly)) {
-      // TODO: Support GZIP compression
-      tmpfile->write(reply->readAll());
+      QByteArray replyData = reply->readAll();
+      if (reply->rawHeader("Content-Encoding") == "gzip") {
+        // uncompress gzip reply
+        replyData = gUncompress(reinterpret_cast<unsigned char*>(replyData.data()), replyData.length());
+      }
+      tmpfile->write(replyData);
       tmpfile->close();
       // XXX: tmpfile needs to be deleted on Windows before using the file
       // or it will complain that the file is used by another process.
@@ -136,6 +192,8 @@ QNetworkReply* DownloadThread::downloadUrl(const QString &url, const QList<QNetw
     qDebug("%s=%s", m_networkManager.cookieJar()->cookiesForUrl(url).at(i).name().data(), m_networkManager.cookieJar()->cookiesForUrl(url).at(i).value().data());
     qDebug("Domain: %s, Path: %s", qPrintable(m_networkManager.cookieJar()->cookiesForUrl(url).at(i).domain()), qPrintable(m_networkManager.cookieJar()->cookiesForUrl(url).at(i).path()));
   }
+  // accept gzip
+  request.setRawHeader("Accept-Encoding", "gzip");
   return m_networkManager.get(request);
 }
 

@@ -339,7 +339,7 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
     QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
   else
-    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
+    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies());
 }
 
 void RssFeed::recheckRssItemsForDownload()
