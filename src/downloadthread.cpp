@@ -70,8 +70,8 @@ QByteArray DownloadThread::gUncompress(Bytef *inData, size_t len) {
   strm.avail_in = len;
   strm.next_in = inData;
 
-  #define windowBits 15
-  #define ENABLE_ZLIB_GZIP 32
+  const int windowBits = 15;
+  const int ENABLE_ZLIB_GZIP = 32;
 
   int ret = inflateInit2(&strm, windowBits|ENABLE_ZLIB_GZIP ); // gzip decoding
   if (ret != Z_OK)
