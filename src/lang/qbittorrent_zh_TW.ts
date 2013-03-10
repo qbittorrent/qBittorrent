@@ -1890,6 +1890,10 @@ No further notices will be issued.</source>
         <source>Copy</source>
         <translation>複製</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3447,6 +3451,30 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Torrent content:</source>
         <translation>torrent 內容:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">網頁種子 URL:</translation>
     </message>
 </context>
 <context>
@@ -5360,6 +5388,11 @@ Do you want to install it now?</source>
     <message>
         <source>Auto</source>
         <translation>自動</translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

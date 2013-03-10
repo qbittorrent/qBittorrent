@@ -1872,6 +1872,10 @@ Esta será a única vez que recebe este aviso.</translation>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3436,6 +3440,30 @@ Motivo: %2</translation>
     <message>
         <source>Torrent content:</source>
         <translation>Conteúdo do torrent:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Url de compartilhador web:</translation>
     </message>
 </context>
 <context>
@@ -5357,6 +5385,11 @@ Instalar agora?</translation>
     <message>
         <source>Auto</source>
         <translation>Automático</translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

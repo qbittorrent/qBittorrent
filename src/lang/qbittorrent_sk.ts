@@ -1893,6 +1893,10 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <source>Copy</source>
         <translation>Kopírovať</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3446,6 +3450,30 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <source>Torrent content:</source>
         <translation>Obsah torrentu:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Web seed URL:</translation>
     </message>
 </context>
 <context>
@@ -5360,6 +5388,11 @@ Chcete ho nainštalovať teraz?</translation>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

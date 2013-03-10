@@ -1430,6 +1430,10 @@ No further notices will be issued.</source>
         <source>Copy</source>
         <translation type="unfinished">Copiere</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -2881,6 +2885,30 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Torrent content:</source>
         <translation type="unfinished">Conţinutul torrent-ului:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Web seed URL:</translation>
     </message>
 </context>
 <context>
@@ -4703,6 +4731,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

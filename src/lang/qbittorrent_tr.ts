@@ -1791,6 +1791,10 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3316,6 +3320,30 @@ qBittorent&apos;i %1 sürümüne güncellemek istiyor musunuz?</translation>
     <message>
         <source>Torrent content:</source>
         <translation>Torrent içeriği:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Ağ göndereni adresi:</translation>
     </message>
 </context>
 <context>
@@ -5229,6 +5257,11 @@ Do you want to install it now?</source>
     <message>
         <source>Auto</source>
         <translation>Kendiliğinden</translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

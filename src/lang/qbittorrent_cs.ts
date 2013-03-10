@@ -576,139 +576,139 @@ p, li { white-space: pre-wrap; }
         <translation>Odpovídající RSS články</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="311"/>
         <source>New rule name</source>
         <translation>Nový název pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="305"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="311"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Napište název nového pravidla stahování, prosím.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="309"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="424"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="430"/>
         <source>Rule name conflict</source>
         <translation>Název pravidla koliduje</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="309"/>
-        <location filename="../rss/automatedrssdownloader.cpp" line="424"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="315"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="430"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Pravidlo s tímto názvem již existuje, vyberte prosím název jiný.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="327"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="333"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
         <translation>Opravdu chcete odstranit pravidlo s názvem %1?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="329"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="335"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Jste si jist, že chcete odstranit označená pravidla?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="330"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="336"/>
         <source>Rule deletion confirmation</source>
         <translation>Potvrdit smazání pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="352"/>
         <source>Destination directory</source>
         <translation>Cílový adresář</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="354"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="360"/>
         <source>Invalid action</source>
         <translation>Neplatná akce</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="354"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="360"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>Seznam je prázdný, není co exportovat.</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="358"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="364"/>
         <source>Where would you like to save the list?</source>
         <translation>Kam chcete seznam uložit?</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="358"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="364"/>
         <source>Rules list (*.rssrules)</source>
         <translation>Seznam pravidel (*.rssrules)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="363"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="369"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="363"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="369"/>
         <source>Failed to create the destination file</source>
         <translation>Nezdařilo se vytvořit cílový soubor</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="371"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="377"/>
         <source>Please point to the RSS download rules file</source>
         <translation>Odkažte na soubor s pravidly stahování RSS, prosím</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="371"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="377"/>
         <source>Rules list (*.rssrules *.filters)</source>
         <translation>Seznam pravidel (*.rssrules *.filters)</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="375"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Import Error</source>
         <translation>Import selhal</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="375"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
         <source>Failed to import the selected rules file</source>
         <translation>Import vybraného seznamu pravidel se nezdařil</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="386"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
         <source>Add new rule...</source>
         <translation>Přidat nové pravidlo...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="392"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="398"/>
         <source>Delete rule</source>
         <translation>Smazat pravidlo</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="394"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="400"/>
         <source>Rename rule...</source>
         <translation>Přejmenovat pravidlo...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="396"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="402"/>
         <source>Delete selected rules</source>
         <translation>Smazat označená pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="420"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="426"/>
         <source>Rule renaming</source>
         <translation>Přejmenování pravidla</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="420"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="426"/>
         <source>Please type the new rule name</source>
         <translation>Napište název nového pravidla, prosím</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="524"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="530"/>
         <source>Regex mode: use Perl-like regular expressions</source>
         <translation>Regex mód: použijte Perl syntaxi pro regulární výrazy</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="528"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="534"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolných znaků&lt;/li&gt;&lt;li&gt;Mezery se počítají jako operátor AND&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.cpp" line="530"/>
+        <location filename="../rss/automatedrssdownloader.cpp" line="536"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolných znaků&lt;/li&gt;&lt;li&gt;| odpovídá operátoru OR&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -2102,6 +2102,11 @@ Další upozornění již nebudou zobrazena.</translation>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
+    <message>
+        <location filename="../loglistwidget.cpp" line="48"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -2250,7 +2255,7 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1230"/>
+        <location filename="../mainwindow.cpp" line="1225"/>
         <source>Show</source>
         <translation>Ukázat</translation>
     </message>
@@ -2308,7 +2313,7 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1375"/>
+        <location filename="../mainwindow.cpp" line="1370"/>
         <source>Execution Log</source>
         <translation>Záznamy programu</translation>
     </message>
@@ -2378,7 +2383,7 @@ Další upozornění již nebudou zobrazena.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1294"/>
+        <location filename="../mainwindow.cpp" line="1289"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
         <translation>qBittorrent %1</translation>
@@ -2406,68 +2411,68 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
 Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
-        <location filename="../mainwindow.cpp" line="422"/>
-        <location filename="../mainwindow.cpp" line="687"/>
+        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="420"/>
+        <location filename="../mainwindow.cpp" line="685"/>
         <source>UI lock password</source>
         <translation>Heslo pro zamknutí UI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
-        <location filename="../mainwindow.cpp" line="422"/>
-        <location filename="../mainwindow.cpp" line="687"/>
+        <location filename="../mainwindow.cpp" line="400"/>
+        <location filename="../mainwindow.cpp" line="420"/>
+        <location filename="../mainwindow.cpp" line="685"/>
         <source>Please type the UI lock password:</source>
         <translation>Zadejte prosím heslo pro zamknutí UI:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="406"/>
+        <location filename="../mainwindow.cpp" line="404"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Heslo musí obsahovat nejméně 3 znaky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="410"/>
         <source>Password update</source>
         <translation>Změna hesla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="410"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Heslo zamykající UI bylo úspěšně změněno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="438"/>
+        <location filename="../mainwindow.cpp" line="436"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="453"/>
+        <location filename="../mainwindow.cpp" line="451"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="461"/>
         <source>Transfers (%1)</source>
         <translation>Přenosy (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="532"/>
         <source>Download completion</source>
         <translation>Kompletace stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="532"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Stahování %1 bylo dokončeno.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="538"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
+        <location filename="../mainwindow.cpp" line="538"/>
         <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
@@ -2476,145 +2481,145 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
  Důvod: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="545"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
         <translation>Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
+        <location filename="../mainwindow.cpp" line="547"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
         <translation>Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
+        <location filename="../mainwindow.cpp" line="549"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="553"/>
+        <location filename="../mainwindow.cpp" line="551"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
         <translation>Alt+3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="599"/>
         <source>Recursive download confirmation</source>
         <translation>Potvrzení rekurzivního stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="599"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrent %1 obsahuje soubory .torrent, chcete je také začít stahovat?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="602"/>
-        <location filename="../mainwindow.cpp" line="776"/>
+        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="774"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
-        <location filename="../mainwindow.cpp" line="775"/>
+        <location filename="../mainwindow.cpp" line="601"/>
+        <location filename="../mainwindow.cpp" line="773"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="602"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="618"/>
+        <location filename="../mainwindow.cpp" line="616"/>
         <source>Url download error</source>
         <translation>Chyba stahování URL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="618"/>
+        <location filename="../mainwindow.cpp" line="616"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Nelze stáhnout soubor z URL: %1, důvod: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="629"/>
+        <location filename="../mainwindow.cpp" line="627"/>
         <source>Global Upload Speed Limit</source>
         <translation>Celkový limit rychlosti nahrávání</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="648"/>
+        <location filename="../mainwindow.cpp" line="646"/>
         <source>Global Download Speed Limit</source>
         <translation>Celkový limit rychlosti stahování</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1147"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[S: %1/s, N: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="406"/>
-        <location filename="../mainwindow.cpp" line="700"/>
+        <location filename="../mainwindow.cpp" line="404"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Invalid password</source>
         <translation>Špatné heslo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="700"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>The password is invalid</source>
         <translation>Heslo není správné</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1230"/>
+        <location filename="../mainwindow.cpp" line="1225"/>
         <source>Hide</source>
         <translation>Skrýt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="772"/>
+        <location filename="../mainwindow.cpp" line="770"/>
         <source>Exiting qBittorrent</source>
         <translation>Ukončování qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="773"/>
+        <location filename="../mainwindow.cpp" line="771"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Některé soubory se právě přenášejí.
 Opravdu chcete ukončit qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="777"/>
+        <location filename="../mainwindow.cpp" line="775"/>
         <source>Always</source>
         <translation>Vždy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="929"/>
+        <location filename="../mainwindow.cpp" line="927"/>
         <source>Open Torrent Files</source>
         <translation>Otevřít torrent soubory</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="930"/>
+        <location filename="../mainwindow.cpp" line="928"/>
         <source>Torrent Files</source>
         <translation>Torrent soubory</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1021"/>
+        <location filename="../mainwindow.cpp" line="1016"/>
         <source>Options were saved successfully.</source>
         <translation>Nastavení bylo úspěšně uloženo.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1130"/>
+        <location filename="../mainwindow.cpp" line="1125"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1133"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1128"/>
+        <location filename="../mainwindow.cpp" line="1135"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rychlost stahování: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1136"/>
-        <location filename="../mainwindow.cpp" line="1142"/>
+        <location filename="../mainwindow.cpp" line="1131"/>
+        <location filename="../mainwindow.cpp" line="1137"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rychlost nahrávání: %1 KiB/s</translation>
@@ -2625,24 +2630,24 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <translation type="obsolete">qBittorrent %1 (Stahování: %2/s, Nahrávání: %3/s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1332"/>
+        <location filename="../mainwindow.cpp" line="1327"/>
         <source>A newer version is available</source>
         <translation>Je k dispozici nová verze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1333"/>
+        <location filename="../mainwindow.cpp" line="1328"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Na Sourceforge je k dispozici nová verze qBittorrent.
 Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1348"/>
+        <location filename="../mainwindow.cpp" line="1343"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Nelze provést aktualizaci qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1348"/>
+        <location filename="../mainwindow.cpp" line="1343"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent se nezdařilo aktualizovat, důvod: %1</translation>
     </message>
@@ -3813,23 +3818,23 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation>Velikost částí:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="717"/>
+        <location filename="../properties/propertieswidget.ui" line="668"/>
         <source>Torrent content:</source>
         <translation>Obsah torrentu:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="770"/>
+        <location filename="../properties/propertieswidget.ui" line="721"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="777"/>
+        <location filename="../properties/propertieswidget.ui" line="728"/>
         <source>Select None</source>
         <translation>Zrušit výběr</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="825"/>
-        <location filename="../properties/propertieswidget.ui" line="828"/>
+        <location filename="../properties/propertieswidget.ui" line="776"/>
+        <location filename="../properties/propertieswidget.ui" line="779"/>
         <source>Do not download</source>
         <translation>Nestahovat</translation>
     </message>
@@ -3888,123 +3893,155 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <translation type="obsolete">Soubory</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="470"/>
+        <location filename="../properties/propertieswidget.cpp" line="467"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="810"/>
+        <location filename="../properties/propertieswidget.ui" line="761"/>
         <source>Normal</source>
         <translation>Normální</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="820"/>
+        <location filename="../properties/propertieswidget.ui" line="771"/>
         <source>Maximum</source>
         <translation>Maximální</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.ui" line="815"/>
+        <location filename="../properties/propertieswidget.ui" line="766"/>
         <source>High</source>
         <translation>Vysoká</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="322"/>
-        <location filename="../properties/propertieswidget.cpp" line="323"/>
+        <location filename="../properties/propertieswidget.cpp" line="319"/>
+        <location filename="../properties/propertieswidget.cpp" line="320"/>
         <source>this session</source>
         <translation>tato relace</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="327"/>
-        <location filename="../properties/propertieswidget.cpp" line="331"/>
+        <location filename="../properties/propertieswidget.cpp" line="324"/>
+        <location filename="../properties/propertieswidget.cpp" line="328"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="334"/>
+        <location filename="../properties/propertieswidget.cpp" line="331"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Sdíleno %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="338"/>
+        <location filename="../properties/propertieswidget.cpp" line="335"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="431"/>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="428"/>
+        <location filename="../properties/propertieswidget.cpp" line="448"/>
         <source>I/O Error</source>
         <translation>Chyba I/O</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="431"/>
+        <location filename="../properties/propertieswidget.cpp" line="428"/>
         <source>This file does not exist yet.</source>
         <translation>Tento soubor dosud neexistuje.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="448"/>
         <source>This folder does not exist yet.</source>
         <translation>Tento adresář dosud neexistuje.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="461"/>
+        <location filename="../properties/propertieswidget.cpp" line="458"/>
         <source>Rename...</source>
         <translation>Přejmenovat...</translation>
     </message>
     <message>
+        <location filename="../properties/propertieswidget.cpp" line="506"/>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/propertieswidget.cpp" line="512"/>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="537"/>
         <source>Rename the file</source>
         <translation>Přejmenovat soubor</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="538"/>
         <source>New name:</source>
         <translation>Nový název:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="517"/>
-        <location filename="../properties/propertieswidget.cpp" line="548"/>
+        <location filename="../properties/propertieswidget.cpp" line="542"/>
+        <location filename="../properties/propertieswidget.cpp" line="573"/>
         <source>The file could not be renamed</source>
         <translation>Soubor nelze přejmenovat</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="518"/>
+        <location filename="../properties/propertieswidget.cpp" line="543"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Název souboru obsahuje nepovolené znaky, zvolte prosím jiný.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="549"/>
-        <location filename="../properties/propertieswidget.cpp" line="587"/>
+        <location filename="../properties/propertieswidget.cpp" line="574"/>
+        <location filename="../properties/propertieswidget.cpp" line="612"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný. název.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="586"/>
+        <location filename="../properties/propertieswidget.cpp" line="611"/>
         <source>The folder could not be renamed</source>
         <translation>Adresář nelze přejmenovat</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="625"/>
+        <location filename="../properties/propertieswidget.cpp" line="650"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nový URL seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="626"/>
+        <location filename="../properties/propertieswidget.cpp" line="651"/>
         <source>New url seed:</source>
         <translation>Nový URL seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="631"/>
+        <location filename="../properties/propertieswidget.cpp" line="656"/>
+        <location filename="../properties/propertieswidget.cpp" line="710"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="632"/>
+        <location filename="../properties/propertieswidget.cpp" line="657"/>
+        <location filename="../properties/propertieswidget.cpp" line="711"/>
         <source>This url seed is already in the list.</source>
         <translation>Tento URL seed už v seznamu existuje.</translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="703"/>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="704"/>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">URL webových seedů:</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -6208,7 +6245,7 @@ Nainstalujte jej prosím ručně.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="280"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="283"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -6265,72 +6302,78 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Komentář:</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="145"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="127"/>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="148"/>
         <source>Piece size:</source>
         <translation>Velikost části:</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="162"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="165"/>
         <source>32 KiB</source>
         <translation>32 KiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="167"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="170"/>
         <source>64 KiB</source>
         <translation>64 KiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="172"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="175"/>
         <source>128 KiB</source>
         <translation>128 KiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="177"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="180"/>
         <source>256 KiB</source>
         <translation>256 KiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="182"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="185"/>
         <source>512 KiB</source>
         <translation>512 KiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="187"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="190"/>
         <source>1 MiB</source>
         <translation>1 MiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="192"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="195"/>
         <source>2 MiB</source>
         <translation>2 MiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="197"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="200"/>
         <source>4 MiB</source>
         <translation>4 MiB</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="205"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="208"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="230"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="233"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
         <translation>Soukromý (je-li zapnuto, nebude šířen na síti DHT)</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="237"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="240"/>
         <source>Start seeding after creation</source>
         <translation>Po vytvoření začít seedovat</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="273"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="276"/>
         <source>Create and save...</source>
         <translation>Vytvořit a uložit...</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="244"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="247"/>
         <source>Progress:</source>
         <translation>Průběh:</translation>
     </message>

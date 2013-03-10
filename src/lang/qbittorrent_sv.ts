@@ -1791,6 +1791,10 @@ Detta meddelande kommer inte att visas igen.</translation>
         <source>Copy</source>
         <translation>Kopiera</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -3320,6 +3324,30 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <source>Torrent content:</source>
         <translation>Torrentfilens innehåll:</translation>
+    </message>
+    <message>
+        <source>New Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Web seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Web seed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation type="unfinished">Url för webbdistribution:</translation>
     </message>
 </context>
 <context>
@@ -5225,6 +5253,11 @@ Vill du installera den nu?</translation>
     <message>
         <source>Auto</source>
         <translation>Automatiskt</translation>
+    </message>
+    <message>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
