@@ -113,7 +113,7 @@ void TorrentCreatorThread::run() {
     foreach (const QString &seed, url_seeds) {
       t.add_url_seed(seed.trimmed().toStdString());
     }
-    qint32 tier = 0;
+    int tier = 0;
     bool newline = false;
     foreach (const QString &tracker, trackers) {
       if (tracker.isEmpty()) {
