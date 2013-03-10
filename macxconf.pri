@@ -19,6 +19,8 @@ LIBS += -lboost_system-mt
 #LIBS += -lboost_filesystem-mt
 # Carbon
 LIBS += -framework Carbon -framework IOKit
+# Zlib
+LIBS += -lz
 
 document_icon.path = Contents/Resources
 document_icon.files = mac/qBitTorrentDocument.icns

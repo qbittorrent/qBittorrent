@@ -10,7 +10,7 @@ QMAKE_CXXFLAGS += -Wformat -Wformat-security
 QMAKE_LFLAGS_APP += -rdynamic
 CONFIG += link_pkgconfig
 PKGCONFIG += libtorrent-rasterbar
-LIBS += -lssl -lcrypto
+LIBS += -lssl -lcrypto -lz
 
 # Man page
 nox {
