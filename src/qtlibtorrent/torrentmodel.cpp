@@ -172,7 +172,7 @@ QVariant TorrentModelItem::data(int column, int role) const
     return m_torrent.upload_payload_rate();
   case TR_ETA: {
     // XXX: Is this correct?
-    if (m_torrent.is_seed() || m_torrent.is_paused() || m_torrent.is_queued()) return MAX_ETA;
+    if (m_torrent.is_paused() || m_torrent.is_queued()) return MAX_ETA;
     return QBtSession::instance()->getETA(m_torrent.hash());
   }
   case TR_RATIO:
