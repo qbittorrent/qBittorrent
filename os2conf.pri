@@ -7,7 +7,7 @@ LIBS += -ltorrent-rasterbar \
         -lboost_thread \
         -lboost_system \
         -lboost_filesystem \
-        -lssl -lcrypto -lidn -lpthread
+        -lssl -lcrypto -lidn -lpthread -lz
 
 RC_FILE = qbittorrent_os2.rc
 
