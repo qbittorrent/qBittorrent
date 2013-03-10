@@ -5,6 +5,7 @@
     - FEATURE: Add option to start qBittorrent on Windows startup (Sledgehammer999)
     - FEATURE: Add context menu to Web seed list (Gelmir)
     - FEATURE: Add support for tracker tiers / groups to creator (Gelmir)
+    - FEATURE: Allow clearing execution and ban logs (Gelmir)
     - BUGFIX: Add confirmation dialog for "Force recheck" action (closes #131)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - OTHER: Generate translations at configure time to reduce tarball size
