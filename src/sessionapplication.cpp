@@ -42,6 +42,7 @@ QtSingleApplication(id, argc, argv)
 void SessionApplication::commitData(QSessionManager & manager) {
   Q_UNUSED(manager);
   emit sessionIsShuttingDown();
+  manager.release();
 }
 
 bool SessionApplication::notify(QObject* receiver, QEvent* event) {
