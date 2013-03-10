@@ -2,6 +2,7 @@
     - BUGFIX: Raise qBittorrent windows when another instance is launched
     - BUGFIX: Show human readable names for network interfaces in preferences (Windows)
     - BUGFIX: Fix torrent creator bug when saving non-latin path (Windows)
+    - BUGFIX: Enable 'copy magnet uri' for torrents without metadata too
     - OTHER: Add search plugin for Legit Torrents
 
 * Sun Jan 20 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
