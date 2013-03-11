@@ -108,9 +108,10 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 #if defined(Q_WS_X11)
   if (Preferences().useSystemIconTheme())
     setWindowIcon(QIcon::fromTheme("qbittorrent", QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png"))));
-#else
-    setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
+  else
 #endif
+    setWindowIcon(QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png")));
+
 
   actionOpen->setIcon(IconProvider::instance()->getIcon("list-add"));
   actionDownload_from_URL->setIcon(IconProvider::instance()->getIcon("insert-link"));
