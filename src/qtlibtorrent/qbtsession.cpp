@@ -2191,6 +2191,15 @@ void QBtSession::readAlerts() {
           if (appendqBExtension)
             appendqBextensionToTorrent(h, false);
 
+          // Check if directory is different
+          const QDir current_dir(h.save_path());
+          const QDir save_dir(getSavePath(h.hash()));
+
+          if (current_dir != save_dir) {
+            qDebug("Moving finished torrent from the temp directory...");
+            h.move_storage(save_dir.absolutePath());
+           }
+
           const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
           qDebug("Was already seeded: %d", was_already_seeded);
           if (!was_already_seeded) {
