@@ -5,6 +5,7 @@
     - BUGFIX: Enable 'copy magnet uri' for torrents without metadata too
     - BUGFIX: Fix a few JSON parser issues (Gelmir)
     - BUGFIX: Add support for gzipped encoded HTTP responses (daimor)
+    - BUGFIX: Fix possibly missing "Add torrent" icon (Driim)
     - OTHER: Add search plugin for Legit Torrents
 
 * Sun Jan 20 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.8
