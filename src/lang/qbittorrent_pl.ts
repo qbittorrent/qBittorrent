@@ -5570,6 +5570,13 @@ Jednak tamte wtyczki były wyłączone.</translation>
     </message>
 </context>
 <context>
+    <name>errorDialog</name>
+    <message>
+        <source>Crash info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>fsutils</name>
     <message>
         <source>Downloads</source>
