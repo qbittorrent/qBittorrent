@@ -38,7 +38,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -5497,28 +5497,28 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL tracker:</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica tracker</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica tracker fallita</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>La URL inserita per il tracker non è valida</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>La URL del tracker esiste già</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="413"/>
@@ -5528,12 +5528,12 @@ Per favore installalo manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia URL tracker</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica URL tracker selezionata</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="418"/>
