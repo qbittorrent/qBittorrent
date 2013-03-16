@@ -1,4 +1,4 @@
-* Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
+* Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
     - BUGFIX: Show human readable names for network interfaces in preferences (Windows)
     - BUGFIX: Fix torrent creator bug when saving non-latin path (Windows)
