@@ -959,12 +959,26 @@ public:
   }
 
   uint diskCacheSize() const {
+#if LIBTORRENT_VERSION_NUM >= 001610
     return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 0).toUInt();
+#else
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 128).toUInt();
+#endif
   }
 
   void setDiskCacheSize(uint size) {
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
+
+#if LIBTORRENT_VERSION_NUM >= 001610
+  uint diskCacheTTL() const {
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), 60).toUInt();
+  }
+
+  void setDiskCacheTTL(uint ttl) {
+    setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), ttl);
+  }
+#endif
 
   uint outgoingPortsMin() const {
     return value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();

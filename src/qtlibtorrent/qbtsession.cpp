@@ -422,6 +422,9 @@ void QBtSession::configureSession() {
   sessionSettings.auto_scrape_min_interval = 900; // 15 minutes
   int cache_size = pref.diskCacheSize();
   sessionSettings.cache_size = cache_size ? cache_size * 64 : -1;
+#if LIBTORRENT_VERSION_NUM >= 001610
+  sessionSettings.cache_expiry = pref.diskCacheTTL();
+#endif
   qDebug() << "Using a disk cache size of" << cache_size << "MiB";
 #if LIBTORRENT_VERSION_NUM >= 001600
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
