@@ -325,12 +325,15 @@ void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_reso
       updatePeer(peer_ip, peer);
       old_peers_set.remove(peer_ip);
       if (force_hostname_resolution && m_resolver) {
-        m_resolver->resolve(peer.ip);
+        m_resolver->resolve(peer_ip);
       }
     } else {
       // Add new peer
       m_peerItems[peer_ip] = addPeer(peer_ip, peer);
       m_peerEndpoints[peer_ip] = peer.ip;
+      // Resolve peer host name is asked
+      if (m_resolver)
+        m_resolver->resolve(peer_ip);
     }
   }
   // Delete peers that are gone
@@ -350,9 +353,6 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   m_listModel->insertRow(row);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
-  // Resolve peer host name is asked
-  if (m_resolver)
-    m_resolver->resolve(peer.ip);
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
     if (!ico.isNull()) {
