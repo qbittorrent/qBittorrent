@@ -59,17 +59,16 @@ public:
     qDebug("Deleting host name resolver...");
   }
 
-  void resolve(const libtorrent::asio::ip::tcp::endpoint &ip) {
-    boost::system::error_code ec;
-    const QString ip_str = misc::toQString(ip.address().to_string(ec));
-    if (ec) return;
-    if (m_cache.contains(ip_str)) {
-      qDebug("Resolved host name using cache");
-      emit ip_resolved(ip_str, *m_cache.object(ip_str));
+  void resolve(const QString &ip) {
+    if (m_cache.contains(ip)) {
+      const QString& hostname = *m_cache.object(ip);
+      qDebug() << "Resolved host name using cache: " << ip << " -> " << hostname;
+      if (isUsefulHostName(hostname, ip))
+        emit ip_resolved(ip, hostname);
       return;
     }
     // Actually resolve the ip
-    QHostInfo::lookupHost(ip_str, this, SLOT(hostResolved(QHostInfo)));
+    m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
   }
 
 signals:
@@ -77,20 +76,29 @@ signals:
 
 private slots:
   void hostResolved(const QHostInfo& host) {
-    if (host.error() == QHostInfo::NoError) {
-      const QString hostname = host.hostName();
-      if (host.addresses().isEmpty() || hostname.isEmpty()) return;
-      const QString ip = host.addresses().first().toString();
-      if (hostname != ip) {
-        //qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
-        m_cache.insert(ip, new QString(hostname));
-        emit ip_resolved(ip, hostname);
-      }
+    const QString& ip = m_lookups.take(host.lookupId());
+    Q_ASSERT(!ip.isNull());
+
+    if (host.error() != QHostInfo::NoError) {
+      qDebug() << "DNS Reverse resolution error: " << host.errorString();
+      return;
     }
+
+    const QString& hostname = host.hostName();
+
+    qDebug() << Q_FUNC_INFO << ip << QString("->") << hostname;
+    m_cache.insert(ip, new QString(hostname));
+    if (isUsefulHostName(hostname, ip))
+      emit ip_resolved(ip, hostname);
   }
 
 private:
-  QCache<QString, QString> m_cache;
+  static inline bool isUsefulHostName(const QString& hostname, const QString& ip) {
+    return (!hostname.isEmpty() && hostname != ip);
+  }
+
+  QHash<int /* LookupID */, QString /* IP */> m_lookups;
+  QCache<QString /* IP */, QString /* HostName */> m_cache;
 };
 
 
