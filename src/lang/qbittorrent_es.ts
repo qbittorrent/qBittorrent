@@ -1957,7 +1957,7 @@ Probablemente esto es algo que ya sabía, así que no se lo diré otra vez.</tra
     <message>
         <location filename="../mainwindow.ui" line="180"/>
         <source>Visit &amp;Website</source>
-        <translation>&amp;Visite mi sitio Web</translation>
+        <translation>&amp;Visitar la página Web</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="64"/>
@@ -1997,12 +1997,12 @@ Probablemente esto es algo que ya sabía, así que no se lo diré otra vez.</tra
     <message>
         <location filename="../mainwindow.ui" line="349"/>
         <source>Suspend system</source>
-        <translation>Suspender sistema</translation>
+        <translation>Suspender</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="357"/>
         <source>Shutdown system</source>
-        <translation>Cerrar sistema</translation>
+        <translation>Apagar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="365"/>
