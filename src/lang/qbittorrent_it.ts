@@ -6667,7 +6667,7 @@ Comunque, quei plugin sono stati disabilitati.</translation>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info crash</translation>
     </message>
 </context>
 <context>
