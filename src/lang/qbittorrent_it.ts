@@ -2128,7 +2128,7 @@ Non verranno emessi avvisi.</translation>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Azzera</translation>
     </message>
 </context>
 <context>
@@ -3982,22 +3982,22 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo seed web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="512"/>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimuovi seed web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia URL seed web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica URL seed web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="537"/>
@@ -4057,12 +4057,12 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="703"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica seed web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="704"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished">Indirizzo del seed web:</translation>
+        <translation>URL seed web:</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -6335,7 +6335,7 @@ Per favore installalo manualmente.</translation>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Puoi separare il gruppo di tracker con una linea vuota</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
