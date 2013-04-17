@@ -27,7 +27,17 @@ var ContextMenu = new Class({
 		this.targets = $$(this.options.targets);
 		
 		//fx
-		this.fx = new Fx.Tween(this.menu, { property: 'opacity', duration:this.options.fadeSpeed });
+		this.fx = new Fx.Tween(this.menu, { 
+			property: 'opacity', 
+			duration:this.options.fadeSpeed,
+			onComplete: function() {
+				if(this.getStyle('opacity')){
+					this.setStyle('visibility','visible');
+				}else{
+					this.setStyle('visibility','hidden');
+				}
+			}.bind(this.menu)
+		});
 		
 		//hide and begin the listener
 		this.hide().startListener();
