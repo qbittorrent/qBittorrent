@@ -109,7 +109,6 @@ HEADERS += misc.h \
            smtp.h \
            dnsupdater.h
 
-
 SOURCES += main.cpp \
            downloadthread.cpp \
            scannedfoldersmodel.cpp \

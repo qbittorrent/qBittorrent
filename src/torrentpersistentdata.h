@@ -42,26 +42,26 @@
 #include "qinisettings.h"
 #include <QHash>
 
-class TorrentTempData {
+class TorrentTempData : private QIniSettings {
 public:
-  static bool hasTempData(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+  TorrentTempData() : QIniSettings("qBittorrent", "qBittorrent-resume") {
+  }
+
+  static bool hasTempData(const QString &hash) {
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
     return all_data.contains(hash);
   }
 
   static void deleteTempData(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     if (all_data.contains(hash)) {
       all_data.remove(hash);
-      settings.setValue("torrents-tmp", all_data);
+      setTorrentsTemporaryData(all_data);
     }
   }
 
   static void setFilesPriority(QString hash,  const std::vector<int> &pp) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     QStringList pieces_priority;
 
@@ -73,103 +73,101 @@ public:
     }
     data["files_priority"] = pieces_priority;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static void setFilesPath(QString hash, const QStringList &path_list) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["files_path"] = path_list;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static void setSavePath(QString hash, QString save_path) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["save_path"] = save_path;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static void setLabel(QString hash, QString label) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     qDebug("Saving label %s to tmp data", label.toLocal8Bit().data());
     data["label"] = label;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static void setSequential(QString hash, bool sequential) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["sequential"] = sequential;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static bool isSequential(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("sequential", false).toBool();
   }
 
   static void setSeedingMode(QString hash,bool seed) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
+    QHash<QString, QVariant> all_data = TorrentsTemporaryData();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["seeding"] = seed;
     all_data[hash] = data;
-    settings.setValue("torrents-tmp", all_data);
+    setTorrentsTemporaryData(all_data);
   }
 
   static bool isSeedingMode(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("seeding", false).toBool();
   }
 
   static QString getSavePath(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("save_path").toString();
   }
 
   static QStringList getFilesPath(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("files_path").toStringList();
   }
 
   static QString getLabel(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     qDebug("Got label %s from tmp data", data.value("label", "").toString().toLocal8Bit().data());
     return data.value("label", "").toString();
   }
 
   static void getFilesPriority(QString hash, std::vector<int> &fp) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents-tmp").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = TorrentsTemporaryData();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     const QList<int> list_var = misc::intListfromStringList(data.value("files_priority").toStringList());
     foreach (const int &var, list_var) {
       fp.push_back(var);
     }
   }
+
+private:
+  QHash<QString, QVariant> TorrentsTemporaryData() const {
+    return value("torrents-tmp").toHash();
+  }
+
+  void setTorrentsTemporaryData(const QHash<QString, QVariant> &data) {
+    setValue("torrents-tmp", data);
+  }
 };
 
-class TorrentPersistentData {
+class TorrentPersistentData : private QIniSettings {
 public:
   enum RatioLimit {
     USE_GLOBAL_RATIO = -2,
@@ -177,37 +175,35 @@ public:
   };
 
 public:
+  TorrentPersistentData() : QIniSettings("qBittorrent", "qBittorrent-resume") {
+  }
+
   static bool isKnownTorrent(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
     return all_data.contains(hash);
   }
 
   static QStringList knownTorrents() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
     return all_data.keys();
   }
 
   static void setRatioLimit(const QString &hash, qreal ratio) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["max_ratio"] = ratio;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static qreal getRatioLimit(const QString &hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("max_ratio", USE_GLOBAL_RATIO).toReal();
   }
 
   static bool hasPerTorrentRatioLimit() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
     QHash<QString, QVariant>::ConstIterator it = all_data.constBegin();
     QHash<QString, QVariant>::ConstIterator itend = all_data.constEnd();
     for ( ; it != itend; ++it) {
@@ -219,20 +215,18 @@ public:
   }
 
   static void setAddedDate(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     if (!data.contains("add_date")) {
       data["add_date"] = QDateTime::currentDateTime();
       all_data[hash] = data;
-      settings.setValue("torrents", all_data);
+      setTorrents(all_data);
     }
   }
 
   static QDateTime getAddedDate(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     QDateTime dt = data.value("add_date").toDateTime();
     if (!dt.isValid()) {
       setAddedDate(hash);
@@ -242,62 +236,55 @@ public:
   }
 
   static void setErrorState(QString hash, bool has_error) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["has_error"] = has_error;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static bool hasError(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("has_error", false).toBool();
   }
 
   static void setPreviousSavePath(QString hash, QString previous_path) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["previous_path"] = previous_path;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static QString getPreviousPath(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("previous_path").toString();
   }
   
   static void saveSeedDate(const QTorrentHandle &h) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
     if (h.is_seed())
       data["seed_date"] = QDateTime::currentDateTime();
     else
       data.remove("seed_date");
     all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static QDateTime getSeedDate(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("seed_date").toDateTime();
   }
 
   static void deletePersistentData(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     if (all_data.contains(hash)) {
       all_data.remove(hash);
-      settings.setValue("torrents", all_data);
+      setTorrents(all_data);
     }
   }
 
@@ -305,8 +292,7 @@ public:
     Q_ASSERT(h.is_valid());
     qDebug("Saving persistent data for %s", qPrintable(h.hash()));
     // Save persistent data
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(h.hash()).toHash();
     data["is_magnet"] = is_magnet;
     if (is_magnet) {
@@ -325,7 +311,7 @@ public:
     data["label"] = TorrentTempData::getLabel(h.hash());
     // Save data
     all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
     qDebug("TorrentPersistentData: Saving save_path %s, hash: %s", qPrintable(h.save_path()), qPrintable(h.hash()));
     // Set Added date
     setAddedDate(h.hash());
@@ -338,53 +324,48 @@ public:
   static void saveSavePath(QString hash, QString save_path) {
     Q_ASSERT(!hash.isEmpty());
     qDebug("TorrentPersistentData::saveSavePath(%s)", qPrintable(save_path));
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["save_path"] = save_path;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
     qDebug("TorrentPersistentData: Saving save_path: %s, hash: %s", qPrintable(save_path), qPrintable(hash));
   }
 
   static void saveLabel(QString hash, QString label) {
     Q_ASSERT(!hash.isEmpty());
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["label"] = label;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static void saveName(QString hash, QString name) {
     Q_ASSERT(!hash.isEmpty());
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data.value(hash).toHash();
     data["name"] = name;
     all_data[hash] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static void savePriority(const QTorrentHandle &h) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
     data["priority"] = h.queue_position();
     all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
+    setTorrents(all_data);
   }
 
   static void saveSeedStatus(const QTorrentHandle &h) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
+    QHash<QString, QVariant> all_data = Torrents();
     QHash<QString, QVariant> data = all_data[h.hash()].toHash();
     bool was_seed = data.value("seed", false).toBool();
     if (was_seed != h.is_seed()) {
       data["seed"] = !was_seed;
       all_data[h.hash()] = data;
-      settings.setValue("torrents", all_data);
+      setTorrents(all_data);
       if (!was_seed) {
         // Save completion date
         saveSeedDate(h);
@@ -394,56 +375,57 @@ public:
 
   // Getters
   static QString getSavePath(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     //qDebug("TorrentPersistentData: getSavePath %s", data["save_path"].toString().toLocal8Bit().data());
     return data.value("save_path").toString();
   }
 
   static QString getLabel(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("label", "").toString();
   }
 
   static QString getName(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("name", "").toString();
   }
 
   static int getPriority(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("priority", -1).toInt();
   }
 
   static bool isSeed(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("seed", false).toBool();
   }
 
   static bool isMagnet(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     return data.value("is_magnet", false).toBool();
   }
 
   static QString getMagnetUri(QString hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
+    const QHash<QString, QVariant> &all_data = Torrents();
+    const QHash<QString, QVariant> &data = all_data.value(hash).toHash();
     Q_ASSERT(data.value("is_magnet", false).toBool());
     return data.value("magnet_uri").toString();
   }
 
+private:
+  QHash<QString, QVariant> Torrents() const {
+    return value("torrents").toHash();
+  }
+
+  void setTorrents(const QHash<QString, QVariant> &data) {
+    setValue("torrents", data);
+  }
 };
 
 #endif // TORRENTPERSISTENTDATA_H
