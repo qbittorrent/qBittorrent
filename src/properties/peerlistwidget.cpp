@@ -61,6 +61,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   // List Model
   m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
   m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
+  m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
   m_listModel->setHeaderData(PeerListDelegate::CONNECTION, Qt::Horizontal, tr("Connection"));
   m_listModel->setHeaderData(PeerListDelegate::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
   m_listModel->setHeaderData(PeerListDelegate::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
@@ -364,6 +365,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
     }
   }
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), getFlags(peer));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), misc::toQStringU(peer.client));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payload_down_speed);
@@ -386,6 +388,7 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
     }
   }
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), getFlags(peer));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), misc::toQStringU(peer.client));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payload_down_speed);
@@ -430,4 +433,68 @@ QString PeerListWidget::getConnectionString(int connection_type)
     break;
   }
   return connection;
+}
+
+QString PeerListWidget::getFlags(const peer_info& peer)
+{
+  QString flags;
+  if (peer.flags & peer_info::interesting) {
+    //d = Your client wants to download, but peer doesn't want to send (interested and choked)
+    if (peer.flags & peer_info::choked)      
+      flags += "d ";
+    else //D = Currently downloading (interested and not choked)
+      flags += "D ";
+  }
+
+  if (peer.flags & peer_info::remote_interested) {
+    //u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
+    if (peer.flags & peer_info::remote_choked)
+      flags += "u ";
+    else //U = Currently uploading (interested and not choked)
+      flags += "U ";
+  }
+
+  //O = Optimistic unchoke
+  if (peer.flags & peer_info::optimistic_unchoke)    
+    flags += "O ";
+
+  //S = Peer is snubbed
+  if (peer.flags & peer_info::snubbed)
+    flags += "S ";
+
+  //I = Peer is an incoming connection
+  if ((peer.flags & peer_info::local_connection) == 0 )
+    flags += "I ";
+
+  //K = Peer is unchoking your client, but your client is not interested
+  if (((peer.flags & peer_info::remote_choked) == 0) && ((peer.flags & peer_info::interesting) == 0))
+    flags += "K ";
+
+  //? = Your client unchoked the peer but the peer is not interested
+  if (((peer.flags & peer_info::choked) == 0) && ((peer.flags & peer_info::remote_interested) == 0))
+    flags += "? ";
+
+  //X = Peer was included in peerlists obtained through Peer Exchange (PEX)
+  if (peer.source & peer_info::pex)
+    flags += "X ";
+
+  //H = Peer was obtained through DHT
+  if (peer.source & peer_info::dht)
+    flags += "H ";
+
+  //E = Peer is using Protocol Encryption (cannot distinguish between handshake and all traffic)
+  if (peer.flags & peer_info::rc4_encrypted)
+    flags += "E ";
+
+#if LIBTORRENT_VERSION_MINOR > 15
+  //P = Peer is using uTorrent uTP
+  if (peer.connection_type & peer_info::bittorrent_utp)
+    flags += "P ";
+#endif
+
+  //L = Peer is local
+  if (peer.source & peer_info::lsd)
+    flags += "L ";
+
+  return flags.trimmed();
 }
