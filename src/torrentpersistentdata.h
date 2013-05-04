@@ -44,59 +44,59 @@
 
 class TorrentTempData {
 public:
-  static bool hasTempData(QString hash) {    
+  static bool hasTempData(const QString &hash) {
     return data.contains(hash);
   }
 
-  static void deleteTempData(QString hash) {
+  static void deleteTempData(const QString &hash) {
     data.remove(hash);
   }
 
-  static void setFilesPriority(QString hash,  const std::vector<int> &pp) {
+  static void setFilesPriority(const QString &hash,  const std::vector<int> &pp) {
     data[hash].files_priority = pp;
   }
 
-  static void setFilesPath(QString hash, const QStringList &path_list) {
+  static void setFilesPath(const QString &hash, const QStringList &path_list) {
     data[hash].path_list = path_list;
   }
 
-  static void setSavePath(QString hash, QString save_path) {
+  static void setSavePath(const QString &hash, const QString &save_path) {
     data[hash].save_path = save_path;
   }
 
-  static void setLabel(QString hash, QString label) {
+  static void setLabel(const QString &hash, const QString &label) {
     data[hash].label = label;
   }
 
-  static void setSequential(QString hash, bool sequential) {
+  static void setSequential(const QString &hash, const bool &sequential) {
     data[hash].sequential = sequential;
   }
 
-  static bool isSequential(QString hash) {
+  static bool isSequential(const QString &hash) {
     return data.value(hash).sequential;
   }
 
-  static void setSeedingMode(QString hash, bool seed) {
+  static void setSeedingMode(const QString &hash, const bool &seed) {
     data[hash].seed = seed;
   }
 
-  static bool isSeedingMode(QString hash) {
+  static bool isSeedingMode(const QString &hash) {
     return data.value(hash).seed;
   }
 
-  static QString getSavePath(QString hash) {
+  static QString getSavePath(const QString &hash) {
     return data.value(hash).save_path;
   }
 
-  static QStringList getFilesPath(QString hash) {
+  static QStringList getFilesPath(const QString &hash) {
     return data.value(hash).path_list;
   }
 
-  static QString getLabel(QString hash) {
+  static QString getLabel(const QString &hash) {
     return data.value(hash).label;
   }
 
-  static void getFilesPriority(QString hash, std::vector<int> &fp) {
+  static void getFilesPriority(const QString &hash, std::vector<int> &fp) {
     fp = data.value(hash).files_priority;
   }
 
