@@ -114,7 +114,7 @@ public:
   static QList<int> intListfromStringList(const QStringList &l);
   static QList<bool> boolListfromStringList(const QStringList &l);
 
-#if LIBTORRENT_VERSION_MINOR < 16
+#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
   static QString toQString(const boost::posix_time::ptime& boostDate);
 #else
   static QString toQString(time_t t);

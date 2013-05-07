@@ -161,7 +161,7 @@ void TorrentSpeedMonitor::getSamples()
   std::vector<torrent_handle>::const_iterator itend = torrents.end();
   for ( ; it != itend; ++it) {
     try {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
       torrent_status st = it->status(0x0);
       if (!st.paused) {
 #else

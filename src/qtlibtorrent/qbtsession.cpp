@@ -70,12 +70,12 @@
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/upnp.hpp>
 #include <libtorrent/natpmp.hpp>
-#if LIBTORRENT_VERSION_MINOR < 16
+#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #endif
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
 #include "libtorrent/error_code.hpp"
 #endif
 #include <queue>
@@ -116,7 +116,7 @@ QBtSession::QBtSession()
   BigRatioTimer->setInterval(10000);
   connect(BigRatioTimer, SIGNAL(timeout()), SLOT(processBigRatios()));
   Preferences pref;
-#if LIBTORRENT_VERSION_MINOR < 16
+#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
   // To avoid some exceptions
   boost::filesystem::path::default_name_check(boost::filesystem::no_check);
 #endif
@@ -392,7 +392,7 @@ void QBtSession::configureSession() {
 
   sessionSettings.upnp_ignore_nonrouters = true;
   sessionSettings.use_dht_as_fallback = false;
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   // Disable support for SSL torrents for now
   sessionSettings.ssl_listen = 0;
 #endif
@@ -409,7 +409,7 @@ void QBtSession::configureSession() {
   int cache_size = pref.diskCacheSize();
   sessionSettings.cache_size = cache_size ? cache_size * 64 : -1;
   qDebug() << "Using a disk cache size of" << cache_size << "MiB";
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
     addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
@@ -440,7 +440,7 @@ void QBtSession::configureSession() {
   // IP address to announce to trackers
   QString announce_ip = pref.getNetworkAddress();
   if (!announce_ip.isEmpty()) {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
     sessionSettings.announce_ip = announce_ip.toStdString();
 #else
     boost::system::error_code ec;
@@ -453,7 +453,7 @@ void QBtSession::configureSession() {
   }
   // Super seeding
   sessionSettings.strict_super_seeding = pref.isSuperSeedingEnabled();
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   // * Max Half-open connections
   sessionSettings.half_open_limit = pref.getMaxHalfOpenConnections();
   // * Max connections limit
@@ -464,7 +464,7 @@ void QBtSession::configureSession() {
   // * Max connections limit
   setMaxConnections(pref.getMaxConnecs());
 #endif
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   // uTP
   if (pref.isuTPEnabled()) {
     sessionSettings.enable_incoming_utp = true;
@@ -1096,7 +1096,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       qDebug("Successfully loaded fast resume data");
     }
   }
-#if LIBTORRENT_VERSION_MINOR < 16
+#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
   else {
     // Generate fake resume data to make sure unwanted files
     // are not allocated
@@ -1231,7 +1231,7 @@ add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
     p.storage_mode = storage_mode_sparse;
 
   // Priorities
-/*#if LIBTORRENT_VERSION_MINOR > 15
+/*#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   if (TorrentTempData::hasTempData(hash)) {
     std::vector<int> fp;
     TorrentTempData::getFilesPriority(hash, fp);
@@ -1348,7 +1348,7 @@ void QBtSession::mergeTorrents(QTorrentHandle &h_ex, boost::intrusive_ptr<torren
 
   bool urlseeds_added = false;
   const QStringList old_urlseeds = h_ex.url_seeds();
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   std::vector<web_seed_entry> new_urlseeds = t->web_seeds();
 
   std::vector<web_seed_entry>::iterator it = new_urlseeds.begin();
@@ -1418,7 +1418,7 @@ void QBtSession::exportTorrentFiles(QString path) {
 
 // Set the maximum number of opened connections
 void QBtSession::setMaxConnections(int maxConnec) {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   Q_UNUSED(maxConnec);
   Q_ASSERT(0); // Should not be used
 #else
@@ -1517,7 +1517,7 @@ void QBtSession::loadSessionState() {
   state_file.read(&in[0], content_size);
   // bdecode
   lazy_entry e;
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   libtorrent::error_code ec;
   lazy_bdecode(&in[0], &in[0] + in.size(), e, ec);
   if (!ec) {
@@ -1607,7 +1607,7 @@ void QBtSession::saveTempFastResumeData() {
     QTorrentHandle h = QTorrentHandle(*torrentIT);
     try {
       if (!h.is_valid() || !h.has_metadata() /*|| h.is_seed() || h.is_paused()*/) continue;
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
       if (!h.need_save_resume_data()) continue;
 #endif
       if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
@@ -1901,12 +1901,12 @@ void QBtSession::setListeningPort(int port) {
   qDebug() << Q_FUNC_INFO << port;
   Preferences pref;
   std::pair<int,int> ports(port, port);
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   libtorrent::error_code ec;
 #endif
   const QString iface_name = pref.getNetworkInterface();
   if (iface_name.isEmpty()) {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
     s->listen_on(ports, ec);
 #else
     s->listen_on(ports);
@@ -1924,7 +1924,7 @@ void QBtSession::setListeningPort(int port) {
   qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
     s->listen_on(ports, ec, entry.ip().toString().toAscii().constData());
     if (!ec) {
 #else
@@ -1947,7 +1947,7 @@ void QBtSession::setListeningPort(int port) {
 void QBtSession::setDownloadRateLimit(long rate) {
   qDebug() << Q_FUNC_INFO << rate;
   Q_ASSERT(rate == -1 || rate >= 0);
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   session_settings settings = s->settings();
   settings.download_rate_limit = rate;
   s->set_settings(settings);
@@ -1961,7 +1961,7 @@ void QBtSession::setDownloadRateLimit(long rate) {
 void QBtSession::setUploadRateLimit(long rate) {
   qDebug() << Q_FUNC_INFO << rate;
   Q_ASSERT(rate == -1 || rate >= 0);
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   session_settings settings = s->settings();
   settings.upload_rate_limit = rate;
   s->set_settings(settings);
@@ -2069,7 +2069,7 @@ void QBtSession::setSessionSettings(const session_settings &sessionSettings) {
 void QBtSession::setProxySettings(proxy_settings proxySettings) {
   qDebug() << Q_FUNC_INFO;
 
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
   proxySettings.proxy_peer_connections = Preferences().proxyPeerConnections();
   s->set_proxy(proxySettings);
 #else
