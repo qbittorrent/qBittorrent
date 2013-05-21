@@ -2913,7 +2913,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation>I parametri seguenti sono supportati
+        <translation>Sono supportati i seguenti parametri:
 &lt;ul&gt;
 &lt;li&gt;%f: Percorso torrent&lt;/li&gt;
 &lt;li&gt;%n: Nome torrent&lt;/li&gt;
@@ -2957,7 +2957,7 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1602"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Applica limiti di velocità al sovreccaarico di trasferimento</translation>
+        <translation>Applica limiti di velocità al sovraccarico di trasferimento</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1615"/>
@@ -2977,22 +2977,22 @@ Aggiornare qBittorrent alla versione %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1993"/>
         <source>Encryption mode:</source>
-        <translation>Modalità criptazione:</translation>
+        <translation>Modalità di cifratura:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2001"/>
         <source>Prefer encryption</source>
-        <translation>Preferisci criptazione</translation>
+        <translation>Preferisci cifratura</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2006"/>
         <source>Require encryption</source>
-        <translation>Richiedi criptazione</translation>
+        <translation>Richiedi cifratura</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2011"/>
         <source>Disable encryption</source>
-        <translation>Disabilita criptazione</translation>
+        <translation>Disabilita cifratura</translation>
     </message>
     <message>
         <source>Torrent queueing</source>
