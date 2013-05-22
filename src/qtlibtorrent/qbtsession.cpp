@@ -586,6 +586,7 @@ void QBtSession::configureSession() {
     break;
   case Proxy::SOCKS4:
     proxySettings.type = proxy_settings::socks4;
+    break;
   case Proxy::SOCKS5:
     qDebug("type: socks5");
     proxySettings.type = proxy_settings::socks5;
