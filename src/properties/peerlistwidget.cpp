@@ -440,7 +440,7 @@ QString PeerListWidget::getFlags(const peer_info& peer)
   QString flags;
   if (peer.flags & peer_info::interesting) {
     //d = Your client wants to download, but peer doesn't want to send (interested and choked)
-    if (peer.flags & peer_info::choked)      
+    if (peer.flags & peer_info::remote_choked)
       flags += "d ";
     else //D = Currently downloading (interested and not choked)
       flags += "D ";
@@ -448,7 +448,7 @@ QString PeerListWidget::getFlags(const peer_info& peer)
 
   if (peer.flags & peer_info::remote_interested) {
     //u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
-    if (peer.flags & peer_info::remote_choked)
+    if (peer.flags & peer_info::choked)
       flags += "u ";
     else //U = Currently uploading (interested and not choked)
       flags += "U ";
