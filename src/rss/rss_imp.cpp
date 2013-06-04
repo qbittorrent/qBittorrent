@@ -168,13 +168,6 @@ void RSSImp::askNewFolder()
   m_rssManager->saveStreamList();
 }
 
-void RSSImp::displayOverwriteError(const QString& filename)
-{
-  QMessageBox::warning(this, tr("Overwrite attempt"),
-                       tr("You cannot overwrite %1 item.", "You cannot overwrite myFolder item.").arg(filename),
-                       QMessageBox::Ok);
-}
-
 // add a stream by a button
 void RSSImp::on_newFeedButton_clicked()
 {
@@ -717,7 +710,6 @@ RSSImp::RSSImp(QWidget *parent) :
 
   connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
   connect(m_feedList, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
-  connect(m_feedList, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
   connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
   connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));

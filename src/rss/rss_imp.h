@@ -79,7 +79,6 @@ private slots:
   void askNewFolder();
   void saveFoldersOpenState();
   void loadFoldersOpenState();
-  void displayOverwriteError(const QString &filename);
   void on_actionManage_cookies_triggered();
   void on_settingsButton_clicked();
   void on_rssDownloaderBtn_clicked();
