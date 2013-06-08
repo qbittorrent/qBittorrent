@@ -79,7 +79,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
   const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
   if (t->num_files() == 1) {
     // Single file torrent
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM >= 001600
     const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
 #else
     const QString file_name = misc::toQStringU(t->file_at(0).path.filename());
@@ -146,7 +146,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
     content_dir.cdUp();
     // Check file sizes
     for (int i=0; i<t->num_files(); ++i) {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM >= 001600
       const QString rel_path = misc::toQStringU(t->file_at(i).path);
 #else
       const QString rel_path = misc::toQStringU(t->file_at(i).path.string());
@@ -252,7 +252,7 @@ void TorrentImportDlg::initializeFilesPath()
   m_filesPath.clear();
   // Loads files path in the torrent
   for (int i=0; i<t->num_files(); ++i) {
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM >= 001600
     m_filesPath << misc::toQStringU(t->file_at(i).path).replace("\\", "/");
 #else
     m_filesPath << misc::toQStringU(t->file_at(i).path.string()).replace("\\", "/");

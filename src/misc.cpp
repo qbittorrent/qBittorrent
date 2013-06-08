@@ -502,7 +502,7 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   return result;
 }
 
-#if LIBTORRENT_VERSION_MINOR < 16
+#if LIBTORRENT_VERSION_NUM < 001600
 QString misc::toQString(const boost::posix_time::ptime& boostDate) {
   if (boostDate.is_not_a_date_time()) return "";
   struct std::tm tm;

@@ -490,7 +490,7 @@ void HttpConnection::respondCommand(const QString& command) {
   if (command == "getGlobalUpLimit") {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM >= 001600
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
 #else
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->upload_rate_limit()));
@@ -501,7 +501,7 @@ void HttpConnection::respondCommand(const QString& command) {
   if (command == "getGlobalDlLimit") {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM >= 001600
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
 #else
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->download_rate_limit()));
