@@ -212,7 +212,7 @@ public slots:
 
   void capDownloadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
     int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
 #else
     int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();
@@ -237,7 +237,7 @@ public slots:
 
   void capUploadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
     int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
 #else
     int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();

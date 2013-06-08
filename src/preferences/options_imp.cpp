@@ -125,7 +125,7 @@ options_imp::options_imp(QWidget *parent):
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
-#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 001600
   checkAnonymousMode->setVisible(false);
   label_anonymous->setVisible(false);
 #endif
@@ -206,7 +206,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
   connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -252,7 +252,7 @@ options_imp::options_imp(QWidget *parent):
   applyButton->setEnabled(false);
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-#if LIBTORRENT_VERSION_MINOR < 16 && LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 001600
   checkuTP->setVisible(false);
   checkLimituTPConnections->setVisible(false);
 #endif
@@ -455,7 +455,7 @@ void options_imp::saveOptions() {
   pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
   pref.enableAnonymousMode(checkAnonymousMode->isChecked());
 #endif
   pref.setGlobalMaxRatio(getMaxRatio());
@@ -727,7 +727,7 @@ void options_imp::loadOptions() {
   checkPeX->setChecked(pref.isPeXEnabled());
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
   checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
   /* make sure ui matches options */
   toggleAnonymousMode(checkAnonymousMode->isChecked());

@@ -1065,7 +1065,7 @@ public:
     return value(QString::fromUtf8("Preferences/Connection/InetAddress"), QString()).toString();
   }
 
-#if LIBTORRENT_VERSION_MINOR > 15 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 001600
   bool isAnonymousModeEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/AnonymousMode"), false).toBool();
   }
