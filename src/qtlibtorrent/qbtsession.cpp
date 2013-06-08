@@ -82,6 +82,9 @@
 #include <string.h>
 #include "dnsupdater.h"
 
+//initialize static member variables
+QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
+
 using namespace libtorrent;
 
 QBtSession* QBtSession::m_instance = 0;
