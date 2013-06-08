@@ -83,6 +83,7 @@ protected slots:
 
 private:
   static QString getConnectionString(int connection_type);
+  static QString getFlags(const libtorrent::peer_info& peer);
 
 private:
   QStandardItemModel *m_listModel;
