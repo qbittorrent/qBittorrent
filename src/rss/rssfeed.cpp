@@ -326,7 +326,6 @@ void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
 
 void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article)
 {
-  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   RssDownloadRulePtr matching_rule = rules->findMatchingRule(m_url, article->title());
   if (!matching_rule)
     return;
@@ -344,7 +343,6 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
 
 void RssFeed::recheckRssItemsForDownload()
 {
-  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
   RssDownloadRuleList* rules = m_manager->downloadRules();
   foreach (const RssArticlePtr& article, m_articlesByDate) {
     if (!article->isRead())
