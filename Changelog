@@ -1,6 +1,7 @@
 * Unreleased - Christophe Dumez <chris@qbittorrent.org> - v3.0.10
     - BUGFIX: Fix LegitTorrents search plugin
     - BUGFIX: Improve peer host name resolution (closes #360)
+    - BUGFIX: Context menu fix in the Web UI
 
 * Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
