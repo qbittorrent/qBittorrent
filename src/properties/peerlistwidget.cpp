@@ -486,7 +486,7 @@ QString PeerListWidget::getFlags(const peer_info& peer)
   if (peer.flags & peer_info::rc4_encrypted)
     flags += "E ";
 
-#if LIBTORRENT_VERSION_MINOR > 15
+#if LIBTORRENT_VERSION_NUM > 001500
   //P = Peer is using uTorrent uTP
   if (peer.connection_type & peer_info::bittorrent_utp)
     flags += "P ";
