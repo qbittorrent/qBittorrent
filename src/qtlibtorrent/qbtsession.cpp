@@ -469,13 +469,8 @@ void QBtSession::configureSession() {
 #endif
 #if LIBTORRENT_VERSION_NUM >= 001600
   // uTP
-  if (pref.isuTPEnabled()) {
-    sessionSettings.enable_incoming_utp = true;
-    sessionSettings.enable_outgoing_utp = true;
-  } else {
-    sessionSettings.enable_incoming_utp = false;
-    sessionSettings.enable_outgoing_utp = false;
-  }
+  sessionSettings.enable_incoming_utp = pref.isuTPEnabled();
+  sessionSettings.enable_outgoing_utp = pref.isuTPEnabled();
   // uTP rate limiting
   sessionSettings.rate_limit_utp = pref.isuTPRateLimited();
   if (sessionSettings.rate_limit_utp)
