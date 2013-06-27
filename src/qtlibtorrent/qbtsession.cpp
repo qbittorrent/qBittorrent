@@ -483,6 +483,8 @@ void QBtSession::configureSession() {
   else
     sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
 #endif
+  sessionSettings.seed_choking_algorithm = session_settings::fastest_upload;
+  sessionSettings.connection_speed = 20; //default is 10
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
   // Bittorrent
