@@ -74,7 +74,19 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   m_proxyModel->setDynamicSortFilter(true);
   m_proxyModel->setSourceModel(m_listModel);
   setModel(m_proxyModel);
+  //Explicitly set the column visibility. When columns are added/removed
+  //between versions this prevents some of them being hidden due to
+  //incorrect restoreState() being used.
+  for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
+    showColumn(i);
   hideColumn(PeerListDelegate::IP_HIDDEN);
+  hideColumn(PeerListDelegate::COL_COUNT);
+  //To also migitate the above issue, we have to resize each column when
+  //its size is 0, because explicitely 'showing' the column isn't enough
+  //in the above scenario.
+  for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
+    if (!columnWidth(i))
+      resizeColumnToContents(i);
   // Context menu
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showPeerListMenu(QPoint)));
