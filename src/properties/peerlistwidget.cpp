@@ -54,6 +54,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   // Load settings
   loadSettings();
   // Visual settings
+  setUniformRowHeights(true);
   setRootIsDecorated(false);
   setItemsExpandable(false);
   setAllColumnsShowFocus(true);

@@ -10,6 +10,7 @@
     - LIBTORRENT: Fix hanging issue on Windows when closing files (0.16.10)
     - LIBTORRENT: Cache can now be returned to the OS (0.16.10)
     - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
+    - PERFORMANCE: Impove drawing speed of peers list when there are many peers
     
 * Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
