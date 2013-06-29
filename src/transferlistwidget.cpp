@@ -126,6 +126,13 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
   }
 
+  //When adding/removing columns between versions some may
+  //end up being size 0 when the new version is launched with
+  //a conf file from the previous version.
+  for (unsigned int i=0; i<TorrentModelItem::NB_COLUMNS; i++)
+    if (!columnWidth(i))
+      resizeColumnToContents(i);
+
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   // Listen for list events
