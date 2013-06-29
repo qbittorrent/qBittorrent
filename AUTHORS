@@ -1,4 +1,7 @@
-Author:
+Current maintainer:
+* Sledgehammer999 <sledgehammer999@qbittorrent.org>
+
+Original author:
 * Christophe Dumez <chris@qbittorrent.org>
 
 Contributors:
@@ -11,6 +14,7 @@ Contributors:
 * Grigis Gaëtan <cipher16@gmail.com>
 * Christian Kandeler <zambesi@users.sourceforge.net>
 * Silvan Scherrer <silvan.scherrer@aroa.ch>
+* Nick Tiskov <daymansmail@gmail.com>
 
 Code from other projects:
 * files src/qtsingleapp/* src/lineedit/*
@@ -24,6 +28,10 @@ Code from other projects:
 * files src/search_engine/socks.py
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
+
+* file src/stacktrace_win.h
+  copyright: Quassel Project
+  license: GPLv2/3
 
 Images Authors:
 * files: src/Icons/*.png
