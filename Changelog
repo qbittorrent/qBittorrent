@@ -9,7 +9,8 @@
     - LIBTORRENT: SOCKS5 fixes (0.16.10)
     - LIBTORRENT: Fix hanging issue on Windows when closing files (0.16.10)
     - LIBTORRENT: Cache can now be returned to the OS (0.16.10)
-
+    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
+    
 * Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
     - BUGFIX: Show human readable names for network interfaces in preferences (Windows)

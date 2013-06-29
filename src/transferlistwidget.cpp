@@ -67,6 +67,7 @@ using namespace libtorrent;
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
   QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
 
+  setUniformRowHeights(true);
   // Load settings
   bool column_loaded = loadSettings();
 

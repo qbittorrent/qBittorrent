@@ -29,6 +29,7 @@
  */
 
 #include <QDebug>
+#include <QFontMetrics>
 
 #include "torrentmodel.h"
 #include "torrentpersistentdata.h"
@@ -297,6 +298,19 @@ QVariant TorrentModel::data(const QModelIndex &index, int role) const
   if (!index.isValid()) return QVariant();
   try {
     if (index.row() >= 0 && index.row() < rowCount() && index.column() >= 0 && index.column() < columnCount())
+      if (role == Qt::SizeHintRole)
+      {
+        QSize size(m_torrents[index.row()]->data(index.column(), role).toSize());
+        QFont font;
+        QFontMetrics fm(font);
+        QIcon icon(":/Icons/skin/downloading.png");
+        int fm_height(fm.height());
+        QList<QSize> ic_sizes(icon.availableSizes());
+        int icon_height(ic_sizes[0].height());
+        size.setHeight(fm_height > icon_height ? fm_height : icon_height);
+        return QVariant(size);
+      }
+    else
       return m_torrents[index.row()]->data(index.column(), role);
   } catch(invalid_handle&) {}
   return QVariant();
