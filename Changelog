@@ -10,6 +10,7 @@
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - OTHER: Generate translations at configure time to reduce tarball size
     - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
+    - PERFORMANCE: Impove drawing speed of peers list when there are many peers
 
 * Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog
