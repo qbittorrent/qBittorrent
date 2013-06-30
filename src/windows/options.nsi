@@ -1,3 +1,4 @@
+Unicode true
 ;Compress the header too
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
 
@@ -79,4 +80,4 @@ RequestExecutionLevel admin
 !insertmacro MUI_UNPAGE_INSTFILES
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
-ReserveFile "${NSISDIR}\Plugins\FindProcDLL.dll"
+ReserveFile "${NSISDIR}\Plugins\x86-unicode\FindProcDLL.dll"
