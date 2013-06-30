@@ -628,6 +628,7 @@ void options_imp::loadOptions() {
   spinPort->setValue(pref.getSessionPort());
   checkUPnP->setChecked(pref.isUPnPEnabled());
   checkRandomPort->setChecked(pref.useRandomPort());
+  spinPort->setDisabled(checkRandomPort->isChecked());
   intValue = pref.getGlobalDownloadLimit();
   if (intValue > 0) {
     // Enabled
