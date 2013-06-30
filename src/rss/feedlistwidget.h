@@ -71,7 +71,6 @@ public slots:
 
 signals:
   void foldersAltered(const QList<QTreeWidgetItem*> &folders);
-  void overwriteAttempt(const QString &filename);
 
 private slots:
   void updateCurrentFeed(QTreeWidgetItem* new_item);
