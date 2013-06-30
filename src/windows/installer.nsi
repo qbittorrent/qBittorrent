@@ -120,7 +120,7 @@ SectionEnd
 Section $(inst_firewall)
 
   DetailPrint $(inst_firewallinfo)
-  nsisFirewall::AddAuthorizedApplication "$INSTDIR\qbittorrent.exe" "qBittorrent" 
+  nsisFirewallW::AddAuthorizedApplication "$INSTDIR\qbittorrent.exe" "qBittorrent" 
     
 SectionEnd
 

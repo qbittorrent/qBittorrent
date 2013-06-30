@@ -8,18 +8,20 @@ TRANSLATORS:
    english message to help you with the translation.
 4. Edit only the part inside the quotation marks(""). Unless you know 
    what you are doing.
-5. Submit your changes: 1) as a pull request to the official git repo or
+5. Save the files with utf8 encoding and BOM.
+6. Submit your changes: 1) as a pull request to the official git repo or
    2) open an issue to the bugtracker and attach them or 3) via email or
    4)the same way you provide the tranlations for qbt itself
 
 PACKAGERS:
 
-You will need NSIS and upx to make the installer.
+You will need NSIS and upx to make the installer. You need a unicode version of NSIS.
+I tested with NSIS 3.0a0. 
 
 1. Open the options.nsi file in an editor and change line that contains
    "!define PROG_VERSION "3.0.3"" to the version of qbittorrent you just built. 
-2. Extract the plugins found in the folder "nsis plugins" into the your 
-   NSIS's Plugin directory(usually C:\Program Files\NSIS\Plugins).
+2. Extract the plugins found in the folder "nsis plugins" into your 
+   NSIS's unicode Plugin directory(usually C:\Program Files\NSIS\Plugins\x86-unicode).
    Only the *.dll files are needed.
 3. The script you need to compile is "qbittorrent.nsi". It includes all other necessary scripts.
 4. The script expects the following file tree:
