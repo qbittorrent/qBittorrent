@@ -6,6 +6,7 @@
     - FEATURE: Add context menu to Web seed list (Gelmir)
     - FEATURE: Add support for tracker tiers / groups to creator (Gelmir)
     - FEATURE: Allow clearing execution and ban logs (Gelmir)
+    - FEATURE: Add option to use random port on each startup (ireallylikeher)
     - BUGFIX: Add confirmation dialog for "Force recheck" action (closes #131)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - BUGFIX: Ensure that all columns in the tranferlist have a size > 0.
