@@ -205,7 +205,7 @@ void FeedListWidget::dropEvent(QDropEvent *event) {
   foreach (QTreeWidgetItem *src_item, src_items) {
     RssFilePtr file = getRSSItem(src_item);
     if (dest_folder->hasChild(file->id())) {
-      emit overwriteAttempt(file->id());
+      QTreeWidget::dropEvent(event);
       return;
     }
   }
