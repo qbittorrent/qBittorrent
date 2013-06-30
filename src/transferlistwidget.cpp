@@ -606,7 +606,8 @@ void TransferListWidget::renameSelectedTorrent() {
   const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   if (selectedIndexes.size() != 1) return;
   if (!selectedIndexes.first().isValid()) return;
-  const QString hash = getHashFromRow(mapToSource(selectedIndexes.first()).row());
+  QModelIndex mi = mapToSource(selectedIndexes.first());
+  const QString hash = getHashFromRow(mi.row());
   const QTorrentHandle h = BTSession->getTorrentHandle(hash);
   if (!h.is_valid()) return;
   // Ask for a new Name
@@ -614,7 +615,7 @@ void TransferListWidget::renameSelectedTorrent() {
   const QString name = QInputDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
   if (ok && !name.isEmpty()) {
     // Rename the torrent
-    nameFilterModel->setData(selectedIndexes.first(), name, Qt::DisplayRole);
+    listModel->setData(mi, name, Qt::DisplayRole);
   }
 }
 
