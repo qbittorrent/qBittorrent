@@ -40,8 +40,6 @@
 #include <QDesktopServices>
 
 #include <libtorrent/version.hpp>
-#include <time.h>
-#include <stdlib.h>
 
 #include "options_imp.h"
 #include "preferences.h"
@@ -780,9 +778,7 @@ void options_imp::loadOptions() {
   domainNameTxt->setText(pref.getDynDomainName());
   DNSUsernameTxt->setText(pref.getDynDNSUsername());
   DNSPasswordTxt->setText(pref.getDynDNSPassword());
-  // End Web UI
-  // Random stuff
-  srand(time(0));
+  // End Web UI  
 }
 
 // return min & max ports

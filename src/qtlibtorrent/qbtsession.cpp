@@ -35,7 +35,6 @@
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
 #include <QProcess>
-#include <stdlib.h>
 
 #include "smtp.h"
 #include "filesystemwatcher.h"
@@ -290,8 +289,7 @@ void QBtSession::configureSession() {
   const unsigned short new_listenPort = pref.getSessionPort();
   if (pref.useRandomPort()) { // to check if the randomPort checkbox is selected
       if (!m_randomPortEnabled) {
-          m_randomPortEnabled = true;
-          srand(time(0));
+          m_randomPortEnabled = true;          
           const unsigned short randomPort = rand() % USHRT_MAX + 1025;
           setListeningPort(randomPort);
           addConsoleMessage(tr("qBittorrent is bound to port: TCP/%1", "e.g: qBittorrent is bound to port: 6881").arg(QString::number(getListenPort())));

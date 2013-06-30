@@ -225,6 +225,7 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
+  srand(time(0));
   Preferences pref;
 #ifndef DISABLE_GUI
   bool no_splash = false;
