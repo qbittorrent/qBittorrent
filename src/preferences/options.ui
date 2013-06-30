@@ -176,9 +176,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-161</y>
-             <width>484</width>
-             <height>693</height>
+             <y>0</y>
+             <width>458</width>
+             <height>587</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -516,8 +516,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>930</height>
+             <width>458</width>
+             <height>872</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -734,15 +734,6 @@
                       </attribute>
                       <attribute name="verticalHeaderVisible">
                        <bool>false</bool>
-                      </attribute>
-                      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                       <bool>false</bool>
-                      </attribute>
-                      <attribute name="horizontalHeaderStretchLastSection">
-                       <bool>true</bool>
-                      </attribute>
-                      <attribute name="horizontalHeaderDefaultSectionSize">
-                       <number>80</number>
                       </attribute>
                      </widget>
                     </item>
@@ -1031,8 +1022,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>451</width>
-             <height>524</height>
+             <width>458</width>
+             <height>472</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1101,10 +1092,7 @@
                  <item>
                   <widget class="QCheckBox" name="checkRandomPort">
                    <property name="text">
-                    <string>Use random port to communicate</string>
-                   </property>
-                   <property name="checked">
-                    <bool>false</bool>
+                    <string>Use different port on each startup</string>
                    </property>
                   </widget>
                  </item>
@@ -1485,8 +1473,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>398</width>
-             <height>458</height>
+             <width>275</width>
+             <height>396</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1760,18 +1748,18 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_from">
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
-                      <property name="calendarPopup">
-                       <bool>false</bool>
-                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
+                      </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -1787,15 +1775,15 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_to">
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
+                      </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
                       </property>
                      </widget>
                     </item>
@@ -1897,8 +1885,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>546</width>
-             <height>524</height>
+             <width>418</width>
+             <height>442</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2311,8 +2299,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>436</width>
-             <height>553</height>
+             <width>330</width>
+             <height>480</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2688,8 +2676,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>74</width>
-             <height>24</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
