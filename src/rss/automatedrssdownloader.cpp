@@ -93,6 +93,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(ui->checkRegex, SIGNAL(stateChanged(int)), SLOT(updateMustNotLineValidity()));
   Q_ASSERT(ok);
+  ok = connect(this, SIGNAL(finished(int)), SLOT(on_finished(int)));
+  Q_ASSERT(ok);
   updateRuleDefinitionBox();
   updateFeedList();
 }
@@ -100,11 +102,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
 AutomatedRssDownloader::~AutomatedRssDownloader()
 {
   qDebug() << Q_FUNC_INFO;
-  // Save current item on exit
-  saveEditedRule();
-  m_ruleList->replace(m_editableRuleList);
-  m_ruleList->saveRulesToStorage();
-  saveSettings();
   delete ui;
   delete m_editableRuleList;
 }
@@ -592,4 +589,11 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
   }
 }
 
-
+void AutomatedRssDownloader::on_finished(int result) {
+  Q_UNUSED(result);
+  // Save current item on exit
+  saveEditedRule();
+  m_ruleList->replace(m_editableRuleList);
+  m_ruleList->saveRulesToStorage();
+  saveSettings();
+}
