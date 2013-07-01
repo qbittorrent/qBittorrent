@@ -28,11 +28,11 @@ BEGIN
     BEGIN
         BLOCK "040904E4"
         BEGIN
-            VALUE "CompanyName",      "Christophe Dumez"
+            VALUE "CompanyName",      "The qBittorrent project"
             VALUE "FileDescription",  "qBittorrent - A Bittorrent Client"
             VALUE "FileVersion",      VER_FILEVERSION_STR
             VALUE "InternalName",     "qbittorrent"
-            VALUE "LegalCopyright",   "Copyright ©2006-2012 Christophe Dumez"
+            VALUE "LegalCopyright",   "Copyright ©2006-2013 The qBittorrent project"
             VALUE "OriginalFilename", "qbittorrent.exe"
             VALUE "ProductName",      "qBittorrent"
             VALUE "ProductVersion",   VER_PRODUCTVERSION_STR
