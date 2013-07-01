@@ -80,6 +80,7 @@ private slots:
   void updateFieldsToolTips(bool regex);
   void updateMustLineValidity();
   void updateMustNotLineValidity();
+  void on_finished(int result);
 
 private:
   RssDownloadRulePtr getCurrentRule() const;
