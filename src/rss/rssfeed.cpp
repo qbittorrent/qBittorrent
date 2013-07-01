@@ -125,6 +125,7 @@ void RssFeed::addArticle(const RssArticlePtr& article)
   // Insertion sort
   RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
   m_articlesByDate.insert(lowerBound, article);
+  const int lbIndex = m_articlesByDate.indexOf(article);
   // Restrict size
   const int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
   if (m_articlesByDate.size() > max_articles) {
@@ -133,6 +134,12 @@ void RssFeed::addArticle(const RssArticlePtr& article)
     // Update unreadCount
     if (!oldestArticle->isRead())
       --m_unreadCount;
+  }
+
+  // Check if article was inserted at the end of the list and will break max_articles limit
+  if (RssSettings().isRssDownloadingEnabled()) {
+    if (lbIndex < max_articles && !article->isRead())
+      downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
   }
 }
 
@@ -366,10 +373,6 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
   RssArticlePtr article = hashToRssArticle(this, articleData);
   Q_ASSERT(article);
   addArticle(article);
-
-  // Download torrent if necessary.
-  if (RssSettings().isRssDownloadingEnabled())
-    downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
 
   m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
   // FIXME: We should forward the information here but this would seriously decrease
