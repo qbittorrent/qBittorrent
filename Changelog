@@ -7,6 +7,7 @@
     - BUGFIX: Update free disk space when changing drives in the add new torrent dialog
     - BUGFIX: Various fixes relating to RSS drag and drop (Gelmir)
     - BUGFIX: Properly rename torrent which changes position in filter model (Gelmir)
+    - COSMETIC: Native look for the search boxes (Hyperz)
     - OTHER: Update italian translation.
     - LIBTORRENT: SOCKS5 fixes (0.16.10)
     - LIBTORRENT: Fix hanging issue on Windows when closing files (0.16.10)
