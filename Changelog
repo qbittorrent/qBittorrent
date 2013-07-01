@@ -2,18 +2,19 @@
     - BUGFIX: Fix LegitTorrents search plugin
     - BUGFIX: Improve peer host name resolution (closes #360)
     - BUGFIX: Context menu fix in the Web UI
-    - BUGFIX: Respect 'don't show' torrent dialog in Search
+    - BUGFIX: Respect 'don't show' torrent dialog in Search (sledgehammer999)
     - BUGFIX: Torrent creator can now use files/folders from disk root (Gelmir)
-    - BUGFIX: Update free disk space when changing drives in the add new torrent dialog
+    - BUGFIX: Update free disk space when changing drives in the add new torrent dialog (sledgehammer999)
     - BUGFIX: Various fixes relating to RSS drag and drop (Gelmir)
     - BUGFIX: Properly rename torrent which changes position in filter model (Gelmir)
+    - BUGFIX: Actually show tray notifications when a torrent finishes downloading (sledgehammer999)
     - COSMETIC: Native look for the search boxes (Hyperz)
     - OTHER: Update italian translation.
     - LIBTORRENT: SOCKS5 fixes (0.16.10)
     - LIBTORRENT: Fix hanging issue on Windows when closing files (0.16.10)
     - LIBTORRENT: Cache can now be returned to the OS (0.16.10)
-    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
-    - PERFORMANCE: Impove drawing speed of peers list when there are many peers
+    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100) (sledgehammer999)
+    - PERFORMANCE: Impove drawing speed of peers list when there are many peers (sledgehammer999)
     
 * Sat Mar 16 2013 - Christophe Dumez <chris@qbittorrent.org> - v3.0.9
     - BUGFIX: Raise qBittorrent windows when another instance is launched
