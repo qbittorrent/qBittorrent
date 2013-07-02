@@ -56,38 +56,6 @@
         <source>Thanks to</source>
         <translation>Хвала на</translation>
     </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Бит-торен клијент програмиран у C++, базиран на Qt4 програмском алату &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;и libtorrent-rasterbar-у. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Напредни Бит-торен клијент програмиран у C++, базиран на Qt4 програмском алату и libtorrent-rasterbar-у. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
     <message>
         <source>Libraries</source>
         <translation>Библиотеке</translation>
@@ -224,7 +192,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Изаберите путању чувања</translation>
     </message>
     <message>
         <source>Rename the file</source>
@@ -244,7 +212,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ово име је већ у употреби молим изаберите неко друго.</translation>
     </message>
     <message>
         <source>The folder could not be renamed</source>
@@ -265,14 +233,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>AdvancedSettings</name>
-    <message>
-        <source>Property</source>
-        <translation type="obsolete">Својства</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Вредност</translation>
-    </message>
     <message>
         <source>Disk write cache size</source>
         <translation>Величина кеша Диска</translation>
@@ -316,10 +276,6 @@ p, li { white-space: pre-wrap; }
         <translation>Игнориши ограничење преноса на локалној мрежи</translation>
     </message>
     <message>
-        <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="obsolete">Укључи TCP/IP прекорачење при ограничењу преноса</translation>
-    </message>
-    <message>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Максимални број полу-отворених конекција [0: Онемогућено]</translation>
     </message>
@@ -336,14 +292,6 @@ p, li { white-space: pre-wrap; }
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Било који мрежни интерфејс</translation>
-    </message>
-    <message>
-        <source>Display program notification baloons</source>
-        <translation type="obsolete">Прикажи балоне са програмским коментарима</translation>
-    </message>
-    <message>
-        <source>Display program notification balloons</source>
-        <translation type="obsolete">Прикажи балоне са програмским коментарима</translation>
     </message>
     <message>
         <source>Enable embedded tracker</source>
@@ -568,252 +516,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Bittorrent</name>
-    <message>
-        <source>%1 reached the maximum ratio you set.</source>
-        <translation type="obsolete">%1 достигао је максимални ниво који сте подесили.</translation>
-    </message>
-    <message>
-        <source>qBittorrent is bound to port: TCP/%1</source>
-        <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translatorcomment>н.пр.: qBittorrent је повезан на порт: 6881</translatorcomment>
-        <translation type="obsolete">qBittorrent је повезан на порт: TCP/%1</translation>
-    </message>
-    <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>HTTP user agent is %1</source>
-        <translation type="obsolete">HTTP кориснички агент је %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Користи кеш диска величине %1 MiB</translation>
-    </message>
-    <message>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">DHT подршка [Укључена], порт: UDP/%1</translation>
-    </message>
-    <message>
-        <source>DHT support [OFF]</source>
-        <translation type="obsolete">DHT подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>PeX support [ON]</source>
-        <translation type="obsolete">PeX подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>PeX support [OFF]</source>
-        <translation type="obsolete">PeX подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>Restart is required to toggle PeX support</source>
-        <translation type="obsolete">Рестарт је потребан за укључивање PeX подршке</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translatorcomment>Peer-Учесник</translatorcomment>
-        <translation type="obsolete">Претраживање локалних веза [Укључено]</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery support [OFF]</source>
-        <translatorcomment>Peer-Учесник</translatorcomment>
-        <translation type="obsolete">Претраживање локалних веза подршка [Искључено]</translation>
-    </message>
-    <message>
-        <source>Encryption support [ON]</source>
-        <translation type="obsolete">Шифровање подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>Encryption support [FORCED]</source>
-        <translation type="obsolete">Шифровање подршка [Форсирано]</translation>
-    </message>
-    <message>
-        <source>Encryption support [OFF]</source>
-        <translation type="obsolete">Шифровање подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">Веб КИ надгледа порт %1</translation>
-    </message>
-    <message>
-        <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">Веб Кориснички Интерфејс Грешка - Не могу да повежем Веб КИ на порт %1</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translatorcomment>&apos;xxx.avi&apos; је уклоњен...</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; је уклоњен са трансфер листе и хард диска.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translatorcomment>&apos;xxx.avi&apos; је уклоњен...</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; је уклоњен са трансфер листе.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is not a valid magnet URI.</source>
-        <translation type="obsolete">&apos;%1&apos; није валидан магнет URI.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
-        <translatorcomment>н.пр.: &apos;xxx.avi&apos; је већ на листи преузимања.</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; већ је додат на листу за преузимање.</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
-        <translatorcomment>&apos;/home/y/xxx.torrent&apos; је наставио. (брзи наставак)</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; настави. (брзо настави)</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
-        <translatorcomment>&apos;/home/y/xxx.torrent&apos; је додат на листу преузимања.</translatorcomment>
-        <translation type="obsolete">&apos;%1&apos; додат на листу за преузимање.</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
-        <translatorcomment>н.пр.: Не може да декодира торент фајл: &apos;/home/y/xxx.torrent&apos;</translatorcomment>
-        <translation type="obsolete">Није у стању да декодира торент фајл: &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Овај фајл је оштећен или ово није торент.</translation>
-    </message>
-    <message>
-        <source>Note: new trackers were added to the existing torrent.</source>
-        <translation type="obsolete">Напомена: нови пратиоци су додати у постојећи торент.</translation>
-    </message>
-    <message>
-        <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation type="obsolete">Напомена: нови URL донори су додати у постојећи торент.</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translatorcomment>x.y.z.w је блокиран</translatorcomment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је блокиран због вашег IP филтера&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
-        <comment>x.y.z.w was banned</comment>
-        <translatorcomment>x.y.z.w је одбачен</translatorcomment>
-        <translation type="obsolete">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;је одбачен због оштећених делова&lt;/i&gt;</translation>
-    </message>
-    <message>
-        <source>Recursive download of file %1 embedded in torrent %2</source>
-        <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation type="obsolete">Поновно преузимање фајла %1 омогућено у торенту %2</translation>
-    </message>
-    <message>
-        <source>Unable to decode %1 torrent file.</source>
-        <translation type="obsolete">Није у стању да декодира %1 торент фајл.</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Порт мапирање грешка, порука: %1</translation>
-    </message>
-    <message>
-        <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="obsolete">UPnP/NAT-PMP: Порт мапирање успешно, порука: %1</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="obsolete">Брзи наставак података је одбијен за торент %1, покушајте поново...</translation>
-    </message>
-    <message>
-        <source>Reason: %1</source>
-        <translation type="obsolete">Разлог: %1</translation>
-    </message>
-    <message>
-        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">Нека И/О грешка се догодила, &apos;%1&apos; паузирано.</translation>
-    </message>
-    <message>
-        <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="obsolete">Url преглед донора , грешка url: %1, порука: %2</translation>
-    </message>
-    <message>
-        <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translatorcomment>н.пр.: Преузимам &apos;xxx.torrent&apos;, молим сачекајте...</translatorcomment>
-        <translation type="obsolete">Преузимање &apos;%1&apos;, молим сачекајте...</translation>
-    </message>
-    <message>
-        <source>Removing torrent %1...</source>
-        <translation type="obsolete">Уклањање торента %1...</translation>
-    </message>
-    <message>
-        <source>Pausing torrent %1...</source>
-        <translation type="obsolete">Паузирање торента %1...</translation>
-    </message>
-    <message>
-        <source>Error: The torrent %1 does not contain any file.</source>
-        <translation type="obsolete">Грешка: Торент %1 не садржи ни један фајл.</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent %1, pausing it.</source>
-        <translation type="obsolete">Величина фајла није одговарајућа за торент %1, паузирајте га.</translation>
-    </message>
-    <message>
-        <source>Torrent name: %1</source>
-        <translation type="obsolete">Име Торента: %1</translation>
-    </message>
-    <message>
-        <source>Torrent size: %1</source>
-        <translation type="obsolete">Величина Торента: %1</translation>
-    </message>
-    <message>
-        <source>Save path: %1</source>
-        <translation type="obsolete">Путања чувања: %1</translation>
-    </message>
-    <message>
-        <source>The torrent was downloaded in %1.</source>
-        <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">Торент ће бити преузет за %1.</translation>
-    </message>
-    <message>
-        <source>Thank you for using qBittorrent.</source>
-        <translation type="obsolete">Хвала што користите qBittorrent.</translation>
-    </message>
-    <message>
-        <source>[qBittorrent] %1 has finished downloading</source>
-        <translation type="obsolete">[qBittorrent] %1 је завршио преузимање</translation>
-    </message>
-</context>
-<context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Опште</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Блокирани IP-и</translation>
-    </message>
-    <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">qBittorrent преглед дневника</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <source>Cookies management</source>
@@ -838,10 +540,6 @@ You should get this information from your Web browser preferences.</source>
 </context>
 <context>
     <name>DNSUpdater</name>
-    <message>
-        <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="obsolete">Ваш динамички DNS је успешно ажуриран.</translation>
-    </message>
     <message>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation>Динамички DNS грешка: сервис је привремено недоступан, биће проверено за 30 минута.</translation>
@@ -979,55 +677,7 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>EventManager</name>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Ради</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Ажурирање...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Не ради</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Није још контактиран</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation type="obsolete">ова сесија</translation>
-    </message>
-    <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation type="obsolete">/s</translation>
-    </message>
-    <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="obsolete">Донирано за %1</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation type="obsolete">%1 max</translation>
-    </message>
-    <message>
-        <source>%1/s</source>
-        <comment>e.g. 120 KiB/s</comment>
-        <translatorcomment>н.пр. 120 KiB/s</translatorcomment>
-        <translation type="obsolete">%1/s</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLog</name>
-    <message>
-        <source>Form</source>
-        <translation type="obsolete">Образац</translation>
-    </message>
     <message>
         <source>General</source>
         <translation>Опште</translation>
@@ -1035,190 +685,6 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <source>Blocked IPs</source>
         <translation>Блокирани IP-и</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloader</name>
-    <message>
-        <source>RSS Feed downloader</source>
-        <translatorcomment>Feed-допис,порука,канал</translatorcomment>
-        <translation type="obsolete">RSS преузимач Порука</translation>
-    </message>
-    <message>
-        <source>RSS feed:</source>
-        <translatorcomment>feed-допис,порука,канал</translatorcomment>
-        <translation type="obsolete">RSS допис:</translation>
-    </message>
-    <message>
-        <source>Feed name</source>
-        <translatorcomment>Feed-допис,порука,канал</translatorcomment>
-        <translation type="obsolete">Име поруке</translation>
-    </message>
-    <message>
-        <source>Automatically download torrents from this feed</source>
-        <translation type="obsolete">Аутоматски преузми торенте са ових дописа</translation>
-    </message>
-    <message>
-        <source>Download filters</source>
-        <translation type="obsolete">Преузимање филтера</translation>
-    </message>
-    <message>
-        <source>Filters:</source>
-        <translation type="obsolete">Филтери:</translation>
-    </message>
-    <message>
-        <source>Filter settings</source>
-        <translation type="obsolete">Подешавања филтера</translation>
-    </message>
-    <message>
-        <source>Matches:</source>
-        <translation type="obsolete">Усклађен:</translation>
-    </message>
-    <message>
-        <source>Does not match:</source>
-        <translation type="obsolete">Неусклађен:</translation>
-    </message>
-    <message>
-        <source>Destination folder:</source>
-        <translation type="obsolete">Одредишна фасцикла:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Filter testing</source>
-        <translation type="obsolete">Тестирање филтера</translation>
-    </message>
-    <message>
-        <source>Torrent title:</source>
-        <translation type="obsolete">Име Торента (наслов):</translation>
-    </message>
-    <message>
-        <source>Result:</source>
-        <translation type="obsolete">Резултат:</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="obsolete">Тест</translation>
-    </message>
-    <message>
-        <source>Import...</source>
-        <translation type="obsolete">Увези...</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation type="obsolete">Извези...</translation>
-    </message>
-    <message>
-        <source>Rename filter</source>
-        <translation type="obsolete">Преименуј филтер</translation>
-    </message>
-    <message>
-        <source>Remove filter</source>
-        <translation type="obsolete">Уклони филтер</translation>
-    </message>
-    <message>
-        <source>Add filter</source>
-        <translation type="obsolete">Додај филтер</translation>
-    </message>
-</context>
-<context>
-    <name>FeedDownloaderDlg</name>
-    <message>
-        <source>New filter</source>
-        <translation type="obsolete">Нови филтер</translation>
-    </message>
-    <message>
-        <source>Please choose a name for this filter</source>
-        <translation type="obsolete">Молим изаберите име за овај филтер</translation>
-    </message>
-    <message>
-        <source>Filter name:</source>
-        <translation type="obsolete">Име филтера:</translation>
-    </message>
-    <message>
-        <source>Invalid filter name</source>
-        <translation type="obsolete">Погрешно име филтера</translation>
-    </message>
-    <message>
-        <source>The filter name cannot be left empty.</source>
-        <translation type="obsolete">Име филтера не може бити празно.</translation>
-    </message>
-    <message>
-        <source>This filter name is already in use.</source>
-        <translation type="obsolete">Ово име филтера већ постоји.</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Изаберите путању чувања</translation>
-    </message>
-    <message>
-        <source>Filter testing error</source>
-        <translation type="obsolete">Грешака тестирања филтера</translation>
-    </message>
-    <message>
-        <source>Please specify a test torrent name.</source>
-        <translation type="obsolete">Молим наведите неко тест име за торент.</translation>
-    </message>
-    <message>
-        <source>matches</source>
-        <translation type="obsolete">усклађен</translation>
-    </message>
-    <message>
-        <source>does not match</source>
-        <translation type="obsolete">неусклађен</translation>
-    </message>
-    <message>
-        <source>Select file to import</source>
-        <translation type="obsolete">Изаберите фајл за увоз</translation>
-    </message>
-    <message>
-        <source>Filters Files</source>
-        <translation type="obsolete">Филтер фајлови</translation>
-    </message>
-    <message>
-        <source>Import successful</source>
-        <translation type="obsolete">Увоз успешан</translation>
-    </message>
-    <message>
-        <source>Filters import was successful.</source>
-        <translation type="obsolete">Увоз филтера је успешан.</translation>
-    </message>
-    <message>
-        <source>Import failure</source>
-        <translation type="obsolete">Увоз погрешан</translation>
-    </message>
-    <message>
-        <source>Filters could not be imported due to an I/O error.</source>
-        <translation type="obsolete">Филтери не могу бити увежени због неке I/O грешке.</translation>
-    </message>
-    <message>
-        <source>Select destination file</source>
-        <translation type="obsolete">Изабери одредишни фајл</translation>
-    </message>
-    <message>
-        <source>Export successful</source>
-        <translation type="obsolete">Извоз успешан</translation>
-    </message>
-    <message>
-        <source>Filters export was successful.</source>
-        <translation type="obsolete">Филтери су извезени успешно.</translation>
-    </message>
-    <message>
-        <source>Export failure</source>
-        <translation type="obsolete">Извоз погрешан</translation>
-    </message>
-    <message>
-        <source>Filters could not be exported due to an I/O error.</source>
-        <translation type="obsolete">Филтери не могу бити извежени због неке I/O грешке.</translation>
-    </message>
-</context>
-<context>
-    <name>FeedList</name>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">Непрочитане</translation>
     </message>
 </context>
 <context>
@@ -1230,465 +696,6 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <source>Unread</source>
         <translation>Непрочитане</translation>
-    </message>
-</context>
-<context>
-    <name>GUI</name>
-    <message>
-        <source>Open Torrent Files</source>
-        <translation type="obsolete">Отвори Торент фајлове</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Торент Фајлови</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translatorcomment>н.пр.: qBittorrent v0.x</translatorcomment>
-        <translation type="obsolete">qBittorrent %1</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
-        <source>DL speed: %1 KiB/s</source>
-        <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translatorcomment>н.пр.: Брзина преузимања: 10 KiB/s</translatorcomment>
-        <translation type="obsolete">ПР брзина: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>UP speed: %1 KiB/s</source>
-        <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translatorcomment>н.пр.: Брзина слања: 10 KiB/s</translatorcomment>
-        <translation type="obsolete">СЛ брзина: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>%1 has finished downloading.</source>
-        <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translatorcomment>н.пр.: xxx.avi је завршио преузимање.</translatorcomment>
-        <translation type="obsolete">%1 је завршио преузимање.</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <comment>i.e: Input/Output Error</comment>
-        <translatorcomment>н.пр.: Улазно/Излазна грешка</translatorcomment>
-        <translation type="obsolete">И/О Грешка</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Претраживање</translation>
-    </message>
-    <message>
-        <source>RSS</source>
-        <translatorcomment>RSS је породица веб формата који се користе за објављивање садржаја који се често мењају, као што су новински наслови. RSS документ садржи или сажетак садржаја са придружене веб стране, или читав текст. RSS вам омогућава да будете у току са изменама и новостима са неког веб сајта потпуно аутоматски, а тај садржај се може увести у RSS апликацију на вашој страни.</translatorcomment>
-        <translation type="obsolete">RSS</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translatorcomment>пречица за пребацивање на прво поље</translatorcomment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Url download error</source>
-        <translation type="obsolete">Url грешка преузимања</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="obsolete">Немогуће преузети фајл са url: %1, разлог: %2.</translation>
-    </message>
-    <message>
-        <source>An I/O error occurred for torrent %1.
- Reason: %2</source>
-        <comment>e.g: An error occurred for torrent xxx.avi.
- Reason: disk is full.</comment>
-        <translatorcomment>н.пр.: Догодила се грешка са торентом xxx.avi. Разлог: диск је пун.</translatorcomment>
-        <translation type="obsolete">Нека И/О грешка се догодила са торентом %1.
- Разлог: %2</translation>
-    </message>
-    <message>
-        <source>Transfers</source>
-        <translatorcomment>Преноси</translatorcomment>
-        <translation type="obsolete">Трансфери</translation>
-    </message>
-    <message>
-        <source>Download completion</source>
-        <translation type="obsolete">Комплетно преузет</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translatorcomment>пречица за пребацивање на поље претраживања</translatorcomment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
-    </message>
-    <message>
-        <source>Global Upload Speed Limit</source>
-        <translation type="obsolete">Општи лимит брзине слања</translation>
-    </message>
-    <message>
-        <source>Global Download Speed Limit</source>
-        <translation type="obsolete">Општи лимит брзине преузимања</translation>
-    </message>
-    <message>
-        <source>Some files are currently transferring.
-Are you sure you want to quit qBittorrent?</source>
-        <translation type="obsolete">Неки фајлови се тренутно преносе.
-Да ли сте сигурни да желите да прекинете qBittorrent?</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Преуз: %2/s, Сл: %3/s)</translation>
-    </message>
-    <message>
-        <source>Options were saved successfully.</source>
-        <translation type="obsolete">Опције када је сачуван успешно.</translation>
-    </message>
-    <message>
-        <source>Recursive download confirmation</source>
-        <translation type="obsolete">Потврда поновног преузимања</translation>
-    </message>
-    <message>
-        <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="obsolete">Торент %1 садржи торент фајлове, да ли желите да наставите њихово преузимање?</translation>
-    </message>
-    <message>
-        <source>Torrent file association</source>
-        <translation type="obsolete">Асоцириње Торент фајла</translation>
-    </message>
-    <message>
-        <source>qBittorrent is not the default application to open torrent files or Magnet links.
-Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="obsolete">qBittorrent није подразумевана апликација за отварање Торент фајлова или Magnet линкова.
-Да ли желите да асоцирате qBittorrent за Торент фајлове и Magnet линкове?</translation>
-    </message>
-    <message>
-        <source>Transfers (%1)</source>
-        <translation type="obsolete">Трансфери (%1)</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Да</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Не</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="obsolete">Никада</translation>
-    </message>
-    <message>
-        <source>Always</source>
-        <translation type="obsolete">Увек</translation>
-    </message>
-    <message>
-        <source>Exiting qBittorrent</source>
-        <translation type="obsolete">Излазак из qBittorrent-а</translation>
-    </message>
-    <message>
-        <source>Set the password...</source>
-        <translation type="obsolete">Подешавање лозинке...</translation>
-    </message>
-    <message>
-        <source>Password update</source>
-        <translation type="obsolete">Обнављање лозинке</translation>
-    </message>
-    <message>
-        <source>The UI lock password has been successfully updated</source>
-        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
-        <translation type="obsolete">Закључавање КИ-а лозинком је успешно обновљено</translation>
-    </message>
-    <message>
-        <source>UI lock password</source>
-        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
-        <translation type="obsolete">Закључавање КИ-а лозинком</translation>
-    </message>
-    <message>
-        <source>Please type the UI lock password:</source>
-        <translatorcomment>КИ-кориснички интерфејс</translatorcomment>
-        <translation type="obsolete">Молим упишите лозинку закључавања КИ-а:</translation>
-    </message>
-    <message>
-        <source>Invalid password</source>
-        <translation type="obsolete">Погрешна лозинка</translation>
-    </message>
-    <message>
-        <source>The password is invalid</source>
-        <translation type="obsolete">Лозинка је погрешна</translation>
-    </message>
-    <message>
-        <source>A newer version is available</source>
-        <translation type="obsolete">Нова верзија је доступна</translation>
-    </message>
-    <message>
-        <source>A newer version of qBittorrent is available on Sourceforge.
-Would you like to update qBittorrent to version %1?</source>
-        <translation type="obsolete">Нова верзија qBittorrent-а је доступна на Sourceforge-u.
-Да ли желите да ажурирате qBittorrent на верзију %1?</translation>
-    </message>
-    <message>
-        <source>Impossible to update qBittorrent</source>
-        <translation type="obsolete">Није могуће ажурирање qBittorrent-а</translation>
-    </message>
-    <message>
-        <source>qBittorrent failed to update, reason: %1</source>
-        <translation type="obsolete">qBittorrent грешка при ажурирању, разлог: %1</translation>
-    </message>
-</context>
-<context>
-    <name>GeoIP</name>
-    <message>
-        <source>Australia</source>
-        <translation type="obsolete">Аустралија</translation>
-    </message>
-    <message>
-        <source>Argentina</source>
-        <translation type="obsolete">Аргентина</translation>
-    </message>
-    <message>
-        <source>Austria</source>
-        <translation type="obsolete">Ауструја</translation>
-    </message>
-    <message>
-        <source>United Arab Emirates</source>
-        <translation type="obsolete">Уједињени Арапски Емирати</translation>
-    </message>
-    <message>
-        <source>Brazil</source>
-        <translation type="obsolete">Бразил</translation>
-    </message>
-    <message>
-        <source>Bulgaria</source>
-        <translation type="obsolete">Бугарска</translation>
-    </message>
-    <message>
-        <source>Belarus</source>
-        <translation type="obsolete">Белорусија</translation>
-    </message>
-    <message>
-        <source>Belgium</source>
-        <translation type="obsolete">Белгија</translation>
-    </message>
-    <message>
-        <source>Bosnia</source>
-        <translation type="obsolete">Босна</translation>
-    </message>
-    <message>
-        <source>Canada</source>
-        <translation type="obsolete">Канада</translation>
-    </message>
-    <message>
-        <source>Czech Republic</source>
-        <translation type="obsolete">Република Чешка</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="obsolete">Кина</translation>
-    </message>
-    <message>
-        <source>Costa Rica</source>
-        <translation type="obsolete">Коста Рика</translation>
-    </message>
-    <message>
-        <source>Switzerland</source>
-        <translation type="obsolete">Швајцарска</translation>
-    </message>
-    <message>
-        <source>Germany</source>
-        <translation type="obsolete">Немачка</translation>
-    </message>
-    <message>
-        <source>Denmark</source>
-        <translation type="obsolete">Данска</translation>
-    </message>
-    <message>
-        <source>Algeria</source>
-        <translation type="obsolete">Алжир</translation>
-    </message>
-    <message>
-        <source>Spain</source>
-        <translation type="obsolete">Шпанија</translation>
-    </message>
-    <message>
-        <source>Egypt</source>
-        <translation type="obsolete">Египат</translation>
-    </message>
-    <message>
-        <source>Finland</source>
-        <translation type="obsolete">Финска</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="obsolete">Француска</translation>
-    </message>
-    <message>
-        <source>United Kingdom</source>
-        <translation type="obsolete">Енглеска</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="obsolete">Грчка</translation>
-    </message>
-    <message>
-        <source>Georgia</source>
-        <translation type="obsolete">Грузија</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="obsolete">Мађарска</translation>
-    </message>
-    <message>
-        <source>Croatia</source>
-        <translation type="obsolete">Хрватска</translation>
-    </message>
-    <message>
-        <source>Italy</source>
-        <translation type="obsolete">Италија</translation>
-    </message>
-    <message>
-        <source>India</source>
-        <translation type="obsolete">Индија</translation>
-    </message>
-    <message>
-        <source>Israel</source>
-        <translation type="obsolete">Израел</translation>
-    </message>
-    <message>
-        <source>Ireland</source>
-        <translation type="obsolete">Ирска</translation>
-    </message>
-    <message>
-        <source>Iceland</source>
-        <translation type="obsolete">Исланд</translation>
-    </message>
-    <message>
-        <source>Indonesia</source>
-        <translation type="obsolete">Индонезија</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="obsolete">Јапан</translation>
-    </message>
-    <message>
-        <source>South Korea</source>
-        <translation type="obsolete">Јужна Кореја</translation>
-    </message>
-    <message>
-        <source>Luxembourg</source>
-        <translation type="obsolete">Луксембург</translation>
-    </message>
-    <message>
-        <source>Malaysia</source>
-        <translation type="obsolete">Малезија</translation>
-    </message>
-    <message>
-        <source>Mexico</source>
-        <translation type="obsolete">Мексико</translation>
-    </message>
-    <message>
-        <source>Serbia</source>
-        <translation type="obsolete">Србија</translation>
-    </message>
-    <message>
-        <source>Morocco</source>
-        <translation type="obsolete">Мароко</translation>
-    </message>
-    <message>
-        <source>Netherlands</source>
-        <translation type="obsolete">Холандија</translation>
-    </message>
-    <message>
-        <source>Norway</source>
-        <translation type="obsolete">Норвешка</translation>
-    </message>
-    <message>
-        <source>New Zealand</source>
-        <translation type="obsolete">Нови Зеланд</translation>
-    </message>
-    <message>
-        <source>Portugal</source>
-        <translation type="obsolete">Португалија</translation>
-    </message>
-    <message>
-        <source>Poland</source>
-        <translation type="obsolete">Пољска</translation>
-    </message>
-    <message>
-        <source>Pakistan</source>
-        <translation type="obsolete">Пакистан</translation>
-    </message>
-    <message>
-        <source>Philippines</source>
-        <translation type="obsolete">Филипини</translation>
-    </message>
-    <message>
-        <source>Russia</source>
-        <translation type="obsolete">Русија</translation>
-    </message>
-    <message>
-        <source>Romania</source>
-        <translation type="obsolete">Румунија</translation>
-    </message>
-    <message>
-        <source>France (Reunion Island)</source>
-        <translation type="obsolete">Француска (Reunion Island)</translation>
-    </message>
-    <message>
-        <source>Sweden</source>
-        <translation type="obsolete">Шведска</translation>
-    </message>
-    <message>
-        <source>Slovakia</source>
-        <translation type="obsolete">Словачка</translation>
-    </message>
-    <message>
-        <source>Singapore</source>
-        <translation type="obsolete">Сингапур</translation>
-    </message>
-    <message>
-        <source>Slovenia</source>
-        <translation type="obsolete">Словенија</translation>
-    </message>
-    <message>
-        <source>Taiwan</source>
-        <translation type="obsolete">Тајван</translation>
-    </message>
-    <message>
-        <source>Turkey</source>
-        <translation type="obsolete">Турска</translation>
-    </message>
-    <message>
-        <source>Thailand</source>
-        <translation type="obsolete">Тајланд</translation>
-    </message>
-    <message>
-        <source>USA</source>
-        <translation type="obsolete">САД</translation>
-    </message>
-    <message>
-        <source>Ukraine</source>
-        <translation type="obsolete">Украјина</translation>
-    </message>
-    <message>
-        <source>South Africa</source>
-        <translation type="obsolete">Јужна Африка</translation>
-    </message>
-    <message>
-        <source>Saudi Arabia</source>
-        <translation type="obsolete">Саудијска Арабија</translation>
     </message>
 </context>
 <context>
@@ -1720,18 +727,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ваша IP адреса је одбијена после више покушаја аутентификације.</translation>
     </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translatorcomment>Брзина преузимања: x KiB/s - Транспортовано: x MiB</translatorcomment>
-        <translation type="obsolete">П: %1/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translatorcomment>Брзина слања: x KiB/s - Транспортовано: x MiB</translatorcomment>
-        <translation type="obsolete">С: %1/s - T: %2</translation>
-    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -1747,10 +742,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Help</source>
         <translation>Помоћ</translation>
-    </message>
-    <message>
-        <source>Delete from HD</source>
-        <translation type="obsolete">Обриши са HD-а (хард диск-а)</translation>
     </message>
     <message>
         <source>Download Torrents from their URL or Magnet link</source>
@@ -1925,14 +916,6 @@ No further notices will be issued.</source>
         <translation>&amp;Помоћ</translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Приказ датотеке</translation>
-    </message>
-    <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Обриши лог</translation>
-    </message>
-    <message>
         <source>Decrease priority</source>
         <translation>Снизи приоритет</translation>
     </message>
@@ -1949,20 +932,8 @@ No further notices will be issued.</source>
         <translation>&amp;Изглед</translation>
     </message>
     <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Додај фајл...</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="obsolete">И&amp;злаз</translation>
-    </message>
-    <message>
         <source>&amp;Options...</source>
         <translation>&amp;Опције...</translation>
-    </message>
-    <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Додај &amp;URL...</translation>
     </message>
     <message>
         <source>Torrent &amp;creator</source>
@@ -1983,11 +954,6 @@ No further notices will be issued.</source>
     <message>
         <source>Set global upload limit...</source>
         <translation>Подеси општи лимит слања...</translation>
-    </message>
-    <message>
-        <source>&amp;Log viewer...</source>
-        <translatorcomment>Log-Дневник-Лог</translatorcomment>
-        <translation type="obsolete">&amp;Преглед дневника...</translation>
     </message>
     <message>
         <source>Top &amp;tool bar</source>
@@ -2046,10 +1012,6 @@ No further notices will be issued.</source>
         <translation>Претраживачки &amp;модул</translation>
     </message>
     <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Преглед дневника</translation>
-    </message>
-    <message>
         <source>Lock qBittorrent</source>
         <translation>Закључај qBittorrent</translation>
     </message>
@@ -2058,20 +1020,12 @@ No further notices will be issued.</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Shutdown computer when downloads complete</source>
-        <translation type="obsolete">Искључи рачунар по комплетном преузимању</translation>
-    </message>
-    <message>
         <source>&amp;Resume</source>
         <translation>&amp;Настави</translation>
     </message>
     <message>
         <source>R&amp;esume All</source>
         <translation>Н&amp;астави Све</translation>
-    </message>
-    <message>
-        <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="obsolete">Искључи qBittorrent по комплетном преузимању</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -2265,11 +1219,6 @@ Are you sure you want to quit qBittorrent?</source>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>СЛ брзина: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Преуз: %2/s, Сл: %3/s)</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -2470,15 +1419,13 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Connection</source>
         <translation>Конекције</translation>
     </message>
+    <message>
+        <source>Flags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Preferences</name>
-    <message>
-        <source>UI</source>
-        <extracomment>User Interface</extracomment>
-        <translatorcomment>КИ (Кориснички Интерфејс)</translatorcomment>
-        <translation type="obsolete">КИ</translation>
-    </message>
     <message>
         <source>Downloads</source>
         <translation>Преузимање</translation>
@@ -2492,14 +1439,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Брзина</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Бит-торент</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="obsolete">Прокси</translation>
-    </message>
-    <message>
         <source>Web UI</source>
         <translatorcomment>Web UI (Веб Кориснички Интерфејс)</translatorcomment>
         <translation>Веб КИ</translation>
@@ -2509,21 +1448,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Напредно</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation type="obsolete">Језик:</translation>
-    </message>
-    <message>
         <source>(Requires restart)</source>
         <translation>(Захтева рестарт)</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">Изглед:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translatorcomment>Листа преноса</translatorcomment>
-        <translation type="obsolete">Трансфер листа</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
@@ -2531,16 +1457,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Користи различите боје за приказ редова</translation>
     </message>
     <message>
-        <source>File system</source>
-        <translation type="obsolete">Фајл систем</translation>
-    </message>
-    <message>
         <source>Copy .torrent files to:</source>
         <translation>Копирај .torrent фајлове у:</translation>
-    </message>
-    <message>
-        <source>Torrent queueing</source>
-        <translation type="obsolete">Торент опслуживање</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -2563,28 +1481,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Прикажи садржај торента и неке опције</translation>
     </message>
     <message>
-        <source>Listening port</source>
-        <translation type="obsolete">Надгледај порт</translation>
-    </message>
-    <message>
         <source>Port used for incoming connections:</source>
         <translation>Порт коришћен за долазне конекције:</translation>
     </message>
     <message>
         <source>Random</source>
         <translation>Случајан</translation>
-    </message>
-    <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">Омогући UPnP мапирање порта</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">Омогући NAT-PMP мапирање порта</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">Конекциона ограничења</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
@@ -2611,14 +1513,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <source>Global speed limits</source>
-        <translation type="obsolete">Глобална ограничења брзине</translation>
-    </message>
-    <message>
-        <source>Alternative global speed limits</source>
-        <translation type="obsolete">Алтернатива глобалног ограничења брзине</translation>
-    </message>
-    <message>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>до</translation>
@@ -2636,53 +1530,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Викендом</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Бит-торент карактеристике</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">Омогући DHT мрежу (децентализовано)</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Користи различит порт за DHT и Бит-торент</translation>
-    </message>
-    <message>
         <source>DHT port:</source>
         <translation>DHT порт:</translation>
     </message>
     <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translatorcomment>Рестарт је потребан за старт PeX подршке</translatorcomment>
-        <translation type="obsolete">Омогући Peer Exchange / PeX (захтева рестарт)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Омогући откривање локалних веза Peer (учесника)</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Омогући</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Форсирано</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Онемогући</translation>
-    </message>
-    <message>
-        <source>HTTP Communications (trackers, Web seeds, search engine)</source>
-        <translation type="obsolete">HTTP Комуникације (пратиоци, Веб донори, претраживачки модул)</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Домаћин:</translation>
-    </message>
-    <message>
-        <source>Peer Communications</source>
-        <translation type="obsolete">Peer (учесничке) Комуникације</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -2730,10 +1583,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Филтер, путања фајла (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <source>HTTP Server</source>
-        <translation type="obsolete">HTTP Сервер</translation>
-    </message>
-    <message>
         <source>No action</source>
         <translation>Без дејства</translation>
     </message>
@@ -2742,21 +1591,12 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Опције</translation>
     </message>
     <message>
-        <source>Visual Appearance</source>
-        <translatorcomment>Изглед</translatorcomment>
-        <translation type="obsolete">Визуелни приказ</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Дејство при двоструком клику</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
         <translation>Преузимање торента:</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Старт/Стоп</translation>
     </message>
     <message>
         <source>Open destination folder</source>
@@ -2778,10 +1618,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Start qBittorrent minimized</source>
         <translation>Стартуј qBittorrent минимизовано</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent icon in notification area</source>
-        <translation type="obsolete">Прикажи qBittorrent икону на системској палети</translation>
     </message>
     <message>
         <source>Minimize qBittorrent to notification area</source>
@@ -2814,10 +1650,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Задржи некомплетне торенте у:</translation>
     </message>
     <message>
-        <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="obsolete">Додај .!qB екстензију у некомплетна имена фајлова</translation>
-    </message>
-    <message>
         <source>Automatically add torrents from:</source>
         <translation>Аутоматски додај торенте из:</translation>
     </message>
@@ -2828,10 +1660,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>IP Filtering</source>
         <translation>IP Филтрирање</translation>
-    </message>
-    <message>
-        <source>Schedule the use of alternative speed limits</source>
-        <translation type="obsolete">Распоред коришћења алтернативног ограничења брзине</translation>
     </message>
     <message>
         <source>from</source>
@@ -2848,16 +1676,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Потражите peer-ове на вашој локалној мрежи</translation>
     </message>
     <message>
-        <source>Protocol encryption:</source>
-        <translation type="obsolete">Протокол шифровања:</translation>
-    </message>
-    <message>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Омогући Веб Кориснички Интерфејс (Даљински приступ)</translation>
-    </message>
-    <message>
-        <source>Share ratio limiting</source>
-        <translation type="obsolete">Ограничење индекса дељења</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
@@ -2895,14 +1715,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Run an external program on torrent completion</source>
         <translation>Покрени екстерни програм по завршетку торента</translation>
-    </message>
-    <message>
-        <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="obsolete">Користи %f за пролаз торент путање у параметрима</translation>
-    </message>
-    <message>
-        <source>Proxy server</source>
-        <translation type="obsolete">Прокси сервер</translation>
     </message>
     <message>
         <source>BitTorrent</source>
@@ -2953,10 +1765,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Онемогући шифровање</translation>
     </message>
     <message>
-        <source>User Interface</source>
-        <translation type="obsolete">Кориснички интерфејс</translation>
-    </message>
-    <message>
         <source>Reload the filter</source>
         <translation>Поново учитај филтер</translation>
     </message>
@@ -2983,10 +1791,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Ask for program exit confirmation</source>
         <translation>Захтевај потврду за излазак из програма</translation>
-    </message>
-    <message>
-        <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="obsolete">Користи једнобојну икону на системској палети (захтева рестарт)</translation>
     </message>
     <message>
         <source>The following parameters are supported:
@@ -3160,10 +1964,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Омогући анонимни начин рада</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3197,18 +1997,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Жалим не могу да прикажем овај фајл</translation>
-    </message>
-</context>
-<context>
-    <name>ProgramUpdater</name>
-    <message>
-        <source>Could not create the file %1</source>
-        <translation type="obsolete">Није могуће креирати датотеку %1</translation>
-    </message>
-    <message>
-        <source>Failed to download the update at %1</source>
-        <comment>%1 is an URL</comment>
-        <translation type="obsolete">Неуспешно преузимање ажурирања са %1</translation>
     </message>
 </context>
 <context>
@@ -3251,14 +2039,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Peers</source>
         <translation>Peers (учесници)</translation>
-    </message>
-    <message>
-        <source>URL Seeds</source>
-        <translation type="obsolete">URL донори</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Фајлови</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -3316,10 +2096,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>ПР лимит:</translation>
     </message>
     <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Протекло време:</translation>
-    </message>
-    <message>
         <source>Connections:</source>
         <translation>Конекције:</translation>
     </message>
@@ -3334,28 +2110,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Comment:</source>
         <translation>Коментар:</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Опште</translation>
-    </message>
-    <message>
-        <source>Trackers</source>
-        <translatorcomment>Trackers-Трагачи,Пратиоци</translatorcomment>
-        <translation type="obsolete">Пратиоци</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="obsolete">Peers (учесници)</translation>
-    </message>
-    <message>
-        <source>URL seeds</source>
-        <translatorcomment>донори-seeds</translatorcomment>
-        <translation type="obsolete">URL донори</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Фајлови</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -3450,18 +2204,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Овај Url донор је већ на листи.</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Изаберите путању чувања</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Грешка у путањи за чување</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Не могу да креирам путању за чување фајла</translation>
-    </message>
-    <message>
         <source>Reannounce in:</source>
         <translation>Поново објави за:</translation>
     </message>
@@ -3535,28 +2277,8 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>qBittorrent је повезан на порт: TCP/%1</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP подршка [Искључена]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP подршка [Укључена]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP подршка [Искључена]</translation>
-    </message>
-    <message>
         <source>HTTP user agent is %1</source>
         <translation>HTTP кориснички агент је %1</translation>
-    </message>
-    <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Користи кеш диска величине %1 MiB</translation>
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
@@ -3577,10 +2299,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Restart is required to toggle PeX support</source>
         <translation>Потребан је рестарт за активирање PeX подршке</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Претраживање локалних веза [Укључено]</translation>
     </message>
     <message>
         <source>Local Peer Discovery support [OFF]</source>
@@ -3750,10 +2468,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Мрежни интерфејс који је задат је погрешан: %1</translation>
     </message>
     <message>
-        <source>Trying any other network interface available instead.</source>
-        <translation type="obsolete">Пробајте неки други доступни мрежни интрфејс уместо тога.</translation>
-    </message>
-    <message>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Надгледај IP адресе %1 на мрежном интерфејсу %2...</translation>
     </message>
@@ -3772,11 +2486,6 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Претраживање локалних веза подршка [Укључено]</translation>
-    </message>
-    <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Успешна анализа датог IP филтера: %1 правила су примењена.</translation>
     </message>
     <message>
         <source>Error: Failed to parse the provided IP filter.</source>
@@ -3831,11 +2540,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ажурирај све</translation>
     </message>
     <message>
-        <source>RSS feeds</source>
-        <translatorcomment>feed-допис,порука</translatorcomment>
-        <translation type="obsolete">RSS поруке</translation>
-    </message>
-    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -3846,14 +2550,6 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Торенти:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(двоструки клик за преузимање)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Article title</source>
-        <translation type="obsolete">Наслов чланка</translation>
-    </message>
-    <message>
-        <source>Feed URL</source>
-        <translation type="obsolete">Оглашавач URL</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3895,10 +2591,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>New subscription...</source>
         <translation>Нови допис...</translation>
-    </message>
-    <message>
-        <source>RSS feed downloader...</source>
-        <translation type="obsolete">RSS преузимач порука...</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -4012,24 +2704,10 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RssArticle</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Нема доступних описа</translation>
-    </message>
-</context>
-<context>
     <name>RssFeed</name>
     <message>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
         <translation>Аутоматски преузми %1 торент са %2 RSS feed-а...</translation>
-    </message>
-</context>
-<context>
-    <name>RssItem</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Нема доступних описа</translation>
     </message>
 </context>
 <context>
@@ -4041,25 +2719,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Invalid RSS feed at %1.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RssSettings</name>
-    <message>
-        <source>RSS Reader Settings</source>
-        <translation type="obsolete">RSS читач Подешавања</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS поруке интервал освежавања:</translation>
-    </message>
-    <message>
-        <source>minutes</source>
-        <translation type="obsolete">минута</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">Максимални број чланака по допису:</translation>
     </message>
 </context>
 <context>
@@ -4079,14 +2738,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Maximum number of articles per feed:</source>
         <translation>Максимални број чланака по допису:</translation>
-    </message>
-</context>
-<context>
-    <name>RssStream</name>
-    <message>
-        <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translatorcomment>feed-допис,порука</translatorcomment>
-        <translation type="obsolete">Аутоматски преузми %1 торент са %2 RSS feed...</translation>
     </message>
 </context>
 <context>
@@ -4142,27 +2793,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>SearchEngine</name>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Исеци</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Копирај</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translatorcomment>Пренеси,Налепи</translatorcomment>
-        <translation type="obsolete">Додај</translation>
-    </message>
-    <message>
-        <source>Clear field</source>
-        <translation type="obsolete">Обриши поље</translation>
-    </message>
-    <message>
-        <source>Clear completion history</source>
-        <translation type="obsolete">Обриши комплетну историју</translation>
-    </message>
     <message>
         <source>Search</source>
         <translation>Претраживање</translation>
@@ -4232,14 +2862,6 @@ Do you want to install it now?</source>
         <translation>Pithon 2.х је потребан за коришћење претраживачког модула, али изгледа да није инсталиран.
 Да ли желите да га инсталирате?</translation>
     </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Потврђивање</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
-        <translation type="obsolete">Да ли сте сигурни да желите да обришете историјат?</translation>
-    </message>
 </context>
 <context>
     <name>SearchTab</name>
@@ -4295,18 +2917,6 @@ Do you want to install it now?</source>
         <translation>Нема директних конекција. То може указивати на проблем мрежне конфигурације.</translation>
     </message>
     <message>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translatorcomment>Брзина преузимања: x B/s - Транспортовано: x MiB</translatorcomment>
-        <translation type="obsolete">П: %1 B/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translatorcomment>Брзина слања: x B/s - Транспортовано: x MiB</translatorcomment>
-        <translation type="obsolete">С: %1 B/s - T: %2</translation>
-    </message>
-    <message>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 чворова</translation>
     </message>
@@ -4321,24 +2931,6 @@ Do you want to install it now?</source>
     <message>
         <source>Online</source>
         <translation>На вези</translation>
-    </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">П: %1/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">С: %1/s - T: %2</translation>
-    </message>
-    <message>
-        <source>Click to disable alternative speed limits</source>
-        <translation type="obsolete">Кликните да онемогућите алтернативно ограничење брзине</translation>
-    </message>
-    <message>
-        <source>Click to enable alternative speed limits</source>
-        <translation type="obsolete">Кликните да омогућите алтернативно ограничење брзине</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
@@ -4400,23 +2992,6 @@ Do you want to install it now?</source>
         <translation>Селектујте фајл који додајете у торент</translation>
     </message>
     <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Молим упишите URL оглашавача</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Објављени URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translation type="obsolete">Молим упишите url веб донора</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translation type="obsolete">URL Веб донора:</translation>
-    </message>
-    <message>
         <source>No input path set</source>
         <translation>Није унета путања</translation>
     </message>
@@ -4447,25 +3022,6 @@ Do you want to install it now?</source>
     <message>
         <source>Torrent was created successfully:</source>
         <translation>Торент је креиран успешно:</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentFilesModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Име</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Величина</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Напредак</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Приоритет</translation>
     </message>
 </context>
 <context>
@@ -4695,10 +3251,6 @@ Do you want to install it now?</source>
         <translation>Уклони пратилац</translation>
     </message>
     <message>
-        <source>Force reannounce</source>
-        <translation type="obsolete">Форсирано реобјављивање</translation>
-    </message>
-    <message>
         <source>Copy tracker url</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4895,86 +3447,13 @@ Do you want to install it now?</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="obsolete">Брзина Преуз</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="obsolete">Брзина Слања</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translatorcomment>н.пр.: Приближно време завршетка</translatorcomment>
-        <translation type="obsolete">ETA</translation>
-    </message>
-    <message>
         <source>Column visibility</source>
         <translation>Прегледност колона</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="obsolete">Име</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="obsolete">Величина</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="obsolete">Урађено</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="obsolete">Статус</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="obsolete">Донори</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="obsolete">Peers (учесници)</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="obsolete">Однос</translation>
     </message>
     <message>
         <source>Label</source>
         <translatorcomment>Label-Ознака,Маркер</translatorcomment>
         <translation>Ознака</translation>
-    </message>
-    <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Додато на</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="obsolete">Завршено дана</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translatorcomment>н.пр.: Ограничење преузимања</translatorcomment>
-        <translation type="obsolete">Преуз. Лимит</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translatorcomment>н.пр.: Ограничење слања</translatorcomment>
-        <translation type="obsolete">Слањ. Лимит</translation>
     </message>
     <message>
         <source>Torrent Download Speed Limiting</source>
@@ -5051,14 +3530,6 @@ Do you want to install it now?</source>
     <message>
         <source>Choose save path</source>
         <translation>Изаберите путању чувања</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Грешка при креирању путање чувања</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Не могу да креирам путању за чување фајла</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -5213,90 +3684,6 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
-    <name>addTorrentDialog</name>
-    <message>
-        <source>Torrent addition dialog</source>
-        <translation type="obsolete">Торент дијалог додавања</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Сачувај у:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Torrent size:</source>
-        <translation type="obsolete">Величина Торента:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Непознат-а</translation>
-    </message>
-    <message>
-        <source>Free disk space:</source>
-        <translation type="obsolete">Слободан простор на диску:</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translatorcomment>Label-Ознака,Маркер</translatorcomment>
-        <translation type="obsolete">Ознака:</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation type="obsolete">Садржај Торента:</translation>
-    </message>
-    <message>
-        <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Пренеси секвенционално (споро, али боље за преглед)</translation>
-    </message>
-    <message>
-        <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Прескочи проверу фајла и одмах стартуј донирање</translation>
-    </message>
-    <message>
-        <source>Add to download list in paused state</source>
-        <translation type="obsolete">Додај на листу преузимања у стању паузе</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Додај</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Откажи</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Нормалан</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation type="obsolete">Висок</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation type="obsolete">Максималан</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Селектуј све</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation type="obsolete">Деселектуј</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation type="obsolete">Не преузимај</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="obsolete">Подесите подразумевану путању чувања</translation>
-    </message>
-</context>
-<context>
     <name>authentication</name>
     <message>
         <source>Tracker authentication</source>
@@ -5368,19 +3755,6 @@ Do you want to install it now?</source>
         <source>Add folder</source>
         <translatorcomment>фасцикла-фолдер</translatorcomment>
         <translation>Додај фасциклу</translation>
-    </message>
-    <message>
-        <source>Announce urls (trackers):</source>
-        <translatorcomment>trackers-пратиоци</translatorcomment>
-        <translation type="obsolete">Објави urls (пратиоци):</translation>
-    </message>
-    <message>
-        <source>Comment (optional):</source>
-        <translation type="obsolete">Коментар (опционо):</translation>
-    </message>
-    <message>
-        <source>Web seeds urls (optional):</source>
-        <translation type="obsolete">Веб донори urls (опционо):</translation>
     </message>
     <message>
         <source>File or folder to add to the torrent:</source>
@@ -5464,79 +3838,7 @@ Do you want to install it now?</source>
     </message>
 </context>
 <context>
-    <name>createtorrent</name>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">Изаберите дестинацију торент фајла</translation>
-    </message>
-    <message>
-        <source>Torrent Files</source>
-        <translation type="obsolete">Торент Фајлови</translation>
-    </message>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">Није унета путања</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">Молим прво упишите улазну путању</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">Креирање Торента</translation>
-    </message>
-    <message>
-        <source>Torrent was created successfully:</source>
-        <translation type="obsolete">Торент је креиран успешно:</translation>
-    </message>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">Селектујте фасциклу коју додајете у торент</translation>
-    </message>
-    <message>
-        <source>Please type an announce URL</source>
-        <translation type="obsolete">Молим упишите URL оглашавача</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">Креирање Торента је неуспешно, разлог: %1</translation>
-    </message>
-    <message>
-        <source>Announce URL:</source>
-        <comment>Tracker URL</comment>
-        <translation type="obsolete">Објављени URL:</translation>
-    </message>
-    <message>
-        <source>Please type a web seed url</source>
-        <translatorcomment>url-интернет адреса</translatorcomment>
-        <translation type="obsolete">Молим упишите url веб донора</translation>
-    </message>
-    <message>
-        <source>Web seed URL:</source>
-        <translatorcomment>URL-интернет адреса</translatorcomment>
-        <translation type="obsolete">URL Веб донора:</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">Селектујте фајл који додајете у торент</translation>
-    </message>
-    <message>
-        <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
-        <translation type="obsolete">Креирана Торент датотека је неважећа. Неће бити додата у листу за преузимање.</translation>
-    </message>
-</context>
-<context>
     <name>downloadFromURL</name>
-    <message>
-        <source>Download Torrents from URLs</source>
-        <translatorcomment>URL-интенет адреса</translatorcomment>
-        <translation type="obsolete">Преузимање Торента са URL-а</translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translatorcomment>URL-интенет адреса</translatorcomment>
-        <translation type="obsolete">Само један URL по линији</translation>
-    </message>
     <message>
         <source>Download</source>
         <translation>Преузми</translation>
@@ -5567,101 +3869,6 @@ Do you want to install it now?</source>
     <message>
         <source>Both HTTP and Magnet links are supported</source>
         <translation>Оба, HTTP и Magnet линкови су подржани</translation>
-    </message>
-</context>
-<context>
-    <name>downloadThread</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">И/О Грешка</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Име удаљеног домаћина није пронађено (неважеће hostname)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="obsolete">Операција је отказана</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Удаљени сервер је прерано затворио конекцију, пре него што је цео одговор примљен и обрађен</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Конекција на удаљени сервер је временски истекла (покушајте поново)</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS управљање неуспешно</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="obsolete">Удаљени сервер не прихвата конекцију</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Конекција на прокси сервер је одбијена</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Прокси сервер је превремено затворио конекцију</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="obsolete">Назив прокси сервера није пронађен</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Време повезивања са прокси-јем је истекло, или прокси није одговорио када је захтев послат</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Прокси захтева проверу идентитета да би испунио захтев али не прихвата понуђене акредитиве</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Приступ удаљеном садржају је одбијен (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Захтевана операција за удаљеним садржајем се не одобрава</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Захтевани садржај, није пронађен на серверу (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Удаљени сервер захтева ауторизацију за слање садржаја, али дати акредитиви нису прихваћени</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Мрежни приступ API-ја не може да се прихвати јер протокол није познат</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Захтевана операција је погрешна за овај протокол</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Непозната грешка у вези са мрежом је откривена</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Непозната грешка у вези са прокси-јем је откривена</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Непозната грешка у вези са удаљеним садржајем је откривена</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Детектован је проблем са протоколом</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">Непозната грешка</translation>
     </message>
 </context>
 <context>
@@ -5702,14 +3909,6 @@ Do you want to install it now?</source>
     <message>
         <source>Close</source>
         <translation>Затвори</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Омогући</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Онемогући</translation>
     </message>
     <message>
         <source>Uninstall</source>
@@ -5867,10 +4066,6 @@ However, those plugins were disabled.</source>
         <translation>Непознат-а</translation>
     </message>
     <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Непознат-а</translation>
-    </message>
-    <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translatorcomment>&lt; 1 минута</translatorcomment>
@@ -5895,10 +4090,6 @@ However, those plugins were disabled.</source>
     <message>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrent ће искључити рачунар сада, јер су сва преузимања завршена.</translation>
-    </message>
-    <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Преузимање</translation>
     </message>
     <message>
         <source>/s</source>
@@ -6000,25 +4191,8 @@ However, those plugins were disabled.</source>
         <translation>Неспешна анализа датог IP филтера</translation>
     </message>
     <message>
-        <source>Succesfully refreshed</source>
-        <translation type="obsolete">Успешно обновљени</translation>
-    </message>
-    <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Успешна анализа датог IP филтера: %1 правила су примењена.</translation>
-    </message>
-    <message>
         <source>Successfully refreshed</source>
         <translation>Успешно обновљен</translation>
-    </message>
-    <message>
-        <source>SSL Certificate (*.crt)</source>
-        <translation type="obsolete">SSL Сертификат (*.crt)</translation>
-    </message>
-    <message>
-        <source>SSL Key (*.key)</source>
-        <translation type="obsolete">SSL Кључ (*.key)</translation>
     </message>
     <message>
         <source>Invalid key</source>
@@ -6095,29 +4269,6 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Приказ немогућ</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Жалим не могу да прикажем овај фајл</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Име</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Величина</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Напредак</translation>
-    </message>
-</context>
-<context>
     <name>search_engine</name>
     <message>
         <source>Search</source>
@@ -6142,107 +4293,6 @@ However, those plugins were disabled.</source>
     <message>
         <source>Go to description page</source>
         <translation>Иди на веб страну са описом</translation>
-    </message>
-</context>
-<context>
-    <name>torrentAdditionDialog</name>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Не могу да декодирам магнет линк:</translation>
-    </message>
-    <message>
-        <source>Magnet Link</source>
-        <translation type="obsolete">Магнет Линк</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file:</source>
-        <translation type="obsolete">Не могу да декодирам Торент фајл:</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="obsolete">Преименуј...</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">Преименуј фајл</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Ново име:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">Фајл не може бити преименован</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">Ово име фајла садржи недозвољене карактере, молим изаберите неко друго.</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">Ово име је већ у употреби у овом фолдеру. Молим изаберите неко друго.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="obsolete">Фолдер не може бити преименован</translation>
-    </message>
-    <message>
-        <source>(%1 left after torrent download)</source>
-        <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="obsolete">(%1 остаје након преузетог Торента)</translation>
-    </message>
-    <message>
-        <source>(%1 more are required to download)</source>
-        <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="obsolete">(%1 више је потребно ради преузимања)</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Изабери путању чувања</translation>
-    </message>
-    <message>
-        <source>Empty save path</source>
-        <translation type="obsolete">Празна путања чувања</translation>
-    </message>
-    <message>
-        <source>Please enter a save path</source>
-        <translation type="obsolete">Молим унесите путању за чување фајла</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Грешка креирања путање чувања</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Не могу да креирам путању за чување фајла</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation type="obsolete">Погрешно име ознаке</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="obsolete">Молимо Вас да не користите специјалне карактере у имену ознаке.</translation>
-    </message>
-    <message>
-        <source>Seeding mode error</source>
-        <translation type="obsolete">Грешка у режиму донирања</translation>
-    </message>
-    <message>
-        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Висте изабрали да прескочите проверу датотеке. Међутим, локални фајлови изгледа не постоје у одредишном директоријуму. Молим онемогућите ову функцију или ажурирајте путању фајла.</translation>
-    </message>
-    <message>
-        <source>Invalid file selection</source>
-        <translation type="obsolete">Погрешан избор датотеке</translation>
-    </message>
-    <message>
-        <source>You must select at least one file in the torrent</source>
-        <translation type="obsolete">Морате изабрати бар једну датотеку за Торент</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Приоритет</translation>
     </message>
 </context>
 </TS>
