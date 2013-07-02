@@ -491,7 +491,6 @@ void QBtSession::configureSession() {
     sessionSettings.mixed_mode_algorithm = session_settings::prefer_tcp;
   else
     sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
-  sessionSettings.seed_choking_algorithm = session_settings::fastest_upload;
   sessionSettings.connection_speed = 20; //default is 10
 #endif
   qDebug() << "Settings SessionSettings";
