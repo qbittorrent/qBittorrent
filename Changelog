@@ -8,6 +8,7 @@
     - FEATURE: Allow clearing execution and ban logs (Gelmir)
     - FEATURE: Add option to use random port on each startup (ireallylikeher)
     - FEATURE: Expose the cache expiry to the user (Gelmir)
+    - FEATURE: Support Atom feeds (Gelmir)
     - BUGFIX: Add confirmation dialog for "Force recheck" action (closes #131)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - BUGFIX: Ensure that all columns in the tranferlist have a size > 0.
