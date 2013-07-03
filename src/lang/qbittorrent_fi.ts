@@ -13,6 +13,17 @@
         <source>About qBittorrent</source>
         <translation>Tietoja qBittorrentista</translation>
     </message>
+    <message utf8="true">
+        <location filename="../about.ui" line="105"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../about.ui" line="134"/>
         <source>Author</source>
@@ -33,19 +44,16 @@
         <translation type="unfinished">Tämä qBittorrent versio on muodostettu seuraavilla kirjastoilla:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="445"/>
         <source>Qt:</source>
-        <translation>Qt:</translation>
+        <translation type="obsolete">Qt:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="455"/>
         <source>Boost:</source>
-        <translation>Boost:</translation>
+        <translation type="obsolete">Boost:</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="486"/>
         <source>Libtorrent:</source>
-        <translation>Libtorrent:</translation>
+        <translation type="obsolete">Libtorrent:</translation>
     </message>
     <message>
         <source>Christophe Dumez</source>
@@ -63,26 +71,14 @@
         <source>E-mail:</source>
         <translation>Sähköposti:</translation>
     </message>
-    <message utf8="true">
-        <location filename="../about.ui" line="105"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt;&quot;&gt;Bug Tracker: &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt;&quot;&gt;&lt;br /&gt;Forum: &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../about.ui" line="190"/>
         <source>France</source>
         <translation>Ranska</translation>
     </message>
     <message>
-        <location filename="../about.ui" line="54"/>
         <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
+        <translation type="obsolete">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="268"/>
@@ -124,83 +120,82 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="26"/>
         <source>Dialog</source>
-        <translation type="unfinished">Valintaikkuna</translation>
+        <translation type="obsolete">Valintaikkuna</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="32"/>
+        <location filename="../addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
         <translatorcomment>Magnet-linkeillä ei näytä koko tiedostopolkua</translatorcomment>
         <translation>Tallenna nimellä</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="48"/>
+        <location filename="../addnewtorrentdialog.ui" line="45"/>
         <source>Set as default save path</source>
         <translation type="unfinished">Aseta oletustallennuskansioksi</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="58"/>
+        <location filename="../addnewtorrentdialog.ui" line="55"/>
         <source>Never show again</source>
         <translation>Älä näytä tätä uudelleen</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="75"/>
+        <location filename="../addnewtorrentdialog.ui" line="72"/>
         <source>Torrent settings</source>
         <translation>Torrentin asetukset</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="81"/>
+        <location filename="../addnewtorrentdialog.ui" line="78"/>
         <source>Start torrent</source>
         <translation>Aloita torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="93"/>
+        <location filename="../addnewtorrentdialog.ui" line="90"/>
         <source>Label:</source>
         <translation>Nimike:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="112"/>
+        <location filename="../addnewtorrentdialog.ui" line="109"/>
         <source>Skip hash check</source>
         <translation>Ohita tarkistus</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="122"/>
+        <location filename="../addnewtorrentdialog.ui" line="119"/>
         <source>Torrent Information</source>
         <translation>Torrentin tiedot</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="130"/>
+        <location filename="../addnewtorrentdialog.ui" line="127"/>
         <source>Size:</source>
         <translation>Koko:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="144"/>
+        <location filename="../addnewtorrentdialog.ui" line="141"/>
         <source>Comment:</source>
         <translation>Kommentti:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="158"/>
+        <location filename="../addnewtorrentdialog.ui" line="155"/>
         <source>Date:</source>
         <translation>Päiväys:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="220"/>
+        <location filename="../addnewtorrentdialog.ui" line="217"/>
         <source>Normal</source>
         <translation>Normaali</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="225"/>
+        <location filename="../addnewtorrentdialog.ui" line="222"/>
         <source>High</source>
         <translation>Korkea</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="230"/>
+        <location filename="../addnewtorrentdialog.ui" line="227"/>
         <source>Maximum</source>
         <translation>Suurin</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="235"/>
+        <location filename="../addnewtorrentdialog.ui" line="232"/>
         <source>Do not download</source>
         <translation>Älä lataa</translation>
     </message>
@@ -513,9 +508,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Vie...</translation>
     </message>
     <message>
-        <location filename="../rss/automatedrssdownloader.ui" line="286"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="233"/>
@@ -2220,9 +2214,8 @@ Muita varoituksia ei anneta.</translation>
         <translation>Lukitse qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="296"/>
         <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
+        <translation type="obsolete">Ctrl+L</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -2262,11 +2255,9 @@ Muita varoituksia ei anneta.</translation>
         <translation>Näytä</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="103"/>
-        <location filename="../mainwindow.cpp" line="1289"/>
         <source>qBittorrent %1</source>
         <comment>e.g: qBittorrent v0.x</comment>
-        <translation> qBittorrent %1</translation>
+        <translation type="obsolete"> qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="146"/>
@@ -2361,28 +2352,24 @@ Haluatko, että qBittorrent käsittelee nämä oletusarvoisesti?</translation>
  Syy: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="545"/>
         <source>Alt+1</source>
         <comment>shortcut to switch to first tab</comment>
-        <translation>Alt+1</translation>
+        <translation type="obsolete">Alt+1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
         <source>Alt+2</source>
         <comment>shortcut to switch to third tab</comment>
-        <translation>Alt+2</translation>
+        <translation type="obsolete">Alt+2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
         <source>Ctrl+F</source>
         <comment>shortcut to switch to search tab</comment>
-        <translation>Ctrl+F</translation>
+        <translation type="obsolete">Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="551"/>
         <source>Alt+3</source>
         <comment>shortcut to switch to fourth tab</comment>
-        <translation>Alt+3</translation>
+        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="599"/>
@@ -2486,9 +2473,8 @@ Haluatko varmasti lopettaa qBittorrentin?</translation>
         <translation type="unfinished">Valinnat tallennettiin.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1125"/>
         <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
+        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1128"/>
@@ -3877,7 +3863,6 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
         <translation>Uusi URL-lähde:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="656"/>
         <location filename="../properties/propertieswidget.cpp" line="710"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
@@ -4458,9 +4443,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Et voi kirjoittaa kohteen %1 päälle.</translation>
     </message>
     <message>
-        <location filename="../rss/rss_imp.cpp" line="209"/>
         <source>qBittorrent</source>
-        <translation> qBittorrent</translation>
+        <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="210"/>
@@ -5062,7 +5046,6 @@ Asenna se itse.</translation>
         <translation type="unfinished">Tuotava torrent-tiedosto:</translation>
     </message>
     <message>
-        <location filename="../torrentimportdlg.ui" line="81"/>
         <location filename="../torrentimportdlg.ui" line="109"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
@@ -5264,19 +5247,16 @@ Asenna se itse.</translation>
         <translation>Viesti</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="69"/>
         <source>[DHT]</source>
-        <translation>[DHT]</translation>
+        <translation type="obsolete">[DHT]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="72"/>
         <source>[PeX]</source>
-        <translation>[PeX]</translation>
+        <translation type="obsolete">[PeX]</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="75"/>
         <source>[LSD]</source>
-        <translation>[LSD]</translation>
+        <translation type="obsolete">[LSD]</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="194"/>
@@ -5910,9 +5890,8 @@ Asenna se itse.</translation>
 <context>
     <name>about</name>
     <message>
-        <location filename="../about_imp.h" line="54"/>
         <source>qBittorrent</source>
-        <translation> qBittorrent</translation>
+        <translation type="obsolete"> qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="64"/>
@@ -6539,7 +6518,6 @@ Kyseiset liitänäiset poistettiin kuitenkin käytöstä.</translation>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="277"/>
