@@ -235,7 +235,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install")+" -- qBittorrent", tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
   // Process with install

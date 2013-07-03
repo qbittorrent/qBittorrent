@@ -66,13 +66,13 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   header << tr("Peers");
   header << tr("Message");
   setHeaderItem(new QTreeWidgetItem(header));
-  dht_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[DHT]")+" **");
+  dht_item = new QTreeWidgetItem(QStringList() << "" << "** [DHT] **");
   insertTopLevelItem(0, dht_item);
   setRowColor(0, QColor("grey"));
-  pex_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[PeX]")+" **");
+  pex_item = new QTreeWidgetItem(QStringList() << "" << "** [PeX] **");
   insertTopLevelItem(1, pex_item);
   setRowColor(1, QColor("grey"));
-  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** "+tr("[LSD]")+" **");
+  lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **");
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
 

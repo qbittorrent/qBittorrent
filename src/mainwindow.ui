@@ -293,7 +293,7 @@
     <string>Lock qBittorrent</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string notr="true">Ctrl+L</string>
    </property>
   </action>
   <action name="action_Import_Torrent">

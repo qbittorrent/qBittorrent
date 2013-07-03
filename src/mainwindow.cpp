@@ -100,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   Preferences pref;
   ui_locked = pref.isUILocked();
-  setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+  setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = pref.speedInTitleBar();
   // Clean exit on log out
   connect(static_cast<SessionApplication*>(qApp), SIGNAL(sessionIsShuttingDown()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
@@ -542,13 +542,13 @@ void MainWindow::createKeyboardShortcuts() {
   actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
   actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
   actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
-  switchTransferShortcut = new QShortcut(QKeySequence(tr("Alt+1", "shortcut to switch to first tab")), this);
+  switchTransferShortcut = new QShortcut(QKeySequence("Alt+1"), this);
   connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
-  switchSearchShortcut = new QShortcut(QKeySequence(tr("Alt+2", "shortcut to switch to third tab")), this);
+  switchSearchShortcut = new QShortcut(QKeySequence("Alt+2"), this);
   connect(switchSearchShortcut, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-  switchSearchShortcut2 = new QShortcut(QKeySequence(tr("Ctrl+F", "shortcut to switch to search tab")), this);
+  switchSearchShortcut2 = new QShortcut(QKeySequence("Ctrl+F"), this);
   connect(switchSearchShortcut2, SIGNAL(activated()), this, SLOT(displaySearchTab()));
-  switchRSSShortcut = new QShortcut(QKeySequence(tr("Alt+3", "shortcut to switch to fourth tab")), this);
+  switchRSSShortcut = new QShortcut(QKeySequence("Alt+3"), this);
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
   actionDocumentation->setShortcut(QKeySequence("F1"));
   actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
@@ -1122,7 +1122,7 @@ void MainWindow::updateGUI() {
   if (systrayIcon) {
 #if defined(Q_WS_X11) || defined(Q_WS_MAC)
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
-    html += tr("qBittorrent");
+    html += "qBittorrent";
     html += "</div>";
     html += "<div style='vertical-align: baseline; height: 18px;'>";
     html += "<img src=':/Icons/skin/download.png'/>&nbsp;"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number(QBtSession::instance()->getPayloadDownloadRate()/1024., 'f', 1));
@@ -1286,7 +1286,7 @@ void MainWindow::on_actionSpeed_in_title_bar_triggered() {
   if (displaySpeedInTitle)
     updateGUI();
   else
-    setWindowTitle(tr("qBittorrent %1", "e.g: qBittorrent v0.x").arg(QString::fromUtf8(VERSION)));
+    setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
 }
 
 void MainWindow::on_actionRSS_Reader_triggered() {
