@@ -70,7 +70,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   ui->save_path_combo->insertSeparator(ui->save_path_combo->count());
   ui->save_path_combo->addItem(tr("Other...", "Other save path..."));
   connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(onSavePathChanged(int)));
-  connect(ui->save_path_combo, SIGNAL(currentIndexChanged(int)), SLOT(updateDiskSpaceLabel()));
   ui->default_save_path_cb->setVisible(false); // Default path is selected by default
 
   // Load labels
@@ -375,6 +374,8 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
   relayout();
   // Remember index
   old_index = ui->save_path_combo->currentIndex();
+  if (!m_isMagnet)
+    updateDiskSpaceLabel();
 }
 
 void AddNewTorrentDialog::relayout()
