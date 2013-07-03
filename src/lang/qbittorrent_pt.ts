@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR" sourcelanguage="en">
+<TS version="2.0" language="pt_PT" sourcelanguage="en">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -329,7 +329,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Strict super seeding</source>
-        <translation>Só super seeding</translation>
+        <translation>Restringir super seeding</translation>
     </message>
     <message>
         <source>Network Interface (requires restart)</source>
@@ -1874,7 +1874,7 @@ Esta será a única vez que recebe este aviso.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
@@ -3267,7 +3267,7 @@ Motivo: %2</translation>
     <message>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
-        <translation>Nova fonte URL</translation>
+        <translation>Nova fonte HTTP</translation>
     </message>
     <message>
         <source>New url seed:</source>
@@ -3443,27 +3443,27 @@ Motivo: %2</translation>
     </message>
     <message>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova fonte web</translation>
     </message>
     <message>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover fonte web</translation>
     </message>
     <message>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL da fonte web</translation>
     </message>
     <message>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar URL da fonte web</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Edição de fonte web</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">Url de compartilhador web:</translation>
+        <translation>URL da fonte web:</translation>
     </message>
 </context>
 <context>
@@ -4642,31 +4642,31 @@ Instalar agora?</translation>
     </message>
     <message>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do tracker</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL do tracker:</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Edição de tracker</translation>
     </message>
     <message>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao editar tracker</translation>
     </message>
     <message>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>O URL introduzido é inválido.</translation>
     </message>
     <message>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>O URL já existe.</translation>
     </message>
     <message>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar URL do tracker selecionado</translation>
     </message>
 </context>
 <context>
@@ -5389,7 +5389,7 @@ Instalar agora?</translation>
     <message>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pode separar os grupos do tracker com uma linha vazia.</translation>
     </message>
 </context>
 <context>
@@ -5738,7 +5738,7 @@ Contudo esses plugins foram desativados.</translation>
     <name>errorDialog</name>
     <message>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informações do erro</translation>
     </message>
 </context>
 <context>
