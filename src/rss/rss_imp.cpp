@@ -206,7 +206,7 @@ void RSSImp::on_newFeedButton_clicked()
     return;
 
   if (m_feedList->hasFeed(newUrl)) {
-    QMessageBox::warning(this, tr("qBittorrent"),
+    QMessageBox::warning(this, "qBittorrent",
                          tr("This rss feed is already in the list."),
                          QMessageBox::Ok);
     return;
