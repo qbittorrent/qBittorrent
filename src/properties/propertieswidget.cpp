@@ -653,7 +653,7 @@ void PropertiesWidget::askWebSeed() {
   if (!ok) return;
   qDebug("Adding %s web seed", qPrintable(url_seed));
   if (!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
-    QMessageBox::warning(this, tr("qBittorrent"),
+    QMessageBox::warning(this, "qBittorrent",
                          tr("This url seed is already in the list."),
                          QMessageBox::Ok);
     return;
