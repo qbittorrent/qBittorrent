@@ -449,21 +449,36 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_fold
   }
   if (path_items.isEmpty())
     return;
+
+#ifndef Q_OS_WIN
   if (containing_folder)
     path_items.removeLast();
+#endif
+
   const QDir saveDir(h.save_path());
   const QString filename = path_items.join("/");
   const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
   qDebug("Trying to open folder at %s", qPrintable(file_path));
   // Flush data
   h.flush_cache();
-  if (QFile::exists(file_path)) {
-    // Hack to access samba shares with QDesktopServices::openUrl
-    const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
-    QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+
+#ifdef Q_OS_WIN
+  if (containing_folder) {
+    // Syntax is: explorer /select, "C:\Folder1\Folder2\file_to_select"
+    // Dir separators MUST be win-style slashes
+    QProcess::startDetached("explorer.exe", QStringList() << "/select," << fsutils::toNativePath(file_path));
   } else {
-    QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
+#endif
+    if (QFile::exists(file_path)) {
+      // Hack to access samba shares with QDesktopServices::openUrl
+      const QString p = file_path.startsWith("//") ? QString("file:") + file_path : file_path;
+      QDesktopServices::openUrl(QUrl::fromLocalFile(p));
+    } else {
+      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
+    }
+#ifdef Q_OS_WIN
   }
+#endif
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
