@@ -61,6 +61,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   // List Model
   m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT);
+  m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, QVariant()); // Country flag column
   m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
   m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
   m_listModel->setHeaderData(PeerListDelegate::CONNECTION, Qt::Horizontal, tr("Connection"));
@@ -71,7 +72,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
   m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
   // Proxy model to support sorting without actually altering the underlying model
-  m_proxyModel = new QSortFilterProxyModel();
+  m_proxyModel = new PeerListSortModel();
   m_proxyModel->setDynamicSortFilter(true);
   m_proxyModel->setSourceModel(m_listModel);
   setModel(m_proxyModel);
@@ -82,6 +83,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
     showColumn(i);
   hideColumn(PeerListDelegate::IP_HIDDEN);
   hideColumn(PeerListDelegate::COL_COUNT);
+  if (!Preferences().resolvePeerCountries())
+    hideColumn(PeerListDelegate::COUNTRY);
   //To also migitate the above issue, we have to resize each column when
   //its size is 0, because explicitely 'showing' the column isn't enough
   //in the above scenario.
@@ -370,9 +373,9 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
     if (!ico.isNull()) {
-      m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ico, Qt::DecorationRole);
+      m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
       const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country);
-      m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), country_name, Qt::ToolTipRole);
+      m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), country_name, Qt::ToolTipRole);
     } else {
       m_missingFlags.insert(ip);
     }
@@ -394,9 +397,9 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
     if (!ico.isNull()) {
-      m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ico, Qt::DecorationRole);
+      m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
       const QString country_name = GeoIPManager::CountryISOCodeToName(peer.country);
-      m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), country_name, Qt::ToolTipRole);
+      m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), country_name, Qt::ToolTipRole);
       m_missingFlags.remove(ip);
     }
   }
@@ -420,7 +423,7 @@ void PeerListWidget::handleResolved(const QString &ip, const QString &hostname) 
 
 void PeerListWidget::handleSortColumnChanged(int col)
 {
-  if (col == 0) {
+  if (col == PeerListDelegate::COUNTRY) {
     qDebug("Sorting by decoration");
     m_proxyModel->setSortRole(Qt::ToolTipRole);
   } else {
