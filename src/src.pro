@@ -125,6 +125,7 @@ nox {
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
+              transferlistsortmodel.h \
               torrentcontentmodel.h \
               torrentcontentmodelitem.h \
               torrentcontentfiltermodel.h \

@@ -91,7 +91,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   statusFilterModel->setFilterKeyColumn(TorrentModelItem::TR_STATUS);
   statusFilterModel->setFilterRole(Qt::DisplayRole);
 
-  nameFilterModel = new QSortFilterProxyModel();
+  nameFilterModel = new TransferListSortModel();
   nameFilterModel->setDynamicSortFilter(true);
   nameFilterModel->setSourceModel(statusFilterModel);
   nameFilterModel->setFilterKeyColumn(TorrentModelItem::TR_NAME);
