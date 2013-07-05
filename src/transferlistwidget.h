@@ -34,6 +34,7 @@
 #include <QTreeView>
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
+#include "transferlistsortmodel.h"
 
 class QBtSession;
 class TransferListDelegate;
@@ -110,7 +111,7 @@ signals:
 private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
-  QSortFilterProxyModel *nameFilterModel;
+  TransferListSortModel *nameFilterModel;
   QSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
