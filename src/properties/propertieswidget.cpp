@@ -210,18 +210,7 @@ QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
 
 void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
   if (h.is_valid() && h == _h) {
-    QString p;
-    if (h.has_metadata() && h.num_files() == 1) {
-      p = h.firstFileSavePath();
-    } else {
-      p = TorrentPersistentData::getSavePath(h.hash());
-      if (p.isEmpty())
-        p = h.save_path();
-    }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    p.replace("/", "\\");
-#endif
-    save_path->setText(p);
+    save_path->setText(h.save_path_parsed());
   }
 }
 

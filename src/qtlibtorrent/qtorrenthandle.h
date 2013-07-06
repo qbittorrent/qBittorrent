@@ -78,6 +78,7 @@ public:
   int num_complete() const;
   int num_incomplete() const;
   QString save_path() const;
+  QString save_path_parsed() const;
   QStringList url_seeds() const;
   libtorrent::size_type actual_size() const;
   int num_files() const;
