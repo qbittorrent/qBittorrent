@@ -10,6 +10,7 @@ HEADERS += $$PWD/propertieswidget.h \
            $$PWD/trackerlist.h \
            $$PWD/downloadedpiecesbar.h \
            $$PWD/peerlistdelegate.h \
+           $$PWD/peerlistsortmodel.h \
            $$PWD/peeraddition.h \
            $$PWD/trackersadditiondlg.h \
            $$PWD/pieceavailabilitybar.h \
