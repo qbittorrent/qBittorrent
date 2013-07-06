@@ -6,7 +6,7 @@
     <message>
         <location filename="../about.ui" line="21"/>
         <source>About qBittorrent</source>
-        <translation>عن كيوبت‎تورنت</translation>
+        <translation>عن البرنامج</translation>
     </message>
     <message>
         <location filename="../about.ui" line="83"/>
@@ -61,22 +61,28 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation type="unfinished">اليونان</translation>
+        <translation>اليونان</translation>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>مسؤول الصيانة الحالي</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>المؤلف الاصلي</translation>
     </message>
     <message>
         <location filename="../about.ui" line="414"/>
@@ -391,28 +397,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="171"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation>(آلي)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> ث</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Disk cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk cache expiry interval</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation type="unfinished">اظهار أعلام الدول للقرناء</translation>
+        <translation>اظهار أعلام الدول للقرناء</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="220"/>
         <source>Resolve peer host names</source>
-        <translation type="unfinished">اظهار اسم المستخدم للقرين</translation>
+        <translation>اظهار اسم المستخدم للقرين</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="225"/>
@@ -448,7 +454,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="251"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation type="unfinished">IP Address to report to trackers (requires restart)</translation>
+        <translation>العنوان الذي يتم اعلانه للمتتبع (يتطلب اعادة التشغيل)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="254"/>
@@ -649,12 +655,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="377"/>
         <source>Please point to the RSS download rules file</source>
-        <translation type="unfinished">Please point to the RSS download rules file</translation>
+        <translation>Please point to the RSS download rules file</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="377"/>
         <source>Rules list (*.rssrules *.filters)</source>
-        <translation type="unfinished">Rules list (*.rssrules *.filters)</translation>
+        <translation>Rules list (*.rssrules *.filters)</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="381"/>
@@ -699,17 +705,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="530"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished">Regex mode: use Perl-like regular expressions</translation>
+        <translation>Regex mode: use Perl-like regular expressions</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="534"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="536"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -951,7 +957,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation type="unfinished">Cookies management</translation>
+        <translation>Cookies management</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="36"/>
@@ -969,7 +975,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
         <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
-        <translation type="unfinished">Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <translation>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</translation>
     </message>
 </context>
@@ -982,7 +988,7 @@ You should get this information from your Web browser preferences.</translation>
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم تحديث dynamic DNS بنجاح.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
@@ -2044,7 +2050,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>تم اغلاق البرنامج</translation>
     </message>
 </context>
 <context>
@@ -2103,7 +2109,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>مسح</translation>
     </message>
 </context>
 <context>
@@ -2673,7 +2679,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>أعلام</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
@@ -3242,7 +3248,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>بدء البرنامج عند تشغيل ويندوز</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -3322,7 +3328,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخ ملف التورنت للتحميلات المنتهية الى:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="893"/>
@@ -3352,7 +3358,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1095"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>استخدام بورت مختلف عند إعادة التشغيل</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1323"/>
@@ -3401,7 +3407,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2192"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished">عدم حساب الملفات البطيئة</translation>
+        <translation>عدم حساب الملفات البطيئة</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2369"/>
@@ -3519,7 +3525,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2050"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;للمزيد من المعلومات&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2078"/>
@@ -3539,7 +3545,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2532"/>
         <source>Bypass authentication for localhost</source>
-        <translation type="unfinished">Bypass authentication for localhost</translation>
+        <translation>عدم استخدام وسائل الامان عند الدخول من هذا الجهاز</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
@@ -3960,22 +3966,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>رابط للقرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="512"/>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>ازالة رابط القرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخ رابط القرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>تعديل رابط القرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="537"/>
@@ -4029,17 +4035,17 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.cpp" line="657"/>
         <location filename="../properties/propertieswidget.cpp" line="711"/>
         <source>This url seed is already in the list.</source>
-        <translation>رابط البذر هذا موجود بالفعل في القائمة.</translation>
+        <translation>رابط القرين هذا موجود بالفعل في القائمة.</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="703"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>تعديل القرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="704"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished">موقع السيد:</translation>
+        <translation>رابط القرين عبر الويب:</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -4113,22 +4119,22 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="516"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="520"/>
         <source>DHT support [OFF]</source>
-        <translation type="unfinished">DHT support [OFF]</translation>
+        <translation>DHT support [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="524"/>
         <source>PeX support [ON]</source>
-        <translation type="unfinished">PeX support [ON]</translation>
+        <translation>PeX support [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="526"/>
         <source>PeX support [OFF]</source>
-        <translation type="unfinished">PeX support [OFF]</translation>
+        <translation>PeX support [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="529"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished">يجب إعادة تشغيل البرنامج لتفعيل PeX</translation>
+        <translation>يجب إعادة تشغيل البرنامج لتفعيل PeX</translation>
     </message>
     <message>
         <source>Local Peer Discovery [ON]</source>
@@ -4223,12 +4229,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="396"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished">UPnP / NAT-PMP support [ON]</translation>
+        <translation>UPnP / NAT-PMP support [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="399"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished">UPnP / NAT-PMP support [OFF]</translation>
+        <translation>UPnP / NAT-PMP support [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="432"/>
@@ -4238,7 +4244,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="434"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>الوضع المجهول [مغلق]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
@@ -4342,7 +4348,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2835"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>تمت معالجة قائمة الحظر المعطاة: %1 تم تطبيقها.</translation>
     </message>
     <message>
         <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
@@ -4352,7 +4358,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2841"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation type="unfinished">Error: Failed to parse the provided IP filter.</translation>
+        <translation>خطأ: لا يمكن معالجة قائمة الحظر المعطاة.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2183"/>
@@ -4399,12 +4405,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2501"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
+        <translation>UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2506"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation type="unfinished">UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
+        <translation>UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2532"/>
@@ -4414,12 +4420,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2536"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation type="unfinished">Fast resume data was rejected for torrent %1, البحث مجددا...</translation>
+        <translation>معلومات البدء السريع تم رفضها للملف %1, جاري البحث مجددا...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2542"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
-        <translation type="unfinished">Url seed lookup failed for url: %1, message: %2</translation>
+        <translation>Url seed lookup failed for url: %1, message: %2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2665"/>
@@ -4691,12 +4697,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="457"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ أثناء فتح الملف الذي تم تنزيله.عبر RSS</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="494"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>رابط خاطئ %1</translation>
     </message>
 </context>
 <context>
@@ -4997,7 +5003,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="95"/>
         <location filename="../statusbar.h" line="187"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished">DHT: %1 nodes</translation>
+        <translation>DHT: %1 nodes</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="150"/>
@@ -5356,7 +5362,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="267"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>الكمية التي تم رفعها</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
@@ -5443,28 +5449,28 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>رابط المتتبع:</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>تعديل المتتبع</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>خطأ في تعديل المتتبع </translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>رابط المتتبع خاطئ.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>رابط المتتبع موجود مسبقا.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="413"/>
@@ -5474,12 +5480,12 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخ رابط المتتبع</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>تعديل رابط المتتبع</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="418"/>
@@ -5812,12 +5818,12 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>اعادة التأكد</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>هل أنت متأكد من رغبتك في اعادة التأكد من الملفات المختارة؟</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="604"/>
@@ -6019,7 +6025,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>العمل كخدمة في الخلفية (background daemon)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="90"/>
@@ -6280,7 +6286,7 @@ Please install it manually.</source>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>استخدم سطر فارغ للفصل بين المتتبعين المختلفين.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -6759,7 +6765,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>معلومات العطل</translation>
     </message>
 </context>
 <context>
@@ -6998,7 +7004,7 @@ However, those plugins were disabled.</source>
         <location filename="../preferences/options_imp.cpp" line="1270"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>تمت معالجة قائمة الحظر المعطاة بنجاح: %1 تم تطبيقها.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1341"/>
