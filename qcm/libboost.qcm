@@ -71,7 +71,7 @@ public:
 #if LIBTORRENT_VERSION_MAJOR == 0 && LIBTORRENT_VERSION_MINOR < 16
     required_libs << "filesystem" ;
 #endif
-    required_libs << "thread";
+    //required_libs << "thread";
     QStringList libDirs;
     if (!s.isEmpty())
       libDirs << s;
