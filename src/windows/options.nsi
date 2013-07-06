@@ -1,4 +1,4 @@
-Unicode true
+﻿Unicode true
 ;Compress the header too
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
 

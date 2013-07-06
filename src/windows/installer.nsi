@@ -1,4 +1,4 @@
-Section "-hidden"
+﻿Section "-hidden"
 
     ;Search if qBittorrent is already installed.
     FindFirst $0 $1 "$INSTDIR\uninst.exe"

@@ -1,4 +1,4 @@
-Section "un.$(remove_files)" ;"un.Remove files"
+﻿Section "un.$(remove_files)" ;"un.Remove files"
   SectionIn RO
   
 ; Remove files and uninstaller  
