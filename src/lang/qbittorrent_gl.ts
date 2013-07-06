@@ -77,22 +77,28 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un cliente BitTorrent avanzado programado en C++, baseado en Qt4 toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Páxina web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Seguimento de erros: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Foro: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation>Grecia</translation>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantedor actual</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor orixinal</translation>
     </message>
     <message>
         <location filename="../about.ui" line="414"/>
@@ -427,18 +433,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="171"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (auto)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>segundos</translatorcomment>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Disk cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de caducidade da caché do disco</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="217"/>
@@ -1224,7 +1231,7 @@ Debería obter esta información nas preferencias do navegador.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>O qBittorrent foi pechado.</translation>
     </message>
 </context>
 <context>
@@ -1283,7 +1290,7 @@ Non se mostrarán máis avisos.</translation>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
@@ -1818,7 +1825,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcas</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
@@ -2331,7 +2338,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar qBittorrent cando se inicie Windows</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -2411,7 +2418,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar os ficheiros torrent das descargas rematadas a:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="893"/>
@@ -2441,7 +2448,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1095"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar un porto distinto en cada inicio</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1323"/>
@@ -2515,7 +2522,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2050"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Máis información&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2453"/>
@@ -2997,22 +3004,22 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova semente web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="512"/>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Retirar semente web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL da semente web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar URL da semente web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="537"/>
@@ -3071,12 +3078,12 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="703"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Edición da semente web</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="704"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL da semente web:</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -3121,7 +3128,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="434"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo anómino [APAGADO]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
@@ -3681,12 +3688,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="457"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo na apertura do ficheiro RSS descargado.</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="494"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte RSS incorrecta en %1.</translation>
     </message>
 </context>
 <context>
@@ -4323,7 +4330,8 @@ Instálea manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="267"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Cantidade de datos enviados p.e en MB</translatorcomment>
+        <translation>Cantidade enviada</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
@@ -4410,28 +4418,28 @@ Instálea manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL do localizador:</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Edición do localizador</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallou a edición do localizador</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>A URL introducida para o localizador non é correcta.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>A URL do localizador xa existe.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="413"/>
@@ -4441,12 +4449,12 @@ Instálea manualmente.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar a url do localizador</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar a URL do localizador seleccionado</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="418"/>
@@ -4697,12 +4705,12 @@ Instálea manualmente.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmación da nova comprobación</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Está seguro que desexa comprobar de novo os torrents seleccionados?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="604"/>
@@ -4904,7 +4912,7 @@ Instálea manualmente.</translation>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>executar en modo daemon (segundo plano)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="90"/>
@@ -5153,7 +5161,7 @@ Instálea manualmente.</translation>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pode separar os grupos / tiers de localizadores cunha liña en branco.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -5556,7 +5564,7 @@ Con todo, eses plugins desactiváronse.</translation>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Información do fallo</translation>
     </message>
 </context>
 <context>
