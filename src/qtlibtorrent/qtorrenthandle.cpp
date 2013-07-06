@@ -277,6 +277,21 @@ QString QTorrentHandle::save_path() const {
 #endif
 }
 
+QString QTorrentHandle::save_path_parsed() const {
+    QString p;
+    if (has_metadata() && num_files() == 1) {
+      p = firstFileSavePath();
+    } else {
+      p = TorrentPersistentData::getSavePath(hash());
+      if (p.isEmpty())
+        p = save_path();
+    }
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+    p.replace("/", "\\");
+#endif
+    return p;
+}
+
 QStringList QTorrentHandle::url_seeds() const {
   QStringList res;
   try {

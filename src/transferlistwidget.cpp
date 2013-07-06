@@ -124,6 +124,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     setColumnHidden(TorrentModelItem::TR_AMOUNT_UPLOADED, true);
     setColumnHidden(TorrentModelItem::TR_AMOUNT_LEFT, true);
     setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
+    setColumnHidden(TorrentModelItem::TR_SAVE_PATH, true);
   }
 
   //When adding/removing columns between versions some may
