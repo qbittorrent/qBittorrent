@@ -80,6 +80,7 @@ private slots:
   void updateFieldsToolTips(bool regex);
   void updateMustLineValidity();
   void updateMustNotLineValidity();
+  void on_finished(int result);
 
 private:
   RssDownloadRulePtr getCurrentRule() const;
@@ -91,6 +92,7 @@ private:
   QWeakPointer<RssManager> m_manager;
   QListWidgetItem* m_editedRule;
   RssDownloadRuleList *m_ruleList;
+  RssDownloadRuleList *m_editableRuleList;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H
