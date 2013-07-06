@@ -13,6 +13,7 @@
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - BUGFIX: Ensure that all columns in the tranferlist have a size > 0.
     - OTHER: Generate translations at configure time to reduce tarball size
+    - OTHER: Make peer tab sortable by ip too (Gelmir)
     - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
     - PERFORMANCE: Impove drawing speed of peers list when there are many peers
 
