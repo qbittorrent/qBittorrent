@@ -1,6 +1,6 @@
 TRANSLATORS:
 
-1. Use an editor that has NSIS syntax highlighting(eg Geany). This will 
+1. Use an editor that has NSIS syntax highlighting(eg Notepad++/Geany). This will 
    make your life easier.
 2. Open the relevant .nsi file that exists in the folder named 
    "installer-translations"

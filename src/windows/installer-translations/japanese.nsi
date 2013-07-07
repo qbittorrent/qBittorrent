@@ -18,6 +18,8 @@ LangString inst_firewallinfo ${LANG_JAPANESE} "Windows ファイアウォール�
 LangString inst_warning ${LANG_JAPANESE} "qBittorrent が起動されています。インストールの前にアプリケーションを終了してください。"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_JAPANESE} "以前のバージョンをアンインストールしています。"
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_JAPANESE} "Launch qBittorrent."
 
 
 ;------------------------------------

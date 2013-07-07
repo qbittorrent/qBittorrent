@@ -18,6 +18,8 @@ LangString inst_firewallinfo ${LANG_ARABIC} "جاري اضافة القاعدة 
 LangString inst_warning ${LANG_ARABIC} "البرنامج يعمل. يرجى اغلاقه قبل البدء في التنصيب"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السابقة من البرنامج"
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_ARABIC} "Launch qBittorrent."
 
 
 ;------------------------------------
