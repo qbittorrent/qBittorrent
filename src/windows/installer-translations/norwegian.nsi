@@ -19,7 +19,7 @@ LangString inst_warning ${LANG_NORWEGIAN} "qBittorrent kjører. Vennligst steng 
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_NORWEGIAN} "Avinstallerer forrige versjon."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_NORWEGIAN} "Launch qBittorrent."
+LangString launch_qbt ${LANG_NORWEGIAN} "Sett i gang qBittorrent."
 
 
 ;------------------------------------
