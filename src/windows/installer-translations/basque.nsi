@@ -19,7 +19,7 @@ LangString inst_warning ${LANG_BASQUE} "qBittorrent ekinean dago. Mesedez itxi a
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_BASQUE} "Aurreko bertsioa kentzen."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_BASQUE} "Launch qBittorrent."
+LangString launch_qbt ${LANG_BASQUE} "Abiarazi qBittorrent."
 
 
 ;------------------------------------
