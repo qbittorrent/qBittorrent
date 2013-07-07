@@ -18,6 +18,8 @@ LangString inst_firewallinfo ${LANG_GALICIAN} "Engadindo unha regra á devasa de
 LangString inst_warning ${LANG_GALICIAN} "qBittorrent está en execución. Peche o aplicativo antes da instalación."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_GALICIAN} "Desinstalando a versión anterior."
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_GALICIAN} "Launch qBittorrent."
 
 
 ;------------------------------------

@@ -18,6 +18,8 @@ LangString inst_firewallinfo ${LANG_BASQUE} "Windows Suhesi araua gehitzen"
 LangString inst_warning ${LANG_BASQUE} "qBittorrent ekinean dago. Mesedez itxi aplikazioa ezarri aurretik."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_BASQUE} "Aurreko bertsioa kentzen."
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_BASQUE} "Launch qBittorrent."
 
 
 ;------------------------------------

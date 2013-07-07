@@ -20,7 +20,7 @@ XPStyle on
 
 !define PROG_VERSION "3.0.3"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\qbittorrent.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "Launch qBittorrent"
+!define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
 
 ; The name of the installer
 Name "qBittorrent ${PROG_VERSION}"

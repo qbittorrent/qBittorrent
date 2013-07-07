@@ -18,6 +18,8 @@ LangString inst_firewallinfo ${LANG_ITALIAN} "Aggiunta regola al firewall di Win
 LangString inst_warning ${LANG_ITALIAN} "qBittorrent è in esecuzione. Chiudi l'applicazione prima dell'installazione."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_ITALIAN} "Disinstallazione versione precedente."
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_ITALIAN} "Esegui qBittorrent."
 
 
 ;------------------------------------
