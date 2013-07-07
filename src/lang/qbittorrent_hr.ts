@@ -179,15 +179,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished">Grčka</translation>
+        <translation>Grčka</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>Trenutni održavatelj</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>Začetnik projekta</translation>
     </message>
     <message utf8="true">
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -197,7 +197,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qBitTirrent je napredni BitTorrent klijent pisan u C++ -u, baziran na Qt4 programskom alatu i libtorrent-rasterbaru. &lt;br /&gt;&lt;br /&gt;Copyright B©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Početna stranica: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent na Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -471,16 +477,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (auto)</translation>
     </message>
     <message>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <source>Disk cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval isteka privremene memorije diska</translation>
     </message>
 </context>
 <context>
@@ -1945,7 +1951,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent je bio ugašen.</translation>
     </message>
 </context>
 <context>
@@ -1994,7 +2000,7 @@ Neće biti daljnjih napomena.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši</translation>
     </message>
 </context>
 <context>
@@ -2662,7 +2668,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastave</translation>
     </message>
 </context>
 <context>
@@ -3579,19 +3585,19 @@ QGroupBox {
     </message>
     <message>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Više informacija&lt;/a&gt;)</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj torrent datoteke završenih preuzimanja u:</translation>
     </message>
     <message>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokreni qBittorrent kod podizanja Windowsa</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi drukčiji port kod svakog pokretanja</translation>
     </message>
 </context>
 <context>
@@ -3920,27 +3926,27 @@ QGroupBox {
     </message>
     <message>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Novi web seed</translation>
     </message>
     <message>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni web seed</translation>
     </message>
     <message>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj URL web seeda</translation>
     </message>
     <message>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi URL web seeda</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Uređivanje web seeda</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished">URL web seeda:</translation>
+        <translation>URL web seeda:</translation>
     </message>
 </context>
 <context>
@@ -4237,7 +4243,7 @@ QGroupBox {
     </message>
     <message>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonimni mod [ISKLJUČENO]</translation>
     </message>
 </context>
 <context>
@@ -4464,11 +4470,11 @@ p, li { white-space: pre-wrap; }
     <name>RssParser</name>
     <message>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspješno otvaranje preuzete RSS datoteke.</translation>
     </message>
     <message>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neispravan RSS kanal na %1.</translation>
     </message>
 </context>
 <context>
@@ -5016,7 +5022,7 @@ Do you want to install it now?</source>
     <message>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Preuzeta količina</translation>
+        <translation>Količina preuzetih podataka</translation>
     </message>
     <message>
         <source>Amount left</source>
@@ -5031,7 +5037,7 @@ Do you want to install it now?</source>
     <message>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Količina poslanih podataka</translation>
     </message>
 </context>
 <context>
@@ -5106,31 +5112,31 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj URL trackera</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL trackera:</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Uređivanje trackera</translation>
     </message>
     <message>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uređivanje trackera neuspješno</translation>
     </message>
     <message>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uneseni URL trackera nije ispravan.</translation>
     </message>
     <message>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL trackera već postoji.</translation>
     </message>
     <message>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi URL odabranog trackera</translation>
     </message>
 </context>
 <context>
@@ -5560,11 +5566,11 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponovno provjeri potvrđivanje</translation>
     </message>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeste li sigurni da želite ponovno provjeriti odabrani/e torrent(e)?</translation>
     </message>
 </context>
 <context>
@@ -5618,7 +5624,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>pokreni u deamon modu (pozadina)</translation>
     </message>
 </context>
 <context>
@@ -5909,7 +5915,7 @@ Do you want to install it now?</source>
     <message>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Možete odvojiti grupe trackera praznom linijom.</translation>
     </message>
 </context>
 <context>
@@ -6258,7 +6264,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <name>errorDialog</name>
     <message>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacija o rušenju</translation>
     </message>
 </context>
 <context>
