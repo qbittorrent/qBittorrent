@@ -33,6 +33,7 @@
 
 #include <QSortFilterProxyModel>
 #include "torrentmodel.h"
+#include "misc.h"
 
 class TransferListSortModel : public QSortFilterProxyModel {
   Q_OBJECT
@@ -50,61 +51,9 @@ protected:
       Q_ASSERT(vL.isValid());
       Q_ASSERT(vR.isValid());
 
-      QString nameLeft = vL.toString();
-      QString nameRight = vR.toString();
-
-      do {
-        int posL = nameLeft.indexOf(QRegExp("[0-9]"));
-        int posR = nameRight.indexOf(QRegExp("[0-9]"));
-        if (posL == -1 || posR == -1)
-          break; // No data
-        else if (posL != posR)
-          break; // Digit positions mismatch
-        else  if (nameLeft.left(posL) != nameRight.left(posR))
-          break; // Strings' subsets before digit do not match
-
-
-        bool second_digit = false;
-        if (nameLeft.size() > posL + 1)
-          second_digit = nameLeft.at(posL + 1).isDigit();
-        if (nameRight.size() > posR + 1)
-          second_digit = second_digit ?
-                           second_digit :
-                           nameRight.at(posR + 1).isDigit();
-
-        if (!second_digit)
-          break; // Single digit in both, normal sort could handle this
-
-        QString temp;
-        while (posL < nameLeft.size()) {
-          if (nameLeft.at(posL).isDigit())
-            temp += nameLeft.at(posL);
-          else
-            break;
-          posL++;
-        }
-        int numL = temp.toInt();
-        temp.clear();
-
-        while (posR < nameRight.size()) {
-          if (nameRight.at(posR).isDigit())
-            temp += nameRight.at(posR);
-          else
-            break;
-          posR++;
-        }
-        int numR = temp.toInt();
-
-        if (numL != numR)
-          return numL < numR;
-
-        // Strings + digits do match and we haven't hit string end
-        // Do another round
-        nameLeft.remove(0, posL);
-        nameRight.remove(0, posR);
-        continue;
-
-      } while (true);
+      bool res = false;
+      if (misc::naturalSort(vL.toString(), vR.toString(), res))
+        return res;
 
       return QSortFilterProxyModel::lessThan(left, right);
     }
