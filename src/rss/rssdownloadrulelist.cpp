@@ -56,9 +56,7 @@ void RssDownloadRuleList::replace(RssDownloadRuleList *other) {
   m_rules.clear();
   m_feedRules.clear();
   foreach (const QString& name, other->ruleNames()) {
-    RssDownloadRule* r = new RssDownloadRule;
-    *r = *(other->getRule(name).value); // Implicit copy
-    saveRule(RssDownloadRulePtr(r));
+    saveRule(other->getRule(name));
   }
 }
 
