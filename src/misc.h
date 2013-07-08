@@ -119,6 +119,10 @@ public:
 #else
   static QString toQString(time_t t);
 #endif
+
+#ifndef DISABLE_GUI
+  static bool naturalSort(QString left, QString right, bool& result);
+#endif
 };
 
 //  Trick to get a portable sleep() function
