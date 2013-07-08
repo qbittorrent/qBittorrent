@@ -521,3 +521,66 @@ QString misc::toQString(time_t t)
   return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
 }
 #endif
+
+#ifndef DISABLE_GUI
+bool misc::naturalSort(QString left, QString right, bool &result) { // uses lessThan comparison
+  // Return value indicates if functions was successful
+  // result argument will contain actual comparison result if function was successful
+  do {
+    int posL = left.indexOf(QRegExp("[0-9]"));
+    int posR = right.indexOf(QRegExp("[0-9]"));
+    if (posL == -1 || posR == -1)
+      break; // No data
+    else if (posL != posR)
+      break; // Digit positions mismatch
+    else  if (left.left(posL) != right.left(posR))
+      break; // Strings' subsets before digit do not match
+
+
+    bool second_digit = false;
+    if (left.size() > posL + 1)
+      second_digit = left.at(posL + 1).isDigit();
+    if (right.size() > posR + 1)
+      second_digit = second_digit ?
+                       second_digit :
+                       right.at(posR + 1).isDigit();
+
+    if (!second_digit)
+      break; // Single digit in both, normal sort could handle this
+
+    QString temp;
+    while (posL < left.size()) {
+      if (left.at(posL).isDigit())
+        temp += left.at(posL);
+      else
+        break;
+      posL++;
+    }
+    int numL = temp.toInt();
+    temp.clear();
+
+    while (posR < right.size()) {
+      if (right.at(posR).isDigit())
+        temp += right.at(posR);
+      else
+        break;
+      posR++;
+    }
+    int numR = temp.toInt();
+
+    if (numL != numR) {
+      result = (numL < numR);
+      return true;
+    }
+
+    // Strings + digits do match and we haven't hit string end
+    // Do another round
+    left.remove(0, posL);
+    right.remove(0, posR);
+    continue;
+
+  } while (true);
+
+  return false;
+}
+#endif
