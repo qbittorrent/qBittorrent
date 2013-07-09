@@ -9,7 +9,8 @@ HEADERS += $$PWD/searchengine.h \
            $$PWD/engineselectdlg.h \
            $$PWD/pluginsource.h \
            $$PWD/searchlistdelegate.h \
-           $$PWD/supportedengines.h
+           $$PWD/supportedengines.h \
+           $$PWD/searchsortmodel.h
 
 SOURCES += $$PWD/searchengine.cpp \
            $$PWD/searchtab.cpp \

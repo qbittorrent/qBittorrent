@@ -539,26 +539,26 @@ void SearchEngine::appendSearchResult(const QString &line) {
   int row = cur_model->rowCount();
   cur_model->insertRow(row);
 
-  cur_model->setData(cur_model->index(row, DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
-  cur_model->setData(cur_model->index(row, NAME), parts.at(PL_NAME).trimmed()); // Name
-  cur_model->setData(cur_model->index(row, SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
+  cur_model->setData(cur_model->index(row, SearchSortModel::DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
+  cur_model->setData(cur_model->index(row, SearchSortModel::NAME), parts.at(PL_NAME).trimmed()); // Name
+  cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
   bool ok = false;
   qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
   if (!ok || nb_seeders < 0) {
-    cur_model->setData(cur_model->index(row, SEEDS), tr("Unknown")); // Seeders
+    cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), tr("Unknown")); // Seeders
   } else {
-    cur_model->setData(cur_model->index(row, SEEDS), nb_seeders); // Seeders
+    cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
   }
   qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
   if (!ok || nb_leechers < 0) {
-    cur_model->setData(cur_model->index(row, LEECHS), tr("Unknown")); // Leechers
+    cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), tr("Unknown")); // Leechers
   } else {
-    cur_model->setData(cur_model->index(row, LEECHS), nb_leechers); // Leechers
+    cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
   }
-  cur_model->setData(cur_model->index(row, ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
+  cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
   // Description Link
   if (nb_fields == NB_PLUGIN_COLUMNS)
-    cur_model->setData(cur_model->index(row, DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
+    cur_model->setData(cur_model->index(row, SearchSortModel::DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
 
   no_search_results = false;
   ++nb_search_results;
@@ -591,7 +591,7 @@ void SearchEngine::on_download_button_clicked() {
   //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   foreach (const QModelIndex &index, selectedIndexes) {
-    if (index.column() == NAME) {
+    if (index.column() == SearchSortModel::NAME) {
       // Get Item url
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
@@ -606,9 +606,9 @@ void SearchEngine::on_goToDescBtn_clicked()
 {
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   foreach (const QModelIndex &index, selectedIndexes) {
-    if (index.column() == NAME) {
+    if (index.column() == SearchSortModel::NAME) {
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
-      const QString desc_url = model->data(model->index(index.row(), DESC_LINK)).toString();
+      const QString desc_url = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
       if (!desc_url.isEmpty())
         QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
     }
