@@ -42,7 +42,7 @@ public:
   TransferListSortModel(QObject *parent = 0) : QSortFilterProxyModel(parent) {}
 
 protected:
-  bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
+  virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
     if (sortColumn() == TorrentModelItem::TR_NAME) {
       QVariant vL = sourceModel()->data(left);
       QVariant vR = sourceModel()->data(right);
