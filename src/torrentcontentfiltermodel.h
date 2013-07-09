@@ -33,6 +33,7 @@
 
 #include <QSortFilterProxyModel>
 #include "torrentcontentmodelitem.h"
+#include "proplistdelegate.h"
 
 class TorrentContentModel;
 
@@ -53,6 +54,7 @@ signals:
 
 protected:
   virtual bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const;
+  virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
 public slots:
   void selectAll();
