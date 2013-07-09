@@ -10,6 +10,8 @@
     - BUGFIX: Actually show tray notifications when a torrent finishes downloading (sledgehammer999)
     - BUGFIX: Don't download RSS items based on rules still being edited (Gelmir)
     - COSMETIC: Native look for the search boxes (Hyperz)
+    - IMPROVEMENT: Use natural sorting where possible (Gelmir and sledgehammer999)
+    - LINUX: Drop Boost.Thread dependency from configure script
     - OTHER: Update translations.
     - OTHER: Drop obsolete Boost.Thread dependency from configure script on linux (Dumez)
     - LIBTORRENT: SOCKS5 fixes (0.16.10)
