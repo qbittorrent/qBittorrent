@@ -52,7 +52,7 @@ class SearchListDelegate: public QItemDelegate {
       painter->save();
       QStyleOptionViewItemV2 opt = QItemDelegate::setOptions(index, option);
       switch(index.column()) {
-        case SearchEngine::SIZE:
+        case SearchSortModel::SIZE:
           QItemDelegate::drawBackground(painter, opt, index);
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;

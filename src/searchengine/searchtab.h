@@ -32,6 +32,7 @@
 #define SEARCH_TAB_H
 
 #include "ui_search.h"
+#include "searchsortmodel.h"
 
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
@@ -43,7 +44,6 @@ QT_BEGIN_NAMESPACE
 class QTreeView;
 class QHeaderView;
 class QStandardItemModel;
-class QSortFilterProxyModel;
 QT_END_NAMESPACE
 
 class SearchTab: public QWidget, public Ui::search_engine {
@@ -54,7 +54,7 @@ private:
   QLabel *results_lbl;
   QTreeView *resultsBrowser;
   QStandardItemModel *SearchListModel;
-  QSortFilterProxyModel *proxyModel;
+  SearchSortModel *proxyModel;
   SearchListDelegate *SearchDelegate;
   SearchEngine *parent;
 
