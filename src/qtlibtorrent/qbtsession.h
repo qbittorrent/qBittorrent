@@ -212,6 +212,7 @@ signals:
   void trackerError(const QString &hash, QString time, QString msg);
   void trackerAuthenticationRequired(const QTorrentHandle& h);
   void newDownloadedTorrent(QString path, QString url);
+  void newDownloadedTorrentFromRss(QString url);
   void newMagnetLink(const QString& link);
   void updateFileSize(const QString &hash);
   void downloadFromUrlFailure(QString url, QString reason);

@@ -86,6 +86,7 @@ private slots:
   void handleFeedTitle(const QString& feedUrl, const QString& title);
   void handleNewArticle(const QString& feedUrl, const QVariantHash& article);
   void handleFeedParsingFinished(const QString& feedUrl, const QString& error);
+  void handleArticleStateChanged();
 
 private:
   QString iconUrl() const;

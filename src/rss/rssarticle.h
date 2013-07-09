@@ -42,7 +42,8 @@ class RssArticle;
 typedef QSharedPointer<RssArticle> RssArticlePtr;
 
 // Item of a rss stream, single information
-class RssArticle {
+class RssArticle : public QObject {
+  Q_OBJECT
 
 public:
   RssArticle(RssFeed* parent, const QString& guid);
@@ -61,6 +62,12 @@ public:
   void markAsRead();
   // Serialization
   QVariantHash toHash() const;
+
+signals:
+  void articleWasRead();
+
+public slots:
+  void handleTorrentDownloadSuccess(const QString& url);
 
   friend RssArticlePtr hashToRssArticle(RssFeed* parent, const QVariantHash& hash);
 

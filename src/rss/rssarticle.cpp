@@ -120,3 +120,10 @@ const QString& RssArticle::title() const
 {
   return m_title;
 }
+
+void RssArticle::handleTorrentDownloadSuccess(const QString &url) {
+  if (url == m_torrentUrl || url == m_link) {
+    markAsRead();
+    emit articleWasRead();
+  }
+}
