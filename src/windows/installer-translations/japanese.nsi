@@ -19,7 +19,7 @@ LangString inst_warning ${LANG_JAPANESE} "qBittorrent が起動されていま�
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_JAPANESE} "以前のバージョンをアンインストールしています。"
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_JAPANESE} "Launch qBittorrent."
+LangString launch_qbt ${LANG_JAPANESE} "qBittorrent を起動する"
 
 
 ;------------------------------------
