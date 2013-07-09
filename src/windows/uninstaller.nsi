@@ -11,6 +11,7 @@
   Delete "$INSTDIR\translations\qt_da.qm"
   Delete "$INSTDIR\translations\qt_de.qm"
   Delete "$INSTDIR\translations\qt_es.qm"
+  Delete "$INSTDIR\translations\qt_eu.qm"
   Delete "$INSTDIR\translations\qt_fa.qm"
   Delete "$INSTDIR\translations\qt_fi.qm"
   Delete "$INSTDIR\translations\qt_fr.qm"
