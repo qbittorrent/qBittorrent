@@ -81,6 +81,24 @@ bool TorrentContentFilterModel::filterAcceptsRow(int source_row, const QModelInd
   return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
 }
 
+bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
+  if (sortColumn() == NAME) {
+    QVariant vL = sourceModel()->data(left);
+    QVariant vR = sourceModel()->data(right);
+    if (!(vL.isValid() && vR.isValid()))
+      return QSortFilterProxyModel::lessThan(left, right);
+    Q_ASSERT(vL.isValid());
+    Q_ASSERT(vR.isValid());
+
+    bool res = false;
+    if (misc::naturalSort(vL.toString(), vR.toString(), res))
+      return res;
+
+    return QSortFilterProxyModel::lessThan(left, right);
+  }
+  return QSortFilterProxyModel::lessThan(left, right);
+}
+
 void TorrentContentFilterModel::selectAll()
 {
   for (int i=0; i<rowCount(); ++i) {
