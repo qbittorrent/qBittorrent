@@ -151,6 +151,7 @@ const QString straceWin::getBacktrace() {
 
   QString log;
   QTextStream logStream(&log);
+  logStream << "```\n";
 
   HANDLE hProcess = GetCurrentProcess();
   HANDLE hThread = GetCurrentThread();
@@ -213,6 +214,7 @@ const QString straceWin::getBacktrace() {
   logStream << "\n\nList of linked Modules:\n";
   EnumModulesContext modulesContext(hProcess, logStream);
   SymEnumerateModules64(hProcess, EnumModulesCB, (PVOID)&modulesContext);
+  logStream << "```";
   return log;
 }
 #if defined(_M_IX86) && defined(Q_CC_MSVC)
