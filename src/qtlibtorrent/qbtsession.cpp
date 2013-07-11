@@ -1656,8 +1656,8 @@ void QBtSession::saveFastResumeData() {
         continue;
       // Actually with should save fast resume data for paused files too
       //if (h.is_paused()) continue;
-      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
-      h.save_resume_data();
+      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || !h.need_save_resume_data()) continue;
+      h.save_resume_data(torrent_handle::flush_disk_cache);
       ++num_resume_data;
     } catch(libtorrent::invalid_handle&) {}
   }
@@ -2208,7 +2208,8 @@ void QBtSession::readAlerts() {
           const bool was_already_seeded = TorrentPersistentData::isSeed(hash);
           qDebug("Was already seeded: %d", was_already_seeded);
           if (!was_already_seeded) {
-            h.save_resume_data();
+            if (h.need_save_resume_data())
+              h.save_resume_data();
             qDebug("Checking if the torrent contains torrent files to download");
             // Check if there are torrent files inside
             for (int i=0; i<h.num_files(); ++i) {
@@ -2448,8 +2449,8 @@ void QBtSession::readAlerts() {
       else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
         if (p->handle.is_valid()) {
           QTorrentHandle h(p->handle);
-          if (!h.has_error())
-            h.save_resume_data();
+          if (!h.has_error() && h.need_save_resume_data())
+            h.save_resume_data(torrent_handle::flush_disk_cache);
           emit pausedTorrent(h);
         }
       }

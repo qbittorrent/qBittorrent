@@ -635,7 +635,6 @@ void QTorrentHandle::file_progress(std::vector<size_type>& fp) const {
 void QTorrentHandle::pause() const {
   torrent_handle::auto_managed(false);
   torrent_handle::pause();
-  torrent_handle::save_resume_data();
 }
 
 void QTorrentHandle::resume() const {
