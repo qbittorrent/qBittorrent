@@ -97,7 +97,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pokročilý BitTorrent klient programovaný v C++, používající QT4 alibtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 qBittorrent projekt&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Fórum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent na Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="190"/>
@@ -107,17 +113,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation type="unfinished">Řecko</translation>
+        <translation>Řecko</translation>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>Současný správce</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní autor</translation>
     </message>
     <message>
         <location filename="../about.ui" line="384"/>
@@ -376,7 +382,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="184"/>
         <source>Disk write cache size</source>
-        <translation>Velikost diskové vyrovnávací paměťi pro zápis</translation>
+        <translation>Velikost diskové cache pro zápis</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="173"/>
@@ -423,18 +429,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="171"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (auto)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Disk cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval vypršení diskové cache </translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="217"/>
@@ -1991,7 +1997,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="121"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Limit nahrávání musí být větší než 0 nebo vypnut.</translation>
+        <translation>Limit odesílání musí být větší než 0 nebo vypnut.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="122"/>
@@ -2077,7 +2083,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent byl ukončen.</translation>
     </message>
 </context>
 <context>
@@ -2136,7 +2142,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdnit</translation>
     </message>
 </context>
 <context>
@@ -2242,7 +2248,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
         <source>Set upload limit...</source>
-        <translation>Nastavit limit nahrávání...</translation>
+        <translation>Nastavit limit odesílání...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
@@ -2262,7 +2268,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="220"/>
         <source>Set global upload limit...</source>
-        <translation>Nastavit celkový limit nahrávání...</translation>
+        <translation>Nastavit celkový limit odesílání...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -2568,7 +2574,7 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="627"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Celkový limit rychlosti nahrávání</translation>
+        <translation>Celkový limit rychlosti odesílání</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="646"/>
@@ -2707,7 +2713,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="65"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>Příznaky</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
@@ -2748,7 +2754,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../properties/peerlistwidget.cpp" line="72"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Nahráno</translation>
+        <translation>Odesláno</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="155"/>
@@ -2768,7 +2774,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="167"/>
         <source>Limit upload rate...</source>
-        <translation>Omezit rychlost nahrávání...</translation>
+        <translation>Omezit rychlost odesílání...</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="169"/>
@@ -2819,7 +2825,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="245"/>
         <source>Upload rate limiting</source>
-        <translation>Omezení rychlosti nahrávání</translation>
+        <translation>Omezení rychlosti odesílání</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="279"/>
@@ -2936,7 +2942,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2113"/>
         <source>Maximum active uploads:</source>
-        <translation>Max. počet aktivních nahrávání:</translation>
+        <translation>Max. počet aktivních odesílání:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2133"/>
@@ -3055,7 +3061,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit qBittorrent při startu Windows</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -3140,7 +3146,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkopírovat soubory dokončených stahování do:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="893"/>
@@ -3170,7 +3176,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1095"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Při každém spuštění použít náhodné porty</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1323"/>
@@ -3244,7 +3250,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2050"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Více informací&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2453"/>
@@ -3427,13 +3433,13 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1162"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maximální počet slotů pro nahrávání na torrent:</translation>
+        <translation>Maximální počet slotů pro odesílání na torrent:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1502"/>
         <location filename="../preferences/options.ui" line="1657"/>
         <source>Upload:</source>
-        <translation>Nahrávání:</translation>
+        <translation>Odesílání:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1538"/>
@@ -3832,7 +3838,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="172"/>
         <source>Uploaded:</source>
-        <translation>Nahráno:</translation>
+        <translation>Odesláno:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="274"/>
@@ -3994,22 +4000,22 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový webový seed</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="512"/>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit webový seed</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="514"/>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat URL webového seedu</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit URL webového seedu</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="537"/>
@@ -4068,12 +4074,12 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="703"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Úpravy webového seedu</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="704"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished">URL webových seedů:</translation>
+        <translation>URL webového seedu:</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -4272,7 +4278,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="434"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonymní režim [VYP]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
@@ -4725,12 +4731,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="457"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selhalo otevření staženého RSS souboru.</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="494"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný RSS kanál %1.</translation>
     </message>
 </context>
 <context>
@@ -5112,7 +5118,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../statusbar.h" line="245"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Celkový limit rychlosti nahrávání</translation>
+        <translation>Celkový limit rychlosti odesílání</translation>
     </message>
 </context>
 <context>
@@ -5410,7 +5416,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="267"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odeslané množství</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
@@ -5497,28 +5503,28 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL trackeru:</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit tracker</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Úprava trackeru selhala</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadaná URL trackeru není platná.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato URL trackeru již exituje.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="413"/>
@@ -5528,12 +5534,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat URL trackeru</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit označenou URL trackeru</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="418"/>
@@ -5857,17 +5863,17 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="496"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Limit rychlosti nahrávání torrentu</translation>
+        <translation>Limit rychlosti odesílání torrentu</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkontrolovat potvrzení</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="529"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jist, že chcete zkontrolovat označené torrenty?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="604"/>
@@ -5930,7 +5936,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="670"/>
         <source>Limit upload rate...</source>
-        <translation>Omezit rychlost nahrávání...</translation>
+        <translation>Omezit rychlost odesílání...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="672"/>
@@ -6024,7 +6030,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Omezení poměru nahrávání/stahování torrentu </translation>
+        <translation>Omezení poměru odesílání/stahování torrentu </translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
@@ -6069,7 +6075,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation>spustit na pozadí</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="90"/>
@@ -6330,7 +6336,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skupiny trackerů můžete oddělit pomocí prázdného řádku.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -6809,7 +6815,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info o pádu</translation>
     </message>
 </context>
 <context>
