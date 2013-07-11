@@ -81,7 +81,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pokročilý BitTorrent klient programovaný v C++, používající QT4 alibtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 qBittorrent projekt&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Fórum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent na Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="190"/>
@@ -91,17 +97,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation type="unfinished">Řecko</translation>
+        <translation>Řecko</translation>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>Současný správce</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní autor</translation>
     </message>
     <message>
         <location filename="../about.ui" line="384"/>
@@ -360,7 +366,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="174"/>
         <source>Disk write cache size</source>
-        <translation>Velikost diskové vyrovnávací paměťi pro zápis</translation>
+        <translation>Velikost diskové cache pro zápis</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="163"/>
@@ -380,7 +386,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source>Recheck torrents on completion</source>
-        <translation>Při dokončení překontrolovat torrenty</translation>
+        <translation>Při dokončení zkontrolovat torrenty</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="196"/>
@@ -407,7 +413,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="161"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation> (auto)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="199"/>
@@ -1964,7 +1970,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="121"/>
         <source>Upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Limit nahrávání musí být větší než 0 nebo vypnut.</translation>
+        <translation>Limit odesílání musí být větší než 0 nebo vypnut.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="122"/>
@@ -2205,7 +2211,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
         <source>Set upload limit...</source>
-        <translation>Nastavit limit nahrávání...</translation>
+        <translation>Nastavit limit odesílání...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
@@ -2225,7 +2231,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="220"/>
         <source>Set global upload limit...</source>
-        <translation>Nastavit celkový limit nahrávání...</translation>
+        <translation>Nastavit celkový limit odeílání...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -2531,7 +2537,7 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="629"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Celkový limit rychlosti nahrávání</translation>
+        <translation>Celkový limit rychlosti odesílání</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="648"/>
@@ -2706,7 +2712,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../properties/peerlistwidget.cpp" line="71"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>Nahráno</translation>
+        <translation>Odesláno</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="142"/>
@@ -2726,7 +2732,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="154"/>
         <source>Limit upload rate...</source>
-        <translation>Omezit rychlost nahrávání...</translation>
+        <translation>Omezit rychlost odesílání...</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="156"/>
@@ -2777,7 +2783,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="232"/>
         <source>Upload rate limiting</source>
-        <translation>Omezení rychlosti nahrávání</translation>
+        <translation>Omezení rychlosti odesílání</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="266"/>
@@ -2894,7 +2900,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2053"/>
         <source>Maximum active uploads:</source>
-        <translation>Max. počet aktivních nahrávání:</translation>
+        <translation>Max. počet aktivních odesílání:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2073"/>
@@ -3187,7 +3193,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1990"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Více informací&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2393"/>
@@ -3370,13 +3376,13 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1102"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maximální počet slotů pro nahrávání na torrent:</translation>
+        <translation>Maximální počet slotů pro odesílání na torrent:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1442"/>
         <location filename="../preferences/options.ui" line="1597"/>
         <source>Upload:</source>
-        <translation>Nahrávání:</translation>
+        <translation>Odesílání:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1478"/>
@@ -3775,7 +3781,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="172"/>
         <source>Uploaded:</source>
-        <translation>Nahráno:</translation>
+        <translation>Odesláno:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="274"/>
@@ -4182,7 +4188,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="412"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonymní režim [VYP]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="444"/>
@@ -5009,7 +5015,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../statusbar.h" line="245"/>
         <source>Global Upload Speed Limit</source>
-        <translation>Celkový limit rychlosti nahrávání</translation>
+        <translation>Celkový limit rychlosti odesílání</translation>
     </message>
 </context>
 <context>
@@ -5712,7 +5718,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="488"/>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Limit rychlosti nahrávání torrentu</translation>
+        <translation>Limit rychlosti odesílání torrentu</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="593"/>
@@ -5775,7 +5781,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Limit upload rate...</source>
-        <translation>Omezit rychlost nahrávání...</translation>
+        <translation>Omezit rychlost odesílání...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="661"/>
@@ -5824,7 +5830,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="675"/>
         <source>Force recheck</source>
-        <translation>Překontrolovat platnost</translation>
+        <translation>Zkontrolovat platnost</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="677"/>
@@ -5869,7 +5875,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Omezení poměru nahrávání/stahování torrentu </translation>
+        <translation>Omezení poměru odesílání/stahování torrentu </translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
@@ -6643,7 +6649,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info o pádu</translation>
     </message>
 </context>
 <context>
