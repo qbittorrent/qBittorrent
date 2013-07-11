@@ -624,8 +624,9 @@ void TransferListWidget::renameSelectedTorrent() {
   if (!h.is_valid()) return;
   // Ask for a new Name
   bool ok;
-  const QString name = QInputDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
+  QString name = QInputDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
   if (ok && !name.isEmpty()) {
+    name.replace(QRegExp("\r?\n|\r"), " ");
     // Rename the torrent
     listModel->setData(mi, name, Qt::DisplayRole);
   }
