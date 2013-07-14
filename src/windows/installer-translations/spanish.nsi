@@ -19,7 +19,7 @@ LangString inst_warning ${LANG_SPANISH} "qBittorrent is running. Please close th
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_SPANISH} "Uninstalling previous version."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_SPANISH} "Launch qBittorrent."
+LangString launch_qbt ${LANG_SPANISH} "Iniciar qBittorrent."
 
 
 ;------------------------------------
