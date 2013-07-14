@@ -57,6 +57,16 @@ protected:
 
       return QSortFilterProxyModel::lessThan(left, right);
     }
+    else if (sortColumn() == TorrentModelItem::TR_ADD_DATE || sortColumn() == TorrentModelItem::TR_SEED_DATE) {
+      QDateTime vL = sourceModel()->data(left).toDateTime();
+      QDateTime vR = sourceModel()->data(right).toDateTime();
+
+      //not valid dates should be sorted at the bottom.
+      if (!vL.isValid()) return !(sortOrder() == Qt::AscendingOrder);
+      if (!vR.isValid()) return (sortOrder() == Qt::AscendingOrder);
+
+      return vL < vR;
+    }
     return QSortFilterProxyModel::lessThan(left, right);
   }
 };
