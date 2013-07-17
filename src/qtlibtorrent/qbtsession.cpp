@@ -2725,6 +2725,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
     // Pause torrent if necessary
     if (h.is_valid() && pref.addTorrentsInPause() && Preferences().useAdditionDialog())
         h.pause();
+    emit newDownloadedTorrentFromRss(url);
   }
 }
 
