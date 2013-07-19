@@ -417,7 +417,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="214"/>
         <source>Transfer list refresh interval</source>
-        <translation>Интеравал обновления списка торрентов</translation>
+        <translation>Интервал обновления списка торрентов</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="213"/>
@@ -784,7 +784,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">Поддержка DHT [Вкл.], порт: UDP/%1</translation>
+        <translation type="obsolete">Поддержка DHT [Вкл], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
@@ -816,7 +816,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">Ошибка WEb интерфейса - Не могу привязаться к порту %1</translation>
+        <translation type="obsolete">Ошибка Web-интерфейса - Не могу привязаться к порту %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
@@ -905,7 +905,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">Web интерфейс прослушивает пор %1</translation>
+        <translation type="obsolete">Web-интерфейс прослушивает порт %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -925,7 +925,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
+        <translation type="obsolete">Ошибка ввода/вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
@@ -989,7 +989,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Управление Cookies</translation>
+        <translation>Управление cookies</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="36"/>
@@ -1021,7 +1021,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Ошибка Dynamic DNS: служба временно не доступна. Попробую соединиться через 30 минут.</translation>
+        <translation>Ошибка Dynamic DNS: служба временно недоступна. Попробую соединиться через 30 минут.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
@@ -1440,7 +1440,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation>Не прочитанные</translation>
+        <translation>Непрочитанные</translation>
     </message>
 </context>
 <context>
@@ -1620,11 +1620,11 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="obsolete">Не верный пароль</translation>
+        <translation type="obsolete">Неверный пароль</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="obsolete">Этот пароль не верен</translation>
+        <translation type="obsolete">Этот пароль неверен</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -2030,7 +2030,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не возможно сохранить настройки, возможно, qBittorrent недоступен.</translation>
+        <translation>Невозможно сохранить настройки, возможно, qBittorrent недоступен.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="126"/>
@@ -3870,7 +3870,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="obsolete">Трэкеры</translation>
+        <translation type="obsolete">Трекеры</translation>
     </message>
     <message>
         <source>URL seeds</source>
@@ -4393,7 +4393,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2425"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
-        <translation>Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
+        <translation>Ошибка ввода/вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2426"/>
@@ -6051,7 +6051,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="obsolete">Трэкер</translation>
+        <translation type="obsolete">Трекер</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="668"/>
@@ -6229,7 +6229,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Загружать последовательно (медленнее но удобнее для предпросмотра)</translation>
+        <translation type="obsolete">Загружать последовательно (медленнее, но удобнее для предпросмотра)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
@@ -6337,7 +6337,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Аносирующие ссылки (трэкеров):</translation>
+        <translation type="obsolete">Аносирующие ссылки (трекеров):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
@@ -7051,7 +7051,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1091"/>
         <source>Folder is not readable.</source>
-        <translation>Папка не доступна для чтения.</translation>
+        <translation>Папка недоступна для чтения.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1099"/>
