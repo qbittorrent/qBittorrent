@@ -1,4 +1,4 @@
-* unreleased - - Christophe Dumez <chris@qbittorrent.org> - v3.1.0
+* unreleased - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
     - FEATURE: Add "Shutdown qBittorrent" button to Web UI (ngaro)
     - FEATURE: Add setting to copy .torrent files for finished downloads (Driim)
@@ -9,9 +9,11 @@
     - FEATURE: Add option to use random port on each startup (ireallylikeher)
     - FEATURE: Expose the cache expiry to the user (Gelmir)
     - FEATURE: Support Atom feeds (Gelmir)
+    - FEATURE: Add "save path" column (John Peterson)
     - BUGFIX: Add confirmation dialog for "Force recheck" action (closes #131)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
     - BUGFIX: Ensure that all columns in the tranferlist have a size > 0.
+    - BUGFIX: Don't mark RSS item as read when it failed to download (Gelmir)
     - OTHER: Generate translations at configure time to reduce tarball size
     - OTHER: Make peer tab sortable by ip too (Gelmir)
     - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
