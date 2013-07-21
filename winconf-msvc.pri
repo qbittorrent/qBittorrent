@@ -11,6 +11,8 @@ strace_win:{
   LIBS += dbghelp.lib
 }
 
+QMAKE_LFLAGS += "/OPT:REF /OPT:ICF"
+
 RC_FILE = qbittorrent.rc
 
 # Enable Wide characters
