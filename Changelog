@@ -1,3 +1,14 @@
+* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.11
+    - FEATURE: Allow more fine tuning of upload slots. It should improve speed (sledgehammer999)
+    - BUGFIX: Fix Spanish and Basque translations being messed up on Windows (sledgehammer999)
+    - BUGFIX: Don't allow newlines in rename dialog (Gelmir)
+    - BUGFIX: Treat unfinished dates as the newest ones when sorting (sledgehammer999)
+    - BUGFIX: Fix text size problem on Windows with custom DPI (sledgehammer999)
+    - BUGFIX: Respect UI lock when clicking on tray notification (sledgehammer999)     
+    - OTHER: Update translations
+    - WINDOWS: Shave off ~4MB from the binary size (sledgehammer999)
+    - WINDOWS: Fix wrong dependency on msvc2008 runtime (sledgehammer999)
+
 * Tue Jul 9 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.10
     - BUGFIX: Fix LegitTorrents search plugin
     - BUGFIX: Improve peer host name resolution (closes #360)
