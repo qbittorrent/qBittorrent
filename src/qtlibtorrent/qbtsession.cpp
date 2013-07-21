@@ -453,11 +453,15 @@ void QBtSession::configureSession() {
   sessionSettings.half_open_limit = pref.getMaxHalfOpenConnections();
   // * Max connections limit
   sessionSettings.connections_limit = pref.getMaxConnecs();
+  // * Global max upload slots
+  sessionSettings.unchoke_slots_limit = pref.getMaxUploads();
 #else
   // * Max Half-open connections
   s->set_max_half_open_connections(pref.getMaxHalfOpenConnections());
   // * Max connections limit
   setMaxConnections(pref.getMaxConnecs());
+  // * Global max upload slots
+  s->set_max_uploads(pref.getMaxUploads());
 #endif
 #if LIBTORRENT_VERSION_MINOR > 15
   // uTP

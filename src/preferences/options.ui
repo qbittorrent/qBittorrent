@@ -970,7 +970,7 @@
              <x>0</x>
              <y>0</y>
              <width>474</width>
-             <height>577</height>
+             <height>498</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1073,7 +1073,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
                  <property name="text">
                   <string>Maximum number of connections per torrent:</string>
@@ -1083,7 +1083,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
                  <property name="minimum">
                   <number>2</number>
@@ -1096,7 +1096,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="4" column="0">
                 <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
                  <property name="text">
                   <string>Maximum number of upload slots per torrent:</string>
@@ -1106,7 +1106,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="4" column="1">
                 <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
                  <property name="maximum">
                   <number>500</number>
@@ -1129,7 +1129,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="2">
+               <item row="2" column="2">
                 <spacer name="horizontalSpacer_4">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1142,8 +1142,41 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="2">
+               <item row="4" column="2">
                 <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkMaxUploads">
+                 <property name="text">
+                  <string>Global maximum number of upload slots:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinMaxUploads">
+                 <property name="maximum">
+                  <number>2000</number>
+                 </property>
+                 <property name="value">
+                  <number>8</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <spacer name="horizontalSpacer_15">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2807,6 +2840,22 @@
     <hint type="destinationlabel">
      <x>430</x>
      <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxUploads</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxUploads</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>423</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>571</x>
+     <y>224</y>
     </hint>
    </hints>
   </connection>

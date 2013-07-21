@@ -117,6 +117,7 @@ private:
   // Bittorrent options
   int getMaxConnecs() const;
   int getMaxConnecsPerTorrent() const;
+  int getMaxUploads() const;
   int getMaxUploadsPerTorrent() const;
   bool isDHTEnabled() const;
   bool isDHTPortSameAsBT() const;

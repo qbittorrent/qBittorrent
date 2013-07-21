@@ -541,6 +541,15 @@ public:
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecsPerTorrent"), val);
   }
 
+  int getMaxUploads() const {
+    return value(QString::fromUtf8("Preferences/Bittorrent/MaxUploads"), 8).toInt();
+  }
+
+  void setMaxUploads(int val) {
+    if (val <= 0) val = -1;
+    setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploads"), val);
+  }
+
   int getMaxUploadsPerTorrent() const {
     return value(QString::fromUtf8("Preferences/Bittorrent/MaxUploadsPerTorrent"), 4).toInt();
   }
