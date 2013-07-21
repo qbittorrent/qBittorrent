@@ -62,8 +62,8 @@ protected:
       QDateTime vR = sourceModel()->data(right).toDateTime();
 
       //not valid dates should be sorted at the bottom.
-      if (!vL.isValid()) return !(sortOrder() == Qt::AscendingOrder);
-      if (!vR.isValid()) return (sortOrder() == Qt::AscendingOrder);
+      if (!vL.isValid()) return false;
+      if (!vR.isValid()) return true;
 
       return vL < vR;
     }
