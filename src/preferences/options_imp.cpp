@@ -201,9 +201,11 @@ options_imp::options_imp(QWidget *parent):
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkMaxUploads, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxUploadsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinMaxConnec, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinMaxUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #if LIBTORRENT_VERSION_NUM >= 001600
@@ -449,6 +451,7 @@ void options_imp::saveOptions() {
   // Bittorrent preferences
   pref.setMaxConnecs(getMaxConnecs());
   pref.setMaxConnecsPerTorrent(getMaxConnecsPerTorrent());
+  pref.setMaxUploads(getMaxUploads());
   pref.setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
   pref.setDHTEnabled(isDHTEnabled());
   pref.setPeXEnabled(checkPeX->isChecked());
@@ -713,6 +716,17 @@ void options_imp::loadOptions() {
     checkMaxConnecsPerTorrent->setChecked(false);
     spinMaxConnecPerTorrent->setEnabled(false);
   }
+  intValue = pref.getMaxUploads();
+  if (intValue > 0) {
+    // enable
+    checkMaxUploads->setChecked(true);
+    spinMaxUploads->setEnabled(true);
+    spinMaxUploads->setValue(intValue);
+  } else {
+    // disable
+    checkMaxUploads->setChecked(false);
+    spinMaxUploads->setEnabled(false);
+  }
   intValue = pref.getMaxUploadsPerTorrent();
   if (intValue > 0) {
     // enable
@@ -904,6 +918,14 @@ int options_imp::getMaxConnecsPerTorrent() const {
     return -1;
   }else{
     return spinMaxConnecPerTorrent->value();
+  }
+}
+
+int options_imp::getMaxUploads() const {
+  if (!checkMaxUploads->isChecked()) {
+    return -1;
+  }else{
+    return spinMaxUploads->value();
   }
 }
 
