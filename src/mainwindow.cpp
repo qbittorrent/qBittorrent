@@ -517,6 +517,11 @@ void MainWindow::readSettings() {
 
 void MainWindow::balloonClicked() {
   if (isHidden()) {
+    if (ui_locked) {
+      // Ask for UI lock password
+      if (!unlockUI())
+        return;
+    }
     show();
     if (isMinimized()) {
       showNormal();
