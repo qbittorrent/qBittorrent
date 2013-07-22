@@ -118,6 +118,7 @@ private:
   QBtSession* BTSession;
   MainWindow *main_window;
   QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

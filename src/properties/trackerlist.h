@@ -54,6 +54,7 @@ private:
   QTreeWidgetItem* pex_item;
   QTreeWidgetItem* lsd_item;
   QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 
 public:
   TrackerList(PropertiesWidget *properties);

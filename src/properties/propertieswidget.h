@@ -115,6 +115,7 @@ private:
   LineEdit *m_contentFilerLine;
   QShortcut *editHotkeyFile;
   QShortcut *editHotkeyWeb;
+  QShortcut *deleteHotkeyWeb;
 };
 
 #endif // PROPERTIESWIDGET_H

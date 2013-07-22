@@ -124,6 +124,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
   connect(editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
   connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
+  deleteHotkeyWeb = new QShortcut(QKeySequence(QKeySequence::Delete), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -138,6 +140,7 @@ PropertiesWidget::~PropertiesWidget() {
   delete m_tabBar;
   delete editHotkeyFile;
   delete editHotkeyWeb;
+  delete deleteHotkeyWeb;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -663,6 +666,8 @@ void PropertiesWidget::askWebSeed() {
 
 void PropertiesWidget::deleteSelectedUrlSeeds() {
   const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
+  if (selectedItems.isEmpty())
+    return;
   bool change = false;
   foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
@@ -691,7 +696,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const {
 
 void PropertiesWidget::editWebSeed() {
   const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
-  if (selected_items.isEmpty())
+  if (selected_items.size() != 1)
     return;
 
   const QListWidgetItem *selected_item = selected_items.last();

@@ -557,11 +557,6 @@ void MainWindow::createKeyboardShortcuts() {
   connect(switchRSSShortcut, SIGNAL(activated()), this, SLOT(displayRSSTab()));
   actionDocumentation->setShortcut(QKeySequence("F1"));
   actionOptions->setShortcut(QKeySequence(QString::fromUtf8("Alt+O")));
-#ifdef Q_WS_MAC
-  actionDelete->setShortcut(QKeySequence("Ctrl+Backspace"));
-#else
-  actionDelete->setShortcut(QKeySequence(QString::fromUtf8("Del")));
-#endif
   actionStart->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+S")));
   actionStart_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+S")));
   actionPause->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+P")));
