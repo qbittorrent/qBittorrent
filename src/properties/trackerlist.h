@@ -31,6 +31,7 @@
 #ifndef TRACKERLIST_H
 #define TRACKERLIST_H
 
+#include <QShortcut>
 #include <QTreeWidget>
 #include <QList>
 
@@ -51,6 +52,7 @@ private:
   QTreeWidgetItem* dht_item;
   QTreeWidgetItem* pex_item;
   QTreeWidgetItem* lsd_item;
+  QShortcut *editHotkey;
 
 public:
   TrackerList(PropertiesWidget *properties);

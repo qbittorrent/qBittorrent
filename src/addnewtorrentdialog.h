@@ -31,6 +31,7 @@
 #ifndef ADDNEWTORRENTDIALOG_H
 #define ADDNEWTORRENTDIALOG_H
 
+#include <QShortcut>
 #include <QDialog>
 #include <QUrl>
 #include <libtorrent/torrent_info.hpp>
@@ -86,6 +87,7 @@ private:
   boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
   QStringList m_filesPath;
   bool m_hasRenamedFile;
+  QShortcut *editHotkey;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

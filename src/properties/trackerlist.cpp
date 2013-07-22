@@ -72,11 +72,14 @@ TrackerList::TrackerList(PropertiesWidget *properties): QTreeWidget(), propertie
   lsd_item = new QTreeWidgetItem(QStringList() << "" << "** [LSD] **");
   insertTopLevelItem(2, lsd_item);
   setRowColor(2, QColor("grey"));
+  editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(editSelectedTracker()), 0, Qt::WidgetShortcut);
+  connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(editSelectedTracker()));
 
   loadSettings();
 }
 
 TrackerList::~TrackerList() {
+  delete editHotkey;
   saveSettings();
 }
 
