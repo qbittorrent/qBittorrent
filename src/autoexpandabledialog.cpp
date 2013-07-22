@@ -52,18 +52,36 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
   d.ui->textEdit->setEchoMode(mode);
   d.ui->textEdit->setInputMethodHints(inputMethodHints);
 
-  int textW = d.ui->textEdit->fontMetrics().width(text) + 4;
+  bool res = d.exec();
+  if (ok)
+    *ok = res;
+
+  if (!res)
+    return QString();
+
+  return d.ui->textEdit->text();
+}
+
+void AutoExpandableDialog::showEvent(QShowEvent *e) {
+  // Overriding showEvent is required for consistent UI with fixed size under custom DPI
+  // Show dialog
+  QDialog::showEvent(e);
+  // and resize textbox to fit the text
+
+  // NOTE: For some strange reason QFontMetrics gets more accurate
+  // when called from showEvent. Only 6 symbols off instead of 11 symbols off.
+  int textW = ui->textEdit->fontMetrics().width(ui->textEdit->text()) + 4;
   int screenW = QApplication::desktop()->width() / 4;
   int wd = textW;
 
-  if (!title.isEmpty()) {
-    int _w = d.fontMetrics().width(title);
+  if (!windowTitle().isEmpty()) {
+    int _w = fontMetrics().width(windowTitle());
     if (_w > wd)
       wd = _w;
   }
 
-  if (!label.isEmpty()) {
-    int _w = d.ui->textLabel->fontMetrics().width(label);
+  if (!ui->textLabel->text().isEmpty()) {
+    int _w = ui->textLabel->fontMetrics().width(ui->textLabel->text());
     if (_w > wd)
       wd = _w;
   }
@@ -75,15 +93,16 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
   // 2. max width of text from either of: label, title, textedit
   // If the value is less than dialog default size default size is used
   wd = textW < screenW ? textW : screenW;
-  if (wd > d.width())
-    d.resize(d.width() - d.ui->horizontalLayout->sizeHint().width() + wd, d.height());
+  if (wd > width())
+    resize(width() - ui->horizontalLayout->sizeHint().width() + wd, height());
 
-  bool res = d.exec();
-  if (ok)
-    *ok = res;
+  // Use old dialog behavior: prohibit resizing the dialog
+  setFixedHeight(height());
 
-  if (!res)
-    return QString();
-
-  return d.ui->textEdit->text();
+  // Update geometry: center on screen
+  int sx = QApplication::desktop()->width();
+  int sy = QApplication::desktop()->height();
+  QRect geom = geometry();
+  geom.moveCenter(QPoint(sx / 2, sy / 2));
+  setGeometry(geom);
 }
