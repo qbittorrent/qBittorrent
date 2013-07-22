@@ -85,6 +85,10 @@ void RSSImp::displayRSSListMenu(const QPoint& pos) {
         }
       }
     }
+    else {
+      myRSSListMenu.addAction(actionDelete);
+      myRSSListMenu.addSeparator();
+    }
     myRSSListMenu.addAction(actionNew_subscription);
     if (m_feedList->isFeed(selectedItems.first())) {
       myRSSListMenu.addSeparator();
