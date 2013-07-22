@@ -141,6 +141,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayListMenu(const QPoint&)));
   header()->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header(), SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayDLHoSMenu(const QPoint&)));
+
+  editHotkey = new QShortcut(QKeySequence("F2"), this, SLOT(renameSelectedTorrent()), 0, Qt::WidgetShortcut);
 }
 
 TransferListWidget::~TransferListWidget() {
@@ -153,6 +155,7 @@ TransferListWidget::~TransferListWidget() {
   delete nameFilterModel;
   delete listModel;
   delete listDelegate;
+  delete editHotkey;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 

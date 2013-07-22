@@ -119,6 +119,11 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
   refreshTimer->start(3000); // 3sec
+  editHotkeyFile = new QShortcut(QKeySequence("F2"), filesList, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
+  editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
+  connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -131,6 +136,8 @@ PropertiesWidget::~PropertiesWidget() {
   delete PropListModel;
   delete PropDelegate;
   delete m_tabBar;
+  delete editHotkeyFile;
+  delete editHotkeyWeb;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -519,7 +526,8 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
 
 void PropertiesWidget::renameSelectedFile() {
   const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
-  Q_ASSERT(selectedIndexes.size() == 1);
+  if (selectedIndexes.size() != 1)
+    return;
   const QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;

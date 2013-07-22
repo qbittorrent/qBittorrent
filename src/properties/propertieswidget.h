@@ -31,6 +31,7 @@
 #ifndef PROPERTIESWIDGET_H
 #define PROPERTIESWIDGET_H
 
+#include <QShortcut>
 #include <QWidget>
 #include "ui_propertieswidget.h"
 #include "qtorrenthandle.h"
@@ -112,6 +113,8 @@ private:
   PieceAvailabilityBar *pieces_availability;
   PropTabBar *m_tabBar;
   LineEdit *m_contentFilerLine;
+  QShortcut *editHotkeyFile;
+  QShortcut *editHotkeyWeb;
 };
 
 #endif // PROPERTIESWIDGET_H
