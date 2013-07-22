@@ -95,6 +95,14 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
   Q_ASSERT(ok);
   ok = connect(this, SIGNAL(finished(int)), SLOT(on_finished(int)));
   Q_ASSERT(ok);
+  editHotkey = new QShortcut(QKeySequence("F2"), ui->listRules, 0, 0, Qt::WidgetShortcut);
+  ok = connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRule()));
+  Q_ASSERT(ok);
+  ok = connect(ui->listRules, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRule()));
+  Q_ASSERT(ok);
+  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), ui->listRules, 0, 0, Qt::WidgetShortcut);
+  ok = connect(deleteHotkey, SIGNAL(activated()), SLOT(on_removeRuleBtn_clicked()));
+  Q_ASSERT(ok);
   updateRuleDefinitionBox();
   updateFeedList();
 }
@@ -102,6 +110,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& m
 AutomatedRssDownloader::~AutomatedRssDownloader()
 {
   qDebug() << Q_FUNC_INFO;
+  delete editHotkey;
+  delete deleteHotkey;
   delete ui;
   delete m_editableRuleList;
 }
@@ -421,8 +431,11 @@ void AutomatedRssDownloader::displayRulesListMenu(const QPoint &pos)
 
 void AutomatedRssDownloader::renameSelectedRule()
 {
-  QListWidgetItem *item = ui->listRules->currentItem();
-  if (!item) return;
+  const QList<QListWidgetItem*> selection = ui->listRules->selectedItems();
+  if (selection.isEmpty())
+    return;
+
+  QListWidgetItem *item = selection.first();
   forever {
     QString new_name = QInputDialog::getText(this, tr("Rule renaming"), tr("Please type the new rule name"), QLineEdit::Normal, item->text());
     new_name = new_name.trimmed();
