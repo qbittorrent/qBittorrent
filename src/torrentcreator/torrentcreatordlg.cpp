@@ -30,7 +30,6 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QInputDialog>
 
 #include "torrentpersistentdata.h"
 #include "torrentcreatordlg.h"

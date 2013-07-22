@@ -35,7 +35,6 @@
 #include <QAction>
 #include <QColor>
 #include <QDebug>
-#include <QInputDialog>
 #include <QUrl>
 #include <libtorrent/version.hpp>
 #include <libtorrent/peer_info.hpp>
@@ -46,6 +45,7 @@
 #include "qbtsession.h"
 #include "qinisettings.h"
 #include "misc.h"
+#include "autoexpandabledialog.h"
 
 using namespace libtorrent;
 
@@ -355,19 +355,12 @@ void TrackerList::editSelectedTracker() {
     // During multi-select only process item selected last
     QUrl tracker_url = selected_items.last()->text(COL_URL);
 
-    QInputDialog editDlg(this);
-    editDlg.setInputMode(QInputDialog::TextInput);
-    editDlg.setLabelText(tr("Tracker URL:"));
-    editDlg.setWindowTitle(tr("Tracker editing"));
-    editDlg.setTextValue(tracker_url.toString());
-    QSize dlgSize = editDlg.size();
-    dlgSize.setWidth(350);
-    editDlg.resize(dlgSize);
-
-    if(!editDlg.exec())
+    bool ok;
+    QUrl new_tracker_url = AutoExpandableDialog::getText(this, tr("Tracker editing"), tr("Tracker URL:"),
+                                                         QLineEdit::Normal, tracker_url.toString(), &ok).trimmed();
+    if (!ok)
       return;
 
-    QUrl new_tracker_url = editDlg.textValue().trimmed();
     if (!new_tracker_url.isValid()) {
       QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
       return;

@@ -29,7 +29,6 @@
  */
 
 #include <QDesktopServices>
-#include <QInputDialog>
 #include <QMenu>
 #include <QStandardItemModel>
 #include <QMessageBox>
@@ -51,6 +50,7 @@
 #include "rsssettings.h"
 #include "automatedrssdownloader.h"
 #include "iconprovider.h"
+#include "autoexpandabledialog.h"
 
 namespace Article {
 enum ArticleRoles {
@@ -150,7 +150,7 @@ void RSSImp::askNewFolder()
     rss_parent = m_rssManager;
   }
   bool ok;
-  QString new_name = QInputDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
+  QString new_name = AutoExpandableDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
   if (!ok)
     return;
 
@@ -197,7 +197,7 @@ void RSSImp::on_newFeedButton_clicked()
   if (clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive))
     default_url = clip_txt;
 
-  QString newUrl = QInputDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
+  QString newUrl = AutoExpandableDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
   if (!ok)
     return;
 
@@ -372,7 +372,7 @@ void RSSImp::renameSelectedRssFile()
   bool ok;
   QString newName;
   do {
-    newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, m_feedList->getRSSItem(item)->displayName(), &ok);
+    newName = AutoExpandableDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, m_feedList->getRSSItem(item)->displayName(), &ok);
     // Check if name is already taken
     if (ok) {
       if (rss_item->parent()->hasChild(newName)) {

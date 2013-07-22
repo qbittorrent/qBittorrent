@@ -28,7 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QInputDialog>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDebug>
@@ -44,6 +43,7 @@
 #include "rssmanager.h"
 #include "rssfeed.h"
 #include "iconprovider.h"
+#include "autoexpandabledialog.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -309,7 +309,7 @@ void AutomatedRssDownloader::saveEditedRule()
 void AutomatedRssDownloader::on_addRuleBtn_clicked()
 {
   // Ask for a rule name
-  const QString rule_name = QInputDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule."));
+  const QString rule_name = AutoExpandableDialog::getText(this, tr("New rule name"), tr("Please type the name of the new download rule."));
   if (rule_name.isEmpty()) return;
   // Check if this rule name already exists
   if (m_editableRuleList->getRule(rule_name)) {
@@ -424,7 +424,7 @@ void AutomatedRssDownloader::renameSelectedRule()
   QListWidgetItem *item = ui->listRules->currentItem();
   if (!item) return;
   forever {
-    QString new_name = QInputDialog::getText(this, tr("Rule renaming"), tr("Please type the new rule name"), QLineEdit::Normal, item->text());
+    QString new_name = AutoExpandableDialog::getText(this, tr("Rule renaming"), tr("Please type the new rule name"), QLineEdit::Normal, item->text());
     new_name = new_name.trimmed();
     if (new_name.isEmpty()) return;
     if (m_editableRuleList->ruleNames().contains(new_name, Qt::CaseInsensitive)) {

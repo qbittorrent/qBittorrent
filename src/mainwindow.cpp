@@ -72,6 +72,9 @@
 #include "torrentmodel.h"
 #include "executionlog.h"
 #include "iconprovider.h"
+#ifndef DISABLE_GUI
+#include "autoexpandabledialog.h"
+#endif
 #ifdef Q_WS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
@@ -397,7 +400,7 @@ void MainWindow::defineUILockPassword() {
   QString old_pass_md5 = Preferences().getUILockPasswordMD5();
   if (old_pass_md5.isNull()) old_pass_md5 = "";
   bool ok = false;
-  QString new_clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, old_pass_md5, &ok);
+  QString new_clear_password = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, old_pass_md5, &ok);
   if (ok) {
     new_clear_password = new_clear_password.trimmed();
     if (new_clear_password.size() < 3) {
@@ -417,7 +420,7 @@ void MainWindow::on_actionLock_qBittorrent_triggered() {
   if (pref.getUILockPasswordMD5().isEmpty()) {
     // Ask for a password
     bool ok = false;
-    QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
+    QString clear_password = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
     if (!ok) return;
     pref.setUILockPassword(clear_password);
   }
@@ -687,7 +690,7 @@ void MainWindow::setTabText(int index, QString text) const {
 
 bool MainWindow::unlockUI() {
   bool ok = false;
-  QString clear_password = QInputDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
+  QString clear_password = AutoExpandableDialog::getText(this, tr("UI lock password"), tr("Please type the UI lock password:"), QLineEdit::Password, "", &ok);
   if (!ok) return false;
   Preferences pref;
   QString real_pass_md5 = pref.getUILockPasswordMD5();

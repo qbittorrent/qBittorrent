@@ -39,7 +39,6 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QDesktopServices>
-#include <QInputDialog>
 #include <libtorrent/version.hpp>
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
@@ -58,6 +57,7 @@
 #include "iconprovider.h"
 #include "lineedit.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 using namespace libtorrent;
 
@@ -523,7 +523,7 @@ void PropertiesWidget::renameSelectedFile() {
   const QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
-  QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
+  QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
                                                 tr("New name:"), QLineEdit::Normal,
                                                 index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {
@@ -636,7 +636,7 @@ void PropertiesWidget::renameSelectedFile() {
 void PropertiesWidget::askWebSeed() {
   bool ok;
   // Ask user for a new url seed
-  const QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
+  const QString url_seed = AutoExpandableDialog::getText(this, tr("New url seed", "New HTTP source"),
                                                  tr("New url seed:"), QLineEdit::Normal,
                                                  QString::fromUtf8("http://www."), &ok);
   if (!ok) return;
@@ -689,7 +689,7 @@ void PropertiesWidget::editWebSeed() {
   const QListWidgetItem *selected_item = selected_items.last();
   const QString old_seed = selected_item->text();
   bool result;
-  const QString new_seed = QInputDialog::getText(this, tr("Web seed editing"),
+  const QString new_seed = AutoExpandableDialog::getText(this, tr("Web seed editing"),
                                                  tr("Web seed URL:"), QLineEdit::Normal,
                                                  old_seed, &result);
   if (!result)

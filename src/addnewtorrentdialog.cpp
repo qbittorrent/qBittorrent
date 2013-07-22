@@ -39,10 +39,10 @@
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 #include <QString>
 #include <QFile>
-#include <QInputDialog>
 #include <QUrl>
 #include <QMenu>
 #include <QMessageBox>
@@ -394,7 +394,7 @@ void AddNewTorrentDialog::renameSelectedFile()
   const QModelIndex &index = selectedIndexes.first();
   // Ask for new name
   bool ok;
-  const QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
+  const QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
                                                       tr("New name:"), QLineEdit::Normal,
                                                       index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {

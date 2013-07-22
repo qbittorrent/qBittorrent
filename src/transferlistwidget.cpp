@@ -33,7 +33,6 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QClipboard>
-#include <QInputDialog>
 #include <QColor>
 #include <QUrl>
 #include <QMenu>
@@ -61,6 +60,7 @@
 #include "qinisettings.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 using namespace libtorrent;
 
@@ -602,7 +602,7 @@ void TransferListWidget::askNewLabelForSelection() {
   bool invalid;
   do {
     invalid = false;
-    const QString label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok).trimmed();
+    const QString label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, "", &ok).trimmed();
     if (ok && !label.isEmpty()) {
       if (fsutils::isValidFileSystemName(label)) {
         setSelectionLabel(label);
@@ -624,7 +624,7 @@ void TransferListWidget::renameSelectedTorrent() {
   if (!h.is_valid()) return;
   // Ask for a new Name
   bool ok;
-  QString name = QInputDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
+  QString name = AutoExpandableDialog::getText(this, tr("Rename"), tr("New name:"), QLineEdit::Normal, h.name(), &ok);
   if (ok && !name.isEmpty()) {
     name.replace(QRegExp("\r?\n|\r"), " ");
     // Rename the torrent
