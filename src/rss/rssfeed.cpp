@@ -353,6 +353,18 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   if (!matching_rule)
     return;
 
+  if (matching_rule->ignoreDays() > 0) {
+    QDateTime lastMatch = matching_rule->lastMatch();
+    if (lastMatch.isValid()) {
+      if (QDateTime::currentDateTime() < lastMatch.addDays(matching_rule->ignoreDays())) {
+        connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
+        article->markAsRead();
+        return;
+      }
+    }
+  }
+  matching_rule->setLastMatch(QDateTime::currentDateTime());
+  rules->saveRulesToStorage();
   // Download the torrent
   const QString& torrent_url = article->torrentUrl();
   QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
