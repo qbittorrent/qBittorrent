@@ -79,7 +79,7 @@ public:
 
   // General options  
   QString getLocale() const {
-    return value(QString::fromUtf8("Preferences/General/Locale"), "en_GB").toString();
+    return value(QString::fromUtf8("Preferences/General/Locale")).toString();
   }
 
   void setLocale(const QString &locale) {
