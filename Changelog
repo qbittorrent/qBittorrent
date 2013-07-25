@@ -4,10 +4,12 @@
     - BUGFIX: Don't allow newlines in rename dialog (Gelmir)
     - BUGFIX: Treat unfinished dates as the newest ones when sorting (sledgehammer999)
     - BUGFIX: Fix text size problem on Windows with custom DPI (sledgehammer999)
-    - BUGFIX: Respect UI lock when clicking on tray notification (sledgehammer999)     
+    - BUGFIX: Respect UI lock when clicking on tray notification (sledgehammer999)
+    - BUGFIX: Fix kickass torrents search plugin (Gelmir)
+    - BUGFIX: Use system language as default language. Closes #780 (sledgehammer999)
     - OTHER: Update translations
     - WINDOWS: Shave off ~4MB from the binary size (sledgehammer999)
-    - WINDOWS: Fix wrong dependency on msvc2008 runtime (sledgehammer999)
+    - WINDOWS: Remove wrong dependency on msvc2008 runtime (sledgehammer999)
 
 * Tue Jul 9 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.10
     - BUGFIX: Fix LegitTorrents search plugin
