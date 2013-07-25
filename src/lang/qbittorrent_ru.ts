@@ -458,11 +458,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в системном лотке</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в системном лотке</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="257"/>
@@ -615,7 +615,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="311"/>
         <source>New rule name</source>
-        <translation>Новое имя правила</translation>
+        <translation>Новое правило</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="311"/>
@@ -849,7 +849,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Этот файл либо поврежден, либо не torrent типа.</translation>
+        <translation type="obsolete">Этот файл либо поврежден, либо не является torrent файлом.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
@@ -958,7 +958,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">Торрент был скачен за %1.</translation>
+        <translation type="obsolete">Торрент был скачан за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
@@ -1026,7 +1026,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Ошибка Dynamic DNS:предоставленное  имя хоста не существует в указанной учётной записи.</translation>
+        <translation>Ошибка Dynamic DNS: предоставленное имя хоста не существует в указанной учётной записи.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
@@ -3401,7 +3401,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1902"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Включить DHT сеть (децентрализованную), чтобы найти больше пиров</translation>
+        <translation>Включить DHT (децентрализованную сеть), чтобы найти больше пиров</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1911"/>
@@ -5551,7 +5551,7 @@ Do you want to install it now?</source>
     <message>
         <source>Force reannounce</source>
         <translatorcomment>Коряво &gt;_&lt;</translatorcomment>
-        <translation type="obsolete">Переанонсировать принудительно</translation>
+        <translation type="obsolete">Принудительно анонсировать</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
@@ -7286,7 +7286,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Вы выбрали пропустить проверку файла. Однако локальные файлы судя по всему не существует в указанной директории. Пожалуйста, отключите это возможность или измените путь сохранения.</translation>
+        <translation type="obsolete">Вы выбрали пропустить проверку файла. Однако, локальные файлы, судя по всему, не существует в указанной директории. Пожалуйста, отключите эту опцию или измените путь сохранения.</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -7314,7 +7314,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Невозможно декодировать ссылку magnet:</translation>
+        <translation type="obsolete">Невозможно декодировать magnet-ссылку:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
