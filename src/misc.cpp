@@ -175,7 +175,7 @@ void misc::shutdownComputer(bool sleep) {
   if (sleep)
     SetSuspendState(false, false, false);
   else
-    InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+    InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
 
   // Disable shutdown privilege.
   tkp.Privileges[0].Attributes = 0;
@@ -233,17 +233,17 @@ int misc::pythonVersion() {
 // value must be given in bytes
 QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (val < 0)
-    return tr("Unknown", "Unknown (size)");
+    return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
   int i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
   QString ret;
   if (i == 0)
-    ret = QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
+    ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
   else
-    ret = QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
+    ret = QString::number(val, 'f', 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
   if (is_speed)
-    ret += tr("/s", "per second");
+    ret += QCoreApplication::translate("misc", "/s", "per second");
   return ret;
 }
 
@@ -379,21 +379,21 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
     return "0";
   }
   if (seconds < 60) {
-    return tr("< 1m", "< 1 minute");
+    return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
   }
   int minutes = seconds / 60;
   if (minutes < 60) {
-    return tr("%1m","e.g: 10minutes").arg(QString::number(minutes));
+    return QCoreApplication::translate("misc", "%1m","e.g: 10minutes").arg(QString::number(minutes));
   }
   int hours = minutes / 60;
   minutes = minutes - hours*60;
   if (hours < 24) {
-    return tr("%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
+    return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
   }
   int days = hours / 24;
   hours = hours - days * 24;
   if (days < 100) {
-    return tr("%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
+    return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
   }
   return QString::fromUtf8("∞");
 }

@@ -43,7 +43,6 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
-#include <QCoreApplication>
 #ifndef DISABLE_GUI
 #include <QIcon>
 #endif
@@ -51,79 +50,73 @@
 const qlonglong MAX_ETA = 8640000;
 
 /*  Miscellaneaous functions that can be useful */
-class misc
+namespace misc
 {
-  Q_DECLARE_TR_FUNCTIONS(misc)
-
-private:
-  misc(); // Forbidden
-
-public:
-  static inline QString toQString(const std::string &str) {
+  inline QString toQString(const std::string &str) {
     return QString::fromLocal8Bit(str.c_str());
   }
 
-  static inline QString toQString(const char* str) {
+  inline QString toQString(const char* str) {
     return QString::fromLocal8Bit(str);
   }
 
-  static inline QString toQStringU(const std::string &str) {
+  inline QString toQStringU(const std::string &str) {
     return QString::fromUtf8(str.c_str());
   }
 
-  static inline QString toQStringU(const char* str) {
+  inline QString toQStringU(const char* str) {
     return QString::fromUtf8(str);
   }
 
-  static inline QString toQString(const libtorrent::sha1_hash &hash) {
+  inline QString toQString(const libtorrent::sha1_hash &hash) {
     char out[41];
     to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
     return QString(out);
   }
 
 #ifndef DISABLE_GUI
-  static void shutdownComputer(bool sleep=false);
+  void shutdownComputer(bool sleep=false);
 #endif
 
-  static QString parseHtmlLinks(const QString &raw_text);
+  QString parseHtmlLinks(const QString &raw_text);
 
-  static bool isUrl(const QString &s);
+  bool isUrl(const QString &s);
 
 #ifndef DISABLE_GUI
   // Get screen center
-  static QPoint screenCenter(QWidget *win);
+  QPoint screenCenter(QWidget *win);
 #endif
-  static int pythonVersion();
+  int pythonVersion();
   // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB)
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
-  static QString friendlyUnit(qreal val, bool is_speed = false);
-  static bool isPreviewable(const QString& extension);
-  static QString magnetUriToName(const QString& magnet_uri);
-  static QString magnetUriToHash(const QString& magnet_uri);
-  static QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
-  static QString bcLinkToMagnet(QString bc_link);
+  QString friendlyUnit(qreal val, bool is_speed = false);
+  bool isPreviewable(const QString& extension);
+  QString magnetUriToName(const QString& magnet_uri);
+  QString magnetUriToHash(const QString& magnet_uri);
+  QList<QUrl> magnetUriToTrackers(const QString& magnet_uri);
+  QString bcLinkToMagnet(QString bc_link);
   // Take a number of seconds and return an user-friendly
   // time duration like "1d 2h 10m".
-  static QString userFriendlyDuration(qlonglong seconds);
-  static QString getUserIDString();
+  QString userFriendlyDuration(qlonglong seconds);
+  QString getUserIDString();
 
   // Convert functions
-  static QStringList toStringList(const QList<bool> &l);
-  static QList<int> intListfromStringList(const QStringList &l);
-  static QList<bool> boolListfromStringList(const QStringList &l);
+  QStringList toStringList(const QList<bool> &l);
+  QList<int> intListfromStringList(const QStringList &l);
+  QList<bool> boolListfromStringList(const QStringList &l);
 
 #if LIBTORRENT_VERSION_NUM < 001600
-  static QString toQString(const boost::posix_time::ptime& boostDate);
+  QString toQString(const boost::posix_time::ptime& boostDate);
 #else
-  static QString toQString(time_t t);
+  QString toQString(time_t t);
 #endif
 
 #ifndef DISABLE_GUI
-  static bool naturalSort(QString left, QString right, bool& result);
+  bool naturalSort(QString left, QString right, bool& result);
 #endif
-};
+}
 
 //  Trick to get a portable sleep() function
 class SleeperThread : public QThread {
