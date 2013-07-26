@@ -31,7 +31,7 @@ install:
 
 - if $debug; then qtc="--enable-debug"; ltc="--enable-debug"; fi
 - if ! $gui; then qtc="$qtc --disable-gui"; fi
-- qtc="$qtc --with-libgeoip"
+- ltc="$ltc --with-libgeoip"
 
 - echo settings
 - echo $lt
