@@ -21,7 +21,7 @@ env:
 
 install:
 # linux, osx
-- (cd src/geoip && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gzip -d GeoIP.dat.gz)
+#- (cd src/geoip && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gzip -d GeoIP.dat.gz)
 
 # linux
 - shopt -s expand_aliases
@@ -31,6 +31,7 @@ install:
 
 - if $debug; then qtc="--enable-debug"; ltc="--enable-debug"; fi
 - if ! $gui; then qtc="$qtc --disable-gui"; fi
+- qtc="$qtc --with-libgeoip"
 
 - echo settings
 - echo $lt
@@ -40,7 +41,7 @@ install:
 - echo $ltc
 
 - sudo apt-get -qq update
-- sudo apt-get -qq install debhelper libboost-dev libboost-filesystem-dev libboost-system-dev libqt4-dev qconf colormake
+- sudo apt-get -qq install debhelper libboost-dev libboost-filesystem-dev libboost-system-dev libqt4-dev qconf colormake libgeoip-dev
 - if [[ "$lt" == "APT" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
 - if [[ "$lt" == "repo" ]]; then sudo apt-get -qq build-dep libtorrent-rasterbar-dev && svn checkout svn://svn.code.sf.net/p/libtorrent/code/branches/RC_0_16 && (cd RC_0_16 && ./autotool.sh && ./configure $ltc && sudo make install); fi
 
