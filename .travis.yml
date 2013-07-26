@@ -12,10 +12,12 @@ language:
 
 env:
 # linux
+# libtorrent 0.15.10
 - lt=APT debug=false gui=true
+- lt=APT debug=false gui=false
+# libtorrent 0.16.x
 - lt=repo debug=false gui=true
-- lt=repo debug=true gui=true
-- lt=repo debug=true gui=false
+- lt=repo debug=false gui=false
 
 install:
 # linux, osx
@@ -40,7 +42,7 @@ install:
 - sudo apt-get -qq update
 - sudo apt-get -qq install debhelper libboost-dev libboost-filesystem-dev libboost-system-dev libqt4-dev qconf colormake
 - if [[ "$lt" == "APT" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
-- if [[ "$lt" == "repo" ]]; then sudo apt-get -qq build-dep libtorrent-rasterbar-dev && git clone git://github.com/mirror/libtorrent.git && (cd libtorrent && ./autotool.sh && ./configure $ltc && sudo make install); fi
+- if [[ "$lt" == "repo" ]]; then sudo apt-get -qq build-dep libtorrent-rasterbar-dev && svn checkout svn://svn.code.sf.net/p/libtorrent/code/branches/RC_0_16 && (cd RC_0_16 && ./autotool.sh && ./configure $ltc && sudo make install); fi
 
 # osx
 # - export MAKEFLAGS="-j 4"
