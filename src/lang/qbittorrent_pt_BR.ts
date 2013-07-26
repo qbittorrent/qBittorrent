@@ -3169,6 +3169,10 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <source>Use different port on each startup</source>
         <translation>Usar portas diferentes no mesmo programa rodando</translation>
     </message>
+    <message>
+        <source>Global maximum number of upload slots:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4602,6 +4606,11 @@ Gostaria de instalar agora?</translation>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translatorcomment>Quantidade de dados subidos (e.x. in MB)</translatorcomment>
         <translation>Total subido</translation>
+    </message>
+    <message>
+        <source>Save path</source>
+        <comment>Torrent save path</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

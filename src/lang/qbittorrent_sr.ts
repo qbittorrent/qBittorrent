@@ -3200,6 +3200,10 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Use different port on each startup</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Global maximum number of upload slots:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreviewSelect</name>
@@ -4653,6 +4657,11 @@ Do you want to install it now?</source>
     <message>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save path</source>
+        <comment>Torrent save path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
