@@ -30,6 +30,7 @@
 
 #include <QDesktopWidget>
 
+#include "mainwindow.h"
 #include "autoexpandabledialog.h"
 #include "ui_autoexpandabledialog.h"
 
@@ -100,9 +101,21 @@ void AutoExpandableDialog::showEvent(QShowEvent *e) {
   setFixedHeight(height());
 
   // Update geometry: center on screen
-  int sx = QApplication::desktop()->width();
-  int sy = QApplication::desktop()->height();
+  QDesktopWidget *desk = QApplication::desktop();
+  MainWindow *wnd = qobject_cast<MainWindow*>(QApplication::activeWindow());
+  QPoint p = QCursor::pos();
+
+  int screenNum = 0;
+  if (wnd == 0)
+    screenNum = desk->screenNumber(p);
+  else if (!wnd->isHidden())
+    screenNum = desk->screenNumber(wnd);
+  else
+    screenNum = desk->screenNumber(p);
+
+  QRect screenRes = desk->screenGeometry(screenNum);
+
   QRect geom = geometry();
-  geom.moveCenter(QPoint(sx / 2, sy / 2));
+  geom.moveCenter(QPoint(screenRes.width() / 2, screenRes.height() / 2));
   setGeometry(geom);
 }
