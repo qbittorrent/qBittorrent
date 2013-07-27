@@ -148,7 +148,8 @@ nox {
               iconprovider.h \
               updownratiodlg.h \
               loglistwidget.h \
-              addnewtorrentdialog.h
+              addnewtorrentdialog.h \
+              autoexpandabledialog.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -165,7 +166,8 @@ nox {
              iconprovider.cpp \
              updownratiodlg.cpp \
              loglistwidget.cpp \
-             addnewtorrentdialog.cpp
+             addnewtorrentdialog.cpp \
+             autoexpandabledialog.cpp
 
   win32 {
     HEADERS += programupdater.h
@@ -190,7 +192,8 @@ nox {
            confirmdeletiondlg.ui \
            torrentimportdlg.ui \
            executionlog.ui \
-           addnewtorrentdialog.ui
+           addnewtorrentdialog.ui \
+           autoexpandabledialog.ui
 }
 
 DESTDIR = .

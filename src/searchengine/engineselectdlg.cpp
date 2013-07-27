@@ -36,13 +36,13 @@
 #include "searchengine.h"
 #include "pluginsource.h"
 #include "iconprovider.h"
+#include "autoexpandabledialog.h"
 #include <QProcess>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDropEvent>
-#include <QInputDialog>
 #include <QTemporaryFile>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
@@ -327,7 +327,7 @@ void engineSelectDlg::on_installButton_clicked() {
 
 void engineSelectDlg::askForPluginUrl() {
   bool ok;
-  QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
+  QString url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
                                       "http://", &ok);
   if (ok && !url.isEmpty()) {
