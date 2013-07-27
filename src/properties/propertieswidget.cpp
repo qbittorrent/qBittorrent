@@ -119,6 +119,13 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
   refreshTimer->start(3000); // 3sec
+  editHotkeyFile = new QShortcut(QKeySequence("F2"), filesList, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
+  editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
+  connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
+  deleteHotkeyWeb = new QShortcut(QKeySequence(QKeySequence::Delete), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -131,6 +138,9 @@ PropertiesWidget::~PropertiesWidget() {
   delete PropListModel;
   delete PropDelegate;
   delete m_tabBar;
+  delete editHotkeyFile;
+  delete editHotkeyWeb;
+  delete deleteHotkeyWeb;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -519,7 +529,8 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
 
 void PropertiesWidget::renameSelectedFile() {
   const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
-  Q_ASSERT(selectedIndexes.size() == 1);
+  if (selectedIndexes.size() != 1)
+    return;
   const QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
@@ -655,6 +666,8 @@ void PropertiesWidget::askWebSeed() {
 
 void PropertiesWidget::deleteSelectedUrlSeeds() {
   const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
+  if (selectedItems.isEmpty())
+    return;
   bool change = false;
   foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
@@ -683,7 +696,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const {
 
 void PropertiesWidget::editWebSeed() {
   const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
-  if (selected_items.isEmpty())
+  if (selected_items.size() != 1)
     return;
 
   const QListWidgetItem *selected_item = selected_items.last();

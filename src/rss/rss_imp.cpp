@@ -237,10 +237,13 @@ void RSSImp::deleteSelectedItems()
     ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete these elements from the list?"),
                                 tr("&Yes"), tr("&No"),
                                 QString(), 0, 1);
-  else
+  else {
+    if (selectedItems.first() == m_feedList->stickyUnreadItem())
+      return;
     ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this element from the list?"),
                                 tr("&Yes"), tr("&No"),
                                 QString(), 0, 1);
+  }
   if (ret)
     return;
 
@@ -250,6 +253,8 @@ void RSSImp::deleteSelectedItems()
       m_currentArticle = 0;
       listArticles->clear();
     }
+    if (item == m_feedList->stickyUnreadItem())
+      continue;
     RssFilePtr rss_item = m_feedList->getRSSItem(item);
     QTreeWidgetItem* parent = item->parent();
     // Notify TreeWidget
@@ -366,8 +371,11 @@ void RSSImp::openSelectedArticlesUrls()
 void RSSImp::renameSelectedRssFile()
 {
   QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
-  Q_ASSERT(selectedItems.size() == 1);
+  if (selectedItems.size() != 1)
+    return;
   QTreeWidgetItem* item = selectedItems.first();
+  if (item == m_feedList->stickyUnreadItem())
+    return;
   RssFilePtr rss_item = m_feedList->getRSSItem(item);
   bool ok;
   QString newName;
@@ -681,6 +689,11 @@ RSSImp::RSSImp(QWidget *parent) :
   splitter_h->insertWidget(0, m_feedList);
   listArticles->setSelectionBehavior(QAbstractItemView::SelectItems);
   listArticles->setSelectionMode(QAbstractItemView::SingleSelection);
+  editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
+  connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
+  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), m_feedList, 0, 0, Qt::WidgetShortcut);
+  connect(deleteHotkey, SIGNAL(activated()), SLOT(deleteSelectedItems()));
 
   m_rssManager->loadStreamList();
   fillFeedsList();
@@ -729,6 +742,8 @@ RSSImp::~RSSImp()
 {
   qDebug("Deleting RSSImp...");
   saveFoldersOpenState();
+  delete editHotkey;
+  delete deleteHotkey;
   delete m_feedList;
   qDebug("RSSImp deleted");
 }

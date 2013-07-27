@@ -31,6 +31,7 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
+#include <QShortcut>
 #include <QTreeView>
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
@@ -116,6 +117,8 @@ private:
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
+  QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

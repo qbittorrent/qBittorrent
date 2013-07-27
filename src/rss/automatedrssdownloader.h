@@ -33,6 +33,7 @@
 
 #include <QDialog>
 #include <QWeakPointer>
+#include <QShortcut>
 #include "rssdownloadrule.h"
 
 QT_BEGIN_NAMESPACE
@@ -93,6 +94,8 @@ private:
   QListWidgetItem* m_editedRule;
   RssDownloadRuleList *m_ruleList;
   RssDownloadRuleList *m_editableRuleList;
+  QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 };
 
 #endif // AUTOMATEDRSSDOWNLOADER_H
