@@ -728,22 +728,21 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   file_progress(progress);
   qDebug() << Q_FUNC_INFO << "Changing files priorities...";
   torrent_handle::prioritize_files(files);
-  qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder...";
+  qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
   for (uint i = 0; i < files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
-    if (files[i] == 0 && progress[i] < filesize_at(i)) {
-      QString old_path = filepath_at(i);
+    if (files[i] == 0) {
+      QString old_abspath = QDir(save_path()).absoluteFilePath(filepath_at(i));
+      QString parent_abspath = fsutils::branchPath(old_abspath);
       // Make sure the file does not already exists
-      if (QFile::exists(QDir(save_path()).absoluteFilePath(old_path))) {
-        qWarning() << "File" << old_path << "already exists at destination.";
-        qWarning() << "We do not move it to .unwanted folder";
-        continue;
-      }
-      QString old_name = filename_at(i);
-      QString parent_path = fsutils::branchPath(old_path);
-      if (parent_path.isEmpty() || QDir(parent_path).dirName() != ".unwanted") {
-        QString unwanted_abspath = QDir::cleanPath(save_path()+"/"+parent_path+"/.unwanted");
+      if (QDir(parent_abspath).dirName() != ".unwanted") {
+        QString unwanted_abspath = parent_abspath+"/.unwanted";
+        QString new_abspath = unwanted_abspath+"/"+filename_at(i);
         qDebug() << "Unwanted path is" << unwanted_abspath;
+        if (QFile::exists(new_abspath)) {
+          qWarning() << "File" << new_abspath << "already exists at destination.";
+          continue;
+        }
         bool created = QDir().mkpath(unwanted_abspath);
 #ifdef Q_WS_WIN
         qDebug() << "unwanted folder was created:" << created;
@@ -758,13 +757,13 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
 #else
         Q_UNUSED(created);
 #endif
+        QString parent_path = fsutils::branchPath(filepath_at(i));
         if (!parent_path.isEmpty() && !parent_path.endsWith("/"))
           parent_path += "/";
-        rename_file(i, parent_path+".unwanted/"+old_name);
+        rename_file(i, parent_path+".unwanted/"+filename_at(i));
       }
     }
     // Move wanted files back to their original folder
-    qDebug() << Q_FUNC_INFO << "Moving wanted files back from .unwanted folder";
     if (files[i] > 0) {
       QString parent_relpath = fsutils::branchPath(filepath_at(i));
       if (QDir(parent_relpath).dirName() == ".unwanted") {
