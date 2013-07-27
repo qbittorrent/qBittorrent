@@ -30,7 +30,6 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QInputDialog>
 #include <QSystemTrayIcon>
 #include <QApplication>
 #include <QDialogButtonBox>

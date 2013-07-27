@@ -37,7 +37,6 @@
 #include <QIcon>
 #include <QVBoxLayout>
 #include <QMenu>
-#include <QInputDialog>
 #include <QDragMoveEvent>
 #include <QStandardItemModel>
 #include <QMessageBox>
@@ -51,6 +50,7 @@
 #include "torrentmodel.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -368,7 +368,7 @@ protected slots:
         bool invalid;
         do {
           invalid = false;
-          label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
+          label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
           if (ok && !label.isEmpty()) {
             if (fsutils::isValidFileSystemName(label)) {
               addLabel(label);
