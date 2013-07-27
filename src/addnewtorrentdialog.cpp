@@ -63,6 +63,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   m_hasRenamedFile(false)
 {
   ui->setupUi(this);
+  m_progress = new QProgressBar(this);
+  m_progress->setMinimum(0);
+  m_progress->setMaximum(0);
+  ui->lblMetaLoading->setVisible(false);
+  ui->buttonsHLayout->insertWidget(ui->buttonsHLayout->indexOf(ui->lblMetaLoading), m_progress);
 
   QIniSettings settings;
   Preferences pref;
@@ -91,6 +96,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
   saveState();
+  delete m_progress;
   delete ui;
   if (m_contentModel)
     delete m_contentModel;
@@ -254,6 +260,13 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
     return false;
   }
 
+  // Prevent showing the dialog if download is already present
+  if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
+    QMessageBox::information(0, tr("Already in download list"), tr("Magnet link is already in download list."), QMessageBox::Ok);
+    QBtSession::instance()->addMagnetUri(m_url, false);
+    return false;
+  }
+
   // Set dialog title
   QString torrent_name = misc::magnetUriToName(m_url);
   setWindowTitle(torrent_name.isEmpty() ? tr("Magnet link") : torrent_name);
@@ -274,6 +287,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 
   QBtSession::instance()->addMagnetUri(m_url, false);
   QBtSession::instance()->resumeTorrent(m_hash);
+  setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
 
   // Restore addInPause setting
   pref.addTorrentsInPause(old_addInPause);
@@ -645,6 +659,8 @@ void AddNewTorrentDialog::reject() {
       if (!m_convertingMagnet)
         break;
     }
+    setMetadataProgressIndicator(false);
+    QBtSession::instance()->deleteTorrent(m_hash, true);
   }
   QDialog::reject();
 }
@@ -664,6 +680,7 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     if (!QFile::exists(m_filePath)) {
       QMessageBox::warning(0, tr("I/O Error"), tr("Failed to save metadata.\nFile list will be unavailable."));
       m_convertingMagnet = false;
+      setMetadataProgressIndicator(false, tr("Failed to save metadata"));
       return;
     }
 
@@ -673,11 +690,13 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     } catch(const std::exception&) {
       QMessageBox::critical(0, tr("Invalid metadata"), tr("Metadata corrupted.\nFile list will be unavailable."));
       m_convertingMagnet = false;
+      setMetadataProgressIndicator(false, tr("Invalid metadata"));
       return;
     }
     QBtSession::instance()->deleteTorrent(m_hash, true);
     // Good to go
     m_hasMetadata = true;
+    setMetadataProgressIndicator(true, tr("Parsing metadata..."));
 
     // Update UI
     // Set dialog title
@@ -736,8 +755,23 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     // Set dialog position
     setdialogPosition();
     m_convertingMagnet = false;
+    setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
   } catch (invalid_handle&) {
     QMessageBox::critical(0, tr("I/O Error"), ("Unknown error."));
+    setMetadataProgressIndicator(false, tr("Unknown error"));
     return;
+  }
+}
+
+void AddNewTorrentDialog::setMetadataProgressIndicator(bool enabled, const QString &labelText) {
+  // Always show info label when waiting for metadata
+  ui->lblMetaLoading->setVisible(true);
+  ui->lblMetaLoading->setText(labelText);
+  if (enabled)
+    m_progress->setEnabled(enabled);
+  else {
+    m_progress->setMaximum(1);
+    m_progress->setValue(1);
+    m_progress->setTextVisible(false); // Don't display %% completed
   }
 }

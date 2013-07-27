@@ -36,6 +36,7 @@
 #include <QUrl>
 #include <libtorrent/torrent_info.hpp>
 #include "qtorrenthandle.h"
+#include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -80,6 +81,7 @@ private:
   void updateFileNameInSavePaths(const QString& new_filename);
   void loadState();
   void saveState();
+  void setMetadataProgressIndicator(bool enabled, const QString &labelText = QString());
 
 private:
   Ui::AddNewTorrentDialog *ui;
@@ -95,6 +97,7 @@ private:
   QStringList m_filesPath;
   bool m_hasRenamedFile;
   QShortcut *editHotkey;
+  QProgressBar *m_progress;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

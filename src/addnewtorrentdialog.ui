@@ -187,6 +187,16 @@
    <item>
     <layout class="QHBoxLayout" name="buttonsHLayout">
      <item>
+      <widget class="QLabel" name="lblMetaLoading">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
