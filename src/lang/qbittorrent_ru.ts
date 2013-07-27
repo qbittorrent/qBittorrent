@@ -2395,7 +2395,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>скачивание %1 завершено.</translation>
+        <translation>Скачивание %1 завершено.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
