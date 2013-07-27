@@ -2778,12 +2778,6 @@ void QBtSession::startUpTorrents() {
   if (isQueueingEnabled()) {
     priority_queue<QPair<int, QString>, vector<QPair<int, QString> >, std::greater<QPair<int, QString> > > torrent_queue;
     foreach (const QString &hash, known_torrents) {
-      QString filePath;
-      if (TorrentPersistentData::isMagnet(hash)) {
-        filePath = TorrentPersistentData::getMagnetUri(hash);
-      } else {
-        filePath = torrentBackup.path()+QDir::separator()+hash+".torrent";
-      }
       const int prio = TorrentPersistentData::getPriority(hash);
       torrent_queue.push(qMakePair(prio, hash));
     }
