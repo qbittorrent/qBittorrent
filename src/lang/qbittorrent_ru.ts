@@ -108,7 +108,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="426"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Эта версия qBittorrent была создана с использованием следующих библиотек:</translation>
+        <translation>Эта версия qBittorrent была собрана с использованием следующих библиотек:</translation>
     </message>
     <message>
         <source>Qt:</source>
@@ -130,12 +130,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished">Текущее сопровождение кода</translation>
+        <translation>Текущее сопровождение кода</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished">Первый автор</translation>
+        <translation>Первый автор</translation>
     </message>
     <message utf8="true">
         <location filename="../about.ui" line="105"/>
@@ -151,7 +151,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Продвинутый BitTorrent клиент, написанный на C++. Использует фреймворк Qt4 и библиотеку libtorrent (rasterbar). &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Домашняя страница: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Баг-трекерr: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Форум: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Баг-трекер: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Форум: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
@@ -215,7 +215,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="217"/>
         <source>Normal</source>
-        <translation>Обычная</translation>
+        <translation>Обычный</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="222"/>
@@ -310,7 +310,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../addnewtorrentdialog.cpp" line="429"/>
         <location filename="../addnewtorrentdialog.cpp" line="464"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Файл с таким именем уже существует в этой папке. Используйте другое.</translation>
+        <translation>Файл с таким именем уже существует в этой папке. Пожалуйста, задайте другое.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="463"/>
@@ -355,7 +355,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="174"/>
         <source>Disk write cache size</source>
-        <translation>Дисковый кеш записи</translation>
+        <translation>Кеш для записи на диск</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="163"/>
@@ -380,7 +380,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="196"/>
         <source>Transfer list refresh interval</source>
-        <translation>Интеравал обновления списка торрентов</translation>
+        <translation>Интервал обновления списка торрентов</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="195"/>
@@ -411,7 +411,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Network Interface (requires restart)</source>
-        <translation>Сетевой интерфейс (Требует перезагрузки)</translation>
+        <translation>Сетевой интерфейс (требуется перезапуск)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="212"/>
@@ -421,11 +421,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Display program notification baloons</source>
-        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в системном лотке</translation>
     </message>
     <message>
         <source>Display program notification balloons</source>
-        <translation type="obsolete">Показывать всплывающие сообщения в  системном лотке</translation>
+        <translation type="obsolete">Показывать всплывающие сообщения в системном лотке</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="239"/>
@@ -542,7 +542,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="330"/>
         <source>Matching RSS articles</source>
-        <translation>Совпадающие RSS заголовки</translation>
+        <translation>Подходящие RSS заголовки</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="252"/>
@@ -567,7 +567,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="312"/>
         <source>New rule name</source>
-        <translation>Новое имя правила</translation>
+        <translation>Новое правило</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="312"/>
@@ -614,12 +614,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="361"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation>Список пуст. Нечего экспортировать.</translation>
+        <translation>Список пуст, экспортировать нечего.</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="365"/>
         <source>Where would you like to save the list?</source>
-        <translation>Куда вы хотите соранить список?</translation>
+        <translation>Куда вы хотите сохранить список?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="365"/>
@@ -669,7 +669,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="401"/>
         <source>Rename rule...</source>
-        <translation type="unfinished">Переименовать правило...</translation>
+        <translation>Переименовать правило...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="403"/>
@@ -736,7 +736,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation type="obsolete">Поддержка DHT [Вкл.], порт: UDP/%1</translation>
+        <translation type="obsolete">Поддержка DHT [Вкл], порт: UDP/%1</translation>
     </message>
     <message>
         <source>DHT support [OFF]</source>
@@ -768,7 +768,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation type="obsolete">Ошибка WEb интерфейса - Не могу привязаться к порту %1</translation>
+        <translation type="obsolete">Ошибка Web-интерфейса - Не могу привязаться к порту %1</translation>
     </message>
     <message>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
@@ -801,7 +801,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation type="obsolete">Этот файл либо поврежден, либо не torrent типа.</translation>
+        <translation type="obsolete">Этот файл либо поврежден, либо не является torrent файлом.</translation>
     </message>
     <message>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
@@ -857,7 +857,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Web UI is listening on port %1</source>
-        <translation type="obsolete">Web интерфейс прослушивает пор %1</translation>
+        <translation type="obsolete">Web-интерфейс прослушивает порт %1</translation>
     </message>
     <message>
         <source>HTTP user agent is %1</source>
@@ -876,8 +876,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Примечание: новые URL сидов были добавлены к существующему торренту.</translation>
     </message>
     <message>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="obsolete">Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
+        <translation type="obsolete">Ошибка ввода/вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
         <source>Removing torrent %1...</source>
@@ -910,7 +910,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation type="obsolete">Торрент был скачен за %1.</translation>
+        <translation type="obsolete">Торрент был скачан за %1.</translation>
     </message>
     <message>
         <source>Thank you for using qBittorrent.</source>
@@ -941,7 +941,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Управление Cookies</translation>
+        <translation>Управление cookies</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="36"/>
@@ -973,17 +973,17 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Ошибка Dynamic DNS: Служба временно не доступна. Попробую соединиться через 30 минут.</translation>
+        <translation>Ошибка Dynamic DNS: служба временно недоступна. Попробую соединиться через 30 минут.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Ошибка Dynamic DNS:предоставленное  имя хоста не существует в указанной учётной записи.</translation>
+        <translation>Ошибка Dynamic DNS: предоставленное имя хоста не существует в указанной учётной записи.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>Ошибка Dynamic DNS: Неверное имя пользователя/пароль.</translation>
+        <translation>Ошибка Dynamic DNS: Неверный логин или пароль.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="203"/>
@@ -993,12 +993,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../dnsupdater.cpp" line="209"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>Ошибка Dynamic DNS: %1 было возвращено службой. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
+        <translation>Ошибка Dynamic DNS: служба вернула %1. Пожалуйста, сообщите об ошибке на  http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="215"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation>Ошибка Dynamic DNS: Ваше имя пользователя было блокировано из-за злоупотребления.</translation>
+        <translation>Ошибка Dynamic DNS: ваш аккаунт был заблокирован из-за злоупотребления.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="236"/>
@@ -1042,12 +1042,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../downloadthread.cpp" line="255"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation>Удаленный сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
+        <translation>Сервер закрыл соединение, прежде чем весь ответ был принят и обработан</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="257"/>
         <source>The connection to the remote server timed out</source>
-        <translation>Время соединения с удаленным сервером вышло</translation>
+        <translation>Время соединения с сервером вышло</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="259"/>
@@ -1057,7 +1057,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../downloadthread.cpp" line="261"/>
         <source>The remote server refused the connection</source>
-        <translation>Удаленный сервер отклонил соединение</translation>
+        <translation>Сервер отклонил соединение</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="263"/>
@@ -1102,12 +1102,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../downloadthread.cpp" line="279"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Удаленный сервер требует аутентификацию для отдачи данных, но указанные учетные данные не были приняты</translation>
+        <translation>Удаленный сервер требует аутентификации для отдачи данных, но указанные учетные данные не были приняты</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="281"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>API сетевого доступа не может выполнить запрос, потому что протокол не известен</translation>
+        <translation>API сетевого доступа не может выполнить запрос, потому что протокол неизвестен</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="283"/>
@@ -1392,7 +1392,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../rss/feedlistwidget.cpp" line="43"/>
         <source>Unread</source>
-        <translation>Не прочитано</translation>
+        <translation>Непрочитанные</translation>
     </message>
 </context>
 <context>
@@ -1447,9 +1447,9 @@ You should get this information from your Web browser preferences.</source>
         <translation type="obsolete">RSS</translation>
     </message>
     <message>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation type="obsolete">Произошла ошибка ввода/вывода для торрента %1.
 Причина: %2</translation>
@@ -1572,11 +1572,11 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <source>Invalid password</source>
-        <translation type="obsolete">Не верный пароль</translation>
+        <translation type="obsolete">Неверный пароль</translation>
     </message>
     <message>
         <source>The password is invalid</source>
-        <translation type="obsolete">Этот пароль не верен</translation>
+        <translation type="obsolete">Этот пароль неверен</translation>
     </message>
     <message>
         <source>A newer version is available</source>
@@ -1862,7 +1862,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../headlessloader.h" line="55"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Чтобы управлять qBittorrent откройте браузер по адресу http://localhost:%1</translation>
+        <translation>Чтобы управлять qBittorrent, откройте браузер по адресу http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="56"/>
@@ -1872,7 +1872,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../headlessloader.h" line="59"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Пароль администратора Web интерфейса все еще пароль по умолчанию: %1</translation>
+        <translation>Пароль администратора Web интерфейса все еще является паролем по умолчанию: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="60"/>
@@ -1922,7 +1922,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="113"/>
         <source>Download Torrents from their URL or Magnet link</source>
-        <translation>Скачативать торренты с их URL и Magnet ссылок</translation>
+        <translation>Скачивать торренты с их URL или Magnet ссылок</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="114"/>
@@ -1952,7 +1952,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Вы уверены что хотите удалить выделенные торренты из списка и с жесткого диска?</translation>
+        <translation>Вы уверены, что хотите удалить выделенные торренты из списка и с жесткого диска?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="120"/>
@@ -1982,7 +1982,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не возможно сохранить настройки, qBittorrent возможно недоступен.</translation>
+        <translation>Невозможно сохранить настройки, возможно, qBittorrent недоступен.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="126"/>
@@ -2074,7 +2074,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation>qBittorrent - программа для обмена файлами. Когда вы запускаете торрент, данные становятся доступными другим участникам обмена для отдачи. Конечно, любые данные которые вы отдаете на обмен только ваша ответственность.
+        <translation>qBittorrent - программа для обмена файлами. Когда вы запускаете торрент, данные становятся доступны другим участникам обмена. Вы раздаёте весь контент исключительно под вашу личную ответственность.
 
 Больше это уведомление не будет показано.</translation>
     </message>
@@ -2105,7 +2105,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Изменить</translation>
+        <translation>П&amp;равка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="79"/>
@@ -2167,7 +2167,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="190"/>
         <source>Torrent &amp;creator</source>
         <translatorcomment>Создатель такой создатель... Но ничего лучше придумать не могу, в голову приходят только &apos;создавалка&apos; и &apos;создавайка&apos; (создавайка мне торрент! ^_^)</translatorcomment>
-        <translation>Мастер &amp;создания Torrent-а</translation>
+        <translation>&amp;Создать торрент</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
@@ -2220,7 +2220,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="244"/>
         <location filename="../mainwindow.ui" line="247"/>
         <source>Alternative speed limits</source>
-        <translation>Альтернативные лимиты скорости</translation>
+        <translation>Альтернативные ограничения скорости</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="156"/>
@@ -2241,7 +2241,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="322"/>
         <source>P&amp;ause All</source>
-        <translation>П&amp;риостановить Все</translation>
+        <translation>П&amp;риостановить все</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="180"/>
@@ -2268,7 +2268,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Search &amp;engine</source>
         <translatorcomment>Исходя из следущего (хотя я лично целиком и полностью за &apos;Поисковый движок&apos;)</translatorcomment>
-        <translation>По&amp;исковик</translation>
+        <translation>По&amp;иск</translation>
     </message>
     <message>
         <source>Log viewer</source>
@@ -2318,7 +2318,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="312"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Если вам нравится qBittorrent, пожалуйста - пожертвуйте!</translation>
+        <translation>Если вам нравится qBittorrent, пожалуйста, пожертвуйте!</translation>
     </message>
     <message>
         <source>qBittorrent %1</source>
@@ -2333,12 +2333,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.cpp" line="181"/>
         <source>Transfers</source>
-        <translation>Передачи</translation>
+        <translation>Торренты</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="300"/>
         <source>Torrent file association</source>
-        <translation>Привязки торрент-файлов</translation>
+        <translation>Ассоциации торрент-файлов</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="301"/>
@@ -2384,7 +2384,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="463"/>
         <source>Transfers (%1)</source>
-        <translation>Передачи (%1)</translation>
+        <translation>Торренты (%1)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
@@ -2395,7 +2395,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>скачивание %1 завершено.</translation>
+        <translation>Скачивание %1 завершено.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
@@ -2405,9 +2405,9 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
-        <source>An I/O error occured for torrent %1.
+        <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
-        <comment>e.g: An error occured for torrent xxx.avi.
+        <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>Произошла ошибка ввода/вывода для торрента %1.
 Причина: %2</translation>
@@ -2530,14 +2530,14 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../mainwindow.cpp" line="1142"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
-        <translation>Скач.: %1 КиБ/с</translation>
+        <translation>Приём: %1 КиБ/с</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1138"/>
         <location filename="../mainwindow.cpp" line="1144"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Отдача.: %1 КиБ/с</translation>
+        <translation>Отдача: %1 КиБ/с</translation>
     </message>
     <message>
         <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
@@ -2574,7 +2574,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Добавит &amp;ссылку к торренту...</translation>
+        <translation>Добавить &amp;ссылку к торренту...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -2615,7 +2615,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../mainwindow.ui" line="365"/>
         <source>Disabled</source>
-        <translation>Выключено</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="406"/>
@@ -2637,7 +2637,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../mainwindow.cpp" line="1149"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[Скач: %1/с, Отд: %2/с] qBittorrent %3</translation>
+        <translation>[Приём: %1/с, Отдача: %2/с] qBittorrent %3</translation>
     </message>
 </context>
 <context>
@@ -2650,7 +2650,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peeraddition.h" line="95"/>
         <source>The IP you provided is invalid.</source>
-        <translation>IP который вы указали неправилен.</translation>
+        <translation>Вы указали неправильный IP.</translation>
     </message>
 </context>
 <context>
@@ -2708,7 +2708,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="156"/>
         <source>Ban peer permanently</source>
-        <translation>Заблокировать пир навсегда</translation>
+        <translation>Заблокировать пира навсегда</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="167"/>
@@ -2719,12 +2719,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="167"/>
         <source>The peer was added to this torrent.</source>
-        <translation>Пир был добавлен к этому torrent.</translation>
+        <translation>Пир был добавлен к этому торренту.</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="169"/>
         <source>The peer could not be added to this torrent.</source>
-        <translation>Пир не может быть добавлен к этому torrent.</translation>
+        <translation>Пир не может быть добавлен к этому торренту.</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="200"/>
@@ -2734,7 +2734,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="200"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Вы уверены что хотите навсегда заблокировать выделенные пиры?</translation>
+        <translation>Вы уверены, что хотите навсегда заблокировать выделенных пиров?</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="201"/>
@@ -2749,23 +2749,23 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="208"/>
         <source>Manually banning peer %1...</source>
-        <translation>Заблокировать пир %1 вручную...</translation>
+        <translation>Заблокировать пира %1 вручную...</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="232"/>
         <source>Upload rate limiting</source>
-        <translation>Ограничение соотношения отдачи</translation>
+        <translation>Ограничение скорости отдачи</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="266"/>
         <source>Download rate limiting</source>
-        <translation>Ограничение соотношения скачивания</translation>
+        <translation>Ограничение скорости скачивания</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="142"/>
         <source>Add a new peer...</source>
         <translatorcomment>Исходя из предыдущего. Хотя мне больше нравится &apos;Добавить пира&apos;, пиры - они ведь живые...</translatorcomment>
-        <translation>Добавить новый пир...</translation>
+        <translation>Добавить нового пира...</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="153"/>
@@ -2828,7 +2828,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="224"/>
         <source>(Requires restart)</source>
-        <translation>(Требует перезагрузки)</translation>
+        <translation>(Требует перезапуска)</translation>
     </message>
     <message>
         <source>Visual style:</source>
@@ -2865,7 +2865,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2106"/>
         <source>Maximum active torrents:</source>
-        <translation>Максимальное число активных torrent:</translation>
+        <translation>Максимальное число активных торрентов:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="526"/>
@@ -2875,7 +2875,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="535"/>
         <source>Display torrent content and some options</source>
-        <translation>Отображать содержимое torrentа и некоторые настройки</translation>
+        <translation>Отображать содержимое торрента и некоторые настройки</translation>
     </message>
     <message>
         <source>Listening port</source>
@@ -2911,12 +2911,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1079"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максимальное число соединений на torrent:</translation>
+        <translation>Максимальное число соединений на торрент:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1102"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Максимальное количество слотов отдачи на torrent:</translation>
+        <translation>Максимальное количество слотов отдачи на торрент:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1475"/>
@@ -3177,7 +3177,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translatorcomment>Коряво, коряво...</translatorcomment>
-        <translation>Закрывать qBittorrent в облать уведомлений</translation>
+        <translation>Закрывать qBittorrent в область уведомлений</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="545"/>
@@ -3189,7 +3189,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="570"/>
         <source>Save files to location:</source>
         <translatorcomment>А надо ли &apos;расположение&apos;? И имхо &apos;по умолчанию&apos; здесь будет очень к месту.</translatorcomment>
-        <translation>Сохранять файлы по умолчанию в:</translation>
+        <translation>Сохранять по умолчанию файлы в:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="618"/>
@@ -3200,7 +3200,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="628"/>
         <source>Pre-allocate disk space for all files</source>
         <translatorcomment>Или &apos;Предварительно резервировать&apos; будет правильнее?</translatorcomment>
-        <translation>Предварительно зарезервировать место для всех файлов</translation>
+        <translation>Предварительно резервировать место для всех файлов</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="635"/>
@@ -3245,7 +3245,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1958"/>
         <source>Look for peers on your local network</source>
-        <translation>Искать пиры в вашей локальной сети</translation>
+        <translation>Искать пиров в вашей локальной сети</translation>
     </message>
     <message>
         <source>Protocol encryption:</source>
@@ -3265,7 +3265,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="2186"/>
         <source>Seed torrents until their ratio reaches</source>
         <translatorcomment>Или тут лучше &apos;соотношение&apos;? Или &apos;рейтинг&apos;?</translatorcomment>
-        <translation>Раздавать торренты пока их соотношение загрузка/раздача не достигнет</translation>
+        <translation>Раздавать торренты, пока их соотношение загрузка/раздача не достигнет</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2218"/>
@@ -3286,12 +3286,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message utf8="true">
         <location filename="../preferences/options.ui" line="1945"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Обмен пирами с совместиыми клиентами Bittorrent (µTorrent, Vuze, ...)</translation>
+        <translation>Обмен пирами с совместимыми клиентами Bittorrent (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="840"/>
         <source>Email notification upon download completion</source>
-        <translation>Сообщать об окончании загрузки по Email</translation>
+        <translation>Сообщать об окончании загрузки по почте</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="854"/>
@@ -3335,7 +3335,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1161"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Общее ограничение на количество слотов отдачи:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1869"/>
@@ -3345,17 +3345,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1875"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Включить DHT сеть (децентрализованную), чтобы найти больше пиров</translation>
+        <translation>Включить DHT (децентрализованную сеть), чтобы найти больше пиров</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1884"/>
         <source>Use a different port for DHT and BitTorrent</source>
-        <translation>Использовать разные порты для DHT и Bittorrent</translation>
+        <translation>Использовать разные порты для DHT и BitTorrent</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1948"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Включить Обмен пирами (PeX), чтобы найти больше пиров</translation>
+        <translation>Включить обмен пирами (PeX), чтобы найти больше пиров</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1961"/>
@@ -3466,7 +3466,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="913"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Этот сервер требует защищённое соединение (SSL)</translation>
+        <translation>Этот сервер требует защищённого соединения (SSL)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="196"/>
@@ -3529,7 +3529,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2529"/>
         <source>Update my dynamic domain name</source>
-        <translation>Обновлять моё динамическое доменное имя</translation>
+        <translation>Обновлять моё динамическое DNS имя</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2541"/>
@@ -3624,7 +3624,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="442"/>
         <source>File association</source>
-        <translation>Привязка файлов</translation>
+        <translation>Ассоциации файлов</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="448"/>
@@ -3653,7 +3653,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2023"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Дополнительная информация&lt;/a&gt;)</translation>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Подробнее&lt;/a&gt;)</translation>
     </message>
 </context>
 <context>
@@ -3732,7 +3732,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/proplistdelegate.h" line="109"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation>Смешанные</translation>
+        <translation>Смешанный</translation>
     </message>
 </context>
 <context>
@@ -3745,7 +3745,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/proptabbar.cpp" line="50"/>
         <source>Trackers</source>
-        <translation>Трэкеры</translation>
+        <translation>Трекеры</translation>
     </message>
     <message>
         <location filename="../properties/proptabbar.cpp" line="54"/>
@@ -3776,12 +3776,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="346"/>
         <source>Save path:</source>
-        <translation>Путь сохранения:</translation>
+        <translation>Путь:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="438"/>
         <source>Torrent hash:</source>
-        <translation>Хэш torrentа:</translation>
+        <translation>Хеш:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="524"/>
@@ -3791,7 +3791,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="206"/>
         <source>Share ratio:</source>
-        <translation>Соотношение раздачи:</translation>
+        <translation>Коэффициент:</translation>
     </message>
     <message>
         <source>General</source>
@@ -3799,7 +3799,7 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="obsolete">Трэкеры</translation>
+        <translation type="obsolete">Трекеры</translation>
     </message>
     <message>
         <source>URL seeds</source>
@@ -3832,7 +3832,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="632"/>
         <source>This url seed is already in the list.</source>
-        <translation>Этот URL раздающего уже в списке.</translation>
+        <translation>Этот URL уже в списке.</translation>
     </message>
     <message>
         <source>Choose save path</source>
@@ -3865,17 +3865,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="274"/>
         <source>Wasted:</source>
-        <translation>Потрачено:</translation>
+        <translation>Излишки:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="189"/>
         <source>UP limit:</source>
-        <translation>Отд. огр:</translation>
+        <translation>Лимит отдачи:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="240"/>
         <source>DL limit:</source>
-        <translation>Загр. огр:</translation>
+        <translation>Лимит загрузки:</translation>
     </message>
     <message>
         <source>Time elapsed:</source>
@@ -3894,7 +3894,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="392"/>
         <source>Created on:</source>
-        <translation>Создан на:</translation>
+        <translation>Создан:</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -3919,7 +3919,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.cpp" line="322"/>
         <location filename="../properties/propertieswidget.cpp" line="323"/>
         <source>this session</source>
-        <translation>эта сессия</translation>
+        <translation>в эту сессию</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="338"/>
@@ -4011,7 +4011,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="777"/>
         <source>Select None</source>
-        <translation>Выбрать ничего</translation>
+        <translation>Сбросить выделение</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="825"/>
@@ -4028,7 +4028,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="291"/>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Время активности:</translation>
+        <translation>Активен:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="717"/>
@@ -4058,7 +4058,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="290"/>
         <source>qBittorrent is bound to port: TCP/%1</source>
         <comment>e.g: qBittorrent is bound to port: 6881</comment>
-        <translation>qBittorrent привязан к порту: TCP/%1</translation>
+        <translation>qBittorrent использует порт: TCP/%1</translation>
     </message>
     <message>
         <source>UPnP support [ON]</source>
@@ -4088,7 +4088,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="500"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Поддержка DHT [Вкл.], порт: UDP/%1</translation>
+        <translation>Поддержка DHT [Вкл], порт: UDP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
@@ -4153,24 +4153,24 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="666"/>
         <source>The Web UI is listening on port %1</source>
-        <translation>Web интерфейс прослушивает порт %1</translation>
+        <translation>Web интерфейс слушает порт %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="668"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Ошибка Web интерфейса - Не могу привязаться к порту %1</translation>
+        <translation>Ошибка Web интерфейса - невозможно занять порт %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="809"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка передач и с жесткого диска.</translation>
+        <translation>&apos;%1&apos; был удален из списка торрентов и с жесткого диска.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="811"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&apos;%1&apos; был удален из списка передач.</translation>
+        <translation>&apos;%1&apos; был удален из списка торрентов.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="903"/>
@@ -4212,12 +4212,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1034"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
-        <translation>Этот файл либо поврежден, либо это не торрент-файл.</translation>
+        <translation>Этот файл либо поврежден, либо не является торрент-файлом.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
         <source>Error: The torrent %1 does not contain any file.</source>
-        <translation>Ошибка: Торрент %1 не содержит никаких файлов.</translation>
+        <translation>Ошибка: торрент %1 не содержит никаких файлов.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1325"/>
@@ -4247,7 +4247,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2130"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
-        <translation>Рекурсивная загрузка файла %1 встроенна в торрент %2</translation>
+        <translation>Рекурсивная загрузка файла %1 встроена в торрент %2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2225"/>
@@ -4274,7 +4274,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2178"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Торрент был скачен за %1.</translation>
+        <translation>Торрент был загружен за %1.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2179"/>
@@ -4288,8 +4288,8 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2414"/>
-        <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation>Ошибка Ввода/Вывода: &apos;%1&apos; приостановлен.</translation>
+        <source>An I/O error occurred, &apos;%1&apos; paused.</source>
+        <translation>Ошибка ввода/вывода: &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2415"/>
@@ -4315,7 +4315,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Быстрое восстановление данных для torrentа %1 было невозможно, проверка заново...</translation>
+        <translation>Быстрое восстановление данных для торрента %1 было невозможно, проверяем заново...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2531"/>
@@ -4326,7 +4326,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2654"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Скачивание &apos;%1&apos;, подождите...</translation>
+        <translation>Скачиваем &apos;%1&apos;, подождите...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1926"/>
@@ -4335,17 +4335,17 @@ Would you like to update qBittorrent to version %1?</source>
     </message>
     <message>
         <source>Trying any other network interface available instead.</source>
-        <translation type="obsolete">Пробуем другой достпуный сетевой интерфейс.</translation>
+        <translation type="obsolete">Пробуем другой доступный сетевой интерфейс.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1944"/>
         <source>Listening on IP address %1 on network interface %2...</source>
-        <translation>Слушаем на IP адресе %1 на сетевом интерфейсе %2...</translation>
+        <translation>Слушаем на IP адресе %1 сетевого интерфейса %2...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1947"/>
         <source>Failed to listen on network interface %1</source>
-        <translation>Не возможно слушать сетевой интерфейс %1</translation>
+        <translation>Невозможно слушать сетевой интерфейс %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="377"/>
@@ -4370,12 +4370,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2830"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Ошибка: Не возможно разобрать фильтр IP.</translation>
+        <translation>Ошибка: невозможно разобрать фильтр IP.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="444"/>
         <source>Reporting IP address %1 to trackers...</source>
-        <translation>Сообщаю IP адрес %1 трекерам...</translation>
+        <translation>Сообщаем IP адрес %1 трекерам...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2275"/>
@@ -4390,7 +4390,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2279"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>Сейчас qBittorrent будет завершен, если вы не отмените это в течение следующих 15 секунд...</translation>
+        <translation>qBittorrent закроется, если вы не отмените это в течение следующих 15 секунд...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="410"/>
@@ -4453,7 +4453,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss.ui" line="208"/>
         <source>Open news URL</source>
-        <translation>Открыть новый URL</translation>
+        <translation>Открыть URL в браузере</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="213"/>
@@ -4579,12 +4579,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="524"/>
         <source>Date: </source>
-        <translation>Дата:</translation>
+        <translation>Дата: </translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="527"/>
         <source>Author: </source>
-        <translation>Автор:</translation>
+        <translation>Автор: </translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="150"/>
@@ -4604,12 +4604,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="232"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>Вы уверены что хотите удалить эти элементы из списка?</translation>
+        <translation>Вы уверены, что хотите удалить эти элементы из списка?</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="236"/>
         <source>Are you sure you want to delete this element from the list?</source>
-        <translation>Вы уверены что хотите удалить этот элемент из списка?</translation>
+        <translation>Вы уверены, что хотите удалить этот элемент из списка?</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="365"/>
@@ -4629,7 +4629,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="369"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Это имя уже используется. Выберите другое.</translation>
+        <translation>Это имя уже используется. Выберите, пожалуйста, другое.</translation>
     </message>
     <message>
         <source>Overwrite attempt</source>
@@ -4643,7 +4643,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="573"/>
         <source>Unread</source>
-        <translation>Не прочитано</translation>
+        <translation>Непрочитанные</translation>
     </message>
 </context>
 <context>
@@ -4658,7 +4658,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssfeed.cpp" line="331"/>
         <source>Automatically downloading %1 torrent from %2 RSS feed...</source>
-        <translation>Автоматически загрузить %1 торрент с %2 RSS канала...</translation>
+        <translation>Автоматически загружаем %1 торрент с %2 RSS канала...</translation>
     </message>
 </context>
 <context>
@@ -4789,7 +4789,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="263"/>
         <source>Please type a search pattern first</source>
-        <translation>Пожалуйста, наберите сначала шаблон поиска</translation>
+        <translation>Пожалуйста, задайте сначала шаблон поиска</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="288"/>
@@ -4835,7 +4835,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
-        <source>An error occured during search...</source>
+        <source>An error occurred during search...</source>
         <translation>Во время поиска произошла ошибка...</translation>
     </message>
     <message>
@@ -4890,8 +4890,8 @@ Please install it manually.</source>
         <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Python 2.x требуется для использования поисковиков, но не похоже что он установлен.
-Хотите ли Вы установить его сечас?</translation>
+        <translation>Python 2.x требуется для использования поисковиков, но, видимо, он не установлен.
+Хотите установить его сечас?</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -5033,7 +5033,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../statusbar.h" line="160"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>qBittorrent был обновлен и нуждается в перезапуске, чтобы изменение вступили в силу.</translation>
+        <translation>qBittorrent был обновлен и нуждается в перезапуске, чтобы изменения вступили в силу.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="204"/>
@@ -5081,12 +5081,12 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="74"/>
         <source>Select a folder to add to the torrent</source>
-        <translation>Выберите папку для добавления в torrent</translation>
+        <translation>Выберите папку для добавления в торрент</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="90"/>
         <source>Select a file to add to the torrent</source>
-        <translation>Выберите файл для добавления в torrent</translation>
+        <translation>Выберите файл для добавления в торрент</translation>
     </message>
     <message>
         <source>Please type an announce URL</source>
@@ -5118,7 +5118,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Select destination torrent file</source>
-        <translation>Выберите torrent файл назначения</translation>
+        <translation>Выберите торрент файл назначения</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
@@ -5130,12 +5130,12 @@ Do you want to install it now?</source>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent creation</source>
-        <translation>Создание Torrent-а</translation>
+        <translation>Создание торрента</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation>Создание torrent-а не завершено, причина: %1</translation>
+        <translation>Создать торрента не удалось, причина: %1</translation>
     </message>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
@@ -5145,7 +5145,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent was created successfully:</source>
-        <translation>Torrent успешно создан:</translation>
+        <translation>Торрент успешно создан:</translation>
     </message>
 </context>
 <context>
@@ -5193,7 +5193,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentimportdlg.ui" line="90"/>
         <source>Content location:</source>
-        <translation>Размещение содержимого:</translation>
+        <translation>Содержимое:</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="121"/>
@@ -5225,7 +5225,7 @@ Do you want to install it now?</source>
         <location filename="../torrentimportdlg.cpp" line="95"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation>Укажите размещение %1</translation>
+        <translation>Укажите, где находится %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="130"/>
@@ -5240,7 +5240,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentimportdlg.cpp" line="235"/>
         <source>This is not a valid torrent file.</source>
-        <translation>Это не правильный торрент файл.</translation>
+        <translation>Это неправильный торрент файл.</translation>
     </message>
 </context>
 <context>
@@ -5273,7 +5273,7 @@ Do you want to install it now?</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="251"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Источники</translation>
+        <translation>Сиды</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="252"/>
@@ -5285,25 +5285,25 @@ Do you want to install it now?</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="253"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Скорость скач</translation>
+        <translation>Приём</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="254"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость отдачи</translation>
+        <translation>Отдача</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="255"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Соотношение</translation>
+        <translation>Коэфф.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="256"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Ост. времени</translation>
+        <translation>Осталось</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="257"/>
@@ -5320,12 +5320,12 @@ Do you want to install it now?</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="259"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Закончен</translation>
+        <translation>Завершён</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="260"/>
         <source>Tracker</source>
-        <translation>Трэкер</translation>
+        <translation>Трекер</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="261"/>
@@ -5393,7 +5393,7 @@ Do you want to install it now?</source>
         <location filename="../properties/trackerlist.cpp" line="203"/>
         <location filename="../properties/trackerlist.cpp" line="209"/>
         <source>Disabled</source>
-        <translation>Выключено</translation>
+        <translation>Выключен</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="196"/>
@@ -5446,7 +5446,7 @@ Do you want to install it now?</source>
     <message utf8="true">
         <location filename="../properties/trackersadditiondlg.ui" line="44"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>URL списка совместимого с µTorrent:</translation>
+        <translation>URL списка, совместимого с µTorrent:</translation>
     </message>
     <message>
         <location filename="../properties/trackersadditiondlg.h" line="78"/>
@@ -5484,12 +5484,12 @@ Do you want to install it now?</source>
     <message>
         <location filename="../transferlistdelegate.h" line="94"/>
         <source>Downloading</source>
-        <translation>Скачивание</translation>
+        <translation>Скачивается</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>Приостановлен</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -5501,7 +5501,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistdelegate.h" line="106"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation>Раздача</translation>
+        <translation>Раздаётся</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="109"/>
@@ -5513,7 +5513,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistdelegate.h" line="113"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation>Проверка</translation>
+        <translation>Проверяется</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="127"/>
@@ -5546,13 +5546,13 @@ Do you want to install it now?</source>
         <location filename="../transferlistfilterswidget.h" line="229"/>
         <location filename="../transferlistfilterswidget.h" line="309"/>
         <source>Downloading</source>
-        <translation>Скачивание</translation>
+        <translation>Скачивающиеся</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="232"/>
         <location filename="../transferlistfilterswidget.h" line="310"/>
         <source>Completed</source>
-        <translation>Завершено</translation>
+        <translation>Завершённые</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="238"/>
@@ -5564,7 +5564,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistfilterswidget.h" line="241"/>
         <location filename="../transferlistfilterswidget.h" line="313"/>
         <source>Inactive</source>
-        <translation>Не активные</translation>
+        <translation>Неактивные</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="255"/>
@@ -5607,7 +5607,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistfilterswidget.h" line="235"/>
         <location filename="../transferlistfilterswidget.h" line="311"/>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>Приостановленные</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="341"/>
@@ -5762,7 +5762,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistwidget.cpp" line="768"/>
         <source>Reset</source>
         <comment>Reset label</comment>
-        <translation>Восстановить метку</translation>
+        <translation>Сбросить</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="615"/>
@@ -5826,7 +5826,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistwidget.cpp" line="674"/>
         <source>Set location...</source>
         <translatorcomment>Блин, до чего же коряво! Может лучше &apos;Переместить файлы&apos;?</translatorcomment>
-        <translation>Установить размещение...</translation>
+        <translation>Переместить...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="656"/>
@@ -5865,7 +5865,7 @@ Do you want to install it now?</source>
         <location filename="../transferlistwidget.cpp" line="672"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>На самый низ</translation>
+        <translation>В самый низ</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="809"/>
@@ -5892,7 +5892,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="obsolete">Трэкер</translation>
+        <translation type="obsolete">Трекер</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="658"/>
@@ -5961,7 +5961,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../main.cpp" line="90"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation>[файлы или ссылки]: скачать торренты указанные пользователем (опционально)</translation>
+        <translation>[файлы или ссылки]: скачать указанные пользователем торренты (опционально)</translation>
     </message>
 </context>
 <context>
@@ -5973,7 +5973,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../about_imp.h" line="64"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
-        <translation>Я хочу поблагодарить следующих людей, кто вызвался перевести qBittorrent:</translation>
+        <translation>Я хочу поблагодарить следующих людей, вызвавшихся перевести qBittorrent:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="100"/>
@@ -6055,7 +6055,7 @@ Do you want to install it now?</source>
     </message>
     <message>
         <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Загружать последовательно (медленнее но удобнее для предпросмотра)</translation>
+        <translation type="obsolete">Загружать последовательно (медленнее, но удобнее для предпросмотра)</translation>
     </message>
     <message>
         <source>Skip file checking and start seeding immediately</source>
@@ -6088,12 +6088,12 @@ Do you want to install it now?</source>
         <location filename="../login.ui" line="14"/>
         <location filename="../login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Аутентификация Трэкера</translation>
+        <translation>Аутентификация трекера</translation>
     </message>
     <message>
         <location filename="../login.ui" line="64"/>
         <source>Tracker:</source>
-        <translation>Трэкер:</translation>
+        <translation>Трекер:</translation>
     </message>
     <message>
         <location filename="../login.ui" line="86"/>
@@ -6131,7 +6131,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Вы уверены что хотите удалить выделенные торренты из списка передач?</translation>
+        <translation>Вы уверены, что хотите удалить выделенные торренты из списка закачек?</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="67"/>
@@ -6141,7 +6141,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Также удалить файлы и с жесткого диска</translation>
+        <translation>Также удалить файлы на жестком диске</translation>
     </message>
 </context>
 <context>
@@ -6154,16 +6154,16 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="14"/>
         <source>Torrent Creation Tool</source>
-        <translation>Инструмент для создания Torrent-ов</translation>
+        <translation>Инструмент для создания торрентов</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="38"/>
         <source>Torrent file creation</source>
-        <translation>Создание Torrent файла</translation>
+        <translation>Создание торрент файла</translation>
     </message>
     <message>
         <source>Announce urls (trackers):</source>
-        <translation type="obsolete">Аносирующие ссылки (трэкеров):</translation>
+        <translation type="obsolete">Аносирующие ссылки (трекеров):</translation>
     </message>
     <message>
         <source>Comment (optional):</source>
@@ -6176,7 +6176,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="48"/>
         <source>File or folder to add to the torrent:</source>
-        <translation>Файл или папка для добавления в torrent:</translation>
+        <translation>Файл или папка для добавления в торрент:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="145"/>
@@ -6226,7 +6226,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="230"/>
         <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation>Закрытый (не будет передаваться через безтрекерную сеть / DHT при включении)</translation>
+        <translation>Закрытый (не будет раздаваться через безтрекерную сеть DHT при включении)</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="237"/>
@@ -6357,7 +6357,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../downloadfromurldlg.ui" line="14"/>
         <source>Download from urls</source>
-        <translation>Загрузить Torrent(ы) из URL(s)</translation>
+        <translation>Загрузить торренты из URL ссылок</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.h" line="78"/>
@@ -6367,17 +6367,17 @@ Do you want to install it now?</source>
     <message>
         <location filename="../downloadfromurldlg.h" line="78"/>
         <source>Please type at least one URL.</source>
-        <translation>Пожалуйста введите минимум один URL.</translation>
+        <translation>Пожалуйста, введите минимум один URL.</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
-        <translation>Добавить ссылки торрент</translation>
+        <translation>Добавить торрент-ссылки</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>Both HTTP and Magnet links are supported</source>
-        <translation>Поддреживаются HTTP и Magnet ссылки</translation>
+        <translation>Поддерживаются HTTP и Magnet ссылки</translation>
     </message>
 </context>
 <context>
@@ -6534,7 +6534,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine/engineselect.ui" line="78"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Вы можете получить новые плагины поиска здесь: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <translation>Вы можете скачать новые плагины поиска здесь: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -6551,12 +6551,12 @@ Do you want to install it now?</source>
 However, those plugins were disabled.</source>
         <translation>Некоторые плагины не могут быть удалены, так как включены в qBittorrent.
 Удалены могут быть лишь те, что вы установили сами.
-Но все равно, эти плагины будут отключены.</translation>
+Тем не менее, эти плагины были отключены.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="177"/>
         <source>Uninstall success</source>
-        <translation>Удаление произведено</translation>
+        <translation>Успешно удалено</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="341"/>
@@ -6618,7 +6618,7 @@ However, those plugins were disabled.</source>
         <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Плагин поискового движка %1 не может быть обновлен, осталась старая версия.</translation>
+        <translation>Плагин поискового движка %1 не может быть обновлен, оставляем старую версию.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
@@ -6751,13 +6751,13 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1ч%2м</translation>
+        <translation>%1ч %2м</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="396"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1д%2ч</translation>
+        <translation>%1д %2ч</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="178"/>
@@ -6798,7 +6798,7 @@ However, those plugins were disabled.</source>
         <location filename="../webui/btjson.cpp" line="298"/>
         <location filename="../webui/btjson.cpp" line="299"/>
         <source>this session</source>
-        <translation>эта сессия</translation>
+        <translation>за эту сессию</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="310"/>
@@ -6816,13 +6816,13 @@ However, those plugins were disabled.</source>
         <location filename="../webui/btjson.cpp" line="380"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Скач: %1/с - Перед: %2</translation>
+        <translation>Приём: %1/с - Передано: %2</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="381"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>Отдача: %1/с - Перед: %2</translation>
+        <translation>Отдача: %1/с - Передано: %2</translation>
     </message>
 </context>
 <context>
@@ -6871,7 +6871,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1076"/>
         <source>Folder is not readable.</source>
-        <translation>Папка не доступна для чтения.</translation>
+        <translation>Папка недоступна для чтения.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1084"/>
@@ -6891,7 +6891,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1246"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation>Не возможно разобрать данный фильтр IP</translation>
+        <translation>Невозможно разобрать данный IP фильтр</translation>
     </message>
     <message>
         <source>Succesfully refreshed</source>
@@ -6925,7 +6925,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1319"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Это не действительный SSL ключ.</translation>
+        <translation>Это недействительный SSL ключ.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1334"/>
@@ -6935,13 +6935,13 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1334"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Это не действительный SSL сертификат.</translation>
+        <translation>Это недействительный SSL сертификат.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1248"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Успешно прочитан фильтр IP: %1 правил применено.</translation>
+        <translation>Указанный IP фильтр был успешно проанализирован. Применено %1 правил.</translation>
     </message>
 </context>
 <context>
@@ -6964,7 +6964,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/pluginsource.ui" line="42"/>
         <source>Web link</source>
-        <translation>Веб ссылка</translation>
+        <translation>Ссылка</translation>
     </message>
 </context>
 <context>
@@ -7106,7 +7106,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Вы выбрали пропустить проверку файла. Однако локальные файлы судя по всему не существует в указанной директории. Пожалуйста, отключите это возможность или измените путь сохранения.</translation>
+        <translation type="obsolete">Вы выбрали пропустить проверку файла. Однако, локальные файлы, судя по всему, не существует в указанной директории. Пожалуйста, отключите эту опцию или измените путь сохранения.</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -7134,7 +7134,7 @@ However, those plugins were disabled.</source>
     </message>
     <message>
         <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Невозможно декодировать ссылку magnet:</translation>
+        <translation type="obsolete">Невозможно декодировать magnet-ссылку:</translation>
     </message>
     <message>
         <source>Magnet Link</source>
