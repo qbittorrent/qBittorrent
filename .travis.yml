@@ -1,0 +1,62 @@
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+language:
+# linux
+- cpp
+
+# osx
+# - objective-c
+
+env:
+# linux
+# libtorrent 0.15.10
+- lt=APT debug=false gui=true
+- lt=APT debug=false gui=false
+# libtorrent 0.16.x
+- lt=repo debug=false gui=true
+- lt=repo debug=false gui=false
+
+install:
+# linux, osx
+#- (cd src/geoip && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && gzip -d GeoIP.dat.gz)
+
+# linux
+- shopt -s expand_aliases
+- alias sudo="sudo "
+- alias make=colormake
+- export MAKEFLAGS="-j $((`nproc` / 2))"
+
+- if $debug; then qtc="--enable-debug"; ltc="--enable-debug"; fi
+- if ! $gui; then qtc="$qtc --disable-gui"; fi
+- ltc="$ltc --with-libgeoip"
+
+- echo settings
+- echo $lt
+- echo $debug
+- echo $gui
+- echo $qtc
+- echo $ltc
+
+- sudo apt-get -qq update
+- sudo apt-get -qq install debhelper libboost-dev libboost-filesystem-dev libboost-system-dev libqt4-dev qconf colormake libgeoip-dev
+- if [[ "$lt" == "APT" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
+- if [[ "$lt" == "repo" ]]; then sudo apt-get -qq build-dep libtorrent-rasterbar-dev && svn checkout svn://svn.code.sf.net/p/libtorrent/code/branches/RC_0_16 && (cd RC_0_16 && ./autotool.sh && ./configure $ltc && sudo make install); fi
+
+# osx
+# - export MAKEFLAGS="-j 4"
+# - brew update
+# - brew install libtorrent-rasterbar qt boost
+
+script:
+# linux, osx
+- mkdir -p build && cd build && mkdir -p install
+
+# linux
+- (cd .. && qt-qconf)
+- ../configure $qtc && sudo make install
+
+# osx
+# - qmake ../qbittorrent.pro && make
