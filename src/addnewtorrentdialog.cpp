@@ -81,6 +81,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   loadState();
   // Signal / slots
   connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
+  editHotkey = new QShortcut(QKeySequence("F2"), ui->content_tree, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedFile()));
+  connect(ui->content_tree, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedFile()));
 }
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
@@ -89,6 +92,7 @@ AddNewTorrentDialog::~AddNewTorrentDialog()
   delete ui;
   if (m_contentModel)
     delete m_contentModel;
+  delete editHotkey;
 }
 
 void AddNewTorrentDialog::loadState()
@@ -390,7 +394,8 @@ void AddNewTorrentDialog::relayout()
 void AddNewTorrentDialog::renameSelectedFile()
 {
   const QModelIndexList selectedIndexes = ui->content_tree->selectionModel()->selectedRows(0);
-  Q_ASSERT(selectedIndexes.size() == 1);
+  if (selectedIndexes.size() != 1)
+    return;
   const QModelIndex &index = selectedIndexes.first();
   // Ask for new name
   bool ok;
