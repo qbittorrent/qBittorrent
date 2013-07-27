@@ -548,7 +548,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="252"/>
         <source>Save to a different directory</source>
-        <translation>Guardar en un directorio diferente</translation>
+        <translation>Guardar en una ruta diferente</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="264"/>
@@ -605,7 +605,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="353"/>
         <source>Destination directory</source>
-        <translation>Directorio de destino</translation>
+        <translation>Ruta de destino</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="361"/>
@@ -2906,7 +2906,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1161"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Máximo global de puestos de subida:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1296"/>
@@ -3479,7 +3479,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="346"/>
         <source>Save path:</source>
-        <translation>Directorio de destino:</translation>
+        <translation>Ruta de destino:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="438"/>
@@ -5427,7 +5427,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="233"/>
         <source>Choose save path</source>
-        <translation>Seleccione un directorio de destino</translation>
+        <translation>Seleccione una ruta de destino</translation>
     </message>
     <message>
         <source>Save path creation error</source>
@@ -6529,12 +6529,12 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <location filename="../preferences/options_imp.cpp" line="1159"/>
         <location filename="../preferences/options_imp.cpp" line="1161"/>
         <source>Choose a save directory</source>
-        <translation>Seleccione un directorio para guardar</translation>
+        <translation>Seleccione una ruta para guardar</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1064"/>
         <source>Add directory to scan</source>
-        <translation>Añadir directorio para escanear</translation>
+        <translation>Añadir una ruta para escanear</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1070"/>
@@ -6565,7 +6565,7 @@ De cualquier forma, esos plugins fueron deshabilitados.</translation>
         <location filename="../preferences/options_imp.cpp" line="1107"/>
         <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Choose export directory</source>
-        <translation>Selecciona directorio de exportación</translation>
+        <translation>Selecciona una ruta de exportación</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1124"/>
