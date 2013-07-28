@@ -55,6 +55,9 @@ public:
   static void showTorrent(const QString& torrent_path, const QString& from_url = QString());
   static void showMagnet(const QString& torrent_link);
 
+protected:
+  virtual void showEvent(QShowEvent *event);
+
 private slots:
   void showAdvancedSettings(bool show);
   void displayContentTreeMenu(const QPoint&);
