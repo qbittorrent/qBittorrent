@@ -1018,7 +1018,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   } catch(std::exception& e) {
     if (!from_url.isNull()) {
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(from_url), QString::fromUtf8("red"));
-      addConsoleMessage(QString::fromLocal8Bit(e.what()), "red");
+      addConsoleMessage(misc::toQString(e.what()), "red");
       //emit invalidTorrent(from_url);
       fsutils::forceRemove(path);
     }else{
@@ -2412,9 +2412,9 @@ void QBtSession::readAlerts() {
           h.pause();
           std::cerr << "File Error: " << p->message().c_str() << std::endl;
           addConsoleMessage(tr("An I/O error occured, '%1' paused.").arg(h.name()));
-          addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
+          addConsoleMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
           if (h.is_valid()) {
-            emit fullDiskError(h, misc::toQString(p->message()));
+            emit fullDiskError(h, misc::toQStringU(p->message()));
             //h.pause();
             emit pausedTorrent(h);
           }
@@ -2452,7 +2452,7 @@ void QBtSession::readAlerts() {
             const QString tracker_url = misc::toQString(p->url);
             QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
             TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
-            data.last_message = misc::toQString(p->msg);
+            data.last_message = misc::toQStringU(p->msg);
             trackers_data.insert(tracker_url, data);
             trackersInfos[h.hash()] = trackers_data;
           } else {
@@ -2473,26 +2473,27 @@ void QBtSession::readAlerts() {
           trackers_data.insert(tracker_url, data);
           trackersInfos[h.hash()] = trackers_data;
         }
-      } else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
+      }
+      else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a.get())) {
         const QTorrentHandle h(p->handle);
         if (h.is_valid()) {
           // Connection was successful now but there is a warning message
           QHash<QString, TrackerInfos> trackers_data = trackersInfos.value(h.hash(), QHash<QString, TrackerInfos>());
           const QString tracker_url = misc::toQString(p->url);
           TrackerInfos data = trackers_data.value(tracker_url, TrackerInfos(tracker_url));
-          data.last_message = misc::toQString(p->msg); // Store warning message
+          data.last_message = misc::toQStringU(p->msg); // Store warning message
           trackers_data.insert(tracker_url, data);
           trackersInfos[h.hash()] = trackers_data;
           qDebug("Received a tracker warning from %s: %s", p->url.c_str(), p->msg.c_str());
         }
       }
       else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a.get())) {
-        addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(misc::toQString(p->message())), "red");
+        addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(misc::toQStringU(p->message())), "red");
         //emit UPnPError(QString(p->msg().c_str()));
       }
       else if (portmap_alert* p = dynamic_cast<portmap_alert*>(a.get())) {
         qDebug("UPnP Success, msg: %s", p->message().c_str());
-        addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(misc::toQString(p->message())), "blue");
+        addConsoleMessage(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(misc::toQStringU(p->message())), "blue");
         //emit UPnPSuccess(QString(p->msg().c_str()));
       }
       else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a.get())) {
@@ -2523,12 +2524,12 @@ void QBtSession::readAlerts() {
             pauseTorrent(hash);
           } else {
             addConsoleMessage(tr("Fast resume data was rejected for torrent %1, checking again...").arg(h.name()), QString::fromUtf8("red"));
-            addConsoleMessage(tr("Reason: %1").arg(misc::toQString(p->message())));
+            addConsoleMessage(tr("Reason: %1").arg(misc::toQStringU(p->message())));
           }
         }
       }
       else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a.get())) {
-        addConsoleMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQString(p->message())), QString::fromUtf8("red"));
+        addConsoleMessage(tr("Url seed lookup failed for url: %1, message: %2").arg(misc::toQString(p->url)).arg(misc::toQStringU(p->message())), QString::fromUtf8("red"));
         //emit urlSeedProblem(QString::fromUtf8(p->url.c_str()), QString::fromUtf8(p->msg().c_str()));
       }
       else if (listen_succeeded_alert *p = dynamic_cast<listen_succeeded_alert*>(a.get())) {
