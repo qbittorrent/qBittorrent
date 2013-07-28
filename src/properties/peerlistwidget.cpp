@@ -496,9 +496,13 @@ QString PeerListWidget::getFlags(const peer_info& peer)
   if (peer.source & peer_info::dht)
     flags += "H ";
 
-  //E = Peer is using Protocol Encryption (cannot distinguish between handshake and all traffic)
+  //E = Peer is using Protocol Encryption (all traffic)
   if (peer.flags & peer_info::rc4_encrypted)
     flags += "E ";
+
+  //e = Peer is using Protocol Encryption (handshake)
+  if (peer.flags & peer_info::plaintext_encrypted)
+    flags += "e ";
 
 #if LIBTORRENT_VERSION_NUM > 001500
   //P = Peer is using uTorrent uTP
