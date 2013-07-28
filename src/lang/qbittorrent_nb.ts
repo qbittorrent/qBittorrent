@@ -2581,7 +2581,7 @@ Vil du oppdatere qBittorrent til versjon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1221"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Globalt maksimalt antall opplastingsåpninger:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1356"/>
@@ -4489,7 +4489,7 @@ Vennligst installer det manuelt.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lagringssti</translation>
     </message>
 </context>
 <context>
