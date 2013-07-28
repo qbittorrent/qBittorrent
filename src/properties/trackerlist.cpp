@@ -197,24 +197,34 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
   // load DHT information
   if (QBtSession::instance()->isDHTEnabled() && (!h.has_metadata() || !h.priv())) {
     dht_item->setText(COL_STATUS, tr("Working"));
+    dht_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("dialog-ok-apply-icon"));
   } else {
     dht_item->setText(COL_STATUS, tr("Disabled"));
+    dht_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-normal-icon"));
   }
   if (h.has_metadata() && h.priv()) {
     dht_item->setText(COL_MSG, tr("This torrent is private"));
   }
 
   // Load PeX Information
-  if (QBtSession::instance()->isPexEnabled())
+  if (QBtSession::instance()->isPexEnabled()) {
     pex_item->setText(COL_STATUS, tr("Working"));
-  else
+    pex_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("dialog-ok-apply-icon"));
+  }
+  else {
     pex_item->setText(COL_STATUS, tr("Disabled"));
+    pex_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-normal-icon"));
+  }
 
   // Load LSD Information
-  if (QBtSession::instance()->isLSDEnabled())
+  if (QBtSession::instance()->isLSDEnabled()) {
     lsd_item->setText(COL_STATUS, tr("Working"));
-  else
+    lsd_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("dialog-ok-apply-icon"));
+  }
+  else {
     lsd_item->setText(COL_STATUS, tr("Disabled"));
+    lsd_item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-normal-icon"));
+  }
 
   // XXX: libtorrent should provide this info...
   // Count peers from DHT, LSD, PeX
@@ -264,17 +274,21 @@ void TrackerList::loadTrackers() {
     if (it->verified) {
       item->setText(COL_STATUS, tr("Working"));
       item->setText(COL_MSG, "");
+      item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("dialog-ok-apply-icon"));
     } else {
       if (it->updating && it->fails == 0) {
         item->setText(COL_STATUS, tr("Updating..."));
         item->setText(COL_MSG, "");
+        item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-locally-modified-icon"));
       } else {
         if (it->fails > 0) {
           item->setText(COL_STATUS, tr("Not working"));
           item->setText(COL_MSG, error_message);
+          item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-removed-icon"));
         } else {
           item->setText(COL_STATUS, tr("Not contacted yet"));
           item->setText(COL_MSG, "");
+          item->setIcon(COL_STATUS, IconProvider::instance()->getIcon("vcs-normal-icon"));
         }
       }
     }
