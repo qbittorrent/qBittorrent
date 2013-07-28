@@ -348,5 +348,9 @@
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/toolbox-divider.gif</file>
   <file>Icons/skin/uploading.png</file>
+  <file>Icons/oxygen/dialog-ok-apply-icon.png</file>
+  <file>Icons/oxygen/vcs-normal-icon.png</file>
+  <file>Icons/oxygen/vcs-locally-modified-icon.png</file>
+  <file>Icons/oxygen/vcs-removed-icon.png</file>
 </qresource>
 </RCC>
