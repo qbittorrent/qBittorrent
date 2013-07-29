@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.11
+* Mon Jul 29 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.0.11
     - FEATURE: Allow more fine tuning of upload slots. It should improve speed (sledgehammer999)
     - FEATURE: Enable edit/rename via F2 or double click in various places (Gelmir)
     - BUGFIX: Fix Spanish and Basque translations being messed up on Windows (sledgehammer999)
