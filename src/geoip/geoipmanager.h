@@ -31,7 +31,10 @@
 #ifndef GEOIPMANAGER_H
 #define GEOIPMANAGER_H
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/session.hpp>
+#endif
+
 #include <QString>
 #include <QIcon>
 

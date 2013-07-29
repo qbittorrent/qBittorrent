@@ -32,7 +32,9 @@
 #define OPTIONS_IMP_H
 
 #include "ui_options.h"
+#ifndef Q_MOC_RUN
 #include <libtorrent/ip_filter.hpp>
+#endif
 
 // actions on double-click on torrents
 enum DoubleClickAction {TOGGLE_PAUSE, OPEN_DEST, NO_ACTION};

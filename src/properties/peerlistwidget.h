@@ -35,7 +35,9 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
+#ifndef Q_MOC_RUN
 #include <libtorrent/peer_info.hpp>
+#endif
 #include "peerlistsortmodel.h"
 #include "qtorrenthandle.h"
 #include "misc.h"
@@ -50,12 +52,14 @@ class QStandardItem;
 class QStandardItemModel;
 QT_END_NAMESPACE
 
+#ifndef Q_MOC_RUN
 #include <boost/version.hpp>
 #if BOOST_VERSION < 103500
 #include <libtorrent/asio/ip/tcp.hpp>
 #else
 #include <boost/asio/ip/tcp.hpp>
 #endif
+#endif // Q_MOC_RUN
 
 class PeerListWidget : public QTreeView {
   Q_OBJECT

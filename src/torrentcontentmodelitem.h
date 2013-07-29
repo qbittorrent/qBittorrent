@@ -33,7 +33,10 @@
 
 #include <QList>
 #include <QVariant>
+
+#ifndef Q_MOC_RUN
 #include <libtorrent/torrent_info.hpp>
+#endif
 
 namespace prio {
 enum FilePriority {IGNORED=0, NORMAL=1, HIGH=2, MAXIMUM=7, MIXED=-1};

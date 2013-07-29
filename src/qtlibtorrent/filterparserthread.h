@@ -37,8 +37,10 @@
 #include <QStringList>
 #include <QHostAddress>
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#endif
 
 using namespace std;
 

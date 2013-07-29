@@ -33,7 +33,11 @@
 
 #include <QDialog>
 #include <QMessageBox>
+
+#ifndef Q_MOC_RUN
 #include <libtorrent/session.hpp>
+#endif
+
 #include "ui_login.h"
 #include "qtorrenthandle.h"
 

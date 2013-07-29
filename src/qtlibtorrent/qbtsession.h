@@ -43,9 +43,11 @@
 #include <QTimer>
 #include <QNetworkCookie>
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#endif
 
 #include "qtracker.h"
 #include "qtorrenthandle.h"

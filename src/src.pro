@@ -36,6 +36,8 @@ nox {
 }
 QT += network
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 # Vars
 LANG_PATH = lang
 ICONS_PATH = Icons
@@ -58,7 +60,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Fixes compilation with Boost >= v1.46 where boost
 # filesystem v3 is the default.
-DEFINES += BOOST_FILESYSTEM_VERSION=2
+#DEFINES += BOOST_FILESYSTEM_VERSION=2
 
 INCLUDEPATH += $$PWD
 
