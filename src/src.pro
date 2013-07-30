@@ -175,6 +175,7 @@ nox {
   win32 {
     HEADERS += programupdater.h
     SOURCES += programupdater.cpp
+    DEFINES += NOMINMAX
   }
 
   macx {
