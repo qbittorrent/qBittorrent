@@ -162,12 +162,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished">Текущее сопровождение кода</translation>
+        <translation>Текущее сопровождение кода</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished">Первый автор</translation>
+        <translation>Первый автор</translation>
     </message>
     <message utf8="true">
         <location filename="../about.ui" line="105"/>
@@ -2630,7 +2630,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Добавить &amp;ссылку к торренту...</translation>
+        <translation>Добавить &amp;ссылку на торрент...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -3396,7 +3396,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1221"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Общее ограничение на количество слотов отдачи:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1929"/>
@@ -5483,7 +5483,7 @@ Do you want to install it now?</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
@@ -5567,7 +5567,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished">Копировать URL в буфер</translation>
+        <translation>Копировать URL трекера</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
@@ -5577,28 +5577,28 @@ Do you want to install it now?</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished">Редактирование трекера</translation>
+        <translation>Редактирование трекера</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished">Ошибка редактирования</translation>
+        <translation>Ошибка редактирования</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished">Введен неверный URL трекера.</translation>
+        <translation>Введен неверный URL трекера.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished">Трекер с введенным URL уже существует.</translation>
+        <translation>Трекер с введенным URL уже существует.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished">Изменить URL</translation>
+        <translation>Изменить URL</translation>
     </message>
 </context>
 <context>
@@ -6077,7 +6077,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="530"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished">Вы уверены, что хотите выполнить повторную проверку выбранных торрентов?</translation>
+        <translation>Вы уверены, что хотите выполнить повторную проверку выбранных торрентов?</translation>
     </message>
 </context>
 <context>
@@ -6462,7 +6462,7 @@ Do you want to install it now?</source>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished">Используйте пустые строки для разделения групп трекеров.</translation>
+        <translation>Используйте пустые строки для разделения групп трекеров.</translation>
     </message>
 </context>
 <context>
