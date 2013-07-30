@@ -89,6 +89,7 @@ include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(tracker/tracker.pri)
 include (preferences/preferences.pri)
+greaterThan(QT_MAJOR_VERSION, 4):include(qhttp/qhttp.pri)
 
 !nox {
   include(lineedit/lineedit.pri)
