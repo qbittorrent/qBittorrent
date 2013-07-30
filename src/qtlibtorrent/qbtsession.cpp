@@ -93,7 +93,7 @@ const int MAX_TRACKER_ERRORS = 2;
 
 /* Converts a QString hash into a libtorrent sha1_hash */
 static libtorrent::sha1_hash QStringToSha1(const QString& s) {
-  QByteArray raw = s.toAscii();
+  QByteArray raw = s.toLatin1();
   Q_ASSERT(raw.size() == 40);
   libtorrent::sha1_hash ret;
   from_hex(raw.constData(), 40, (char*)&ret[0]);
@@ -1943,10 +1943,10 @@ void QBtSession::setListeningPort(int port) {
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
 #if LIBTORRENT_VERSION_NUM >= 001600
-    s->listen_on(ports, ec, entry.ip().toString().toAscii().constData());
+    s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData());
     if (!ec) {
 #else
-    if (s->listen_on(ports, entry.ip().toString().toAscii().constData())) {
+    if (s->listen_on(ports, entry.ip().toString().toLatin1().constData())) {
 #endif
       ip = entry.ip().toString();
       break;
@@ -2515,16 +2515,16 @@ void QBtSession::readAlerts() {
         boost::system::error_code ec;
         string ip = p->ip.to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), true);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (peer_ban_alert* p = dynamic_cast<peer_ban_alert*>(a.get())) {
         boost::system::error_code ec;
         string ip = p->ip.address().to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), false);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), false);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {

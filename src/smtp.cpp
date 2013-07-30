@@ -192,7 +192,7 @@ void Smtp::readyRead()
     case Authenticated:
       if (code[0] == '2') {
         qDebug() << "Sending <mail from>...";
-        socket->write("mail from:<" + from.toAscii() + ">\r\n");
+        socket->write("mail from:<" + from.toLatin1() + ">\r\n");
         socket->flush();
         state = Rcpt;
       } else {
@@ -203,7 +203,7 @@ void Smtp::readyRead()
       break;
     case Rcpt:
       if (code[0] == '2') {
-        socket->write("rcpt to:<" + rcpt.toAscii() + ">\r\n");
+        socket->write("rcpt to:<" + rcpt.toLatin1() + ">\r\n");
         socket->flush();
         state = Data;
       } else {
@@ -253,11 +253,11 @@ void Smtp::readyRead()
 QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QTextCodec* latin1, const QByteArray& prefix)
 {
   QByteArray rv = "";
-  QByteArray line = key.toAscii() + ": ";
+  QByteArray line = key.toLatin1() + ": ";
   if (!prefix.isEmpty()) line += prefix;
   if (!value.contains("=?") && latin1->canEncode(value)) {
     bool firstWord = true;
-    foreach (const QByteArray& word, value.toAscii().split(' ')) {
+    foreach (const QByteArray& word, value.toLatin1().split(' ')) {
       if (line.size() > 78) {
         rv = rv + line + "\r\n";
         line.clear();
@@ -296,7 +296,7 @@ void Smtp::ehlo()
   {
     if (addr == QHostAddress::LocalHost || addr == QHostAddress::LocalHostIPv6)
       continue;
-    address = addr.toString().toAscii();
+    address = addr.toString().toLatin1();
     break;
   }
   // Send EHLO
@@ -404,8 +404,8 @@ void Smtp::authCramMD5(const QByteArray& challenge)
     authType = AuthCramMD5;
     state = AuthRequestSent;
   } else {
-    QByteArray response = username.toAscii() + ' '
-        + hmacMD5(password.toAscii(), QByteArray::fromBase64(challenge)).toHex();
+    QByteArray response = username.toLatin1() + ' '
+        + hmacMD5(password.toLatin1(), QByteArray::fromBase64(challenge)).toHex();
     socket->write(response.toBase64() + "\r\n");
     socket->flush();
     state = AuthSent;
@@ -419,11 +419,11 @@ void Smtp::authPlain()
     // Prepare Auth string
     QByteArray auth;
     auth += '\0';
-    auth += username.toAscii();
-    qDebug() << "username: " << username.toAscii();
+    auth += username.toLatin1();
+    qDebug() << "username: " << username.toLatin1();
     auth += '\0';
-    auth += password.toAscii();
-    qDebug() << "password: " << password.toAscii();
+    auth += password.toLatin1();
+    qDebug() << "password: " << password.toLatin1();
     // Send it
     socket->write("auth plain "+ auth.toBase64() + "\r\n");
     socket->flush();
@@ -440,12 +440,12 @@ void Smtp::authLogin()
     state = AuthRequestSent;
   }
   else if (state == AuthRequestSent) {
-    socket->write(username.toAscii().toBase64() + "\r\n");
+    socket->write(username.toLatin1().toBase64() + "\r\n");
     socket->flush();
     state = AuthUsernameSent;
   }
   else {
-    socket->write(password.toAscii().toBase64() + "\r\n");
+    socket->write(password.toLatin1().toBase64() + "\r\n");
     socket->flush();
     state = AuthSent;
   }

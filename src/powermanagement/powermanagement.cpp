@@ -40,7 +40,7 @@
 #endif
 
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 PowerManagement::PowerManagement(QObject *parent) : QObject(parent), m_busy(false)
