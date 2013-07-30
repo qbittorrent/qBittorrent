@@ -43,7 +43,7 @@
 #include "misc.h"
 #include "propertieswidget.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <QPlastiqueStyle>
 #endif
 
@@ -88,7 +88,7 @@ public:
           newopt.minimum = 0;
           newopt.state |= QStyle::State_Enabled;
           newopt.textVisible = true;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
           // XXX: To avoid having the progress text on the right of the bar

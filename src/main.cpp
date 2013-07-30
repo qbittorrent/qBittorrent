@@ -59,7 +59,7 @@ Q_IMPORT_PLUGIN(qico)
 
 #include "preferences.h"
 #include "qinisettings.h"
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC)
 #include <signal.h>
 #include <execinfo.h>
 #include "stacktrace.h"
@@ -133,7 +133,7 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC) || defined(STACKTRACE_WIN)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -334,7 +334,7 @@ int main(int argc, char *argv[]) {
 #ifndef DISABLE_GUI
   app.setQuitOnLastWindowClosed(false);
 #endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
+#if defined(Q_OS_X11) || defined(Q_OS_MAC) || defined(STACKTRACE_WIN)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);
@@ -355,9 +355,9 @@ int main(int argc, char *argv[]) {
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   static_cast<QMacApplication*>(&app)->setReadyToProcessEvents();
-#endif // Q_WS_MAC
+#endif // Q_OS_MAC
 #else
   // Load Headless class
   HeadlessLoader loader(torrents);

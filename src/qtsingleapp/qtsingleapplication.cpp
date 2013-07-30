@@ -189,7 +189,7 @@ QtSingleApplication::QtSingleApplication(const QString &appId, int &argc, char *
 //}
 
 
-#if defined(Q_WS_X11)
+#if defined(Q_OS_X11)
 /*!
   Special constructor for X11, ref. the documentation of
   QApplication's corresponding constructor. The application identifier
