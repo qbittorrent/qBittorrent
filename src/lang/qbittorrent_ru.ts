@@ -2490,7 +2490,8 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Reason: %2</source>
         <comment>e.g: An error occured for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Произошла ошибка ввода/вывода для торрента %1.
+Причина: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="705"/>
@@ -2581,7 +2582,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Добавить &amp;ссылку к торренту...</translation>
+        <translation>Добавить &amp;ссылку на торрент...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -4406,7 +4407,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2414"/>
         <source>An I/O error occured, &apos;%1&apos; paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка ввода/вывода, &apos;%1&apos; приостановлен.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2819"/>
@@ -4857,7 +4858,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="498"/>
         <source>An error occured during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Во время поиска произошла ошибка...</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="505"/>
