@@ -3,6 +3,7 @@
   
 ; Remove files and uninstaller  
   Delete "$INSTDIR\qbittorrent.exe"
+  Delete "$INSTDIR\qbittorrent.pdb"
   Delete "$INSTDIR\qt.conf"  
   Delete "$INSTDIR\translations\qt_ar.qm"
   Delete "$INSTDIR\translations\qt_bg.qm"
