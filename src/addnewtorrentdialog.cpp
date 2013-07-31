@@ -220,7 +220,11 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
     // Expand root folder
     ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     ui->content_tree->header()->setResizeMode(0, QHeaderView::Stretch);
+#else
+    ui->content_tree->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+#endif
   } else {
     // Update save paths (append file name to them)
 #if LIBTORRENT_VERSION_NUM >= 001600

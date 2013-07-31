@@ -85,7 +85,11 @@ options_imp::options_imp(QWidget *parent):
     }
   }
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#else
+  scanFoldersView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#endif
   scanFoldersView->setModel(ScanFoldersModel::instance());
   connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(enableApplyButton()));
   connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
