@@ -44,6 +44,7 @@
 #include <QFileDialog>
 #include <QDropEvent>
 #include <QTemporaryFile>
+#include <QMimeData>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
 const QString UPDATE_URL = QString("https://raw.github.com/qbittorrent/qBittorrent/master/src/searchengine/") + (misc::pythonVersion() >= 3 ? "nova3" : "nova") + "/engines/";
@@ -76,7 +77,7 @@ engineSelectDlg::~engineSelectDlg() {
 
 void engineSelectDlg::dropEvent(QDropEvent *event) {
   event->acceptProposedAction();
-  QStringList files=event->mimeData()->text().split(QString::fromUtf8("\n"));
+  QStringList files = event->mimeData()->text().split(QString::fromUtf8("\n"));
   foreach (QString file, files) {
     qDebug("dropped %s", qPrintable(file));
     if (misc::isUrl(file)) {

@@ -31,7 +31,7 @@
 #ifndef UPDOWNRATIODLG_H
 #define UPDOWNRATIODLG_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -61,7 +61,11 @@
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDesktopServices>
+#else
+#include <QStandardPaths>
+#endif
 #endif
 
 using namespace libtorrent;
@@ -427,7 +431,11 @@ QString fsutils::QDesktopServicesDownloadLocation() {
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
+#else
+  return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
+#endif
 #endif
 
 #ifdef Q_OS_X11

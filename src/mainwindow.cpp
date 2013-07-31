@@ -44,6 +44,7 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#include <QMimeData>
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
