@@ -44,7 +44,11 @@
 #include "qbtsession.h"
 
 #ifdef Q_OS_WIN
-  #include <QPlastiqueStyle>
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <QPlastiqueStyle>
+#else
+#include <QProxyStyle>
+#endif
 #endif
 
 // Defines for download list list columns
@@ -193,7 +197,11 @@ public:
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar
-        QPlastiqueStyle st;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+          QPlastiqueStyle st;
+#else
+          QProxyStyle st("plastique");
+#endif
         st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         break;
