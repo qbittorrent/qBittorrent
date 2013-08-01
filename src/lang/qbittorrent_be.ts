@@ -404,7 +404,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="261"/>
         <source>Always announce to all trackers</source>
-        <translation>Заўсёды абвяшчаць ўсе трэкеры</translation>
+        <translation>Заўсёды абвяшчаць усе трэкеры</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="212"/>
@@ -1836,7 +1836,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="258"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
-        <translation>Пафарбаваць радкі іншымі колерамі</translation>
+        <translation>Пафарбаваць радкі рознымі колерамі</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="300"/>
@@ -2199,7 +2199,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="561"/>
         <source>Hard Disk</source>
-        <translation>Цвёрды дыск</translation>
+        <translation>Дыскавая прастора</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="570"/>
@@ -2350,7 +2350,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2186"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Спыніць раздачы, калі іх суадносіны дасягнуць значэння</translation>
+        <translation>Спыніць раздачы, калі іх стасунак дасягне значэння</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2218"/>
@@ -2479,7 +2479,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2175"/>
         <source>Share Ratio Limiting</source>
-        <translation>Абмежаванне суадносінаў раздачы</translation>
+        <translation>Абмежаванне стасунку раздачы</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2283"/>
@@ -2607,7 +2607,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="206"/>
         <source>Share ratio:</source>
-        <translation>Суадносіны раздачы:</translation>
+        <translation>Стасунак раздачы:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="77"/>
@@ -2827,7 +2827,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="233"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="239"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 дасягнуў вызначанага максімума суадносінаў.</translation>
+        <translation>%1 дасягнуў вызначанага максімуму стасунку.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="234"/>
@@ -3668,7 +3668,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="67"/>
         <location filename="../statusbar.h" line="180"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>Няма прамых злучэнняў. Гэта можа сведчыць аб праблемах канфігурацыі сеткі.</translation>
+        <translation>Няма простых злучэнняў. Гэта можа сведчыць пра праблемы канфігурацыі сеткі.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="95"/>
@@ -3958,7 +3958,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="255"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Суадносіны</translation>
+        <translation>Стасунак</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="256"/>
@@ -3975,7 +3975,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="258"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Дададзены</translation>
+        <translation>Калі дададзены</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="259"/>
@@ -4383,7 +4383,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="661"/>
         <source>Limit share ratio...</source>
-        <translation>Абмежаваць суадносіны раздачы...</translation>
+        <translation>Абмежаваць стасунак раздачы...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="663"/>
@@ -4398,7 +4398,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="667"/>
         <source>Open destination folder</source>
-        <translation>Адкрыць тэчку прызначэння</translation>
+        <translation>Адкрыць каталог прызначэння</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="669"/>
@@ -4482,12 +4482,12 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Абмежаванне суадносінаў раздача/сцягванне торэнта</translation>
+        <translation>Абмежаванне стасунку раздача/сцягванне торэнта</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Выкарыстоўваць агульнае абмежаванне суадносін</translation>
+        <translation>Выкарыстоўваць агульнае абмежаванне стасунку</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
@@ -4499,12 +4499,12 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Зняць абмежаванне суадносін</translation>
+        <translation>Зняць абмежаванне стасунку</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Абмежаваць суадносіны як</translation>
+        <translation>Абмежаваць стасунак як</translation>
     </message>
 </context>
 <context>
@@ -4877,7 +4877,7 @@ Please install it manually.</source>
     <message>
         <location filename="../searchengine/engineselect.ui" line="17"/>
         <source>Search plugins</source>
-        <translation>Пошукавыя убудовы</translation>
+        <translation>Пошукавыя ўбудовы</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="30"/>
@@ -4898,7 +4898,7 @@ Please install it manually.</source>
         <location filename="../searchengine/engineselect.ui" line="60"/>
         <location filename="../searchengine/engineselect.ui" line="119"/>
         <source>Enabled</source>
-        <translation>Уключаны</translation>
+        <translation>Задзейнічана</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="78"/>
@@ -5005,7 +5005,7 @@ However, those plugins were disabled.</source>
         <location filename="../searchengine/engineselectdlg.cpp" line="448"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="455"/>
         <source>Search plugin update</source>
-        <translation>Абнаўленне пошукавай убудовы</translation>
+        <translation>Абнаўленне пошукавых убудоваў</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="427"/>
