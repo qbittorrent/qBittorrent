@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="gl_ES">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="gl" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -14,36 +12,21 @@
         <translation>Sobre</translation>
     </message>
     <message utf8="true">
+        <location filename="../about.ui" line="105"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Un cliente Bittorrent escrito en C++, basado en Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Páxina web:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Foro:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un cliente BitTorrent avanzado programado en C++, baseado en Qt4 toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Páxina web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un cliente BitTorrent avanzado programado en C++, baseado en Qt4 toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Páxina web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Seguimento de erros: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Foro: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {3C?} {4.0/?} {3.?} {40/?} {1&quot;?} {13p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {4 ?} {2006-2013 ?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0000f?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="134"/>
@@ -67,23 +50,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../about.ui" line="318"/>
         <source>E-mail:</source>
         <translation>Correo-e:</translation>
-    </message>
-    <message utf8="true">
-        <location filename="../about.ui" line="105"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un cliente BitTorrent avanzado programado en C++, baseado en Qt4 toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Páxina web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Seguimento de erros: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Foro: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="268"/>
@@ -111,38 +77,6 @@ p, li { white-space: pre-wrap; }
         <translation>Esta versión de qBittorrent compilouse contra as seguintes bibliotecas:</translation>
     </message>
     <message>
-        <source>Qt:</source>
-        <translation type="obsolete">Qt:</translation>
-    </message>
-    <message>
-        <source>Boost:</source>
-        <translation type="obsolete">Intensificador:</translation>
-    </message>
-    <message>
-        <source>Libtorrent:</source>
-        <translation type="obsolete">Libtorrent:</translation>
-    </message>
-    <message>
-        <source>Christophe Dumez</source>
-        <translation type="obsolete">Christophe Dumez</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Un cliente BitTorrent avanzado programado en C++, baseado en Qt4 toolkit e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Páxina web: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Seguimento de erros: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Foro: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../about.ui" line="190"/>
         <source>France</source>
         <translation>Francia</translation>
@@ -158,30 +92,6 @@ p, li { white-space: pre-wrap; }
         <translation>Licenza</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation type="obsolete">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Un cliente Bittorrent escrito en C++, basado en Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;e libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Dereitos de autor ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Páxina web:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Foro:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>chris@qbittorrent.org</source>
-        <translation type="obsolete">chris@qbittorrent.org</translation>
-    </message>
-    <message>
         <location filename="../about.ui" line="371"/>
         <source>Thanks to</source>
         <translation>Grazas a</translation>
@@ -189,10 +99,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Diálogo</translation>
-    </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
@@ -207,10 +113,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../addnewtorrentdialog.ui" line="55"/>
         <source>Never show again</source>
         <translation>Non mostrar de novo</translation>
-    </message>
-    <message utf8="true">
-        <source>▼</source>
-        <translation type="obsolete">▼</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="72"/>
@@ -376,14 +278,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <source>Property</source>
-        <translation type="obsolete">Propiedade</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="184"/>
         <source>Disk write cache size</source>
         <translation>Tamaño da caché de escritura no disco</translation>
@@ -439,7 +333,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translatorcomment>segundos</translatorcomment>
         <translation> s</translation>
     </message>
     <message>
@@ -499,10 +392,6 @@ p, li { white-space: pre-wrap; }
         <translation>Mostrar as notificacións na pantalla</translation>
     </message>
     <message>
-        <source>Display program notification balloons</source>
-        <translation type="obsolete">Mostrar as notificacións do programa</translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="257"/>
         <source>Enable embedded tracker</source>
         <translation>Activar o localizador integrado</translation>
@@ -531,10 +420,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ignorar os límites de transferencia na rede local</translation>
-    </message>
-    <message>
-        <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="obsolete">Incluír a sobrecarga TCP/IP nos límites da transferencia</translation>
     </message>
 </context>
 <context>
@@ -585,10 +470,6 @@ p, li { white-space: pre-wrap; }
         <translation>Exportar...</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.ui" line="233"/>
         <source>Assign label:</source>
         <translation>Asignar etiqueta:</translation>
@@ -622,10 +503,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/automatedrssdownloader.cpp" line="312"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Escriba o nome da regra de descarga nova.</translation>
-    </message>
-    <message>
-        <source>Please type the name of the new download rule-&gt;</source>
-        <translation type="obsolete">Escriba o nome da nova regra de descarga-&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="316"/>
@@ -710,14 +587,6 @@ p, li { white-space: pre-wrap; }
         <translation>Produciuse un fallo ao importar o ficheiro de regras seleccionado</translation>
     </message>
     <message>
-        <source>Add new rule-&gt;..</source>
-        <translation type="obsolete">Engadir regra nova-&gt;</translation>
-    </message>
-    <message>
-        <source>Rename rule-&gt;..</source>
-        <translation type="obsolete">Cambiar o nome da regra-&gt;</translation>
-    </message>
-    <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="393"/>
         <source>Add new rule...</source>
         <translation>Engadir unha regra nova...</translation>
@@ -784,7 +653,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>As chaves comúns para as cookies son &apos;%1&apos;, &apos;%2&apos;.
 Debería obter esta información nas preferencias do navegador.</translation>
@@ -792,10 +661,6 @@ Debería obter esta información nas preferencias do navegador.</translation>
 </context>
 <context>
     <name>DNSUpdater</name>
-    <message>
-        <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="obsolete">O DNS dinámico actualizouse correctamente.</translation>
-    </message>
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
@@ -967,49 +832,6 @@ Debería obter esta información nas preferencias do navegador.</translation>
     </message>
 </context>
 <context>
-    <name>EventManager</name>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Funcionando</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Actualizando...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Inactivo</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Aínda sen contactar</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation type="obsolete">esta sesión</translation>
-    </message>
-    <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation type="obsolete">/s</translation>
-    </message>
-    <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="obsolete">sementado durante %1</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation type="obsolete">%1 max</translation>
-    </message>
-    <message>
-        <source>%1/s</source>
-        <comment>e.g. 120 KiB/s</comment>
-        <translation type="obsolete">%1/s</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLog</name>
     <message>
         <location filename="../executionlog.ui" line="27"/>
@@ -1070,16 +892,6 @@ Debería obter esta información nas preferencias do navegador.</translation>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>A súa IP foi bloqueada despois de varios fallos de autenticación.</translation>
     </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">D: %1/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">E: %1/s - T: %2</translation>
-    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -1097,10 +909,6 @@ Debería obter esta información nas preferencias do navegador.</translation>
         <location filename="../webui/httpserver.cpp" line="112"/>
         <source>Help</source>
         <translation>Axuda</translation>
-    </message>
-    <message>
-        <source>Delete from HD</source>
-        <translation type="obsolete">Eliminar do disco</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="113"/>
@@ -1485,10 +1293,6 @@ Non se mostrarán máis avisos.</translation>
         <translation>Bloquear o qBittorrent</translation>
     </message>
     <message>
-        <source>Ctrl+L</source>
-        <translation type="obsolete">Ctrl+L</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="301"/>
         <source>Import existing torrent...</source>
         <translation>Importar un torrent existente...</translation>
@@ -1528,11 +1332,6 @@ Non se mostrarán máis avisos.</translation>
         <location filename="../mainwindow.ui" line="233"/>
         <source>Increase priority</source>
         <translation>Aumentar a prioridade</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="146"/>
@@ -1625,26 +1424,6 @@ Desexa asociar o qBittorrent aos ficheiros torrent e ás ligazóns Magnet?</tran
  Reason: disk is full.</comment>
         <translation>Produciuse un erro de E/S no torrent %1
 Razón: %2</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="604"/>
@@ -1748,10 +1527,6 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <translation>Os axustes gardáronse correctamente.</translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="1133"/>
         <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
@@ -1764,11 +1539,6 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vel. de envío: %1 KiB/s</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (D: %2/s, E: %3/s)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1332"/>
@@ -1948,11 +1718,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
 <context>
     <name>Preferences</name>
     <message>
-        <source>UI</source>
-        <extracomment>User Interface</extracomment>
-        <translation type="obsolete">Interface</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="93"/>
         <source>Downloads</source>
         <translation>Descargas</translation>
@@ -1978,21 +1743,9 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Avanzado</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation type="obsolete">Idioma:</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="224"/>
         <source>(Requires restart)</source>
         <translation>(Precisa reiniciar)</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">Estilo visual:</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="obsolete">Lista de transferencias</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="258"/>
@@ -2013,8 +1766,9 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Sen acción</translation>
     </message>
     <message>
-        <source>File system</source>
-        <translation type="obsolete">Sistema de ficheiros</translation>
+        <location filename="../preferences/options.ui" line="685"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation>Anexar a extensión !qB aos nomes dos ficheiros incompletos</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="788"/>
@@ -2035,11 +1789,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1035"/>
-        <source>Listening Port</source>
-        <translation>Porto de escoita</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1107"/>
         <source>Connections Limits</source>
         <translation>Límites da conexión</translation>
@@ -2050,9 +1799,29 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Servidor proxy</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1625"/>
-        <source>Enable bandwidth management (uTP)</source>
-        <translation>Activar a xestión do largo de banda (uTP)</translation>
+        <location filename="../preferences/options.ui" line="1517"/>
+        <source>Global Rate Limits</source>
+        <translation>Límites globais de velocidade</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1635"/>
+        <source>Apply rate limit to uTP connections</source>
+        <translation>Aplicar o límite de velocidade ás conexións uTP</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1642"/>
+        <source>Apply rate limit to transport overhead</source>
+        <translation>Aplicar os límites de velocidade ás sobrecargas do transporte</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1655"/>
+        <source>Alternative Global Rate Limits</source>
+        <translation>Límites alternativos globais de velocidade </translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1761"/>
+        <source>Schedule the use of alternative rate limits</source>
+        <translation>Programar o uso de límites alternativos de velocidade</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2021"/>
@@ -2080,8 +1849,9 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Desactivar o cifrado</translation>
     </message>
     <message>
-        <source>Torrent queueing</source>
-        <translation type="obsolete">Colocar na cola</translation>
+        <location filename="../preferences/options.ui" line="2083"/>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Máis información&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2126"/>
@@ -2120,10 +1890,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Mostrar o contido do torrent e algunhas opcións</translation>
     </message>
     <message>
-        <source>Listening port</source>
-        <translation type="obsolete">Escoitando o porto</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1043"/>
         <source>Port used for incoming connections:</source>
         <translation>Porto usado para as conexións entrantes:</translation>
@@ -2132,10 +1898,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../preferences/options.ui" line="1063"/>
         <source>Random</source>
         <translation>Aleatorio</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">Límite de conexións</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1113"/>
@@ -2173,17 +1935,9 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <source>Global speed limits</source>
-        <translation type="obsolete">Límites globais de velocidade</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="755"/>
         <source>Remove folder</source>
         <translation>Eliminar o cartafol</translation>
-    </message>
-    <message>
-        <source>Alternative global speed limits</source>
-        <translation type="obsolete">Límites alternativos globais de velocidade </translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1802"/>
@@ -2238,14 +1992,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Opcións</translation>
     </message>
     <message>
-        <source>User Interface</source>
-        <translation type="obsolete">Interface de usuario</translation>
-    </message>
-    <message>
-        <source>Visual Appearance</source>
-        <translation type="obsolete">Aparencia visual</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="274"/>
         <source>Action on double-click</source>
         <translation>Acción co dobre clic</translation>
@@ -2280,14 +2026,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
         <translation>Iniciar o qBittorrent minimizado</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent icon in notification area</source>
-        <translation type="obsolete">Mostrar a icona do qBittorrent na área de notificación</translation>
-    </message>
-    <message>
-        <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="obsolete">Usar unha icona monocroma na bandexa do sistema (precisa reiniciar)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="399"/>
@@ -2402,10 +2140,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Manter os torrents incompletos en:</translation>
     </message>
     <message>
-        <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="obsolete">Anexar a extensión !qB aos nomes dos ficheiros incompletos</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="692"/>
         <source>Automatically add torrents from:</source>
         <translation>Engadir automaticamente os torrents desde:</translation>
@@ -2446,6 +2180,16 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Executar un programa externo ao rematar o torrent</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="1035"/>
+        <source>Listening Port</source>
+        <translation>Porto de escoita</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1085"/>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation>Usar un porto UPnP / NAT-PMP para reencamiñar desde o router</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="1095"/>
         <source>Use different port on each startup</source>
         <translation>Usar un porto distinto en cada inicio</translation>
@@ -2453,7 +2197,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1221"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo global de slots de envío:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1356"/>
@@ -2466,113 +2210,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Usar o proxy para conexións cos pares</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1517"/>
-        <source>Global Rate Limits</source>
-        <translation>Límites globais de velocidade</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1635"/>
-        <source>Apply rate limit to uTP connections</source>
-        <translation>Aplicar o límite de velocidade ás conexións uTP</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1642"/>
-        <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os límites de velocidade ás sobrecargas do transporte</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1655"/>
-        <source>Alternative Global Rate Limits</source>
-        <translation>Límites alternativos globais de velocidade </translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1761"/>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation>Programar o uso de límites alternativos de velocidade</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2076"/>
-        <source>Enable anonymous mode</source>
-        <translation>Activar o modo anónimo</translation>
-    </message>
-    <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Máis información&lt;/a&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2225"/>
-        <source>Do not count slow torrents in these limits</source>
-        <translation>Non ter en conta os torrents lentos nestes límites</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2402"/>
-        <source>Use HTTPS instead of HTTP</source>
-        <translation>Usar HTTPS no canto de HTTP</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2445"/>
-        <source>Import SSL Certificate</source>
-        <translation>Importar o certificado SSL</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2498"/>
-        <source>Import SSL Key</source>
-        <translation>Importar a chave SSL</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2433"/>
-        <source>Certificate:</source>
-        <translation>Certificado:</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2083"/>
-        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Máis información&lt;/a&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2486"/>
-        <source>Key:</source>
-        <translation>Chave:</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2520"/>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Información sobre certificados&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2589"/>
-        <source>Update my dynamic domain name</source>
-        <translation>Actualizar o nome do dominio dinámico</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2601"/>
-        <source>Service:</source>
-        <translation>Servizo:</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2624"/>
-        <source>Register</source>
-        <translation>Rexistro</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2633"/>
-        <source>Domain name:</source>
-        <translation>Nome do dominio:</translation>
-    </message>
-    <message>
-        <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="obsolete">Usar %f para pasar a ruta do torrent a parámetros</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1085"/>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Usar un porto UPnP / NAT-PMP para reencamiñar desde o router</translation>
-    </message>
-    <message>
-        <source>Proxy server</source>
-        <translation type="obsolete">Servidor proxy</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1431"/>
         <source>IP Filtering</source>
         <translation>Filtrado de IPs</translation>
@@ -2583,8 +2220,9 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Recargar o filtro</translation>
     </message>
     <message>
-        <source>Schedule the use of alternative speed limits</source>
-        <translation type="obsolete">Programar o uso de límites alternativos de velocidade</translation>
+        <location filename="../preferences/options.ui" line="1625"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation>Activar a xestión do largo de banda (uTP)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1778"/>
@@ -2623,8 +2261,14 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Buscar pares na súa rede local</translation>
     </message>
     <message>
-        <source>Share ratio limiting</source>
-        <translation type="obsolete">Limitación da taxa de compartición</translation>
+        <location filename="../preferences/options.ui" line="2076"/>
+        <source>Enable anonymous mode</source>
+        <translation>Activar o modo anónimo</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2225"/>
+        <source>Do not count slow torrents in these limits</source>
+        <translation>Non ter en conta os torrents lentos nestes límites</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2246"/>
@@ -2652,9 +2296,59 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Usar un porto UPnP / NAT-PMP para reencamiñar desde o router</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="2402"/>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>Usar HTTPS no canto de HTTP</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2445"/>
+        <source>Import SSL Certificate</source>
+        <translation>Importar o certificado SSL</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2498"/>
+        <source>Import SSL Key</source>
+        <translation>Importar a chave SSL</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2433"/>
+        <source>Certificate:</source>
+        <translation>Certificado:</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2486"/>
+        <source>Key:</source>
+        <translation>Chave:</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2520"/>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Información sobre certificados&lt;/a&gt;</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="2565"/>
         <source>Bypass authentication for localhost</source>
         <translation>Omitir a autenticación no localhost</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2589"/>
+        <source>Update my dynamic domain name</source>
+        <translation>Actualizar o nome do dominio dinámico</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2601"/>
+        <source>Service:</source>
+        <translation>Servizo:</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2624"/>
+        <source>Register</source>
+        <translation>Rexistro</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2633"/>
+        <source>Domain name:</source>
+        <translation>Nome do dominio:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1276"/>
@@ -2683,11 +2377,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../preferences/options.ui" line="2533"/>
         <source>Authentication</source>
         <translation>Autenticación</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="685"/>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation>Anexar a extensión !qB aos nomes dos ficheiros incompletos</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="939"/>
@@ -2729,10 +2418,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../preferences/options.ui" line="1443"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Ruta do filtro (.dat, .p2p, .p2b):</translation>
-    </message>
-    <message>
-        <source>HTTP Server</source>
-        <translation type="obsolete">Servidor HTTP</translation>
     </message>
 </context>
 <context>
@@ -3090,10 +2775,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <source>Web seed URL:</source>
         <translation>URL da semente web:</translation>
     </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Seleccionar unha ruta onde gardar</translation>
-    </message>
 </context>
 <context>
     <name>QBtSession</name>
@@ -3214,13 +2895,13 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="827"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eliminouse da lista de transferencias e do disco duro.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eliminouse da lista de transferencias.</translation>
     </message>
     <message>
@@ -3234,14 +2915,14 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1078"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1080"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos;xa está na lista de descargas.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1205"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1210"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>Retomouse &apos;%1&apos; (continuación rápida)</translation>
     </message>
     <message>
@@ -3266,11 +2947,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <translation>Analizouse correctamente o filtro IP indicado: aplicáronse %1 regras.</translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Analizouse correctamente o filtro IP indicado: aplicáronse %1 regras.</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2846"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Erro: produciuse un fallo ao analizar o filtro IP indicado.</translation>
@@ -3280,7 +2956,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1212"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>Engadiuse %1 á lista de descargas.</translation>
     </message>
     <message>
@@ -3303,7 +2979,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1051"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Non foi posíbel decodificar o ficheiro torrent: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3343,10 +3019,6 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>A interface indicada para a rede non é válida: %1</translation>
-    </message>
-    <message>
-        <source>Trying any other network interface available instead.</source>
-        <translation type="obsolete">Probando outra interface de rede dispoñíbel.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
@@ -3441,7 +3113,7 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2669"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Descargando &apos;%1&apos;, espere...</translation>
     </message>
 </context>
@@ -3484,21 +3156,13 @@ Desexa actualizar o qBittorrent a esta versión %1?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(dobre-clic para descargar)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Article title</source>
-        <translation type="obsolete">Título do artigo</translation>
-    </message>
-    <message>
-        <source>Feed URL</source>
-        <translation type="obsolete">Url da fonte</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="158"/>
@@ -3610,19 +3274,6 @@ p, li { white-space: pre-wrap; }
         <translation>Cartafol novo</translation>
     </message>
     <message>
-        <source>Overwrite attempt</source>
-        <translation type="obsolete">Intento de sobrescritura</translation>
-    </message>
-    <message>
-        <source>You cannot overwrite %1 item.</source>
-        <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="obsolete">Non pode sobrescribir %1.</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>This rss feed is already in the list.</source>
         <translation>A fonte rss xa está na lista.</translation>
@@ -3671,13 +3322,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rss_imp.cpp" line="607"/>
         <source>Unread</source>
         <translation>Sen ler</translation>
-    </message>
-</context>
-<context>
-    <name>RssArticle</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Non hai unha descrición dispoñíbel</translation>
     </message>
 </context>
 <context>
@@ -3787,34 +3431,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>SearchEngine</name>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Cortar</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Copiar</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Pegar</translation>
-    </message>
-    <message>
-        <source>Clear field</source>
-        <translation type="obsolete">Limpar o campo</translation>
-    </message>
-    <message>
-        <source>Clear completion history</source>
-        <translation type="obsolete">Limpar o historial completo</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Confirmación</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
-        <translation type="obsolete">Está seguro que desexa limpar o historial?</translation>
-    </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
@@ -3970,16 +3586,6 @@ Instálea manualmente.</translation>
         <translation>Non hai conexións directas. Isto pode significar que hai problemas na configuración da rede.</translation>
     </message>
     <message>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">D: %1 B/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">E: %1 B/s - T: %2</translation>
-    </message>
-    <message>
         <location filename="../statusbar.h" line="95"/>
         <location filename="../statusbar.h" line="187"/>
         <source>DHT: %1 nodes</source>
@@ -4019,16 +3625,6 @@ Instálea manualmente.</translation>
         <translation>%1/s</translation>
     </message>
     <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">D: %1/s - T: %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">E: %1/s - T: %2</translation>
-    </message>
-    <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to alternative speed limits</source>
         <translation>Prema para cambiar aos límites alternativos de velocidade</translation>
@@ -4037,14 +3633,6 @@ Instálea manualmente.</translation>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to regular speed limits</source>
         <translation>Prema para cambiar aos límites normais de velocidade</translation>
-    </message>
-    <message>
-        <source>Click to disable alternative speed limits</source>
-        <translation type="obsolete">Prema para desactivar os límites alternativos de velocidade</translation>
-    </message>
-    <message>
-        <source>Click to enable alternative speed limits</source>
-        <translation type="obsolete">Prema para activar os limites alternativos de velocidade</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="220"/>
@@ -4133,25 +3721,6 @@ Instálea manualmente.</translation>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent was created successfully:</source>
         <translation>O torrent creouse correctamente:</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentFilesModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nome</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Tamaño</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Progreso</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Prioridade</translation>
     </message>
 </context>
 <context>
@@ -4335,7 +3904,6 @@ Instálea manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translatorcomment>Cantidade de datos enviados p.e en MB</translatorcomment>
         <translation>Cantidade enviada</translation>
     </message>
     <message>
@@ -4354,7 +3922,7 @@ Instálea manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gardar a ruta</translation>
     </message>
 </context>
 <context>
@@ -4378,18 +3946,6 @@ Instálea manualmente.</translation>
         <location filename="../properties/trackerlist.cpp" line="67"/>
         <source>Message</source>
         <translation>Mensaxe</translation>
-    </message>
-    <message>
-        <source>[DHT]</source>
-        <translation type="obsolete">[DHT]</translation>
-    </message>
-    <message>
-        <source>[PeX]</source>
-        <translation type="obsolete">[PeX]</translation>
-    </message>
-    <message>
-        <source>[LSD]</source>
-        <translation type="obsolete">[LSD]</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="194"/>
@@ -4471,10 +4027,6 @@ Instálea manualmente.</translation>
         <location filename="../properties/trackerlist.cpp" line="418"/>
         <source>Remove tracker</source>
         <translation>Eliminar o localizador</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="obsolete">Forzar a publicación</translation>
     </message>
 </context>
 <context>
@@ -4944,10 +4496,6 @@ Instálea manualmente.</translation>
 <context>
     <name>about</name>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../about_imp.h" line="64"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation>Desexo dar as grazas ás persoas seguintes que como voluntarios traduciron o qBittorrent:</translation>
@@ -4974,89 +4522,6 @@ Instálea manualmente.</translation>
         <location filename="../properties/peer.ui" line="59"/>
         <source>Port</source>
         <translation>Porto</translation>
-    </message>
-</context>
-<context>
-    <name>addTorrentDialog</name>
-    <message>
-        <source>Torrent addition dialog</source>
-        <translation type="obsolete">Diálogo de adición de torrents</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Ruta:</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="obsolete">Estabelecer como ruta predefinida para gardar</translation>
-    </message>
-    <message>
-        <source>Torrent size:</source>
-        <translation type="obsolete">Tamaño do torrent:</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Descoñecido</translation>
-    </message>
-    <message>
-        <source>Free disk space:</source>
-        <translation type="obsolete">Espazo libre no disco:</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation type="obsolete">Etiqueta:</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation type="obsolete">Contido do torrent:</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Seleccionar todo</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation type="obsolete">Non seleccionar nada</translation>
-    </message>
-    <message>
-        <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Descargar en orde secuencial (máis lento pero mellor para previsualizar)</translation>
-    </message>
-    <message>
-        <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Ignorar a comprobación do ficheiro e sementar inmediatamente</translation>
-    </message>
-    <message>
-        <source>Add to download list in paused state</source>
-        <translation type="obsolete">Engadir en estado pausado á lista de descargas</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Engadir</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Normal</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation type="obsolete">Alta</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation type="obsolete">Máxima</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation type="obsolete">Non descargar</translation>
     </message>
 </context>
 <context>
@@ -5281,101 +4746,6 @@ Instálea manualmente.</translation>
         <location filename="../downloadfromurldlg.h" line="78"/>
         <source>Please type at least one URL.</source>
         <translation>Escriba polo menos un URL.</translation>
-    </message>
-</context>
-<context>
-    <name>downloadThread</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">Erro de E/S</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Non se encontrou o nome do servidor remoto (nome incorrecto)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="obsolete">Cancelouse a operación</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">O servidor remoto pechou a conexión prematuramente, antes de que se recibise e procesase a resposta completa</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Excedeuse o tempo para conectar co servidor remoto</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">Produciuse un fallo no saúdo do SSL/TLS</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="obsolete">O servidor remoto rexeitou a conexion</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">O servidor proxy rexeitou a conexión</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">O servidor proxy pechou a conexión prematuramente</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="obsolete">Non se encontrou ou nome do servidor proxy</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Excedeuse o tempo para conectar co proxy ou este non respondeu en tempo á solicitude enviada</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">O proxy require autenticación para admitir a solicitude pero non aceptou ningunha das credenciais ofrecidas</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Denegouse o acceso ao contido remoto (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Non se permite a operación solicitada no contido remoto</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Non se encontrou o contido remoto no servidor (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">O servidor remoto require autenticacion para servir o contido pero non aceptou as credenciais enviadas</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">A API de acceso á rede non pode responder á solicitude porque o protocolo é descoñecido</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">A operación solicitada é incorrecta para este protocolo</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Detectouse un erro descoñecido relacionado coa rede</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Detectouse un erro descoñecido relacionado co proxy</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Detectouse un erro descoñecido relacionado co contido remoto</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Detectouse unha interrupción no protocolo</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">Erro descoñecido</translation>
     </message>
 </context>
 <context>
@@ -5627,10 +4997,6 @@ Con todo, eses plugins desactiváronse.</translation>
         <translation>/s</translation>
     </message>
     <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Descargas</translation>
-    </message>
-    <message>
         <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
@@ -5652,10 +5018,6 @@ Con todo, eses plugins desactiváronse.</translation>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>O qBittorrent vai apagar o computador porque remataron todas as descargas.</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Descoñecido</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="382"/>
@@ -5829,15 +5191,6 @@ Con todo, eses plugins desactiváronse.</translation>
         <source>This is not a valid SSL certificate.</source>
         <translation>Este non é un certificado SSL correcto.</translation>
     </message>
-    <message>
-        <source>Succesfully refreshed</source>
-        <translation type="obsolete">Actualizado correctamente</translation>
-    </message>
-    <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Analizouse correctamente o filtro IP indicado: aplicáronse %1 regras.</translation>
-    </message>
 </context>
 <context>
     <name>pluginSourceDlg</name>
@@ -5922,107 +5275,6 @@ Con todo, eses plugins desactiváronse.</translation>
         <location filename="../searchengine/search.ui" line="140"/>
         <source>Search engines...</source>
         <translation>Motores de busca...</translation>
-    </message>
-</context>
-<context>
-    <name>torrentAdditionDialog</name>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Non é posíbel decodificar a ligazón magnet:</translation>
-    </message>
-    <message>
-        <source>Magnet Link</source>
-        <translation type="obsolete">Ligazón magnet</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file:</source>
-        <translation type="obsolete">Non foi posíbel decodificar o ficheiro torrent:</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="obsolete">Cambiar o nome...</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Prioridade</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">Cambiar o nome do ficheiro</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Nome novo:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">Non foi posíbel cambiar o nome do ficheiro</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">Este nome de ficheiro contén caracteres prohibidos, escolla un nome diferente.</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">Este nome de ficheiro xa existe neste cartafol. Use un nome diferente.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="obsolete">Non foi posíbel cambiar o nome do cartafol</translation>
-    </message>
-    <message>
-        <source>(%1 left after torrent download)</source>
-        <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="obsolete">(quedarán %1 despois da descarga do ficheiro)</translation>
-    </message>
-    <message>
-        <source>(%1 more are required to download)</source>
-        <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="obsolete">(Precísanse %1 máis para poder facer a descarga)</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Seleccionar a ruta onde gardar</translation>
-    </message>
-    <message>
-        <source>Empty save path</source>
-        <translation type="obsolete">A ruta está baleira</translation>
-    </message>
-    <message>
-        <source>Please enter a save path</source>
-        <translation type="obsolete">Introduza unha ruta onde gardar</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Produciuse un erro na creación da ruta onde gardar</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Non foi posíbel crear a ruta onde gardar</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation type="obsolete">O nome da etiqueta non é correcto</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="obsolete">Non use caracteres especiais no nome da etiqueta.</translation>
-    </message>
-    <message>
-        <source>Seeding mode error</source>
-        <translation type="obsolete">Produciuse un erro no modo de sementeira</translation>
-    </message>
-    <message>
-        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Escolleu ignorar a comprobación do ficheiro. Con todo, os ficheiros locais non parecen existir no cartafol de destino actual. Desactive esta función ou actualice a ruta onde gardar.</translation>
-    </message>
-    <message>
-        <source>Invalid file selection</source>
-        <translation type="obsolete">A selección do ficheiro é incorrecta</translation>
-    </message>
-    <message>
-        <source>You must select at least one file in the torrent</source>
-        <translation type="obsolete">Debe seleccionar, polo menos, un dos ficheiros do torrent</translation>
     </message>
 </context>
 </TS>
