@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="hy_AM">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hy" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -14,37 +12,15 @@
         <translation>Ծրագրի մասին</translation>
     </message>
     <message utf8="true">
+        <location filename="../about.ui" line="105"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2011 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Bug Tracker:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Bittorrent ծրագիրը գրվել է C++-ով՝ հիմնված Qt4 toolkit-ի &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;և libtorrent-rasterbarվրա &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Վեբ կայքը.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Սխալների կայքը.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Ֆորումը.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; text-decoration: underline; color:#0057ae;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Այս BitTorrent ծրագիրը գրվել է C++-ով՝ հիմնված Qt4 գործիքների վրա և libtorrent-rasterbar-ի հիման վրա &lt;br /&gt;&lt;br /&gt;Հեղ. իրավունքը ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Վեբ կայքը. &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Ֆորումը. &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent Freenode-ում&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {3C?} {4.0/?} {3.?} {40/?} {1&quot;?} {13p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {4 ?} {2006-2013 ?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0000f?} {0000f?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.ui" line="134"/>
@@ -69,31 +45,20 @@ p, li { white-space: pre-wrap; }
         <source>E-mail:</source>
         <translation>էլ. հասցե.</translation>
     </message>
-    <message utf8="true">
-        <location filename="../about.ui" line="105"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.ui" line="414"/>
@@ -104,38 +69,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../about.ui" line="426"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
         <translation>qBittorrent-ի այս տարբերակը կառուցվել է հետևյալ շտեմարաններով.</translation>
-    </message>
-    <message>
-        <source>Qt:</source>
-        <translation type="obsolete">Qt:</translation>
-    </message>
-    <message>
-        <source>Boost:</source>
-        <translation type="obsolete">Boost:</translation>
-    </message>
-    <message>
-        <source>Libtorrent:</source>
-        <translation type="obsolete">Libtorrent:</translation>
-    </message>
-    <message>
-        <source>Christophe Dumez</source>
-        <translation type="obsolete">Christophe Dumez</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Այս BitTorrent ծրագիրը գրվել է C++-ով՝ հիմնված Qt4 գործիքների վրա և libtorrent-rasterbar-ի հիման վրա &lt;br /&gt;&lt;br /&gt;Հեղ. իրավունքը ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Վեբ կայքը. &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Ֆորումը. &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent Freenode-ում&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../about.ui" line="190"/>
@@ -153,30 +86,6 @@ p, li { white-space: pre-wrap; }
         <translation>Լիցենզիան</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation type="obsolete">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;A Bittorrent client programmed in C++, based on Qt4 toolkit &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Home Page:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Forum:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC:&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;Bittorrent ծրագիրը գրվել է C++-ով՝ հիմնված Qt4 toolkit-ի &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;և libtorrent-rasterbarվրա &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2010 Christophe Dumez&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Վեբ կայքը.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;Ֆորումը.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; text-decoration: underline;&quot;&gt;IRC-ն.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;;&quot;&gt; #qbittorrent on Freenode&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>chris@qbittorrent.org</source>
-        <translation type="obsolete">chris@qbittorrent.org</translation>
-    </message>
-    <message>
         <location filename="../about.ui" line="371"/>
         <source>Thanks to</source>
         <translation>Շնորհակալ ենք</translation>
@@ -184,10 +93,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Պատուհան</translation>
-    </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
@@ -367,14 +272,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <source>Property</source>
-        <translation type="obsolete">Առաջ-ը</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Նիշը</translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="184"/>
         <source>Disk write cache size</source>
         <translation>Պնակը գրելու պահեստի չափը</translation>
@@ -424,18 +321,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="171"/>
         <source> (auto)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
         <source>Disk cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="217"/>
@@ -489,10 +386,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ցուցադրել ծրագիրը էկրանի տեղեկացումներում</translation>
     </message>
     <message>
-        <source>Display program notification balloons</source>
-        <translation type="obsolete">Ցուցադրել ծրագրի տեղեկացումների պատուհանները</translation>
-    </message>
-    <message>
         <location filename="../preferences/advancedsettings.h" line="257"/>
         <source>Enable embedded tracker</source>
         <translation>Միացնել ուղղորդիչի արգելումը</translation>
@@ -521,10 +414,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Անտեսել փոխանցումների սահ-ները լոկալ ցանցի համար</translation>
-    </message>
-    <message>
-        <source>Include TCP/IP overhead in transfer limits</source>
-        <translation type="obsolete">Ներառել TCP/IP վերադիր՝ փոխանցումների սահ-երում</translation>
     </message>
 </context>
 <context>
@@ -573,10 +462,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/automatedrssdownloader.ui" line="362"/>
         <source>Export...</source>
         <translation>Արտածել...</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">…</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="233"/>
@@ -742,21 +627,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ConsoleDlg</name>
-    <message>
-        <source>qBittorrent log viewer</source>
-        <translation type="obsolete">qBittorrent-ի մատյանի դիտում</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="obsolete">Գլխավորը</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="obsolete">Կողփված IP-ներ</translation>
-    </message>
-</context>
-<context>
     <name>CookiesDlg</name>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
@@ -777,7 +647,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Cookie-երի ընդհանուր բանալիներն են . &apos;%1&apos;, &apos;%2&apos;։
 Մանրամասները վեբ դիտարկիչի կարգավորումներում։</translation>
@@ -785,10 +655,6 @@ You should get this information from your Web browser preferences.</source>
 </context>
 <context>
     <name>DNSUpdater</name>
-    <message>
-        <source>Your dynamic DNS was successfuly updated.</source>
-        <translation type="obsolete">Ակտիվ DNS հաջողությամբ է թարմացվել։</translation>
-    </message>
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
@@ -961,49 +827,6 @@ You should get this information from your Web browser preferences.</source>
     </message>
 </context>
 <context>
-    <name>EventManager</name>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">Աշխատում է</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">Թարմացվում է...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">Չի աշխատում</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">Դեռ չի կապնվել</translation>
-    </message>
-    <message>
-        <source>this session</source>
-        <translation type="obsolete">այս շրջանում</translation>
-    </message>
-    <message>
-        <source>/s</source>
-        <comment>/second (i.e. per second)</comment>
-        <translation type="obsolete">/վ</translation>
-    </message>
-    <message>
-        <source>Seeded for %1</source>
-        <comment>e.g. Seeded for 3m10s</comment>
-        <translation type="obsolete">Փոխանցվել է՝ %1</translation>
-    </message>
-    <message>
-        <source>%1 max</source>
-        <comment>e.g. 10 max</comment>
-        <translation type="obsolete">Առավ. %1</translation>
-    </message>
-    <message>
-        <source>%1/s</source>
-        <comment>e.g. 120 KiB/s</comment>
-        <translation type="obsolete">%1/վ</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLog</name>
     <message>
         <location filename="../executionlog.ui" line="27"/>
@@ -1064,16 +887,6 @@ You should get this information from your Web browser preferences.</source>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Ձեր IP հասցեն արգելվել է՝ մի շարք անհաջող ներկայացումներից հետո։</translation>
     </message>
-    <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Բ. %1/վ - Ը. %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Փ. %1/վ - Ը. %2</translation>
-    </message>
 </context>
 <context>
     <name>HttpServer</name>
@@ -1091,10 +904,6 @@ You should get this information from your Web browser preferences.</source>
         <location filename="../webui/httpserver.cpp" line="112"/>
         <source>Help</source>
         <translation>Օգնություն</translation>
-    </message>
-    <message>
-        <source>Delete from HD</source>
-        <translation type="obsolete">Ջնջել HD-ից</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="113"/>
@@ -1225,7 +1034,7 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1284,7 +1093,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,10 +1124,6 @@ No further notices will be issued.</source>
         <translation>&amp;Տեսքը</translation>
     </message>
     <message>
-        <source>&amp;Add File...</source>
-        <translation type="obsolete">&amp;Ավելացնել ֆայլ...</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="151"/>
         <source>&amp;Options...</source>
         <translation>&amp;Ընտրանքներ...</translation>
@@ -1334,17 +1139,9 @@ No further notices will be issued.</source>
         <translation>Վ&amp;երսկսել բոլորը</translation>
     </message>
     <message>
-        <source>Add &amp;URL...</source>
-        <translation type="obsolete">Ավելացնել &amp;հղում...</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="190"/>
         <source>Torrent &amp;creator</source>
         <translation>Ստեղծել &amp;torrent</translation>
-    </message>
-    <message>
-        <source>Log viewer</source>
-        <translation type="obsolete">Դիտել մատյանը</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="244"/>
@@ -1378,11 +1175,6 @@ No further notices will be issued.</source>
         <translation>&amp;Մասին</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="64"/>
-        <source>Auto-Shutdown on downloads completion</source>
-        <translation>Անջատել՝ բեռնումները ավարտելուց հետո</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="138"/>
         <source>&amp;Add torrent file...</source>
         <translation>&amp;Ավելացնել torrent ֆայլ…</translation>
@@ -1404,56 +1196,9 @@ No further notices will be issued.</source>
         <translation>&amp;Ջնջել</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="185"/>
-        <source>Add &amp;link to torrent...</source>
-        <translation>Ավելացնել &amp;torrent-ի հղումը…</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="301"/>
-        <source>Import existing torrent...</source>
-        <translation>Ներմուծել առկա torrent…</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="322"/>
         <source>P&amp;ause All</source>
         <translation>Դ&amp;ադարեցնել բոլորը</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="330"/>
-        <source>Execution &amp;Log</source>
-        <translation>Բացառության &amp;ցանկը</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1375"/>
-        <source>Execution Log</source>
-        <translation>Բացառության ցանկը</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="341"/>
-        <source>Exit qBittorrent</source>
-        <translation>Ելք qBittorrent-ից</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="349"/>
-        <source>Suspend system</source>
-        <translation>Կանգնեցնել համակարգը</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="357"/>
-        <source>Shutdown system</source>
-        <translation>Անջատել համակարգիչը</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="365"/>
-        <source>Disabled</source>
-        <translation>Անջատված է</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1230"/>
-        <source>Show</source>
-        <translation>Ցուցադրել՛</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="180"/>
@@ -1461,12 +1206,14 @@ No further notices will be issued.</source>
         <translation>Ծրագրի &amp;կայքը</translation>
     </message>
     <message>
-        <source>Preview file</source>
-        <translation type="obsolete">Նախն. դիտում</translation>
+        <location filename="../mainwindow.ui" line="64"/>
+        <source>Auto-Shutdown on downloads completion</source>
+        <translation>Անջատել՝ բեռնումները ավարտելուց հետո</translation>
     </message>
     <message>
-        <source>Clear log</source>
-        <translation type="obsolete">Մաքրել մատյանը</translation>
+        <location filename="../mainwindow.ui" line="185"/>
+        <source>Add &amp;link to torrent...</source>
+        <translation>Ավելացնել &amp;torrent-ի հղումը…</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
@@ -1499,10 +1246,6 @@ No further notices will be issued.</source>
         <translation>Նշել փոխանցման գլոբալ սահ-փակում...</translation>
     </message>
     <message>
-        <source>&amp;Log viewer...</source>
-        <translation type="obsolete">&amp;Դիտել մատյանը...</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="277"/>
         <source>&amp;RSS reader</source>
         <translation>&amp;RSS ալիքներ</translation>
@@ -1513,8 +1256,30 @@ No further notices will be issued.</source>
         <translation>Փնտրման  &amp;տողը</translation>
     </message>
     <message>
-        <source>Shutdown computer when downloads complete</source>
-        <translation type="obsolete">Բեռնումները ավարտելուց հետո անջատել համակարգիչը</translation>
+        <location filename="../mainwindow.ui" line="341"/>
+        <source>Exit qBittorrent</source>
+        <translation>Ելք qBittorrent-ից</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="349"/>
+        <source>Suspend system</source>
+        <translation>Կանգնեցնել համակարգը</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="357"/>
+        <source>Shutdown system</source>
+        <translation>Անջատել համակարգիչը</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="365"/>
+        <source>Disabled</source>
+        <translation>Անջատված է</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="370"/>
+        <location filename="../mainwindow.cpp" line="1230"/>
+        <source>Show</source>
+        <translation>Ցուցադրել՛</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="290"/>
@@ -1523,12 +1288,9 @@ No further notices will be issued.</source>
         <translation>Կողփել  qBittorrent-ը</translation>
     </message>
     <message>
-        <source>Ctrl+L</source>
-        <translation type="obsolete">Ctrl+L</translation>
-    </message>
-    <message>
-        <source>Shutdown qBittorrent when downloads complete</source>
-        <translation type="obsolete">Բեռնումները ավարտելուց հետո փակել qBittorrent-ը</translation>
+        <location filename="../mainwindow.ui" line="301"/>
+        <source>Import existing torrent...</source>
+        <translation>Ներմուծել առկա torrent…</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="304"/>
@@ -1546,6 +1308,17 @@ No further notices will be issued.</source>
         <translation>Եթե qBittorrent-ը Ձեզ դուր եկավ, խնդրում ենք նվիրաբերել։</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="330"/>
+        <source>Execution &amp;Log</source>
+        <translation>Բացառության &amp;ցանկը</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="333"/>
+        <location filename="../mainwindow.cpp" line="1375"/>
+        <source>Execution Log</source>
+        <translation>Բացառության ցանկը</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="225"/>
         <source>Decrease priority</source>
         <translation>Իջեցնել առաջ-ը</translation>
@@ -1554,11 +1327,6 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="233"/>
         <source>Increase priority</source>
         <translation>Բարձրաց-ել առաջ-ը</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="146"/>
@@ -1651,26 +1419,6 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
  Reason: disk is full.</comment>
         <translation>Ն/Ա սխալ torrent-ի համար %1.
  Պատճառը. %2</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="604"/>
@@ -1774,10 +1522,6 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ընտրանքները հաջողությամբ պահպանվեցին։</translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="1133"/>
         <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
@@ -1790,11 +1534,6 @@ Are you sure you want to quit qBittorrent?</source>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Փ-ն արագ-ը. %1 Կբիթ/վ</translation>
-    </message>
-    <message>
-        <source>qBittorrent %1 (Down: %2/s, Up: %3/s)</source>
-        <comment>%1 is qBittorrent version</comment>
-        <translation type="obsolete">qBittorrent %1 (Բ. %2/վ, Փ. %3/վ)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1332"/>
@@ -1851,7 +1590,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="67"/>
@@ -1974,11 +1713,6 @@ Would you like to update qBittorrent to version %1?</source>
 <context>
     <name>Preferences</name>
     <message>
-        <source>UI</source>
-        <extracomment>User Interface</extracomment>
-        <translation type="obsolete">Արտացոլումը</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="93"/>
         <source>Downloads</source>
         <translation>Բեռնումներ</translation>
@@ -1994,10 +1728,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Արագությունը</translation>
     </message>
     <message>
-        <source>Bittorrent</source>
-        <translation type="obsolete">Bittorrent</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="137"/>
         <source>Web UI</source>
         <translation>Web UI</translation>
@@ -2008,21 +1738,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ընդլայնված</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation type="obsolete">Լեզուն.</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="224"/>
         <source>(Requires restart)</source>
         <translation>(Պահանջվում է վերագործարկում)</translation>
-    </message>
-    <message>
-        <source>Visual style:</source>
-        <translation type="obsolete">Տեսքը.</translation>
-    </message>
-    <message>
-        <source>Transfer list</source>
-        <translation type="obsolete">Փոխանցումերի ցանկը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="258"/>
@@ -2043,8 +1761,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Չկա գործողություն</translation>
     </message>
     <message>
-        <source>File system</source>
-        <translation type="obsolete">Ֆայլային համակարգը</translation>
+        <location filename="../preferences/options.ui" line="685"/>
+        <source>Append .!qB extension to incomplete files</source>
+        <translation>Կցել .!qB ընդլայոնւմը անավարտ ֆայլերի համար</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="788"/>
@@ -2065,11 +1784,6 @@ Would you like to update qBittorrent to version %1?</source>
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1035"/>
-        <source>Listening Port</source>
-        <translation>Մտնող դարպասը</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1107"/>
         <source>Connections Limits</source>
         <translation>Միացումների սահ-ում</translation>
@@ -2080,9 +1794,29 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Միջնորդը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1625"/>
-        <source>Enable bandwidth management (uTP)</source>
-        <translation>Միացնել սահմանափակումները (uTP)</translation>
+        <location filename="../preferences/options.ui" line="1517"/>
+        <source>Global Rate Limits</source>
+        <translation>Սահմանափակումները</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1635"/>
+        <source>Apply rate limit to uTP connections</source>
+        <translation>Կիրառել սահ-փակում uTP-ի համար</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1642"/>
+        <source>Apply rate limit to transport overhead</source>
+        <translation>Կիրառել սահ-փակում գերազանցելու դեպքում</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1655"/>
+        <source>Alternative Global Rate Limits</source>
+        <translation>Այլընտրանքային սահմանափակումներ</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1761"/>
+        <source>Schedule the use of alternative rate limits</source>
+        <translation>Այլընտրանքային սահ-փակումների պլանավորում</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2021"/>
@@ -2110,8 +1844,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Անջատել կոդավորումը</translation>
     </message>
     <message>
-        <source>Torrent queueing</source>
-        <translation type="obsolete">Torrent-երի հերթը</translation>
+        <location filename="../preferences/options.ui" line="2083"/>
+        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2126"/>
@@ -2134,13 +1869,20 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Երբ ավելացվում է torrent</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="79"/>
+        <location filename="../preferences/options.ui" line="82"/>
+        <source>Behavior</source>
+        <translation>Վարմունքը</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="188"/>
+        <source>Language</source>
+        <translation>Լեզուն</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="542"/>
         <source>Display torrent content and some options</source>
         <translation>Ցուցադրել torrent-ի պարունակությունը և այլ ընտրանքներ</translation>
-    </message>
-    <message>
-        <source>Listening port</source>
-        <translation type="obsolete">Դարպասը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1043"/>
@@ -2151,18 +1893,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="1063"/>
         <source>Random</source>
         <translation>Պատահական</translation>
-    </message>
-    <message>
-        <source>Enable UPnP port mapping</source>
-        <translation type="obsolete">Միացնել UPnP դարպասի պլան-ը</translation>
-    </message>
-    <message>
-        <source>Enable NAT-PMP port mapping</source>
-        <translation type="obsolete">Միացնել NAT-PMP դարպասի պլան-ը</translation>
-    </message>
-    <message>
-        <source>Connections limit</source>
-        <translation type="obsolete">Միացումների սահմանափակումներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1113"/>
@@ -2200,28 +1930,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Կբիթ/վ</translation>
     </message>
     <message>
-        <source>Global speed limits</source>
-        <translation type="obsolete">Արագության սահմանափակումներ</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="755"/>
         <source>Remove folder</source>
         <translation>Ջնջել թղթապանակը</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="79"/>
-        <location filename="../preferences/options.ui" line="82"/>
-        <source>Behavior</source>
-        <translation>Վարմունքը</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="188"/>
-        <source>Language</source>
-        <translation>Լեզուն</translation>
-    </message>
-    <message>
-        <source>Alternative global speed limits</source>
-        <translation type="obsolete">Արագության այլընտրանքային սահմանափակումներ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1802"/>
@@ -2245,18 +1956,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Հանգստյան օրեր</translation>
     </message>
     <message>
-        <source>Bittorrent features</source>
-        <translation type="obsolete">Bittorrent-ի հնարավորությունները</translation>
-    </message>
-    <message>
-        <source>Enable DHT network (decentralized)</source>
-        <translation type="obsolete">Միացնել DHT ցանցը</translation>
-    </message>
-    <message>
-        <source>Use a different port for DHT and Bittorrent</source>
-        <translation type="obsolete">Օգտագործել տարբեր դարպասներ DHT-ի և Bittorrent-ի համար</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1964"/>
         <source>DHT port:</source>
         <translation>DHT դարպասը.</translation>
@@ -2265,26 +1964,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="2005"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Փոխանակել  peer-երը համատեղելի Bittorrent ծրագրերի միջև (µTorrent, Vuze, ...)</translation>
-    </message>
-    <message>
-        <source>Enable Peer Exchange / PeX (requires restart)</source>
-        <translation type="obsolete">ՄԻացնել Peer-երի փոխանակումը / PeX (պահանջվում է վերամեկնարկում)</translation>
-    </message>
-    <message>
-        <source>Enable Local Peer Discovery</source>
-        <translation type="obsolete">Միացնել լոկալ Peer-երի որոնումը</translation>
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="obsolete">Միացված է</translation>
-    </message>
-    <message>
-        <source>Forced</source>
-        <translation type="obsolete">Հարկադիր</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="obsolete">Անջատված է</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1302"/>
@@ -2308,10 +1987,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ընտրանքներ</translation>
     </message>
     <message>
-        <source>Visual Appearance</source>
-        <translation type="obsolete">Տեսողականացում</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="274"/>
         <source>Action on double-click</source>
         <translation>Գործ. կրկնակի սեղմամբ</translation>
@@ -2320,10 +1995,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="283"/>
         <source>Downloading torrents:</source>
         <translation>Բեռնվում են torrent-ներ.</translation>
-    </message>
-    <message>
-        <source>Start / Stop</source>
-        <translation type="obsolete">Սկսել/Կանգնեցնել</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="305"/>
@@ -2350,14 +2021,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
         <translation>Բացել qBittorrent-ը թաքնված վիճակում</translation>
-    </message>
-    <message>
-        <source>Show qBittorrent icon in notification area</source>
-        <translation type="obsolete">Ցուցադրել qBittorrent-ի պատկերը իրազեկման գոտում</translation>
-    </message>
-    <message>
-        <source>Use monochrome system tray icon (requires restart)</source>
-        <translation type="obsolete">Օգտ. անգույն պատկեր՝էկրանի ներքևում (պահ. է վերագործարկում)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="399"/>
@@ -2408,7 +2071,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -2472,10 +2135,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Պահել չբեռնված torrent-ները՝</translation>
     </message>
     <message>
-        <source>Append .!qB extension to incomplete files&apos; names</source>
-        <translation type="obsolete">Կցել .!qB ընդլայնումը անավարտ ֆայլերի անուններին</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="692"/>
         <source>Automatically add torrents from:</source>
         <translation>Միանգամից ավելացնել torrent-ները՝</translation>
@@ -2488,7 +2147,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="837"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="893"/>
@@ -2516,14 +2175,24 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Torrent-ը բեռնելուց հետո բացել արտաքին ծրագրով</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="1035"/>
+        <source>Listening Port</source>
+        <translation>Մտնող դարպասը</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="1085"/>
+        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
+        <translation>Օգտագործել UPnP / NAT-PMP դարպասի փոխանցում ռոութերից</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="1095"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1221"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1356"/>
@@ -2536,108 +2205,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Օգտ. միջնորդը՝ peer միացումների համար</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1517"/>
-        <source>Global Rate Limits</source>
-        <translation>Սահմանափակումները</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1635"/>
-        <source>Apply rate limit to uTP connections</source>
-        <translation>Կիրառել սահ-փակում uTP-ի համար</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1642"/>
-        <source>Apply rate limit to transport overhead</source>
-        <translation>Կիրառել սահ-փակում գերազանցելու դեպքում</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1655"/>
-        <source>Alternative Global Rate Limits</source>
-        <translation>Այլընտրանքային սահմանափակումներ</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1761"/>
-        <source>Schedule the use of alternative rate limits</source>
-        <translation>Այլընտրանքային սահ-փակումների պլանավորում</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2076"/>
-        <source>Enable anonymous mode</source>
-        <translation>Միացնել անանուն եղանակը</translation>
-    </message>
-    <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Մանրամասն&lt;/a&gt;)</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2225"/>
-        <source>Do not count slow torrents in these limits</source>
-        <translation>Չհաշվել դանդաղ  torrent-ները այս սահ-մբ</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2402"/>
-        <source>Use HTTPS instead of HTTP</source>
-        <translation>Օգտ. HTTPS՝ HTTP-ի փոխարեն</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2445"/>
-        <source>Import SSL Certificate</source>
-        <translation>Ներմուծել SSL վավերագիր</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2498"/>
-        <source>Import SSL Key</source>
-        <translation>Ներմուծել SSL բանալի</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2433"/>
-        <source>Certificate:</source>
-        <translation>Վավերագիրը.</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2486"/>
-        <source>Key:</source>
-        <translation>Բանալին.</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2520"/>
-        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Ինֆո վավերագրի մասին&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2589"/>
-        <source>Update my dynamic domain name</source>
-        <translation>Թարմացնել ակտիվ տիրույթի անունը</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2601"/>
-        <source>Service:</source>
-        <translation>Սպասարկիչը.</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2624"/>
-        <source>Register</source>
-        <translation>Գրանցել</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2633"/>
-        <source>Domain name:</source>
-        <translation>Տիրույթի անունը.</translation>
-    </message>
-    <message>
-        <source>Use %f to pass the torrent path in parameters</source>
-        <translation type="obsolete">Օգտագործեք %f-ը՝ բաց թողնելու համար torrent-ի ճանապարհի ցուցիչը</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1085"/>
-        <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Օգտագործել UPnP / NAT-PMP դարպասի փոխանցում ռոութերից</translation>
-    </message>
-    <message>
-        <source>Proxy server</source>
-        <translation type="obsolete">Միջնորդ սպասարկիչ</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="1431"/>
         <source>IP Filtering</source>
         <translation>Ֆիլտրում IP-ով</translation>
@@ -2648,8 +2215,9 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Վերաբացել ֆիլտրը</translation>
     </message>
     <message>
-        <source>Schedule the use of alternative speed limits</source>
-        <translation type="obsolete">Նշեք արագության այլընտրանքային սահմանափակում</translation>
+        <location filename="../preferences/options.ui" line="1625"/>
+        <source>Enable bandwidth management (uTP)</source>
+        <translation>Միացնել սահմանափակումները (uTP)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1778"/>
@@ -2688,37 +2256,14 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ձեր լոկալ ցանցի peer-երը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2083"/>
-        <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../preferences/options.ui" line="2076"/>
+        <source>Enable anonymous mode</source>
+        <translation>Միացնել անանուն եղանակը</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2111"/>
-        <source>Torrent Queueing</source>
-        <translation>Torrent-ը հերթում է</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2235"/>
-        <source>Share Ratio Limiting</source>
-        <translation>Փոխանցման սահ-ներ</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2392"/>
-        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Օգտ. UPnP / NAT-PMP՝ ռոութերից փոխանցելու համար</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2565"/>
-        <source>Bypass authentication for localhost</source>
-        <translation>localhost-ի շրջանցիկ ներկայացում</translation>
-    </message>
-    <message>
-        <source>Protocol encryption:</source>
-        <translation type="obsolete">Արձանագրության գաղտնագրում</translation>
-    </message>
-    <message>
-        <source>Share ratio limiting</source>
-        <translation type="obsolete">Սահմանափակումներ</translation>
+        <location filename="../preferences/options.ui" line="2225"/>
+        <source>Do not count slow torrents in these limits</source>
+        <translation>Չհաշվել դանդաղ  torrent-ները այս սահ-մբ</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2246"/>
@@ -2741,13 +2286,69 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ջնջել</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="2392"/>
+        <source>Use UPnP / NAT-PMP to forward the port from my router</source>
+        <translation>Օգտ. UPnP / NAT-PMP՝ ռոութերից փոխանցելու համար</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2402"/>
+        <source>Use HTTPS instead of HTTP</source>
+        <translation>Օգտ. HTTPS՝ HTTP-ի փոխարեն</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2445"/>
+        <source>Import SSL Certificate</source>
+        <translation>Ներմուծել SSL վավերագիր</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2498"/>
+        <source>Import SSL Key</source>
+        <translation>Ներմուծել SSL բանալի</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2433"/>
+        <source>Certificate:</source>
+        <translation>Վավերագիրը.</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2486"/>
+        <source>Key:</source>
+        <translation>Բանալին.</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2520"/>
+        <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
+        <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Ինֆո վավերագրի մասին&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2565"/>
+        <source>Bypass authentication for localhost</source>
+        <translation>localhost-ի շրջանցիկ ներկայացում</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2589"/>
+        <source>Update my dynamic domain name</source>
+        <translation>Թարմացնել ակտիվ տիրույթի անունը</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2601"/>
+        <source>Service:</source>
+        <translation>Սպասարկիչը.</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2624"/>
+        <source>Register</source>
+        <translation>Գրանցել</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2633"/>
+        <source>Domain name:</source>
+        <translation>Տիրույթի անունը.</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="1276"/>
         <source>(None)</source>
         <translation>(Չկա)</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation type="obsolete">Տեսքը</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="126"/>
@@ -2773,11 +2374,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ներկայացում</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="685"/>
-        <source>Append .!qB extension to incomplete files</source>
-        <translation>Կցել .!qB ընդլայոնւմը անավարտ ֆայլերի համար</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="939"/>
         <location filename="../preferences/options.ui" line="1383"/>
         <location filename="../preferences/options.ui" line="2572"/>
@@ -2794,6 +2390,16 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ծածկագիրը.</translation>
     </message>
     <message>
+        <location filename="../preferences/options.ui" line="2111"/>
+        <source>Torrent Queueing</source>
+        <translation>Torrent-ը հերթում է</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options.ui" line="2235"/>
+        <source>Share Ratio Limiting</source>
+        <translation>Փոխանցման սահ-ներ</translation>
+    </message>
+    <message>
         <location filename="../preferences/options.ui" line="2343"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Միացնել  Web User Interface-ը (Հեռադիր կառավարում)</translation>
@@ -2807,10 +2413,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="1443"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Ֆիլտրերի ճանապարհը (.dat, .p2p, .p2b).</translation>
-    </message>
-    <message>
-        <source>HTTP Server</source>
-        <translation type="obsolete">HTTP սպասարկիչ</translation>
     </message>
 </context>
 <context>
@@ -2907,14 +2509,6 @@ Would you like to update qBittorrent to version %1?</source>
         <source>Content</source>
         <translation>Պարունակությունը</translation>
     </message>
-    <message>
-        <source>URL Seeds</source>
-        <translation type="obsolete">Հղվող Seed-եր</translation>
-    </message>
-    <message>
-        <source>Files</source>
-        <translation type="obsolete">Ֆայլեր</translation>
-    </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
@@ -2968,10 +2562,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.ui" line="240"/>
         <source>DL limit:</source>
         <translation>Բ. սահ-փակում.</translation>
-    </message>
-    <message>
-        <source>Time elapsed:</source>
-        <translation type="obsolete">Մնացել է ժ-կ.</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="257"/>
@@ -3099,22 +2689,22 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="495"/>
         <source>New Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="501"/>
         <source>Remove Web seed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="503"/>
         <source>Copy Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="504"/>
         <source>Edit Web seed URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="526"/>
@@ -3173,16 +2763,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="692"/>
         <source>Web seed editing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="693"/>
         <source>Web seed URL:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Ընտրեք պահպանելու տեղը</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3211,29 +2797,24 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>qBittorrent-ը սահ. է  TCP/%1 դարպասը</translation>
     </message>
     <message>
-        <source>UPnP support [ON]</source>
-        <translation type="obsolete">UPnP աջակցում [ՄԻԱՑ]</translation>
-    </message>
-    <message>
-        <source>UPnP support [OFF]</source>
-        <translation type="obsolete">UPnP աջակցում [ԱՆՋ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [ON]</source>
-        <translation type="obsolete">NAT-PMP աջակցում [ՄԻԱՑ]</translation>
-    </message>
-    <message>
-        <source>NAT-PMP support [OFF]</source>
-        <translation type="obsolete">NAT-PMP աջակցում [ԱՆՋ]</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="405"/>
         <source>HTTP user agent is %1</source>
         <translation>HTTP օգտագործելու ծրագիրը՝ %1</translation>
     </message>
     <message>
-        <source>Using a disk cache size of %1 MiB</source>
-        <translation type="obsolete">Օգտագործվում է պնակի պահեստի չափը՝ %1 Մբիթ</translation>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="432"/>
+        <source>Anonymous mode [ON]</source>
+        <translation>Անանուն եղանակ [ՄԻԱՑ]</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="434"/>
+        <source>Anonymous mode [OFF]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
+        <source>Reporting IP address %1 to trackers...</source>
+        <translation>Հաղորդվում է %1 IP հասցեի մասին ուղորդիչին...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="518"/>
@@ -3260,10 +2841,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="533"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Պահանջվում է վերագործարկում՝ փոխանջատելու համար PeX-ը</translation>
-    </message>
-    <message>
-        <source>Local Peer Discovery [ON]</source>
-        <translation type="obsolete">Լոկալ Peer-երի բացահայտում [ՄԻԱՑ]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="541"/>
@@ -3313,13 +2890,13 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="827"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից և պնակից։</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos;-ը ջնջվել է բեռնումների ցանկից։</translation>
     </message>
     <message>
@@ -3333,22 +2910,48 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1078"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1080"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos;-ը արդեն առկա է ցանկում։</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1205"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1210"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;-ը վերսկսվել է։</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
+        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
+        <translation>Այժմ համակարգիչը կանցնի &quot;քուն&quot; վիճակի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2292"/>
+        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
+        <translation>Այժմ համակարգիչը կանջատվի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
+        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
+        <translation>qBittorrent-ը կփակվի 15 վայրկյանից...</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2840"/>
+        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
+        <comment>%1 is a number</comment>
+        <translation>Հաջողությամբ ստուգվել է IP ֆիլտրը. %1 կանոնները կիրառվել են։</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2846"/>
+        <source>Error: Failed to parse the provided IP filter.</source>
+        <translation>Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1212"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos;-ը ավելացվել է բեռնումների ցանկին։</translation>
     </message>
     <message>
@@ -3362,21 +2965,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>UPnP / NAT-PMP աջակցում [ԱՆՋ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="432"/>
-        <source>Anonymous mode [ON]</source>
-        <translation>Անանուն եղանակ [ՄԻԱՑ]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="434"/>
-        <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
-        <source>Reporting IP address %1 to trackers...</source>
-        <translation>Հաղորդվում է %1 IP հասցեի մասին ուղորդիչին...</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Լոկալ Peer-երի բացահայտման աջակցում [ՄԻԱՑ]</translation>
@@ -3386,7 +2974,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1051"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Հնարավոր չէ ապակոդավորել &apos;%1&apos; ֆայլը</translation>
     </message>
     <message>
@@ -3428,10 +3016,6 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Ցանցային միջներեսը սխալ է որոշվել. %1</translation>
     </message>
     <message>
-        <source>Trying any other network interface available instead.</source>
-        <translation type="obsolete">Հասանելի է այլ ցանցային միջներես։</translation>
-    </message>
-    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
         <source>Listening on IP address %1 on network interface %2...</source>
         <translation>Ստանում է %1 IP հասցեից՝ հետևյալ ցանցում՝ %2...</translation>
@@ -3453,37 +3037,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2239"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Հնարավոր չէ ապակոդավորել  %1 torrent ֆայլը։</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
-        <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>Այժմ համակարգիչը կանցնի &quot;քուն&quot; վիճակի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2292"/>
-        <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>Այժմ համակարգիչը կանջատվի՝ եթե իհարկե չկանգնեցնեք 15 վայրկյանի ընթացքում...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
-        <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
-        <translation>qBittorrent-ը կփակվի 15 վայրկյանից...</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2840"/>
-        <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation>Հաջողությամբ ստուգվել է IP ֆիլտրը. %1 կանոնները կիրառվել են։</translation>
-    </message>
-    <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">Հաջողությամբ կիրառվել է IP ֆիլտրը. %1 կանոններ կիրառվել են։</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2846"/>
-        <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Սխալ՝ կապված IP ֆիլտրերի կիրառման հետ։</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2187"/>
@@ -3555,7 +3108,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2669"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Բեռնվում է &apos;%1&apos;-ը, խնդրում ենք սպասել...</translation>
     </message>
 </context>
@@ -3598,21 +3151,13 @@ Would you like to update qBittorrent to version %1?</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent-ներ.&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(կրկնակի սեղմեք՝ բեռնելու համար)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Article title</source>
-        <translation type="obsolete">Վերնագիրը</translation>
-    </message>
-    <message>
-        <source>Feed URL</source>
-        <translation type="obsolete">Ալիքի հղումը</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="158"/>
@@ -3724,19 +3269,6 @@ p, li { white-space: pre-wrap; }
         <translation>Նոր թղթապանակ</translation>
     </message>
     <message>
-        <source>Overwrite attempt</source>
-        <translation type="obsolete">Թույլատրել վերագրումը</translation>
-    </message>
-    <message>
-        <source>You cannot overwrite %1 item.</source>
-        <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="obsolete">Չեք կարող վերագրել %1-ը։</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../rss/rss_imp.cpp" line="210"/>
         <source>This rss feed is already in the list.</source>
         <translation>Այս rss ալիքը արդեն առկա է ցանկում։</translation>
@@ -3788,13 +3320,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RssArticle</name>
-    <message>
-        <source>No description available</source>
-        <translation type="obsolete">Նկարագրություն չկա</translation>
-    </message>
-</context>
-<context>
     <name>RssFeed</name>
     <message>
         <location filename="../rss/rssfeed.cpp" line="357"/>
@@ -3807,12 +3332,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="457"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="494"/>
         <source>Invalid RSS feed at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3901,34 +3426,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>SearchEngine</name>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Կտրել</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Պատճենել</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Տեղադրել</translation>
-    </message>
-    <message>
-        <source>Clear field</source>
-        <translation type="obsolete">Մաքրել</translation>
-    </message>
-    <message>
-        <source>Clear completion history</source>
-        <translation type="obsolete">Մաքրել պատմությունը</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Հաստատեք</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
-        <translation type="obsolete">Մաքրե՞լ պատմությունը։</translation>
-    </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
@@ -4084,16 +3581,6 @@ Please install it manually.</source>
         <translation>Չկան ուղիղ միացումներ։</translation>
     </message>
     <message>
-        <source>D: %1 B/s - T: %2</source>
-        <comment>Download speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Բ. %1 Բ/վ - Ը. %2</translation>
-    </message>
-    <message>
-        <source>U: %1 B/s - T: %2</source>
-        <comment>Upload speed: x B/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Փ.: %1 Բ/վ - Ը. %2</translation>
-    </message>
-    <message>
         <location filename="../statusbar.h" line="95"/>
         <location filename="../statusbar.h" line="187"/>
         <source>DHT: %1 nodes</source>
@@ -4133,16 +3620,6 @@ Please install it manually.</source>
         <translation>%1/վ</translation>
     </message>
     <message>
-        <source>D: %1/s - T: %2</source>
-        <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Բ. %1/վ - Ը. %2</translation>
-    </message>
-    <message>
-        <source>U: %1/s - T: %2</source>
-        <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="obsolete">Փ. %1/վ - Ը. %2</translation>
-    </message>
-    <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to alternative speed limits</source>
         <translation>Սեղմեք՝ այլընտրանքային սահ-ներին անցնելու համար</translation>
@@ -4151,14 +3628,6 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to regular speed limits</source>
         <translation>Սեղմեք՝ հիմնական սահ-ներին անցնելու համար</translation>
-    </message>
-    <message>
-        <source>Click to disable alternative speed limits</source>
-        <translation type="obsolete">Սեղմեք անջատելու համար արագ-ան այլընտ. սահ-ումները</translation>
-    </message>
-    <message>
-        <source>Click to enable alternative speed limits</source>
-        <translation type="obsolete">Սեղմեք միացնելու համար արագ-ան այլընտ. սահ-ումները</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="220"/>
@@ -4247,25 +3716,6 @@ Please install it manually.</source>
         <location filename="../torrentcreator/torrentcreatordlg.cpp" line="174"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent-ը հաջողությամբ ստեղծվեց.</translation>
-    </message>
-</context>
-<context>
-    <name>TorrentFilesModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Անունը</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Չափը</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Ընթացքը</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Առաջնայնությունը</translation>
     </message>
 </context>
 <context>
@@ -4449,7 +3899,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="269"/>
@@ -4467,7 +3917,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4491,18 +3941,6 @@ Please install it manually.</source>
         <location filename="../properties/trackerlist.cpp" line="67"/>
         <source>Message</source>
         <translation>Հաղորդագրություն</translation>
-    </message>
-    <message>
-        <source>[DHT]</source>
-        <translation type="obsolete">[DHT]</translation>
-    </message>
-    <message>
-        <source>[PeX]</source>
-        <translation type="obsolete">[PeX]</translation>
-    </message>
-    <message>
-        <source>[LSD]</source>
-        <translation type="obsolete">[LSD]</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="194"/>
@@ -4542,28 +3980,28 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="360"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="361"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="372"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="385"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="413"/>
@@ -4573,21 +4011,17 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="419"/>
         <source>Copy tracker url</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Edit selected tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="418"/>
         <source>Remove tracker</source>
         <translation>Ջնջել ուղղորդիչը</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="obsolete">Ստիպողական վերահայտարարում</translation>
     </message>
 </context>
 <context>
@@ -4829,12 +4263,12 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="530"/>
         <source>Recheck confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="530"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="605"/>
@@ -5036,7 +4470,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>run in daemon-mode (background)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="90"/>
@@ -5056,10 +4490,6 @@ Please install it manually.</source>
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
     <message>
         <location filename="../about_imp.h" line="64"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
@@ -5087,89 +4517,6 @@ Please install it manually.</source>
         <location filename="../properties/peer.ui" line="59"/>
         <source>Port</source>
         <translation>Դարպասը</translation>
-    </message>
-</context>
-<context>
-    <name>addTorrentDialog</name>
-    <message>
-        <source>Torrent addition dialog</source>
-        <translation type="obsolete">Torrent ավելացնելու պատուհան</translation>
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="obsolete">Պահպանելու տեղը.</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="obsolete">Նշել որպես հիմն. ճ-հ</translation>
-    </message>
-    <message>
-        <source>Torrent size:</source>
-        <translation type="obsolete">Torrent-ի չափը.</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Անհայտ</translation>
-    </message>
-    <message>
-        <source>Free disk space:</source>
-        <translation type="obsolete">Ազատ տեղը պնակի վրա.</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation type="obsolete">Նիշը.</translation>
-    </message>
-    <message>
-        <source>Torrent content:</source>
-        <translation type="obsolete">Torrent-ի պարունակությունը.</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Ընտրել բոլորը</translation>
-    </message>
-    <message>
-        <source>Select None</source>
-        <translation type="obsolete">Ոչ մեկը</translation>
-    </message>
-    <message>
-        <source>Download in sequential order (slower but good for previewing)</source>
-        <translation type="obsolete">Բեռնել հաջորդական կարգով (դանդաղ է, բայց լավ դիտելու համար)</translation>
-    </message>
-    <message>
-        <source>Skip file checking and start seeding immediately</source>
-        <translation type="obsolete">Բաց թողնել ֆայլերի ստուգումը և միանգամից սկսել փոխանցումը</translation>
-    </message>
-    <message>
-        <source>Add to download list in paused state</source>
-        <translation type="obsolete">Ավելացնել բեռնումների ցանկին ՚դադարի մեջ՚ եղանակով</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="obsolete">Ավելացնել</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Մերժել</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Նորմալ</translation>
-    </message>
-    <message>
-        <source>High</source>
-        <translation type="obsolete">Բարձր</translation>
-    </message>
-    <message>
-        <source>Maximum</source>
-        <translation type="obsolete">Առավելագ.</translation>
-    </message>
-    <message>
-        <source>Do not download</source>
-        <translation type="obsolete">Չբեռնել</translation>
     </message>
 </context>
 <context>
@@ -5285,7 +4632,7 @@ Please install it manually.</source>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -5361,14 +4708,6 @@ Please install it manually.</source>
 <context>
     <name>downloadFromURL</name>
     <message>
-        <source>Download Torrents from URLs</source>
-        <translation type="obsolete">Բեռնել Torrent-ները հղումներից</translation>
-    </message>
-    <message>
-        <source>Only one URL per line</source>
-        <translation type="obsolete">Մեկ հղում տողի համար</translation>
-    </message>
-    <message>
         <location filename="../downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
         <translation>Ավելացնել torrent-ի հղումներ</translation>
@@ -5402,101 +4741,6 @@ Please install it manually.</source>
         <location filename="../downloadfromurldlg.h" line="78"/>
         <source>Please type at least one URL.</source>
         <translation>Նշեք գոնե մեկ հղում։</translation>
-    </message>
-</context>
-<context>
-    <name>downloadThread</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">I/O սխալ</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="obsolete">Հեռադիր հոսթի անունը չի գտնվել (հոսթի անունը սխալ է)</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="obsolete">Գործողությունը ընդհատվել է</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը փակել է միացումը՝ մինչ կստացվեր պատասխանը</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչին միանալու ժ-ը լրացել է</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="obsolete">SSL/TLS փոխլրացումը ձախողվեց</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը մերժել է միացումը</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="obsolete">Միացումը միջնորդ սպասարկիչին մերժվել է</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="obsolete">Միջնորդ սպասարկիչը փակել է միացումը</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="obsolete">Չի գտնվել միջնորդի հոսթի անունը</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="obsolete">Միջնորդին միանալու ժ-ը լրացել է, միջնորդը հարցմանը ժամանակին չի պատասխանել</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honour the request but did not accept any credentials offered</source>
-        <translation type="obsolete">Միջնորդը պահանջում է ներկայացում</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="obsolete">Մուտքը հեռադիր կառավարմանը փակ է (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="obsolete">Գործողությունը, որը  պահանջում է հեռադիր բովանդակություն, չի թույլատրվել</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="obsolete">Հեռադիր բովանդակությունը չի գտնվել սպասարկիչում (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="obsolete">Հեռադիր սպասարկիչը պահանջում է ներկայացում </translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="obsolete">Network Access API-ին չի կարողանում ստանալ հարցում, որովհետեև արձանագր. հայտնի չէ</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="obsolete">Պահանջվող գործողությունը սխալ է այս արձանագր. համար</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="obsolete">Անհայտ սխալ</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="obsolete">Միջնորդի անհայտ սխալ</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="obsolete">Հեռադիր բովանդակության անհայտ սխալ</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="obsolete">Անհաջողություն արձանագրությունում</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="obsolete">Անհայտ սխալ</translation>
     </message>
 </context>
 <context>
@@ -5546,14 +4790,6 @@ Please install it manually.</source>
         <location filename="../searchengine/engineselect.ui" line="107"/>
         <source>Close</source>
         <translation>Փակել</translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="obsolete">Միացված է</translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="obsolete">Անջատված է</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="124"/>
@@ -5704,7 +4940,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../stacktrace_win_dlg.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5756,10 +4992,6 @@ However, those plugins were disabled.</source>
         <translation>/վ</translation>
     </message>
     <message>
-        <source>Downloads</source>
-        <translation type="obsolete">Բեռնումներ</translation>
-    </message>
-    <message>
         <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
@@ -5781,10 +5013,6 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>Բոլոր բեռնումները ավարտվել են։ Համակարգիչը անջատվում է։</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">Անհայտ</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="382"/>
@@ -5939,11 +5167,6 @@ However, those plugins were disabled.</source>
         <translation>Հաջողությամբ է ստուգվել IP ֆիլտրով. %1 կանոններ են կիրառվել։</translation>
     </message>
     <message>
-        <source>Successfuly parsed the provided IP filter: %1 rules were applied.</source>
-        <comment>%1 is a number</comment>
-        <translation type="obsolete">IP ֆիլտրի ներկայացումը հաջող էր. %1 կանոնները կիրառվեցին։</translation>
-    </message>
-    <message>
         <location filename="../preferences/options_imp.cpp" line="1363"/>
         <source>Invalid key</source>
         <translation>Սխալ բանալի</translation>
@@ -6016,29 +5239,6 @@ However, those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>previewSelect</name>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">Դիտումը հնարավոր չէ</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">Հնարավոր չէ դիտել այս ֆայլը</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Անունը</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Չափը</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">Ընթացքը</translation>
-    </message>
-</context>
-<context>
     <name>search_engine</name>
     <message>
         <location filename="../searchengine/search.ui" line="14"/>
@@ -6070,107 +5270,6 @@ However, those plugins were disabled.</source>
         <location filename="../searchengine/search.ui" line="140"/>
         <source>Search engines...</source>
         <translation>Փնտրել…</translation>
-    </message>
-</context>
-<context>
-    <name>torrentAdditionDialog</name>
-    <message>
-        <source>Unable to decode magnet link:</source>
-        <translation type="obsolete">Հնարավոր չէ ապակոդավորել magnet հղումը</translation>
-    </message>
-    <message>
-        <source>Magnet Link</source>
-        <translation type="obsolete">Magnet հղում</translation>
-    </message>
-    <message>
-        <source>Unable to decode torrent file:</source>
-        <translation type="obsolete">Հնարավոր չէ ապակոդավորել torrent ֆայլը.</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="obsolete">Անվանափոխել...</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Առաջ-ը</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">Անվանափոխել</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Նոր անուն.</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">Ֆայլը չի կարող անվանափոխվել</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">Ֆայլի անունը պարունակում է արգելված նշաններ, ընտրեք այլ անուն։</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">Այս անունով արդեն առկա է տվյալ թղթապանակում։ Ընտրեք այլ անուն։</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="obsolete">Հնարավոր չէ անվանափոխել թղթապանակը</translation>
-    </message>
-    <message>
-        <source>(%1 left after torrent download)</source>
-        <comment>e.g. (100MiB left after torrent download)</comment>
-        <translation type="obsolete">(torrent-ը բեռնելու համար մնացել է %1)</translation>
-    </message>
-    <message>
-        <source>(%1 more are required to download)</source>
-        <comment>e.g. (100MiB more are required to download)</comment>
-        <translation type="obsolete">(%1-ը բեռնվել է պահանջվածից շատ)</translation>
-    </message>
-    <message>
-        <source>Choose save path</source>
-        <translation type="obsolete">Ընտրեք պահպանելու ճանապարհը</translation>
-    </message>
-    <message>
-        <source>Empty save path</source>
-        <translation type="obsolete">Դատարկել պահպանելու ճանապարհը</translation>
-    </message>
-    <message>
-        <source>Please enter a save path</source>
-        <translation type="obsolete">Նշեք պահպանելու ճանապարհը</translation>
-    </message>
-    <message>
-        <source>Save path creation error</source>
-        <translation type="obsolete">Պահպանելու ճանապարհի սխալ</translation>
-    </message>
-    <message>
-        <source>Could not create the save path</source>
-        <translation type="obsolete">Հնարավոր չէ ստեղծել պահպանելու ճանապարհը</translation>
-    </message>
-    <message>
-        <source>Invalid label name</source>
-        <translation type="obsolete">Նիշը սխալ է</translation>
-    </message>
-    <message>
-        <source>Please don&apos;t use any special characters in the label name.</source>
-        <translation type="obsolete">Մի օգտագործեք որևէ հատուկ նշան անվան մեջ։</translation>
-    </message>
-    <message>
-        <source>Seeding mode error</source>
-        <translation type="obsolete">Փոխանցման եղանակի սխալ</translation>
-    </message>
-    <message>
-        <source>You chose to skip file checking. However, local files do not seem to exist in the current destionation folder. Please disable this feature or update the save path.</source>
-        <translation type="obsolete">Դուք ընտրել եք ֆայլի ստուգման անտեսումը։ Լոկալ ֆայլերը կարծես գոյություն չունեն նշված տեղում։ Անջատեք սա կամ թարմացրեք պահպանելու ճանապարհը։</translation>
-    </message>
-    <message>
-        <source>Invalid file selection</source>
-        <translation type="obsolete">Սխալ ընտրություն</translation>
-    </message>
-    <message>
-        <source>You must select at least one file in the torrent</source>
-        <translation type="obsolete">Torrent-ից պետք է նշեք գոնե մեկ ֆայլ</translation>
     </message>
 </context>
 </TS>
