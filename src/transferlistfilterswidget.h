@@ -65,7 +65,7 @@ public:
     setAcceptDrops(true);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     setStyleSheet("QListWidget { background: transparent; border: 0 }");
-#if defined(Q_OS_MAC)
+#if defined(Q_WS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
   }
@@ -165,7 +165,7 @@ public:
     // Height is fixed (sizeHint().height() is used)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     setStyleSheet("QListWidget { background: transparent; border: 0 }");
-#if defined(Q_OS_MAC)
+#if defined(Q_WS_MAC)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
   }

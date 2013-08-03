@@ -464,7 +464,7 @@ void AddNewTorrentDialog::renameSelectedFile()
       // Check for overwriting
       for (int i=0; i<m_torrentInfo->num_files(); ++i) {
         const QString &current_name = m_filesPath.at(i);
-#if defined(Q_OS_X11) || defined(Q_OS_MAC) || defined(Q_OS_QWS)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
         if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
         if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {

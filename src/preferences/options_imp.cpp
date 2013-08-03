@@ -106,15 +106,15 @@ options_imp::options_imp(QWidget *parent):
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
-#ifndef Q_OS_MAC
+#ifndef Q_WS_MAC
   if (!QSystemTrayIcon::isSystemTrayAvailable()) {
 #endif
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
-#ifndef Q_OS_MAC
+#ifndef Q_WS_MAC
   }
 #endif
-#if !defined(Q_OS_X11)
+#if !defined(Q_WS_X11)
   label_trayIconStyle->setVisible(false);
   comboTrayIcon->setVisible(false);
 #endif
@@ -122,7 +122,7 @@ options_imp::options_imp(QWidget *parent):
   checkWebUiHttps->setVisible(false);
 #endif
 
-#ifndef Q_OS_WIN
+#ifndef Q_WS_WIN
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
@@ -144,17 +144,17 @@ options_imp::options_imp(QWidget *parent):
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   connect(checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-#if defined(Q_OS_X11) && !defined(QT_DBUS_LIB)
+#if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
@@ -380,7 +380,7 @@ void options_imp::saveOptions() {
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
   pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   pref.setStartup(Startup());
   // Windows: file association settings
   Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
@@ -390,13 +390,13 @@ void options_imp::saveOptions() {
 
   // Downloads preferences
   QString save_path = getSavePath();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   save_path.replace("\\", "/");
 #endif
   pref.setSavePath(save_path);
   pref.setTempPathEnabled(isTempPathEnabled());
   QString temp_path = getTempPath();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   temp_path.replace("\\", "/");
 #endif
   pref.setTempPath(temp_path);
@@ -409,7 +409,7 @@ void options_imp::saveOptions() {
   addedScanDirs.clear();
   QString export_dir = getTorrentExportDir();
   QString export_dir_fin = getFinishedTorrentExportDir();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   export_dir_fin.replace("\\", "/");
   export_dir.replace("\\", "/");
 #endif
@@ -473,7 +473,7 @@ void options_imp::saveOptions() {
   pref.setFilteringEnabled(isFilteringEnabled());
   if (isFilteringEnabled()) {
     QString filter_path = textFilterPath->text();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     filter_path.replace("\\", "/");
 #endif
     pref.setFilter(filter_path);
@@ -557,7 +557,7 @@ void options_imp::loadOptions() {
   comboTrayIcon->setCurrentIndex(pref.trayIconStyle());
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   checkStartup->setChecked(pref.Startup());
   // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -566,7 +566,7 @@ void options_imp::loadOptions() {
   // End General preferences
   // Downloads preferences
   QString save_path = pref.getSavePath();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   save_path.replace("/", "\\");
 #endif
   textSavePath->setText(save_path);
@@ -577,7 +577,7 @@ void options_imp::loadOptions() {
     checkTempFolder->setChecked(false);
   }
   QString temp_path = pref.getTempPath();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
   temp_path.replace("/", "\\");
 #endif
   textTempPath->setText(temp_path);
@@ -594,7 +594,7 @@ void options_imp::loadOptions() {
   } else {
     // enable
     checkExportDir->setChecked(true);
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     strValue.replace("/", "\\");
 #endif
     textExportDir->setText(strValue);
@@ -607,7 +607,7 @@ void options_imp::loadOptions() {
   } else {
     // enable
     checkExportDirFin->setChecked(true);
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     strValue.replace("/", "\\");
 #endif
     textExportDirFin->setText(strValue);
@@ -891,7 +891,7 @@ qreal options_imp::getMaxRatio() const {
 QString options_imp::getSavePath() const {
   if (textSavePath->text().trimmed().isEmpty()) {
     QString save_path = Preferences().getSavePath();
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     save_path.replace("/", "\\");
 #endif
     textSavePath->setText(save_path);
@@ -1006,7 +1006,7 @@ bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
 }
 
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
 bool options_imp::Startup() const {
   return checkStartup->isChecked();
 }
@@ -1173,7 +1173,7 @@ void options_imp::on_browseFilterButton_clicked() {
     ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
   if (!ipfilter.isNull()) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     ipfilter.replace("/", "\\");
 #endif
     textFilterPath->setText(ipfilter);
@@ -1191,7 +1191,7 @@ void options_imp::on_browseSaveDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if (!dir.isNull()) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir.replace("/", "\\");
 #endif
     textSavePath->setText(dir);
@@ -1208,7 +1208,7 @@ void options_imp::on_browseTempDirButton_clicked() {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
   if (!dir.isNull()) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
     dir.replace("/", "\\");
 #endif
     textTempPath->setText(dir);

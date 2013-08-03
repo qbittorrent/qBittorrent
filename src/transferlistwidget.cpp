@@ -108,7 +108,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   setItemsExpandable(false);
   setAutoScroll(true);
   setDragDropMode(QAbstractItemView::DragOnly);
-#if defined(Q_OS_MAC)
+#if defined(Q_WS_MAC)
   setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
 

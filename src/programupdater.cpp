@@ -39,7 +39,7 @@
 #include "fs_utils.h"
 #include "preferences.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_WS_MAC
 const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac";
 const QString FILE_EXT = "DMG";
 #else
@@ -187,7 +187,7 @@ void ProgramUpdater::updateProgram()
 /*void ProgramUpdater::installUpdate(QString update_path)
 {
   qDebug("Installing the update at %s...", qPrintable(update_path));
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   QDesktopServices::openUrl(QUrl(QString("file:///")+update_path, QUrl::TolerantMode));
 #else
   QDesktopServices::openUrl(QUrl(QString("file://")+update_path, QUrl::TolerantMode));

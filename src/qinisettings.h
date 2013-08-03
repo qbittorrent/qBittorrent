@@ -39,7 +39,7 @@ class QIniSettings : public QSettings {
 
 public:
   QIniSettings(const QString &organization = "qBittorrent", const QString &application = "qBittorrent", QObject *parent = 0 ):
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
       QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
 #else
       QSettings(organization, application, parent)
@@ -52,7 +52,7 @@ public:
 
   }
 
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   QVariant value(const QString & key, const QVariant &defaultValue = QVariant()) const {
     QString key_tmp(key);
     QVariant ret = QSettings::value(key_tmp);

@@ -32,7 +32,7 @@
 #include "sessionapplication.h"
 
 SessionApplication::SessionApplication(const QString &id, int &argc, char **argv) :
-#ifdef Q_OS_MAC
+#ifdef Q_WS_MAC
 QMacApplication(id, argc, argv)
 #else
 QtSingleApplication(id, argc, argv)

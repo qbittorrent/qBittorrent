@@ -43,7 +43,7 @@
 #include "torrentmodel.h"
 #include "qbtsession.h"
 
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QPlastiqueStyle>
 #else
@@ -193,7 +193,7 @@ public:
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
         newopt.textVisible = true;
-#ifndef Q_OS_WIN
+#ifndef Q_WS_WIN
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar

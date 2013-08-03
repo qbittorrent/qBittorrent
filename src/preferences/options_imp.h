@@ -103,7 +103,7 @@ private:
   bool startMinimized() const;
   bool isSlashScreenDisabled() const;
   bool preventFromSuspend() const;
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   bool Startup() const;
 #endif
   // Downloads

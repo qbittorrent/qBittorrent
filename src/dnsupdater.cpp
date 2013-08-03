@@ -32,7 +32,7 @@
 #include <QDebug>
 #include <QRegExp>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QUrlQuery>>
+#include <QUrlQuery>
 #endif
 #include "dnsupdater.h"
 #include "qbtsession.h"

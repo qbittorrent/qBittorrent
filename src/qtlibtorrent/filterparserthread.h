@@ -46,7 +46,7 @@ using namespace std;
 
 // P2B Stuff
 #include <string.h>
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
 #include <Winsock2.h>
 #else
 #include <arpa/inet.h>

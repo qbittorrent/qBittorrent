@@ -18,10 +18,10 @@ enum AdvSettingsRows {DISK_CACHE,
                       DISK_CACHE_TTL,
                     #endif
                       OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
-                    #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+                    #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
-                    #if defined(Q_OS_X11)
+                    #if defined(Q_WS_X11)
                       USE_ICON_THEME,
                     #endif
                       CONFIRM_DELETE_TORRENT, TRACKER_EXCHANGE,
@@ -40,10 +40,10 @@ private:
 #if LIBTORRENT_VERSION_NUM >= 001610
   QSpinBox spin_cache_ttl;
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox cb_update_check;
 #endif
-#if defined(Q_OS_X11)
+#if defined(Q_WS_X11)
   QCheckBox cb_use_icon_theme;
 #endif
   QCheckBox cb_announce_all_trackers;
@@ -115,11 +115,11 @@ public slots:
     // Tracker
     pref.setTrackerEnabled(cb_tracker_status.isChecked());
     pref.setTrackerPort(spin_tracker_port.value());
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     pref.setUpdateCheckEnabled(cb_update_check.isChecked());
 #endif
     // Icon theme
-#if defined(Q_OS_X11)
+#if defined(Q_WS_X11)
     pref.useSystemIconTheme(cb_use_icon_theme.isChecked());
 #endif
     pref.setConfirmTorrentDeletion(cb_confirm_torrent_deletion.isChecked());
@@ -260,11 +260,11 @@ private slots:
     spin_tracker_port.setMaximum(65535);
     spin_tracker_port.setValue(pref.getTrackerPort());
     setRow(TRACKER_PORT, tr("Embedded tracker port"), &spin_tracker_port);
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
     cb_update_check.setChecked(pref.isUpdateCheckEnabled());
     setRow(UPDATE_CHECK, tr("Check for software updates"), &cb_update_check);
 #endif
-#if defined(Q_OS_X11)
+#if defined(Q_WS_X11)
     cb_use_icon_theme.setChecked(pref.useSystemIconTheme());
     setRow(USE_ICON_THEME, tr("Use system icon theme"), &cb_use_icon_theme);
 #endif

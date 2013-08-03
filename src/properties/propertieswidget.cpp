@@ -564,7 +564,7 @@ void PropertiesWidget::renameSelectedFile() {
       // Check if that name is already used
       for (int i=0; i<h.num_files(); ++i) {
         if (i == file_index) continue;
-#if defined(Q_OS_X11) || defined(Q_OS_MAC) || defined(Q_OS_QWS)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
         if (h.filepath_at(i).compare(new_name, Qt::CaseSensitive) == 0) {
 #else
         if (h.filepath_at(i).compare(new_name, Qt::CaseInsensitive) == 0) {
@@ -603,7 +603,7 @@ void PropertiesWidget::renameSelectedFile() {
       const int num_files = h.num_files();
       for (int i=0; i<num_files; ++i) {
         const QString current_name = h.filepath_at(i);
-#if defined(Q_OS_X11) || defined(Q_OS_MAC) || defined(Q_OS_QWS)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
         if (current_name.startsWith(new_path, Qt::CaseSensitive)) {
 #else
         if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
