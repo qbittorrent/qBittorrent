@@ -48,6 +48,24 @@ class about : public QDialog, private Ui::AboutDlg{
     about(QWidget *parent): QDialog(parent) {
       setupUi(this);
       setAttribute(Qt::WA_DeleteOnClose);
+      // About
+      QString aboutText =
+          QString::fromUtf8("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\"><html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\" font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
+          tr("An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.") +
+          QString::fromUtf8(" <br /><br />") +
+          trUtf8("Copyright ©2006-2013 The qBittorrent project") +
+          QString::fromUtf8("<br /><br />") +
+          tr("Home Page: ") +
+          QString::fromUtf8("<a href=\"http://www.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://www.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
+          tr("Bug Tracker: ") +
+          QString::fromUtf8("<a href=\"http://bugs.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://bugs.qbittorrent.org</span></a><br />") +
+          tr("Forum: ") +
+          QString::fromUtf8(
+              "<a href=\"http://forum.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://forum.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
+          tr("IRC: #qbittorrent on Freenode") +
+          QString::fromUtf8(
+              "</p></body></html>");
+      lb_about->setText(aboutText);
       // Set icons
       logo->setPixmap(QPixmap(QString::fromUtf8(":/Icons/skin/qbittorrent22.png")));
       //Title
