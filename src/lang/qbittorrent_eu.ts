@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="eu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="eu" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -14,18 +12,19 @@
         <translation>Honi buruz</translation>
     </message>
     <message utf8="true">
+        <location filename="../about.ui" line="105"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Lucida Grande'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;BitTorrent bezero aurreratu bat C++ -en programatuta, Qt4 toolkit eta libtorrent-rasterbar-en ohinarrituta. &lt;br /&gt;&lt;br /&gt;Copyrighta ©2006-2013 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Etxeko Orrialdea: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;BitTorrent bezero aurreratu bat C++ -en programatuta, Qt4 tresnakitean eta libtorrent-rasterbarren ohinarrituta. &lt;br /&gt;&lt;br /&gt;Copyrighta Β©2006-2013 qBittorrent egitasmoa&lt;br /&gt;&lt;br /&gt;Etxeko Orrialdea: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Akats Aztarnaria: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Eztabaidagunea: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -52,32 +51,15 @@ p, li { white-space: pre-wrap; }
         <source>E-mail:</source>
         <translation>Post@:</translation>
     </message>
-    <message utf8="true">
-        <location filename="../about.ui" line="105"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright Β©2006-2013 The qBittorrent project&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;BitTorrent bezero aurreratu bat C++ -en programatuta, Qt4 tresnakitean eta libtorrent-rasterbarren ohinarrituta. &lt;br /&gt;&lt;br /&gt;Copyrighta Β©2006-2013 qBittorrent egitasmoa&lt;br /&gt;&lt;br /&gt;Etxeko Orrialdea: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Akats Aztarnaria: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Eztabaidagunea: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
     <message>
         <location filename="../about.ui" line="268"/>
         <source>Greece</source>
-        <translation>Greziera</translation>
+        <translation>Grezia</translation>
     </message>
     <message>
         <location filename="../about.ui" line="347"/>
         <source>Current maintainer</source>
-        <translation>Orango mantentzailea</translation>
+        <translation>Oraingo mantentzailea</translation>
     </message>
     <message>
         <location filename="../about.ui" line="360"/>
@@ -95,32 +77,6 @@ p, li { white-space: pre-wrap; }
         <translation>qBittorrent bertsio hau hurrengo liburutegiekin eraiki da:</translation>
     </message>
     <message>
-        <source>Qt:</source>
-        <translation type="obsolete">Qt:</translation>
-    </message>
-    <message>
-        <source>Boost:</source>
-        <translation type="obsolete">Sustapena:</translation>
-    </message>
-    <message>
-        <source>Libtorrent:</source>
-        <translation type="obsolete">Libtorrent:</translation>
-    </message>
-    <message>
-        <source>Christophe Dumez</source>
-        <translation type="obsolete">Christophe Dumez</translation>
-    </message>
-    <message utf8="true">
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar. &lt;br /&gt;&lt;br /&gt;Copyright ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Home Page: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bug Tracker: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Forum: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;BitTorrent bezero aurreratu bat C++en  programatuta, Qt4 toolkit eta libtorrent-rasterbar-en ohinarrituta. &lt;br /&gt;&lt;br /&gt;Copyrighta ©2006-2012 Christophe Dumez&lt;br /&gt;&lt;br /&gt;Webgunea: &lt;a href=&quot;http://www.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Garbiketa Aztarnaria: &lt;a href=&quot;http://bugs.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://bugs.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;Eztabaidagunea: &lt;a href=&quot;http://forum.qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://forum.qbittorrent.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IRC:  #qbittorrent on Freenode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../about.ui" line="190"/>
         <source>France</source>
         <translation>Frantzia</translation>
@@ -136,14 +92,6 @@ p, li { white-space: pre-wrap; }
         <translation>Baimena</translation>
     </message>
     <message>
-        <source>&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</source>
-        <translation type="obsolete">&lt;h3&gt;&lt;b&gt;qBittorrent&lt;/b&gt;&lt;/h3&gt;</translation>
-    </message>
-    <message>
-        <source>chris@qbittorrent.org</source>
-        <translation type="obsolete">chris@qbittorrent.org</translation>
-    </message>
-    <message>
         <location filename="../about.ui" line="371"/>
         <source>Thanks to</source>
         <translation>Eskerrak</translation>
@@ -151,10 +99,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Elkarrizketa</translation>
-    </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
@@ -188,7 +132,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.ui" line="109"/>
         <source>Skip hash check</source>
-        <translation>Jausi hash egiaztapena</translation>
+        <translation>Jauzi hash egiaztapena</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="119"/>
@@ -254,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Hutsegitea torreta gertatzerakoan: %1</translation>
+        <translation>Hutsegitea torrenta gertatzerakoan: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="187"/>
@@ -399,7 +343,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="217"/>
         <source>Resolve peer countries (GeoIP)</source>
-        <translation> Erabaki hartzaile herrialdea (GeoIP)</translation>
+        <translation> Erabaki hartzaile herrialdeak (GeoIP)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="220"/>
@@ -409,7 +353,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../preferences/advancedsettings.h" line="225"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
-        <translation>Gehienezko elkarketa  erdi-ireki zenbatekoa [0:Ezgaituta]</translation>
+        <translation>Gehienezko elkarketa erdi-ireki zenbatekoa [0:Ezgaituta]</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="228"/>
@@ -503,7 +447,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="138"/>
         <source>Must contain:</source>
-        <translation>Izan behar du:	</translation>
+        <translation>Izan behar du:</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="180"/>
@@ -524,10 +468,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/automatedrssdownloader.ui" line="362"/>
         <source>Export...</source>
         <translation>Esportatu...</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.ui" line="233"/>
@@ -639,7 +579,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="382"/>
         <source>Import Error</source>
-        <translation>Inportatu Akatsa</translation>
+        <translation>Inportazio Akatsa</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="382"/>
@@ -679,7 +619,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="531"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation>Regex modua: erabili Perl-bezalako adierezpen arruntak</translation>
+        <translation>Regex modua: erabili Perl-bezalako adierazpen arruntak</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="535"/>
@@ -713,10 +653,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Cookientzako tekla arruntak dira: &apos;%1&quot;, &apos;%2&apos;.
-Argibide hauek zure Web bilatzaile hobespenetan lortu ditzakezu.</translation>
+Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     </message>
 </context>
 <context>
@@ -1277,7 +1217,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Add &amp;link to torrent...</source>
-        <translation>Gehitu &amp;lotura torrentari...</translation>
+        <translation>G&amp;ehitu torrent lotura...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
@@ -1317,7 +1257,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Search &amp;engine</source>
-        <translation>Bilaketa &amp;gailua</translation>
+        <translation>&amp;Bilaketa gailua</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -1350,10 +1290,6 @@ Ez dira jakinarazpen gehiago egingo.</translation>
         <location filename="../mainwindow.ui" line="293"/>
         <source>Lock qBittorrent</source>
         <translation>Blokeatu qBittorrent</translation>
-    </message>
-    <message>
-        <source>Ctrl+L</source>
-        <translation type="obsolete">Ctrl+L</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -1397,11 +1333,6 @@ Ez dira jakinarazpen gehiago egingo.</translation>
         <translation>Handitu lehentasuna</translation>
     </message>
     <message>
-        <source>qBittorrent %1</source>
-        <comment>e.g: qBittorrent v0.x</comment>
-        <translation type="obsolete">qBittorrent %1</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="146"/>
         <source>Set the password...</source>
         <translation>Ezarri sarhitza...</translation>
@@ -1420,7 +1351,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
         <location filename="../mainwindow.cpp" line="301"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent ez da berezko aplikazioa irekitako torrent agirientzat edo Magnet loturentzat.
+        <translation>qBittorrent ez da berezko aplikazioa torrent agiriak edo Magnet loturak irekitzeko.
 Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</translation>
     </message>
     <message>
@@ -1491,26 +1422,6 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
         <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
         <translation>S/I akats bat gertatu da %1 torrentean. Zergaitia: %2</translation>
-    </message>
-    <message>
-        <source>Alt+1</source>
-        <comment>shortcut to switch to first tab</comment>
-        <translation type="obsolete">Alt+1</translation>
-    </message>
-    <message>
-        <source>Alt+2</source>
-        <comment>shortcut to switch to third tab</comment>
-        <translation type="obsolete">Alt+2</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <comment>shortcut to switch to search tab</comment>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Alt+3</source>
-        <comment>shortcut to switch to fourth tab</comment>
-        <translation type="obsolete">Alt+3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="604"/>
@@ -1590,7 +1501,7 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
         <location filename="../mainwindow.cpp" line="776"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
-        <translation>Agiri batzuk orain eskualdatzen ari daude.
+        <translation>Agiri batzuk orain eskualdatzen daude.
 Zihur zaude qBittorrent uztea nahi duzula?</translation>
     </message>
     <message>
@@ -1612,10 +1523,6 @@ Zihur zaude qBittorrent uztea nahi duzula?</translation>
         <location filename="../mainwindow.cpp" line="1021"/>
         <source>Options were saved successfully.</source>
         <translation>Aukerak ongi gorde dira.</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1133"/>
@@ -1923,7 +1830,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2041"/>
         <source>Prefer encryption</source>
-        <translation>Hobetsitako enkriptaketa</translation>
+        <translation>Hobetsi enkriptaketa</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2046"/>
@@ -2214,7 +2121,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="622"/>
         <source>Append the label of the torrent to the save path</source>
-        <translation>Gehitu torrentaren etiketa gordetako helburuari</translation>
+        <translation>Gehitu torrentaren etiketa gordetze helburuari</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="632"/>
@@ -2284,7 +2191,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1221"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehienezko Igoera aho orokor zenbatekoa:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1356"/>
@@ -2353,10 +2260,6 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <translation>Gaitu izengabeko modua</translation>
     </message>
     <message>
-        <source> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="obsolete"> (&lt;a href=&quot;http://sourceforge.net/apps/mediawiki/qbittorrent/index.php?title=Anonymous_mode&quot;&gt;Argibide gehiago&lt;/a&gt;)</translation>
-    </message>
-    <message>
         <location filename="../preferences/options.ui" line="2225"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Ez zenbatu torrent geldoak muga hauetan</translation>
@@ -2419,7 +2322,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2565"/>
         <source>Bypass authentication for localhost</source>
-        <translation>Eragotzi egiaztapena tokiko-hostalariarentzat</translation>
+        <translation>Igaro egiaztapena tokiko-hostalariarentzat</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2589"/>
@@ -2832,7 +2735,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="600"/>
         <source>The folder could not be renamed</source>
-        <translation>Agiritegia ezin da berrizendatua izan</translation>
+        <translation>Agiritegia ezin da berrizendatu</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="639"/>
@@ -2986,13 +2889,13 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="827"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik eta diska gogorretik kendu da.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik kendu da.</translation>
     </message>
     <message>
@@ -3006,14 +2909,14 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1078"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1080"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; jadanik jeisketa zerrendan dago.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1205"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1210"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; berrekinda. (berrekite azkarra)</translation>
     </message>
     <message>
@@ -3047,7 +2950,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1212"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; gehituta jeisketa zerrendara.</translation>
     </message>
     <message>
@@ -3070,7 +2973,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1051"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Ezinezkoa torrent agiria dekodeatzea: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3110,10 +3013,6 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1938"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Zehaztutako sare interfazea baliogabea da: %1</translation>
-    </message>
-    <message>
-        <source>Trying any other network interface available instead.</source>
-        <translation type="obsolete">Saiatu ordezko beste sare interfaze eskuragarri batekin.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
@@ -3157,7 +3056,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2190"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
-        <translation>Torrenta jeitsi da, %1.</translation>
+        <translation>Torrenta jeitsi hemen da, %1.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2191"/>
@@ -3198,7 +3097,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2540"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
-        <translation>Berrekite azkarreko datuak baztertuak izan dira %1 torrentean, berrriro egiaztatzen...</translation>
+        <translation>Berrekite azkarreko datuak baztertuak izan dira %1 torrentean, berriro egiaztatzen...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2546"/>
@@ -3208,7 +3107,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2669"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>&apos;%1&apos; jeisten, mesedez itxaron...</translation>
     </message>
 </context>
@@ -3251,7 +3150,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrentak:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(klik-bikoitza jeisteko)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -3363,19 +3262,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rss_imp.cpp" line="153"/>
         <source>New folder</source>
         <translation>Agiritegi berria</translation>
-    </message>
-    <message>
-        <source>Overwrite attempt</source>
-        <translation type="obsolete">Gainidazketa saiakera</translation>
-    </message>
-    <message>
-        <source>You cannot overwrite %1 item.</source>
-        <comment>You cannot overwrite myFolder item.</comment>
-        <translation type="obsolete">Ezin duzu %1 gaia gainidatzi.</translation>
-    </message>
-    <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="210"/>
@@ -3536,34 +3422,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SearchEngine</name>
     <message>
-        <source>Cut</source>
-        <translation type="obsolete">Ebaki</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Kopiatu</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Itsatsi</translation>
-    </message>
-    <message>
-        <source>Clear field</source>
-        <translation type="obsolete">Garbitu eremua</translation>
-    </message>
-    <message>
-        <source>Clear completion history</source>
-        <translation type="obsolete">Garbitu osaketa historia</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Baieztapena</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to clear the history?</source>
-        <translation type="obsolete">Zihur zaude historia garbitzea nahi duzula?</translation>
-    </message>
-    <message>
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
         <location filename="../searchengine/searchengine.cpp" line="252"/>
@@ -3573,13 +3431,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../searchengine/searchengine.cpp" line="232"/>
         <source>Missing Python Interpreter</source>
-        <translation>Python Interprete Gabe</translation>
+        <translation>Python Interpretea ez dago</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Python 2.x beharrezkoa da bilaketa gailua erabiltzeko baina ez dago ezarrita.Orain ezartzea nahi duzu?</translation>
+        <translation>Python 2.x beharrezkoa da bilaketa gailua erabiltzeko baina ez dago ezarrita. Orain ezartzea nahi duzu?</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="263"/>
@@ -3633,7 +3491,7 @@ Do you want to install it now?</source>
         <location filename="../searchengine/searchengine.cpp" line="172"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1Mesedeez ezerri eskuz.</translation>
+        <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1Mesedez ezarri eskuz.</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="505"/>
@@ -3863,7 +3721,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentimportdlg.ui" line="53"/>
         <source>This assistant will help you share with qBittorrent a torrent that you have already downloaded.</source>
-        <translation>Laguntzaile honek jadanik jeitsita duzun torrenta qBittorrentekin elkarbanatzen lagunduko dizu.</translation>
+        <translation>Laguntzaile honek jadanik jeitsita duzun torrenta qBittorrent-erekin elkarbanatzen lagunduko dizu.</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="65"/>
@@ -4028,7 +3886,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="267"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Jeitsitako zenbatekoa</translation>
+        <translation>Jeitsitako kopurua</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="268"/>
@@ -4046,13 +3904,13 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="270"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Denbora Eraginda</translation>
+        <translation>Denbora Ekinean</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gordetze helburua</translation>
     </message>
 </context>
 <context>
@@ -4076,18 +3934,6 @@ Please install it manually.</source>
         <location filename="../properties/trackerlist.cpp" line="67"/>
         <source>Message</source>
         <translation>Mezua</translation>
-    </message>
-    <message>
-        <source>[DHT]</source>
-        <translation type="obsolete">[DHT]</translation>
-    </message>
-    <message>
-        <source>[PeX]</source>
-        <translation type="obsolete">[HaX]</translation>
-    </message>
-    <message>
-        <source>[LSD]</source>
-        <translation type="obsolete">[LSD]</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="194"/>
@@ -4170,10 +4016,6 @@ Please install it manually.</source>
         <source>Remove tracker</source>
         <translation>Kendu aztarnaria</translation>
     </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="obsolete">Behartu berriragarpena</translation>
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDlg</name>
@@ -4200,7 +4042,7 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackersadditiondlg.h" line="78"/>
         <source>Error while trying to open the downloaded file.</source>
-        <translation>Akatsa jeitsitako agiria irekitzen saiatzean.</translation>
+        <translation>Akatsa jeitsitako agiria irekitzen saiatzerakoan.</translation>
     </message>
     <message>
         <location filename="../properties/trackersadditiondlg.h" line="122"/>
@@ -4510,13 +4352,13 @@ Please install it manually.</source>
         <location filename="../transferlistwidget.cpp" line="682"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Mugitu gorenera</translation>
+        <translation>Mugitu goren</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="684"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Mugitu behrerenera</translation>
+        <translation>Mugitu beheren</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="686"/>
@@ -4556,7 +4398,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="700"/>
         <source>Download first and last piece first</source>
-        <translation>Jeitsi lehen eta azken atala lehenik</translation>
+        <translation>Jeitsi lehen eta azken atalak lehenik</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="779"/>
@@ -4631,7 +4473,7 @@ Please install it manually.</source>
     <message>
         <location filename="../main.cpp" line="91"/>
         <source>changes the webui port (current: %1)</source>
-        <translation>webei ataka aldatzen du (oraingoa: %1)</translation>
+        <translation>web-ei ataka aldatzen du (oraingoa: %1)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="92"/>
@@ -4642,10 +4484,6 @@ Please install it manually.</source>
 <context>
     <name>about</name>
     <message>
-        <source>qBittorrent</source>
-        <translation type="obsolete">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../about_imp.h" line="64"/>
         <source>I would like to thank the following people who volunteered to translate qBittorrent:</source>
         <translation>qBittorrent itzultzen lagundu duten hurrengo boluntarioei eskerrak ematea nahi dizkiet:</translation>
@@ -4653,7 +4491,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="100"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Mesedeez jarri harremanetan nirekin qBittorrent zure hizkuntzara itzultzea nahi baduzu.</translation>
+        <translation>Mesedez jarri harremanetan nirekin qBittorrent zure hizkuntzara itzultzea nahi baduzu.</translation>
     </message>
 </context>
 <context>
@@ -4690,7 +4528,7 @@ Please install it manually.</source>
     <message>
         <location filename="../login.ui" line="86"/>
         <source>Login</source>
-        <translation>Saioa hasi</translation>
+        <translation>Hasi Saioa</translation>
     </message>
     <message>
         <location filename="../login.ui" line="94"/>
@@ -4705,7 +4543,7 @@ Please install it manually.</source>
     <message>
         <location filename="../login.ui" line="154"/>
         <source>Log in</source>
-        <translation>Saioa hasi</translation>
+        <translation>Hasi saioa</translation>
     </message>
     <message>
         <location filename="../login.ui" line="161"/>
@@ -4733,7 +4571,7 @@ Please install it manually.</source>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="94"/>
         <source>Also delete the files on the hard disk</source>
-        <translation>Ezabatu ere agiriak diska gogorrean</translation>
+        <translation>Ezabatu agiriak diska gogorrean ere</translation>
     </message>
 </context>
 <context>
@@ -4964,7 +4802,7 @@ Please install it manually.</source>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent.
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
-        <translation>Zenbati plugin ezin dira kendu qBittorrenten barnekoak direlako.
+        <translation>Zenbait plugin ezin dira kendu qBittorrenten barnekoak direlako.
  Zeuk gehitutakoak bakarrik kendu daitezke.
 Edonola, plugin hauek ezgaituta daude.</translation>
     </message>
@@ -5048,7 +4886,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../searchengine/engineselectdlg.cpp" line="263"/>
         <source>%1 search engine plugin could not be updated, keeping old version.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>%1 bilaketa gailu plugina ezin da eguneratu, bertsio zaharrari heutsi.</translation>
+        <translation>%1 bilaketa gailu plugina ezin da eguneratu, bertsio zaharrari heusten.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="268"/>
@@ -5141,6 +4979,12 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <translation>TiB</translation>
     </message>
     <message>
+        <location filename="../misc.cpp" line="246"/>
+        <source>/s</source>
+        <comment>per second</comment>
+        <translation>/s</translation>
+    </message>
+    <message>
         <location filename="../misc.cpp" line="391"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
@@ -5162,12 +5006,6 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorrentek orain ordenagailua itzaliko du jeisketa guztiak osatu direlako.</translation>
-    </message>
-    <message>
-        <location filename="../misc.cpp" line="246"/>
-        <source>/s</source>
-        <comment>per second</comment>
-        <translation>/s</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="382"/>
@@ -5380,7 +5218,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation>Hurrengo agirek aurreikuspena sostengatzen dute, &lt;br&gt;mesedez hautatu bat:</translation>
+        <translation>Hurrengo agiriek aurreikuspena sostengatzen dute, &lt;br&gt;mesedez hautatu bat:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="82"/>
