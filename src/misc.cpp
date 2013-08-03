@@ -536,18 +536,6 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
     else  if (left.left(posL) != right.left(posR))
       break; // Strings' subsets before digit do not match
 
-
-    bool second_digit = false;
-    if (left.size() > posL + 1)
-      second_digit = left.at(posL + 1).isDigit();
-    if (right.size() > posR + 1)
-      second_digit = second_digit ?
-                       second_digit :
-                       right.at(posR + 1).isDigit();
-
-    if (!second_digit)
-      break; // Single digit in both, normal sort could handle this
-
     QString temp;
     while (posL < left.size()) {
       if (left.at(posL).isDigit())
@@ -577,7 +565,6 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
     // Do another round
     left.remove(0, posL);
     right.remove(0, posR);
-    continue;
 
   } while (true);
 
