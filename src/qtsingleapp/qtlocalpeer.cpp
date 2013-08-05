@@ -49,7 +49,7 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QTime>
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>
 #include <QtCore/qt_windows.h>
 typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
@@ -66,7 +66,7 @@ static PProcessIdToSessionId pProcessIdToSessionId = 0;
 
 namespace QtLP_Private {
 #include "qtlockedfile.cpp"
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #include "qtlockedfile_win.cpp"
 #else
 #include "qtlockedfile_unix.cpp"
@@ -81,7 +81,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     QString prefix = id;
     if (id.isEmpty()) {
         id = QCoreApplication::applicationFilePath();
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
         id = id.toLower();
 #endif
         prefix = id.section(QLatin1Char('/'), -1);
@@ -94,7 +94,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     socketName = QLatin1String("qtsingleapp-") + prefix
                  + QLatin1Char('-') + QString::number(idNum, 16);
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
     if (!pProcessIdToSessionId) {
         QLibrary lib("kernel32");
         pProcessIdToSessionId = (PProcessIdToSessionId)lib.resolve("ProcessIdToSessionId");
@@ -155,7 +155,7 @@ bool QtLocalPeer::sendMessage(const QString &message, int timeout)
         if (connOk || i)
             break;
         int ms = 250;
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
         Sleep(DWORD(ms));
 #else
         struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };

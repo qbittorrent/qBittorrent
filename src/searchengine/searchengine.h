@@ -105,7 +105,7 @@ protected slots:
   void downloadFinished(int exitcode, QProcess::ExitStatus);
   void fillCatCombobox();
   void searchTextEdited(QString);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   bool addPythonPathToEnv();
   void installPython();
   void pythonDownloadSuccess(QString url, QString file_path);
@@ -130,7 +130,7 @@ private:
   QList<QPointer<SearchTab> > all_tab; // To store all tabs
   const SearchCategories full_cat_names;
   MainWindow *mp_mainWindow;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   bool has_python;
 #endif
 };

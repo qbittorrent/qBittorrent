@@ -48,7 +48,7 @@
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <windows.h>
 #endif
 
@@ -286,7 +286,7 @@ QString QTorrentHandle::save_path_parsed() const {
       if (p.isEmpty())
         p = save_path();
     }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
     p.replace("/", "\\");
 #endif
     return p;
@@ -744,7 +744,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
           continue;
         }
         bool created = QDir().mkpath(unwanted_abspath);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         qDebug() << "unwanted folder was created:" << created;
         if (created) {
           // Hide the folder on Windows

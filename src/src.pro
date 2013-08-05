@@ -2,10 +2,6 @@
 TEMPLATE = app
 CONFIG += qt thread
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-  include(../qt5compat.pri)
-}
-
 # Windows specific configuration
 win32 {
   include(../winconf.pri)  
