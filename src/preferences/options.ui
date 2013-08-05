@@ -1278,17 +1278,17 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>SOCKS4</string>
+                     <string notr="true">SOCKS4</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>SOCKS5</string>
+                     <string notr="true">SOCKS5</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>HTTP</string>
+                     <string notr="true">HTTP</string>
                     </property>
                    </item>
                   </widget>
@@ -2080,7 +2080,7 @@
                  <item>
                   <widget class="QLabel" name="label_anonymous">
                    <property name="text">
-                    <string> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
+                    <string>(&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
                    </property>
                    <property name="openExternalLinks">
                     <bool>true</bool>

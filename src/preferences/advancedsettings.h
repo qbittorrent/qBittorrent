@@ -168,9 +168,9 @@ private slots:
   void updateCacheSpinSuffix(int value)
   {
     if (value <= 0)
-      spin_cache.setSuffix(tr(" (auto)"));
+      spin_cache.setSuffix(QString(' ') + tr("(auto)"));
     else
-      spin_cache.setSuffix(tr(" MiB"));
+      spin_cache.setSuffix(QString(' ') + tr(" MiB"));
   }
 
   void loadAdvancedSettings()
@@ -187,7 +187,7 @@ private slots:
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);
     spin_cache_ttl.setValue(pref.diskCacheTTL());
-    spin_cache_ttl.setSuffix(tr(" s", " seconds"));
+    spin_cache_ttl.setSuffix(QString(' ') + tr("s", "seconds"));
     setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
 #endif
     // Outgoing port Min
