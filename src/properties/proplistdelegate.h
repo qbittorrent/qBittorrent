@@ -99,7 +99,7 @@ public:
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
           QPlastiqueStyle st;
 #else
-          QProxyStyle st("plastique");
+          QProxyStyle st("fusion");
 #endif
           st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
