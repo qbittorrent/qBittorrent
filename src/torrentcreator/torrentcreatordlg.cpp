@@ -38,6 +38,7 @@
 #include "qinisettings.h"
 #include "torrentcreatorthread.h"
 #include "iconprovider.h"
+#include "qbtsession.h"
 
 const uint NB_PIECES_MIN = 1200;
 const uint NB_PIECES_MAX = 2200;
@@ -169,6 +170,8 @@ void TorrentCreatorDlg::handleCreationSuccess(QString path, QString branch_path)
     // Enable seeding mode (do not recheck the files)
     TorrentTempData::setSeedingMode(hash, true);
     emit torrent_to_seed(path);
+    if (checkIgnoreShareLimits->isChecked())
+      QBtSession::instance()->setMaxRatioPerTorrent(hash, -1);
   }
   QMessageBox::information(0, tr("Torrent creation"), tr("Torrent was created successfully:")+" "+path);
   close();
@@ -202,6 +205,7 @@ void TorrentCreatorDlg::setInteractionEnabled(bool enabled)
   check_private->setEnabled(enabled);
   checkStartSeeding->setEnabled(enabled);
   createButton->setEnabled(enabled);
+  checkIgnoreShareLimits->setEnabled(enabled && checkStartSeeding->isChecked());
   //cancelButton->setEnabled(!enabled);
 }
 
@@ -259,12 +263,14 @@ void TorrentCreatorDlg::saveSettings()
 {
   QIniSettings settings;
   settings.setValue("CreateTorrent/dimensions", saveGeometry());
+  settings.setValue("CreateTorrent/IgnoreRatio", checkIgnoreShareLimits->isChecked());
 }
 
 void TorrentCreatorDlg::loadSettings()
 {
   QIniSettings settings;
   restoreGeometry(settings.value("CreateTorrent/dimensions").toByteArray());
+  checkIgnoreShareLimits->setChecked(settings.value("CreateTorrent/IgnoreRatio").toBool());
 }
 
 void TorrentCreatorDlg::closeEvent(QCloseEvent *event)
