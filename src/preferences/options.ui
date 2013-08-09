@@ -1516,104 +1516,108 @@
               <property name="title">
                <string>Global Rate Limits</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_7">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_5">
-                 <property name="text">
-                  <string notr="true"/>
-                 </property>
-                 <property name="pixmap">
-                  <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <layout class="QGridLayout" name="gridLayout_6">
+              <layout class="QVBoxLayout" name="verticalLayout_30">
+               <item>
+                <layout class="QGridLayout" name="gridLayout_7">
                  <item row="0" column="0">
-                  <widget class="QCheckBox" name="checkUploadLimit">
+                  <widget class="QLabel" name="label_5">
                    <property name="text">
-                    <string>Upload:</string>
+                    <string notr="true"/>
                    </property>
-                   <property name="checked">
-                    <bool>true</bool>
+                   <property name="pixmap">
+                    <pixmap resource="../icons.qrc">:/Icons/slow_off.png</pixmap>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QSpinBox" name="spinUploadLimit">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="suffix">
-                    <string/>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>1000000</number>
-                   </property>
-                   <property name="value">
-                    <number>50</number>
-                   </property>
-                  </widget>
+                  <layout class="QGridLayout" name="gridLayout_6">
+                   <item row="0" column="0">
+                    <widget class="QCheckBox" name="checkUploadLimit">
+                     <property name="text">
+                      <string>Upload:</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QSpinBox" name="spinUploadLimit">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="suffix">
+                      <string/>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>1000000</number>
+                     </property>
+                     <property name="value">
+                      <number>50</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QLabel" name="label_10">
+                     <property name="text">
+                      <string>KiB/s</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QCheckBox" name="checkDownloadLimit">
+                     <property name="text">
+                      <string>Download:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="spinDownloadLimit">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="suffix">
+                      <string/>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <number>1000000</number>
+                     </property>
+                     <property name="value">
+                      <number>100</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QLabel" name="label_13">
+                     <property name="text">
+                      <string>KiB/s</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                  <item row="0" column="2">
-                  <widget class="QLabel" name="label_10">
-                   <property name="text">
-                    <string>KiB/s</string>
+                  <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="checkDownloadLimit">
-                   <property name="text">
-                    <string>Download:</string>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>200</width>
+                     <height>20</height>
+                    </size>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinDownloadLimit">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="suffix">
-                    <string/>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>1000000</number>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QLabel" name="label_13">
-                   <property name="text">
-                    <string>KiB/s</string>
-                   </property>
-                  </widget>
+                  </spacer>
                  </item>
                 </layout>
                </item>
-               <item row="0" column="2">
-                <spacer>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>200</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="1" colspan="2">
+               <item>
                 <widget class="QGroupBox" name="groupBox_5">
                  <property name="title">
                   <string>Options</string>
