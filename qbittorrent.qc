@@ -3,7 +3,7 @@
  <profile>qbittorrent.pro</profile>
  <moddir>qcm</moddir>
  <datadir/>
-  <dep type='qt4'>
+  <dep type='qt'>
     <required/>
   </dep>
   <dep type='qt-dbus'>

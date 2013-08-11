@@ -5,10 +5,10 @@ arg: enable-debug, Enable debug mode
 arg: disable-gui, Disable qBittorrent Graphical user interface for headless running
 -----END QCMOD-----
 */
-class qc_qt4 : public ConfObj
+class qc_qt : public ConfObj
 {
 public:
-	qc_qt4(Conf *c) : ConfObj(c) {}
+	qc_qt(Conf *c) : ConfObj(c) {}
 	QString name() const { return "Qt >= 4.6"; }
 	QString shortname() const { return "Qt 4.6"; }
 	bool exec()
