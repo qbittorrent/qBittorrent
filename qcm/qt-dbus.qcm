@@ -8,18 +8,36 @@ class qc_qt_dbus : public ConfObj
 {
 public:
 	qc_qt_dbus(Conf *c) : ConfObj(c) {}
-	QString name() const { return "QtDBus"; }
+	QString name() const { return "QtDBus >= 4.5"; }
 	QString shortname() const { return "qt-dbus"; }
-        QString checkString() const {
-                if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                        return "";
-                return ConfObj::checkString();
-        }
-	bool exec(){
-                if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                  return false;
-                  
-				conf->addExtra("CONFIG += dbus");
-				return true;
+    QString checkString() const {
+            if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                    return "";
+            return ConfObj::checkString();
+    }
+    QString resultString() const {
+		return ConfObj::resultString() + QString(" (%1)").arg(version_);
 	}
+	bool exec(){
+        if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+            return false;
+		QStringList incs;
+		QString req_ver = "4.5.0";
+		QString libs, other;
+#if (QT_VERSION < 0x050000)
+		VersionMode mode = VersionMin;
+		if(conf->findPkgConfig("QtDBus", mode, req_ver, &version_, &incs, &libs, &other)) {
+#else
+        VersionMode mode = VersionAny;
+		if(conf->findPkgConfig("Qt5DBus", mode, req_ver, &version_, &incs, &libs, &other)) {
+#endif
+            conf->addExtra("CONFIG += dbus");
+			return true;
+        }
+        
+		return false;
+	}
+	
+private:
+    QString version_;
 };

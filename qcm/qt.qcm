@@ -10,7 +10,10 @@ class qc_qt : public ConfObj
 public:
 	qc_qt(Conf *c) : ConfObj(c) {}
 	QString name() const { return "Qt >= 4.6"; }
-	QString shortname() const { return "Qt 4.6"; }
+	QString shortname() const { return "Qt"; }
+	QString resultString() const {
+		return ConfObj::resultString() + QString(" (%1)").arg(QT_VERSION_STR);
+	}
 	bool exec()
 	{
                 // NOX mode

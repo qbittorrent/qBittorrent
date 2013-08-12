@@ -243,7 +243,7 @@ if [ "$QC_VERBOSE" = "Y" ]; then
 fi
 
 qm=""
-names="qmake-qt5 qmake5 qmake qmake-qt4 qmake4"
+names="qmake qmake-qt5 qmake5 qmake-qt4 qmake4"
 
 # qt check: --qtdir
 if [ -z "$qm" ] && [ ! -z "$EX_QTDIR" ]; then
@@ -320,6 +320,8 @@ if [ "$QC_VERBOSE" = "Y" ]; then
 	echo qmake found in $qm
 fi
 
+export PKG_CONFIG_PATH=`$qm -query QT_INSTALL_LIBS`/pkgconfig:$PKG_CONFIG_PATH
+
 # try to determine the active makespec
 defmakespec=$QMAKESPEC
 if [ -z "$defmakespec" ]; then
@@ -364,7 +366,10 @@ class qc_qt : public ConfObj
 public:
 	qc_qt(Conf *c) : ConfObj(c) {}
 	QString name() const { return "Qt >= 4.6"; }
-	QString shortname() const { return "Qt 4.6"; }
+	QString shortname() const { return "Qt"; }
+	QString resultString() const {
+		return ConfObj::resultString() + QString(" (%1)").arg(QT_VERSION_STR);
+	}
 	bool exec()
 	{
                 // NOX mode
@@ -406,13 +411,32 @@ public:
                         return "";
                 return ConfObj::checkString();
         }
-	bool exec(){
-                if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                  return false;
-                  
-				conf->addExtra("CONFIG += dbus");
-				return true;
+    QString resultString() const {
+		return ConfObj::resultString() + QString(" (%1)").arg(version_);
 	}
+	bool exec(){
+        if(!conf->getenv("QC_DISABLE_qt_dbus").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+        	return false;
+                  
+		QStringList incs;
+		QString req_ver = "4.5.0";
+		QString libs, other;
+#if (QT_VERSION < 0x050000)
+		VersionMode mode = VersionMin;
+		if(conf->findPkgConfig("QtDBus", mode, req_ver, &version_, &incs, &libs, &other)) {
+#else
+        VersionMode mode = VersionAny;
+		if(conf->findPkgConfig("Qt5DBus", mode, req_ver, &version_, &incs, &libs, &other)) {
+#endif
+            conf->addExtra("CONFIG += dbus");
+			return true;
+        }
+        
+		return false;
+	}
+	
+private:
+    QString version_;
 };
 #line 1 "pkg-config.qcm"
 /*
