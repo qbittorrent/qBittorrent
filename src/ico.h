@@ -36,7 +36,7 @@
 #include <QtGui/QImageIOPlugin>
 
 class ICOHandler : public QImageIOHandler
-{
+{ 
 public:
     ICOHandler();
 

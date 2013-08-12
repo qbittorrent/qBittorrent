@@ -31,9 +31,11 @@
 #ifndef MISC_H
 #define MISC_H
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/version.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_handle.hpp>
+#endif
 #include <sstream>
 #include <QString>
 #include <QStringList>

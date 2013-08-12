@@ -36,6 +36,8 @@ nox {
 }
 QT += network
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 # Vars
 LANG_PATH = lang
 ICONS_PATH = Icons
@@ -58,7 +60,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Fixes compilation with Boost >= v1.46 where boost
 # filesystem v3 is the default.
-DEFINES += BOOST_FILESYSTEM_VERSION=2
+#DEFINES += BOOST_FILESYSTEM_VERSION=2
 
 INCLUDEPATH += $$PWD
 
@@ -87,6 +89,7 @@ include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(tracker/tracker.pri)
 include (preferences/preferences.pri)
+greaterThan(QT_MAJOR_VERSION, 4):include(qhttp/qhttp.pri)
 
 !nox {
   include(lineedit/lineedit.pri)
@@ -172,6 +175,7 @@ nox {
   win32 {
     HEADERS += programupdater.h
     SOURCES += programupdater.cpp
+    DEFINES += NOMINMAX
   }
 
   macx {

@@ -33,8 +33,11 @@
 
 #include <QDialog>
 #include <QStringList>
+
+#ifndef Q_MOC_RUN
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
+#endif
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

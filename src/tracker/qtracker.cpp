@@ -31,6 +31,9 @@
 #include <QHttpRequestHeader>
 #include <QTcpSocket>
 #include <QUrl>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QUrlQuery>>
+#endif
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
@@ -109,8 +112,12 @@ void QTracker::readRequest()
   // OK, this is a GET request
   // Parse GET parameters
   QHash<QString, QString> get_parameters;
-  QUrl url = QUrl::fromEncoded(http_request.path().toAscii());
+  QUrl url = QUrl::fromEncoded(http_request.path().toLatin1());
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   QListIterator<QPair<QString, QString> > i(url.queryItems());
+#else
+  QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
+#endif
   while (i.hasNext()) {
     QPair<QString, QString> pair = i.next();
     get_parameters[pair.first] = pair.second;
@@ -141,8 +148,8 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket,
   }
   annonce_req.info_hash = get_parameters.value("info_hash");
   // info_hash cannot be longer than 20 bytes
-  /*if (annonce_req.info_hash.toAscii().length() > 20) {
-    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toAscii().length());
+  /*if (annonce_req.info_hash.toLatin1().length() > 20) {
+    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
     respondInvalidRequest(socket, 150, "Invalid infohash");
     return;
   }*/

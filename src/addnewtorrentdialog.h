@@ -34,7 +34,10 @@
 #include <QShortcut>
 #include <QDialog>
 #include <QUrl>
+
+#ifndef Q_MOC_RUN
 #include <libtorrent/torrent_info.hpp>
+#endif
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

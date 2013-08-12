@@ -93,7 +93,7 @@ const int MAX_TRACKER_ERRORS = 2;
 
 /* Converts a QString hash into a libtorrent sha1_hash */
 static libtorrent::sha1_hash QStringToSha1(const QString& s) {
-  QByteArray raw = s.toAscii();
+  QByteArray raw = s.toLatin1();
   Q_ASSERT(raw.size() == 40);
   libtorrent::sha1_hash ret;
   from_hex(raw.constData(), 40, (char*)&ret[0]);
@@ -1014,7 +1014,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if (!torrentBackup.exists()) return h;
 
   // Fix the input path if necessary
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   // Windows hack
   if (!path.endsWith(".torrent"))
     if (QFile::rename(path, path+".torrent")) path += ".torrent";
@@ -1040,7 +1040,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       //emit invalidTorrent(from_url);
       fsutils::forceRemove(path);
     }else{
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
       QString displayed_path = path;
       displayed_path.replace("/", "\\");
       addConsoleMessage(tr("Unable to decode torrent file: '%1'", "e.g: Unable to decode torrent file: '/home/y/xxx.torrent'").arg(displayed_path), QString::fromUtf8("red"));
@@ -1069,7 +1069,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     if (!from_url.isNull()) {
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(from_url));
     }else{
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
       QString displayed_path = path;
       displayed_path.replace("/", "\\");
       addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(displayed_path));
@@ -1940,10 +1940,10 @@ void QBtSession::setListeningPort(int port) {
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
 #if LIBTORRENT_VERSION_NUM >= 001600
-    s->listen_on(ports, ec, entry.ip().toString().toAscii().constData());
+    s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData());
     if (!ec) {
 #else
-    if (s->listen_on(ports, entry.ip().toString().toAscii().constData())) {
+    if (s->listen_on(ports, entry.ip().toString().toLatin1().constData())) {
 #endif
       ip = entry.ip().toString();
       break;
@@ -2131,7 +2131,7 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
     for (int i=0; i<h.num_files(); ++i) {
       const QString torrent_relpath = h.filepath_at(i);
       if (torrent_relpath.endsWith(".torrent")) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
         QString displayed_relpath = torrent_relpath;
         displayed_relpath.replace("/", "\\");
         addConsoleMessage(tr("Recursive download of file %1 embedded in torrent %2", "Recursive download of test.torrent embedded in torrent test2").arg(displayed_relpath).arg(h.name()));
@@ -2228,7 +2228,7 @@ void QBtSession::readAlerts() {
                   }
                 } catch(std::exception&) {
                   qDebug("Caught error loading torrent");
-  #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+  #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
                   QString displayed_path = torrent_fullpath;
                   displayed_path.replace("/", "\\");
                   addConsoleMessage(tr("Unable to decode %1 torrent file.").arg(displayed_path), QString::fromUtf8("red"));
@@ -2512,16 +2512,16 @@ void QBtSession::readAlerts() {
         boost::system::error_code ec;
         string ip = p->ip.to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), true);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (peer_ban_alert* p = dynamic_cast<peer_ban_alert*>(a.get())) {
         boost::system::error_code ec;
         string ip = p->ip.address().to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), false);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), false);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
@@ -2707,7 +2707,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
   const int index = url_skippingDlg.indexOf(QUrl::fromEncoded(url.toUtf8()));
   if (index < 0) {
     // Add file to torrent download list
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     // Windows hack
     if (!file_path.endsWith(".torrent", Qt::CaseInsensitive)) {
       Q_ASSERT(QFile::exists(file_path));

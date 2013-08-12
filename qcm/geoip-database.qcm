@@ -20,13 +20,13 @@ public:
 	if(!conf->getenv("QC_DISABLE_geoip_database").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty()) {
 		return false;
 	}
-#ifdef Q_WS_X11
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 		if(!conf->getenv("QC_WITH_GEOIP_DATABASE_EMBEDDED").isEmpty()) {
 #endif
 			conf->addDefine("WITH_GEOIP_EMBEDDED");
                         printf(" embedded and");
 			return true;
-#ifdef Q_WS_X11
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 		}
                 if(QFile::exists("/usr/share/GeoIP/GeoIP.dat") || QFile::exists("/usr/local/share/GeoIP/GeoIP.dat") || QFile::exists("/var/lib/GeoIP/GeoIP.dat"))
 			return true;

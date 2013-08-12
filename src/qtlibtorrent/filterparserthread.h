@@ -37,14 +37,16 @@
 #include <QStringList>
 #include <QHostAddress>
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#endif
 
 using namespace std;
 
 // P2B Stuff
 #include <string.h>
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <Winsock2.h>
 #else
 #include <arpa/inet.h>

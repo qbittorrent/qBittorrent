@@ -100,7 +100,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
       return;
     }
     // Update display
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
     ui->lineContent->setText(m_contentPath.replace("/", "\\"));
 #else
     ui->lineContent->setText(m_contentPath);
@@ -136,7 +136,7 @@ void TorrentImportDlg::on_browseContentBtn_clicked()
       return;
     }
     // Update the display
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
     ui->lineContent->setText(m_contentPath.replace("/", "\\"));
 #else
     ui->lineContent->setText(m_contentPath);
@@ -236,7 +236,7 @@ void TorrentImportDlg::loadTorrent(const QString &torrent_path)
     return;
   }
   // Update display
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   QString tmp = torrent_path;
   ui->lineTorrent->setText(tmp.replace("/", "\\"));
 #else

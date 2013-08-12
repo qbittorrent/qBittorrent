@@ -36,6 +36,8 @@
 #include <QMessageBox>
 #include <QHostAddress>
 #include "ui_peer.h"
+
+#ifndef Q_MOC_RUN
 #include <libtorrent/session.hpp>
 
 #include <boost/version.hpp>
@@ -44,6 +46,7 @@
 #else
 #include <boost/asio/ip/tcp.hpp>
 #endif
+#endif // Q_MOC_RUN
 
 class PeerAdditionDlg: public QDialog, private Ui::addPeerDialog {
   Q_OBJECT

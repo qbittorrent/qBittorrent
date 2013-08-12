@@ -10,22 +10,34 @@ public:
 	qc_qt_svg(Conf *c) : ConfObj(c) {}
 	QString name() const { return "QtSvg >= 4.5"; }
 	QString shortname() const { return "qt-svg"; }
-        QString checkString() const {
-                if(!conf->getenv("QC_DISABLE_qt_svg").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
-                        return "";
-                return ConfObj::checkString();
-        }
+    QString checkString() const {
+            if(!conf->getenv("QC_DISABLE_qt_svg").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
+                    return "";
+            return ConfObj::checkString();
+    }
+    QString resultString() const {
+		return ConfObj::resultString() + QString(" (%1)").arg(version_);
+	}
 	bool exec(){
                 if(!conf->getenv("QC_DISABLE_qt_svg").isEmpty() || !conf->getenv("QC_DISABLE_GUI").isEmpty())
                   return false;
 		QStringList incs;
 		QString req_ver = "4.5.0";
-		QString version, libs, other;
+		QString libs, other;
+#if (QT_VERSION < 0x050000)
 		VersionMode mode = VersionMin;
-		if(conf->findPkgConfig("QtSvg", mode, req_ver, &version, &incs, &libs, &other)) {
-                        conf->addExtra("CONFIG += svg");
+		if(conf->findPkgConfig("QtSvg", mode, req_ver, &version_, &incs, &libs, &other)) {
+#else
+        VersionMode mode = VersionAny;
+		if(conf->findPkgConfig("Qt5Svg", mode, req_ver, &version_, &incs, &libs, &other)) {
+#endif
+            conf->addExtra("CONFIG += svg");
 			return true;
-                }
+        }
+        
 		return false;
 	}
+	
+private:
+    QString version_;
 };

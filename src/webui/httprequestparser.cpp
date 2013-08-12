@@ -31,6 +31,9 @@
 
 #include "httprequestparser.h"
 #include <QUrl>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QUrlQuery>>
+#endif
 #include <QDebug>
 
 HttpRequestParser::HttpRequestParser(): m_error(false)
@@ -69,11 +72,15 @@ void HttpRequestParser::writeHeader(const QByteArray& ba) {
   m_error = false;
   // Parse header
   m_header = QHttpRequestHeader(ba);
-  QUrl url = QUrl::fromEncoded(m_header.path().toAscii());
+  QUrl url = QUrl::fromEncoded(m_header.path().toLatin1());
   m_path = url.path();
 
   // Parse GET parameters
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   QListIterator<QPair<QString, QString> > i(url.queryItems());
+#else
+  QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
+#endif
   while (i.hasNext()) {
     QPair<QString, QString> pair = i.next();
     m_getMap[pair.first] = pair.second;
@@ -102,8 +109,13 @@ void HttpRequestParser::writeMessage(const QByteArray& ba) {
   // Parse POST data
   if (m_header.contentType() == "application/x-www-form-urlencoded") {
     QUrl url;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     url.setEncodedQuery(m_data);
     QListIterator<QPair<QString, QString> > i(url.queryItems());
+#else
+    url.setQuery(m_data/*, QUrl::DecodedMode*/);
+    QListIterator<QPair<QString, QString> > i(QUrlQuery(url).queryItems());
+#endif
     while (i.hasNext())	{
       QPair<QString, QString> pair = i.next();
       m_postMap[pair.first] = pair.second;
@@ -141,10 +153,10 @@ Submit Query
         m_error = true;
         return;
       } else {
-        boundary = "--" + boundaryRegexNotQuoted.cap(1).toAscii();
+        boundary = "--" + boundaryRegexNotQuoted.cap(1).toLatin1();
       }
     } else {
-      boundary = "--" + boundaryRegexQuoted.cap(1).toAscii();
+      boundary = "--" + boundaryRegexQuoted.cap(1).toLatin1();
     }
     qDebug() << "Boundary is " << boundary;
     QList<QByteArray> parts = splitRawData(m_data, boundary);

@@ -43,8 +43,12 @@
 #include "torrentmodel.h"
 #include "qbtsession.h"
 
-#ifdef Q_WS_WIN
-  #include <QPlastiqueStyle>
+#ifdef Q_OS_WIN
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <QPlastiqueStyle>
+#else
+#include <QProxyStyle>
+#endif
 #endif
 
 // Defines for download list list columns
@@ -189,11 +193,15 @@ public:
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
         newopt.textVisible = true;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar
-        QPlastiqueStyle st;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+          QPlastiqueStyle st;
+#else
+          QProxyStyle st("fusion");
+#endif
         st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         break;

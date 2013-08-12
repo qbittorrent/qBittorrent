@@ -46,7 +46,7 @@
 #include <QDesktopWidget>
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <windows.h>
 #include <PowrProf.h>
 const int UNLEN = 256;
@@ -55,13 +55,13 @@ const int UNLEN = 256;
 #include <sys/types.h>
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
 #endif
 
 #ifndef DISABLE_GUI
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
@@ -79,7 +79,7 @@ static struct { const char *source; const char *comment; } units[] = {
 
 #ifndef DISABLE_GUI
 void misc::shutdownComputer(bool sleep) {
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
   if (sleep) {
     // Recent systems use UPower
@@ -109,7 +109,7 @@ void misc::shutdownComputer(bool sleep) {
     halIface.call("Shutdown");
   }
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   AEEventID EventToSend;
   if (sleep)
     EventToSend = kAESleep;
@@ -150,7 +150,7 @@ void misc::shutdownComputer(bool sleep) {
 
   AEDisposeDesc(&eventReply);
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   HANDLE hToken;              // handle to process token
   TOKEN_PRIVILEGES tkp;       // pointer to token structure
   if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
@@ -350,7 +350,7 @@ QString misc::magnetUriToHash(const QString& magnet_uri) {
     const QString found = regHex.cap(1);
     qDebug() << Q_FUNC_INFO << "regex found: " << found;
     if (found.length() == 40) {
-      const sha1_hash sha1(QByteArray::fromHex(found.toAscii()).constData());
+      const sha1_hash sha1(QByteArray::fromHex(found.toLatin1()).constData());
       qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
       return misc::toQString(sha1);
     }
@@ -400,7 +400,7 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
 
 QString misc::getUserIDString() {
   QString uid = "0";
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   char buffer[UNLEN+1] = {0};
   DWORD buffer_len = UNLEN + 1;
   if (!GetUserNameA(buffer, &buffer_len))
