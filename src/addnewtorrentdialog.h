@@ -35,6 +35,8 @@
 #include <QDialog>
 #include <QUrl>
 #include <libtorrent/torrent_info.hpp>
+#include "qtorrenthandle.h"
+#include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -58,12 +60,16 @@ public:
 private slots:
   void showAdvancedSettings(bool show);
   void displayContentTreeMenu(const QPoint&);
-  void on_buttonBox_accepted();
   void updateDiskSpaceLabel();
   void onSavePathChanged(int);
   void relayout();
   void renameSelectedFile();
   void setdialogPosition();
+  void updateMetadata(const QTorrentHandle& h);
+
+protected slots:
+  virtual void accept();
+  virtual void reject();
 
 private:
   explicit AddNewTorrentDialog(QWidget *parent = 0);
@@ -75,12 +81,15 @@ private:
   void updateFileNameInSavePaths(const QString& new_filename);
   void loadState();
   void saveState();
+  void setMetadataProgressIndicator(bool enabled, const QString &labelText = QString());
 
 private:
   Ui::AddNewTorrentDialog *ui;
   TorrentContentFilterModel *m_contentModel;
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
+  bool m_hasMetadata;
+  bool m_convertingMagnet;
   QString m_filePath;
   QString m_url;
   QString m_hash;
@@ -88,6 +97,7 @@ private:
   QStringList m_filesPath;
   bool m_hasRenamedFile;
   QShortcut *editHotkey;
+  QProgressBar *m_progress;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H
