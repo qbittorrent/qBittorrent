@@ -205,13 +205,13 @@ void TrackerList::loadStickyItems(const QTorrentHandle &h) {
   }
 
   // Load PeX Information
-  if (QBtSession::instance()->isPexEnabled())
+  if (QBtSession::instance()->isPexEnabled() && !h.priv())
     pex_item->setText(COL_STATUS, tr("Working"));
   else
     pex_item->setText(COL_STATUS, tr("Disabled"));
 
   // Load LSD Information
-  if (QBtSession::instance()->isLSDEnabled())
+  if (QBtSession::instance()->isLSDEnabled() && !h.priv())
     lsd_item->setText(COL_STATUS, tr("Working"));
   else
     lsd_item->setText(COL_STATUS, tr("Disabled"));
