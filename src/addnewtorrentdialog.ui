@@ -187,6 +187,28 @@
    <item>
     <layout class="QHBoxLayout" name="buttonsHLayout">
      <item>
+      <widget class="QProgressBar" name="progMetaLoading">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximum">
+        <number>0</number>
+       </property>
+       <property name="value">
+        <number>-1</number>
+       </property>
+       <property name="textVisible">
+        <bool>false</bool>
+       </property>
+       <property name="format">
+        <string notr="true">%p%</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="lblMetaLoading">
        <property name="enabled">
         <bool>true</bool>

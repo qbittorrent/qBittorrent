@@ -63,11 +63,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   m_hasRenamedFile(false)
 {
   ui->setupUi(this);
-  m_progress = new QProgressBar(this);
-  m_progress->setMinimum(0);
-  m_progress->setMaximum(0);
   ui->lblMetaLoading->setVisible(false);
-  ui->buttonsHLayout->insertWidget(ui->buttonsHLayout->indexOf(ui->lblMetaLoading), m_progress);
+  ui->progMetaLoading->setVisible(false);
 
   QIniSettings settings;
   Preferences pref;
@@ -96,7 +93,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
   saveState();
-  delete m_progress;
   delete ui;
   if (m_contentModel)
     delete m_contentModel;
@@ -763,15 +759,9 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
   }
 }
 
-void AddNewTorrentDialog::setMetadataProgressIndicator(bool enabled, const QString &labelText) {
+void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText) {
   // Always show info label when waiting for metadata
   ui->lblMetaLoading->setVisible(true);
   ui->lblMetaLoading->setText(labelText);
-  if (enabled)
-    m_progress->setEnabled(enabled);
-  else {
-    m_progress->setMaximum(1);
-    m_progress->setValue(1);
-    m_progress->setTextVisible(false); // Don't display %% completed
-  }
+  ui->progMetaLoading->setVisible(visibleIndicator);
 }
