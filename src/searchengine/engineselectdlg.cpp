@@ -326,14 +326,26 @@ void engineSelectDlg::on_installButton_clicked() {
 }
 
 void engineSelectDlg::askForPluginUrl() {
-  bool ok;
+  bool ok(false);
   QString url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
                                       "http://", &ok);
-  if (ok && !url.isEmpty()) {
-    setCursor(QCursor(Qt::WaitCursor));
-    downloader->downloadUrl(url);
+
+  while(true) {
+    if (!ok || url.isEmpty())
+      return;
+    if (!url.endsWith(".py")) {
+      QMessageBox::warning(this, tr("Invlalid link"), tr("The link doesn't seem to point to a search engine plugin."));
+      url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
+                                            tr("URL:"), QLineEdit::Normal,
+                                            url, &ok);
+    }
+    else
+      break;
   }
+
+  setCursor(QCursor(Qt::WaitCursor));
+  downloader->downloadUrl(url);
 }
 
 void engineSelectDlg::askForLocalPlugin() {
