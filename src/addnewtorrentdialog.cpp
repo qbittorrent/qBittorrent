@@ -600,7 +600,7 @@ void AddNewTorrentDialog::accept()
     disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
   }
   if (!m_hasMetadata) {
-    // Metadata retrival was cancelled
+    // Metadata retrieval was cancelled
     // Kill existing handle and make a new one
     QBtSession::instance()->deleteTorrent(m_hash, true);
   }
