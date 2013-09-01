@@ -145,8 +145,8 @@ void AddNewTorrentDialog::showAdvancedSettings(bool show)
   if (show) {
     ui->adv_button->setText(QString::fromUtf8("▲"));
     ui->settings_group->setVisible(true);
-    ui->info_group->setVisible(!m_isMagnet || (m_isMagnet && m_hasMetadata));
-    if ( (!m_isMagnet || (m_isMagnet && m_hasMetadata)) && (m_torrentInfo->num_files() > 1)) {
+    ui->info_group->setVisible(m_hasMetadata);
+    if (m_hasMetadata && (m_torrentInfo->num_files() > 1)) {
       ui->content_tree->setVisible(true);
       setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     } else {
@@ -177,6 +177,8 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     QMessageBox::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
     return false;
   }
+
+  m_hasMetadata = true;
 
   try {
     m_torrentInfo = new torrent_info(m_filePath.toUtf8().data());
@@ -332,7 +334,7 @@ void AddNewTorrentDialog::updateFileNameInSavePaths(const QString &new_filename)
 
 void AddNewTorrentDialog::updateDiskSpaceLabel()
 {
-  Q_ASSERT((m_isMagnet&m_hasMetadata)||!m_isMagnet);
+  Q_ASSERT(m_hasMetadata);
   // Determine torrent size
   qulonglong torrent_size = 0;
   if (m_contentModel) {
@@ -406,7 +408,7 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
   relayout();
   // Remember index
   old_index = ui->save_path_combo->currentIndex();
-  if (m_isMagnet && m_hasMetadata)
+  if (m_hasMetadata)
     updateDiskSpaceLabel();
 }
 
@@ -597,7 +599,7 @@ void AddNewTorrentDialog::accept()
     }
     disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
   }
-  if (m_isMagnet && !m_hasMetadata) {
+  if (!m_hasMetadata) {
     // Metadata retrival was cancelled
     // Kill existing handle and make a new one
     QBtSession::instance()->deleteTorrent(m_hash, true);
@@ -630,7 +632,7 @@ void AddNewTorrentDialog::accept()
   pref.sync();
 
   // Add torrent
-  if (m_isMagnet && !m_hasMetadata)
+  if (!m_hasMetadata)
     QBtSession::instance()->addMagnetUri(m_url, false);
   else
     QBtSession::instance()->addTorrent(m_filePath, false, m_url);
