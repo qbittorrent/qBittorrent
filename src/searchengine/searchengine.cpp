@@ -355,7 +355,7 @@ void SearchEngine::searchStarted() {
   // Update SearchEngine widgets
   search_status->setText(tr("Searching..."));
   search_status->repaint();
-  search_button->setText("Stop");
+  search_button->setText(tr("Stop"));
 }
 
 // search Qprocess return output as soon as it gets new
@@ -510,7 +510,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   }
   if (currentSearchTab)
     currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
-  search_button->setText("Search");
+  search_button->setText(tr("Search"));
 }
 
 // SLOT to append one line to search results list
