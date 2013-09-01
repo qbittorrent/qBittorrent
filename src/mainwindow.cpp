@@ -891,8 +891,11 @@ void MainWindow::dropEvent(QDropEvent *event) {
     if (file.startsWith("magnet:", Qt::CaseInsensitive)) {
       if (useTorrentAdditionDialog)
         AddNewTorrentDialog::showMagnet(file);
-      else
+      else{
         QBtSession::instance()->addMagnetUri(file);
+        showNotificationBaloon("Magnet Link added","");
+        std::cout<<"Torrent Added - "<<qPrintable(file)<<std::endl;
+      }
     } else {
       // Local file
       if (useTorrentAdditionDialog)
@@ -978,13 +981,21 @@ void MainWindow::processParams(const QStringList& params) {
       if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
         if (useTorrentAdditionDialog)
           AddNewTorrentDialog::showMagnet(param);
-        else
-          QBtSession::instance()->addMagnetUri(param);
+        else{
+          QTorrentHandle torrent =  QBtSession::instance()->addMagnetUri(param);
+          //TODO TRANSLATE AND DETAILS
+          showNotificationBaloon("Magnet Link has been added", "A Magnet Link has been added to the list of downloads");
+          std::cout<<"Magnet added"<<torrent.name().toStdString()<<std::endl<<torrent.is_queued()<<std::endl<<torrent.active_time()<<std::endl<<torrent.creation_date().toStdString()<<std::endl;
+        }
       } else {
         if (useTorrentAdditionDialog)
           AddNewTorrentDialog::showTorrent(param);
-        else
+        else{
           QBtSession::instance()->addTorrent(param);
+          //TODO TRanslate and DETAILS
+          showNotificationBaloon("Torrent file has been added", "A Torrent File has been added to the list of downloads");
+          std::cout<<"Torrent added"<<std::endl;
+        }
       }
     }
   }
