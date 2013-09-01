@@ -150,7 +150,7 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
   if (!speed_average.download)
     return MAX_ETA;
 
-  return (h.total_wanted() - h.total_done()) / speed_average.download;
+  return (h.total_wanted() - h.total_wanted_done()) / speed_average.download;
 }
 
 void TorrentSpeedMonitor::getSamples()

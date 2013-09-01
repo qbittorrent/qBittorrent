@@ -404,7 +404,7 @@ bool QTorrentHandle::is_checking() const {
 
 size_type QTorrentHandle::total_done() const {
 #if LIBTORRENT_VERSION_NUM >= 001600
-  return torrent_handle::status(0x0).total_done;
+  return torrent_handle::status(query_accurate_download_counters).total_done;
 #else
   return torrent_handle::status().total_done;
 #endif
