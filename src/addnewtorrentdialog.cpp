@@ -278,7 +278,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 
   // Temporary override of addInPause setting
   bool old_addInPause = pref.addTorrentsInPause();
-  pref.addTorrentsInPause(!ui->start_torrent_cb->isChecked());
+  pref.addTorrentsInPause(false);
   pref.sync();
 
   QBtSession::instance()->addMagnetUri(m_url, false);
