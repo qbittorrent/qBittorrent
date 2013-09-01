@@ -140,124 +140,196 @@
         <translation>Datum:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="217"/>
+        <location filename="../addnewtorrentdialog.ui" line="249"/>
         <source>Normal</source>
         <translation>Uobičajen</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="222"/>
+        <location filename="../addnewtorrentdialog.ui" line="254"/>
         <source>High</source>
         <translation>Visok</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="227"/>
+        <location filename="../addnewtorrentdialog.ui" line="259"/>
         <source>Maximum</source>
         <translation>Najviši</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="232"/>
+        <location filename="../addnewtorrentdialog.ui" line="264"/>
         <source>Do not download</source>
         <translation>Ne preuzimaj</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="71"/>
+        <location filename="../addnewtorrentdialog.cpp" line="75"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Ostali ...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <location filename="../addnewtorrentdialog.cpp" line="765"/>
         <source>I/O Error</source>
         <translation>I/O greška</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>The torrent file does not exist.</source>
         <translation>Torrent datoteka ne postoji.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Invalid torrent</source>
         <translation>Neispravan torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Neuspješno učitavanje torrenta: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="191"/>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Already in download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <source>Torrent is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../addnewtorrentdialog.cpp" line="713"/>
         <source>Not available</source>
         <translation>Nije dostupan</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>Invalid magnet link</source>
         <translation>Nesispravan magnet link</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>This magnet link was not recognized</source>
         <translation>Ovaj magnet link nije prepoznat</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="256"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Magnet link is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="277"/>
         <source>Magnet link</source>
         <translation>Magnet link</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../addnewtorrentdialog.cpp" line="295"/>
+        <source>Retrieving metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="359"/>
         <source>Disk space: %1</source>
         <translation>Prostor na disku:%1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="340"/>
-        <location filename="../addnewtorrentdialog.cpp" line="347"/>
-        <location filename="../addnewtorrentdialog.cpp" line="349"/>
+        <location filename="../addnewtorrentdialog.cpp" line="377"/>
+        <location filename="../addnewtorrentdialog.cpp" line="384"/>
+        <location filename="../addnewtorrentdialog.cpp" line="386"/>
         <source>Choose save path</source>
         <translation>Izaberite putanju spremanja</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="402"/>
+        <location filename="../addnewtorrentdialog.cpp" line="439"/>
         <source>Rename the file</source>
         <translation>Preimenuj datoteku</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="403"/>
+        <location filename="../addnewtorrentdialog.cpp" line="440"/>
         <source>New name:</source>
         <translation>Novo ime:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="407"/>
-        <location filename="../addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../addnewtorrentdialog.cpp" line="444"/>
+        <location filename="../addnewtorrentdialog.cpp" line="470"/>
         <source>The file could not be renamed</source>
         <translation>Datoteku nije moguće preimenovati</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="408"/>
+        <location filename="../addnewtorrentdialog.cpp" line="445"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Ovo ime datoteke sadrži zabranjene znakove. Izaberite druge.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="434"/>
-        <location filename="../addnewtorrentdialog.cpp" line="469"/>
+        <location filename="../addnewtorrentdialog.cpp" line="471"/>
+        <location filename="../addnewtorrentdialog.cpp" line="506"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Ime se već koristi u toj mapi. Koristite drugo ime.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="468"/>
+        <location filename="../addnewtorrentdialog.cpp" line="505"/>
         <source>The folder could not be renamed</source>
         <translation>Mapu nije moguće preimenovati</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="527"/>
+        <location filename="../addnewtorrentdialog.cpp" line="564"/>
         <source>Rename...</source>
         <translation>Preimenuj ...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="531"/>
+        <location filename="../addnewtorrentdialog.cpp" line="568"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Processing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Please wait while parsing metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <source>Failed to save metadata.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="688"/>
+        <source>Failed to save metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <location filename="../addnewtorrentdialog.cpp" line="698"/>
+        <source>Invalid metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <source>Metadata corrupted.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="704"/>
+        <source>Parsing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="763"/>
+        <source>Metadata retrieval complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="766"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">Nepoznata greška</translation>
     </message>
 </context>
 <context>
@@ -3428,6 +3500,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
         <location filename="../searchengine/searchengine.cpp" line="252"/>
+        <location filename="../searchengine/searchengine.cpp" line="513"/>
         <source>Search</source>
         <translation>Traži</translation>
     </message>
@@ -3463,6 +3536,11 @@ Do you want to install it now?</source>
         <location filename="../searchengine/searchengine.cpp" line="356"/>
         <source>Searching...</source>
         <translation>Potraga ...</translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="358"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3664,54 +3742,54 @@ Instalirajte ručno.</translation>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="73"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="74"/>
         <source>Select a folder to add to the torrent</source>
         <translation>Izaberite mapu koja će biti dodana torrentu</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="89"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="90"/>
         <source>Select a file to add to the torrent</source>
         <translation>Izaberite datoteku koja će biti dodana torrentu</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>No input path set</source>
         <translation>Nije zadana ulazna putanja</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>Please type an input path first</source>
         <translation>Upišite prvo ulaznu putanju</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Select destination torrent file</source>
         <translation>Izabrite odredišnu torrent datoteku</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Torrent Files</source>
         <translation>Torrent datoteke</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent creation</source>
         <translation>Kreiranje torrenta</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Kreiranje torrenta nije uspjelo. Razlog: %1</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Kreirana torrent datoteka nije ispravna. Neće biti dodana na popis preuzimanja.</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent je uspješno kreiran:</translation>
     </message>
@@ -4612,7 +4690,7 @@ Instalirajte ručno.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="283"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="296"/>
         <source>Cancel</source>
         <translation>Odustani</translation>
     </message>
@@ -4723,12 +4801,17 @@ Instalirajte ručno.</translation>
         <translation>Započni seedanje nakon kreiranja</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="276"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="250"/>
+        <source>Ignore share ratio limits for this torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="289"/>
         <source>Create and save...</source>
         <translation>Kreiraj i spremi ...</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="247"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="260"/>
         <source>Progress:</source>
         <translation>Napredak:</translation>
     </message>

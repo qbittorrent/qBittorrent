@@ -140,124 +140,196 @@
         <translation>日期:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="217"/>
+        <location filename="../addnewtorrentdialog.ui" line="249"/>
         <source>Normal</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="222"/>
+        <location filename="../addnewtorrentdialog.ui" line="254"/>
         <source>High</source>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="227"/>
+        <location filename="../addnewtorrentdialog.ui" line="259"/>
         <source>Maximum</source>
         <translation>最高</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="232"/>
+        <location filename="../addnewtorrentdialog.ui" line="264"/>
         <source>Do not download</source>
         <translation>不要下載</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="71"/>
+        <location filename="../addnewtorrentdialog.cpp" line="75"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>其他...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <location filename="../addnewtorrentdialog.cpp" line="765"/>
         <source>I/O Error</source>
         <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>The torrent file does not exist.</source>
         <translation>此 torrent 檔案不存在。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Invalid torrent</source>
         <translation>無效的 torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Failed to load the torrent: %1</source>
         <translation>無法載入 torrent: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="191"/>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Already in download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <source>Torrent is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../addnewtorrentdialog.cpp" line="713"/>
         <source>Not available</source>
         <translation>不可得</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>Invalid magnet link</source>
         <translation>無效的磁性連結</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>This magnet link was not recognized</source>
         <translation>無法辨識此磁性連結</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="256"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Magnet link is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="277"/>
         <source>Magnet link</source>
         <translation>磁性連結</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../addnewtorrentdialog.cpp" line="295"/>
+        <source>Retrieving metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="359"/>
         <source>Disk space: %1</source>
         <translation>磁碟空間: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="340"/>
-        <location filename="../addnewtorrentdialog.cpp" line="347"/>
-        <location filename="../addnewtorrentdialog.cpp" line="349"/>
+        <location filename="../addnewtorrentdialog.cpp" line="377"/>
+        <location filename="../addnewtorrentdialog.cpp" line="384"/>
+        <location filename="../addnewtorrentdialog.cpp" line="386"/>
         <source>Choose save path</source>
         <translation>選擇儲存路徑</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="402"/>
+        <location filename="../addnewtorrentdialog.cpp" line="439"/>
         <source>Rename the file</source>
         <translation>重新命名檔案</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="403"/>
+        <location filename="../addnewtorrentdialog.cpp" line="440"/>
         <source>New name:</source>
         <translation>新名稱:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="407"/>
-        <location filename="../addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../addnewtorrentdialog.cpp" line="444"/>
+        <location filename="../addnewtorrentdialog.cpp" line="470"/>
         <source>The file could not be renamed</source>
         <translation>檔案無法重新命名</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="408"/>
+        <location filename="../addnewtorrentdialog.cpp" line="445"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>檔案名稱包含禁止使用之字元, 請選擇其他名稱。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="434"/>
-        <location filename="../addnewtorrentdialog.cpp" line="469"/>
+        <location filename="../addnewtorrentdialog.cpp" line="471"/>
+        <location filename="../addnewtorrentdialog.cpp" line="506"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>此名稱已在此資料夾中使用。請選擇另一個名稱。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="468"/>
+        <location filename="../addnewtorrentdialog.cpp" line="505"/>
         <source>The folder could not be renamed</source>
         <translation>此資料夾無法被重新命名</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="527"/>
+        <location filename="../addnewtorrentdialog.cpp" line="564"/>
         <source>Rename...</source>
         <translation>重新命名...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="531"/>
+        <location filename="../addnewtorrentdialog.cpp" line="568"/>
         <source>Priority</source>
         <translation>優先度</translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Processing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Please wait while parsing metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <source>Failed to save metadata.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="688"/>
+        <source>Failed to save metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <location filename="../addnewtorrentdialog.cpp" line="698"/>
+        <source>Invalid metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <source>Metadata corrupted.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="704"/>
+        <source>Parsing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="763"/>
+        <source>Metadata retrieval complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="766"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">未知的錯誤</translation>
     </message>
 </context>
 <context>
@@ -3429,6 +3501,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
         <location filename="../searchengine/searchengine.cpp" line="252"/>
+        <location filename="../searchengine/searchengine.cpp" line="513"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
@@ -3464,6 +3537,11 @@ Do you want to install it now?</source>
         <location filename="../searchengine/searchengine.cpp" line="356"/>
         <source>Searching...</source>
         <translation>搜尋中...</translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="358"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3665,54 +3743,54 @@ Please install it manually.</source>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="73"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="74"/>
         <source>Select a folder to add to the torrent</source>
         <translation>選擇要增加到 torrent 的資料夾</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="89"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="90"/>
         <source>Select a file to add to the torrent</source>
         <translation>選擇要增加到 torrent 的檔案</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>No input path set</source>
         <translation>沒有設定輸入路徑</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>Please type an input path first</source>
         <translation>請先輸入輸入的路徑</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Select destination torrent file</source>
         <translation>選擇 torrent 檔案目的地</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Torrent Files</source>
         <translation>torrent 檔案</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent creation</source>
         <translation>產生 torrent</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>建立 torrent 不成功, 原因: %1</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>建立的 torrent 檔案是無效的。它不會被加入到下載清單。</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent was created successfully:</source>
         <translation>已經成功建立 torrent:</translation>
     </message>
@@ -4613,7 +4691,7 @@ Please install it manually.</source>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="283"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="296"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -4724,12 +4802,17 @@ Please install it manually.</source>
         <translation>建立後開始做種</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="276"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="250"/>
+        <source>Ignore share ratio limits for this torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="289"/>
         <source>Create and save...</source>
         <translation>建立且儲存...</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="247"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="260"/>
         <source>Progress:</source>
         <translation>進度:</translation>
     </message>

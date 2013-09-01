@@ -140,124 +140,196 @@
         <translation>Datum:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="217"/>
+        <location filename="../addnewtorrentdialog.ui" line="249"/>
         <source>Normal</source>
         <translation>Normaal</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="222"/>
+        <location filename="../addnewtorrentdialog.ui" line="254"/>
         <source>High</source>
         <translation>Hoog</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="227"/>
+        <location filename="../addnewtorrentdialog.ui" line="259"/>
         <source>Maximum</source>
         <translation>Maximum</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.ui" line="232"/>
+        <location filename="../addnewtorrentdialog.ui" line="264"/>
         <source>Do not download</source>
         <translation>Niet downloaden</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="71"/>
+        <location filename="../addnewtorrentdialog.cpp" line="75"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Andere...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <location filename="../addnewtorrentdialog.cpp" line="765"/>
         <source>I/O Error</source>
         <translation>I/O Fout</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="173"/>
+        <location filename="../addnewtorrentdialog.cpp" line="177"/>
         <source>The torrent file does not exist.</source>
         <translation>Het torrent-bestand bestaat niet.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Invalid torrent</source>
         <translation>Ongeldige torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="181"/>
+        <location filename="../addnewtorrentdialog.cpp" line="187"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Gefaald bij het laden van torrent: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="191"/>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Already in download list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="193"/>
+        <source>Torrent is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../addnewtorrentdialog.cpp" line="713"/>
         <source>Not available</source>
         <translation>Niet beschikbaar</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>Invalid magnet link</source>
         <translation>Ongeldige magnet link</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="250"/>
+        <location filename="../addnewtorrentdialog.cpp" line="264"/>
         <source>This magnet link was not recognized</source>
         <translation>Deze magnet link werd niet herkend</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="256"/>
+        <location filename="../addnewtorrentdialog.cpp" line="270"/>
+        <source>Magnet link is already in download list. Merging trackers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="277"/>
         <source>Magnet link</source>
         <translation>Magnet link</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../addnewtorrentdialog.cpp" line="295"/>
+        <source>Retrieving metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="359"/>
         <source>Disk space: %1</source>
         <translation>Schijf grootte: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="340"/>
-        <location filename="../addnewtorrentdialog.cpp" line="347"/>
-        <location filename="../addnewtorrentdialog.cpp" line="349"/>
+        <location filename="../addnewtorrentdialog.cpp" line="377"/>
+        <location filename="../addnewtorrentdialog.cpp" line="384"/>
+        <location filename="../addnewtorrentdialog.cpp" line="386"/>
         <source>Choose save path</source>
         <translation>Kies opslag pad</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="402"/>
+        <location filename="../addnewtorrentdialog.cpp" line="439"/>
         <source>Rename the file</source>
         <translation>Hernoem het bestand</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="403"/>
+        <location filename="../addnewtorrentdialog.cpp" line="440"/>
         <source>New name:</source>
         <translation>Nieuwe naam:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="407"/>
-        <location filename="../addnewtorrentdialog.cpp" line="433"/>
+        <location filename="../addnewtorrentdialog.cpp" line="444"/>
+        <location filename="../addnewtorrentdialog.cpp" line="470"/>
         <source>The file could not be renamed</source>
         <translation>Dit bestand kon niet hernoemd worden</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="408"/>
+        <location filename="../addnewtorrentdialog.cpp" line="445"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Deze bestandsnaam bevat verboden karakters, gelieve een andere te kiezen.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="434"/>
-        <location filename="../addnewtorrentdialog.cpp" line="469"/>
+        <location filename="../addnewtorrentdialog.cpp" line="471"/>
+        <location filename="../addnewtorrentdialog.cpp" line="506"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Deze baan bestaat reeds in deze map. Gelieve een andere naam te gebruiken.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="468"/>
+        <location filename="../addnewtorrentdialog.cpp" line="505"/>
         <source>The folder could not be renamed</source>
         <translation>Deze map kon niet hernoemd worden</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="527"/>
+        <location filename="../addnewtorrentdialog.cpp" line="564"/>
         <source>Rename...</source>
         <translation>Hernoem...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="531"/>
+        <location filename="../addnewtorrentdialog.cpp" line="568"/>
         <source>Priority</source>
         <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Processing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="604"/>
+        <source>Please wait while parsing metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="686"/>
+        <source>Failed to save metadata.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="688"/>
+        <source>Failed to save metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <location filename="../addnewtorrentdialog.cpp" line="698"/>
+        <source>Invalid metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="696"/>
+        <source>Metadata corrupted.
+File list will be unavailable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="704"/>
+        <source>Parsing metadata...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="763"/>
+        <source>Metadata retrieval complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="766"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">Onbekende fout</translation>
     </message>
 </context>
 <context>
@@ -3425,6 +3497,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="221"/>
         <location filename="../searchengine/searchengine.cpp" line="251"/>
         <location filename="../searchengine/searchengine.cpp" line="252"/>
+        <location filename="../searchengine/searchengine.cpp" line="513"/>
         <source>Search</source>
         <translation>Zoeken</translation>
     </message>
@@ -3460,6 +3533,11 @@ Wilt u het nu installeren?</translation>
         <location filename="../searchengine/searchengine.cpp" line="356"/>
         <source>Searching...</source>
         <translation>Zoeken...</translation>
+    </message>
+    <message>
+        <location filename="../searchengine/searchengine.cpp" line="358"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3661,54 +3739,54 @@ Gelieve het manueel te installeren.</translation>
 <context>
     <name>TorrentCreatorDlg</name>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="73"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="74"/>
         <source>Select a folder to add to the torrent</source>
         <translation>Selecteer een map om toe te voegen aan de torrent</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="89"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="90"/>
         <source>Select a file to add to the torrent</source>
         <translation>Selecteer een bestand om toe te voegen aan de torrent</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>No input path set</source>
         <translation>Geen bron pad gekozen</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="112"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="113"/>
         <source>Please type an input path first</source>
         <translation>Geef alstublieft eerst een doel pad</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Select destination torrent file</source>
         <translation>Kies torrent doelbestand</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="122"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="123"/>
         <source>Torrent Files</source>
         <translation>Torrent bestanden</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent creation</source>
         <translation>Torrent maken</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="149"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="150"/>
         <source>Torrent creation was unsuccessful, reason: %1</source>
         <translation>Fout tijdens het maken van torrent, reden: %1</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="163"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="164"/>
         <source>Created torrent file is invalid. It won&apos;t be added to download list.</source>
         <translation>Gecreëerd torrentbestand is onjuist. Het wordt niet toegevoegd aan de downloadlijst.</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="173"/>
+        <location filename="../torrentcreator/torrentcreatordlg.cpp" line="176"/>
         <source>Torrent was created successfully:</source>
         <translation>Torrent was succesvol gemaakt:</translation>
     </message>
@@ -4609,7 +4687,7 @@ Gelieve het manueel te installeren.</translation>
 <context>
     <name>createTorrentDialog</name>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="283"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="296"/>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
@@ -4720,12 +4798,17 @@ Gelieve het manueel te installeren.</translation>
         <translation>Begin met delen na creatie</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="276"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="250"/>
+        <source>Ignore share ratio limits for this torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../torrentcreator/createtorrent.ui" line="289"/>
         <source>Create and save...</source>
         <translation>Aanmaken en opslaan...</translation>
     </message>
     <message>
-        <location filename="../torrentcreator/createtorrent.ui" line="247"/>
+        <location filename="../torrentcreator/createtorrent.ui" line="260"/>
         <source>Progress:</source>
         <translation>Voortgang:</translation>
     </message>
