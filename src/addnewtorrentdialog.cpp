@@ -653,9 +653,9 @@ void AddNewTorrentDialog::accept()
 void AddNewTorrentDialog::reject() {
   if (m_isMagnet) {
     disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
-    while (true) { // Force cancel
-      if (!m_convertingMagnet)
-        break;
+    while (m_convertingMagnet) {
+      // HACK ???
+      // Force cancel
     }
     setMetadataProgressIndicator(false);
     QBtSession::instance()->deleteTorrent(m_hash, true);
