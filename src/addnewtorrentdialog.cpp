@@ -188,6 +188,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     return false;
   }
 
+  // Prevent showing the dialog if download is already present
+  if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
+    QMessageBox::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
+    QBtSession::instance()->addTorrent(m_filePath, false, m_url);;
+    return false;
+  }
+
   // Set dialog title
   setWindowTitle(misc::toQStringU(m_torrentInfo->name()));
 
@@ -260,7 +267,7 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 
   // Prevent showing the dialog if download is already present
   if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
-    QMessageBox::information(0, tr("Already in download list"), tr("Magnet link is already in download list."), QMessageBox::Ok);
+    QMessageBox::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
     QBtSession::instance()->addMagnetUri(m_url, false);
     return false;
   }
