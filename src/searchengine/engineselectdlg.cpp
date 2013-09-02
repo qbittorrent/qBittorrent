@@ -335,7 +335,7 @@ void engineSelectDlg::askForPluginUrl() {
     if (!ok || url.isEmpty())
       return;
     if (!url.endsWith(".py")) {
-      QMessageBox::warning(this, tr("Invlalid link"), tr("The link doesn't seem to point to a search engine plugin."));
+      QMessageBox::warning(this, tr("Invalid link"), tr("The link doesn't seem to point to a search engine plugin."));
       url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                             tr("URL:"), QLineEdit::Normal,
                                             url, &ok);
