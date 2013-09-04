@@ -65,6 +65,11 @@ Q_IMPORT_PLUGIN(qico)
 #include "stacktrace.h"
 #endif
 
+#ifdef Q_OS_WIN
+#include <QSettings>
+#include <QVariant>
+#endif
+
 #ifdef STACKTRACE_WIN
 #include <signal.h>
 #include "stacktrace_win.h"
@@ -205,6 +210,13 @@ int main(int argc, char *argv[]) {
   // Check if qBittorrent is already running for this user
   if (app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
+#ifdef Q_OS_WIN
+    // Reading first qBittorrent instance process id from registry.
+    QSettings reg("qBittorrent", "qBittorrent");
+    DWORD pid = reg.value("ProcessId", (quint32)-1).toUInt();
+    BOOL b = AllowSetForegroundWindow(pid);
+    qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
+#endif
     // Read torrents given on command line
     QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
@@ -223,7 +235,13 @@ int main(int argc, char *argv[]) {
       app.sendMessage("qbt://show");
     }
     return 0;
+#ifdef Q_OS_WIN
+  } else {
+    // First qBittorrent instance. Writing process id to registry.
+    QSettings reg("qBittorrent", "qBittorrent");
+    reg.setValue("ProcessId", (quint32)GetCurrentProcessId());
   }
+#endif
 
   srand(time(0));
   Preferences pref;

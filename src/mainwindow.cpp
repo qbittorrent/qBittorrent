@@ -264,19 +264,14 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   // Load Window state and sizes
   readSettings();
 
-  if (!ui_locked) {
-    if (pref.startMinimized() && systrayIcon) {
-      show();
-      minimizeWindow();
-      // XXX: Using showMinimized() makes it impossible to restore
-      // the window if "Minimize to systray" is enabled.
-      //showMinimized();
-    } else {
+  if (systrayIcon) {
+    if (!(pref.startMinimized() || ui_locked)) {
       show();
       activateWindow();
       raise();
     }
   }
+
 
   properties->readSettings();
 
@@ -324,10 +319,14 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 #endif
 
   // Make sure the Window is visible if we don't have a tray icon
-  if (!systrayIcon && isHidden()) {
-    show();
-    activateWindow();
-    raise();
+  if (!systrayIcon) {
+    if (pref.startMinimized()) {
+      showMinimized();
+    } else {
+      show();
+      activateWindow();
+      raise();
+    }
   }
 }
 
@@ -976,17 +975,19 @@ void MainWindow::processParams(const QStringList& params) {
         qDebug("Converting bc link to magnet link");
         param = misc::bcLinkToMagnet(param);
       }
-      if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
-        if (useTorrentAdditionDialog)
-          AddNewTorrentDialog::showMagnet(param);
+
+      if (useTorrentAdditionDialog) {
+        if (param.startsWith("magnet:", Qt::CaseInsensitive))
+            AddNewTorrentDialog::showMagnet(param);
         else
-          QBtSession::instance()->addMagnetUri(param);
+            AddNewTorrentDialog::showTorrent(param);
       } else {
-        if (useTorrentAdditionDialog)
-          AddNewTorrentDialog::showTorrent(param);
-        else
-          QBtSession::instance()->addTorrent(param);
+          if (param.startsWith("magnet:", Qt::CaseInsensitive))
+              QBtSession::instance()->addMagnetUri(param);
+          else
+              QBtSession::instance()->addTorrent(param);
       }
+
     }
   }
 }
@@ -1363,7 +1364,7 @@ void MainWindow::showConnectionSettings()
 
 void MainWindow::minimizeWindow()
 {
-    setWindowState(windowState() ^ Qt::WindowMinimized);
+  setWindowState(windowState() ^ Qt::WindowMinimized);
 }
 
 void MainWindow::on_actionExecution_Logs_triggered(bool checked)
