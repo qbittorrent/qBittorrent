@@ -126,6 +126,17 @@ void AddNewTorrentDialog::saveState()
   settings.setValue("expanded", ui->adv_button->isChecked());
 }
 
+void AddNewTorrentDialog::showEvent(QShowEvent *event)
+{
+  QDialog::showEvent(event);
+#ifdef Q_OS_WIN
+  SetWindowPos(effectiveWinId(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+  SetWindowPos(effectiveWinId(), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+#endif
+  activateWindow();
+  raise();
+}
+
 void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
 {
   AddNewTorrentDialog dlg;
