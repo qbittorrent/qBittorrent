@@ -43,25 +43,19 @@ public:
 
 protected:
   bool lessThan(const QModelIndex &left, const QModelIndex &right) const {
-    if (sortColumn() == PeerListDelegate::IP) {
-      const QStringList ipLeft = sourceModel()->data(left).toString().split('.');
-      const QStringList ipRight = sourceModel()->data(right).toString().split('.');
-      if ((ipRight.size() & ipLeft.size()) != 4) // One row in model
-        return false;
-      Q_ASSERT(ipLeft.size() == 4);
-      Q_ASSERT(ipRight.size() == 4);
+    if (sortColumn() == PeerListDelegate::IP || sortColumn() == PeerListDelegate::CLIENT) {
+      QVariant vL = sourceModel()->data(left);
+      QVariant vR = sourceModel()->data(right);
+      if (!(vL.isValid() && vR.isValid()))
+        return QSortFilterProxyModel::lessThan(left, right);
+      Q_ASSERT(vL.isValid());
+      Q_ASSERT(vR.isValid());
 
-      int i = 0;
-      while (i < 4) {
-        int l = ipLeft.at(i).toInt();
-        int r = ipRight.at(i).toInt();
-        if (l < r)
-          return true;
-        else if (l > r)
-          return false;
-        ++i;
-      }
-      return false;
+      bool res = false;
+      if (misc::naturalSort(vL.toString(), vR.toString(), res))
+        return res;
+
+      return QSortFilterProxyModel::lessThan(left, right);
     }
     return QSortFilterProxyModel::lessThan(left, right);
   }
