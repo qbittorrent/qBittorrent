@@ -1135,9 +1135,11 @@ void MainWindow::updateGUI() {
     html += "</div>";
 #else
     // OSes such as Windows do not support html here
-    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number(QBtSession::instance()->getPayloadDownloadRate()/1024., 'f', 1));
+    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadDownloadRate()/1024.)*10)/10.0, 'f', 1));
     html += "\n";
-    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number(QBtSession::instance()->getPayloadUploadRate()/1024., 'f', 1));
+    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadUploadRate()/1024.)*10)/10.0, 'f', 1));
 #endif
     systrayIcon->setToolTip(html); // tray icon
   }

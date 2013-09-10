@@ -241,7 +241,9 @@ QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (i == 0)
     ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
   else
-    ret = QString::number(val, 'f', 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
+    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+    ret = QString::number((int)(val*10)/10.0, 'f', 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
   if (is_speed)
     ret += QCoreApplication::translate("misc", "/s", "per second");
   return ret;

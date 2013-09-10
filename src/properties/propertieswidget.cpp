@@ -354,15 +354,17 @@ void PropertiesWidget::loadDynamicData() {
           std::vector<int> avail;
           h.piece_availability(avail);
           pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(QString::number(h.distributed_copies(), 'f', 3));
+          /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+          ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+          avail_average_lbl->setText(QString::number((int)(h.distributed_copies()*1000)/1000.0, 'f', 3));
         } else {
           showPiecesAvailability(false);
         }
         // Progress
         qreal progress = h.progress()*100.;
-        if (progress > 99.94 && progress < 100.)
-          progress = 99.9;
-        progress_lbl->setText(QString::number(progress, 'f', 1)+"%");
+        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+        progress_lbl->setText(QString::number((int)(progress*10)/10.0, 'f', 1)+"%");
       } else {
         showPiecesAvailability(false);
         showPiecesDownloaded(false);
