@@ -1344,7 +1344,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Show</source>
         <translation>הצגה</translation>
     </message>
@@ -1381,7 +1381,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1373"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
         <translation>דוח ביצוע</translation>
     </message>
@@ -1533,7 +1533,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>הגבלת מהירות הורדה כללית</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1145"/>
+        <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[הר:%1/ש, הע:%2/ש] qBittorrent %3</translation>
@@ -1550,7 +1550,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>הסיסמא שגויה</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Hide</source>
         <translation>הסתר</translation>
     </message>
@@ -1588,37 +1588,37 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1131"/>
-        <location filename="../mainwindow.cpp" line="1138"/>
+        <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>מהירות הורדה: %1 קב/ש</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1134"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>מהירות העאלה: %1 קב/ש</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>A newer version is available</source>
         <translation>גירסה חדשה יותר זמינה</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>קיימת גירסה חדשה יותר של qBittorrent באתר Sourceforge.
 האם ברצונכם לעדכן את qBittorrent לגירסה %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
         <translation>לא ניתן לעדען את qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent לא הצליח לעדכן, הסיבה: %1</translation>
     </message>
@@ -2725,112 +2725,112 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>מקסימום %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>שגיאת I/O</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>הקובץ עדיין לא קיים.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>התיקייה אינה קיימת עדיין.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>שינוי שם...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>עדיפות</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="505"/>
+        <location filename="../properties/propertieswidget.cpp" line="507"/>
         <source>New Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="511"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
         <source>Remove Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Copy Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>Edit Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="537"/>
+        <location filename="../properties/propertieswidget.cpp" line="539"/>
         <source>Rename the file</source>
         <translation>שינוי שם הקובץ</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="538"/>
+        <location filename="../properties/propertieswidget.cpp" line="540"/>
         <source>New name:</source>
         <translation>שם חדש:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
-        <location filename="../properties/propertieswidget.cpp" line="573"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="575"/>
         <source>The file could not be renamed</source>
         <translation>לא היתה אפשרות לשנות את שם הקובץ</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="545"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>שם הקובץ מכיל תוים לא חוקיים, נא לבחור שם שונה.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="574"/>
-        <location filename="../properties/propertieswidget.cpp" line="612"/>
+        <location filename="../properties/propertieswidget.cpp" line="576"/>
+        <location filename="../properties/propertieswidget.cpp" line="614"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>שם זה כבר נמצא בשימוש בתיקייה זו. נא לבחור שם שונה.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="611"/>
+        <location filename="../properties/propertieswidget.cpp" line="613"/>
         <source>The folder could not be renamed</source>
         <translation>לא הייתה אפשרות לשנות את שם התיקייה</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="650"/>
+        <location filename="../properties/propertieswidget.cpp" line="652"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>מפיץ url חדש</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="651"/>
+        <location filename="../properties/propertieswidget.cpp" line="653"/>
         <source>New url seed:</source>
         <translation>מפיץ url חדש:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="714"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
-        <location filename="../properties/propertieswidget.cpp" line="713"/>
+        <location filename="../properties/propertieswidget.cpp" line="659"/>
+        <location filename="../properties/propertieswidget.cpp" line="715"/>
         <source>This url seed is already in the list.</source>
         <translation>מפיץ url זה כבר קיים ברשימה.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="705"/>
+        <location filename="../properties/propertieswidget.cpp" line="707"/>
         <source>Web seed editing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="706"/>
+        <location filename="../properties/propertieswidget.cpp" line="708"/>
         <source>Web seed URL:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4184,13 +4184,13 @@ Please install it manually.</source>
         <translation>/ש</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="137"/>
+        <location filename="../transferlistdelegate.h" line="139"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>קב/ש</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="147"/>
+        <location filename="../transferlistdelegate.h" line="149"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>מופץ למשך %1</translation>
@@ -4818,8 +4818,8 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
-        <source>Both HTTP and Magnet links are supported</source>
-        <translation>גם HTTP וגם קישורים מגנטיים נתמכים</translation>
+        <source>One per line HTTP links, Magnet links and info-hashes are supported</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4837,12 +4837,12 @@ Please install it manually.</source>
         <translation>הורדה מכתובת URL</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>No URL entered</source>
         <translation>לא הוזן URL</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>Please type at least one URL.</source>
         <translation>נא להקליד לפחות URL אחד.</translation>
     </message>
@@ -5102,19 +5102,19 @@ However, those plugins were disabled.</source>
         <translation>טרה בייט</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="246"/>
+        <location filename="../misc.cpp" line="248"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/ש</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="391"/>
+        <location filename="../misc.cpp" line="393"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1 ש %2 ד</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="396"/>
+        <location filename="../misc.cpp" line="398"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1ימים %2 ש</translation>
@@ -5131,63 +5131,63 @@ However, those plugins were disabled.</source>
         <translation>qBittorrent יכבה כעת את המחשב היות שכל ההורדות הסתיימו.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="384"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>פחות מדקה</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="386"/>
+        <location filename="../misc.cpp" line="388"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 דקות</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="241"/>
+        <location filename="../webui/btjson.cpp" line="243"/>
         <source>Working</source>
         <translation>פועל</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="244"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Updating...</source>
         <translation>מעדכן...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not working</source>
         <translation>לא פועל</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not contacted yet</source>
         <translation>לא מחובר עדיין</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="298"/>
-        <location filename="../webui/btjson.cpp" line="299"/>
+        <location filename="../webui/btjson.cpp" line="300"/>
+        <location filename="../webui/btjson.cpp" line="301"/>
         <source>this session</source>
         <translation>בקטע פעולה נוכחי</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="310"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>מופץ למשך %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="312"/>
+        <location filename="../webui/btjson.cpp" line="314"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished">מקסימום %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="380"/>
+        <location filename="../webui/btjson.cpp" line="384"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="381"/>
+        <location filename="../webui/btjson.cpp" line="385"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>הע:%1 /ש - הועבר: %2</translation>

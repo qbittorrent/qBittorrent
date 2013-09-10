@@ -1344,7 +1344,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1381,7 +1381,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1373"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1533,7 +1533,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished">전체 다운 속도 제한</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1145"/>
+        <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
@@ -1550,7 +1550,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1587,36 +1587,36 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1131"/>
-        <location filename="../mainwindow.cpp" line="1138"/>
+        <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1134"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>A newer version is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2720,112 +2720,112 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>이 파일은 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>이 폴더는 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="505"/>
+        <location filename="../properties/propertieswidget.cpp" line="507"/>
         <source>New Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="511"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
         <source>Remove Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Copy Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>Edit Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="537"/>
+        <location filename="../properties/propertieswidget.cpp" line="539"/>
         <source>Rename the file</source>
         <translation>파일 이름바꾸기</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="538"/>
+        <location filename="../properties/propertieswidget.cpp" line="540"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
-        <location filename="../properties/propertieswidget.cpp" line="573"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="575"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 변경할수 없음</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="545"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일 이름에 특수문자가 들어가 있습니다, 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="574"/>
-        <location filename="../properties/propertieswidget.cpp" line="612"/>
+        <location filename="../properties/propertieswidget.cpp" line="576"/>
+        <location filename="../properties/propertieswidget.cpp" line="614"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>이 이름은 이 폴더에서 이미 사용중에 있습니다. 다른 이름을 입력해 주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="611"/>
+        <location filename="../properties/propertieswidget.cpp" line="613"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 변경할수 없습니다</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="650"/>
+        <location filename="../properties/propertieswidget.cpp" line="652"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="651"/>
+        <location filename="../properties/propertieswidget.cpp" line="653"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="714"/>
         <source>qBittorrent</source>
         <translation>큐빗토렌트</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
-        <location filename="../properties/propertieswidget.cpp" line="713"/>
+        <location filename="../properties/propertieswidget.cpp" line="659"/>
+        <location filename="../properties/propertieswidget.cpp" line="715"/>
         <source>This url seed is already in the list.</source>
         <translation>이 웹완전체(Url seed)는 이미 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="705"/>
+        <location filename="../properties/propertieswidget.cpp" line="707"/>
         <source>Web seed editing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="706"/>
+        <location filename="../properties/propertieswidget.cpp" line="708"/>
         <source>Web seed URL:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4174,13 +4174,13 @@ Please install it manually.</source>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="137"/>
+        <location filename="../transferlistdelegate.h" line="139"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="147"/>
+        <location filename="../transferlistdelegate.h" line="149"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">완전체 공유한지: %1</translation>
@@ -4808,7 +4808,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
-        <source>Both HTTP and Magnet links are supported</source>
+        <source>One per line HTTP links, Magnet links and info-hashes are supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4827,12 +4827,12 @@ Please install it manually.</source>
         <translation>URL로 부터 다운로드 받기</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>No URL entered</source>
         <translation>주소(URL)가 포함되지 않았습니다 </translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>Please type at least one URL.</source>
         <translation>적어도 하나의 주소(URL)를 적어주십시오.</translation>
     </message>
@@ -5093,19 +5093,19 @@ However, those plugins were disabled.</source>
         <translation>테라바이트</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="246"/>
+        <location filename="../misc.cpp" line="248"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation type="unfinished">/초</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="391"/>
+        <location filename="../misc.cpp" line="393"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="396"/>
+        <location filename="../misc.cpp" line="398"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation type="unfinished"></translation>
@@ -5122,63 +5122,63 @@ However, those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="384"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1분</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="386"/>
+        <location filename="../misc.cpp" line="388"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="241"/>
+        <location filename="../webui/btjson.cpp" line="243"/>
         <source>Working</source>
         <translation type="unfinished">작동중</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="244"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Updating...</source>
         <translation type="unfinished">업데이트중...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not working</source>
         <translation type="unfinished">작동안됨</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not contacted yet</source>
         <translation type="unfinished">아직 접속되지 않음</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="298"/>
-        <location filename="../webui/btjson.cpp" line="299"/>
+        <location filename="../webui/btjson.cpp" line="300"/>
+        <location filename="../webui/btjson.cpp" line="301"/>
         <source>this session</source>
         <translation type="unfinished">이 세션</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="310"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">완전체 공유한지: %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="312"/>
+        <location filename="../webui/btjson.cpp" line="314"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished">최고 %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="380"/>
+        <location filename="../webui/btjson.cpp" line="384"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="381"/>
+        <location filename="../webui/btjson.cpp" line="385"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>

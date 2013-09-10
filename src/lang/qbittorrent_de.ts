@@ -1347,7 +1347,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Show</source>
         <translation>Zeige</translation>
     </message>
@@ -1384,7 +1384,7 @@ Wahrscheinlich haben wir Ihnen hiermit nichts Neues erzählt und werden Sie auch
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1373"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
         <translation>Ausführungs-Log</translation>
     </message>
@@ -1537,7 +1537,7 @@ Möchten Sie Torrent Dateien und Magnet Links immer mit qBittorent öffnen?</tra
         <translation>Globale Begrenzung der Downloadgeschwindigkeit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1145"/>
+        <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
@@ -1554,7 +1554,7 @@ Möchten Sie Torrent Dateien und Magnet Links immer mit qBittorent öffnen?</tra
         <translation>Das Passwort ist ungültig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Hide</source>
         <translation>Verberge</translation>
     </message>
@@ -1592,36 +1592,36 @@ Sind Sie sicher, daß sie qBittorrent beenden möchten?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1131"/>
-        <location filename="../mainwindow.cpp" line="1138"/>
+        <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Downloadgeschwindigkeit: %1 KB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1134"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Uploadgeschwindigkeit: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>A newer version is available</source>
         <translation>Eine neuere Version ist erhältlich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Eine neuere Version von qBittorrent ist auf Sourceforge erhätlich. Möchten Sie qBittorent auf die Version %1 aktualisieren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Aktuialisierung von qBittorrent nicht möglich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent konnte nicht aktualisiert werden, Begründung: %1</translation>
     </message>
@@ -2729,112 +2729,112 @@ Would you like to update qBittorrent to version %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation type="unfinished">I/O Fehler</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>Diese Datei existiert noch nicht.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>Dieses Verzeichnis existiert noch nicht.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>Umbenennen...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>Priorität</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="505"/>
+        <location filename="../properties/propertieswidget.cpp" line="507"/>
         <source>New Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="511"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
         <source>Remove Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Copy Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>Edit Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="537"/>
+        <location filename="../properties/propertieswidget.cpp" line="539"/>
         <source>Rename the file</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="538"/>
+        <location filename="../properties/propertieswidget.cpp" line="540"/>
         <source>New name:</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
-        <location filename="../properties/propertieswidget.cpp" line="573"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="575"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="545"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Der Dateiname enthält ungültige Zeichen, bitte einen anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="574"/>
-        <location filename="../properties/propertieswidget.cpp" line="612"/>
+        <location filename="../properties/propertieswidget.cpp" line="576"/>
+        <location filename="../properties/propertieswidget.cpp" line="614"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Der Dateiname wird in diesem Verzeichnis bereits verwendet. Bitte anderen wählen.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="611"/>
+        <location filename="../properties/propertieswidget.cpp" line="613"/>
         <source>The folder could not be renamed</source>
         <translation>Das Verzeichnis konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="650"/>
+        <location filename="../properties/propertieswidget.cpp" line="652"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Neuer URL Seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="651"/>
+        <location filename="../properties/propertieswidget.cpp" line="653"/>
         <source>New url seed:</source>
         <translation>Neuer URL Seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="714"/>
         <source>qBittorrent</source>
         <translation type="unfinished">qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
-        <location filename="../properties/propertieswidget.cpp" line="713"/>
+        <location filename="../properties/propertieswidget.cpp" line="659"/>
+        <location filename="../properties/propertieswidget.cpp" line="715"/>
         <source>This url seed is already in the list.</source>
         <translation>Dieser URL Seed befindet sich bereits in der Liste.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="705"/>
+        <location filename="../properties/propertieswidget.cpp" line="707"/>
         <source>Web seed editing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="706"/>
+        <location filename="../properties/propertieswidget.cpp" line="708"/>
         <source>Web seed URL:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4187,13 +4187,13 @@ Please install it manually.</source>
         <translation type="unfinished">/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="137"/>
+        <location filename="../transferlistdelegate.h" line="139"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="147"/>
+        <location filename="../transferlistdelegate.h" line="149"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Geseeded seit %1</translation>
@@ -4821,8 +4821,8 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
-        <source>Both HTTP and Magnet links are supported</source>
-        <translation>HTTP und Magnet-Links werden unterstützt</translation>
+        <source>One per line HTTP links, Magnet links and info-hashes are supported</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4840,12 +4840,12 @@ Please install it manually.</source>
         <translation>Von URLs laden</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>No URL entered</source>
         <translation>Keine URL eingegeben</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>Please type at least one URL.</source>
         <translation>Bitte geben Sie mindestens eine URL an.</translation>
     </message>
@@ -5105,19 +5105,19 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>TB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="246"/>
+        <location filename="../misc.cpp" line="248"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation type="unfinished">/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="391"/>
+        <location filename="../misc.cpp" line="393"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation type="unfinished">%1t %2h {1h?} {2m?}</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="396"/>
+        <location filename="../misc.cpp" line="398"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1t %2h</translation>
@@ -5134,63 +5134,63 @@ Die Plugins wurden jedoch deaktiviert.</translation>
         <translation>qBittorrent wird den Computer jetzt herunterfahren, da alle Downloads vollständig sind.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="384"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 Minute</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="386"/>
+        <location filename="../misc.cpp" line="388"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="241"/>
+        <location filename="../webui/btjson.cpp" line="243"/>
         <source>Working</source>
         <translation type="unfinished">Funktioniert</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="244"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Updating...</source>
         <translation type="unfinished">Aktualisiere...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not working</source>
         <translation type="unfinished">Funktioniert nicht</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not contacted yet</source>
         <translation type="unfinished">Noch nicht kontakiert</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="298"/>
-        <location filename="../webui/btjson.cpp" line="299"/>
+        <location filename="../webui/btjson.cpp" line="300"/>
+        <location filename="../webui/btjson.cpp" line="301"/>
         <source>this session</source>
         <translation type="unfinished">diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="310"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">Geseeded seit %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="312"/>
+        <location filename="../webui/btjson.cpp" line="314"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="380"/>
+        <location filename="../webui/btjson.cpp" line="384"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="381"/>
+        <location filename="../webui/btjson.cpp" line="385"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>

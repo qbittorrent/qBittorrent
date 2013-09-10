@@ -1348,7 +1348,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Show</source>
         <translation>Zobraziť</translation>
     </message>
@@ -1385,7 +1385,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1373"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
         <translation>Záznam spustení</translation>
     </message>
@@ -1539,7 +1539,7 @@ Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation
         <translation>Globálne rýchlostné obmedzenie sťahovania</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1145"/>
+        <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
@@ -1556,7 +1556,7 @@ Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation
         <translation>Heslo nie je platné</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1228"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Hide</source>
         <translation>Skryť</translation>
     </message>
@@ -1594,37 +1594,37 @@ Ste si istý, že chcete ukončiť Bittorrent?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1131"/>
-        <location filename="../mainwindow.cpp" line="1138"/>
+        <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Rýchlosť sťahovania: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1134"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Rýchlosť nahrávania: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>A newer version is available</source>
         <translation>Je dostupná novšia verzia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>qBittorrent má novú verziu dostupnú na Sourceforge.
 Chcete aktualizovať qBittorrent na verziu %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Nie je možné aktualizovať qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1346"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent sa nepodarilo aktualizovať. Dôvod: %1</translation>
     </message>
@@ -2732,112 +2732,112 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <translation>max. %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>I/O Error</source>
         <translation>V/V chyba</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="427"/>
+        <location filename="../properties/propertieswidget.cpp" line="429"/>
         <source>This file does not exist yet.</source>
         <translation>Tento súbor zatiaľ neexistuje.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="447"/>
+        <location filename="../properties/propertieswidget.cpp" line="449"/>
         <source>This folder does not exist yet.</source>
         <translation>Tento priečinok zatiaľ neexistuje.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="457"/>
+        <location filename="../properties/propertieswidget.cpp" line="459"/>
         <source>Rename...</source>
         <translation>Premenovať...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="468"/>
         <source>Priority</source>
         <translation>Priorita</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="505"/>
+        <location filename="../properties/propertieswidget.cpp" line="507"/>
         <source>New Web seed</source>
         <translation>Nový webový seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="511"/>
+        <location filename="../properties/propertieswidget.cpp" line="513"/>
         <source>Remove Web seed</source>
         <translation>Odstrániť webový seed</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="515"/>
         <source>Copy Web seed URL</source>
         <translation>Kopírovať URL webového seedu</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="514"/>
+        <location filename="../properties/propertieswidget.cpp" line="516"/>
         <source>Edit Web seed URL</source>
         <translation>Upraviť URL webového seedu</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="537"/>
+        <location filename="../properties/propertieswidget.cpp" line="539"/>
         <source>Rename the file</source>
         <translation>Premenovať súbor</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="538"/>
+        <location filename="../properties/propertieswidget.cpp" line="540"/>
         <source>New name:</source>
         <translation>Nový názov:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
-        <location filename="../properties/propertieswidget.cpp" line="573"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="575"/>
         <source>The file could not be renamed</source>
         <translation>Nebolo možné premenovať súbor</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="545"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tento názov súboru obsahuje nepovolené znaky, preto zvoľte iný.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="574"/>
-        <location filename="../properties/propertieswidget.cpp" line="612"/>
+        <location filename="../properties/propertieswidget.cpp" line="576"/>
+        <location filename="../properties/propertieswidget.cpp" line="614"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Tento názov sa v tomto adresári už používa. Prosím, zvoľte iný názov.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="611"/>
+        <location filename="../properties/propertieswidget.cpp" line="613"/>
         <source>The folder could not be renamed</source>
         <translation>Nebolo možné premenovať adresár</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="650"/>
+        <location filename="../properties/propertieswidget.cpp" line="652"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nový HTTP zdroj</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="651"/>
+        <location filename="../properties/propertieswidget.cpp" line="653"/>
         <source>New url seed:</source>
         <translation>Nový URL seed:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="714"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
-        <location filename="../properties/propertieswidget.cpp" line="713"/>
+        <location filename="../properties/propertieswidget.cpp" line="659"/>
+        <location filename="../properties/propertieswidget.cpp" line="715"/>
         <source>This url seed is already in the list.</source>
         <translation>Tento URL seed je už v zozname.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="705"/>
+        <location filename="../properties/propertieswidget.cpp" line="707"/>
         <source>Web seed editing</source>
         <translation>Úprava webového seedu</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="706"/>
+        <location filename="../properties/propertieswidget.cpp" line="708"/>
         <source>Web seed URL:</source>
         <translation>URL webového seedu:</translation>
     </message>
@@ -4192,13 +4192,13 @@ Prosím, nainštalujte ho ručne.</translation>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="137"/>
+        <location filename="../transferlistdelegate.h" line="139"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="147"/>
+        <location filename="../transferlistdelegate.h" line="149"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seedovanie trvalo %1</translation>
@@ -4826,8 +4826,8 @@ Prosím, nainštalujte ho ručne.</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
-        <source>Both HTTP and Magnet links are supported</source>
-        <translation>Sú podporované odkazy HTTP aj Magnet</translation>
+        <source>One per line HTTP links, Magnet links and info-hashes are supported</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4845,12 +4845,12 @@ Prosím, nainštalujte ho ručne.</translation>
         <translation>Stiahnuť z viacerých url</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>No URL entered</source>
         <translation>Nebolo zadané URL</translation>
     </message>
     <message>
-        <location filename="../downloadfromurldlg.h" line="78"/>
+        <location filename="../downloadfromurldlg.h" line="97"/>
         <source>Please type at least one URL.</source>
         <translation>Prosím, napíšte aspoň jedno URL.</translation>
     </message>
@@ -5110,19 +5110,19 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="246"/>
+        <location filename="../misc.cpp" line="248"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="391"/>
+        <location filename="../misc.cpp" line="393"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="396"/>
+        <location filename="../misc.cpp" line="398"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1d %2h</translation>
@@ -5139,63 +5139,63 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>qBittorrent teraz vypne počítač, pretože sťahovanie všetkých torrentov bolo dokončené.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="382"/>
+        <location filename="../misc.cpp" line="384"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="386"/>
+        <location filename="../misc.cpp" line="388"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="241"/>
+        <location filename="../webui/btjson.cpp" line="243"/>
         <source>Working</source>
         <translation>Pracuje sa</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="244"/>
+        <location filename="../webui/btjson.cpp" line="246"/>
         <source>Updating...</source>
         <translation>Prebieha aktualizácia...</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not working</source>
         <translation>Nepracuje sa</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="246"/>
+        <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not contacted yet</source>
         <translation>Zatiaľ nekontaktovaný</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="298"/>
-        <location filename="../webui/btjson.cpp" line="299"/>
+        <location filename="../webui/btjson.cpp" line="300"/>
+        <location filename="../webui/btjson.cpp" line="301"/>
         <source>this session</source>
         <translation>táto relácia</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="310"/>
+        <location filename="../webui/btjson.cpp" line="312"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Seedovanie trvalo %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="312"/>
+        <location filename="../webui/btjson.cpp" line="314"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>max. %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="380"/>
+        <location filename="../webui/btjson.cpp" line="384"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Sťah.: %1/s - Pren.: %2</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="381"/>
+        <location filename="../webui/btjson.cpp" line="385"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation>Nahr.: %1/s - Pren.: %2</translation>
