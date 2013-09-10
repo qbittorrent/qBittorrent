@@ -1182,13 +1182,20 @@ void MainWindow::downloadFromURLList(const QStringList& url_list) {
       qDebug("Converting bc link to magnet link");
       url = misc::bcLinkToMagnet(url);
     }
+    if ((url.size() == 40 && !url.contains(QRegExp("[^0-9A-Fa-f]")))
+        || (url.size() == 32 && !url.contains(QRegExp("[^2-7A-Za-z]")))) {
+      url = "magnet:?xt=urn:btih:" + url;
+    }
     if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
       if (useTorrentAdditionDialog)
         AddNewTorrentDialog::showMagnet(url);
       else
         QBtSession::instance()->addMagnetUri(url);
-    } else
+    }
+    else if (url.startsWith("http://", Qt::CaseInsensitive) || startsWith("https://", Qt::CaseInsensitive)
+             || url.startsWith("ftp://", Qt::CaseInsensitive)) {
       QBtSession::instance()->downloadFromUrl(url);
+    }
   }
 }
 
