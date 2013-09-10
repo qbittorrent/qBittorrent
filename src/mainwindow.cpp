@@ -1192,7 +1192,7 @@ void MainWindow::downloadFromURLList(const QStringList& url_list) {
       else
         QBtSession::instance()->addMagnetUri(url);
     }
-    else if (url.startsWith("http://", Qt::CaseInsensitive) || startsWith("https://", Qt::CaseInsensitive)
+    else if (url.startsWith("http://", Qt::CaseInsensitive) || url.startsWith("https://", Qt::CaseInsensitive)
              || url.startsWith("ftp://", Qt::CaseInsensitive)) {
       QBtSession::instance()->downloadFromUrl(url);
     }
