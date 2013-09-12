@@ -4821,7 +4821,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
-        <source>One per line HTTP links, Magnet links and info-hashes are supported</source>
+        <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
