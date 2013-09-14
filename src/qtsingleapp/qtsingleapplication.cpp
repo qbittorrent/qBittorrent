@@ -349,3 +349,9 @@ void QtSingleApplication::activateWindow()
 
     \obsolete
 */
+
+#ifdef Q_OS_WIN
+ulong QtSingleApplication::getRunningPid() {
+  return peer->getRunningPid();
+}
+#endif
