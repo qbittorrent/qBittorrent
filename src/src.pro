@@ -27,7 +27,6 @@ nox {
   TARGET = qbittorrent-nox
   DEFINES += DISABLE_GUI
 } else {
-  QT += xml
   CONFIG(static) {
     DEFINES += QBT_STATIC_QT
     QTPLUGIN += qico
