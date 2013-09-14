@@ -1163,15 +1163,17 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
-  if (notifications.isValid()) {
+  //Not sure why but this always seems to return false on my Linux Mint 14 Machine, works fine with the check disabled
+//  if (notifications.isValid()) {
     QVariantMap hints;
     hints["desktop-entry"] = "qBittorrent";
     QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
                                                          msg, QStringList(), hints, -1);
     reply.waitForFinished();
+    
     if (!reply.isError())
       return;
-  }
+//  }
 #endif
   if (systrayIcon && QSystemTrayIcon::supportsMessages())
     systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
