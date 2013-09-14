@@ -938,6 +938,10 @@ int options_imp::getMaxUploadsPerTorrent() const {
 
 void options_imp::on_buttonBox_accepted() {
   if (applyButton->isEnabled()) {
+    if (!schedTimesOk()) {
+      tabSelection->setCurrentRow(TAB_SPEED);
+      return;
+    }
     saveOptions();
     applyButton->setEnabled(false);
     this->hide();
@@ -949,6 +953,10 @@ void options_imp::on_buttonBox_accepted() {
 
 void options_imp::applySettings(QAbstractButton* button) {
   if (button == applyButton) {
+    if (!schedTimesOk()) {
+      tabSelection->setCurrentRow(TAB_SPEED);
+      return;
+    }
     saveOptions();
     emit status_changed();
   }
@@ -1240,7 +1248,7 @@ QString options_imp::webUiPassword() const
 
 void options_imp::showConnectionTab()
 {
-  tabSelection->setCurrentRow(2);
+  tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
 void options_imp::on_btnWebUiCrt_clicked() {
@@ -1396,4 +1404,20 @@ void options_imp::toggleAnonymousMode(bool enabled)
     checkLSD->setEnabled(true);
     checkUPnP->setEnabled(true);
   }
+}
+
+bool options_imp::schedTimesOk() {
+  QString msg;
+
+  if (schedule_from->time() == schedule_to->time())
+    msg = tr("The start time and the end time can't be the same.");
+  else if (schedule_from->time() > schedule_to->time())
+    msg = tr("The start time can't be after the end time.");
+
+  if (!msg.isEmpty()) {
+    QMessageBox::critical(this, tr("Time Error"), msg);
+    return false;
+  }
+
+  return true;
 }

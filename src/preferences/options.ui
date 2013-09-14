@@ -1781,6 +1781,9 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_from">
+                      <property name="wrapping">
+                       <bool>true</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
@@ -1808,6 +1811,9 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_to">
+                      <property name="wrapping">
+                       <bool>true</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
