@@ -40,12 +40,14 @@
 #include "previewlistdelegate.h"
 #include "previewselect.h"
 #include "fs_utils.h"
+#include "preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+  Preferences pref;
   // Preview list
-  previewListModel = new QStandardItemModel(0, 3);
+  previewListModel = new QStandardItemModel(0, NB_COLUMNS);
   previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
   previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
@@ -53,6 +55,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   listDelegate = new PreviewListDelegate(this);
   previewList->setItemDelegate(listDelegate);
   previewList->header()->resizeSection(0, 200);
+  previewList->setAlternatingRowColors(pref.useAlternatingRowColors());
   // Fill list in
   std::vector<libtorrent::size_type> fp;
   h.file_progress(fp);
@@ -71,14 +74,15 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
       indexes << i;
     }
   }
-  previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select);
-  previewList->selectionModel()->select(previewListModel->index(0, SIZE), QItemSelectionModel::Select);
-  previewList->selectionModel()->select(previewListModel->index(0, PROGRESS), QItemSelectionModel::Select);
+
   if (!previewListModel->rowCount()) {
     QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
     close();
   }
   connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
+  previewListModel->sort(NAME);
+  previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
+
   if (previewListModel->rowCount() == 1) {
     qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
     // Only one file : no choice

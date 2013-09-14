@@ -51,15 +51,22 @@
       </size>
      </property>
      <property name="text">
-      <string>The following files support previewing, &lt;br&gt;please select one of them:</string>
+      <string>The following files support previewing, please select one of them:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QTreeView" name="previewList"/>
+    <widget class="QTreeView" name="previewList">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout">
