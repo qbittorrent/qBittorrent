@@ -891,11 +891,8 @@ void MainWindow::dropEvent(QDropEvent *event) {
     if (file.startsWith("magnet:", Qt::CaseInsensitive)) {
       if (useTorrentAdditionDialog)
         AddNewTorrentDialog::showMagnet(file);
-      else{
+      else
         QBtSession::instance()->addMagnetUri(file);
-        showNotificationBaloon("Magnet Link added","");
-        std::cout<<"Torrent Added - "<<qPrintable(file)<<std::endl;
-      }
     } else {
       // Local file
       if (useTorrentAdditionDialog)
