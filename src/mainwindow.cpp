@@ -980,18 +980,22 @@ void MainWindow::processParams(const QStringList& params) {
           AddNewTorrentDialog::showMagnet(param);
         else{
           QTorrentHandle torrent =  QBtSession::instance()->addMagnetUri(param);
-          //TODO TRANSLATE AND DETAILS
-          showNotificationBaloon("Magnet Link has been added", "A Magnet Link has been added to the list of downloads");
-          std::cout<<"Magnet added"<<torrent.name().toStdString()<<std::endl<<torrent.is_queued()<<std::endl<<torrent.active_time()<<std::endl<<torrent.creation_date().toStdString()<<std::endl;
+          
+          //TODO TRANSLATE          
+          // to check for a new torrent I use name non empty, as explained below, active_time can also be used.
+          //Ideally it should be done from within the add function, but I dont know QT customs
+          if (torrent.name().toStdString() != "") //it appears to be non empty only the time it is properly added for some reason
+          	showNotificationBaloon("Magnet Link has been added", ("A Magnet File titled \"" +torrent.name().toStdString() + "\" has been added to the list of downloads").c_str());
         }
       } else {
         if (useTorrentAdditionDialog)
           AddNewTorrentDialog::showTorrent(param);
         else{
-          QBtSession::instance()->addTorrent(param);
-          //TODO TRanslate and DETAILS
-          showNotificationBaloon("Torrent file has been added", "A Torrent File has been added to the list of downloads");
-          std::cout<<"Torrent added"<<std::endl;
+          QTorrentHandle torrent =  QBtSession::instance()->addTorrent(param);
+          
+          //TODO Translate     
+          if (torrent.name().toStdString() != "") //it appears to be non empty only the time it is properly added for some reason
+          	showNotificationBaloon("Torrent File has been added", ("A Torrent File titled \"" +torrent.name().toStdString() + "\" has been added to the list of downloads").c_str());
         }
       }
     }
