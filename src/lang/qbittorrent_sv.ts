@@ -1347,7 +1347,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1239"/>
         <source>Show</source>
         <translation>Visa</translation>
     </message>
@@ -1384,7 +1384,7 @@ Detta meddelande kommer inte att visas igen.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1382"/>
+        <location filename="../mainwindow.cpp" line="1384"/>
         <source>Execution Log</source>
         <translation>Körningslogg</translation>
     </message>
@@ -1538,7 +1538,7 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <translation>Allmän hastighetsgräns för hämtning</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1147"/>
+        <location filename="../mainwindow.cpp" line="1149"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[N: %1/s, U: %2/s] qBittorrent %3</translation>
@@ -1555,7 +1555,7 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
         <translation>Lösenordet är ogiltigt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1239"/>
         <source>Hide</source>
         <translation>Dölj</translation>
     </message>
@@ -1592,38 +1592,38 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Inställningarna har sparats.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1131"/>
-        <location filename="../mainwindow.cpp" line="1140"/>
+        <location filename="../mainwindow.cpp" line="1133"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Hämtning: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1134"/>
-        <location filename="../mainwindow.cpp" line="1142"/>
+        <location filename="../mainwindow.cpp" line="1136"/>
+        <location filename="../mainwindow.cpp" line="1144"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Sändning: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1341"/>
         <source>A newer version is available</source>
         <translation>En nyare version finns tillgänglig</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1340"/>
+        <location filename="../mainwindow.cpp" line="1342"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>En nyare version av qBittorrent finns tillgänglig på Sourceforge.
 Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1355"/>
+        <location filename="../mainwindow.cpp" line="1357"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Omöjligt att uppdatera qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1355"/>
+        <location filename="../mainwindow.cpp" line="1357"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>Ett fel uppstod vid uppdatering av qBittorrent. Anledning: %1</translation>
     </message>
@@ -1889,47 +1889,47 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Schemalägg användning av alternativa hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2021"/>
+        <location filename="../preferences/options.ui" line="2027"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Aktivera Local Peer Discovery för att hitta fler klienter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2033"/>
+        <location filename="../preferences/options.ui" line="2039"/>
         <source>Encryption mode:</source>
         <translation>Krypteringsläge:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2041"/>
+        <location filename="../preferences/options.ui" line="2047"/>
         <source>Prefer encryption</source>
         <translation>Föredra kryptering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2046"/>
+        <location filename="../preferences/options.ui" line="2052"/>
         <source>Require encryption</source>
         <translation>Kräv kryptering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2051"/>
+        <location filename="../preferences/options.ui" line="2057"/>
         <source>Disable encryption</source>
         <translation>Inaktivera kryptering</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2083"/>
+        <location filename="../preferences/options.ui" line="2089"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2126"/>
+        <location filename="../preferences/options.ui" line="2132"/>
         <source>Maximum active downloads:</source>
         <translation>Maximalt aktiva hämtningar:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2146"/>
+        <location filename="../preferences/options.ui" line="2152"/>
         <source>Maximum active uploads:</source>
         <translation>Maximalt aktiva sändningar:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2166"/>
+        <location filename="../preferences/options.ui" line="2172"/>
         <source>Maximum active torrents:</source>
         <translation>Maximalt aktiva torrenter:</translation>
     </message>
@@ -2005,33 +2005,33 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>Ta bort mapp</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1802"/>
+        <location filename="../preferences/options.ui" line="1805"/>
         <source>to</source>
         <extracomment>time1 to time2</extracomment>
         <translation>till</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1854"/>
+        <location filename="../preferences/options.ui" line="1860"/>
         <source>Every day</source>
         <translation>Varje dag</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1859"/>
+        <location filename="../preferences/options.ui" line="1865"/>
         <source>Week days</source>
         <translation>Veckodagar</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1864"/>
+        <location filename="../preferences/options.ui" line="1870"/>
         <source>Week ends</source>
         <translation>Helger</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1964"/>
+        <location filename="../preferences/options.ui" line="1970"/>
         <source>DHT port:</source>
         <translation>DHT-port:</translation>
     </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="2005"/>
+        <location filename="../preferences/options.ui" line="2011"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Utväxla klienter med kompatibla Bittorrent-klienter (µTorrent, Vuze, ...)</translation>
     </message>
@@ -2296,122 +2296,122 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>från</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1846"/>
+        <location filename="../preferences/options.ui" line="1852"/>
         <source>When:</source>
         <translation>När:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1929"/>
+        <location filename="../preferences/options.ui" line="1935"/>
         <source>Privacy</source>
         <translation>Integritet</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1935"/>
+        <location filename="../preferences/options.ui" line="1941"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Aktivera DHT (decentraliserat nätverk) för att hitta fler klienter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1944"/>
+        <location filename="../preferences/options.ui" line="1950"/>
         <source>Use a different port for DHT and BitTorrent</source>
         <translation>Använd en annan port för DHT och BitTorrent</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2008"/>
+        <location filename="../preferences/options.ui" line="2014"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Aktivera Peer Exchange (PeX) för att hitta fler klienter</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2018"/>
+        <location filename="../preferences/options.ui" line="2024"/>
         <source>Look for peers on your local network</source>
         <translation>Leta efter klienter på ditt lokala nätverk</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2076"/>
+        <location filename="../preferences/options.ui" line="2082"/>
         <source>Enable anonymous mode</source>
         <translation>Aktivera anonymt läge</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2225"/>
+        <location filename="../preferences/options.ui" line="2231"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Räkna inte in långsamma torrentfiler i dessa begränsningar</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2246"/>
+        <location filename="../preferences/options.ui" line="2252"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Distribuera torrentfiler till deras förhållande når</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2278"/>
+        <location filename="../preferences/options.ui" line="2284"/>
         <source>then</source>
         <translation>sedan</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2289"/>
+        <location filename="../preferences/options.ui" line="2295"/>
         <source>Pause them</source>
         <translation>Pausa dem</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2294"/>
+        <location filename="../preferences/options.ui" line="2300"/>
         <source>Remove them</source>
         <translation>Ta bort dem</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2392"/>
+        <location filename="../preferences/options.ui" line="2398"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Använd UPnP / NAT-PMP för att vidarebefordra porten från min router</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2402"/>
+        <location filename="../preferences/options.ui" line="2408"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Använd HTTPS istället för HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2445"/>
+        <location filename="../preferences/options.ui" line="2451"/>
         <source>Import SSL Certificate</source>
         <translation>Importera SSL-certifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2498"/>
+        <location filename="../preferences/options.ui" line="2504"/>
         <source>Import SSL Key</source>
         <translation>Importera SSL-nyckel</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2433"/>
+        <location filename="../preferences/options.ui" line="2439"/>
         <source>Certificate:</source>
         <translation>Certifikat:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2486"/>
+        <location filename="../preferences/options.ui" line="2492"/>
         <source>Key:</source>
         <translation>Nyckel:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2520"/>
+        <location filename="../preferences/options.ui" line="2526"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2565"/>
+        <location filename="../preferences/options.ui" line="2571"/>
         <source>Bypass authentication for localhost</source>
         <translation>Kringgå autentisering för localhost</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2589"/>
+        <location filename="../preferences/options.ui" line="2595"/>
         <source>Update my dynamic domain name</source>
         <translation>Uppdatera mitt dynamiska domännamn</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2601"/>
+        <location filename="../preferences/options.ui" line="2607"/>
         <source>Service:</source>
         <translation>Tjänst:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2624"/>
+        <location filename="../preferences/options.ui" line="2630"/>
         <source>Register</source>
         <translation>Registrera</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2633"/>
+        <location filename="../preferences/options.ui" line="2639"/>
         <source>Domain name:</source>
         <translation>Domännamn:</translation>
     </message>
@@ -2432,45 +2432,45 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1328"/>
-        <location filename="../preferences/options.ui" line="2357"/>
+        <location filename="../preferences/options.ui" line="2363"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="927"/>
         <location filename="../preferences/options.ui" line="1369"/>
-        <location filename="../preferences/options.ui" line="2533"/>
+        <location filename="../preferences/options.ui" line="2539"/>
         <source>Authentication</source>
         <translation>Autentisering</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="939"/>
         <location filename="../preferences/options.ui" line="1383"/>
-        <location filename="../preferences/options.ui" line="2572"/>
-        <location filename="../preferences/options.ui" line="2647"/>
+        <location filename="../preferences/options.ui" line="2578"/>
+        <location filename="../preferences/options.ui" line="2653"/>
         <source>Username:</source>
         <translation>Användarnamn:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="949"/>
         <location filename="../preferences/options.ui" line="1403"/>
-        <location filename="../preferences/options.ui" line="2579"/>
-        <location filename="../preferences/options.ui" line="2661"/>
+        <location filename="../preferences/options.ui" line="2585"/>
+        <location filename="../preferences/options.ui" line="2667"/>
         <source>Password:</source>
         <translation>Lösenord:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2111"/>
+        <location filename="../preferences/options.ui" line="2117"/>
         <source>Torrent Queueing</source>
         <translation>Torrentkö</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2235"/>
+        <location filename="../preferences/options.ui" line="2241"/>
         <source>Share Ratio Limiting</source>
         <translation>Begränsning av utdelningsförhållande</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2343"/>
+        <location filename="../preferences/options.ui" line="2349"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Aktivera webbgränssnittet (fjärrstyrning)</translation>
     </message>
@@ -2488,31 +2488,31 @@ Vill du uppdatera qBittorrent till version %1?</translation>
 <context>
     <name>PreviewSelect</name>
     <message>
-        <location filename="../previewselect.cpp" line="49"/>
+        <location filename="../previewselect.cpp" line="51"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="50"/>
+        <location filename="../previewselect.cpp" line="52"/>
         <source>Size</source>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="51"/>
+        <location filename="../previewselect.cpp" line="53"/>
         <source>Progress</source>
         <translation>Förlopp</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="78"/>
-        <location filename="../previewselect.cpp" line="113"/>
-        <location filename="../previewselect.cpp" line="119"/>
+        <location filename="../previewselect.cpp" line="79"/>
+        <location filename="../previewselect.cpp" line="117"/>
+        <location filename="../previewselect.cpp" line="123"/>
         <source>Preview impossible</source>
         <translation>Förhandsvisning inte möjlig</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="78"/>
-        <location filename="../previewselect.cpp" line="113"/>
-        <location filename="../previewselect.cpp" line="119"/>
+        <location filename="../previewselect.cpp" line="79"/>
+        <location filename="../previewselect.cpp" line="117"/>
+        <location filename="../previewselect.cpp" line="123"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Tyvärr, vi kan inte förhandsvisa den här filen</translation>
     </message>
@@ -2520,33 +2520,33 @@ Vill du uppdatera qBittorrent till version %1?</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="112"/>
+        <location filename="../properties/proplistdelegate.h" line="110"/>
         <source>Not downloaded</source>
         <translation>Inte hämtad</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="121"/>
-        <location filename="../properties/proplistdelegate.h" line="176"/>
+        <location filename="../properties/proplistdelegate.h" line="119"/>
+        <location filename="../properties/proplistdelegate.h" line="174"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="115"/>
-        <location filename="../properties/proplistdelegate.h" line="177"/>
+        <location filename="../properties/proplistdelegate.h" line="113"/>
+        <location filename="../properties/proplistdelegate.h" line="175"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Hög</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="109"/>
+        <location filename="../properties/proplistdelegate.h" line="107"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>Blandat</translation>
     </message>
     <message>
-        <location filename="../properties/proplistdelegate.h" line="118"/>
-        <location filename="../properties/proplistdelegate.h" line="178"/>
+        <location filename="../properties/proplistdelegate.h" line="116"/>
+        <location filename="../properties/proplistdelegate.h" line="176"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximal</translation>
@@ -2712,131 +2712,131 @@ Vill du uppdatera qBittorrent till version %1?</translation>
         <translation>denna session</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="323"/>
-        <location filename="../properties/propertieswidget.cpp" line="327"/>
+        <location filename="../properties/propertieswidget.cpp" line="320"/>
+        <location filename="../properties/propertieswidget.cpp" line="321"/>
         <source>/s</source>
         <comment>/second (i.e. per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="330"/>
+        <location filename="../properties/propertieswidget.cpp" line="324"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Distribuerad i %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="334"/>
+        <location filename="../properties/propertieswidget.cpp" line="328"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation>%1 max</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
-        <location filename="../properties/propertieswidget.cpp" line="449"/>
+        <location filename="../properties/propertieswidget.cpp" line="422"/>
+        <location filename="../properties/propertieswidget.cpp" line="442"/>
         <source>I/O Error</source>
         <translation>In/Ut-fel</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="422"/>
         <source>This file does not exist yet.</source>
         <translation>Denna fil finns ännu inte.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="449"/>
+        <location filename="../properties/propertieswidget.cpp" line="442"/>
         <source>This folder does not exist yet.</source>
         <translation>Denna mapp finns inte ännu.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="459"/>
+        <location filename="../properties/propertieswidget.cpp" line="452"/>
         <source>Rename...</source>
         <translation>Byt namn...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="468"/>
+        <location filename="../properties/propertieswidget.cpp" line="461"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="507"/>
+        <location filename="../properties/propertieswidget.cpp" line="500"/>
         <source>New Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="513"/>
+        <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>Remove Web seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="508"/>
         <source>Copy Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="516"/>
+        <location filename="../properties/propertieswidget.cpp" line="509"/>
         <source>Edit Web seed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="539"/>
+        <location filename="../properties/propertieswidget.cpp" line="532"/>
         <source>Rename the file</source>
         <translation>Byt namn på filen</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="540"/>
+        <location filename="../properties/propertieswidget.cpp" line="533"/>
         <source>New name:</source>
         <translation>Nytt namn:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
-        <location filename="../properties/propertieswidget.cpp" line="575"/>
+        <location filename="../properties/propertieswidget.cpp" line="537"/>
+        <location filename="../properties/propertieswidget.cpp" line="568"/>
         <source>The file could not be renamed</source>
         <translation>Det gick inte att byta namn på filen</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="545"/>
+        <location filename="../properties/propertieswidget.cpp" line="538"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Detta filnamn innehåller förbjudna tecken. Välj ett annat filnamn.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="576"/>
-        <location filename="../properties/propertieswidget.cpp" line="614"/>
+        <location filename="../properties/propertieswidget.cpp" line="569"/>
+        <location filename="../properties/propertieswidget.cpp" line="607"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Detta namn används redan i denna mapp. Använd ett annat namn.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="613"/>
+        <location filename="../properties/propertieswidget.cpp" line="606"/>
         <source>The folder could not be renamed</source>
         <translation>Det gick inte att byta namn på mappen</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="652"/>
+        <location filename="../properties/propertieswidget.cpp" line="645"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny url-distribution</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="653"/>
+        <location filename="../properties/propertieswidget.cpp" line="646"/>
         <source>New url seed:</source>
         <translation>Ny url-distribution:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="714"/>
+        <location filename="../properties/propertieswidget.cpp" line="707"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="659"/>
-        <location filename="../properties/propertieswidget.cpp" line="715"/>
+        <location filename="../properties/propertieswidget.cpp" line="652"/>
+        <location filename="../properties/propertieswidget.cpp" line="708"/>
         <source>This url seed is already in the list.</source>
         <translation>Den här url-distributionen finns redan i listan.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="707"/>
+        <location filename="../properties/propertieswidget.cpp" line="700"/>
         <source>Web seed editing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="708"/>
+        <location filename="../properties/propertieswidget.cpp" line="701"/>
         <source>Web seed URL:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4151,53 +4151,53 @@ Installera den manuellt.</translation>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="95"/>
+        <location filename="../transferlistdelegate.h" line="92"/>
         <source>Downloading</source>
         <translation>Hämtar</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="99"/>
+        <location filename="../transferlistdelegate.h" line="96"/>
         <source>Paused</source>
         <translation>Pausad</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="103"/>
+        <location filename="../transferlistdelegate.h" line="100"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>Kölagd</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="107"/>
+        <location filename="../transferlistdelegate.h" line="104"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Distribuerar</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="110"/>
+        <location filename="../transferlistdelegate.h" line="107"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Avstannad</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="114"/>
+        <location filename="../transferlistdelegate.h" line="111"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Kontrollerar</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="128"/>
+        <location filename="../transferlistdelegate.h" line="125"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="139"/>
+        <location filename="../transferlistdelegate.h" line="135"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KiB/s</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="149"/>
+        <location filename="../transferlistdelegate.h" line="143"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Distribuerad i %1</translation>
@@ -5176,25 +5176,25 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <translation type="unfinished">denna session</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="312"/>
+        <location filename="../webui/btjson.cpp" line="306"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation type="unfinished">Distribuerad i %1</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="314"/>
+        <location filename="../webui/btjson.cpp" line="308"/>
         <source>%1 max</source>
         <comment>e.g. 10 max</comment>
         <translation type="unfinished">%1 max</translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="384"/>
+        <location filename="../webui/btjson.cpp" line="378"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/btjson.cpp" line="385"/>
+        <location filename="../webui/btjson.cpp" line="379"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
         <translation type="unfinished"></translation>
@@ -5203,111 +5203,126 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1143"/>
-        <location filename="../preferences/options_imp.cpp" line="1145"/>
+        <location filename="../preferences/options_imp.cpp" line="1151"/>
+        <location filename="../preferences/options_imp.cpp" line="1153"/>
         <source>Choose export directory</source>
         <translation>Välj exportkatalog</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1185"/>
-        <location filename="../preferences/options_imp.cpp" line="1187"/>
-        <location filename="../preferences/options_imp.cpp" line="1202"/>
-        <location filename="../preferences/options_imp.cpp" line="1204"/>
+        <location filename="../preferences/options_imp.cpp" line="1193"/>
+        <location filename="../preferences/options_imp.cpp" line="1195"/>
+        <location filename="../preferences/options_imp.cpp" line="1210"/>
+        <location filename="../preferences/options_imp.cpp" line="1212"/>
         <source>Choose a save directory</source>
         <translation>Välj en katalog att spara i</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1167"/>
-        <location filename="../preferences/options_imp.cpp" line="1169"/>
+        <location filename="../preferences/options_imp.cpp" line="1175"/>
+        <location filename="../preferences/options_imp.cpp" line="1177"/>
         <source>Choose an ip filter file</source>
         <translation>Välj en IP-filterfil</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1100"/>
+        <location filename="../preferences/options_imp.cpp" line="1108"/>
         <source>Add directory to scan</source>
         <translation>Lägg till katalog att söka av</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1106"/>
+        <location filename="../preferences/options_imp.cpp" line="1114"/>
         <source>Folder is already being watched.</source>
         <translation>Mappen bevakas redan.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1109"/>
+        <location filename="../preferences/options_imp.cpp" line="1117"/>
         <source>Folder does not exist.</source>
         <translation>Mappen finns inte.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1112"/>
+        <location filename="../preferences/options_imp.cpp" line="1120"/>
         <source>Folder is not readable.</source>
         <translation>Mappen är inte läsbar.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1120"/>
+        <location filename="../preferences/options_imp.cpp" line="1128"/>
         <source>Failure</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1120"/>
+        <location filename="../preferences/options_imp.cpp" line="1128"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Misslyckades med att lägga till mapp att söka av &quot;%1&quot;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1167"/>
-        <location filename="../preferences/options_imp.cpp" line="1169"/>
+        <location filename="../preferences/options_imp.cpp" line="1175"/>
+        <location filename="../preferences/options_imp.cpp" line="1177"/>
         <source>Filters</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1247"/>
+        <location filename="../preferences/options_imp.cpp" line="1255"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL-certifikat (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1258"/>
+        <location filename="../preferences/options_imp.cpp" line="1266"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL-nyckel (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1289"/>
+        <location filename="../preferences/options_imp.cpp" line="1297"/>
         <source>Parsing error</source>
         <translation>Tolkningsfel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1289"/>
+        <location filename="../preferences/options_imp.cpp" line="1297"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Misslyckades med att tolka angivet IP-filter</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1291"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>Successfully refreshed</source>
         <translation>Uppdaterades</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1291"/>
+        <location filename="../preferences/options_imp.cpp" line="1299"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1362"/>
+        <location filename="../preferences/options_imp.cpp" line="1370"/>
         <source>Invalid key</source>
         <translation>Ogiltig nyckel</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1362"/>
+        <location filename="../preferences/options_imp.cpp" line="1370"/>
         <source>This is not a valid SSL key.</source>
         <translation>Detta är inte en giltig SSL-nyckel.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1377"/>
+        <location filename="../preferences/options_imp.cpp" line="1385"/>
         <source>Invalid certificate</source>
         <translation>Ogiltigt certifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1377"/>
+        <location filename="../preferences/options_imp.cpp" line="1385"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Detta är inte ett giltigt SSL-certifikat.</translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1413"/>
+        <source>The start time and the end time can&apos;t be the same.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1415"/>
+        <source>The start time can&apos;t be after the end time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/options_imp.cpp" line="1418"/>
+        <source>Time Error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5347,16 +5362,16 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="54"/>
-        <source>The following files support previewing, &lt;br&gt;please select one of them:</source>
-        <translation>Följande filer har stöd för förhandsvisning. &lt;br&gt;välj en av dem:</translation>
+        <source>The following files support previewing, please select one of them:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="82"/>
+        <location filename="../preview.ui" line="89"/>
         <source>Preview</source>
         <translation>Förhandsvisa</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="89"/>
+        <location filename="../preview.ui" line="96"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
