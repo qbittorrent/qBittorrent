@@ -107,13 +107,13 @@ QBtSession::QBtSession()
     LSDEnabled(false),
     DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
     m_torrentExportEnabled(false),
-    m_finishedTorrentExportEnabled(false)
+    m_finishedTorrentExportEnabled(false),
+    m_randomPortEnabled(false)
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
   , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
-    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0),
-    m_randomPortEnabled(false)
+    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
