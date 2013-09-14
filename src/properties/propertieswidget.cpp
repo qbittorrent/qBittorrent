@@ -317,14 +317,8 @@ void PropertiesWidget::loadDynamicData() {
       wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-      if (h.upload_limit() <= 0)
-        lbl_uplimit->setText(QString::fromUtf8("∞"));
-      else
-        lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-      if (h.download_limit() <= 0)
-        lbl_dllimit->setText(QString::fromUtf8("∞"));
-      else
-        lbl_dllimit->setText(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
+      lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
+      lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
       if (h.is_seed()) {
         elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
@@ -338,10 +332,9 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      if (ratio > QBtSession::MAX_RATIO)
-        shareRatio->setText(QString::fromUtf8("∞"));
-      else
-        shareRatio->setText(QString(QByteArray::number(ratio, 'f', 2)));
+      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : QString::number((int)(ratio*100)/100.0, 'f', 2));
       if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces

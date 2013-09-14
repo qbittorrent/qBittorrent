@@ -32,7 +32,6 @@
 #define SEARCHLISTDELEGATE_H
 
 #include <QItemDelegate>
-#include <QStyleOptionProgressBarV2>
 #include <QStyleOptionViewItemV2>
 #include <QModelIndex>
 #include <QPainter>

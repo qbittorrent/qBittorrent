@@ -456,7 +456,7 @@ QTreeWidgetItem* RSSImp::createFolderListItem(const RssFilePtr& rssFile)
 {
   Q_ASSERT(rssFile);
   QTreeWidgetItem* item = new QTreeWidgetItem;
-  item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName()+ QString::fromUtf8("  (")+QString::number(rssFile->unreadCount(), 10)+QString(")")));
+  item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName()+ QString::fromUtf8("  (")+QString::number(rssFile->unreadCount())+QString(")")));
   item->setData(0, Qt::DecorationRole, rssFile->icon());
 
   return item;
@@ -619,7 +619,7 @@ void RSSImp::updateItemInfos(QTreeWidgetItem *item)
     name = tr("Unread");
   else
     name = rss_item->displayName();
-  item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->unreadCount(), 10)+ QString(")"));
+  item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->unreadCount())+ QString(")"));
   // If item has a parent, update it too
   if (item->parent())
     updateItemInfos(item->parent());

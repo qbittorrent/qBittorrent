@@ -40,7 +40,7 @@ FeedListWidget::FeedListWidget(QWidget *parent, const RssManagerPtr& rssmanager)
   setColumnCount(1);
   headerItem()->setText(0, tr("RSS feeds"));
   m_unreadStickyItem = new QTreeWidgetItem(this);
-  m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount(), 10)+ QString(")"));
+  m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount())+ QString(")"));
   m_unreadStickyItem->setData(0,Qt::DecorationRole, IconProvider::instance()->getIcon("mail-folder-inbox"));
   itemAdded(m_unreadStickyItem, rssmanager);
   connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(updateCurrentFeed(QTreeWidgetItem*)));

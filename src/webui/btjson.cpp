@@ -299,14 +299,8 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
     data.add(KEY_PROP_WASTED, misc::friendlyUnit(h.total_failed_bytes() + h.total_redundant_bytes()));
     data.add(KEY_PROP_UPLOADED, QString(misc::friendlyUnit(h.all_time_upload()) + " (" + misc::friendlyUnit(h.total_payload_upload()) + " " + tr("this session") + ")"));
     data.add(KEY_PROP_DOWNLOADED, QString(misc::friendlyUnit(h.all_time_download()) + " (" + misc::friendlyUnit(h.total_payload_download()) + " " + tr("this session") + ")"));
-    if (h.upload_limit() <= 0)
-      data.add(KEY_PROP_UP_LIMIT, QString::fromUtf8("∞"));
-    else
-      data.add(KEY_PROP_UP_LIMIT, misc::friendlyUnit(h.upload_limit(), true));
-    if (h.download_limit() <= 0)
-      data.add(KEY_PROP_DL_LIMIT, QString::fromUtf8("∞"));
-    else
-      data.add(KEY_PROP_DL_LIMIT, misc::friendlyUnit(h.download_limit(), true));
+    data.add(KEY_PROP_UP_LIMIT, h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit(), true));
+    data.add(KEY_PROP_DL_LIMIT, h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit(), true));
     QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
     if (h.is_seed())
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
