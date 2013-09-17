@@ -202,10 +202,12 @@ void QtLocalPeer::receiveConnection()
     }
     QString message(QString::fromUtf8(uMsg));
 #ifdef Q_OS_WIN
-    if (message == "qbt://pid")
-      socket->write(QByteArray::number(qApp->applicationPid()));
-    else
+    if (message == "qbt://pid") {
+      qint64 pid = GetCurrentProcessId();
+      socket->write((const char *)&pid, sizeof pid);
+    } else {
       socket->write(ack, qstrlen(ack));
+    }
 #else
     socket->write(ack, qstrlen(ack));
 #endif
@@ -219,9 +221,9 @@ void QtLocalPeer::receiveConnection()
 }
 
 #ifdef Q_OS_WIN
-ulong QtLocalPeer::getRunningPid() {
+qint64 QtLocalPeer::getRunningPid() {
   if (!isClient())
-      return false;
+      return 0;
 
   QLocalSocket socket;
   bool connOk = false;
@@ -231,32 +233,23 @@ ulong QtLocalPeer::getRunningPid() {
       connOk = socket.waitForConnected(5000/2);
       if (connOk || i)
           break;
-      Sleep(DWORD(250));
+      Sleep(250);
   }
-  if (!connOk)
-      return false;
-  QByteArray uMsg("qbt://pid");
-  QDataStream ds(&socket);
-  ds.writeBytes(uMsg.constData(), uMsg.size());
-  bool res = socket.waitForBytesWritten(5000);
-  res &= socket.waitForReadyRead(5000);
-  if (!res)
-    return -1;
-  while (socket.bytesAvailable() < (int)sizeof(quint32))
-      socket.waitForReadyRead();
-  uMsg.clear();
-  quint32 remaining = socket.bytesAvailable();
-  uMsg.resize(remaining);
-  int got = 0;
-  char* uMsgBuf = uMsg.data();
-  do {
-      got = ds.readRawData(uMsgBuf, remaining);
-      remaining -= got;
-      uMsgBuf += got;
-  } while (remaining && got >= 0 && socket.waitForReadyRead(2000));
-  if (got < 0)
-    return -1;
+  if (!connOk) return -1;
 
-  return uMsg.toULong();
+  const char* msg = "qbt://pid";
+  QDataStream ds(&socket);
+  ds.writeBytes(msg, qstrlen(msg));
+  bool res = socket.waitForBytesWritten(5000) && socket.waitForReadyRead(5000);
+  if (!res) return -1;
+
+  DWORD pid;
+  qint64 pid_size = sizeof pid;
+  while (socket.bytesAvailable() < pid_size)
+      socket.waitForReadyRead();
+  if (socket.read((char *)&pid, pid_size) < pid_size)
+      return -1;
+
+  return pid;
 }
 #endif

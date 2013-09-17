@@ -351,7 +351,7 @@ void QtSingleApplication::activateWindow()
 */
 
 #ifdef Q_OS_WIN
-ulong QtSingleApplication::getRunningPid() {
+qint64 QtSingleApplication::getRunningPid() {
   return peer->getRunningPid();
 }
 #endif

@@ -75,6 +75,10 @@ Q_IMPORT_PLUGIN(qico)
 #include "misc.h"
 #include "preferences.h"
 
+#if defined(Q_OS_WIN) && !defined(QBT_HAS_GETCURRENTPID)
+#error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
+#endif
+
 class UsageDisplay: public QObject {
   Q_OBJECT
 
@@ -207,7 +211,7 @@ int main(int argc, char *argv[]) {
     qDebug("qBittorrent is already running for this user.");
     // Read torrents given on command line
 #ifdef Q_OS_WIN
-    DWORD pid = app.getRunningPid();
+    DWORD pid = (DWORD)app.getRunningPid();
     if (pid > 0) {
       BOOL b = AllowSetForegroundWindow(pid);
       qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");

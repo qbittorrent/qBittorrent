@@ -65,7 +65,7 @@ public:
     QString applicationId() const
         { return id; }
 #ifdef Q_OS_WIN
-    ulong getRunningPid();
+    qint64 getRunningPid();
 #endif
 
 Q_SIGNALS:
