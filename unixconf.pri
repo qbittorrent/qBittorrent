@@ -23,14 +23,12 @@ man.path = $$MANPREFIX/man/man1/
 INSTALLS += man
 
 # systemd
-#if
 nox {
 systemd {
     systemd.files = qbittorrentd.service
     systemd.path = $$PREFIX/lib/systemd/system/
 INSTALLS += systemd
 }}
-#endif
 
 
 # Menu Icon
