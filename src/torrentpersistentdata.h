@@ -114,6 +114,37 @@ private:
   static QHash<QString, TorrentData> data;
 };
 
+class HiddenData {
+public:
+  static bool hasData(const QString &hash) {
+    return data.contains(hash);
+  }
+
+  static void deleteData(const QString &hash) {
+    data.remove(hash);
+  }
+
+  static void setAddInPause(const QString &hash, bool AddInPause) {
+    data[hash].AddInPause = AddInPause;
+  }
+
+  static bool getAddInPause(const QString &hash) {
+    return data.value(hash).AddInPause;
+  }
+
+  static int getSize() {
+    return data.size();
+  }
+
+private:
+  struct TorrentData {
+    TorrentData(): AddInPause(false) {}
+    bool AddInPause;
+  };
+
+  static QHash<QString, TorrentData> data;
+};
+
 class TorrentPersistentData {
 public:
   enum RatioLimit {
