@@ -22,6 +22,13 @@ nox {
 man.path = $$MANPREFIX/man/man1/
 INSTALLS += man
 
+# systemd
+systemd {
+    systemd.files = qbittorrentd.service
+    systemd.path = $$PREFIX/lib/systemd/system/
+INSTALLS += systemd
+}
+
 # Menu Icon
 !nox {
       menuicon.files = Icons/qBittorrent.desktop

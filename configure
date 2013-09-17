@@ -14,6 +14,7 @@ Main options:
   --bindir=[path]     Directory for binaries.  Default: PREFIX/bin
   --datadir=[path]    Directory for data.  Default: PREFIX/share
   --qtdir=[path]      Directory where Qt is installed.
+  --enable-systemd    Enable systemd support
   --verbose           Show extra configure output.
   --help              This help text.
 
@@ -152,6 +153,11 @@ while [ $# -gt 0 ]; do
 			shift
 			;;
 
+		--enable-systemd)
+			QC_ENABLE_SYSTEMD="Y"
+			shift
+			;;
+
 		--enable-debug)
 			QC_ENABLE_DEBUG="Y"
 			shift
@@ -213,6 +219,7 @@ echo PREFIX=$PREFIX
 echo BINDIR=$BINDIR
 echo DATADIR=$DATADIR
 echo EX_QTDIR=$EX_QTDIR
+echo QC_ENABLE_SYSTEMD=$QC_ENABLE_SYSTEMD
 echo QC_ENABLE_DEBUG=$QC_ENABLE_DEBUG
 echo QC_DISABLE_GUI=$QC_DISABLE_GUI
 echo QC_DISABLE_qt_dbus=$QC_DISABLE_qt_dbus
@@ -341,6 +348,10 @@ public:
                 // NOX mode
 		if(!conf->getenv("QC_DISABLE_GUI").isEmpty()) {
 			conf->addExtra("CONFIG += nox");
+		}
+                // SYSTEMD mode
+		if(!conf->getenv("QC_ENABLE_SYSTEMD").isEmpty()) {
+			conf->addExtra("CONFIG += systemd");
 		}
                 // Debug mode
                 if(!conf->getenv("QC_ENABLE_DEBUG").isEmpty()) {
@@ -1565,6 +1576,7 @@ export PREFIX
 export BINDIR
 export DATADIR
 export EX_QTDIR
+export QC_ENABLE_SYSTEMD
 export QC_ENABLE_DEBUG
 export QC_DISABLE_GUI
 export QC_DISABLE_qt_dbus
