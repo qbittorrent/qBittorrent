@@ -206,6 +206,13 @@ int main(int argc, char *argv[]) {
   if (app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
     // Read torrents given on command line
+#ifdef Q_OS_WIN
+    DWORD pid = app.getRunningPid();
+    if (pid > 0) {
+      BOOL b = AllowSetForegroundWindow(pid);
+      qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
+    }
+#endif
     QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
     QString message;
