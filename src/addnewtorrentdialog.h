@@ -91,7 +91,6 @@ private:
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
   bool m_hasMetadata;
-  bool m_convertingMagnet;
   QString m_filePath;
   QString m_url;
   QString m_hash;

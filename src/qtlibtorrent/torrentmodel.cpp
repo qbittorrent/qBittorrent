@@ -151,9 +151,14 @@ QVariant TorrentModelItem::data(int column, int role) const
   if (role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();
   switch(column) {
   case TR_NAME:
-    return m_name.isEmpty()? m_torrent.name() : m_name;
-  case TR_PRIORITY:
-    return m_torrent.queue_position();
+    return m_name.isEmpty() ? m_torrent.name() : m_name;
+  case TR_PRIORITY: {
+    int pos = m_torrent.queue_position();
+    if (pos > -1)
+      return pos - HiddenData::getSize();
+    else
+      return pos;
+  }
   case TR_SIZE:
     return m_torrent.has_metadata() ? static_cast<qlonglong>(m_torrent.actual_size()) : -1;
   case TR_PROGRESS:

@@ -114,6 +114,38 @@ private:
   static QHash<QString, TorrentData> data;
 };
 
+class HiddenData {
+public:
+  static void addData(const QString &hash) {
+    hashes.append(hash);
+  }
+
+  static bool hasData(const QString &hash) {
+    return hashes.contains(hash, Qt::CaseInsensitive);
+  }
+
+  static void deleteData(const QString &hash) {
+    if (hashes.removeAll(hash))
+      metadata_counter--;
+  }
+
+  static int getSize() {
+    return hashes.size();
+  }
+
+  static int getDownloadingSize() {
+    return hashes.size() - metadata_counter;
+  }
+
+  static void gotMetadata() {
+    metadata_counter++;
+  }
+
+private:
+  static QStringList hashes;
+  static unsigned int metadata_counter;
+};
+
 class TorrentPersistentData {
 public:
   enum RatioLimit {
