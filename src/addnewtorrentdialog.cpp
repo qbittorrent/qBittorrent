@@ -140,6 +140,13 @@ void AddNewTorrentDialog::showMagnet(const QString& link)
     dlg.exec();
 }
 
+void AddNewTorrentDialog::showEvent(QShowEvent *event) {
+  QDialog::showEvent(event);
+  activateWindow();
+  raise();
+}
+
+
 void AddNewTorrentDialog::showAdvancedSettings(bool show)
 {
   if (show) {

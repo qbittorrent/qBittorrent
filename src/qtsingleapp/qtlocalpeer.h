@@ -64,6 +64,9 @@ public:
     bool sendMessage(const QString &message, int timeout);
     QString applicationId() const
         { return id; }
+#ifdef Q_OS_WIN
+    qint64 getRunningPid();
+#endif
 
 Q_SIGNALS:
     void messageReceived(const QString &message);

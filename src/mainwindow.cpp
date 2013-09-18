@@ -263,14 +263,8 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   // Load Window state and sizes
   readSettings();
 
-  if (!ui_locked) {
-    if (pref.startMinimized() && systrayIcon) {
-      show();
-      minimizeWindow();
-      // XXX: Using showMinimized() makes it impossible to restore
-      // the window if "Minimize to systray" is enabled.
-      //showMinimized();
-    } else {
+  if (systrayIcon) {
+    if (!(pref.startMinimized() || ui_locked)) {
       show();
       activateWindow();
       raise();
@@ -323,10 +317,14 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 #endif
 
   // Make sure the Window is visible if we don't have a tray icon
-  if (!systrayIcon && isHidden()) {
-    show();
-    activateWindow();
-    raise();
+  if (!systrayIcon) {
+    if (pref.startMinimized()) {
+      showMinimized();
+    } else {
+      show();
+      activateWindow();
+      raise();
+    }
   }
 }
 
