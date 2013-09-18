@@ -862,7 +862,6 @@ QPair<int,int> options_imp::getGlobalBandwidthLimits() const {
 }
 
 bool options_imp::startMinimized() const {
-  if (checkStartMinimized->isChecked()) return true;
   return checkStartMinimized->isChecked();
 }
 
