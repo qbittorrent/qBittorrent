@@ -57,7 +57,6 @@ private:
 
   LogListWidget *m_logList;
   LogListWidget *m_banList;
-  int m_maxLines;
 };
 
 #endif // EXECUTIONLOG_H

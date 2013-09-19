@@ -61,7 +61,7 @@ class ScanFoldersModel;
 class TorrentSpeedMonitor;
 class DNSUpdater;
 
-const int MAX_LOG_MESSAGES = 100;
+const int MAX_LOG_MESSAGES = 1000;
 
 enum TorrentExportFolder {
   RegularTorrentExportFolder,
