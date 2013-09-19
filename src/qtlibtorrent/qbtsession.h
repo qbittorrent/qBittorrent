@@ -224,7 +224,6 @@ signals:
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
-  void listenSucceeded();
 
 private:
   // Bittorrent
@@ -258,7 +257,6 @@ private:
   bool m_torrentExportEnabled;
   bool m_finishedTorrentExportEnabled;
   bool appendqBExtension;
-  bool m_randomPortEnabled;
   QString defaultSavePath;
   QString defaultTempPath;
   // IP filtering
