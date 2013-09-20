@@ -1913,7 +1913,7 @@ void QBtSession::setListeningPort(int port) {
   if (iface_name.isEmpty()) {
     addConsoleMessage(tr("qBittorrent is trying to listen on any interface port: TCP/%1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), "blue");
 #if LIBTORRENT_VERSION_NUM >= 001600
-    s->listen_on(ports, ec);
+    s->listen_on(ports, ec, 0, session::listen_no_system_port);
 #else
     s->listen_on(ports);
 #endif
@@ -1931,7 +1931,7 @@ void QBtSession::setListeningPort(int port) {
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
 #if LIBTORRENT_VERSION_NUM >= 001600
-    s->listen_on(ports, ec, entry.ip().toString().toAscii().constData());
+    s->listen_on(ports, ec, entry.ip().toString().toAscii().constData(), session::listen_no_system_port);
     if (!ec) {
 #else
     if (s->listen_on(ports, entry.ip().toString().toAscii().constData())) {
@@ -2546,7 +2546,7 @@ void QBtSession::readAlerts() {
       else if (listen_failed_alert *p = dynamic_cast<listen_failed_alert*>(a.get())) {
         boost::system::error_code ec;
         qDebug() << "Failed listening on" << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-        addConsoleMessage(tr("qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(QString::number(p->endpoint.port())).arg(QString::fromStdString((p->error.message()))), "red");
+        addConsoleMessage(tr("qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), "red");
       }
       else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
