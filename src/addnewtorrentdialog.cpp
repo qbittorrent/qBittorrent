@@ -40,12 +40,12 @@
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "qmessageboxraisable.h"
 
 #include <QString>
 #include <QFile>
 #include <QUrl>
 #include <QMenu>
-#include <QMessageBox>
 #include <QTimer>
 #include <QFileDialog>
 #include <libtorrent/version.hpp>
@@ -181,7 +181,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     m_filePath = torrent_path;
 
   if (!QFile::exists(m_filePath)) {
-    QMessageBox::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
+    QMessageBoxRaisable::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
     return false;
   }
 
@@ -191,13 +191,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     m_torrentInfo = new torrent_info(m_filePath.toUtf8().data());
     m_hash = misc::toQString(m_torrentInfo->info_hash());
   } catch(const std::exception& e) {
-    QMessageBox::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
+    QMessageBoxRaisable::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
     return false;
   }
 
   // Prevent showing the dialog if download is already present
   if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
-    QMessageBox::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
+    QMessageBoxRaisable::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
     QBtSession::instance()->addTorrent(m_filePath, false, m_url);;
     return false;
   }
@@ -268,13 +268,13 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   m_url = magnet_uri;
   m_hash = misc::magnetUriToHash(m_url);
   if (m_hash.isEmpty()) {
-    QMessageBox::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
+    QMessageBoxRaisable::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
     return false;
   }
 
   // Prevent showing the dialog if download is already present
   if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
-    QMessageBox::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
+    QMessageBoxRaisable::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
     QBtSession::instance()->addMagnetUri(m_url, false);
     return false;
   }
