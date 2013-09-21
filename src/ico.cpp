@@ -309,11 +309,11 @@ bool ICOHandler::read(QImage *outImage)
     QImage icon;
     if ( loadFromDIB( stream, *selected, icon ) )
     {
-        icon.setText( "X-Index", 0, QString::number( selected - icons.begin() ) );
+        icon.setText( "X-Index", QString::number( selected - icons.begin() ) );
         if ( header.type == IcoHeader::Cursor )
         {
-            icon.setText( "X-HotspotX", 0, QString::number( selected->hotspotX ) );
-            icon.setText( "X-HotspotY", 0, QString::number( selected->hotspotY ) );
+            icon.setText( "X-HotspotX", QString::number( selected->hotspotX ) );
+            icon.setText( "X-HotspotY", QString::number( selected->hotspotY ) );
         }
 
         *outImage = icon;
@@ -424,6 +424,9 @@ bool ICOHandler::canRead(QIODevice *device)
 
 class ICOPlugin : public QImageIOPlugin
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    Q_PLUGIN_METADATA(IID "org.qbittorrent.ICOPlugin")
+#endif
 public:
     QStringList keys() const;
     Capabilities capabilities(QIODevice *device, const QByteArray &format) const;
@@ -458,5 +461,7 @@ QImageIOHandler *ICOPlugin::create(QIODevice *device, const QByteArray &format) 
     return handler;
 }
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 Q_EXPORT_STATIC_PLUGIN(ICOPlugin)
 Q_EXPORT_PLUGIN2(ico, ICOPlugin)
+#endif

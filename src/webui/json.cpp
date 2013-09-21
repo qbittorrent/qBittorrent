@@ -58,7 +58,7 @@ QString json::toJson(const QVariant& v) {
     QString result = "\"";
     for (int i=0; i<s.size(); ++i) {
       const QChar ch = s[i];
-      switch(ch.toAscii())
+      switch(ch.toLatin1())
       {
       case '\b':
         result += "\\b";

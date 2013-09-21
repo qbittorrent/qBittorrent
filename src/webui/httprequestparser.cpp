@@ -303,10 +303,10 @@ Submit Query
         qWarning() << "Could not find boundary in multipart/form-data header!";
         return false;
       } else {
-        boundary = "--" + boundaryRegexNotQuoted.cap(1).toAscii();
+        boundary = "--" + boundaryRegexNotQuoted.cap(1).toLatin1();
       }
     } else {
-      boundary = "--" + boundaryRegexQuoted.cap(1).toAscii();
+      boundary = "--" + boundaryRegexQuoted.cap(1).toLatin1();
     }
     qDebug() << "Boundary is " << boundary;
     QList<QByteArray> parts = splitRawData(data, boundary);

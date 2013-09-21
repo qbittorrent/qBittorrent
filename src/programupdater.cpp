@@ -39,7 +39,7 @@
 #include "fs_utils.h"
 #include "preferences.h"
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac";
 const QString FILE_EXT = "DMG";
 #else
