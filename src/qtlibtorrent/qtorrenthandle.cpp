@@ -45,7 +45,7 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <Windows.h>
 #endif
 
@@ -641,7 +641,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
           continue;
         }
         bool created = QDir().mkpath(unwanted_abspath);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         qDebug() << "unwanted folder was created:" << created;
         if (created) {
           // Hide the folder on Windows

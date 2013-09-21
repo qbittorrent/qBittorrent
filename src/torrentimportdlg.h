@@ -33,6 +33,7 @@
 
 #include <QDialog>
 #include <QStringList>
+
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/version.hpp>
 

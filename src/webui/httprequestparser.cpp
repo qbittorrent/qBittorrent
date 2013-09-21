@@ -141,10 +141,10 @@ Submit Query
         m_error = true;
         return;
       } else {
-        boundary = "--" + boundaryRegexNotQuoted.cap(1).toAscii();
+        boundary = "--" + boundaryRegexNotQuoted.cap(1).toLatin1();
       }
     } else {
-      boundary = "--" + boundaryRegexQuoted.cap(1).toAscii();
+      boundary = "--" + boundaryRegexQuoted.cap(1).toLatin1();
     }
     qDebug() << "Boundary is " << boundary;
     QList<QByteArray> parts = splitRawData(m_data, boundary);

@@ -141,8 +141,8 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket,
   }
   annonce_req.info_hash = get_parameters.value("info_hash");
   // info_hash cannot be longer than 20 bytes
-  /*if (annonce_req.info_hash.toAscii().length() > 20) {
-    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toAscii().length());
+  /*if (annonce_req.info_hash.toLatin1().length() > 20) {
+    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
     respondInvalidRequest(socket, 150, "Invalid infohash");
     return;
   }*/

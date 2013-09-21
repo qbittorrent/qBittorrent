@@ -51,7 +51,7 @@ class about : public QDialog, private Ui::AboutDlg{
       // About
       QString aboutText =
           QString::fromUtf8("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\"><html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\" font-size:11pt; font-weight:400; font-style:normal;\"><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
-          tr("An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.") +
+          tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.") +
           QString::fromUtf8(" <br /><br />") +
           trUtf8("Copyright ©2006-2013 The qBittorrent project") +
           QString::fromUtf8("<br /><br />") +

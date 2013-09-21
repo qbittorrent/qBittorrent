@@ -35,7 +35,9 @@
 #include <QModelIndex>
 #include <QVector>
 #include <QVariant>
+
 #include <libtorrent/torrent_info.hpp>
+
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModelFile;

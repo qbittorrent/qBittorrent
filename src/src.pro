@@ -36,6 +36,8 @@ nox {
 }
 QT += network
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 # Vars
 LANG_PATH = lang
 ICONS_PATH = Icons
@@ -176,6 +178,7 @@ nox {
   win32 {
     HEADERS += programupdater.h
     SOURCES += programupdater.cpp
+    DEFINES += NOMINMAX
   }
 
   macx {

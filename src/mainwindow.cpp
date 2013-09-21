@@ -29,7 +29,7 @@
  */
 
 #include <QtGlobal>
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "notifications.h"
 #endif
@@ -44,6 +44,7 @@
 #include <QCloseEvent>
 #include <QShortcut>
 #include <QScrollBar>
+#include <QMimeData>
 
 #include "mainwindow.h"
 #include "transferlistwidget.h"
@@ -75,13 +76,13 @@
 #ifndef DISABLE_GUI
 #include "autoexpandabledialog.h"
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "qmacapplication.h"
 void qt_mac_set_dock_menu(QMenu *menu);
 #endif
 #include "lineedit.h"
 #include "sessionapplication.h"
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 #include "programupdater.h"
 #endif
 #include "powermanagement.h"
@@ -108,7 +109,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   // Clean exit on log out
   connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
   // Setting icons
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   if (Preferences().useSystemIconTheme())
     setWindowIcon(QIcon::fromTheme("qbittorrent", QIcon(QString::fromUtf8(":/Icons/skin/qbittorrent32.png"))));
   else
@@ -161,7 +162,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(QBtSession::instance(), SIGNAL(downloadFromUrlFailure(QString, QString)), this, SLOT(handleDownloadFromUrlFailure(QString, QString)));
   connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
   connect(QBtSession::instance(), SIGNAL(recursiveTorrentDownloadPossible(QTorrentHandle)), this, SLOT(askRecursiveTorrentDownloadConfirmation(QTorrentHandle)));
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   connect(static_cast<QMacApplication*>(qApp), SIGNAL(newFileOpenMacEvent(QString)), this, SLOT(processParams(QString)));
 #endif
 
@@ -211,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
   connect(actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   programUpdateTimer.setInterval(60*60*1000);
   programUpdateTimer.setSingleShot(true);
   connect(&programUpdateTimer, SIGNAL(timeout()), SLOT(checkProgramUpdate()));
@@ -239,7 +240,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(status_bar->connectionStatusButton(), SIGNAL(clicked()), SLOT(showConnectionSettings()));
   connect(actionUse_alternative_speed_limits, SIGNAL(triggered()), status_bar, SLOT(toggleAlternativeSpeeds()));
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setUnifiedTitleAndToolBarOnMac(true);
 #endif
 
@@ -260,7 +261,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
   autoShutdownGroup->addAction(actionAutoShutdown_system);
   autoShutdownGroup->addAction(actionAutoSuspend_system);
-#if !defined(Q_WS_X11) || defined(QT_DBUS_LIB)
+#if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC)) || defined(QT_DBUS_LIB)
   actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
   actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
 #else
@@ -304,7 +305,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(transferList->getSourceModel(), SIGNAL(rowsRemoved(QModelIndex, int, int)), this, SLOT(updateNbTorrents()));
 
   qDebug("GUI Built");
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   if (!pref.neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
     if (QMessageBox::question(0, tr("Torrent file association"),
                              tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
@@ -316,7 +317,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
     }
   }
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   qt_mac_set_dock_menu(getTrayIconMenu());
 #endif
 
@@ -341,7 +342,7 @@ void MainWindow::shutdownCleanUp() {
   QBtSession::drop();
   // Save window size, columns size
   writeSettings();
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
   setUnifiedTitleAndToolBarOnMac(false);
 #endif
@@ -567,7 +568,7 @@ void MainWindow::createKeyboardShortcuts() {
   actionPause_All->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+P")));
   actionDecreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+-")));
   actionIncreasePriority->setShortcut(QKeySequence(QString::fromUtf8("Ctrl++")));
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   actionMinimize->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+M")));
   addAction(actionMinimize);
 #endif
@@ -840,7 +841,7 @@ bool MainWindow::event(QEvent * e) {
     }
     break;
   }
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   case QEvent::ToolBarChange: {
     qDebug("MAC: Received a toolbar change event!");
     bool ret = QMainWindow::event(e);
@@ -1094,14 +1095,14 @@ void MainWindow::loadPreferences(bool configure_session) {
   properties->reloadPreferences();
 
   // Icon provider
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   IconProvider::instance()->useSystemIconTheme(pref.useSystemIconTheme());
 #endif
 
   if (configure_session)
     QBtSession::instance()->configureSession();
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   if (pref.isUpdateCheckEnabled())
     checkProgramUpdate();
   else
@@ -1130,7 +1131,7 @@ void MainWindow::trackerAuthenticationRequired(const QTorrentHandle& h) {
 void MainWindow::updateGUI() {
   // update global informations
   if (systrayIcon) {
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_OS_UNIX)
     QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
     html += "qBittorrent";
     html += "</div>";
@@ -1155,7 +1156,7 @@ void MainWindow::updateGUI() {
 
 void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   if (!Preferences().useProgramNotification()) return;
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
   org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
@@ -1343,7 +1344,7 @@ void MainWindow::on_actionDownload_from_URL_triggered() {
   }
 }
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 
 void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser)
 {
@@ -1427,7 +1428,7 @@ void MainWindow::checkForActiveTorrents()
 
 QIcon MainWindow::getSystrayIcon() const
 {
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   TrayIcon::Style style = Preferences().trayIconStyle();
   switch(style) {
   case TrayIcon::MONO_DARK:
@@ -1439,7 +1440,7 @@ QIcon MainWindow::getSystrayIcon() const
   }
 #endif
   QIcon icon;
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   if (Preferences().useSystemIconTheme()) {
     icon = QIcon::fromTheme("qbittorrent");
   }
@@ -1452,7 +1453,7 @@ QIcon MainWindow::getSystrayIcon() const
   return icon;
 }
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
 void MainWindow::checkProgramUpdate() {
   programUpdateTimer.stop(); // If the user had clicked the menu item
   actionCheck_for_updates->setEnabled(false);

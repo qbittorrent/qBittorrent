@@ -33,7 +33,9 @@
 
 #include <QDialog>
 #include <QMessageBox>
+
 #include <libtorrent/session.hpp>
+
 #include "ui_login.h"
 #include "qtorrenthandle.h"
 
