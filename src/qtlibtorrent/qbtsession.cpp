@@ -61,7 +61,7 @@
 #include <libtorrent/extensions/ut_pex.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 //#include <libtorrent/extensions/metadata_transfer.hpp>
-#include <libtorrent/entry.hpp>
+#include <libtorrent/lazy_entry.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/identify_client.hpp>
@@ -1117,6 +1117,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   }
 #endif
 
+  recoverPersistentData(hash, buf);
   QString savePath;
   if (!from_url.isEmpty() && savepathLabel_fromurl.contains(QUrl::fromEncoded(from_url.toUtf8()))) {
     // Enforcing the save path defined before URL download (from RSS for example)
@@ -1684,6 +1685,7 @@ void QBtSession::saveFastResumeData() {
     if (!h.is_valid()) continue;
     try {
       // Remove old fastresume file if it exists
+      backupPersistentData(h.hash(), rd->resume_data);
       vector<char> out;
       bencode(back_inserter(out), *rd->resume_data);
       const QString filepath = torrentBackup.absoluteFilePath(h.hash()+".fastresume");
@@ -2307,6 +2309,7 @@ void QBtSession::readAlerts() {
           if (resume_file.exists())
             fsutils::forceRemove(filepath);
           qDebug("Saving fastresume data in %s", qPrintable(filepath));
+          backupPersistentData(h.hash(), p->resume_data);
           vector<char> out;
           bencode(back_inserter(out), *p->resume_data);
           if (!out.empty() && resume_file.open(QIODevice::WriteOnly)) {
@@ -2869,4 +2872,44 @@ entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_in
   entry ret(rd);
   Q_ASSERT(ret.type() == entry::dictionary_t);
   return ret;
+}
+
+void QBtSession::recoverPersistentData(const QString &hash, const std::vector<char> &buf) {
+  if (TorrentPersistentData::isKnownTorrent(hash) || TorrentTempData::hasTempData(hash) || buf.empty())
+    return;
+
+  libtorrent::lazy_entry fast;
+  libtorrent::error_code ec;
+
+  libtorrent::lazy_bdecode(&(buf.front()), &(buf.back()), fast, ec);
+  if (fast.type() != libtorrent::lazy_entry::dict_t && !ec)
+    return;
+
+  QString savePath = QString::fromUtf8(fast.dict_find_string_value("qBt-savePath").c_str());
+  qreal ratioLimit = QString::fromUtf8(fast.dict_find_string_value("qBt-ratioLimit").c_str()).toDouble();
+  QDateTime addedDate = QDateTime::fromTime_t(fast.dict_find_int_value("added_time"));
+  QString previousSavePath = QString::fromUtf8(fast.dict_find_string_value("qBt-previousSavePath").c_str());
+  QDateTime seedDate = QDateTime::fromTime_t(fast.dict_find_int_value("qBt-seedDate"));
+  QString label = QString::fromUtf8(fast.dict_find_string_value("qBt-label").c_str());
+  int priority = fast.dict_find_int_value("qBt-queuePosition");
+  bool seedStatus = fast.dict_find_int_value("qBt-seedStatus");
+
+  TorrentPersistentData::saveSavePath(hash, savePath);
+  TorrentPersistentData::setRatioLimit(hash, ratioLimit);
+  TorrentPersistentData::setAddedDate(hash, addedDate);
+  TorrentPersistentData::setPreviousSavePath(hash, previousSavePath);
+  TorrentPersistentData::saveSeedDate(hash, seedDate);
+  TorrentPersistentData::saveLabel(hash, label);
+  TorrentPersistentData::savePriority(hash, priority);
+  TorrentPersistentData::saveSeedStatus(hash, seedStatus);
+}
+
+void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data) {
+  (*data)["qBt-savePath"] = TorrentPersistentData::getSavePath(hash).toUtf8().constData();
+  (*data)["qBt-ratioLimit"] = QString::number(TorrentPersistentData::getRatioLimit(hash)).toUtf8().constData();
+  (*data)["qBt-previousSavePath"] = TorrentPersistentData::getPreviousPath(hash).toUtf8().constData();
+  (*data)["qBt-seedDate"] = TorrentPersistentData::getSeedDate(hash).toTime_t();
+  (*data)["qBt-label"] = TorrentPersistentData::getLabel(hash).toUtf8().constData();
+  (*data)["qBt-queuePosition"] = TorrentPersistentData::getPriority(hash);
+  (*data)["qBt-seedStatus"] = (int)TorrentPersistentData::isSeed(hash);
 }

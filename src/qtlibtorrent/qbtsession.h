@@ -184,6 +184,8 @@ private:
   libtorrent::add_torrent_params initializeAddTorrentParams(const QString &hash);
   libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> &t, const std::vector<int> &fp);
   void updateRatioTimer();
+  void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
+  void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
