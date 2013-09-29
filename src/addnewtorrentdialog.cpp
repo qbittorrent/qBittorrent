@@ -59,7 +59,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   m_contentDelegate(0),
   m_isMagnet(false),
   m_hasMetadata(false),
-  m_convertingMagnet(false),
   m_hasRenamedFile(false)
 {
   ui->setupUi(this);
@@ -263,7 +262,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
 bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
 {
-  connect(QBtSession::instance(), SIGNAL(metadataReceived(const QTorrentHandle&)), SLOT(updateMetadata(const QTorrentHandle&)));
+  connect(QBtSession::instance(), SIGNAL(metadataReceivedHidden(const QTorrentHandle&)), SLOT(updateMetadata(const QTorrentHandle&)));
   m_isMagnet = true;
   m_url = magnet_uri;
   m_hash = misc::magnetUriToHash(m_url);
@@ -292,17 +291,10 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   // Override save path
   TorrentTempData::setSavePath(m_hash, QString(QDir::tempPath() + QDir::separator() + m_hash).replace("\\", "/"));
 
-  // Temporary override of addInPause setting
-  bool old_addInPause = pref.addTorrentsInPause();
-  pref.addTorrentsInPause(false);
-  pref.sync();
+  HiddenData::setAddInPause(m_hash, pref.addTorrentsInPause());
 
-  QBtSession::instance()->addMagnetUri(m_url, false);
-  QBtSession::instance()->resumeTorrent(m_hash);
-  setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
-
-  // Restore addInPause setting
-  pref.addTorrentsInPause(old_addInPause);
+  QBtSession::instance()->addMagnetUri(m_url, false);  
+  setMetadataProgressIndicator(true, tr("Retrieving metadata..."));  
 
   return true;
 }
@@ -606,18 +598,9 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint&) {
 
 void AddNewTorrentDialog::accept()
 {
-  if (m_isMagnet) {
-    if (m_convertingMagnet) {
-      QMessageBox::information(0, tr("Processing metadata..."), tr("Please wait while parsing metadata"), QMessageBox::Ok);
-      return;
-    }
+  if (m_isMagnet)
     disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
-  }
-  if (!m_hasMetadata) {
-    // Metadata retrieval was cancelled
-    // Kill existing handle and make a new one
-    QBtSession::instance()->deleteTorrent(m_hash, true);
-  }
+
   Preferences pref;
   // Save Temporary data about torrent
   QString save_path = ui->save_path_combo->itemData(ui->save_path_combo->currentIndex()).toString();
@@ -638,21 +621,13 @@ void AddNewTorrentDialog::accept()
 
   // Rename files if necessary
   if (m_hasRenamedFile)
-    TorrentTempData::setFilesPath(m_hash, m_filesPath);
-
-  // Temporary override of addInPause setting
-  bool old_addInPause = pref.addTorrentsInPause();
-  pref.addTorrentsInPause(!ui->start_torrent_cb->isChecked());
-  pref.sync();
+    TorrentTempData::setFilesPath(m_hash, m_filesPath);  
 
   // Add torrent
-  if (!m_hasMetadata)
-    QBtSession::instance()->addMagnetUri(m_url, false);
+  if (m_isMagnet)
+    QBtSession::instance()->unhideMagnet(m_hash);
   else
     QBtSession::instance()->addTorrent(m_filePath, false, m_url);
-
-  // Restore addInPause setting
-  pref.addTorrentsInPause(old_addInPause);
 
   saveSavePathHistory();
   // Save settings
@@ -667,10 +642,6 @@ void AddNewTorrentDialog::accept()
 void AddNewTorrentDialog::reject() {
   if (m_isMagnet) {
     disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
-    while (m_convertingMagnet) {
-      // HACK ???
-      // Force cancel
-    }
     setMetadataProgressIndicator(false);
     QBtSession::instance()->deleteTorrent(m_hash, true);
   }
@@ -682,30 +653,11 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     if (h.hash() != m_hash)
       return;
 
-    m_convertingMagnet = true;
+    disconnect(this, SLOT(updateMetadata(const QTorrentHandle&)));
     Q_ASSERT(h.has_metadata());
-    h.pause();
 
-    // Try to convert magnet to torrent with full metadata
-    m_filePath = QDir::tempPath() + h.hash() + ".torrent";
-    h.save_torrent_file(m_filePath);
-    if (!QFile::exists(m_filePath)) {
-      QMessageBox::warning(0, tr("I/O Error"), tr("Failed to save metadata.\nFile list will be unavailable."));
-      m_convertingMagnet = false;
-      setMetadataProgressIndicator(false, tr("Failed to save metadata"));
-      return;
-    }
+    m_torrentInfo = new torrent_info(h.get_torrent_info());
 
-    try {
-      m_torrentInfo = new torrent_info(m_filePath.toUtf8().data());
-      Q_ASSERT(m_hash == misc::toQString(m_torrentInfo->info_hash()));
-    } catch(const std::exception&) {
-      QMessageBox::critical(0, tr("Invalid metadata"), tr("Metadata corrupted.\nFile list will be unavailable."));
-      m_convertingMagnet = false;
-      setMetadataProgressIndicator(false, tr("Invalid metadata"));
-      return;
-    }
-    QBtSession::instance()->deleteTorrent(m_hash, true);
     // Good to go
     m_hasMetadata = true;
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
@@ -766,7 +718,6 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     showAdvancedSettings(settings.value("AddNewTorrentDialog/expanded").toBool());
     // Set dialog position
     setdialogPosition();
-    m_convertingMagnet = false;
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
   } catch (invalid_handle&) {
     QMessageBox::critical(0, tr("I/O Error"), ("Unknown error."));

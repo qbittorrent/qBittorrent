@@ -175,6 +175,7 @@ public slots:
   void configureSession();
   void banIP(QString ip);
   void recursiveTorrentDownload(const QTorrentHandle &h);
+  void unhideMagnet(const QString &hash);
 
 private:
   QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null);
@@ -224,6 +225,7 @@ signals:
   void alternativeSpeedsModeChanged(bool alternative);
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
+  void metadataReceivedHidden(const QTorrentHandle &h);
 
 private:
   // Bittorrent

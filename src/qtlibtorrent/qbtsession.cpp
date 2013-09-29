@@ -83,6 +83,7 @@
 
 //initialize static member variables
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
+QHash<QString, HiddenData::TorrentData> HiddenData::data = QHash<QString, HiddenData::TorrentData>();
 
 using namespace libtorrent;
 
@@ -426,9 +427,9 @@ void QBtSession::configureSession() {
 #endif
   // Queueing System
   if (pref.isQueueingSystemEnabled()) {
-    sessionSettings.active_downloads = pref.getMaxActiveDownloads();
+    sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getSize();
     sessionSettings.active_seeds = pref.getMaxActiveUploads();
-    sessionSettings.active_limit = pref.getMaxActiveTorrents();
+    sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getSize();
     sessionSettings.dont_count_slow_torrents = pref.ignoreSlowTorrentsForQueueing();
     setQueueingEnabled(true);
   } else {
@@ -983,14 +984,24 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   // Load filtered files
   if (!resumed) {
     loadTorrentTempData(h, savePath, true);
+  }  
+  if (HiddenData::hasData(hash) && pref.isQueueingSystemEnabled()) {
+    //Internally increase the queue limits to ensure that the magnet is started
+    libtorrent::session_settings sessionSettings(s->settings());
+    sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getSize();
+    sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getSize();
+    s->set_settings(sessionSettings);
+    h.queue_position_top();
   }
-  if (!pref.addTorrentsInPause()) {
+  if (!pref.addTorrentsInPause() || HiddenData::hasData(hash)) {
     // Start torrent because it was added in paused state
     h.resume();
   }
   // Send torrent addition signal
   addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(magnet_uri));
-  emit addedTorrent(h);
+  if (!HiddenData::hasData(hash))
+    emit addedTorrent(h);
+
   return h;
 }
 
@@ -2382,7 +2393,19 @@ void QBtSession::readAlerts() {
       }
       else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
+        Preferences pref;
         if (h.is_valid()) {
+          QString hash(h.hash());
+          if (HiddenData::hasData(hash)) {
+            if (pref.isQueueingSystemEnabled()) {
+              //Internally decrease the queue limits to ensure that the magnet is started
+              libtorrent::session_settings sessionSettings(s->settings());
+              sessionSettings.active_downloads = pref.getMaxActiveDownloads() - (HiddenData::getSize() - 1);
+              sessionSettings.active_limit = pref.getMaxActiveTorrents() - (HiddenData::getSize() - 1);
+              s->set_settings(sessionSettings);
+            }
+            h.pause();
+          }
           qDebug("Received metadata for %s", qPrintable(h.hash()));
           // Save metadata
           const QDir torrentBackup(fsutils::BTBackupLocation());
@@ -2395,8 +2418,12 @@ void QBtSession::readAlerts() {
           if (appendqBExtension)
             appendqBextensionToTorrent(h, true);
 
-          emit metadataReceived(h);
-          if (h.is_paused()) {
+          if (!HiddenData::hasData(hash))
+            emit metadataReceived(h);
+          else
+            emit metadataReceivedHidden(h);
+
+          if (h.is_paused() && !HiddenData::hasData(hash)) {
             // XXX: Unfortunately libtorrent-rasterbar does not send a torrent_paused_alert
             // and the torrent can be paused when metadata is received
             emit pausedTorrent(h);
@@ -2435,6 +2462,8 @@ void QBtSession::readAlerts() {
       else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a.get())) {
         if (p->handle.is_valid()) {
           QTorrentHandle h(p->handle);
+          if (HiddenData::hasData(h.hash()))
+            continue;
           if (!h.has_error())
             h.save_resume_data();
           emit pausedTorrent(h);
@@ -2869,4 +2898,41 @@ entry QBtSession::generateFilePriorityResumeData(boost::intrusive_ptr<torrent_in
   entry ret(rd);
   Q_ASSERT(ret.type() == entry::dictionary_t);
   return ret;
+}
+
+void QBtSession::unhideMagnet(const QString &hash) {
+  Preferences pref;
+  QTorrentHandle h(getTorrentHandle(hash));
+  if (!h.is_valid()) {
+    if (pref.isQueueingSystemEnabled()) {
+      //Internally decrease the queue limits to ensure that the magnet is started
+      libtorrent::session_settings sessionSettings(s->settings());
+      sessionSettings.active_downloads = pref.getMaxActiveDownloads() - (HiddenData::getSize() - 1);
+      sessionSettings.active_limit = pref.getMaxActiveTorrents() - (HiddenData::getSize() - 1);
+      s->set_settings(sessionSettings);
+    }
+    HiddenData::deleteData(hash);
+    TorrentTempData::deleteTempData(hash);
+    return;
+  }
+
+  if (!h.has_metadata()) {
+    if (pref.isQueueingSystemEnabled()) {
+      //Internally decrease the queue limits to ensure that the magnet is started
+      libtorrent::session_settings sessionSettings(s->settings());
+      sessionSettings.active_downloads = pref.getMaxActiveDownloads() - (HiddenData::getSize() - 1);
+      sessionSettings.active_limit = pref.getMaxActiveTorrents() - (HiddenData::getSize() - 1);
+      s->set_settings(sessionSettings);
+    }
+    if (HiddenData::getAddInPause(hash))
+      h.pause();
+  }
+
+  h.queue_position_bottom();
+  if (!HiddenData::getAddInPause(hash))
+    h.resume();
+  HiddenData::deleteData(hash);
+  h.move_storage(TorrentTempData::getSavePath(hash));
+  TorrentTempData::deleteTempData(hash);
+  emit addedTorrent(h);
 }
