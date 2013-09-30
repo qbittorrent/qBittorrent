@@ -1616,7 +1616,7 @@ void QBtSession::saveTempFastResumeData() {
 #if LIBTORRENT_VERSION_NUM >= 001600
       if (!h.need_save_resume_data()) continue;
 #endif
-      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
+      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
     }catch(std::exception e) {}
@@ -1648,7 +1648,7 @@ void QBtSession::saveFastResumeData() {
         continue;
       // Actually with should save fast resume data for paused files too
       //if (h.is_paused()) continue;
-      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking) continue;
+      if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()) continue;
       h.save_resume_data();
       ++num_resume_data;
     } catch(libtorrent::invalid_handle&) {}
