@@ -2882,6 +2882,9 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
 #if LIBTORRENT_VERSION_NUM < 001600
   try {
   libtorrent::lazy_bdecode(&(buf.front()), &(buf.back()), fast);
+  } catch (std::exception&) {
+      return;
+    }
   if (fast.type() != libtorrent::lazy_entry::dict_t)
 #else
   libtorrent::error_code ec;
@@ -2899,11 +2902,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   QString label = QString::fromUtf8(fast.dict_find_string_value("qBt-label").c_str());
   int priority = fast.dict_find_int_value("qBt-queuePosition");
   bool seedStatus = fast.dict_find_int_value("qBt-seedStatus");
-#if LIBTORRENT_VERSION_NUM < 001600
-  } catch (std::exception&) {
-    return;
-    }
-#endif
 
   TorrentPersistentData::saveSavePath(hash, savePath);
   TorrentPersistentData::setRatioLimit(hash, ratioLimit);
