@@ -55,13 +55,13 @@ class about : public QDialog, private Ui::AboutDlg{
           QString::fromUtf8(" <br /><br />") +
           trUtf8("Copyright ©2006-2013 The qBittorrent project") +
           QString::fromUtf8("<br /><br />") +
-          tr("Home Page: ") +
-          QString::fromUtf8("<a href=\"http://www.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://www.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
-          tr("Bug Tracker: ") +
-          QString::fromUtf8("<a href=\"http://bugs.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://bugs.qbittorrent.org</span></a><br />") +
-          tr("Forum: ") +
+          tr("Home Page:") +
+          QString::fromUtf8( "<a href=\"http://www.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://www.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
+          tr("Bug Tracker:") +
+          QString::fromUtf8(" <a href=\"http://bugs.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://bugs.qbittorrent.org</span></a><br />") +
+          tr("Forum:") +
           QString::fromUtf8(
-              "<a href=\"http://forum.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://forum.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
+              " <a href=\"http://forum.qbittorrent.org\"><span style=\" text-decoration: underline; color:#0000ff;\">http://forum.qbittorrent.org</span></a></p><p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">") +
           tr("IRC: #qbittorrent on Freenode") +
           QString::fromUtf8(
               "</p></body></html>");
