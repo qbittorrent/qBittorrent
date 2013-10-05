@@ -264,8 +264,11 @@ int main(int argc, char *argv[]) {
     pref.setLocale(locale);
   }
   if (qtTranslator.load(
-          QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)
-                                                                    )) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+          QString::fromUtf8("qtbase_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
+      qtTranslator.load(
+#endif
+          QString::fromUtf8("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
     qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
   }else{
     qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
