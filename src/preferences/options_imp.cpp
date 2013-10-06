@@ -161,6 +161,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -400,6 +401,7 @@ void options_imp::saveOptions() {
   pref.useIncompleteFilesExtension(checkAppendqB->isChecked());
   pref.preAllocateAllFiles(preAllocateAllFiles());
   pref.useAdditionDialog(useAdditionDialog());
+  pref.AdditionDialogFront(checkAdditionDialogFront->isChecked());
   pref.addTorrentsInPause(addTorrentsInPause());
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
@@ -581,6 +583,7 @@ void options_imp::loadOptions() {
   checkAppendqB->setChecked(pref.useIncompleteFilesExtension());
   checkPreallocateAll->setChecked(pref.preAllocateAllFiles());
   checkAdditionDialog->setChecked(pref.useAdditionDialog());
+  checkAdditionDialogFront->setChecked(pref.AdditionDialogFront());
   checkStartPaused->setChecked(pref.addTorrentsInPause());
 
   strValue = pref.getTorrentExportDir();

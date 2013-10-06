@@ -282,6 +282,14 @@ public:
     setValue("Preferences/Downloads/NewAdditionDialog", b);
   }
 
+  bool AdditionDialogFront() const {
+    return value(QString::fromUtf8("Preferences/Downloads/NewAdditionDialogFront"), true).toBool();
+  }
+
+  void AdditionDialogFront(bool b) {
+    setValue("Preferences/Downloads/NewAdditionDialogFront", b);
+  }
+
   bool addTorrentsInPause() const {
     return value(QString::fromUtf8("Preferences/Downloads/StartInPause"), false).toBool();
   }

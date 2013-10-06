@@ -517,7 +517,7 @@
              <x>0</x>
              <y>0</y>
              <width>458</width>
-             <height>872</height>
+             <height>905</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -536,21 +536,33 @@
                <property name="bottomMargin">
                 <number>9</number>
                </property>
-               <item row="0" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkAdditionDialog">
-                 <property name="text">
-                  <string>Display torrent content and some options</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="0">
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="text">
                   <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
                  </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="checkAdditionDialog">
+                 <property name="title">
+                  <string>Display torrent content and some options</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_15">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="checkAdditionDialogFront">
+                    <property name="text">
+                     <string>Bring torrent dialog to the front</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1022,7 +1034,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>458</width>
+             <width>357</width>
              <height>498</height>
             </rect>
            </property>
@@ -2765,7 +2777,6 @@
   <tabstop>comboI18n</tabstop>
   <tabstop>textSavePath</tabstop>
   <tabstop>browseSaveDirButton</tabstop>
-  <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
