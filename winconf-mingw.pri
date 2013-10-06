@@ -30,6 +30,6 @@ CONFIG(debug, debug|release) {
           libboost_thread-mgw45-mt-1_47
 }
 
-LIBS += libadvapi32 libshell32
+LIBS += libadvapi32 libshell32 libuser32
 LIBS += libcrypto.dll libssl.dll libwsock32 libws2_32 libz libiconv.dll
 LIBS += libpowrprof
