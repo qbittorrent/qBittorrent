@@ -117,32 +117,36 @@ private:
 class HiddenData {
 public:
   static void addData(const QString &hash) {
-    hashes.append(hash);
+    data[hash] = false;
   }
 
   static bool hasData(const QString &hash) {
-    return hashes.contains(hash, Qt::CaseInsensitive);
+    return data.contains(hash);
   }
 
   static void deleteData(const QString &hash) {
-    if (hashes.removeAll(hash))
+    if (data.value(hash, false))
       metadata_counter--;
+    data.remove(hash);
   }
 
   static int getSize() {
-    return hashes.size();
+    return data.size();
   }
 
   static int getDownloadingSize() {
-    return hashes.size() - metadata_counter;
+    return data.size() - metadata_counter;
   }
 
-  static void gotMetadata() {
+  static void gotMetadata(const QString &hash) {
+    if (!data.contains(hash))
+        return;
+    data[hash] = true;
     metadata_counter++;
   }
 
 private:
-  static QStringList hashes;
+  static QHash<QString, bool> data;
   static unsigned int metadata_counter;
 };
 

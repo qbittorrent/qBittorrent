@@ -83,7 +83,7 @@
 
 //initialize static member variables
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
-QStringList HiddenData::hashes = QStringList();
+QHash<QString, bool> HiddenData::data = QHash<QString, bool>();
 unsigned int HiddenData::metadata_counter = 0;
 
 using namespace libtorrent;
@@ -428,9 +428,17 @@ void QBtSession::configureSession() {
 #endif
   // Queueing System
   if (pref.isQueueingSystemEnabled()) {
-    sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getDownloadingSize();
+    int max_downloading = pref.getMaxActiveDownloads();
+    int max_active = pref.getMaxActiveTorrents();
+    if (max_downloading > -1)
+      sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
+    else
+      sessionSettings.active_downloads = max_downloading;
+    if (max_active > -1)
+      sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
+    else
+      sessionSettings.active_limit = max_active;
     sessionSettings.active_seeds = pref.getMaxActiveUploads();
-    sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getDownloadingSize();
     sessionSettings.dont_count_slow_torrents = pref.ignoreSlowTorrentsForQueueing();
     setQueueingEnabled(true);
   } else {
@@ -991,8 +999,16 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   if (HiddenData::hasData(hash) && pref.isQueueingSystemEnabled()) {
     //Internally increase the queue limits to ensure that the magnet is started
     libtorrent::session_settings sessionSettings(s->settings());
-    sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getDownloadingSize();
-    sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getDownloadingSize();
+    int max_downloading = pref.getMaxActiveDownloads();
+    int max_active = pref.getMaxActiveTorrents();
+    if (max_downloading > -1)
+      sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
+    else
+      sessionSettings.active_downloads = max_downloading;
+    if (max_active > -1)
+      sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
+    else
+      sessionSettings.active_limit = max_active;
     s->set_settings(sessionSettings);
     h.queue_position_top();
   }
@@ -2403,12 +2419,20 @@ void QBtSession::readAlerts() {
         if (h.is_valid()) {
           QString hash(h.hash());
           if (HiddenData::hasData(hash)) {
-            HiddenData::gotMetadata();
+            HiddenData::gotMetadata(hash);
             if (pref.isQueueingSystemEnabled()) {
               //Internally decrease the queue limits to ensure that that other queued items aren't started
               libtorrent::session_settings sessionSettings(s->settings());
-              sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getDownloadingSize();
-              sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getDownloadingSize();
+              int max_downloading = pref.getMaxActiveDownloads();
+              int max_active = pref.getMaxActiveTorrents();
+              if (max_downloading > -1)
+                sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
+              else
+                sessionSettings.active_downloads = max_downloading;
+              if (max_active > -1)
+                sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
+              else
+                sessionSettings.active_limit = max_active;
               s->set_settings(sessionSettings);
             }
             h.pause();
@@ -2958,16 +2982,26 @@ void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<lib
 
 void QBtSession::unhideMagnet(const QString &hash) {
   Preferences pref;
+  HiddenData::deleteData(hash);
+  QString save_path = TorrentTempData::getSavePath(hash);
   QTorrentHandle h(getTorrentHandle(hash));
+
   if (!h.is_valid()) {
     if (pref.isQueueingSystemEnabled()) {
       //Internally decrease the queue limits to ensure that other queued items aren't started
       libtorrent::session_settings sessionSettings(s->settings());
-      sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getDownloadingSize();
-      sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getDownloadingSize();
+      int max_downloading = pref.getMaxActiveDownloads();
+      int max_active = pref.getMaxActiveTorrents();
+      if (max_downloading > -1)
+        sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
+      else
+        sessionSettings.active_downloads = max_downloading;
+      if (max_active > -1)
+        sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
+      else
+        sessionSettings.active_limit = max_active;
       s->set_settings(sessionSettings);
-    }
-    HiddenData::deleteData(hash);
+    }    
     TorrentTempData::deleteTempData(hash);
     return;
   }
@@ -2976,8 +3010,16 @@ void QBtSession::unhideMagnet(const QString &hash) {
     if (pref.isQueueingSystemEnabled()) {
       //Internally decrease the queue limits to ensure that other queued items aren't started
       libtorrent::session_settings sessionSettings(s->settings());
-      sessionSettings.active_downloads = pref.getMaxActiveDownloads() + HiddenData::getDownloadingSize();
-      sessionSettings.active_limit = pref.getMaxActiveTorrents() + HiddenData::getDownloadingSize();
+      int max_downloading = pref.getMaxActiveDownloads();
+      int max_active = pref.getMaxActiveTorrents();
+      if (max_downloading > -1)
+        sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
+      else
+        sessionSettings.active_downloads = max_downloading;
+      if (max_active > -1)
+        sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
+      else
+        sessionSettings.active_limit = max_active;
       s->set_settings(sessionSettings);
     }
     if (pref.addTorrentsInPause())
@@ -2985,12 +3027,10 @@ void QBtSession::unhideMagnet(const QString &hash) {
   }
 
   h.queue_position_bottom();
-  loadTorrentTempData(h, h.save_path(), !h.has_metadata());
-
+  loadTorrentTempData(h, h.save_path(), !h.has_metadata()); //TempData are deleted by a call to TorrentPersistentData::saveTorrentPersistentData()
   if (!pref.addTorrentsInPause())
     h.resume();
-  HiddenData::deleteData(hash);
-  h.move_storage(TorrentTempData::getSavePath(hash));
-  TorrentTempData::deleteTempData(hash);
+  h.move_storage(save_path);
+
   emit addedTorrent(h);
 }
