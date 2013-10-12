@@ -84,20 +84,19 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Armenian:</u> Hrant Ohanyan (hrantohanyan@mail.am)</li>\
           <li><u>Basque:</u> Xabier Aramendi (azpidatziak@gmail.com)</li>\
           <li><u>Belarusian:</u> Mihas Varantsou (meequz@gmail.com)</li>\
-          <li><u>Brazilian:</u> Nick Marinho (nickmarinho@gmail.com)</li>\
           <li><u>Bulgarian:</u> Tsvetan & Boyko Bankoff (emerge_life@users.sourceforge.net)</li>\
           <li><u>Catalan:</u> Francisco Luque Contreras (frannoe@ya.com)</li>\
           <li><u>Chinese (Simplified):</u> Guo Yue (yue.guo0418@gmail.com)</li>\
-          <li><u>Chinese (Traditional):</u> Yi-Shun Wang (dnextstep@gmail.com)</li>\
+          <li><u>Chinese (Traditional):</u> Yi-Shun Wang (dnextstep@gmail.com) and 冥王歐西里斯 s8321414(Transifex)</li>\
           <li><u>Croatian:</u> Oliver Mucafir (oliver.untwist@gmail.com)</li>\
           <li><u>Czech:</u> Jirka Vilim (web@tets.cz)</li>\
           <li><u>Danish:</u> Mathias Nielsen (comoneo@gmail.com)</li>\
           <li><u>Dutch:</u> Pieter Heyvaert (pieter_heyvaert@hotmail.com)</li>\
           <li><u>Finnish:</u> Niklas Laxström (nikerabbit@users.sourceforge.net) and Pekka Niemi (pekka.niemi@iki.fi)</li>\
-          <li><u>Galician:</u> Marcos Lans (marcoslansgarza@gmail.com)</li>\
+          <li><u>Galician:</u> Marcos Lans (marcoslansgarza@gmail.com) and antiparvos(Transifex)</li>\
           <li><u>Georgian:</u> Beqa Arabuli (arabulibeqa@yahoo.com)</li>\
           <li><u>German:</u> Niels Hoffmann (zentralmaschine@users.sourceforge.net)</li>\
-          <li><u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net)</li>\
+          <li><u>Greek:</u> Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com) and Γιάννης Ανθυμίδης Evropi(Transifex)</li>\
           <li><u>Hebrew:</u> David Deutsch (d.deffo@gmail.com)</li>\
           <li><u>Hungarian:</u> Majoros Péter (majoros.peterj@gmail.com)</li>\
           <li><u>Italian:</u> bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)</li>\
@@ -106,15 +105,17 @@ class about : public QDialog, private Ui::AboutDlg{
           <li><u>Lithuanian:</u> Naglis Jonaitis (njonaitis@gmail.com)</li>\
           <li><u>Norwegian:</u> Tomaso</li>\
           <li><u>Polish:</u> Mariusz Fik (fisiu@opensuse.org)</li>\
-          <li><u>Portuguese:</u> Nick Marinho (nickmarinho@gmail.com)</li>\
+          <li><u>Portuguese:</u> Sérgio Marques smarquespt(Transifex)</li>\
+          <li><u>Portuguese(Brazil):</u> Nick Marinho (nickmarinho@gmail.com)</li>\
           <li><u>Romanian:</u> Obada Denis (obadadenis@users.sourceforge.net)</li>\
-          <li><u>Russian:</u> Nick Khazov (m2k3d0n@users.sourceforge.net) and Alexey Morsov (samurai@ricom.ru)</li>\
+          <li><u>Russian:</u> Nick Khazov (m2k3d0n at users.sourceforge.net), Alexey Morsov (samurai@ricom.ru), Nick Tiskov Dayman(daymansmail (at) gmail (dot) com), Dmitry DmitryKX(Transifex) and kraleksandr kraleksandr(Transifex)</li>\
           <li><u>Serbian:</u> Anaximandar Milet (anaximandar@operamail.com)</li>\
           <li><u>Slovak:</u>  helix84</li>\
-          <li><u>Spanish:</u> Alfredo Monclús (alfrix), Francisco Luque Contreras (frannoe@ya.com)</li>\
+          <li><u>Spanish:</u> Alfredo Monclús (alfrix), Francisco Luque Contreras (frannoe@ya.com) and José Antonio Moray moray33(Transifex)</li>\
           <li><u>Swedish:</u> Daniel Nylander (po@danielnylander.se)</li>\
           <li><u>Turkish:</u> Hasan YILMAZ (iletisim@hedefturkce.com) and Erdem Bingöl (erdem84@gmail.com)</li>\
-          <li><u>Ukrainian:</u> Oleh Prypin (blaxpirit@gmail.com)</li></ul>");
+          <li><u>Ukrainian:</u> Oleh Prypin (blaxpirit@gmail.com)</li>\
+          <li><u>Vietnamese:</u> Anh Phan ppanhh(Transifex)</li></ul>");
       trans_txt += "<p>"+tr("Please contact me if you would like to translate qBittorrent into your own language.")+"</p>";
       te_translation->setHtml(trans_txt);
       // License
