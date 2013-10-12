@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="be">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="be" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -122,7 +120,7 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="119"/>
         <source>Torrent Information</source>
-        <translation>Звесткі пра торэнт</translation>
+        <translation>Інфармацыя пра торэнт</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="127"/>
@@ -190,12 +188,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Already in download list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ужо ў спісе сцягванняў</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Торэнт ужо ў спісе сцягванняў. Аб&apos;яднанне трэкераў.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
@@ -216,7 +214,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet-спасылка ўжо ў спісе сцягванняў. Аб&apos;яднанне трэкераў.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
@@ -226,7 +224,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="298"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрыманне метазвестак...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="359"/>
@@ -285,17 +283,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="665"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ідзе разбор метазвестак...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="723"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Атрыманне метазвестак скончана</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Невядомая памылка</translation>
+        <translation>Невядомая памылка</translation>
     </message>
 </context>
 <context>
@@ -676,7 +674,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Частыя ключы для cookies: &apos;%1&apos;, &apos;%2&apos;.
 Вам трэба ўзяць гэтую інфармацыю з настаўленняў Web-аглядальніка.</translation>
@@ -1022,12 +1020,12 @@ You should get this information from your Web browser preferences.</source>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Імя карыстальніка Web-інтэрфэйсу мусіць мець хаця б 3 сімвалы.</translation>
+        <translation>Імя карыстальніка Web-інтэрфэйсу мусіць мець прынамсі 3 сімвалы.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Пароль Web-інтэрфэйсу мусіць мець хаця б 3 сімвалы.</translation>
+        <translation>Пароль Web-інтэрфэйсу мусіць мець прынамсі 3 сімвалы.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="132"/>
@@ -1134,7 +1132,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="60"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Інструменты</translation>
+        <translation>&amp;Начынне</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="79"/>
@@ -2140,7 +2138,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"></translation>
+        <translation>Паказваць акенца паўзверх іншых</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2301,7 +2299,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2264"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Спыніць раздачы, калі іх суадносіны дасягнуць значэння</translation>
+        <translation>Спыніць раздачы, калі іх стасункі дасягнуць значэння</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2296"/>
@@ -2430,7 +2428,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2253"/>
         <source>Share Ratio Limiting</source>
-        <translation>Абмежаванне суадносінаў раздачы</translation>
+        <translation>Абмежаванне стасунку раздачы</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2361"/>
@@ -2558,7 +2556,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="206"/>
         <source>Share ratio:</source>
-        <translation>Суадносіны раздачы:</translation>
+        <translation>Стасунак раздачы:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="77"/>
@@ -2615,7 +2613,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.ui" line="334"/>
         <source>Information</source>
-        <translation>Звесткі</translation>
+        <translation>Інфармацыя</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="392"/>
@@ -2810,7 +2808,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="238"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="244"/>
         <source>%1 reached the maximum ratio you set.</source>
-        <translation>%1 дасягнуў вызначанага максімума суадносінаў.</translation>
+        <translation>%1 дасягнуў вызначанага максімума стасунку.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="239"/>
@@ -2916,13 +2914,13 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="818"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; выдалены са спісу перадач і цвёрдага дыску.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="820"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; выдалены са спісу перадач.</translation>
     </message>
     <message>
@@ -2936,27 +2934,27 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1079"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1081"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; ужо ў спісе сцягванняў.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1212"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; узноўлены (хуткае ўзнаўленне)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent спрабуе праслухоўваць любы порт інтэрфэйсу: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent спрабуе праслухоўваць інтэрфэйс %1, порт: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2289"/>
@@ -2977,13 +2975,13 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent паспяхова праслухоўвае інтэрфэйс %1, порт: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2585"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent не здолеў праслухоўваць інтэрфэйс %1, порт: TCP/%2 з прычыны: %3</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
@@ -3001,7 +2999,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1209"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1214"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; дададзены да спісу сцягванняў.</translation>
     </message>
     <message>
@@ -3024,7 +3022,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1052"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Не выйшла дэкадаваць Torrent-файл: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3148,7 +3146,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2694"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Сцягванне &apos;%1&apos;, калі ласка, пачакайце...</translation>
     </message>
 </context>
@@ -3191,7 +3189,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3483,7 +3481,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../searchengine/searchengine.cpp" line="233"/>
         <source>Python 2.x is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Для карыстання пашукавіком патрабуецца Python 2.x, але, здаецца, ён не ўсталяваны.
+        <translation>Для карыстання пашукавіком патрабуецца Python 2.x, але выглядае, што ён не ўсталяваны.
 Ці жадаеце ўсталяваць яго зараз?</translation>
     </message>
     <message>
@@ -3510,7 +3508,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Стоп</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3651,7 +3649,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="172"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation>Адлучаны ад сеткі. Звычайна гэта значыць, што qBittorrent не змог праслухаць порт для ўваходных злучэнняў.</translation>
+        <translation>Адлучаны ад сеткі. Звычайна гэта значыць, што qBittorrent не змог праслухаць порт на ўваходныя злучэнні.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="177"/>
@@ -3893,7 +3891,7 @@ Please install it manually.</source>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="264"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Суадносіны</translation>
+        <translation>Стасунак</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="265"/>
@@ -4372,7 +4370,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="675"/>
         <source>Limit share ratio...</source>
-        <translation>Абмежаваць суадносіны раздачы...</translation>
+        <translation>Абмежаваць стасунак раздачы...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="677"/>
@@ -4471,12 +4469,12 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Абмежаванне суадносінаў раздача/сцягванне торэнта</translation>
+        <translation>Абмежаванне стасунку раздача/сцягванне торэнта</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>Выкарыстоўваць агульнае абмежаванне суадносін</translation>
+        <translation>Выкарыстоўваць агульнае абмежаванне стасунку</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
@@ -4488,12 +4486,12 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>Зняць абмежаванне суадносін</translation>
+        <translation>Зняць абмежаванне стасунку</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>Абмежаваць суадносіны як</translation>
+        <translation>Абмежаваць стасунак як</translation>
     </message>
 </context>
 <context>
@@ -4539,32 +4537,32 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Адмысловы BitTorrent кліент, які напісаны на C++ і грунтуецца на бібліятэках Qt4 і libtorrent-rasterbar.</translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright ©2006-2013 Праект qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation type="unfinished"></translation>
+        <translation>Старонка ў сеціве:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>
         <source>Bug Tracker: </source>
-        <translation type="unfinished"></translation>
+        <translation>Bug Tracker:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"></translation>
+        <translation>Форум:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"></translation>
+        <translation>IRC: #qbittorrent на Freenode</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="82"/>
@@ -4574,7 +4572,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="118"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
-        <translation>Калі ласка, зкантактуйцеся са мной, калі жадаеце перакласці qBittorrent на сваю мову.</translation>
+        <translation>Калі ласка, скантактуйцеся са мной, калі жадаеце перакласці qBittorrent на сваю мову.</translation>
     </message>
 </context>
 <context>
@@ -4587,7 +4585,7 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/peer.ui" line="36"/>
         <source>IP</source>
-        <translation type="unfinished">IP</translation>
+        <translation>IP</translation>
     </message>
     <message>
         <location filename="../properties/peer.ui" line="59"/>
@@ -4773,7 +4771,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ігнараваць абмежаванне стасунку гэтага торэнта</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
@@ -4791,12 +4789,12 @@ Please install it manually.</source>
     <message>
         <location filename="../downloadfromurldlg.ui" line="28"/>
         <source>Add torrent links</source>
-        <translation>Дадайце спасылкі торэнта</translation>
+        <translation>Дадайце спасылкі на торэнт</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"></translation>
+        <translation>Адзін на радок (падтрымліваюцца HTTP-спысылкі, Magnet-спасылкі і інфа-хэшы)</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4902,7 +4900,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не падобна, каб гэтая спасылка вяла да пошукавай убудовы.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="353"/>
@@ -5007,7 +5005,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"></translation>
+        <translation>Памылковая спасылка</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
@@ -5282,17 +5280,17 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1415"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"></translation>
+        <translation>Час пачатку і час сканчэння не могуць супадаць.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1417"/>
         <source>The start time can&apos;t be after the end time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Час пачатку не можа быць пасля часу сканчэння.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1420"/>
         <source>Time Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Памылка часу</translation>
     </message>
 </context>
 <context>
@@ -5333,7 +5331,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Наступныя файлы падтрымліваюць перадпрагляд, пазнчаце адзін з іх:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>
