@@ -1,4 +1,4 @@
-* unreleased - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
+* Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
     - FEATURE: Add "Shutdown qBittorrent" button to Web UI (ngaro)
     - FEATURE: Add setting to copy .torrent files for finished downloads (Driim)
@@ -22,9 +22,17 @@
     - BUGFIX: Make the UI show that PEX/DHT/LSD are actually disabled on private torrents(sledgehammer999)
     - BUGFIX: Scheduler should be much more robust and correct now(sledgehammer999)
     - BUGFIX: Now qBt won't forget torrent settings after an unclean shutdown(sledgehammer999)
+    - BUGFIX: Text boxes in edit dialogs will fit to text width(Gelmir)
+    - BUGFIX: Enable edit/rename via F2 or double click in various places(Gelmir)
+    - BUGFIX: Allow to edit trackers and copy their urls(Gelmir and Driim)
+    - BUGFIX: Add Uploaded column to main view(Gelmir)
+    - BUGFIX: Calculate ETA for seeding torrents(Gelmir)    
+    - BUGFIX: Add option to ignore global share ratio limits for created torrents(Gelmir)
     - OTHER: Many RSS bugfixes and improvements all over the place(Gelmir)
     - OTHER: Generate translations at configure time to reduce tarball size
     - OTHER: Make peer tab sortable by ip too (Gelmir)
+    - OTHER: Translations moved to Transifex(https://www.transifex.com/projects/p/qbittorrent/)
+    - OTHER: New Translation - Vietnamese (Anh Phan)
     - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
     - PERFORMANCE: Impove drawing speed of peers list when there are many peers
 
