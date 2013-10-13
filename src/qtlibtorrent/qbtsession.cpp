@@ -2634,6 +2634,10 @@ void QBtSession::readAlerts() {
           }
         }
       }
+      else if (external_ip_alert *p = dynamic_cast<external_ip_alert*>(a.get())) {
+        boost::system::error_code ec;
+        addConsoleMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), "blue");
+      }
     } catch (const std::exception& e) {
       qWarning() << "Caught exception in readAlerts(): " << e.what();
     }
