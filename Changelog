@@ -1,3 +1,7 @@
+* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.1
+    - FEATURE: Show external IP in the log. Closes #968. (sledgehammer999)
+    - BUGFIX: Expose all available translation in the WebUI. Closes #976. (sledgehammer999)
+
 * Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
     - FEATURE: Add "Shutdown qBittorrent" button to Web UI (ngaro)
