@@ -79,15 +79,16 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   //Explicitly set the column visibility. When columns are added/removed
   //between versions this prevents some of them being hidden due to
   //incorrect restoreState() being used.
-  for (unsigned int i=0; i<PeerListDelegate::COL_COUNT; i++)
+  for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
     showColumn(i);
+  hideColumn(PeerListDelegate::IP_HIDDEN);
   hideColumn(PeerListDelegate::COL_COUNT);
   if (!Preferences().resolvePeerCountries())
     hideColumn(PeerListDelegate::COUNTRY);
   //To also migitate the above issue, we have to resize each column when
   //its size is 0, because explicitely 'showing' the column isn't enough
   //in the above scenario.
-  for (unsigned int i=0; i<PeerListDelegate::COL_COUNT; i++)
+  for (unsigned int i=0; i<PeerListDelegate::IP_HIDDEN; i++)
     if (!columnWidth(i))
       resizeColumnToContents(i);
   // Context menu
@@ -148,7 +149,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
   QStringList selectedPeerIPs;
   foreach (const QModelIndex &index, selectedIndexes) {
     int row = m_proxyModel->mapToSource(index).row();
-    QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP)).toString();
+    QString myip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
     selectedPeerIPs << myip;
   }
   // Add Peer Action
@@ -368,6 +369,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   // Adding Peer to peer list
   m_listModel->insertRow(row);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
     if (!ico.isNull()) {
