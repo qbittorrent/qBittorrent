@@ -75,6 +75,9 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
     }
   }
 
+  previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select);
+  previewList->selectionModel()->select(previewListModel->index(0, SIZE), QItemSelectionModel::Select);
+  previewList->selectionModel()->select(previewListModel->index(0, PROGRESS), QItemSelectionModel::Select);
   if (!previewListModel->rowCount()) {
     QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
     close();
