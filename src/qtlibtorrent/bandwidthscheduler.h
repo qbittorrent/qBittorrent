@@ -12,11 +12,8 @@
 class BandwidthScheduler: public QTimer {
   Q_OBJECT
 
-private:
-  bool in_alternative_mode;
-
 public:
-  BandwidthScheduler(QObject *parent): QTimer(parent), in_alternative_mode(false) {
+  BandwidthScheduler(QObject *parent): QTimer(parent) {
     Q_ASSERT(Preferences().isSchedulerEnabled());
     // Signal shot, we call start() again manually
     setSingleShot(true);
@@ -28,6 +25,7 @@ public slots:
   void start() {
     const Preferences pref;
     Q_ASSERT(pref.isSchedulerEnabled());
+    bool alt_bw_enabled = pref.isAltBandwidthEnabled();
 
     QTime start = pref.getSchedulerStartTime();
     QTime end = pref.getSchedulerEndTime();
@@ -56,10 +54,8 @@ public slots:
       }
     }
 
-    if (new_mode != in_alternative_mode) {
-      in_alternative_mode = new_mode;
+    if (new_mode != alt_bw_enabled)
       emit switchToAlternativeMode(new_mode);
-    }
 
     // Timeout regularly to accomodate for external system clock changes
     // eg from the user or from a timesync utility
