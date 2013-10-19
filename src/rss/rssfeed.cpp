@@ -380,6 +380,10 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
     return;
 
   RssArticlePtr article = hashToRssArticle(this, articleData);
+  if (article.isNull()) {
+    qDebug() << "Article hash corrupted or guid is uncomputable; feed url: " << feedUrl;
+    return;
+  }
   Q_ASSERT(article);
   addArticle(article);
 
