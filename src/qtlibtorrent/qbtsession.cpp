@@ -2744,6 +2744,7 @@ void QBtSession::addMagnetSkipAddDlg(const QString& uri, const QString& save_pat
   if (!save_path.isEmpty() || !label.isEmpty())
     savepathLabel_fromurl[uri] = qMakePair(save_path, label);
   addMagnetUri(uri, false);
+  emit newDownloadedTorrentFromRss(uri);
 }
 
 void QBtSession::downloadUrlAndSkipDialog(QString url, QString save_path, QString label, const QList<QNetworkCookie>& cookies) {
