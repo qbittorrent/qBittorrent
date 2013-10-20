@@ -2138,7 +2138,7 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"/>
+        <translation>Przywołaj okno dialogowe torrenta na wierzch</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2948,13 +2948,13 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent próbuje nasłuchiwać na porcie TCP/%1 dowolnego interfejsu sieciowego</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent próbuje nasłuchiwać na porcie TCP/%2 interfejsu sieciowego %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2289"/>
@@ -2975,13 +2975,13 @@ Czy chcesz zaktualizować program do wersji %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent nasłuchuje na porcie TCP/%2 interfejsu sieciowego %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2585"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent nie może nasłuchiwać na porcie TCP/%2 interfejsu sieciowego %1 z powodu: %3</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
@@ -4481,7 +4481,7 @@ Należy zainstalować go ręcznie.</translation>
         <location filename="../updownratiodlg.ui" line="33"/>
         <location filename="../updownratiodlg.ui" line="45"/>
         <source>buttonGroup</source>
-        <translation type="unfinished"/>
+        <translation>buttonGroup</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
@@ -4794,7 +4794,7 @@ Należy zainstalować go ręcznie.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"/>
+        <translation>Jeden na linię (wspierane są odnośniki HTTP, Magnet oraz info-hash)</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -5280,17 +5280,17 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1415"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"/>
+        <translation>Czas uruchomienia nie może byś taki sam jak czas zakończenia.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1417"/>
         <source>The start time can&apos;t be after the end time.</source>
-        <translation type="unfinished"/>
+        <translation>Czas uruchomienia nie może być późniejszy niż czas zakończenia.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1420"/>
         <source>Time Error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd ustawień harmonogramu</translation>
     </message>
 </context>
 <context>
@@ -5331,7 +5331,7 @@ Jednak tamte wtyczki były wyłączone.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"/>
+        <translation>Podgląd jest możliwy dla poniższych plików, proszę wybrać jeden z nich:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>

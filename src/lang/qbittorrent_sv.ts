@@ -37,7 +37,7 @@
     <message>
         <location filename="../about.ui" line="262"/>
         <source>Greece</source>
-        <translation type="unfinished"/>
+        <translation>Grekland</translation>
     </message>
     <message>
         <location filename="../about.ui" line="341"/>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="29"/>
         <source>Save as</source>
-        <translation type="unfinished"/>
+        <translation>Spara som</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="45"/>
@@ -95,22 +95,22 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="55"/>
         <source>Never show again</source>
-        <translation type="unfinished"/>
+        <translation>Visa aldrig igen</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="72"/>
         <source>Torrent settings</source>
-        <translation type="unfinished"/>
+        <translation>Torrentinställningar</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="78"/>
         <source>Start torrent</source>
-        <translation type="unfinished"/>
+        <translation>Starta torrent</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="90"/>
         <source>Label:</source>
-        <translation type="unfinished"/>
+        <translation>Etikett:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="109"/>
@@ -120,32 +120,32 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="119"/>
         <source>Torrent Information</source>
-        <translation type="unfinished"/>
+        <translation>Torrentinformation</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="127"/>
         <source>Size:</source>
-        <translation type="unfinished"/>
+        <translation>Storlek:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="141"/>
         <source>Comment:</source>
-        <translation type="unfinished"/>
+        <translation>Kommentar:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="155"/>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Datum:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="249"/>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="254"/>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>Hög</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="259"/>
@@ -155,13 +155,13 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="264"/>
         <source>Do not download</source>
-        <translation type="unfinished"/>
+        <translation>Hämta inte</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="74"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
-        <translation type="unfinished"/>
+        <translation>Annan...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="186"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="186"/>
         <source>The torrent file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>Torrentfillen existerar inte.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="196"/>
         <source>Invalid torrent</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltig torrent</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="196"/>
@@ -188,7 +188,7 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Already in download list</source>
-        <translation type="unfinished"/>
+        <translation>Redan i hämtningslistan</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
@@ -199,12 +199,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
         <location filename="../addnewtorrentdialog.cpp" line="674"/>
         <source>Not available</source>
-        <translation type="unfinished"/>
+        <translation>Inte tillgänglig</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="273"/>
         <source>Invalid magnet link</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltig magnetlänk</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="273"/>
@@ -219,7 +219,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
         <source>Magnet link</source>
-        <translation type="unfinished"/>
+        <translation>Magnetlänk</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="298"/>
@@ -241,18 +241,18 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="439"/>
         <source>Rename the file</source>
-        <translation type="unfinished"/>
+        <translation>Byt namn på filen</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="440"/>
         <source>New name:</source>
-        <translation type="unfinished"/>
+        <translation>Nytt namn:</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="444"/>
         <location filename="../addnewtorrentdialog.cpp" line="470"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"/>
+        <translation>Det gick inte att byta namn på filen</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="445"/>
@@ -273,12 +273,12 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="564"/>
         <source>Rename...</source>
-        <translation type="unfinished"/>
+        <translation>Byt namn...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="568"/>
         <source>Priority</source>
-        <translation type="unfinished"/>
+        <translation>Prioritet</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="665"/>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Okänt fel</translation>
     </message>
 </context>
 <context>
@@ -354,7 +354,7 @@
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"/>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>
@@ -610,7 +610,7 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="403"/>
         <source>Add new rule...</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till ny regel...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="409"/>
@@ -620,7 +620,7 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="411"/>
         <source>Rename rule...</source>
-        <translation type="unfinished"/>
+        <translation>Byt namn på regel...</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="413"/>
@@ -739,7 +739,7 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
         <location filename="../downloadthread.cpp" line="157"/>
         <location filename="../downloadthread.cpp" line="161"/>
         <source>I/O Error</source>
-        <translation>In-/ut-fel</translation>
+        <translation>In-/Ut-fel</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="252"/>
@@ -1616,7 +1616,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Flags</source>
-        <translation type="unfinished"/>
+        <translation>Flaggor</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="67"/>
@@ -1872,7 +1872,7 @@ Vill du uppdatera qBittorrent till version %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2101"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"/>
+        <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mer information&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2144"/>
@@ -3689,22 +3689,22 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../torrentcontentmodel.cpp" line="41"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="../torrentcontentmodel.cpp" line="41"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Storlek</translation>
     </message>
     <message>
         <location filename="../torrentcontentmodel.cpp" line="42"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Förlopp</translation>
     </message>
     <message>
         <location filename="../torrentcontentmodel.cpp" line="42"/>
         <source>Priority</source>
-        <translation type="unfinished"/>
+        <translation>Prioritet</translation>
     </message>
 </context>
 <context>
@@ -4181,7 +4181,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../transferlistfilterswidget.h" line="212"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Etiketter</translation>
     </message>
     <message>
         <location filename="../transferlistfilterswidget.h" line="226"/>
@@ -4557,12 +4557,12 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"/>
+        <translation>Forum: </translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"/>
+        <translation>IRC: #qbittorrent på Freenode</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="82"/>
@@ -5005,7 +5005,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltig länk</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
@@ -5041,7 +5041,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <location filename="../fs_utils.cpp" line="461"/>
         <location filename="../fs_utils.cpp" line="473"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Hämtningar</translation>
     </message>
 </context>
 <context>
@@ -5080,7 +5080,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <location filename="../misc.cpp" line="248"/>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished"/>
+        <translation>/s</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="393"/>
@@ -5125,7 +5125,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../webui/btjson.cpp" line="246"/>
         <source>Updating...</source>
-        <translation type="unfinished"/>
+        <translation>Uppdaterar...</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="248"/>
@@ -5135,7 +5135,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../webui/btjson.cpp" line="248"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished"/>
+        <translation>Inte ännu kontaktad</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="300"/>
@@ -5159,7 +5159,7 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
         <location filename="../webui/btjson.cpp" line="378"/>
         <source>D: %1/s - T: %2</source>
         <comment>Download speed: x KiB/s - Transferred: x MiB</comment>
-        <translation type="unfinished"/>
+        <translation>H: %1/s - Ö: %2</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="379"/>
@@ -5280,17 +5280,17 @@ Dock har dessa insticksmoduler blivit inaktiverade.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1415"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"/>
+        <translation>Starttiden och sluttiden kan inte vara desamma.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1417"/>
         <source>The start time can&apos;t be after the end time.</source>
-        <translation type="unfinished"/>
+        <translation>Starttiden kan inte vara efter sluttiden.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1420"/>
         <source>Time Error</source>
-        <translation type="unfinished"/>
+        <translation>Tidsfel</translation>
     </message>
 </context>
 <context>
