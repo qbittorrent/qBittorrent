@@ -278,9 +278,8 @@ void options_imp::initializeLanguageCombo()
   foreach (QString lang_file, lang_files) {
     QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
     localeStr.chop(3); // Remove ".qm"
-    QLocale locale(localeStr);
-    const QString country = locale.name().split("_").last().toLower();
-    QString language_name = languageToLocalizedString(locale.language(), country);
+    QLocale locale(localeStr);    
+    QString language_name = languageToLocalizedString(locale);
     comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
     qDebug() << "Supported locale:" << locale.name();
   }
@@ -361,7 +360,7 @@ void options_imp::saveOptions() {
     if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
       qDebug("%s locale recognized, using translation.", qPrintable(locale));
     }else{
-      qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+      qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
     }
     qApp->installTranslator(translator);
   }
@@ -1304,10 +1303,16 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
   disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
-QString options_imp::languageToLocalizedString(QLocale::Language language, const QString& country)
+QString options_imp::languageToLocalizedString(const QLocale &locale)
 {
-  switch(language) {
-  case QLocale::English: return "English";
+  switch(locale.language()) {
+  case QLocale::English: {
+    if (locale.country() == QLocale::Australia)
+      return "English(Australia)";
+    else if (locale.country() == QLocale::UnitedKingdom)
+      return "English(United Kingdom)";
+    return "English";
+  }
   case QLocale::French: return QString::fromUtf8("Français");
   case QLocale::German: return QString::fromUtf8("Deutsch");
   case QLocale::Hungarian: return QString::fromUtf8("Magyar");
@@ -1317,7 +1322,7 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Catalan: return QString::fromUtf8("Català");
   case QLocale::Galician: return QString::fromUtf8("Galego");
   case QLocale::Portuguese: {
-    if (country == "br")
+    if (locale.country() == QLocale::Brazil)
       return QString::fromUtf8("Português brasileiro");
     return QString::fromUtf8("Português");
   }
@@ -1346,14 +1351,14 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Basque: return QString::fromUtf8("Euskara");
   case QLocale::Vietnamese: return QString::fromUtf8("tiếng Việt");
   case QLocale::Chinese: {
-    if (country == "cn")
+    if (locale.country() == QLocale::China)
       return QString::fromUtf8("中文 (简体)");
     return QString::fromUtf8("中文 (繁體)");
   }
   case QLocale::Korean: return QString::fromUtf8("한글");
   default: {
     // Fallback to English
-    const QString eng_lang = QLocale::languageToString(language);
+    const QString eng_lang = QLocale::languageToString(locale.language());
     qWarning() << "Unrecognized language name: " << eng_lang;
     return eng_lang;
   }

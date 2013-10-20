@@ -155,7 +155,7 @@ void prefjson::setPreferences(const QString& json)
       if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
         qDebug("%s locale recognized, using translation.", qPrintable(locale));
       }else{
-        qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+        qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
       }
       qApp->installTranslator(translator);
 

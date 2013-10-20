@@ -210,6 +210,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_zh.ts \
                $$LANG_PATH/qbittorrent_zh_TW.ts \
                $$LANG_PATH/qbittorrent_en.ts \
+               $$LANG_PATH/qbittorrent_en_AU.ts \
+               $$LANG_PATH/qbittorrent_en_GB.ts \
                $$LANG_PATH/qbittorrent_ca.ts \
                $$LANG_PATH/qbittorrent_es.ts \
                $$LANG_PATH/qbittorrent_pl.ts \
