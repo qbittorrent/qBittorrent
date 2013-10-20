@@ -32,8 +32,16 @@ public slots:
     int sched_days = pref.getSchedulerDays();
     int day = QDateTime::currentDateTime().toLocalTime().date().dayOfWeek();
     bool new_mode = false;
+    bool reverse = false;
 
-    if (start < end && start <= now && end >= now) {
+    if (start > end) {
+      QTime temp = start;
+      start = end;
+      end = temp;
+      reverse = true;
+    }
+
+    if (start <= now && end >= now) {
       switch(sched_days) {
       case EVERY_DAY:
         new_mode = true;
@@ -52,6 +60,9 @@ public slots:
         break;
       }
     }
+
+    if (reverse)
+      new_mode = !new_mode;
 
     if (new_mode != alt_bw_enabled)
       emit switchToAlternativeMode(new_mode);
