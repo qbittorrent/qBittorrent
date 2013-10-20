@@ -7,7 +7,6 @@
 #include "preferences.h"
 #include <iostream>
 
-#define SCHED_INTERVAL 2500
 
 class BandwidthScheduler: public QTimer {
   Q_OBJECT
@@ -59,7 +58,7 @@ public slots:
 
     // Timeout regularly to accomodate for external system clock changes
     // eg from the user or from a timesync utility
-    QTimer::start(SCHED_INTERVAL);
+    QTimer::start(1500);
   }
 
 signals:
