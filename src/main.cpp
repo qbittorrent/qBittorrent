@@ -260,13 +260,13 @@ int main(int argc, char *argv[]) {
                                                                     )) {
     qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
   }else{
-    qDebug("Qt %s locale unrecognized, using default (en_GB).", qPrintable(locale));
+    qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
   }
   app.installTranslator(&qtTranslator);
   if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
     qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+    qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
   }
   app.installTranslator(&translator);
 #ifndef DISABLE_GUI

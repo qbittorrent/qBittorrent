@@ -92,7 +92,7 @@ private:
   void saveOptions();
   void loadOptions();
   void initializeLanguageCombo();
-  static QString languageToLocalizedString(QLocale::Language language, const QString& country);
+  static QString languageToLocalizedString(const QLocale &locale);
   // General options
   QString getLocale() const;
   bool systrayIntegration() const;
