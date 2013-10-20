@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hr" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="hr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -188,12 +190,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Already in download list</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
@@ -214,7 +216,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
@@ -224,7 +226,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="298"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="359"/>
@@ -283,17 +285,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="665"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="723"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Nepoznata greška</translation>
     </message>
 </context>
 <context>
@@ -674,7 +676,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : '%1', '%2'.
+        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation>Javni ključevi za kolačiće su: &apos;%1&apos;, &apos;%2&apos;.
 Ovu informaciju trebate pribaviti iz postavki vašeg web preglednika.</translation>
@@ -1660,78 +1662,78 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Poslano</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="157"/>
+        <location filename="../properties/peerlistwidget.cpp" line="158"/>
         <source>Add a new peer...</source>
         <translation>Dodaj novi peer ...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="166"/>
+        <location filename="../properties/peerlistwidget.cpp" line="167"/>
         <source>Copy IP</source>
         <translation>Kopiraj IP</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="168"/>
+        <location filename="../properties/peerlistwidget.cpp" line="169"/>
         <source>Limit download rate...</source>
         <translation>Limitiraj brzinu preuzimanja ...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="169"/>
+        <location filename="../properties/peerlistwidget.cpp" line="170"/>
         <source>Limit upload rate...</source>
         <translation>Limitiraj brzinu slanja ...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="171"/>
+        <location filename="../properties/peerlistwidget.cpp" line="172"/>
         <source>Ban peer permanently</source>
         <translation>Trajno isključi peer</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="182"/>
-        <location filename="../properties/peerlistwidget.cpp" line="184"/>
+        <location filename="../properties/peerlistwidget.cpp" line="183"/>
+        <location filename="../properties/peerlistwidget.cpp" line="185"/>
         <source>Peer addition</source>
         <translation>Dodavanje peerova</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="182"/>
+        <location filename="../properties/peerlistwidget.cpp" line="183"/>
         <source>The peer was added to this torrent.</source>
         <translation>Peer je dodan ovom torrentu.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="184"/>
+        <location filename="../properties/peerlistwidget.cpp" line="185"/>
         <source>The peer could not be added to this torrent.</source>
         <translation>Peer ne može biti dodan ovom torrentu.</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../properties/peerlistwidget.cpp" line="216"/>
         <source>Are you sure? -- qBittorrent</source>
         <translation>Jeste li sigurni? -- qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="215"/>
+        <location filename="../properties/peerlistwidget.cpp" line="216"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
         <translation>Jeste li sigurni da želite trajno isključiti odabrane peerove?</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="216"/>
+        <location filename="../properties/peerlistwidget.cpp" line="217"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="216"/>
+        <location filename="../properties/peerlistwidget.cpp" line="217"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="223"/>
+        <location filename="../properties/peerlistwidget.cpp" line="224"/>
         <source>Manually banning peer %1...</source>
         <translation>Ručno isključivanje peera %1 ...</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="247"/>
+        <location filename="../properties/peerlistwidget.cpp" line="248"/>
         <source>Upload rate limiting</source>
         <translation>Limitiranje brzine slanja</translation>
     </message>
     <message>
-        <location filename="../properties/peerlistwidget.cpp" line="281"/>
+        <location filename="../properties/peerlistwidget.cpp" line="282"/>
         <source>Download rate limiting</source>
         <translation>Limitiranje brzine preuzimanja</translation>
     </message>
@@ -2138,7 +2140,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2223,7 +2225,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1233"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1368"/>
@@ -2349,7 +2351,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2538"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2583"/>
@@ -2464,16 +2466,16 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Napredak</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="79"/>
-        <location filename="../previewselect.cpp" line="117"/>
-        <location filename="../previewselect.cpp" line="123"/>
+        <location filename="../previewselect.cpp" line="82"/>
+        <location filename="../previewselect.cpp" line="120"/>
+        <location filename="../previewselect.cpp" line="126"/>
         <source>Preview impossible</source>
         <translation>Pregled nije moguć</translation>
     </message>
     <message>
-        <location filename="../previewselect.cpp" line="79"/>
-        <location filename="../previewselect.cpp" line="117"/>
-        <location filename="../previewselect.cpp" line="123"/>
+        <location filename="../previewselect.cpp" line="82"/>
+        <location filename="../previewselect.cpp" line="120"/>
+        <location filename="../previewselect.cpp" line="126"/>
         <source>Sorry, we can&apos;t preview this file</source>
         <translation>Oprostite, nije moguće pregledati datoteku</translation>
     </message>
@@ -2836,170 +2838,176 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Anonimni mod [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="458"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>Prijavljivanje IP adrese trackerima...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>Podrška za DHT [UKLJUČENO], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="509"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="517"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="521"/>
         <source>DHT support [OFF]</source>
         <translation>Podrška za DHT [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="517"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="525"/>
         <source>PeX support [ON]</source>
         <translation>Podrška za PeX [UKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="519"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
         <source>PeX support [OFF]</source>
         <translation>Podrška za PeX [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="522"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="530"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Potrebno je ponovno pokretanje za uključivanje/isključivanje podrške za PeX</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Podrška za otkrivanje lokalnih peerova [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="542"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="550"/>
         <source>Encryption support [ON]</source>
         <translation>Podrška za kriptiranje [UKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="547"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="555"/>
         <source>Encryption support [FORCED]</source>
         <translation>Podrška za kriptiranje [PRISILNO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="560"/>
         <source>Encryption support [OFF]</source>
         <translation>Podrška za kriptiranje [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="614"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="622"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Ugrađeni tracker [UKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="616"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="624"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Nije moguće pokrenuti ugrađeni tracker!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="619"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="627"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Ugrađeni tracker [ISKLJUČENO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="673"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="681"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Web sučelje osluškuje na portu %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="675"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="683"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Greška web korisničkog sučelja - Nije moguće povezati web korisničko sučelje s portom %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="818"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>'xxx.avi' was removed...</comment>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; je uklonjena s popisa transfera i čvrstog diska.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="820"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="831"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>'xxx.avi' was removed...</comment>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; je uklonjena s popisa transfera.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="915"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="926"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nije valjani magnet URI.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="931"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1074"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1079"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1081"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="942"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1093"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1098"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1100"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: 'xxx.avi' is already in download list.</comment>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; je već na popisu preuzimanja.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1226"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1231"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; počinje iznova. (brzo)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1975"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2289"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2308"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Računalo će sada prijeći u stanje mirovanja osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2291"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2310"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Računalo će sada biti isključeno osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2293"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2312"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent će se sada zatvoriti osim ako ne otkažete unutar sljedećih 15 sekundi ...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2572"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2599"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2585"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2612"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
+        <source>External IP: %1</source>
+        <comment>e.g. External IP: 192.168.0.1</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2890"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2865"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2896"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Greška: Razrješavanje danog IP filtera nije uspjelo.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1004"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1209"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1214"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1023"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1228"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1233"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; je dodan popisu preuzimanja.</translation>
     </message>
     <message>
@@ -3013,140 +3021,140 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>Podrška za UPnP / NAT-PMP [ISKLJUČENA]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="535"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Podrška za lokalno otkrivanje peerova [UKLJUČENA]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1042"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1052"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1061"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1069"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1071"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Nije moguće dekodirati torrent datoteku: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1056"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Ta datoteka je i dalje neispravna ili nije torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1097"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1116"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Greška: Torrent %1 ne sadrži nikakve datoteke.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1339"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1367"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1358"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1386"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Opaska: novi trackeri su dodani postojećem torrentu.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1397"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1416"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Opaska: novi URL seedovi dodani su postojećem torrentu.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1740"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1759"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;blokirano s obzirom na IP filter&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1742"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1761"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was banned due to corrupt pieces&lt;/i&gt;</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;zabranjeno zbog neispravnih dijelova&lt;/i&gt;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1942"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1961"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Definirano mrežno sučelje nije ispravno: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2139"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2141"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2158"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2160"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekurzivno preuzimanje datoteke %1 ugrađeno u torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2236"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2238"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2255"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2257"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Nije moguće dekodirati %1 torrent datoteku.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2186"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2205"/>
         <source>Torrent name: %1</source>
         <translation>Ime torrenta: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2187"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2206"/>
         <source>Torrent size: %1</source>
         <translation>Veličina torrenta: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2188"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2207"/>
         <source>Save path: %1</source>
         <translation>Putanja spremanja: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2189"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2208"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent je preuzet u %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2190"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2209"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Hvala vam što ste koristili qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2193"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 je preuzet</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2446"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2473"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Dogodila se I/O greška. &apos;%1&apos; pauziran.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2447"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2474"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2588"/>
         <source>Reason: %1</source>
         <translation>Razlog: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2525"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2552"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapiranje porta nije uspjelo, poruka: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2557"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Mapiranje porta je uspjelo, poruka: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2556"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2583"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Veličine datoteka se ne slažu za torrent %1, tako da će biti pauziran.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2560"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2587"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Brzi ponovni početak je odbijen za torrent %1, ponovna provjera ...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2566"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2593"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Traženje URL seeda nije uspjelo za URL: %1, poruka: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2694"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2725"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Preuzimanje &apos;%1&apos;, pričekajte ...</translation>
     </message>
 </context>
@@ -3189,7 +3197,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3508,7 +3516,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3674,12 +3682,17 @@ Instalirajte ručno.</translation>
         <translation>Kliknite za prelazak na uobičajene limite brzine</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="220"/>
+        <location filename="../statusbar.h" line="213"/>
+        <source>Manual change of rate limits mode. The scheduler is disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../statusbar.h" line="225"/>
         <source>Global Download Speed Limit</source>
         <translation>Globalni limit brzine preuzimanja</translation>
     </message>
     <message>
-        <location filename="../statusbar.h" line="245"/>
+        <location filename="../statusbar.h" line="250"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globalni limit brzine slanja</translation>
     </message>
@@ -3961,7 +3974,7 @@ Instalirajte ručno.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="276"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4537,32 +4550,32 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>
         <source>Bug Tracker: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="82"/>
@@ -4570,7 +4583,7 @@ Instalirajte ručno.</translation>
         <translation>Zahvaljujem sljedećim ljudima koji su dobrovoljno preveli qBittorrent:</translation>
     </message>
     <message>
-        <location filename="../about_imp.h" line="118"/>
+        <location filename="../about_imp.h" line="119"/>
         <source>Please contact me if you would like to translate qBittorrent into your own language.</source>
         <translation>Molim vas da me obavijestite ako želite prevesti qBittorrent na svoj jezik.</translation>
     </message>
@@ -4771,7 +4784,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
@@ -4794,7 +4807,7 @@ Instalirajte ručno.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4900,7 +4913,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="353"/>
@@ -5005,7 +5018,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
@@ -5171,126 +5184,121 @@ Međutim, te tražilice su bile onemogućene.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1153"/>
-        <location filename="../preferences/options_imp.cpp" line="1155"/>
+        <location filename="../preferences/options_imp.cpp" line="1152"/>
+        <location filename="../preferences/options_imp.cpp" line="1154"/>
         <source>Choose export directory</source>
         <translation>Izaberite direktorij za izvoz</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1195"/>
-        <location filename="../preferences/options_imp.cpp" line="1197"/>
-        <location filename="../preferences/options_imp.cpp" line="1212"/>
-        <location filename="../preferences/options_imp.cpp" line="1214"/>
+        <location filename="../preferences/options_imp.cpp" line="1194"/>
+        <location filename="../preferences/options_imp.cpp" line="1196"/>
+        <location filename="../preferences/options_imp.cpp" line="1211"/>
+        <location filename="../preferences/options_imp.cpp" line="1213"/>
         <source>Choose a save directory</source>
         <translation>Izaberite direktorij za spremanje</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1177"/>
-        <location filename="../preferences/options_imp.cpp" line="1179"/>
+        <location filename="../preferences/options_imp.cpp" line="1176"/>
+        <location filename="../preferences/options_imp.cpp" line="1178"/>
         <source>Choose an ip filter file</source>
         <translation>Izaberite datoteku za ip filtriranje</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1110"/>
+        <location filename="../preferences/options_imp.cpp" line="1109"/>
         <source>Add directory to scan</source>
         <translation>Dodaj direktorij za skeniranje</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1116"/>
+        <location filename="../preferences/options_imp.cpp" line="1115"/>
         <source>Folder is already being watched.</source>
         <translation>Mapa je već pregledana.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1119"/>
+        <location filename="../preferences/options_imp.cpp" line="1118"/>
         <source>Folder does not exist.</source>
         <translation>Mapa ne postoji.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1122"/>
+        <location filename="../preferences/options_imp.cpp" line="1121"/>
         <source>Folder is not readable.</source>
         <translation>Mapa nije čitljiva.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1130"/>
+        <location filename="../preferences/options_imp.cpp" line="1129"/>
         <source>Failure</source>
         <translation>Neuspjeh</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1130"/>
+        <location filename="../preferences/options_imp.cpp" line="1129"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Nije uspjelo dodavanje mape za skeniranje &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1177"/>
-        <location filename="../preferences/options_imp.cpp" line="1179"/>
+        <location filename="../preferences/options_imp.cpp" line="1176"/>
+        <location filename="../preferences/options_imp.cpp" line="1178"/>
         <source>Filters</source>
         <translation>Filteri</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1257"/>
+        <location filename="../preferences/options_imp.cpp" line="1256"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>SSL certifikat (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1268"/>
+        <location filename="../preferences/options_imp.cpp" line="1267"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>SSL ljuč (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1299"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Parsing error</source>
         <translation>Greška razrješavanja</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1299"/>
+        <location filename="../preferences/options_imp.cpp" line="1298"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Razrješavanje danog IP filtera nije uspjelo</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1301"/>
+        <location filename="../preferences/options_imp.cpp" line="1300"/>
         <source>Successfully refreshed</source>
         <translation>Uspješno obnovljeno</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1301"/>
+        <location filename="../preferences/options_imp.cpp" line="1300"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Uspješno razrješen dani IP filter: Primjenjena su %1 pravila.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1372"/>
+        <location filename="../preferences/options_imp.cpp" line="1378"/>
         <source>Invalid key</source>
         <translation>Neispravan ključ</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1372"/>
+        <location filename="../preferences/options_imp.cpp" line="1378"/>
         <source>This is not a valid SSL key.</source>
         <translation>To nije valjani SSl ključ.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1387"/>
+        <location filename="../preferences/options_imp.cpp" line="1393"/>
         <source>Invalid certificate</source>
         <translation>Neispravan certifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1387"/>
+        <location filename="../preferences/options_imp.cpp" line="1393"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Ovo nije valjani SSL certifikat</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1415"/>
+        <location filename="../preferences/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1417"/>
-        <source>The start time can&apos;t be after the end time.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../preferences/options_imp.cpp" line="1420"/>
+        <location filename="../preferences/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5331,7 +5339,7 @@ Međutim, te tražilice su bile onemogućene.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>
