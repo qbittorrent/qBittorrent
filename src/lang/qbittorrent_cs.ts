@@ -115,7 +115,7 @@
     <message>
         <location filename="../addnewtorrentdialog.ui" line="109"/>
         <source>Skip hash check</source>
-        <translation>Přeskočit kontrolu</translation>
+        <translation>Přeskočit kontrolu haše</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.ui" line="119"/>
@@ -182,18 +182,18 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="196"/>
         <source>Failed to load the torrent: %1</source>
-        <translation>Selhalo stažení torrentu: %1</translation>
+        <translation>Selhalo načtení torrentu: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Already in download list</source>
-        <translation type="unfinished"/>
+        <translation>Torrent je již v seznamu ke stažení</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation>Torrent je již v seznamu ke stažení. Slučuji trackery.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
@@ -204,27 +204,27 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="273"/>
         <source>Invalid magnet link</source>
-        <translation>Neplatný odkaz magnet</translation>
+        <translation>Neplatný magnet odkaz</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="273"/>
         <source>This magnet link was not recognized</source>
-        <translation>Tento magnet link nebyl rozpoznán</translation>
+        <translation>Tento magnet odkaz nebyl rozpoznán</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation>Magnet odkaz je již v seznamu ke stažení. Slučuji trackery.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
         <source>Magnet link</source>
-        <translation>Odkaz magnet</translation>
+        <translation>Magnet odkaz</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="298"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"/>
+        <translation>Načítám metadata...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="359"/>
@@ -263,7 +263,7 @@
         <location filename="../addnewtorrentdialog.cpp" line="471"/>
         <location filename="../addnewtorrentdialog.cpp" line="506"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný. název.</translation>
+        <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný název.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="505"/>
@@ -283,17 +283,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="665"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"/>
+        <translation>Analýza metadat...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="723"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"/>
+        <translation>Načítání metadat dokončeno</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Neznámá chyba</translation>
     </message>
 </context>
 <context>
@@ -545,7 +545,7 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Jste si jist, že chcete odstranit označená pravidla?</translation>
+        <translation>Opravdu chcete odstranit označená pravidla?</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="347"/>
@@ -645,12 +645,12 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="548"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolných znaků&lt;/li&gt;&lt;li&gt;Mezery se počítají jako operátor AND&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolným znakům&lt;/li&gt;&lt;li&gt;Mezery se počítají jako operátor AND&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="550"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolných znaků&lt;/li&gt;&lt;li&gt;| odpovídá operátoru OR&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Zástupné znaky: lze použít&lt;ul&gt;&lt;li&gt;? který odpovídá libovolnému jednomu znaku&lt;/li&gt;&lt;li&gt;* který odpovídá žádnému nebo více libovolným znakům&lt;/li&gt;&lt;li&gt;| odpovídá operátoru OR&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -685,7 +685,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../dnsupdater.cpp" line="178"/>
         <source>Your dynamic DNS was successfully updated.</source>
-        <translation>Vašedynamická DNS byla úspěsně aktualizována.</translation>
+        <translation>Vašedynamická DNS byla úspěšně aktualizována.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
@@ -695,7 +695,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>Chyba dynamické DNS: poskytnutý název počítače pod tímto účtem neexistuje.</translation>
+        <translation>Chyba dynamické DNS: poskytnutý název hostitele pod tímto účtem neexistuje.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
@@ -744,7 +744,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../downloadthread.cpp" line="252"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Vzdálený server nebyl nalezen (neplatný název počítače)</translation>
+        <translation>Vzdálený server nebyl nalezen (neplatný název hostitele)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="254"/>
@@ -789,7 +789,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../downloadthread.cpp" line="270"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation>Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověla na zaslaný požadavek</translation>
+        <translation>Připojení k proxy serveru vypršelo nebo proxy dostatečně rychle neodpověděla na zaslaný požadavek</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="272"/>
@@ -819,7 +819,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../downloadthread.cpp" line="282"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation>API připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
+        <translation>API pro připojení k síti nemohlo akceptovat požadavek z důvodu neznámého protokolu</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="284"/>
@@ -888,12 +888,12 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../headlessloader.h" line="55"/>
         <source>To control qBittorrent, access the Web UI at http://localhost:%1</source>
-        <translation>Pro kontrolu qBittorrentu navštivte webové rozhraní na http://localhost:%1 </translation>
+        <translation>Pro ovládání qBittorrentu navštivte webové rozhraní na http://localhost:%1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="56"/>
         <source>The Web UI administrator user name is: %1</source>
-        <translation>Uživatelské jméno admistrátora webového rozhraní je: %1</translation>
+        <translation>Uživatelské jméno administrátora webového rozhraní je: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="59"/>
@@ -903,7 +903,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../headlessloader.h" line="60"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
-        <translation>To je bezpečnostní riziko, zvažte prosím změnu helsa v nastavení programu.</translation>
+        <translation>Toto je bezpečnostní riziko, zvažte prosím změnu helsa v nastavení programu.</translation>
     </message>
 </context>
 <context>
@@ -994,7 +994,7 @@ Tyto informace by měly jít získat z nastavení webového prohlížeče.</tran
     <message>
         <location filename="../webui/httpserver.cpp" line="125"/>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nelze uložit nastavení programu, qBittorrent je pravděpodobně nedosažitelný.</translation>
+        <translation>Nelze uložit nastavení programu, qBittorrent klient je pravděpodobně nedostupný.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="126"/>
@@ -1119,7 +1119,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation>Vyprázdnit</translation>
+        <translation>Vymazat</translation>
     </message>
 </context>
 <context>
@@ -1147,7 +1147,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="88"/>
         <source>&amp;View</source>
-        <translation>Po&amp;hled</translation>
+        <translation>&amp;Zobrazit</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="151"/>
@@ -1178,7 +1178,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="255"/>
         <source>Top &amp;tool bar</source>
-        <translation>Horní panel nástrojů</translation>
+        <translation>Horní panel nás&amp;trojů</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="258"/>
@@ -1244,7 +1244,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="195"/>
         <source>Report a &amp;bug</source>
-        <translation>Nahlásit chybu</translation>
+        <translation>Nahlásit chy&amp;bu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
@@ -1259,7 +1259,7 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>&amp;Documentation</source>
-        <translation>Dokumentace</translation>
+        <translation>&amp;Dokumentace</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="215"/>
@@ -1274,12 +1274,12 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="277"/>
         <source>&amp;RSS reader</source>
-        <translation>RSS kanály</translation>
+        <translation>&amp;RSS čtečka</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="285"/>
         <source>Search &amp;engine</source>
-        <translation>Vyhledávač</translation>
+        <translation>Vyhl&amp;edávač</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="341"/>
@@ -1331,18 +1331,18 @@ Další upozornění již nebudou zobrazena.</translation>
     <message>
         <location filename="../mainwindow.ui" line="312"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>Máte-li rád qBittorrent, prosím přispějte!</translation>
+        <translation>Pokud se Vám qBittorrent líbí, prosím přispějte!</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <source>Execution &amp;Log</source>
-        <translation>Záznamy pro&amp;gramu</translation>
+        <translation>Záznamy programu (&amp;Log)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
         <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
-        <translation>Záznamy programu</translation>
+        <translation>Záznamy programu (Log)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
@@ -1373,8 +1373,8 @@ Další upozornění již nebudou zobrazena.</translation>
         <location filename="../mainwindow.cpp" line="298"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation>qBittorrent není výchozí aplikací pro otevírání souborů .torrent ani odkazů Magnet.
-Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
+        <translation>qBittorrent není výchozí aplikací pro otevírání souborů .torrent ani Magnet odkazů.
+Chcete asociovat qBittorrent se soubory .torrent a Magnet odkazy?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="401"/>
@@ -1403,7 +1403,7 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="411"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation>Heslo zamykající UI bylo úspěšně změněno</translation>
+        <translation>Heslo pro zamknutí UI bylo úspěšně změněno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="437"/>
@@ -1443,7 +1443,7 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
  Reason: disk is full.</comment>
-        <translation>Došlo k chybě I/O u torrentu %1.
+        <translation>Nastala I/O chyba torrentu %1.
  Důvod: %2</translation>
     </message>
     <message>
@@ -1497,18 +1497,18 @@ Chcete asociovat qBittorrent se soubory .torrent a odkazů Magnet?</translation>
         <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[S: %1/s, N: %2/s] qBittorrent %3</translation>
+        <translation>[S: %1/s, O: %2/s] qBittorrent %3</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="405"/>
         <location filename="../mainwindow.cpp" line="699"/>
         <source>Invalid password</source>
-        <translation>Špatné heslo</translation>
+        <translation>Neplatné heslo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="699"/>
         <source>The password is invalid</source>
-        <translation>Heslo není správné</translation>
+        <translation>Heslo je neplatné</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1237"/>
@@ -1559,7 +1559,7 @@ Opravdu chcete ukončit qBittorrent?</translation>
         <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
-        <translation>Rychlost nahrávání: %1 KiB/s</translation>
+        <translation>Rychlost odesílání: %1 KiB/s</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1339"/>
@@ -1576,7 +1576,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
-        <translation>Nelze provést aktualizaci qBittorrent</translation>
+        <translation>Nelze provést aktualizaci qBittorrentu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1355"/>
@@ -1616,7 +1616,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="66"/>
         <source>Flags</source>
-        <translation>Příznaky</translation>
+        <translation>Vlajky</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="67"/>
@@ -1645,7 +1645,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../properties/peerlistwidget.cpp" line="71"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Rychlost nahrávání</translation>
+        <translation>Rychlost odesílání</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="72"/>
@@ -1703,12 +1703,12 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="215"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Jste si jist? -- qBittorrent</translation>
+        <translation>Opravdu? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="215"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Jste si jist, že chcete natrvalo zakázat označené protějšky?</translation>
+        <translation>Opravdu chcete natrvalo zakázat označené protějšky?</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="216"/>
@@ -1979,7 +1979,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1882"/>
         <source>Week ends</source>
-        <translation>Víkend</translation>
+        <translation>Víkendy</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1982"/>
@@ -2041,23 +2041,23 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="363"/>
         <source>Show splash screen on start up</source>
-        <translation>Při startu zobrazovat úvodní obrazovku</translation>
+        <translation>Zobrazit úvodní obrazovku při startu</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="373"/>
         <source>Start qBittorrent minimized</source>
-        <translation>Spustit qBittorrent minimalizovaný</translation>
+        <translation>Spustit qBittorrent minimalizovaně</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Minimalizovat qBittorrent do oznamovací oblasti (tray)</translation>
+        <translation>Minimalizovat qBittorrent do oznamovací oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="409"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
-        <translation>Zavírat qBittorrent do oznamovací oblasti (tray)</translation>
+        <translation>Zavírat qBittorrent do oznamovací oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="418"/>
@@ -2082,7 +2082,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="380"/>
         <source>Ask for program exit confirmation</source>
-        <translation>Vyžadovat potvrzení při ukončení programu</translation>
+        <translation>Vyžadovat potvrzení pro ukončení programu</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="196"/>
@@ -2097,12 +2097,12 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Spustit qBittorrent při startu Windows</translation>
+        <translation>Spustit qBittorrent po spuštění Windows</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>Zobrazovat qBittorrent v oznamovací oblasti</translation>
+        <translation>Zobrazovat qBittorrent v oznamovací oblasti (systray)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="449"/>
@@ -2138,7 +2138,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"/>
+        <translation>Přepnout dialog torrentu do popředí</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2178,7 +2178,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="849"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Zkopírovat soubory dokončených stahování do:</translation>
+        <translation>Kopírovat .torrent soubory dokončených stahování do:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="905"/>
@@ -2188,7 +2188,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="919"/>
         <source>Destination email:</source>
-        <translation>Email:</translation>
+        <translation>Cílový Email:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="929"/>
@@ -2213,7 +2213,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1097"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Použít přesměrování portů UPnP / NAT-PMP</translation>
+        <translation>Použít přesměrování portů UPnP / NAT-PMP z mého routeru</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1107"/>
@@ -2587,7 +2587,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="189"/>
         <source>UP limit:</source>
-        <translation>Limit nahrávání:</translation>
+        <translation>Limit odesílání:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="240"/>
@@ -2762,7 +2762,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../properties/propertieswidget.cpp" line="569"/>
         <location filename="../properties/propertieswidget.cpp" line="607"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný. název.</translation>
+        <translation>Tento název je již v tomto adresáři použit. Vyberte prosím jiný název.</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="606"/>
@@ -2948,23 +2948,23 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1930"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent se pokouší naslouchat na jakémkoli rozhraní, portu: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1956"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent se pokouší naslouchat na rozhraní %1, portu: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2289"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, počítač přejde do režimu spánku...</translation>
+        <translation>Nezrušíte-li akci do 15 sekund, počítač se uspí...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2291"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
-        <translation>Nezrušíte-li akci do 15 sekund, počítač bude vypnut...</translation>
+        <translation>Nezrušíte-li akci do 15 sekund, počítač se vypne...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2293"/>
@@ -2975,13 +2975,13 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2572"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent naslouchá na rozhraní %1, portu: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2585"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent selhal naslouchat na rozhraní %1, portu: TCP/%2, důvod: %3</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2859"/>
@@ -3050,7 +3050,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1740"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;was blocked due to your IP filter&lt;/i&gt;</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován kvůli filtru IP&lt;/i&gt;</translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; &lt;i&gt;byl zablokován podle vašeho filtru IP&lt;/i&gt;</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1742"/>
@@ -3100,7 +3100,7 @@ Přejete si aktualizovat qBittorrent na verzi %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2190"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation>Děkujeme za používání qBittorrentu.</translation>
+        <translation>Děkujeme Vám za používání qBittorrentu.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2193"/>
@@ -3277,7 +3277,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rss_imp.cpp" line="241"/>
         <location filename="../rss/rss_imp.cpp" line="247"/>
         <source>Are you sure? -- qBittorrent</source>
-        <translation>Jste si jist? -- qBittorrent</translation>
+        <translation>Opravdu? -- qBittorrent</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="242"/>
@@ -3339,17 +3339,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="391"/>
         <source>This name is already used by another item, please choose another one.</source>
-        <translation>Tento název již používá jiná položka, vyberte prosím jiný.</translation>
+        <translation>Tento název je již používán, vyberte prosím jiný.</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="567"/>
         <source>Date: </source>
-        <translation>Datum:</translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="570"/>
         <source>Author: </source>
-        <translation>Autor:</translation>
+        <translation>Autor: </translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="619"/>
@@ -3508,7 +3508,7 @@ Chcete jej nyní nainstalovat?</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Zastavit</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3541,7 +3541,7 @@ Chcete jej nyní nainstalovat?</translation>
         <location filename="../searchengine/searchengine.cpp" line="172"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>Instalační soubor Pyhon nelze stáhnout, důvod: %1.
+        <translation>Instalační soubor Pythonu nelze stáhnout, důvod: %1.
 Nainstalujte jej prosím ručně.</translation>
     </message>
     <message>
@@ -3633,7 +3633,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../statusbar.h" line="150"/>
         <source>qBittorrent needs to be restarted</source>
-        <translation>Je nutné restartartovat qBittorrent</translation>
+        <translation>Je nutné restartovat qBittorrent</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="160"/>
@@ -3671,7 +3671,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Kliknutí přepne na normální limity rychlosti</translation>
+        <translation>Kliknutím přepnete na normální limity rychlosti</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="220"/>
@@ -3767,7 +3767,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../torrentimportdlg.ui" line="14"/>
         <source>Torrent Import</source>
-        <translation>Import torrent</translation>
+        <translation>Import torrentu</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.ui" line="53"/>
@@ -3885,7 +3885,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="263"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Rychlost nahrávání</translation>
+        <translation>Rychlost odesílání</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="264"/>
@@ -3931,25 +3931,25 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Limit nahrávání</translation>
+        <translation>Limit odesílání</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="272"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Stažené množství</translation>
+        <translation>Staženo</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="273"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>Odeslané množství</translation>
+        <translation>Odesláno</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="274"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Zbývající množství</translation>
+        <translation>Zbývá</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="275"/>
@@ -4045,7 +4045,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="383"/>
         <source>The tracker URL already exists.</source>
-        <translation>Tato URL trackeru již exituje.</translation>
+        <translation>Tato URL trackeru již existuje.</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="411"/>
@@ -4073,7 +4073,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../properties/trackersadditiondlg.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation>Dialog pro přidání torrentu</translation>
+        <translation>Dialog pro přidání trackeru</translation>
     </message>
     <message>
         <location filename="../properties/trackersadditiondlg.ui" line="20"/>
@@ -4144,7 +4144,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistdelegate.h" line="107"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Zastaveno</translation>
+        <translation>Pozastaveno</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="111"/>
@@ -4312,7 +4312,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="535"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Jste si jist, že chcete zkontrolovat označené torrenty?</translation>
+        <translation>Opravdu chcete znovu zkontrolovat označené torrenty?</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="610"/>
@@ -4403,13 +4403,13 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistwidget.cpp" line="687"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Přesunout navrch</translation>
+        <translation>Přesunout na začátek</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="689"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Přesunout dospodu</translation>
+        <translation>Přesunout na konec</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="691"/>
@@ -4424,12 +4424,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="693"/>
         <source>Force recheck</source>
-        <translation>Překontrolovat platnost</translation>
+        <translation>Vynutit překontrolování</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="695"/>
         <source>Copy magnet link</source>
-        <translation>Kopírovat odkaz Magnet</translation>
+        <translation>Kopírovat Magnet odkaz</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="697"/>
@@ -4444,7 +4444,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../transferlistwidget.cpp" line="702"/>
         <source>Download in sequential order</source>
-        <translation>Stahovat v souvislém pořadí</translation>
+        <translation>Stahovat postupně</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="705"/>
@@ -4469,7 +4469,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../updownratiodlg.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Omezení poměru odesílání/stahování torrentu </translation>
+        <translation>Omezení poměru odesílání/stahování torrentu</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
@@ -4519,7 +4519,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../main.cpp" line="94"/>
         <source>displays this help message</source>
-        <translation>zobrazí tuto zprávu</translation>
+        <translation>zobrazí tuto nápovědu</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="95"/>
@@ -4529,7 +4529,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../main.cpp" line="96"/>
         <source>[files or urls]: downloads the torrents passed by the user (optional)</source>
-        <translation>[soubory nebo url]: stahovat torrenty poskytnuté uživatelem (volitelné)</translation>
+        <translation>[soubory nebo url]: stahovat torrenty zadané uživatelem (volitelné)</translation>
     </message>
 </context>
 <context>
@@ -4547,17 +4547,17 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation>Domovská stránka:</translation>
+        <translation>Domovská stránka: </translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>
         <source>Bug Tracker: </source>
-        <translation>Bug tracker:</translation>
+        <translation>Bug Tracker: </translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation>Fórum:</translation>
+        <translation>Fórum: </translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
@@ -4599,7 +4599,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../login.ui" line="14"/>
         <location filename="../login.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation>Tracker - ověření</translation>
+        <translation>Ověření trackeru</translation>
     </message>
     <message>
         <location filename="../login.ui" line="64"/>
@@ -4642,7 +4642,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Jste si jist, že chcete smazat vybrané torrenty ze seznamu přenosů?</translation>
+        <translation>Opravdu chcete smazat vybrané torrenty ze seznamu přenosů?</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="67"/>
@@ -4706,7 +4706,7 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>Skupiny trackerů můžete oddělit pomocí prázdného řádku.</translation>
+        <translation>Skupiny trackerů můžete oddělit prázdným řádkem.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -4771,7 +4771,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"/>
+        <translation>Ignorovat poměr sdílení pro tento torrent</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
@@ -4794,12 +4794,12 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"/>
+        <translation>Jeden na řádek (podporované jsou HTTP, Magnet odkazy a info-haše)</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
         <source>Download</source>
-        <translation>Stahování</translation>
+        <translation>Stahovat</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="84"/>
@@ -4827,7 +4827,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../searchengine/engineselect.ui" line="17"/>
         <source>Search plugins</source>
-        <translation>Hledat zásuvné moduly</translation>
+        <translation>Zásuvné moduly pro vyhledávání</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselect.ui" line="30"/>
@@ -4889,7 +4889,7 @@ Nainstalujte jej prosím ručně.</translation>
  Only the ones you added yourself can be uninstalled.
 However, those plugins were disabled.</source>
         <translation>Některé zásuvné moduly nelze odstranit, protože jsou součástí qBittorrent.
-Můžete odstranit pouze moduly, které jste sám přidal.
+Můžete odstranit pouze moduly, které jste sami přidali.
 Nicméně, tyto moduly byly vypnuty.</translation>
     </message>
     <message>
@@ -4900,7 +4900,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"/>
+        <translation>Odkaz zřejmě neodkazuje na zásuvný modul vyhledávače.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="353"/>
@@ -4966,7 +4966,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <location filename="../searchengine/engineselectdlg.cpp" line="439"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="460"/>
         <source>Sorry, update server is temporarily unavailable.</source>
-        <translation>Omlouvám se, server s aktualizacemi je dočasně nedostupný.</translation>
+        <translation>Omlouváme se, server s aktualizacemi je dočasně nedostupný.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="406"/>
@@ -5005,19 +5005,19 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"/>
+        <translation>Neplatný odkaz</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
         <source>Sorry, %1 search plugin install failed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>Omlouvám se, instalace vyhledávače  %1 selhala.</translation>
+        <translation>Omlouváme se, instalace vyhledávače  %1 selhala.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="330"/>
         <location filename="../searchengine/engineselectdlg.cpp" line="339"/>
         <source>New search engine plugin URL</source>
-        <translation>URL nového zásuvného modulu</translation>
+        <translation>URL nového vyhledávacího modulu</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="331"/>
@@ -5098,7 +5098,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <location filename="../misc.cpp" line="236"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation>Neznámý</translation>
+        <translation>Neznámá</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="178"/>
@@ -5147,7 +5147,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <location filename="../webui/btjson.cpp" line="306"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
-        <translation>Sdíleno již %1</translation>
+        <translation>Sdíleno %1</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="308"/>
@@ -5165,7 +5165,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
         <location filename="../webui/btjson.cpp" line="379"/>
         <source>U: %1/s - T: %2</source>
         <comment>Upload speed: x KiB/s - Transferred: x MiB</comment>
-        <translation>N: %1/s - P: %2</translation>
+        <translation>O: %1/s - P: %2</translation>
     </message>
 </context>
 <context>
@@ -5280,17 +5280,17 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1415"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"/>
+        <translation>Časy začátku a konce nemůžou být stejné.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1417"/>
         <source>The start time can&apos;t be after the end time.</source>
-        <translation type="unfinished"/>
+        <translation>Počáteční čas nemůže začít po konečném čase.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1420"/>
         <source>Time Error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba času</translation>
     </message>
 </context>
 <context>
@@ -5331,7 +5331,7 @@ Nicméně, tyto moduly byly vypnuty.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"/>
+        <translation>Následující soubory podporují náhled, vyberte prosím jeden z nich:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>

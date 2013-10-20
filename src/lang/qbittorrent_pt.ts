@@ -1789,7 +1789,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="697"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Adicionar .!qB para aos ficheiros incompletos</translation>
+        <translation>Adicionar .!qB aos ficheiros incompletos</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="800"/>
@@ -1803,7 +1803,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
 &lt;li&gt;%f: Torrent path&lt;/li&gt;
 &lt;li&gt;%n: Torrent name&lt;/li&gt;
 &lt;/ul&gt;</source>
-        <translation>Os parâmetros seguintes são suportados:
+        <translation>Pode utilizar estes parâmetros:
 &lt;ul&gt;
 &lt;li&gt;%f: caminho do torrent&lt;/li&gt;
 &lt;li&gt;%n: nome do torrent&lt;/li&gt;
@@ -2051,7 +2051,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="399"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Minimizar qBittorrent na área de notificação</translation>
+        <translation>Minimizar qBittorrent para a área de notificação</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="409"/>
@@ -2097,7 +2097,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Iniciar o qBittorrent ao arancar o Windows</translation>
+        <translation>Iniciar o qBittorrent ao arrancar o Windows</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -2163,7 +2163,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="651"/>
         <source>Keep incomplete torrents in:</source>
-        <translation>Manter torrents incompletos em:</translation>
+        <translation>Guardar torrents incompletos em:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="704"/>
@@ -2294,7 +2294,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2243"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Não contar torrents lentos nestes limites</translation>
+        <translation>Não considerar torrents lentos nestes limites</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2264"/>
@@ -2304,7 +2304,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2296"/>
         <source>then</source>
-        <translation>então</translation>
+        <translation>e depois</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2307"/>
@@ -2546,7 +2546,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
     <message>
         <location filename="../properties/propertieswidget.ui" line="346"/>
         <source>Save path:</source>
-        <translation>Caminho de salvamento:</translation>
+        <translation>Caminho de gravação:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="438"/>
@@ -2603,7 +2603,7 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <location filename="../properties/propertieswidget.ui" line="291"/>
         <source>Time active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation>Tempo ativo:</translation>
+        <translation>Atividade:</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.ui" line="308"/>
@@ -3855,7 +3855,7 @@ Por favor instale manualmente.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="258"/>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>concluído</translation>
+        <translation>Concluído</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="259"/>

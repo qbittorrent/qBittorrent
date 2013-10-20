@@ -37,7 +37,7 @@
     <message>
         <location filename="../about.ui" line="262"/>
         <source>Greece</source>
-        <translation type="unfinished"/>
+        <translation>Греція</translation>
     </message>
     <message>
         <location filename="../about.ui" line="341"/>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Невідома помилка</translation>
     </message>
 </context>
 <context>
@@ -348,7 +348,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="171"/>
         <source> (auto)</source>
-        <translation type="unfinished"/>
+        <translation>(авто)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="190"/>
@@ -3508,7 +3508,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Зупинити</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -4542,12 +4542,12 @@ Please install it manually.</source>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation type="unfinished"/>
+        <translation>Авторське право ©2006-2013 Проект qBittorrent</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation type="unfinished"/>
+        <translation>Домашня сторінка:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>
@@ -4557,7 +4557,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"/>
+        <translation>Форум:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
@@ -4771,7 +4771,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"/>
+        <translation>Ігнорувати обмеження співвідношення часток щодо роздачі</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
