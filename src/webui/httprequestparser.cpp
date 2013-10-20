@@ -158,3 +158,12 @@ Submit Query
     }
   }
 }
+
+bool HttpRequestParser::acceptsEncoding() {
+  QString encoding = m_header.value("Accept-Encoding");
+
+  if (!encoding.isEmpty() && encoding.contains("gzip", Qt::CaseInsensitive))
+    return true;
+
+  return false;
+}
