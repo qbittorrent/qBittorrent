@@ -1414,8 +1414,6 @@ bool options_imp::schedTimesOk() {
 
   if (schedule_from->time() == schedule_to->time())
     msg = tr("The start time and the end time can't be the same.");
-  else if (schedule_from->time() > schedule_to->time())
-    msg = tr("The start time can't be after the end time.");
 
   if (!msg.isEmpty()) {
     QMessageBox::critical(this, tr("Time Error"), msg);
