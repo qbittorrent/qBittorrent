@@ -207,7 +207,12 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences().isAltBandwidthEnabled());
+    Preferences pref;
+    if (pref.isSchedulerEnabled()) {
+      pref.setSchedulerEnabled(false);
+      m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
+    }
+    QBtSession::instance()->useAlternativeSpeedsLimit(!pref.isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
