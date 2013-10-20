@@ -356,7 +356,7 @@ void QBtSession::configureSession() {
     }
     bd_scheduler->start();
   } else {
-    if (bd_scheduler) delete bd_scheduler;
+    delete bd_scheduler;
   }
 #ifndef DISABLE_GUI
   // Resolve countries
@@ -708,6 +708,9 @@ void QBtSession::useAlternativeSpeedsLimit(bool alternative) {
   qDebug() << Q_FUNC_INFO << alternative;
   // Save new state to remember it on startup
   Preferences pref;
+  // Stop the scheduler when the user has manually changed the bandwidth mode
+  if (!pref.isSchedulerEnabled())
+    delete bd_scheduler;
   pref.setAltBandwidthEnabled(alternative);
   // Apply settings to the bittorrent session
   int down_limit = alternative ? pref.getAltGlobalDownloadLimit() : pref.getGlobalDownloadLimit();
