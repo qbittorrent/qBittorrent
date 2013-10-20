@@ -1,5 +1,6 @@
 * Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.1
     - FEATURE: Show external IP in the log. Closes #968. (sledgehammer999)
+    - FEATURE: Enable gzip compression in the webui. It should be faster now. (sledgehammer999)
     - BUGFIX: Expose all available translation in the WebUI. Closes #976. (sledgehammer999)
     - BUGFIX: Copy IP copied wrong data. Closes #970 (sledgehammer999)
     - BUGFIX: "Preview file..." didn't work on single file torrents. (sledgehammer999)
