@@ -3,6 +3,8 @@
     - BUGFIX: Expose all available translation in the WebUI. Closes #976. (sledgehammer999)
     - BUGFIX: Copy IP copied wrong data. Closes #970 (sledgehammer999)
     - BUGFIX: "Preview file..." didn't work on single file torrents. (sledgehammer999)
+    - BUGFIX: Fix and improve the scheduler (Gelmir and sledgehammer999)
+    - LINUX: Fix missing conf.pri error (leigh123linux)
 
 * Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
