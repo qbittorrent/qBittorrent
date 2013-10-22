@@ -91,6 +91,12 @@ public:
         case TorrentModelItem::STATE_DOWNLOADING:
           display = tr("Downloading");
           break;
+        case TorrentModelItem::STATE_DOWNLOADING_META:
+          display = tr("Downloading metadata");
+          break;
+        case TorrentModelItem::STATE_ALLOCATING:
+          display = tr("Allocating", "qBittorrent is allocating the files on disk");
+          break;
         case TorrentModelItem::STATE_PAUSED_DL:
         case TorrentModelItem::STATE_PAUSED_UP:
           display = tr("Paused");
@@ -109,6 +115,12 @@ public:
         case TorrentModelItem::STATE_CHECKING_DL:
         case TorrentModelItem::STATE_CHECKING_UP:
           display = tr("Checking", "Torrent local data is being checked");
+          break;
+        case TorrentModelItem::STATE_QUEUED_CHECK:
+          display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
+          break;
+        case TorrentModelItem::STATE_QUEUED_FASTCHECK:
+          display = tr("Checking resume data");
           break;
         default:
            display = "";
