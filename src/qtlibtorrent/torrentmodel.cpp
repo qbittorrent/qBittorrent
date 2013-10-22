@@ -69,7 +69,13 @@ TorrentModelItem::State TorrentModelItem::state() const
     // Other states
     switch(m_torrent.state()) {
     case torrent_status::allocating:
+      m_icon = QIcon(":/Icons/skin/stalledDL.png");
+      m_fgColor = QColor("grey");
+      return STATE_ALLOCATING;
     case torrent_status::downloading_metadata:
+      m_icon = QIcon(":/Icons/skin/downloading.png");
+      m_fgColor = QColor("green");
+      return STATE_DOWNLOADING_META;
     case torrent_status::downloading: {
       if (m_torrent.download_payload_rate() > 0) {
         m_icon = QIcon(":/Icons/skin/downloading.png");
@@ -93,7 +99,13 @@ TorrentModelItem::State TorrentModelItem::state() const
         return STATE_STALLED_UP;
       }
     case torrent_status::queued_for_checking:
+      m_icon = QIcon(":/Icons/skin/checking.png");
+      m_fgColor = QColor("grey");
+      return STATE_QUEUED_CHECK;
     case torrent_status::checking_resume_data:
+      m_icon = QIcon(":/Icons/skin/checking.png");
+      m_fgColor = QColor("grey");
+      return STATE_QUEUED_FASTCHECK;
     case torrent_status::checking_files:
       m_icon = QIcon(":/Icons/skin/checking.png");
       m_fgColor = QColor("grey");
