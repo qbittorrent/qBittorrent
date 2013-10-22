@@ -921,7 +921,15 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   Q_UNUSED(filePath);
   Preferences pref;
   QTorrentHandle h;
-  const QString hash(misc::magnetUriToHash(magnet_uri));
+  add_torrent_params p;
+  libtorrent::error_code ec;
+
+  libtorrent::parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
+  if (ec) {
+    addConsoleMessage(tr("Coudln't parse this magnet URI: '1%'").arg(magnet_uri));
+    return h;
+  }
+  const QString hash(misc::toQString(p.info_hash));
   if (hash.isEmpty()) {
     addConsoleMessage(tr("'%1' is not a valid magnet URI.").arg(magnet_uri));
     return h;
@@ -936,19 +944,21 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   qDebug("Adding a magnet URI: %s", qPrintable(hash));
   Q_ASSERT(magnet_uri.startsWith("magnet:", Qt::CaseInsensitive));
 
-  // Check for duplicate torrent
-  if (s->find_torrent(QStringToSha1(hash)).is_valid()) {
-    qDebug("/!\\ Torrent is already in download list");
-    addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
-    // Check if the torrent contains trackers or url seeds we don't know about
-    // and add them
-    QTorrentHandle h_ex = getTorrentHandle(hash);
-    mergeTorrents(h_ex, magnet_uri);
-
-    return h;
+  // limit h_ex scope
+  {
+    // Check for duplicate torrent
+    QTorrentHandle h_ex = QTorrentHandle(s->find_torrent(p.info_hash));
+    if (h_ex.is_valid()) {
+      qDebug("/!\\ Torrent is already in download list");
+      addConsoleMessage(tr("'%1' is already in download list.", "e.g: 'xxx.avi' is already in download list.").arg(magnet_uri));
+      // Check if the torrent contains trackers or url seeds we don't know about
+      // and add them
+      mergeTorrents(h_ex, magnet_uri);
+      return h;
+    }
   }
 
-  add_torrent_params p = initializeAddTorrentParams(hash);
+  initializeAddTorrentParams(hash, p);
 
   // Get save path
   QString savePath;
@@ -969,19 +979,19 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
     // Check if save path exists, creating it otherwise
     if (!QDir(torrent_tmp_path).exists())
       QDir().mkpath(torrent_tmp_path);
-    qDebug("addMagnetURI: using save_path: %s", qPrintable(torrent_tmp_path));
+    qDebug("addTorrent: using save_path: %s", qPrintable(torrent_tmp_path));
   } else {
     p.save_path = savePath.toUtf8().constData();
     // Check if save path exists, creating it otherwise
     if (!QDir(savePath).exists()) QDir().mkpath(savePath);
-    qDebug("addMagnetURI: using save_path: %s", qPrintable(savePath));
+    qDebug("addTorrent: using save_path: %s", qPrintable(savePath));
   }
 
   qDebug("Adding magnet URI: %s", qPrintable(magnet_uri));
 
   // Adding torrent to Bittorrent session
   try {
-    h =  QTorrentHandle(add_magnet_uri(*s, magnet_uri.toStdString(), p));
+    h =  QTorrentHandle(s->add_torrent(p));
   }catch(std::exception e) {
     qDebug("Error: %s", e.what());
   }
@@ -1121,7 +1131,8 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   }
 
   // Actually add the torrent
-  add_torrent_params p = initializeAddTorrentParams(hash);
+  add_torrent_params p;
+  initializeAddTorrentParams(hash, p);
   p.ti = t;
 
   // Get fast resume data if existing
@@ -1253,9 +1264,7 @@ void QBtSession::exportTorrentFile(const QTorrentHandle& h, TorrentExportFolder 
   }
 }
 
-add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
-  add_torrent_params p;
-
+void QBtSession::initializeAddTorrentParams(const QString &hash, add_torrent_params &p) {
   // Seeding mode
   // Skip checking and directly start seeding (new in libtorrent v0.15)
   if (TorrentTempData::isSeedingMode(hash))
@@ -1288,8 +1297,6 @@ add_torrent_params QBtSession::initializeAddTorrentParams(const QString &hash) {
   p.paused = true;
   p.duplicate_is_error = false; // Already checked
   p.auto_managed = false; // Because it is added in paused state
-
-  return p;
 }
 
 void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet) {
