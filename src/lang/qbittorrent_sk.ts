@@ -2922,6 +2922,11 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <translation>„%1“ bol odstránený zo zoznamu sťahovaných.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>„%1“ nie je platný magnet URI.</translation>
@@ -3020,11 +3025,6 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Podpora Local Peer Discovery [zapnutá]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>

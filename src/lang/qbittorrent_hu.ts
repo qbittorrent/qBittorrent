@@ -2921,6 +2921,11 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; nem hiteles magnet URI.</translation>
@@ -3019,11 +3024,6 @@ Szeretnéd most frissíteni a %1 verzióra?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Local Peer Discovery [ON]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>

@@ -2921,6 +2921,11 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <translation>&quot;%1&quot; foi removido da lista de transferências.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&quot;%1&quot; não é um URI magnet.</translation>
@@ -3019,11 +3024,6 @@ Gostaria de atualizar o qBittorrrent para a versão %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Suporte Local Peer Discovery [ON]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>

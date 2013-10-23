@@ -2920,6 +2920,11 @@ Would you like to update qBittorrent to version %1?</source>
         <translation>&apos;%1&apos; бе премахнат от списъка за прехвърляне.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; е невалиден magnet URI.</translation>
@@ -3018,11 +3023,6 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Търсене на локални връзки [ВКЛ]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>

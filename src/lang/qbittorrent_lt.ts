@@ -2920,6 +2920,11 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <translation>&apos;%1&apos; buvo pašalintas iš siuntimų sąrašo.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; yra negaliojanti Magnet URI.</translation>
@@ -3018,11 +3023,6 @@ Ar norėtumėte atnaujinti qBittorrent į versiją: %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Vietinių siuntėjų aptikimo palaikymas [ĮJUNGTAS]</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1033"/>

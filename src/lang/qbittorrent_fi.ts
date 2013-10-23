@@ -2921,6 +2921,11 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
         <translation>&apos;%1&apos; poistettiin siirtoluettelosta.</translation>
     </message>
     <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
+        <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="896"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation type="unfinished"></translation>
@@ -3018,11 +3023,6 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="497"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="891"/>
-        <source>Couldn&apos;t parse this Magnet URI: &apos;1%&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
