@@ -4076,6 +4076,11 @@ Nainstalujte jej prosím ručně.</translation>
         <translation>Upravit označenou URL trackeru</translation>
     </message>
     <message>
+        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <source>Force reannounce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
         <source>Remove tracker</source>
         <translation>Odstranit tracker</translation>
