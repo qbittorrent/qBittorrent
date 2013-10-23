@@ -1,4 +1,5 @@
 * Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.0
+    - OTHER: Drop libtorrent 0.15.x support
 
 * Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
