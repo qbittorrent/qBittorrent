@@ -80,8 +80,10 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
   strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
   strm.avail_out = BUFSIZE;
 
-  //windowBits = 15|32 to enable gzip
-  ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15|16, 8, Z_DEFAULT_STRATEGY);
+  //windowBits = 15+16 to enable gzip
+  //From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
+  //to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
+  ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15+16, 8, Z_DEFAULT_STRATEGY);
 
   if (ret != Z_OK)
     return false;
