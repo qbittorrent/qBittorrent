@@ -88,10 +88,8 @@ QString prefjson::getPreferences()
   data.add("max_connec", pref.getMaxConnecs());
   data.add("max_connec_per_torrent", pref.getMaxConnecsPerTorrent());
   data.add("max_uploads_per_torrent", pref.getMaxUploadsPerTorrent());
-#if LIBTORRENT_VERSION_NUM >= 001600
   data.add("enable_utp", pref.isuTPEnabled());
   data.add("limit_utp_rate", pref.isuTPRateLimited());
-#endif
   data.add("limit_tcp_overhead", pref.includeOverheadInLimits());
   data.add("alt_dl_limit", pref.getAltGlobalDownloadLimit());
   data.add("alt_up_limit", pref.getAltGlobalUploadLimit());
@@ -110,9 +108,7 @@ QString prefjson::getPreferences()
   data.add("pex", pref.isPeXEnabled());
   data.add("lsd", pref.isLSDEnabled());
   data.add("encryption", pref.getEncryptionSetting());
-#if LIBTORRENT_VERSION_NUM >= 001600
   data.add("anonymous_mode", pref.isAnonymousModeEnabled());
-#endif
   // Proxy
   data.add("proxy_type", pref.getProxyType());
   data.add("proxy_ip", pref.getProxyIp());
@@ -246,12 +242,10 @@ void prefjson::setPreferences(const QString& json)
     pref.setMaxConnecsPerTorrent(m["max_connec_per_torrent"].toInt());
   if (m.contains("max_uploads_per_torrent"))
     pref.setMaxUploadsPerTorrent(m["max_uploads_per_torrent"].toInt());
-#if LIBTORRENT_VERSION_NUM >= 001600
   if (m.contains("enable_utp"))
     pref.setuTPEnabled(m["enable_utp"].toBool());
   if (m.contains("limit_utp_rate"))
     pref.setuTPRateLimited(m["limit_utp_rate"].toBool());
-#endif
   if (m.contains("limit_tcp_overhead"))
     pref.includeOverheadInLimits(m["limit_tcp_overhead"].toBool());
   if (m.contains("alt_dl_limit"))
@@ -284,10 +278,8 @@ void prefjson::setPreferences(const QString& json)
     pref.setLSDEnabled(m["lsd"].toBool());
   if (m.contains("encryption"))
     pref.setEncryptionSetting(m["encryption"].toInt());
-#if LIBTORRENT_VERSION_NUM >= 001600
   if (m.contains("anonymous_mode"))
     pref.enableAnonymousMode(m["anonymous_mode"].toBool());
-#endif
   // Proxy
   if (m.contains("proxy_type"))
     pref.setProxyType(m["proxy_type"].toInt());

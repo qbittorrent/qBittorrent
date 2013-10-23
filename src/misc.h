@@ -107,11 +107,7 @@ namespace misc
   QList<int> intListfromStringList(const QStringList &l);
   QList<bool> boolListfromStringList(const QStringList &l);
 
-#if LIBTORRENT_VERSION_NUM < 001600
-  QString toQString(const boost::posix_time::ptime& boostDate);
-#else
   QString toQString(time_t t);
-#endif
 
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);

@@ -3,8 +3,9 @@ language:
 
 env:
   # use libtorrent 0.15.10
-  - lt_source=from_dist gui=true
-  - lt_source=from_dist gui=false
+  # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
+  #- lt_source=from_dist gui=true
+  #- lt_source=from_dist gui=false
   # use libtorrent 0.16.X from RC_0_16 svn branch
   - lt_source=from_svn gui=true
   - lt_source=from_svn gui=false
@@ -38,7 +39,9 @@ before_install:
   - sudo apt-get -qq update
   # Travis can stall during heavy load if these packages are installed in one step - split the command
   - sudo apt-get -qq install debhelper qconf colormake libssl-dev libgeoip-dev
-  - sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
+  # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
+  #- sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
+  - sudo apt-get -qq install libboost-dev libboost-system-dev
   - sudo apt-get -qq install libqt4-dev 
 
 install:

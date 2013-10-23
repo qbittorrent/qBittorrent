@@ -43,36 +43,19 @@
 #include "torrentcreatorthread.h"
 #include "fs_utils.h"
 
-#if LIBTORRENT_VERSION_NUM < 001600
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/fstream.hpp>
-#endif
 #include <boost/bind.hpp>
 #include <iostream>
 #include <fstream>
 
 using namespace libtorrent;
-#if LIBTORRENT_VERSION_NUM < 001600
-using namespace boost::filesystem;
-#endif
 
 // do not include files and folders whose
 // name starts with a .
-#if LIBTORRENT_VERSION_NUM >= 001600
 bool file_filter(std::string const& f)
 {
         if (filename(f)[0] == '.') return false;
         return true;
 }
-#else
-bool file_filter(boost::filesystem::path const& filename)
-{
-  if (filename.leaf()[0] == '.') return false;
-  std::cerr << filename << std::endl;
-  return true;
-}
-#endif
 
 void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size)
 {
@@ -85,9 +68,6 @@ void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   comment = _comment;
   is_private = _is_private;
   piece_size = _piece_size;
-#if LIBTORRENT_VERSION_NUM < 001600
-  path::default_name_check(no_check);
-#endif
   abort = false;
   start();
 }

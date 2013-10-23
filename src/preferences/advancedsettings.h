@@ -13,11 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE,
-                    #if LIBTORRENT_VERSION_NUM >= 001610
-                      DISK_CACHE_TTL,
-                    #endif
-                      OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -37,9 +33,7 @@ private:
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext;
   QComboBox combo_iface;
-#if LIBTORRENT_VERSION_NUM >= 001610
   QSpinBox spin_cache_ttl;
-#endif
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox cb_update_check;
 #endif
@@ -76,9 +70,7 @@ public slots:
     Preferences pref;
     // Disk write cache
     pref.setDiskCacheSize(spin_cache.value());
-#if LIBTORRENT_VERSION_NUM >= 001610
     pref.setDiskCacheTTL(spin_cache_ttl.value());
-#endif
     // Outgoing ports
     pref.setOutgoingPortsMin(outgoing_ports_min.value());
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
@@ -182,14 +174,12 @@ private slots:
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
-#if LIBTORRENT_VERSION_NUM >= 001610
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);
     spin_cache_ttl.setValue(pref.diskCacheTTL());
     spin_cache_ttl.setSuffix(tr(" s", " seconds"));
     setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
-#endif
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);

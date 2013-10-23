@@ -134,7 +134,6 @@ public slots:
   void downloadUrlAndSkipDialog(QString url, QString save_path=QString(), QString label=QString(), const QList<QNetworkCookie>& cookies = QList<QNetworkCookie>());
   // Session configuration - Setters
   void setListeningPort(int port);
-  void setMaxConnections(int maxConnec);
   void setMaxConnectionsPerTorrent(int max);
   void setMaxUploadsPerTorrent(int max);
   void setDownloadRateLimit(long rate);
@@ -183,7 +182,6 @@ private:
   void loadTorrentSettings(QTorrentHandle &h);
   void loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet);
   void initializeAddTorrentParams(const QString &hash, libtorrent::add_torrent_params &p);
-  libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> &t, const std::vector<int> &fp);
   void updateRatioTimer();
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
   void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);

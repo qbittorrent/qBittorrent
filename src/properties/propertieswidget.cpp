@@ -453,11 +453,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;
-#if LIBTORRENT_VERSION_NUM >= 001600
   if (!h.status(0x0).is_seeding) {
-#else
-  if (!static_cast<torrent_handle>(h).is_seed()) {
-#endif
     subMenu.setTitle(tr("Priority"));
     subMenu.addAction(actionNot_downloaded);
     subMenu.addAction(actionNormal);

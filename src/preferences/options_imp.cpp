@@ -122,10 +122,6 @@ options_imp::options_imp(QWidget *parent):
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
-#if LIBTORRENT_VERSION_NUM < 001600
-  checkAnonymousMode->setVisible(false);
-  label_anonymous->setVisible(false);
-#endif
 
   // Connect signals / slots
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
@@ -208,9 +204,7 @@ options_imp::options_imp(QWidget *parent):
   connect(spinMaxUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#if LIBTORRENT_VERSION_NUM >= 001600
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#endif
   connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -254,10 +248,6 @@ options_imp::options_imp(QWidget *parent):
   applyButton->setEnabled(false);
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-#if LIBTORRENT_VERSION_NUM < 001600
-  checkuTP->setVisible(false);
-  checkLimituTPConnections->setVisible(false);
-#endif
   // Load Advanced settings
   QVBoxLayout *adv_layout = new QVBoxLayout();
   advancedSettings = new AdvancedSettings();
@@ -459,9 +449,7 @@ void options_imp::saveOptions() {
   pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
-#if LIBTORRENT_VERSION_NUM >= 001600
   pref.enableAnonymousMode(checkAnonymousMode->isChecked());
-#endif
   pref.setGlobalMaxRatio(getMaxRatio());
   pref.setMaxRatioAction(comboRatioLimitAct->currentIndex());
   // End Bittorrent preferences
@@ -745,11 +733,9 @@ void options_imp::loadOptions() {
   checkPeX->setChecked(pref.isPeXEnabled());
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
-#if LIBTORRENT_VERSION_NUM >= 001600
   checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
   /* make sure ui matches options */
   toggleAnonymousMode(checkAnonymousMode->isChecked());
-#endif
   // Ratio limit
   floatValue = pref.getGlobalMaxRatio();
   if (floatValue >= 0.) {

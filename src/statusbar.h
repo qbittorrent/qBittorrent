@@ -217,11 +217,7 @@ public slots:
 
   void capDownloadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_NUM >= 001600
     int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
-#else
-    int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();
-#endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
     if (ok) {
       Preferences pref;
@@ -242,11 +238,7 @@ public slots:
 
   void capUploadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_NUM >= 001600
     int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
-#else
-    int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();
-#endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
     if (ok) {
       Preferences pref;

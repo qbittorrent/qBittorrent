@@ -976,18 +976,13 @@ public:
   }
 
   uint diskCacheSize() const {
-#if LIBTORRENT_VERSION_NUM >= 001610
     return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 0).toUInt();
-#else
-    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), 128).toUInt();
-#endif
   }
 
   void setDiskCacheSize(uint size) {
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
-#if LIBTORRENT_VERSION_NUM >= 001610
   uint diskCacheTTL() const {
     return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), 60).toUInt();
   }
@@ -995,7 +990,6 @@ public:
   void setDiskCacheTTL(uint ttl) {
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), ttl);
   }
-#endif
 
   uint outgoingPortsMin() const {
     return value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();
@@ -1105,7 +1099,6 @@ public:
     return value(QString::fromUtf8("Preferences/Connection/InetAddress"), QString()).toString();
   }
 
-#if LIBTORRENT_VERSION_NUM >= 001600
   bool isAnonymousModeEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/AnonymousMode"), false).toBool();
   }
@@ -1113,7 +1106,6 @@ public:
   void enableAnonymousMode(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Advanced/AnonymousMode"), enabled);
   }
-#endif
 
   bool isSuperSeedingEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/SuperSeeding"), false).toBool();

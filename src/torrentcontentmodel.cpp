@@ -283,11 +283,7 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
   for (int i = 0; i < t.num_files(); ++i) {
     const libtorrent::file_entry& fentry = t.file_at(i);
     current_parent = m_rootItem;
-#if LIBTORRENT_VERSION_NUM >= 001600
     QString path = misc::toQStringU(fentry.path);
-#else
-    QString path = misc::toQStringU(fentry.path.string());
-#endif
     // Iterate of parts of the path to create necessary folders
     QStringList pathFolders = path.split(QRegExp("[/\\\\]"), QString::SkipEmptyParts);
     pathFolders.removeLast();

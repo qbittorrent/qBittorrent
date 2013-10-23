@@ -161,13 +161,8 @@ void TorrentSpeedMonitor::getSamples()
   std::vector<torrent_handle>::const_iterator itend = torrents.end();
   for ( ; it != itend; ++it) {
     try {
-#if LIBTORRENT_VERSION_NUM >= 001600
       torrent_status st = it->status(0x0);
       if (!st.paused) {
-#else
-      if (!it->is_paused()) {
-        torrent_status st = it->status();
-#endif
         m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate, st.upload_payload_rate);
       }
     } catch(invalid_handle&) {}

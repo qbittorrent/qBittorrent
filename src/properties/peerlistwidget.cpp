@@ -238,12 +238,10 @@ void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
 
   bool ok = false;
   int cur_limit = -1;
-#if LIBTORRENT_VERSION_NUM >= 001600
   boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
                                                                   boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_upload_limit(first_ep);
-#endif
   long limit = SpeedLimitDialog::askSpeedLimit(&ok,
                                                tr("Upload rate limiting"),
                                                cur_limit,
@@ -273,12 +271,10 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
     return;
   bool ok = false;
   int cur_limit = -1;
-#if LIBTORRENT_VERSION_NUM >= 001600
   boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
                                                                   boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_download_limit(first_ep);
-#endif
   long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), cur_limit, Preferences().getGlobalDownloadLimit()*1024.);
   if (!ok)
     return;
@@ -435,12 +431,10 @@ QString PeerListWidget::getConnectionString(int connection_type)
 {
   QString connection;
   switch(connection_type) {
-#if LIBTORRENT_VERSION_NUM >= 001600
   case peer_info::bittorrent_utp:
     connection = "uTP";
     break;
   case peer_info::http_seed:
-#endif
   case peer_info::web_seed:
     connection = "Web";
     break;
@@ -506,11 +500,9 @@ QString PeerListWidget::getFlags(const peer_info& peer)
   if (peer.flags & peer_info::plaintext_encrypted)
     flags += "e ";
 
-#if LIBTORRENT_VERSION_NUM > 001500
   //P = Peer is using uTorrent uTP
   if (peer.connection_type & peer_info::bittorrent_utp)
     flags += "P ";
-#endif
 
   //L = Peer is local
   if (peer.source & peer_info::lsd)

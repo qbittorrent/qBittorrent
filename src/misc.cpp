@@ -504,25 +504,10 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   return result;
 }
 
-#if LIBTORRENT_VERSION_NUM < 001600
-QString misc::toQString(const boost::posix_time::ptime& boostDate) {
-  if (boostDate.is_not_a_date_time()) return "";
-  struct std::tm tm;
-  try {
-    tm = boost::posix_time::to_tm(boostDate);
-  } catch(std::exception e) {
-      return "";
-  }
-  const time_t t = mktime(&tm);
-  const QDateTime dt = QDateTime::fromTime_t(t);
-  return dt.toString(Qt::DefaultLocaleLongDate);
-}
-#else
 QString misc::toQString(time_t t)
 {
   return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
 }
-#endif
 
 #ifndef DISABLE_GUI
 bool misc::naturalSort(QString left, QString right, bool &result) { // uses lessThan comparison
