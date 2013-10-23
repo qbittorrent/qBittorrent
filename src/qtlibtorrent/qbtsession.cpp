@@ -888,7 +888,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
 
   libtorrent::parse_magnet_uri(magnet_uri.toUtf8().constData(), p, ec);
   if (ec) {
-    addConsoleMessage(tr("Couldn't parse this Magnet URI: '1%'").arg(magnet_uri));
+    addConsoleMessage(tr("Couldn't parse this Magnet URI: '%1'").arg(magnet_uri));
     return h;
   }
   const QString hash(misc::toQString(p.info_hash));
