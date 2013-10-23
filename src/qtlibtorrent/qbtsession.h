@@ -182,7 +182,7 @@ private:
   bool loadFastResumeData(const QString &hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle &h);
   void loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet);
-  void initializeAddTorrentParams(const QString &hash, libtorrent::add_torrent_params &p);
+  libtorrent::add_torrent_params initializeAddTorrentParams(const QString &hash);
   libtorrent::entry generateFilePriorityResumeData(boost::intrusive_ptr<libtorrent::torrent_info> &t, const std::vector<int> &fp);
   void updateRatioTimer();
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
