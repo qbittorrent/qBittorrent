@@ -2833,7 +2833,7 @@ void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<lib
 void QBtSession::unhideMagnet(const QString &hash) {
   Preferences pref;
   HiddenData::deleteData(hash);
-  QString save_path = TorrentTempData::getSavePath(hash);
+  QString save_path = getSavePath(hash, false); //appends label if necessary
   QTorrentHandle h(getTorrentHandle(hash));
 
   if (!h.is_valid()) {
