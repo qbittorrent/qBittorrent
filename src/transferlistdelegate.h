@@ -92,7 +92,7 @@ public:
           display = tr("Downloading");
           break;
         case TorrentModelItem::STATE_DOWNLOADING_META:
-          display = tr("Downloading metadata");
+          display = tr("Downloading metadata", "used when loading a magnet link");
           break;
         case TorrentModelItem::STATE_ALLOCATING:
           display = tr("Allocating", "qBittorrent is allocating the files on disk");
@@ -120,7 +120,7 @@ public:
           display = tr("Queued for checking", "i.e. torrent is queued for hash checking");
           break;
         case TorrentModelItem::STATE_QUEUED_FASTCHECK:
-          display = tr("Checking resume data");
+          display = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
           break;
         default:
            display = "";
