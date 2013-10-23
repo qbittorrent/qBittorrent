@@ -4077,6 +4077,11 @@ Please install it manually.</source>
         <translation>編輯選取的 tracker URL</translation>
     </message>
     <message>
+        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <source>Force reannounce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
         <source>Remove tracker</source>
         <translation>移除 tracker</translation>

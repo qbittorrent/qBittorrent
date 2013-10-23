@@ -4076,6 +4076,11 @@ Kérlek telepítsd manuálisan.</translation>
         <translation>Kiválasztott tracker URL szerkesztése</translation>
     </message>
     <message>
+        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <source>Force reannounce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
         <source>Remove tracker</source>
         <translation>Tracker eltávolítása</translation>

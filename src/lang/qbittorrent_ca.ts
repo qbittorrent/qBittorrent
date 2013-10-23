@@ -4076,6 +4076,11 @@ Si us plau, instal-li&apos;l de forma manual.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <source>Force reannounce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
         <source>Remove tracker</source>
         <translation>Esborrar traker</translation>

@@ -4075,6 +4075,11 @@ Xin hãy vui lòng tự cài đặt.</translation>
         <translation>Chỉnh sửa đường dẫn tracker đã chọn</translation>
     </message>
     <message>
+        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <source>Force reannounce to all trackers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
         <source>Remove tracker</source>
         <translation>Loại bỏ tracker</translation>
