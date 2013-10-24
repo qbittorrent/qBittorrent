@@ -3,6 +3,7 @@
     - FEATURE: Enable gzip compression in the webui. It should be faster now. (sledgehammer999)
     - FEATURE: Torrents show more states(queued for checking, downloading metadata, allocating, checking resume). (sledgehammer999)
     - FEATURE: Reenable "force reannounce" to all trackers. (sledgehammer999)
+    - FEATURE: Allow to clear the UI lock password. Closes #973. (sledgehammer999)
     - BUGFIX: Expose all available translation in the WebUI. Closes #976. (sledgehammer999)
     - BUGFIX: Copy IP copied wrong data. Closes #970 (sledgehammer999)
     - BUGFIX: "Preview file..." didn't work on single file torrents. (sledgehammer999)
