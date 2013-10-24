@@ -148,6 +148,8 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   QMenu *lockMenu = new QMenu(this);
   QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("Set the password..."));
   connect(defineUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(defineUILockPassword()));
+  QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("Clear the password"));
+  connect(clearUiLockPasswdAct, SIGNAL(triggered()), this, SLOT(clearUILockPassword()));
   actionLock_qBittorrent->setMenu(lockMenu);
   // Creating Bittorrent session
   connect(QBtSession::instance(), SIGNAL(fullDiskError(QTorrentHandle, QString)), this, SLOT(fullDiskError(QTorrentHandle, QString)));
@@ -410,6 +412,12 @@ void MainWindow::defineUILockPassword() {
     }
     QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
   }
+}
+
+void MainWindow::clearUILockPassword() {
+  QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password"), tr("Are you sure you want to clear the password?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+  if (answer == QMessageBox::Yes)
+    Preferences().clearUILockPassword();
 }
 
 void MainWindow::on_actionLock_qBittorrent_triggered() {

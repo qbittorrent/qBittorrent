@@ -923,6 +923,10 @@ public:
     setValue("Locking/password", md5_password);
   }
 
+  void clearUILockPassword() {
+    remove("Locking/password");
+  }
+
   QString getUILockPasswordMD5() const {
     return value("Locking/password", QString()).toString();
   }
