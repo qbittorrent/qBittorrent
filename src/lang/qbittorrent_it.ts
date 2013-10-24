@@ -1304,7 +1304,7 @@ Non verranno emessi avvisi.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="370"/>
-        <location filename="../mainwindow.cpp" line="1229"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Show</source>
         <translation>Visualizza</translation>
     </message>
@@ -1341,7 +1341,7 @@ Non verranno emessi avvisi.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="333"/>
-        <location filename="../mainwindow.cpp" line="1374"/>
+        <location filename="../mainwindow.cpp" line="1382"/>
         <source>Execution Log</source>
         <translation>Registro attività</translation>
     </message>
@@ -1361,85 +1361,96 @@ Non verranno emessi avvisi.</translation>
         <translation>Imposta la password...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="184"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="418"/>
+        <source>Clear the password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="186"/>
         <source>Transfers</source>
         <translation>Trasferimenti</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="297"/>
+        <location filename="../mainwindow.cpp" line="299"/>
         <source>Torrent file association</source>
         <translation>Associazione file torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="300"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent non è l&apos;applicazione predefinita per l&apos;apertura di file torrent o collegamenti magnet.
 Vuoi associare qBittorrent ai file torrent e ai collegamenti magnet?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="401"/>
-        <location filename="../mainwindow.cpp" line="421"/>
-        <location filename="../mainwindow.cpp" line="678"/>
+        <location filename="../mainwindow.cpp" line="403"/>
+        <location filename="../mainwindow.cpp" line="429"/>
+        <location filename="../mainwindow.cpp" line="686"/>
         <source>UI lock password</source>
         <translation>Blocca password UI</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="401"/>
-        <location filename="../mainwindow.cpp" line="421"/>
-        <location filename="../mainwindow.cpp" line="678"/>
+        <location filename="../mainwindow.cpp" line="403"/>
+        <location filename="../mainwindow.cpp" line="429"/>
+        <location filename="../mainwindow.cpp" line="686"/>
         <source>Please type the UI lock password:</source>
         <translation>Per favore digita la password di blocco UI:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="405"/>
+        <location filename="../mainwindow.cpp" line="407"/>
         <source>The password should contain at least 3 characters</source>
         <translation>La password deve contenere almeno 3 caratteri</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="413"/>
         <source>Password update</source>
         <translation>Aggiorna password</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="411"/>
+        <location filename="../mainwindow.cpp" line="413"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>Il blocco password dell&apos;UI è stato attivato con successo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="437"/>
+        <location filename="../mainwindow.cpp" line="418"/>
+        <source>Are you sure you want to clear the password?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="445"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="452"/>
+        <location filename="../mainwindow.cpp" line="460"/>
         <source>Search</source>
         <translation>Ricerca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="462"/>
+        <location filename="../mainwindow.cpp" line="470"/>
         <source>Transfers (%1)</source>
         <translation>Trasferimenti (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="546"/>
         <source>Download completion</source>
         <translation>Completamento download</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="546"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>%1 è stato scaricato.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="544"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="544"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
@@ -1448,139 +1459,139 @@ Vuoi associare qBittorrent ai file torrent e ai collegamenti magnet?</translatio
 Motivo: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="608"/>
         <source>Recursive download confirmation</source>
         <translation>Conferma recursiva di download</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="608"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>Il torrent %1 contiene file torrent, vuoi procedere al download di qeusti file?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="601"/>
-        <location filename="../mainwindow.cpp" line="767"/>
+        <location filename="../mainwindow.cpp" line="609"/>
+        <location filename="../mainwindow.cpp" line="775"/>
         <source>Yes</source>
         <translation>Sì</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="602"/>
-        <location filename="../mainwindow.cpp" line="766"/>
+        <location filename="../mainwindow.cpp" line="610"/>
+        <location filename="../mainwindow.cpp" line="774"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="611"/>
         <source>Never</source>
         <translation>Mai</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>Url download error</source>
         <translation>Errore download da indirizzo web</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="617"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Impossibile scaricare il file all&apos;indirizzo: %1, motivo: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="632"/>
         <source>Global Upload Speed Limit</source>
         <translation>Limite globale upload</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="639"/>
+        <location filename="../mainwindow.cpp" line="647"/>
         <source>Global Download Speed Limit</source>
         <translation>Limite globale download</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1139"/>
+        <location filename="../mainwindow.cpp" line="1147"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="405"/>
-        <location filename="../mainwindow.cpp" line="691"/>
+        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="699"/>
         <source>Invalid password</source>
         <translation>Password non valida</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="691"/>
+        <location filename="../mainwindow.cpp" line="699"/>
         <source>The password is invalid</source>
         <translation>La password non è valida</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1229"/>
+        <location filename="../mainwindow.cpp" line="1237"/>
         <source>Hide</source>
         <translation>Nascondi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="763"/>
+        <location filename="../mainwindow.cpp" line="771"/>
         <source>Exiting qBittorrent</source>
         <translation>Uscire da qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="764"/>
+        <location filename="../mainwindow.cpp" line="772"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Alcuni file sono ancora in trasferimento.
 Chiudere qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="768"/>
+        <location filename="../mainwindow.cpp" line="776"/>
         <source>Always</source>
         <translation>Sempre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="928"/>
         <source>Open Torrent Files</source>
         <translation>Apri file torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="921"/>
+        <location filename="../mainwindow.cpp" line="929"/>
         <source>Torrent Files</source>
         <translation>File torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1009"/>
+        <location filename="../mainwindow.cpp" line="1017"/>
         <source>Options were saved successfully.</source>
         <translation>Le opzioni sono state salvate.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1123"/>
-        <location filename="../mainwindow.cpp" line="1132"/>
+        <location filename="../mainwindow.cpp" line="1131"/>
+        <location filename="../mainwindow.cpp" line="1140"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Velocità DL: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1126"/>
         <location filename="../mainwindow.cpp" line="1134"/>
+        <location filename="../mainwindow.cpp" line="1142"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Velocità UP: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1331"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>A newer version is available</source>
         <translation>E&apos; disponibile una nuova versione</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1332"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>A newer version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>E&apos; disponibile una nuova versione di qBittorrent in Sourceforge.
 Aggiornare qBittorrent alla versione %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1347"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>Impossible to update qBittorrent</source>
         <translation>Impossibile aggiornare qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1347"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>qBittorrent failed to update, reason: %1</source>
         <translation>qBittorrent ha fallito l&apos;aggiornamento, ragioni: %1</translation>
     </message>
