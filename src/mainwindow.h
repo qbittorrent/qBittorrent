@@ -107,6 +107,7 @@ protected slots:
   void tab_changed(int);
   void on_actionLock_qBittorrent_triggered();
   void defineUILockPassword();
+  void clearUILockPassword();
   bool unlockUI();
   void notifyOfUpdate(QString);
   void showConnectionSettings();
