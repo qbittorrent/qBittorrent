@@ -202,16 +202,16 @@ void DownloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
   if (!reply) return;
   if (bytesTotal > 0) {
     // Total number of bytes is available
-    if (bytesTotal > 1048576) {
-      // More than 1MB, this is probably not a torrent file, aborting...
+    if (bytesTotal > 1048576*10) {
+      // More than 10MB, this is probably not a torrent file, aborting...
       reply->abort();
       reply->deleteLater();
     } else {
       disconnect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(checkDownloadSize(qint64,qint64)));
     }
   } else {
-    if (bytesReceived  > 1048576) {
-      // More than 1MB, this is probably not a torrent file, aborting...
+    if (bytesReceived  > 1048576*10) {
+      // More than 10MB, this is probably not a torrent file, aborting...
       reply->abort();
       reply->deleteLater();
     }
