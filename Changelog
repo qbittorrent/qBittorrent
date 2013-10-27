@@ -1,4 +1,4 @@
-* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.1
+* Mon Oct 28 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.1
     - FEATURE: Show external IP in the log. Closes #968. (sledgehammer999)
     - FEATURE: Enable gzip compression in the webui. It should be faster now. (sledgehammer999)
     - FEATURE: Torrents show more states(queued for checking, downloading metadata, allocating, checking resume). (sledgehammer999)
@@ -12,6 +12,7 @@
     - BUGFIX: RSS fixes. Closes #960, #998 (Gelmir)
     - BUGFIX: Fix 'append label to save path' with magnet links. (sledgehammer999)
     - BUGFIX: Can download up to 10MB .torrent file when a link is provided. Closes #879 (sledgehammer999)
+    - OTHER: Updated translations.
     - LINUX: Fix missing conf.pri error (leigh123linux)
     - WINDOWS: Don't remove file associations if they aren't our own. (sledgehammer999)
 
