@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="eu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="eu" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -190,12 +188,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Already in download list</source>
-        <translation type="unfinished"></translation>
+        <translation>Jadanik jeisketa zerrendan</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta jadanik jeisketa zerrendan dago. Aztarnariak batzen.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
@@ -216,7 +214,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet lotura jadanik jeisketa zerrendan dago. Aztarnariak batzen.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
@@ -226,7 +224,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="298"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation>Metadatuak eskuratzen...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="359"/>
@@ -285,17 +283,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="665"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation>Metadatuak aztertzen...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="723"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Metadatu eskurapena osatuta</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="726"/>
         <source>Unknown error</source>
-        <translation type="unfinished">akats ezezaguna</translation>
+        <translation>Akats ezezaguna</translation>
     </message>
 </context>
 <context>
@@ -592,7 +590,7 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="388"/>
         <source>Please point to the RSS download rules file</source>
-        <translation>Mesedez adierazi RSS jeisketa arau agirian</translation>
+        <translation>Mesedez adierazi RSS jeisketa arau agiria</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="388"/>
@@ -647,12 +645,12 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="548"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Wildcard modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;Zuriuneak AND eragile bezala zenbatzen dira&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Ordez-hizki modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;Zuriuneak AND eragile bezala zenbatzen dira&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="550"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Wildcard modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;| OR eragile bezala erabiltzen da&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>Ordez-hizki modua: erabili dezakezu&lt;ul&gt;&lt;li&gt;? hizkirri bakarrarekin berdintzeko&lt;/li&gt;&lt;li&gt;* huts edo gehiago edozein hizkirrirekin berdintzeko&lt;/li&gt;&lt;li&gt;| OR eragile bezala erabiltzen da&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -666,7 +664,7 @@
         <location filename="../rss/cookiesdlg.ui" line="36"/>
         <source>Key</source>
         <extracomment>As in Key/Value pair</extracomment>
-        <translation>Tekla</translation>
+        <translation>Giltza</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="41"/>
@@ -676,9 +674,9 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
-        <translation>Cookientzako tekla arruntak dira: &apos;%1&quot;, &apos;%2&apos;.
+        <translation>Cookientzako giltza arruntak dira: &apos;%1&quot;, &apos;%2&apos;.
 Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     </message>
 </context>
@@ -697,7 +695,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation>DNS dinamiko akatsa: Emandako hostalari-izena ez dago adierazitako kontupean.</translation>
+        <translation>DNS dinamiko akatsa: Emandako hostalari-izena ez dago adierazitako kontuan.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
@@ -746,7 +744,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="252"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation>Hurreneko hostalari izena ez da aurkitu (hostalari-izen baliogabea)</translation>
+        <translation>Hurruneko hostalari izena ez da aurkitu (hostalari-izen baliogabea)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="254"/>
@@ -806,7 +804,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="276"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation>Hurruneko edukian eskabidetutako eragiketa ez dago baimenduta</translation>
+        <translation>Hurruneko edukian eskatutako eragiketa ez dago baimenduta</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="278"/>
@@ -826,7 +824,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="284"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation>Eskabidetutako eragiketa baliogabea da protokolo honentzat</translation>
+        <translation>Eskatutako eragiketa baliogabea da protokolo honentzat</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="286"/>
@@ -900,7 +898,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../headlessloader.h" line="59"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Web EI adminstratzaile sarhitza berezkoa da: %1</translation>
+        <translation>Web EI adminstratzaile sarhitza oraindik berezkoa da: %1</translation>
     </message>
     <message>
         <location filename="../headlessloader.h" line="60"/>
@@ -956,7 +954,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="117"/>
         <source>Point to torrent file</source>
-        <translation>Hatutu torren agiria</translation>
+        <translation>Zuzendu torrent agirira</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="118"/>
@@ -966,7 +964,7 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>Zihur zaude hautatutako torrentak ezabatzea nahi dituzula eskualdaketa zerrendatik eta diska gogorretik?</translation>
+        <translation>Zihur zaude hautaturiko torrentak ezabatzea nahi dituzula eskualdaketa zerrendatik eta diska gogorretik?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="120"/>
@@ -1022,12 +1020,12 @@ Argibide hauek zure Web nabigatzaile hobespenetan lortu ditzakezu.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web EI erabiltzaile-izenak hiru hizkirriko luzera izan behar du behintzat.</translation>
+        <translation>Web EI erabiltzaile-izenak gutxienez 3 hizkirriko luzera izan behar du.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="131"/>
         <source>The Web UI password must be at least 3 characters long.</source>
-        <translation>Web EI sarhitzak hiru hizkirriko luzera izan behar du behintzat.</translation>
+        <translation>Web EI sarhitzak gutxienez 3 hizkirriko luzera izan behar du.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="132"/>
@@ -1364,7 +1362,7 @@ Ez dira jakinarazpen gehiago egingo.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"></translation>
+        <translation>Garbitu sarhitza</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1400,7 +1398,7 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
     <message>
         <location filename="../mainwindow.cpp" line="407"/>
         <source>The password should contain at least 3 characters</source>
-        <translation>Sarhitzak hiru hizkirri izan behar ditu behintzat</translation>
+        <translation>Sarhitzak 3 hizkirri izan behar ditu gutxienez</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="413"/>
@@ -1415,7 +1413,7 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zihur zaude sarhitza garbitzea nahi duzula?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -1465,7 +1463,7 @@ Nahi duzu qBittorrent elkartzea torrent agiriekin eta Magnet loturekin?</transla
     <message>
         <location filename="../mainwindow.cpp" line="608"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>%1 torrentak torrenta agiriak ditu, beren jeisketa burutzea nahi duzu?</translation>
+        <translation>%1 torrentak torrent agiriak ditu, beren jeisketa burutzea nahi duzu?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="609"/>
@@ -1592,7 +1590,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1363"/>
         <source>qBittorrent failed to update, reason: %1</source>
-        <translation>qBittorrentek huts egin dugu eguneratzean, zergaitia: %1</translation>
+        <translation>qBittorrent-ek huts egin dugu eguneratzean, zergaitia: %1</translation>
     </message>
 </context>
 <context>
@@ -2145,7 +2143,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekarri torrent elkarrizketa aurrealdera</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2326,7 +2324,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2410"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Erabili UPnP / NAT-PMP ataka bidaltzeko nire bideratzailetik</translation>
+        <translation>Erabili UPnP / NAT-PMP ataka nire bideratzailetik bidaltzeko</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2420"/>
@@ -2921,13 +2919,13 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik eta diska gogorretik kendu da.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="831"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eskualdaketa zerrendatik kendu da.</translation>
     </message>
     <message>
@@ -2941,27 +2939,27 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1098"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1100"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; jadanik jeisketa zerrendan dago.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1226"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1231"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; berrekinda. (berrekite azkarra)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent interfazearen edozein atakan aditzen saiatzen ari da: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1975"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent interfazearen %1 atakan aditzen saiatzen ari da: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2308"/>
@@ -2982,19 +2980,19 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2599"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ongi aditzen ari da interfazearen %1 atakan: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2612"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent-ek huts egin du interfazearen %1 atakan aditzerakoan: TCP/%2. Zegaitia: %3</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kanpoko IP-a: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2891"/>
@@ -3012,7 +3010,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1228"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1233"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; gehituta jeisketa zerrendara.</translation>
     </message>
     <message>
@@ -3035,7 +3033,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1069"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1071"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Ezinezkoa torrent agiria dekodeatzea: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3159,7 +3157,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2725"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>&apos;%1&apos; jeisten, mesedez itxaron...</translation>
     </message>
 </context>
@@ -3202,7 +3200,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrentak:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(klik-bikoitza jeisteko)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -3237,7 +3235,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rss.ui" line="187"/>
         <location filename="../rss/rss.ui" line="190"/>
         <source>Update all feeds</source>
-        <translation>Eguneratu harpidetza denak</translation>
+        <translation>Eguneratu harpidetza guztiak</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="203"/>
@@ -3516,7 +3514,7 @@ Do you want to install it now?</source>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelditu</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3549,7 +3547,8 @@ Do you want to install it now?</source>
         <location filename="../searchengine/searchengine.cpp" line="172"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
-        <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1Mesedez ezarri eskuz.</translation>
+        <translation>Python ezartzailea ezin da jeitsi, zergaitia: %1.
+Mesedez ezarri eskuz.</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="505"/>
@@ -3673,17 +3672,17 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>Klikatu aldatzeko beste abiadura muga batera</translation>
+        <translation>Klikatu beste abiadura muga batera aldatzeko</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Klikatu aldatzeko abiadura muga arruntera</translation>
+        <translation>Klikatu abiadura muga arruntera aldatzeko</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="213"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eskuzko maila muga modu aldaketa. Egitarautzailea ezgaituta dago.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="225"/>
@@ -3814,7 +3813,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentimportdlg.cpp" line="68"/>
         <source>Torrent file to import</source>
-        <translation>Inportatzeko torrent agiria</translation>
+        <translation>Torrent agiria inportatzeko</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="68"/>
@@ -4077,7 +4076,7 @@ Please install it manually.</source>
     <message>
         <location filename="../properties/trackerlist.cpp" line="421"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Behartu aztarnari guztien ber-iragarpena</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
@@ -4144,13 +4143,13 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"></translation>
+        <translation>Metadatuak jeisten</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"></translation>
+        <translation>Esleitzen</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -4185,13 +4184,13 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="120"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="unfinished"></translation>
+        <translation>Egiaztapenerako lerrokatuta</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="123"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datu berrekitea egiaztatzen</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="137"/>
@@ -4598,7 +4597,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation>Eztabaidagunea</translation>
+        <translation>Eztabaidagunea:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
@@ -4678,7 +4677,7 @@ Please install it manually.</source>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="20"/>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Ezabapen baieztapena- qBittorrent</translation>
+        <translation>Ezabapen baieztapena - qBittorrent</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
@@ -4812,7 +4811,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezikusi elkarbanatze maila mugak torrent honentzat</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
@@ -4835,7 +4834,7 @@ Please install it manually.</source>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bat lerroko (HTTP loturak, Magnet loturak eta info-hashak sostengatuta)</translation>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -4860,7 +4859,7 @@ Please install it manually.</source>
     <message>
         <location filename="../downloadfromurldlg.h" line="97"/>
         <source>Please type at least one URL.</source>
-        <translation>Mesedez idatzi URL bat behintzat.</translation>
+        <translation>Mesedez idatzi URL bat gutxinez.</translation>
     </message>
 </context>
 <context>
@@ -4941,7 +4940,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Loturak ez dirudi bilaketa gailu plugin batera zuzentzen duenik.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="353"/>
@@ -5046,7 +5045,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"></translation>
+        <translation>Lotura baliogabea</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
@@ -5144,7 +5143,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrentek orain ordenagailua itzaliko du jeisketa guztiak osatu direlako.</translation>
+        <translation>qBittorrent-ek orain ordenagailua itzaliko du jeisketa guztiak osatu direlako.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="384"/>
@@ -5306,7 +5305,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1378"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Hau ez da SSL giltza baliozko bat.</translation>
+        <translation>Hau ez da baliozko SSL giltza bat.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1393"/>
@@ -5316,17 +5315,17 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1393"/>
         <source>This is not a valid SSL certificate.</source>
-        <translation>Hau ez da SSL egiaztagiri baliozko bat.</translation>
+        <translation>Hau ez da baliozko SSL egiaztagiri bat.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1421"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasiera ordua eta amaiera ordua ezin dira berdinak izan.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1424"/>
         <source>Time Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordu Akatsa</translation>
     </message>
 </context>
 <context>
@@ -5367,7 +5366,7 @@ Edonola, plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hurrengo agiriek aurreikuspena sostengatzen dute, mesedez hautatu bat:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>

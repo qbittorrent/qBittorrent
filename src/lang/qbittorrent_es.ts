@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -676,7 +674,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Las Claves para las Cookies son : &apos;%1&apos;, &apos;%2&apos;
 Debe obtener esta información de las preferencias de su navegador Web.</translation>
@@ -966,7 +964,7 @@ Debe obtener esta información de las preferencias de su navegador Web.</transla
     <message>
         <location filename="../webui/httpserver.cpp" line="119"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list and hard disk?</source>
-        <translation>¿Está seguro que quiere eliminar los torrents seleccionados de la lista de transferencia y del disco?</translation>
+        <translation>¿Está seguro que desea eliminar los torrents seleccionados de la lista de transferencia y del disco?</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="120"/>
@@ -1221,7 +1219,7 @@ No se le volverá a notificar sobre esto.</translation>
     <message>
         <location filename="../mainwindow.ui" line="171"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Borrar</translation>
+        <translation>&amp;Eliminar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="322"/>
@@ -1365,7 +1363,7 @@ No se le volverá a notificar sobre esto.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar la contraseña</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1382,7 +1380,7 @@ No se le volverá a notificar sobre esto.</translation>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent no es la aplicación por defecto para abrir archivos Torrent o enlaces Magnet.
-¿Quiere que qBittorrent sea el programa por defecto para gestionar estos archivos?</translation>
+¿Desea que qBittorrent sea el programa por defecto para gestionar estos archivos?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="403"/>
@@ -1416,7 +1414,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Seguro que desea borrar la contraseña?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -1467,7 +1465,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="608"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation>Este torrent %1 contiene archivos torrent, ¿quiere seguir adelante con su descarga?</translation>
+        <translation>Este torrent %1 contiene archivos torrent, ¿Desea seguir adelante con su descarga?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="609"/>
@@ -1538,7 +1536,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Algunos archivos aún están transfiriéndose.
-¿Está seguro de querer cerrar qBittorrent?</translation>
+¿Está seguro que desea cerrar qBittorrent?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="784"/>
@@ -2085,7 +2083,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="431"/>
         <source>Monochrome (Dark theme)</source>
-        <translation>Monocromo (Tema obscuro)</translation>
+        <translation>Monocromo (Tema oscuro)</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="436"/>
@@ -2927,13 +2925,13 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; Fue eliminado de la lista de transferencia y del disco.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="831"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; Fue eliminado de la lista de transferencia.</translation>
     </message>
     <message>
@@ -2947,14 +2945,14 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1098"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1100"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; ya está en la lista de descargas.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1226"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1231"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; continuado. (continuación rápida)</translation>
     </message>
     <message>
@@ -3000,7 +2998,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"></translation>
+        <translation>IP Externa: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2891"/>
@@ -3018,7 +3016,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1228"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1233"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; agregado a la lista de descargas.</translation>
     </message>
     <message>
@@ -3041,7 +3039,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1069"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1071"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Imposible decodificar el archivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3165,7 +3163,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2725"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Descargando &apos;%1&apos;, por favor espere...</translation>
     </message>
 </context>
@@ -3208,7 +3206,7 @@ Would you like to update qBittorrent to version %1?</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3220,7 +3218,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../rss/rss.ui" line="158"/>
         <location filename="../rss/rss.ui" line="161"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="166"/>
@@ -3333,7 +3331,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rss_imp.cpp" line="241"/>
         <source>Are you sure you want to delete these elements from the list?</source>
-        <translation>¿Seguro que quiere eliminar estos elementos de la lista?</translation>
+        <translation>¿Seguro que desea eliminar estos elementos de la lista?</translation>
     </message>
     <message>
         <location filename="../rss/rss_imp.cpp" line="247"/>
@@ -3695,7 +3693,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../statusbar.h" line="213"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambio de límites en modo manual. El programador está deshabilitado.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="225"/>
@@ -3921,7 +3919,7 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="277"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Tiempo restante</translation>
+        <translation>Tiempo Restante</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="278"/>
@@ -3961,25 +3959,25 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Amount downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Cantidad descargada</translation>
+        <translation>Descargado</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Amount uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>Cantidad Subida</translation>
+        <translation>Subido</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Amount left</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation>Cantidad que falta</translation>
+        <translation>Restante</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Tiempo activo</translation>
+        <translation>Tiempo Activo</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="288"/>
@@ -4089,7 +4087,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="421"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar recomunicación a todos los trackers</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
@@ -4156,13 +4154,13 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"></translation>
+        <translation>Descargando metadatos</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reservando espacio</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -4197,13 +4195,13 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../transferlistdelegate.h" line="120"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="unfinished"></translation>
+        <translation>En cola para su verificación</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="123"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Verificando datos de continuación</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="137"/>
@@ -4413,7 +4411,7 @@ Por favor, instálelo de forma manual.</translation>
         <location filename="../transferlistwidget.cpp" line="671"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Borrar</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="673"/>
@@ -4695,7 +4693,7 @@ Por favor, instálelo de forma manual.</translation>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="47"/>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>¿Seguro que quiere eliminar los torrents seleccionados de la lista de transferencias?</translation>
+        <translation>¿Seguro que desea eliminar los torrents seleccionados de la lista de transferencias?</translation>
     </message>
     <message>
         <location filename="../confirmdeletiondlg.ui" line="67"/>
