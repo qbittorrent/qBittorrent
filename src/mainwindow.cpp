@@ -555,6 +555,7 @@ void MainWindow::fullDiskError(const QTorrentHandle& h, QString msg) const {
 void MainWindow::createKeyboardShortcuts() {
   actionCreate_torrent->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+N")));
   actionOpen->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+O")));
+  actionDownload_from_URL->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Shift+O")));
   actionExit->setShortcut(QKeySequence(QString::fromUtf8("Ctrl+Q")));
   switchTransferShortcut = new QShortcut(QKeySequence("Alt+1"), this);
   connect(switchTransferShortcut, SIGNAL(activated()), this, SLOT(displayTransferTab()));
