@@ -123,7 +123,11 @@ QByteArray HttpResponseGenerator::toByteArray() {
     QByteArray dest_buf;
     if (gCompress(dest_buf)) {
       setValue("content-encoding", "gzip");
+#if QT_VERSION < 0x040800
+      m_message = dest_buf;
+#else
       m_message.swap(dest_buf);
+#endif
     }
   }
 
