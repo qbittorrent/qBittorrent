@@ -405,7 +405,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="251"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>العنوان الذي يتم اعلانه للمتتبع (يتطلب اعادة التشغيل)</translation>
+        <translation>عنوان الآي بي الذي يتم إعلانه للمتتبعات (يتطلب إعادة تشغيل البرنامج)</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="254"/>
@@ -540,12 +540,12 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="344"/>
         <source>Are you sure you want to remove the download rule named %1?</source>
-        <translation>Are you sure you want to remove the download rule named %1?</translation>
+        <translation>هل أنت متأكد من رغبتك في إزالة قاعدة التنزيل المسمّاة &quot;%1&quot;؟</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="346"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Are you sure you want to remove the selected download rules?</translation>
+        <translation>هل أنت متأكد من رغبتك في إزالة قواعد التنزيل المختارة؟</translation>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="347"/>
@@ -700,17 +700,17 @@ You should get this information from your Web browser preferences.</translation>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
-        <translation>خطأ في Dynamic DNS :اسم المستخدم او كلمة السرّ خاطئة.</translation>
+        <translation>خطأ في Dynamic DNS: اسم المستخدم أو كلمة السرّ خاطئة.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="203"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>خطأ في Dynamic DNS :البرنامج تمت اضافته للقائمة السوداء الرجاء إرسال الخطأ الى http://bugs.qbittorrent.org.</translation>
+        <translation>خطأ في Dynamic DNS : تمت إضافة كيوبت‎تورنت للقائمة السوداء من خلال الخادوم، من فضلك أرسل تقرير عن المشكلة إلى http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="209"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation>خطأ في Dynamic DNS :%1 تم استرجاعه من الخدمة, الرجاء إرسال الخطأ الى http://bugs.qbittorrent.org.</translation>
+        <translation>خطأ في Dynamic DNS %1: تم استرجاعه من الخدمة, الرجاء إرسال تقرير عن الخطأ إلى http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="215"/>
@@ -1010,12 +1010,12 @@ You should get this information from your Web browser preferences.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="128"/>
         <source>The port used for incoming connections must be greater than 1024 and less than 65535.</source>
-        <translation>منفذ الاتصال يجب ان يكون بين 1024 و 65535.</translation>
+        <translation>منفذ الاتصال يجب أن يكون بين 1024 و 65535.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="129"/>
         <source>The port used for the Web UI must be greater than 1024 and less than 65535.</source>
-        <translation>منفذ الاتصال لواجهة الويب يجب ان تكون بين 1024 و 65535.</translation>
+        <translation>منفذ الاتصال لواجهة الويب يجب أن يكون بين 1024 و 65535.</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="130"/>
@@ -1316,12 +1316,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
         <source>Import existing torrent...</source>
-        <translation>استيراد ملف التورنت...</translation>
+        <translation>استيراد تورنت موجود...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="304"/>
         <source>Import torrent...</source>
-        <translation>استيراد ملف التورنت...</translation>
+        <translation>استيراد تورنت...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="309"/>
@@ -1357,13 +1357,13 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.cpp" line="149"/>
         <source>Set the password...</source>
-        <translation>اضبط كلمة السر...</translation>
+        <translation>ضبط كلمة السر...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>إزالة كلمة السر</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1409,12 +1409,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="413"/>
         <source>The UI lock password has been successfully updated</source>
-        <translation>تم تحديث كلمة سر قفل الواجهة</translation>
+        <translation>تم تحديث كلمة سر قفل الواجهة بنجاح</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>هل ترغب حقا في إزالة كلمة السر؟</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -1514,7 +1514,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <location filename="../mainwindow.cpp" line="407"/>
         <location filename="../mainwindow.cpp" line="707"/>
         <source>Invalid password</source>
-        <translation>كلمة سرّ خاطئة</translation>
+        <translation>كلمة سر خاطئة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="707"/>
@@ -1923,7 +1923,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1055"/>
         <source>Port used for incoming connections:</source>
-        <translation>الاتصالات تستمع على المنفذ:</translation>
+        <translation>المنفذ المستخدم للاتصالات الواردة:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1075"/>
@@ -2112,7 +2112,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
         <source>Show qBittorrent in notification area</source>
-        <translation>إظهار كيوبت‎تورنت بجوار الساعة</translation>
+        <translation>إظهار أيقونة كيوبت‎تورنت بجوار الساعة</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="449"/>
@@ -2127,7 +2127,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="462"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>استخدام كيو بت ‎تورنت لفتح الروابط المغناطيسية</translation>
+        <translation>استخدام كيوبت‎تورنت لفتح الروابط المغناطيسية</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="475"/>
@@ -2228,7 +2228,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1107"/>
         <source>Use different port on each startup</source>
-        <translation>استخدام بورت مختلف عند إعادة التشغيل</translation>
+        <translation>استخدام منفذ مختلف عند كل بدء تشغيل</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1233"/>
@@ -2309,7 +2309,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2264"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>بذر التورنتات حتى تصل نسبتهم إلى</translation>
+        <translation>بذر التورنتات حتى تصل نسبتهم</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2296"/>
@@ -2405,7 +2405,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="1340"/>
         <location filename="../preferences/options.ui" line="2375"/>
         <source>Port:</source>
-        <translation>منفذ:</translation>
+        <translation>المنفذ:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="939"/>
@@ -2428,7 +2428,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../preferences/options.ui" line="2597"/>
         <location filename="../preferences/options.ui" line="2679"/>
         <source>Password:</source>
-        <translation>كلمة السرّ:</translation>
+        <translation>كلمة السر:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2129"/>
@@ -2680,7 +2680,7 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../properties/propertieswidget.cpp" line="318"/>
         <location filename="../properties/propertieswidget.cpp" line="319"/>
         <source>this session</source>
-        <translation>هذه الجلسة</translation>
+        <translation>في هذه الجلسة</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="320"/>
@@ -2735,7 +2735,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="506"/>
         <source>Remove Web seed</source>
-        <translation>ازالة رابط القرين عبر الويب</translation>
+        <translation>إزالة رابط القرين عبر الويب</translation>
     </message>
     <message>
         <location filename="../properties/propertieswidget.cpp" line="508"/>
@@ -2853,28 +2853,28 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="515"/>
         <source>DHT support [ON], port: UDP/%1</source>
-        <translation>DHT support [ON], port: UDP/%1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="517"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="521"/>
         <source>DHT support [OFF]</source>
-        <translation>DHT support [OFF]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="525"/>
         <source>PeX support [ON]</source>
-        <translation>PeX support [ON]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="527"/>
         <source>PeX support [OFF]</source>
-        <translation>PeX support [OFF]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="530"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>يجب إعادة تشغيل البرنامج لتفعيل PeX</translation>
+        <translation>يجب إعادة تشغيل البرنامج لدعم PeX</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
@@ -2884,17 +2884,17 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="550"/>
         <source>Encryption support [ON]</source>
-        <translation>التشفير [يعمل]</translation>
+        <translation>دعم التشفير [يعمل]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="555"/>
         <source>Encryption support [FORCED]</source>
-        <translation>التشفير [بالقوة]</translation>
+        <translation>دعم التشفير [بالقوة]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="560"/>
         <source>Encryption support [OFF]</source>
-        <translation>التشفير [متوقف]</translation>
+        <translation>دعم التشفير [متوقف]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="622"/>
@@ -2919,7 +2919,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="683"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>واجهة الويب غير قادرة  على استخدام المنفذ %1</translation>
+        <translation>خطأ في واجهة الويب - لا يمكن ربط واجهة المستخدم على المنفذ %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="829"/>
@@ -2958,13 +2958,13 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1949"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>يحاول كيوبت‎تورنت الاستماع لأي منفذ واجهة: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1975"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>يحاول كيوبت‎تورنت الاستماع لمنفذ الواجهة %1: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2308"/>
@@ -2985,19 +2985,19 @@ Would you like to update qBittorrent to version %1?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2599"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>كيوبت‎تورنت يستمع بنجاح لمنفذ الواجهة %1: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2612"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"/>
+        <translation>فشل كيوبت‎تورنت الاستماع لمنفذ الواجهة %1: TCP/%2. السبب: %3</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"/>
+        <translation>آي بي خارجي: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2891"/>
@@ -3021,12 +3021,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="388"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP support [ON]</translation>
+        <translation>دعم UPnP / NAT-PMP [يعمل]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="391"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP support [OFF]</translation>
+        <translation>دعم UPnP / NAT-PMP [متوقف]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="535"/>
@@ -3060,7 +3060,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1416"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
-        <translation>ملاحظة: تمت إضافة روابط البذور الجديدة إلى ملف التورنت.</translation>
+        <translation>ملاحظة: تمت إضافة روابط البذور الجديدة إلى ملف التورنت الحالي.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1759"/>
@@ -3137,12 +3137,12 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2552"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port mapping failure, message: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2557"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Port mapping successful, message: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2583"/>
@@ -3602,7 +3602,7 @@ Please install it manually.</source>
         <location filename="../searchengine/searchtab.cpp" line="58"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation>محمل</translation>
+        <translation>محمّل</translation>
     </message>
     <message>
         <location filename="../searchengine/searchtab.cpp" line="59"/>
@@ -3638,7 +3638,7 @@ Please install it manually.</source>
         <location filename="../statusbar.h" line="67"/>
         <location filename="../statusbar.h" line="180"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation>لا اتصالات مباشرة. قد يشير هذا إلى وجود مشاكل في إعداد الشبكة.</translation>
+        <translation>لا اتصالات مباشرة. قد يشير ذلك إلى وجود مشاكل في إعداد الشبكة.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="95"/>
@@ -3654,7 +3654,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="160"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation>تم تحديث كيوبت‎تورنت للتو ويحتاج إلى إعادة تشغيل لتصبح التغييرات فعالة.</translation>
+        <translation>تم تحديث كيوبت‎تورنت للتو ويحتاج إلى إعادة تشغيله لتصبح التغييرات فعالة.</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="172"/>
@@ -3823,7 +3823,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentimportdlg.cpp" line="68"/>
         <source>Torrent file to import</source>
-        <translation>اختر ملف تورنت للاستيراد</translation>
+        <translation>اختر ملف تورنت لاستيراده</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="68"/>
@@ -4159,7 +4159,7 @@ Please install it manually.</source>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"/>
+        <translation>التخصيص</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -4362,7 +4362,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="535"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>هل أنت متأكد من رغبتك في اعادة التأكد من الملفات المختارة؟</translation>
+        <translation>هل أنت متأكد من رغبتك في إعادة فحص التورنتات المختارة؟</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="610"/>
@@ -4420,7 +4420,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="675"/>
         <source>Limit share ratio...</source>
-        <translation>نسبة المشاركة...</translation>
+        <translation>حد نسبة المشاركة...</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="677"/>
@@ -4587,12 +4587,12 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.</source>
-        <translation>عميل بت تورنت متقدم مبرمج باستخدام لغة البرمجة ++C ، ومبني على مجموعة أدوات Qt4 و </translation>
+        <translation>عميل بت تورنت متقدم مبرمج باستخدام لغة البرمجة ++C ، ومبني على مجموعة أدوات Qt4 و libtorrent-rasterbar.</translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation>الحقوق محفوظة 2006-2013 مشروع كيو بت تورنت</translation>
+        <translation>الحقوق محفوظة 2006-2013 مشروع كيوبت‎تورنت</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
@@ -4612,7 +4612,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"/>
+        <translation>IRC: #qbittorrent on Freenode</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="82"/>
@@ -4669,7 +4669,7 @@ Please install it manually.</source>
     <message>
         <location filename="../login.ui" line="117"/>
         <source>Password:</source>
-        <translation>كلمة السرّ:</translation>
+        <translation>كلمة السر:</translation>
     </message>
     <message>
         <location filename="../login.ui" line="154"/>
@@ -4745,7 +4745,7 @@ Please install it manually.</source>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="88"/>
         <source>Web seeds urls:</source>
-        <translation>روابط وِب البذور:</translation>
+        <translation>روابط ويب البذور:</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="98"/>
@@ -5142,7 +5142,7 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="398"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1ي %2س</translation>
+        <translation>%1 ي و%2 س</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="236"/>
@@ -5165,7 +5165,7 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="388"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1د</translation>
+        <translation>%1 د</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="243"/>
@@ -5191,7 +5191,7 @@ However, those plugins were disabled.</source>
         <location filename="../webui/btjson.cpp" line="300"/>
         <location filename="../webui/btjson.cpp" line="301"/>
         <source>this session</source>
-        <translation>هذه الجلسة</translation>
+        <translation>في هذه الجلسة</translation>
     </message>
     <message>
         <location filename="../webui/btjson.cpp" line="306"/>
@@ -5224,7 +5224,7 @@ However, those plugins were disabled.</source>
         <location filename="../preferences/options_imp.cpp" line="1152"/>
         <location filename="../preferences/options_imp.cpp" line="1154"/>
         <source>Choose export directory</source>
-        <translation>إختر مكان للتصدير</translation>
+        <translation>اختر مكان للتصدير</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1194"/>
@@ -5376,7 +5376,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"/>
+        <translation>الملفات التالية تدعم المعاينة، من فضلك اختر أحدها:</translation>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>

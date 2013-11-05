@@ -1363,7 +1363,7 @@ Další upozornění již nebudou zobrazena.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Vymazat heslo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1414,7 +1414,7 @@ Chcete asociovat qBittorrent se soubory .torrent a Magnet odkazy?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Opravdu chcete vymazat heslo?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -4087,7 +4087,7 @@ Nainstalujte jej prosím ručně.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="421"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"/>
+        <translation>Vynutit oznámení všem trackerům</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
@@ -4154,13 +4154,13 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"/>
+        <translation>Stahuji metadata</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"/>
+        <translation>Přiděluji místo</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -4195,13 +4195,13 @@ Nainstalujte jej prosím ručně.</translation>
         <location filename="../transferlistdelegate.h" line="120"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="unfinished"/>
+        <translation>Ve frontě pro haš</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="123"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"/>
+        <translation>Kontroluji data rychlého obnovení</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="137"/>

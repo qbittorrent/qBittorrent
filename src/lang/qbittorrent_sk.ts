@@ -1364,7 +1364,7 @@ Už vás nebudeme ďalej upozorňovať.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistiť heslo?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1415,7 +1415,7 @@ Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Ste si istý, že chcete vyčistiť heslo?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>

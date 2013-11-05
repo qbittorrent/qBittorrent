@@ -1363,7 +1363,7 @@ Không có phần ghi chú nào về tính pháp lý về vấn đề nội dung
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Xóa phần mật khẩu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1414,7 +1414,7 @@ Bạn có muốn qBittorrent đảm nhiệm mặc định cho thao tác mở cá
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Bạn có chắc bạn muốn xóa đi phần mật khẩu?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>

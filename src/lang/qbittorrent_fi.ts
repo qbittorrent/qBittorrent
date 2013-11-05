@@ -799,7 +799,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="274"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished"/>
+        <translation>Etäsisällön käyttö estettiin (401)</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="276"/>
@@ -814,7 +814,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="280"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished"/>
+        <translation>Etäpalvelin vaatii tunnistautumisen sisällön jakamista varten, mutta annettua käyttäjätunnusta ja salanaa ei hyväksytty</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="282"/>
@@ -839,7 +839,7 @@ Sinun pitäisi löytää nämä tiedot web-selaimesi asetuksista.</translation>
     <message>
         <location filename="../downloadthread.cpp" line="290"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished"/>
+        <translation>Havaittiin etäsisältöön liittyvä tuntematon virhe</translation>
     </message>
     <message>
         <location filename="../downloadthread.cpp" line="292"/>
@@ -1363,7 +1363,7 @@ Muita varoituksia ei anneta.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Tyhjennä salasana</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1414,7 +1414,7 @@ Haluatko määrittää torrent-tiedostot ja Magnet-linkit qBittorrentille?</tran
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti tyhjentää salasanan?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -1460,12 +1460,12 @@ Haluatko määrittää torrent-tiedostot ja Magnet-linkit qBittorrentille?</tran
     <message>
         <location filename="../mainwindow.cpp" line="608"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Rekursiivinen latausvahvistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="608"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
-        <translation type="unfinished"/>
+        <translation>Torrent %1 sisältää torrent-tiedostoja, haluatko jatkaa niiden lataamisella?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="609"/>
@@ -1492,7 +1492,7 @@ Haluatko määrittää torrent-tiedostot ja Magnet-linkit qBittorrentille?</tran
     <message>
         <location filename="../mainwindow.cpp" line="625"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
-        <translation type="unfinished"/>
+        <translation>Tiedoston lataaminen epäonnistui osoitteesta: %1, syy: %2.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="636"/>
@@ -2224,7 +2224,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1097"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"/>
+        <translation>Käytä UPnP-/NAT-PMP-portinohjausta reitittimeltä</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1107"/>
@@ -2239,7 +2239,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1368"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"/>
+        <translation>Muussa tapauksessa välityspalvelinta käytetään vain seurantapalvelimen yhteyksiin</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1371"/>
@@ -2280,7 +2280,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1953"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"/>
+        <translation>Käytä DHT:tä (hajautettua verkkoa) useampien vertaisten löytämiseen</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1962"/>
@@ -2290,7 +2290,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../preferences/options.ui" line="2026"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"/>
+        <translation>Käytä PeX:tä useampien vertaisten löytämiseen</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2036"/>
@@ -2834,7 +2834,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="397"/>
         <source>HTTP user agent is %1</source>
-        <translation type="unfinished"/>
+        <translation>HTTP-käyttäjätunniste (user agent) on %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="424"/>
@@ -2875,7 +2875,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="530"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"/>
+        <translation>PeX-tuen ottaminen tai poistaminen käytöstä vaatii uudelleenkäynnistyksen</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="538"/>
@@ -2998,7 +2998,7 @@ Haluatko päivittää qBittorrentin versioon %1?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2642"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"/>
+        <translation>Ulkoinen IP-osoite: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2891"/>
@@ -3841,12 +3841,12 @@ Asenna se itse.</translation>
         <location filename="../torrentimportdlg.cpp" line="95"/>
         <source>Please provide the location of %1</source>
         <comment>%1 is a file name</comment>
-        <translation type="unfinished"/>
+        <translation>Määritä tiedoston %1 sijainti</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="130"/>
         <source>Please point to the location of the torrent: %1</source>
-        <translation type="unfinished"/>
+        <translation>Määritä torrentin sijainti: %1</translation>
     </message>
     <message>
         <location filename="../torrentimportdlg.cpp" line="235"/>

@@ -354,7 +354,7 @@
         <location filename="../preferences/advancedsettings.h" line="190"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation type="unfinished"/>
+        <translation>с</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="191"/>

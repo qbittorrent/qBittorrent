@@ -658,7 +658,7 @@
     <message>
         <location filename="../rss/cookiesdlg.ui" line="14"/>
         <source>Cookies management</source>
-        <translation>Administare cookiuri</translation>
+        <translation>Administrare cookie-uri</translation>
     </message>
     <message>
         <location filename="../rss/cookiesdlg.ui" line="36"/>
@@ -1363,7 +1363,7 @@ Nu vor mai fi emise alte anunțuri.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Înlătură parola</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1414,7 +1414,7 @@ Doriți să asociați qBittorrent fișierelor torent și legăturilor magnet?</t
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Sunteți sigur că doriți înlăturarea parolei?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -3270,7 +3270,7 @@ p, li { spațiu-alb: pre-wrap; }
     <message>
         <location filename="../rss/rss.ui" line="223"/>
         <source>Manage cookies...</source>
-        <translation>Administrează cokiurile...</translation>
+        <translation>Administrează cookie-urile...</translation>
     </message>
     <message>
         <location filename="../rss/rss.ui" line="63"/>
@@ -4087,7 +4087,7 @@ Instalați manual.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="421"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"/>
+        <translation>Forțează reanunțarea tuturor tracker-elor</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
@@ -4154,13 +4154,13 @@ Instalați manual.</translation>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"/>
+        <translation>Se descarcă metainformația</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"/>
+        <translation>Se alocă</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="102"/>
@@ -4195,13 +4195,13 @@ Instalați manual.</translation>
         <location filename="../transferlistdelegate.h" line="120"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="unfinished"/>
+        <translation>În coadă pentru verificare</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="123"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"/>
+        <translation>Verific reluarea datelor</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="137"/>

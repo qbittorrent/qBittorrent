@@ -2153,7 +2153,7 @@ Nahi duzu qBittorrent %1 bertsiora eguneratzea?</translation>
     <message>
         <location filename="../preferences/options.ui" line="586"/>
         <source>Save files to location:</source>
-        <translation>Gorde agirak kokalekuan:</translation>
+        <translation>Gorde agiriak kokaleku honetan:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="634"/>
