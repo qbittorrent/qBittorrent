@@ -35,7 +35,6 @@
 void HttpResponseGenerator::setMessage(const QByteArray& message)
 {
   m_message = message;
-  setContentLength(message.size());
 }
 
 void HttpResponseGenerator::setMessage(const QString& message)
@@ -113,7 +112,7 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
 
   if (deflate_res != Z_STREAM_END)
     return false;
-  dest_buffer.append(tmp_buf, BUFSIZE);
+  dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
   deflateEnd(&strm);
 
   return true;
@@ -123,10 +122,11 @@ QByteArray HttpResponseGenerator::toByteArray() {
   if (m_gzip) {
     QByteArray dest_buf;
     if (gCompress(dest_buf)) {
-      setValue("Content-Encoding", "gzip");
+      setValue("content-encoding", "gzip");
       m_message.swap(dest_buf);
     }
   }
 
+  setContentLength(m_message.size());
   return QHttpResponseHeader::toString().toUtf8() + m_message;
 }
