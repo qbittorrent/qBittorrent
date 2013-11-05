@@ -1146,13 +1146,13 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
 void options_imp::on_browseExportDirButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDir->text());
   if (!newExportDir.isNull())
-    textExportDir->setText(fsutils::toDisplayPath(newExportDir));
+    textExportDir->setText(fsutils::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseExportDirFinButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDirFin->text());
   if (!newExportDir.isNull())
-    textExportDirFin->setText(fsutils::toDisplayPath(newExportDir));
+    textExportDirFin->setText(fsutils::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseFilterButton_clicked() {

@@ -1201,9 +1201,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
       addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(from_url));
   }else{
     if (fastResume)
-      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(fsutils::toDisplayPath(path)));
+      addConsoleMessage(tr("'%1' resumed. (fast resume)", "'/home/y/xxx.torrent' was resumed. (fast resume)").arg(fsutils::toNativePath(path)));
     else
-      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(fsutils::toDisplayPath(path)));
+      addConsoleMessage(tr("'%1' added to download list.", "'/home/y/xxx.torrent' was added to download list.").arg(fsutils::toNativePath(path)));
   }
 
   // Send torrent addition signal
@@ -1783,7 +1783,7 @@ void QBtSession::setDefaultTempPath(const QString &temppath) {
       if (!h.is_valid()) continue;
       if (!h.is_seed()) {
         QString torrent_tmp_path = QDir::fromNativeSeparators(temppath);
-        qDebug("Moving torrent to its temp save path: %s", qPrintable(fsutils::toDisplayPath(torrent_tmp_path)));
+        qDebug("Moving torrent to its temp save path: %s", qPrintable(fsutils::toNativePath(torrent_tmp_path)));
         h.move_storage(torrent_tmp_path);
       }
     }

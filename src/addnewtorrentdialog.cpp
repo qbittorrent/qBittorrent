@@ -68,7 +68,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   QIniSettings settings;
   Preferences pref;
   ui->start_torrent_cb->setChecked(!pref.addTorrentsInPause());
-  ui->save_path_combo->addItem(fsutils::toDisplayPath(pref.getSavePath()), pref.getSavePath());
+  ui->save_path_combo->addItem(fsutils::toNativePath(pref.getSavePath()), pref.getSavePath());
   loadSavePathHistory();
   ui->save_path_combo->insertSeparator(ui->save_path_combo->count());
   ui->save_path_combo->addItem(tr("Other...", "Other save path..."));
@@ -242,7 +242,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     // Update save paths (append file name to them)
     QString single_file_relpath = misc::toQStringU(fs.file_path(0));
     for (int i=0; i<ui->save_path_combo->count()-1; ++i) {
-      ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
+      ui->save_path_combo->setItemText(i, fsutils::toNativePath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
     }
   }
 
@@ -326,7 +326,7 @@ void AddNewTorrentDialog::updateFileNameInSavePaths(const QString &new_filename)
 {
   for(int i=0; i<ui->save_path_combo->count()-1; ++i) {
     const QDir folder(ui->save_path_combo->itemData(i).toString());
-    ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(folder.absoluteFilePath(new_filename)));
+    ui->save_path_combo->setItemText(i, fsutils::toNativePath(folder.absoluteFilePath(new_filename)));
   }
 }
 
@@ -383,9 +383,9 @@ void AddNewTorrentDialog::onSavePathChanged(int index)
       else {
         // New path, prepend to combo box
         if (!new_filename.isEmpty())
-          ui->save_path_combo->insertItem(0, fsutils::toDisplayPath(QDir(new_path).absoluteFilePath(new_filename)), new_path);
+          ui->save_path_combo->insertItem(0, fsutils::toNativePath(QDir(new_path).absoluteFilePath(new_filename)), new_path);
         else
-          ui->save_path_combo->insertItem(0, fsutils::toDisplayPath(new_path), new_path);
+          ui->save_path_combo->insertItem(0, fsutils::toNativePath(new_path), new_path);
         ui->save_path_combo->setCurrentIndex(0);
       }
       // Update file name in all save_paths
@@ -543,7 +543,7 @@ void AddNewTorrentDialog::loadSavePathHistory()
   QStringList raw_path_history = settings.value("TorrentAdditionDlg/save_path_history").toStringList();
   foreach (const QString &sp, raw_path_history) {
     if (QDir(sp) != default_save_path)
-      ui->save_path_combo->addItem(fsutils::toDisplayPath(sp), sp);
+      ui->save_path_combo->addItem(fsutils::toNativePath(sp), sp);
   }
 }
 
@@ -696,7 +696,7 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
       // Update save paths (append file name to them)
       QString single_file_relpath = misc::toQStringU(fs.file_path(0));
       for (int i=0; i<ui->save_path_combo->count()-1; ++i) {
-        ui->save_path_combo->setItemText(i, fsutils::toDisplayPath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
+        ui->save_path_combo->setItemText(i, fsutils::toNativePath(QDir(ui->save_path_combo->itemText(i)).absoluteFilePath(single_file_relpath)));
       }
     }
 
