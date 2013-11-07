@@ -157,7 +157,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabOptionPage1">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -177,8 +177,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>458</width>
-             <height>587</height>
+             <width>401</width>
+             <height>668</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -515,9 +515,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>458</width>
-             <height>905</height>
+             <y>-296</y>
+             <width>475</width>
+             <height>1113</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -703,11 +703,41 @@
                  <property name="title">
                   <string>Automatically add torrents from:</string>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_38">
+                 <layout class="QGridLayout" name="gridLayout_16">
                   <property name="bottomMargin">
                    <number>9</number>
                   </property>
-                  <item>
+                  <item row="1" column="1">
+                   <widget class="QPushButton" name="removeScanFolderButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Remove folder</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QPushButton" name="addScanFolderButton">
+                    <property name="text">
+                     <string>Add folder...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <spacer name="horizontalSpacer_16">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="3" column="0" colspan="3">
                    <layout class="QHBoxLayout" name="horizontalLayout_16">
                     <item>
                      <widget class="QTableView" name="scanFoldersView">
@@ -720,7 +750,7 @@
                       <property name="minimumSize">
                        <size>
                         <width>250</width>
-                        <height>75</height>
+                        <height>150</height>
                        </size>
                       </property>
                       <property name="selectionMode">
@@ -728,6 +758,12 @@
                       </property>
                       <property name="selectionBehavior">
                        <enum>QAbstractItemView::SelectRows</enum>
+                      </property>
+                      <property name="verticalScrollMode">
+                       <enum>QAbstractItemView::ScrollPerPixel</enum>
+                      </property>
+                      <property name="horizontalScrollMode">
+                       <enum>QAbstractItemView::ScrollPerPixel</enum>
                       </property>
                       <property name="showGrid">
                        <bool>false</bool>
@@ -747,41 +783,10 @@
                       <attribute name="verticalHeaderVisible">
                        <bool>false</bool>
                       </attribute>
+                      <attribute name="verticalHeaderMinimumSectionSize">
+                       <number>30</number>
+                      </attribute>
                      </widget>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_37">
-                      <item>
-                       <widget class="QPushButton" name="addScanFolderButton">
-                        <property name="text">
-                         <string>Add folder...</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="removeScanFolderButton">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="text">
-                         <string>Remove folder</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="verticalSpacer_6">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
                     </item>
                    </layout>
                   </item>
@@ -1034,8 +1039,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>357</width>
-             <height>498</height>
+             <width>431</width>
+             <height>564</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1518,8 +1523,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>275</width>
-             <height>396</height>
+             <width>376</width>
+             <height>440</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1936,8 +1941,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>418</width>
-             <height>442</height>
+             <width>515</width>
+             <height>500</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2350,8 +2355,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>330</width>
-             <height>480</height>
+             <width>409</width>
+             <height>535</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2727,8 +2732,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>64</width>
+             <height>18</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>

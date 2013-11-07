@@ -307,6 +307,14 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/ScanDirs"), dirs);
   }
 
+  void setDownloadPathsInScanDir(const QStringList &downloadpaths) {
+    setValue(QString::fromUtf8("Preferences/Downloads/DownloadPaths"), downloadpaths);
+  }
+
+  QStringList getDownloadPathsInScanDir() const {
+    return value(QString::fromUtf8("Preferences/Downloads/DownloadPaths"), QStringList()).toStringList();
+  }
+
   QList<bool> getDownloadInScanDirs() const {
     return misc::boolListfromStringList(value(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs")).toStringList());
   }

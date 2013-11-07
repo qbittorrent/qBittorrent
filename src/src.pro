@@ -149,7 +149,9 @@ nox {
               updownratiodlg.h \
               loglistwidget.h \
               addnewtorrentdialog.h \
-              autoexpandabledialog.h
+              autoexpandabledialog.h \
+              utils_log.h \
+              utils_time.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
