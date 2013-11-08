@@ -30,7 +30,7 @@ import re
 from helpers import retrieve_url, download_file
 
 class isohunt(object):
-	url = 'https://isohunt.com'
+	url = 'https://isohunt.to'
 	name = 'isoHunt'
 	supported_categories = {'all': '', 'movies': '1', 'tv': '3', 'music': '2', 'games': '4', 'anime': '7', 'software': '5', 'pictures': '6', 'books': '9'}
 
