@@ -33,7 +33,7 @@ from helpers import retrieve_url, download_file
 PREVIOUS_IDS = set()
 
 class piratebay(object):
-	url = 'https://thepiratebay.se'
+	url = 'https://thepiratebay.sx'
 	name = 'The Pirate Bay'
 	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
 
