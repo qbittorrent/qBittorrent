@@ -75,6 +75,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
   m_proxyModel = new PeerListSortModel();
   m_proxyModel->setDynamicSortFilter(true);
   m_proxyModel->setSourceModel(m_listModel);
+  m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
   setModel(m_proxyModel);
   //Explicitly set the column visibility. When columns are added/removed
   //between versions this prevents some of them being hidden due to
