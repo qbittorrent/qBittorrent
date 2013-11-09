@@ -63,7 +63,7 @@ public:
 
   void setValue(const QString &key, const QVariant &val) {
     QString key_tmp(key);
-    if (format() == QSettings::NativeFormat)
+    if (format() == QSettings::NativeFormat) // Using registry, don't touch replace here
       key_tmp.replace("\\", "/");
     QSettings::setValue(key_tmp, val);
   }
