@@ -119,7 +119,7 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
 }
 
 QByteArray HttpResponseGenerator::toByteArray() {
-  if (m_gzip) {
+  if (m_gzip && m_message.size() > 0) {// prevents writing a useless and wasteful header
     QByteArray dest_buf;
     if (gCompress(dest_buf)) {
       setValue("content-encoding", "gzip");
