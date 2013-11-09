@@ -290,27 +290,6 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
         return QVariant();
       }
     }
-    if (role == Qt::TextAlignmentRole) {
-      switch(section) {
-      case TorrentModelItem::TR_PRIORITY:
-      case TorrentModelItem::TR_SIZE:
-      case TorrentModelItem::TR_SEEDS:
-      case TorrentModelItem::TR_PEERS:
-      case TorrentModelItem::TR_DLSPEED:
-      case TorrentModelItem::TR_UPSPEED:
-      case TorrentModelItem::TR_RATIO:
-      case TorrentModelItem::TR_DLLIMIT:
-      case TorrentModelItem::TR_UPLIMIT:
-      case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
-      case TorrentModelItem::TR_AMOUNT_UPLOADED:
-      case TorrentModelItem::TR_AMOUNT_LEFT:
-        return Qt::AlignRight;
-      case TorrentModelItem::TR_PROGRESS:
-        return Qt::AlignHCenter;
-      default:
-        return Qt::AlignLeft;
-      }
-    }
   }
 
   return QVariant();
