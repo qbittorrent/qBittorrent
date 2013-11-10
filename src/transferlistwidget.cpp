@@ -177,7 +177,7 @@ TorrentModel* TransferListWidget::getSourceModel() const {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
-  QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
+  openUrl(filePath);
 }
 
 void TransferListWidget::setRefreshInterval(int t) {
@@ -235,8 +235,8 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     }
     break;
   case OPEN_DEST:
-    QDesktopServices::openUrl(QUrl::fromLocalFile(h.root_path()));
-    break;
+    const QString path = h.root_path();
+    openUrl(path);
   }
 }
 
@@ -439,7 +439,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
       qDebug("Opening path at %s", qPrintable(rootFolder));
       if (!pathsList.contains(rootFolder)) {
         pathsList.insert(rootFolder);
-        QDesktopServices::openUrl(QUrl::fromLocalFile(rootFolder));
+        openUrl(rootFolder);
       }
     }
   }
@@ -642,6 +642,13 @@ void TransferListWidget::askNewLabelForSelection() {
       }
     }
   }while(invalid);
+}
+
+bool TransferListWidget::openUrl(const QString &_path) const {
+  const QString path = fsutils::fromNativePath(_path);
+  // Hack to access samba shares with QDesktopServices::openUrl
+  const QString p = path.startsWith("//") ? QString("file:") + path : path;
+  return QDesktopServices::openUrl(QUrl::fromLocalFile(p));
 }
 
 void TransferListWidget::renameSelectedTorrent() {
