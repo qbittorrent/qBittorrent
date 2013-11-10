@@ -116,6 +116,9 @@ private:
   QShortcut *editHotkeyFile;
   QShortcut *editHotkeyWeb;
   QShortcut *deleteHotkeyWeb;
+
+private slots:
+  void filterText(const QString& filter);
 };
 
 #endif // PROPERTIESWIDGET_H

@@ -79,7 +79,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   filesList->setSortingEnabled(true);
   // Torrent content filtering
   m_contentFilerLine = new LineEdit(this);
-  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), PropListModel, SLOT(setFilterFixedString(QString)));
+  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
   contentFilterLayout->insertWidget(1, m_contentFilerLine);
 
   // SIGNAL/SLOTS
@@ -731,4 +731,14 @@ void PropertiesWidget::filteredFilesChanged() {
   if (h.is_valid()) {
     applyPriorities();
   }
+}
+
+void PropertiesWidget::filterText(const QString& filter) {
+  PropListModel->setFilterFixedString(filter);
+  if (filter.isEmpty()) {
+    filesList->collapseAll();
+    filesList->expand(PropListModel->index(0, 0));
+  }
+  else
+    filesList->expandAll();
 }
