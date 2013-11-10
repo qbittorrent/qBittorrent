@@ -220,7 +220,7 @@ QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
 
 void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
   if (h.is_valid() && h == _h) {
-    save_path->setText(h.save_path_parsed());
+    save_path->setText(fsutils::toNativePath(h.save_path_parsed()));
   }
 }
 
@@ -414,7 +414,7 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
     int i = PropListModel->getFileIndex(index);
     const QDir saveDir(h.save_path());
     const QString filename = h.filepath_at(i);
-    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open file at %s", qPrintable(file_path));
     // Flush data
     h.flush_cache();
@@ -433,8 +433,8 @@ void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
       parent = PropListModel->parent(parent);
     }
     const QDir saveDir(h.save_path());
-    const QString filename = path_items.join(QDir::separator());
-    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+    const QString filename = path_items.join("/");
+    const QString file_path = fsutils::expandPath(saveDir.absoluteFilePath(filename));
     qDebug("Trying to open folder at %s", qPrintable(file_path));
     // Flush data
     h.flush_cache();
@@ -541,7 +541,7 @@ void PropertiesWidget::renameSelectedFile() {
       // File renaming
       const int file_index = PropListModel->getFileIndex(index);
       if (!h.is_valid() || !h.has_metadata()) return;
-      QString old_name = h.filepath_at(file_index).replace("\\", "/");
+      QString old_name = h.filepath_at(file_index);
       if (old_name.endsWith(".!qB") && !new_name_last.endsWith(".!qB")) {
         new_name_last += ".!qB";
       }
@@ -553,7 +553,7 @@ void PropertiesWidget::renameSelectedFile() {
         qDebug("Name did not change");
         return;
       }
-      new_name = QDir::cleanPath(new_name);
+      new_name = fsutils::expandPathAbs(new_name);
       // Check if that name is already used
       for (int i=0; i<h.num_files(); ++i) {
         if (i == file_index) continue;
@@ -569,7 +569,7 @@ void PropertiesWidget::renameSelectedFile() {
           return;
         }
       }
-      const bool force_recheck = QFile::exists(h.save_path()+QDir::separator()+new_name);
+      const bool force_recheck = QFile::exists(h.save_path()+"/"+new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
       h.rename_file(file_index, new_name);
       // Force recheck
@@ -616,7 +616,7 @@ void PropertiesWidget::renameSelectedFile() {
           new_name.replace(0, old_path.length(), new_path);
           if (!force_recheck && QDir(h.save_path()).exists(new_name))
             force_recheck = true;
-          new_name = QDir::cleanPath(new_name);
+          new_name = fsutils::expandPathAbs(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
           h.rename_file(i, new_name);
         }

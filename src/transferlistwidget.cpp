@@ -260,7 +260,7 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   if (!dir.isNull()) {
     qDebug("New path is %s", qPrintable(dir));
     // Check if savePath exists
-    QDir savePath(fsutils::expandPath(dir));
+    QDir savePath(fsutils::expandPathAbs(dir));
     qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
     foreach (const QString & hash, hashes) {
       // Actually move storage

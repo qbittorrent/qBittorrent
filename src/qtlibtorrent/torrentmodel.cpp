@@ -33,6 +33,7 @@
 #include "torrentmodel.h"
 #include "torrentpersistentdata.h"
 #include "qbtsession.h"
+#include "fs_utils.h"
 
 using namespace libtorrent;
 
@@ -215,7 +216,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_TIME_ELAPSED:
     return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
   case TR_SAVE_PATH:
-    return m_torrent.save_path_parsed();
+    return fsutils::toNativePath(m_torrent.save_path_parsed());
   default:
     return QVariant();
   }

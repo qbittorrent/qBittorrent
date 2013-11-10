@@ -30,6 +30,7 @@
 
 #include "iconprovider.h"
 #include "misc.h"
+#include "fs_utils.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
 #include "torrentcontentmodelfolder.h"
@@ -283,9 +284,9 @@ void TorrentContentModel::setupModelData(const libtorrent::torrent_info& t)
   for (int i = 0; i < t.num_files(); ++i) {
     const libtorrent::file_entry& fentry = t.file_at(i);
     current_parent = m_rootItem;
-    QString path = misc::toQStringU(fentry.path);
+    QString path = fsutils::fromNativePath(misc::toQStringU(fentry.path));
     // Iterate of parts of the path to create necessary folders
-    QStringList pathFolders = path.split(QRegExp("[/\\\\]"), QString::SkipEmptyParts);
+    QStringList pathFolders = path.split("/", QString::SkipEmptyParts);
     pathFolders.removeLast();
     foreach (const QString& pathPart, pathFolders) {
       if (pathPart == ".unwanted")
