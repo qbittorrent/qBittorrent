@@ -18,20 +18,20 @@ QT_END_NAMESPACE
 
 class LineEdit : public QLineEdit
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	LineEdit(QWidget *parent = 0);
+  LineEdit(QWidget *parent = 0);
 
 protected:
-	void resizeEvent(QResizeEvent *);
+  void resizeEvent(QResizeEvent *);
 
 private slots:
-	void updateCloseButton(const QString &text);
+  void updateCloseButton(const QString &text);
 
 private:
-	QToolButton *clearButton;
-        QToolButton *searchButton;
+  QToolButton *clearButton;
+  QToolButton *searchButton;
 };
 
 #endif // LIENEDIT_H
