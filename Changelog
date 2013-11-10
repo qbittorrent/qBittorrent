@@ -3,6 +3,8 @@
     - BUGFIX: Fix build system for Unix/Linux. (sledgehammer999)
     - BUGFIX: Case insensitive sort in Peers list. Closes #1066. (sledgehammer999)
     - BUGFIX: Small optimization of WebUI responses when there isn't a data payload. (sledgehammer999)
+    - BUGFIX: Hide empty folders after filtering. Closes #74. (sledgehammer999)
+    - BUGFIX: Expand folders when filtering files. Closes #1076. (sledgehammer999)
     
 * Tue Nov 05 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.2
     - BUGFIX: Fix WebUI gzip compression. Closes #1037. (sledgehammer999)
