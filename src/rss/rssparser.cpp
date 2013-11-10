@@ -214,7 +214,7 @@ void RssParser::parseRssFile(const QString& feedUrl, const QString& filePath)
 {
   qDebug() << Q_FUNC_INFO << feedUrl << filePath;
   m_mutex.lock();
-  ParsingJob job = {feedUrl, filePath};
+  ParsingJob job = { feedUrl, fsutils::fromNativePath(filePath) };
   m_queue.enqueue(job);
   // Wake up thread.
   if (m_queue.count() == 1) {
