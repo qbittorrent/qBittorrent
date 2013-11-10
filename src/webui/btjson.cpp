@@ -32,6 +32,7 @@
 #include "jsondict.h"
 #include "jsonlist.h"
 #include "misc.h"
+#include "fs_utils.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 
@@ -287,9 +288,9 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
       return QString();
 
     // Save path
-    QString save_path = TorrentPersistentData::getSavePath(hash);
+    QString save_path = fsutils::toNativePath(TorrentPersistentData::getSavePath(hash));
     if (save_path.isEmpty())
-      save_path = h.save_path();
+      save_path = fsutils::toNativePath(h.save_path());
     data.add(KEY_PROP_SAVE_PATH, save_path);
     data.add(KEY_PROP_CREATION_DATE, h.creation_date());
     data.add(KEY_PROP_PIECE_SIZE, misc::friendlyUnit(h.piece_length()));
@@ -341,7 +342,7 @@ QString btjson::getFilesForTorrent(const QString& hash)
       QString fileName = h.filename_at(i);
       if (fileName.endsWith(".!qB", Qt::CaseInsensitive))
         fileName.chop(4);
-      file_dict.add(KEY_FILE_NAME, fileName);
+      file_dict.add(KEY_FILE_NAME, fsutils::toNativePath(fileName));
       const size_type size = h.filesize_at(i);
       file_dict.add(KEY_FILE_SIZE, misc::friendlyUnit(size));
       file_dict.add(KEY_FILE_PROGRESS, (size > 0) ? (fp[i] / (double) size) : 1.);

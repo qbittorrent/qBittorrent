@@ -53,17 +53,21 @@ QString prefjson::getPreferences()
   // UI
   data.add("locale", pref.getLocale());
   // Downloads
-  data.add("save_path", pref.getSavePath());
+  data.add("save_path", fsutils::toNativePath(pref.getSavePath()));
   data.add("temp_path_enabled", pref.isTempPathEnabled());
-  data.add("temp_path", pref.getTempPath());
-  data.add("scan_dirs", pref.getScanDirs());
+  data.add("temp_path", fsutils::toNativePath(pref.getTempPath()));
+  QStringList l;
+  foreach (const QString& s, pref.getScanDirs()) {
+    l << fsutils::toNativePath(s);
+  }
+  data.add("scan_dirs", l);
   QVariantList var_list;
   foreach (bool b, pref.getDownloadInScanDirs()) {
     var_list << b;
   }
   data.add("download_in_scan_dirs", var_list);
   data.add("export_dir_enabled", pref.isTorrentExportEnabled());
-  data.add("export_dir", pref.getTorrentExportDir());
+  data.add("export_dir", fsutils::toNativePath(pref.getTorrentExportDir()));
   data.add("mail_notification_enabled", pref.isMailNotificationEnabled());
   data.add("mail_notification_email", pref.getMailNotificationEmail());
   data.add("mail_notification_smtp", pref.getMailNotificationSMTP());
@@ -72,7 +76,7 @@ QString prefjson::getPreferences()
   data.add("mail_notification_username", pref.getMailNotificationSMTPUsername());
   data.add("mail_notification_password", pref.getMailNotificationSMTPPassword());
   data.add("autorun_enabled", pref.isAutoRunEnabled());
-  data.add("autorun_program", pref.getAutoRunProgram());
+  data.add("autorun_program", fsutils::toNativePath(pref.getAutoRunProgram()));
   data.add("preallocate_all", pref.preAllocateAllFiles());
   data.add("queueing_enabled", pref.isQueueingSystemEnabled());
   data.add("max_active_downloads", pref.getMaxActiveDownloads());
@@ -119,7 +123,7 @@ QString prefjson::getPreferences()
   data.add("proxy_password", pref.getProxyPassword());
   // IP Filter
   data.add("ip_filter_enabled", pref.isFilteringEnabled());
-  data.add("ip_filter_path", pref.getFilter());
+  data.add("ip_filter_path", fsutils::toNativePath(pref.getFilter()));
   // Web UI
   data.add("web_ui_port", pref.getWebUiPort());
   data.add("web_ui_username", pref.getWebUiUsername());
@@ -186,7 +190,7 @@ void prefjson::setPreferences(const QString& json)
       foreach (const QString &new_folder, new_folders) {
         qDebug("New watched folder: %s", qPrintable(new_folder));
         // Update new folders
-        if (!old_folders.contains(new_folder)) {
+        if (!old_folders.contains(fsutils::fromNativePath(new_folder))) {
           QBtSession::instance()->getScanFoldersModel()->addPath(new_folder, download_at_path.at(i));
         }
         ++i;
