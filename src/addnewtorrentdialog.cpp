@@ -192,7 +192,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
   m_hasMetadata = true;
 
   try {
-    m_torrentInfo = new torrent_info(m_filePath.toUtf8().data());
+    m_torrentInfo = new torrent_info(fsutils::toNativePath(m_filePath).toUtf8().data());
     m_hash = misc::toQString(m_torrentInfo->info_hash());
   } catch(const std::exception& e) {
     QMessageBox::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
@@ -281,9 +281,8 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   // Set dialog position
   setdialogPosition();
 
-  Preferences pref;
   // Override save path
-  TorrentTempData::setSavePath(m_hash, QString(QDir::tempPath() + QDir::separator() + m_hash).replace("\\", "/"));
+  TorrentTempData::setSavePath(m_hash, QString(QDir::tempPath() + "/" + m_hash));
   HiddenData::addData(m_hash);
   QBtSession::instance()->addMagnetUri(m_url, false);
   setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
@@ -440,8 +439,7 @@ void AddNewTorrentDialog::renameSelectedFile()
     if (m_contentModel->itemType(index) == TorrentContentModelItem::FileType) {
       // File renaming
       const int file_index = m_contentModel->getFileIndex(index);
-      QString old_name = m_filesPath.at(file_index);
-      old_name.replace("\\", "/");
+      QString old_name = fsutils::fromNativePath(m_filesPath.at(file_index));
       qDebug("Old name: %s", qPrintable(old_name));
       QStringList path_items = old_name.split("/");
       path_items.removeLast();
@@ -451,7 +449,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         qDebug("Name did not change");
         return;
       }
-      new_name = QDir::cleanPath(new_name);
+      new_name = fsutils::expandPathAbs(new_name);
       qDebug("New name: %s", qPrintable(new_name));
       // Check if that name is already used
       for (int i=0; i<m_torrentInfo->num_files(); ++i) {
@@ -464,7 +462,6 @@ void AddNewTorrentDialog::renameSelectedFile()
           return;
         }
       }
-      new_name = QDir::cleanPath(new_name);
       qDebug("Renaming %s to %s", qPrintable(old_name), qPrintable(new_name));
       // Rename file in files_path
       m_filesPath.replace(file_index, new_name);
@@ -505,7 +502,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
           new_name.replace(0, old_path.length(), new_path);
-          new_name = QDir::cleanPath(new_name);
+          new_name = fsutils::expandPathAbs(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
           // Rename in files_path
           m_filesPath.replace(i, new_name);

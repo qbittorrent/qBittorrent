@@ -59,8 +59,8 @@ bool file_filter(std::string const& f)
 
 void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size)
 {
-  input_path = _input_path;
-  save_path = _save_path;
+  input_path = fsutils::fromNativePath(_input_path);
+  save_path = fsutils::fromNativePath(_save_path);
   if (QFile(save_path).exists())
     fsutils::forceRemove(save_path);
   trackers = _trackers;
@@ -86,7 +86,7 @@ void TorrentCreatorThread::run() {
   try {
     file_storage fs;
     // Adding files to the torrent
-    libtorrent::add_files(fs, input_path.toUtf8().constData(), file_filter);
+    libtorrent::add_files(fs, fsutils::toNativePath(input_path).toUtf8().constData(), file_filter);
     if (abort) return;
     create_torrent t(fs, piece_size);
 
@@ -109,8 +109,8 @@ void TorrentCreatorThread::run() {
     }
     if (abort) return;
     // calculate the hash for all pieces
-    const QString parent_path = fsutils::branchPath(input_path) + QDir::separator();
-    set_piece_hashes(t, parent_path.toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
+    const QString parent_path = fsutils::branchPath(input_path) + "/";
+    set_piece_hashes(t, fsutils::toNativePath(parent_path).toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
     t.set_creator(creator_str.toUtf8().constData());
@@ -122,12 +122,12 @@ void TorrentCreatorThread::run() {
     qDebug("Saving to %s", qPrintable(save_path));
 #ifdef _MSC_VER
     wchar_t *wsave_path = new wchar_t[save_path.length()+1];
-    int len = save_path.toWCharArray(wsave_path);
+    int len = fsutils::toNativePath(save_path).toWCharArray(wsave_path);
     wsave_path[len] = '\0';
     std::ofstream outfile(wsave_path, std::ios_base::out|std::ios_base::binary);
     delete[] wsave_path;
 #else
-    std::ofstream outfile(save_path.toLocal8Bit().constData(), std::ios_base::out|std::ios_base::binary);
+    std::ofstream outfile(fsutils::toNativePath(save_path).toLocal8Bit().constData(), std::ios_base::out|std::ios_base::binary);
 #endif
     if (outfile.fail())
       throw std::exception();
