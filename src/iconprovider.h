@@ -36,7 +36,7 @@
 
 class IconProvider
 {
-  Q_DISABLE_COPY(IconProvider);
+  Q_DISABLE_COPY(IconProvider)
 
 private:
   explicit IconProvider();

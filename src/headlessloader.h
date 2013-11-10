@@ -88,7 +88,7 @@ public slots:
   // the parameter type.
   void processParams(const QStringList& params) {
     foreach (QString param, params) {
-      param = param.trimmed();
+      param = fsutils::fromNativePath(param).trimmed();
       if (param.startsWith(QString::fromUtf8("http://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("ftp://"), Qt::CaseInsensitive) || param.startsWith(QString::fromUtf8("https://"), Qt::CaseInsensitive)) {
         QBtSession::instance()->downloadFromUrl(param);
       }else{
