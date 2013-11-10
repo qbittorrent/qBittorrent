@@ -62,6 +62,7 @@ public slots:
 
 private:
   TorrentContentModel* m_model;
+  bool hasFiltered(const QModelIndex& folder) const;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H
