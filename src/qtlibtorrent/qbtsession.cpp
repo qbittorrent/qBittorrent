@@ -2594,8 +2594,9 @@ QString QBtSession::getSavePath(const QString &hash, bool fromScanDir, QString f
       if (fromScanDir && m_scanFolders->downloadInTorrentFolder(filePath)) {
         savePath = QFileInfo(filePath).dir().path();
       } else {
-//        savePath = defaultSavePath;
           savePath = m_scanFolders->downloadPathTorrentFolder(filePath);
+          if (savePath.isEmpty())
+              savePath = defaultSavePath;
       }
     }
     if (!fromScanDir && appendLabelToSavePath) {
