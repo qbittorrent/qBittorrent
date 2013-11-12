@@ -135,7 +135,6 @@ Qt::ItemFlags ScanFoldersModel::flags(const QModelIndex &index) const {
         return QAbstractTableModel::flags(index);
 
     const PathData* pathData = m_pathList.at(index.row());
-//    log("r%ic%i path %s at %i saveto %s", index.row(), index.column(), pathData->path.data(), pathData->downloadAtPath, pathData->downloadPath.data());
 
     switch (index.column())
     {
@@ -143,11 +142,9 @@ Qt::ItemFlags ScanFoldersModel::flags(const QModelIndex &index) const {
     case DownloadAtTorrentColumn: return QAbstractTableModel::flags(index) | Qt::ItemIsUserCheckable;
     case DownloadPath:{
         if (pathData->downloadAtPath == 0){
-//          fprintf(stderr, "%s\n", "UnChecked");
           return QAbstractTableModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsEnabled;
         }
         else{   //dont edit if checked 'downloadAtPath'
-//          fprintf(stderr, "%s\n", "Checked");
           return QAbstractTableModel::flags(index);
         }
     }
@@ -172,7 +169,6 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
   }
 
   if (index.column() == DownloadPath)  {
-//      log("setData: r%ic%i %s", index.row(), index.column(), value.toString().data());
       Q_ASSERT(index.column() == DownloadPath);
       m_pathList[index.row()]->downloadPath = value.toString();
       emit dataChanged(index, index);

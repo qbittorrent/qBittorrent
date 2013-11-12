@@ -34,7 +34,6 @@
 #include <QAbstractTableModel>
 #include <QList>
 #include <QStringList>
-#include "utils_log.h"
 
 class FileSystemWatcher;
 class QIniSettings;
