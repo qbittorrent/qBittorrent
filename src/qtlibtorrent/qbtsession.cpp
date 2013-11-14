@@ -2778,6 +2778,14 @@ qlonglong QBtSession::getETA(const QString &hash) const
   return m_speedMonitor->getETA(hash);
 }
 
+quint64 QBtSession::getAlltimeDL() const {
+  return m_speedMonitor->getAlltimeDL();
+}
+
+quint64 QBtSession::getAlltimeUL() const {
+  return m_speedMonitor->getAlltimeUL();
+}
+
 void QBtSession::handleIPFilterParsed(int ruleCount)
 {
   addConsoleMessage(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));

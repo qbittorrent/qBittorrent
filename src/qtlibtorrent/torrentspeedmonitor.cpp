@@ -35,6 +35,7 @@
 #include "qbtsession.h"
 #include "misc.h"
 #include "torrentspeedmonitor.h"
+#include "qinisettings.h"
 
 using namespace libtorrent;
 
@@ -64,12 +65,14 @@ TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session) :
 {
   connect(m_session, SIGNAL(deletedTorrent(QString)), SLOT(removeSamples(QString)));
   connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
+  loadStats();
 }
 
 TorrentSpeedMonitor::~TorrentSpeedMonitor() {
   m_abort = true;
   m_abortCond.wakeOne();
   wait();
+  saveStats();
 }
 
 void TorrentSpeedMonitor::run()
@@ -77,6 +80,7 @@ void TorrentSpeedMonitor::run()
   do {
     m_mutex.lock();
     getSamples();
+    saveStats();
     m_abortCond.wait(&m_mutex, 1000);
     m_mutex.unlock();
   } while(!m_abort);
@@ -153,6 +157,16 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
   return (h.total_wanted() - h.total_wanted_done()) / speed_average.download;
 }
 
+quint64 TorrentSpeedMonitor::getAlltimeDL() const {
+  QMutexLocker l(&m_mutex);
+  return alltimeDL;
+}
+
+quint64 TorrentSpeedMonitor::getAlltimeUL() const {
+  QMutexLocker l(&m_mutex);
+  return alltimeUL;
+}
+
 void TorrentSpeedMonitor::getSamples()
 {
   const std::vector<torrent_handle> torrents = m_session->getSession()->get_torrents();
@@ -163,8 +177,27 @@ void TorrentSpeedMonitor::getSamples()
     try {
       torrent_status st = it->status(0x0);
       if (!st.paused) {
-        m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate, st.upload_payload_rate);
+        int up = st.upload_payload_rate;
+        int down = st.download_payload_rate;
+        m_samples[misc::toQString(it->info_hash())].addSample(down, up);
+        alltimeDL += down;
+        alltimeUL += up;
       }
     } catch(invalid_handle&) {}
   }
+}
+
+void TorrentSpeedMonitor::saveStats() const {
+  QIniSettings s;
+  QVariantHash v;
+  v.insert("AlltimeDL", alltimeDL);
+  v.insert("AlltimeUL", alltimeUL);
+  s.setValue("Stats/AllStats", v);
+}
+
+void TorrentSpeedMonitor::loadStats() {
+  QIniSettings s;
+  QVariantHash v(s.value("Stats/AllStats", QVariantHash()).toHash());
+  alltimeDL = v["AlltimeDL"].toULongLong();
+  alltimeUL = v["AlltimeUL"].toULongLong();
 }
