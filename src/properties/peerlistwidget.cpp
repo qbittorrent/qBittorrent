@@ -366,6 +366,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
   // Adding Peer to peer list
   m_listModel->insertRow(row);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip, Qt::ToolTipRole);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
   if (m_displayFlags) {
     const QIcon ico = GeoIPManager::CountryISOCodeToIcon(peer.country);
