@@ -977,13 +977,25 @@ void MainWindow::processParams(const QStringList& params) {
       if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
         if (useTorrentAdditionDialog)
           AddNewTorrentDialog::showMagnet(param);
-        else
-          QBtSession::instance()->addMagnetUri(param);
+        else{
+          QTorrentHandle torrent =  QBtSession::instance()->addMagnetUri(param);
+          
+          //TODO TRANSLATE          
+          // to check for a new torrent I use name non empty, as explained below, active_time can also be used.
+          //Ideally it should be done from within the add function, but I dont know QT customs
+          if (torrent.name().toStdString() != "") //it appears to be non empty only the time it is properly added for some reason
+          	showNotificationBaloon("Magnet Link has been added", ("A Magnet File titled \"" +torrent.name().toStdString() + "\" has been added to the list of downloads").c_str());
+        }
       } else {
         if (useTorrentAdditionDialog)
           AddNewTorrentDialog::showTorrent(param);
-        else
-          QBtSession::instance()->addTorrent(param);
+        else{
+          QTorrentHandle torrent =  QBtSession::instance()->addTorrent(param);
+          
+          //TODO Translate     
+          if (torrent.name().toStdString() != "") //it appears to be non empty only the time it is properly added for some reason
+          	showNotificationBaloon("Torrent File has been added", ("A Torrent File titled \"" +torrent.name().toStdString() + "\" has been added to the list of downloads").c_str());
+        }
       }
     }
   }
@@ -1155,15 +1167,17 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
-  if (notifications.isValid()) {
+  //Not sure why but this always seems to return false on my Linux Mint 14 Machine, works fine with the check disabled
+//  if (notifications.isValid()) {
     QVariantMap hints;
     hints["desktop-entry"] = "qBittorrent";
     QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
                                                          msg, QStringList(), hints, -1);
     reply.waitForFinished();
+    
     if (!reply.isError())
       return;
-  }
+//  }
 #endif
   if (systrayIcon && QSystemTrayIcon::supportsMessages())
     systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
