@@ -36,6 +36,7 @@
 #include <QPointer>
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
+#include "statsdialog.h"
 
 class QBtSession;
 class downloadFromURL;
@@ -93,6 +94,7 @@ protected slots:
   void dragEnterEvent(QDragEnterEvent *event);
   void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
   void on_actionAbout_triggered();
+  void on_actionStatistics_triggered();
   void on_actionCreate_torrent_triggered();
   void on_actionWebsite_triggered() const;
   void on_actionBugReport_triggered() const;
@@ -165,6 +167,7 @@ private:
   QPointer<options_imp> options;
   QPointer<consoleDlg> console;
   QPointer<about> aboutDlg;
+  QPointer<StatsDialog> statsDlg;
   QPointer<TorrentCreatorDlg> createTorrentDlg;
   QPointer<downloadFromURL> downloadFromURLDialog;
   QPointer<QSystemTrayIcon> systrayIcon;
