@@ -1,10 +1,19 @@
 * UNRELEASED - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.3
+    - FEATURE: Add a key shortcut to "Add link to torrent..." (Angel Alonso)
     - BUGFIX: Make all columns and headers use the same text alignment in the transferlist. (sledgehammer999)
     - BUGFIX: Fix build system for Unix/Linux. (sledgehammer999)
     - BUGFIX: Case insensitive sort in Peers list. Closes #1066. (sledgehammer999)
     - BUGFIX: Small optimization of WebUI responses when there isn't a data payload. (sledgehammer999)
     - BUGFIX: Hide empty folders after filtering. Closes #74. (sledgehammer999)
     - BUGFIX: Expand folders when filtering files. Closes #1076. (sledgehammer999)
+    - BUGFIX: Updated search plugin's URL (Zach Thibeau)
+    - BUGFIX: Strip some png to fix incorrect sRGB profiles. (Angel Alonso)
+    - BUGFIX: Fixed font issues on OSX Mavericks (Zach Thibeau)
+    - BUGFIX: Improve text in the About dialog (Artem S. Tashkinov)
+    - BUGFIX: Always show a peer IP address as a tool tip (Artem S. Tashkinov)
+    - BUGFIX: Fix inhibit system functionality. Closes #766. (sledgehammer999)
+    - BUGFIX: WebUI: Don't gzip too small payloads. (sledgehammer999)
+    - BUGFIX: Correctly detect if the browser supports gzip compression. (sledgehammer999)
     
 * Tue Nov 05 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.2
     - BUGFIX: Fix WebUI gzip compression. Closes #1037. (sledgehammer999)
