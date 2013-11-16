@@ -119,7 +119,11 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
 }
 
 QByteArray HttpResponseGenerator::toByteArray() {
-  if (m_gzip && m_message.size() > 0) {// prevents writing a useless and wasteful header
+  // A gzip seems to have 23 bytes overhead.
+  // Also "content-encoding: gzip\r\n" is 26 bytes long
+  // So we only benefit from gzip if the message is bigger than 23+26 = 49
+  // If the message is smaller than 49 bytes we actually send MORE data if we gzip
+  if (m_gzip && m_message.size() > 49) {
     QByteArray dest_buf;
     if (gCompress(dest_buf)) {
       setValue("content-encoding", "gzip");
