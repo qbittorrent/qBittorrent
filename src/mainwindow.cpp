@@ -1417,11 +1417,7 @@ void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)
 
 void MainWindow::checkForActiveTorrents()
 {
-  const TorrentStatusReport report = transferList->getSourceModel()->getTorrentStatusReport();
-  if (report.nb_active > 0) // Active torrents are present; prevent system from suspend
-    m_pwr->setActivityState(true);
-  else
-    m_pwr->setActivityState(false);
+  m_pwr->setActivityState(transferList->getSourceModel()->inhibitSystem());
 }
 
 QIcon MainWindow::getSystrayIcon() const

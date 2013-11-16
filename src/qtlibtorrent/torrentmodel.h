@@ -94,6 +94,7 @@ public:
   TorrentStatusReport getTorrentStatusReport() const;
   Qt::ItemFlags flags(const QModelIndex &index) const;
   void populate();
+  bool inhibitSystem();
 
 signals:
   void torrentAdded(TorrentModelItem *torrentItem);
