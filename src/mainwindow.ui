@@ -72,6 +72,7 @@
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
+    <addaction name="actionStatistics"/>
     <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
    </widget>
    <widget class="QMenu" name="menu_File">
@@ -373,6 +374,11 @@
   <action name="actionMinimize">
    <property name="text">
     <string notr="true">Minimize</string>
+   </property>
+  </action>
+  <action name="actionStatistics">
+   <property name="text">
+    <string>Statistics</string>
    </property>
   </action>
  </widget>
