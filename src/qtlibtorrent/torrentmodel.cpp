@@ -483,3 +483,21 @@ void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
     emit torrentAboutToBeRemoved(m_torrents.at(row));
   }
 }
+
+bool TorrentModel::inhibitSystem()
+{
+  QList<TorrentModelItem*>::const_iterator it = m_torrents.constBegin();
+  QList<TorrentModelItem*>::const_iterator itend = m_torrents.constEnd();
+  for ( ; it != itend; ++it) {
+    switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
+    case TorrentModelItem::STATE_DOWNLOADING:
+    case TorrentModelItem::STATE_STALLED_DL:
+    case TorrentModelItem::STATE_SEEDING:
+    case TorrentModelItem::STATE_STALLED_UP:
+      return true;
+    default:
+      break;
+    }
+  }
+  return false;
+}
