@@ -1,4 +1,4 @@
-* UNRELEASED - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.3
+* Mon Nov 20 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.3
     - FEATURE: Add a key shortcut to "Add link to torrent..." (Angel Alonso)
     - BUGFIX: Make all columns and headers use the same text alignment in the transferlist. (sledgehammer999)
     - BUGFIX: Fix build system for Unix/Linux. (sledgehammer999)
@@ -16,6 +16,8 @@
     - BUGFIX: Correctly detect if the browser supports gzip compression. (sledgehammer999)
     - BUGFIX: Fix WebUI link to 'Anonymous mode' explanation. Closes #1093. (sledgehammer999)
     - BUGFIX: Correctly update tracker tier number in the trackers tab. Closes #1075. (sledgehammer999)
+    - BUGFIX: Speed improvements.(sledgehammer999)
+    - OTHER: Updated translations.
     
 * Tue Nov 05 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.2
     - BUGFIX: Fix WebUI gzip compression. Closes #1037. (sledgehammer999)
