@@ -14,6 +14,8 @@
     - BUGFIX: Fix inhibit system functionality. Closes #766. (sledgehammer999)
     - BUGFIX: WebUI: Don't gzip too small payloads. (sledgehammer999)
     - BUGFIX: Correctly detect if the browser supports gzip compression. (sledgehammer999)
+    - BUGFIX: Fix WebUI link to 'Anonymous mode' explanation. Closes #1093. (sledgehammer999)
+    - BUGFIX: Correctly update tracker tier number in the trackers tab. Closes #1075. (sledgehammer999)
     
 * Tue Nov 05 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.2
     - BUGFIX: Fix WebUI gzip compression. Closes #1037. (sledgehammer999)
