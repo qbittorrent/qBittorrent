@@ -478,6 +478,9 @@ void QBtSession::configureSession() {
     } else {
       addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
     }
+    if (pref.getProxyType !SOCKS5) {
+    enableDHT(false);
+    addConsoleMessage(tr("DHT support [OFF] Proxy Unsupported"), QString::fromUtf8("blue"));
   } else {
     enableDHT(false);
     addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
