@@ -1676,7 +1676,7 @@ void QBtSession::addPeerBanMessage(QString ip, bool blocked_peer_a) {
   }
   QString msg;
   if (blocked_peer_a)
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was blocked</i>", "x.y.z.w was blocked").arg(ip);
+    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was blocked by libtorrent or ipfilter</i>", "x.y.z.w was blocked").arg(ip);
   peerBanMessages.append(msg);
   emit newBanMessage(msg);
 }
