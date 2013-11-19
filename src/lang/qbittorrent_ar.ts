@@ -193,7 +193,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation>التورنت موجود بالفعل في قائمة التنزيل. سيدمج المتتبعات.</translation>
+        <translation>التورنت موجود بالفعل في قائمة التنزيل. ستُدمج المتتبعات.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="213"/>
@@ -214,7 +214,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="279"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation>الرابط المغناطيسي موجود بالفعل في قائمة التنزيل. سيدمج المتتبعات.</translation>
+        <translation>الرابط المغناطيسي موجود بالفعل في قائمة التنزيل. ستُدمج المتتبعات.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="286"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="214"/>
         <source>Transfer list refresh interval</source>
-        <translation>المدة بين اعادة تحديث الصفحة</translation>
+        <translation>المدة بين إعادة تحديث قائمة النقل</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="213"/>
@@ -389,12 +389,12 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="276"/>
         <source>Exchange trackers with other peers</source>
-        <translation>تبادل المتتبعين مع القرناء الآخرين</translation>
+        <translation>تبادل المتتبعات مع القرناء الآخرين</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="279"/>
         <source>Always announce to all trackers</source>
-        <translation>الإعلان دائما لجميع المتتبعين</translation>
+        <translation>الإعلان دائما لجميع المتتبعات</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
@@ -939,7 +939,7 @@ You should get this information from your Web browser preferences.</translation>
     <message>
         <location filename="../webui/httpserver.cpp" line="114"/>
         <source>Only one link per line</source>
-        <translation>رابط واحد لكل سطر</translation>
+        <translation>رابط واحد فقط لكل سطر</translation>
     </message>
     <message>
         <location filename="../webui/httpserver.cpp" line="115"/>
@@ -1173,7 +1173,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="244"/>
         <location filename="../mainwindow.ui" line="247"/>
         <source>Alternative speed limits</source>
-        <translation>حدود السرعات البديلة</translation>
+        <translation>حدود السرعة البديلة</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="255"/>
@@ -1311,7 +1311,7 @@ No further notices will be issued.</source>
         <location filename="../mainwindow.ui" line="290"/>
         <location filename="../mainwindow.ui" line="293"/>
         <source>Lock qBittorrent</source>
-        <translation>قفل البرنامج</translation>
+        <translation>قفل واجهة البرنامج</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
@@ -1497,12 +1497,12 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="636"/>
         <source>Global Upload Speed Limit</source>
-        <translation>حدود سرعة الرفع العامة</translation>
+        <translation>حد سرعة الرفع العامة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="655"/>
         <source>Global Download Speed Limit</source>
-        <translation>حدود سرعة التنزيل العامة</translation>
+        <translation>حد سرعة التنزيل العامة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1155"/>
@@ -1575,7 +1575,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../mainwindow.cpp" line="1347"/>
         <source>A newer version is available</source>
-        <translation>يوجد إصدار أحدث متوفر</translation>
+        <translation>يوجد إصدارة أحدث متوفرة حاليا</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1348"/>
@@ -1832,7 +1832,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1529"/>
         <source>Global Rate Limits</source>
-        <translation>حد السرعة العام</translation>
+        <translation>حدود السرعة العامة</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1647"/>
@@ -1847,7 +1847,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="1667"/>
         <source>Alternative Global Rate Limits</source>
-        <translation>حد السرعات البديلة</translation>
+        <translation>حدود السرعة البديلة</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1773"/>
@@ -2304,7 +2304,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../preferences/options.ui" line="2243"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation>عدم حساب الملفات البطيئة</translation>
+        <translation>عدم احتساب الملفات البطيئة في تلك الحدود</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="2264"/>
@@ -3682,12 +3682,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statusbar.h" line="204"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation>انقر للتبديل إلى حدود السرعات البديلة</translation>
+        <translation>انقر للتبديل إلى حدود السرعة البديلة</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="200"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>انقر للتبديل إلى حدود السرعات العادية</translation>
+        <translation>انقر للتبديل إلى حدود السرعة العادية</translation>
     </message>
     <message>
         <location filename="../statusbar.h" line="213"/>
@@ -4524,7 +4524,7 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="20"/>
         <source>Use global ratio limit</source>
-        <translation>استخدام نسبة المشاركة العامة</translation>
+        <translation>استخدام حدود نسبة المشاركة العامة</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="23"/>
@@ -4536,12 +4536,12 @@ Please install it manually.</source>
     <message>
         <location filename="../updownratiodlg.ui" line="30"/>
         <source>Set no ratio limit</source>
-        <translation>عدم استخدام نسبة المشاركة</translation>
+        <translation>عدم تعيين نسبة مشاركة</translation>
     </message>
     <message>
         <location filename="../updownratiodlg.ui" line="42"/>
         <source>Set ratio limit to</source>
-        <translation>نسبة المشاركة</translation>
+        <translation>تعيين نسبة المشاركة بـ</translation>
     </message>
 </context>
 <context>
@@ -4756,7 +4756,7 @@ Please install it manually.</source>
         <location filename="../torrentcreator/createtorrent.ui" line="127"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
         <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation>استخدم سطر فارغ للفصل بين المتتبعين المختلفين.</translation>
+        <translation>استخدم سطر فارغ للفصل بين مجموعات المتتبع.</translation>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="148"/>
@@ -5136,7 +5136,7 @@ However, those plugins were disabled.</source>
         <location filename="../misc.cpp" line="393"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1س %2د</translation>
+        <translation>%1 س و%2 د</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="398"/>
@@ -5153,7 +5153,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../misc.cpp" line="178"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>سيتم إطفاء تشغيل الحاسوب الآن لأن جميع التنزيلات اكتملت.</translation>
+        <translation>سيقوم البرنامج بإطفاء تشغيل الحاسوب الآن لأن جميع التنزيلات اكتملت.</translation>
     </message>
     <message>
         <location filename="../misc.cpp" line="384"/>
@@ -5305,7 +5305,7 @@ However, those plugins were disabled.</source>
         <location filename="../preferences/options_imp.cpp" line="1300"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>تمت معالجة قائمة الحظر المعطاة بنجاح: %1 تم تطبيقها.</translation>
+        <translation>تمت معالجة قائمة الحظر المعطاة بنجاح: %1 قواعد تم تطبيقها.</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1378"/>

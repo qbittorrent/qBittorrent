@@ -1363,7 +1363,7 @@ No further notices will be issued.</translation>
         <location filename="../mainwindow.cpp" line="151"/>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Clear the password</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="186"/>
@@ -1414,7 +1414,7 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</transla
     <message>
         <location filename="../mainwindow.cpp" line="418"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"/>
+        <translation>Are you sure you want to clear the password?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="445"/>
@@ -4087,7 +4087,7 @@ Please install it manually.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="421"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"/>
+        <translation>Force reannounce to all trackers</translation>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="416"/>
@@ -4154,7 +4154,7 @@ Please install it manually.</translation>
         <location filename="../transferlistdelegate.h" line="95"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"/>
+        <translation>Downloading metadata</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="98"/>
@@ -4201,7 +4201,7 @@ Please install it manually.</translation>
         <location filename="../transferlistdelegate.h" line="123"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"/>
+        <translation>Checking resume data</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="137"/>
@@ -5003,7 +5003,7 @@ However, those plug-ins were disabled.</translation>
         <location filename="../searchengine/engineselectdlg.cpp" line="238"/>
         <source>A more recent version of %1 search engine plugin is already installed.</source>
         <comment>%1 is the name of the search engine</comment>
-        <translation>A more recent version of %1 search engine plugin is already installed.</translation>
+        <translation>A more recent version of %1 search engine plug-in is already installed.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="406"/>
