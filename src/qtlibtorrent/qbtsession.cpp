@@ -454,7 +454,10 @@ void QBtSession::configureSession() {
   sessionSettings.enable_outgoing_utp = pref.isuTPEnabled();
   // uTP rate limiting
   sessionSettings.rate_limit_utp = pref.isuTPRateLimited();
-  sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
+  if (sessionSettings.rate_limit_utp)
+    sessionSettings.mixed_mode_algorithm = session_settings::prefer_tcp;
+  else
+    sessionSettings.mixed_mode_algorithm = session_settings::peer_proportional;
   sessionSettings.connection_speed = 20; //default is 10
   qDebug() << "Settings SessionSettings";
   setSessionSettings(sessionSettings);
