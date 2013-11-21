@@ -379,7 +379,10 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
     }
   }
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), getFlags(peer));
+  QString flags, tooltip;
+  getFlags(peer, flags, tooltip);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), tooltip, Qt::ToolTipRole);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), misc::toQStringU(peer.client));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payload_down_speed);
@@ -402,7 +405,10 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
     }
   }
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), getFlags(peer));
+  QString flags, tooltip;
+  getFlags(peer, flags, tooltip);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), tooltip, Qt::ToolTipRole);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), misc::toQStringU(peer.client));
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payload_down_speed);
@@ -447,68 +453,116 @@ QString PeerListWidget::getConnectionString(int connection_type)
   return connection;
 }
 
-QString PeerListWidget::getFlags(const peer_info& peer)
-{
-  QString flags;
+void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& tooltip)
+{  
   if (peer.flags & peer_info::interesting) {
     //d = Your client wants to download, but peer doesn't want to send (interested and choked)
-    if (peer.flags & peer_info::remote_choked)
+    if (peer.flags & peer_info::remote_choked) {
       flags += "d ";
-    else //D = Currently downloading (interested and not choked)
+      tooltip += tr("interested(local) and choked(peer)");
+      tooltip += ", ";
+    }
+    else {
+      //D = Currently downloading (interested and not choked)
       flags += "D ";
+      tooltip += tr("interested(local) and unchoked(peer)");
+      tooltip += ", ";
+    }
   }
 
   if (peer.flags & peer_info::remote_interested) {
     //u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
-    if (peer.flags & peer_info::choked)
+    if (peer.flags & peer_info::choked) {
       flags += "u ";
-    else //U = Currently uploading (interested and not choked)
+      tooltip += tr("interested(peer) and choked(local)");
+      tooltip += ", ";
+    }
+    else {
+      //U = Currently uploading (interested and not choked)
       flags += "U ";
+      tooltip += tr("interested(peer) and unchoked(local)");
+      tooltip += ", ";
+    }
   }
 
   //O = Optimistic unchoke
-  if (peer.flags & peer_info::optimistic_unchoke)    
+  if (peer.flags & peer_info::optimistic_unchoke) {
     flags += "O ";
+    tooltip += tr("optimistic unchoke");
+    tooltip += ", ";
+  }
 
   //S = Peer is snubbed
-  if (peer.flags & peer_info::snubbed)
+  if (peer.flags & peer_info::snubbed) {
     flags += "S ";
+    tooltip += tr("peer snubbed");
+    tooltip += ", ";
+  }
 
   //I = Peer is an incoming connection
-  if ((peer.flags & peer_info::local_connection) == 0 )
+  if ((peer.flags & peer_info::local_connection) == 0 ) {
     flags += "I ";
+    tooltip += tr("incoming connection");
+    tooltip += ", ";
+  }
 
   //K = Peer is unchoking your client, but your client is not interested
-  if (((peer.flags & peer_info::remote_choked) == 0) && ((peer.flags & peer_info::interesting) == 0))
+  if (((peer.flags & peer_info::remote_choked) == 0) && ((peer.flags & peer_info::interesting) == 0)) {
     flags += "K ";
+    tooltip += tr("not interested(local) and unchoked(peer)");
+    tooltip += ", ";
+  }
 
   //? = Your client unchoked the peer but the peer is not interested
-  if (((peer.flags & peer_info::choked) == 0) && ((peer.flags & peer_info::remote_interested) == 0))
+  if (((peer.flags & peer_info::choked) == 0) && ((peer.flags & peer_info::remote_interested) == 0)) {
     flags += "? ";
+    tooltip += tr("not interested(peer) and unchoked(local)");
+    tooltip += ", ";
+  }
 
   //X = Peer was included in peerlists obtained through Peer Exchange (PEX)
-  if (peer.source & peer_info::pex)
+  if (peer.source & peer_info::pex) {
     flags += "X ";
+    tooltip += tr("peer from PEX");
+    tooltip += ", ";
+  }
 
   //H = Peer was obtained through DHT
-  if (peer.source & peer_info::dht)
+  if (peer.source & peer_info::dht) {
     flags += "H ";
+    tooltip += tr("peer from PEX");
+    tooltip += ", ";
+  }
 
   //E = Peer is using Protocol Encryption (all traffic)
-  if (peer.flags & peer_info::rc4_encrypted)
+  if (peer.flags & peer_info::rc4_encrypted) {
     flags += "E ";
+    tooltip += tr("encrypted traffic");
+    tooltip += ", ";
+  }
 
   //e = Peer is using Protocol Encryption (handshake)
-  if (peer.flags & peer_info::plaintext_encrypted)
+  if (peer.flags & peer_info::plaintext_encrypted) {
     flags += "e ";
+    tooltip += tr("encrypted handshake");
+    tooltip += ", ";
+  }
 
   //P = Peer is using uTorrent uTP
-  if (peer.connection_type & peer_info::bittorrent_utp)
+  if (peer.connection_type & peer_info::bittorrent_utp) {
     flags += "P ";
+    tooltip += QString::fromUtf8("μTP");
+    tooltip += ", ";
+  }
 
   //L = Peer is local
-  if (peer.source & peer_info::lsd)
-    flags += "L ";
+  if (peer.source & peer_info::lsd) {
+    flags += "L";
+    tooltip += tr("peer from LSD");
+  }
 
-  return flags.trimmed();
+  flags = flags.trimmed();
+  tooltip = tooltip.trimmed();
+  if (tooltip.endsWith(',', Qt::CaseInsensitive))
+    tooltip.chop(1);
 }
