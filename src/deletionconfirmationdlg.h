@@ -40,8 +40,12 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   Q_OBJECT
 
   public:
-  DeletionConfirmationDlg(QWidget *parent=0): QDialog(parent) {
+  DeletionConfirmationDlg(QWidget *parent, const int &size, const QString &name): QDialog(parent) {
     setupUi(this);
+    if (size == 1)
+      label->setText(tr("Are you sure you want to delete \"%1\" from the transfer list?", "Are you sure you want to delete \"ubuntu-linux-iso\" from the transfer list?").arg(name));
+    else
+      label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
     // Icons
     lbl_warn->setPixmap(IconProvider::instance()->getIcon("dialog-warning").pixmap(lbl_warn->height()));
     lbl_warn->setFixedWidth(lbl_warn->height());
@@ -57,10 +61,10 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     return checkPermDelete->isChecked();
   }
 
-  static bool askForDeletionConfirmation(bool *delete_local_files) {
-    DeletionConfirmationDlg dlg;
+  static bool askForDeletionConfirmation(bool& delete_local_files, const int& size, const QString& name) {
+    DeletionConfirmationDlg dlg(NULL, size, name);
     if (dlg.exec() == QDialog::Accepted) {
-      *delete_local_files = dlg.shouldDeleteLocalFiles();
+      delete_local_files = dlg.shouldDeleteLocalFiles();
       return true;
     }
     return false;
