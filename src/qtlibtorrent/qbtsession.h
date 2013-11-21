@@ -107,6 +107,8 @@ public:
   inline bool isLSDEnabled() const { return LSDEnabled; }
   inline bool isPexEnabled() const { return PeXEnabled; }
   inline bool isQueueingEnabled() const { return queueingEnabled; }
+  quint64 getAlltimeDL() const;
+  quint64 getAlltimeUL() const;
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);

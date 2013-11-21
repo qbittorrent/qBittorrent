@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Copyright (C) 2013  Nick Tiskov
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,54 +25,34 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : daymansmail@gmail.com
  */
 
-#ifndef TORRENTSPEEDMONITOR_H
-#define TORRENTSPEEDMONITOR_H
+#ifndef STATSDIALOG_H
+#define STATSDIALOG_H
 
-#include <QString>
-#include <QThread>
-#include <QWaitCondition>
-#include <QHash>
-#include <QMutex>
-#include "qtorrenthandle.h"
+#include <QDialog>
+#include <QTimer>
+#include "qbtsession.h"
 
-class QBtSession;
-class SpeedSample;
+namespace Ui {
+  class StatsDialog;
+}
 
-class TorrentSpeedMonitor : public QThread
-{
+class StatsDialog : public QDialog {
   Q_OBJECT
 
 public:
-  explicit TorrentSpeedMonitor(QBtSession* session);
-  ~TorrentSpeedMonitor();
-  qlonglong getETA(const QString &hash) const;
-  quint64 getAlltimeDL() const;
-  quint64 getAlltimeUL() const;
-
-protected:
-  void run();
-
-private:
-  void getSamples();
-  void saveStats() const;
-  void loadStats();
+  explicit StatsDialog(QWidget *parent = 0);
+  ~StatsDialog();
 
 private slots:
-  void removeSamples(const QString& hash);
-  void removeSamples(const QTorrentHandle& h);
+  void updateUI();
 
 private:
-  bool m_abort;
-  QWaitCondition m_abortCond;
-  QHash<QString, SpeedSample> m_samples;
-  mutable QMutex m_mutex;
-  QBtSession *m_session;
-  // Will overflow at 15.9 EiB
-  quint64 alltimeUL;
-  quint64 alltimeDL;
+  Ui::StatsDialog *ui;
+  QBtSession* session;
+  QTimer* t;
 };
 
-#endif // TORRENTSPEEDMONITOR_H
+#endif // STATSDIALOG_H

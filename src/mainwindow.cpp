@@ -123,6 +123,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionCreate_torrent->setIcon(IconProvider::instance()->getIcon("document-edit"));
   actionAbout->setIcon(IconProvider::instance()->getIcon("help-about"));
+  actionStatistics->setIcon(IconProvider::instance()->getIcon("office-chart-bar"));
   actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
   actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
   actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
@@ -361,6 +362,8 @@ MainWindow::~MainWindow() {
     delete m_executionLog;
   if (aboutDlg)
     delete aboutDlg;
+  if (statsDlg)
+    delete statsDlg;
   if (options)
     delete options;
   if (downloadFromURLDialog)
@@ -738,6 +741,13 @@ void MainWindow::on_actionAbout_triggered() {
   } else {
     aboutDlg = new about(this);
   }
+}
+
+void MainWindow::on_actionStatistics_triggered() {
+  if (statsDlg)
+    statsDlg->setFocus();
+  else
+    statsDlg = new StatsDialog(this);
 }
 
 void MainWindow::showEvent(QShowEvent *e) {
