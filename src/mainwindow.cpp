@@ -98,7 +98,7 @@ using namespace libtorrent;
  *****************************************************/
 
 // Constructor
-MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false) {
+MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false), checkingProgramUpdate(false) {
   setupUi(this);
 
   Preferences pref;
@@ -211,6 +211,15 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(actionToggleVisibility, SIGNAL(triggered()), this, SLOT(toggleVisibility()));
   connect(actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
 
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  programUpdateTimer.setInterval(15*60*1000);
+  programUpdateTimer.setSingleShot(true);
+  connect(&programUpdateTimer, SIGNAL(timeout()), SLOT(checkProgramUpdate()));
+  connect(actionCheck_for_updates, SIGNAL(triggered()), SLOT(checkProgramUpdate()));
+#else
+  actionCheck_for_updates->setVisible(false);
+#endif
+
   m_pwr = new PowerManagement(this);
   preventTimer = new QTimer(this);
   connect(preventTimer, SIGNAL(timeout()), SLOT(checkForActiveTorrents()));
@@ -309,14 +318,6 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 #endif
 #ifdef Q_WS_MAC
   qt_mac_set_dock_menu(getTrayIconMenu());
-#endif
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
-  // Check for update
-  if (pref.isUpdateCheckEnabled()) {
-    ProgramUpdater *updater = new ProgramUpdater(this);
-    connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
-    updater->checkForUpdates();
-  }
 #endif
 
   // Make sure the Window is visible if we don't have a tray icon
@@ -1118,6 +1119,13 @@ void MainWindow::loadPreferences(bool configure_session) {
   if (configure_session)
     QBtSession::instance()->configureSession();
 
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  if (pref.isUpdateCheckEnabled())
+    checkProgramUpdate();
+  else
+    programUpdateTimer.stop();
+#endif
+
   qDebug("GUI settings loaded");
 }
 
@@ -1366,6 +1374,12 @@ void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_ve
     }
   }
   sender()->deleteLater();
+  checkingProgramUpdate = false;
+  actionCheck_for_updates->setEnabled(true);
+  actionCheck_for_updates->setText(tr("Check for updates"));
+  actionCheck_for_updates->setToolTip(tr("Check for program updates"));
+  if (Preferences().isUpdateCheckEnabled())
+    programUpdateTimer.start();
 }
 
 void MainWindow::handleUpdateInstalled(QString error_msg)
@@ -1456,3 +1470,17 @@ QIcon MainWindow::getSystrayIcon() const
   }
   return icon;
 }
+
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+void MainWindow::checkProgramUpdate() {
+  if (checkingProgramUpdate)
+    return;
+  checkingProgramUpdate = true;
+  actionCheck_for_updates->setEnabled(false);
+  actionCheck_for_updates->setText(tr("Checking for updates..."));
+  actionCheck_for_updates->setToolTip(tr("Already checking for program updates in the background"));
+  ProgramUpdater *updater = new ProgramUpdater(this);
+  connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
+  updater->checkForUpdates();
+}
+#endif

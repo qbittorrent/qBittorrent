@@ -53,6 +53,7 @@
     <addaction name="actionWebsite"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionDonate_money"/>
+    <addaction name="actionCheck_for_updates"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menu_Options">
@@ -379,6 +380,14 @@
   <action name="actionStatistics">
    <property name="text">
     <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_updates">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+   <property name="toolTip">
+    <string>Check for program updates</string>
    </property>
   </action>
  </widget>
