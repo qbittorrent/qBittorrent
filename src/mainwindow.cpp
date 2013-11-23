@@ -98,7 +98,11 @@ using namespace libtorrent;
  *****************************************************/
 
 // Constructor
-MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false), checkingProgramUpdate(false) {
+MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false)
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  ,checkingProgramUpdate(false)
+#endif
+{
   setupUi(this);
 
   Preferences pref;
