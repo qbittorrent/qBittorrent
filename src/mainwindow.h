@@ -199,6 +199,10 @@ private:
   // Power Management
   PowerManagement *m_pwr;
   QTimer *preventTimer;
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  QTimer programUpdateTimer;
+  bool checkingProgramUpdate;
+#endif
 
 private slots:
     void on_actionSearch_engine_triggered();
@@ -213,6 +217,9 @@ private slots:
     void on_actionAutoShutdown_system_toggled(bool );
     // Check for active torrents and set preventing from suspend state
     void checkForActiveTorrents();
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+    void checkProgramUpdate();
+#endif
 };
 
 #endif
