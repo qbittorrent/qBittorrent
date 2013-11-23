@@ -1667,7 +1667,7 @@ void QBtSession::addConsoleMessage(QString msg, QColor color) {
   if (consoleMessages.size() > MAX_LOG_MESSAGES) {
     consoleMessages.removeFirst();
   }
-  msg = "<font color='grey'>"+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - <font color='" + color.name() + "'><i>" + msg + "</i></font>";
+  msg = "<font color='grey'>"+ QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - <font color='" + color.name() + "'>" + msg + "</font>";
   consoleMessages.append(msg);
   emit newConsoleMessage(msg);
 #endif
@@ -1679,9 +1679,9 @@ void QBtSession::addPeerBanMessage(QString ip, bool from_ipfilter) {
   }
   QString msg;
   if (from_ipfilter)
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was blocked due to your IP filter</i>", "x.y.z.w was blocked").arg(ip);
+    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was blocked", "x.y.z.w was blocked").arg(ip);
   else
-    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> <i>was banned due to corrupt pieces</i>", "x.y.z.w was banned").arg(ip);
+    msg = "<font color='grey'>" + QDateTime::currentDateTime().toString(QString::fromUtf8("dd/MM/yyyy hh:mm:ss")) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(ip);
   peerBanMessages.append(msg);
   emit newBanMessage(msg);
 }
