@@ -567,7 +567,37 @@ void RSSImp::refreshTextBrowser()
     html += "<div style='background-color: #efefef;'><b>"+tr("Author: ")+"</b>"+article->author()+"</div>";
   }
   html += "</div>";
-  html += "<divstyle='margin-left: 5px; margin-right: 5px;'>"+article->description()+"</div>";
+  html += "<div style='margin-left: 5px; margin-right: 5px;'>";
+  if(Qt::mightBeRichText(article->description())) {
+    html += article->description();
+  } else {
+    QString description = article->description();
+    QRegExp rx;
+    // If description is plain text, replace BBCode tags with HTML and wrap everything in <pre></pre> so it looks nice
+    rx.setMinimal(true);
+    rx.setCaseSensitivity(Qt::CaseInsensitive);
+
+    rx.setPattern("\\[img\\](.+)\\[/img\\]");
+    description = description.replace(rx, "<img src=\"\\1\">");
+    
+    rx.setPattern("\\[url=(\")?(.+)\\1\\]");
+    description = description.replace(rx, "<a href=\"\\2\">");
+    description = description.replace("[/url]", "</a>", Qt::CaseInsensitive);
+    
+    rx.setPattern("\\[(/)?([bius])\\]");
+    description = description.replace(rx, "<\\1\\2>");
+
+    rx.setPattern("\\[color=(\")?(.+)\\1\\]");
+    description = description.replace(rx, "<span style=\"color:\\2\">");
+    description = description.replace("[/color]", "</span>", Qt::CaseInsensitive);
+
+    rx.setPattern("\\[size=(\")?(.+)\\d\\1\\]");
+    description = description.replace(rx, "<span style=\"font-size:\\2px\">");
+    description = description.replace("[/size]", "</span>", Qt::CaseInsensitive);
+    
+    html += "<pre>" + description + "</pre>";
+  }
+  html += "</div>";
   textBrowser->setHtml(html);
   article->markAsRead();
   item->setData(Article::ColorRole, QVariant(QColor("grey")));
