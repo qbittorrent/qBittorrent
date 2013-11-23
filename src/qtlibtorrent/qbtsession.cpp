@@ -352,7 +352,7 @@ void QBtSession::configureSession() {
   qDebug("Loading country resolution settings");
   const bool new_resolv_countries = pref.resolvePeerCountries();
   if (resolve_countries != new_resolv_countries) {
-    qDebug("in country reoslution settings");
+    qDebug("in country resolution settings");
     resolve_countries = new_resolv_countries;
     if (resolve_countries && !geoipDBLoaded) {
       qDebug("Loading geoip database");
