@@ -177,18 +177,15 @@ void TorrentSpeedMonitor::getSamples()
     try {
 #if LIBTORRENT_VERSION_NUM >= 001600
       torrent_status st = it->status(0x0);
+#else
+      torrent_status st = it->status();
+#endif
       if (!st.paused) {
         int up = st.upload_payload_rate;
         int down = st.download_payload_rate;
         m_samples[misc::toQString(it->info_hash())].addSample(down, up);
         alltimeDL += down;
         alltimeUL += up;
-#else
-      if (!it->is_paused()) {
-        torrent_status st = it->status();
-        m_samples[misc::toQString(it->info_hash())].addSample(st.download_payload_rate, st.upload_payload_rate);
-#endif
-
       }
     } catch(invalid_handle&) {}
   }

@@ -37,6 +37,16 @@ StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsD
   ui->setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(ui->buttonOK, SIGNAL(clicked()), SLOT(close()));
+#if LIBTORRENT_VERSION_NUM < 001600
+ui->labelWriteStarveText->setVisible(false);
+ui->labelWriteStarve->setVisible(false);
+ui->labelReadStarveText->setVisible(false);
+ui->labelReadStarve->setVisible(false);
+ui->labelQueuedJobsText->setVisible(false);
+ui->labelQueuedJobs->setVisible(false);
+ui->labelJobsTimeText->setVisible(false);
+ui->labelJobsTime->setVisible(false);
+#endif
   session = QBtSession::instance();
   updateUI();
   t = new QTimer(this);
@@ -78,6 +88,7 @@ void StatsDialog::updateUI() {
           );
   // Buffers size
   ui->labelTotalBuf->setText(misc::friendlyUnit(cache.total_used_buffers * 16 * 1024));
+#if LIBTORRENT_VERSION_NUM >= 001600
   // Disk overload (100%) equivalent
   // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
   // to complete before it receives or sends any more data on the socket. It'a a metric of how disk bound you are.
@@ -102,6 +113,7 @@ void StatsDialog::updateUI() {
   // Disk queues
   ui->labelQueuedJobs->setText(QString::number(cache.job_queue_length));
   ui->labelJobsTime->setText(QString::number(cache.average_job_time));
+#endif
   ui->labelQueuedBytes->setText(misc::friendlyUnit(cache.queued_bytes));
 
   // Total connected peers
