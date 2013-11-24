@@ -536,7 +536,7 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
   //H = Peer was obtained through DHT
   if (peer.source & peer_info::dht) {
     flags += "H ";
-    tooltip += tr("peer from PEX");
+    tooltip += tr("peer from DHT");
     tooltip += ", ";
   }
 
