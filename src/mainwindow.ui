@@ -106,7 +106,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="movable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
