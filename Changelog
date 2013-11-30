@@ -1,3 +1,10 @@
+* UNRELEASED - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.4
+    - FEATURE: Statistics dialog (Gelmir)
+    - FEATURE: Tooltips explaining each peer's connection flags (sledgehammer999)
+    - FEATURE: Win/Mac Check for program updates every 15min and allow the user to manually check for updates through the help menu. (sledgehammer999)
+    - BUGFIX: Better dialog message for torrent delete confirmation (sledgehammer999)
+    - LINUX: Fix build under Ubuntu 13.10
+
 * Mon Nov 20 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.3
     - FEATURE: Add a key shortcut to "Add link to torrent..." (Angel Alonso)
     - BUGFIX: Make all columns and headers use the same text alignment in the transferlist. (sledgehammer999)
