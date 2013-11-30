@@ -126,7 +126,6 @@ public:
     container->setContentsMargins(0, 0, 0, 1);
     bar->setContentsMargins(0, 0, 0, 0);
     container->setFixedHeight(dlSpeedLbl->fontMetrics().height()+7);
-    bar->setContentsMargins(12, 0, 12, 0);
     bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
     // Is DHT enabled
     DHTLbl->setVisible(pref.isDHTEnabled());
