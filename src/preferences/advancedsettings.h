@@ -13,7 +13,7 @@
 #include "preferences.h"
 
 enum AdvSettingsCols {PROPERTY, VALUE};
-enum AdvSettingsRows {DISK_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+enum AdvSettingsRows {DISK_CACHE, DISK_CACHE_TTL, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -34,6 +34,7 @@ private:
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext;
   QComboBox combo_iface;
+  QSpinBox spin_cache_ttl;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QCheckBox cb_update_check;
 #endif
@@ -70,8 +71,7 @@ public slots:
     Preferences pref;
     // Disk write cache
     pref.setDiskCacheSize(spin_cache.value());
-    // End block size
-    pref.setEndBlockSize(spin_end_block_size.value());
+    pref.setDiskCacheTTL(spin_cache_ttl.value());
     // Outgoing ports
     pref.setOutgoingPortsMin(outgoing_ports_min.value());
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
@@ -92,8 +92,10 @@ public slots:
     if (combo_iface.currentIndex() == 0) {
       // All interfaces (default)
       pref.setNetworkInterface(QString::null);
+      pref.setNetworkInterfaceName(QString::null);
     } else {
-      pref.setNetworkInterface(combo_iface.currentText());
+      pref.setNetworkInterface(combo_iface.itemData(combo_iface.currentIndex()).toString());
+      pref.setNetworkInterfaceName(combo_iface.currentText());
     }
     // Network address
     QHostAddress addr(txt_network_address.text().trimmed());
@@ -173,11 +175,12 @@ private slots:
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
-    // End block size
-    spin_end_block_size.setMinimum(1);
-    spin_end_block_size.setMaximum(16);
-    spin_end_block_size.setValue(pref.endBlockSize());
-    setRow(END_BLOCK_SIZE, tr("End block size (1-16 MB)"), &spin_end_block_size);
+    // Disk cache expiry
+    spin_cache_ttl.setMinimum(15);
+    spin_cache_ttl.setMaximum(600);
+    spin_cache_ttl.setValue(pref.diskCacheTTL());
+    spin_cache_ttl.setSuffix(tr(" s", " seconds"));
+    setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);
@@ -221,7 +224,7 @@ private slots:
     int i = 1;
     foreach (const QNetworkInterface& iface, QNetworkInterface::allInterfaces()) {
       if (iface.flags() & QNetworkInterface::IsLoopBack) continue;
-      combo_iface.addItem(iface.name());
+      combo_iface.addItem(iface.humanReadableName(),iface.name());
       if (!current_iface.isEmpty() && iface.name() == current_iface) {
         combo_iface.setCurrentIndex(i);
         interface_exists = true;
@@ -230,7 +233,7 @@ private slots:
     }
     // Saved interface does not exist, show it anyway
     if (!interface_exists) {
-      combo_iface.addItem(current_iface);
+      combo_iface.addItem(pref.getNetworkInterfaceName(),current_iface);
       combo_iface.setCurrentIndex(i);
     }
     setRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &combo_iface);

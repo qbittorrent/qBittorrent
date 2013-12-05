@@ -38,40 +38,24 @@
 #include <libtorrent/file_pool.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <QFile>
+#include <QDir>
 
 #include "torrentcreatorthread.h"
 #include "fs_utils.h"
 
-#if LIBTORRENT_VERSION_MINOR < 16
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/fstream.hpp>
-#endif
 #include <boost/bind.hpp>
 #include <iostream>
 #include <fstream>
 
 using namespace libtorrent;
-#if LIBTORRENT_VERSION_MINOR < 16
-using namespace boost::filesystem;
-#endif
 
 // do not include files and folders whose
 // name starts with a .
-#if LIBTORRENT_VERSION_MINOR >= 16
 bool file_filter(std::string const& f)
 {
         if (filename(f)[0] == '.') return false;
         return true;
 }
-#else
-bool file_filter(boost::filesystem::path const& filename)
-{
-  if (filename.leaf()[0] == '.') return false;
-  std::cerr << filename << std::endl;
-  return true;
-}
-#endif
 
 void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStringList _trackers, QStringList _url_seeds, QString _comment, bool _is_private, int _piece_size)
 {
@@ -84,9 +68,6 @@ void TorrentCreatorThread::create(QString _input_path, QString _save_path, QStri
   comment = _comment;
   is_private = _is_private;
   piece_size = _piece_size;
-#if LIBTORRENT_VERSION_MINOR < 16
-  path::default_name_check(no_check);
-#endif
   abort = false;
   start();
 }
@@ -113,12 +94,22 @@ void TorrentCreatorThread::run() {
     foreach (const QString &seed, url_seeds) {
       t.add_url_seed(seed.trimmed().toStdString());
     }
+    int tier = 0;
+    bool newline = false;
     foreach (const QString &tracker, trackers) {
-      t.add_tracker(tracker.trimmed().toStdString());
+      if (tracker.isEmpty()) {
+        if (newline)
+          continue;
+        ++tier;
+        newline = true;
+        continue;
+      }
+      t.add_tracker(tracker.trimmed().toStdString(), tier);
+      newline = false;
     }
     if (abort) return;
     // calculate the hash for all pieces
-    const QString parent_path = fsutils::branchPath(input_path);
+    const QString parent_path = fsutils::branchPath(input_path) + QDir::separator();
     set_piece_hashes(t, parent_path.toUtf8().constData(), boost::bind<void>(&sendProgressUpdateSignal, _1, t.num_pieces(), this));
     // Set qBittorrent as creator and add user comment to
     // torrent_info structure
@@ -129,7 +120,15 @@ void TorrentCreatorThread::run() {
     if (abort) return;
     // create the torrent and print it to out
     qDebug("Saving to %s", qPrintable(save_path));
-    std::ofstream outfile(save_path.toLocal8Bit().constData());
+#ifdef _MSC_VER
+    wchar_t *wsave_path = new wchar_t[save_path.length()+1];
+    int len = save_path.toWCharArray(wsave_path);
+    wsave_path[len] = '\0';
+    std::ofstream outfile(wsave_path, std::ios_base::out|std::ios_base::binary);
+    delete[] wsave_path;
+#else
+    std::ofstream outfile(save_path.toLocal8Bit().constData(), std::ios_base::out|std::ios_base::binary);
+#endif
     if (outfile.fail())
       throw std::exception();
     bencode(std::ostream_iterator<char>(outfile), t.generate());

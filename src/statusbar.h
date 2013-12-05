@@ -126,7 +126,6 @@ public:
     container->setContentsMargins(0, 0, 0, 1);
     bar->setContentsMargins(0, 0, 0, 0);
     container->setFixedHeight(dlSpeedLbl->fontMetrics().height()+7);
-    bar->setContentsMargins(12, 0, 12, 0);
     bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
     // Is DHT enabled
     DHTLbl->setVisible(pref.isDHTEnabled());
@@ -207,16 +206,17 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    QBtSession::instance()->useAlternativeSpeedsLimit(!Preferences().isAltBandwidthEnabled());
+    Preferences pref;
+    if (pref.isSchedulerEnabled()) {
+      pref.setSchedulerEnabled(false);
+      m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
+    }
+    QBtSession::instance()->useAlternativeSpeedsLimit(!pref.isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_MINOR > 15
     int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
-#else
-    int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();
-#endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
     if (ok) {
       Preferences pref;
@@ -237,11 +237,7 @@ public slots:
 
   void capUploadSpeed() {
     bool ok = false;
-#if LIBTORRENT_VERSION_MINOR > 15
     int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
-#else
-    int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();
-#endif
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
     if (ok) {
       Preferences pref;

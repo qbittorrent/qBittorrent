@@ -1,4 +1,4 @@
-#VERSION: 1.50
+#VERSION: 1.52
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -30,8 +30,10 @@ from novaprinter import prettyPrinter
 import sgmllib
 from helpers import retrieve_url, download_file
 
+PREVIOUS_IDS = set()
+
 class piratebay(object):
-	url = 'http://thepiratebay.se'
+	url = 'https://thepiratebay.sx'
 	name = 'The Pirate Bay'
 	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
 
@@ -57,8 +59,9 @@ class piratebay(object):
 			if params['href'].startswith('/torrent/'):
 				self.current_item = {}
 				self.td_counter = 0
-				self.current_item['desc_link'] = 'http://thepiratebay.se'+params['href'].strip()
+				self.current_item['desc_link'] = self.url + params['href'].strip()
 				self.in_name = True
+				self.current_item['id'] = params['href'].split('/')[2]
 			elif params['href'].startswith('magnet:'):
 				self.current_item['link']=params['href'].strip()
 				self.in_name = False
@@ -90,12 +93,17 @@ class piratebay(object):
 					self.td_counter = None
 					# Display item
 					if self.current_item:
+						if self.current_item['id'] in PREVIOUS_IDS:
+							self.results = []
+							self.reset()
+							return
 						self.current_item['engine_url'] = self.url
 						if not self.current_item['seeds'].isdigit():
 							self.current_item['seeds'] = 0
 						if not self.current_item['leech'].isdigit():
 							self.current_item['leech'] = 0
 						prettyPrinter(self.current_item)
+						PREVIOUS_IDS.add(self.current_item['id'])
 						self.results.append('a')
 	def search(self, what, cat='all'):
 		ret = []

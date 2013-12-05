@@ -46,7 +46,7 @@ class PreviewSelect: public QDialog, private Ui::preview {
   Q_OBJECT
 
 public:
-  enum PreviewColumn { NAME, SIZE, PROGRESS };
+  enum PreviewColumn { NAME, SIZE, PROGRESS, NB_COLUMNS };
 
 public:
   PreviewSelect(QWidget* parent, QTorrentHandle h);

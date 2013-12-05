@@ -1,10 +1,43 @@
-* unreleased - - Christophe Dumez <chris@qbittorrent.org> - v3.1.0
+* Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.0
+    - OTHER: Drop libtorrent 0.15.x support
+
+* Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)
     - FEATURE: Add "Shutdown qBittorrent" button to Web UI (ngaro)
     - FEATURE: Add setting to copy .torrent files for finished downloads (Driim)
-    - FEATURE: Add option to start qBittorrent on Windows startup (Sledgehammer999)
+    - FEATURE: Add option to start qBittorrent on Windows startup (sledgehammer999)
+    - FEATURE: Add context menu to Web seed list (Gelmir)
+    - FEATURE: Add support for tracker tiers / groups to creator (Gelmir)
+    - FEATURE: Allow clearing execution and ban logs (Gelmir)
+    - FEATURE: Add option to use random port on each startup (ireallylikeher)
+    - FEATURE: Expose the cache expiry to the user (Gelmir)
+    - FEATURE: Support Atom feeds (Gelmir)
+    - FEATURE: Add "save path" column (John Peterson)
+    - FEATURE: Add μTorrent-compatible "Flags" column in the peer tab(sledgehammer999)
+    - FEATURE: Load magnet metadata in the background while the "Add New Torrent" Dialog is showing (Gelmir)
+    - FEATURE: Allow to enter only an info-hash for download(sledgehammer999)
+    - FEATURE: Bring the "Add New Torrent" Dialog to the front(glassez)
     - BUGFIX: Add confirmation dialog for "Force recheck" action (closes #131)
     - BUGFIX: Greatly improve RSS manager performance (closes #34)
+    - BUGFIX: Ensure that all columns in the tranferlist have a size > 0.
+    - BUGFIX: Don't mark RSS item as read when it failed to download (Gelmir)
+    - BUGFIX: Fix ETA calculation when some files are downloaded and marked afterwards as 'do not download'(sledgehammer999)
+    - BUGFIX: Make the UI show that PEX/DHT/LSD are actually disabled on private torrents(sledgehammer999)
+    - BUGFIX: Scheduler should be much more robust and correct now(sledgehammer999)
+    - BUGFIX: Now qBt won't forget torrent settings after an unclean shutdown(sledgehammer999)
+    - BUGFIX: Text boxes in edit dialogs will fit to text width(Gelmir)
+    - BUGFIX: Enable edit/rename via F2 or double click in various places(Gelmir)
+    - BUGFIX: Allow to edit trackers and copy their urls(Gelmir and Driim)
+    - BUGFIX: Add Uploaded column to main view(Gelmir)
+    - BUGFIX: Calculate ETA for seeding torrents(Gelmir)    
+    - BUGFIX: Add option to ignore global share ratio limits for created torrents(Gelmir)
+    - OTHER: Many RSS bugfixes and improvements all over the place(Gelmir)
+    - OTHER: Generate translations at configure time to reduce tarball size
+    - OTHER: Make peer tab sortable by ip too (Gelmir)
+    - OTHER: Translations moved to Transifex(https://www.transifex.com/projects/p/qbittorrent/)
+    - OTHER: New Translation - Vietnamese (Anh Phan)
+    - PERFORMANCE: Impove drawing speed of tranferlist when there are many torrents(>100)
+    - PERFORMANCE: Impove drawing speed of peers list when there are many peers
 
 * Thu Aug 09 2012 - Christophe Dumez <chris@qbittorrent.org> - v3.0.0
     - FEATURE: Brand new torrent addition dialog

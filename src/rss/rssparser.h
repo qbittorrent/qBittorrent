@@ -61,7 +61,9 @@ protected:
   static QDateTime parseDate(const QString& string);
   void parseRssArticle(QXmlStreamReader& xml, const QString& feedUrl);
   void parseRSSChannel(QXmlStreamReader& xml, const QString& feedUrl);
-  void parseRSS(const ParsingJob& job);
+  void parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, const QString& baseUrl);
+  void parseAtomChannel(QXmlStreamReader& xml, const QString& feedUrl);
+  void parseFeed(const ParsingJob& job);
   void reportFailure(const ParsingJob& job, const QString& error);
 
 private:

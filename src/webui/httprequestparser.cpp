@@ -158,3 +158,30 @@ Submit Query
     }
   }
 }
+
+bool HttpRequestParser::acceptsEncoding() {
+  QString encoding = m_header.value("Accept-Encoding");
+
+  int pos = encoding.indexOf("gzip", 0, Qt::CaseInsensitive);
+  if (pos == -1)
+    return false;
+
+  // Let's see if there's a qvalue of 0.0 following
+  if (encoding[pos+4] != ';') //there isn't, so it accepts gzip anyway
+    return true;
+
+  //So let's find = and the next comma
+  pos = encoding.indexOf("=", pos+4, Qt::CaseInsensitive);
+  int comma_pos = encoding.indexOf(",", pos, Qt::CaseInsensitive);
+
+  QString value;
+  if (comma_pos == -1)
+    value = encoding.mid(pos+1, comma_pos);
+  else
+    value = encoding.mid(pos+1, comma_pos-(pos+1));
+
+  if (value.toDouble() == 0.0)
+    return false;
+  else
+    return true;
+}

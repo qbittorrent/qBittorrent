@@ -71,11 +71,11 @@ public:
 #if LIBTORRENT_VERSION_MAJOR == 0 && LIBTORRENT_VERSION_MINOR < 16
     required_libs << "filesystem" ;
 #endif
-    required_libs << "thread";
+    //required_libs << "thread";
     QStringList libDirs;
     if (!s.isEmpty())
       libDirs << s;
-    libDirs << "/usr/lib/" << "/usr/lib64/" << "/usr/local/lib/" << "/usr/local/lib64/";
+    libDirs << "/usr/lib/" << "/usr/lib/i386-linux-gnu/" << "/usr/lib64/" << "/usr/lib/x86_64-linux-gnu/" << "/usr/local/lib/" << "/usr/lib/local/i386-linux-gnu/" << "/usr/local/lib64/" << "/usr/local/lib/x86_64-linux-gnu/";
 
     foreach(const QString& lib, required_libs) {
       bool found = false;

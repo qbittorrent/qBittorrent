@@ -50,9 +50,27 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       show();
       // Paste clipboard if there is an URL in it
       QString clip_txt = qApp->clipboard()->text();
-      if (clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive) || clip_txt.startsWith("magnet:", Qt::CaseInsensitive) || clip_txt.startsWith("bc://bt/", Qt::CaseInsensitive)) {
-        textUrls->setText(clip_txt);
+      QStringList clip_txt_list = clip_txt.split(QString::fromUtf8("\n"));
+      clip_txt.clear();
+      QStringList clip_txt_list_cleaned;
+      foreach (clip_txt, clip_txt_list) {
+        clip_txt = clip_txt.trimmed();
+        if (!clip_txt.isEmpty()) {
+          if (clip_txt_list_cleaned.indexOf(QRegExp(clip_txt, Qt::CaseInsensitive, QRegExp::FixedString)) < 0) {
+            if (clip_txt.startsWith("http://", Qt::CaseInsensitive)
+                || clip_txt.startsWith("https://", Qt::CaseInsensitive)
+                || clip_txt.startsWith("ftp://", Qt::CaseInsensitive)
+                || clip_txt.startsWith("magnet:", Qt::CaseInsensitive)
+                || clip_txt.startsWith("bc://bt/", Qt::CaseInsensitive)
+                || (clip_txt.size() == 40 && !clip_txt.contains(QRegExp("[^0-9A-Fa-f]")))
+                || (clip_txt.size() == 32 && !clip_txt.contains(QRegExp("[^2-7A-Za-z]")))) {
+              clip_txt_list_cleaned << clip_txt;
+            }
+          }
+        }
       }
+      if (clip_txt_list_cleaned.size() > 0)
+        textUrls->setText(clip_txt_list_cleaned.join("\n"));
     }
 
     ~downloadFromURL() {}
@@ -62,6 +80,7 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
 
   public slots:
     void on_downloadButton_clicked() {
+      close();
       QString urls = textUrls->toPlainText();
       QStringList url_list = urls.split(QString::fromUtf8("\n"));
       QString url;
@@ -80,7 +99,6 @@ class downloadFromURL : public QDialog, private Ui::downloadFromURL{
       }
       emit urlsReadyToBeDownloaded(url_list_cleaned);
       qDebug("Emitted urlsReadytobedownloaded signal");
-      close();
     }
 
     void on_cancelButton_clicked() {

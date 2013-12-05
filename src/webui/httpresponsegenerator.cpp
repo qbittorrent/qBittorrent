@@ -30,11 +30,11 @@
 
 
 #include "httpresponsegenerator.h"
+#include <zlib.h>
 
 void HttpResponseGenerator::setMessage(const QByteArray& message)
 {
   m_message = message;
-  setContentLength(message.size());
 }
 
 void HttpResponseGenerator::setMessage(const QString& message)
@@ -63,4 +63,78 @@ void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
 		setContentType("image/png");
 		return;
 	}
+}
+
+bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
+  static const int BUFSIZE = 128 * 1024;
+  char tmp_buf[BUFSIZE];
+  int ret;
+
+  z_stream strm;
+  strm.zalloc = Z_NULL;
+  strm.zfree = Z_NULL;
+  strm.opaque = Z_NULL;
+  strm.next_in = reinterpret_cast<unsigned char*>(m_message.data());
+  strm.avail_in = m_message.length();
+  strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+  strm.avail_out = BUFSIZE;
+
+  //windowBits = 15+16 to enable gzip
+  //From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
+  //to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
+  ret = deflateInit2(&strm, Z_BEST_COMPRESSION, Z_DEFLATED, 15+16, 8, Z_DEFAULT_STRATEGY);
+
+  if (ret != Z_OK)
+    return false;
+
+  while (strm.avail_in != 0)
+   {
+    ret = deflate(&strm, Z_NO_FLUSH);
+    if (ret != Z_OK)
+      return false;
+    if (strm.avail_out == 0)
+    {
+     dest_buffer.append(tmp_buf, BUFSIZE);
+     strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+     strm.avail_out = BUFSIZE;
+    }
+   }
+
+  int deflate_res = Z_OK;
+  while (deflate_res == Z_OK) {
+    if (strm.avail_out == 0) {
+      dest_buffer.append(tmp_buf, BUFSIZE);
+      strm.next_out = reinterpret_cast<unsigned char*>(tmp_buf);
+      strm.avail_out = BUFSIZE;
+    }
+    deflate_res = deflate(&strm, Z_FINISH);
+  }
+
+  if (deflate_res != Z_STREAM_END)
+    return false;
+  dest_buffer.append(tmp_buf, BUFSIZE - strm.avail_out);
+  deflateEnd(&strm);
+
+  return true;
+}
+
+QByteArray HttpResponseGenerator::toByteArray() {
+  // A gzip seems to have 23 bytes overhead.
+  // Also "content-encoding: gzip\r\n" is 26 bytes long
+  // So we only benefit from gzip if the message is bigger than 23+26 = 49
+  // If the message is smaller than 49 bytes we actually send MORE data if we gzip
+  if (m_gzip && m_message.size() > 49) {
+    QByteArray dest_buf;
+    if (gCompress(dest_buf)) {
+      setValue("content-encoding", "gzip");
+#if QT_VERSION < 0x040800
+      m_message = dest_buf;
+#else
+      m_message.swap(dest_buf);
+#endif
+    }
+  }
+
+  setContentLength(m_message.size());
+  return QHttpResponseHeader::toString().toUtf8() + m_message;
 }

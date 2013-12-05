@@ -62,18 +62,24 @@ namespace DNS {
 enum Service { DYNDNS, NOIP, NONE = -1 };
 }
 
-class Preferences : public QIniSettings {
+class Preferences : private QIniSettings {
   Q_DISABLE_COPY(Preferences)
 
 public:
-  Preferences() : QIniSettings("qBittorrent", "qBittorrent") {
+  Preferences()
+    : QIniSettings("qBittorrent", "qBittorrent")
+  {
     qDebug() << "Preferences constructor";
   }
 
-public:
-  // General options
+  void sync()
+  {
+    QIniSettings::sync();
+  }
+
+  // General options  
   QString getLocale() const {
-    return value(QString::fromUtf8("Preferences/General/Locale"), "en_GB").toString();
+    return value(QString::fromUtf8("Preferences/General/Locale")).toString();
   }
 
   void setLocale(const QString &locale) {
@@ -118,6 +124,14 @@ public:
 
   void setAlternatingRowColors(bool b) {
     setValue("Preferences/General/AlternatingRowColors", b);
+  }
+
+  bool useRandomPort() const {
+    return value(QString::fromUtf8("Preferences/General/UseRandomPort"), false).toBool();
+  }
+
+  void setRandomPort(bool b) {
+    setValue("Preferences/General/UseRandomPort", b);
   }
 
   bool systrayIntegration() const {
@@ -266,6 +280,14 @@ public:
 
   void useAdditionDialog(bool b) {
     setValue("Preferences/Downloads/NewAdditionDialog", b);
+  }
+
+  bool AdditionDialogFront() const {
+    return value(QString::fromUtf8("Preferences/Downloads/NewAdditionDialogFront"), true).toBool();
+  }
+
+  void AdditionDialogFront(bool b) {
+    setValue("Preferences/Downloads/NewAdditionDialogFront", b);
   }
 
   bool addTorrentsInPause() const {
@@ -572,6 +594,15 @@ public:
   void setMaxConnecsPerTorrent(int val) {
     if (val <= 0) val = -1;
     setValue(QString::fromUtf8("Preferences/Bittorrent/MaxConnecsPerTorrent"), val);
+  }
+
+  int getMaxUploads() const {
+    return value(QString::fromUtf8("Preferences/Bittorrent/MaxUploads"), 8).toInt();
+  }
+
+  void setMaxUploads(int val) {
+    if (val <= 0) val = -1;
+    setValue(QString::fromUtf8("Preferences/Bittorrent/MaxUploads"), val);
   }
 
   int getMaxUploadsPerTorrent() const {
@@ -892,6 +923,10 @@ public:
     setValue("Locking/password", md5_password);
   }
 
+  void clearUILockPassword() {
+    remove("Locking/password");
+  }
+
   QString getUILockPasswordMD5() const {
     return value("Locking/password", QString()).toString();
   }
@@ -954,10 +989,14 @@ public:
 
   uint endBlockSize() const {
     return value(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), 2).toUInt();
+  uint diskCacheTTL() const {
+    return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), 60).toUInt();
   }
 
   void setEndBlockSize(uint val) {
     setValue(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), val);
+  void setDiskCacheTTL(uint ttl) {
+    setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), ttl);
   }
 
   uint outgoingPortsMin() const {
@@ -1043,12 +1082,21 @@ public:
     setValue(QString::fromUtf8("Preferences/Connection/MaxHalfOpenConnec"), value);
   }
 
+
   void setNetworkInterface(const QString& iface) {
     setValue(QString::fromUtf8("Preferences/Connection/Interface"), iface);
   }
 
   QString getNetworkInterface() const {
     return value(QString::fromUtf8("Preferences/Connection/Interface"), QString()).toString();
+  }
+  
+  void setNetworkInterfaceName(const QString& iface) {
+    setValue(QString::fromUtf8("Preferences/Connection/InterfaceName"), iface);
+  }
+
+  QString getNetworkInterfaceName() const {
+    return value(QString::fromUtf8("Preferences/Connection/InterfaceName"), QString()).toString();
   }
 
   void setNetworkAddress(const QString& addr) {
@@ -1210,7 +1258,7 @@ public:
       settings.setValue("qBittorrent/shell/open/command/Default", command_str);
       settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
       settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
-    } else {
+    } else if (isTorrentFileAssocSet()) {
       settings.remove(".torrent/Default");
       settings.remove(".torrent/Content Type");
       settings.remove("qBittorrent/shell/Default");
@@ -1234,7 +1282,7 @@ public:
       settings.setValue("Magnet/DefaultIcon/Default", icon_str);
       settings.setValue("Magnet/shell/Default", "open");
       settings.setValue("Magnet/shell/open/command/Default", command_str);
-    } else {
+    } else if (isMagnetLinkAssocSet()) {
       settings.remove("Magnet/Default");
       settings.remove("Magnet/Content Type");
       settings.remove("Magnet/URL Protocol");

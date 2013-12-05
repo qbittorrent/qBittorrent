@@ -51,14 +51,14 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
 
   setLayout(box);
   // Set Search results list model
-  SearchListModel = new QStandardItemModel(0, SearchEngine::NB_SEARCH_COLUMNS);
-  SearchListModel->setHeaderData(SearchEngine::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
-  SearchListModel->setHeaderData(SearchEngine::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
-  SearchListModel->setHeaderData(SearchEngine::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
-  SearchListModel->setHeaderData(SearchEngine::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
-  SearchListModel->setHeaderData(SearchEngine::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
+  SearchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS);
+  SearchListModel->setHeaderData(SearchSortModel::NAME, Qt::Horizontal, tr("Name", "i.e: file name"));
+  SearchListModel->setHeaderData(SearchSortModel::SIZE, Qt::Horizontal, tr("Size", "i.e: file size"));
+  SearchListModel->setHeaderData(SearchSortModel::SEEDS, Qt::Horizontal, tr("Seeders", "i.e: Number of full sources"));
+  SearchListModel->setHeaderData(SearchSortModel::LEECHS, Qt::Horizontal, tr("Leechers", "i.e: Number of partial sources"));
+  SearchListModel->setHeaderData(SearchSortModel::ENGINE_URL, Qt::Horizontal, tr("Search engine"));
 
-  proxyModel = new QSortFilterProxyModel();
+  proxyModel = new SearchSortModel();
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSourceModel(SearchListModel);
   resultsBrowser->setModel(proxyModel);
@@ -66,8 +66,8 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
   SearchDelegate = new SearchListDelegate();
   resultsBrowser->setItemDelegate(SearchDelegate);
 
-  resultsBrowser->hideColumn(SearchEngine::DL_LINK); // Hide url column
-  resultsBrowser->hideColumn(SearchEngine::DESC_LINK);
+  resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
+  resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
 
   resultsBrowser->setRootIsDecorated(false);
   resultsBrowser->setAllColumnsShowFocus(true);
@@ -82,12 +82,12 @@ SearchTab::SearchTab(SearchEngine *parent) : QWidget(), parent(parent)
   }
 
   // Sort by Seeds
-  resultsBrowser->sortByColumn(SearchEngine::SEEDS, Qt::DescendingOrder);
+  resultsBrowser->sortByColumn(SearchSortModel::SEEDS, Qt::DescendingOrder);
 }
 
 void SearchTab::downloadSelectedItem(const QModelIndex& index) {
-  QString engine_url = proxyModel->data(proxyModel->index(index.row(), SearchEngine::ENGINE_URL)).toString();
-  QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchEngine::DL_LINK)).toString();
+  QString engine_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::ENGINE_URL)).toString();
+  QString torrent_url = proxyModel->data(proxyModel->index(index.row(), SearchSortModel::DL_LINK)).toString();
   setRowColor(index.row(), "red");
   parent->downloadTorrent(engine_url, torrent_url);
 }
@@ -106,7 +106,7 @@ QHeaderView* SearchTab::header() const {
 }
 
 bool SearchTab::loadColWidthResultsList() {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   QString line = settings.value("SearchResultsColsWidth", QString()).toString();
   if (line.isEmpty())
     return false;

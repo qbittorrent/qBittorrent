@@ -29,7 +29,6 @@
  */
 
 #include <QDesktopServices>
-#include <QInputDialog>
 #include <QMenu>
 #include <QStandardItemModel>
 #include <QMessageBox>
@@ -51,6 +50,7 @@
 #include "rsssettings.h"
 #include "automatedrssdownloader.h"
 #include "iconprovider.h"
+#include "autoexpandabledialog.h"
 
 namespace Article {
 enum ArticleRoles {
@@ -86,6 +86,10 @@ void RSSImp::displayRSSListMenu(const QPoint& pos)
           myRSSListMenu.addAction(actionManage_cookies);
         }
       }
+    }
+    else {
+      myRSSListMenu.addAction(actionDelete);
+      myRSSListMenu.addSeparator();
     }
     myRSSListMenu.addAction(actionNew_subscription);
     if (m_feedList->isFeed(selectedItems.first())) {
@@ -150,7 +154,7 @@ void RSSImp::askNewFolder()
     rss_parent = m_rssManager;
   }
   bool ok;
-  QString new_name = QInputDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
+  QString new_name = AutoExpandableDialog::getText(this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal, tr("New folder"), &ok);
   if (!ok)
     return;
 
@@ -166,13 +170,6 @@ void RSSImp::askNewFolder()
   if (parent_item)
     parent_item->setExpanded(true);
   m_rssManager->saveStreamList();
-}
-
-void RSSImp::displayOverwriteError(const QString& filename)
-{
-  QMessageBox::warning(this, tr("Overwrite attempt"),
-                       tr("You cannot overwrite %1 item.", "You cannot overwrite myFolder item.").arg(filename),
-                       QMessageBox::Ok);
 }
 
 // add a stream by a button
@@ -204,7 +201,7 @@ void RSSImp::on_newFeedButton_clicked()
   if (clip_txt.startsWith("http://", Qt::CaseInsensitive) || clip_txt.startsWith("https://", Qt::CaseInsensitive) || clip_txt.startsWith("ftp://", Qt::CaseInsensitive))
     default_url = clip_txt;
 
-  QString newUrl = QInputDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
+  QString newUrl = AutoExpandableDialog::getText(this, tr("Please type a rss stream url"), tr("Stream URL:"), QLineEdit::Normal, default_url, &ok);
   if (!ok)
     return;
 
@@ -213,7 +210,7 @@ void RSSImp::on_newFeedButton_clicked()
     return;
 
   if (m_feedList->hasFeed(newUrl)) {
-    QMessageBox::warning(this, tr("qBittorrent"),
+    QMessageBox::warning(this, "qBittorrent",
                          tr("This rss feed is already in the list."),
                          QMessageBox::Ok);
     return;
@@ -244,10 +241,13 @@ void RSSImp::deleteSelectedItems()
     ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete these elements from the list?"),
                                 tr("&Yes"), tr("&No"),
                                 QString(), 0, 1);
-  else
+  else {
+    if (selectedItems.first() == m_feedList->stickyUnreadItem())
+      return;
     ret = QMessageBox::question(this, tr("Are you sure? -- qBittorrent"), tr("Are you sure you want to delete this element from the list?"),
                                 tr("&Yes"), tr("&No"),
                                 QString(), 0, 1);
+  }
   if (ret)
     return;
 
@@ -257,6 +257,8 @@ void RSSImp::deleteSelectedItems()
       m_currentArticle = 0;
       listArticles->clear();
     }
+    if (item == m_feedList->stickyUnreadItem())
+      continue;
     RssFilePtr rss_item = m_feedList->getRSSItem(item);
     QTreeWidgetItem* parent = item->parent();
     // Notify TreeWidget
@@ -281,7 +283,7 @@ void RSSImp::deleteSelectedItems()
 
 void RSSImp::loadFoldersOpenState()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.beginGroup("Rss");
   QStringList open_folders = settings.value("open_folders", QStringList()).toStringList();
   settings.endGroup();
@@ -320,7 +322,7 @@ void RSSImp::saveFoldersOpenState()
     qDebug("saving open folder: %s", qPrintable(path));
     open_folders << path;
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.beginGroup("Rss");
   settings.setValue("open_folders", open_folders);
   settings.endGroup();
@@ -373,13 +375,16 @@ void RSSImp::openSelectedArticlesUrls()
 void RSSImp::renameSelectedRssFile()
 {
   QList<QTreeWidgetItem*> selectedItems = m_feedList->selectedItems();
-  Q_ASSERT(selectedItems.size() == 1);
+  if (selectedItems.size() != 1)
+    return;
   QTreeWidgetItem* item = selectedItems.first();
+  if (item == m_feedList->stickyUnreadItem())
+    return;
   RssFilePtr rss_item = m_feedList->getRSSItem(item);
   bool ok;
   QString newName;
   do {
-    newName = QInputDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, m_feedList->getRSSItem(item)->displayName(), &ok);
+    newName = AutoExpandableDialog::getText(this, tr("Please choose a new name for this RSS feed"), tr("New feed name:"), QLineEdit::Normal, m_feedList->getRSSItem(item)->displayName(), &ok);
     // Check if name is already taken
     if (ok) {
       if (rss_item->parent()->hasChild(newName)) {
@@ -451,7 +456,7 @@ QTreeWidgetItem* RSSImp::createFolderListItem(const RssFilePtr& rssFile)
 {
   Q_ASSERT(rssFile);
   QTreeWidgetItem* item = new QTreeWidgetItem;
-  item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName()+ QString::fromUtf8("  (")+QString::number(rssFile->unreadCount(), 10)+QString(")")));
+  item->setData(0, Qt::DisplayRole, QVariant(rssFile->displayName()+ QString::fromUtf8("  (")+QString::number(rssFile->unreadCount())+QString(")")));
   item->setData(0, Qt::DecorationRole, rssFile->icon());
 
   return item;
@@ -578,7 +583,7 @@ void RSSImp::refreshTextBrowser()
 void RSSImp::saveSlidersPosition()
 {
   // Remember sliders positions
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   settings.setValue("rss/splitter_h", splitter_h->saveState());
   settings.setValue("rss/splitter_v", splitter_v->saveState());
   qDebug("Splitters position saved");
@@ -586,7 +591,7 @@ void RSSImp::saveSlidersPosition()
 
 void RSSImp::restoreSlidersPosition()
 {
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   QByteArray pos_h = settings.value("rss/splitter_h", QByteArray()).toByteArray();
   if (!pos_h.isNull()) {
     splitter_h->restoreState(pos_h);
@@ -614,7 +619,7 @@ void RSSImp::updateItemInfos(QTreeWidgetItem *item)
     name = tr("Unread");
   else
     name = rss_item->displayName();
-  item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->unreadCount(), 10)+ QString(")"));
+  item->setText(0, name + QString::fromUtf8("  (") + QString::number(rss_item->unreadCount())+ QString(")"));
   // If item has a parent, update it too
   if (item->parent())
     updateItemInfos(item->parent());
@@ -688,6 +693,11 @@ RSSImp::RSSImp(QWidget *parent) :
   splitter_h->insertWidget(0, m_feedList);
   listArticles->setSelectionBehavior(QAbstractItemView::SelectItems);
   listArticles->setSelectionMode(QAbstractItemView::SingleSelection);
+  editHotkey = new QShortcut(QKeySequence("F2"), m_feedList, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkey, SIGNAL(activated()), SLOT(renameSelectedRssFile()));
+  connect(m_feedList, SIGNAL(doubleClicked(QModelIndex)), SLOT(renameSelectedRssFile()));
+  deleteHotkey = new QShortcut(QKeySequence(QKeySequence::Delete), m_feedList, 0, 0, Qt::WidgetShortcut);
+  connect(deleteHotkey, SIGNAL(activated()), SLOT(deleteSelectedItems()));
 
   m_rssManager->loadStreamList();
   fillFeedsList();
@@ -717,7 +727,6 @@ RSSImp::RSSImp(QWidget *parent) :
 
   connect(m_feedList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(populateArticleList(QTreeWidgetItem*)));
   connect(m_feedList, SIGNAL(foldersAltered(QList<QTreeWidgetItem*>)), this, SLOT(updateItemsInfos(QList<QTreeWidgetItem*>)));
-  connect(m_feedList, SIGNAL(overwriteAttempt(QString)), this, SLOT(displayOverwriteError(QString)));
 
   connect(listArticles, SIGNAL(itemSelectionChanged()), this, SLOT(refreshTextBrowser()));
   connect(listArticles, SIGNAL(itemDoubleClicked(QListWidgetItem *)), this, SLOT(downloadSelectedTorrents()));
@@ -737,6 +746,8 @@ RSSImp::~RSSImp()
 {
   qDebug("Deleting RSSImp...");
   saveFoldersOpenState();
+  delete editHotkey;
+  delete deleteHotkey;
   delete m_feedList;
   qDebug("RSSImp deleted");
 }

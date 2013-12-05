@@ -197,7 +197,7 @@ SearchEngine::~SearchEngine() {
 }
 
 void SearchEngine::tab_changed(int t)
-{//when we switch from a tab that is not empty to another that is empty the download button 
+{//when we switch from a tab that is not empty to another that is empty the download button
   //doesn't have to be available
   if (t>-1)
   {//-1 = no more tab
@@ -301,7 +301,7 @@ void SearchEngine::propagateSectionResized(int index, int , int newsize) {
 void SearchEngine::saveResultsColumnsWidth() {
   if (all_tab.size() > 0) {
     QTreeView* treeview = all_tab.first()->getCurrentTreeView();
-    QIniSettings settings("qBittorrent", "qBittorrent");
+    QIniSettings settings;
     QStringList width_list;
     QStringList new_width_list;
     short nbColumns = all_tab.first()->getCurrentSearchListModel()->columnCount();
@@ -355,7 +355,7 @@ void SearchEngine::searchStarted() {
   // Update SearchEngine widgets
   search_status->setText(tr("Searching..."));
   search_status->repaint();
-  search_button->setText("Stop");
+  search_button->setText(tr("Stop"));
 }
 
 // search Qprocess return output as soon as it gets new
@@ -486,7 +486,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   if (searchTimeout->isActive()) {
     searchTimeout->stop();
   }
-  QIniSettings settings("qBittorrent", "qBittorrent");
+  QIniSettings settings;
   bool useNotificationBalloons = settings.value("Preferences/General/NotificationBaloons", true).toBool();
   if (useNotificationBalloons && mp_mainWindow->getCurrentTabWidget() != this) {
     mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
@@ -495,7 +495,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
 #ifdef Q_WS_WIN
     search_status->setText(tr("Search aborted"));
 #else
-    search_status->setText(tr("An error occured during search..."));
+    search_status->setText(tr("An error occurred during search..."));
 #endif
   }else{
     if (search_stopped) {
@@ -510,7 +510,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
   }
   if (currentSearchTab)
     currentSearchTab->getCurrentLabel()->setText(tr("Results", "i.e: Search results")+QString::fromUtf8(" <i>(")+QString::number(nb_search_results)+QString::fromUtf8(")</i>:"));
-  search_button->setText("Search");
+  search_button->setText(tr("Search"));
 }
 
 // SLOT to append one line to search results list
@@ -539,26 +539,26 @@ void SearchEngine::appendSearchResult(const QString &line) {
   int row = cur_model->rowCount();
   cur_model->insertRow(row);
 
-  cur_model->setData(cur_model->index(row, DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
-  cur_model->setData(cur_model->index(row, NAME), parts.at(PL_NAME).trimmed()); // Name
-  cur_model->setData(cur_model->index(row, SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
+  cur_model->setData(cur_model->index(row, SearchSortModel::DL_LINK), parts.at(PL_DL_LINK).trimmed()); // download URL
+  cur_model->setData(cur_model->index(row, SearchSortModel::NAME), parts.at(PL_NAME).trimmed()); // Name
+  cur_model->setData(cur_model->index(row, SearchSortModel::SIZE), parts.at(PL_SIZE).trimmed().toLongLong()); // Size
   bool ok = false;
   qlonglong nb_seeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok);
   if (!ok || nb_seeders < 0) {
-    cur_model->setData(cur_model->index(row, SEEDS), tr("Unknown")); // Seeders
+    cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), tr("Unknown")); // Seeders
   } else {
-    cur_model->setData(cur_model->index(row, SEEDS), nb_seeders); // Seeders
+    cur_model->setData(cur_model->index(row, SearchSortModel::SEEDS), nb_seeders); // Seeders
   }
   qlonglong nb_leechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok);
   if (!ok || nb_leechers < 0) {
-    cur_model->setData(cur_model->index(row, LEECHS), tr("Unknown")); // Leechers
+    cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), tr("Unknown")); // Leechers
   } else {
-    cur_model->setData(cur_model->index(row, LEECHS), nb_leechers); // Leechers
+    cur_model->setData(cur_model->index(row, SearchSortModel::LEECHS), nb_leechers); // Leechers
   }
-  cur_model->setData(cur_model->index(row, ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
+  cur_model->setData(cur_model->index(row, SearchSortModel::ENGINE_URL), parts.at(PL_ENGINE_URL).trimmed()); // Engine URL
   // Description Link
   if (nb_fields == NB_PLUGIN_COLUMNS)
-    cur_model->setData(cur_model->index(row, DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
+    cur_model->setData(cur_model->index(row, SearchSortModel::DESC_LINK), parts.at(PL_DESC_LINK).trimmed());
 
   no_search_results = false;
   ++nb_search_results;
@@ -591,7 +591,7 @@ void SearchEngine::on_download_button_clicked() {
   //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   foreach (const QModelIndex &index, selectedIndexes) {
-    if (index.column() == NAME) {
+    if (index.column() == SearchSortModel::NAME) {
       // Get Item url
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
       QString torrent_url = model->data(model->index(index.row(), URL_COLUMN)).toString();
@@ -606,9 +606,9 @@ void SearchEngine::on_goToDescBtn_clicked()
 {
   QModelIndexList selectedIndexes = all_tab.at(tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
   foreach (const QModelIndex &index, selectedIndexes) {
-    if (index.column() == NAME) {
+    if (index.column() == SearchSortModel::NAME) {
       QSortFilterProxyModel* model = all_tab.at(tabWidget->currentIndex())->getCurrentSearchListProxy();
-      const QString desc_url = model->data(model->index(index.row(), DESC_LINK)).toString();
+      const QString desc_url = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
       if (!desc_url.isEmpty())
         QDesktopServices::openUrl(QUrl::fromEncoded(desc_url.toUtf8()));
     }

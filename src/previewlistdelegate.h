@@ -36,10 +36,13 @@
 #include <QStyleOptionViewItemV2>
 #include <QModelIndex>
 #include <QPainter>
-#include <QProgressBar>
 #include <QApplication>
 #include "misc.h"
 #include "previewselect.h"
+
+#ifdef Q_WS_WIN
+  #include <QPlastiqueStyle>
+#endif
 
 class PreviewListDelegate: public QItemDelegate {
   Q_OBJECT
@@ -59,16 +62,24 @@ class PreviewListDelegate: public QItemDelegate {
           QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
           break;
         case PreviewSelect::PROGRESS:{
-          qreal progress = index.data().toDouble()*100.;
           QStyleOptionProgressBarV2 newopt;
+          qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
-          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
+          /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+          ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+          newopt.text = QString::number((int)(progress*10)/10.0, 'f', 1)+"%";
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;
           newopt.state |= QStyle::State_Enabled;
           newopt.textVisible = true;
+  #ifndef Q_WS_WIN
           QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+  #else
+          // XXX: To avoid having the progress text on the right of the bar
+          QPlastiqueStyle st;
+          st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+  #endif
           break;
         }
         default:

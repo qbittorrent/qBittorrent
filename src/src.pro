@@ -28,6 +28,10 @@ nox {
   DEFINES += DISABLE_GUI
 } else {
   QT += xml
+  CONFIG(static) {
+    DEFINES += QBT_STATIC_QT
+    QTPLUGIN += qico
+  }
   TARGET = qbittorrent
 }
 QT += network
@@ -121,6 +125,7 @@ nox {
               transferlistwidget.h \
               transferlistdelegate.h \
               transferlistfilterswidget.h \
+              transferlistsortmodel.h \
               torrentcontentmodel.h \
               torrentcontentmodelitem.h \
               torrentcontentmodelfolder.h \
@@ -143,7 +148,9 @@ nox {
               iconprovider.h \
               updownratiodlg.h \
               loglistwidget.h \
-              addnewtorrentdialog.h
+              addnewtorrentdialog.h \
+              autoexpandabledialog.h \
+              statsdialog.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -160,7 +167,9 @@ nox {
              iconprovider.cpp \
              updownratiodlg.cpp \
              loglistwidget.cpp \
-             addnewtorrentdialog.cpp
+             addnewtorrentdialog.cpp \
+             autoexpandabledialog.cpp \
+             statsdialog.cpp
 
   win32 {
     HEADERS += programupdater.h
@@ -185,7 +194,9 @@ nox {
            confirmdeletiondlg.ui \
            torrentimportdlg.ui \
            executionlog.ui \
-           addnewtorrentdialog.ui
+           addnewtorrentdialog.ui \
+           autoexpandabledialog.ui \
+           statsdialog.ui
 }
 
 DESTDIR = .
@@ -202,6 +213,8 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_zh.ts \
                $$LANG_PATH/qbittorrent_zh_TW.ts \
                $$LANG_PATH/qbittorrent_en.ts \
+               $$LANG_PATH/qbittorrent_en_AU.ts \
+               $$LANG_PATH/qbittorrent_en_GB.ts \
                $$LANG_PATH/qbittorrent_ca.ts \
                $$LANG_PATH/qbittorrent_es.ts \
                $$LANG_PATH/qbittorrent_pl.ts \
@@ -234,4 +247,5 @@ TRANSLATIONS = $$LANG_PATH/qbittorrent_fr.ts \
                $$LANG_PATH/qbittorrent_ka.ts \
                $$LANG_PATH/qbittorrent_be.ts \
                $$LANG_PATH/qbittorrent_eu.ts \
-               $$LANG_PATH/qbittorrent_he.ts
+               $$LANG_PATH/qbittorrent_he.ts \
+               $$LANG_PATH/qbittorrent_vi.ts

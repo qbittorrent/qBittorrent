@@ -38,15 +38,17 @@ class HttpResponseGenerator : public QHttpResponseHeader
 {
 
 public:
+    HttpResponseGenerator(): m_gzip(false) {}
     void setMessage(const QByteArray& message);
     void setMessage(const QString& message);
     void setContentTypeByExt(const QString& ext);
-    inline QByteArray toByteArray() const {
-      return QHttpResponseHeader::toString().toUtf8() + m_message;
-    }
+    void setContentEncoding(bool gzip) { m_gzip = gzip; }
+    QByteArray toByteArray();
 
 private:
+    bool gCompress(QByteArray &dest_buffer);
     QByteArray m_message;
+    bool m_gzip;
 
 };
 

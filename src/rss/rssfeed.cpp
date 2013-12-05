@@ -83,7 +83,7 @@ void RssFeed::saveItemsToDisk()
   qDebug() << Q_FUNC_INFO << m_url;
   if (!m_dirty)
     return;
-  m_dirty = false;
+  markAsDirty(false);
 
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
   QVariantList old_items;
@@ -114,25 +114,46 @@ void RssFeed::loadItemsFromDisk()
   }
 }
 
-void RssFeed::addArticle(const RssArticlePtr& article)
-{
-  Q_ASSERT(!m_articles.contains(article->guid()));
-  // Update unreadCount
-  if (!article->isRead())
-    ++m_unreadCount;
-  // Insert in hash table
-  m_articles[article->guid()] = article;
-  // Insertion sort
-  RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
-  m_articlesByDate.insert(lowerBound, article);
-  // Restrict size
-  const int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
-  if (m_articlesByDate.size() > max_articles) {
-    RssArticlePtr oldestArticle = m_articlesByDate.takeLast();
-    m_articles.remove(oldestArticle->guid());
+void RssFeed::addArticle(const RssArticlePtr& article) {
+  int lbIndex = -1;
+  int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
+
+  if (!m_articles.contains(article->guid())) {
+    markAsDirty();
+
     // Update unreadCount
-    if (!oldestArticle->isRead())
-      --m_unreadCount;
+    if (!article->isRead())
+      ++m_unreadCount;
+    // Insert in hash table
+    m_articles[article->guid()] = article;
+    // Insertion sort
+    RssArticleList::Iterator lowerBound = qLowerBound(m_articlesByDate.begin(), m_articlesByDate.end(), article, rssArticleDateRecentThan);
+    m_articlesByDate.insert(lowerBound, article);
+    lbIndex = m_articlesByDate.indexOf(article);
+    if (m_articlesByDate.size() > max_articles) {
+      RssArticlePtr oldestArticle = m_articlesByDate.takeLast();
+      m_articles.remove(oldestArticle->guid());
+      // Update unreadCount
+      if (!oldestArticle->isRead())
+        --m_unreadCount;
+    }
+
+    // Check if article was inserted at the end of the list and will break max_articles limit
+    if (RssSettings().isRssDownloadingEnabled()) {
+      if (lbIndex < max_articles && !article->isRead())
+        downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
+    }
+  }
+  else {
+    // m_articles.contains(article->guid())
+    // Try to download skipped articles
+    if (RssSettings().isRssDownloadingEnabled()) {
+      RssArticlePtr skipped = m_articles.value(article->guid(), RssArticlePtr());
+      if (skipped) {
+        if (!skipped->isRead())
+          downloadArticleTorrentIfMatching(m_manager->downloadRules(), skipped);
+      }
+    }
   }
 }
 
@@ -248,6 +269,11 @@ void RssFeed::markAsRead()
   m_manager->forwardFeedInfosChanged(m_url, displayName(), 0);
 }
 
+void RssFeed::markAsDirty(bool dirty)
+{
+  m_dirty = dirty;
+}
+
 uint RssFeed::unreadCount() const
 {
   return m_unreadCount;
@@ -326,15 +352,15 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
   if (!matching_rule)
     return;
 
-  // Torrent was downloaded, consider article as read
-  article->markAsRead();
   // Download the torrent
   const QString& torrent_url = article->torrentUrl();
   QBtSession::instance()->addConsoleMessage(tr("Automatically downloading %1 torrent from %2 RSS feed...").arg(article->title()).arg(displayName()));
+  connect(QBtSession::instance(), SIGNAL(newDownloadedTorrentFromRss(QString)), article.data(), SLOT(handleTorrentDownloadSuccess(const QString&)), Qt::UniqueConnection);
+  connect(article.data(), SIGNAL(articleWasRead()), SLOT(handleArticleStateChanged()), Qt::UniqueConnection);
   if (torrent_url.startsWith("magnet:", Qt::CaseInsensitive))
     QBtSession::instance()->addMagnetSkipAddDlg(torrent_url, matching_rule->savePath(), matching_rule->label());
   else
-    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label());
+    QBtSession::instance()->downloadUrlAndSkipDialog(torrent_url, matching_rule->savePath(), matching_rule->label(), feedCookies());
 }
 
 void RssFeed::recheckRssItemsForDownload()
@@ -352,19 +378,13 @@ void RssFeed::handleNewArticle(const QString& feedUrl, const QVariantHash& artic
   if (feedUrl != m_url)
     return;
 
-  const QString guid = articleData["id"].toString();
-  if (m_articles.contains(guid))
-    return;
-
-  m_dirty = true;
-
   RssArticlePtr article = hashToRssArticle(this, articleData);
+  if (article.isNull()) {
+    qDebug() << "Article hash corrupted or guid is uncomputable; feed url: " << feedUrl;
+    return;
+  }
   Q_ASSERT(article);
   addArticle(article);
-
-  // Download torrent if necessary.
-  if (RssSettings().isRssDownloadingEnabled())
-    downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
 
   m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
   // FIXME: We should forward the information here but this would seriously decrease
@@ -390,6 +410,10 @@ void RssFeed::handleFeedParsingFinished(const QString& feedUrl, const QString& e
   m_manager->forwardFeedContentChanged(m_url);
 
   saveItemsToDisk();
+}
+
+void RssFeed::handleArticleStateChanged() {
+  m_manager->forwardFeedInfosChanged(m_url, displayName(), m_unreadCount);
 }
 
 void RssFeed::decrementUnreadCount()

@@ -50,14 +50,15 @@ public:
   RssDownloadRulePtr getRule(const QString &name) const;
   inline QStringList ruleNames() const { return m_rules.keys(); }
   inline bool isEmpty() const { return m_rules.isEmpty(); }
+  void saveRulesToStorage();
   bool serialize(const QString& path);
   bool unserialize(const QString& path);
+  void replace(RssDownloadRuleList* other);
 
 private:
   void loadRulesFromStorage();
   void loadRulesFromVariantHash(const QVariantHash& l);
   QVariantHash toVariantHash() const;
-  void saveRulesToStorage();
 
 private:
   QHash<QString, RssDownloadRulePtr> m_rules;

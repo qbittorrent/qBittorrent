@@ -143,7 +143,9 @@ static JsonDict toJson(const QTorrentHandle& h)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   ret.add(KEY_TORRENT_LEECHS, leechs);
   const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-  ret.add(KEY_TORRENT_RATIO, (ratio > 100.) ? QString::fromUtf8("∞") : QString::number(ratio, 'f', 1));
+  /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+  ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+  ret.add(KEY_TORRENT_RATIO, (ratio > 100.) ? QString::fromUtf8("∞") : QString::number((int)(ratio*10)/10.0, 'f', 1));
   QString eta;
   QString state;
   if (h.is_paused()) {
@@ -297,21 +299,17 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
     data.add(KEY_PROP_WASTED, misc::friendlyUnit(h.total_failed_bytes() + h.total_redundant_bytes()));
     data.add(KEY_PROP_UPLOADED, QString(misc::friendlyUnit(h.all_time_upload()) + " (" + misc::friendlyUnit(h.total_payload_upload()) + " " + tr("this session") + ")"));
     data.add(KEY_PROP_DOWNLOADED, QString(misc::friendlyUnit(h.all_time_download()) + " (" + misc::friendlyUnit(h.total_payload_download()) + " " + tr("this session") + ")"));
-    if (h.upload_limit() <= 0)
-      data.add(KEY_PROP_UP_LIMIT, QString::fromUtf8("∞"));
-    else
-      data.add(KEY_PROP_UP_LIMIT, misc::friendlyUnit(h.upload_limit(), true));
-    if (h.download_limit() <= 0)
-      data.add(KEY_PROP_DL_LIMIT, QString::fromUtf8("∞"));
-    else
-      data.add(KEY_PROP_DL_LIMIT, misc::friendlyUnit(h.download_limit(), true));
+    data.add(KEY_PROP_UP_LIMIT, h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit(), true));
+    data.add(KEY_PROP_DL_LIMIT, h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit(), true));
     QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
     if (h.is_seed())
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
     data.add(KEY_PROP_TIME_ELAPSED, elapsed_txt);
     data.add(KEY_PROP_CONNECT_COUNT, QString(QString::number(h.num_connections()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit())) + ")"));
     const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-    data.add(KEY_PROP_RATIO, ratio > 100. ? QString::fromUtf8("∞") : QString::number(ratio, 'f', 1));
+    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+    data.add(KEY_PROP_RATIO, ratio > 100. ? QString::fromUtf8("∞") : QString::number((int)(ratio*10)/10.0, 'f', 1));
   } catch(const std::exception& e) {
     qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
     return QString();

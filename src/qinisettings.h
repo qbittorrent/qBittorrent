@@ -38,7 +38,7 @@ class QIniSettings : public QSettings {
   Q_DISABLE_COPY (QIniSettings)
 
 public:
-  QIniSettings(const QString &organization, const QString &application = QString(), QObject *parent = 0 ):
+  QIniSettings(const QString &organization = "qBittorrent", const QString &application = "qBittorrent", QObject *parent = 0 ):
 #ifdef Q_WS_WIN
       QSettings(QSettings::IniFormat, QSettings::UserScope, organization, application, parent)
 #else

@@ -31,6 +31,7 @@
 #ifndef PROPERTIESWIDGET_H
 #define PROPERTIESWIDGET_H
 
+#include <QShortcut>
 #include <QWidget>
 #include "ui_propertieswidget.h"
 #include "qtorrenthandle.h"
@@ -78,7 +79,10 @@ protected slots:
   void loadUrlSeeds();
   void askWebSeed();
   void deleteSelectedUrlSeeds();
+  void copySelectedWebSeedsToClipboard() const;
+  void editWebSeed();
   void displayFilesListMenu(const QPoint& pos);
+  void displayWebSeedListMenu(const QPoint& pos);
   void filteredFilesChanged();
   void showPiecesDownloaded(bool show);
   void showPiecesAvailability(bool show);
@@ -109,6 +113,12 @@ private:
   PieceAvailabilityBar *pieces_availability;
   PropTabBar *m_tabBar;
   LineEdit *m_contentFilerLine;
+  QShortcut *editHotkeyFile;
+  QShortcut *editHotkeyWeb;
+  QShortcut *deleteHotkeyWeb;
+
+private slots:
+  void filterText(const QString& filter);
 };
 
 #endif // PROPERTIESWIDGET_H

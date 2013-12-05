@@ -4,11 +4,15 @@
 INCLUDEPATH += $$quote(C:/qBittorrent/boost_1_51_0)
 #Point this to the libtorrent include folder
 INCLUDEPATH += $$quote(C:/qBittorrent/RC_0_16/include)
+#Point this to the zlib include folder
+INCLUDEPATH += $$quote(C:/qBittorrent/Zlib/include)
 
 #Point this to the boost lib folder
 LIBS += $$quote(-LC:/qBittorrent/boost_1_51_0/stage/lib)
 #Point this to the libtorrent lib folder
 LIBS += $$quote(-LC:/qBittorrent/RC_0_16/bin/<path-according-to-the-build-options-chosen>)
+#Point this to the zlib lib folder
+LIBS += $$quote(-LC:/qBittorrent/Zlib/lib)
 
 # LIBTORRENT DEFINES
 DEFINES += BOOST_ALL_NO_LIB
@@ -34,6 +38,18 @@ CONFIG(debug, debug|release) {
   DEFINES += TORRENT_DEBUG
 } else {
   DEFINES += NDEBUG
+}
+
+#Enable backtrace support
+win32-msvc* {
+  CONFIG += strace_win
+}
+
+strace_win:{
+  DEFINES += STACKTRACE_WIN
+  FORMS += stacktrace_win_dlg.ui
+  HEADERS += stacktrace_win.h \
+             stacktrace_win_dlg.h
 }
 
 win32-g++ {

@@ -35,6 +35,7 @@
 #include <QRegExp>
 #include <QStringList>
 #include <QVariant>
+#include <QTextDocument>
 
 struct ParsingJob {
   QString feedUrl;
@@ -236,7 +237,7 @@ void RssParser::run()
     if (!m_queue.empty()) {
       ParsingJob job = m_queue.dequeue();
       m_mutex.unlock();
-      parseRSS(job);
+      parseFeed(job);
     } else {
       qDebug() << Q_FUNC_INFO << "Thread is waiting.";
       m_waitCondition.wait(&m_mutex);
@@ -326,8 +327,129 @@ void RssParser::parseRSSChannel(QXmlStreamReader& xml, const QString& feedUrl)
   }
 }
 
+void RssParser::parseAtomArticle(QXmlStreamReader& xml, const QString& feedUrl, const QString& baseUrl)
+{
+  QVariantHash article;
+  bool double_content = false;
+
+  while(!xml.atEnd()) {
+    xml.readNext();
+
+    if(xml.isEndElement() && xml.name() == "entry")
+      break;
+
+    if (xml.isStartElement()) {
+      if (xml.name() == "title") {
+        // Workaround for CDATA (QString cannot parse html escapes on it's own)
+        QTextDocument doc;
+        doc.setHtml(xml.readElementText());
+        article["title"] = doc.toPlainText();
+      }
+      else if (xml.name() == "link") {
+        QString theLink = ( xml.attributes().isEmpty() ?
+                              xml.readElementText() :
+                              xml.attributes().value("href").toString() );
+
+        // Atom feeds can have relative links, work around this and
+        // take the stress of figuring article full URI from UI
+
+        // Assemble full URI
+        article["news_link"] = ( baseUrl.isEmpty() ?
+                                   theLink :
+                                   baseUrl + theLink );
+      }
+      else if (xml.name() == "summary" || xml.name() == "content"){
+        if(double_content) { // Duplicate content -> ignore
+          xml.readNext();
+
+          while(xml.name() != "summary" && xml.name() != "content")
+            xml.readNext();
+
+          continue;
+        }
+
+        // Try to also parse broken articles, which don't use html '&' escapes
+        // Actually works great for non-broken content too
+        QString feedText = xml.readElementText(QXmlStreamReader::IncludeChildElements);
+        if (!feedText.isEmpty())
+          article["description"] = feedText;
+
+        double_content = true;
+      }
+      else if (xml.name() == "updated"){
+        // ATOM uses standard compliant date, don't do fancy stuff
+        QDateTime articleDate = QDateTime::fromString(xml.readElementText(), Qt::ISODate);
+        article["date"] = ( articleDate.isValid() ?
+                              articleDate :
+                              QDateTime::currentDateTime() );
+      }
+      else if (xml.name() == "author") {
+        xml.readNext();
+        while(xml.name() != "author") {
+          if(xml.name() == "name")
+            article["author"] = xml.readElementText();
+          xml.readNext();
+        }
+      }
+      else if (xml.name() == "id")
+        article["id"] = xml.readElementText();
+    }
+  }
+
+  if (!article.contains("id")) {
+    // Item does not have a guid, fall back to some other identifier
+    const QString link = article.value("news_link").toString();
+    if (!link.isEmpty())
+      article["id"] = link;
+    else {
+      const QString title = article.value("title").toString();
+      if (!title.isEmpty())
+        article["id"] = title;
+      else {
+        qWarning() << "Item has no guid, link or title, ignoring it...";
+        return;
+      }
+    }
+  }
+
+  emit newArticle(feedUrl, article);
+}
+
+void RssParser::parseAtomChannel(QXmlStreamReader& xml, const QString& feedUrl)
+{
+  qDebug() << Q_FUNC_INFO << feedUrl;
+  Q_ASSERT(xml.isStartElement() && xml.name() == "feed");
+
+  QString baseURL = xml.attributes().value("xml:base").toString();
+
+  while(!xml.atEnd()) {
+    xml.readNext();
+
+    if (xml.isStartElement()) {
+      if (xml.name() == "title") {
+        QString title = xml.readElementText();
+        emit feedTitle(feedUrl, title);
+      }
+      else if (xml.name() == "updated") {
+        QString lastBuildDate = xml.readElementText();
+        if (!lastBuildDate.isEmpty()) {
+          QMutexLocker locker(&m_mutex);
+          if (m_lastBuildDates.value(feedUrl) == lastBuildDate) {
+            qDebug() << "The RSS feed has not changed since last time, aborting parsing.";
+            return;
+          }
+          m_lastBuildDates[feedUrl] = lastBuildDate;
+        }
+      }
+      else if (xml.name() == "entry") {
+        parseAtomArticle(xml, feedUrl, baseURL);
+      }
+    }
+  }
+}
+
 // read and create items from a rss document
-void RssParser::parseRSS(const ParsingJob& job)
+void RssParser::parseFeed(const ParsingJob& job)
 {
   qDebug() << Q_FUNC_INFO << job.feedUrl << job.filePath;
   QFile fileRss(job.filePath);
@@ -351,6 +473,11 @@ void RssParser::parseRSS(const ParsingJob& job)
           xml.skipCurrentElement();
         }
       }
+      break;
+    }
+    else if (xml.name() == "feed") { // Atom feed
+      parseAtomChannel(xml, job.feedUrl);
+      found_channel = true;
       break;
     } else {
       qDebug() << "Skip root item: " << xml.name();

@@ -31,9 +31,11 @@
 #ifndef ADDNEWTORRENTDIALOG_H
 #define ADDNEWTORRENTDIALOG_H
 
+#include <QShortcut>
 #include <QDialog>
 #include <QUrl>
 #include <libtorrent/torrent_info.hpp>
+#include "qtorrenthandle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -54,15 +56,22 @@ public:
   static void showTorrent(const QString& torrent_path, const QString& from_url = QString());
   static void showMagnet(const QString& torrent_link);
 
+protected:
+  void showEvent(QShowEvent *event);
+
 private slots:
   void showAdvancedSettings(bool show);
   void displayContentTreeMenu(const QPoint&);
-  void on_buttonBox_accepted();
   void updateDiskSpaceLabel();
   void onSavePathChanged(int);
   void relayout();
   void renameSelectedFile();
   void setdialogPosition();
+  void updateMetadata(const QTorrentHandle& h);
+
+protected slots:
+  virtual void accept();
+  virtual void reject();
 
 private:
   explicit AddNewTorrentDialog(QWidget *parent = 0);
@@ -74,18 +83,21 @@ private:
   void updateFileNameInSavePaths(const QString& new_filename);
   void loadState();
   void saveState();
+  void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
 
 private:
   Ui::AddNewTorrentDialog *ui;
   TorrentContentFilterModel *m_contentModel;
   PropListDelegate *m_contentDelegate;
   bool m_isMagnet;
+  bool m_hasMetadata;
   QString m_filePath;
   QString m_url;
   QString m_hash;
   boost::intrusive_ptr<libtorrent::torrent_info> m_torrentInfo;
   QStringList m_filesPath;
   bool m_hasRenamedFile;
+  QShortcut *editHotkey;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

@@ -33,6 +33,7 @@
 #define REFRESH_MAX_LATENCY 600000
 
 #include <QPointer>
+#include <QShortcut>
 
 #include "ui_rss.h"
 #include "rssfolder.h"
@@ -79,7 +80,6 @@ private slots:
   void askNewFolder();
   void saveFoldersOpenState();
   void loadFoldersOpenState();
-  void displayOverwriteError(const QString &filename);
   void on_actionManage_cookies_triggered();
   void on_settingsButton_clicked();
   void on_rssDownloaderBtn_clicked();
@@ -92,6 +92,8 @@ private:
   RssManagerPtr m_rssManager;
   FeedListWidget *m_feedList;
   QListWidgetItem* m_currentArticle;
+  QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 
 };
 

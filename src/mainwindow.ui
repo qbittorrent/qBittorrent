@@ -53,6 +53,7 @@
     <addaction name="actionWebsite"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionDonate_money"/>
+    <addaction name="actionCheck_for_updates"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menu_Options">
@@ -72,6 +73,7 @@
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
+    <addaction name="actionStatistics"/>
     <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
    </widget>
    <widget class="QMenu" name="menu_File">
@@ -104,7 +106,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="movable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -293,7 +295,7 @@
     <string>Lock qBittorrent</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string notr="true">Ctrl+L</string>
    </property>
   </action>
   <action name="action_Import_Torrent">
@@ -373,6 +375,19 @@
   <action name="actionMinimize">
    <property name="text">
     <string notr="true">Minimize</string>
+   </property>
+  </action>
+  <action name="actionStatistics">
+   <property name="text">
+    <string>Statistics</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_updates">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+   <property name="toolTip">
+    <string>Check for program updates</string>
    </property>
   </action>
  </widget>

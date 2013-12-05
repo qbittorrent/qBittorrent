@@ -175,7 +175,7 @@ void misc::shutdownComputer(bool sleep) {
   if (sleep)
     SetSuspendState(false, false, false);
   else
-    InitiateSystemShutdownA(0, tr("qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
+    InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
 
   // Disable shutdown privilege.
   tkp.Privileges[0].Attributes = 0;
@@ -233,66 +233,72 @@ int misc::pythonVersion() {
 // value must be given in bytes
 QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (val < 0)
-    return tr("Unknown", "Unknown (size)");
+    return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
   int i = 0;
   while(val >= 1024. && i++<6)
     val /= 1024.;
   QString ret;
   if (i == 0)
-    ret = QString::number((long)val) + " " + tr(units[0].source, units[0].comment);
+    ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
   else
-    ret = QString::number(val, 'f', 1) + " " + tr(units[i].source, units[i].comment);
+    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+    ret = QString::number((int)(val*10)/10.0, 'f', 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
   if (is_speed)
-    ret += tr("/s", "per second");
+    ret += QCoreApplication::translate("misc", "/s", "per second");
   return ret;
 }
 
-bool misc::isPreviewable(QString extension) {
-  if (extension.isEmpty()) return false;
-  extension = extension.toUpper();
-  if (extension == "AVI") return true;
-  if (extension == "MP3") return true;
-  if (extension == "OGG") return true;
-  if (extension == "OGV") return true;
-  if (extension == "OGM") return true;
-  if (extension == "WMV") return true;
-  if (extension == "WMA") return true;
-  if (extension == "MPEG") return true;
-  if (extension == "MPG") return true;
-  if (extension == "ASF") return true;
-  if (extension == "QT") return true;
-  if (extension == "RM") return true;
-  if (extension == "RMVB") return true;
-  if (extension == "RMV") return true;
-  if (extension == "SWF") return true;
-  if (extension == "FLV") return true;
-  if (extension == "WAV") return true;
-  if (extension == "MOV") return true;
-  if (extension == "VOB") return true;
-  if (extension == "MID") return true;
-  if (extension == "AC3") return true;
-  if (extension == "MP4") return true;
-  if (extension == "MP2") return true;
-  if (extension == "AVI") return true;
-  if (extension == "FLAC") return true;
-  if (extension == "AU") return true;
-  if (extension == "MPE") return true;
-  if (extension == "MOV") return true;
-  if (extension == "MKV") return true;
-  if (extension == "AIF") return true;
-  if (extension == "AIFF") return true;
-  if (extension == "AIFC") return true;
-  if (extension == "RA") return true;
-  if (extension == "RAM") return true;
-  if (extension == "M4P") return true;
-  if (extension == "M4A") return true;
-  if (extension == "3GP") return true;
-  if (extension == "AAC") return true;
-  if (extension == "SWA") return true;
-  if (extension == "MPC") return true;
-  if (extension == "MPP") return true;
-  if (extension == "M3U") return true;
-  return false;
+bool misc::isPreviewable(const QString& extension) {
+  static QSet<QString> multimedia_extensions;
+  if (multimedia_extensions.empty()) {
+    multimedia_extensions.insert("3GP");
+    multimedia_extensions.insert("AAC");
+    multimedia_extensions.insert("AC3");
+    multimedia_extensions.insert("AIF");
+    multimedia_extensions.insert("AIFC");
+    multimedia_extensions.insert("AIFF");
+    multimedia_extensions.insert("ASF");
+    multimedia_extensions.insert("AU");
+    multimedia_extensions.insert("AVI");
+    multimedia_extensions.insert("FLAC");
+    multimedia_extensions.insert("FLV");
+    multimedia_extensions.insert("M3U");
+    multimedia_extensions.insert("M4A");
+    multimedia_extensions.insert("M4P");
+    multimedia_extensions.insert("M4V");
+    multimedia_extensions.insert("MID");
+    multimedia_extensions.insert("MKV");
+    multimedia_extensions.insert("MOV");
+    multimedia_extensions.insert("MP2");
+    multimedia_extensions.insert("MP3");
+    multimedia_extensions.insert("MP4");
+    multimedia_extensions.insert("MPC");
+    multimedia_extensions.insert("MPE");
+    multimedia_extensions.insert("MPEG");
+    multimedia_extensions.insert("MPG");
+    multimedia_extensions.insert("MPP");
+    multimedia_extensions.insert("OGG");
+    multimedia_extensions.insert("OGM");
+    multimedia_extensions.insert("OGV");
+    multimedia_extensions.insert("QT");
+    multimedia_extensions.insert("RA");
+    multimedia_extensions.insert("RAM");
+    multimedia_extensions.insert("RM");
+    multimedia_extensions.insert("RMV");
+    multimedia_extensions.insert("RMVB");
+    multimedia_extensions.insert("SWA");
+    multimedia_extensions.insert("SWF");
+    multimedia_extensions.insert("VOB");
+    multimedia_extensions.insert("WAV");
+    multimedia_extensions.insert("WMA");
+    multimedia_extensions.insert("WMV");
+  }
+
+  if (extension.isEmpty())
+    return false;
+
+  return multimedia_extensions.contains(extension.toUpper());
 }
 
 QString misc::bcLinkToMagnet(QString bc_link) {
@@ -375,21 +381,21 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
     return "0";
   }
   if (seconds < 60) {
-    return tr("< 1m", "< 1 minute");
+    return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
   }
   int minutes = seconds / 60;
   if (minutes < 60) {
-    return tr("%1m","e.g: 10minutes").arg(QString::number(minutes));
+    return QCoreApplication::translate("misc", "%1m","e.g: 10minutes").arg(QString::number(minutes));
   }
   int hours = minutes / 60;
   minutes = minutes - hours*60;
   if (hours < 24) {
-    return tr("%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
+    return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours)).arg(QString::number(minutes));
   }
   int days = hours / 24;
   hours = hours - days * 24;
   if (days < 100) {
-    return tr("%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
+    return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days)).arg(QString::number(hours));
   }
   return QString::fromUtf8("∞");
 }
@@ -498,22 +504,57 @@ QString misc::parseHtmlLinks(const QString &raw_text)
   return result;
 }
 
-#if LIBTORRENT_VERSION_MINOR < 16
-QString misc::toQString(const boost::posix_time::ptime& boostDate) {
-  if (boostDate.is_not_a_date_time()) return "";
-  struct std::tm tm;
-  try {
-    tm = boost::posix_time::to_tm(boostDate);
-  } catch(std::exception e) {
-      return "";
-  }
-  const time_t t = mktime(&tm);
-  const QDateTime dt = QDateTime::fromTime_t(t);
-  return dt.toString(Qt::DefaultLocaleLongDate);
-}
-#else
 QString misc::toQString(time_t t)
 {
   return QDateTime::fromTime_t(t).toString(Qt::DefaultLocaleLongDate);
+}
+
+#ifndef DISABLE_GUI
+bool misc::naturalSort(QString left, QString right, bool &result) { // uses lessThan comparison
+  // Return value indicates if functions was successful
+  // result argument will contain actual comparison result if function was successful
+  do {
+    int posL = left.indexOf(QRegExp("[0-9]"));
+    int posR = right.indexOf(QRegExp("[0-9]"));
+    if (posL == -1 || posR == -1)
+      break; // No data
+    else if (posL != posR)
+      break; // Digit positions mismatch
+    else  if (left.left(posL) != right.left(posR))
+      break; // Strings' subsets before digit do not match
+
+    QString temp;
+    while (posL < left.size()) {
+      if (left.at(posL).isDigit())
+        temp += left.at(posL);
+      else
+        break;
+      posL++;
+    }
+    int numL = temp.toInt();
+    temp.clear();
+
+    while (posR < right.size()) {
+      if (right.at(posR).isDigit())
+        temp += right.at(posR);
+      else
+        break;
+      posR++;
+    }
+    int numR = temp.toInt();
+
+    if (numL != numR) {
+      result = (numL < numR);
+      return true;
+    }
+
+    // Strings + digits do match and we haven't hit string end
+    // Do another round
+    left.remove(0, posL);
+    right.remove(0, posR);
+
+  } while (true);
+
+  return false;
 }
 #endif

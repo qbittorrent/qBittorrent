@@ -201,8 +201,55 @@ void QtLocalPeer::receiveConnection()
         return;
     }
     QString message(QString::fromUtf8(uMsg));
+#ifdef Q_OS_WIN
+    if (message == "qbt://pid") {
+      qint64 pid = GetCurrentProcessId();
+      socket->write((const char *)&pid, sizeof pid);
+    } else {
+      socket->write(ack, qstrlen(ack));
+    }
+#else
     socket->write(ack, qstrlen(ack));
+#endif
     socket->waitForBytesWritten(1000);
     delete socket;
+#ifdef Q_OS_WIN
+    if (message == "qbt://pid")
+      return;
+#endif
     emit messageReceived(message); //### (might take a long time to return)
 }
+
+#ifdef Q_OS_WIN
+qint64 QtLocalPeer::getRunningPid() {
+  if (!isClient())
+      return 0;
+
+  QLocalSocket socket;
+  bool connOk = false;
+  for (int i = 0; i < 2; i++) {
+      // Try twice, in case the other instance is just starting up
+      socket.connectToServer(socketName);
+      connOk = socket.waitForConnected(5000/2);
+      if (connOk || i)
+          break;
+      Sleep(250);
+  }
+  if (!connOk) return -1;
+
+  const char* msg = "qbt://pid";
+  QDataStream ds(&socket);
+  ds.writeBytes(msg, qstrlen(msg));
+  bool res = socket.waitForBytesWritten(5000) && socket.waitForReadyRead(5000);
+  if (!res) return -1;
+
+  DWORD pid;
+  qint64 pid_size = sizeof pid;
+  while (socket.bytesAvailable() < pid_size)
+      socket.waitForReadyRead();
+  if (socket.read((char *)&pid, pid_size) < pid_size)
+      return -1;
+
+  return pid;
+}
+#endif

@@ -36,6 +36,7 @@
 #include <QPointer>
 #include <QSet>
 #include <libtorrent/peer_info.hpp>
+#include "peerlistsortmodel.h"
 #include "qtorrenthandle.h"
 #include "misc.h"
 
@@ -83,11 +84,12 @@ protected slots:
 
 private:
   static QString getConnectionString(int connection_type);
+  static void getFlags(const libtorrent::peer_info& peer, QString& flags, QString& tooltip);
 
 private:
   QStandardItemModel *m_listModel;
   PeerListDelegate *m_listDelegate;
-  QSortFilterProxyModel *m_proxyModel;
+  PeerListSortModel *m_proxyModel;
   QHash<QString, QStandardItem*> m_peerItems;
   QHash<QString, boost::asio::ip::tcp::endpoint> m_peerEndpoints;
   QSet<QString> m_missingFlags;

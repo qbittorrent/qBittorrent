@@ -52,6 +52,14 @@ RssDownloadRulePtr RssDownloadRuleList::findMatchingRule(const QString &feed_url
   return RssDownloadRulePtr();
 }
 
+void RssDownloadRuleList::replace(RssDownloadRuleList *other) {
+  m_rules.clear();
+  m_feedRules.clear();
+  foreach (const QString& name, other->ruleNames()) {
+    saveRule(other->getRule(name));
+  }
+}
+
 void RssDownloadRuleList::saveRulesToStorage()
 {
   QIniSettings qBTRSS("qBittorrent", "qBittorrent-rss");
@@ -97,8 +105,6 @@ void RssDownloadRuleList::saveRule(const RssDownloadRulePtr &rule)
   foreach (const QString &feed_url, rule->rssFeeds()) {
     m_feedRules[feed_url].append(rule->name());
   }
-  // Save rules
-  saveRulesToStorage();
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -111,8 +117,6 @@ void RssDownloadRuleList::removeRule(const QString &name)
   foreach (const QString &feed_url, rule->rssFeeds()) {
     m_feedRules[feed_url].removeOne(rule->name());
   }
-  // Save rules
-  saveRulesToStorage();
 }
 
 void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new_name)
@@ -125,8 +129,6 @@ void RssDownloadRuleList::renameRule(const QString &old_name, const QString &new
   foreach (const QString &feed_url, rule->rssFeeds()) {
     m_feedRules[feed_url].replace(m_feedRules[feed_url].indexOf(old_name), new_name);
   }
-  // Save rules
-  saveRulesToStorage();
 }
 
 RssDownloadRulePtr RssDownloadRuleList::getRule(const QString &name) const

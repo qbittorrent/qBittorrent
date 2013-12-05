@@ -39,7 +39,7 @@ class PeerListDelegate: public QItemDelegate {
   Q_OBJECT
 
 public:
-  enum PeerListColumns {IP, CONNECTION, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
+  enum PeerListColumns {COUNTRY, IP, CONNECTION, FLAGS, CLIENT, PROGRESS, DOWN_SPEED, UP_SPEED,
                         TOT_DOWN, TOT_UP, IP_HIDDEN, COL_COUNT};
 
 public:
@@ -67,7 +67,9 @@ public:
     case PROGRESS:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal progress = index.data().toDouble();
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number(progress*100., 'f', 1)+"%");
+      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number((int)((progress*100.0)*10)/10.0, 'f', 1)+"%");
       break;
     }
     default:

@@ -52,7 +52,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Both HTTP and Magnet links are supported</string>
+      <string>One per line (HTTP links, Magnet links and info-hashes are supported)</string>
      </property>
     </widget>
    </item>

@@ -36,6 +36,7 @@
 #include <QPointer>
 #include "ui_mainwindow.h"
 #include "qtorrenthandle.h"
+#include "statsdialog.h"
 
 class QBtSession;
 class downloadFromURL;
@@ -93,6 +94,7 @@ protected slots:
   void dragEnterEvent(QDragEnterEvent *event);
   void toggleVisibility(QSystemTrayIcon::ActivationReason e = QSystemTrayIcon::Trigger);
   void on_actionAbout_triggered();
+  void on_actionStatistics_triggered();
   void on_actionCreate_torrent_triggered();
   void on_actionWebsite_triggered() const;
   void on_actionBugReport_triggered() const;
@@ -107,6 +109,7 @@ protected slots:
   void tab_changed(int);
   void on_actionLock_qBittorrent_triggered();
   void defineUILockPassword();
+  void clearUILockPassword();
   bool unlockUI();
   void notifyOfUpdate(QString);
   void showConnectionSettings();
@@ -164,6 +167,7 @@ private:
   QPointer<options_imp> options;
   QPointer<consoleDlg> console;
   QPointer<about> aboutDlg;
+  QPointer<StatsDialog> statsDlg;
   QPointer<TorrentCreatorDlg> createTorrentDlg;
   QPointer<downloadFromURL> downloadFromURLDialog;
   QPointer<QSystemTrayIcon> systrayIcon;
@@ -195,6 +199,10 @@ private:
   // Power Management
   PowerManagement *m_pwr;
   QTimer *preventTimer;
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+  QTimer programUpdateTimer;
+  bool checkingProgramUpdate;
+#endif
 
 private slots:
     void on_actionSearch_engine_triggered();
@@ -209,6 +217,9 @@ private slots:
     void on_actionAutoShutdown_system_toggled(bool );
     // Check for active torrents and set preventing from suspend state
     void checkForActiveTorrents();
+#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+    void checkProgramUpdate();
+#endif
 };
 
 #endif

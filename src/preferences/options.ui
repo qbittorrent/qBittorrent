@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
+    <width>779</width>
     <height>591</height>
    </rect>
   </property>
@@ -176,9 +176,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-161</y>
-             <width>486</width>
-             <height>638</height>
+             <y>0</y>
+             <width>458</width>
+             <height>587</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -516,8 +516,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>482</width>
-             <height>1025</height>
+             <width>458</width>
+             <height>905</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -536,21 +536,33 @@
                <property name="bottomMargin">
                 <number>9</number>
                </property>
-               <item row="0" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkAdditionDialog">
-                 <property name="text">
-                  <string>Display torrent content and some options</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="0">
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="text">
                   <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
                  </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="checkAdditionDialog">
+                 <property name="title">
+                  <string>Display torrent content and some options</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_15">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="checkAdditionDialogFront">
+                    <property name="text">
+                     <string>Bring torrent dialog to the front</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1022,8 +1034,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>474</width>
-             <height>577</height>
+             <width>357</width>
+             <height>498</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1089,6 +1101,13 @@
                    </property>
                   </widget>
                  </item>
+                 <item>
+                  <widget class="QCheckBox" name="checkRandomPort">
+                   <property name="text">
+                    <string>Use different port on each startup</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -1126,7 +1145,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
                  <property name="text">
                   <string>Maximum number of connections per torrent:</string>
@@ -1136,7 +1155,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
                  <property name="minimum">
                   <number>2</number>
@@ -1149,7 +1168,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
+               <item row="4" column="0">
                 <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
                  <property name="text">
                   <string>Maximum number of upload slots per torrent:</string>
@@ -1159,7 +1178,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
+               <item row="4" column="1">
                 <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
                  <property name="maximum">
                   <number>500</number>
@@ -1182,7 +1201,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="2">
+               <item row="2" column="2">
                 <spacer name="horizontalSpacer_4">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -1195,8 +1214,41 @@
                  </property>
                 </spacer>
                </item>
-               <item row="2" column="2">
+               <item row="4" column="2">
                 <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkMaxUploads">
+                 <property name="text">
+                  <string>Global maximum number of upload slots:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinMaxUploads">
+                 <property name="maximum">
+                  <number>2000</number>
+                 </property>
+                 <property name="value">
+                  <number>8</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <spacer name="horizontalSpacer_15">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -1466,8 +1518,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>359</width>
-             <height>480</height>
+             <width>275</width>
+             <height>396</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
@@ -1741,6 +1793,9 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_from">
+                      <property name="wrapping">
+                       <bool>true</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
@@ -1768,6 +1823,9 @@
                     </item>
                     <item>
                      <widget class="QTimeEdit" name="schedule_to">
+                      <property name="wrapping">
+                       <bool>true</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
@@ -1878,8 +1936,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>557</width>
-             <height>555</height>
+             <width>418</width>
+             <height>442</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2041,6 +2099,9 @@
                   <widget class="QLabel" name="label_anonymous">
                    <property name="text">
                     <string> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</string>
+                   </property>
+                   <property name="openExternalLinks">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -2289,8 +2350,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>426</width>
-             <height>611</height>
+             <width>330</width>
+             <height>480</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -2666,8 +2727,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>74</width>
-             <height>24</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_36"/>
@@ -2716,7 +2777,6 @@
   <tabstop>comboI18n</tabstop>
   <tabstop>textSavePath</tabstop>
   <tabstop>browseSaveDirButton</tabstop>
-  <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
@@ -2857,6 +2917,22 @@
     <hint type="destinationlabel">
      <x>430</x>
      <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMaxUploads</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMaxUploads</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>423</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>571</x>
+     <y>224</y>
     </hint>
    </hints>
   </connection>

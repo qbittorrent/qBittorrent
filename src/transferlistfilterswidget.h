@@ -37,7 +37,6 @@
 #include <QIcon>
 #include <QVBoxLayout>
 #include <QMenu>
-#include <QInputDialog>
 #include <QDragMoveEvent>
 #include <QStandardItemModel>
 #include <QMessageBox>
@@ -51,6 +50,7 @@
 #include "torrentmodel.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 class LabelFiltersList: public QListWidget {
   Q_OBJECT
@@ -281,7 +281,7 @@ public:
   }
 
   void saveSettings() const {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     settings.beginGroup(QString::fromUtf8("TransferListFilters"));
     settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
     //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
@@ -289,7 +289,7 @@ public:
   }
 
   void loadSettings() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     statusFilters->setCurrentRow(settings.value("TransferListFilters/selectedFilterIndex", 0).toInt());
     const QStringList label_list = Preferences().getTorrentLabels();
     foreach (const QString &label, label_list) {
@@ -368,7 +368,7 @@ protected slots:
         bool invalid;
         do {
           invalid = false;
-          label = QInputDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
+          label = AutoExpandableDialog::getText(this, tr("New Label"), tr("Label:"), QLineEdit::Normal, label, &ok);
           if (ok && !label.isEmpty()) {
             if (fsutils::isValidFileSystemName(label)) {
               addLabel(label);

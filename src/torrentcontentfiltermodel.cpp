@@ -75,10 +75,28 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex& child) const
 bool TorrentContentFilterModel::filterAcceptsRow(int source_row, const QModelIndex& source_parent) const
 {
   if (m_model->itemType(m_model->index(source_row, 0, source_parent)) == TorrentContentModelItem::FolderType) {
-    // always accept folders, since we want to filter their children
-    return true;
+    // accept folders if they have at least one filtered item
+    return hasFiltered(m_model->index(source_row, 0, source_parent));
   }
   return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
+}
+
+bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const {
+  if (sortColumn() == NAME) {
+    QVariant vL = sourceModel()->data(left);
+    QVariant vR = sourceModel()->data(right);
+    if (!(vL.isValid() && vR.isValid()))
+      return QSortFilterProxyModel::lessThan(left, right);
+    Q_ASSERT(vL.isValid());
+    Q_ASSERT(vR.isValid());
+
+    bool res = false;
+    if (misc::naturalSort(vL.toString(), vR.toString(), res))
+      return res;
+
+    return QSortFilterProxyModel::lessThan(left, right);
+  }
+  return QSortFilterProxyModel::lessThan(left, right);
 }
 
 void TorrentContentFilterModel::selectAll()
@@ -95,4 +113,26 @@ void TorrentContentFilterModel::selectNone()
     setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
   }
   emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+}
+
+bool TorrentContentFilterModel::hasFiltered(const QModelIndex& folder) const {
+  // this should be called only with folders
+  // check if the folder name itself matches the filter string
+  QString name = folder.data().toString();
+  if (name.contains(filterRegExp()))
+    return true;
+  for (int child = 0; child < m_model->rowCount(folder); child++) {
+    QModelIndex childIndex = m_model->index(child, 0, folder);
+    if (m_model->hasChildren(childIndex)) {
+      if (hasFiltered(childIndex))
+        return true;
+      else
+        continue;
+    }
+    name = childIndex.data().toString();
+    if (name.contains(filterRegExp()))
+      return true;
+  }
+
+  return false;
 }

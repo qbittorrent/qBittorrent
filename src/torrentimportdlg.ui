@@ -78,7 +78,7 @@
      <item>
       <widget class="QToolButton" name="browseTorrentBtn">
        <property name="text">
-        <string>...</string>
+        <string notr="true">...</string>
        </property>
       </widget>
      </item>

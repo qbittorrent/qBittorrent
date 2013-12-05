@@ -39,7 +39,6 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QDesktopServices>
-#include <QInputDialog>
 #include <libtorrent/version.hpp>
 #include "propertieswidget.h"
 #include "transferlistwidget.h"
@@ -58,6 +57,7 @@
 #include "iconprovider.h"
 #include "lineedit.h"
 #include "fs_utils.h"
+#include "autoexpandabledialog.h"
 
 using namespace libtorrent;
 
@@ -66,8 +66,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   setupUi(this);
 
   // Icons
-  deleteWS_button->setIcon(IconProvider::instance()->getIcon("list-remove"));
-  addWS_button->setIcon(IconProvider::instance()->getIcon("list-add"));
   trackerUpButton->setIcon(IconProvider::instance()->getIcon("go-up"));
   trackerDownButton->setIcon(IconProvider::instance()->getIcon("go-down"));
 
@@ -81,7 +79,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   filesList->setSortingEnabled(true);
   // Torrent content filtering
   m_contentFilerLine = new LineEdit(this);
-  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), PropListModel, SLOT(setFilterFixedString(QString)));
+  connect(m_contentFilerLine, SIGNAL(textChanged(QString)), this, SLOT(filterText(QString)));
   contentFilterLayout->insertWidget(1, m_contentFilerLine);
 
   // SIGNAL/SLOTS
@@ -91,8 +89,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
   connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
-  connect(addWS_button, SIGNAL(clicked()), this, SLOT(askWebSeed()));
-  connect(deleteWS_button, SIGNAL(clicked()), this, SLOT(deleteSelectedUrlSeeds()));
+  connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
   connect(PropDelegate, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(stackedProperties, SIGNAL(currentChanged(int)), this, SLOT(loadDynamicData()));
@@ -122,6 +119,13 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   refreshTimer = new QTimer(this);
   connect(refreshTimer, SIGNAL(timeout()), this, SLOT(loadDynamicData()));
   refreshTimer->start(3000); // 3sec
+  editHotkeyFile = new QShortcut(QKeySequence("F2"), filesList, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyFile, SIGNAL(activated()), SLOT(renameSelectedFile()));
+  editHotkeyWeb = new QShortcut(QKeySequence("F2"), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(editHotkeyWeb, SIGNAL(activated()), SLOT(editWebSeed()));
+  connect(listWebSeeds, SIGNAL(doubleClicked(QModelIndex)), SLOT(editWebSeed()));
+  deleteHotkeyWeb = new QShortcut(QKeySequence(QKeySequence::Delete), listWebSeeds, 0, 0, Qt::WidgetShortcut);
+  connect(deleteHotkeyWeb, SIGNAL(activated()), SLOT(deleteSelectedUrlSeeds()));
 }
 
 PropertiesWidget::~PropertiesWidget() {
@@ -134,6 +138,9 @@ PropertiesWidget::~PropertiesWidget() {
   delete PropListModel;
   delete PropDelegate;
   delete m_tabBar;
+  delete editHotkeyFile;
+  delete editHotkeyWeb;
+  delete deleteHotkeyWeb;
   qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
@@ -213,18 +220,7 @@ QTorrentHandle PropertiesWidget::getCurrentTorrent() const {
 
 void PropertiesWidget::updateSavePath(const QTorrentHandle& _h) {
   if (h.is_valid() && h == _h) {
-    QString p;
-    if (h.has_metadata() && h.num_files() == 1) {
-      p = h.firstFileSavePath();
-    } else {
-      p = TorrentPersistentData::getSavePath(h.hash());
-      if (p.isEmpty())
-        p = h.save_path();
-    }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    p.replace("/", "\\");
-#endif
-    save_path->setText(p);
+    save_path->setText(h.save_path_parsed());
   }
 }
 
@@ -268,7 +264,7 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
 }
 
 void PropertiesWidget::readSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   // Restore splitter sizes
   QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
   if (sizes_str.size() == 2) {
@@ -288,7 +284,7 @@ void PropertiesWidget::readSettings() {
 }
 
 void PropertiesWidget::saveSettings() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.setValue("TorrentProperties/Visible", state==VISIBLE);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
@@ -321,14 +317,8 @@ void PropertiesWidget::loadDynamicData() {
       wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
       upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
       dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
-      if (h.upload_limit() <= 0)
-        lbl_uplimit->setText(QString::fromUtf8("∞"));
-      else
-        lbl_uplimit->setText(misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
-      if (h.download_limit() <= 0)
-        lbl_dllimit->setText(QString::fromUtf8("∞"));
-      else
-        lbl_dllimit->setText(misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
+      lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
+      lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
       QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
       if (h.is_seed()) {
         elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
@@ -342,10 +332,9 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      if (ratio > QBtSession::MAX_RATIO)
-        shareRatio->setText(QString::fromUtf8("∞"));
-      else
-        shareRatio->setText(QString(QByteArray::number(ratio, 'f', 2)));
+      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : QString::number((int)(ratio*100)/100.0, 'f', 2));
       if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
@@ -358,15 +347,17 @@ void PropertiesWidget::loadDynamicData() {
           std::vector<int> avail;
           h.piece_availability(avail);
           pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(QString::number(h.distributed_copies(), 'f', 3));
+          /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+          ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+          avail_average_lbl->setText(QString::number((int)(h.distributed_copies()*1000)/1000.0, 'f', 3));
         } else {
           showPiecesAvailability(false);
         }
         // Progress
         qreal progress = h.progress()*100.;
-        if (progress > 99.94 && progress < 100.)
-          progress = 99.9;
-        progress_lbl->setText(QString::number(progress, 'f', 1)+"%");
+        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+        progress_lbl->setText(QString::number((int)(progress*10)/10.0, 'f', 1)+"%");
       } else {
         showPiecesAvailability(false);
         showPiecesDownloaded(false);
@@ -462,11 +453,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
     myFilesLlistMenu.addSeparator();
   }
   QMenu subMenu;
-#if LIBTORRENT_VERSION_MINOR > 15
   if (!h.status(0x0).is_seeding) {
-#else
-  if (!static_cast<torrent_handle>(h).is_seed()) {
-#endif
     subMenu.setTitle(tr("Priority"));
     subMenu.addAction(actionNot_downloaded);
     subMenu.addAction(actionNormal);
@@ -503,15 +490,44 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   }
 }
 
+void PropertiesWidget::displayWebSeedListMenu(const QPoint&) {
+  QMenu seedMenu;
+  QModelIndexList rows = listWebSeeds->selectionModel()->selectedRows();
+  QAction *actAdd = seedMenu.addAction(IconProvider::instance()->getIcon("list-add"), tr("New Web seed"));
+  QAction *actDel = 0;
+  QAction *actCpy = 0;
+  QAction *actEdit = 0;
+
+  if (rows.size()) {
+    actDel = seedMenu.addAction(IconProvider::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+    seedMenu.addSeparator();
+    actCpy = seedMenu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
+    actEdit = seedMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+  }
+
+  const QAction *act = seedMenu.exec(QCursor::pos());
+  if (act) {
+    if (act == actAdd)
+      askWebSeed();
+    else if (act == actDel)
+      deleteSelectedUrlSeeds();
+    else if (act == actCpy)
+      copySelectedWebSeedsToClipboard();
+    else if (act == actEdit)
+      editWebSeed();
+  }
+}
+
 void PropertiesWidget::renameSelectedFile() {
   const QModelIndexList selectedIndexes = filesList->selectionModel()->selectedRows(0);
-  Q_ASSERT(selectedIndexes.size() == 1);
+  if (selectedIndexes.size() != 1)
+    return;
   const QModelIndex index = selectedIndexes.first();
   // Ask for new name
   bool ok;
-  QString new_name_last = QInputDialog::getText(this, tr("Rename the file"),
+  QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
                                                 tr("New name:"), QLineEdit::Normal,
-                                                index.data().toString(), &ok);
+                                                index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {
     if (!fsutils::isValidFileSystemName(new_name_last)) {
       QMessageBox::warning(this, tr("The file could not be renamed"),
@@ -622,34 +638,79 @@ void PropertiesWidget::renameSelectedFile() {
 void PropertiesWidget::askWebSeed() {
   bool ok;
   // Ask user for a new url seed
-  const QString url_seed = QInputDialog::getText(this, tr("New url seed", "New HTTP source"),
+  const QString url_seed = AutoExpandableDialog::getText(this, tr("New url seed", "New HTTP source"),
                                                  tr("New url seed:"), QLineEdit::Normal,
                                                  QString::fromUtf8("http://www."), &ok);
   if (!ok) return;
   qDebug("Adding %s web seed", qPrintable(url_seed));
   if (!listWebSeeds->findItems(url_seed, Qt::MatchFixedString).empty()) {
-    QMessageBox::warning(this, tr("qBittorrent"),
+    QMessageBox::warning(this, "qBittorrent",
                          tr("This url seed is already in the list."),
                          QMessageBox::Ok);
     return;
   }
-  h.add_url_seed(url_seed);
+  if (h.is_valid())
+    h.add_url_seed(url_seed);
   // Refresh the seeds list
   loadUrlSeeds();
 }
 
 void PropertiesWidget::deleteSelectedUrlSeeds() {
   const QList<QListWidgetItem *> selectedItems = listWebSeeds->selectedItems();
+  if (selectedItems.isEmpty())
+    return;
   bool change = false;
   foreach (const QListWidgetItem *item, selectedItems) {
     QString url_seed = item->text();
-    h.remove_url_seed(url_seed);
-    change = true;
+    try {
+      h.remove_url_seed(url_seed);
+      change = true;
+    } catch (invalid_handle&) {}
   }
   if (change) {
     // Refresh list
     loadUrlSeeds();
   }
+}
+
+void PropertiesWidget::copySelectedWebSeedsToClipboard() const {
+  const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
+  if (selected_items.isEmpty())
+    return;
+
+  QStringList urls_to_copy;
+  foreach (QListWidgetItem *item, selected_items)
+    urls_to_copy << item->text();
+
+  QApplication::clipboard()->setText(urls_to_copy.join("\n"));
+}
+
+void PropertiesWidget::editWebSeed() {
+  const QList<QListWidgetItem *> selected_items = listWebSeeds->selectedItems();
+  if (selected_items.size() != 1)
+    return;
+
+  const QListWidgetItem *selected_item = selected_items.last();
+  const QString old_seed = selected_item->text();
+  bool result;
+  const QString new_seed = AutoExpandableDialog::getText(this, tr("Web seed editing"),
+                                                 tr("Web seed URL:"), QLineEdit::Normal,
+                                                 old_seed, &result);
+  if (!result)
+    return;
+
+  if (!listWebSeeds->findItems(new_seed, Qt::MatchFixedString).empty()) {
+    QMessageBox::warning(this, tr("qBittorrent"),
+                         tr("This url seed is already in the list."),
+                         QMessageBox::Ok);
+    return;
+  }
+
+  try {
+    h.remove_url_seed(old_seed);
+    h.add_url_seed(new_seed);
+    loadUrlSeeds();
+  } catch (invalid_handle&) {}
 }
 
 bool PropertiesWidget::applyPriorities() {
@@ -670,4 +731,14 @@ void PropertiesWidget::filteredFilesChanged() {
   if (h.is_valid()) {
     applyPriorities();
   }
+}
+
+void PropertiesWidget::filterText(const QString& filter) {
+  PropListModel->setFilterFixedString(filter);
+  if (filter.isEmpty()) {
+    filesList->collapseAll();
+    filesList->expand(PropListModel->index(0, 0));
+  }
+  else
+    filesList->expandAll();
 }

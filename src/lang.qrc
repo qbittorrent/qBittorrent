@@ -9,6 +9,8 @@
   <file>lang/qbittorrent_de.qm</file>
   <file>lang/qbittorrent_el.qm</file>
   <file>lang/qbittorrent_en.qm</file>
+  <file>lang/qbittorrent_en_AU.qm</file>
+  <file>lang/qbittorrent_en_GB.qm</file>
   <file>lang/qbittorrent_es.qm</file>
   <file>lang/qbittorrent_eu.qm</file>
   <file>lang/qbittorrent_fi.qm</file>
@@ -35,6 +37,7 @@
   <file>lang/qbittorrent_sv.qm</file>
   <file>lang/qbittorrent_tr.qm</file>
   <file>lang/qbittorrent_uk.qm</file>
+  <file>lang/qbittorrent_vi.qm</file>
   <file>lang/qbittorrent_zh.qm</file>
   <file>lang/qbittorrent_zh_TW.qm</file>
 </qresource>

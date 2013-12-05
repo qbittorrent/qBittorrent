@@ -95,6 +95,7 @@ void HttpConnection::read()
     qWarning() << Q_FUNC_INFO << "header parsing error";
     m_receivedData.clear();
     m_generator.setStatusLine(400, "Bad Request");
+    m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
     return;
   }
@@ -107,6 +108,7 @@ void HttpConnection::read()
     if (expected_length > 10000000 /* ~10MB */) {
       qWarning() << "Bad request: message too long";
       m_generator.setStatusLine(400, "Bad Request");
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       m_receivedData.clear();
       write();
       return;
@@ -127,6 +129,7 @@ void HttpConnection::read()
   if (m_parser.isError()) {
     qWarning() << Q_FUNC_INFO << "message parsing error";
     m_generator.setStatusLine(400, "Bad Request");
+    m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
   } else {
     respond();
@@ -188,6 +191,7 @@ void HttpConnection::respond() {
     if (nb_fail >= MAX_AUTH_FAILED_ATTEMPTS) {
       m_generator.setStatusLine(403, "Forbidden");
       m_generator.setMessage(tr("Your IP address has been banned after too many failed authentication attempts."));
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
       return;
     }
@@ -197,6 +201,7 @@ void HttpConnection::respond() {
       qDebug("Auth is Empty...");
       m_generator.setStatusLine(401, "Unauthorized");
       m_generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+m_httpserver->generateNonce()+"\", opaque=\""+m_httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
       return;
     }
@@ -209,6 +214,7 @@ void HttpConnection::respond() {
       // Return unauthorized header
       m_generator.setStatusLine(401, "Unauthorized");
       m_generator.setValue("WWW-Authenticate",  "Digest realm=\""+QString(QBT_REALM)+"\", nonce=\""+m_httpserver->generateNonce()+"\", opaque=\""+m_httpserver->generateNonce()+"\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"");
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
       return;
     }
@@ -226,6 +232,7 @@ void HttpConnection::respond() {
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("png");
       m_generator.setMessage(data);
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
     } else {
       respondNotFound();
@@ -284,6 +291,7 @@ void HttpConnection::respond() {
         // need to reply to the Web UI before
         // actually shutting down.
         m_generator.setStatusLine(200, "OK");
+        m_generator.setContentEncoding(m_parser.acceptsEncoding());
         write();
         qApp->processEvents();
         // Exit application
@@ -291,6 +299,7 @@ void HttpConnection::respond() {
       } else {
         respondCommand(command);
         m_generator.setStatusLine(200, "OK");
+        m_generator.setContentEncoding(m_parser.acceptsEncoding());
         write();
       }
       return;
@@ -343,11 +352,13 @@ void HttpConnection::respond() {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt(ext);
   m_generator.setMessage(data);
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
 void HttpConnection::respondNotFound() {
   m_generator.setStatusLine(404, "File not found");
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -355,6 +366,7 @@ void HttpConnection::respondTorrentsJson() {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(btjson::getTorrents());
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -362,6 +374,7 @@ void HttpConnection::respondGenPropertiesJson(const QString& hash) {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(btjson::getPropertiesForTorrent(hash));
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -369,6 +382,7 @@ void HttpConnection::respondTrackersPropertiesJson(const QString& hash) {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(btjson::getTrackersForTorrent(hash));
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -376,6 +390,7 @@ void HttpConnection::respondFilesPropertiesJson(const QString& hash) {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(btjson::getFilesForTorrent(hash));
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -383,6 +398,7 @@ void HttpConnection::respondPreferencesJson() {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(prefjson::getPreferences());
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -390,6 +406,7 @@ void HttpConnection::respondGlobalTransferInfoJson() {
   m_generator.setStatusLine(200, "OK");
   m_generator.setContentTypeByExt("js");
   m_generator.setMessage(btjson::getTransferInfo());
+  m_generator.setContentEncoding(m_parser.acceptsEncoding());
   write();
 }
 
@@ -458,6 +475,7 @@ void HttpConnection::respondCommand(const QString& command) {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
     m_generator.setMessage(QString("<script type=\"text/javascript\">window.parent.hideAll();</script>"));
+    m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
     return;
   }
@@ -490,22 +508,16 @@ void HttpConnection::respondCommand(const QString& command) {
   if (command == "getGlobalUpLimit") {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
-#if LIBTORRENT_VERSION_MINOR > 15
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().upload_rate_limit));
-#else
-    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->upload_rate_limit()));
-#endif
+    m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
     return;
   }
   if (command == "getGlobalDlLimit") {
     m_generator.setStatusLine(200, "OK");
     m_generator.setContentTypeByExt("html");
-#if LIBTORRENT_VERSION_MINOR > 15
     m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->settings().download_rate_limit));
-#else
-    m_generator.setMessage(QByteArray::number(QBtSession::instance()->getSession()->download_rate_limit()));
-#endif
+    m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
     return;
   }
@@ -516,6 +528,7 @@ void HttpConnection::respondCommand(const QString& command) {
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("html");
       m_generator.setMessage(QByteArray::number(h.upload_limit()));
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
     }
     return;
@@ -527,6 +540,7 @@ void HttpConnection::respondCommand(const QString& command) {
       m_generator.setStatusLine(200, "OK");
       m_generator.setContentTypeByExt("html");
       m_generator.setMessage(QByteArray::number(h.download_limit()));
+      m_generator.setContentEncoding(m_parser.acceptsEncoding());
       write();
     }
     return;

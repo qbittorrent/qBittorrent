@@ -72,6 +72,7 @@ public:
   RssArticlePtr getItem(const QString &guid) const;
   uint count() const;
   virtual void markAsRead();
+  void markAsDirty(bool dirty = true);
   virtual uint unreadCount() const;
   virtual RssArticleList articleListByDateDesc() const;
   const RssArticleHash& articleHash() const { return m_articles; }
@@ -85,6 +86,7 @@ private slots:
   void handleFeedTitle(const QString& feedUrl, const QString& title);
   void handleNewArticle(const QString& feedUrl, const QVariantHash& article);
   void handleFeedParsingFinished(const QString& feedUrl, const QString& error);
+  void handleArticleStateChanged();
 
 private:
   QString iconUrl() const;

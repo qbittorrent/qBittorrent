@@ -30,7 +30,6 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QInputDialog>
 #include <QSystemTrayIcon>
 #include <QApplication>
 #include <QDialogButtonBox>
@@ -40,8 +39,6 @@
 #include <QDesktopServices>
 
 #include <libtorrent/version.hpp>
-#include <time.h>
-#include <stdlib.h>
 
 #include "options_imp.h"
 #include "preferences.h"
@@ -125,14 +122,11 @@ options_imp::options_imp(QWidget *parent):
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
-#if LIBTORRENT_VERSION_MINOR < 16
-  checkAnonymousMode->setVisible(false);
-  label_anonymous->setVisible(false);
-#endif
 
   // Connect signals / slots
   connect(comboProxyType, SIGNAL(currentIndexChanged(int)),this, SLOT(enableProxy(int)));
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(toggleAnonymousMode(bool)));
+  connect(checkRandomPort, SIGNAL(toggled(bool)), spinPort, SLOT(setDisabled(bool)));
 
   // Apply button is activated when a value is changed
   // General tab
@@ -163,6 +157,7 @@ options_imp::options_imp(QWidget *parent):
   connect(checkAppendqB, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreallocateAll, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAdditionDialog, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkAdditionDialogFront, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartPaused, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDir, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkExportDirFin, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -184,6 +179,7 @@ options_imp::options_imp(QWidget *parent):
   connect(autoRun_txt, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
   // Connection tab
   connect(spinPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(checkRandomPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUPnP, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkUploadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDownloadLimit, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -201,14 +197,14 @@ options_imp::options_imp(QWidget *parent):
   // Bittorrent tab
   connect(checkMaxConnecs, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxConnecsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  connect(checkMaxUploads, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMaxUploadsPerTorrent, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinMaxConnec, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxConnecPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
+  connect(spinMaxUploads, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(spinMaxUploadsPerTorrent, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#if LIBTORRENT_VERSION_MINOR > 15
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#endif
   connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
@@ -252,10 +248,6 @@ options_imp::options_imp(QWidget *parent):
   applyButton->setEnabled(false);
   // Tab selection mecanism
   connect(tabSelection, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)), this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-#if LIBTORRENT_VERSION_MINOR < 16
-  checkuTP->setVisible(false);
-  checkLimituTPConnections->setVisible(false);
-#endif
   // Load Advanced settings
   QVBoxLayout *adv_layout = new QVBoxLayout();
   advancedSettings = new AdvancedSettings();
@@ -276,9 +268,8 @@ void options_imp::initializeLanguageCombo()
   foreach (QString lang_file, lang_files) {
     QString localeStr = lang_file.mid(12); // remove "qbittorrent_"
     localeStr.chop(3); // Remove ".qm"
-    QLocale locale(localeStr);
-    const QString country = locale.name().split("_").last().toLower();
-    QString language_name = languageToLocalizedString(locale.language(), country);
+    QLocale locale(localeStr);    
+    QString language_name = languageToLocalizedString(locale);
     comboI18n->addItem(/*QIcon(":/Icons/flags/"+country+".png"), */language_name, locale.name());
     qDebug() << "Supported locale:" << locale.name();
   }
@@ -300,7 +291,7 @@ void options_imp::changePage(QListWidgetItem *current, QListWidgetItem *previous
 }
 
 void options_imp::loadWindowState() {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
   QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
   if (!p.isNull())
@@ -320,7 +311,7 @@ void options_imp::loadWindowState() {
 }
 
 void options_imp::saveWindowState() const {
-  QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+  QIniSettings settings;
   settings.setValue(QString::fromUtf8("Preferences/State/size"), size());
   settings.setValue(QString::fromUtf8("Preferences/State/pos"), pos());
   // Splitter size
@@ -359,7 +350,7 @@ void options_imp::saveOptions() {
     if (translator->load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
       qDebug("%s locale recognized, using translation.", qPrintable(locale));
     }else{
-      qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+      qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
     }
     qApp->installTranslator(translator);
   }
@@ -399,6 +390,7 @@ void options_imp::saveOptions() {
   pref.useIncompleteFilesExtension(checkAppendqB->isChecked());
   pref.preAllocateAllFiles(preAllocateAllFiles());
   pref.useAdditionDialog(useAdditionDialog());
+  pref.AdditionDialogFront(checkAdditionDialogFront->isChecked());
   pref.addTorrentsInPause(addTorrentsInPause());
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
@@ -424,6 +416,7 @@ void options_imp::saveOptions() {
   // End Downloads preferences
   // Connection preferences
   pref.setSessionPort(getPort());
+  pref.setRandomPort(checkRandomPort->isChecked());
   pref.setUPnPEnabled(isUPnPEnabled());
   const QPair<int, int> down_up_limit = getGlobalBandwidthLimits();
   pref.setGlobalDownloadLimit(down_up_limit.first);
@@ -448,6 +441,7 @@ void options_imp::saveOptions() {
   // Bittorrent preferences
   pref.setMaxConnecs(getMaxConnecs());
   pref.setMaxConnecsPerTorrent(getMaxConnecsPerTorrent());
+  pref.setMaxUploads(getMaxUploads());
   pref.setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
   pref.setDHTEnabled(isDHTEnabled());
   pref.setPeXEnabled(checkPeX->isChecked());
@@ -455,9 +449,7 @@ void options_imp::saveOptions() {
   pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
-#if LIBTORRENT_VERSION_MINOR > 15
   pref.enableAnonymousMode(checkAnonymousMode->isChecked());
-#endif
   pref.setGlobalMaxRatio(getMaxRatio());
   pref.setMaxRatioAction(comboRatioLimitAct->currentIndex());
   // End Bittorrent preferences
@@ -578,6 +570,7 @@ void options_imp::loadOptions() {
   checkAppendqB->setChecked(pref.useIncompleteFilesExtension());
   checkPreallocateAll->setChecked(pref.preAllocateAllFiles());
   checkAdditionDialog->setChecked(pref.useAdditionDialog());
+  checkAdditionDialogFront->setChecked(pref.AdditionDialogFront());
   checkStartPaused->setChecked(pref.addTorrentsInPause());
 
   strValue = pref.getTorrentExportDir();
@@ -626,6 +619,8 @@ void options_imp::loadOptions() {
   // Connection preferences
   spinPort->setValue(pref.getSessionPort());
   checkUPnP->setChecked(pref.isUPnPEnabled());
+  checkRandomPort->setChecked(pref.useRandomPort());
+  spinPort->setDisabled(checkRandomPort->isChecked());
   intValue = pref.getGlobalDownloadLimit();
   if (intValue > 0) {
     // Enabled
@@ -710,6 +705,17 @@ void options_imp::loadOptions() {
     checkMaxConnecsPerTorrent->setChecked(false);
     spinMaxConnecPerTorrent->setEnabled(false);
   }
+  intValue = pref.getMaxUploads();
+  if (intValue > 0) {
+    // enable
+    checkMaxUploads->setChecked(true);
+    spinMaxUploads->setEnabled(true);
+    spinMaxUploads->setValue(intValue);
+  } else {
+    // disable
+    checkMaxUploads->setChecked(false);
+    spinMaxUploads->setEnabled(false);
+  }
   intValue = pref.getMaxUploadsPerTorrent();
   if (intValue > 0) {
     // enable
@@ -727,11 +733,9 @@ void options_imp::loadOptions() {
   checkPeX->setChecked(pref.isPeXEnabled());
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
-#if LIBTORRENT_VERSION_MINOR > 15
   checkAnonymousMode->setChecked(pref.isAnonymousModeEnabled());
   /* make sure ui matches options */
   toggleAnonymousMode(checkAnonymousMode->isChecked());
-#endif
   // Ratio limit
   floatValue = pref.getGlobalMaxRatio();
   if (floatValue >= 0.) {
@@ -776,9 +780,7 @@ void options_imp::loadOptions() {
   domainNameTxt->setText(pref.getDynDomainName());
   DNSUsernameTxt->setText(pref.getDynDNSUsername());
   DNSPasswordTxt->setText(pref.getDynDNSPassword());
-  // End Web UI
-  // Random stuff
-  srand(time(0));
+  // End Web UI  
 }
 
 // return min & max ports
@@ -848,7 +850,6 @@ QPair<int,int> options_imp::getGlobalBandwidthLimits() const {
 }
 
 bool options_imp::startMinimized() const {
-  if (checkStartMinimized->isChecked()) return true;
   return checkStartMinimized->isChecked();
 }
 
@@ -906,6 +907,14 @@ int options_imp::getMaxConnecsPerTorrent() const {
   }
 }
 
+int options_imp::getMaxUploads() const {
+  if (!checkMaxUploads->isChecked()) {
+    return -1;
+  }else{
+    return spinMaxUploads->value();
+  }
+}
+
 int options_imp::getMaxUploadsPerTorrent() const {
   if (!checkMaxUploadsPerTorrent->isChecked()) {
     return -1;
@@ -916,6 +925,10 @@ int options_imp::getMaxUploadsPerTorrent() const {
 
 void options_imp::on_buttonBox_accepted() {
   if (applyButton->isEnabled()) {
+    if (!schedTimesOk()) {
+      tabSelection->setCurrentRow(TAB_SPEED);
+      return;
+    }
     saveOptions();
     applyButton->setEnabled(false);
     this->hide();
@@ -927,6 +940,10 @@ void options_imp::on_buttonBox_accepted() {
 
 void options_imp::applySettings(QAbstractButton* button) {
   if (button == applyButton) {
+    if (!schedTimesOk()) {
+      tabSelection->setCurrentRow(TAB_SPEED);
+      return;
+    }
     saveOptions();
     emit status_changed();
   }
@@ -1218,7 +1235,7 @@ QString options_imp::webUiPassword() const
 
 void options_imp::showConnectionTab()
 {
-  tabSelection->setCurrentRow(2);
+  tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
 void options_imp::on_btnWebUiCrt_clicked() {
@@ -1272,10 +1289,16 @@ void options_imp::handleIPFilterParsed(bool error, int ruleCount)
   disconnect(QBtSession::instance(), SIGNAL(ipFilterParsed(bool, int)), this, SLOT(handleIPFilterParsed(bool, int)));
 }
 
-QString options_imp::languageToLocalizedString(QLocale::Language language, const QString& country)
+QString options_imp::languageToLocalizedString(const QLocale &locale)
 {
-  switch(language) {
-  case QLocale::English: return "English";
+  switch(locale.language()) {
+  case QLocale::English: {
+    if (locale.country() == QLocale::Australia)
+      return "English(Australia)";
+    else if (locale.country() == QLocale::UnitedKingdom)
+      return "English(United Kingdom)";
+    return "English";
+  }
   case QLocale::French: return QString::fromUtf8("Français");
   case QLocale::German: return QString::fromUtf8("Deutsch");
   case QLocale::Hungarian: return QString::fromUtf8("Magyar");
@@ -1285,7 +1308,7 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Catalan: return QString::fromUtf8("Català");
   case QLocale::Galician: return QString::fromUtf8("Galego");
   case QLocale::Portuguese: {
-    if (country == "br")
+    if (locale.country() == QLocale::Brazil)
       return QString::fromUtf8("Português brasileiro");
     return QString::fromUtf8("Português");
   }
@@ -1312,15 +1335,16 @@ QString options_imp::languageToLocalizedString(QLocale::Language language, const
   case QLocale::Georgian: return QString::fromUtf8("ქართული");
   case QLocale::Byelorussian: return QString::fromUtf8("Беларуская");
   case QLocale::Basque: return QString::fromUtf8("Euskara");
+  case QLocale::Vietnamese: return QString::fromUtf8("tiếng Việt");
   case QLocale::Chinese: {
-    if (country == "cn")
+    if (locale.country() == QLocale::China)
       return QString::fromUtf8("中文 (简体)");
     return QString::fromUtf8("中文 (繁體)");
   }
   case QLocale::Korean: return QString::fromUtf8("한글");
   default: {
     // Fallback to English
-    const QString eng_lang = QLocale::languageToString(language);
+    const QString eng_lang = QLocale::languageToString(locale.language());
     qWarning() << "Unrecognized language name: " << eng_lang;
     return eng_lang;
   }
@@ -1374,4 +1398,18 @@ void options_imp::toggleAnonymousMode(bool enabled)
     checkLSD->setEnabled(true);
     checkUPnP->setEnabled(true);
   }
+}
+
+bool options_imp::schedTimesOk() {
+  QString msg;
+
+  if (schedule_from->time() == schedule_to->time())
+    msg = tr("The start time and the end time can't be the same.");
+
+  if (!msg.isEmpty()) {
+    QMessageBox::critical(this, tr("Time Error"), msg);
+    return false;
+  }
+
+  return true;
 }

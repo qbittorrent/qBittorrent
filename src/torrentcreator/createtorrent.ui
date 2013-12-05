@@ -123,6 +123,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string comment="A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.">You can separate tracker tiers / groups with an empty line.</string>
+       </property>
        <property name="acceptRichText">
         <bool>false</bool>
        </property>
@@ -239,6 +242,19 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkIgnoreShareLimits">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Ignore share ratio limits for this torrent</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="progressLbl">
      <property name="text">
       <string>Progress:</string>
@@ -299,5 +315,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkStartSeeding</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>checkIgnoreShareLimits</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>295</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

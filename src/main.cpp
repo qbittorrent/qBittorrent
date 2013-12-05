@@ -34,6 +34,10 @@
 #include <QLibraryInfo>
 
 #ifndef DISABLE_GUI
+#if defined(QBT_STATIC_QT)
+#include <QtPlugin>
+Q_IMPORT_PLUGIN(qico)
+#endif
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QStyle>
@@ -61,9 +65,19 @@
 #include "stacktrace.h"
 #endif
 
+#ifdef STACKTRACE_WIN
+#include <signal.h>
+#include "stacktrace_win.h"
+#include "stacktrace_win_dlg.h"
+#endif
+
 #include <stdlib.h>
 #include "misc.h"
 #include "preferences.h"
+
+#if defined(Q_OS_WIN) && !defined(QBT_HAS_GETCURRENTPID)
+#error You seem to have updated QtSingleApplication without porting our custom QtSingleApplication::getRunningPid() function. Please see previous version to understate how it works.
+#endif
 
 class UsageDisplay: public QObject {
   Q_OBJECT
@@ -88,7 +102,7 @@ class LegalNotice: public QObject {
 
 public:
   static bool userAgreesWithNotice() {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent"));
+    QIniSettings settings;
     if (settings.value(QString::fromUtf8("LegalNotice/Accepted"), false).toBool()) // Already accepted once
       return true;
 #ifdef DISABLE_GUI
@@ -123,7 +137,7 @@ public:
 
 #include "main.moc"
 
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
 void sigintHandler(int) {
   signal(SIGINT, 0);
   qDebug("Catching SIGINT, exiting cleanly");
@@ -138,25 +152,49 @@ void sigtermHandler(int) {
 void sigsegvHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGSEGV, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
+#endif
   raise(SIGSEGV);
 }
 void sigabrtHandler(int) {
   signal(SIGABRT, 0);
   signal(SIGSEGV, 0);
+#ifndef Q_OS_WIN
   std::cerr << "\n\n*************************************************************\n";
   std::cerr << "Catching SIGABRT, please report a bug at http://bug.qbittorrent.org\nand provide the following backtrace:\n";
   std::cerr << "qBittorrent version: " << VERSION << std::endl;
   print_stacktrace();
+#else
+#ifdef STACKTRACE_WIN
+  StraceDlg dlg;
+  dlg.setStacktraceString(straceWin::getBacktrace());
+  dlg.exec();
+#endif
+#endif
   raise(SIGABRT);
 }
 #endif
 
 // Main
 int main(int argc, char *argv[]) {
+#ifdef Q_OS_MACX
+  if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )
+  {
+    // fix Mac OS X 10.9 (mavericks) font issue
+    // https://bugreports.qt-project.org/browse/QTBUG-32789
+    QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
+  }
+#endif
   // Create Application
   QString uid = misc::getUserIDString();
 #ifdef DISABLE_GUI
@@ -180,6 +218,13 @@ int main(int argc, char *argv[]) {
   if (app.isRunning()) {
     qDebug("qBittorrent is already running for this user.");
     // Read torrents given on command line
+#ifdef Q_OS_WIN
+    DWORD pid = (DWORD)app.getRunningPid();
+    if (pid > 0) {
+      BOOL b = AllowSetForegroundWindow(pid);
+      qDebug("AllowSetForegroundWindow() returns %s", b ? "TRUE" : "FALSE");
+    }
+#endif
     QStringList torrentCmdLine = app.arguments();
     //Pass program parameters if any
     QString message;
@@ -193,10 +238,13 @@ int main(int argc, char *argv[]) {
       qDebug("Passing program parameters to running instance...");
       qDebug("Message: %s", qPrintable(message));
       app.sendMessage(message);
+    } else { // Raise main window
+      app.sendMessage("qbt://show");
     }
     return 0;
   }
 
+  srand(time(0));
   Preferences pref;
 #ifndef DISABLE_GUI
   bool no_splash = false;
@@ -220,13 +268,13 @@ int main(int argc, char *argv[]) {
                                                                     )) {
     qDebug("Qt %s locale recognized, using translation.", qPrintable(locale));
   }else{
-    qDebug("Qt %s locale unrecognized, using default (en_GB).", qPrintable(locale));
+    qDebug("Qt %s locale unrecognized, using default (en).", qPrintable(locale));
   }
   app.installTranslator(&qtTranslator);
   if (translator.load(QString::fromUtf8(":/lang/qbittorrent_") + locale)) {
     qDebug("%s locale recognized, using translation.", qPrintable(locale));
   }else{
-    qDebug("%s locale unrecognized, using default (en_GB).", qPrintable(locale));
+    qDebug("%s locale unrecognized, using default (en).", qPrintable(locale));
   }
   app.installTranslator(&translator);
 #ifndef DISABLE_GUI
@@ -291,7 +339,7 @@ int main(int argc, char *argv[]) {
   }
 #endif
   // Set environment variable
-  if (qputenv("QBITTORRENT", QByteArray(VERSION))) {
+  if (!qputenv("QBITTORRENT", QByteArray(VERSION))) {
     std::cerr << "Couldn't set environment variable...\n";
   }
 
@@ -305,24 +353,24 @@ int main(int argc, char *argv[]) {
 #ifndef DISABLE_GUI
   app.setQuitOnLastWindowClosed(false);
 #endif
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(STACKTRACE_WIN)
   signal(SIGABRT, sigabrtHandler);
   signal(SIGTERM, sigtermHandler);
   signal(SIGINT, sigintHandler);
   signal(SIGSEGV, sigsegvHandler);
 #endif
   // Read torrents given on command line
-  QStringList torrentCmdLine = app.arguments();
-  // Remove first argument (program name)
-  torrentCmdLine.removeFirst();
-#ifndef QT_NO_DEBUG_OUTPUT
-  foreach (const QString &argument, torrentCmdLine) {
-    qDebug() << "Command line argument:" << argument;
+  QStringList torrents;
+  QStringList appArguments = app.arguments();
+  for (int i = 1; i < appArguments.size(); ++i) {
+    if (!appArguments[i].startsWith("--")) {
+      qDebug() << "Command line argument:" << appArguments[i];
+      torrents << appArguments[i];
+    }
   }
-#endif
 
 #ifndef DISABLE_GUI
-  MainWindow window(0, torrentCmdLine);
+  MainWindow window(0, torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &window, SLOT(processParams(const QString&)));
   app.setActivationWindow(&window);
@@ -331,7 +379,7 @@ int main(int argc, char *argv[]) {
 #endif // Q_WS_MAC
 #else
   // Load Headless class
-  HeadlessLoader loader(torrentCmdLine);
+  HeadlessLoader loader(torrents);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &loader, SLOT(processParams(const QString&)));
 #endif

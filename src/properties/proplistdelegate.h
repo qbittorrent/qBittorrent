@@ -75,25 +75,23 @@ public:
       break;
     case PROGRESS:{
       if (index.data().toDouble() >= 0) {
-          QStyleOptionProgressBarV2 newopt;
-          qreal progress = index.data().toDouble()*100.;
-          newopt.rect = opt.rect;
-          // We don't want to display 100% unless
-          // the torrent is really complete
-          if (progress > 99.94 && progress < 100.)
-            progress = 99.9;
-          newopt.text = QString(QByteArray::number(progress, 'f', 1))+QString::fromUtf8("%");
-          newopt.progress = (int)progress;
-          newopt.maximum = 100;
-          newopt.minimum = 0;
-          newopt.state |= QStyle::State_Enabled;
-          newopt.textVisible = true;
+        QStyleOptionProgressBarV2 newopt;
+        qreal progress = index.data().toDouble()*100.;
+        newopt.rect = opt.rect;
+        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
+        newopt.text = QString::number((int)(progress*10)/10.0, 'f', 1)+"%";
+        newopt.progress = (int)progress;
+        newopt.maximum = 100;
+        newopt.minimum = 0;
+        newopt.state |= QStyle::State_Enabled;
+        newopt.textVisible = true;
 #ifndef Q_WS_WIN
-          QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-          // XXX: To avoid having the progress text on the right of the bar
-          QPlastiqueStyle st;
-          st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+        // XXX: To avoid having the progress text on the right of the bar
+        QPlastiqueStyle st;
+        st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
       } else {
           // Do not display anything if the file is disabled (progress  == -1)
@@ -161,11 +159,8 @@ public:
     if (index.column() != PRIORITY) return 0;
     if (properties) {
       QTorrentHandle h = properties->getCurrentTorrent();
-#if LIBTORRENT_VERSION_MINOR > 15
-      if (!h.is_valid() || !h.has_metadata() || h.status(0x0).is_seeding) return 0;
-#else
-      if (!h.is_valid() || !h.has_metadata() || static_cast<libtorrent::torrent_handle>(h).is_seed()) return 0;
-#endif
+      if (!h.is_valid() || !h.has_metadata() || h.status(0x0).is_seeding)
+        return 0;
     }
     if (index.data().toInt() <= 0) {
       // IGNORED or MIXED

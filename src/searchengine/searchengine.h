@@ -54,8 +54,6 @@ class SearchEngine : public QWidget, public Ui::search_engine{
   Q_OBJECT
   Q_DISABLE_COPY(SearchEngine)
 
-public:
-  enum SearchColumn { NAME, SIZE, SEEDS, LEECHS, ENGINE_URL, DL_LINK, DESC_LINK, NB_SEARCH_COLUMNS };
 private:
   enum PluginColumn { PL_DL_LINK, PL_NAME, PL_SIZE, PL_SEEDS, PL_LEECHS, PL_ENGINE_URL, PL_DESC_LINK, NB_PLUGIN_COLUMNS };
 

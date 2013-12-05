@@ -39,12 +39,15 @@
 #include "misc.h"
 #include "previewlistdelegate.h"
 #include "previewselect.h"
+#include "fs_utils.h"
+#include "preferences.h"
 
 PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent), h(h) {
   setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
+  Preferences pref;
   // Preview list
-  previewListModel = new QStandardItemModel(0, 3);
+  previewListModel = new QStandardItemModel(0, NB_COLUMNS);
   previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
   previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
@@ -52,13 +55,16 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   listDelegate = new PreviewListDelegate(this);
   previewList->setItemDelegate(listDelegate);
   previewList->header()->resizeSection(0, 200);
+  previewList->setAlternatingRowColors(pref.useAlternatingRowColors());
   // Fill list in
   std::vector<libtorrent::size_type> fp;
   h.file_progress(fp);
   unsigned int nbFiles = h.num_files();
   for (unsigned int i=0; i<nbFiles; ++i) {
     QString fileName = h.filename_at(i);
-    QString extension = fileName.split(QString::fromUtf8(".")).last().toUpper();
+    if (fileName.endsWith(".!qB"))
+      fileName.chop(4);
+    QString extension = fsutils::fileExtension(fileName).toUpper();
     if (misc::isPreviewable(extension)) {
       int row = previewListModel->rowCount();
       previewListModel->insertRow(row);
@@ -68,6 +74,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
       indexes << i;
     }
   }
+
   previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select);
   previewList->selectionModel()->select(previewListModel->index(0, SIZE), QItemSelectionModel::Select);
   previewList->selectionModel()->select(previewListModel->index(0, PROGRESS), QItemSelectionModel::Select);
@@ -76,6 +83,9 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
     close();
   }
   connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
+  previewListModel->sort(NAME);
+  previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
+
   if (previewListModel->rowCount() == 1) {
     qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
     // Only one file : no choice
@@ -99,9 +109,10 @@ void PreviewSelect::on_previewButton_clicked() {
   // Flush data
   h.flush_cache();
 
+  QStringList absolute_paths(h.absolute_files_path());
   QString path;
   foreach (index, selectedIndexes) {
-    path = h.absolute_files_path().at(indexes.at(index.row()));
+    path = absolute_paths.at(indexes.at(index.row()));
     // File
     if (QFile::exists(path)) {
       emit readyToPreviewFile(path);

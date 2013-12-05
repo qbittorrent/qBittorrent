@@ -31,9 +31,11 @@
 #ifndef TRANSFERLISTWIDGET_H
 #define TRANSFERLISTWIDGET_H
 
+#include <QShortcut>
 #include <QTreeView>
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
+#include "transferlistsortmodel.h"
 
 class QBtSession;
 class TransferListDelegate;
@@ -110,11 +112,13 @@ signals:
 private:
   TransferListDelegate *listDelegate;
   TorrentModel *listModel;
-  QSortFilterProxyModel *nameFilterModel;
+  TransferListSortModel *nameFilterModel;
   QSortFilterProxyModel *statusFilterModel;
   QSortFilterProxyModel *labelFilterModel;
   QBtSession* BTSession;
   MainWindow *main_window;
+  QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 };
 
 #endif // TRANSFERLISTWIDGET_H

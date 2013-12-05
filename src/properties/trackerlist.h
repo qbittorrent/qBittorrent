@@ -31,8 +31,10 @@
 #ifndef TRACKERLIST_H
 #define TRACKERLIST_H
 
+#include <QShortcut>
 #include <QTreeWidget>
 #include <QList>
+#include <QClipboard>
 
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
@@ -51,6 +53,8 @@ private:
   QTreeWidgetItem* dht_item;
   QTreeWidgetItem* pex_item;
   QTreeWidgetItem* lsd_item;
+  QShortcut *editHotkey;
+  QShortcut *deleteHotkey;
 
 public:
   TrackerList(PropertiesWidget *properties);
@@ -69,7 +73,9 @@ public slots:
   void loadStickyItems(const QTorrentHandle &h);
   void loadTrackers();
   void askForTrackers();
+  void copyTrackerUrl();
   void deleteSelectedTrackers();
+  void editSelectedTracker();
   void showTrackerListMenu(QPoint);
   void loadSettings();
   void saveSettings() const;

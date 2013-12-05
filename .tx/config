@@ -1,0 +1,18 @@
+[main]
+host = https://www.transifex.com
+
+[qbittorrent.qbittorrent_master]
+file_filter = src/lang/qbittorrent_<lang>.ts
+source_file = src/lang/qbittorrent_en.ts
+source_lang = en
+type = QT
+minimum_perc = 23
+mode = developer
+
+
+[qbittorrent.qbittorrentdesktop_master]
+source_file = src/Icons/qBittorrent.desktop
+source_lang = en
+type = DESKTOP
+minimum_perc = 23
+mode = developer

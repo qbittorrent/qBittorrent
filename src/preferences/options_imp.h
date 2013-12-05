@@ -92,7 +92,7 @@ private:
   void saveOptions();
   void loadOptions();
   void initializeLanguageCombo();
-  static QString languageToLocalizedString(QLocale::Language language, const QString& country);
+  static QString languageToLocalizedString(const QLocale &locale);
   // General options
   QString getLocale() const;
   bool systrayIntegration() const;
@@ -123,6 +123,7 @@ private:
   // Bittorrent options
   int getMaxConnecs() const;
   int getMaxConnecsPerTorrent() const;
+  int getMaxUploads() const;
   int getMaxUploadsPerTorrent() const;
   bool isDHTEnabled() const;
   bool isDHTPortSameAsBT() const;
@@ -156,6 +157,7 @@ private:
 private:
   void setSslKey(const QByteArray &key, bool interactive = true);
   void setSslCertificate(const QByteArray &cert, bool interactive = true);
+  bool schedTimesOk();
 
 private:
   QButtonGroup choiceLanguage;

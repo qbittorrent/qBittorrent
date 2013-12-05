@@ -48,6 +48,7 @@ public:
   const QList<QByteArray>& torrents() const;
   void writeHeader(const QByteArray& ba);
   void writeMessage(const QByteArray& ba);
+  bool acceptsEncoding();
   inline const QHttpRequestHeader& header() const { return m_header; }
 
 private:

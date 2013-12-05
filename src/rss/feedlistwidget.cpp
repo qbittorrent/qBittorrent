@@ -40,7 +40,7 @@ FeedListWidget::FeedListWidget(QWidget *parent, const RssManagerPtr& rssmanager)
   setColumnCount(1);
   headerItem()->setText(0, tr("RSS feeds"));
   m_unreadStickyItem = new QTreeWidgetItem(this);
-  m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount(), 10)+ QString(")"));
+  m_unreadStickyItem->setText(0, tr("Unread") + QString::fromUtf8("  (") + QString::number(rssmanager->unreadCount())+ QString(")"));
   m_unreadStickyItem->setData(0,Qt::DecorationRole, IconProvider::instance()->getIcon("mail-folder-inbox"));
   itemAdded(m_unreadStickyItem, rssmanager);
   connect(this, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(updateCurrentFeed(QTreeWidgetItem*)));
@@ -173,19 +173,23 @@ void FeedListWidget::updateCurrentFeed(QTreeWidgetItem* new_item) {
 }
 
 void FeedListWidget::dragMoveEvent(QDragMoveEvent * event) {
+  QTreeWidget::dragMoveEvent(event);
+
   QTreeWidgetItem *item = itemAt(event->pos());
+  // Prohibit dropping onto global unread counter
   if (item == m_unreadStickyItem) {
     event->ignore();
-  } else {
-    if (item && isFolder(item))
-      event->ignore();
-    else {
-      if (selectedItems().contains(m_unreadStickyItem)) {
-        event->ignore();
-      } else {
-        QTreeWidget::dragMoveEvent(event);
-      }
-    }
+    return;
+  }
+  // Prohibit dragging of global unread counter
+  if (selectedItems().contains(m_unreadStickyItem)) {
+    event->ignore();
+    return;
+  }
+  // Prohibit dropping onto feeds
+  if (item && isFeed(item)) {
+    event->ignore();
+    return;
   }
 }
 
@@ -205,7 +209,7 @@ void FeedListWidget::dropEvent(QDropEvent *event) {
   foreach (QTreeWidgetItem *src_item, src_items) {
     RssFilePtr file = getRSSItem(src_item);
     if (dest_folder->hasChild(file->id())) {
-      emit overwriteAttempt(file->id());
+      QTreeWidget::dropEvent(event);
       return;
     }
   }

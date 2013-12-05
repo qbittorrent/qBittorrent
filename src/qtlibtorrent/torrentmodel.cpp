@@ -69,7 +69,13 @@ TorrentModelItem::State TorrentModelItem::state() const
     // Other states
     switch(m_torrent.state()) {
     case torrent_status::allocating:
+      m_icon = QIcon(":/Icons/skin/stalledDL.png");
+      m_fgColor = QColor("grey");
+      return STATE_ALLOCATING;
     case torrent_status::downloading_metadata:
+      m_icon = QIcon(":/Icons/skin/downloading.png");
+      m_fgColor = QColor("green");
+      return STATE_DOWNLOADING_META;
     case torrent_status::downloading: {
       if (m_torrent.download_payload_rate() > 0) {
         m_icon = QIcon(":/Icons/skin/downloading.png");
@@ -93,7 +99,13 @@ TorrentModelItem::State TorrentModelItem::state() const
         return STATE_STALLED_UP;
       }
     case torrent_status::queued_for_checking:
+      m_icon = QIcon(":/Icons/skin/checking.png");
+      m_fgColor = QColor("grey");
+      return STATE_QUEUED_CHECK;
     case torrent_status::checking_resume_data:
+      m_icon = QIcon(":/Icons/skin/checking.png");
+      m_fgColor = QColor("grey");
+      return STATE_QUEUED_FASTCHECK;
     case torrent_status::checking_files:
       m_icon = QIcon(":/Icons/skin/checking.png");
       m_fgColor = QColor("grey");
@@ -151,9 +163,14 @@ QVariant TorrentModelItem::data(int column, int role) const
   if (role != Qt::DisplayRole && role != Qt::UserRole) return QVariant();
   switch(column) {
   case TR_NAME:
-    return m_name.isEmpty()? m_torrent.name() : m_name;
-  case TR_PRIORITY:
-    return m_torrent.queue_position();
+    return m_name.isEmpty() ? m_torrent.name() : m_name;
+  case TR_PRIORITY: {
+    int pos = m_torrent.queue_position();
+    if (pos > -1)
+      return pos - HiddenData::getSize();
+    else
+      return pos;
+  }
   case TR_SIZE:
     return m_torrent.has_metadata() ? static_cast<qlonglong>(m_torrent.actual_size()) : -1;
   case TR_PROGRESS:
@@ -172,7 +189,7 @@ QVariant TorrentModelItem::data(int column, int role) const
     return m_torrent.upload_payload_rate();
   case TR_ETA: {
     // XXX: Is this correct?
-    if (m_torrent.is_seed() || m_torrent.is_paused() || m_torrent.is_queued()) return MAX_ETA;
+    if (m_torrent.is_paused() || m_torrent.is_queued()) return MAX_ETA;
     return QBtSession::instance()->getETA(m_torrent.hash());
   }
   case TR_RATIO:
@@ -190,11 +207,15 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_UPLIMIT:
     return m_torrent.upload_limit();
   case TR_AMOUNT_DOWNLOADED:
-    return static_cast<qlonglong>(m_torrent.total_wanted_done());
+    return static_cast<qlonglong>(m_torrent.all_time_download());
+  case TR_AMOUNT_UPLOADED:
+    return static_cast<qlonglong>(m_torrent.all_time_upload());
   case TR_AMOUNT_LEFT:
     return static_cast<qlonglong>(m_torrent.total_wanted() - m_torrent.total_wanted_done());
   case TR_TIME_ELAPSED:
     return (role == Qt::DisplayRole) ? m_torrent.active_time() : m_torrent.seeding_time();
+  case TR_SAVE_PATH:
+    return m_torrent.save_path_parsed();
   default:
     return QVariant();
   }
@@ -261,30 +282,12 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
       case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
       case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
+      case TorrentModelItem::TR_AMOUNT_UPLOADED: return tr("Amount uploaded", "Amount of data uploaded (e.g. in MB)");
       case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
       case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
+      case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       default:
         return QVariant();
-      }
-    }
-    if (role == Qt::TextAlignmentRole) {
-      switch(section) {
-      case TorrentModelItem::TR_PRIORITY:
-      case TorrentModelItem::TR_SIZE:
-      case TorrentModelItem::TR_SEEDS:
-      case TorrentModelItem::TR_PEERS:
-      case TorrentModelItem::TR_DLSPEED:
-      case TorrentModelItem::TR_UPSPEED:
-      case TorrentModelItem::TR_RATIO:
-      case TorrentModelItem::TR_DLLIMIT:
-      case TorrentModelItem::TR_UPLIMIT:
-      case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
-      case TorrentModelItem::TR_AMOUNT_LEFT:
-        return Qt::AlignRight;
-      case TorrentModelItem::TR_PROGRESS:
-        return Qt::AlignHCenter;
-      default:
-        return Qt::AlignLeft;
       }
     }
   }
@@ -479,4 +482,22 @@ void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
   if (row >= 0) {
     emit torrentAboutToBeRemoved(m_torrents.at(row));
   }
+}
+
+bool TorrentModel::inhibitSystem()
+{
+  QList<TorrentModelItem*>::const_iterator it = m_torrents.constBegin();
+  QList<TorrentModelItem*>::const_iterator itend = m_torrents.constEnd();
+  for ( ; it != itend; ++it) {
+    switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
+    case TorrentModelItem::STATE_DOWNLOADING:
+    case TorrentModelItem::STATE_STALLED_DL:
+    case TorrentModelItem::STATE_SEEDING:
+    case TorrentModelItem::STATE_STALLED_UP:
+      return true;
+    default:
+      break;
+    }
+  }
+  return false;
 }

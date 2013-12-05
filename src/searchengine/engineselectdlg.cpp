@@ -36,13 +36,13 @@
 #include "searchengine.h"
 #include "pluginsource.h"
 #include "iconprovider.h"
+#include "autoexpandabledialog.h"
 #include <QProcess>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDropEvent>
-#include <QInputDialog>
 #include <QTemporaryFile>
 
 enum EngineColumns {ENGINE_NAME, ENGINE_URL, ENGINE_STATE, ENGINE_ID};
@@ -235,7 +235,7 @@ void engineSelectDlg::installPlugin(QString path, QString plugin_name) {
   qDebug("Version to be installed: %.2f", new_version);
   if (!isUpdateNeeded(plugin_name, new_version)) {
     qDebug("Apparently update is not needed, we have a more recent version");
-    QMessageBox::information(this, tr("Search plugin install")+" -- "+tr("qBittorrent"), tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
+    QMessageBox::information(this, tr("Search plugin install")+" -- qBittorrent", tr("A more recent version of %1 search engine plugin is already installed.", "%1 is the name of the search engine").arg(plugin_name));
     return;
   }
   // Process with install
@@ -326,14 +326,26 @@ void engineSelectDlg::on_installButton_clicked() {
 }
 
 void engineSelectDlg::askForPluginUrl() {
-  bool ok;
-  QString url = QInputDialog::getText(this, tr("New search engine plugin URL"),
+  bool ok(false);
+  QString url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
                                       tr("URL:"), QLineEdit::Normal,
                                       "http://", &ok);
-  if (ok && !url.isEmpty()) {
-    setCursor(QCursor(Qt::WaitCursor));
-    downloader->downloadUrl(url);
+
+  while(true) {
+    if (!ok || url.isEmpty())
+      return;
+    if (!url.endsWith(".py")) {
+      QMessageBox::warning(this, tr("Invalid link"), tr("The link doesn't seem to point to a search engine plugin."));
+      url = AutoExpandableDialog::getText(this, tr("New search engine plugin URL"),
+                                            tr("URL:"), QLineEdit::Normal,
+                                            url, &ok);
+    }
+    else
+      break;
   }
+
+  setCursor(QCursor(Qt::WaitCursor));
+  downloader->downloadUrl(url);
 }
 
 void engineSelectDlg::askForLocalPlugin() {
