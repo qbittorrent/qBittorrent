@@ -23,7 +23,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedProperties">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -49,8 +49,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>549</width>
-            <height>447</height>
+            <width>545</width>
+            <height>443</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -655,66 +655,7 @@
      <widget class="QWidget" name="page_4">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <layout class="QHBoxLayout" name="contentFilterLayout">
-         <item>
-          <widget class="QLabel" name="label_11">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Torrent content:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QTreeView" name="filesList">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::AllEditTriggers</set>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::ExtendedSelection</enum>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="_6">
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item>
           <widget class="QPushButton" name="selectAllButton">
            <property name="text">
@@ -742,7 +683,36 @@
            </property>
           </spacer>
          </item>
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Torrent content:</string>
+           </property>
+          </widget>
+         </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QTreeView" name="filesList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::AllEditTriggers</set>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
