@@ -41,7 +41,7 @@ class HeadlessLoader: public QObject {
 
 public:
   HeadlessLoader(const QStringList &torrentCmdLine) {
-    connect(static_cast<SessionApplication*>(qApp), SIGNAL(aboutToQuit()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
     Preferences pref;
     // Enable Web UI
     pref.setWebUiEnabled(true);
