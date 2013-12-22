@@ -127,7 +127,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   actionSet_global_download_limit->setIcon(QIcon(QString::fromUtf8(":/Icons/skin/download.png")));
   actionCreate_torrent->setIcon(IconProvider::instance()->getIcon("document-edit"));
   actionAbout->setIcon(IconProvider::instance()->getIcon("help-about"));
-  actionStatistics->setIcon(IconProvider::instance()->getIcon("office-chart-bar"));
+  actionStatistics->setIcon(IconProvider::instance()->getIcon("view-statistics"));
   actionBugReport->setIcon(IconProvider::instance()->getIcon("tools-report-bug"));
   actionDecreasePriority->setIcon(IconProvider::instance()->getIcon("go-down"));
   actionDelete->setIcon(IconProvider::instance()->getIcon("list-remove"));
