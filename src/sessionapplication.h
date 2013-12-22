@@ -52,13 +52,9 @@ class SessionApplication :
 
 public:
   SessionApplication(const QString &id, int &argc, char **argv);
-  void commitData(QSessionManager & manager);
 
 protected:
     virtual bool notify(QObject* receiver, QEvent* event);
-
-  signals:
-    void sessionIsShuttingDown();
 };
 
 #endif // SESSIONAPPLICATION_H
