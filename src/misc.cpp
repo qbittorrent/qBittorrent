@@ -82,7 +82,14 @@ void misc::shutdownComputer(bool sleep) {
 #if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
   if (sleep) {
-    // Recent systems use UPower
+    // Some recent systems use systemd's logind
+    QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
+                               "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+    if (login1Iface.isValid()) {
+      login1Iface.call("Suspend", false);
+      return;
+    }
+    // Else, other recent systems use UPower
     QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                "org.freedesktop.UPower", QDBusConnection::systemBus());
     if (upowerIface.isValid()) {
@@ -95,7 +102,14 @@ void misc::shutdownComputer(bool sleep) {
                             QDBusConnection::systemBus());
     halIface.call("Suspend", 5);
   } else {
-    // Recent systems use ConsoleKit
+    // Some recent systems use systemd's logind
+    QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
+                               "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+    if (login1Iface.isValid()) {
+      login1Iface.call("PowerOff", false);
+      return;
+    }
+    // Else, other recent systems use ConsoleKit
     QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                    "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
     if (consolekitIface.isValid()) {
