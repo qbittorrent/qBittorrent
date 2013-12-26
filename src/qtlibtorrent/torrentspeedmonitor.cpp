@@ -159,12 +159,12 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
 
 quint64 TorrentSpeedMonitor::getAlltimeDL() const {
   QMutexLocker l(&m_mutex);
-  return alltimeDL;
+  return alltimeDL + sessionDL;
 }
 
 quint64 TorrentSpeedMonitor::getAlltimeUL() const {
   QMutexLocker l(&m_mutex);
-  return alltimeUL;
+  return alltimeUL + sessionUL;
 }
 
 void TorrentSpeedMonitor::getSamples()
@@ -180,18 +180,19 @@ void TorrentSpeedMonitor::getSamples()
         int up = st.upload_payload_rate;
         int down = st.download_payload_rate;
         m_samples[misc::toQString(it->info_hash())].addSample(down, up);
-        alltimeDL += down;
-        alltimeUL += up;
       }
     } catch(invalid_handle&) {}
   }
+  libtorrent::session_status ss = m_session->getSessionStatus();
+  sessionDL = ss.total_download;
+  sessionUL = ss.total_upload;
 }
 
 void TorrentSpeedMonitor::saveStats() const {
   QIniSettings s;
   QVariantHash v;
-  v.insert("AlltimeDL", alltimeDL);
-  v.insert("AlltimeUL", alltimeUL);
+  v.insert("AlltimeDL", alltimeDL + sessionDL);
+  v.insert("AlltimeUL", alltimeUL + sessionUL);
   s.setValue("Stats/AllStats", v);
 }
 
@@ -200,4 +201,5 @@ void TorrentSpeedMonitor::loadStats() {
   QVariantHash v(s.value("Stats/AllStats", QVariantHash()).toHash());
   alltimeDL = v["AlltimeDL"].toULongLong();
   alltimeUL = v["AlltimeUL"].toULongLong();
+  sessionDL = sessionUL = 0;
 }
