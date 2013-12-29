@@ -81,6 +81,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   foreach (const QString& label, customLabels) {
     ui->label_combo->addItem(label);
   }
+  ui->label_combo->model()->sort(0);
   loadState();
   // Signal / slots
   connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
