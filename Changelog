@@ -1,9 +1,14 @@
-* UNRELEASED - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.4
+* Sun 29 Dec 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.4
     - FEATURE: Statistics dialog (Gelmir)
     - FEATURE: Tooltips explaining each peer's connection flags (sledgehammer999)
     - FEATURE: Win/Mac Check for program updates every 15min and allow the user to manually check for updates through the help menu. (sledgehammer999)
     - BUGFIX: Better dialog message for torrent delete confirmation (sledgehammer999)
-    - LINUX: Fix build under Ubuntu 13.10
+    - BUGFIX: Fix resizing grip location. Closes #1146. (sledgehammer999)
+    - BUGFIX: Lock toolbar in place. Closes #1144. (sledgehammer999)
+    - BUGFIX: Second attempt at fixing saving settings on shutdown. (sledgehammer999)
+    - BUGFIX: Sort labels in 'Add new torrent' dialog. Closes #1150 #411. (sledgehammer999)
+    - LINUX: Fix build under Ubuntu 13.10 (sledgehammer999)
+    - LINUX: Make sleep and shutdown functions work on systemd's logind (Faheem Pervez)
 
 * Mon Nov 20 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.3
     - FEATURE: Add a key shortcut to "Add link to torrent..." (Angel Alonso)
