@@ -337,18 +337,14 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 }
 
 void MainWindow::deleteBTSession() {
-  guiUpdater->stop();
-  status_bar->stopTimer();
-  QBtSession::drop();
-  m_pwr->setActivityState(false);
-  // Save window size, columns size
-  writeSettings();
-}
-
-// Destructor
-MainWindow::~MainWindow() {
   qDebug("GUI destruction");
   hide();
+  guiUpdater->stop();
+  status_bar->stopTimer();
+  m_pwr->setActivityState(false);
+  QBtSession::drop();
+  // Save window size, columns size
+  writeSettings();
 #ifdef Q_WS_MAC
   // Workaround to avoid bug http://bugreports.qt.nokia.com/browse/QTBUG-7305
   setUnifiedTitleAndToolBarOnMac(false);
@@ -381,15 +377,12 @@ MainWindow::~MainWindow() {
   delete properties;
   delete hSplitter;
   delete vSplitter;
-  if (systrayCreator) {
+  if (systrayCreator)
     delete systrayCreator;
-  }
-  if (systrayIcon) {
+  if (systrayIcon)
     delete systrayIcon;
-  }
-  if (myTrayIconMenu) {
+  if (myTrayIconMenu)
     delete myTrayIconMenu;
-  }
   delete tabs;
   // Keyboard shortcuts
   delete switchSearchShortcut;
@@ -397,7 +390,7 @@ MainWindow::~MainWindow() {
   delete switchTransferShortcut;
   delete switchRSSShortcut;
   IconProvider::drop();
-  qDebug("Exiting GUI destructor...");
+  qDebug("Finished GUI destruction");
 }
 
 void MainWindow::defineUILockPassword() {
