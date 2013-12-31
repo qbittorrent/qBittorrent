@@ -70,7 +70,7 @@ namespace misc
 
   inline QString toQString(const libtorrent::sha1_hash &hash) {
     char out[41];
-    to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
+	 libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
     return QString(out);
   }
 

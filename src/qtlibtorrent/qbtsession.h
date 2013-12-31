@@ -279,8 +279,10 @@ private:
   TorrentSpeedMonitor *m_speedMonitor;
   shutDownAction m_shutdownAct;
   // Port forwarding
+#if LIBTORRENT_VERSION_MAJOR < 1
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
+#endif
   // DynDNS
   DNSUpdater *m_dynDNSUpdater;
 };

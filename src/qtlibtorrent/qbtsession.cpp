@@ -67,12 +67,15 @@
 #include <libtorrent/identify_client.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/torrent_info.hpp>
-#include <libtorrent/upnp.hpp>
-#include <libtorrent/natpmp.hpp>
 #include <libtorrent/error_code.hpp>
 #include <queue>
 #include <string.h>
 #include "dnsupdater.h"
+
+#if LIBTORRENT_VERSION_MAJOR < 1
+#include <libtorrent/upnp.hpp>
+#include <libtorrent/natpmp.hpp>
+#endif
 
 //initialize static member variables
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
@@ -106,8 +109,11 @@ QBtSession::QBtSession()
   #ifndef DISABLE_GUI
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
-  , m_tracker(0), m_shutdownAct(NO_SHUTDOWN),
-    m_upnp(0), m_natpmp(0), m_dynDNSUpdater(0)
+  , m_tracker(0), m_shutdownAct(NO_SHUTDOWN)
+  #if LIBTORRENT_VERSION_MAJOR < 1
+  , m_upnp(0), m_natpmp(0)
+  #endif
+  , m_dynDNSUpdater(0)
 {
   BigRatioTimer = new QTimer(this);
   BigRatioTimer->setInterval(10000);
@@ -1106,7 +1112,11 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if (resumed) {
     if (loadFastResumeData(hash, buf)) {
       fastResume = true;
+#if LIBTORRENT_VERSION_MAJOR < 1
       p.resume_data = &buf;
+#else
+      p.resume_data = buf;
+#endif
       qDebug("Successfully loaded fast resume data");
     }
   }
@@ -1431,25 +1441,33 @@ void QBtSession::setMaxUploadsPerTorrent(int max) {
 void QBtSession::enableUPnP(bool b) {
   Preferences pref;
   if (b) {
-    if (!m_upnp) {
-      qDebug("Enabling UPnP / NAT-PMP");
-      m_upnp = s->start_upnp();
-      m_natpmp = s->start_natpmp();
-    }
+    qDebug("Enabling UPnP / NAT-PMP");
+#if LIBTORRENT_VERSION_MAJOR < 1
+    m_upnp = s->start_upnp();
+    m_natpmp = s->start_natpmp();
+#else
+    s->start_upnp();
+    s->start_natpmp();
+#endif
     // Use UPnP/NAT-PMP for Web UI too
     if (pref.isWebUiEnabled() && pref.useUPnPForWebUIPort()) {
       const qint16 port = pref.getWebUiPort();
+#if LIBTORRENT_VERSION_MAJOR < 1
       m_upnp->add_mapping(upnp::tcp, port, port);
       m_natpmp->add_mapping(natpmp::tcp, port, port);
+#else
+      s->add_port_mapping(session::tcp, port, port);
+#endif
     }
   } else {
-    if (m_upnp) {
-      qDebug("Disabling UPnP / NAT-PMP");
-      s->stop_upnp();
-      s->stop_natpmp();
-      m_upnp = 0;
-      m_natpmp = 0;
-    }
+    qDebug("Disabling UPnP / NAT-PMP");
+    s->stop_upnp();
+    s->stop_natpmp();
+
+#if LIBTORRENT_VERSION_MAJOR < 1
+    m_upnp = 0;
+    m_natpmp = 0;
+#endif
   }
 }
 
