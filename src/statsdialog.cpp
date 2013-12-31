@@ -47,6 +47,22 @@ ui->labelQueuedJobs->setVisible(false);
 ui->labelJobsTimeText->setVisible(false);
 ui->labelJobsTime->setVisible(false);
 #endif
+#if QT_VERSION < QT_VERSION_CHECK(4, 8, 0)
+  ui->labelAlltimeDL->setAlignment(Qt::AlignRight);
+  ui->labelAlltimeUL->setAlignment(Qt::AlignRight);
+  ui->labelWaste->setAlignment(Qt::AlignRight);
+  ui->labelGlobalRatio->setAlignment(Qt::AlignRight);
+  ui->labelPeers->setAlignment(Qt::AlignRight);
+  ui->labelCacheHits->setAlignment(Qt::AlignRight);
+  ui->labelTotalBuf->setAlignment(Qt::AlignRight);
+#if LIBTORRENT_VERSION_NUM >= 001600
+  ui->labelWriteStarve->setAlignment(Qt::AlignRight);
+  ui->labelReadStarve->setAlignment(Qt::AlignRight);
+  ui->labelQueuedJobs->setAlignment(Qt::AlignRight);
+  ui->labelJobsTime->setAlignment(Qt::AlignRight);
+#endif
+  ui->labelQueuedBytes->setAlignment(Qt::AlignRight);
+#endif
   session = QBtSession::instance();
   updateUI();
   t = new QTimer(this);

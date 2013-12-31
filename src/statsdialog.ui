@@ -34,10 +34,13 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="1" alignment="Qt::AlignRight">
+      <item row="11" column="1">
        <widget class="QLabel" name="labelPeers">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -48,17 +51,23 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
+      <item row="1" column="1">
        <widget class="QLabel" name="labelAlltimeUL">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="0" column="1" alignment="Qt::AlignRight">
+      <item row="0" column="1">
        <widget class="QLabel" name="labelAlltimeDL">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -69,10 +78,13 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" alignment="Qt::AlignRight">
+      <item row="3" column="1">
        <widget class="QLabel" name="labelGlobalRatio">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -83,10 +95,13 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignRight">
+      <item row="2" column="1">
        <widget class="QLabel" name="labelWaste">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -106,17 +121,23 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
+      <item row="1" column="1">
        <widget class="QLabel" name="labelCacheHits">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignRight">
+      <item row="2" column="1">
        <widget class="QLabel" name="labelTotalBuf">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -136,31 +157,43 @@
       <string>Performance statistics</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="3" column="1" alignment="Qt::AlignRight">
+      <item row="3" column="1">
        <widget class="QLabel" name="labelJobsTime">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignRight">
+      <item row="2" column="1">
        <widget class="QLabel" name="labelQueuedJobs">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="0" column="1" alignment="Qt::AlignRight">
+      <item row="0" column="1">
        <widget class="QLabel" name="labelWriteStarve">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
+      <item row="1" column="1">
        <widget class="QLabel" name="labelReadStarve">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -199,10 +232,13 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1" alignment="Qt::AlignRight">
+      <item row="4" column="1">
        <widget class="QLabel" name="labelQueuedBytes">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
