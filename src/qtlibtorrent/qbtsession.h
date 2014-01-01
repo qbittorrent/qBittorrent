@@ -145,7 +145,9 @@ public slots:
   void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
+#if LIBTORRENT_VERSION_NUM < 10000
   void setDHTPort(int dht_port);
+#endif
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void setDefaultSavePath(const QString &savepath);
@@ -279,8 +281,10 @@ private:
   TorrentSpeedMonitor *m_speedMonitor;
   shutDownAction m_shutdownAct;
   // Port forwarding
+#if LIBTORRENT_VERSION_NUM < 10000
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
+#endif
   // DynDNS
   DNSUpdater *m_dynDNSUpdater;
 };

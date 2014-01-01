@@ -77,8 +77,12 @@ protected slots:
   void loadSettings();
   void saveSettings() const;
   void showPeerListMenu(const QPoint&);
+
+#if LIBTORRENT_VERSION_NUM < 10000
   void limitUpRateSelectedPeers(const QStringList& peer_ips);
   void limitDlRateSelectedPeers(const QStringList& peer_ips);
+#endif
+
   void banSelectedPeers(const QStringList& peer_ips);
   void handleSortColumnChanged(int col);
 

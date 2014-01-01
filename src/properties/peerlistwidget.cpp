@@ -160,16 +160,20 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     empty_menu = false;
   }
   // Per Peer Speed limiting actions
+#if LIBTORRENT_VERSION_NUM < 10000
   QAction *upLimitAct = 0;
   QAction *dlLimitAct = 0;
+#endif
   QAction *banAct = 0;
   QAction *copyIPAct = 0;
   if (!selectedPeerIPs.isEmpty()) {
     copyIPAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy IP"));
     menu.addSeparator();
+#if LIBTORRENT_VERSION_NUM < 10000
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
     upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate..."));
     menu.addSeparator();
+#endif
     banAct = menu.addAction(IconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
     empty_menu = false;
   }
@@ -190,6 +194,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     }
     return;
   }
+#if LIBTORRENT_VERSION_NUM < 10000
   if (act == upLimitAct) {
     limitUpRateSelectedPeers(selectedPeerIPs);
     return;
@@ -198,6 +203,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     limitDlRateSelectedPeers(selectedPeerIPs);
     return;
   }
+#endif
   if (act == banAct) {
     banSelectedPeers(selectedPeerIPs);
     return;
@@ -229,6 +235,7 @@ void PeerListWidget::banSelectedPeers(const QStringList& peer_ips)
   loadPeers(m_properties->getCurrentTorrent());
 }
 
+#if LIBTORRENT_VERSION_NUM < 10000
 void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
 {
   if (peer_ips.empty())
@@ -294,7 +301,7 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
     }
   }
 }
-
+#endif
 
 void PeerListWidget::clear() {
   qDebug("clearing peer list");
