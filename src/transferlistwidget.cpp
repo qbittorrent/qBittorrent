@@ -575,7 +575,7 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
   foreach (const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if (h.is_valid() && h.has_metadata()) {
-      h.super_seeding(!h.super_seeding());
+      h.super_seeding(!h.status(0).super_seeding);
     }
   }
 }
@@ -747,9 +747,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     else {
       if (!one_not_seed && all_same_super_seeding && h.has_metadata()) {
         if (first) {
-          super_seeding_mode = h.super_seeding();
+          super_seeding_mode = h.status(0).super_seeding;
         } else {
-          if (super_seeding_mode != h.super_seeding()) {
+          if (super_seeding_mode != h.status(0).super_seeding) {
             all_same_super_seeding = false;
           }
         }

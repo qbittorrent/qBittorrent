@@ -72,7 +72,7 @@
 #include <string.h>
 #include "dnsupdater.h"
 
-#if LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 10000
 #include <libtorrent/upnp.hpp>
 #include <libtorrent/natpmp.hpp>
 #endif
@@ -110,7 +110,7 @@ QBtSession::QBtSession()
   , geoipDBLoaded(false), resolve_countries(false)
   #endif
   , m_tracker(0), m_shutdownAct(NO_SHUTDOWN)
-  #if LIBTORRENT_VERSION_MAJOR < 1
+  #if LIBTORRENT_VERSION_NUM < 10000
   , m_upnp(0), m_natpmp(0)
   #endif
   , m_dynDNSUpdater(0)
@@ -476,12 +476,12 @@ void QBtSession::configureSession() {
   if (pref.isDHTEnabled()) {
     // Set DHT Port
     if (enableDHT(true)) {
-      int dht_port;
-      if (pref.isDHTPortSameAsBT())
-        dht_port = 0;
-      else
+      int dht_port = 0;
+#if LIBTORRENT_VERSION_NUM < 10000
+      if (!pref.isDHTPortSameAsBT())
         dht_port = pref.getDHTPort();
       setDHTPort(dht_port);
+#endif
       if (dht_port == 0) dht_port = new_listenPort;
       addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
     } else {
@@ -491,6 +491,7 @@ void QBtSession::configureSession() {
     enableDHT(false);
     addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
   }
+
   // * PeX
   if (PeXEnabled) {
     addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
@@ -1112,7 +1113,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   if (resumed) {
     if (loadFastResumeData(hash, buf)) {
       fastResume = true;
-#if LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 10000
       p.resume_data = &buf;
 #else
       p.resume_data = buf;
@@ -1228,9 +1229,9 @@ void QBtSession::initializeAddTorrentParams(const QString &hash, add_torrent_par
   // Seeding mode
   // Skip checking and directly start seeding (new in libtorrent v0.15)
   if (TorrentTempData::isSeedingMode(hash))
-    p.seed_mode=true;
+    p.flags |= add_torrent_params::flag_seed_mode;
   else
-    p.seed_mode=false;
+    p.flags &= ~add_torrent_params::flag_seed_mode;
 
   // Preallocation mode
   if (preAllocateAll)
@@ -1252,9 +1253,9 @@ void QBtSession::initializeAddTorrentParams(const QString &hash, add_torrent_par
   }*/
 
   // Start in pause
-  p.paused = true;
-  p.duplicate_is_error = false; // Already checked
-  p.auto_managed = false; // Because it is added in paused state
+  p.flags |= add_torrent_params::flag_paused;
+  p.flags &= ~add_torrent_params::flag_duplicate_is_error; // Already checked
+  p.flags &= ~add_torrent_params::flag_auto_managed; // Because it is added in paused state
 }
 
 void QBtSession::loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet) {
@@ -1442,7 +1443,7 @@ void QBtSession::enableUPnP(bool b) {
   Preferences pref;
   if (b) {
     qDebug("Enabling UPnP / NAT-PMP");
-#if LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 10000
     m_upnp = s->start_upnp();
     m_natpmp = s->start_natpmp();
 #else
@@ -1452,7 +1453,7 @@ void QBtSession::enableUPnP(bool b) {
     // Use UPnP/NAT-PMP for Web UI too
     if (pref.isWebUiEnabled() && pref.useUPnPForWebUIPort()) {
       const qint16 port = pref.getWebUiPort();
-#if LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 10000
       m_upnp->add_mapping(upnp::tcp, port, port);
       m_natpmp->add_mapping(natpmp::tcp, port, port);
 #else
@@ -1464,7 +1465,7 @@ void QBtSession::enableUPnP(bool b) {
     s->stop_upnp();
     s->stop_natpmp();
 
-#if LIBTORRENT_VERSION_MAJOR < 1
+#if LIBTORRENT_VERSION_NUM < 10000
     m_upnp = 0;
     m_natpmp = 0;
 #endif
@@ -1981,6 +1982,7 @@ void QBtSession::updateRatioTimer()
   }
 }
 
+#if LIBTORRENT_VERSION_NUM < 10000
 // Set DHT port (>= 1 or 0 if same as BT)
 void QBtSession::setDHTPort(int dht_port) {
   if (dht_port >= 0) {
@@ -1992,6 +1994,7 @@ void QBtSession::setDHTPort(int dht_port) {
     qDebug("Set DHT Port to %d", dht_port);
   }
 }
+#endif
 
 // Enable IP Filtering
 void QBtSession::enableIPFilter(const QString &filter_path, bool force) {

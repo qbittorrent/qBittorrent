@@ -84,13 +84,21 @@ QString QTorrentHandle::hash() const {
 QString QTorrentHandle::name() const {
   QString name = TorrentPersistentData::getName(hash());
   if (name.isEmpty()) {
+#if LIBTORRENT_VERSION_NUM < 10000
     name = misc::toQStringU(torrent_handle::name());
+#else
+    name = misc::toQStringU(torrent_handle::status(torrent_handle::query_name).name);
+#endif
   }
   return name;
 }
 
 QString QTorrentHandle::creation_date() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   boost::optional<time_t> t = torrent_handle::get_torrent_info().creation_date();
+#else
+  boost::optional<time_t> t = torrent_handle::torrent_file()->creation_date();
+#endif
   return t ? misc::toQString(*t) : "";
 }
 
@@ -132,34 +140,50 @@ bool QTorrentHandle::is_queued() const {
 }
 
 size_type QTorrentHandle::total_size() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().total_size();
+#else
+  return torrent_handle::torrent_file()->total_size();
+#endif
 }
 
 size_type QTorrentHandle::piece_length() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().piece_length();
+#else
+  return torrent_handle::torrent_file()->piece_length();
+#endif
 }
 
 int QTorrentHandle::num_pieces() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().num_pieces();
+#else
+  return torrent_handle::torrent_file()->num_pieces();
+#endif
 }
 
 bool QTorrentHandle::first_last_piece_first() const {
-  const torrent_info& t = get_torrent_info();
+#if LIBTORRENT_VERSION_NUM < 10000
+  torrent_info const* t = &get_torrent_info();
+#else
+  boost::intrusive_ptr<torrent_info const> t = torrent_file();
+#endif
 
   // Get int first media file
   int index = 0;
-  for (index = 0; index < t.num_files(); ++index) {
-    QString path = misc::toQStringU(t.file_at(index).path);
+  for (index = 0; index < t->num_files(); ++index) {
+    QString path = misc::toQStringU(t->file_at(index).path);
     const QString ext = fsutils::fileExtension(path);
     if (misc::isPreviewable(ext) && torrent_handle::file_priority(index) > 0)
       break;
   }
 
-  if (index >= t.num_files()) // No media file
+  if (index >= t->num_files()) // No media file
     return false;
 
 
-  QPair<int, int> extremities = get_file_extremity_pieces (t, index);
+  QPair<int, int> extremities = get_file_extremity_pieces(*t, index);
 
   return (torrent_handle::piece_priority(extremities.first) == 7)
       && (torrent_handle::piece_priority(extremities.second) == 7);
@@ -198,7 +222,13 @@ int QTorrentHandle::num_incomplete() const {
 }
 
 QString QTorrentHandle::save_path() const {
-  return misc::toQStringU(torrent_handle::save_path()).replace("\\", "/");
+#if LIBTORRENT_VERSION_NUM < 10000
+  return misc::toQStringU(torrent_handle::save_path())
+    .replace("\\", "/");
+#else
+  return misc::toQStringU(status(torrent_handle::query_save_path).save_path)
+    .replace("\\", "/");
+#endif
 }
 
 QString QTorrentHandle::save_path_parsed() const {
@@ -248,25 +278,46 @@ bool QTorrentHandle::has_filtered_pieces() const {
 }
 
 int QTorrentHandle::num_files() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().num_files();
+#else
+  return torrent_handle::torrent_file()->num_files();
+#endif
 }
 
 QString QTorrentHandle::filename_at(unsigned int index) const {
+#if LIBTORRENT_VERSION_NUM < 10000
   Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
+#else
+  Q_ASSERT(index < (unsigned int)torrent_handle::torrent_file()->num_files());
+#endif
   return fsutils::fileName(filepath_at(index));
 }
 
 size_type QTorrentHandle::filesize_at(unsigned int index) const {
+#if LIBTORRENT_VERSION_NUM < 10000
   Q_ASSERT(index < (unsigned int)torrent_handle::get_torrent_info().num_files());
-  return torrent_handle::get_torrent_info().file_at(index).size;
+  return torrent_handle::get_torrent_info().files().file_size(index);
+#else
+  Q_ASSERT(index < (unsigned int)torrent_handle::torrent_file()->num_files());
+  return torrent_handle::torrent_file()->files().file_size(index);
+#endif
 }
 
 QString QTorrentHandle::filepath_at(unsigned int index) const {
-  return misc::toQStringU(torrent_handle::get_torrent_info().file_at(index).path);
+#if LIBTORRENT_VERSION_NUM < 10000
+  return misc::toQStringU(torrent_handle::get_torrent_info().files().file_path(index));
+#else
+  return misc::toQStringU(torrent_handle::torrent_file()->files().file_path(index));
+#endif
 }
 
 QString QTorrentHandle::orig_filepath_at(unsigned int index) const {
-  return misc::toQStringU(torrent_handle::get_torrent_info().orig_files().at(index).path);
+#if LIBTORRENT_VERSION_NUM < 10000
+  return misc::toQStringU(torrent_handle::get_torrent_info().orig_files().file_path(index));
+#else
+  return misc::toQStringU(torrent_handle::torrent_file()->orig_files().file_path(index));
+#endif
 }
 
 torrent_status::state_t QTorrentHandle::state() const {
@@ -274,11 +325,19 @@ torrent_status::state_t QTorrentHandle::state() const {
 }
 
 QString QTorrentHandle::creator() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return misc::toQStringU(torrent_handle::get_torrent_info().creator());
+#else
+  return misc::toQStringU(torrent_handle::torrent_file()->creator());
+#endif
 }
 
 QString QTorrentHandle::comment() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return misc::toQStringU(torrent_handle::get_torrent_info().comment());
+#else
+  return misc::toQStringU(torrent_handle::torrent_file()->comment());
+#endif
 }
 
 size_type QTorrentHandle::total_failed_bytes() const {
@@ -394,7 +453,11 @@ int QTorrentHandle::connections_limit() const {
 }
 
 bool QTorrentHandle::priv() const {
+#if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().priv();
+#else
+  return torrent_handle::torrent_file()->priv();
+#endif
 }
 
 QString QTorrentHandle::firstFileSavePath() const {
@@ -416,11 +479,11 @@ QString QTorrentHandle::root_path() const
 {
   if (num_files() < 2)
     return save_path();
-   QString first_filepath = filepath_at(0);
-   const int slashIndex = first_filepath.indexOf(QRegExp("[/\\\\]"));
-   if (slashIndex >= 0)
-     return QDir(save_path()).absoluteFilePath(first_filepath.left(slashIndex));
-   return save_path();
+  QString first_filepath = filepath_at(0);
+  const int slashIndex = first_filepath.indexOf(QRegExp("[/\\\\]"));
+  if (slashIndex >= 0)
+    return QDir(save_path()).absoluteFilePath(first_filepath.left(slashIndex));
+  return save_path();
 }
 
 bool QTorrentHandle::has_error() const {
@@ -519,10 +582,14 @@ void QTorrentHandle::move_storage(const QString& new_path) const {
 bool QTorrentHandle::save_torrent_file(const QString& path) const {
   if (!has_metadata()) return false;
 
-  const torrent_info& t = torrent_handle::get_torrent_info();
+#if LIBTORRENT_VERSION_NUM < 10000
+  torrent_info const* t = &get_torrent_info();
+#else
+  boost::intrusive_ptr<torrent_info const> t = torrent_file();
+#endif
 
-  entry meta = bdecode(t.metadata().get(),
-                       t.metadata().get() + t.metadata_size());
+  entry meta = bdecode(t->metadata().get(),
+                       t->metadata().get() + t->metadata_size());
   entry torrent_entry(entry::dictionary_t);
   torrent_entry["info"] = meta;
   if (!torrent_handle::trackers().empty())
@@ -549,7 +616,11 @@ void QTorrentHandle::file_priority(int index, int priority) const {
 }
 
 void QTorrentHandle::prioritize_files(const vector<int> &files) const {
+#if LIBTORRENT_VERSION_NUM < 10000
   if ((int)files.size() != torrent_handle::get_torrent_info().num_files()) return;
+#else
+  if ((int)files.size() != torrent_handle::torrent_file()->num_files()) return;
+#endif
   qDebug() << Q_FUNC_INFO;
   bool was_seed = is_seed();
   vector<size_type> progress;
@@ -557,10 +628,13 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
   qDebug() << Q_FUNC_INFO << "Changing files priorities...";
   torrent_handle::prioritize_files(files);
   qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
+
+  QString spath = save_path();
+
   for (uint i = 0; i < files.size(); ++i) {
     // Move unwanted files to a .unwanted subfolder
     if (files[i] == 0) {
-      QString old_abspath = QDir(save_path()).absoluteFilePath(filepath_at(i));
+      QString old_abspath = QDir(spath).absoluteFilePath(filepath_at(i));
       QString parent_abspath = fsutils::branchPath(old_abspath);
       // Make sure the file does not already exists
       if (QDir(parent_abspath).dirName() != ".unwanted") {
@@ -602,8 +676,8 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
         else
             rename_file(i, QDir(new_relpath).filePath(old_name));
         // Remove .unwanted directory if empty
-        qDebug() << "Attempting to remove .unwanted folder at " << QDir(save_path() + QDir::separator() + new_relpath).absoluteFilePath(".unwanted");
-        QDir(save_path() + QDir::separator() + new_relpath).rmdir(".unwanted");
+        qDebug() << "Attempting to remove .unwanted folder at " << QDir(spath + QDir::separator() + new_relpath).absoluteFilePath(".unwanted");
+        QDir(spath + QDir::separator() + new_relpath).rmdir(".unwanted");
       }
     }
   }
@@ -616,7 +690,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     const Preferences pref;
     if (pref.isTempPathEnabled()) {
       QString tmp_path = pref.getTempPath();
-      qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << save_path();
+      qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << spath;
       move_storage(tmp_path);
     }
   }
@@ -626,7 +700,13 @@ void QTorrentHandle::prioritize_first_last_piece(int file_index, bool b) const {
   // Determine the priority to set
   int prio = b ? 7 : torrent_handle::file_priority(file_index);
 
-  QPair<int, int> extremities = get_file_extremity_pieces (get_torrent_info(), file_index);
+#if LIBTORRENT_VERSION_NUM < 10000
+  torrent_info const* tf = &get_torrent_info();
+#else
+  boost::intrusive_ptr<torrent_info const> tf = torrent_file();
+#endif
+
+  QPair<int, int> extremities = get_file_extremity_pieces(*tf, file_index);
   piece_priority(extremities.first, prio);
   piece_priority(extremities.second, prio);
 }

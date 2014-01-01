@@ -253,7 +253,11 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
       // URL seeds
       loadUrlSeeds();
       // List files in torrent
+#if LIBTORRENT_VERSION_NUM < 10000
       PropListModel->model()->setupModelData(h.get_torrent_info());
+#else
+      PropListModel->model()->setupModelData(*h.torrent_file());
+#endif
       filesList->setExpanded(PropListModel->index(0, 0), true);
       // Load file priorities
       PropListModel->model()->updateFilesPriorities(h.file_priorities());
@@ -338,7 +342,11 @@ void PropertiesWidget::loadDynamicData() {
       if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
+#if LIBTORRENT_VERSION_NUM < 10000
         bitfield bf(h.get_torrent_info().num_pieces(), 0);
+#else
+        bitfield bf(h.torrent_file()->num_pieces(), 0);
+#endif
         h.downloading_pieces(bf);
         downloaded_pieces->setProgress(h.pieces(), bf);
         // Pieces availability
