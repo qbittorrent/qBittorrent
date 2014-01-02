@@ -163,7 +163,7 @@ void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
     on_search_button_clicked();
   }
   // Delete temp file
-  QFile::remove(file_path+".msi");
+  fsutils::forceRemove(file_path);
 }
 
 void SearchEngine::pythonDownloadFailure(QString url, QString error) {

@@ -41,6 +41,7 @@
 #include "ui_trackersadditiondlg.h"
 #include "downloadthread.h"
 #include "qtorrenthandle.h"
+#include "fs_utils.h"
 
 class TrackersAdditionDlg : public QDialog, private Ui::TrackersAdditionDlg{
   Q_OBJECT
@@ -79,6 +80,7 @@ public slots:
       setCursor(Qt::ArrowCursor);
       uTorrentListButton->setEnabled(true);
       sender()->deleteLater();
+      fsutils::forceRemove(path);
       return;
     }
     QList<QUrl> existingTrackers;
@@ -113,7 +115,7 @@ public slots:
     }
     // Clean up
     list_file.close();
-    list_file.remove();
+    fsutils::forceRemove(path);
     //To restore the cursor ...
     setCursor(Qt::ArrowCursor);
     uTorrentListButton->setEnabled(true);

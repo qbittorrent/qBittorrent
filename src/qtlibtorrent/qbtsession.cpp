@@ -2791,6 +2791,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
         h.pause();
     emit newDownloadedTorrentFromRss(url);
   }
+  fsutils::forceRemove(file_path);
 }
 
 // Return current download rate for the BT

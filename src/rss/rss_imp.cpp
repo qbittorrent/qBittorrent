@@ -629,6 +629,7 @@ void RSSImp::updateFeedIcon(const QString& url, const QString& iconPath)
 {
   QTreeWidgetItem* item = m_feedList->getTreeItemFromUrl(url);
   item->setData(0, Qt::DecorationRole, QVariant(QIcon(iconPath)));
+  fsutils::forceRemove(iconPath);
 }
 
 void RSSImp::updateFeedInfos(const QString& url, const QString& display_name, uint nbUnread)
