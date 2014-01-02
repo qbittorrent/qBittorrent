@@ -256,8 +256,8 @@ options_imp::options_imp(QWidget *parent):
   connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
   // Adapt size
-  show();
   loadWindowState();
+  show();
 }
 
 void options_imp::initializeLanguageCombo()
@@ -294,7 +294,8 @@ void options_imp::loadWindowState() {
   QIniSettings settings;
   resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
   QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
-  if (!p.isNull())
+  QRect scr_rect = qApp->desktop()->screenGeometry();
+  if (!p.isNull() && scr_rect.contains(p))
     move(p);
   // Load slider size
   const QStringList sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
