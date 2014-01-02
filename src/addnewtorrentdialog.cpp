@@ -82,6 +82,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
     ui->label_combo->addItem(label);
   }
   ui->label_combo->model()->sort(0);
+  ui->content_tree->header()->setSortIndicator(0, Qt::AscendingOrder);
   loadState();
   // Signal / slots
   connect(ui->adv_button, SIGNAL(clicked(bool)), SLOT(showAdvancedSettings(bool)));
@@ -237,7 +238,6 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
 
     // Expand root folder
     ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
-    ui->content_tree->header()->setResizeMode(0, QHeaderView::Stretch);
   } else {
     // Update save paths (append file name to them)
     QString single_file_relpath = misc::toQStringU(fs.file_path(0));
@@ -692,7 +692,6 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
 
       // Expand root folder
       ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
-      ui->content_tree->header()->setResizeMode(0, QHeaderView::Stretch);
     } else {
       // Update save paths (append file name to them)
       QString single_file_relpath = misc::toQStringU(fs.file_path(0));
