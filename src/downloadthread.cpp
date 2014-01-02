@@ -134,8 +134,8 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
   }
   // Success
   QTemporaryFile *tmpfile = new QTemporaryFile;
-  tmpfile->setAutoRemove(false);
   if (tmpfile->open()) {
+    tmpfile->setAutoRemove(false);
     QString filePath = tmpfile->fileName();
     qDebug("Temporary filename is: %s", qPrintable(filePath));
     if (reply->isOpen() || reply->open(QIODevice::ReadOnly)) {
@@ -153,6 +153,7 @@ void DownloadThread::processDlFinished(QNetworkReply* reply) {
       emit downloadFinished(url, filePath);
     } else {
       delete tmpfile;
+      fsutils::forceRemove(filePath);
       // Error when reading the request
       emit downloadFailure(url, tr("I/O Error"));
     }
