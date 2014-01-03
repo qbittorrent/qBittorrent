@@ -303,7 +303,7 @@ QStringList QTorrentHandle::url_seeds() const {
       qDebug("URL Seed: %s", it->c_str());
       res << misc::toQString(*it);
     }
-  } catch(std::exception e) {
+  } catch(std::exception &e) {
     std::cout << "ERROR: Failed to convert the URL seed" << std::endl;
   }
   return res;
