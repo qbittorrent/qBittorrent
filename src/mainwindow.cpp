@@ -626,7 +626,7 @@ void MainWindow::handleDownloadFromUrlFailure(QString url, QString reason) const
 void MainWindow::on_actionSet_global_upload_limit_triggered() {
   qDebug("actionSet_global_upload_limit_triggered");
   bool ok;
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
     int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
 #else
     int cur_limit = QBtSession::instance()->getSession()->upload_rate_limit();
@@ -645,7 +645,7 @@ void MainWindow::on_actionSet_global_upload_limit_triggered() {
 void MainWindow::on_actionSet_global_download_limit_triggered() {
   qDebug("actionSet_global_download_limit_triggered");
   bool ok;
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
     int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
 #else
     int cur_limit = QBtSession::instance()->getSession()->download_rate_limit();

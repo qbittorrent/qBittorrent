@@ -159,7 +159,7 @@ public:
     if (index.column() != PRIORITY) return 0;
     if (properties) {
       QTorrentHandle h = properties->getCurrentTorrent();
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
       if (!h.is_valid() || !h.has_metadata() || h.status(0x0).is_seeding) return 0;
 #else
       if (!h.is_valid() || !h.has_metadata() || static_cast<libtorrent::torrent_handle>(h).is_seed()) return 0;

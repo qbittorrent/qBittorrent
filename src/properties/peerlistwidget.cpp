@@ -239,7 +239,7 @@ void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
 
   bool ok = false;
   int cur_limit = -1;
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
                                                                   boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
@@ -274,7 +274,7 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
     return;
   bool ok = false;
   int cur_limit = -1;
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   boost::asio::ip::tcp::endpoint first_ep = m_peerEndpoints.value(peer_ips.first(),
                                                                   boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
@@ -443,7 +443,7 @@ QString PeerListWidget::getConnectionString(int connection_type)
 {
   QString connection;
   switch(connection_type) {
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   case peer_info::bittorrent_utp:
     connection = "uTP";
     break;
@@ -554,8 +554,7 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
     tooltip += ", ";
   }
 
-#if LIBTORRENT_VERSION_NUM > 001500
-  //P = Peer is using uTorrent uTP
+#if LIBTORRENT_VERSION_NUM > 1500 //P = Peer is using uTorrent uTP
   if (peer.connection_type & peer_info::bittorrent_utp) {
     flags += "P ";
     tooltip += QString::fromUtf8("μTP");

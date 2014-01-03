@@ -107,7 +107,7 @@ namespace misc
   QList<int> intListfromStringList(const QStringList &l);
   QList<bool> boolListfromStringList(const QStringList &l);
 
-#if LIBTORRENT_VERSION_NUM < 001600
+#if LIBTORRENT_VERSION_NUM < 1600
   QString toQString(const boost::posix_time::ptime& boostDate);
 #else
   QString toQString(time_t t);

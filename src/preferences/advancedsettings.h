@@ -14,7 +14,7 @@
 
 enum AdvSettingsCols {PROPERTY, VALUE};
 enum AdvSettingsRows {DISK_CACHE,
-                    #if LIBTORRENT_VERSION_NUM >= 001610
+                    #if LIBTORRENT_VERSION_NUM >= 1610
                       DISK_CACHE_TTL,
                     #endif
                       OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
@@ -37,7 +37,7 @@ private:
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext;
   QComboBox combo_iface;
-#if LIBTORRENT_VERSION_NUM >= 001610
+#if LIBTORRENT_VERSION_NUM >= 1610
   QSpinBox spin_cache_ttl;
 #endif
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
@@ -76,7 +76,7 @@ public slots:
     Preferences pref;
     // Disk write cache
     pref.setDiskCacheSize(spin_cache.value());
-#if LIBTORRENT_VERSION_NUM >= 001610
+#if LIBTORRENT_VERSION_NUM >= 1610
     pref.setDiskCacheTTL(spin_cache_ttl.value());
 #endif
     // Outgoing ports
@@ -182,7 +182,7 @@ private slots:
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
-#if LIBTORRENT_VERSION_NUM >= 001610
+#if LIBTORRENT_VERSION_NUM >= 1610
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);

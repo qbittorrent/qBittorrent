@@ -37,7 +37,7 @@ StatsDialog::StatsDialog(QWidget *parent) :   QDialog(parent), ui(new Ui::StatsD
   ui->setupUi(this);
   setAttribute(Qt::WA_DeleteOnClose);
   connect(ui->buttonOK, SIGNAL(clicked()), SLOT(close()));
-#if LIBTORRENT_VERSION_NUM < 001600
+#if LIBTORRENT_VERSION_NUM < 1600
 ui->labelWriteStarveText->setVisible(false);
 ui->labelWriteStarve->setVisible(false);
 ui->labelReadStarveText->setVisible(false);
@@ -55,7 +55,7 @@ ui->labelJobsTime->setVisible(false);
   ui->labelPeers->setAlignment(Qt::AlignRight);
   ui->labelCacheHits->setAlignment(Qt::AlignRight);
   ui->labelTotalBuf->setAlignment(Qt::AlignRight);
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   ui->labelWriteStarve->setAlignment(Qt::AlignRight);
   ui->labelReadStarve->setAlignment(Qt::AlignRight);
   ui->labelQueuedJobs->setAlignment(Qt::AlignRight);
@@ -104,7 +104,7 @@ void StatsDialog::updateUI() {
           );
   // Buffers size
   ui->labelTotalBuf->setText(misc::friendlyUnit(cache.total_used_buffers * 16 * 1024));
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   // Disk overload (100%) equivalent
   // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
   // to complete before it receives or sends any more data on the socket. It'a a metric of how disk bound you are.

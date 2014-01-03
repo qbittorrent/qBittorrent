@@ -215,13 +215,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
   ui->date_lbl->setText(m_torrentInfo->creation_date() ? misc::toQString(*m_torrentInfo->creation_date()) : tr("Not available"));
   updateDiskSpaceLabel();
 
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
   file_storage fs = m_torrentInfo->files();
 #endif
 
   // Populate m_filesList
   for (int i = 0; i < m_torrentInfo->num_files(); ++i) {
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
     m_filesPath << misc::toQStringU(fs.file_path(m_torrentInfo->file_at(i)));
 #else
     m_filesPath << misc::toQStringU(m_torrentInfo->file_at(i).path.string());
@@ -246,7 +246,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
   } else {
     // Update save paths (append file name to them)
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
     QString single_file_relpath = misc::toQStringU(fs.file_path(m_torrentInfo->file_at(0)));
 #else
     QString single_file_relpath = misc::toQStringU(m_torrentInfo->file_at(0).path.string());
@@ -675,13 +675,13 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     ui->date_lbl->setText(m_torrentInfo->creation_date() ? misc::toQString(*m_torrentInfo->creation_date()) : tr("Not available"));
     updateDiskSpaceLabel();
 
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
     file_storage fs = m_torrentInfo->files();
 #endif
 
     // Populate m_filesList
     for (int i = 0; i < m_torrentInfo->num_files(); ++i) {
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
       m_filesPath << misc::toQStringU(fs.file_path(m_torrentInfo->file_at(i)));
 #else
       m_filesPath << misc::toQStringU(m_torrentInfo->file_at(i).path.string());
@@ -706,7 +706,7 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
       ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
     } else {
       // Update save paths (append file name to them)
-#if LIBTORRENT_VERSION_NUM >= 001600
+#if LIBTORRENT_VERSION_NUM >= 1600
       QString single_file_relpath = misc::toQStringU(fs.file_path(m_torrentInfo->file_at(0)));
 #else
       QString single_file_relpath = misc::toQStringU(m_torrentInfo->file_at(0).path.string());

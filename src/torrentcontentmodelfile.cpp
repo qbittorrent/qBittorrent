@@ -41,7 +41,7 @@ TorrentContentModelFile::TorrentContentModelFile(const libtorrent::file_entry& f
 {
   Q_ASSERT(parent);
 
-#if LIBTORRENT_VERSION_MINOR >= 16 || LIBTORRENT_VERSION_MAJOR > 0
+#if LIBTORRENT_VERSION_NUM >= 1600
   m_name = fsutils::fileName(misc::toQStringU(f.path.c_str()));
 #else
   m_name = misc::toQStringU(f.path.filename());
