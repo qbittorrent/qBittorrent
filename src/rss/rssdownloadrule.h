@@ -67,7 +67,7 @@ public:
   inline void setUseRegex(bool enabled) { m_useRegex = enabled; }
   QStringList findMatchingArticles(const RssFeedPtr& feed) const;
   // Operators
-  bool operator==(const RssDownloadRule &other);
+  bool operator==(const RssDownloadRule &other) const;
 
 private:
   QString m_name;
