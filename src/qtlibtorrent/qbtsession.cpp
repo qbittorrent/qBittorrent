@@ -985,7 +985,7 @@ QTorrentHandle QBtSession::addMagnetUri(QString magnet_uri, bool resumed, bool f
   // Adding torrent to Bittorrent session
   try {
     h =  QTorrentHandle(add_magnet_uri(*s, magnet_uri.toStdString(), p));
-  }catch(std::exception e) {
+  }catch(std::exception &e) {
     qDebug("Error: %s", e.what());
   }
   // Check if it worked
@@ -1184,7 +1184,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   // Adding torrent to Bittorrent session
   try {
     h =  QTorrentHandle(s->add_torrent(p));
-  }catch(std::exception e) {
+  }catch(std::exception &e) {
     qDebug("Error: %s", e.what());
   }
   // Check if it worked
@@ -1598,7 +1598,7 @@ bool QBtSession::enableDHT(bool b) {
         s->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
         DHTEnabled = true;
         qDebug("DHT enabled");
-      }catch(std::exception e) {
+      }catch(std::exception &e) {
         qDebug("Could not enable DHT, reason: %s", e.what());
         return false;
       }
@@ -1655,7 +1655,7 @@ void QBtSession::saveTempFastResumeData() {
       if (h.state() == torrent_status::checking_files || h.state() == torrent_status::queued_for_checking || h.has_error()) continue;
       qDebug("Saving fastresume data for %s", qPrintable(h.name()));
       h.save_resume_data();
-    }catch(std::exception e) {}
+    }catch(std::exception &e) {}
   }
 }
 
