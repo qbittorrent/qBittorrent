@@ -110,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   setWindowTitle(QString("qBittorrent %1").arg(QString::fromUtf8(VERSION)));
   displaySpeedInTitle = pref.speedInTitleBar();
   // Clean exit on log out
-  connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
+  connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
   // Setting icons
 #if defined(Q_WS_X11)
   if (Preferences().useSystemIconTheme())
@@ -336,7 +336,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   }
 }
 
-void MainWindow::deleteBTSession() {
+void MainWindow::shutdownCleanUp() {
   qDebug("GUI destruction");
   hide();
   guiUpdater->stop();
@@ -390,6 +390,7 @@ void MainWindow::deleteBTSession() {
   delete switchTransferShortcut;
   delete switchRSSShortcut;
   IconProvider::drop();
+  Preferences().sync();
   qDebug("Finished GUI destruction");
 }
 
