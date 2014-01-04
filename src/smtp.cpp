@@ -272,10 +272,9 @@ QByteArray Smtp::encode_mime_header(const QString& key, const QString& value, QT
     // The text cannot be losslessly encoded as Latin-1. Therefore, we
     // must use base64 encoding.
     QByteArray utf8 = value.toUtf8();
-    int ct = utf8.length();
     // Use base64 encoding
     QByteArray base64 = utf8.toBase64();
-    ct = base64.length();
+    int ct = base64.length();
     line += "=?utf-8?b?";
     for (int i = 0; i < ct; i += 4) {
       /*if (line.length() > 72) {
