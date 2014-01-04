@@ -41,7 +41,7 @@ class HeadlessLoader: public QObject {
 
 public:
   HeadlessLoader(const QStringList &torrentCmdLine) {
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(deleteBTSession()), Qt::DirectConnection);
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(shutdownCleanUp()), Qt::DirectConnection);
     Preferences pref;
     // Enable Web UI
     pref.setWebUiEnabled(true);
@@ -63,7 +63,8 @@ public:
   }
 
 public slots:
-  void deleteBTSession() {
+  void shutdownCleanUp() {
+    Preferences().sync();
     QBtSession::drop();
   }
 
