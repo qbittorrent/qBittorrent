@@ -1167,15 +1167,22 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const {
   org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
                                                 "/org/freedesktop/Notifications",
                                                 QDBusConnection::sessionBus());
-  if (notifications.isValid()) {
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
-    reply.waitForFinished();
-    if (!reply.isError())
-      return;
-  }
+  // Testing for 'notifications.isValid()' isn't helpful here.
+  // If the notification daemon is configured to run 'as needed'
+  // the above check can be false if the daemon wasn't started
+  // by another application. In this case DBus will be able to
+  // start the notification daemon and complete our request. Such
+  // a daemon is xfce4-notifyd, DBus autostarts it and after
+  // some inactivity shuts it down. Other DEs, like GNOME, choose
+  // to start their daemons at the session startup and have it sit
+  // idling for the whole session.
+  QVariantMap hints;
+  hints["desktop-entry"] = "qBittorrent";
+  QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
+                                                       msg, QStringList(), hints, -1);
+  reply.waitForFinished();
+  if (!reply.isError())
+    return;
 #endif
   if (systrayIcon && QSystemTrayIcon::supportsMessages())
     systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, TIME_TRAY_BALLOON);
