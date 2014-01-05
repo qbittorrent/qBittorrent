@@ -85,7 +85,7 @@ void StatsDialog::updateUI() {
   // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
   const std::vector<libtorrent::torrent_handle> torrents = session->getTorrents();
   std::vector<libtorrent::torrent_handle>::const_iterator iBegin = torrents.begin();
-  std::vector<libtorrent::torrent_handle>::const_iterator iEnd = torrents.begin();
+  std::vector<libtorrent::torrent_handle>::const_iterator iEnd = torrents.end();
   quint32 peers = 0;
   for ( ; iBegin < iEnd ; ++iBegin)
     peers += (*iBegin).status().num_peers;
