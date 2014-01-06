@@ -894,7 +894,7 @@ public:
     return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
   }
 
-  void setDynDomainName(const QString name) {
+  void setDynDomainName(const QString &name) {
     setValue("Preferences/DynDNS/DomainName", name);
   }
 
@@ -902,7 +902,7 @@ public:
     return value("Preferences/DynDNS/Username").toString();
   }
 
-  void setDynDNSUsername(const QString username) {
+  void setDynDNSUsername(const QString &username) {
     setValue("Preferences/DynDNS/Username", username);
   }
 
@@ -910,7 +910,7 @@ public:
     return value("Preferences/DynDNS/Password").toString();
   }
 
-  void setDynDNSPassword(const QString password) {
+  void setDynDNSPassword(const QString &password) {
     setValue("Preferences/DynDNS/Password", password);
   }
 
