@@ -1886,7 +1886,7 @@ void QBtSession::setListeningPort(int port) {
   libtorrent::error_code ec;
   const QString iface_name = pref.getNetworkInterface();
   if (iface_name.isEmpty()) {
-    addConsoleMessage(tr("qBittorrent is trying to listen on any interface port: TCP/%1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), "blue");
+    addConsoleMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), "blue");
     s->listen_on(ports, ec, 0, session::listen_no_system_port);
     return;
   }
@@ -1904,7 +1904,7 @@ void QBtSession::setListeningPort(int port) {
     s->listen_on(ports, ec, entry.ip().toString().toAscii().constData(), session::listen_no_system_port);
     if (!ec) {
       ip = entry.ip().toString();
-      addConsoleMessage(tr("qBittorrent is trying to listen on interface %1 port: TCP/%2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), "blue");
+      addConsoleMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), "blue");
       break;
     }
   }  
@@ -2511,8 +2511,17 @@ void QBtSession::readAlerts() {
       }
       else if (listen_succeeded_alert *p = dynamic_cast<listen_succeeded_alert*>(a.get())) {
         boost::system::error_code ec;
-        qDebug() << "Successfully listening on" << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-        addConsoleMessage(tr("qBittorrent is successfully listening on interface %1 port: TCP/%2", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(QString::number(p->endpoint.port())), "blue");
+        QString proto = "TCP";
+#if LIBTORRENT_VERSION_NUM >= 10000
+        if (p->sock_type == listen_succeeded_alert::udp)
+          proto = "UDP";
+        else if (p->sock_type == listen_succeeded_alert::tcp)
+          proto = "TCP";
+        else if (p->sock_type == listen_succeeded_alert::tcp_ssl)
+          proto = "TCP_SSL";
+#endif
+        qDebug() << "Successfully listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
+        addConsoleMessage(tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())), "blue");
         // Force reannounce on all torrents because some trackers blacklist some ports
         std::vector<torrent_handle> torrents = s->get_torrents();
 
@@ -2524,8 +2533,21 @@ void QBtSession::readAlerts() {
       }
       else if (listen_failed_alert *p = dynamic_cast<listen_failed_alert*>(a.get())) {
         boost::system::error_code ec;
-        qDebug() << "Failed listening on" << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
-        addConsoleMessage(tr("qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), "red");
+        QString proto = "TCP";
+#if LIBTORRENT_VERSION_NUM >= 10000
+        if (p->sock_type == listen_failed_alert::udp)
+          proto = "UDP";
+        else if (p->sock_type == listen_failed_alert::tcp)
+          proto = "TCP";
+        else if (p->sock_type == listen_failed_alert::tcp_ssl)
+          proto = "TCP_SSL";
+        else if (p->sock_type == listen_failed_alert::i2p)
+          proto = "I2P";
+        else if (p->sock_type == listen_failed_alert::socks5)
+          proto = "SOCKS5";
+#endif
+        qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << "/" << p->endpoint.port();
+        addConsoleMessage(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4", "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use").arg(p->endpoint.address().to_string(ec).c_str()).arg(proto).arg(QString::number(p->endpoint.port())).arg(misc::toQStringU(p->error.message())), "red");
       }
       else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a.get())) {
         QTorrentHandle h(p->handle);
