@@ -1,4 +1,4 @@
-#VERSION: 1.52
+#VERSION: 1.53
 #AUTHORS: Fabien Devaux (fab@gnux.info)
 #CONTRIBUTORS: Christophe Dumez (chris@qbittorrent.org)
 
@@ -33,7 +33,7 @@ from helpers import retrieve_url, download_file
 PREVIOUS_IDS = set()
 
 class piratebay(object):
-	url = 'https://thepiratebay.sx'
+	url = 'https://thepiratebay.se'
 	name = 'The Pirate Bay'
 	supported_categories = {'all': '0', 'movies': '200', 'music': '100', 'games': '400', 'software': '300'}
 
