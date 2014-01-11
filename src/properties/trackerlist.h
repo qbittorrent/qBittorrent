@@ -74,6 +74,9 @@ public slots:
   void loadTrackers();
   void askForTrackers();
   void copyTrackerUrl();
+#if LIBTORRENT_VERSION_NUM >= 10000
+  void reannounceSelected();
+#endif
   void deleteSelectedTrackers();
   void editSelectedTracker();
   void showTrackerListMenu(QPoint);
