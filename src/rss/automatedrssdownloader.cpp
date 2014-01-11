@@ -482,9 +482,6 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
 void AutomatedRssDownloader::updateMatchingArticles()
 {
   ui->treeMatchingArticles->clear();
-  if (ui->ruleDefBox->isEnabled()) {
-    saveEditedRule();
-  }
   RssManagerPtr manager = m_manager.toStrongRef();
   if (!manager)
     return;
