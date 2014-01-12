@@ -52,6 +52,10 @@
 	<string>qbittorrent</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSHighResolutionCapable</key>
+	<string>True</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
