@@ -739,13 +739,13 @@ Túto informáciu by ste mali zistiť z nastavení svojho webového prehliadača
         <location filename="../deletionconfirmationdlg.h" line="46"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation type="unfinished"/>
+        <translation>Ste si istý, že chcete vymazať &quot;%1&quot; zo zoznamu prenosov?</translation>
     </message>
     <message>
         <location filename="../deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"/>
+        <translation>Ste si istý, že chcete vymazať týchto %1 torrentov zo zoznamu prenosov?</translation>
     </message>
 </context>
 <context>
@@ -1326,19 +1326,19 @@ Už vás nebudeme ďalej upozorňovať.</translation>
     <message>
         <location filename="../mainwindow.ui" line="382"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Štatistika</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="387"/>
         <location filename="../mainwindow.cpp" line="1383"/>
         <source>Check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <location filename="../mainwindow.cpp" line="1384"/>
         <source>Check for program updates</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie programu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="292"/>
@@ -1546,12 +1546,12 @@ Chcete asociovať qBittorrent so súbormi torrent a odkazmi Magnet?</translation
     <message>
         <location filename="../mainwindow.cpp" line="1484"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Overujem aktualizácie...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1485"/>
         <source>Already checking for program updates in the background</source>
-        <translation type="unfinished"/>
+        <translation>Overovanie aktualizácií programu už prebieha na pozadí </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="415"/>
@@ -1792,22 +1792,22 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="468"/>
         <source>interested(local) and choked(peer)</source>
-        <translation type="unfinished"/>
+        <translation>interesovaný(lokálny) a obmedzený(rovesník)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="474"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"/>
+        <translation>interesovaný(lokálny) a neobmedzený(rovesník)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="483"/>
         <source>interested(peer) and choked(local)</source>
-        <translation type="unfinished"/>
+        <translation>interesovaný(rovesník) a obmedzený(lokálny)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="489"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"/>
+        <translation>interesovaný(rovesník) a neobmedzený(lokálny)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="497"/>
@@ -1822,42 +1822,42 @@ Chcete aktualizovať qBittorrent na verziu %1?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="511"/>
         <source>incoming connection</source>
-        <translation type="unfinished"/>
+        <translation>prichádzajúce spojenie</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="518"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"/>
+        <translation>neinteresovaný(lokálny) a neobmedzený(rovesník)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="525"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"/>
+        <translation>neinteresovaný(rovesník) a neobmedzený(lokálny)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="532"/>
         <source>peer from PEX</source>
-        <translation type="unfinished"/>
+        <translation>rovesník z PEX</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="539"/>
         <source>peer from DHT</source>
-        <translation type="unfinished"/>
+        <translation>rovesník z DHT</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="546"/>
         <source>encrypted traffic</source>
-        <translation type="unfinished"/>
+        <translation>šifrovaný prenos</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="553"/>
         <source>encrypted handshake</source>
-        <translation type="unfinished"/>
+        <translation>šifrovaný handshake</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="569"/>
         <source>peer from LSD</source>
-        <translation type="unfinished"/>
+        <translation>rovesník z LSD</translation>
     </message>
 </context>
 <context>
@@ -3745,42 +3745,42 @@ Prosím, nainštalujte ho ručne.</translation>
     <message>
         <location filename="../statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Štatistika</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"/>
+        <translation>Užívateľská štatistika</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation type="unfinished"/>
+        <translation>Celkovo spojení s rovesníkmi:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation type="unfinished"/>
+        <translation>Globálny pomer:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="47"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"/>
+        <translation>Stiahnuté totálne:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="68"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"/>
+        <translation>Nahrané totálne:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="82"/>
         <source>Total waste (this session):</source>
-        <translation type="unfinished"/>
+        <translation>Celkovo zahodené (v tomto sedení):</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
-        <translation type="unfinished"/>
+        <translation>Štatistika vyrovnávacej pamäte</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="105"/>
@@ -3795,12 +3795,12 @@ Prosím, nainštalujte ho ručne.</translation>
     <message>
         <location filename="../statsdialog.ui" line="136"/>
         <source>Performance statistics</source>
-        <translation type="unfinished"/>
+        <translation>Štatistika činnosti:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="170"/>
         <source>Queued I/O jobs:</source>
-        <translation type="unfinished"/>
+        <translation>I/O úlohy zaradené do fronty:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="177"/>
@@ -3810,7 +3810,7 @@ Prosím, nainštalujte ho ručne.</translation>
     <message>
         <location filename="../statsdialog.ui" line="184"/>
         <source>Average time in queue (ms):</source>
-        <translation type="unfinished"/>
+        <translation>Priemerný čas vo fronte (ms):</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="191"/>
@@ -3820,12 +3820,12 @@ Prosím, nainštalujte ho ručne.</translation>
     <message>
         <location filename="../statsdialog.ui" line="198"/>
         <source>Total queued size:</source>
-        <translation type="unfinished"/>
+        <translation>Celková veľkosť fronty:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="243"/>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
