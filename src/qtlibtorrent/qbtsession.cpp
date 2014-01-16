@@ -761,8 +761,9 @@ bool QBtSession::hasDownloadingTorrents() const {
   for ( ; torrentIT != torrentITend; ++torrentIT) {
     if (torrentIT->is_valid()) {
       try {
-        const torrent_status::state_t state = torrentIT->status().state;
-        if (state != torrent_status::finished && state != torrent_status::seeding)
+        const torrent_status status = torrentIT->status();
+        if (status.state != torrent_status::finished && status.state != torrent_status::seeding
+            && !status.paused)
           return true;
       } catch(std::exception) {}
     }
