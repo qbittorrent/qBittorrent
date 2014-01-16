@@ -1,3 +1,20 @@
+* Thu 16 Jan 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.5
+    - BUGFIX: Fix compilation with Qt 4.7. Closes #1215. (sledgehammer999)
+    - BUGFIX: Third attempt at fixing saving settings on OS shutdown. (sledgehammer999)
+    - BUGFIX: Preview now correctly uses the selected file. Closes #1222 #1182. (sledgehammer999)
+    - BUGFIX: Allow to resize the columns in Add New Torrent dialog. Closes #1207 #676 (sledgehammer999)
+    - BUGFIX: Ensure that at least one column in the tranferlist is always visible. Closes #1165. (sledgehammer999)
+    - BUGFIX: Ensure that the options window will always be placed onscreen. Closes #1226. (sledgehammer999)
+    - BUGFIX: Delete temporary files after they aren't needed. Closes #1188. (sledgehammer999)
+    - BUGFIX: Correctly detect libtorrent version. (sledgehammer999)
+    - BUGFIX: Various code cppcheck fixes (Konstantin Goncharik)
+    - BUGFIX: Remove isohunt search engine and update thepiratebay url (sledgehammer999)
+    - BUGFIX: Fix rss settings corruption when checking regexp and going to other rule. (Gelmir)
+    - BUGFIX: Don't count paused torrents for the autoshutdown. Closes #1280. (sledgehammer999)
+    - LINUX: Fix notifications with xfce4-notifyd.
+    - OSX: Added basic retina support. Closes #1251. (Sébastien Lavoie)
+    - OTHER: Sync translations from Transifex.
+
 * Sun 29 Dec 2013 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.4
     - FEATURE: Statistics dialog (Gelmir)
     - FEATURE: Tooltips explaining each peer's connection flags (sledgehammer999)
