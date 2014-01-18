@@ -176,6 +176,7 @@ private:
   TransferListFiltersWidget *transferListFilters;
   PropertiesWidget *properties;
   bool displaySpeedInTitle;
+  bool displayVersionInTitle;
   bool force_exit;
   bool ui_locked;
   LineEdit *search_filter;
@@ -207,6 +208,7 @@ private slots:
     void on_actionSearch_engine_triggered();
     void on_actionRSS_Reader_triggered();
     void on_actionSpeed_in_title_bar_triggered();
+    void on_actionVersion_in_title_bar_triggered();
     void on_actionTop_tool_bar_triggered();
     void on_action_Import_Torrent_triggered();
     void on_actionDonate_money_triggered();

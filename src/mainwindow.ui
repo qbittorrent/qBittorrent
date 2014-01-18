@@ -91,6 +91,7 @@
     </property>
     <addaction name="actionTop_tool_bar"/>
     <addaction name="actionSpeed_in_title_bar"/>
+    <addaction name="actionVersion_in_title_bar"/>
     <addaction name="separator"/>
     <addaction name="actionSearch_engine"/>
     <addaction name="actionRSS_Reader"/>
@@ -388,6 +389,20 @@
    </property>
    <property name="toolTip">
     <string>Check for program updates</string>
+   </property>
+  </action>
+  <action name="actionVersion_in_title_bar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Version in title bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Show qBittorrent version in title bar</string>
    </property>
   </action>
  </widget>

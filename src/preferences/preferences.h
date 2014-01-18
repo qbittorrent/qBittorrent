@@ -118,6 +118,14 @@ public:
     return value(QString::fromUtf8("Preferences/General/SpeedInTitleBar"), false).toBool();
   }
 
+  void showVersionInTitleBar(bool show) {
+    setValue(QString::fromUtf8("Preferences/General/VersionInTitleBar"), show);
+  }
+
+  bool versionInTitleBar() const {
+    return value(QString::fromUtf8("Preferences/General/VersionInTitleBar"), false).toBool();
+  }
+
   bool useAlternatingRowColors() const {
     return value(QString::fromUtf8("Preferences/General/AlternatingRowColors"), true).toBool();
   }
