@@ -66,6 +66,16 @@ protected:
       if (!vR.isValid()) return true;
 
       return vL < vR;
+    } else if (sortColumn() == TorrentModelItem::TR_PEERS || sortColumn() == TorrentModelItem::TR_SEEDS) {
+        int left_active = sourceModel()->data(left).toInt();
+        int left_total = sourceModel()->data(left, Qt::UserRole).toInt();
+        int right_active = sourceModel()->data(right).toInt();
+        int right_total = sourceModel()->data(right, Qt::UserRole).toInt();
+
+        // Active peers/seeds take precedence over total peers/seeds.
+        if (left_active == right_active)
+            return (left_total < right_total);
+        else return (left_active < right_active);
     }
     return QSortFilterProxyModel::lessThan(left, right);
   }
