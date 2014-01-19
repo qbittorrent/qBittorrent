@@ -424,6 +424,44 @@ void TransferListWidget::copySelectedMagnetURIs() const {
   qApp->clipboard()->setText(magnet_uris.join("\n"));
 }
 
+void TransferListWidget::copySelectedTorrentFiles() const {
+  const QStringList hashes = getSelectedTorrentsHashes();
+  const QDir torrentBackup(fsutils::BTBackupLocation());
+  foreach (const QString &hash, hashes) {
+    const QTorrentHandle h = BTSession->getTorrentHandle(hash);
+
+    if (h.is_valid() && !TorrentPersistentData::isMagnet(hash)) {
+      QFile originFile(torrentBackup.path() + "/" + hash + ".torrent");
+      if (originFile.exists()) {
+        QString templateName = QDir::homePath() + "/" + h.name() + ".torrent";
+        QString destFilename = QFileDialog::getSaveFileName(0, tr("Copy torrent file"), templateName, tr("Torrent file (*.torrent);;All Files (*)"));
+        qDebug("Trying to copy torrent file from '%s' to '%s'.", qPrintable(originFile.fileName()), qPrintable(destFilename));
+
+        //  When user clicks cancel do not display error message.
+        if (!destFilename.isEmpty()) {
+          if (QFile::exists(destFilename)) {
+            // QFileDialog issues a warning when the file already exists, so it is
+            // safe to remove it before copying. QFile::copy never overwrites.
+            QFile::remove(destFilename);
+          }
+          if (originFile.copy(destFilename)) {
+            QString originPath = fsutils::toNativePath(originFile.fileName());
+            QString destPath = fsutils::toNativePath(destFilename);
+            BTSession->addConsoleMessage(tr("Successfully copied torrent file from '%1' to '%2'.").arg(originPath).arg(destPath));
+          } else {
+            QMessageBox::critical(0, tr("I/O Error"), tr("Sorry, we could not copy the torrent file of '%1' to its destination.").arg(h.name()));
+          }
+        }
+      } else {
+        QMessageBox::warning(0, tr("Torrent file not found"), tr("Sorry, we cannot find the torrent file associated with '%1'").arg(h.name()));
+      }
+    } else {
+      QMessageBox::warning(0, tr("Torrent is magnet link"), tr("Torrent '%1' does not have an associated torrent file.").arg(h.name()));
+    }
+  }
+
+}
+
 void TransferListWidget::hidePriorityColumn(bool hide) {
   qDebug("hidePriorityColumn(%d)", hide);
   setColumnHidden(TorrentModelItem::TR_PRIORITY, hide);
@@ -726,6 +764,8 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   connect(&actionForce_recheck, SIGNAL(triggered()), this, SLOT(recheckSelectedTorrents()));
   QAction actionCopy_magnet_link(QIcon(":/Icons/magnet.png"), tr("Copy magnet link"), 0);
   connect(&actionCopy_magnet_link, SIGNAL(triggered()), this, SLOT(copySelectedMagnetURIs()));
+  QAction actionCopy_torrent_file(IconProvider::instance()->getIcon("edit-copy"), tr("Copy torrent file"),0);
+  connect(&actionCopy_torrent_file, SIGNAL(triggered()), this, SLOT(copySelectedTorrentFiles()));
   QAction actionSuper_seeding_mode(tr("Super seeding mode"), 0);
   actionSuper_seeding_mode.setCheckable(true);
   connect(&actionSuper_seeding_mode, SIGNAL(triggered()), this, SLOT(toggleSelectedTorrentsSuperSeeding()));
@@ -748,8 +788,11 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   bool sequential_download_mode = false, prioritize_first_last = false;
   bool one_has_metadata = false, one_not_seed = false;
   bool first = true;
+  bool has_torrent_file = false;
   QTorrentHandle h;
   qDebug("Displaying menu");
+  // Loop through all the selected torrents to find which specific options we
+  // have to include, like "Preview file".
   foreach (const QModelIndex &index, selectedIndexes) {
     // Get the file name
     QString hash = getHashFromRow(mapToSource(index).row());
@@ -799,9 +842,15 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     if (h.has_metadata() && BTSession->isFilePreviewPossible(hash) && !has_preview) {
       has_preview = true;
     }
+    if (!TorrentPersistentData::isMagnet(h.hash()) && !has_torrent_file) {
+      has_torrent_file = true;
+    }
     first = false;
-    if (has_pause && has_start && has_preview && one_not_seed) break;
+    if (has_pause && has_start && has_preview && one_not_seed && has_torrent_file)
+      // We have to include every corner-case option, break.
+      break;
   }
+
   listMenu.addSeparator();
   listMenu.addAction(&actionDelete);
   listMenu.addSeparator();
@@ -863,6 +912,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   }
   listMenu.addSeparator();
   listMenu.addAction(&actionCopy_magnet_link);
+  if (has_torrent_file) {
+    listMenu.addAction(&actionCopy_torrent_file);
+  }
   // Call menu
   QAction *act = 0;
   act = listMenu.exec(QCursor::pos());

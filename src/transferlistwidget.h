@@ -72,6 +72,7 @@ public slots:
   void topPrioSelectedTorrents();
   void bottomPrioSelectedTorrents();
   void copySelectedMagnetURIs() const;
+  void copySelectedTorrentFiles() const;
   void openSelectedTorrentsFolder() const;
   void recheckSelectedTorrents();
   void setDlLimitSelectedTorrents();
