@@ -2098,15 +2098,20 @@ void QBtSession::autoRunExternalProgram(const QTorrentHandle &h, bool async) {
   if (!h.is_valid()) return;
   QString program = Preferences().getAutoRunProgram().trimmed();
   if (program.isEmpty()) return;
-  // Replace %f by torrent path
+
+  // Replace %f by torrent path.
   QString torrent_path;
   if (h.num_files() == 1)
     torrent_path = h.firstFileSavePath();
   else
     torrent_path = h.save_path();
   program.replace("%f", torrent_path);
-  // Replace %n by torrent name
+  // Replace %n by torrent name.
   program.replace("%n", h.name());
+  // Replace %l by torrent label.
+  program.replace("%l", TorrentPersistentData::getLabel(h.hash()));
+
+  // Spawn or start the process.
   QProcess *process = new QProcess;
   if (async) {
     connect(process, SIGNAL(finished(int)), this, SLOT(cleanUpAutoRunProcess(int)));
