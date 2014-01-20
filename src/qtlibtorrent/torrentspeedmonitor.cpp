@@ -30,6 +30,7 @@
 
 #include <QMutexLocker>
 #include <QList>
+#include <QDateTime>
 #include <vector>
 
 #include "qbtsession.h"
@@ -61,7 +62,8 @@ private:
 };
 
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session) :
-  QThread(session), m_abort(false), m_session(session)
+  QThread(session), m_abort(false), m_session(session),
+  sessionUL(0), sessionDL(0), lastWrite(0), dirty(false)
 {
   connect(m_session, SIGNAL(deletedTorrent(QString)), SLOT(removeSamples(QString)));
   connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
@@ -72,6 +74,8 @@ TorrentSpeedMonitor::~TorrentSpeedMonitor() {
   m_abort = true;
   m_abortCond.wakeOne();
   wait();
+  dirty = true;
+  lastWrite = 0;
   saveStats();
 }
 
@@ -184,22 +188,50 @@ void TorrentSpeedMonitor::getSamples()
     } catch(invalid_handle&) {}
   }
   libtorrent::session_status ss = m_session->getSessionStatus();
-  sessionDL = ss.total_download;
-  sessionUL = ss.total_upload;
+  if (ss.total_download > sessionDL) {
+    sessionDL = ss.total_download;
+    dirty = true;
+  }
+  if (ss.total_upload > sessionUL) {
+    sessionUL = ss.total_upload;
+    dirty = true;
+  }
 }
 
 void TorrentSpeedMonitor::saveStats() const {
-  QIniSettings s;
+  if (!dirty && !(QDateTime::currentMSecsSinceEpoch() - lastWrite >= 15*60*1000))
+    return;
+  QIniSettings s("qBittorrent", "qBittorrent-data");
   QVariantHash v;
   v.insert("AlltimeDL", alltimeDL + sessionDL);
   v.insert("AlltimeUL", alltimeUL + sessionUL);
   s.setValue("Stats/AllStats", v);
+  dirty = false;
+  lastWrite = QDateTime::currentMSecsSinceEpoch();
 }
 
 void TorrentSpeedMonitor::loadStats() {
-  QIniSettings s;
-  QVariantHash v(s.value("Stats/AllStats", QVariantHash()).toHash());
+  // Temp code. Versions v3.1.4 and v3.1.5 saved the data in the qbittorrent.ini file.
+  // This code reads the data from there, writes it to the new file, and removes the keys
+  // from the old file. This code should be removed after some time has passed.
+  // e.g. When we reach v3.3.0
+  QIniSettings s_old;
+  QIniSettings s("qBittorrent", "qBittorrent-data");
+  QVariantHash v;
+
+  // Let's test if the qbittorrent.ini holds the key
+  if (s_old.contains("Stats/AllStats")) {
+    v = s_old.value("Stats/AllStats").toHash();
+    dirty = true;
+  }
+  else
+    v = s.value("Stats/AllStats").toHash();
+
   alltimeDL = v["AlltimeDL"].toULongLong();
   alltimeUL = v["AlltimeUL"].toULongLong();
-  sessionDL = sessionUL = 0;
+
+  if (dirty) {
+    saveStats();
+    s_old.remove("Stats/AllStats");
+  }
 }

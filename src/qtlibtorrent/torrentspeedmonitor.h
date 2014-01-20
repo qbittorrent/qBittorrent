@@ -73,8 +73,10 @@ private:
   // Will overflow at 15.9 EiB
   quint64 alltimeUL;
   quint64 alltimeDL;
-  quint64 sessionUL;
-  quint64 sessionDL;
+  qint64 sessionUL;
+  qint64 sessionDL;
+  mutable qint64 lastWrite;
+  mutable bool dirty;
 };
 
 #endif // TORRENTSPEEDMONITOR_H
