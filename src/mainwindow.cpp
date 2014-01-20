@@ -1147,20 +1147,16 @@ void MainWindow::updateGUI() {
     html += "qBittorrent";
     html += "</div>";
     html += "<div style='vertical-align: baseline; height: 18px;'>";
-    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-    html += "<img src=':/Icons/skin/download.png'/>&nbsp;"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadDownloadRate()/1024.)*10)/10.0, 'f', 1));
+    html += "<img src=':/Icons/skin/download.png'/>&nbsp;"+tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadDownloadRate()/1024., 1));
     html += "</div>";
     html += "<div style='vertical-align: baseline; height: 18px;'>";
-    html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadUploadRate()/1024.)*10)/10.0, 'f', 1));
+    html += "<img src=':/Icons/skin/seeding.png'/>&nbsp;"+tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadUploadRate()/1024., 1));
     html += "</div>";
 #else
     // OSes such as Windows do not support html here
-    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadDownloadRate()/1024.)*10)/10.0, 'f', 1));
+    QString html =tr("DL speed: %1 KiB/s", "e.g: Download speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadDownloadRate()/1024., 1));
     html += "\n";
-    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(QString::number((int)((QBtSession::instance()->getPayloadUploadRate()/1024.)*10)/10.0, 'f', 1));
+    html += tr("UP speed: %1 KiB/s", "e.g: Upload speed: 10 KiB/s").arg(misc::accurateDoubleToString(QBtSession::instance()->getPayloadUploadRate()/1024., 1));
 #endif
     systrayIcon->setToolTip(html); // tray icon
   }

@@ -332,9 +332,7 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : QString::number((int)(ratio*100)/100.0, 'f', 2));
+      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio*100, 2));
       if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
@@ -347,17 +345,13 @@ void PropertiesWidget::loadDynamicData() {
           std::vector<int> avail;
           h.piece_availability(avail);
           pieces_availability->setAvailability(avail);
-          /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-          ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-          avail_average_lbl->setText(QString::number((int)(h.distributed_copies()*1000)/1000.0, 'f', 3));
+          avail_average_lbl->setText(misc::accurateDoubleToString(h.distributed_copies(), 3));
         } else {
           showPiecesAvailability(false);
         }
         // Progress
         qreal progress = h.progress()*100.;
-        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-        progress_lbl->setText(QString::number((int)(progress*10)/10.0, 'f', 1)+"%");
+        progress_lbl->setText(misc::accurateDoubleToString(progress, 1)+"%");
       } else {
         showPiecesAvailability(false);
         showPiecesDownloaded(false);

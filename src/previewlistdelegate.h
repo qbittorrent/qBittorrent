@@ -65,9 +65,7 @@ class PreviewListDelegate: public QItemDelegate {
           QStyleOptionProgressBarV2 newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
-          /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-          ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-          newopt.text = QString::number((int)(progress*10)/10.0, 'f', 1)+"%";
+          newopt.text = misc::accurateDoubleToString(progress, 1);
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;
