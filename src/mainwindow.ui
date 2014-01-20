@@ -70,10 +70,10 @@
      <addaction name="actionAutoShutdown_system"/>
     </widget>
     <addaction name="actionCreate_torrent"/>
+    <addaction name="actionStatistics"/>
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
-    <addaction name="actionStatistics"/>
     <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
    </widget>
    <widget class="QMenu" name="menu_File">
