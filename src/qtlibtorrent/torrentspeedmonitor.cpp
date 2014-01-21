@@ -74,8 +74,8 @@ TorrentSpeedMonitor::~TorrentSpeedMonitor() {
   m_abort = true;
   m_abortCond.wakeOne();
   wait();
-  dirty = true;
-  lastWrite = 0;
+  if (dirty)
+    lastWrite = 0;
   saveStats();
 }
 
