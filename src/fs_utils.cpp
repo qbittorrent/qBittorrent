@@ -428,7 +428,8 @@ QString fsutils::QDesktopServicesDownloadLocation() {
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
-  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
+  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+        QCoreApplication::translate("fsutils", "Downloads"));
 #endif
 
 #ifdef Q_WS_X11
@@ -459,7 +460,7 @@ QString fsutils::QDesktopServicesDownloadLocation() {
   }
 
   if (save_path.isEmpty() || !QFile::exists(save_path)) {
-    save_path = QDir::home().absoluteFilePath(tr("Downloads"));
+    save_path = QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
     qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
   }
 
@@ -471,7 +472,7 @@ QString fsutils::QDesktopServicesDownloadLocation() {
 #endif
 
   // Fallback
-  return QDir::home().absoluteFilePath(tr("Downloads"));
+  return QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
 }
 
 QString fsutils::searchEngineLocation() {

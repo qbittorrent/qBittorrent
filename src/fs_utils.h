@@ -37,39 +37,37 @@
 /**
  * Utility functions related to file system.
  */
-class fsutils
+namespace fsutils
 {
-  Q_DECLARE_TR_FUNCTIONS(fsutils)
 
-public:
-  static QString toNativePath(const QString& path);
-  static QString fromNativePath(const QString& path);
-  static QString fileExtension(const QString& filename);
-  static QString fileName(const QString& file_path);
-  static qint64 computePathSize(const QString& path);
-  static bool sameFiles(const QString& path1, const QString& path2);
-  static QString updateLabelInSavePath(const QString &defaultSavePath, const QString &save_path, const QString& old_label, const QString& new_label);
-  static QString toValidFileSystemName(QString filename);
-  static bool isValidFileSystemName(const QString& filename);
-  static long long freeDiskSpaceOnPath(QString path);
-  static QString branchPath(const QString& file_path, QString* removed = 0);
-  static bool sameFileNames(const QString& first, const QString& second);
-  static QString expandPath(const QString& path);
-  static QString expandPathAbs(const QString& path);
-  static bool isValidTorrentFile(const QString& path);
-  static bool smartRemoveEmptyFolderTree(const QString& dir_path);
-  static bool forceRemove(const QString& file_path);
+  QString toNativePath(const QString& path);
+  QString fromNativePath(const QString& path);
+  QString fileExtension(const QString& filename);
+  QString fileName(const QString& file_path);
+  qint64 computePathSize(const QString& path);
+  bool sameFiles(const QString& path1, const QString& path2);
+  QString updateLabelInSavePath(const QString &defaultSavePath, const QString &save_path, const QString& old_label, const QString& new_label);
+  QString toValidFileSystemName(QString filename);
+  bool isValidFileSystemName(const QString& filename);
+  long long freeDiskSpaceOnPath(QString path);
+  QString branchPath(const QString& file_path, QString* removed = 0);
+  bool sameFileNames(const QString& first, const QString& second);
+  QString expandPath(const QString& path);
+  QString expandPathAbs(const QString& path);
+  bool isValidTorrentFile(const QString& path);
+  bool smartRemoveEmptyFolderTree(const QString& dir_path);
+  bool forceRemove(const QString& file_path);
 
   /* Ported from Qt4 to drop dependency on QtGui */
-  static QString QDesktopServicesDataLocation();
-  static QString QDesktopServicesCacheLocation();
-  static QString QDesktopServicesDownloadLocation();
+  QString QDesktopServicesDataLocation();
+  QString QDesktopServicesCacheLocation();
+  QString QDesktopServicesDownloadLocation();
   /* End of Qt4 code */
-  static QString searchEngineLocation();
-  static QString BTBackupLocation();
-  static QString cacheLocation();
+  QString searchEngineLocation();
+  QString BTBackupLocation();
+  QString cacheLocation();
 
-};
+}
 
 #endif // FS_UTILS_H
 
