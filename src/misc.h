@@ -112,7 +112,7 @@ namespace misc
 #else
   QString toQString(time_t t);
 #endif
-  QString accurateDoubleToString(double n, int precision);
+  QString accurateDoubleToString(const double &n, const int &precision);
 
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);
