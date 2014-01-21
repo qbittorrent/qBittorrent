@@ -199,7 +199,7 @@ void TorrentSpeedMonitor::getSamples()
 }
 
 void TorrentSpeedMonitor::saveStats() const {
-  if (!dirty && !(QDateTime::currentMSecsSinceEpoch() - lastWrite >= 15*60*1000))
+  if (!(dirty && (QDateTime::currentMSecsSinceEpoch() - lastWrite >= 15*60*1000) ))
     return;
   QIniSettings s("qBittorrent", "qBittorrent-data");
   QVariantHash v;
