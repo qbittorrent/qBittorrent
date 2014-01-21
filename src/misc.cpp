@@ -574,17 +574,13 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
 }
 #endif
 
-QString misc::accurateDoubleToString(double n, int precision) {
+QString misc::accurateDoubleToString(const double &n, const int &precision) {
   /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
   ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
   ** the number has more digits after the decimal than we want AND the digit after
   ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
-  ** precision we add an extra 0 behind 1 in the below algorithm.
-  ** However this, approach has a drawback. eg (99,99, 2) returns 99.98 and (99.99, 3)
-  ** returns 99.989. This is a minor issue because mostly we want to use precision 1 or 2
-  ** and the double fed into this function will have more decimal places than required
-  ** precision anyway.*/
+  ** precision we add an extra 0 behind 1 in the below algorithm. */
 
   double prec = std::pow(10.0, precision);
-  return QLocale::system().toString((int)(n*(int)prec)/prec, 'f', precision);
+  return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
 }
