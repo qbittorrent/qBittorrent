@@ -336,7 +336,7 @@ void PropertiesWidget::loadDynamicData() {
       reannounce_lbl->setText(h.next_announce());
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio*100, 2));
+      shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
       if (!h.is_seed()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
