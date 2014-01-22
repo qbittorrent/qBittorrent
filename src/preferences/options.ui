@@ -2273,14 +2273,11 @@
                    <property name="alignment">
                     <set>Qt::AlignHCenter</set>
                    </property>
-                   <property name="decimals">
-                    <number>1</number>
-                   </property>
                    <property name="minimum">
                     <double>0.000000000000000</double>
                    </property>
                    <property name="maximum">
-                    <double>20.000000000000000</double>
+                    <double>9998.000000000000000</double>
                    </property>
                    <property name="singleStep">
                     <double>0.050000000000000</double>
