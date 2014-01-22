@@ -126,7 +126,7 @@ bool SearchEngine::addPythonPathToEnv() {
     }
     path_envar = python_path+";"+path_envar;
     qDebug("New PATH envvar is: %s", qPrintable(path_envar));
-    qputenv("PATH", path_envar.toLocal8Bit());
+    qputenv("PATH", fsutils::toNativePath(path_envar).toLocal8Bit());
     return true;
   }
   return false;
@@ -148,7 +148,7 @@ void SearchEngine::pythonDownloadSuccess(QString url, QString file_path) {
   QProcess installer;
   qDebug("Launching Python installer in passive mode...");
 
-  installer.start("msiexec.exe /passive /i "+file_path.replace("/", "\\")+".msi");
+  installer.start("msiexec.exe /passive /i " + fsutils::toNativePath(file_path) + ".msi");
   // Wait for setup to complete
   installer.waitForFinished();
 
@@ -275,7 +275,7 @@ void SearchEngine::on_search_button_clicked() {
   // Getting checked search engines
   QStringList params;
   search_stopped = false;
-  params << fsutils::searchEngineLocation()+QDir::separator()+"nova2.py";
+  params << fsutils::toNativePath(fsutils::searchEngineLocation() + "/nova2.py");
   params << supported_engines->enginesEnabled().join(",");
   qDebug("Search with category: %s", qPrintable(selectedCategory()));
   params << selectedCategory();
@@ -343,7 +343,7 @@ void SearchEngine::downloadTorrent(QString engine_url, QString torrent_url) {
     connect(downloadProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(downloadFinished(int,QProcess::ExitStatus)));
     downloaders << downloadProcess;
     QStringList params;
-    params << fsutils::searchEngineLocation()+QDir::separator()+"nova2dl.py";
+    params << fsutils::toNativePath(fsutils::searchEngineLocation() + "/nova2dl.py");
     params << engine_url;
     params << torrent_url;
     // Launch search
@@ -396,7 +396,7 @@ void SearchEngine::downloadFinished(int exitcode, QProcess::ExitStatus) {
 static void removePythonScriptIfExists(const QString& script_path)
 {
     fsutils::forceRemove(script_path);
-    fsutils::forceRemove(script_path+"c");
+    fsutils::forceRemove(script_path + "c");
 }
 
 // Update nova.py search plugin if necessary
@@ -411,7 +411,7 @@ void SearchEngine::updateNova() {
   if (!search_dir.exists("engines")) {
     search_dir.mkdir("engines");
   }
-  QFile package_file2(search_dir.absolutePath().replace("\\", "/")+"/engines/__init__.py");
+  QFile package_file2(search_dir.absolutePath() + "/engines/__init__.py");
   package_file2.open(QIODevice::WriteOnly | QIODevice::Text);
   package_file2.close();
   // Copy search plugin files (if necessary)

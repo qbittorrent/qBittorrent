@@ -943,9 +943,9 @@ void MainWindow::on_actionOpen_triggered() {
         QBtSession::instance()->addTorrent(pathsList.at(i));
     }
     // Save last dir to remember it
-    QStringList top_dir = pathsList.at(0).split(QDir::separator());
+    QStringList top_dir = fsutils::fromNativePath(pathsList.at(0)).split("/");
     top_dir.removeLast();
-    settings.setValue(QString::fromUtf8("MainWindowLastDir"), top_dir.join(QDir::separator()));
+    settings.setValue(QString::fromUtf8("MainWindowLastDir"), fsutils::fromNativePath(top_dir.join("/")));
   }
 }
 

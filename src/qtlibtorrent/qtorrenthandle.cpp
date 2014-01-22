@@ -223,11 +223,9 @@ int QTorrentHandle::num_incomplete() const {
 
 QString QTorrentHandle::save_path() const {
 #if LIBTORRENT_VERSION_NUM < 10000
-  return misc::toQStringU(torrent_handle::save_path())
-    .replace("\\", "/");
+  return fsutils::fromNativePath(misc::toQStringU(torrent_handle::save_path()));
 #else
-  return misc::toQStringU(status(torrent_handle::query_save_path).save_path)
-    .replace("\\", "/");
+  return fsutils::fromNativePath(misc::toQStringU(status(torrent_handle::query_save_path).save_path));
 #endif
 }
 
@@ -236,13 +234,10 @@ QString QTorrentHandle::save_path_parsed() const {
     if (has_metadata() && num_files() == 1) {
       p = firstFileSavePath();
     } else {
-      p = TorrentPersistentData::getSavePath(hash());
+      p = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash()));
       if (p.isEmpty())
         p = save_path();
     }
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    p.replace("/", "\\");
-#endif
     return p;
 }
 
@@ -306,18 +301,19 @@ size_type QTorrentHandle::filesize_at(unsigned int index) const {
 
 QString QTorrentHandle::filepath_at(unsigned int index) const {
 #if LIBTORRENT_VERSION_NUM < 10000
-  return misc::toQStringU(torrent_handle::get_torrent_info().files().file_path(index));
+  return fsutils::fromNativePath(misc::toQStringU(torrent_handle::get_torrent_info().files().file_path(index)));
 #else
-  return misc::toQStringU(torrent_handle::torrent_file()->files().file_path(index));
+  return fsutils::fromNativePath(misc::toQStringU(torrent_handle::torrent_file()->files().file_path(index)));
 #endif
 }
 
 QString QTorrentHandle::orig_filepath_at(unsigned int index) const {
 #if LIBTORRENT_VERSION_NUM < 10000
-  return misc::toQStringU(torrent_handle::get_torrent_info().orig_files().file_path(index));
+  return fsutils::fromNativePath(misc::toQStringU(torrent_handle::get_torrent_info().orig_files().file_path(index)));
 #else
-  return misc::toQStringU(torrent_handle::torrent_file()->orig_files().file_path(index));
+  return fsutils::fromNativePath(misc::toQStringU(torrent_handle::torrent_file()->orig_files().file_path(index)));
 #endif
+
 }
 
 torrent_status::state_t QTorrentHandle::state() const {
@@ -379,7 +375,7 @@ QStringList QTorrentHandle::absolute_files_path() const {
   QDir saveDir(save_path());
   QStringList res;
   for (int i = 0; i<num_files(); ++i) {
-    res << QDir::cleanPath(saveDir.absoluteFilePath(filepath_at(i)));
+    res << fsutils::expandPathAbs(saveDir.absoluteFilePath(filepath_at(i)));
   }
   return res;
 }
@@ -390,7 +386,7 @@ QStringList QTorrentHandle::absolute_files_path_uneeded() const {
   std::vector<int> fp = torrent_handle::file_priorities();
   for (uint i = 0; i < fp.size(); ++i) {
     if (fp[i] == 0) {
-      const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filepath_at(i)));
+      const QString file_path = fsutils::expandPathAbs(saveDir.absoluteFilePath(filepath_at(i)));
       if (file_path.contains(".unwanted"))
         res << file_path;
     }
@@ -462,10 +458,9 @@ bool QTorrentHandle::priv() const {
 
 QString QTorrentHandle::firstFileSavePath() const {
   Q_ASSERT(has_metadata());
-  QString fsave_path = TorrentPersistentData::getSavePath(hash());
+  QString fsave_path = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash()));
   if (fsave_path.isEmpty())
     fsave_path = save_path();
-  fsave_path.replace("\\", "/");
   if (!fsave_path.endsWith("/"))
     fsave_path += "/";
   fsave_path += filepath_at(0);
@@ -480,7 +475,7 @@ QString QTorrentHandle::root_path() const
   if (num_files() < 2)
     return save_path();
   QString first_filepath = filepath_at(0);
-  const int slashIndex = first_filepath.indexOf(QRegExp("[/\\\\]"));
+   const int slashIndex = first_filepath.indexOf("/");
   if (slashIndex >= 0)
     return QDir(save_path()).absoluteFilePath(first_filepath.left(slashIndex));
   return save_path();
@@ -576,7 +571,7 @@ void QTorrentHandle::move_storage(const QString& new_path) const {
   // or move_storage() will fail...
   QDir().mkpath(new_path);
   // Actually move the storage
-  torrent_handle::move_storage(new_path.toUtf8().constData());
+  torrent_handle::move_storage(fsutils::toNativePath(new_path).toUtf8().constData());
 }
 
 bool QTorrentHandle::save_torrent_file(const QString& path) const {
@@ -651,7 +646,7 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
         if (created) {
           // Hide the folder on Windows
           qDebug() << "Hiding folder (Windows)";
-          wstring win_path =  unwanted_abspath.replace("/","\\").toStdWString();
+          wstring win_path =  fsutils::toNativePath(unwanted_abspath).toStdWString();
           DWORD dwAttrs = GetFileAttributesW(win_path.c_str());
           bool ret = SetFileAttributesW(win_path.c_str(), dwAttrs|FILE_ATTRIBUTE_HIDDEN);
           Q_ASSERT(ret != 0); Q_UNUSED(ret);
@@ -676,8 +671,8 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
         else
             rename_file(i, QDir(new_relpath).filePath(old_name));
         // Remove .unwanted directory if empty
-        qDebug() << "Attempting to remove .unwanted folder at " << QDir(spath + QDir::separator() + new_relpath).absoluteFilePath(".unwanted");
-        QDir(spath + QDir::separator() + new_relpath).rmdir(".unwanted");
+        qDebug() << "Attempting to remove .unwanted folder at " << QDir(spath + "/" + new_relpath).absoluteFilePath(".unwanted");
+        QDir(spath + "/" + new_relpath).rmdir(".unwanted");
       }
     }
   }
@@ -727,7 +722,7 @@ void QTorrentHandle::prioritize_first_last_piece(bool b) const {
 
 void QTorrentHandle::rename_file(int index, const QString& name) const {
   qDebug() << Q_FUNC_INFO << index << name;
-  torrent_handle::rename_file(index, std::string(name.toUtf8().constData()));
+  torrent_handle::rename_file(index, std::string(fsutils::toNativePath(name).toUtf8().constData()));
 }
 
 //

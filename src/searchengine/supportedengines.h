@@ -144,7 +144,7 @@ public slots:
     QProcess nova;
     nova.setEnvironment(QProcess::systemEnvironment());
     QStringList params;
-    params << fsutils::searchEngineLocation()+QDir::separator()+"nova2.py";
+    params << fsutils::toNativePath(fsutils::searchEngineLocation()+"/nova2.py");
     params << "--capabilities";
     nova.start("python", params, QIODevice::ReadOnly);
     nova.waitForStarted();

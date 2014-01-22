@@ -82,12 +82,8 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const {
 
   const PathData* pathData = m_pathList.at(index.row());
   if (index.column() == PathColumn && role == Qt::DisplayRole) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    QString ret = pathData->path;
-    return ret.replace("/", "\\");
-#else
-  return pathData->path;
-#endif
+
+  return fsutils::toNativePath(pathData->path);
   }
   if (index.column() == DownloadAtTorrentColumn && role == Qt::CheckStateRole)
     return pathData->downloadAtPath ? Qt::Checked : Qt::Unchecked;
@@ -181,7 +177,7 @@ bool ScanFoldersModel::downloadInTorrentFolder(const QString &filePath) const {
 int ScanFoldersModel::findPathData(const QString &path) const {
   for (int i = 0; i < m_pathList.count(); ++i) {
     const PathData* pathData = m_pathList.at(i);
-    if (pathData->path == path)
+    if (pathData->path == fsutils::fromNativePath(path))
       return i;
   }
 

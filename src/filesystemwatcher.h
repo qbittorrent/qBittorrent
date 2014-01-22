@@ -60,8 +60,8 @@ private:
 private:
   static bool isNetworkFileSystem(QString path) {
     QString file = path;
-    if (!file.endsWith(QDir::separator()))
-      file += QDir::separator();
+    if (!file.endsWith("/"))
+      file += "/";
     file += ".";
     struct statfs buf;
     if (!statfs(file.toLocal8Bit().constData(), &buf)) {

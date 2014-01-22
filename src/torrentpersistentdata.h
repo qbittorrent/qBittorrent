@@ -43,6 +43,7 @@
 #include <QHash>
 
 class TorrentTempData {
+  // This class stores strings w/o modifying separators
 public:
   static bool hasTempData(const QString &hash) {
     return data.contains(hash);
@@ -151,6 +152,7 @@ private:
 };
 
 class TorrentPersistentData {
+  // This class stores strings w/o modifying separators
 public:
   enum RatioLimit {
     USE_GLOBAL_RATIO = -2,
