@@ -391,6 +391,10 @@ QString fsutils::QDesktopServicesDataLocation() {
     xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
   xdgDataHome += QLatin1String("/data/")
       + qApp->applicationName();
+
+  // Other functions expect this string to end with "/".
+  xdgDataHome += "/";
+
   return xdgDataHome;
 #endif
 #endif
