@@ -154,6 +154,8 @@ void HttpConnection::translateDocument(QString& data) {
   int i = 0;
   bool found;
 
+  bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
+
   do {
     found = false;
 
@@ -163,7 +165,6 @@ void HttpConnection::translateDocument(QString& data) {
       QByteArray word = regex.cap(1).toUtf8();
 
       QString translation = word;
-      bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
       if (isTranslationNeeded) {
         int context_index = 0;
         do {
