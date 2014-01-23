@@ -363,16 +363,13 @@ QString fsutils::expandPathAbs(const QString& path) {
 }
 
 QString fsutils::QDesktopServicesDataLocation() {
+  QString result;
 #ifdef Q_WS_WIN
   LPWSTR path=new WCHAR[256];
-  QString result;
   if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
     result = fsutils::fromNativePath(QString::fromWCharArray(path));
   if (!QCoreApplication::applicationName().isEmpty())
     result += QLatin1String("/") + qApp->applicationName();
-  if (!result.endsWith("/"))
-    result += "/";
-  return result;
 #else
 #ifdef Q_WS_MAC
   FSRef ref;
@@ -382,23 +379,26 @@ QString fsutils::QDesktopServicesDataLocation() {
   QString path;
   QByteArray ba(2048, 0);
   if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-    path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-  path += QLatin1Char('/') + qApp->applicationName();
-  return path;
+    result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+  result += QLatin1Char('/') + qApp->applicationName();
 #else
   QString xdgDataHome = QLatin1String(qgetenv("XDG_DATA_HOME"));
   if (xdgDataHome.isEmpty())
     xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
   xdgDataHome += QLatin1String("/data/")
       + qApp->applicationName();
-  return xdgDataHome;
+  result = xdgDataHome;
 #endif
 #endif
+  if (!result.endsWith("/"))
+    result += "/";
+  return result;
 }
 
 QString fsutils::QDesktopServicesCacheLocation() {
+  QString result;
 #if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  return QDesktopServicesDataLocation() + QLatin1String("cache");
+  result = QDesktopServicesDataLocation() + QLatin1String("cache");
 #else
 #ifdef Q_WS_MAC
   // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
@@ -406,20 +406,21 @@ QString fsutils::QDesktopServicesCacheLocation() {
   OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
   if (err)
     return QString();
-  QString path;
   QByteArray ba(2048, 0);
   if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-    path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-  path += QLatin1Char('/') + qApp->applicationName();
-  return path;
+    result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+  result += QLatin1Char('/') + qApp->applicationName();
 #else
   QString xdgCacheHome = QLatin1String(qgetenv("XDG_CACHE_HOME"));
   if (xdgCacheHome.isEmpty())
     xdgCacheHome = QDir::homePath() + QLatin1String("/.cache");
   xdgCacheHome += QLatin1Char('/') + QCoreApplication::applicationName();
-  return xdgCacheHome;
+  result = xdgCacheHome;
 #endif
 #endif
+  if (!result.endsWith("/"))
+    result += "/";
+  return result;
 }
 
 QString fsutils::QDesktopServicesDownloadLocation() {
