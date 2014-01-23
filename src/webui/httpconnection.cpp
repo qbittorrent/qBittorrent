@@ -150,7 +150,7 @@ void HttpConnection::translateDocument(QString& data) {
                                   "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
                                   "options_imp", "Preferences", "TrackersAdditionDlg",
                                   "ScanFoldersModel", "PropTabBar", "TorrentModel",
-                                  "downloadFromURL"};
+                                  "downloadFromURL", "misc"};
   int i = 0;
   bool found;
 
