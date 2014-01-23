@@ -65,7 +65,7 @@ RequestExecutionLevel admin
 ;--------------------------------
 ;Installer Pages
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "license.txt"
+!insertmacro MUI_PAGE_LICENSE "..\..\COPYING"
 !insertmacro MUI_PAGE_COMPONENTS
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE check_instance
 !insertmacro MUI_PAGE_DIRECTORY
