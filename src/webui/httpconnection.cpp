@@ -150,35 +150,40 @@ void HttpConnection::translateDocument(QString& data) {
                                   "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
                                   "options_imp", "Preferences", "TrackersAdditionDlg",
                                   "ScanFoldersModel", "PropTabBar", "TorrentModel",
-                                  "downloadFromURL"};
+                                  "downloadFromURL", "misc"};
+  const size_t context_count = sizeof(contexts);
   int i = 0;
-  bool found;
+  bool found = true;
 
-  do {
-    found = false;
+  bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
 
+  while(i < data.size() && found) {
     i = regex.indexIn(data, i);
     if (i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
       QByteArray word = regex.cap(1).toUtf8();
 
       QString translation = word;
-      bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
       if (isTranslationNeeded) {
         int context_index = 0;
-        do {
+        while(context_index < context_count && translation == word) {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+#else
+          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+#endif
           ++context_index;
-        } while(translation == word && context_index < 15);
+        }
       }
       // Remove keyboard shortcuts
       translation.replace(mnemonic, "");
 
       data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
-      found = true;
+    } else {
+        found = false; // no more translatable strings
     }
-  } while(found && i < data.size());
+  }
 }
 
 void HttpConnection::respond() {
