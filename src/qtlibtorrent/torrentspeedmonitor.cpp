@@ -223,6 +223,15 @@ void TorrentSpeedMonitor::loadStats() {
   if (s_old.contains("Stats/AllStats")) {
     v = s_old.value("Stats/AllStats").toHash();
     dirty = true;
+
+    // If the user has used qbt > 3.1.5 and then reinstalled/used
+    // qbt < 3.1.6, there will be stats in qbittorrent-data.ini too
+    // so we need to merge those 2.
+    if (s.contains("Stats/AllStats")) {
+      QVariantHash tmp = s.value("Stats/AllStats").toHash();
+      v["AlltimeDL"] = v["AlltimeDL"].toULongLong() + tmp["AlltimeDL"].toULongLong();
+      v["AlltimeUL"] = v["AlltimeUL"].toULongLong() + tmp["AlltimeUL"].toULongLong();
+    }
   }
   else
     v = s.value("Stats/AllStats").toHash();
