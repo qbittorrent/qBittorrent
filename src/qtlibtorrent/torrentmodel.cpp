@@ -281,9 +281,9 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_TRACKER: return tr("Tracker");
       case TorrentModelItem::TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
       case TorrentModelItem::TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
-      case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Amount downloaded", "Amount of data downloaded (e.g. in MB)");
-      case TorrentModelItem::TR_AMOUNT_UPLOADED: return tr("Amount uploaded", "Amount of data uploaded (e.g. in MB)");
-      case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Amount left", "Amount of data left to download (e.g. in MB)");
+      case TorrentModelItem::TR_AMOUNT_DOWNLOADED: return tr("Downloaded", "Amount of data downloaded (e.g. in MB)");
+      case TorrentModelItem::TR_AMOUNT_UPLOADED: return tr("Uploaded", "Amount of data uploaded (e.g. in MB)");
+      case TorrentModelItem::TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
       case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
       case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       default:
