@@ -98,11 +98,7 @@ using namespace libtorrent;
  *****************************************************/
 
 // Constructor
-MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false)
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
-  ,checkingProgramUpdate(false)
-#endif
-{
+MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMainWindow(parent), m_posInitialized(false), force_exit(false) {
   setupUi(this);
 
   Preferences pref;
@@ -216,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   connect(actionMinimize, SIGNAL(triggered()), SLOT(minimizeWindow()));
 
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
-  programUpdateTimer.setInterval(15*60*1000);
+  programUpdateTimer.setInterval(60*60*1000);
   programUpdateTimer.setSingleShot(true);
   connect(&programUpdateTimer, SIGNAL(timeout()), SLOT(checkProgramUpdate()));
   connect(actionCheck_for_updates, SIGNAL(triggered()), SLOT(checkProgramUpdate()));
@@ -1349,35 +1345,31 @@ void MainWindow::on_actionDownload_from_URL_triggered() {
 
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
 
-void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_version)
+void MainWindow::handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser)
 {
+  QMessageBox::StandardButton answer = QMessageBox::Yes;
   if (update_available) {
-    if (QMessageBox::question(this, tr("A newer version is available"),
-                             tr("A newer version of qBittorrent is available on Sourceforge.\nWould you like to update qBittorrent to version %1?").arg(new_version),
-                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+    answer = QMessageBox::question(this, tr("A new version is available"),
+                                   tr("A new version of qBittorrent is available on Sourceforge.\nWould you like to update qBittorrent to version %1?").arg(new_version),
+                                   QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes);
+    if (answer == QMessageBox::Yes) {
       // The user want to update, let's download the update
       ProgramUpdater* updater = dynamic_cast<ProgramUpdater*>(sender());
-      connect(updater, SIGNAL(updateInstallFinished(QString)), SLOT(handleUpdateInstalled(QString)));
       updater->updateProgram();
-      return;
     }
   }
+  else if (invokedByUser) {
+    QMessageBox::information(this, tr("There isn't a new version available"),
+                             tr("There isn't a new version of qBittorrent available on Sourceforge"));
+  }
   sender()->deleteLater();
-  checkingProgramUpdate = false;
   actionCheck_for_updates->setEnabled(true);
   actionCheck_for_updates->setText(tr("Check for updates"));
   actionCheck_for_updates->setToolTip(tr("Check for program updates"));
-  if (Preferences().isUpdateCheckEnabled())
+  // Don't bother the user again in this session if he chose to ignore the update
+  if (Preferences().isUpdateCheckEnabled() && answer == QMessageBox::Yes)
     programUpdateTimer.start();
 }
-
-void MainWindow::handleUpdateInstalled(QString error_msg)
-{
-  if (!error_msg.isEmpty()) {
-    QMessageBox::critical(this, tr("Impossible to update qBittorrent"), tr("qBittorrent failed to update, reason: %1").arg(error_msg));
-  }
-}
-
 #endif
 
 void MainWindow::on_actionDonate_money_triggered()
@@ -1462,14 +1454,13 @@ QIcon MainWindow::getSystrayIcon() const
 
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
 void MainWindow::checkProgramUpdate() {
-  if (checkingProgramUpdate)
-    return;
-  checkingProgramUpdate = true;
+  programUpdateTimer.stop(); // If the user had clicked the menu item
   actionCheck_for_updates->setEnabled(false);
   actionCheck_for_updates->setText(tr("Checking for updates..."));
   actionCheck_for_updates->setToolTip(tr("Already checking for program updates in the background"));
-  ProgramUpdater *updater = new ProgramUpdater(this);
-  connect(updater, SIGNAL(updateCheckFinished(bool, QString)), SLOT(handleUpdateCheckFinished(bool, QString)));
+  bool invokedByUser = actionCheck_for_updates == qobject_cast<QAction*>(sender());
+  ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
+  connect(updater, SIGNAL(updateCheckFinished(bool, QString, bool)), SLOT(handleUpdateCheckFinished(bool, QString, bool)));
   updater->checkForUpdates();
 }
 #endif

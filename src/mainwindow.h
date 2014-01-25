@@ -140,8 +140,7 @@ protected slots:
   // HTTP slots
   void on_actionDownload_from_URL_triggered();
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
-  void handleUpdateCheckFinished(bool update_available, QString new_version);
-  void handleUpdateInstalled(QString error_msg);
+  void handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser);
 #endif
 
 protected:
@@ -200,7 +199,6 @@ private:
   QTimer *preventTimer;
 #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
   QTimer programUpdateTimer;
-  bool checkingProgramUpdate;
 #endif
 
 private slots:
