@@ -80,13 +80,15 @@ var dynamicTable = new Class	({
 				var sizeStrToFloat = function(mystr) {
 					var val1 = mystr.split(' ');
 					var val1num = val1[0].toFloat()
-					var unit = val1[1].capitalize();
-					switch(unit[0]) {
-						case 'G':
+					var unit = val1[1];
+					switch(unit) {
+						case '_(TiB)':
+							return val1num*1099511627776;
+						case '_(GiB)':
 							return val1num*1073741824;
-						case 'M':
+						case '_(MiB)':
 							return val1num*1048576;
-						case 'K':
+						case '_(KiB)':
 							return val1num*1024;
 						default:
 							return val1num;
