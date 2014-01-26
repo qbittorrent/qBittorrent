@@ -688,6 +688,9 @@ void TransferListWidget::removeLabelFromRows(QString label) {
 }
 
 void TransferListWidget::displayListMenu(const QPoint&) {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  if (selectedIndexes.size() == 0)
+    return;
   // Create actions
   QAction actionStart(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
   connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
@@ -733,7 +736,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // End of actions
   QMenu listMenu(this);
   // Enable/disable pause/start action given the DL state
-  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
   bool all_same_super_seeding = true;
   bool super_seeding_mode = false;
