@@ -79,8 +79,9 @@ var dynamicTable = new Class	({
 			case 8: // Down Speed
 				var sizeStrToFloat = function(mystr) {
 					var val1 = mystr.split(' ');
-					var val1num = val1[0].toFloat()
-					var unit = val1[1];
+					val1[0] = val1[0].replace(",", "."); // toFloat() cannot parse comma as decimal point
+					var val1num = val1[0].toFloat();
+					var unit = val1[1].split('/')[0]; // get an unit numerator only (to support speed values)
 					switch(unit) {
 						case '_(TiB)':
 							return val1num*1099511627776;
