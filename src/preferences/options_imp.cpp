@@ -256,8 +256,8 @@ options_imp::options_imp(QWidget *parent):
   connect(advancedSettings, SIGNAL(settingsChanged()), this, SLOT(enableApplyButton()));
 
   // Adapt size
-  loadWindowState();
   show();
+  loadWindowState();  
 }
 
 void options_imp::initializeLanguageCombo()
