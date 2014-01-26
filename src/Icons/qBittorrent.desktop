@@ -9,6 +9,7 @@ Name=qBittorrent
 Terminal=false
 Type=Application
 StartupNotify=false
+StartupWMClass=qbittorrent
 
 
 
