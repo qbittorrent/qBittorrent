@@ -140,7 +140,8 @@ void TrackerList::moveSelectionUp() {
   }
   h.replace_trackers(trackers);
   // Reannounce
-  h.force_reannounce();
+  if (!h.is_paused())
+    h.force_reannounce();
   loadTrackers();
 }
 
@@ -177,7 +178,8 @@ void TrackerList::moveSelectionDown() {
   }
   h.replace_trackers(trackers);
   // Reannounce
-  h.force_reannounce();
+  if (!h.is_paused())
+    h.force_reannounce();
   loadTrackers();
 }
 
@@ -302,7 +304,8 @@ void TrackerList::askForTrackers() {
       h.add_tracker(url);
     }
     // Reannounce to new trackers
-    h.force_reannounce();
+    if (!h.is_paused())
+      h.force_reannounce();
     // Reload tracker list
     loadTrackers();
   }
@@ -348,7 +351,8 @@ void TrackerList::deleteSelectedTrackers() {
     }
   }
   h.replace_trackers(remaining_trackers);
-  h.force_reannounce();
+  if (!h.is_paused())
+    h.force_reannounce();
   // Reload Trackers
   loadTrackers();
 }
@@ -396,8 +400,10 @@ void TrackerList::editSelectedTracker() {
     }
 
     h.replace_trackers(trackers);
-    h.force_reannounce();
-    h.force_dht_announce();
+    if (!h.is_paused()) {
+      h.force_reannounce();
+      h.force_dht_announce();
+    }
   } catch(invalid_handle&) {
     return;
   }
@@ -420,8 +426,10 @@ void TrackerList::showTrackerListMenu(QPoint) {
     copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
     editAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
-  menu.addSeparator();
-  QAction *reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+  if (!h.is_paused()) {
+    menu.addSeparator();
+    reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+  }
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addAct) {
