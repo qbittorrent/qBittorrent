@@ -1257,9 +1257,9 @@ public:
       settings.setValue(".torrent/Default", "qBittorrent");
       settings.setValue(".torrent/Content Type", "application/x-bittorrent");
       settings.setValue("qBittorrent/shell/Default", "open");
-      settings.setValue("qBittorrent/shell/open/command/Default", command_str);
+      settings.setValue("qBittorrent/shell/open/command/Default", fsutils::toNativePath(command_str));
       settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
-      settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
+      settings.setValue("qBittorrent/DefaultIcon/Default", fsutils::toNativePath(icon_str));
     } else if (isTorrentFileAssocSet()) {
       settings.remove(".torrent/Default");
       settings.remove(".torrent/Content Type");
@@ -1281,9 +1281,9 @@ public:
       settings.setValue("Magnet/Default", "Magnet URI");
       settings.setValue("Magnet/Content Type", "application/x-magnet");
       settings.setValue("Magnet/URL Protocol", "");
-      settings.setValue("Magnet/DefaultIcon/Default", icon_str);
+      settings.setValue("Magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
       settings.setValue("Magnet/shell/Default", "open");
-      settings.setValue("Magnet/shell/open/command/Default", command_str);
+      settings.setValue("Magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
     } else if (isMagnetLinkAssocSet()) {
       settings.remove("Magnet/Default");
       settings.remove("Magnet/Content Type");
