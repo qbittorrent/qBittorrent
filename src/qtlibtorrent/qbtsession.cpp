@@ -2072,11 +2072,7 @@ void QBtSession::recursiveTorrentDownload(const QTorrentHandle &h) {
   }
 }
 
-void QBtSession::cleanUpAutoRunProcess(int) {
-  sender()->deleteLater();
-}
-
-void QBtSession::autoRunExternalProgram(const QTorrentHandle &h, bool async) {
+void QBtSession::autoRunExternalProgram(const QTorrentHandle &h) {
   if (!h.is_valid()) return;
   QString program = Preferences().getAutoRunProgram().trimmed();
   if (program.isEmpty()) return;
@@ -2089,14 +2085,7 @@ void QBtSession::autoRunExternalProgram(const QTorrentHandle &h, bool async) {
   program.replace("%f", torrent_path);
   // Replace %n by torrent name
   program.replace("%n", h.name());
-  QProcess *process = new QProcess;
-  if (async) {
-    connect(process, SIGNAL(finished(int)), this, SLOT(cleanUpAutoRunProcess(int)));
-    process->start(program);
-  } else {
-    process->execute(program);
-    delete process;
-  }
+  QProcess::startDetached(program);
 }
 
 void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
@@ -2183,7 +2172,7 @@ void QBtSession::readAlerts() {
   #endif
             // AutoRun program
             if (pref.isAutoRunEnabled())
-              autoRunExternalProgram(h, will_shutdown);
+              autoRunExternalProgram(h);
             // Move .torrent file to another folder
             if (pref.isFinishedTorrentExportEnabled())
                 exportTorrentFile(h, FinishedTorrentExportFolder);
