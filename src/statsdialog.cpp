@@ -118,12 +118,12 @@ void StatsDialog::updateUI() {
     peers += (*iBegin).status().num_peers;
   ui->labelWriteStarve->setText(
         ( ss.disk_write_queue > 0 && peers > 0 ) ?
-          misc::accurateDoubleToString(100. * (qreal)ss.disk_write_queue / (qreal)peers, 2) :
+          misc::accurateDoubleToString(100. * (qreal)ss.disk_write_queue / (qreal)peers, 2) + "%" :
           QString("0\%")
         );
   ui->labelReadStarve->setText(
         ( ss.disk_read_queue > 0 && peers > 0 ) ?
-          misc::accurateDoubleToString(100. * (qreal)ss.disk_read_queue / (qreal)peers, 2) :
+          misc::accurateDoubleToString(100. * (qreal)ss.disk_read_queue / (qreal)peers, 2) + "%" :
           QString("0\%")
       );
   // Disk queues
