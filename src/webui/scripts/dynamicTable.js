@@ -112,9 +112,11 @@ var dynamicTable = new Class	({
 					return (tr2.getElements('td')[i].get('html').split(' ')[0].toInt() - tr1.getElements('td')[i].get('html').split(' ')[0].toInt());
 			default: // Ratio
 				var ratio1 = tr1.getElements('td')[i].get('html');
+				ratio1 = ratio1.replace(",", "."); // toFloat() cannot parse comma as decimal point
 				if(ratio1 == '∞')
 					ratio1 = '101.0';
 				var ratio2 = tr2.getElements('td')[i].get('html');
+				ratio2 = ratio2.replace(",", "."); // toFloat() cannot parse comma as decimal point
 				if(ratio2 == '∞')
 					ratio2 = '101.0';
 				if(!reverseSort)
