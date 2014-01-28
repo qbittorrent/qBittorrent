@@ -32,7 +32,6 @@
 #define QTRACKER_H
 
 #include <QTcpServer>
-#include <QHttpResponseHeader>
 #include <QHash>
 
 #include "trackerannouncerequest.h"

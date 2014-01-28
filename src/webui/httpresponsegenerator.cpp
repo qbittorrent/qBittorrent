@@ -31,6 +31,42 @@
 
 #include "httpresponsegenerator.h"
 #include <zlib.h>
+#include <QString>
+
+HttpResponseGenerator::HttpResponseGenerator()
+  : m_gzip(false),
+    m_statCode(200), m_reasonPhr("OK"),
+    m_majVer(1), m_minVer(1)
+{
+}
+
+void HttpResponseGenerator::setStatusLine(int code, const QString &text, int majorVer, int minorVer)
+{
+    m_statCode = code;
+    m_reasonPhr = text;
+    m_majVer = majorVer;
+    m_minVer = minorVer;
+}
+
+void HttpResponseGenerator::setValue(const QString &key, const QString &value)
+{
+    QString lowercaseKey = key.toLower();
+    QList<QPair<QString, QString> >::Iterator it = m_values.begin();
+    while (it != m_values.end()) {
+        if ((*it).first.toLower() == lowercaseKey) {
+            (*it).second = value;
+            return;
+        }
+        ++it;
+    }
+    // not found so add
+    addValue(key, value);
+}
+
+void HttpResponseGenerator::addValue(const QString &key, const QString &value)
+{
+    m_values.append(qMakePair(key, value));
+}
 
 void HttpResponseGenerator::setMessage(const QByteArray& message)
 {
@@ -40,6 +76,11 @@ void HttpResponseGenerator::setMessage(const QByteArray& message)
 void HttpResponseGenerator::setMessage(const QString& message)
 {
   setMessage(message.toUtf8());
+}
+
+void HttpResponseGenerator::setContentType(const QString &type)
+{
+  setValue(QLatin1String("content-type"), type);
 }
 
 void HttpResponseGenerator::setContentTypeByExt(const QString& ext) {
@@ -118,6 +159,11 @@ bool HttpResponseGenerator::gCompress(QByteArray &dest_buffer) {
   return true;
 }
 
+void HttpResponseGenerator::setContentLength(int len)
+{
+  setValue(QLatin1String("content-length"), QString::number(len));
+}
+
 QByteArray HttpResponseGenerator::toByteArray() {
   // A gzip seems to have 23 bytes overhead.
   // Also "content-encoding: gzip\r\n" is 26 bytes long
@@ -136,5 +182,17 @@ QByteArray HttpResponseGenerator::toByteArray() {
   }
 
   setContentLength(m_message.size());
-  return QHttpResponseHeader::toString().toUtf8() + m_message;
+
+  QString ret(QLatin1String("HTTP/%1.%2 %3 %4\r\n%5\r\n"));
+
+  QString hdr(QLatin1String(""));
+  QList<QPair<QString, QString> >::ConstIterator it = m_values.constBegin();
+  while (it != m_values.constEnd()) {
+    hdr += (*it).first + QLatin1String(": ") + (*it).second + QLatin1String("\r\n");
+    ++it;
+  }
+
+  ret = ret.arg(m_majVer).arg(m_minVer).arg(m_statCode).arg(m_reasonPhr).arg(hdr);
+
+  return ret.toUtf8() + m_message;
 }

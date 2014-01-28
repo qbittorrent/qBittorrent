@@ -32,29 +32,50 @@
 #ifndef HTTPREQUESTPARSER_H
 #define HTTPREQUESTPARSER_H
 
-#include <QHttpRequestHeader>
+#include <QString>
 #include <QHash>
 
 class HttpRequestParser {
 
 public:
-  HttpRequestParser();
-  ~HttpRequestParser();
-  bool isError() const;
-  const QString& url() const;
-  const QByteArray& message() const;
-  QString get(const QString& key) const;
-  QString post(const QString& key) const;
-  const QList<QByteArray>& torrents() const;
-  void writeHeader(const QByteArray& ba);
-  void writeMessage(const QByteArray& ba);
+  enum ErrorCode { NoError = 0, IncompleteRequest, BadRequest };
+
+  HttpRequestParser(uint maxContentLength = 10000000 /* ~10MB */);
+
+  void parse(const QByteArray& data);
+
+  // when error() != NoError all request properties are undefined
+  inline ErrorCode error() const { return m_error; }
+  inline int length() const { return m_length; }
+  inline const QString& method() const { return m_m; }
+  inline const QString& url() const { return m_path; }
+  inline const QHash<QString, QString>& gets() const { return m_getMap; }
+  inline QString get(const QString& key) const { return m_getMap.value(key); }
+  inline QString post(const QString& key) const { return m_postMap.value(key); }
+  inline const QList<QByteArray>& torrents() const { return m_torrents; }
+
+  QString value(const QString &key) const;
+  QString contentType() const;
+  bool hasContentLength() const;
+  uint contentLength() const;
+
   bool acceptsEncoding();
-  inline const QHttpRequestHeader& header() const { return m_header; }
 
 private:
-  QHttpRequestHeader m_header;
-  bool m_error;
-  QByteArray m_data;
+  bool parseHeaderLine(const QString &line, int number);
+  bool parseHeader(const QByteArray &data);
+  bool parseContent(const QByteArray& data);
+
+  bool hasKey(const QString &key) const;
+  void addValue(const QString &key, const QString &value);
+
+  ErrorCode m_error;
+  int m_length;
+  uint m_maxContentLength;
+  QString m_m;
+  int m_majVer;
+  int m_minVer;
+  QList<QPair<QString, QString> > m_values;
   QString m_path;
   QHash<QString, QString> m_postMap;
   QHash<QString, QString> m_getMap;

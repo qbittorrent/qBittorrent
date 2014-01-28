@@ -30,6 +30,7 @@
 #ifndef __BITTORRENT_H__
 #define __BITTORRENT_H__
 
+#include <QMap>
 #include <QHash>
 #include <QUrl>
 #include <QStringList>

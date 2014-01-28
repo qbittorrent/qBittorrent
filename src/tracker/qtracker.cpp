@@ -28,15 +28,15 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QHttpRequestHeader>
 #include <QTcpSocket>
-#include <QUrl>
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
 #include "qtracker.h"
 #include "preferences.h"
+#include "httpresponsegenerator.h"
+#include "httprequestparser.h"
 
 using namespace libtorrent;
 
@@ -87,9 +87,10 @@ void QTracker::readRequest()
   QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
   QByteArray input = socket->readAll();
   //qDebug("QTracker: Raw request:\n%s", input.data());
-  QHttpRequestHeader http_request(input);
-  if (!http_request.isValid()) {
-    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(http_request.toString()));
+  HttpRequestParser http_request;
+  http_request.parse(input);
+  if (http_request.error() != HttpRequestParser::NoError) {
+    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(input));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
@@ -100,30 +101,21 @@ void QTracker::readRequest()
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
-  if (!http_request.path().startsWith("/announce", Qt::CaseInsensitive)) {
-    qDebug("QTracker: Unrecognized path: %s", qPrintable(http_request.path()));
+  if (!http_request.url().startsWith("/announce", Qt::CaseInsensitive)) {
+    qDebug("QTracker: Unrecognized path: %s", qPrintable(http_request.url()));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
 
   // OK, this is a GET request
-  // Parse GET parameters
-  QHash<QString, QString> get_parameters;
-  QUrl url = QUrl::fromEncoded(http_request.path().toAscii());
-  QListIterator<QPair<QString, QString> > i(url.queryItems());
-  while (i.hasNext()) {
-    QPair<QString, QString> pair = i.next();
-    get_parameters[pair.first] = pair.second;
-  }
-
-  respondToAnnounceRequest(socket, get_parameters);
+  respondToAnnounceRequest(socket, http_request.gets());
 }
 
 void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
 {
-  QHttpResponseHeader response;
+  HttpResponseGenerator response;
   response.setStatusLine(code, msg);
-  socket->write(response.toString().toLocal8Bit());
+  socket->write(response.toByteArray());
   socket->disconnectFromHost();
 }
 
@@ -238,9 +230,10 @@ void QTracker::ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceReques
   QByteArray reply(&buf[0], buf.size());
   qDebug("QTracker: reply with the following bencoded data:\n %s", reply.constData());
   // HTTP reply
-  QHttpResponseHeader response;
+  HttpResponseGenerator response;
   response.setStatusLine(200, "OK");
-  socket->write(response.toString().toLocal8Bit() + reply);
+  response.setMessage(reply);
+  socket->write(response.toByteArray());
   socket->disconnectFromHost();
 }
 
