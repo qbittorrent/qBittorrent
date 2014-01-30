@@ -234,18 +234,6 @@ initializeWindows = function(){
 		}
 	}
 
-	addClickEvent('site', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'sitePage',
-			title: 'qBittorrent Website',
-			loadMethod: 'iframe',
-			contentURL: 'http://www.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
 	addClickEvent('about', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
