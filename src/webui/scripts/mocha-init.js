@@ -234,18 +234,6 @@ initializeWindows = function(){
 		}
 	}
 
-	addClickEvent('bug', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'bugPage',
-			title: '_(Report a bug)',
-			loadMethod: 'iframe',
-			contentURL: 'http://bugs.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
 	addClickEvent('site', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
