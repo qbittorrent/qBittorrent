@@ -246,18 +246,6 @@ initializeWindows = function(){
 		});
 	});
 
-	addClickEvent('docs', function(e){
-		new Event(e).stop();
-		new MochaUI.Window({
-			id: 'docsPage',
-			title: 'qBittorrent official wiki',
-			loadMethod: 'iframe',
-			contentURL: 'http://wiki.qbittorrent.org/',
-			width: 650,
-			height: 400
-		});
-	});
-
 	addClickEvent('about', function(e){
 		new Event(e).stop();
 		new MochaUI.Window({
