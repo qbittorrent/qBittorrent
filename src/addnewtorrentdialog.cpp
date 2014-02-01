@@ -40,12 +40,12 @@
 #include "iconprovider.h"
 #include "fs_utils.h"
 #include "autoexpandabledialog.h"
+#include "messageboxraised.h"
 
 #include <QString>
 #include <QFile>
 #include <QUrl>
 #include <QMenu>
-#include <QMessageBox>
 #include <QTimer>
 #include <QFileDialog>
 #include <libtorrent/version.hpp>
@@ -185,7 +185,7 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     m_filePath = torrent_path;
 
   if (!QFile::exists(m_filePath)) {
-    QMessageBox::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
+    MessageBoxRaised::critical(0, tr("I/O Error"), tr("The torrent file does not exist."));
     return false;
   }
 
@@ -195,13 +195,13 @@ bool AddNewTorrentDialog::loadTorrent(const QString& torrent_path, const QString
     m_torrentInfo = new torrent_info(m_filePath.toUtf8().data());
     m_hash = misc::toQString(m_torrentInfo->info_hash());
   } catch(const std::exception& e) {
-    QMessageBox::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
+    MessageBoxRaised::critical(0, tr("Invalid torrent"), tr("Failed to load the torrent: %1").arg(e.what()));
     return false;
   }
 
   // Prevent showing the dialog if download is already present
   if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
-    QMessageBox::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
+    MessageBoxRaised::information(0, tr("Already in download list"), tr("Torrent is already in download list. Merging trackers."), QMessageBox::Ok);
     QBtSession::instance()->addTorrent(m_filePath, false, m_url);;
     return false;
   }
@@ -271,13 +271,13 @@ bool AddNewTorrentDialog::loadMagnet(const QString &magnet_uri)
   m_url = magnet_uri;
   m_hash = misc::magnetUriToHash(m_url);
   if (m_hash.isEmpty()) {
-    QMessageBox::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
+    MessageBoxRaised::critical(0, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
     return false;
   }
 
   // Prevent showing the dialog if download is already present
   if (QBtSession::instance()->getTorrentHandle(m_hash).is_valid()) {
-    QMessageBox::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
+    MessageBoxRaised::information(0, tr("Already in download list"), tr("Magnet link is already in download list. Merging trackers."), QMessageBox::Ok);
     QBtSession::instance()->addMagnetUri(m_url, false);
     return false;
   }
@@ -442,7 +442,7 @@ void AddNewTorrentDialog::renameSelectedFile()
                                                       index.data().toString(), &ok).trimmed();
   if (ok && !new_name_last.isEmpty()) {
     if (!fsutils::isValidFileSystemName(new_name_last)) {
-      QMessageBox::warning(this, tr("The file could not be renamed"),
+      MessageBoxRaised::warning(this, tr("The file could not be renamed"),
                            tr("This file name contains forbidden characters, please choose a different one."),
                            QMessageBox::Ok);
       return;
@@ -468,7 +468,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         if (i == file_index) continue;
         if (fsutils::sameFileNames(m_filesPath.at(i), new_name)) {
           // Display error message
-          QMessageBox::warning(this, tr("The file could not be renamed"),
+          MessageBoxRaised::warning(this, tr("The file could not be renamed"),
                                tr("This name is already in use in this folder. Please use a different name."),
                                QMessageBox::Ok);
           return;
@@ -503,7 +503,7 @@ void AddNewTorrentDialog::renameSelectedFile()
 #else
         if (current_name.startsWith(new_path, Qt::CaseInsensitive)) {
 #endif
-          QMessageBox::warning(this, tr("The folder could not be renamed"),
+          MessageBoxRaised::warning(this, tr("The folder could not be renamed"),
                                tr("This name is already in use in this folder. Please use a different name."),
                                QMessageBox::Ok);
           return;
@@ -722,7 +722,7 @@ void AddNewTorrentDialog::updateMetadata(const QTorrentHandle &h) {
     setdialogPosition();
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
   } catch (invalid_handle&) {
-    QMessageBox::critical(0, tr("I/O Error"), ("Unknown error."));
+    MessageBoxRaised::critical(0, tr("I/O Error"), ("Unknown error."));
     setMetadataProgressIndicator(false, tr("Unknown error"));
     return;
   }
