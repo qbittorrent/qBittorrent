@@ -99,6 +99,7 @@ private:
   QStringList m_filesPath;
   bool m_hasRenamedFile;
   QShortcut *editHotkey;
+  QByteArray m_headerState;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H
