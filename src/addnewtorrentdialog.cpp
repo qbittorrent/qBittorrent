@@ -104,9 +104,7 @@ void AddNewTorrentDialog::loadState()
 {
   QIniSettings settings;
   settings.beginGroup(QString::fromUtf8("AddNewTorrentDialog"));
-  QByteArray state = settings.value("treeHeaderState").toByteArray();
-  if (!state.isEmpty())
-    ui->content_tree->header()->restoreState(state);
+  m_headerState = settings.value("treeHeaderState").toByteArray();
   int width = settings.value("width", -1).toInt();
   if (width >= 0) {
     QRect geo = geometry();
@@ -664,6 +662,8 @@ void AddNewTorrentDialog::setupTreeview() {
 
     // List files in torrent
     m_contentModel->model()->setupModelData(*m_torrentInfo);
+    if (!m_headerState.isEmpty())
+      ui->content_tree->header()->restoreState(m_headerState);
 
     // Expand root folder
     ui->content_tree->setExpanded(m_contentModel->index(0, 0), true);
