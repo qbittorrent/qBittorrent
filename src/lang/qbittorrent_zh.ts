@@ -166,134 +166,133 @@
         <translation>其他...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="188"/>
-        <location filename="../addnewtorrentdialog.cpp" line="725"/>
+        <location filename="../addnewtorrentdialog.cpp" line="186"/>
+        <location filename="../addnewtorrentdialog.cpp" line="616"/>
         <source>I/O Error</source>
         <translation>输入/输出错误</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="188"/>
+        <location filename="../addnewtorrentdialog.cpp" line="186"/>
         <source>The torrent file does not exist.</source>
         <translation>该torrent文件不存在.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="198"/>
+        <location filename="../addnewtorrentdialog.cpp" line="196"/>
         <source>Invalid torrent</source>
         <translation>无效torrent</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="198"/>
+        <location filename="../addnewtorrentdialog.cpp" line="196"/>
         <source>Failed to load the torrent: %1</source>
         <translation>加载torrent失败: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="204"/>
-        <location filename="../addnewtorrentdialog.cpp" line="280"/>
+        <location filename="../addnewtorrentdialog.cpp" line="202"/>
+        <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Already in download list</source>
         <translation>已经在下载列表中</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="204"/>
+        <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
         <translation>Torrent已经在下载列表中。合并 trackers。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="215"/>
-        <location filename="../addnewtorrentdialog.cpp" line="675"/>
+        <location filename="../addnewtorrentdialog.cpp" line="636"/>
         <source>Not available</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="274"/>
+        <location filename="../addnewtorrentdialog.cpp" line="218"/>
         <source>Invalid magnet link</source>
         <translation>无效magnet链接</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="274"/>
+        <location filename="../addnewtorrentdialog.cpp" line="218"/>
         <source>This magnet link was not recognized</source>
         <translation>该magnet链接未被识别</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="280"/>
+        <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
         <translation>Magnet 链接已经在下载列表中。合并 trackers。</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../addnewtorrentdialog.cpp" line="231"/>
         <source>Magnet link</source>
         <translation>Magnet链接</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="299"/>
+        <location filename="../addnewtorrentdialog.cpp" line="243"/>
         <source>Retrieving metadata...</source>
         <translation>检索元数据...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="360"/>
+        <location filename="../addnewtorrentdialog.cpp" line="304"/>
         <source>Disk space: %1</source>
         <translation>磁盘空间: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="378"/>
-        <location filename="../addnewtorrentdialog.cpp" line="385"/>
-        <location filename="../addnewtorrentdialog.cpp" line="387"/>
+        <location filename="../addnewtorrentdialog.cpp" line="322"/>
+        <location filename="../addnewtorrentdialog.cpp" line="329"/>
+        <location filename="../addnewtorrentdialog.cpp" line="331"/>
         <source>Choose save path</source>
         <translation>选择保存路径</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="440"/>
+        <location filename="../addnewtorrentdialog.cpp" line="384"/>
         <source>Rename the file</source>
         <translation>重命名文件</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="441"/>
+        <location filename="../addnewtorrentdialog.cpp" line="385"/>
         <source>New name:</source>
         <translation>新名:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="445"/>
-        <location filename="../addnewtorrentdialog.cpp" line="471"/>
+        <location filename="../addnewtorrentdialog.cpp" line="389"/>
+        <location filename="../addnewtorrentdialog.cpp" line="415"/>
         <source>The file could not be renamed</source>
         <translation>文件不能被重命名</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="446"/>
+        <location filename="../addnewtorrentdialog.cpp" line="390"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>该文件名包含被禁止符号,请重新命名.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="472"/>
-        <location filename="../addnewtorrentdialog.cpp" line="507"/>
+        <location filename="../addnewtorrentdialog.cpp" line="416"/>
+        <location filename="../addnewtorrentdialog.cpp" line="451"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>该名称已被使用，请重新命名.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="506"/>
+        <location filename="../addnewtorrentdialog.cpp" line="450"/>
         <source>The folder could not be renamed</source>
         <translation>文件夹不能被重命名</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="565"/>
+        <location filename="../addnewtorrentdialog.cpp" line="509"/>
         <source>Rename...</source>
         <translation>重命名...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="569"/>
+        <location filename="../addnewtorrentdialog.cpp" line="513"/>
         <source>Priority</source>
         <translation>优先</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="666"/>
+        <location filename="../addnewtorrentdialog.cpp" line="610"/>
         <source>Parsing metadata...</source>
         <translation>解析元数据...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="723"/>
+        <location filename="../addnewtorrentdialog.cpp" line="614"/>
         <source>Metadata retrieval complete</source>
         <translation>元数据检索完成</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="726"/>
+        <location filename="../addnewtorrentdialog.cpp" line="617"/>
         <source>Unknown error</source>
         <translation>未知错误</translation>
     </message>
@@ -2607,14 +2606,14 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="117"/>
-        <location filename="../properties/proplistdelegate.h" line="172"/>
+        <location filename="../properties/proplistdelegate.h" line="162"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>正常</translation>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="111"/>
-        <location filename="../properties/proplistdelegate.h" line="173"/>
+        <location filename="../properties/proplistdelegate.h" line="163"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>高</translation>
@@ -2627,7 +2626,7 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../properties/proplistdelegate.h" line="114"/>
-        <location filename="../properties/proplistdelegate.h" line="174"/>
+        <location filename="../properties/proplistdelegate.h" line="164"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>最大</translation>
@@ -3089,46 +3088,46 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>qBittorrent试图监听接口%1 端口：TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2312"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2301"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>如果您15秒内不取消电脑将进入休眠模式...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2314"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2303"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>如果您15秒内不取消电脑将被关闭...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2316"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2305"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>如果您15秒内不取消qBitorrent将退出...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2603"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2592"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent成功监听接口 %1 的端口：TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2616"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2605"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent监听接口 %1 的端口： TCP/%2失败。原因： %3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2646"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2635"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>外部IP：%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2904"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2893"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>解析提供的IP过滤器成功: %1 规则被应用.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2910"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2899"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>错误: 无法解析提供的IP过滤器</translation>
     </message>
@@ -3197,80 +3196,80 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>循环下载包含在torrent%2中的文件%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2259"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2261"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2248"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2250"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>无法解码%1torrent文件.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2209"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2198"/>
         <source>Torrent name: %1</source>
         <translation>Torrent名称:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2210"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2199"/>
         <source>Torrent size: %1</source>
         <translation>Torrent大小:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2211"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2200"/>
         <source>Save path: %1</source>
         <translation>保存路径:%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2212"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2201"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>该torrent下载用时为%1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2213"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2202"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>感谢您使用qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2216"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2205"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1下载完毕.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2477"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2466"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>出现输入/输出错误,&apos;%1&apos;暂停.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2478"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2592"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2467"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2581"/>
         <source>Reason: %1</source>
         <translation>原因: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2556"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2545"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 端口映射失败, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2561"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2550"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 端口映射成功, 消息: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2587"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2576"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>文件大小与torrent%1不匹配,暂停中.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2591"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2580"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>快速继续数据torrent %1失败,再次检查...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2597"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2586"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>找不到网址种子:%1, 消息:%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2729"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2718"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;下载中,请等待...</translation>
@@ -4202,88 +4201,88 @@ Please install it manually.</source>
         <translation>消息</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="201"/>
-        <location filename="../properties/trackerlist.cpp" line="211"/>
-        <location filename="../properties/trackerlist.cpp" line="217"/>
-        <location filename="../properties/trackerlist.cpp" line="267"/>
+        <location filename="../properties/trackerlist.cpp" line="203"/>
+        <location filename="../properties/trackerlist.cpp" line="213"/>
+        <location filename="../properties/trackerlist.cpp" line="219"/>
+        <location filename="../properties/trackerlist.cpp" line="269"/>
         <source>Working</source>
         <translation>工作</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="203"/>
-        <location filename="../properties/trackerlist.cpp" line="213"/>
-        <location filename="../properties/trackerlist.cpp" line="219"/>
+        <location filename="../properties/trackerlist.cpp" line="205"/>
+        <location filename="../properties/trackerlist.cpp" line="215"/>
+        <location filename="../properties/trackerlist.cpp" line="221"/>
         <source>Disabled</source>
         <translation>禁用</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="206"/>
+        <location filename="../properties/trackerlist.cpp" line="208"/>
         <source>This torrent is private</source>
         <translation>此Torrent是非公开的</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="271"/>
+        <location filename="../properties/trackerlist.cpp" line="273"/>
         <source>Updating...</source>
         <translation>更新中...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="275"/>
+        <location filename="../properties/trackerlist.cpp" line="277"/>
         <source>Not working</source>
         <translation>未工作</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="278"/>
+        <location filename="../properties/trackerlist.cpp" line="280"/>
         <source>Not contacted yet</source>
         <translation>未联系</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="367"/>
+        <location filename="../properties/trackerlist.cpp" line="371"/>
         <source>Tracker URL:</source>
         <translation>Tracker URL网址:</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="367"/>
+        <location filename="../properties/trackerlist.cpp" line="371"/>
         <source>Tracker editing</source>
         <translation>Tracker编辑</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="373"/>
-        <location filename="../properties/trackerlist.cpp" line="386"/>
+        <location filename="../properties/trackerlist.cpp" line="377"/>
+        <location filename="../properties/trackerlist.cpp" line="390"/>
         <source>Tracker editing failed</source>
         <translation>Tracker编辑失败</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="373"/>
+        <location filename="../properties/trackerlist.cpp" line="377"/>
         <source>The tracker URL entered is invalid.</source>
         <translation>输入的 tracker URL网址是无效的。</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="386"/>
+        <location filename="../properties/trackerlist.cpp" line="390"/>
         <source>The tracker URL already exists.</source>
         <translation>Tracker URL网址已经存在。</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="414"/>
+        <location filename="../properties/trackerlist.cpp" line="420"/>
         <source>Add a new tracker...</source>
         <translation>添加新tracker...</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="420"/>
+        <location filename="../properties/trackerlist.cpp" line="426"/>
         <source>Copy tracker url</source>
         <translation>复制tracker url网址</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="421"/>
+        <location filename="../properties/trackerlist.cpp" line="427"/>
         <source>Edit selected tracker URL</source>
         <translation>编辑选定的tracker URL网址</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="424"/>
+        <location filename="../properties/trackerlist.cpp" line="431"/>
         <source>Force reannounce to all trackers</source>
         <translation>强制向所有 trackers 重新发布</translation>
     </message>
     <message>
-        <location filename="../properties/trackerlist.cpp" line="419"/>
+        <location filename="../properties/trackerlist.cpp" line="425"/>
         <source>Remove tracker</source>
         <translation>移除tracker</translation>
     </message>
@@ -4529,7 +4528,7 @@ Please install it manually.</source>
         <translation>是否显示列</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="808"/>
+        <location filename="../transferlistwidget.cpp" line="810"/>
         <source>Label</source>
         <translation>标签</translation>
     </message>
@@ -4589,120 +4588,120 @@ Please install it manually.</source>
         <translation>新名:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="692"/>
+        <location filename="../transferlistwidget.cpp" line="695"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>重新开始</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="694"/>
+        <location filename="../transferlistwidget.cpp" line="697"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="696"/>
+        <location filename="../transferlistwidget.cpp" line="699"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="698"/>
+        <location filename="../transferlistwidget.cpp" line="701"/>
         <source>Preview file...</source>
         <translation>预览文件...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="700"/>
+        <location filename="../transferlistwidget.cpp" line="703"/>
         <source>Limit share ratio...</source>
         <translation>限制分享率...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="702"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Limit upload rate...</source>
         <translation>限制上传速度...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="704"/>
+        <location filename="../transferlistwidget.cpp" line="707"/>
         <source>Limit download rate...</source>
         <translation>限制下载速度...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="706"/>
+        <location filename="../transferlistwidget.cpp" line="709"/>
         <source>Open destination folder</source>
         <translation>打开目标文件夹</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="708"/>
+        <location filename="../transferlistwidget.cpp" line="711"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>上移</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="710"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>下移</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="712"/>
+        <location filename="../transferlistwidget.cpp" line="715"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>移至顶部</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="714"/>
+        <location filename="../transferlistwidget.cpp" line="717"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>移至底部</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="716"/>
+        <location filename="../transferlistwidget.cpp" line="719"/>
         <source>Set location...</source>
         <translation>设定地区</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="851"/>
+        <location filename="../transferlistwidget.cpp" line="853"/>
         <source>Priority</source>
         <translation>优先</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="718"/>
+        <location filename="../transferlistwidget.cpp" line="721"/>
         <source>Force recheck</source>
         <translation>强制再次核对</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="720"/>
+        <location filename="../transferlistwidget.cpp" line="723"/>
         <source>Copy magnet link</source>
         <translation>复制MAGNET链接</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="722"/>
+        <location filename="../transferlistwidget.cpp" line="725"/>
         <source>Super seeding mode</source>
         <translation>超级做种模式</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="728"/>
         <source>Rename...</source>
         <translation>重命名...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="727"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Download in sequential order</source>
         <translation>以连续顺序下载</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="730"/>
+        <location filename="../transferlistwidget.cpp" line="733"/>
         <source>Download first and last piece first</source>
         <translation>先下载首尾段</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="809"/>
+        <location filename="../transferlistwidget.cpp" line="811"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>新...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>重置</translation>
