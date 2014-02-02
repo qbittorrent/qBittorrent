@@ -1,3 +1,28 @@
+* Sun Feb 02 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.6
+    - BUGFIX: Fix 'preview file' regression. Closes #1285. (sledgehammer999)
+    - BUGFIX: Fix peers and seeds sorting in transfer list. (Angel Alonso)
+    - BUGFIX: Fix btdigg search engine. (BTDigg research team)
+    - BUGFIX: Save statistics every 15min and only if there was new traffic. Fixes #1288 and partially #1272. (sledgehammer999)
+    - BUGFIX: Fix share ratio text in the 'general' tab. (sledgehammer999)
+    - BUGFIX: Output a more generic message when blocking IPs and don't use italics in the log. (sledgehammer999)
+    - BUGFIX: Allow 2 decimals when setting the share ratio. Closes #1303. (sledgehammer999)
+    - BUGFIX: Fix extratorrents search plugin. (sledgehammer999)
+    - BUGFIX: Use shorter names for amount columns in main UI (Gelmir)
+    - BUGFIX: Fix overstretched options dialog. Closes #1293. (sledgehammer999)
+    - BUGFIX: Don't show a popup menu when no torrent is selected. (sledgehammer999)
+    - BUGFIX: Launch external programs async and don't block. Closes #1252. (sledgehammer999)
+    - BUGFIX: Don't re-announce to trackers when torrent is paused. Closes #1310. (sledgehammer999)
+    - BUGFIX: Bring dialog boxes in the front when qbt doesn't have focus. (sledgehammer999)
+    - BUGFIX: Correctly resize 'name' column of the content tab. Closes #1360. (sledgehammer999)
+    - BUGFIX: Correctly restore 'name' column width when loading magnet links in the 'Add new torrent dialog'. Closes #1334. (sledgehammer999)
+    - WEBUI: Fix sorting by size in WebUI when non-default locale used. (Vladimir Golovnev)
+    - UI: Reposition statistics menu item. (sledgehammer999)
+    - UI: Convert more accurately decimal numbers to text. (sledgehammer999)
+    - WINDOWS/OSX: Improvements on the behavior of the program updater(closes #1282) (sledgehammer999)
+    - LINUX: Explicitle tell that we don't support freedesktop's startup notify standard. Fixes GNOME issues. Closes #1217. (sledgehammer999)
+    - LINUX: Add our WM_CLASS in the .desktop file so window managers know how to group our windows. (sledgehammer999)
+    - OTHER: Sync translations from Transifex.
+
 * Thu 16 Jan 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.5
     - BUGFIX: Fix compilation with Qt 4.7. Closes #1215. (sledgehammer999)
     - BUGFIX: Third attempt at fixing saving settings on OS shutdown. (sledgehammer999)
