@@ -426,10 +426,9 @@ void TrackerList::showTrackerListMenu(QPoint) {
     copyAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker url"));
     editAct = menu.addAction(IconProvider::instance()->getIcon("edit-rename"),tr("Edit selected tracker URL"));
   }
-  if (!h.is_paused()) {
+  if (!h.is_paused())
     menu.addSeparator();
-    reannounceAct = menu.addAction(IconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
-  }
+
   QAction *act = menu.exec(QCursor::pos());
   if (act == 0) return;
   if (act == addAct) {
@@ -442,10 +441,6 @@ void TrackerList::showTrackerListMenu(QPoint) {
   }
   if (act == delAct) {
     deleteSelectedTrackers();
-    return;
-  }
-  if (act == reannounceAct) {
-    properties->getCurrentTorrent().force_reannounce();
     return;
   }
   if (act == editAct) {
