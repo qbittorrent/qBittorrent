@@ -127,16 +127,6 @@ public:
     painter->restore();
   }
 
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
-    QVariant value = index.data(Qt::FontRole);
-    QFont fnt = value.isValid() ? qvariant_cast<QFont>(value) : option.font;
-    QFontMetrics fontMetrics(fnt);
-    const QString text = index.data(Qt::DisplayRole).toString();
-    QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
-    textRect.setHeight(textRect.height()+4);
-    return textRect.size();
-  }
-
   void setEditorData(QWidget *editor, const QModelIndex &index) const {
     QComboBox *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
