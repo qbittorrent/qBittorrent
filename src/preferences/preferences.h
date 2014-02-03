@@ -204,7 +204,7 @@ public:
   void setStartup(bool b) {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (b) {
-        const QString bin_path = "\""+qApp->applicationFilePath()+"\"";
+        const QString bin_path = "\"" + fsutils::toNativePath(qApp->applicationFilePath()) + "\"";
         settings.setValue("qBittorrent", bin_path);
     }
     else {
