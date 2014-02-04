@@ -470,6 +470,16 @@ public:
         name = result.first().mid(3);
         // Remove .so
         name.chop(3);
+      } else {
+        // Trying dylib extension (OSX)
+        filters.clear();
+        filters << "libboost_"+lib+"*.dylib";
+        result = libDir.entryList(filters, QDir::Files);
+        if(!result.empty()) {
+          name = result.first().mid(3);
+          // Remove .dylib
+          name.chop(6);          
+        }
       }
     }
     return name;
