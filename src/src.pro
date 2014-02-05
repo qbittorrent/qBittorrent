@@ -107,8 +107,7 @@ HEADERS += misc.h \
            scannedfoldersmodel.h \
            qinisettings.h \
            smtp.h \
-           dnsupdater.h \
-           messageboxraised.h
+           dnsupdater.h
 
 
 SOURCES += main.cpp \
@@ -117,8 +116,7 @@ SOURCES += main.cpp \
            misc.cpp \
            fs_utils.cpp \
            smtp.cpp \
-           dnsupdater.cpp \
-           messageboxraised.cpp
+           dnsupdater.cpp
 
 nox {
   HEADERS += headlessloader.h
@@ -152,7 +150,8 @@ nox {
               loglistwidget.h \
               addnewtorrentdialog.h \
               autoexpandabledialog.h \
-              statsdialog.h
+              statsdialog.h \
+              messageboxraised.h
 
   SOURCES += mainwindow.cpp \
              ico.cpp \
@@ -171,7 +170,8 @@ nox {
              loglistwidget.cpp \
              addnewtorrentdialog.cpp \
              autoexpandabledialog.cpp \
-             statsdialog.cpp
+             statsdialog.cpp \
+             messageboxraised.cpp
 
   win32 {
     HEADERS += programupdater.h
