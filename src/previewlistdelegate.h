@@ -65,7 +65,7 @@ class PreviewListDelegate: public QItemDelegate {
           QStyleOptionProgressBarV2 newopt;
           qreal progress = index.data().toDouble()*100.;
           newopt.rect = opt.rect;
-          newopt.text = misc::accurateDoubleToString(progress, 1);
+          newopt.text = misc::accurateDoubleToString(progress, 1) + "%";
           newopt.progress = (int)progress;
           newopt.maximum = 100;
           newopt.minimum = 0;
