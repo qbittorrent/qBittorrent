@@ -203,7 +203,11 @@ void TorrentSpeedMonitor::getSamples()
 }
 
 void TorrentSpeedMonitor::saveStats() const {
+#if QT_VERSION < QT_VERSION_CHECK(4, 7, 0)
+  if (!(dirty && (QDateTime().toTime_t() * 1000 - lastWrite >= 15*60*1000) ))
+#else
   if (!(dirty && (QDateTime::currentMSecsSinceEpoch() - lastWrite >= 15*60*1000) ))
+#endif
     return;
   QIniSettings s("qBittorrent", "qBittorrent-data");
   QVariantHash v;
@@ -211,7 +215,11 @@ void TorrentSpeedMonitor::saveStats() const {
   v.insert("AlltimeUL", alltimeUL + sessionUL);
   s.setValue("Stats/AllStats", v);
   dirty = false;
+#if QT_VERSION < QT_VERSION_CHECK(4, 7, 0)
+  lastWrite = QDateTime().toTime_t() * 1000;
+#else
   lastWrite = QDateTime::currentMSecsSinceEpoch();
+#endif
 }
 
 void TorrentSpeedMonitor::loadStats() {
