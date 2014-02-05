@@ -636,9 +636,7 @@ void AddNewTorrentDialog::setupTreeview() {
   ui->date_lbl->setText(m_torrentInfo->creation_date() ? misc::toQString(*m_torrentInfo->creation_date()) : tr("Not available"));
   updateDiskSpaceLabel();
 
-#if LIBTORRENT_VERSION_NUM >= 1600
-    file_storage fs = m_torrentInfo->files();
-#endif
+  file_storage fs = m_torrentInfo->files();
 
   // Populate m_filesList
     for (int i = 0; i < m_torrentInfo->num_files(); ++i) {
