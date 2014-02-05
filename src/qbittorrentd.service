@@ -1,0 +1,12 @@
+[Unit]
+Description=Qbittorrentd Service
+After=network.target
+
+[Service]
+Type=forking
+User=1000
+ExecStart=/usr/bin/screen -dmS qbittorrent-nox qbittorrent-nox
+ExecStop=/usr/bin/screen -S qbittorrent-nox -X quit
+
+[Install]
+WantedBy=multi-user.target
