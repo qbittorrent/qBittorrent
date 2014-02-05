@@ -124,6 +124,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+    <addaction name="actionDownload_from_URL"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
