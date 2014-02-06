@@ -492,6 +492,7 @@ public:
       sl << s;
     sl << "/usr/include";
     sl << "/usr/local/include";
+    sl << "/opt/local/include";
     bool found = false;
     foreach (s, sl) {
       if (conf->checkHeader(s, "boost/format.hpp")
@@ -521,7 +522,7 @@ public:
     QStringList libDirs;
     if (!s.isEmpty())
       libDirs << s;
-    libDirs << "/usr/lib/" << "/usr/lib/i386-linux-gnu/" << "/usr/lib64/" << "/usr/lib/x86_64-linux-gnu/" << "/usr/local/lib/" << "/usr/lib/local/i386-linux-gnu/" << "/usr/local/lib64/" << "/usr/local/lib/x86_64-linux-gnu/";
+    libDirs << "/usr/lib/" << "/usr/lib/i386-linux-gnu/" << "/usr/lib64/" << "/usr/lib/x86_64-linux-gnu/" << "/usr/local/lib/" << "/usr/lib/local/i386-linux-gnu/" << "/usr/local/lib64/" << "/usr/local/lib/x86_64-linux-gnu/" << "/opt/local/lib";
 
     foreach(const QString& lib, required_libs) {
       bool found = false;
