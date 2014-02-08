@@ -40,10 +40,10 @@
 #include "preferences.h"
 
 #ifdef Q_OS_MAC
-const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac";
+const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac");
 const QString FILE_EXT = "DMG";
 #else
-const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-win32";
+const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-win32");
 const QString FILE_EXT = "EXE";
 #endif
 
@@ -87,7 +87,9 @@ void ProgramUpdater::checkForUpdates()
   connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(rssDownloadFinished(QNetworkReply*)));
   // Send the request
-  mp_manager->get(QNetworkRequest(QUrl(RSS_URL)));
+  QNetworkRequest request(RSS_URL);
+  request.setRawHeader("User-Agent", QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION).toLocal8Bit());
+  mp_manager->get(request);
 }
 
 void ProgramUpdater::setUpdateUrl(QString title) {
