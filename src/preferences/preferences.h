@@ -1207,8 +1207,12 @@ public:
     setValue(QString::fromUtf8("Preferences/Win32/NeverCheckFileAssocation"), check);
   }
 
-  static bool isTorrentFileAssocSet() {
-    QSettings settings("HKEY_CLASSES_ROOT", QIniSettings::NativeFormat);
+  static bool isTorrentFileAssocSet(bool userLevel = true) {
+    QString hive;
+    if (userLevel) hive = "HKEY_CURRENT_USER\\Software\\Classes";
+    else hive = "HKEY_CLASSES_ROOT";
+
+    QSettings settings(hive, QSettings::NativeFormat);
     if (settings.value(".torrent/Default").toString() != "qBittorrent") {
       qDebug(".torrent != qBittorrent");
       return false;
@@ -1231,8 +1235,12 @@ public:
     return true;
   }
 
-  static bool isMagnetLinkAssocSet() {
-    QSettings settings("HKEY_CLASSES_ROOT", QIniSettings::NativeFormat);
+  static bool isMagnetLinkAssocSet(bool userLevel = true) {
+    QString hive;
+    if (userLevel) hive = "HKEY_CURRENT_USER\\Software\\Classes";
+    else hive = "HKEY_CLASSES_ROOT";
+
+    QSettings settings(hive, QSettings::NativeFormat);
 
     // Check magnet link assoc
     QRegExp exe_reg("\"([^\"]+)\".*");
@@ -1247,7 +1255,7 @@ public:
   }
 
   static void setTorrentFileAssoc(bool set) {
-    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // .Torrent association
     if (set) {
@@ -1271,7 +1279,7 @@ public:
   }
 
   static void setMagnetLinkAssoc(bool set) {
-    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // Magnet association
     if (set) {
