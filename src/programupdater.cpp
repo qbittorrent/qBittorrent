@@ -87,7 +87,12 @@ void ProgramUpdater::checkForUpdates()
   connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(rssDownloadFinished(QNetworkReply*)));
   // Send the request
-  mp_manager->get(QNetworkRequest(QUrl(RSS_URL)));
+  QNetworkRequest r;;
+  r.setUrl(QUrl(RSS_URL));
+  QString v = "qBittorrent v";
+  v += QString::number(VERSION_MAJOR) + "." + QString::number(VERSION_MINOR) + "." + QString::number(VERSION_BUGFIX);
+  r.setRawHeader("User-Agent", v.toStdString().c_str());
+  mp_manager->get(r);
 }
 
 void ProgramUpdater::setUpdateUrl(QString title) {
