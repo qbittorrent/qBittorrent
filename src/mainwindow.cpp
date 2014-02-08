@@ -305,7 +305,9 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
 
   qDebug("GUI Built");
 #ifdef Q_WS_WIN
-  if (!pref.neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
+  if (!pref.neverCheckFileAssoc() &&
+      (!(Preferences::isTorrentFileAssocSet(false) || Preferences::isTorrentFileAssocSet()) ||
+       !(Preferences::isMagnetLinkAssocSet(false) || Preferences::isMagnetLinkAssocSet()))) {
     if (QMessageBox::question(0, tr("Torrent file association"),
                              tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {

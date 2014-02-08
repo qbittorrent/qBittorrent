@@ -527,8 +527,26 @@ void options_imp::loadOptions() {
 #ifdef Q_WS_WIN
   checkStartup->setChecked(pref.Startup());
   // Windows: file association settings
-  checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-  checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+  // Check system settings, then user settings.
+  // We can edit only user settings.
+  if (Preferences::isTorrentFileAssocSet(false))
+  {
+    checkAssociateTorrents->setChecked(true);
+    checkAssociateTorrents->setEnabled(false);
+  }
+  else
+  {
+    checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
+  }
+  if (Preferences::isMagnetLinkAssocSet(false))
+  {
+    checkAssociateMagnetLinks->setChecked(true);
+    checkAssociateMagnetLinks->setEnabled(false);
+  }
+  else
+  {
+    checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+  }
 #endif
   // End General preferences
   // Downloads preferences
