@@ -176,9 +176,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-301</y>
              <width>458</width>
-             <height>587</height>
+             <height>648</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -450,17 +450,73 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_28">
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateTorrents">
-                    <property name="text">
-                     <string>Use qBittorrent for .torrent files</string>
-                    </property>
+                   <widget class="QWidget" name="assocPanel" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_31">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateTorrents">
+                       <property name="text">
+                        <string>Use qBittorrent for .torrent files</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="checkAssociateMagnetLinks">
+                       <property name="text">
+                        <string>Use qBittorrent for magnet links</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkAssociateMagnetLinks">
-                    <property name="text">
-                     <string>Use qBittorrent for magnet links</string>
-                    </property>
+                   <widget class="QWidget" name="newAssocPanel" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_30">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="labelSetAssoc">
+                       <property name="text">
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btnDefProgs">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Default Programs ...</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>
@@ -516,7 +572,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>458</width>
+             <width>396</width>
              <height>905</height>
             </rect>
            </property>
@@ -1034,7 +1090,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>357</width>
+             <width>361</width>
              <height>498</height>
             </rect>
            </property>
@@ -1796,18 +1852,18 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
+                      <property name="calendarPopup">
+                       <bool>false</bool>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>8</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
-                      </property>
-                      <property name="calendarPopup">
-                       <bool>false</bool>
                       </property>
                      </widget>
                     </item>
@@ -1826,15 +1882,15 @@
                       <property name="wrapping">
                        <bool>true</bool>
                       </property>
+                      <property name="displayFormat">
+                       <string notr="true">hh:mm</string>
+                      </property>
                       <property name="time">
                        <time>
                         <hour>20</hour>
                         <minute>0</minute>
                         <second>0</second>
                        </time>
-                      </property>
-                      <property name="displayFormat">
-                       <string notr="true">hh:mm</string>
                       </property>
                      </widget>
                     </item>
@@ -1936,7 +1992,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>418</width>
+             <width>440</width>
              <height>442</height>
             </rect>
            </property>

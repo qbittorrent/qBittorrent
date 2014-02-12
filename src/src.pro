@@ -174,8 +174,11 @@ nox {
              messageboxraised.cpp
 
   win32 {
-    HEADERS += programupdater.h
-    SOURCES += programupdater.cpp
+    HEADERS += programupdater.h \
+               fileassoc.h
+    SOURCES += programupdater.cpp \
+               fileassoc.cpp
+    DEFINES += NOMINMAX
   }
 
   macx {
