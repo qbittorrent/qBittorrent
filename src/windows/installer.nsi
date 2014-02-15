@@ -60,7 +60,28 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File /oname=translations\qt_zh_TW.qm "translations\qt_zh_TW.qm" 
   
   ; Write the installation path into the registry  
-  WriteRegStr HKLM "Software\qbittorrent" "InstallLocation" "$INSTDIR"
+  WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
+  
+  ; Register qBittorrent as possible default program for .torrent files and magnet links
+  WriteRegStr HKLM "Software\qBittorrent\Capabilities" "ApplicationDescription" "A BitTorrent client in Qt"
+  WriteRegStr HKLM "Software\qBittorrent\Capabilities" "ApplicationName" "qBittorrent"
+  WriteRegStr HKLM "Software\qBittorrent\Capabilities\FileAssociations" ".torrent" "qBittorrent.File.Torrent"
+  WriteRegStr HKLM "Software\qBittorrent\Capabilities\UrlAssociations" "magnet" "qBittorrent.Url.Magnet"
+  WriteRegStr HKLM "Software\RegisteredApplications" "qBittorrent" "Software\qBittorrent\Capabilities"
+  ; Register qBittorrent ProgIDs
+  WriteRegStr HKLM "Software\Classes\qBittorrent.File.Torrent" "" "Torrent File"
+  WriteRegStr HKLM "Software\Classes\qBittorrent.File.Torrent\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
+  WriteRegStr HKLM "Software\Classes\qBittorrent.File.Torrent\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
+  WriteRegStr HKLM "Software\Classes\qBittorrent.Url.Magnet" "" "Magnet URI"
+  WriteRegStr HKLM "Software\Classes\qBittorrent.Url.Magnet\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
+  WriteRegStr HKLM "Software\Classes\qBittorrent.Url.Magnet\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
+  
+  WriteRegStr HKLM "Software\Classes\.torrent" "Content Type" "application/x-bittorrent"
+  WriteRegStr HKLM "Software\Classes\magnet" "" "URL:Magnet URI"
+  WriteRegStr HKLM "Software\Classes\magnet" "Content Type" "application/x-magnet"
+  WriteRegStr HKLM "Software\Classes\magnet" "URL Protocol" ""
+  
+  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayName" "qBittorrent ${PROG_VERSION}"
@@ -90,32 +111,6 @@ Section $(inst_startmenu) ;"Create Start Menu Shortcut"
   CreateDirectory "$SMPROGRAMS\qBittorrent"  
   CreateShortCut "$SMPROGRAMS\qBittorrent\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
   CreateShortCut "$SMPROGRAMS\qBittorrent\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  
-SectionEnd
-
-Section $(inst_torrent) ;"Open .torrent files with qBittorrent"
-
-  WriteRegStr HKEY_CLASSES_ROOT ".torrent" "" "qBittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT ".torrent" "Content Type" "application/x-bittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\shell" "" "open"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\Content Type" "" "application/x-bittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
-  
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
-  
-SectionEnd
-
-Section $(inst_magnet) ;"Open magnet links with qBittorrent"
-
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "" "Magnet URI"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "Content Type" "application/x-magnet"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "URL Protocol" ""
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\shell" "" "open"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
-  
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
   
 SectionEnd
 
