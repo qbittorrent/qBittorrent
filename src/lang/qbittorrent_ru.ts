@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Частые ключи для cookies это : &apos;%1&apos;, &apos;%2&apos;.
 Вам следует взять эту информацию из настроек вашего веб-браузера.</translation>
@@ -1546,23 +1544,23 @@ Do you want to associate qBittorrent to torrent files and Magnet links?</source>
     <message>
         <location filename="../mainwindow.cpp" line="1360"/>
         <source>A new version is available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1361"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1370"/>
         <source>There isn&apos;t a new version available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1371"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
@@ -3035,13 +3033,13 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="833"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; был удален из списка торрентов и с жесткого диска.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="835"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; был удален из списка торрентов.</translation>
     </message>
     <message>
@@ -3055,27 +3053,27 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1102"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1104"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; уже присутствует в списке закачек.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1230"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1235"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>%1 возобновлен. (быстрое возобновление)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1763"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1765"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
@@ -3138,7 +3136,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1232"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1237"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; добавлен в список закачек.</translation>
     </message>
     <message>
@@ -3161,7 +3159,7 @@ Are you sure you want to quit qBittorrent?</source>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1073"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Не удалось декодировать torrent файл: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3273,7 +3271,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2718"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Скачиваем &apos;%1&apos;, подождите...</translation>
     </message>
 </context>
@@ -3316,7 +3314,7 @@ Are you sure you want to quit qBittorrent?</source>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;

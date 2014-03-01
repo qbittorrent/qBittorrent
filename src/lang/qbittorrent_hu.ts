@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -49,7 +47,7 @@
     <message>
         <location filename="../about.ui" line="354"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.ui" line="408"/>
@@ -190,12 +188,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Already in download list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="636"/>
@@ -215,7 +213,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="231"/>
@@ -225,7 +223,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="243"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="304"/>
@@ -284,17 +282,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="610"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="614"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="617"/>
         <source>Unknown error</source>
-        <translation type="unfinished">Ismeretlen hiba</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -390,12 +388,12 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="276"/>
         <source>Exchange trackers with other peers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="279"/>
         <source>Always announce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
@@ -411,7 +409,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="254"/>
         <source>Display program on-screen notifications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="257"/>
@@ -524,7 +522,7 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="322"/>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="326"/>
@@ -641,17 +639,17 @@
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="541"/>
         <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="545"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;Whitespaces count as AND operators&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../rss/automatedrssdownloader.cpp" line="547"/>
         <source>Wildcard mode: you can use&lt;ul&gt;&lt;li&gt;? to match any single character&lt;/li&gt;&lt;li&gt;* to match zero or more of any characters&lt;/li&gt;&lt;li&gt;| is used as OR operator&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Gyakori süti kulcsok: &apos;%1&apos;, &apos;%2&apos;.
 Ez megtudható a  böngésző beállításaiból.</translation>
@@ -691,12 +689,12 @@ Ez megtudható a  böngésző beállításaiból.</translation>
     <message>
         <location filename="../dnsupdater.cpp" line="182"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="192"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="198"/>
@@ -711,17 +709,17 @@ Ez megtudható a  böngésző beállításaiból.</translation>
     <message>
         <location filename="../dnsupdater.cpp" line="209"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="215"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="236"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../dnsupdater.cpp" line="248"/>
@@ -740,13 +738,13 @@ Ez megtudható a  böngésző beállításaiból.</translation>
         <location filename="../deletionconfirmationdlg.h" line="46"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1135,7 +1133,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../loglistwidget.cpp" line="48"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1326,19 +1324,19 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
     <message>
         <location filename="../mainwindow.ui" line="382"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="387"/>
         <location filename="../mainwindow.cpp" line="1375"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Frissítések ellenőrzése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <location filename="../mainwindow.cpp" line="1376"/>
         <source>Check for program updates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="292"/>
@@ -1396,7 +1394,7 @@ Vélhetően tisztában vagy ezzel, így többé nem kapsz figyelmeztetést.</tra
         <location filename="../mainwindow.cpp" line="152"/>
         <location filename="../mainwindow.cpp" line="412"/>
         <source>Clear the password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="187"/>
@@ -1447,7 +1445,7 @@ Szeretnéd alapértelmezetté tenni?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="412"/>
         <source>Are you sure you want to clear the password?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="439"/>
@@ -1546,33 +1544,33 @@ Oka: %2</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1360"/>
         <source>A new version is available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1361"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1370"/>
         <source>There isn&apos;t a new version available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1371"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1468"/>
         <source>Already checking for program updates in the background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="401"/>
@@ -1791,72 +1789,72 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="468"/>
         <source>interested(local) and choked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="474"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="483"/>
         <source>interested(peer) and choked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="489"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="497"/>
         <source>optimistic unchoke</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="504"/>
         <source>peer snubbed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="511"/>
         <source>incoming connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="518"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="525"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="532"/>
         <source>peer from PEX</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="539"/>
         <source>peer from DHT</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="546"/>
         <source>encrypted traffic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="553"/>
         <source>encrypted handshake</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="568"/>
         <source>peer from LSD</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1935,7 +1933,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1119"/>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1272"/>
@@ -2261,7 +2259,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -2331,7 +2329,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1047"/>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1097"/>
@@ -2351,12 +2349,12 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../preferences/options.ui" line="1368"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1371"/>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1443"/>
@@ -3035,13 +3033,13 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="833"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról és a merevlemezről.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="835"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; eltávolítva az átviteli listáról.</translation>
     </message>
     <message>
@@ -3055,39 +3053,39 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1102"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1104"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; már letöltés alatt.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1230"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1235"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; visszaállítva. (folytatás)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1763"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1765"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1979"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2301"/>
@@ -3108,19 +3106,19 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2592"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2605"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2635"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2893"/>
@@ -3138,7 +3136,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1232"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1237"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; felvéve a letöltési listára.</translation>
     </message>
     <message>
@@ -3161,7 +3159,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1073"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Megfejthetetlen torrent: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3273,7 +3271,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2718"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Letöltés alatt: &apos;%1&apos;, kis türelmet...</translation>
     </message>
 </context>
@@ -3316,7 +3314,7 @@ Bizotos, hogy bezárod a qBittorrentet?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3635,7 +3633,7 @@ Szeretnéd most telepíteni?</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -3742,87 +3740,87 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="50"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="77"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="94"/>
         <source>Total waste (this session):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="114"/>
         <source>Cache statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="120"/>
         <source>Read cache Hits:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="147"/>
         <source>Total buffers size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="157"/>
         <source>Performance statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="203"/>
         <source>Queued I/O jobs:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="210"/>
         <source>Write cache overload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="217"/>
         <source>Average time in queue (ms):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="224"/>
         <source>Read cache overload:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="231"/>
         <source>Total queued size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="279"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3891,7 +3889,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../statusbar.h" line="212"/>
         <source>Manual change of rate limits mode. The scheduler is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../statusbar.h" line="224"/>
@@ -3924,7 +3922,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../torrentcontentmodel.cpp" line="42"/>
         <source>Priority</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4157,19 +4155,19 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished">Letöltve</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished">Feltöltve</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
@@ -4285,7 +4283,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../properties/trackerlist.cpp" line="431"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../properties/trackerlist.cpp" line="425"/>
@@ -4352,13 +4350,13 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistdelegate.h" line="93"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="96"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="100"/>
@@ -4393,13 +4391,13 @@ Kérlek telepítsd manuálisan.</translation>
         <location filename="../transferlistdelegate.h" line="118"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="121"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="134"/>
@@ -4786,32 +4784,32 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt4 toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>
         <source>Bug Tracker: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about_imp.h" line="62"/>
         <source>Forum: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about_imp.h" line="65"/>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about_imp.h" line="82"/>
@@ -5015,7 +5013,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="250"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../torrentcreator/createtorrent.ui" line="289"/>
@@ -5038,7 +5036,7 @@ Kérlek telepítsd manuálisan.</translation>
     <message>
         <location filename="../downloadfromurldlg.ui" line="55"/>
         <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../downloadfromurldlg.ui" line="77"/>
@@ -5144,7 +5142,7 @@ Viszont kikapcsoltam a modult.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="353"/>
@@ -5249,7 +5247,7 @@ Viszont kikapcsoltam a modult.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>
@@ -5525,12 +5523,12 @@ Viszont kikapcsoltam a modult.</translation>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1422"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1425"/>
         <source>Time Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5571,7 +5569,7 @@ Viszont kikapcsoltam a modult.</translation>
     <message>
         <location filename="../preview.ui" line="54"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../preview.ui" line="89"/>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Les valeurs habituelles des clées des cookies sont : &apos;%1&apos;, &apos;%2&apos;.
 Vous pouvez récupérer ces informations à partir des préférences de votre navigateur Internet.</translation>
@@ -740,13 +738,13 @@ Vous pouvez récupérer ces informations à partir des préférences de votre na
         <location filename="../deletionconfirmationdlg.h" line="46"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment supprimer &quot;%1&quot; de la liste des transferts ?</translation>
     </message>
     <message>
         <location filename="../deletionconfirmationdlg.h" line="48"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment supprimer ces %1 torrents de la liste des transferts ?</translation>
     </message>
 </context>
 <context>
@@ -1326,19 +1324,19 @@ Ce message d&apos;avertissement ne sera plus affiché.</translation>
     <message>
         <location filename="../mainwindow.ui" line="382"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="387"/>
         <location filename="../mainwindow.cpp" line="1375"/>
         <source>Check for updates</source>
-        <translation type="unfinished">Mettre à jour</translation>
+        <translation>Rechercher des mises à jour</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <location filename="../mainwindow.cpp" line="1376"/>
         <source>Check for program updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier la disponibilité de mises à jour</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="292"/>
@@ -1546,33 +1544,34 @@ Raison : %2</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1360"/>
         <source>A new version is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version est disponible</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1361"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version de qBittorrent est disponible sur Sourceforge.
+Voulez-vous effectuer la mise à jour de qBittorrent vers la version %1 ?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1370"/>
         <source>There isn&apos;t a new version available</source>
-        <translation type="unfinished"></translation>
+        <translation>Il n&apos;y a pas de nouvelle version disponible</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1371"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
-        <translation type="unfinished"></translation>
+        <translation>Il n&apos;existe pas de version plus récente de qBittorrent sur Sourceforge</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de mises à jour...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1468"/>
         <source>Already checking for program updates in the background</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de mises à jour déjà en cours en tâche de fond</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="401"/>
@@ -1791,72 +1790,72 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="468"/>
         <source>interested(local) and choked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>intéressé (local) et engorgé (peer)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="474"/>
         <source>interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>intéressé (local) et non engorgé (peer)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="483"/>
         <source>interested(peer) and choked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation>intéressé (peer) et engorgé (local)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="489"/>
         <source>interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation>intéressé (peer) et non engorgé (local)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="497"/>
         <source>optimistic unchoke</source>
-        <translation type="unfinished"></translation>
+        <translation>non étranglement optimiste</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="504"/>
         <source>peer snubbed</source>
-        <translation type="unfinished"></translation>
+        <translation>peer évité</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="511"/>
         <source>incoming connection</source>
-        <translation type="unfinished"></translation>
+        <translation>connexion entrante</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="518"/>
         <source>not interested(local) and unchoked(peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>non intéressé (local) et non engorgé (peer)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="525"/>
         <source>not interested(peer) and unchoked(local)</source>
-        <translation type="unfinished"></translation>
+        <translation>non intéressé (peer) et non engorgé (local)</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="532"/>
         <source>peer from PEX</source>
-        <translation type="unfinished"></translation>
+        <translation>peer issu de PEX</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="539"/>
         <source>peer from DHT</source>
-        <translation type="unfinished"></translation>
+        <translation>peer issu de la DHT</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="546"/>
         <source>encrypted traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>trafic chiffré</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="553"/>
         <source>encrypted handshake</source>
-        <translation type="unfinished"></translation>
+        <translation>poignée de main chiffrée</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="568"/>
         <source>peer from LSD</source>
-        <translation type="unfinished"></translation>
+        <translation>peer issu de LSD</translation>
     </message>
 </context>
 <context>
@@ -3035,13 +3034,13 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="833"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; a été supprimé de la liste et du disque dur.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="835"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; a été supprimé de la liste.</translation>
     </message>
     <message>
@@ -3055,27 +3054,27 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1102"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1104"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; est déjà présent dans la liste de téléchargement.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1230"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1235"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; a été relancé. (relancement rapide)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1763"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; a été bloqué</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1765"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; a été banni</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
@@ -3138,7 +3137,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1232"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1237"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; a été ajouté à la liste de téléchargement.</translation>
     </message>
     <message>
@@ -3161,7 +3160,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1073"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Impossible de décoder le torrent : &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3273,7 +3272,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2718"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>Téléchargement de &apos;%1&apos;, veuillez patienter...</translation>
     </message>
 </context>
@@ -3316,7 +3315,7 @@ Etes-vous certain de vouloir quitter qBittorrent ?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3742,87 +3741,87 @@ Veuillez l&apos;installer manuellement.</translation>
     <message>
         <location filename="../statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques utilisateur</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre total de connexions aux peers:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ratio global :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="50"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargé depuis la première utilisation :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="77"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Envoyé depuis la première utilisation :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="94"/>
         <source>Total waste (this session):</source>
-        <translation type="unfinished"></translation>
+        <translation>Total gaspillé (durant cette session) :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="114"/>
         <source>Cache statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques du tampon</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="120"/>
         <source>Read cache Hits:</source>
-        <translation type="unfinished"></translation>
+        <translation>Succès de tampon en lecture :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="147"/>
         <source>Total buffers size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille totale des buffers :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="157"/>
         <source>Performance statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiques de performance</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="203"/>
         <source>Queued I/O jobs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobs d&apos;E/S en file d&apos;attente :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="210"/>
         <source>Write cache overload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Surcharge du tampon d&apos;écriture :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="217"/>
         <source>Average time in queue (ms):</source>
-        <translation type="unfinished"></translation>
+        <translation>Temps moyen passé en file d&apos;attente (ms) :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="224"/>
         <source>Read cache overload:</source>
-        <translation type="unfinished"></translation>
+        <translation>Surcharge du tampon de lecture :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="231"/>
         <source>Total queued size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille totale des fichiers en file d&apos;attente :</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="279"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -4157,19 +4156,19 @@ Veuillez l&apos;installer manuellement.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished">Téléchargé</translation>
+        <translation>Téléchargé</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished">Envoyé</translation>
+        <translation>Envoyé</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Restant</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
