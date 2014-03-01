@@ -43,7 +43,7 @@ before_install:
 
 install:
   - if [[ "$lt_source" == "from_dist" ]]; then sudo apt-get -qq install libtorrent-rasterbar-dev; fi
-  - if [[ "$lt_source" == "from_svn" ]]; then cd .. && svn co svn://svn.code.sf.net/p/libtorrent/code/branches/RC_0_16 ./libtorrent && (cd libtorrent && ./autotool.sh && ./configure $ltconf && sudo make install) && sudo ldconfig /usr/local/lib && cd $TRAVIS_BUILD_DIR ; fi
+  - if [[ "$lt_source" == "from_svn" ]]; then cd .. && svn co http://libtorrent.googlecode.com/svn/branches/RC_0_16 ./libtorrent && (cd libtorrent && ./autotool.sh && ./configure $ltconf && sudo make install) && sudo ldconfig /usr/local/lib && cd $TRAVIS_BUILD_DIR ; fi
 
 script:
   - qt-qconf
