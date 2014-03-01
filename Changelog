@@ -1,3 +1,12 @@
+* Sat Mar 01 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.9
+    - BUGFIX: Fix nox build. Closes #1368 (bob23450)
+    - BUGFIX: Fix build with libtorrent 0.15.x (sledgehammer999)
+    - BUGFIX: Fix missing percentage signs. Closes #1392. (sledgehammer999)
+    - BUGFIX: Fix queue sorting order. (alfrix)
+    - BUGFIX: Fix build using qt < 4.7 Closes #1385. (Evgeny Lensky)
+    - BUGFIX: Fix autoupdater. Send our user-agent to sourceforge.net (sledgehammer999)
+    - FEATURE: Add button for links in toolbar (alfrix)
+
 * Sun Feb 02 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.8
     - BUGFIX: Really fix build of v3.1.6
 
