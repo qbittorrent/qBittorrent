@@ -170,13 +170,13 @@ private slots:
     const Preferences pref;
     // Disk write cache
     spin_cache.setMinimum(0);
-    spin_cache.setMaximum(2048);
+    spin_cache.setMaximum(32768);
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
-    spin_cache_ttl.setMaximum(600);
+    spin_cache_ttl.setMaximum(3600);
     spin_cache_ttl.setValue(pref.diskCacheTTL());
     spin_cache_ttl.setSuffix(tr(" s", " seconds"));
     setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
