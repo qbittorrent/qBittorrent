@@ -85,7 +85,11 @@ options_imp::options_imp(QWidget *parent):
     }
   }
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#else
+  scanFoldersView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#endif
   scanFoldersView->setModel(ScanFoldersModel::instance());
   connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(enableApplyButton()));
   connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
@@ -102,15 +106,15 @@ options_imp::options_imp(QWidget *parent):
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
   if (!QSystemTrayIcon::isSystemTrayAvailable()) {
 #endif
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
   }
 #endif
-#if !defined(Q_WS_X11)
+#if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC))
   label_trayIconStyle->setVisible(false);
   comboTrayIcon->setVisible(false);
 #endif
@@ -118,7 +122,7 @@ options_imp::options_imp(QWidget *parent):
   checkWebUiHttps->setVisible(false);
 #endif
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
@@ -136,17 +140,17 @@ options_imp::options_imp(QWidget *parent):
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   connect(checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-#if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
@@ -367,7 +371,7 @@ void options_imp::saveOptions() {
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
   pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   pref.setStartup(Startup());
   // Windows: file association settings
   Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
@@ -524,7 +528,7 @@ void options_imp::loadOptions() {
   comboTrayIcon->setCurrentIndex(pref.trayIconStyle());
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   checkStartup->setChecked(pref.Startup());
   // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -961,7 +965,7 @@ bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 bool options_imp::Startup() const {
   return checkStartup->isChecked();
 }

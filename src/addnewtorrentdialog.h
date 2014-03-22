@@ -34,6 +34,7 @@
 #include <QShortcut>
 #include <QDialog>
 #include <QUrl>
+
 #include <libtorrent/torrent_info.hpp>
 #include "qtorrenthandle.h"
 

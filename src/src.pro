@@ -36,6 +36,8 @@ nox {
 }
 QT += network
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 # Vars
 LANG_PATH = lang
 ICONS_PATH = Icons
@@ -86,7 +88,7 @@ usesystemqtsingleapplication {
 include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(tracker/tracker.pri)
-include (preferences/preferences.pri)
+include(preferences/preferences.pri)
 
 !nox {
   include(lineedit/lineedit.pri)
@@ -176,6 +178,7 @@ nox {
   win32 {
     HEADERS += programupdater.h
     SOURCES += programupdater.cpp
+    DEFINES += NOMINMAX
   }
 
   macx {

@@ -43,7 +43,7 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <stdlib.h>
 #endif
 
@@ -80,7 +80,7 @@ SearchEngine::SearchEngine(MainWindow* parent)
   // Boolean initialization
   search_stopped = false;
   // Creating Search Process
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   has_python = addPythonPathToEnv();
 #endif
   searchProcess = new QProcess(this);
@@ -95,7 +95,7 @@ SearchEngine::SearchEngine(MainWindow* parent)
   // Update nova.py search plugin if necessary
   updateNova();
   supported_engines = new SupportedEngines(
-      #ifdef Q_WS_WIN
+      #ifdef Q_OS_WIN
         has_python
       #endif
         );
@@ -115,7 +115,7 @@ void SearchEngine::fillCatCombobox() {
   }
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 bool SearchEngine::addPythonPathToEnv() {
   QString python_path = Preferences::getPythonPath();
   if (!python_path.isEmpty()) {
@@ -227,7 +227,7 @@ void SearchEngine::giveFocusToSearchInput() {
 
 // Function called when we click on search button
 void SearchEngine::on_search_button_clicked() {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   if (!has_python) {
     if (QMessageBox::question(this, tr("Missing Python Interpreter"),
                              tr("Python 2.x is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?"),
@@ -239,7 +239,7 @@ void SearchEngine::on_search_button_clicked() {
   }
 #endif
   if (searchProcess->state() != QProcess::NotRunning) {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     searchProcess->kill();
 #else
     searchProcess->terminate();
@@ -492,7 +492,7 @@ void SearchEngine::searchFinished(int exitcode,QProcess::ExitStatus) {
     mp_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
   }
   if (exitcode) {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     search_status->setText(tr("Search aborted"));
 #else
     search_status->setText(tr("An error occurred during search..."));

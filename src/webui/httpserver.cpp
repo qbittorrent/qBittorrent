@@ -156,7 +156,11 @@ void HttpServer::disableHttps() {
 }
 #endif
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+void HttpServer::incomingConnection(qintptr socketDescriptor)
+#else
 void HttpServer::incomingConnection(int socketDescriptor)
+#endif
 {
   QTcpSocket *serverSocket;
 #ifndef QT_NO_OPENSSL

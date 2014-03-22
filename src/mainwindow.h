@@ -139,7 +139,7 @@ protected slots:
   void optionsSaved();
   // HTTP slots
   void on_actionDownload_from_URL_triggered();
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   void handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser);
 #endif
 
@@ -197,7 +197,7 @@ private:
   // Power Management
   PowerManagement *m_pwr;
   QTimer *preventTimer;
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   QTimer programUpdateTimer;
 #endif
 
@@ -214,7 +214,7 @@ private slots:
     void on_actionAutoShutdown_system_toggled(bool );
     // Check for active torrents and set preventing from suspend state
     void checkForActiveTorrents();
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
 };

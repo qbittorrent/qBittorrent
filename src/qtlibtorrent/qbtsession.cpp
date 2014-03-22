@@ -91,7 +91,7 @@ const int MAX_TRACKER_ERRORS = 2;
 
 /* Converts a QString hash into a libtorrent sha1_hash */
 static libtorrent::sha1_hash QStringToSha1(const QString& s) {
-  QByteArray raw = s.toAscii();
+  QByteArray raw = s.toLatin1();
   Q_ASSERT(raw.size() == 40);
   libtorrent::sha1_hash ret;
   from_hex(raw.constData(), 40, (char*)&ret[0]);
@@ -1021,7 +1021,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   // Fix the input path if necessary
   path = fsutils::fromNativePath(path);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   // Windows hack
   if (!path.endsWith(".torrent"))
     if (QFile::rename(path, path+".torrent")) path += ".torrent";
@@ -1890,7 +1890,7 @@ void QBtSession::setListeningPort(int port) {
   qDebug("This network interface has %d IP addresses", network_iface.addressEntries().size());
   foreach (const QNetworkAddressEntry &entry, network_iface.addressEntries()) {
     qDebug("Trying to listen on IP %s (%s)", qPrintable(entry.ip().toString()), qPrintable(iface_name));
-    s->listen_on(ports, ec, entry.ip().toString().toAscii().constData(), session::listen_no_system_port);
+    s->listen_on(ports, ec, entry.ip().toString().toLatin1().constData(), session::listen_no_system_port);
     if (!ec) {
       ip = entry.ip().toString();
       addConsoleMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(QString::number(port)), "blue");
@@ -2443,16 +2443,16 @@ void QBtSession::readAlerts() {
         boost::system::error_code ec;
         string ip = p->ip.to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), true);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), true);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (peer_ban_alert* p = dynamic_cast<peer_ban_alert*>(a.get())) {
         boost::system::error_code ec;
         string ip = p->ip.address().to_string(ec);
         if (!ec) {
-          addPeerBanMessage(QString::fromAscii(ip.c_str()), false);
-          //emit peerBlocked(QString::fromAscii(ip.c_str()));
+          addPeerBanMessage(QString::fromLatin1(ip.c_str()), false);
+          //emit peerBlocked(QString::fromLatin1(ip.c_str()));
         }
       }
       else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a.get())) {
@@ -2670,7 +2670,7 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
   if (index < 0) {
     // Add file to torrent download list
     file_path = fsutils::fromNativePath(file_path);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     // Windows hack
     if (!file_path.endsWith(".torrent", Qt::CaseInsensitive)) {
       Q_ASSERT(QFile::exists(file_path));

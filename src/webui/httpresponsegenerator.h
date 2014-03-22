@@ -32,21 +32,36 @@
 #ifndef HTTPRESPONSEGENERATOR_H
 #define HTTPRESPONSEGENERATOR_H
 
-#include<QHttpResponseHeader>
+#include <QString>
+#include <QList>
+#include <QPair>
 
-class HttpResponseGenerator : public QHttpResponseHeader
+class HttpResponseGenerator
 {
 
 public:
-    HttpResponseGenerator(): m_gzip(false) {}
+    HttpResponseGenerator();
+
+    void setStatusLine(int code, const QString &text, int majorVer = 1, int minorVer = 1);
+    void setValue(const QString &key, const QString &value);
     void setMessage(const QByteArray& message);
     void setMessage(const QString& message);
+    void setContentType(const QString &type);
     void setContentTypeByExt(const QString& ext);
-    void setContentEncoding(bool gzip) { m_gzip = gzip; }
+    void setContentLength(int len);
+    inline void setContentEncoding(bool gzip) { m_gzip = gzip; }
+
     QByteArray toByteArray();
 
 private:
+    void addValue(const QString &key, const QString &value);
     bool gCompress(QByteArray &dest_buffer);
+
+    int m_statCode;
+    QString m_reasonPhr;
+    int m_majVer;
+    int m_minVer;
+    QList<QPair<QString, QString> > m_values;
     QByteArray m_message;
     bool m_gzip;
 

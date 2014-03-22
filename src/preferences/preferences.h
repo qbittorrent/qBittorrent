@@ -135,7 +135,7 @@ public:
   }
 
   bool systrayIntegration() const {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     return false;
 #else
     return value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
@@ -195,7 +195,7 @@ public:
     setValue("Preferences/General/PreventFromSuspend", b);
   }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   bool Startup() const {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     return settings.contains("qBittorrent");
@@ -1135,7 +1135,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), enabled);
   }
 
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   bool useSystemIconTheme() const {
     return value(QString::fromUtf8("Preferences/Advanced/useSystemIconTheme"), true).toBool();
   }
@@ -1171,7 +1171,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/DisableRecursiveDownload"), disable);
   }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   static QString getPythonPath() {
     QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QIniSettings::NativeFormat);
     QStringList versions = reg_python.childGroups();
@@ -1311,7 +1311,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/trackerPort"), port);
   }
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   bool isUpdateCheckEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/updateCheck"), true).toBool();
   }

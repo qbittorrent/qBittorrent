@@ -36,6 +36,7 @@
 #include <QMessageBox>
 #include <QHostAddress>
 #include "ui_peer.h"
+
 #include <libtorrent/session.hpp>
 
 #include <boost/version.hpp>

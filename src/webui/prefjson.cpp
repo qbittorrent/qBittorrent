@@ -130,8 +130,8 @@ QString prefjson::getPreferences()
   data.add("web_ui_password", pref.getWebUiPassword());
   data.add("bypass_local_auth", !pref.isWebUiLocalAuthEnabled());
   data.add("use_https", pref.isWebUiHttpsEnabled());
-  data.add("ssl_key", QString::fromAscii(pref.getWebUiHttpsKey()));
-  data.add("ssl_cert", QString::fromAscii(pref.getWebUiHttpsCertificate()));
+  data.add("ssl_key", QString::fromLatin1(pref.getWebUiHttpsKey()));
+  data.add("ssl_cert", QString::fromLatin1(pref.getWebUiHttpsCertificate()));
   // DynDns
   data.add("dyndns_enabled", pref.isDynDNSEnabled());
   data.add("dyndns_service", pref.getDynDNSService());
@@ -317,12 +317,12 @@ void prefjson::setPreferences(const QString& json)
     pref.setWebUiHttpsEnabled(m["use_https"].toBool());
 #ifndef QT_NO_OPENSSL
   if (m.contains("ssl_key")) {
-    QByteArray raw_key = m["ssl_key"].toString().toAscii();
+    QByteArray raw_key = m["ssl_key"].toString().toLatin1();
     if (!QSslKey(raw_key, QSsl::Rsa).isNull())
       pref.setWebUiHttpsKey(raw_key);
   }
   if (m.contains("ssl_cert")) {
-    QByteArray raw_cert = m["ssl_cert"].toString().toAscii();
+    QByteArray raw_cert = m["ssl_cert"].toString().toLatin1();
     if (!QSslCertificate(raw_cert).isNull())
       pref.setWebUiHttpsCertificate(raw_cert);
   }

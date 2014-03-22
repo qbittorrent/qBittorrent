@@ -33,7 +33,7 @@
 
 #include <QtCore/QtGlobal>
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "qmacapplication.h"
 #else
 #include "qtsingleapplication.h"
@@ -42,7 +42,7 @@
 #include <QSessionManager>
 
 class SessionApplication :
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     public QMacApplication
 #else
     public QtSingleApplication

@@ -33,6 +33,7 @@
 
 #include <QList>
 #include <QVariant>
+
 #include <libtorrent/torrent_info.hpp>
 
 namespace prio {

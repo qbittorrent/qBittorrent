@@ -42,8 +42,6 @@
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
-#include <QHttpRequestHeader>
-#include <QHttpResponseHeader>
 #include <QFile>
 #include <QDebug>
 #include <QRegExp>
@@ -81,58 +79,25 @@ void HttpConnection::read()
 {
   m_receivedData.append(m_socket->readAll());
 
-  // Parse HTTP request header
-  const int header_end = m_receivedData.indexOf("\r\n\r\n");
-  if (header_end < 0) {
-    qDebug() << "Partial request: \n" << m_receivedData;
+  m_parser.parse(m_receivedData);
+  switch (m_parser.error())
+  {
+  case HttpRequestParser::IncompleteRequest:
     // Partial request waiting for the rest
-    return;
-  }
-
-  const QByteArray header = m_receivedData.left(header_end);
-  m_parser.writeHeader(header);
-  if (m_parser.isError()) {
-    qWarning() << Q_FUNC_INFO << "header parsing error";
+    break;
+  case HttpRequestParser::BadRequest:
     m_receivedData.clear();
     m_generator.setStatusLine(400, "Bad Request");
     m_generator.setContentEncoding(m_parser.acceptsEncoding());
     write();
-    return;
-  }
-
-  // Parse HTTP request message
-  if (m_parser.header().hasContentLength())  {
-    const int expected_length = m_parser.header().contentLength();
-    QByteArray message = m_receivedData.mid(header_end + 4, expected_length);
-
-    if (expected_length > 10000000 /* ~10MB */) {
-      qWarning() << "Bad request: message too long";
-      m_generator.setStatusLine(400, "Bad Request");
-      m_generator.setContentEncoding(m_parser.acceptsEncoding());
+    break;
+  case HttpRequestParser::NoError:
+    if (!m_parser.hasContentLength())
       m_receivedData.clear();
-      write();
-      return;
-    }
-
-    if (message.length() < expected_length) {
-      // Message too short, waiting for the rest
-      qDebug() << "Partial message:\n" << message;
-      return;
-    }
-
-    m_parser.writeMessage(message);
-    m_receivedData = m_receivedData.mid(header_end + 4 + expected_length);
-  } else {
-    m_receivedData.clear();
-  }
-
-  if (m_parser.isError()) {
-    qWarning() << Q_FUNC_INFO << "message parsing error";
-    m_generator.setStatusLine(400, "Bad Request");
-    m_generator.setContentEncoding(m_parser.acceptsEncoding());
-    write();
-  } else {
+    else
+      m_receivedData = m_receivedData.mid(m_parser.length());
     respond();
+    break;
   }
 }
 
@@ -168,7 +133,11 @@ void HttpConnection::translateDocument(QString& data) {
       if (isTranslationNeeded) {
         int context_index = 0;
         while(context_index < context_count && translation == word) {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+#else
+          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+#endif
           ++context_index;
         }
       }
@@ -197,7 +166,7 @@ void HttpConnection::respond() {
       write();
       return;
     }
-    QString auth = m_parser.header().value("Authorization");
+    QString auth = m_parser.value("Authorization");
     if (auth.isEmpty()) {
       // Return unauthorized header
       qDebug("Auth is Empty...");
@@ -209,7 +178,7 @@ void HttpConnection::respond() {
     }
     //qDebug("Auth: %s", qPrintable(auth.split(" ").first()));
     if (QString::compare(auth.split(" ").first(), "Digest", Qt::CaseInsensitive) != 0
-        || !m_httpserver->isAuthorized(auth.toUtf8(), m_parser.header().method())) {
+        || !m_httpserver->isAuthorized(auth.toUtf8(), m_parser.method())) {
       // Update failed attempt counter
       m_httpserver->increaseNbFailedAttemptsForIp(peer_ip);
       qDebug("client IP: %s (%d failed attempts)", qPrintable(peer_ip), nb_fail);
