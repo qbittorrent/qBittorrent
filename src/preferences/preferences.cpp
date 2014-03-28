@@ -1157,6 +1157,14 @@ void Preferences::setOsCache(bool enable) {
   setValue("Preferences/Advanced/osCache", enable);
 }
 
+uint Preferences::saveResumeDataInterval() const {
+  return value("Preferences/Downloads/SaveResumeDataInterval", 3).toUInt();
+}
+
+void Preferences::setSaveResumeDataInterval(uint m) {
+  setValue("Preferences/Downloads/SaveResumeDataInterval", m);
+}
+
 uint Preferences::outgoingPortsMin() const {
   return value("Preferences/Advanced/OutgoingPortsMin", 0).toUInt();
 }

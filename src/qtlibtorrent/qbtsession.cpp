@@ -166,7 +166,7 @@ QBtSession::QBtSession()
   connect(downloader, SIGNAL(magnetRedirect(QString, QString)), SLOT(handleMagnetRedirect(QString, QString)));
   // Regular saving of fastresume data
   connect(&resumeDataTimer, SIGNAL(timeout()), SLOT(saveTempFastResumeData()));
-  resumeDataTimer.start(170000); // 3min
+  resumeDataTimer.start(pref->saveResumeDataInterval() * 60 * 1000);
   qDebug("* BTSession constructed");
 }
 
@@ -429,6 +429,7 @@ void QBtSession::configureSession() {
   session_settings::io_buffer_mode_t mode = pref->osCache() ? session_settings::enable_os_cache : session_settings::disable_os_cache;
   sessionSettings.disk_io_read_mode = mode;
   sessionSettings.disk_io_write_mode = mode;
+  resumeDataTimer.setInterval(pref->saveResumeDataInterval() * 60 * 1000);
   sessionSettings.anonymous_mode = pref->isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {
     addConsoleMessage(tr("Anonymous mode [ON]"), "blue");
