@@ -66,6 +66,8 @@ class QTabWidget;
 class QTimer;
 QT_END_NAMESPACE
 
+Q_DECLARE_METATYPE(QTorrentHandle);
+
 class MainWindow : public QMainWindow, private Ui::MainWindow{
   Q_OBJECT
 
