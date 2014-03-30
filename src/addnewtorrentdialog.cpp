@@ -560,7 +560,6 @@ void AddNewTorrentDialog::accept()
     // TODO: Check if destination actually exists
     TorrentTempData::setSeedingMode(m_hash, true);
   }
-  pref->addTorrentsInPause(!ui->start_torrent_cb->isChecked());
 
   // Label
   const QString label = ui->label_combo->currentText();
@@ -574,6 +573,8 @@ void AddNewTorrentDialog::accept()
   // Rename files if necessary
   if (m_hasRenamedFile)
     TorrentTempData::setFilesPath(m_hash, m_filesPath);
+
+  TorrentTempData::setAddPaused(m_hash, !ui->start_torrent_cb->isChecked());
 
   // Add torrent
   if (m_isMagnet)
