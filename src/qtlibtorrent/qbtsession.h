@@ -116,7 +116,7 @@ public:
   void postTorrentUpdate();
 
 public slots:
-  QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
+  QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false, bool imported = false);
   QTorrentHandle addMagnetUri(QString magnet_uri, bool resumed=false, bool fromScanDir=false, const QString &filePath=QString());
   void loadSessionState();
   void saveSessionState();
@@ -183,7 +183,7 @@ public slots:
   void unhideMagnet(const QString &hash);
 
 private:
-  QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null);
+  QString getSavePath(const QString &hash, bool fromScanDir = false, QString filePath = QString::null, bool imported = false);
   bool loadFastResumeData(const QString &hash, std::vector<char> &buf);
   void loadTorrentSettings(QTorrentHandle &h);
   void loadTorrentTempData(QTorrentHandle &h, QString savePath, bool magnet);

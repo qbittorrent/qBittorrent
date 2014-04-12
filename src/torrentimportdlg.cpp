@@ -75,7 +75,16 @@ void TorrentImportDlg::on_browseTorrentBtn_clicked()
 void TorrentImportDlg::on_browseContentBtn_clicked()
 {
   const QString default_dir = Preferences::instance()->getTorImportLastContentDir();
-  if (t->num_files() == 1) {
+  // Test for multi-file taken from libtorrent/create_torrent.hpp -> create_torrent::create_torrent
+  bool multifile = t->num_files() > 1;
+#if LIBTORRENT_VERSION_NUM >= 1600
+  if (!multifile && has_parent_path(t->files().file_path(*(t->files().begin()))))
+      multifile = true;
+#else
+  if (!multifile && t->file_at(0).path.has_parent_path())
+      multifile = true;
+#endif
+  if (!multifile) {
     // Single file torrent
     const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
     qDebug("Torrent has only one file: %s", qPrintable(file_name));
@@ -193,7 +202,7 @@ void TorrentImportDlg::importTorrent()
     TorrentTempData::setSavePath(hash, content_path);
     TorrentTempData::setSeedingMode(hash, dlg.skipFileChecking());
     qDebug("Adding the torrent to the session...");
-    QBtSession::instance()->addTorrent(torrent_path);
+    QBtSession::instance()->addTorrent(torrent_path, false, QString(), false, true);
     // Remember the last opened folder
     Preferences* const pref = Preferences::instance();
     pref->setMainLastDir(fsutils::fromNativePath(torrent_path));
