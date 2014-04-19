@@ -13,3 +13,7 @@ qrc_*.cpp
 ui_*.h
 *.moc
 src/lang/qbittorrent_*.qm
+#Autotools junk
+aclocal.m4
+autom4te.cache/*
+config.status
