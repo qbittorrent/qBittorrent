@@ -346,6 +346,14 @@ void MainWindow::shutdownCleanUp() {
   setUnifiedTitleAndToolBarOnMac(false);
 #endif
   disconnect(tabs, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
+
+  // Delete classes that can contain threads here
+  if (rssWidget)
+    delete rssWidget;
+  getTransferList()->m_running = false;
+  if (QThreadPool::globalInstance()->activeThreadCount())
+    QThreadPool::globalInstance()->waitForDone();
+
   // Delete other GUI objects
   if (executable_watcher)
     delete executable_watcher;
@@ -365,8 +373,6 @@ void MainWindow::shutdownCleanUp() {
     delete options;
   if (downloadFromURLDialog)
     delete downloadFromURLDialog;
-  if (rssWidget)
-    delete rssWidget;
   if (searchEngine)
     delete searchEngine;
   delete transferListFilters;

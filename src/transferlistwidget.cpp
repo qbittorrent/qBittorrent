@@ -39,6 +39,7 @@
 #include <QRegExp>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QtCore>
 
 #include <libtorrent/version.hpp>
 #include <vector>
@@ -65,7 +66,7 @@
 using namespace libtorrent;
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession *_BTSession):
-  QTreeView(parent), BTSession(_BTSession), main_window(main_window) {
+  QTreeView(parent), BTSession(_BTSession), main_window(main_window), m_running(true) {
 
   setUniformRowHeights(true);
   // Load settings
@@ -262,18 +263,28 @@ void TransferListWidget::setSelectedTorrentsLocation() {
     // Check if savePath exists
     QDir savePath(fsutils::expandPathAbs(dir));
     qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
-    foreach (const QString & hash, hashes) {
-      // Actually move storage
-      QTorrentHandle h = BTSession->getTorrentHandle(hash);
-      if (!BTSession->useTemporaryFolder() || h.is_seed()) {
-        if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
-        h.move_storage(savePath.absolutePath());
-      } else {
-        TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
-        main_window->getProperties()->updateSavePath(h);
-      }
-    }
+    QtConcurrent::run(this, &TransferListWidget::setSelectedTorrentsLocationDo, hashes, savePath);
   }
+}
+
+void TransferListWidget::setSelectedTorrentsLocationDo(QStringList hashes, QDir savePath) {
+  sstl_mutex.lock();
+  foreach (const QString & hash, hashes) {
+    if (!m_running)
+      break;
+    // Actually move storage
+    QTorrentHandle h = BTSession->getTorrentHandle(hash);
+    if (!BTSession->useTemporaryFolder() || h.is_seed()) {
+      if (!savePath.exists()) savePath.mkpath(savePath.absolutePath());
+      h.move_storage(savePath.absolutePath());
+    } else {
+      TorrentPersistentData::saveSavePath(h.hash(), savePath.absolutePath());
+      main_window->getProperties()->updateSavePath(h);
+    }
+    //make the gui responsive while moving torrents
+    SleeperThread::msleep(1000);
+  }
+  sstl_mutex.unlock();
 }
 
 void TransferListWidget::startSelectedTorrents() {

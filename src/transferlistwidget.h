@@ -33,6 +33,7 @@
 
 #include <QShortcut>
 #include <QTreeView>
+#include <QMutex>
 #include <libtorrent/version.hpp>
 #include "qtorrenthandle.h"
 #include "transferlistsortmodel.h"
@@ -56,6 +57,7 @@ public:
   TransferListWidget(QWidget *parent, MainWindow *main_window, QBtSession* BTSession);
   ~TransferListWidget();
   TorrentModel* getSourceModel() const;
+  bool m_running;
 
 public slots:
   void setSelectionLabel(QString label);
@@ -96,6 +98,7 @@ protected:
   void saveSettings();
   bool loadSettings();
   QStringList getSelectedTorrentsHashes() const;
+  void setSelectedTorrentsLocationDo(QStringList hashes, QDir savePath);
 
 protected slots:
   void torrentDoubleClicked(const QModelIndex& index);
@@ -122,6 +125,7 @@ private:
   MainWindow *main_window;
   QShortcut *editHotkey;
   QShortcut *deleteHotkey;
+  QMutex sstl_mutex;
 };
 
 #endif // TRANSFERLISTWIDGET_H
