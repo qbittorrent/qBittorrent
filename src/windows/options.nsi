@@ -18,7 +18,7 @@ XPStyle on
 !define CSIDL_APPDATA '0x1A' ;Application Data path
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
-!define PROG_VERSION "3.1.9"
+!define PROG_VERSION "3.1.9.1"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\qbittorrent.exe"
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
 
@@ -35,7 +35,7 @@ VIAddVersionKey "LegalCopyright" "Copyright ©2006-2013 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
-VIProductVersion "${PROG_VERSION}.0"
+VIProductVersion "${PROG_VERSION}"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\qBittorrent

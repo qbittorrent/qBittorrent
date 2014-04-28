@@ -129,7 +129,7 @@ QBtSession::QBtSession()
   version << VERSION_MAJOR;
   version << VERSION_MINOR;
   version << VERSION_BUGFIX;
-  version << 0;
+  version << 1;
   const QString peer_id = "qB";
   // Construct session
   s = new session(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)), 0);
