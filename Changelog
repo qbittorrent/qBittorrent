@@ -1,3 +1,6 @@
+* Mon Apr 28 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.9.1
+    - OTHER: This is an excuse to produce new builds with an OpenSSL version that isn't affected by the heartbleed bug for Windows and Mac. This bug should only affect the WebUI and only if HTTPS/SSL authentication was enabled.
+
 * Sat Mar 01 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.9
     - BUGFIX: Fix nox build. Closes #1368 (bob23450)
     - BUGFIX: Fix build with libtorrent 0.15.x (sledgehammer999)
