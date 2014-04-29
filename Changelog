@@ -1,3 +1,6 @@
+* Tue Apr 29 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.9.2
+    - OTHER: The v3.1.9.1 Windows build was broken
+
 * Mon Apr 28 2014 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.9.1
     - OTHER: This is an excuse to produce new builds with an OpenSSL version that isn't affected by the heartbleed bug for Windows and Mac. This bug should only affect the WebUI and only if HTTPS/SSL authentication was enabled.
 
