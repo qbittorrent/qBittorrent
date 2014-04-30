@@ -86,6 +86,9 @@ private slots:
   void on_registerDNSBtn_clicked();
   void setLocale(const QString &locale);
   void toggleAnonymousMode(bool enabled);
+#ifdef APP_ASSOC_REG
+  void showAppAssocUI();
+#endif
 
 private:
   // Methods

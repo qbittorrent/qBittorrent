@@ -40,9 +40,11 @@ CONFIG(debug, debug|release) {
   DEFINES += NDEBUG
 }
 
-#Enable backtrace support
 win32-msvc* {
+  # Enable backtrace support
   CONFIG += strace_win
+  # Enable COM-based associations registration
+  DEFINES += APP_ASSOC_REG
 }
 
 strace_win:{

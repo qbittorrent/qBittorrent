@@ -37,6 +37,7 @@
 #include <QDesktopWidget>
 #include <QTranslator>
 #include <QDesktopServices>
+#include <QSysInfo>
 
 #include <libtorrent/version.hpp>
 
@@ -49,6 +50,7 @@
 #include "qbtsession.h"
 #include "iconprovider.h"
 #include "dnsupdater.h"
+#include "fileassoc.h"
 
 #ifndef QT_NO_OPENSSL
 #include <QSslKey>
@@ -146,9 +148,22 @@ options_imp::options_imp(QWidget *parent):
 #if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
-#ifdef Q_WS_WIN
-  connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+#ifdef Q_OS_WIN
+  if (QSysInfo::WindowsVersion >= QSysInfo::WV_6_0)
+  {
+    assocPanel->hide();
+#ifndef APP_ASSOC_REG
+    btnDefProgs->hide();
+#else
+    connect(btnDefProgs, SIGNAL(clicked()), this, SLOT(showAppAssocUI()));
+#endif
+  }
+  else
+  {
+    newAssocPanel->hide();
+    connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+    connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
+  }
 #endif
   // Downloads tab
   connect(textSavePath, SIGNAL(textChanged(QString)), this, SLOT(enableApplyButton()));
@@ -370,8 +385,11 @@ void options_imp::saveOptions() {
 #ifdef Q_WS_WIN
   pref.setStartup(Startup());
   // Windows: file association settings
-  Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
-  Preferences::setMagnetLinkAssoc(checkAssociateMagnetLinks->isChecked());
+  if (QSysInfo::WindowsVersion < QSysInfo::WV_6_0)
+  {
+    fileassoc::setTorrent(checkAssociateTorrents->isChecked());
+    fileassoc::setMagnet(checkAssociateMagnetLinks->isChecked());
+  }
 #endif
   // End General preferences
 
@@ -526,9 +544,12 @@ void options_imp::loadOptions() {
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
 #ifdef Q_WS_WIN
   checkStartup->setChecked(pref.Startup());
-  // Windows: file association settings
-  checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-  checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
+  if (QSysInfo::WindowsVersion < QSysInfo::WV_6_0)
+  {
+    // Windows: file association settings
+    checkAssociateTorrents->setChecked(fileassoc::checkTorrent());
+    checkAssociateMagnetLinks->setChecked(fileassoc::checkMagnet());
+  }
 #endif
   // End General preferences
   // Downloads preferences
@@ -1365,3 +1386,10 @@ bool options_imp::schedTimesOk() {
 
   return true;
 }
+
+#ifdef APP_ASSOC_REG
+void options_imp::showAppAssocUI()
+{
+  fileassoc::showUI();
+}
+#endif
