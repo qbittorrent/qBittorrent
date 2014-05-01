@@ -42,6 +42,7 @@
 #include <QPointer>
 #include <QTimer>
 #include <QNetworkCookie>
+#include <QMap>
 
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
