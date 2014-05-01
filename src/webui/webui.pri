@@ -8,7 +8,10 @@ HEADERS += $$PWD/httpserver.h \
            $$PWD/jsonlist.h \
            $$PWD/jsondict.h \
            $$PWD/btjson.h \
-           $$PWD/prefjson.h
+           $$PWD/prefjson.h \
+           $$PWD/httpheader.h \
+           $$PWD/httprequestheader.h \
+           $$PWD/httpresponseheader.h
 
 SOURCES += $$PWD/httpserver.cpp \
            $$PWD/httpconnection.cpp \
@@ -18,6 +21,9 @@ SOURCES += $$PWD/httpserver.cpp \
            $$PWD/jsondict.cpp \
            $$PWD/btjson.cpp \
            $$PWD/json.cpp \
-           $$PWD/prefjson.cpp
+           $$PWD/prefjson.cpp \
+           $$PWD/httpheader.cpp \
+           $$PWD/httprequestheader.cpp \
+           $$PWD/httpresponseheader.cpp
 
 RESOURCES += $$PWD/webui.qrc
