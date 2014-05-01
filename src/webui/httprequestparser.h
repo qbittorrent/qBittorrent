@@ -32,8 +32,8 @@
 #ifndef HTTPREQUESTPARSER_H
 #define HTTPREQUESTPARSER_H
 
-#include <QHttpRequestHeader>
 #include <QHash>
+#include "httprequestheader.h"
 
 class HttpRequestParser {
 
@@ -49,10 +49,10 @@ public:
   void writeHeader(const QByteArray& ba);
   void writeMessage(const QByteArray& ba);
   bool acceptsEncoding();
-  inline const QHttpRequestHeader& header() const { return m_header; }
+  inline const HttpRequestHeader& header() const { return m_header; }
 
 private:
-  QHttpRequestHeader m_header;
+  HttpRequestHeader m_header;
   bool m_error;
   QByteArray m_data;
   QString m_path;

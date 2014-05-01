@@ -31,6 +31,8 @@
 
 #include "httpconnection.h"
 #include "httpserver.h"
+#include "httprequestheader.h"
+#include "httpresponseheader.h"
 #include "preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
@@ -42,8 +44,6 @@
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
-#include <QHttpRequestHeader>
-#include <QHttpResponseHeader>
 #include <QFile>
 #include <QDebug>
 #include <QRegExp>

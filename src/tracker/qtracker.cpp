@@ -28,7 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QHttpRequestHeader>
 #include <QTcpSocket>
 #include <QUrl>
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
@@ -38,6 +37,8 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
+#include "httprequestheader.h"
+#include "httpresponseheader.h"
 #include "qtracker.h"
 #include "preferences.h"
 
@@ -90,7 +91,7 @@ void QTracker::readRequest()
   QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
   QByteArray input = socket->readAll();
   //qDebug("QTracker: Raw request:\n%s", input.data());
-  QHttpRequestHeader http_request(input);
+  HttpRequestHeader http_request(input);
   if (!http_request.isValid()) {
     qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(http_request.toString()));
     respondInvalidRequest(socket, 100, "Invalid request type");
@@ -129,7 +130,7 @@ void QTracker::readRequest()
 
 void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
 {
-  QHttpResponseHeader response;
+  HttpResponseHeader response;
   response.setStatusLine(code, msg);
   socket->write(response.toString().toLocal8Bit());
   socket->disconnectFromHost();
@@ -246,7 +247,7 @@ void QTracker::ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceReques
   QByteArray reply(&buf[0], buf.size());
   qDebug("QTracker: reply with the following bencoded data:\n %s", reply.constData());
   // HTTP reply
-  QHttpResponseHeader response;
+  HttpResponseHeader response;
   response.setStatusLine(200, "OK");
   socket->write(response.toString().toLocal8Bit() + reply);
   socket->disconnectFromHost();

@@ -71,7 +71,7 @@ const QList<QByteArray>& HttpRequestParser::torrents() const {
 void HttpRequestParser::writeHeader(const QByteArray& ba) {
   m_error = false;
   // Parse header
-  m_header = QHttpRequestHeader(ba);
+  m_header = HttpRequestHeader(ba);
   QUrl url = QUrl::fromEncoded(m_header.path().toLatin1());
   m_path = url.path();
 
