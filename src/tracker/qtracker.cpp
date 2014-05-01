@@ -31,6 +31,9 @@
 #include <QHttpRequestHeader>
 #include <QTcpSocket>
 #include <QUrl>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QUrlQuery>
+#endif
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
@@ -109,8 +112,13 @@ void QTracker::readRequest()
   // OK, this is a GET request
   // Parse GET parameters
   QHash<QString, QString> get_parameters;
-  QUrl url = QUrl::fromEncoded(http_request.path().toAscii());
+  QUrl url = QUrl::fromEncoded(http_request.path().toLatin1());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  QUrlQuery query(url);
+  QListIterator<QPair<QString, QString> > i(query.queryItems());
+#else
   QListIterator<QPair<QString, QString> > i(url.queryItems());
+#endif
   while (i.hasNext()) {
     QPair<QString, QString> pair = i.next();
     get_parameters[pair.first] = pair.second;

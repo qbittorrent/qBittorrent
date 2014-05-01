@@ -36,7 +36,11 @@
 #ifndef DISABLE_GUI
 #if defined(QBT_STATIC_QT)
 #include <QtPlugin>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+Q_IMPORT_PLUGIN(QICOPlugin)
+#else
 Q_IMPORT_PLUGIN(qico)
+#endif
 #endif
 #include <QMessageBox>
 #include <QStyleFactory>
