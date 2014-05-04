@@ -88,7 +88,7 @@ usesystemqtsingleapplication {
 include(qtlibtorrent/qtlibtorrent.pri)
 include(webui/webui.pri)
 include(tracker/tracker.pri)
-include (preferences/preferences.pri)
+include(preferences/preferences.pri)
 
 !nox {
   include(lineedit/lineedit.pri)
