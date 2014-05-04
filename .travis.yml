@@ -38,7 +38,7 @@ before_install:
 
   - sudo apt-get -qq update
   # Travis can stall during heavy load if these packages are installed in one step - split the command
-  - sudo apt-get -qq install debhelper colormake libssl-dev libgeoip-dev
+  - sudo apt-get -qq install debhelper autoconf automake colormake libssl-dev libgeoip-dev
   # uncomment when Travis doesn't use Ubuntu 12.04 LTS, which has libtorrent 0.15.10 as package
   #- sudo apt-get -qq install libboost-dev libboost-filesystem-dev libboost-system-dev
   - sudo apt-get -qq install libboost-dev libboost-system-dev
@@ -49,6 +49,7 @@ install:
   - if [[ "$lt_source" == "from_svn" ]]; then cd .. && svn co svn://svn.code.sf.net/p/libtorrent/code/branches/RC_0_16 ./libtorrent && (cd libtorrent && ./autotool.sh && ./configure $ltconf && sudo make install) && sudo ldconfig /usr/local/lib && cd $TRAVIS_BUILD_DIR ; fi
 
 script:
+  - ./bootstrap.sh
   - ./configure $qbtconf && sudo make install
   
 after_success:
