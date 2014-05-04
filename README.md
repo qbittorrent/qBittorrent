@@ -1,11 +1,11 @@
-qBittorrent - A BitTorrent client in Qt4
+qBittorrent - A BitTorrent client in Qt
 ------------------------------------------
 
 [![Build Status](https://travis-ci.org/qbittorrent/qBittorrent.png?branch=master)](https://travis-ci.org/qbittorrent/qBittorrent)
 ********************************
 ###Description:
-qBittorrent is a bittorrent client programmed in C++ / Qt4 that uses
-libtorrent (sometimes called rblibtorrent) by Arvid Norberg.
+qBittorrent is a bittorrent client programmed in C++ / Qt that uses
+libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg.
 
 It aims to be a good alternative to all other bittorrent clients
 out there. qBittorrent is fast, stable and provides unicode
@@ -34,9 +34,9 @@ http://wiki.qbittorrent.org
 Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
-You can also meet me (chris-qBT) on IRC:
+You can also meet me (sledgehammer_999) on IRC:
 `#qbittorrent on irc.freenode.net`
 
 ------------------------------------------
-Christophe Dumez <chris@qbittorrent.org>
+sledgehammer999 <sledgehammer999@qbittorrent.org>
 
