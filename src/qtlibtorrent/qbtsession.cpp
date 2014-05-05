@@ -1622,9 +1622,15 @@ qreal QBtSession::getRealRatio(const QString &hash) const {
 
   libtorrent::size_type all_time_upload = h.all_time_upload();
   libtorrent::size_type all_time_download = h.all_time_download();
-  if (all_time_download == 0 && h.is_seed()) {
-    // Purely seeded torrent
-    all_time_download = h.total_done();
+  libtorrent::size_type total_done = h.total_done();
+  if (all_time_download < total_done) {
+    // We have more data on disk than we downloaded
+    // either because the user imported the file
+    // or because of crash the download histroy was lost.
+    // Otherwise will get weird ratios
+    // eg when downloaded 1KB and uploaded 700MB of a
+    // 700MB torrent.
+    all_time_download = total_done;
   }
 
   if (all_time_download == 0) {
