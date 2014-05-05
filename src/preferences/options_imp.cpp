@@ -106,14 +106,10 @@ options_imp::options_imp(QWidget *parent):
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
-#ifndef Q_OS_MAC
   if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-#endif
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
-#ifndef Q_OS_MAC
   }
-#endif
 #if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC))
   label_trayIconStyle->setVisible(false);
   comboTrayIcon->setVisible(false);
