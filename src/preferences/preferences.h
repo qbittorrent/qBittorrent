@@ -135,11 +135,7 @@ public:
   }
 
   bool systrayIntegration() const {
-#ifdef Q_WS_MAC
-    return false;
-#else
     return value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
-#endif
   }
 
   void setSystrayIntegration(bool enabled) {
