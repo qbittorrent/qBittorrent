@@ -44,9 +44,12 @@
 #include <QTimer>
 #include <QNetworkCookie>
 
+#ifndef Q_MOC_RUN
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <libtorrent/alert_types.hpp>
+#endif
 
 #include "qtracker.h"
 #include "qtorrenthandle.h"
@@ -190,6 +193,28 @@ private:
   void updateRatioTimer();
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
   void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);
+  // Alert handlers
+  inline void torrentFinishedAlert(libtorrent::torrent_finished_alert *p);
+  inline void saveResumeDataAlert(libtorrent::save_resume_data_alert *p);
+  inline void fileRenamedAlert(libtorrent::file_renamed_alert *p);
+  inline void torrentDeletedAlert(libtorrent::torrent_deleted_alert *p);
+  inline void storageMovedAlert(libtorrent::storage_moved_alert *p);
+  inline void metadataReceivedAlert(libtorrent::metadata_received_alert *p);
+  inline void fileErrorAlert(libtorrent::file_error_alert *p);
+  inline void fileCompletedAlert(libtorrent::file_completed_alert *p);
+  inline void torrentPausedAlert(libtorrent::torrent_paused_alert *p);
+  inline void trackerErrorAlert(libtorrent::tracker_error_alert *p);
+  inline void trackerReplyAlert(libtorrent::tracker_reply_alert *p);
+  inline void trackerWarningAlert(libtorrent::tracker_warning_alert *p);
+  inline void portmapErrorAlert(libtorrent::portmap_error_alert *p);
+  inline void portmapAlert(libtorrent::portmap_alert *p);
+  inline void peerBlockedAlert(libtorrent::peer_blocked_alert *p);
+  inline void peerBanAlert(libtorrent::peer_ban_alert *p);
+  inline void fastresumeRejectedAlert(libtorrent::fastresume_rejected_alert *p);
+  inline void urlSeedAlert(libtorrent::url_seed_alert *p);
+  inline void listenSucceededAlert(libtorrent::listen_succeeded_alert *p);
+  inline void listenFailedAlert(libtorrent::listen_failed_alert* p);
+  inline void torrentCheckedAlert(libtorrent::torrent_checked_alert* p);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
