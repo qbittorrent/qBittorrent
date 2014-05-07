@@ -6697,8 +6697,9 @@ fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: Running qmake to generate the makefile..." >&5
 $as_echo "$as_me: Running qmake to generate the makefile..." >&6;}
+CONFDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-$QT_QMAKE qbittorrent.pro
+$QT_QMAKE $CONFDIR/qbittorrent.pro
 
 ret="$?"
 
