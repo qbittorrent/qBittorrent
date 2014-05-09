@@ -87,7 +87,7 @@ protected slots:
   void handleSortColumnChanged(int col);
 
 private:
-  static QString getConnectionString(int connection_type);
+  static QString getConnectionString(const libtorrent::peer_info &peer);
   static void getFlags(const libtorrent::peer_info& peer, QString& flags, QString& tooltip);
 
 private:
