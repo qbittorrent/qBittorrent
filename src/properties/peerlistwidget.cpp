@@ -382,7 +382,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
       m_missingFlags.insert(ip);
     }
   }
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer));
   QString flags, tooltip;
   getFlags(peer, flags, tooltip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
@@ -408,7 +408,7 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
       m_missingFlags.remove(ip);
     }
   }
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer));
   QString flags, tooltip;
   getFlags(peer, flags, tooltip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
@@ -439,14 +439,19 @@ void PeerListWidget::handleSortColumnChanged(int col)
   }
 }
 
-QString PeerListWidget::getConnectionString(int connection_type)
+QString PeerListWidget::getConnectionString(const peer_info& peer)
 {
+#if LIBTORRENT_VERSION_NUM < 10000
+  if (peer.connection_type & peer_info::bittorrent_utp) {
+#else
+  if (peer.flags & peer_info::utp_socket) {
+#endif
+    return QString::fromUtf8("μTP");
+  }
+
   QString connection;
-  switch(connection_type) {
+  switch(peer.connection_type) {
 #if LIBTORRENT_VERSION_NUM >= 1600
-  case peer_info::bittorrent_utp:
-    connection = "uTP";
-    break;
   case peer_info::http_seed:
 #endif
   case peer_info::web_seed:
@@ -555,7 +560,11 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
   }
 
 #if LIBTORRENT_VERSION_NUM > 1500 //P = Peer is using uTorrent uTP
+#if LIBTORRENT_VERSION_NUM < 10000
   if (peer.connection_type & peer_info::bittorrent_utp) {
+#else
+  if (peer.flags & peer_info::utp_socket) {
+#endif
     flags += "P ";
     tooltip += QString::fromUtf8("μTP");
     tooltip += ", ";
