@@ -220,7 +220,7 @@ void QBtSession::processBigRatios() {
     if (!h.is_valid()) continue;
     if (h.is_seed()) {
       const QString hash = h.hash();
-      const qreal ratio = getRealRatio(hash);
+      const qreal ratio = getRealRatio(h);
       qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
       if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO)
         ratio_limit = global_ratio_limit;
@@ -1556,8 +1556,7 @@ bool QBtSession::enableDHT(bool b) {
   return true;
 }
 
-qreal QBtSession::getRealRatio(const QString &hash) const {
-  QTorrentHandle h = getTorrentHandle(hash);
+qreal QBtSession::getRealRatio(QTorrentHandle h) const {
   if (!h.is_valid()) {
     return 0.;
   }

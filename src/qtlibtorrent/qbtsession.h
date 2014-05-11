@@ -92,7 +92,7 @@ public:
   qreal getPayloadUploadRate() const;
   libtorrent::session_status getSessionStatus() const;
   int getListenPort() const;
-  qreal getRealRatio(const QString& hash) const;
+  qreal getRealRatio(QTorrentHandle h) const;
   QHash<QString, TrackerInfos> getTrackersInfo(const QString &hash) const;
   bool hasActiveTorrents() const;
   bool hasDownloadingTorrents() const;

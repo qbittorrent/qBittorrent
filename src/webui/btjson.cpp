@@ -143,7 +143,7 @@ static JsonDict toJson(const QTorrentHandle& h)
   if (h.num_incomplete() > 0)
     leechs += " ("+QString::number(h.num_incomplete())+")";
   ret.add(KEY_TORRENT_LEECHS, leechs);
-  const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
+  const qreal ratio = QBtSession::instance()->getRealRatio(h);
   ret.add(KEY_TORRENT_RATIO, (ratio > 100.) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1));
   QString eta;
   QString state;
@@ -305,7 +305,7 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
     data.add(KEY_PROP_TIME_ELAPSED, elapsed_txt);
     data.add(KEY_PROP_CONNECT_COUNT, QString(QString::number(h.num_connections()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit())) + ")"));
-    const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
+    const qreal ratio = QBtSession::instance()->getRealRatio(h);
     data.add(KEY_PROP_RATIO, ratio > 100. ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1));
   } catch(const std::exception& e) {
     qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();

@@ -191,10 +191,10 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_ETA: {
     // XXX: Is this correct?
     if (m_torrent.is_paused() || m_torrent.is_queued()) return MAX_ETA;
-    return QBtSession::instance()->getETA(m_torrent.hash());
+    return QBtSession::instance()->getETA(m_hash);
   }
   case TR_RATIO:
-    return QBtSession::instance()->getRealRatio(m_torrent.hash());
+    return QBtSession::instance()->getRealRatio(m_torrent);
   case TR_LABEL:
     return m_label;
   case TR_ADD_DATE:
