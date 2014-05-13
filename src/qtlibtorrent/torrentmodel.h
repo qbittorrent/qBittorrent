@@ -53,6 +53,7 @@ public:
 
 public:
   TorrentModelItem(const QTorrentHandle& h);
+  void refreshStatus();
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
@@ -66,6 +67,7 @@ private:
 
 private:
   QTorrentHandle m_torrent;
+  libtorrent::torrent_status m_lastStatus;
   QDateTime m_addedTime;
   QDateTime m_seedTime;
   QString m_label;

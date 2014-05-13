@@ -48,7 +48,7 @@ class TorrentSpeedMonitor : public QThread
 public:
   explicit TorrentSpeedMonitor(QBtSession* session);
   ~TorrentSpeedMonitor();
-  qlonglong getETA(const QString &hash) const;
+  qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
   quint64 getAlltimeDL() const;
   quint64 getAlltimeUL() const;
 

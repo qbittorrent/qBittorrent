@@ -130,16 +130,16 @@ void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
   } catch(invalid_handle&) {}
 }
 
-qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
+qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
   QMutexLocker locker(&m_mutex);
-  QTorrentHandle h = m_session->getTorrentHandle(hash);
-  if (h.is_paused() || !m_samples.contains(hash))
+
+  if (QTorrentHandle::is_paused(status) || !m_samples.contains(hash))
     return MAX_ETA;
 
   const Sample<qreal> speed_average = m_samples[hash].average();
 
-  if (h.is_seed()) {
+  if (QTorrentHandle::is_seed(status)) {
     if (!speed_average.upload)
       return MAX_ETA;
 
@@ -148,17 +148,17 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash) const
     if (max_ratio < 0)
       return MAX_ETA;
 
-    libtorrent::size_type realDL = h.all_time_download();
+    libtorrent::size_type realDL = status.all_time_download;
     if (realDL <= 0)
-      realDL = h.total_wanted();
+      realDL = status.total_wanted;
 
-    return (realDL * max_ratio - h.all_time_upload()) / speed_average.upload;
+    return (realDL * max_ratio - status.all_time_upload) / speed_average.upload;
   }
 
   if (!speed_average.download)
     return MAX_ETA;
 
-  return (h.total_wanted() - h.total_wanted_done()) / speed_average.download;
+  return (status.total_wanted - status.total_wanted_done) / speed_average.download;
 }
 
 quint64 TorrentSpeedMonitor::getAlltimeDL() const {

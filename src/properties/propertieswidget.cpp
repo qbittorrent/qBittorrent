@@ -316,28 +316,31 @@ void PropertiesWidget::loadDynamicData() {
   // Refresh only if the torrent handle is valid and if visible
   if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
+    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
+                                               | torrent_handle::query_distributed_copies
+                                               | torrent_handle::query_pieces);
     // Transfer infos
     if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
-      wasted->setText(misc::friendlyUnit(h.total_failed_bytes()+h.total_redundant_bytes()));
-      upTotal->setText(misc::friendlyUnit(h.all_time_upload()) + " ("+misc::friendlyUnit(h.total_payload_upload())+" "+tr("this session")+")");
-      dlTotal->setText(misc::friendlyUnit(h.all_time_download()) + " ("+misc::friendlyUnit(h.total_payload_download())+" "+tr("this session")+")");
+      wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));
+      upTotal->setText(misc::friendlyUnit(status.all_time_upload) + " ("+misc::friendlyUnit(status.total_payload_upload)+" "+tr("this session")+")");
+      dlTotal->setText(misc::friendlyUnit(status.all_time_download) + " ("+misc::friendlyUnit(status.total_payload_download)+" "+tr("this session")+")");
       lbl_uplimit->setText(h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit())+tr("/s", "/second (i.e. per second)"));
       lbl_dllimit->setText(h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit())+tr("/s", "/second (i.e. per second)"));
-      QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
-      if (h.is_seed()) {
-        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
+      QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
+      if (h.is_seed(status)) {
+        elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time))+")";
       }
       lbl_elapsed->setText(elapsed_txt);
-      if (h.connections_limit() > 0)
-        lbl_connections->setText(QString::number(h.num_connections())+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit()))+")");
+      if (status.connections_limit > 0)
+        lbl_connections->setText(QString::number(status.num_connections)+" ("+tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit))+")");
       else
-        lbl_connections->setText(QString::number(h.num_connections()));
+        lbl_connections->setText(QString::number(status.num_connections));
       // Update next announce time
-      reannounce_lbl->setText(h.next_announce());
+      reannounce_lbl->setText(misc::userFriendlyDuration(status.next_announce.total_seconds()));
       // Update ratio info
-      const qreal ratio = QBtSession::instance()->getRealRatio(h);
+      const qreal ratio = QBtSession::instance()->getRealRatio(status);
       shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
-      if (!h.is_seed() && h.has_metadata()) {
+      if (!h.is_seed(status) && status.has_metadata) {
         showPiecesDownloaded(true);
         // Downloaded pieces
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -346,19 +349,19 @@ void PropertiesWidget::loadDynamicData() {
         bitfield bf(h.torrent_file()->num_pieces(), 0);
 #endif
         h.downloading_pieces(bf);
-        downloaded_pieces->setProgress(h.pieces(), bf);
+        downloaded_pieces->setProgress(status.pieces, bf);
         // Pieces availability
-        if (!h.is_paused() && !h.is_queued() && !h.is_checking()) {
+        if (!h.is_paused(status) && !h.is_queued(status) && !h.is_checking(status)) {
           showPiecesAvailability(true);
           std::vector<int> avail;
           h.piece_availability(avail);
           pieces_availability->setAvailability(avail);
-          avail_average_lbl->setText(misc::accurateDoubleToString(h.distributed_copies(), 3));
+          avail_average_lbl->setText(misc::accurateDoubleToString(status.distributed_copies, 3));
         } else {
           showPiecesAvailability(false);
         }
         // Progress
-        qreal progress = h.progress()*100.;
+        qreal progress = h.progress(status)*100.;
         progress_lbl->setText(misc::accurateDoubleToString(progress, 1)+"%");
       } else {
         showPiecesAvailability(false);
@@ -378,7 +381,7 @@ void PropertiesWidget::loadDynamicData() {
     }
     if (stackedProperties->currentIndex() == PropTabBar::FILES_TAB) {
       // Files progress
-      if (h.is_valid() && h.has_metadata()) {
+      if (h.is_valid() && status.has_metadata) {
         qDebug("Updating priorities in files tab");
         filesList->setUpdatesEnabled(false);
         std::vector<size_type> fp;

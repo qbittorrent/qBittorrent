@@ -92,7 +92,7 @@ public:
   qreal getPayloadUploadRate() const;
   libtorrent::session_status getSessionStatus() const;
   int getListenPort() const;
-  qreal getRealRatio(QTorrentHandle h) const;
+  qreal getRealRatio(const libtorrent::torrent_status &status) const;
   QHash<QString, TrackerInfos> getTrackersInfo(const QString &hash) const;
   bool hasActiveTorrents() const;
   bool hasDownloadingTorrents() const;
@@ -121,7 +121,7 @@ public slots:
   void startUpTorrents();
   void recheckTorrent(const QString &hash);
   void useAlternativeSpeedsLimit(bool alternative);
-  qlonglong getETA(const QString& hash) const;
+  qlonglong getETA(const QString& hash, const libtorrent::torrent_status &status) const;
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(const QString &hash);

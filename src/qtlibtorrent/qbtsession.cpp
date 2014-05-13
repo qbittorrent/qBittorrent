@@ -220,7 +220,7 @@ void QBtSession::processBigRatios() {
     if (!h.is_valid()) continue;
     if (h.is_seed()) {
       const QString hash = h.hash();
-      const qreal ratio = getRealRatio(h);
+      const qreal ratio = getRealRatio(h.status(torrent_handle::query_accurate_download_counters));
       qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
       if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO)
         ratio_limit = global_ratio_limit;
@@ -1556,14 +1556,11 @@ bool QBtSession::enableDHT(bool b) {
   return true;
 }
 
-qreal QBtSession::getRealRatio(QTorrentHandle h) const {
-  if (!h.is_valid()) {
-    return 0.;
-  }
+qreal QBtSession::getRealRatio(const libtorrent::torrent_status &status) const {
+  libtorrent::size_type all_time_upload = status.all_time_upload;
+  libtorrent::size_type all_time_download = status.all_time_download;
+  libtorrent::size_type total_done = status.total_done;
 
-  libtorrent::size_type all_time_upload = h.all_time_upload();
-  libtorrent::size_type all_time_download = h.all_time_download();
-  libtorrent::size_type total_done = h.total_done();
   if (all_time_download < total_done) {
     // We have more data on disk than we downloaded
     // either because the user imported the file
@@ -1576,7 +1573,7 @@ qreal QBtSession::getRealRatio(QTorrentHandle h) const {
 
   if (all_time_download == 0) {
     if (all_time_upload == 0)
-      return 0;
+      return 0.0;
     return MAX_RATIO+1;
   }
 
@@ -2106,11 +2103,12 @@ void QBtSession::autoRunExternalProgram(const QTorrentHandle &h) {
 }
 
 void QBtSession::sendNotificationEmail(const QTorrentHandle &h) {
+  libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
   // Prepare mail content
   QString content = tr("Torrent name: %1").arg(h.name()) + "\n";
-  content += tr("Torrent size: %1").arg(misc::friendlyUnit(h.actual_size())) + "\n";
+  content += tr("Torrent size: %1").arg(misc::friendlyUnit(status.total_wanted)) + "\n";
   content += tr("Save path: %1").arg(TorrentPersistentData::getSavePath(h.hash())) + "\n\n";
-  content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(h.active_time())) + "\n\n\n";
+  content += tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds").arg(misc::userFriendlyDuration(status.active_time)) + "\n\n\n";
   content += tr("Thank you for using qBittorrent.") + "\n";
   // Send the notification email
   Smtp *sender = new Smtp(this);
@@ -2803,9 +2801,9 @@ void QBtSession::drop()
   }
 }
 
-qlonglong QBtSession::getETA(const QString &hash) const
+qlonglong QBtSession::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
-  return m_speedMonitor->getETA(hash);
+  return m_speedMonitor->getETA(hash, status);
 }
 
 quint64 QBtSession::getAlltimeDL() const {

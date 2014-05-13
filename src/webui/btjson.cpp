@@ -124,53 +124,55 @@ static const char KEY_TRANSFER_UPSPEED[] = "up_info";
 
 static JsonDict toJson(const QTorrentHandle& h)
 {
+  libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+
   JsonDict ret;
   ret.add(KEY_TORRENT_HASH, h.hash());
   ret.add(KEY_TORRENT_NAME, h.name());
-  ret.add(KEY_TORRENT_SIZE, misc::friendlyUnit(h.actual_size())); // FIXME: Should pass as Number, not formatted String (for sorting).
-  ret.add(KEY_TORRENT_PROGRESS, (double)h.progress());
-  ret.add(KEY_TORRENT_DLSPEED, misc::friendlyUnit(h.download_payload_rate(), true)); // FIXME: Should be passed as a Number
-  ret.add(KEY_TORRENT_UPSPEED, misc::friendlyUnit(h.upload_payload_rate(), true)); // FIXME: Should be passed as a Number
+  ret.add(KEY_TORRENT_SIZE, misc::friendlyUnit(status.total_wanted)); // FIXME: Should pass as Number, not formatted String (for sorting).
+  ret.add(KEY_TORRENT_PROGRESS, (double)h.progress(status));
+  ret.add(KEY_TORRENT_DLSPEED, misc::friendlyUnit(status.download_payload_rate, true)); // FIXME: Should be passed as a Number
+  ret.add(KEY_TORRENT_UPSPEED, misc::friendlyUnit(status.upload_payload_rate, true)); // FIXME: Should be passed as a Number
   if (QBtSession::instance()->isQueueingEnabled() && h.queue_position() >= 0)
     ret.add(KEY_TORRENT_PRIORITY, QString::number(h.queue_position()));
   else
     ret.add(KEY_TORRENT_PRIORITY, "*");
-  QString seeds = QString::number(h.num_seeds());
-  if (h.num_complete() > 0)
-    seeds += " ("+QString::number(h.num_complete())+")";
+  QString seeds = QString::number(status.num_seeds);
+  if (status.num_complete > 0)
+    seeds += " ("+QString::number(status.num_complete)+")";
   ret.add(KEY_TORRENT_SEEDS, seeds);
-  QString leechs = QString::number(h.num_peers() - h.num_seeds());
-  if (h.num_incomplete() > 0)
-    leechs += " ("+QString::number(h.num_incomplete())+")";
+  QString leechs = QString::number(status.num_peers - status.num_seeds);
+  if (status.num_incomplete > 0)
+    leechs += " ("+QString::number(status.num_incomplete)+")";
   ret.add(KEY_TORRENT_LEECHS, leechs);
-  const qreal ratio = QBtSession::instance()->getRealRatio(h);
+  const qreal ratio = QBtSession::instance()->getRealRatio(status);
   ret.add(KEY_TORRENT_RATIO, (ratio > 100.) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1));
   QString eta;
   QString state;
-  if (h.is_paused()) {
-    if (h.has_error())
+  if (h.is_paused(status)) {
+    if (h.has_error(status))
       state = "error";
     else
-      state = h.is_seed() ? "pausedUP" : "pausedDL";
+      state = h.is_seed(status) ? "pausedUP" : "pausedDL";
   } else {
-    if (QBtSession::instance()->isQueueingEnabled() && h.is_queued())
-      state = h.is_seed() ? "queuedUP" : "queuedDL";
+    if (QBtSession::instance()->isQueueingEnabled() && h.is_queued(status))
+      state = h.is_seed(status) ? "queuedUP" : "queuedDL";
     else {
-      switch (h.state()) {
+      switch (status.state) {
       case torrent_status::finished:
       case torrent_status::seeding:
-        state = h.upload_payload_rate() > 0 ? "uploading" : "stalledUP";
+        state = status.upload_payload_rate > 0 ? "uploading" : "stalledUP";
         break;
       case torrent_status::allocating:
       case torrent_status::checking_files:
       case torrent_status::queued_for_checking:
       case torrent_status::checking_resume_data:
-        state = h.is_seed() ? "checkingUP" : "checkingDL";
+        state = h.is_seed(status) ? "checkingUP" : "checkingDL";
         break;
       case torrent_status::downloading:
       case torrent_status::downloading_metadata:
-        state = h.download_payload_rate() > 0 ? "downloading" : "stalledDL";
-        eta = misc::userFriendlyDuration(QBtSession::instance()->getETA(h.hash()));
+        state = status.download_payload_rate > 0 ? "downloading" : "stalledDL";
+        eta = misc::userFriendlyDuration(QBtSession::instance()->getETA(h.hash(), status));
         break;
       default:
         qWarning("Unrecognized torrent status, should not happen!!! status was %d", h.state());
@@ -284,7 +286,9 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
   try {
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
-    if (!h.has_metadata())
+    libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+
+    if (!status.has_metadata)
       return QString();
 
     // Save path
@@ -295,17 +299,17 @@ QString btjson::getPropertiesForTorrent(const QString& hash)
     data.add(KEY_PROP_CREATION_DATE, h.creation_date());
     data.add(KEY_PROP_PIECE_SIZE, misc::friendlyUnit(h.piece_length()));
     data.add(KEY_PROP_COMMENT, h.comment());
-    data.add(KEY_PROP_WASTED, misc::friendlyUnit(h.total_failed_bytes() + h.total_redundant_bytes()));
-    data.add(KEY_PROP_UPLOADED, QString(misc::friendlyUnit(h.all_time_upload()) + " (" + misc::friendlyUnit(h.total_payload_upload()) + " " + tr("this session") + ")"));
-    data.add(KEY_PROP_DOWNLOADED, QString(misc::friendlyUnit(h.all_time_download()) + " (" + misc::friendlyUnit(h.total_payload_download()) + " " + tr("this session") + ")"));
+    data.add(KEY_PROP_WASTED, misc::friendlyUnit(status.total_failed_bytes + status.total_redundant_bytes));
+    data.add(KEY_PROP_UPLOADED, QString(misc::friendlyUnit(status.all_time_upload) + " (" + misc::friendlyUnit(status.total_payload_upload) + " " + tr("this session") + ")"));
+    data.add(KEY_PROP_DOWNLOADED, QString(misc::friendlyUnit(status.all_time_download) + " (" + misc::friendlyUnit(status.total_payload_download) + " " + tr("this session") + ")"));
     data.add(KEY_PROP_UP_LIMIT, h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit(), true));
     data.add(KEY_PROP_DL_LIMIT, h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit(), true));
-    QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
-    if (h.is_seed())
-      elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
+    QString elapsed_txt = misc::userFriendlyDuration(status.active_time);
+    if (h.is_seed(status))
+      elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(status.seeding_time))+")";
     data.add(KEY_PROP_TIME_ELAPSED, elapsed_txt);
-    data.add(KEY_PROP_CONNECT_COUNT, QString(QString::number(h.num_connections()) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(h.connections_limit())) + ")"));
-    const qreal ratio = QBtSession::instance()->getRealRatio(h);
+    data.add(KEY_PROP_CONNECT_COUNT, QString(QString::number(status.num_connections) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit)) + ")"));
+    const qreal ratio = QBtSession::instance()->getRealRatio(status);
     data.add(KEY_PROP_RATIO, ratio > 100. ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1));
   } catch(const std::exception& e) {
     qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
