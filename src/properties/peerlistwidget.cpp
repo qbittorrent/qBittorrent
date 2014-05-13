@@ -441,7 +441,6 @@ void PeerListWidget::handleSortColumnChanged(int col)
 
 QString PeerListWidget::getConnectionString(const peer_info& peer)
 {
-#if LIBTORRENT_VERSION_NUM >= 1600
 #if LIBTORRENT_VERSION_NUM < 10000
   if (peer.connection_type & peer_info::bittorrent_utp) {
 #else
@@ -449,7 +448,6 @@ QString PeerListWidget::getConnectionString(const peer_info& peer)
 #endif
     return QString::fromUtf8("μTP");
   }
-#endif
 
   QString connection;
   switch(peer.connection_type) {
