@@ -445,7 +445,7 @@ QString PeerListWidget::getConnectionString(int connection_type)
   switch(connection_type) {
 #if LIBTORRENT_VERSION_NUM >= 1600
   case peer_info::bittorrent_utp:
-    connection = "uTP";
+    connection = QString::fromUtf8("μTP");
     break;
   case peer_info::http_seed:
 #endif
