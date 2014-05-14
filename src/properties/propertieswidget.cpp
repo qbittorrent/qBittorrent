@@ -337,7 +337,7 @@ void PropertiesWidget::loadDynamicData() {
       // Update ratio info
       const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
       shareRatio->setText(ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
-      if (!h.is_seed()) {
+      if (!h.is_seed() && h.has_metadata()) {
         showPiecesDownloaded(true);
         // Downloaded pieces
 #if LIBTORRENT_VERSION_NUM < 10000
@@ -348,7 +348,7 @@ void PropertiesWidget::loadDynamicData() {
         h.downloading_pieces(bf);
         downloaded_pieces->setProgress(h.pieces(), bf);
         // Pieces availability
-        if (h.has_metadata() && !h.is_paused() && !h.is_queued() && !h.is_checking()) {
+        if (!h.is_paused() && !h.is_queued() && !h.is_checking()) {
           showPiecesAvailability(true);
           std::vector<int> avail;
           h.piece_availability(avail);
