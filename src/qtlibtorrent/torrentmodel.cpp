@@ -427,6 +427,9 @@ TorrentStatusReport TorrentModel::getTorrentStatusReport() const
       ++report.nb_active;
       ++report.nb_downloading;
       break;
+    case TorrentModelItem::STATE_DOWNLOADING_META:
+      ++report.nb_downloading;
+      break;
     case TorrentModelItem::STATE_PAUSED_DL:
       ++report.nb_paused;
     case TorrentModelItem::STATE_STALLED_DL:
@@ -491,6 +494,7 @@ bool TorrentModel::inhibitSystem()
   for ( ; it != itend; ++it) {
     switch((*it)->data(TorrentModelItem::TR_STATUS).toInt()) {
     case TorrentModelItem::STATE_DOWNLOADING:
+    case TorrentModelItem::STATE_DOWNLOADING_META:
     case TorrentModelItem::STATE_STALLED_DL:
     case TorrentModelItem::STATE_SEEDING:
     case TorrentModelItem::STATE_STALLED_UP:

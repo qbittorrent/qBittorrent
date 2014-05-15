@@ -914,7 +914,7 @@ void TransferListWidget::applyStatusFilter(int f) {
   case FILTER_DOWNLOADING:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_DL)+"|"+
                                                QString::number(TorrentModelItem::STATE_PAUSED_DL)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_DL), Qt::CaseSensitive));
+                                               QString::number(TorrentModelItem::STATE_QUEUED_DL)+"|"+QString::number(TorrentModelItem::STATE_DOWNLOADING_META), Qt::CaseSensitive));
     break;
   case FILTER_COMPLETED:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_SEEDING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_UP)+"|"+
