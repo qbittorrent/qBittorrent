@@ -423,10 +423,19 @@ void QBtSession::configureSession() {
       sessionSettings.active_downloads = max_downloading + HiddenData::getDownloadingSize();
     else
       sessionSettings.active_downloads = max_downloading;
-    if (max_active > -1)
-      sessionSettings.active_limit = max_active + HiddenData::getDownloadingSize();
-    else
+    if (max_active > -1) {
+      int limit = max_active + HiddenData::getDownloadingSize();
+      sessionSettings.active_limit = limit;
+      sessionSettings.active_tracker_limit = limit;
+      sessionSettings.active_dht_limit = limit;
+      sessionSettings.active_lsd_limit = limit;
+    }
+    else {
       sessionSettings.active_limit = max_active;
+      sessionSettings.active_tracker_limit = max_active;
+      sessionSettings.active_dht_limit = max_active;
+      sessionSettings.active_lsd_limit = max_active;
+    }
     sessionSettings.active_seeds = pref.getMaxActiveUploads();
     sessionSettings.dont_count_slow_torrents = pref.ignoreSlowTorrentsForQueueing();
     setQueueingEnabled(true);
@@ -434,6 +443,9 @@ void QBtSession::configureSession() {
     sessionSettings.active_downloads = -1;
     sessionSettings.active_seeds = -1;
     sessionSettings.active_limit = -1;
+    sessionSettings.active_tracker_limit = -1;
+    sessionSettings.active_dht_limit = -1;
+    sessionSettings.active_lsd_limit = -1;
     setQueueingEnabled(false);
   }
   // Outgoing ports
