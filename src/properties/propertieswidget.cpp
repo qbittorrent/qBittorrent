@@ -461,6 +461,10 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   }
   // Call menu
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
+  // The selected torrent might have dissapeared during exec()
+  // from the current view thus leaving invalid indices.
+  if (!(selectedRows.begin()->isValid()))
+    return;
   if (act) {
     if (act == actRename) {
       renameSelectedFile();
