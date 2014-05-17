@@ -51,6 +51,7 @@
 #include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
+#include "alertdispatcher.h"
 
 #define MAX_SAMPLES 20
 
@@ -190,6 +191,7 @@ private:
   void updateRatioTimer();
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
   void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);
+  void handleAlert(libtorrent::alert* a);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
@@ -234,7 +236,6 @@ signals:
 private:
   // Bittorrent
   libtorrent::session *s;
-  QPointer<QTimer> timerAlerts;
   QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl; // Use QMap for compatibility with Qt < 4.7: qHash(QUrl)
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
@@ -287,6 +288,7 @@ private:
 #endif
   // DynDNS
   DNSUpdater *m_dynDNSUpdater;
+  QAlertDispatcher* m_alertDispatcher;
 };
 
 #endif
