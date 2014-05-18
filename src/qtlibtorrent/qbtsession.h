@@ -111,6 +111,7 @@ public:
   inline bool isQueueingEnabled() const { return queueingEnabled; }
   quint64 getAlltimeDL() const;
   quint64 getAlltimeUL() const;
+  void postTorrentUpdate();
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -232,6 +233,7 @@ signals:
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
   void metadataReceivedHidden(const QTorrentHandle &h);
+  void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
 
 private:
   // Bittorrent

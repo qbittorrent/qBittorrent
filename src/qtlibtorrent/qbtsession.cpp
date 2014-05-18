@@ -2568,6 +2568,9 @@ void QBtSession::handleAlert(libtorrent::alert* a) {
       boost::system::error_code ec;
       addConsoleMessage(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), "blue");
     }
+    else if (state_update_alert *p = dynamic_cast<state_update_alert *>(a)) {
+      emit stateUpdate(p->status);
+    }
   } catch (const std::exception& e) {
     qWarning() << "Caught exception in readAlerts(): " << e.what();
   }
@@ -2817,6 +2820,10 @@ quint64 QBtSession::getAlltimeDL() const {
 
 quint64 QBtSession::getAlltimeUL() const {
   return m_speedMonitor->getAlltimeUL();
+}
+
+void QBtSession::postTorrentUpdate() {
+  s->post_torrent_updates();
 }
 
 void QBtSession::handleIPFilterParsed(int ruleCount)

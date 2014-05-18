@@ -101,11 +101,9 @@ TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
     m_name = h.name();
 }
 
-void TorrentModelItem::refreshStatus()
+void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status)
 {
-  try {
-    m_lastStatus = m_torrent.status();
-  } catch(invalid_handle&) {}
+  m_lastStatus = status;
 }
 
 TorrentModelItem::State TorrentModelItem::state() const
@@ -309,6 +307,7 @@ void TorrentModel::populate() {
   connect(QBtSession::instance(), SIGNAL(resumedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
   connect(QBtSession::instance(), SIGNAL(torrentFinishedChecking(QTorrentHandle)), SLOT(handleTorrentUpdate(QTorrentHandle)));
+  connect(QBtSession::instance(), SIGNAL(stateUpdate(std::vector<libtorrent::torrent_status>)), SLOT(stateUpdated(std::vector<libtorrent::torrent_status>)));
 }
 
 TorrentModel::~TorrentModel() {
@@ -441,6 +440,7 @@ void TorrentModel::handleTorrentUpdate(const QTorrentHandle &h)
 {
   const int row = torrentRow(h.hash());
   if (row >= 0) {
+    m_torrents[row]->refreshStatus(h.status(torrent_handle::query_accurate_download_counters));
     notifyTorrentChanged(row);
   }
 }
@@ -453,6 +453,7 @@ void TorrentModel::handleFinishedTorrent(const QTorrentHandle& h)
 
   // Update completion date
   m_torrents[row]->setData(TorrentModelItem::TR_SEED_DATE, QDateTime::currentDateTime(), Qt::DisplayRole);
+  m_torrents[row]->refreshStatus(h.status(torrent_handle::query_accurate_download_counters));
   notifyTorrentChanged(row);
 }
 
@@ -472,14 +473,8 @@ void TorrentModel::setRefreshInterval(int refreshInterval)
 
 void TorrentModel::forceModelRefresh()
 {
-  QList<TorrentModelItem*>::const_iterator it = m_torrents.constBegin();
-  QList<TorrentModelItem*>::const_iterator itend = m_torrents.constEnd();
-  for ( ; it != itend; ++it) {
-    TorrentModelItem* item = *it;
-    item->refreshStatus();
-  }
-
   emit dataChanged(index(0, 0), index(rowCount()-1, columnCount()-1));
+  QBtSession::instance()->postTorrentUpdate();
 }
 
 TorrentStatusReport TorrentModel::getTorrentStatusReport() const
@@ -551,6 +546,20 @@ void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
   const int row = torrentRow(h.hash());
   if (row >= 0) {
     emit torrentAboutToBeRemoved(m_torrents.at(row));
+  }
+}
+
+void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &statuses)
+{
+  typedef std::vector<libtorrent::torrent_status> statuses_t;
+
+  for (statuses_t::const_iterator i = statuses.begin(), end = statuses.end(); i != end; ++i)
+  {
+    libtorrent::torrent_status const& status = *i;
+
+    const int row = torrentRow(misc::toQString(status.handle.info_hash()));
+    if (row >= 0)
+      m_torrents[row]->refreshStatus(status);
   }
 }
 

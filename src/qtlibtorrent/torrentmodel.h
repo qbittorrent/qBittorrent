@@ -53,7 +53,7 @@ public:
 
 public:
   TorrentModelItem(const QTorrentHandle& h);
-  void refreshStatus();
+  void refreshStatus(libtorrent::torrent_status const& status);
   inline int columnCount() const { return NB_COLUMNS; }
   QVariant data(int column, int role = Qt::DisplayRole) const;
   bool setData(int column, const QVariant &value, int role = Qt::DisplayRole);
@@ -112,6 +112,7 @@ private slots:
   void forceModelRefresh();
   void handleTorrentLabelChange(QString previous, QString current);
   void handleTorrentAboutToBeRemoved(const QTorrentHandle & h);
+  void stateUpdated(const std::vector<libtorrent::torrent_status> &statuses);
 
 private:
   void beginInsertTorrent(int row);
