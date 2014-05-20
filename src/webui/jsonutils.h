@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,33 +25,42 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : glassez@yandex.ru
  */
 
-#include "jsondict.h"
+#ifndef JSONUTILS_H
+#define JSONUTILS_H
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#else
+#include <QString>
 #include "json.h"
+#endif
 
-JsonDict::JsonDict(): m_dirty(false)
+namespace json {
+
+inline QByteArray toJson(const QVariant& var)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromVariant(var).toJson();
+#else
+  return QtJson::serialize(var);
+#endif
 }
 
-void JsonDict::clear()
+inline QVariant fromJson(const QString& json)
 {
-  m_items.clear();
-  m_dirty = true;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+#else
+  bool ok;
+  return QtJson::parse(json, ok);
+#endif
 }
 
-void JsonDict::add(const QString& key, const QVariant& value)
-{
-  m_items.append("\"" + key + "\":" + json::toJson(value));
-  m_dirty = true;
 }
 
-const QString& JsonDict::toString() const
-{
-  if (m_dirty) {
-    m_json = "{" + m_items.join(",") + "}";
-    m_dirty = false;
-  }
-  return m_json;
-}
+#endif // JSONUTILS_H
