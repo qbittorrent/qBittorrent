@@ -47,6 +47,7 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <libtorrent/alert_types.hpp>
 
 #include "qtracker.h"
 #include "qtorrenthandle.h"
@@ -235,6 +236,7 @@ signals:
   void ipFilterParsed(bool error, int ruleCount);
   void metadataReceivedHidden(const QTorrentHandle &h);
   void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
+  void statsReceived(const libtorrent::stats_alert&);
 
 private:
   // Bittorrent

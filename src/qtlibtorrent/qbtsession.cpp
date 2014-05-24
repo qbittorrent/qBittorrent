@@ -134,7 +134,7 @@ QBtSession::QBtSession()
   addConsoleMessage("Peer ID: "+misc::toQString(fingerprint(peer_id.toLocal8Bit().constData(), version.at(0), version.at(1), version.at(2), version.at(3)).to_string()));
 
   // Set severity level of libtorrent session
-  s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification | alert::progress_notification);
+  s->set_alert_mask(alert::error_notification | alert::peer_notification | alert::port_mapping_notification | alert::storage_notification | alert::tracker_notification | alert::status_notification | alert::ip_block_notification | alert::progress_notification | alert::stats_notification);
   // Load previous state
   loadSessionState();
   // Enabling plugins
@@ -158,7 +158,6 @@ QBtSession::QBtSession()
   configureSession();
   // Torrent speed monitor
   m_speedMonitor = new TorrentSpeedMonitor(this);
-  m_speedMonitor->start();
   m_torrentStatistics = new TorrentStatistics(this, this);
   // To download from urls
   downloader = new DownloadThread(this);
@@ -2573,6 +2572,9 @@ void QBtSession::handleAlert(libtorrent::alert* a) {
     }
     else if (state_update_alert *p = dynamic_cast<state_update_alert *>(a)) {
       emit stateUpdate(p->status);
+    }
+    else if (stats_alert *p = dynamic_cast<stats_alert *>(a)) {
+      emit statsReceived(*p);
     }
   } catch (const std::exception& e) {
     qWarning() << "Caught exception in readAlerts(): " << e.what();

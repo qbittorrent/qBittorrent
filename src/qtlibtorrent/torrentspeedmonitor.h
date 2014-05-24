@@ -32,39 +32,30 @@
 #define TORRENTSPEEDMONITOR_H
 
 #include <QString>
-#include <QThread>
-#include <QWaitCondition>
 #include <QHash>
-#include <QMutex>
 #include "qtorrenthandle.h"
+#include <libtorrent/alert_types.hpp>
 
 class QBtSession;
 class SpeedSample;
 
-class TorrentSpeedMonitor : public QThread
+class TorrentSpeedMonitor : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY(TorrentSpeedMonitor)
 
 public:
   explicit TorrentSpeedMonitor(QBtSession* session);
   ~TorrentSpeedMonitor();
   qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
 
-protected:
-  void run();
-
-private:
-  void getSamples();
-
 private slots:
+  void statsReceived(const libtorrent::stats_alert& stats);
   void removeSamples(const QString& hash);
   void removeSamples(const QTorrentHandle& h);
 
 private:
-  bool m_abort;
-  QWaitCondition m_abortCond;
   QHash<QString, SpeedSample> m_samples;
-  mutable QMutex m_mutex;
   QBtSession *m_session;
 };
 

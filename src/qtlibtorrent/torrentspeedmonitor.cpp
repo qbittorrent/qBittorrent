@@ -28,7 +28,6 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QMutexLocker>
 #include <QList>
 #include <QDateTime>
 #include <vector>
@@ -61,28 +60,16 @@ private:
   QList<Sample<int> > m_speedSamples;
 };
 
-TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session) :
-  QThread(session), m_abort(false), m_session(session)
+TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session)
+  : m_session(session)
 {
   connect(m_session, SIGNAL(deletedTorrent(QString)), SLOT(removeSamples(QString)));
   connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
+  connect(m_session, SIGNAL(statsReceived(libtorrent::stats_alert)), SLOT(statsReceived(libtorrent::stats_alert)));
 }
 
-TorrentSpeedMonitor::~TorrentSpeedMonitor() {
-  m_abort = true;
-  m_abortCond.wakeOne();
-  wait();
-}
-
-void TorrentSpeedMonitor::run()
-{
-  do {
-    m_mutex.lock();
-    getSamples();
-    m_abortCond.wait(&m_mutex, 1000);
-    m_mutex.unlock();
-  } while(!m_abort);
-}
+TorrentSpeedMonitor::~TorrentSpeedMonitor()
+{}
 
 void SpeedSample::addSample(int speedDL, int speedUL)
 {
@@ -126,8 +113,6 @@ void TorrentSpeedMonitor::removeSamples(const QTorrentHandle& h) {
 
 qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::torrent_status &status) const
 {
-  QMutexLocker locker(&m_mutex);
-
   if (QTorrentHandle::is_paused(status) || !m_samples.contains(hash))
     return MAX_ETA;
 
@@ -155,20 +140,8 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::tor
   return (status.total_wanted - status.total_wanted_done) / speed_average.download;
 }
 
-void TorrentSpeedMonitor::getSamples()
+void TorrentSpeedMonitor::statsReceived(const stats_alert &stats)
 {
-  const std::vector<torrent_handle> torrents = m_session->getSession()->get_torrents();
-
-  std::vector<torrent_handle>::const_iterator it = torrents.begin();
-  std::vector<torrent_handle>::const_iterator itend = torrents.end();
-  for ( ; it != itend; ++it) {
-    try {
-      torrent_status st = it->status(0x0);
-      if (!st.paused) {
-        int up = st.upload_payload_rate;
-        int down = st.download_payload_rate;
-        m_samples[misc::toQString(it->info_hash())].addSample(down, up);
-      }
-    } catch(invalid_handle&) {}
-  }
+  m_samples[misc::toQString(stats.handle.info_hash())].addSample(stats.transferred[stats_alert::download_payload] * 1000 / stats.interval,
+                                                                 stats.transferred[stats_alert::upload_payload] * 1000 / stats.interval);
 }
