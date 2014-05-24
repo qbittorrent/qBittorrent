@@ -39,6 +39,7 @@
 #include "smtp.h"
 #include "filesystemwatcher.h"
 #include "torrentspeedmonitor.h"
+#include "torrentstatistics.h"
 #include "qbtsession.h"
 #include "misc.h"
 #include "fs_utils.h"
@@ -158,6 +159,7 @@ QBtSession::QBtSession()
   // Torrent speed monitor
   m_speedMonitor = new TorrentSpeedMonitor(this);
   m_speedMonitor->start();
+  m_torrentStatistics = new TorrentStatistics(this, this);
   // To download from urls
   downloader = new DownloadThread(this);
   connect(downloader, SIGNAL(downloadFinished(QString, QString)), SLOT(processDownloadedFile(QString, QString)));
@@ -190,6 +192,7 @@ QBtSession::~QBtSession() {
   if (httpServer)
     delete httpServer;
   delete m_alertDispatcher;
+  delete m_torrentStatistics;
   qDebug("Deleting the session");
   delete s;
   qDebug("BTSession destructor OUT");
@@ -2815,11 +2818,11 @@ qlonglong QBtSession::getETA(const QString &hash, const libtorrent::torrent_stat
 }
 
 quint64 QBtSession::getAlltimeDL() const {
-  return m_speedMonitor->getAlltimeDL();
+  return m_torrentStatistics->getAlltimeDL();
 }
 
 quint64 QBtSession::getAlltimeUL() const {
-  return m_speedMonitor->getAlltimeUL();
+  return m_torrentStatistics->getAlltimeUL();
 }
 
 void QBtSession::postTorrentUpdate() {

@@ -62,21 +62,16 @@ private:
 };
 
 TorrentSpeedMonitor::TorrentSpeedMonitor(QBtSession* session) :
-  QThread(session), m_abort(false), m_session(session),
-  sessionUL(0), sessionDL(0), lastWrite(0), dirty(false)
+  QThread(session), m_abort(false), m_session(session)
 {
   connect(m_session, SIGNAL(deletedTorrent(QString)), SLOT(removeSamples(QString)));
   connect(m_session, SIGNAL(pausedTorrent(QTorrentHandle)), SLOT(removeSamples(QTorrentHandle)));
-  loadStats();
 }
 
 TorrentSpeedMonitor::~TorrentSpeedMonitor() {
   m_abort = true;
   m_abortCond.wakeOne();
   wait();
-  if (dirty)
-    lastWrite = 0;
-  saveStats();
 }
 
 void TorrentSpeedMonitor::run()
@@ -84,7 +79,6 @@ void TorrentSpeedMonitor::run()
   do {
     m_mutex.lock();
     getSamples();
-    saveStats();
     m_abortCond.wait(&m_mutex, 1000);
     m_mutex.unlock();
   } while(!m_abort);
@@ -161,16 +155,6 @@ qlonglong TorrentSpeedMonitor::getETA(const QString &hash, const libtorrent::tor
   return (status.total_wanted - status.total_wanted_done) / speed_average.download;
 }
 
-quint64 TorrentSpeedMonitor::getAlltimeDL() const {
-  QMutexLocker l(&m_mutex);
-  return alltimeDL + sessionDL;
-}
-
-quint64 TorrentSpeedMonitor::getAlltimeUL() const {
-  QMutexLocker l(&m_mutex);
-  return alltimeUL + sessionUL;
-}
-
 void TorrentSpeedMonitor::getSamples()
 {
   const std::vector<torrent_handle> torrents = m_session->getSession()->get_torrents();
@@ -186,61 +170,5 @@ void TorrentSpeedMonitor::getSamples()
         m_samples[misc::toQString(it->info_hash())].addSample(down, up);
       }
     } catch(invalid_handle&) {}
-  }
-  libtorrent::session_status ss = m_session->getSessionStatus();
-  if (ss.total_download > sessionDL) {
-    sessionDL = ss.total_download;
-    dirty = true;
-  }
-  if (ss.total_upload > sessionUL) {
-    sessionUL = ss.total_upload;
-    dirty = true;
-  }
-}
-
-void TorrentSpeedMonitor::saveStats() const {
-  if (!(dirty && (QDateTime::currentMSecsSinceEpoch() - lastWrite >= 15*60*1000) ))
-    return;
-  QIniSettings s("qBittorrent", "qBittorrent-data");
-  QVariantHash v;
-  v.insert("AlltimeDL", alltimeDL + sessionDL);
-  v.insert("AlltimeUL", alltimeUL + sessionUL);
-  s.setValue("Stats/AllStats", v);
-  dirty = false;
-  lastWrite = QDateTime::currentMSecsSinceEpoch();
-}
-
-void TorrentSpeedMonitor::loadStats() {
-  // Temp code. Versions v3.1.4 and v3.1.5 saved the data in the qbittorrent.ini file.
-  // This code reads the data from there, writes it to the new file, and removes the keys
-  // from the old file. This code should be removed after some time has passed.
-  // e.g. When we reach v3.3.0
-  QIniSettings s_old;
-  QIniSettings s("qBittorrent", "qBittorrent-data");
-  QVariantHash v;
-
-  // Let's test if the qbittorrent.ini holds the key
-  if (s_old.contains("Stats/AllStats")) {
-    v = s_old.value("Stats/AllStats").toHash();
-    dirty = true;
-
-    // If the user has used qbt > 3.1.5 and then reinstalled/used
-    // qbt < 3.1.6, there will be stats in qbittorrent-data.ini too
-    // so we need to merge those 2.
-    if (s.contains("Stats/AllStats")) {
-      QVariantHash tmp = s.value("Stats/AllStats").toHash();
-      v["AlltimeDL"] = v["AlltimeDL"].toULongLong() + tmp["AlltimeDL"].toULongLong();
-      v["AlltimeUL"] = v["AlltimeUL"].toULongLong() + tmp["AlltimeUL"].toULongLong();
-    }
-  }
-  else
-    v = s.value("Stats/AllStats").toHash();
-
-  alltimeDL = v["AlltimeDL"].toULongLong();
-  alltimeUL = v["AlltimeUL"].toULongLong();
-
-  if (dirty) {
-    saveStats();
-    s_old.remove("Stats/AllStats");
   }
 }

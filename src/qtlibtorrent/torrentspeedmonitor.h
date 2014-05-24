@@ -49,16 +49,12 @@ public:
   explicit TorrentSpeedMonitor(QBtSession* session);
   ~TorrentSpeedMonitor();
   qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
-  quint64 getAlltimeDL() const;
-  quint64 getAlltimeUL() const;
 
 protected:
   void run();
 
 private:
   void getSamples();
-  void saveStats() const;
-  void loadStats();
 
 private slots:
   void removeSamples(const QString& hash);
@@ -70,13 +66,6 @@ private:
   QHash<QString, SpeedSample> m_samples;
   mutable QMutex m_mutex;
   QBtSession *m_session;
-  // Will overflow at 15.9 EiB
-  quint64 alltimeUL;
-  quint64 alltimeDL;
-  qint64 sessionUL;
-  qint64 sessionDL;
-  mutable qint64 lastWrite;
-  mutable bool dirty;
 };
 
 #endif // TORRENTSPEEDMONITOR_H

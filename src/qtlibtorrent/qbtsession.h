@@ -61,6 +61,7 @@ class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
 class TorrentSpeedMonitor;
+class TorrentStatistics;
 class DNSUpdater;
 
 const int MAX_LOG_MESSAGES = 1000;
@@ -291,6 +292,7 @@ private:
   // DynDNS
   DNSUpdater *m_dynDNSUpdater;
   QAlertDispatcher* m_alertDispatcher;
+  TorrentStatistics* m_torrentStatistics;
 };
 
 #endif
