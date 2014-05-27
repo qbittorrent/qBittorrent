@@ -16,11 +16,14 @@ class torrentfrancais(object):
     self.parser = self.SimpleSGMLParser(self.results, self.url)
 
   def download_torrent(self, url):
-    #Open default webbrowser if  CloudFlare is blocking direct connection (quite often with VPN & proxy...)
+    # Look for torrent link on descrition page
+    link = re.findall('<a href="(http://torrents[^"\'>]*)', urllib2.urlopen(url).read())[0]
+    # Try download torrent
     try:
-      f = urllib2.urlopen(urllib2.Request(url, headers={'User-Agent' : "Mozilla/5.0"} ))
+      f = urllib2.urlopen(urllib2.Request(link, headers={'User-Agent' : "Mozilla/5.0"} ))
     except urllib2.URLError as e:
-      webbrowser.open(url, new=2, autoraise=True)
+      #Open default webbrowser if  CloudFlare is blocking direct connection (quite often with VPN & proxy...)
+      webbrowser.open(link, new=2, autoraise=True)
       return
     if response.getcode() == 200:
       dat = f.read()
@@ -30,6 +33,7 @@ class torrentfrancais(object):
       file.close()
       print path+" "+url   
     else:
+      #Open default webbrowser if  CloudFlare is blocking direct connection (quite often with VPN & proxy...)
       webbrowser.open(url, new=2, autoraise=True)
       return
 
@@ -48,7 +52,7 @@ class torrentfrancais(object):
         self.td_counter = 0
         self.current_item['desc_link'] = params['href'].strip()
 	self.current_item['name'] = params['title'].strip()
-	self.current_item['link'] = re.findall('<a href="(http://torrents[^"\'>]*)', urllib2.urlopen(self.current_item['desc_link']).read())[0]
+	self.current_item['link'] = params['href'].strip()
 
     def start_td(self, attr):
       if isinstance(self.td_counter,int):
