@@ -2144,77 +2144,79 @@ void QBtSession::readAlerts() {
 
 void QBtSession::handleAlert(libtorrent::alert* a) {
   try {
-    if (torrent_finished_alert* p = dynamic_cast<torrent_finished_alert*>(a)) {
-      handleTorrentFinishedAlert(p);
-    }
-    else if (save_resume_data_alert* p = dynamic_cast<save_resume_data_alert*>(a)) {
-      handleSaveResumeDataAlert(p);
-    }
-    else if (file_renamed_alert* p = dynamic_cast<file_renamed_alert*>(a)) {
-      handleFileRenamedAlert(p);
-    }
-    else if (torrent_deleted_alert* p = dynamic_cast<torrent_deleted_alert*>(a)) {
-      handleTorrentDeletedAlert(p);
-    }
-    else if (storage_moved_alert* p = dynamic_cast<storage_moved_alert*>(a)) {
-      handleStorageMovedAlert(p);
-    }
-    else if (metadata_received_alert* p = dynamic_cast<metadata_received_alert*>(a)) {
-      handleMetadataReceivedAlert(p);
-    }
-    else if (file_error_alert* p = dynamic_cast<file_error_alert*>(a)) {
-      handleFileErrorAlert(p);
-    }
-    else if (file_completed_alert* p = dynamic_cast<file_completed_alert*>(a)) {
-      handleFileCompletedAlert(p);
-    }
-    else if (torrent_paused_alert* p = dynamic_cast<torrent_paused_alert*>(a)) {
-      handleTorrentPausedAlert(p);
-    }
-    else if (tracker_error_alert* p = dynamic_cast<tracker_error_alert*>(a)) {
-      handleTrackerErrorAlert(p);
-    }
-    else if (tracker_reply_alert* p = dynamic_cast<tracker_reply_alert*>(a)) {
-      handleTrackerReplyAlert(p);
-    }
-    else if (tracker_warning_alert* p = dynamic_cast<tracker_warning_alert*>(a)) {
-      handleTrackerWarningAlert(p);
-    }
-    else if (portmap_error_alert* p = dynamic_cast<portmap_error_alert*>(a)) {
-      handlePortmapWarningAlert(p);
-    }
-    else if (portmap_alert* p = dynamic_cast<portmap_alert*>(a)) {
-      handlePortmapAlert(p);
-    }
-    else if (peer_blocked_alert* p = dynamic_cast<peer_blocked_alert*>(a)) {
-      handlePeerBlockedAlert(p);
-    }
-    else if (peer_ban_alert* p = dynamic_cast<peer_ban_alert*>(a)) {
-      handlePeerBanAlert(p);
-    }
-    else if (fastresume_rejected_alert* p = dynamic_cast<fastresume_rejected_alert*>(a)) {
-      handleFastResumeRejectedAlert(p);
-    }
-    else if (url_seed_alert* p = dynamic_cast<url_seed_alert*>(a)) {
-      handleUrlSeedAlert(p);
-    }
-    else if (listen_succeeded_alert *p = dynamic_cast<listen_succeeded_alert*>(a)) {
-      handleListenSucceededAlert(p);
-    }
-    else if (listen_failed_alert *p = dynamic_cast<listen_failed_alert*>(a)) {
-      handleListenFailedAlert(p);
-    }
-    else if (torrent_checked_alert* p = dynamic_cast<torrent_checked_alert*>(a)) {
-      handleTorrentCheckedAlert(p);
-    }
-    else if (external_ip_alert *p = dynamic_cast<external_ip_alert*>(a)) {
-      handleExternalIPAlert(p);
-    }
-    else if (state_update_alert *p = dynamic_cast<state_update_alert *>(a)) {
-      handleStateUpdateAlert(p);
-    }
-    else if (stats_alert *p = dynamic_cast<stats_alert *>(a)) {
-      handleStatsAlert(p);
+    switch (a->type()) {
+    case torrent_finished_alert::alert_type:
+      handleTorrentFinishedAlert(static_cast<torrent_finished_alert*>(a));
+      break;
+    case save_resume_data_alert::alert_type:
+      handleSaveResumeDataAlert(static_cast<save_resume_data_alert*>(a));
+      break;
+    case file_renamed_alert::alert_type:
+      handleFileRenamedAlert(static_cast<file_renamed_alert*>(a));
+      break;
+    case torrent_deleted_alert::alert_type:
+      handleTorrentDeletedAlert(static_cast<torrent_deleted_alert*>(a));
+      break;
+    case storage_moved_alert::alert_type:
+      handleStorageMovedAlert(static_cast<storage_moved_alert*>(a));
+      break;
+    case metadata_received_alert::alert_type:
+      handleMetadataReceivedAlert(static_cast<metadata_received_alert*>(a));
+      break;
+    case file_error_alert::alert_type:
+      handleFileErrorAlert(static_cast<file_error_alert*>(a));
+      break;
+    case file_completed_alert::alert_type:
+      handleFileCompletedAlert(static_cast<file_completed_alert*>(a));
+      break;
+    case torrent_paused_alert::alert_type:
+      handleTorrentPausedAlert(static_cast<torrent_paused_alert*>(a));
+      break;
+    case tracker_error_alert::alert_type:
+      handleTrackerErrorAlert(static_cast<tracker_error_alert*>(a));
+      break;
+    case tracker_reply_alert::alert_type:
+      handleTrackerReplyAlert(static_cast<tracker_reply_alert*>(a));
+      break;
+    case tracker_warning_alert::alert_type:
+      handleTrackerWarningAlert(static_cast<tracker_warning_alert*>(a));
+      break;
+    case portmap_error_alert::alert_type:
+      handlePortmapWarningAlert(static_cast<portmap_error_alert*>(a));
+      break;
+    case portmap_alert::alert_type:
+      handlePortmapAlert(static_cast<portmap_alert*>(a));
+      break;
+    case peer_blocked_alert::alert_type:
+      handlePeerBlockedAlert(static_cast<peer_blocked_alert*>(a));
+      break;
+    case peer_ban_alert::alert_type:
+      handlePeerBanAlert(static_cast<peer_ban_alert*>(a));
+      break;
+    case fastresume_rejected_alert::alert_type:
+      handleFastResumeRejectedAlert(static_cast<fastresume_rejected_alert*>(a));
+      break;
+    case url_seed_alert::alert_type:
+      handleUrlSeedAlert(static_cast<url_seed_alert*>(a));
+      break;
+    case listen_succeeded_alert::alert_type:
+      handleListenSucceededAlert(static_cast<listen_succeeded_alert*>(a));
+      break;
+    case listen_failed_alert::alert_type:
+      handleListenFailedAlert(static_cast<listen_failed_alert*>(a));
+      break;
+    case torrent_checked_alert::alert_type:
+      handleTorrentCheckedAlert(static_cast<torrent_checked_alert*>(a));
+      break;
+    case external_ip_alert::alert_type:
+      handleExternalIPAlert(static_cast<external_ip_alert*>(a));
+      break;
+    case state_update_alert::alert_type:
+      handleStateUpdateAlert(static_cast<state_update_alert*>(a));
+      break;
+    case stats_alert::alert_type:
+      handleStatsAlert(static_cast<stats_alert*>(a));
+      break;
     }
   } catch (const std::exception& e) {
     qWarning() << "Caught exception in readAlerts(): " << e.what();
