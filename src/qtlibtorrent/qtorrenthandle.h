@@ -59,24 +59,12 @@ public:
   //
   QString hash() const;
   QString name() const;
-  float progress() const;
-  libtorrent::bitfield pieces() const;
   QString current_tracker() const;
   bool is_paused() const;
   bool has_filtered_pieces() const;
   libtorrent::size_type total_size() const;
   libtorrent::size_type piece_length() const;
   int num_pieces() const;
-  libtorrent::size_type total_wanted_done() const;
-  libtorrent::size_type total_wanted() const;
-  qreal download_payload_rate() const;
-  qreal upload_payload_rate() const;
-  int num_connections() const;
-  int connections_limit() const;
-  int num_peers() const;
-  int num_seeds() const;
-  int num_complete() const;
-  int num_incomplete() const;
   QString save_path() const;
   QString save_path_parsed() const;
   QStringList url_seeds() const;
@@ -91,26 +79,13 @@ public:
   libtorrent::torrent_status::state_t state() const;
   QString creator() const;
   QString comment() const;
-  libtorrent::size_type total_failed_bytes() const;
-  libtorrent::size_type total_redundant_bytes() const;
-  libtorrent::size_type total_payload_download() const;
-  libtorrent::size_type total_payload_upload() const;
-  libtorrent::size_type all_time_upload() const;
-  libtorrent::size_type all_time_download() const;
-  libtorrent::size_type total_done() const;
   QStringList absolute_files_path() const;
   QStringList absolute_files_path_uneeded() const;
   bool has_missing_files() const;
-  int num_uploads() const;
   bool is_seed() const;
   bool is_checking() const;
-  bool is_auto_managed() const;
   bool is_sequential_download() const;
-  qlonglong active_time() const;
-  qlonglong seeding_time() const;
   QString creation_date() const;
-  QString next_announce() const;
-  qlonglong next_announce_s() const;
   bool priv() const;
   bool first_last_piece_first() const;
   QString root_path() const;
@@ -119,7 +94,6 @@ public:
   QString error() const;
   void downloading_pieces(libtorrent::bitfield& bf) const;
   bool has_metadata() const;
-  float distributed_copies() const;
   void file_progress(std::vector<libtorrent::size_type>& fp) const;
 
   //
@@ -141,6 +115,13 @@ public:
   // Operators
   //
   bool operator ==(const QTorrentHandle& new_h) const;
+
+  static bool is_paused(const libtorrent::torrent_status &status);
+  static bool is_queued(const libtorrent::torrent_status &status);
+  static bool is_seed(const libtorrent::torrent_status &status);
+  static bool is_checking(const libtorrent::torrent_status &status);
+  static bool has_error(const libtorrent::torrent_status &status);
+  static float progress(const libtorrent::torrent_status &status);
 
 private:
   void prioritize_first_last_piece(int file_index, bool b) const;

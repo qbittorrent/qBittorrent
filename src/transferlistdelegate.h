@@ -78,9 +78,10 @@ public:
     case TorrentModelItem::TR_SEEDS:
     case TorrentModelItem::TR_PEERS: {
         QString display = QString::number(index.data().toLongLong());
-        if (index.data(Qt::UserRole).toLongLong() > 0) {
+        qlonglong total = index.data(Qt::UserRole).toLongLong();
+        if (total > 0) {
           // Scrape was successful, we have total values
-          display += " ("+QString::number(index.data(Qt::UserRole).toLongLong())+")";
+          display += " ("+QString::number(total)+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
