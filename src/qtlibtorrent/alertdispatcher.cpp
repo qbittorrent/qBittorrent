@@ -1,15 +1,15 @@
 #include "alertdispatcher.h"
 
 #include <boost/bind.hpp>
-#include <boost/make_shared.hpp>
 #include <QMutexLocker>
 
 QAlertDispatcher::QAlertDispatcher(libtorrent::session *session, QObject* parent)
   : QObject(parent)
-  , session(session)
+  , m_session(session)
   , current_tag(new QAtomicPointer<QAlertDispatcher>(this))
-  , event_posted(false) {
-  session->set_alert_dispatch(boost::bind(&QAlertDispatcher::dispatch, current_tag, _1));
+  , event_posted(false)
+{
+  m_session->set_alert_dispatch(boost::bind(&QAlertDispatcher::dispatch, current_tag, _1));
 }
 
 QAlertDispatcher::~QAlertDispatcher() {
@@ -21,32 +21,32 @@ QAlertDispatcher::~QAlertDispatcher() {
   // with invalid tag it simply discard an alert.
 
   {
-    QMutexLocker lock(&(alerts_mutex));
+    QMutexLocker lock(&alerts_mutex);
     *current_tag = 0;
     current_tag.clear();
   }
 
   typedef boost::function<void (std::auto_ptr<libtorrent::alert>)> dispatch_function_t;
-  session->set_alert_dispatch(dispatch_function_t());
+  m_session->set_alert_dispatch(dispatch_function_t());
 }
 
 void QAlertDispatcher::getPendingAlertsNoWait(std::deque<libtorrent::alert*>& out) {
   Q_ASSERT(out.empty());
 
-  QMutexLocker lock(&(alerts_mutex));
-  std::swap(alerts, out);
+  QMutexLocker lock(&alerts_mutex);
+  alerts.swap(out);
   event_posted = false;
 }
 
-void QAlertDispatcher::getPendingAlerts(std::deque<libtorrent::alert*>& out) {
-  assert(out.empty());
+void QAlertDispatcher::getPendingAlerts(std::deque<libtorrent::alert*>& out, unsigned long time) {
+  Q_ASSERT(out.empty());
 
-  QMutexLocker lock(&(alerts_mutex));
+  QMutexLocker lock(&alerts_mutex);
 
   while (alerts.empty())
-    alerts_condvar.wait(&(alerts_mutex));
+    alerts_condvar.wait(&alerts_mutex, time);
 
-  std::swap(alerts, out);
+  alerts.swap(out);
   event_posted = false;
 }
 
@@ -58,8 +58,7 @@ void QAlertDispatcher::dispatch(QSharedPointer<QAtomicPointer<QAlertDispatcher> 
 
   QMutexLocker lock(&(that->alerts_mutex));
 
-  that = *tag;
-  if (!that)
+  if (!*tag)
     return;
 
   bool was_empty = that->alerts.empty();
@@ -85,7 +84,7 @@ void QAlertDispatcher::enqueueToMainThread() {
 void QAlertDispatcher::deliverSignal() {
   emit alertsReceived();
 
-  QMutexLocker lock(&(alerts_mutex));
+  QMutexLocker lock(&alerts_mutex);
   event_posted = false;
 
   if (!alerts.empty())

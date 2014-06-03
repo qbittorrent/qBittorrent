@@ -13,7 +13,8 @@ TorrentStatistics::TorrentStatistics(QBtSession* session, QObject* parent)
   , m_sessionUL(0)
   , m_sessionDL(0)
   , m_lastWrite(0)
-  , m_dirty(false) {
+  , m_dirty(false)
+{
   loadStats();
   connect(&m_timer, SIGNAL(timeout()), this, SLOT(gatherStats()));
   m_timer.start(60 * 1000);

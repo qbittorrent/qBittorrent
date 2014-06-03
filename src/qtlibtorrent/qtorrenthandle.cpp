@@ -33,7 +33,6 @@
 #include <QFile>
 #include <QDir>
 #include <QByteArray>
-#include <QDateTime>
 #include <math.h>
 #include "fs_utils.h"
 #include "misc.h"
@@ -616,35 +615,29 @@ bool QTorrentHandle::operator ==(const QTorrentHandle& new_h) const {
   return info_hash() == new_h.info_hash();
 }
 
-bool QTorrentHandle::is_paused(const libtorrent::torrent_status &status)
-{
+bool QTorrentHandle::is_paused(const libtorrent::torrent_status &status) {
   return status.paused && !status.auto_managed;
 }
 
-bool QTorrentHandle::is_queued(const libtorrent::torrent_status &status)
-{
+bool QTorrentHandle::is_queued(const libtorrent::torrent_status &status) {
   return status.paused && status.auto_managed;
 }
 
-bool QTorrentHandle::is_seed(const libtorrent::torrent_status &status)
-{
+bool QTorrentHandle::is_seed(const libtorrent::torrent_status &status) {
   return status.state == torrent_status::finished
       || status.state == torrent_status::seeding;
 }
 
-bool QTorrentHandle::is_checking(const libtorrent::torrent_status &status)
-{
+bool QTorrentHandle::is_checking(const libtorrent::torrent_status &status) {
   return status.state == torrent_status::checking_files
       || status.state == torrent_status::checking_resume_data;
 }
 
-bool QTorrentHandle::has_error(const libtorrent::torrent_status &status)
-{
+bool QTorrentHandle::has_error(const libtorrent::torrent_status &status) {
   return status.paused && !status.error.empty();
 }
 
-float QTorrentHandle::progress(const libtorrent::torrent_status &status)
-{
+float QTorrentHandle::progress(const libtorrent::torrent_status &status) {
   if (!status.total_wanted)
     return 0.;
   if (status.total_wanted_done == status.total_wanted)

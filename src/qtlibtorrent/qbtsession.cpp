@@ -1635,7 +1635,12 @@ void QBtSession::saveFastResumeData() {
   }
   while (num_resume_data > 0) {
     std::deque<alert*> alerts;
-    m_alertDispatcher->getPendingAlerts(alerts);
+    m_alertDispatcher->getPendingAlerts(alerts, 30*1000);
+    if (alerts.empty()) {
+      std::cerr << " aborting with " << num_resume_data << " outstanding "
+                   "torrents to save resume data for" << std::endl;
+      break;
+    }
 
     for (std::deque<alert*>::const_iterator i = alerts.begin(), end = alerts.end(); i != end; ++i)
     {
@@ -1649,18 +1654,26 @@ void QBtSession::saveFastResumeData() {
           if (rda->handle.is_valid())
             s->remove_torrent(rda->handle);
         }catch(libtorrent::libtorrent_exception) {}
+        delete a;
         continue;
       }
       save_resume_data_alert const* rd = dynamic_cast<save_resume_data_alert const*>(a);
       if (!rd) {
+        delete a;
         continue;
       }
       // Saving fast resume data was successful
       --num_resume_data;
-      if (!rd->resume_data) continue;
+      if (!rd->resume_data) {
+        delete a;
+        continue;
+      }
       QDir torrentBackup(fsutils::BTBackupLocation());
       const QTorrentHandle h(rd->handle);
-      if (!h.is_valid()) continue;
+      if (!h.is_valid()) {
+        delete a;
+        continue;
+      }
       try {
         // Remove old fastresume file if it exists
         backupPersistentData(h.hash(), rd->resume_data);

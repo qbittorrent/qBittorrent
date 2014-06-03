@@ -8,8 +8,7 @@
 #include <QSharedPointer>
 #include <libtorrent/session.hpp>
 
-class QAlertDispatcher : public QObject
-{
+class QAlertDispatcher : public QObject {
   Q_OBJECT
   Q_DISABLE_COPY(QAlertDispatcher)
 
@@ -18,7 +17,7 @@ public:
   ~QAlertDispatcher();
 
   void getPendingAlertsNoWait(std::deque<libtorrent::alert*>&);
-  void getPendingAlerts(std::deque<libtorrent::alert*>&);
+  void getPendingAlerts(std::deque<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
 
 signals:
   void alertsReceived();
@@ -32,7 +31,7 @@ private slots:
   void deliverSignal();
 
 private:
-  libtorrent::session *session;
+  libtorrent::session *m_session;
   QMutex alerts_mutex;
   QWaitCondition alerts_condvar;
   std::deque<libtorrent::alert*> alerts;

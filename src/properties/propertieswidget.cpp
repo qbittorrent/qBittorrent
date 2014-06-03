@@ -317,8 +317,8 @@ void PropertiesWidget::loadDynamicData() {
   if (!h.is_valid() || main_window->getCurrentTabWidget() != transferList || state != VISIBLE) return;
   try {
     libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters
-                                               | torrent_handle::query_distributed_copies
-                                               | torrent_handle::query_pieces);
+                                                 | torrent_handle::query_distributed_copies
+                                                 | torrent_handle::query_pieces);
     // Transfer infos
     if (stackedProperties->currentIndex() == PropTabBar::MAIN_TAB) {
       wasted->setText(misc::friendlyUnit(status.total_failed_bytes+status.total_redundant_bytes));

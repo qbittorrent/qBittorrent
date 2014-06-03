@@ -37,52 +37,43 @@
 
 using namespace libtorrent;
 
-namespace
-{
-  QIcon get_paused_icon()
-  {
+namespace {
+QIcon get_paused_icon() {
     static QIcon cached = QIcon(":/Icons/skin/paused.png");
     return cached;
   }
 
-  QIcon get_queued_icon()
-  {
+QIcon get_queued_icon() {
     static QIcon cached = QIcon(":/Icons/skin/queued.png");
     return cached;
   }
 
-  QIcon get_downloading_icon()
-  {
+QIcon get_downloading_icon() {
     static QIcon cached = QIcon(":/Icons/skin/downloading.png");
     return cached;
   }
 
-  QIcon get_stalled_downloading_icon()
-  {
+QIcon get_stalled_downloading_icon() {
     static QIcon cached = QIcon(":/Icons/skin/stalledDL.png");
     return cached;
   }
 
-  QIcon get_uploading_icon()
-  {
+QIcon get_uploading_icon() {
     static QIcon cached = QIcon(":/Icons/skin/uploading.png");
     return cached;
   }
 
-  QIcon get_stalled_uploading_icon()
-  {
+QIcon get_stalled_uploading_icon() {
     static QIcon cached = QIcon(":/Icons/skin/stalledUP.png");
     return cached;
   }
 
-  QIcon get_checking_icon()
-  {
+QIcon get_checking_icon() {
     static QIcon cached = QIcon(":/Icons/skin/checking.png");
     return cached;
   }
 
-  QIcon get_error_icon()
-  {
+QIcon get_error_icon() {
     static QIcon cached = QIcon(":/Icons/skin/error.png");
     return cached;
   }
@@ -101,13 +92,11 @@ TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
     m_name = h.name();
 }
 
-void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status)
-{
+void TorrentModelItem::refreshStatus(libtorrent::torrent_status const& status) {
   m_lastStatus = status;
 }
 
-TorrentModelItem::State TorrentModelItem::state() const
-{
+TorrentModelItem::State TorrentModelItem::state() const {
   try {
     // Pause or Queued
     if (m_torrent.is_paused(m_lastStatus)) {
@@ -549,12 +538,10 @@ void TorrentModel::handleTorrentAboutToBeRemoved(const QTorrentHandle &h)
   }
 }
 
-void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &statuses)
-{
+void TorrentModel::stateUpdated(const std::vector<libtorrent::torrent_status> &statuses) {
   typedef std::vector<libtorrent::torrent_status> statuses_t;
 
-  for (statuses_t::const_iterator i = statuses.begin(), end = statuses.end(); i != end; ++i)
-  {
+  for (statuses_t::const_iterator i = statuses.begin(), end = statuses.end(); i != end; ++i) {
     libtorrent::torrent_status const& status = *i;
 
     const int row = torrentRow(misc::toQString(status.handle.info_hash()));
