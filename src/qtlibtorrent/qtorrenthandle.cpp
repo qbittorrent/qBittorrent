@@ -550,6 +550,8 @@ int QTorrentHandle::connections_limit() const {
 }
 
 bool QTorrentHandle::priv() const {
+  if (!has_metadata())
+    return false;
   return torrent_handle::get_torrent_info().priv();
 }
 
