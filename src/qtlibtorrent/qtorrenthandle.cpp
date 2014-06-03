@@ -336,6 +336,8 @@ bool QTorrentHandle::is_sequential_download() const {
 }
 
 bool QTorrentHandle::priv() const {
+  if (!has_metadata())
+    return false;
 #if LIBTORRENT_VERSION_NUM < 10000
   return torrent_handle::get_torrent_info().priv();
 #else
