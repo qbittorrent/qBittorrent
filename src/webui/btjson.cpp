@@ -122,7 +122,11 @@ static const char KEY_TRANSFER_UPSPEED[] = "up_info";
 
 static QVariantMap toMap(const QTorrentHandle& h)
 {
+#if LIBTORRENT_VERSION_NUM >= 1600
   libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
+#else
+  libtorrent::torrent_status status = h.status();
+#endif
 
   QVariantMap ret;
   ret[KEY_TORRENT_HASH] =  h.hash();
@@ -284,8 +288,13 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
   try {
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
 
+#if LIBTORRENT_VERSION_NUM >= 1600
     libtorrent::torrent_status status = h.status(torrent_handle::query_accurate_download_counters);
     if (!status.has_metadata)
+#else
+    libtorrent::torrent_status status = h.status();
+    if (!h.has_metadata())
+#endif
       return QByteArray();
 
     // Save path
