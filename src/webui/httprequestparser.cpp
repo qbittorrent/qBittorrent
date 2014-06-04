@@ -113,7 +113,7 @@ void HttpRequestParser::writeMessage(const QByteArray& ba) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     QString tmp(m_data);
     QUrlQuery query(tmp);
-    QListIterator<QPair<QString, QString> > i(query.queryItems());
+    QListIterator<QPair<QString, QString> > i(query.queryItems(QUrl::FullyDecoded));
 #else
     url.setEncodedQuery(m_data);
     QListIterator<QPair<QString, QString> > i(url.queryItems());

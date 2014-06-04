@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,39 +25,42 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : glassez@yandex.ru
  */
 
-#include "jsonlist.h"
-#include "json.h"
+#ifndef JSONUTILS_H
+#define JSONUTILS_H
 
-JsonList::JsonList() : m_dirty(false)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#else
+#include <QString>
+#include "qjson/parser.h"
+#include "qjson/serializer.h"
+#endif
+
+namespace json {
+
+inline QByteArray toJson(const QVariant& var)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromVariant(var).toJson();
+#else
+  return QJson::Serializer().serialize(var);
+#endif
 }
 
-const QString& JsonList::toString() const
+inline QVariant fromJson(const QString& json)
 {
-  if (m_dirty) {
-    m_json = "[" + m_items.join(",") + "]";
-    m_dirty = false;
-  }
-  return m_json;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+#else
+  return QJson::Parser().parse(json.toUtf8());
+#endif
 }
 
-void JsonList::clear()
-{
-  m_items.clear();
-  m_dirty = true;
 }
 
-void JsonList::append(const QVariant& val)
-{
-  m_items.append(json::toJson(val));
-  m_dirty = true;
-}
-
-void JsonList::append(const JsonDict& dict)
-{
-  m_items.append(dict.toString());
-  m_dirty = true;
-}
+#endif // JSONUTILS_H
