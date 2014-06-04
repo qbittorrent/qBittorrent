@@ -31,6 +31,7 @@
 #ifndef TORRENTSPEEDMONITOR_H
 #define TORRENTSPEEDMONITOR_H
 
+#include <QObject>
 #include <QString>
 #include <QHash>
 #include "qtorrenthandle.h"
