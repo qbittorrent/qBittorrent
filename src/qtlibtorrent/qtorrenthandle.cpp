@@ -317,9 +317,7 @@ bool QTorrentHandle::has_missing_files() const {
 }
 
 int QTorrentHandle::queue_position() const {
-  if (torrent_handle::queue_position() < 0)
-    return -1;
-  return torrent_handle::queue_position()+1;
+  return queue_position(status(0x0));
 }
 
 bool QTorrentHandle::is_seed() const {
@@ -619,6 +617,12 @@ bool QTorrentHandle::operator ==(const QTorrentHandle& new_h) const {
 
 bool QTorrentHandle::is_paused(const libtorrent::torrent_status &status) {
   return status.paused && !status.auto_managed;
+}
+
+int QTorrentHandle::queue_position(const libtorrent::torrent_status &status) {
+  if (status.queue_position < 0)
+    return -1;
+  return status.queue_position+1;
 }
 
 bool QTorrentHandle::is_queued(const libtorrent::torrent_status &status) {

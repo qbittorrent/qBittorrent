@@ -117,6 +117,7 @@ public:
   bool operator ==(const QTorrentHandle& new_h) const;
 
   static bool is_paused(const libtorrent::torrent_status &status);
+  static int queue_position(const libtorrent::torrent_status &status);
   static bool is_queued(const libtorrent::torrent_status &status);
   static bool is_seed(const libtorrent::torrent_status &status);
   static bool is_checking(const libtorrent::torrent_status &status);

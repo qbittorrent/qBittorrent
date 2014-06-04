@@ -128,12 +128,12 @@ static QVariantMap toMap(const QTorrentHandle& h)
   QVariantMap ret;
   ret[KEY_TORRENT_HASH] =  h.hash();
   ret[KEY_TORRENT_NAME] =  h.name();
-  ret[KEY_TORRENT_SIZE] =  misc::friendlyUnit(h.actual_size()); // FIXME: Should pass as Number, not formatted String (for sorting).
+  ret[KEY_TORRENT_SIZE] =  misc::friendlyUnit(status.total_wanted); // FIXME: Should pass as Number, not formatted String (for sorting).
   ret[KEY_TORRENT_PROGRESS] =  (double)h.progress(status);
   ret[KEY_TORRENT_DLSPEED] = misc::friendlyUnit(status.download_payload_rate, true); // FIXME: Should be passed as a Number
   ret[KEY_TORRENT_UPSPEED] = misc::friendlyUnit(status.upload_payload_rate, true); // FIXME: Should be passed as a Number
-  if (QBtSession::instance()->isQueueingEnabled() && h.queue_position() >= 0)
-    ret[KEY_TORRENT_PRIORITY] =  QString::number(h.queue_position());
+  if (QBtSession::instance()->isQueueingEnabled() && h.queue_position(status) >= 0)
+    ret[KEY_TORRENT_PRIORITY] =  QString::number(h.queue_position(status));
   else
     ret[KEY_TORRENT_PRIORITY] =  "*";
   QString seeds = QString::number(status.num_seeds);
