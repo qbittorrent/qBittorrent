@@ -29,9 +29,7 @@
  */
 
 #include "prefjson.h"
-#include "jsondict.h"
 #include "preferences.h"
-#include "json.h"
 #include "qbtsession.h"
 #include "scannedfoldersmodel.h"
 
@@ -41,110 +39,111 @@
 #include <QSslKey>
 #endif
 #include <QTranslator>
+#include "jsonutils.h"
 
 prefjson::prefjson()
 {
 }
 
-QString prefjson::getPreferences()
+QByteArray prefjson::getPreferences()
 {
   const Preferences pref;
-  JsonDict data;
+  QVariantMap data;
   // UI
-  data.add("locale", pref.getLocale());
+  data["locale"] = pref.getLocale();
   // Downloads
-  data.add("save_path", pref.getSavePath());
-  data.add("temp_path_enabled", pref.isTempPathEnabled());
-  data.add("temp_path", pref.getTempPath());
-  data.add("scan_dirs", pref.getScanDirs());
+  data["save_path"] = pref.getSavePath();
+  data["temp_path_enabled"] = pref.isTempPathEnabled();
+  data["temp_path"] = pref.getTempPath();
+  data["scan_dirs"] = pref.getScanDirs();
   QVariantList var_list;
   foreach (bool b, pref.getDownloadInScanDirs()) {
     var_list << b;
   }
-  data.add("download_in_scan_dirs", var_list);
-  data.add("export_dir_enabled", pref.isTorrentExportEnabled());
-  data.add("export_dir", pref.getTorrentExportDir());
-  data.add("mail_notification_enabled", pref.isMailNotificationEnabled());
-  data.add("mail_notification_email", pref.getMailNotificationEmail());
-  data.add("mail_notification_smtp", pref.getMailNotificationSMTP());
-  data.add("mail_notification_ssl_enabled", pref.getMailNotificationSMTPSSL());
-  data.add("mail_notification_auth_enabled", pref.getMailNotificationSMTPAuth());
-  data.add("mail_notification_username", pref.getMailNotificationSMTPUsername());
-  data.add("mail_notification_password", pref.getMailNotificationSMTPPassword());
-  data.add("autorun_enabled", pref.isAutoRunEnabled());
-  data.add("autorun_program", pref.getAutoRunProgram());
-  data.add("preallocate_all", pref.preAllocateAllFiles());
-  data.add("queueing_enabled", pref.isQueueingSystemEnabled());
-  data.add("max_active_downloads", pref.getMaxActiveDownloads());
-  data.add("max_active_torrents", pref.getMaxActiveTorrents());
-  data.add("max_active_uploads", pref.getMaxActiveUploads());
-  data.add("dont_count_slow_torrents", pref.ignoreSlowTorrentsForQueueing());
-  data.add("incomplete_files_ext", pref.useIncompleteFilesExtension());
+  data["download_in_scan_dirs"] = var_list;
+  data["export_dir_enabled"] = pref.isTorrentExportEnabled();
+  data["export_dir"] = pref.getTorrentExportDir();
+  data["mail_notification_enabled"] = pref.isMailNotificationEnabled();
+  data["mail_notification_email"] = pref.getMailNotificationEmail();
+  data["mail_notification_smtp"] = pref.getMailNotificationSMTP();
+  data["mail_notification_ssl_enabled"] = pref.getMailNotificationSMTPSSL();
+  data["mail_notification_auth_enabled"] = pref.getMailNotificationSMTPAuth();
+  data["mail_notification_username"] = pref.getMailNotificationSMTPUsername();
+  data["mail_notification_password"] = pref.getMailNotificationSMTPPassword();
+  data["autorun_enabled"] = pref.isAutoRunEnabled();
+  data["autorun_program"] = pref.getAutoRunProgram();
+  data["preallocate_all"] = pref.preAllocateAllFiles();
+  data["queueing_enabled"] = pref.isQueueingSystemEnabled();
+  data["max_active_downloads"] = pref.getMaxActiveDownloads();
+  data["max_active_torrents"] = pref.getMaxActiveTorrents();
+  data["max_active_uploads"] = pref.getMaxActiveUploads();
+  data["dont_count_slow_torrents"] = pref.ignoreSlowTorrentsForQueueing();
+  data["incomplete_files_ext"] = pref.useIncompleteFilesExtension();
   // Connection
-  data.add("listen_port", pref.getSessionPort());
-  data.add("upnp", pref.isUPnPEnabled());
-  data.add("dl_limit", pref.getGlobalDownloadLimit());
-  data.add("up_limit", pref.getGlobalUploadLimit());
-  data.add("max_connec", pref.getMaxConnecs());
-  data.add("max_connec_per_torrent", pref.getMaxConnecsPerTorrent());
-  data.add("max_uploads_per_torrent", pref.getMaxUploadsPerTorrent());
+  data["listen_port"] = pref.getSessionPort();
+  data["upnp"] = pref.isUPnPEnabled();
+  data["dl_limit"] = pref.getGlobalDownloadLimit();
+  data["up_limit"] = pref.getGlobalUploadLimit();
+  data["max_connec"] = pref.getMaxConnecs();
+  data["max_connec_per_torrent"] = pref.getMaxConnecsPerTorrent();
+  data["max_uploads_per_torrent"] = pref.getMaxUploadsPerTorrent();
 #if LIBTORRENT_VERSION_NUM >= 1600
-  data.add("enable_utp", pref.isuTPEnabled());
-  data.add("limit_utp_rate", pref.isuTPRateLimited());
+  data["enable_utp"] = pref.isuTPEnabled();
+  data["limit_utp_rate"] = pref.isuTPRateLimited();
 #endif
-  data.add("limit_tcp_overhead", pref.includeOverheadInLimits());
-  data.add("alt_dl_limit", pref.getAltGlobalDownloadLimit());
-  data.add("alt_up_limit", pref.getAltGlobalUploadLimit());
-  data.add("scheduler_enabled", pref.isSchedulerEnabled());
+  data["limit_tcp_overhead"] = pref.includeOverheadInLimits();
+  data["alt_dl_limit"] = pref.getAltGlobalDownloadLimit();
+  data["alt_up_limit"] = pref.getAltGlobalUploadLimit();
+  data["scheduler_enabled"] = pref.isSchedulerEnabled();
   const QTime start_time = pref.getSchedulerStartTime();
-  data.add("schedule_from_hour", start_time.hour());
-  data.add("schedule_from_min", start_time.minute());
+  data["schedule_from_hour"] = start_time.hour();
+  data["schedule_from_min"] = start_time.minute();
   const QTime end_time = pref.getSchedulerEndTime();
-  data.add("schedule_to_hour", end_time.hour());
-  data.add("schedule_to_min", end_time.minute());
-  data.add("scheduler_days", pref.getSchedulerDays());
+  data["schedule_to_hour"] = end_time.hour();
+  data["schedule_to_min"] = end_time.minute();
+  data["scheduler_days"] = pref.getSchedulerDays();
   // Bittorrent
-  data.add("dht", pref.isDHTEnabled());
-  data.add("dhtSameAsBT", pref.isDHTPortSameAsBT());
-  data.add("dht_port", pref.getDHTPort());
-  data.add("pex", pref.isPeXEnabled());
-  data.add("lsd", pref.isLSDEnabled());
-  data.add("encryption", pref.getEncryptionSetting());
+  data["dht"] = pref.isDHTEnabled();
+  data["dhtSameAsBT"] = pref.isDHTPortSameAsBT();
+  data["dht_port"] = pref.getDHTPort();
+  data["pex"] = pref.isPeXEnabled();
+  data["lsd"] = pref.isLSDEnabled();
+  data["encryption"] = pref.getEncryptionSetting();
 #if LIBTORRENT_VERSION_NUM >= 1600
-  data.add("anonymous_mode", pref.isAnonymousModeEnabled());
+  data["anonymous_mode"] = pref.isAnonymousModeEnabled();
 #endif
   // Proxy
-  data.add("proxy_type", pref.getProxyType());
-  data.add("proxy_ip", pref.getProxyIp());
-  data.add("proxy_port", pref.getProxyPort());
-  data.add("proxy_peer_connections", pref.proxyPeerConnections());
-  data.add("proxy_auth_enabled", pref.isProxyAuthEnabled());
-  data.add("proxy_username", pref.getProxyUsername());
-  data.add("proxy_password", pref.getProxyPassword());
+  data["proxy_type"] = pref.getProxyType();
+  data["proxy_ip"] = pref.getProxyIp();
+  data["proxy_port"] = pref.getProxyPort();
+  data["proxy_peer_connections"] = pref.proxyPeerConnections();
+  data["proxy_auth_enabled"] = pref.isProxyAuthEnabled();
+  data["proxy_username"] = pref.getProxyUsername();
+  data["proxy_password"] = pref.getProxyPassword();
   // IP Filter
-  data.add("ip_filter_enabled", pref.isFilteringEnabled());
-  data.add("ip_filter_path", pref.getFilter());
+  data["ip_filter_enabled"] = pref.isFilteringEnabled();
+  data["ip_filter_path"] = pref.getFilter();
   // Web UI
-  data.add("web_ui_port", pref.getWebUiPort());
-  data.add("web_ui_username", pref.getWebUiUsername());
-  data.add("web_ui_password", pref.getWebUiPassword());
-  data.add("bypass_local_auth", !pref.isWebUiLocalAuthEnabled());
-  data.add("use_https", pref.isWebUiHttpsEnabled());
-  data.add("ssl_key", QString::fromAscii(pref.getWebUiHttpsKey()));
-  data.add("ssl_cert", QString::fromAscii(pref.getWebUiHttpsCertificate()));
+  data["web_ui_port"] = pref.getWebUiPort();
+  data["web_ui_username"] = pref.getWebUiUsername();
+  data["web_ui_password"] = pref.getWebUiPassword();
+  data["bypass_local_auth"] = !pref.isWebUiLocalAuthEnabled();
+  data["use_https"] = pref.isWebUiHttpsEnabled();
+  data["ssl_key"] = QString::fromLatin1(pref.getWebUiHttpsKey());
+  data["ssl_cert"] = QString::fromLatin1(pref.getWebUiHttpsCertificate());
   // DynDns
-  data.add("dyndns_enabled", pref.isDynDNSEnabled());
-  data.add("dyndns_service", pref.getDynDNSService());
-  data.add("dyndns_username", pref.getDynDNSUsername());
-  data.add("dyndns_password", pref.getDynDNSPassword());
-  data.add("dyndns_domain", pref.getDynDomainName());
+  data["dyndns_enabled"] = pref.isDynDNSEnabled();
+  data["dyndns_service"] = pref.getDynDNSService();
+  data["dyndns_username"] = pref.getDynDNSUsername();
+  data["dyndns_password"] = pref.getDynDNSPassword();
+  data["dyndns_domain"] = pref.getDynDomainName();
 
-  return data.toString();
+  return json::toJson(data);
 }
 
 void prefjson::setPreferences(const QString& json)
 {
-  const QVariantMap m = json::fromJson(json);
+  const QVariantMap m = json::fromJson(json).toMap();
 
   // UI
   Preferences pref;

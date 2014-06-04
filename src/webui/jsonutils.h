@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,27 +25,42 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : glassez@yandex.ru
  */
 
-#ifndef BTJSON_H
-#define BTJSON_H
+#ifndef JSONUTILS_H
+#define JSONUTILS_H
 
-#include <QCoreApplication>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#else
 #include <QString>
+#include "qjson/parser.h"
+#include "qjson/serializer.h"
+#endif
 
-class btjson {
-  Q_DECLARE_TR_FUNCTIONS(misc)
+namespace json {
 
-private:
-  btjson() {}
+inline QByteArray toJson(const QVariant& var)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromVariant(var).toJson();
+#else
+  return QJson::Serializer().serialize(var);
+#endif
+}
 
-public:
-  static QByteArray getTorrents();
-  static QByteArray getTrackersForTorrent(const QString& hash);
-  static QByteArray getPropertiesForTorrent(const QString& hash);
-  static QByteArray getFilesForTorrent(const QString& hash);
-  static QByteArray getTransferInfo();
-}; // class btjson
+inline QVariant fromJson(const QString& json)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+#else
+  return QJson::Parser().parse(json.toUtf8());
+#endif
+}
 
-#endif // BTJSON_H
+}
+
+#endif // JSONUTILS_H
