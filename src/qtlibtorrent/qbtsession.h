@@ -195,6 +195,30 @@ private:
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
   void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);
   void handleAlert(libtorrent::alert* a);
+  void handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* p);
+  void handleSaveResumeDataAlert(libtorrent::save_resume_data_alert* p);
+  void handleFileRenamedAlert(libtorrent::file_renamed_alert* p);
+  void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert* p);
+  void handleStorageMovedAlert(libtorrent::storage_moved_alert* p);
+  void handleMetadataReceivedAlert(libtorrent::metadata_received_alert* p);
+  void handleFileErrorAlert(libtorrent::file_error_alert* p);
+  void handleFileCompletedAlert(libtorrent::file_completed_alert* p);
+  void handleTorrentPausedAlert(libtorrent::torrent_paused_alert* p);
+  void handleTrackerErrorAlert(libtorrent::tracker_error_alert* p);
+  void handleTrackerReplyAlert(libtorrent::tracker_reply_alert* p);
+  void handleTrackerWarningAlert(libtorrent::tracker_warning_alert* p);
+  void handlePortmapWarningAlert(libtorrent::portmap_error_alert* p);
+  void handlePortmapAlert(libtorrent::portmap_alert* p);
+  void handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p);
+  void handlePeerBanAlert(libtorrent::peer_ban_alert* p);
+  void handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert* p);
+  void handleUrlSeedAlert(libtorrent::url_seed_alert* p);
+  void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
+  void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
+  void handleTorrentCheckedAlert(libtorrent::torrent_checked_alert* p);
+  void handleExternalIPAlert(libtorrent::external_ip_alert *p);
+  void handleStateUpdateAlert(libtorrent::state_update_alert *p);
+  void handleStatsAlert(libtorrent::stats_alert *p);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
