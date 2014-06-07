@@ -69,7 +69,6 @@ private:
   QTorrentHandle m_torrent;
   libtorrent::torrent_status m_lastStatus;
   QDateTime m_addedTime;
-  QDateTime m_seedTime;
   QString m_label;
   QString m_name;
   mutable QIcon m_icon;

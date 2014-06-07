@@ -83,7 +83,6 @@ TorrentModelItem::TorrentModelItem(const QTorrentHandle &h)
   : m_torrent(h)
   , m_lastStatus(h.status(torrent_handle::query_accurate_download_counters))
   , m_addedTime(TorrentPersistentData::getAddedDate(h.hash()))
-  , m_seedTime(TorrentPersistentData::getSeedDate(h.hash()))
   , m_label(TorrentPersistentData::getLabel(h.hash()))
   , m_name(TorrentPersistentData::getName(h.hash()))
   , m_hash(h.hash())
@@ -189,10 +188,6 @@ bool TorrentModelItem::setData(int column, const QVariant &value, int role)
     }
     return true;
   }
-  case TR_SEED_DATE: {
-      m_seedTime = value.toDateTime();
-      return true;
-  }
   default:
     break;
   }
@@ -246,7 +241,7 @@ QVariant TorrentModelItem::data(int column, int role) const
   case TR_ADD_DATE:
     return m_addedTime;
   case TR_SEED_DATE:
-    return m_seedTime;
+    return m_lastStatus.completed_time ? QDateTime::fromTime_t(m_lastStatus.completed_time) : QDateTime();
   case TR_TRACKER:
     return misc::toQString(m_lastStatus.current_tracker);
   case TR_DLLIMIT:
@@ -441,7 +436,6 @@ void TorrentModel::handleFinishedTorrent(const QTorrentHandle& h)
     return;
 
   // Update completion date
-  m_torrents[row]->setData(TorrentModelItem::TR_SEED_DATE, QDateTime::currentDateTime(), Qt::DisplayRole);
   m_torrents[row]->refreshStatus(h.status(torrent_handle::query_accurate_download_counters));
   notifyTorrentChanged(row);
 }

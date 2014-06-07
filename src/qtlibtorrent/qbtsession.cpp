@@ -2969,7 +2969,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   qreal ratioLimit = QString::fromUtf8(fast.dict_find_string_value("qBt-ratioLimit").c_str()).toDouble();
   QDateTime addedDate = QDateTime::fromTime_t(fast.dict_find_int_value("added_time"));
   QString previousSavePath = QString::fromUtf8(fast.dict_find_string_value("qBt-previousSavePath").c_str());
-  QDateTime seedDate = QDateTime::fromTime_t(fast.dict_find_int_value("qBt-seedDate"));
   QString label = QString::fromUtf8(fast.dict_find_string_value("qBt-label").c_str());
   int priority = fast.dict_find_int_value("qBt-queuePosition");
   bool seedStatus = fast.dict_find_int_value("qBt-seedStatus");
@@ -2978,7 +2977,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   TorrentPersistentData::setRatioLimit(hash, ratioLimit);
   TorrentPersistentData::setAddedDate(hash, addedDate);
   TorrentPersistentData::setPreviousSavePath(hash, previousSavePath);
-  TorrentPersistentData::saveSeedDate(hash, seedDate);
   TorrentPersistentData::saveLabel(hash, label);
   TorrentPersistentData::savePriority(hash, priority);
   TorrentPersistentData::saveSeedStatus(hash, seedStatus);
@@ -2988,7 +2986,6 @@ void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<lib
   (*data)["qBt-savePath"] = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash)).toUtf8().constData();
   (*data)["qBt-ratioLimit"] = QString::number(TorrentPersistentData::getRatioLimit(hash)).toUtf8().constData();
   (*data)["qBt-previousSavePath"] = fsutils::fromNativePath(TorrentPersistentData::getPreviousPath(hash)).toUtf8().constData();
-  (*data)["qBt-seedDate"] = TorrentPersistentData::getSeedDate(hash).toTime_t();
   (*data)["qBt-label"] = TorrentPersistentData::getLabel(hash).toUtf8().constData();
   (*data)["qBt-queuePosition"] = TorrentPersistentData::getPriority(hash);
   (*data)["qBt-seedStatus"] = (int)TorrentPersistentData::isSeed(hash);
