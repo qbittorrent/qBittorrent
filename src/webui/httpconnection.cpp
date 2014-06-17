@@ -166,7 +166,7 @@ void HttpConnection::translateDocument(QString& data) {
 
       QString translation = word;
       if (isTranslationNeeded) {
-        int context_index = 0;
+        size_t context_index = 0;
         while(context_index < context_count && translation == word) {
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
           ++context_index;
