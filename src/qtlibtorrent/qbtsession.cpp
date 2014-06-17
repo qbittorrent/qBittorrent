@@ -80,6 +80,7 @@
 
 //initialize static member variables
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
+QHash<QString, TorrentMoveState> TorrentTempData::torrentMoveStates = QHash<QString, TorrentMoveState>();
 QHash<QString, bool> HiddenData::data = QHash<QString, bool>();
 unsigned int HiddenData::metadata_counter = 0;
 
@@ -2160,6 +2161,9 @@ void QBtSession::handleAlert(libtorrent::alert* a) {
     case storage_moved_alert::alert_type:
       handleStorageMovedAlert(static_cast<storage_moved_alert*>(a));
       break;
+    case storage_moved_failed_alert::alert_type:
+      handleStorageMovedFailedAlert(static_cast<storage_moved_failed_alert*>(a));
+      break;
     case metadata_received_alert::alert_type:
       handleMetadataReceivedAlert(static_cast<metadata_received_alert*>(a));
       break;
@@ -2401,22 +2405,73 @@ void QBtSession::handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert* p)
 
 void QBtSession::handleStorageMovedAlert(libtorrent::storage_moved_alert* p) {
   QTorrentHandle h(p->handle);
-  if (h.is_valid()) {
-    // Attempt to remove old folder if empty
-    const QString old_save_path = fsutils::fromNativePath(TorrentPersistentData::getPreviousPath(h.hash()));
-    const QString new_save_path = fsutils::fromNativePath(misc::toQStringU(p->path.c_str()));
-    qDebug("Torrent moved from %s to %s", qPrintable(old_save_path), qPrintable(new_save_path));
-    QDir old_save_dir(old_save_path);
-    if (old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath)) {
-      qDebug("Attempting to remove %s", qPrintable(old_save_path));
-      QDir().rmpath(old_save_path);
-    }
-    if (defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
-      qDebug("Storage has been moved, updating save path to %s", qPrintable(new_save_path));
-      TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
-    }
-    emit savePathChanged(h);
-    //h.force_recheck();
+  if (!h.is_valid()) {
+    qWarning("invalid handle received in storage_moved_alert");
+    return;
+  }
+
+  QString hash = h.hash();
+
+  if (!TorrentTempData::isMoveInProgress(hash)) {
+    qWarning("unexpected storage_moved_alert received");
+    return;
+  }
+
+  QString new_save_path = fsutils::fromNativePath(misc::toQStringU(p->path.c_str()));
+  if (new_save_path != TorrentTempData::getNewPath(hash)) {
+    qWarning("new path received in handleStorageMovedAlert() doesn't match a path in a queue");
+    return;
+  }
+
+  QString oldPath = TorrentTempData::getOldPath(hash);
+
+  qDebug("Torrent is successfully moved from %s to %s", qPrintable(oldPath), qPrintable(new_save_path));
+
+  // Attempt to remove old folder if empty
+  QDir old_save_dir(oldPath);
+  if (old_save_dir != QDir(defaultSavePath) && old_save_dir != QDir(defaultTempPath)) {
+    qDebug("Attempting to remove %s", qPrintable(oldPath));
+    QDir().rmpath(oldPath);
+  }
+  if (defaultTempPath.isEmpty() || !new_save_path.startsWith(defaultTempPath)) {
+    qDebug("Storage has been moved, updating save path to %s", qPrintable(new_save_path));
+    TorrentPersistentData::saveSavePath(h.hash(), new_save_path);
+  }
+  emit savePathChanged(h);
+  //h.force_recheck();
+
+  QString queued = TorrentTempData::getQueuedPath(hash);
+  if (queued != QString()) {
+    TorrentTempData::finishMove(hash);
+    h.move_storage(queued);
+  }
+  else {
+    TorrentTempData::finishMove(hash);
+  }
+}
+
+void QBtSession::handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert* p) {
+
+  QTorrentHandle h(p->handle);
+  if (!h.is_valid()) {
+    qWarning("invalid handle received in storage_moved_failed_alert");
+    return;
+  }
+
+  QString hash = h.hash();
+
+  if (!TorrentTempData::isMoveInProgress(hash)) {
+    qWarning("unexpected storage_moved_alert received");
+    return;
+  }
+
+  QString queued = TorrentTempData::getQueuedPath(hash);
+  if (queued != QString()) {
+    TorrentTempData::finishMove(hash);
+    h.move_storage(queued);
+  }
+  else {
+    TorrentTempData::finishMove(hash);
   }
 }
 
@@ -2968,7 +3023,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   QString savePath = fsutils::fromNativePath(QString::fromUtf8(fast.dict_find_string_value("qBt-savePath").c_str()));
   qreal ratioLimit = QString::fromUtf8(fast.dict_find_string_value("qBt-ratioLimit").c_str()).toDouble();
   QDateTime addedDate = QDateTime::fromTime_t(fast.dict_find_int_value("added_time"));
-  QString previousSavePath = QString::fromUtf8(fast.dict_find_string_value("qBt-previousSavePath").c_str());
   QString label = QString::fromUtf8(fast.dict_find_string_value("qBt-label").c_str());
   int priority = fast.dict_find_int_value("qBt-queuePosition");
   bool seedStatus = fast.dict_find_int_value("qBt-seedStatus");
@@ -2976,7 +3030,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
   TorrentPersistentData::saveSavePath(hash, savePath);
   TorrentPersistentData::setRatioLimit(hash, ratioLimit);
   TorrentPersistentData::setAddedDate(hash, addedDate);
-  TorrentPersistentData::setPreviousSavePath(hash, previousSavePath);
   TorrentPersistentData::saveLabel(hash, label);
   TorrentPersistentData::savePriority(hash, priority);
   TorrentPersistentData::saveSeedStatus(hash, seedStatus);
@@ -2985,7 +3038,6 @@ void QBtSession::recoverPersistentData(const QString &hash, const std::vector<ch
 void QBtSession::backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data) {
   (*data)["qBt-savePath"] = fsutils::fromNativePath(TorrentPersistentData::getSavePath(hash)).toUtf8().constData();
   (*data)["qBt-ratioLimit"] = QString::number(TorrentPersistentData::getRatioLimit(hash)).toUtf8().constData();
-  (*data)["qBt-previousSavePath"] = fsutils::fromNativePath(TorrentPersistentData::getPreviousPath(hash)).toUtf8().constData();
   (*data)["qBt-label"] = TorrentPersistentData::getLabel(hash).toUtf8().constData();
   (*data)["qBt-queuePosition"] = TorrentPersistentData::getPriority(hash);
   (*data)["qBt-seedStatus"] = (int)TorrentPersistentData::isSeed(hash);

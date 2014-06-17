@@ -200,6 +200,7 @@ private:
   void handleFileRenamedAlert(libtorrent::file_renamed_alert* p);
   void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert* p);
   void handleStorageMovedAlert(libtorrent::storage_moved_alert* p);
+  void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert* p);
   void handleMetadataReceivedAlert(libtorrent::metadata_received_alert* p);
   void handleFileErrorAlert(libtorrent::file_error_alert* p);
   void handleFileCompletedAlert(libtorrent::file_completed_alert* p);

@@ -445,15 +445,28 @@ void QTorrentHandle::set_tracker_login(const QString& username, const QString& p
 }
 
 void QTorrentHandle::move_storage(const QString& new_path) const {
-  if (QDir(save_path()) == QDir(new_path))
-    return;
+  QString hashstr = hash();
 
-  TorrentPersistentData::setPreviousSavePath(hash(), save_path());
-  // Create destination directory if necessary
-  // or move_storage() will fail...
-  QDir().mkpath(new_path);
-  // Actually move the storage
-  torrent_handle::move_storage(fsutils::toNativePath(new_path).toUtf8().constData());
+  if (TorrentTempData::isMoveInProgress(hashstr)) {
+    qDebug("enqueue move storage to %s", qPrintable(new_path));
+    TorrentTempData::enqueueMove(hashstr, new_path);
+  }
+  else {
+    QString old_path = save_path();
+
+    qDebug("move storage: %s to %s", qPrintable(old_path), qPrintable(new_path));
+
+    if (QDir(old_path) == QDir(new_path))
+      return;
+
+    TorrentTempData::startMove(hashstr, old_path, new_path);
+
+    // Create destination directory if necessary
+    // or move_storage() will fail...
+    QDir().mkpath(new_path);
+    // Actually move the storage
+    torrent_handle::move_storage(fsutils::toNativePath(new_path).toUtf8().constData());
+  }
 }
 
 bool QTorrentHandle::save_torrent_file(const QString& path) const {
