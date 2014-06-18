@@ -527,12 +527,12 @@ void MainWindow::balloonClicked() {
         return;
     }
     show();
-    if (isMinimized()) {
+    if (isMinimized())
       showNormal();
-    }
-    raise();
-    activateWindow();
   }
+
+  raise();
+  activateWindow();
 }
 
 // called when a torrent has finished
