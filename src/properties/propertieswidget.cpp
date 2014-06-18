@@ -564,7 +564,7 @@ void PropertiesWidget::renameSelectedFile() {
         qDebug("Name did not change");
         return;
       }
-      new_name = fsutils::expandPathAbs(new_name);
+      new_name = fsutils::expandPath(new_name);
       // Check if that name is already used
       for (int i=0; i<h.num_files(); ++i) {
         if (i == file_index) continue;
@@ -627,7 +627,7 @@ void PropertiesWidget::renameSelectedFile() {
           new_name.replace(0, old_path.length(), new_path);
           if (!force_recheck && QDir(h.save_path()).exists(new_name))
             force_recheck = true;
-          new_name = fsutils::expandPathAbs(new_name);
+          new_name = fsutils::expandPath(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
           h.rename_file(i, new_name);
         }
