@@ -31,52 +31,33 @@
 #ifndef TORRENTSPEEDMONITOR_H
 #define TORRENTSPEEDMONITOR_H
 
+#include <QObject>
 #include <QString>
-#include <QThread>
-#include <QWaitCondition>
 #include <QHash>
-#include <QMutex>
 #include "qtorrenthandle.h"
+#include <libtorrent/alert_types.hpp>
 
 class QBtSession;
 class SpeedSample;
 
-class TorrentSpeedMonitor : public QThread
+class TorrentSpeedMonitor : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY(TorrentSpeedMonitor)
 
 public:
   explicit TorrentSpeedMonitor(QBtSession* session);
   ~TorrentSpeedMonitor();
-  qlonglong getETA(const QString &hash) const;
-  quint64 getAlltimeDL() const;
-  quint64 getAlltimeUL() const;
-
-protected:
-  void run();
-
-private:
-  void getSamples();
-  void saveStats() const;
-  void loadStats();
+  qlonglong getETA(const QString &hash, const libtorrent::torrent_status &status) const;
 
 private slots:
+  void statsReceived(const libtorrent::stats_alert& stats);
   void removeSamples(const QString& hash);
   void removeSamples(const QTorrentHandle& h);
 
 private:
-  bool m_abort;
-  QWaitCondition m_abortCond;
   QHash<QString, SpeedSample> m_samples;
-  mutable QMutex m_mutex;
   QBtSession *m_session;
-  // Will overflow at 15.9 EiB
-  quint64 alltimeUL;
-  quint64 alltimeDL;
-  qint64 sessionUL;
-  qint64 sessionDL;
-  mutable qint64 lastWrite;
-  mutable bool dirty;
 };
 
 #endif // TORRENTSPEEDMONITOR_H

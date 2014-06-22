@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,28 +25,42 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : glassez@yandex.ru
  */
 
-#ifndef JSONLIST_H
-#define JSONLIST_H
+#ifndef JSONUTILS_H
+#define JSONUTILS_H
 
-#include <QStringList>
-#include "jsondict.h"
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#else
+#include <QString>
+#include "qjson/parser.h"
+#include "qjson/serializer.h"
+#endif
 
-class JsonList
+namespace json {
+
+inline QByteArray toJson(const QVariant& var)
 {
-public:
-  JsonList();
-  const QString& toString() const;
-  void clear();
-  void append(const QVariant& val);
-  void append(const JsonDict& dict);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromVariant(var).toJson();
+#else
+  return QJson::Serializer().serialize(var);
+#endif
+}
 
-private:
-  mutable bool m_dirty;
-  mutable QString m_json;
-  QStringList m_items;
-};
+inline QVariant fromJson(const QString& json)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+  return QJsonDocument::fromJson(json.toUtf8()).toVariant();
+#else
+  return QJson::Parser().parse(json.toUtf8());
+#endif
+}
 
-#endif // JSONLIST_H
+}
+
+#endif // JSONUTILS_H

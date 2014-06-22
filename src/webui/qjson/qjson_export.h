@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,33 +25,13 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : glassez@yandex.ru
  */
 
-#include "jsondict.h"
-#include "json.h"
+#ifndef QJSON_EXPORT_H
+#define QJSON_EXPORT_H
 
-JsonDict::JsonDict(): m_dirty(false)
-{
-}
+#include <qglobal.h>
+#define QJSON_EXPORT
 
-void JsonDict::clear()
-{
-  m_items.clear();
-  m_dirty = true;
-}
-
-void JsonDict::add(const QString& key, const QVariant& value)
-{
-  m_items.append("\"" + key + "\":" + json::toJson(value));
-  m_dirty = true;
-}
-
-const QString& JsonDict::toString() const
-{
-  if (m_dirty) {
-    m_json = "{" + m_items.join(",") + "}";
-    m_dirty = false;
-  }
-  return m_json;
-}
+#endif

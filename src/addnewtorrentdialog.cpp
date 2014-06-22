@@ -403,7 +403,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         qDebug("Name did not change");
         return;
       }
-      new_name = fsutils::expandPathAbs(new_name);
+      new_name = fsutils::expandPath(new_name);
       qDebug("New name: %s", qPrintable(new_name));
       // Check if that name is already used
       for (int i=0; i<m_torrentInfo->num_files(); ++i) {
@@ -456,7 +456,7 @@ void AddNewTorrentDialog::renameSelectedFile()
         if (current_name.startsWith(old_path)) {
           QString new_name = current_name;
           new_name.replace(0, old_path.length(), new_path);
-          new_name = fsutils::expandPathAbs(new_name);
+          new_name = fsutils::expandPath(new_name);
           qDebug("Rename %s to %s", qPrintable(current_name), qPrintable(new_name));
           // Rename in files_path
           m_filesPath.replace(i, new_name);

@@ -255,30 +255,6 @@ public:
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();
     return data.value("previous_path").toString();
   }
-  
-  static void saveSeedDate(const QTorrentHandle &h) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    if (h.is_seed())
-      data["seed_date"] = QDateTime::currentDateTime();
-    else
-      data.remove("seed_date");
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-  }
-
-  static void saveSeedDate(const QString &hash, const QDateTime &time) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    if (time.isValid())
-      data["seed_date"] = time;
-    else
-      data.remove("seed_date");
-    all_data[hash] = data;
-    settings.setValue("torrents", all_data);
-  }
 
   static QDateTime getSeedDate(const QString &hash) {
     QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
@@ -389,10 +365,6 @@ public:
       data["seed"] = !was_seed;
       all_data[h.hash()] = data;
       settings.setValue("torrents", all_data);
-      if (!was_seed) {
-        // Save completion date
-        saveSeedDate(h);
-      }
     }
   }
 

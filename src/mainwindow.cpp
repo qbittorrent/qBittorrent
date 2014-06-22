@@ -527,12 +527,12 @@ void MainWindow::balloonClicked() {
         return;
     }
     show();
-    if (isMinimized()) {
+    if (isMinimized())
       showNormal();
-    }
-    raise();
-    activateWindow();
   }
+
+  raise();
+  activateWindow();
 }
 
 // called when a torrent has finished
@@ -931,10 +931,9 @@ void MainWindow::on_actionOpen_triggered() {
                                                               tr("Open Torrent Files"), settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString(),
                                                               tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if (!pathsList.empty()) {
-    const bool useTorrentAdditionDialog = pref.useAdditionDialog();
     const uint listSize = pathsList.size();
     for (uint i=0; i<listSize; ++i) {
-      if (useTorrentAdditionDialog)
+      if (pref.useAdditionDialog())
         AddNewTorrentDialog::showTorrent(pathsList.at(i));
       else
         QBtSession::instance()->addTorrent(pathsList.at(i));

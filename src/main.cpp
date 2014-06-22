@@ -191,7 +191,7 @@ void sigabrtHandler(int) {
 
 // Main
 int main(int argc, char *argv[]) {
-#ifdef Q_OS_MACX
+#if defined(Q_OS_MACX) && !defined(DISABLE_GUI)
   if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )
   {
     // fix Mac OS X 10.9 (mavericks) font issue

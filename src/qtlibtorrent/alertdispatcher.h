@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2012, Christophe Dumez
+ * Copyright (C) 2014  Ivan Sorokin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,39 +25,48 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  *
- * Contact : chris@qbittorrent.org
+ * Contact : vanyacpp@gmail.com
  */
 
-#include "jsonlist.h"
-#include "json.h"
+#ifndef ALERTDISPATCHER_H
+#define ALERTDISPATCHER_H
 
-JsonList::JsonList() : m_dirty(false)
-{
-}
+#include <QObject>
+#include <QMutex>
+#include <QWaitCondition>
+#include <QAtomicPointer>
+#include <QSharedPointer>
+#include <libtorrent/session.hpp>
 
-const QString& JsonList::toString() const
-{
-  if (m_dirty) {
-    m_json = "[" + m_items.join(",") + "]";
-    m_dirty = false;
-  }
-  return m_json;
-}
+class QAlertDispatcher : public QObject {
+  Q_OBJECT
+  Q_DISABLE_COPY(QAlertDispatcher)
 
-void JsonList::clear()
-{
-  m_items.clear();
-  m_dirty = true;
-}
+public:
+  QAlertDispatcher(libtorrent::session *session, QObject* parent);
+  ~QAlertDispatcher();
 
-void JsonList::append(const QVariant& val)
-{
-  m_items.append(json::toJson(val));
-  m_dirty = true;
-}
+  void getPendingAlertsNoWait(std::deque<libtorrent::alert*>&);
+  void getPendingAlerts(std::deque<libtorrent::alert*>&, unsigned long time = ULONG_MAX);
 
-void JsonList::append(const JsonDict& dict)
-{
-  m_items.append(dict.toString());
-  m_dirty = true;
-}
+signals:
+  void alertsReceived();
+
+private:
+  static void dispatch(QSharedPointer<QAtomicPointer<QAlertDispatcher> >,
+                       std::auto_ptr<libtorrent::alert>);
+  void enqueueToMainThread();
+
+private slots:
+  void deliverSignal();
+
+private:
+  libtorrent::session *m_session;
+  QMutex alerts_mutex;
+  QWaitCondition alerts_condvar;
+  std::deque<libtorrent::alert*> alerts;
+  QSharedPointer<QAtomicPointer<QAlertDispatcher> > current_tag;
+  bool event_posted;
+};
+
+#endif // ALERTDISPATCHER_H
