@@ -82,13 +82,21 @@ void QAlertDispatcher::getPendingAlerts(std::deque<libtorrent::alert*>& out, uns
 
 void QAlertDispatcher::dispatch(QSharedPointer<QAtomicPointer<QAlertDispatcher> > tag,
                                 std::auto_ptr<libtorrent::alert> alert_ptr) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  QAlertDispatcher* that = tag->loadAcquire();
+#else
   QAlertDispatcher* that = *tag;
+#endif
   if (!that)
     return;
 
   QMutexLocker lock(&(that->alerts_mutex));
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  if (!tag->load())
+#else
   if (!*tag)
+#endif
     return;
 
   bool was_empty = that->alerts.empty();
