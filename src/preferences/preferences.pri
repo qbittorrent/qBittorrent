@@ -11,3 +11,5 @@ INCLUDEPATH += $$PWD
 }
 
 HEADERS += $$PWD/preferences.h
+
+SOURCES += $$PWD/preferences.cpp
