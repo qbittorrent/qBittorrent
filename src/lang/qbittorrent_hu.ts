@@ -4090,7 +4090,7 @@ Kérlek telepítsd fel kézzel.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="316"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>letöltő</translation>
+        <translation>Letöltő</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="317"/>
