@@ -102,7 +102,7 @@ private:
   bool isSlashScreenDisabled() const;
   bool preventFromSuspend() const;
 #ifdef Q_OS_WIN
-  bool Startup() const;
+  bool WinStartup() const;
 #endif
   // Downloads
   QString getSavePath() const;

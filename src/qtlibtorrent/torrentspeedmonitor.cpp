@@ -35,7 +35,6 @@
 #include "qbtsession.h"
 #include "misc.h"
 #include "torrentspeedmonitor.h"
-#include "qinisettings.h"
 
 using namespace libtorrent;
 

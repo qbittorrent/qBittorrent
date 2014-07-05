@@ -33,7 +33,8 @@
 #include "rssmanager.h"
 #include "qbtsession.h"
 #include "rssfolder.h"
-#include "rsssettings.h"
+#include "preferences.h"
+#include "qinisettings.h"
 #include "rssarticle.h"
 #include "rssparser.h"
 #include "misc.h"
@@ -116,7 +117,7 @@ void RssFeed::loadItemsFromDisk()
 
 void RssFeed::addArticle(const RssArticlePtr& article) {
   int lbIndex = -1;
-  int max_articles = RssSettings().getRSSMaxArticlesPerFeed();
+  int max_articles = Preferences::instance()->getRSSMaxArticlesPerFeed();
 
   if (!m_articles.contains(article->guid())) {
     markAsDirty();
@@ -139,7 +140,7 @@ void RssFeed::addArticle(const RssArticlePtr& article) {
     }
 
     // Check if article was inserted at the end of the list and will break max_articles limit
-    if (RssSettings().isRssDownloadingEnabled()) {
+    if (Preferences::instance()->isRssDownloadingEnabled()) {
       if (lbIndex < max_articles && !article->isRead())
         downloadArticleTorrentIfMatching(m_manager->downloadRules(), article);
     }
@@ -147,7 +148,7 @@ void RssFeed::addArticle(const RssArticlePtr& article) {
   else {
     // m_articles.contains(article->guid())
     // Try to download skipped articles
-    if (RssSettings().isRssDownloadingEnabled()) {
+    if (Preferences::instance()->isRssDownloadingEnabled()) {
       RssArticlePtr skipped = m_articles.value(article->guid(), RssArticlePtr());
       if (skipped) {
         if (!skipped->isRead())
@@ -160,7 +161,7 @@ void RssFeed::addArticle(const RssArticlePtr& article) {
 QList<QNetworkCookie> RssFeed::feedCookies() const
 {
   QString feed_hostname = QUrl::fromEncoded(m_url.toUtf8()).host();
-  return RssSettings().getHostNameQNetworkCookies(feed_hostname);
+  return Preferences::instance()->getHostNameQNetworkCookies(feed_hostname);
 }
 
 bool RssFeed::refresh()
@@ -347,7 +348,7 @@ void RssFeed::handleFeedTitle(const QString& feedUrl, const QString& title)
 
 void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const RssArticlePtr& article)
 {
-  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
+  Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
   RssDownloadRulePtr matching_rule = rules->findMatchingRule(m_url, article->title());
   if (!matching_rule)
     return;
@@ -365,7 +366,7 @@ void RssFeed::downloadArticleTorrentIfMatching(RssDownloadRuleList* rules, const
 
 void RssFeed::recheckRssItemsForDownload()
 {
-  Q_ASSERT(RssSettings().isRssDownloadingEnabled());
+  Q_ASSERT(Preferences::instance()->isRssDownloadingEnabled());
   RssDownloadRuleList* rules = m_manager->downloadRules();
   foreach (const RssArticlePtr& article, m_articlesByDate) {
     if (!article->isRead())

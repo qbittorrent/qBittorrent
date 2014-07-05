@@ -6,6 +6,7 @@
 
 #include "qbtsession.h"
 #include "qinisettings.h"
+#include "preferences.h"
 
 TorrentStatistics::TorrentStatistics(QBtSession* session, QObject* parent)
   : QObject(parent)
@@ -65,13 +66,16 @@ void TorrentStatistics::loadStats() {
   // This code reads the data from there, writes it to the new file, and removes the keys
   // from the old file. This code should be removed after some time has passed.
   // e.g. When we reach v3.3.0
-  QIniSettings s_old;
+  // Don't forget to remove:
+  // 1. Preferences::getStats()
+  // 2. Preferences::removeStats()
+  // 3. #include "preferences.h"
+  Preferences* const pref = Preferences::instance();
   QIniSettings s("qBittorrent", "qBittorrent-data");
-  QVariantHash v;
+  QVariantHash v = pref->getStats();
 
   // Let's test if the qbittorrent.ini holds the key
-  if (s_old.contains("Stats/AllStats")) {
-    v = s_old.value("Stats/AllStats").toHash();
+  if (!v.isEmpty()) {
     m_dirty = true;
 
     // If the user has used qbt > 3.1.5 and then reinstalled/used
@@ -91,6 +95,6 @@ void TorrentStatistics::loadStats() {
 
   if (m_dirty) {
     saveStats();
-    s_old.remove("Stats/AllStats");
+    pref->removeStats();
   }
 }

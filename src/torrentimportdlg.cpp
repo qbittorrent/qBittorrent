@@ -34,7 +34,7 @@
 
 #include "torrentimportdlg.h"
 #include "ui_torrentimportdlg.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "qbtsession.h"
 #include "torrentpersistentdata.h"
 #include "iconprovider.h"
@@ -62,8 +62,7 @@ TorrentImportDlg::~TorrentImportDlg()
 
 void TorrentImportDlg::on_browseTorrentBtn_clicked()
 {
-  QIniSettings settings;
-  const QString default_dir = settings.value(QString::fromUtf8("MainWindowLastDir"), QDir::homePath()).toString();
+  const QString default_dir = Preferences::instance()->getMainLastDir();
   // Ask for a torrent file
   m_torrentPath = QFileDialog::getOpenFileName(this, tr("Torrent file to import"), default_dir, tr("Torrent files (*.torrent)"));
   if (!m_torrentPath.isEmpty()) {
@@ -75,8 +74,7 @@ void TorrentImportDlg::on_browseTorrentBtn_clicked()
 
 void TorrentImportDlg::on_browseContentBtn_clicked()
 {
-  QIniSettings settings;
-  const QString default_dir = settings.value(QString::fromUtf8("TorrentImport/LastContentDir"), QDir::homePath()).toString();
+  const QString default_dir = Preferences::instance()->getTorImportLastContentDir();
   if (t->num_files() == 1) {
     // Single file torrent
     const QString file_name = fsutils::fileName(misc::toQStringU(t->file_at(0).path));
@@ -197,9 +195,9 @@ void TorrentImportDlg::importTorrent()
     qDebug("Adding the torrent to the session...");
     QBtSession::instance()->addTorrent(torrent_path);
     // Remember the last opened folder
-    QIniSettings settings;
-    settings.setValue(QString::fromUtf8("MainWindowLastDir"), fsutils::fromNativePath(torrent_path));
-    settings.setValue("TorrentImport/LastContentDir", fsutils::fromNativePath(content_path));
+    Preferences* const pref = Preferences::instance();
+    pref->setMainLastDir(fsutils::fromNativePath(torrent_path));
+    pref->setTorImportLastContentDir(fsutils::fromNativePath(content_path));
     return;
   }
   qDebug() << Q_FUNC_INFO << "EXIT";
@@ -253,14 +251,12 @@ bool TorrentImportDlg::skipFileChecking() const
 
 void TorrentImportDlg::loadSettings()
 {
-  QIniSettings settings;
-  restoreGeometry(settings.value("TorrentImportDlg/dimensions").toByteArray());
+  restoreGeometry(Preferences::instance()->getTorImportGeometry());
 }
 
 void TorrentImportDlg::saveSettings()
 {
-  QIniSettings settings;
-  settings.setValue("TorrentImportDlg/dimensions", saveGeometry());
+  Preferences::instance()->setTorImportGeometry(saveGeometry());
 }
 
 void TorrentImportDlg::closeEvent(QCloseEvent *event)

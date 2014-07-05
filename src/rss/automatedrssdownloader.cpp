@@ -36,14 +36,13 @@
 
 #include "automatedrssdownloader.h"
 #include "ui_automatedrssdownloader.h"
-#include "rsssettings.h"
 #include "rssdownloadrulelist.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "rssmanager.h"
 #include "rssfeed.h"
 #include "iconprovider.h"
 #include "autoexpandabledialog.h"
+#include "fs_utils.h"
 
 AutomatedRssDownloader::AutomatedRssDownloader(const QWeakPointer<RssManager>& manager, QWidget *parent) :
   QDialog(parent),
@@ -119,21 +118,21 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 void AutomatedRssDownloader::loadSettings()
 {
   // load dialog geometry
-  QIniSettings settings;
-  restoreGeometry(settings.value("RssFeedDownloader/geometry").toByteArray());
-  ui->checkEnableDownloader->setChecked(RssSettings().isRssDownloadingEnabled());
-  ui->hsplitter->restoreState(settings.value("RssFeedDownloader/hsplitterSizes").toByteArray());
+  const Preferences* const pref = Preferences::instance();
+  restoreGeometry(pref->getRssGeometry());
+  ui->checkEnableDownloader->setChecked(pref->isRssDownloadingEnabled());
+  ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
   // Display download rules
   loadRulesList();
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
-  RssSettings().setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
+  Preferences::instance()->setRssDownloadingEnabled(ui->checkEnableDownloader->isChecked());
   // Save dialog geometry
-  QIniSettings settings;
-  settings.setValue("RssFeedDownloader/geometry", saveGeometry());
-  settings.setValue("RssFeedDownloader/hsplitterSizes", ui->hsplitter->saveState());
+  Preferences* const pref = Preferences::instance();
+  pref->setRssGeometry(saveGeometry());
+  pref->setRssHSplitterSizes(ui->hsplitter->saveState());
 }
 
 void AutomatedRssDownloader::loadRulesList()
@@ -157,9 +156,9 @@ void AutomatedRssDownloader::loadRulesList()
 
 void AutomatedRssDownloader::loadFeedList()
 {
-  const RssSettings settings;
-  const QStringList feed_aliases = settings.getRssFeedsAliases();
-  const QStringList feed_urls = settings.getRssFeedsUrls();
+  const Preferences* const pref = Preferences::instance();
+  const QStringList feed_aliases = pref->getRssFeedsAliases();
+  const QStringList feed_urls = pref->getRssFeedsUrls();
   QStringList existing_urls;
   for (int i=0; i<feed_aliases.size(); ++i) {
     QString feed_url = feed_urls.at(i);
@@ -275,7 +274,7 @@ RssDownloadRulePtr AutomatedRssDownloader::getCurrentRule() const
 void AutomatedRssDownloader::initLabelCombobox()
 {
   // Load custom labels
-  const QStringList customLabels = Preferences().getTorrentLabels();
+  const QStringList customLabels = Preferences::instance()->getTorrentLabels();
   foreach (const QString& label, customLabels) {
     ui->comboLabel->addItem(label);
   }
@@ -309,7 +308,7 @@ void AutomatedRssDownloader::saveEditedRule()
   rule->setLabel(ui->comboLabel->currentText());
   // Save new label
   if (!rule->label().isEmpty())
-    Preferences().addTorrentLabel(rule->label());
+    Preferences::instance()->addTorrentLabel(rule->label());
   //rule->setRssFeeds(getSelectedFeeds());
   // Save it
   m_editableRuleList->saveRule(rule);

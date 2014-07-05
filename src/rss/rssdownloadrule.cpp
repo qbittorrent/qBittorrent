@@ -30,12 +30,13 @@
 
 #include <QRegExp>
 #include <QDebug>
+#include <QDir>
 
 #include "rssdownloadrule.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
+#include "fs_utils.h"
 
 RssDownloadRule::RssDownloadRule(): m_enabled(false), m_useRegex(false)
 {
@@ -112,7 +113,7 @@ bool RssDownloadRule::operator==(const RssDownloadRule &other) const {
 
 void RssDownloadRule::setSavePath(const QString &save_path)
 {
-  if (!save_path.isEmpty() && QDir(save_path) != QDir(Preferences().getSavePath()))
+  if (!save_path.isEmpty() && QDir(save_path) != QDir(Preferences::instance()->getSavePath()))
     m_savePath = fsutils::fromNativePath(save_path);
   else
     m_savePath = QString();

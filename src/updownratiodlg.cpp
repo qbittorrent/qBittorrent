@@ -42,7 +42,7 @@ UpDownRatioDlg::UpDownRatioDlg(bool useDefault, qreal initialValue,
         ui->useDefaultButton->setChecked(true);
     } else if (initialValue == -1) {
         ui->noLimitButton->setChecked(true);
-        initialValue = Preferences().getGlobalMaxRatio();
+        initialValue = Preferences::instance()->getGlobalMaxRatio();
     } else {
         ui->torrentLimitButton->setChecked(true);
     }

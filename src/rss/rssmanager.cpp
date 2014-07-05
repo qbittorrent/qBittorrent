@@ -30,7 +30,7 @@
 
 #include <QDebug>
 #include "rssmanager.h"
-#include "rsssettings.h"
+#include "preferences.h"
 #include "qbtsession.h"
 #include "rssfeed.h"
 #include "rssarticle.h"
@@ -46,7 +46,7 @@ RssManager::RssManager():
   m_rssParser(new RssParser(this))
 {
   connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(refresh()));
-  m_refreshInterval = RssSettings().getRSSRefreshInterval();
+  m_refreshInterval = Preferences::instance()->getRSSRefreshInterval();
   m_refreshTimer.start(m_refreshInterval * MSECS_PER_MIN);
 }
 
@@ -81,9 +81,9 @@ void RssManager::updateRefreshInterval(uint val)
 
 void RssManager::loadStreamList()
 {
-  RssSettings settings;
-  const QStringList streamsUrl = settings.getRssFeedsUrls();
-  const QStringList aliases =  settings.getRssFeedsAliases();
+  const Preferences* const pref = Preferences::instance();
+  const QStringList streamsUrl = pref->getRssFeedsUrls();
+  const QStringList aliases =  pref->getRssFeedsAliases();
   if (streamsUrl.size() != aliases.size()) {
     std::cerr << "Corrupted Rss list, not loading it\n";
     return;
@@ -155,9 +155,9 @@ void RssManager::saveStreamList() const
     streamsUrl << stream_path;
     aliases << stream->displayName();
   }
-  RssSettings settings;
-  settings.setRssFeedsUrls(streamsUrl);
-  settings.setRssFeedsAliases(aliases);
+  Preferences* const pref = Preferences::instance();
+  pref->setRssFeedsUrls(streamsUrl);
+  pref->setRssFeedsAliases(aliases);
 }
 
 RssDownloadRuleList* RssManager::downloadRules() const
