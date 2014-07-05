@@ -38,6 +38,7 @@
 #include "prefjson.h"
 #include "qbtsession.h"
 #include "misc.h"
+#include "fs_utils.h"
 #ifndef DISABLE_GUI
 #include "iconprovider.h"
 #endif
@@ -155,7 +156,7 @@ void HttpConnection::translateDocument(QString& data) {
   int i = 0;
   bool found = true;
 
-  const QString locale = Preferences().getLocale();
+  const QString locale = Preferences::instance()->getLocale();
   bool isTranslationNeeded = !locale.startsWith("en") || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
   while(i < data.size() && found) {
@@ -575,14 +576,14 @@ void HttpConnection::respondCommand(const QString& command) {
     qlonglong limit = m_parser.post("limit").toLongLong();
     if (limit == 0) limit = -1;
     QBtSession::instance()->setUploadRateLimit(limit);
-    Preferences().setGlobalUploadLimit(limit/1024.);
+    Preferences::instance()->setGlobalUploadLimit(limit/1024.);
     return;
   }
   if (command == "setGlobalDlLimit") {
     qlonglong limit = m_parser.post("limit").toLongLong();
     if (limit == 0) limit = -1;
     QBtSession::instance()->setDownloadRateLimit(limit);
-    Preferences().setGlobalDownloadLimit(limit/1024.);
+    Preferences::instance()->setGlobalDownloadLimit(limit/1024.);
     return;
   }
   if (command == "pause") {
