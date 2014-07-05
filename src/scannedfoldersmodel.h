@@ -36,7 +36,6 @@
 #include <QStringList>
 
 class FileSystemWatcher;
-class QIniSettings;
 
 class ScanFoldersModel : public QAbstractTableModel {
   Q_OBJECT

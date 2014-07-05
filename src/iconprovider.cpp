@@ -31,12 +31,17 @@
 #include "iconprovider.h"
 #include "preferences.h"
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#include <QDir>
+#include <QFile>
+#endif
+
 IconProvider* IconProvider::m_instance = 0;
 
 IconProvider::IconProvider()
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-  m_useSystemTheme = Preferences().useSystemIconTheme();
+  m_useSystemTheme = Preferences::instance()->useSystemIconTheme();
 #endif
 }
 

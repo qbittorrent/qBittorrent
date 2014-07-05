@@ -30,7 +30,7 @@
 
 #include "rsssettingsdlg.h"
 #include "ui_rsssettingsdlg.h"
-#include "rsssettings.h"
+#include "preferences.h"
 
 RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
   QDialog(parent),
@@ -38,9 +38,9 @@ RssSettingsDlg::RssSettingsDlg(QWidget *parent) :
 {
   ui->setupUi(this);
   // Load settings
-  const RssSettings settings;
-  ui->spinRSSRefresh->setValue(settings.getRSSRefreshInterval());
-  ui->spinRSSMaxArticlesPerFeed->setValue(settings.getRSSMaxArticlesPerFeed());
+  const Preferences* const pref = Preferences::instance();
+  ui->spinRSSRefresh->setValue(pref->getRSSRefreshInterval());
+  ui->spinRSSMaxArticlesPerFeed->setValue(pref->getRSSMaxArticlesPerFeed());
 }
 
 RssSettingsDlg::~RssSettingsDlg()
@@ -51,7 +51,7 @@ RssSettingsDlg::~RssSettingsDlg()
 
 void RssSettingsDlg::on_buttonBox_accepted() {
   // Save settings
-  RssSettings settings;
-  settings.setRSSRefreshInterval(ui->spinRSSRefresh->value());
-  settings.setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
+  Preferences* const pref = Preferences::instance();
+  pref->setRSSRefreshInterval(ui->spinRSSRefresh->value());
+  pref->setRSSMaxArticlesPerFeed(ui->spinRSSMaxArticlesPerFeed->value());
 }

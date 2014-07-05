@@ -35,7 +35,7 @@
 #include "torrentcreatordlg.h"
 #include "fs_utils.h"
 #include "misc.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "torrentcreatorthread.h"
 #include "iconprovider.h"
 #include "qbtsession.h"
@@ -69,11 +69,11 @@ TorrentCreatorDlg::~TorrentCreatorDlg() {
 }
 
 void TorrentCreatorDlg::on_addFolder_button_clicked() {
-  QIniSettings settings;
-  QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
+  Preferences* const pref = Preferences::instance();
+  QString last_path = pref->getCreateTorLastAddPath();
   QString dir = QFileDialog::getExistingDirectory(this, tr("Select a folder to add to the torrent"), last_path, QFileDialog::ShowDirsOnly);
   if (!dir.isEmpty()) {
-    settings.setValue("CreateTorrent/last_add_path", dir);
+    pref->setCreateTorLastAddPath(dir);
     textInputPath->setText(fsutils::toNativePath(dir));
     // Update piece size
     if (checkAutoPieceSize->isChecked())
@@ -82,11 +82,11 @@ void TorrentCreatorDlg::on_addFolder_button_clicked() {
 }
 
 void TorrentCreatorDlg::on_addFile_button_clicked() {
-  QIniSettings settings;
-  QString last_path = settings.value("CreateTorrent/last_add_path", QDir::homePath()).toString();
+  Preferences* const pref = Preferences::instance();
+  QString last_path = pref->getCreateTorLastAddPath();
   QString file = QFileDialog::getOpenFileName(this, tr("Select a file to add to the torrent"), last_path);
   if (!file.isEmpty()) {
-    settings.setValue("CreateTorrent/last_add_path", fsutils::branchPath(file));
+    pref->setCreateTorLastAddPath(fsutils::branchPath(file));
     textInputPath->setText(fsutils::toNativePath(file));
     // Update piece size
     if (checkAutoPieceSize->isChecked())
@@ -111,12 +111,12 @@ void TorrentCreatorDlg::on_createButton_clicked() {
   if (!trackers_list->toPlainText().trimmed().isEmpty())
     saveTrackerList();
 
-  QIniSettings settings;
-  QString last_path = settings.value("CreateTorrent/last_save_path", QDir::homePath()).toString();
+  Preferences* const pref = Preferences::instance();
+  QString last_path = pref->getCreateTorLastSavePath();
 
   QString destination = QFileDialog::getSaveFileName(this, tr("Select destination torrent file"), last_path, tr("Torrent Files")+QString::fromUtf8(" (*.torrent)"));
   if (!destination.isEmpty()) {
-    settings.setValue("CreateTorrent/last_save_path", fsutils::branchPath(destination));
+    pref->setCreateTorLastSavePath(fsutils::branchPath(destination));
     if (!destination.toUpper().endsWith(".TORRENT"))
       destination += QString::fromUtf8(".torrent");
   } else {
@@ -243,28 +243,26 @@ void TorrentCreatorDlg::updateOptimalPieceSize()
 
 void TorrentCreatorDlg::saveTrackerList()
 {
-  QIniSettings settings;
-  settings.setValue("CreateTorrent/TrackerList", trackers_list->toPlainText());
+  Preferences::instance()->setCreateTorTrackers(trackers_list->toPlainText());
 }
 
 void TorrentCreatorDlg::loadTrackerList()
 {
-  QIniSettings settings;
-  trackers_list->setPlainText(settings.value("CreateTorrent/TrackerList", "").toString());
+  trackers_list->setPlainText(Preferences::instance()->getCreateTorTrackers());
 }
 
 void TorrentCreatorDlg::saveSettings()
 {
-  QIniSettings settings;
-  settings.setValue("CreateTorrent/dimensions", saveGeometry());
-  settings.setValue("CreateTorrent/IgnoreRatio", checkIgnoreShareLimits->isChecked());
+  Preferences* const pref = Preferences::instance();
+  pref->setCreateTorGeometry(saveGeometry());
+  pref->setCreateTorIgnoreRatio(checkIgnoreShareLimits->isChecked());
 }
 
 void TorrentCreatorDlg::loadSettings()
 {
-  QIniSettings settings;
-  restoreGeometry(settings.value("CreateTorrent/dimensions").toByteArray());
-  checkIgnoreShareLimits->setChecked(settings.value("CreateTorrent/IgnoreRatio").toBool());
+  const Preferences* const pref = Preferences::instance();
+  restoreGeometry(pref->getCreateTorGeometry());
+  checkIgnoreShareLimits->setChecked(pref->getCreateTorIgnoreRatio());
 }
 
 void TorrentCreatorDlg::closeEvent(QCloseEvent *event)

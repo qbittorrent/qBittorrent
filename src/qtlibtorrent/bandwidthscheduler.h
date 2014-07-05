@@ -13,7 +13,7 @@ class BandwidthScheduler: public QTimer {
 
 public:
   BandwidthScheduler(QObject *parent): QTimer(parent) {
-    Q_ASSERT(Preferences().isSchedulerEnabled());
+    Q_ASSERT(Preferences::instance()->isSchedulerEnabled());
     // Signal shot, we call start() again manually
     setSingleShot(true);
     // Connect Signals/Slots
@@ -22,14 +22,14 @@ public:
 
 public slots:
   void start() {
-    const Preferences pref;
-    Q_ASSERT(pref.isSchedulerEnabled());
-    bool alt_bw_enabled = pref.isAltBandwidthEnabled();
+    const Preferences* const pref = Preferences::instance();
+    Q_ASSERT(pref->isSchedulerEnabled());
+    bool alt_bw_enabled = pref->isAltBandwidthEnabled();
 
-    QTime start = pref.getSchedulerStartTime();
-    QTime end = pref.getSchedulerEndTime();
+    QTime start = pref->getSchedulerStartTime();
+    QTime end = pref->getSchedulerEndTime();
     QTime now = QTime::currentTime();
-    int sched_days = pref.getSchedulerDays();
+    int sched_days = pref->getSchedulerDays();
     int day = QDateTime::currentDateTime().toLocalTime().date().dayOfWeek();
     bool new_mode = false;
     bool reverse = false;

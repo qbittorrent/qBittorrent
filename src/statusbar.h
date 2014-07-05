@@ -51,7 +51,7 @@ class StatusBar: public QObject {
 
 public:
   StatusBar(QStatusBar *bar): m_bar(bar) {
-    Preferences pref;
+    Preferences* const pref = Preferences::instance();
     connect(QBtSession::instance(), SIGNAL(alternativeSpeedsModeChanged(bool)), this, SLOT(updateAltSpeedsBtn(bool)));
     container = new QWidget(bar);
     layout = new QHBoxLayout(container);
@@ -80,7 +80,7 @@ public:
     altSpeedsBtn->setFlat(true);
     altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
     altSpeedsBtn->setCursor(Qt::PointingHandCursor);
-    updateAltSpeedsBtn(pref.isAltBandwidthEnabled());
+    updateAltSpeedsBtn(pref->isAltBandwidthEnabled());
 
     connect(altSpeedsBtn, SIGNAL(clicked()), this, SLOT(toggleAlternativeSpeeds()));
 
@@ -128,7 +128,7 @@ public:
     container->setFixedHeight(dlSpeedLbl->fontMetrics().height()+7);
     bar->setFixedHeight(dlSpeedLbl->fontMetrics().height()+9);
     // Is DHT enabled
-    DHTLbl->setVisible(pref.isDHTEnabled());
+    DHTLbl->setVisible(pref->isDHTEnabled());
     refreshTimer = new QTimer(bar);
     refreshStatusBar();
     connect(refreshTimer, SIGNAL(timeout()), this, SLOT(refreshStatusBar()));
@@ -206,12 +206,12 @@ public slots:
   }
 
   void toggleAlternativeSpeeds() {
-    Preferences pref;
-    if (pref.isSchedulerEnabled()) {
-      pref.setSchedulerEnabled(false);
+    Preferences* const pref = Preferences::instance();
+    if (pref->isSchedulerEnabled()) {
+      pref->setSchedulerEnabled(false);
       m_bar->showMessage(tr("Manual change of rate limits mode. The scheduler is disabled."), 5000);
     }
-    QBtSession::instance()->useAlternativeSpeedsLimit(!pref.isAltBandwidthEnabled());
+    QBtSession::instance()->useAlternativeSpeedsLimit(!pref->isAltBandwidthEnabled());
   }
 
   void capDownloadSpeed() {
@@ -219,18 +219,18 @@ public slots:
     int cur_limit = QBtSession::instance()->getSession()->settings().download_rate_limit;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Download Speed Limit"), cur_limit);
     if (ok) {
-      Preferences pref;
-      bool alt = pref.isAltBandwidthEnabled();
+      Preferences* const pref = Preferences::instance();
+      bool alt = pref->isAltBandwidthEnabled();
       if (new_limit <= 0) {
         qDebug("Setting global download rate limit to Unlimited");
         QBtSession::instance()->setDownloadRateLimit(-1);
         if (!alt)
-          pref.setGlobalDownloadLimit(-1);
+          pref->setGlobalDownloadLimit(-1);
       } else {
         qDebug("Setting global download rate limit to %.1fKb/s", new_limit/1024.);
         QBtSession::instance()->setDownloadRateLimit(new_limit);
         if (!alt)
-          pref.setGlobalDownloadLimit(new_limit/1024.);
+          pref->setGlobalDownloadLimit(new_limit/1024.);
       }
     }
   }
@@ -240,18 +240,18 @@ public slots:
     int cur_limit = QBtSession::instance()->getSession()->settings().upload_rate_limit;
     long new_limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Global Upload Speed Limit"), cur_limit);
     if (ok) {
-      Preferences pref;
-      bool alt = pref.isAltBandwidthEnabled();
+      Preferences* const pref = Preferences::instance();
+      bool alt = pref->isAltBandwidthEnabled();
       if (new_limit <= 0) {
         qDebug("Setting global upload rate limit to Unlimited");
         QBtSession::instance()->setUploadRateLimit(-1);
         if (!alt)
-          Preferences().setGlobalUploadLimit(-1);
+          Preferences::instance()->setGlobalUploadLimit(-1);
       } else {
         qDebug("Setting global upload rate limit to %.1fKb/s", new_limit/1024.);
         QBtSession::instance()->setUploadRateLimit(new_limit);
         if (!alt)
-          Preferences().setGlobalUploadLimit(new_limit/1024.);
+          Preferences::instance()->setGlobalUploadLimit(new_limit/1024.);
       }
     }
   }

@@ -43,7 +43,7 @@
 #include "trackersadditiondlg.h"
 #include "iconprovider.h"
 #include "qbtsession.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "misc.h"
 #include "autoexpandabledialog.h"
 
@@ -501,14 +501,12 @@ void TrackerList::showTrackerListMenu(QPoint) {
 }
 
 void TrackerList::loadSettings() {
-  QIniSettings settings;
-  if (!header()->restoreState(settings.value("TorrentProperties/Trackers/TrackerListState").toByteArray())) {
+  if (!header()->restoreState(Preferences::instance()->getPropTrackerListState())) {
     setColumnWidth(0, 30);
     setColumnWidth(1, 300);
   }
 }
 
 void TrackerList::saveSettings() const {
-  QIniSettings settings;
-  settings.setValue("TorrentProperties/Trackers/TrackerListState", header()->saveState());
+  Preferences::instance()->setPropTrackerListState(header()->saveState());
 }

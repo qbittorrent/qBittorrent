@@ -100,7 +100,7 @@ Smtp::~Smtp() {
 }
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body) {
-  Preferences pref;
+  Preferences* const pref = Preferences::instance();
   QTextCodec* latin1 = QTextCodec::codecForName("latin1");
   message = "";
   message += encode_mime_header("Date", QDateTime::currentDateTime().toUTC().toString("ddd, d MMM yyyy hh:mm:ss UT"), latin1);
@@ -122,19 +122,19 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
   this->from = from;
   rcpt = to;
   // Authentication
-  if (pref.getMailNotificationSMTPAuth()) {
-    username = pref.getMailNotificationSMTPUsername();
-    password = pref.getMailNotificationSMTPPassword();
+  if (pref->getMailNotificationSMTPAuth()) {
+    username = pref->getMailNotificationSMTPUsername();
+    password = pref->getMailNotificationSMTPPassword();
   }
 
   // Connect to SMTP server
 #ifndef QT_NO_OPENSSL
-  if (pref.getMailNotificationSMTPSSL()) {
-    socket->connectToHostEncrypted(pref.getMailNotificationSMTP(), DEFAULT_PORT_SSL);
+  if (pref->getMailNotificationSMTPSSL()) {
+    socket->connectToHostEncrypted(pref->getMailNotificationSMTP(), DEFAULT_PORT_SSL);
     use_ssl = true;
   } else {
 #endif
-    socket->connectToHost(pref.getMailNotificationSMTP(), DEFAULT_PORT);
+    socket->connectToHost(pref->getMailNotificationSMTP(), DEFAULT_PORT);
     use_ssl = false;
 #ifndef QT_NO_OPENSSL
   }

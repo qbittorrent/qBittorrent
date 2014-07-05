@@ -413,7 +413,7 @@ void QTorrentHandle::resume() const {
   const QString torrent_hash = hash();
   bool has_persistant_error = TorrentPersistentData::hasError(torrent_hash);
   TorrentPersistentData::setErrorState(torrent_hash, false);
-  bool temp_path_enabled = Preferences().isTempPathEnabled();
+  bool temp_path_enabled = Preferences::instance()->isTempPathEnabled();
   if (has_persistant_error && temp_path_enabled) {
     // Torrent was supposed to be seeding, checking again in final destination
     qDebug("Resuming a torrent with error...");
@@ -577,9 +577,9 @@ void QTorrentHandle::prioritize_files(const vector<int> &files) const {
     // Save seed status
     TorrentPersistentData::saveSeedStatus(*this);
     // Move to temp folder if necessary
-    const Preferences pref;
-    if (pref.isTempPathEnabled()) {
-      QString tmp_path = pref.getTempPath();
+    const Preferences* const pref = Preferences::instance();
+    if (pref->isTempPathEnabled()) {
+      QString tmp_path = pref->getTempPath();
       qDebug() << "tmp folder is enabled, move torrent to " << tmp_path << " from " << spath;
       move_storage(tmp_path);
     }

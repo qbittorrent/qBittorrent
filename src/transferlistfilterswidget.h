@@ -46,7 +46,6 @@
 #include "transferlistdelegate.h"
 #include "transferlistwidget.h"
 #include "preferences.h"
-#include "qinisettings.h"
 #include "torrentmodel.h"
 #include "iconprovider.h"
 #include "fs_utils.h"
@@ -281,17 +280,14 @@ public:
   }
 
   void saveSettings() const {
-    QIniSettings settings;
-    settings.beginGroup(QString::fromUtf8("TransferListFilters"));
-    settings.setValue("selectedFilterIndex", QVariant(statusFilters->currentRow()));
-    //settings.setValue("selectedLabelIndex", QVariant(labelFilters->currentRow()));
-    settings.setValue("customLabels", QVariant(customLabels.keys()));
+    Preferences* const pref = Preferences::instance();
+    pref->setTransSelFilter(statusFilters->currentRow());
+    pref->setTorrentLabels(customLabels.keys());
   }
 
   void loadSettings() {
-    QIniSettings settings;
-    statusFilters->setCurrentRow(settings.value("TransferListFilters/selectedFilterIndex", 0).toInt());
-    const QStringList label_list = Preferences().getTorrentLabels();
+    statusFilters->setCurrentRow(Preferences::instance()->getTransSelFilter());
+    const QStringList label_list = Preferences::instance()->getTorrentLabels();
     foreach (const QString &label, label_list) {
       customLabels.insert(label, 0);
       qDebug("Creating label QListWidgetItem: %s", qPrintable(label));
@@ -330,7 +326,7 @@ protected slots:
     newLabel->setData(Qt::DecorationRole, IconProvider::instance()->getIcon("inode-directory"));
     labelFilters->addItem(newLabel);
     customLabels.insert(label, 0);
-    Preferences().addTorrentLabel(label);
+    Preferences::instance()->addTorrentLabel(label);
   }
 
   void showLabelMenu(QPoint) {
@@ -397,7 +393,7 @@ protected slots:
     // Un display filter
     delete labelFilters->takeItem(row);
     // Save custom labels to remember it was deleted
-    Preferences().removeTorrentLabel(label);
+    Preferences::instance()->removeTorrentLabel(label);
   }
 
   void applyLabelFilter(int row) {

@@ -35,6 +35,7 @@
 #include "ui_confirmdeletiondlg.h"
 #include "preferences.h"
 #include "iconprovider.h"
+#include "misc.h"
 
 class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
   Q_OBJECT
@@ -52,7 +53,7 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
     rememberBtn->setIcon(IconProvider::instance()->getIcon("object-locked"));
 
     move(misc::screenCenter(this));
-    checkPermDelete->setChecked(Preferences().deleteTorrentFilesAsDefault());
+    checkPermDelete->setChecked(Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(checkPermDelete, SIGNAL(clicked()), this, SLOT(updateRememberButtonState()));
     buttonBox->setFocus();
   }
@@ -72,11 +73,11 @@ class DeletionConfirmationDlg : public QDialog, private Ui::confirmDeletionDlg {
 
 private slots:
   void updateRememberButtonState() {
-    rememberBtn->setEnabled(checkPermDelete->isChecked() != Preferences().deleteTorrentFilesAsDefault());
+    rememberBtn->setEnabled(checkPermDelete->isChecked() != Preferences::instance()->deleteTorrentFilesAsDefault());
   }
 
   void on_rememberBtn_clicked() {
-    Preferences().setDeleteTorrentFilesAsDefault(checkPermDelete->isChecked());
+    Preferences::instance()->setDeleteTorrentFilesAsDefault(checkPermDelete->isChecked());
     rememberBtn->setEnabled(false);
   }
 };

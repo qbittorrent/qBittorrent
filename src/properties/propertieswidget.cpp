@@ -52,7 +52,7 @@
 #include "mainwindow.h"
 #include "downloadedpiecesbar.h"
 #include "pieceavailabilitybar.h"
-#include "qinisettings.h"
+#include "preferences.h"
 #include "proptabbar.h"
 #include "iconprovider.h"
 #include "lineedit.h"
@@ -268,28 +268,28 @@ void PropertiesWidget::loadTorrentInfos(const QTorrentHandle& _h)
 }
 
 void PropertiesWidget::readSettings() {
-  QIniSettings settings;
+  const Preferences* const pref = Preferences::instance();
   // Restore splitter sizes
-  QStringList sizes_str = settings.value(QString::fromUtf8("TorrentProperties/SplitterSizes"), QString()).toString().split(",");
+  QStringList sizes_str = pref->getPropSplitterSizes().split(",");
   if (sizes_str.size() == 2) {
     slideSizes << sizes_str.first().toInt();
     slideSizes << sizes_str.last().toInt();
     QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
     hSplitter->setSizes(slideSizes);
   }
-  if (!filesList->header()->restoreState(settings.value("TorrentProperties/FilesListState").toByteArray())) {
+  if (!filesList->header()->restoreState(pref->getPropFileListState())) {
     filesList->header()->resizeSection(0, 400); //Default
   }
-  const int current_tab = settings.value("TorrentProperties/CurrentTab", -1).toInt();
+  const int current_tab = pref->getPropCurTab();
   m_tabBar->setCurrentIndex(current_tab);
-  if (!settings.value("TorrentProperties/Visible", false).toBool()) {
+  if (!pref->getPropVisible()) {
     setVisibility(false);
   }
 }
 
 void PropertiesWidget::saveSettings() {
-  QIniSettings settings;
-  settings.setValue("TorrentProperties/Visible", state==VISIBLE);
+  Preferences* const pref = Preferences::instance();
+  pref->setPropVisible(state==VISIBLE);
   // Splitter sizes
   QSplitter *hSplitter = static_cast<QSplitter*>(parentWidget());
   QList<int> sizes;
@@ -299,11 +299,11 @@ void PropertiesWidget::saveSettings() {
     sizes = slideSizes;
   qDebug("Sizes: %d", sizes.size());
   if (sizes.size() == 2) {
-    settings.setValue(QString::fromUtf8("TorrentProperties/SplitterSizes"), QVariant(QString::number(sizes.first())+','+QString::number(sizes.last())));
+    pref->setPropSplitterSizes(QString::number(sizes.first())+','+QString::number(sizes.last()));
   }
-  settings.setValue("TorrentProperties/FilesListState", filesList->header()->saveState());
+  pref->setPropFileListState(filesList->header()->saveState());
   // Remember current tab
-  settings.setValue("TorrentProperties/CurrentTab", m_tabBar->currentIndex());
+  pref->setPropCurTab(m_tabBar->currentIndex());
 }
 
 void PropertiesWidget::reloadPreferences() {

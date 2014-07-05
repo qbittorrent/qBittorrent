@@ -92,7 +92,6 @@ protected:
   QString getHashFromRow(int row) const;
   QModelIndex mapToSource(const QModelIndex &index) const;
   QModelIndex mapFromSource(const QModelIndex &index) const;
-  QStringList getCustomLabels() const;
   void saveSettings();
   bool loadSettings();
   QStringList getSelectedTorrentsHashes() const;

@@ -33,13 +33,12 @@
 #include <QNetworkRequest>
 #include <QNetworkProxy>
 #include <QNetworkCookieJar>
+#include <QDebug>
 
 #include "downloadthread.h"
 #include "preferences.h"
-#ifndef DISABLE_GUI
-#include "rsssettings.h"
-#endif
 #include "qinisettings.h"
+#include "fs_utils.h"
 #include <zlib.h>
 
 /** Download Thread **/
@@ -221,13 +220,13 @@ void DownloadThread::checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal) 
 
 void DownloadThread::applyProxySettings() {
   QNetworkProxy proxy;
-  const Preferences pref;
-  if (pref.isProxyEnabled()) {
+  const Preferences* const pref = Preferences::instance();
+  if (pref->isProxyEnabled()) {
     // Proxy enabled
-    proxy.setHostName(pref.getProxyIp());
-    proxy.setPort(pref.getProxyPort());
+    proxy.setHostName(pref->getProxyIp());
+    proxy.setPort(pref->getProxyPort());
     // Default proxy type is HTTP, we must change if it is SOCKS5
-    const int proxy_type = pref.getProxyType();
+    const int proxy_type = pref->getProxyType();
     if (proxy_type == Proxy::SOCKS5 || proxy_type == Proxy::SOCKS5_PW) {
       qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
       proxy.setType(QNetworkProxy::Socks5Proxy);
@@ -236,10 +235,10 @@ void DownloadThread::applyProxySettings() {
       proxy.setType(QNetworkProxy::HttpProxy);
     }
     // Authentication?
-    if (pref.isProxyAuthEnabled()) {
+    if (pref->isProxyAuthEnabled()) {
       qDebug("Proxy requires authentication, authenticating");
-      proxy.setUser(pref.getProxyUsername());
-      proxy.setPassword(pref.getProxyPassword());
+      proxy.setUser(pref->getProxyUsername());
+      proxy.setPassword(pref->getProxyPassword());
     }
   } else {
     proxy.setType(QNetworkProxy::NoProxy);

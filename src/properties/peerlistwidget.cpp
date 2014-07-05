@@ -44,7 +44,6 @@
 #include <QMenu>
 #include <QClipboard>
 #include <vector>
-#include "qinisettings.h"
 
 using namespace libtorrent;
 
@@ -84,7 +83,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent):
     showColumn(i);
   hideColumn(PeerListDelegate::IP_HIDDEN);
   hideColumn(PeerListDelegate::COL_COUNT);
-  if (!Preferences().resolvePeerCountries())
+  if (!Preferences::instance()->resolvePeerCountries())
     hideColumn(PeerListDelegate::COUNTRY);
   //To also migitate the above issue, we have to resize each column when
   //its size is 0, because explicitely 'showing' the column isn't enough
@@ -119,7 +118,7 @@ PeerListWidget::~PeerListWidget()
 
 void PeerListWidget::updatePeerHostNameResolutionState()
 {
-  if (Preferences().resolvePeerHostNames()) {
+  if (Preferences::instance()->resolvePeerHostNames()) {
     if (!m_resolver) {
       m_resolver = new ReverseResolution(this);
       connect(m_resolver, SIGNAL(ip_resolved(QString,QString)), SLOT(handleResolved(QString,QString)));
@@ -133,7 +132,7 @@ void PeerListWidget::updatePeerHostNameResolutionState()
 
 void PeerListWidget::updatePeerCountryResolutionState()
 {
-  if (Preferences().resolvePeerCountries() != m_displayFlags) {
+  if (Preferences::instance()->resolvePeerCountries() != m_displayFlags) {
     m_displayFlags = !m_displayFlags;
     if (m_displayFlags)
       loadPeers(m_properties->getCurrentTorrent());
@@ -253,7 +252,7 @@ void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
   long limit = SpeedLimitDialog::askSpeedLimit(&ok,
                                                tr("Upload rate limiting"),
                                                cur_limit,
-                                               Preferences().getGlobalUploadLimit()*1024.);
+                                               Preferences::instance()->getGlobalUploadLimit()*1024.);
   if (!ok)
     return;
 
@@ -283,7 +282,7 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
                                                                   boost::asio::ip::tcp::endpoint());
   if (first_ep != boost::asio::ip::tcp::endpoint())
     cur_limit = h.get_peer_download_limit(first_ep);
-  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), cur_limit, Preferences().getGlobalDownloadLimit()*1024.);
+  long limit = SpeedLimitDialog::askSpeedLimit(&ok, tr("Download rate limiting"), cur_limit, Preferences::instance()->getGlobalDownloadLimit()*1024.);
   if (!ok)
     return;
 
@@ -316,13 +315,11 @@ void PeerListWidget::clear() {
 }
 
 void PeerListWidget::loadSettings() {
-  QIniSettings settings;
-  header()->restoreState(settings.value("TorrentProperties/Peers/PeerListState").toByteArray());
+  header()->restoreState(Preferences::instance()->getPeerListState());
 }
 
 void PeerListWidget::saveSettings() const {
-  QIniSettings settings;
-  settings.setValue("TorrentProperties/Peers/PeerListState", header()->saveState());
+  Preferences::instance()->setPeerListState(header()->saveState());
 }
 
 void PeerListWidget::loadPeers(const QTorrentHandle &h, bool force_hostname_resolution) {
