@@ -653,10 +653,10 @@ loadPreferences = function() {
           onSuccess: function(pref) {
                   if(pref){
                     // Connection
-                    $('port_value').setProperty('value', pref.listen_port.toInt());
-                    $('upnp_checkbox').setProperty('checked', pref.upnp);
+                    $('port_value').setProperty('value', pref->listen_port.toInt());
+                    $('upnp_checkbox').setProperty('checked', pref->upnp);
                     
-                    var dl_limit = pref.dl_limit.toInt();
+                    var dl_limit = pref->dl_limit.toInt();
                     if(dl_limit <= 0) {
                       $('dl_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -664,7 +664,7 @@ loadPreferences = function() {
                       $('dl_limit_value').setProperty('value', dl_limit);
                     }
                     updateDlLimitEnabled();
-                    var up_limit = pref.up_limit.toInt();
+                    var up_limit = pref->up_limit.toInt();
                     if(up_limit <= 0) {
                       $('up_limit_checkbox').setProperty('checked', false);
                     } else {
@@ -673,26 +673,26 @@ loadPreferences = function() {
                     }
                     updateUpLimitEnabled();
                     // Alternative limits
-                    $('alt_dl_limit_value').setProperty('value', pref.alt_dl_limit.toInt());
-                    $('alt_up_limit_value').setProperty('value', pref.alt_up_limit.toInt());
+                    $('alt_dl_limit_value').setProperty('value', pref->alt_dl_limit.toInt());
+                    $('alt_up_limit_value').setProperty('value', pref->alt_up_limit.toInt());
                     // Scheduling
-                    $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
-                    $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
-                    $('schedule_from_min').setProperty('value', time_padding(pref.schedule_from_min));
-                    $('schedule_to_hour').setProperty('value', time_padding(pref.schedule_to_hour));
-                    $('schedule_to_min').setProperty('value', time_padding(pref.schedule_to_min));
-                    $('schedule_freq_select').setProperty('value', pref.scheduler_days);
+                    $('limit_sheduling_checkbox').setProperty('checked', pref->scheduler_enabled);
+                    $('schedule_from_hour').setProperty('value', time_padding(pref->schedule_from_hour));
+                    $('schedule_from_min').setProperty('value', time_padding(pref->schedule_from_min));
+                    $('schedule_to_hour').setProperty('value', time_padding(pref->schedule_to_hour));
+                    $('schedule_to_min').setProperty('value', time_padding(pref->schedule_to_min));
+                    $('schedule_freq_select').setProperty('value', pref->scheduler_days);
                     updateSchedulingEnabled();
                     
 		                // uTP
-		                utp_supported = $defined(pref.enable_utp);
+		                utp_supported = $defined(pref->enable_utp);
 		                setuTPSettingsVisible(utp_supported);
 		                if(utp_supported) {
-		                  $('enable_utp_checkbox').setProperty('checked', pref.enable_utp);
-		                  $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
+		                  $('enable_utp_checkbox').setProperty('checked', pref->enable_utp);
+		                  $('limit_utp_rate_checkbox').setProperty('checked', pref->limit_utp_rate);
 		                }
-		                $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
-                    var max_connec = pref.max_connec.toInt();
+		                $('limit_tcp_overhead_checkbox').setProperty('checked', pref->limit_tcp_overhead);
+                    var max_connec = pref->max_connec.toInt();
                     if(max_connec <= 0) {
                       $('max_connec_checkbox').setProperty('checked', false);
                       $('max_connec_value').setProperty('value', 500);
@@ -701,7 +701,7 @@ loadPreferences = function() {
                       $('max_connec_value').setProperty('value', max_connec);
                     }
                     updateMaxConnecEnabled();
-                    var max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
+                    var max_connec_per_torrent = pref->max_connec_per_torrent.toInt();
                     if(max_connec_per_torrent <= 0) {
                       $('max_connec_per_torrent_checkbox').setProperty('checked', false);
                       $('max_connec_per_torrent_value').setProperty('value', 100);
@@ -710,7 +710,7 @@ loadPreferences = function() {
                       $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
                     }
                     updateMaxConnecPerTorrentEnabled();
-                    var max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
+                    var max_uploads_per_torrent = pref->max_uploads_per_torrent.toInt();
                     if(max_uploads_per_torrent <= 0) {
                       $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
                       $('max_uploads_per_torrent_value').setProperty('value', 4);
@@ -720,76 +720,76 @@ loadPreferences = function() {
                     }
                     updateMaxUploadsPerTorrentEnabled();
                     // Bittorrent
-                    $('dht_checkbox').setProperty('checked', pref.dht);
-                    $('DHTPortDiffThanBT_checkbox').setProperty('checked', !pref.dhtSameAsBT);
-                    $('DHTPort_txt').setProperty('value', pref.dht_port);
+                    $('dht_checkbox').setProperty('checked', pref->dht);
+                    $('DHTPortDiffThanBT_checkbox').setProperty('checked', !pref->dhtSameAsBT);
+                    $('DHTPort_txt').setProperty('value', pref->dht_port);
                     updateDHTPortSettings();
-                    $('pex_checkbox').setProperty('checked', pref.pex);
-                    $('lsd_checkbox').setProperty('checked', pref.lsd);
-                    var encryption = pref.encryption.toInt();
+                    $('pex_checkbox').setProperty('checked', pref->pex);
+                    $('lsd_checkbox').setProperty('checked', pref->lsd);
+                    var encryption = pref->encryption.toInt();
                     $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-	            	    if($defined(pref.anonymous_mode)) {
-		                  $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
+	            	    if($defined(pref->anonymous_mode)) {
+		                  $('anonymous_mode_checkbox').setProperty('checked', pref->anonymous_mode);
 		                } else {
                       $('anonymous_mode_checkbox').addClass('invisible');
                     }
                     // Downloads
-                    $("savepath_text").setProperty('value', pref.save_path);
-                    $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
-                    $('temppath_text').setProperty('value', pref.temp_path);
+                    $("savepath_text").setProperty('value', pref->save_path);
+                    $('temppath_checkbox').setProperty('checked', pref->temp_path_enabled);
+                    $('temppath_text').setProperty('value', pref->temp_path);
                     updateTempDirEnabled();
                     var i;
-                    for(i=0; i<pref.scan_dirs.length; i+=1) {
+                    for(i=0; i<pref->scan_dirs.length; i+=1) {
                       var myinput = new Element('input');
                       myinput.setProperty('id', 'text_watch_'+i);
                       myinput.setProperty('type', 'text');
-                      myinput.setProperty('value', pref.scan_dirs[i]);
+                      myinput.setProperty('value', pref->scan_dirs[i]);
                       var mycb = new Element('input');
                       mycb.setProperty('type', 'checkbox');
                       mycb.setProperty('id', 'cb_watch_'+i);
-                      mycb.setProperty('checked', pref.download_in_scan_dirs[i]);
+                      mycb.setProperty('checked', pref->download_in_scan_dirs[i]);
                       WatchedFoldersTable.push([myinput, mycb]);
                     }
 
-                    if(pref.export_dir_enabled) {
-                      $('exportdir_text').setProperty('value', pref.export_dir);
+                    if(pref->export_dir_enabled) {
+                      $('exportdir_text').setProperty('value', pref->export_dir);
                       $('exportdir_checkbox').setProperty('checked', true);
                     } else {
                       $('exportdir_text').setProperty('value', '');
                       $('exportdir_checkbox').setProperty('checked', false);
                     }
                     updateExportDirEnabled();
-                    $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
-                    $('dest_email_txt').setProperty('value', pref.mail_notification_email);
-                    $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
-                    $('mail_ssl_checkbox').setProperty('checked', pref.mail_notification_ssl_enabled);
-                    $('mail_auth_checkbox').setProperty('checked', pref.mail_notification_auth_enabled);
-                    $('mail_username_text').setProperty('value', pref.mail_notification_username);
-                    $('mail_password_text').setProperty('value', pref.mail_notification_password);
+                    $('mail_notification_checkbox').setProperty('checked', pref->mail_notification_enabled);
+                    $('dest_email_txt').setProperty('value', pref->mail_notification_email);
+                    $('smtp_server_txt').setProperty('value', pref->mail_notification_smtp);
+                    $('mail_ssl_checkbox').setProperty('checked', pref->mail_notification_ssl_enabled);
+                    $('mail_auth_checkbox').setProperty('checked', pref->mail_notification_auth_enabled);
+                    $('mail_username_text').setProperty('value', pref->mail_notification_username);
+                    $('mail_password_text').setProperty('value', pref->mail_notification_password);
                     updateMailNotification();
                     updateMailAuthSettings();
-                    $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
-                    $('autorunProg_txt').setProperty('value', pref.autorun_program);
+                    $('autorun_checkbox').setProperty('checked', pref->autorun_enabled);
+                    $('autorunProg_txt').setProperty('value', pref->autorun_program);
                     updateAutoRun();
-                    $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
-                    if($defined(pref.incomplete_files_ext)) {
+                    $('preallocateall_checkbox').setProperty('checked', pref->preallocate_all);
+                    if($defined(pref->incomplete_files_ext)) {
                       $('appendexttr').removeClass('invisible');
-                      $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
+                      $('appendext_checkbox').setProperty('checked', pref->incomplete_files_ext);
                     } else {
                       $('appendexttr').addClass('invisible');
                     }
-                    $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
-                    $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
-                    $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
-                    $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
-                    $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
+                    $('queueing_checkbox').setProperty('checked', pref->queueing_enabled);
+                    $('max_active_dl_value').setProperty('value', pref->max_active_downloads.toInt());
+                    $('max_active_up_value').setProperty('value', pref->max_active_uploads.toInt());
+                    $('max_active_to_value').setProperty('value', pref->max_active_torrents.toInt());
+                    $('dont_count_slow_torrents_checkbox').setProperty('checked', pref->dont_count_slow_torrents);
                     updateQueueingSystem();
                     // IP Filter
-                    $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
-                    $('ipfilter_text').setProperty('value', pref.ip_filter_path);
+                    $('ipfilter_enabled_checkbox').setProperty('checked', pref->ip_filter_enabled);
+                    $('ipfilter_text').setProperty('value', pref->ip_filter_path);
                     updateFilterSettings();
                     // PEER Proxy
-                    switch(pref.proxy_type.toInt()) {
+                    switch(pref->proxy_type.toInt()) {
                       case 5: //SOCKS4
                         $('peer_proxy_type_select').setProperty('value', 'socks4');
                         break;
@@ -805,30 +805,30 @@ loadPreferences = function() {
                       $('peer_proxy_type_select').setProperty('value', 'none');
                     }
                     updatePeerProxySettings();
-                    $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
-                    $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
-                    $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
-                    $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
+                    $('peer_proxy_host_text').setProperty('value', pref->proxy_ip);
+                    $('peer_proxy_port_value').setProperty('value', pref->proxy_port);
+                    $('use_peer_proxy_checkbox').setProperty('checked', pref->proxy_peer_connections);
+                    $('peer_proxy_auth_checkbox').setProperty('checked', pref->proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
-                    $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
-                    $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
+                    $('peer_proxy_username_text').setProperty('value', pref->proxy_username);
+                    $('peer_proxy_password_text').setProperty('value', pref->proxy_password);
                     // Web UI
-                    $('webui_port_value').setProperty('value', pref.web_ui_port);
-                    $('webui_username_text').setProperty('value', pref.web_ui_username);
-                    $('webui_password_text').setProperty('value', pref.web_ui_password);
-                    $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
-                    $('use_https_checkbox').setProperty('checked', pref.use_https);
+                    $('webui_port_value').setProperty('value', pref->web_ui_port);
+                    $('webui_username_text').setProperty('value', pref->web_ui_username);
+                    $('webui_password_text').setProperty('value', pref->web_ui_password);
+                    $('bypass_local_auth_checkbox').setProperty('checked', pref->bypass_local_auth);
+                    $('use_https_checkbox').setProperty('checked', pref->use_https);
                     updateHttpsSettings();
-                    $('ssl_key_textarea').setProperty('value', pref.ssl_key);
-                    $('ssl_cert_textarea').setProperty('value', pref.ssl_cert);
-                    $('locale_select').setProperty('value', pref.locale);
+                    $('ssl_key_textarea').setProperty('value', pref->ssl_key);
+                    $('ssl_cert_textarea').setProperty('value', pref->ssl_cert);
+                    $('locale_select').setProperty('value', pref->locale);
 		                // Dyndns
-		                $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
+		                $('use_dyndns_checkbox').setProperty('checked', pref->dyndns_enabled);
 		                updateDynDnsSettings();
-		                $('dyndns_select').setProperty('value', pref.dyndns_service);
-		                $('dyndns_domain_text').setProperty('value', pref.dyndns_domain);
-		                $('dyndns_username_text').setProperty('value', pref.dyndns_username);
-		                $('dyndns_password_text').setProperty('value', pref.dyndns_password);
+		                $('dyndns_select').setProperty('value', pref->dyndns_service);
+		                $('dyndns_domain_text').setProperty('value', pref->dyndns_domain);
+		                $('dyndns_username_text').setProperty('value', pref->dyndns_username);
+		                $('dyndns_password_text').setProperty('value', pref->dyndns_password);
                   }
           }
   }).send();

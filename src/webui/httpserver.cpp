@@ -91,18 +91,18 @@ void HttpServer::resetNbFailedAttemptsForIp(const QString& ip) {
 HttpServer::HttpServer(QObject* parent) : QTcpServer(parent)
 {
 
-  const Preferences pref;
+  const Preferences* const pref = Preferences::instance();
 
-  m_username = pref.getWebUiUsername().toUtf8();
-  m_passwordSha1 = pref.getWebUiPassword().toUtf8();
-  m_localAuthEnabled = pref.isWebUiLocalAuthEnabled();
+  m_username = pref->getWebUiUsername().toUtf8();
+  m_passwordSha1 = pref->getWebUiPassword().toUtf8();
+  m_localAuthEnabled = pref->isWebUiLocalAuthEnabled();
 
   // HTTPS-related
 #ifndef QT_NO_OPENSSL
-  m_https = pref.isWebUiHttpsEnabled();
+  m_https = pref->isWebUiHttpsEnabled();
   if (m_https) {
-    m_certificate = QSslCertificate(pref.getWebUiHttpsCertificate());
-    m_key = QSslKey(pref.getWebUiHttpsKey(), QSsl::Rsa);
+    m_certificate = QSslCertificate(pref->getWebUiHttpsCertificate());
+    m_key = QSslKey(pref->getWebUiHttpsKey(), QSsl::Rsa);
   }
 #endif
 
