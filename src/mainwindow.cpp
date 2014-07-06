@@ -1417,8 +1417,7 @@ void MainWindow::on_actionAutoSuspend_system_toggled(bool enabled)
   Preferences().setSuspendWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoHibernate_system_toggled(bool enabled)
-{
+void MainWindow::on_actionAutoHibernate_system_toggled(bool enabled) {
   qDebug() << Q_FUNC_INFO << enabled;
   Preferences().setHibernateWhenDownloadsComplete(enabled);
 }

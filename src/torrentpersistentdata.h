@@ -171,8 +171,7 @@ private:
     bool seed;
   };
 
-  struct TorrentMoveState
-  {
+  struct TorrentMoveState {
     TorrentMoveState(QString oldPath, QString newPath)
       : oldPath(oldPath)
       , newPath(newPath)
