@@ -80,7 +80,7 @@
 
 //initialize static member variables
 QHash<QString, TorrentTempData::TorrentData> TorrentTempData::data = QHash<QString, TorrentTempData::TorrentData>();
-QHash<QString, TorrentMoveState> TorrentTempData::torrentMoveStates = QHash<QString, TorrentMoveState>();
+QHash<QString, TorrentTempData::TorrentMoveState> TorrentTempData::torrentMoveStates = QHash<QString, TorrentTempData::TorrentMoveState>();
 QHash<QString, bool> HiddenData::data = QHash<QString, bool>();
 unsigned int HiddenData::metadata_counter = 0;
 
@@ -2418,12 +2418,12 @@ void QBtSession::handleStorageMovedAlert(libtorrent::storage_moved_alert* p) {
   }
 
   QString new_save_path = fsutils::fromNativePath(misc::toQStringU(p->path.c_str()));
-  if (new_save_path != TorrentTempData::getNewPath(hash)) {
+  if (new_save_path != fsutils::fromNativePath(TorrentTempData::getNewPath(hash))) {
     qWarning("new path received in handleStorageMovedAlert() doesn't match a path in a queue");
     return;
   }
 
-  QString oldPath = TorrentTempData::getOldPath(hash);
+  QString oldPath = fsutils::fromNativePath(TorrentTempData::getOldPath(hash));
 
   qDebug("Torrent is successfully moved from %s to %s", qPrintable(oldPath), qPrintable(new_save_path));
 
@@ -2441,7 +2441,7 @@ void QBtSession::handleStorageMovedAlert(libtorrent::storage_moved_alert* p) {
   //h.force_recheck();
 
   QString queued = TorrentTempData::getQueuedPath(hash);
-  if (queued != QString()) {
+  if (!queued.isEmpty()) {
     TorrentTempData::finishMove(hash);
     h.move_storage(queued);
   }
@@ -2465,9 +2465,12 @@ void QBtSession::handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_
     return;
   }
 
+  addConsoleMessage(tr("Could not move torrent: '%1'. Reason: %2").arg(h.name()).arg(misc::toQStringU(p->message())), "red");
+
   QString queued = TorrentTempData::getQueuedPath(hash);
-  if (queued != QString()) {
+  if (!queued.isEmpty()) {
     TorrentTempData::finishMove(hash);
+    addConsoleMessage(tr("Attempting to move torrent: '%1' to path: '%2'.").arg(h.name()).arg(fsutils::toNativePath(queued)));
     h.move_storage(queued);
   }
   else {

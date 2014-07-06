@@ -42,20 +42,6 @@
 #include "qinisettings.h"
 #include <QHash>
 
-struct TorrentMoveState
-{
-  TorrentMoveState(QString oldPath, QString newPath)
-    : oldPath(oldPath)
-    , newPath(newPath)
-  {}
-
-  // the moving occurs from oldPath to newPath
-  // queuedPath is where files should be moved to, when current moving is completed
-  QString oldPath;
-  QString newPath;
-  QString queuedPath;
-};
-
 class TorrentTempData {
   // This class stores strings w/o modifying separators
 public:
@@ -183,6 +169,20 @@ private:
     QString label;
     bool sequential;
     bool seed;
+  };
+
+  struct TorrentMoveState
+  {
+    TorrentMoveState(QString oldPath, QString newPath)
+      : oldPath(oldPath)
+      , newPath(newPath)
+    {}
+
+    // the moving occurs from oldPath to newPath
+    // queuedPath is where files should be moved to, when current moving is completed
+    QString oldPath;
+    QString newPath;
+    QString queuedPath;
   };
 
   static QHash<QString, TorrentData> data;
