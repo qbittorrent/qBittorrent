@@ -967,6 +967,14 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/AutoSuspendOnCompletion"), suspend);
   }
 
+  bool hibernateWhenDownloadsComplete() const {
+    return value(QString::fromUtf8("Preferences/Downloads/AutoHibernateOnCompletion"), false).toBool();
+  }
+
+  void setHibernateWhenDownloadsComplete(bool hibernate) {
+    setValue(QString::fromUtf8("Preferences/Downloads/AutoHibernateOnCompletion"), hibernate);
+  }
+
   bool shutdownqBTWhenDownloadsComplete() const {
     return value(QString::fromUtf8("Preferences/Downloads/AutoShutDownqBTOnCompletion"), false).toBool();
   }

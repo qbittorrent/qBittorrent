@@ -50,6 +50,7 @@
 #include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
+#include "misc.h"
 
 #define MAX_SAMPLES 20
 
@@ -78,7 +79,6 @@ public:
 private:
   explicit QBtSession();
   static QBtSession* m_instance;
-  enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER };
 
 public:
   static QBtSession* instance();

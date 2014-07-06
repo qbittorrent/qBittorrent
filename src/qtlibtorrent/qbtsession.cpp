@@ -201,8 +201,8 @@ QBtSession::~QBtSession() {
   qDebug("BTSession destructor OUT");
 #ifndef DISABLE_GUI
   if (m_shutdownAct != NO_SHUTDOWN) {
-    qDebug() << "Sending computer shutdown/suspend signal...";
-    misc::shutdownComputer(m_shutdownAct == SUSPEND_COMPUTER);
+    qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
+    misc::shutdownComputer(m_shutdownAct);
   }
 #endif
 }
@@ -2301,7 +2301,8 @@ void QBtSession::readAlerts() {
   #ifndef DISABLE_GUI
             bool will_shutdown = (pref.shutdownWhenDownloadsComplete() ||
                                   pref.shutdownqBTWhenDownloadsComplete() ||
-                                  pref.suspendWhenDownloadsComplete())
+                                  pref.suspendWhenDownloadsComplete() ||
+                                  pref.hibernateWhenDownloadsComplete())
                 && !hasDownloadingTorrents();
   #else
             bool will_shutdown = false;
@@ -2319,11 +2320,14 @@ void QBtSession::readAlerts() {
             // Auto-Shutdown
             if (will_shutdown) {
               bool suspend = pref.suspendWhenDownloadsComplete();
+              bool hibernate = pref.hibernateWhenDownloadsComplete();
               bool shutdown = pref.shutdownWhenDownloadsComplete();
               // Confirm shutdown
               QString confirm_msg;
               if (suspend) {
                 confirm_msg = tr("The computer will now go to sleep mode unless you cancel within the next 15 seconds...");
+              } else if (hibernate) {
+                confirm_msg = tr("The computer will now go to hibernation mode unless you cancel within the next 15 seconds...");
               } else if (shutdown) {
                 confirm_msg = tr("The computer will now be switched off unless you cancel within the next 15 seconds...");
               } else {
@@ -2332,14 +2336,17 @@ void QBtSession::readAlerts() {
               if (!ShutdownConfirmDlg::askForConfirmation(confirm_msg))
                 return;
               // Actually shut down
-              if (suspend || shutdown) {
+              if (suspend || hibernate || shutdown) {
                 qDebug("Preparing for auto-shutdown because all downloads are complete!");
                 // Disabling it for next time
                 pref.setShutdownWhenDownloadsComplete(false);
                 pref.setSuspendWhenDownloadsComplete(false);
+                pref.setHibernateWhenDownloadsComplete(false);
                 // Make sure preferences are synced before exiting
                 if (suspend)
                   m_shutdownAct = SUSPEND_COMPUTER;
+                else if (hibernate)
+                  m_shutdownAct = HIBERNATE_COMPUTER;
                 else
                   m_shutdownAct = SHUTDOWN_COMPUTER;
               }

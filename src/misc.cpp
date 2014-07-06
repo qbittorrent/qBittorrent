@@ -81,29 +81,38 @@ static struct { const char *source; const char *comment; } units[] = {
 };
 
 #ifndef DISABLE_GUI
-void misc::shutdownComputer(bool sleep) {
+void misc::shutdownComputer(shutDownAction action) {
 #if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
-  if (sleep) {
+  if (action != SHUTDOWN_COMPUTER) {
     // Some recent systems use systemd's logind
     QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
     if (login1Iface.isValid()) {
-      login1Iface.call("Suspend", false);
+      if (action == SUSPEND_COMPUTER)
+        login1Iface.call("Suspend", false);
+      else
+        login1Iface.call("Hibernate", false);
       return;
     }
     // Else, other recent systems use UPower
     QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                "org.freedesktop.UPower", QDBusConnection::systemBus());
     if (upowerIface.isValid()) {
-      upowerIface.call("Suspend");
+      if (action == SUSPEND_COMPUTER)
+        upowerIface.call("Suspend");
+      else
+        upowerIface.call("Hibernate");
       return;
     }
     // HAL (older systems)
     QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
                             "org.freedesktop.Hal.Device.SystemPowerManagement",
                             QDBusConnection::systemBus());
-    halIface.call("Suspend", 5);
+    if (action == SUSPEND_COMPUTER)
+      halIface.call("Suspend", 5);
+    else
+      halIface.call("Hibernate");
   } else {
     // Some recent systems use systemd's logind
     QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
@@ -127,7 +136,7 @@ void misc::shutdownComputer(bool sleep) {
   }
 #endif
 #ifdef Q_WS_MAC
-  AEEventID EventToSend;
+  if (action != SHUTDOWN_COMPUTER)
   if (sleep)
     EventToSend = kAESleep;
   else
@@ -189,8 +198,10 @@ void misc::shutdownComputer(bool sleep) {
   if (GetLastError() != ERROR_SUCCESS)
     return;
 
-  if (sleep)
+  if (action == SUSPEND_COMPUTER)
     SetSuspendState(false, false, false);
+  else if (action == HIBERNATE_COMPUTER)
+    SetSuspendState(true, false, false);
   else
     InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
 
