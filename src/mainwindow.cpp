@@ -261,12 +261,15 @@ MainWindow::MainWindow(QWidget *parent, const QStringList& torrentCmdLine) : QMa
   autoShutdownGroup->addAction(actionAutoExit_qBittorrent);
   autoShutdownGroup->addAction(actionAutoShutdown_system);
   autoShutdownGroup->addAction(actionAutoSuspend_system);
+  autoShutdownGroup->addAction(actionAutoHibernate_system);
 #if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC)) || defined(QT_DBUS_LIB)
   actionAutoShutdown_system->setChecked(pref.shutdownWhenDownloadsComplete());
   actionAutoSuspend_system->setChecked(pref.suspendWhenDownloadsComplete());
+  actionAutoHibernate_system->setChecked(pref.hibernateWhenDownloadsComplete());
 #else
   actionAutoShutdown_system->setDisabled(true);
   actionAutoSuspend_system->setDisabled(true);
+  actionAutoHibernate_system->setDisabled(true);
 #endif
   actionAutoExit_qBittorrent->setChecked(pref.shutdownqBTWhenDownloadsComplete());
 
@@ -1412,6 +1415,12 @@ void MainWindow::on_actionAutoSuspend_system_toggled(bool enabled)
 {
   qDebug() << Q_FUNC_INFO << enabled;
   Preferences().setSuspendWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoHibernate_system_toggled(bool enabled)
+{
+  qDebug() << Q_FUNC_INFO << enabled;
+  Preferences().setHibernateWhenDownloadsComplete(enabled);
 }
 
 void MainWindow::on_actionAutoShutdown_system_toggled(bool enabled)

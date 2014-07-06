@@ -48,6 +48,7 @@
 #endif
 
 const qlonglong MAX_ETA = 8640000;
+enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
 
 /*  Miscellaneaous functions that can be useful */
 namespace misc
@@ -75,7 +76,7 @@ namespace misc
   }
 
 #ifndef DISABLE_GUI
-  void shutdownComputer(bool sleep=false);
+  void shutdownComputer(shutDownAction action=SHUTDOWN_COMPUTER);
 #endif
 
   QString parseHtmlLinks(const QString &raw_text);
