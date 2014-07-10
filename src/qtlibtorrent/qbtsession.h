@@ -30,6 +30,7 @@
 #ifndef __BITTORRENT_H__
 #define __BITTORRENT_H__
 
+#include <QMap>
 #include <QHash>
 #include <QUrl>
 #include <QStringList>
@@ -46,10 +47,13 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/ip_filter.hpp>
+#include <libtorrent/alert_types.hpp>
 
 #include "qtracker.h"
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
+#include "alertdispatcher.h"
+#include "misc.h"
 
 #define MAX_SAMPLES 20
 
@@ -59,6 +63,7 @@ class HttpServer;
 class BandwidthScheduler;
 class ScanFoldersModel;
 class TorrentSpeedMonitor;
+class TorrentStatistics;
 class DNSUpdater;
 
 const int MAX_LOG_MESSAGES = 1000;
@@ -78,7 +83,6 @@ public:
 private:
   explicit QBtSession();
   static QBtSession* m_instance;
-  enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER };
 
 public:
   static QBtSession* instance();
@@ -91,7 +95,7 @@ public:
   qreal getPayloadUploadRate() const;
   libtorrent::session_status getSessionStatus() const;
   int getListenPort() const;
-  qreal getRealRatio(const QString& hash) const;
+  qreal getRealRatio(const libtorrent::torrent_status &status) const;
   QHash<QString, TrackerInfos> getTrackersInfo(const QString &hash) const;
   bool hasActiveTorrents() const;
   bool hasDownloadingTorrents() const;
@@ -109,6 +113,7 @@ public:
   inline bool isQueueingEnabled() const { return queueingEnabled; }
   quint64 getAlltimeDL() const;
   quint64 getAlltimeUL() const;
+  void postTorrentUpdate();
 
 public slots:
   QTorrentHandle addTorrent(QString path, bool fromScanDir = false, QString from_url = QString(), bool resumed = false);
@@ -120,7 +125,7 @@ public slots:
   void startUpTorrents();
   void recheckTorrent(const QString &hash);
   void useAlternativeSpeedsLimit(bool alternative);
-  qlonglong getETA(const QString& hash) const;
+  qlonglong getETA(const QString& hash, const libtorrent::torrent_status &status) const;
   /* Needed by Web UI */
   void pauseAllTorrents();
   void pauseTorrent(const QString &hash);
@@ -145,7 +150,9 @@ public slots:
   void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
+#if LIBTORRENT_VERSION_NUM < 10000
   void setDHTPort(int dht_port);
+#endif
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void setDefaultSavePath(const QString &savepath);
@@ -187,6 +194,32 @@ private:
   void updateRatioTimer();
   void recoverPersistentData(const QString &hash, const std::vector<char> &buf);
   void backupPersistentData(const QString &hash, boost::shared_ptr<libtorrent::entry> data);
+  void handleAlert(libtorrent::alert* a);
+  void handleTorrentFinishedAlert(libtorrent::torrent_finished_alert* p);
+  void handleSaveResumeDataAlert(libtorrent::save_resume_data_alert* p);
+  void handleFileRenamedAlert(libtorrent::file_renamed_alert* p);
+  void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert* p);
+  void handleStorageMovedAlert(libtorrent::storage_moved_alert* p);
+  void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert* p);
+  void handleMetadataReceivedAlert(libtorrent::metadata_received_alert* p);
+  void handleFileErrorAlert(libtorrent::file_error_alert* p);
+  void handleFileCompletedAlert(libtorrent::file_completed_alert* p);
+  void handleTorrentPausedAlert(libtorrent::torrent_paused_alert* p);
+  void handleTrackerErrorAlert(libtorrent::tracker_error_alert* p);
+  void handleTrackerReplyAlert(libtorrent::tracker_reply_alert* p);
+  void handleTrackerWarningAlert(libtorrent::tracker_warning_alert* p);
+  void handlePortmapWarningAlert(libtorrent::portmap_error_alert* p);
+  void handlePortmapAlert(libtorrent::portmap_alert* p);
+  void handlePeerBlockedAlert(libtorrent::peer_blocked_alert* p);
+  void handlePeerBanAlert(libtorrent::peer_ban_alert* p);
+  void handleFastResumeRejectedAlert(libtorrent::fastresume_rejected_alert* p);
+  void handleUrlSeedAlert(libtorrent::url_seed_alert* p);
+  void handleListenSucceededAlert(libtorrent::listen_succeeded_alert *p);
+  void handleListenFailedAlert(libtorrent::listen_failed_alert *p);
+  void handleTorrentCheckedAlert(libtorrent::torrent_checked_alert* p);
+  void handleExternalIPAlert(libtorrent::external_ip_alert *p);
+  void handleStateUpdateAlert(libtorrent::state_update_alert *p);
+  void handleStatsAlert(libtorrent::stats_alert *p);
 
 private slots:
   void addTorrentsFromScanFolder(QStringList&);
@@ -195,8 +228,7 @@ private slots:
   void exportTorrentFiles(QString path);
   void saveTempFastResumeData();
   void sendNotificationEmail(const QTorrentHandle &h);
-  void autoRunExternalProgram(const QTorrentHandle &h, bool async=true);
-  void cleanUpAutoRunProcess(int);
+  void autoRunExternalProgram(const QTorrentHandle &h);
   void mergeTorrents(QTorrentHandle& h_ex, boost::intrusive_ptr<libtorrent::torrent_info> t);
   void mergeTorrents(QTorrentHandle& h_ex, const QString& magnet_uri);
   void exportTorrentFile(const QTorrentHandle &h, TorrentExportFolder folder = RegularTorrentExportFolder);
@@ -228,11 +260,12 @@ signals:
   void recursiveTorrentDownloadPossible(const QTorrentHandle &h);
   void ipFilterParsed(bool error, int ruleCount);
   void metadataReceivedHidden(const QTorrentHandle &h);
+  void stateUpdate(const std::vector<libtorrent::torrent_status> &statuses);
+  void statsReceived(const libtorrent::stats_alert&);
 
 private:
   // Bittorrent
   libtorrent::session *s;
-  QPointer<QTimer> timerAlerts;
   QPointer<BandwidthScheduler> bd_scheduler;
   QMap<QUrl, QPair<QString, QString> > savepathLabel_fromurl; // Use QMap for compatibility with Qt < 4.7: qHash(QUrl)
   QHash<QString, QHash<QString, TrackerInfos> > trackersInfos;
@@ -279,10 +312,14 @@ private:
   TorrentSpeedMonitor *m_speedMonitor;
   shutDownAction m_shutdownAct;
   // Port forwarding
+#if LIBTORRENT_VERSION_NUM < 10000
   libtorrent::upnp *m_upnp;
   libtorrent::natpmp *m_natpmp;
+#endif
   // DynDNS
   DNSUpdater *m_dynDNSUpdater;
+  QAlertDispatcher* m_alertDispatcher;
+  TorrentStatistics* m_torrentStatistics;
 };
 
 #endif

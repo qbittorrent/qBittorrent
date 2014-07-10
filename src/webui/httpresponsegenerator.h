@@ -32,9 +32,9 @@
 #ifndef HTTPRESPONSEGENERATOR_H
 #define HTTPRESPONSEGENERATOR_H
 
-#include<QHttpResponseHeader>
+#include "httpresponseheader.h"
 
-class HttpResponseGenerator : public QHttpResponseHeader
+class HttpResponseGenerator : public HttpResponseHeader
 {
 
 public:

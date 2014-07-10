@@ -31,6 +31,8 @@
 
 #include "httpconnection.h"
 #include "httpserver.h"
+#include "httprequestheader.h"
+#include "httpresponseheader.h"
 #include "preferences.h"
 #include "btjson.h"
 #include "prefjson.h"
@@ -42,8 +44,6 @@
 #include <QTcpSocket>
 #include <QDateTime>
 #include <QStringList>
-#include <QHttpRequestHeader>
-#include <QHttpResponseHeader>
 #include <QFile>
 #include <QDebug>
 #include <QRegExp>
@@ -150,35 +150,41 @@ void HttpConnection::translateDocument(QString& data) {
                                   "confirmDeletionDlg", "TrackerList", "TorrentFilesModel",
                                   "options_imp", "Preferences", "TrackersAdditionDlg",
                                   "ScanFoldersModel", "PropTabBar", "TorrentModel",
-                                  "downloadFromURL"};
+                                  "downloadFromURL", "misc"};
+  const size_t context_count = sizeof(contexts)/sizeof(contexts[0]);
   int i = 0;
-  bool found;
+  bool found = true;
 
-  do {
-    found = false;
+  const QString locale = Preferences().getLocale();
+  bool isTranslationNeeded = !locale.startsWith("en") || locale.startsWith("en_AU") || locale.startsWith("en_GB");
 
+  while(i < data.size() && found) {
     i = regex.indexIn(data, i);
     if (i >= 0) {
       //qDebug("Found translatable string: %s", regex.cap(1).toUtf8().data());
       QByteArray word = regex.cap(1).toUtf8();
 
       QString translation = word;
-      bool isTranslationNeeded = !Preferences().getLocale().startsWith("en");
       if (isTranslationNeeded) {
-        int context_index = 0;
-        do {
+        size_t context_index = 0;
+        while(context_index < context_count && translation == word) {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
           translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, QCoreApplication::UnicodeUTF8, 1);
+#else
+          translation = qApp->translate(contexts[context_index].c_str(), word.constData(), 0, 1);
+#endif
           ++context_index;
-        } while(translation == word && context_index < 15);
+        }
       }
       // Remove keyboard shortcuts
       translation.replace(mnemonic, "");
 
       data.replace(i, regex.matchedLength(), translation);
       i += translation.length();
-      found = true;
+    } else {
+        found = false; // no more translatable strings
     }
-  } while(found && i < data.size());
+  }
 }
 
 void HttpConnection::respond() {

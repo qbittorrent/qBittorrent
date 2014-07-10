@@ -147,6 +147,7 @@ void RssManager::saveStreamList() const
   QStringList aliases;
   RssFeedList streams = getAllFeeds();
   foreach (const RssFeedPtr& stream, streams) {
+    // This backslash has nothing to do with path handling
     QString stream_path = stream->pathHierarchy().join("\\");
     if (stream_path.isNull())
       stream_path = "";

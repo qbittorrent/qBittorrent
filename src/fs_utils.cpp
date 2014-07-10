@@ -43,13 +43,13 @@
 #endif
 #include <libtorrent/torrent_info.hpp>
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
 #endif
 
-#ifndef Q_WS_WIN
-#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
+#ifndef Q_OS_WIN
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #else
@@ -60,8 +60,12 @@
 #include <winbase.h>
 #endif
 
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDesktopServices>
+#else
+#include <QStandardPaths>
+#endif
 #endif
 
 using namespace libtorrent;
@@ -71,9 +75,12 @@ using namespace libtorrent;
  * This function makes sure the directory separator used is consistent
  * with the OS being run.
  */
-QString fsutils::toDisplayPath(const QString& path)
-{
+QString fsutils::toNativePath(const QString& path) {
   return QDir::toNativeSeparators(path);
+}
+
+QString fsutils::fromNativePath(const QString &path) {
+  return QDir::fromNativeSeparators(path);
 }
 
 /**
@@ -87,15 +94,16 @@ QString fsutils::fileExtension(const QString &filename)
 
 QString fsutils::fileName(const QString& file_path)
 {
-  const int slash_index = file_path.lastIndexOf(QRegExp("[/\\\\]"));
+  QString path = fsutils::fromNativePath(file_path);
+  const int slash_index = path.lastIndexOf("/");
   if (slash_index == -1)
-    return file_path;
-  return file_path.mid(slash_index + 1);
+    return path;
+  return path.mid(slash_index + 1);
 }
 
 bool fsutils::isValidTorrentFile(const QString& torrent_path) {
   try {
-    boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(torrent_path.toUtf8().constData());
+    boost::intrusive_ptr<libtorrent::torrent_info> t = new torrent_info(fsutils::toNativePath(torrent_path).toUtf8().constData());
     if (!t->is_valid() || t->num_files() == 0)
       return false;
   } catch(std::exception&) {
@@ -121,9 +129,9 @@ bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
     return true;
 
   // Remove Files created by the OS
-#if defined Q_WS_MAC
+#if defined Q_OS_MAC
   fsutils::forceRemove(dir_path + QLatin1String("/.DS_Store"));
-#elif defined Q_WS_WIN
+#elif defined Q_OS_WIN
   fsutils::forceRemove(dir_path + QLatin1String("/Thumbs.db"));
 #endif
 
@@ -220,14 +228,14 @@ bool fsutils::sameFiles(const QString& path1, const QString& path2)
   return same;
 }
 
-QString fsutils::updateLabelInSavePath(QString defaultSavePath,QString save_path, const QString& old_label, const QString& new_label) {
-  if (old_label == new_label) return save_path;
-  defaultSavePath.replace("\\", "/");
-  save_path.replace("\\", "/");
-  qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(save_path), qPrintable(old_label), qPrintable(new_label));
-  if (!save_path.startsWith(defaultSavePath)) return save_path;
-  QString new_save_path = save_path;
-  new_save_path.replace(defaultSavePath, "");
+QString fsutils::updateLabelInSavePath(const QString& defaultSavePath, const QString& save_path, const QString& old_label, const QString& new_label) {
+  if (old_label == new_label) return fsutils::fromNativePath(save_path);
+  QString defaultPath = fsutils::fromNativePath(defaultSavePath);
+  QString path = fsutils::fromNativePath(save_path);
+  qDebug("UpdateLabelInSavePath(%s, %s, %s)", qPrintable(path), qPrintable(old_label), qPrintable(new_label));
+  if (!path.startsWith(defaultPath)) return path;
+  QString new_save_path = path;
+  new_save_path.remove(defaultPath);
   QStringList path_parts = new_save_path.split("/", QString::SkipEmptyParts);
   if (path_parts.empty()) {
     if (!new_label.isEmpty())
@@ -245,9 +253,9 @@ QString fsutils::updateLabelInSavePath(QString defaultSavePath,QString save_path
       }
     }
   }
-  new_save_path = defaultSavePath;
-  if (!new_save_path.endsWith(QDir::separator())) new_save_path += QDir::separator();
-  new_save_path += path_parts.join(QDir::separator());
+  new_save_path = defaultPath;
+  if (!new_save_path.endsWith("/")) new_save_path += "/";
+  new_save_path += path_parts.join("/");
   qDebug("New save path is %s", qPrintable(new_save_path));
   return new_save_path;
 }
@@ -268,7 +276,6 @@ bool fsutils::isValidFileSystemName(const QString& filename) {
 
 long long fsutils::freeDiskSpaceOnPath(QString path) {
   if (path.isEmpty()) return -1;
-  path.replace("\\", "/");
   QDir dir_path(path);
   if (!dir_path.exists()) {
     QStringList parts = path.split("/");
@@ -280,7 +287,7 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
   }
   Q_ASSERT(dir_path.exists());
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
   unsigned long long available;
   struct statfs stats;
   const QString statfs_path = dir_path.path()+"/.";
@@ -307,7 +314,7 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
   {
     ULARGE_INTEGER bytesFree, bytesTotal;
     unsigned long long *ret;
-    if (pGetDiskFreeSpaceEx((LPCTSTR)(QDir::toNativeSeparators(dir_path.path())).utf16(), &bytesFree, &bytesTotal, NULL)) {
+    if (pGetDiskFreeSpaceEx((LPCTSTR)(fsutils::toNativePath(dir_path.path())).utf16(), &bytesFree, &bytesTotal, NULL)) {
       ret = (unsigned long long*)&bytesFree;
       return *ret;
     } else {
@@ -321,10 +328,10 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
 
 QString fsutils::branchPath(const QString& file_path, QString* removed)
 {
-  QString ret = file_path;
-  if (ret.endsWith("/") || ret.endsWith("\\"))
+  QString ret = fsutils::fromNativePath(file_path);
+  if (ret.endsWith("/"))
     ret.chop(1);
-  const int slashIndex = ret.lastIndexOf(QRegExp("[/\\\\]"));
+  const int slashIndex = ret.lastIndexOf("/");
   if (slashIndex >= 0) {
     if (removed)
       *removed = ret.mid(slashIndex + 1);
@@ -335,45 +342,40 @@ QString fsutils::branchPath(const QString& file_path, QString* removed)
 
 bool fsutils::sameFileNames(const QString &first, const QString &second)
 {
-#if defined(Q_WS_X11) || defined(Q_WS_MAC) || defined(Q_WS_QWS)
+#if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
   return QString::compare(first, second, Qt::CaseSensitive) == 0;
 #else
   return QString::compare(first, second, Qt::CaseInsensitive) == 0;
 #endif
 }
 
-// Replace ~ in path
-QString fsutils::expandPath(const QString& path) {
-  QString ret = path.trimmed();
-  if (ret.isEmpty()) return ret;
-  if (ret == "~")
-    return QDir::homePath();
-  if (ret[0] == '~' && (ret[1] == '/' || ret[1] == '\\')) {
-    ret.replace(0, 1, QDir::homePath());
-  } else {
-    if (!QDir::isAbsolutePath(ret))
-      ret = QDir(ret).absolutePath();
-  }
-  return QDir::cleanPath(path);
+QString fsutils::expandPath(const QString &path) {
+  QString ret = fsutils::fromNativePath(path.trimmed());
+  if (ret.isEmpty())
+    return ret;
+
+  return QDir::cleanPath(ret);
+}
+
+QString fsutils::expandPathAbs(const QString& path) {
+  QString ret = fsutils::expandPath(path);
+
+  if (!QDir::isAbsolutePath(ret))
+    ret = QDir(ret).absolutePath();
+
+  return ret;
 }
 
 QString fsutils::QDesktopServicesDataLocation() {
-#ifdef Q_WS_WIN
-  LPWSTR path=new WCHAR[256];
   QString result;
-#if defined Q_WS_WINCE
-  if (SHGetSpecialFolderPath(0, path, CSIDL_APPDATA, FALSE))
-#else
+#ifdef Q_OS_WIN
+  LPWSTR path=new WCHAR[256];
   if (SHGetSpecialFolderPath(0, path, CSIDL_LOCAL_APPDATA, FALSE))
-#endif
-    result = QString::fromWCharArray(path);
+    result = fsutils::fromNativePath(QString::fromWCharArray(path));
   if (!QCoreApplication::applicationName().isEmpty())
-    result = result + QLatin1String("\\") + qApp->applicationName();
-  if (!result.endsWith("\\"))
-    result += "\\";
-  return result;
+    result += QLatin1String("/") + qApp->applicationName();
 #else
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, false, &ref);
   if (err)
@@ -381,56 +383,66 @@ QString fsutils::QDesktopServicesDataLocation() {
   QString path;
   QByteArray ba(2048, 0);
   if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-    path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-  path += QLatin1Char('/') + qApp->applicationName();
-  return path;
+    result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+  result += QLatin1Char('/') + qApp->applicationName();
 #else
   QString xdgDataHome = QLatin1String(qgetenv("XDG_DATA_HOME"));
   if (xdgDataHome.isEmpty())
     xdgDataHome = QDir::homePath() + QLatin1String("/.local/share");
   xdgDataHome += QLatin1String("/data/")
       + qApp->applicationName();
-  return xdgDataHome;
+  result = xdgDataHome;
 #endif
 #endif
+  if (!result.endsWith("/"))
+    result += "/";
+  return result;
 }
 
 QString fsutils::QDesktopServicesCacheLocation() {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  return QDesktopServicesDataLocation() + QLatin1String("\\cache");
+  QString result;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  result = QDesktopServicesDataLocation() + QLatin1String("cache");
 #else
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   // http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html
   FSRef ref;
   OSErr err = FSFindFolder(kUserDomain, kCachedDataFolderType, false, &ref);
   if (err)
     return QString();
-  QString path;
   QByteArray ba(2048, 0);
   if (FSRefMakePath(&ref, reinterpret_cast<UInt8 *>(ba.data()), ba.size()) == noErr)
-    path = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
-  path += QLatin1Char('/') + qApp->applicationName();
-  return path;
+    result = QString::fromUtf8(ba).normalized(QString::NormalizationForm_C);
+  result += QLatin1Char('/') + qApp->applicationName();
 #else
   QString xdgCacheHome = QLatin1String(qgetenv("XDG_CACHE_HOME"));
   if (xdgCacheHome.isEmpty())
     xdgCacheHome = QDir::homePath() + QLatin1String("/.cache");
   xdgCacheHome += QLatin1Char('/') + QCoreApplication::applicationName();
-  return xdgCacheHome;
+  result = xdgCacheHome;
 #endif
 #endif
+  if (!result.endsWith("/"))
+    result += "/";
+  return result;
 }
 
 QString fsutils::QDesktopServicesDownloadLocation() {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   // as long as it stays WinXP like we do the same on OS/2
   // TODO: Use IKnownFolderManager to get path of FOLDERID_Downloads
   // instead of hardcoding "Downloads"
   // Unfortunately, this would break compatibility with WinXP
-  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(tr("Downloads"));
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+  return QDir(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)).absoluteFilePath(
+        QCoreApplication::translate("fsutils", "Downloads"));
+#else
+  return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
+        QCoreApplication::translate("fsutils", "Downloads"));
+#endif
 #endif
 
-#ifdef Q_WS_X11
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   QString save_path;
   // Default save path on Linux
   QString config_path = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME").constData());
@@ -458,27 +470,27 @@ QString fsutils::QDesktopServicesDownloadLocation() {
   }
 
   if (save_path.isEmpty() || !QFile::exists(save_path)) {
-    save_path = QDir::home().absoluteFilePath(tr("Downloads"));
+    save_path = QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
     qDebug() << Q_FUNC_INFO << "using" << save_path << "as fallback since the XDG detection did not work";
   }
 
   return save_path;
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   // TODO: How to support this on Mac OS X?
 #endif
 
   // Fallback
-  return QDir::home().absoluteFilePath(tr("Downloads"));
+  return QDir::home().absoluteFilePath(QCoreApplication::translate("fsutils", "Downloads"));
 }
 
 QString fsutils::searchEngineLocation() {
   QString folder = "nova";
   if (misc::pythonVersion() >= 3)
     folder = "nova3";
-  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + folder);
+  const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
+                                               + folder);
   QDir locationDir(location);
   if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
@@ -486,8 +498,8 @@ QString fsutils::searchEngineLocation() {
 }
 
 QString fsutils::BTBackupLocation() {
-  const QString location = QDir::cleanPath(QDesktopServicesDataLocation()
-                                           + QDir::separator() + "BT_backup");
+  const QString location = fsutils::expandPathAbs(QDesktopServicesDataLocation()
+                                           + "BT_backup");
   QDir locationDir(location);
   if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());
@@ -495,7 +507,7 @@ QString fsutils::BTBackupLocation() {
 }
 
 QString fsutils::cacheLocation() {
-  QString location = QDir::cleanPath(QDesktopServicesCacheLocation());
+  QString location = fsutils::expandPathAbs(QDesktopServicesCacheLocation());
   QDir locationDir(location);
   if (!locationDir.exists())
     locationDir.mkpath(locationDir.absolutePath());

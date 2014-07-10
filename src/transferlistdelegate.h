@@ -40,8 +40,12 @@
 #include "torrentmodel.h"
 #include "qbtsession.h"
 
-#ifdef Q_WS_WIN
-  #include <QPlastiqueStyle>
+#ifdef Q_OS_WIN
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <QPlastiqueStyle>
+#else
+#include <QProxyStyle>
+#endif
 #endif
 
 // Defines for download list list columns
@@ -74,9 +78,10 @@ public:
     case TorrentModelItem::TR_SEEDS:
     case TorrentModelItem::TR_PEERS: {
         QString display = QString::number(index.data().toLongLong());
-        if (index.data(Qt::UserRole).toLongLong() > 0) {
+        qlonglong total = index.data(Qt::UserRole).toLongLong();
+        if (total > 0) {
           // Scrape was successful, we have total values
-          display += " ("+QString::number(index.data(Qt::UserRole).toLongLong())+")";
+          display += " ("+QString::number(total)+")";
         }
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
@@ -138,9 +143,7 @@ public:
     case TorrentModelItem::TR_DLLIMIT:{
       QItemDelegate::drawBackground(painter, opt, index);
       const qlonglong limit = index.data().toLongLong();
-      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? QString::number((int)((limit/1024.)*10)/10.0, 'f', 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
       break;
     }
     case TorrentModelItem::TR_TIME_ELAPSED: {
@@ -160,9 +163,7 @@ public:
     case TorrentModelItem::TR_RATIO:{
         QItemDelegate::drawBackground(painter, opt, index);
         const qreal ratio = index.data().toDouble();
-        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : QString::number((int)(ratio*100)/100.0, 'f', 2));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect, ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
         break;
       }
     case TorrentModelItem::TR_PRIORITY: {
@@ -179,19 +180,21 @@ public:
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;        
         newopt.rect = opt.rect;
-        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-        newopt.text = QString::number((int)(progress*10)/10.0, 'f', 1)+"%";
+        newopt.text = misc::accurateDoubleToString(progress, 1) + "%";
         newopt.progress = (int)progress;
         newopt.maximum = 100;
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
         newopt.textVisible = true;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
         // XXX: To avoid having the progress text on the right of the bar
-        QPlastiqueStyle st;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+          QPlastiqueStyle st;
+#else
+          QProxyStyle st("fusion");
+#endif
         st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
         break;

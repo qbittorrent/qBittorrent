@@ -30,6 +30,8 @@
 
 #include "misc.h"
 
+#include <cmath>
+
 #include <QUrl>
 #include <QDir>
 #include <QFileInfo>
@@ -38,6 +40,7 @@
 #include <QDebug>
 #include <QProcess>
 #include <QSettings>
+#include <QLocale>
 
 #ifdef DISABLE_GUI
 #include <QCoreApplication>
@@ -46,7 +49,7 @@
 #include <QDesktopWidget>
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <windows.h>
 #include <PowrProf.h>
 const int UNLEN = 256;
@@ -55,13 +58,13 @@ const int UNLEN = 256;
 #include <sys/types.h>
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <CoreServices/CoreServices.h>
 #include <Carbon/Carbon.h>
 #endif
 
 #ifndef DISABLE_GUI
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #include <QDBusMessage>
 #endif
@@ -78,24 +81,47 @@ static struct { const char *source; const char *comment; } units[] = {
 };
 
 #ifndef DISABLE_GUI
-void misc::shutdownComputer(bool sleep) {
-#if defined(Q_WS_X11) && defined(QT_DBUS_LIB)
+void misc::shutdownComputer(shutDownAction action) {
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
   // Use dbus to power off / suspend the system
-  if (sleep) {
-    // Recent systems use UPower
+  if (action != SHUTDOWN_COMPUTER) {
+    // Some recent systems use systemd's logind
+    QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
+                               "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+    if (login1Iface.isValid()) {
+      if (action == SUSPEND_COMPUTER)
+        login1Iface.call("Suspend", false);
+      else
+        login1Iface.call("Hibernate", false);
+      return;
+    }
+    // Else, other recent systems use UPower
     QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                "org.freedesktop.UPower", QDBusConnection::systemBus());
     if (upowerIface.isValid()) {
-      upowerIface.call("Suspend");
+      if (action == SUSPEND_COMPUTER)
+        upowerIface.call("Suspend");
+      else
+        upowerIface.call("Hibernate");
       return;
     }
     // HAL (older systems)
     QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
                             "org.freedesktop.Hal.Device.SystemPowerManagement",
                             QDBusConnection::systemBus());
-    halIface.call("Suspend", 5);
+    if (action == SUSPEND_COMPUTER)
+      halIface.call("Suspend", 5);
+    else
+      halIface.call("Hibernate");
   } else {
-    // Recent systems use ConsoleKit
+    // Some recent systems use systemd's logind
+    QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
+                               "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+    if (login1Iface.isValid()) {
+      login1Iface.call("PowerOff", false);
+      return;
+    }
+    // Else, other recent systems use ConsoleKit
     QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                    "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
     if (consolekitIface.isValid()) {
@@ -109,9 +135,9 @@ void misc::shutdownComputer(bool sleep) {
     halIface.call("Shutdown");
   }
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   AEEventID EventToSend;
-  if (sleep)
+  if (action != SHUTDOWN_COMPUTER)
     EventToSend = kAESleep;
   else
     EventToSend = kAEShutDown;
@@ -150,7 +176,7 @@ void misc::shutdownComputer(bool sleep) {
 
   AEDisposeDesc(&eventReply);
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   HANDLE hToken;              // handle to process token
   TOKEN_PRIVILEGES tkp;       // pointer to token structure
   if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
@@ -172,8 +198,10 @@ void misc::shutdownComputer(bool sleep) {
   if (GetLastError() != ERROR_SUCCESS)
     return;
 
-  if (sleep)
+  if (action == SUSPEND_COMPUTER)
     SetSuspendState(false, false, false);
+  else if (action == HIBERNATE_COMPUTER)
+    SetSuspendState(true, false, false);
   else
     InitiateSystemShutdownA(0, QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.").toLocal8Bit().data(), 10, true, false);
 
@@ -241,9 +269,7 @@ QString misc::friendlyUnit(qreal val, bool is_speed) {
   if (i == 0)
     ret = QString::number((long)val) + " " + QCoreApplication::translate("misc", units[0].source, units[0].comment);
   else
-    /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-    ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-    ret = QString::number((int)(val*10)/10.0, 'f', 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
+    ret = accurateDoubleToString(val, 1) + " " + QCoreApplication::translate("misc", units[i].source, units[i].comment);
   if (is_speed)
     ret += QCoreApplication::translate("misc", "/s", "per second");
   return ret;
@@ -352,7 +378,7 @@ QString misc::magnetUriToHash(const QString& magnet_uri) {
     const QString found = regHex.cap(1);
     qDebug() << Q_FUNC_INFO << "regex found: " << found;
     if (found.length() == 40) {
-      const sha1_hash sha1(QByteArray::fromHex(found.toAscii()).constData());
+      const sha1_hash sha1(QByteArray::fromHex(found.toLatin1()).constData());
       qDebug("magnetUriToHash (Hex): hash: %s", qPrintable(misc::toQString(sha1)));
       return misc::toQString(sha1);
     }
@@ -402,7 +428,7 @@ QString misc::userFriendlyDuration(qlonglong seconds) {
 
 QString misc::getUserIDString() {
   QString uid = "0";
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   char buffer[UNLEN+1] = {0};
   DWORD buffer_len = UNLEN + 1;
   if (!GetUserNameA(buffer, &buffer_len))
@@ -558,3 +584,14 @@ bool misc::naturalSort(QString left, QString right, bool &result) { // uses less
   return false;
 }
 #endif
+
+QString misc::accurateDoubleToString(const double &n, const int &precision) {
+  /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
+  ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
+  ** the number has more digits after the decimal than we want AND the digit after
+  ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
+  ** precision we add an extra 0 behind 1 in the below algorithm. */
+
+  double prec = std::pow(10.0, precision);
+  return QLocale::system().toString(std::floor(n*prec)/prec, 'f', precision);
+}

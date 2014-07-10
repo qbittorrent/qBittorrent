@@ -8,6 +8,8 @@ MimeType=application/x-bittorrent;x-scheme-handler/magnet;
 Name=qBittorrent
 Terminal=false
 Type=Application
+StartupNotify=false
+StartupWMClass=qbittorrent
 
 
 

@@ -16,9 +16,6 @@ exists($$OUT_PWD/../conf.pri) {
 
 QMAKE_CXXFLAGS += -Wformat -Wformat-security
 QMAKE_LFLAGS_APP += -rdynamic
-CONFIG += link_pkgconfig
-PKGCONFIG += libtorrent-rasterbar
-LIBS += -lssl -lcrypto -lz
 
 # Man page
 nox {
@@ -27,7 +24,7 @@ nox {
     man.files = ../doc/qbittorrent.1
 }
 
-man.path = $$MANPREFIX/man/man1/
+man.path = $$MANPREFIX/man1
 INSTALLS += man
 
 # Menu Icon

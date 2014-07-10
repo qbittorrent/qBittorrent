@@ -72,7 +72,7 @@ QString GeoIPManager::geoipFolder(bool embedded) {
 #ifdef WITH_GEOIP_EMBEDDED
   if (embedded)
     return ":/geoip/";
-  return fsutils::QDesktopServicesDataLocation()+"geoip"+QDir::separator();
+  return fsutils::QDesktopServicesDataLocation()+"geoip"+"/";
 #else
   Q_UNUSED(embedded);
   if (QFile::exists("/usr/local/share/GeoIP/GeoIP.dat"))

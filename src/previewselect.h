@@ -46,7 +46,7 @@ class PreviewSelect: public QDialog, private Ui::preview {
   Q_OBJECT
 
 public:
-  enum PreviewColumn { NAME, SIZE, PROGRESS, NB_COLUMNS };
+  enum PreviewColumn { NAME, SIZE, PROGRESS, FILE_INDEX, NB_COLUMNS };
 
 public:
   PreviewSelect(QWidget* parent, QTorrentHandle h);
@@ -63,7 +63,6 @@ private:
   QStandardItemModel *previewListModel;
   PreviewListDelegate *listDelegate;
   QTorrentHandle h;
-  QList<int> indexes;
 
 };
 

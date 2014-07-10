@@ -8,11 +8,11 @@
 #include <QStringList>
 #include <QHash>
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 #include <QSet>
 #include <iostream>
 #include <errno.h>
-#if defined(Q_WS_MAC) || defined(Q_OS_FREEBSD)
+#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #include <string.h>
@@ -47,7 +47,7 @@ class FileSystemWatcher: public QFileSystemWatcher {
   Q_OBJECT
 
 private:
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
   QList<QDir> watched_folders;
   QPointer<QTimer> watch_timer;
 #endif
@@ -56,16 +56,16 @@ private:
   QHash<QString, int> m_partialTorrents;
   QPointer<QTimer> m_partialTorrentTimer;
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 private:
   static bool isNetworkFileSystem(QString path) {
     QString file = path;
-    if (!file.endsWith(QDir::separator()))
-      file += QDir::separator();
+    if (!file.endsWith("/"))
+      file += "/";
     file += ".";
     struct statfs buf;
     if (!statfs(file.toLocal8Bit().constData(), &buf)) {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
       // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
       return (strcmp(buf.f_fstypename, "nfs") == 0 || strcmp(buf.f_fstypename, "cifs") == 0 || strcmp(buf.f_fstypename, "smbfs") == 0);
 #else
@@ -124,7 +124,7 @@ public:
   }
 
   ~FileSystemWatcher() {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     if (watch_timer)
       delete watch_timer;
 #endif
@@ -134,7 +134,7 @@ public:
 
   QStringList directories() const {
     QStringList dirs;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     if (watch_timer) {
       foreach (const QDir &dir, watched_folders)
         dirs << dir.canonicalPath();
@@ -145,7 +145,7 @@ public:
   }
 
   void addPath(const QString & path) {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     QDir dir(path);
     if (!dir.exists())
       return;
@@ -167,13 +167,13 @@ public:
       qDebug("FS Watching is watching %s in normal mode", qPrintable(path));
       QFileSystemWatcher::addPath(path);
       scanLocalFolder(path);
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     }
 #endif
   }
 
   void removePath(const QString & path) {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     QDir dir(path);
     for (int i = 0; i < watched_folders.count(); ++i) {
       if (QDir(watched_folders.at(i)) == dir) {
@@ -202,7 +202,7 @@ protected slots:
   }
 
   void scanNetworkFolders() {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     qDebug("scanNetworkFolders() called");
     QStringList torrents;
     // Network folders scan

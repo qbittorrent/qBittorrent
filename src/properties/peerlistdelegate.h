@@ -67,9 +67,7 @@ public:
     case PROGRESS:{
       QItemDelegate::drawBackground(painter, opt, index);
       qreal progress = index.data().toDouble();
-      /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-      ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-      QItemDelegate::drawDisplay(painter, opt, opt.rect, QString::number((int)((progress*100.0)*10)/10.0, 'f', 1)+"%");
+      QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::accurateDoubleToString(progress*100.0, 1)+"%");
       break;
     }
     default:

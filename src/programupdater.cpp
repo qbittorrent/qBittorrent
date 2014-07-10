@@ -39,18 +39,18 @@
 #include "fs_utils.h"
 #include "preferences.h"
 
-#ifdef Q_WS_MAC
-const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac";
+#ifdef Q_OS_MAC
+const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-mac");
 const QString FILE_EXT = "DMG";
 #else
-const QString RSS_URL = "http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-win32";
+const QUrl RSS_URL("http://sourceforge.net/api/file/index/project-id/163414/mtime/desc/rss?path=/qbittorrent-win32");
 const QString FILE_EXT = "EXE";
 #endif
 
 using namespace libtorrent;
 
-ProgramUpdater::ProgramUpdater(QObject *parent) :
-    QObject(parent)
+ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser) :
+  QObject(parent), m_invokedByUser(invokedByUser)
 {
   mp_manager = new QNetworkAccessManager(this);
   Preferences pref;
@@ -87,7 +87,9 @@ void ProgramUpdater::checkForUpdates()
   connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(rssDownloadFinished(QNetworkReply*)));
   // Send the request
-  mp_manager->get(QNetworkRequest(QUrl(RSS_URL)));
+  QNetworkRequest request(RSS_URL);
+  request.setRawHeader("User-Agent", QString("qBittorrent/%1 ProgramUpdater (www.qbittorrent.org)").arg(VERSION).toLocal8Bit());
+  mp_manager->get(request);
 }
 
 void ProgramUpdater::setUpdateUrl(QString title) {
@@ -140,7 +142,7 @@ void ProgramUpdater::rssDownloadFinished(QNetworkReply *reply)
       }
     }
   }
-  emit updateCheckFinished(!m_updateUrl.isEmpty(), new_version);
+  emit updateCheckFinished(!m_updateUrl.isEmpty(), new_version, m_invokedByUser);
   // Clean up
   reply->deleteLater();
 }
@@ -150,49 +152,7 @@ void ProgramUpdater::updateProgram()
   Q_ASSERT(!m_updateUrl.isEmpty());
   QDesktopServices::openUrl(m_updateUrl);
   return;
-  /*connect(mp_manager, SIGNAL(finished(QNetworkReply*)),
-          this, SLOT(saveUpdate(QNetworkReply*)));
-  // Send the request
-  mp_manager->get(QNetworkRequest(QUrl(m_updateUrl)));*/
 }
-
-/*void ProgramUpdater::saveUpdate(QNetworkReply *reply)
-{
-  // Disconnect SIGNAL/SLOT
-  disconnect(mp_manager, 0, this, 0);
-  // Process the download
-  if (!reply->error()) {
-    // Save the file
-    const QString installer_path = QDir::temp().absoluteFilePath("qbittorrent_update."+FILE_EXT.toLower());
-    QFile update_installer(installer_path);
-    if (update_installer.exists()) {
-      update_installer.remove();
-    }
-    if (update_installer.open(QIODevice::WriteOnly)) {
-      update_installer.write(reply->readAll());
-      reply->close();
-      update_installer.close();
-      // Install the update
-      installUpdate(installer_path);
-    } else {
-      emit updateInstallFinished(tr("Could not create the file %1").arg(installer_path));
-    }
-  } else {
-    emit updateInstallFinished(tr("Failed to download the update at %1", "%1 is an URL").arg(m_updateUrl));
-  }
-  reply->deleteLater();
-  deleteLater();
-}*/
-
-/*void ProgramUpdater::installUpdate(QString update_path)
-{
-  qDebug("Installing the update at %s...", qPrintable(update_path));
-#ifdef Q_WS_WIN
-  QDesktopServices::openUrl(QUrl(QString("file:///")+update_path, QUrl::TolerantMode));
-#else
-  QDesktopServices::openUrl(QUrl(QString("file://")+update_path, QUrl::TolerantMode));
-#endif
-}*/
 
 // title on Windows: /qbittorrent-win32/qbittorrent-2.4.7/qbittorrent_2.4.7_setup.exe
 // title on Mac: /qbittorrent-mac/qbittorrent-2.4.4/qbittorrent-2.4.4.dmg

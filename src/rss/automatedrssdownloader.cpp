@@ -225,7 +225,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
       ui->lineContains->setText(rule->mustContain());
       ui->lineNotContains->setText(rule->mustNotContain());
       ui->saveDiffDir_check->setChecked(!rule->savePath().isEmpty());
-      ui->lineSavePath->setText(rule->savePath());
+      ui->lineSavePath->setText(fsutils::toNativePath(rule->savePath()));
       ui->checkRegex->setChecked(rule->useRegex());
       if (rule->label().isEmpty()) {
         ui->comboLabel->setCurrentIndex(-1);
@@ -362,7 +362,7 @@ void AutomatedRssDownloader::on_browseSP_clicked()
 {
   QString save_path = QFileDialog::getExistingDirectory(this, tr("Destination directory"), QDir::homePath());
   if (!save_path.isEmpty())
-    ui->lineSavePath->setText(save_path);
+    ui->lineSavePath->setText(fsutils::toNativePath(save_path));
 }
 
 void AutomatedRssDownloader::on_exportBtn_clicked()
@@ -482,9 +482,6 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feed_it
 void AutomatedRssDownloader::updateMatchingArticles()
 {
   ui->treeMatchingArticles->clear();
-  if (ui->ruleDefBox->isEnabled()) {
-    saveEditedRule();
-  }
   RssManagerPtr manager = m_manager.toStrongRef();
   if (!manager)
     return;

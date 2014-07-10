@@ -1,5 +1,11 @@
 * Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.2.0
+    - FEATURE: Show actual protocol for listen success/failure in the log. Needs libtorrent v1.0.0 (Gelmir)
+    - FEATURE: Support per tracker re-announce. Needs libtorrent v1.0.0 (Gelmir)
+    - FEATURE: Support saving in network locations. (Gelmir)
+    - FEATURE: Support Qt5 (mostly Glassez)
     - OTHER: Drop libtorrent 0.15.x support
+    - OTHER: Drop Qt < 4.8.0 support
+    - OTHER: Migrate build system to autotools (sledgehammer999)
 
 * Sat Oct 12 2013 - Christophe Dumez <chris@qbittorrent.org> and sledgehammer999 <sledgehammer999@qbittorrent.org> - v3.1.0
     - FEATURE: Add command line option to daemonize qbittorrent-nox (ngaro)

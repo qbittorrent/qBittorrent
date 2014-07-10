@@ -72,7 +72,6 @@ class MainWindow : public QMainWindow, private Ui::MainWindow{
 public:
   // Construct / Destruct
   MainWindow(QWidget *parent=0, const QStringList& torrentCmdLine = QStringList());
-  ~MainWindow();
   // Methods
   QWidget* getCurrentTabWidget() const;
   TransferListWidget* getTransferList() const { return transferList; }
@@ -86,7 +85,7 @@ public slots:
   void downloadFromURLList(const QStringList& urls);
   void updateAltSpeedsBtn(bool alternative);
   void updateNbTorrents();
-  void deleteBTSession();
+  void shutdownCleanUp();
 
 protected slots:
   // GUI related slots
@@ -140,9 +139,8 @@ protected slots:
   void optionsSaved();
   // HTTP slots
   void on_actionDownload_from_URL_triggered();
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
-  void handleUpdateCheckFinished(bool update_available, QString new_version);
-  void handleUpdateInstalled(QString error_msg);
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+  void handleUpdateCheckFinished(bool update_available, QString new_version, bool invokedByUser);
 #endif
 
 protected:
@@ -199,9 +197,8 @@ private:
   // Power Management
   PowerManagement *m_pwr;
   QTimer *preventTimer;
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   QTimer programUpdateTimer;
-  bool checkingProgramUpdate;
 #endif
 
 private slots:
@@ -214,10 +211,11 @@ private slots:
     void on_actionExecution_Logs_triggered(bool checked);
     void on_actionAutoExit_qBittorrent_toggled(bool );
     void on_actionAutoSuspend_system_toggled(bool );
+    void on_actionAutoHibernate_system_toggled(bool );
     void on_actionAutoShutdown_system_toggled(bool );
     // Check for active torrents and set preventing from suspend state
     void checkForActiveTorrents();
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     void checkProgramUpdate();
 #endif
 };

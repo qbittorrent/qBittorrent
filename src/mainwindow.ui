@@ -67,13 +67,14 @@
      <addaction name="actionAutoShutdown_Disabled"/>
      <addaction name="actionAutoExit_qBittorrent"/>
      <addaction name="actionAutoSuspend_system"/>
+     <addaction name="actionAutoHibernate_system"/>
      <addaction name="actionAutoShutdown_system"/>
     </widget>
     <addaction name="actionCreate_torrent"/>
+    <addaction name="actionStatistics"/>
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
-    <addaction name="actionStatistics"/>
     <addaction name="menuAuto_Shutdown_on_downloads_completion"/>
    </widget>
    <widget class="QMenu" name="menu_File">
@@ -123,6 +124,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionDownload_from_URL"/>
    <addaction name="actionOpen"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
@@ -349,6 +351,14 @@
    </property>
    <property name="text">
     <string>Suspend system</string>
+   </property>
+  </action>
+  <action name="actionAutoHibernate_system">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hibernate system</string>
    </property>
   </action>
   <action name="actionAutoShutdown_system">

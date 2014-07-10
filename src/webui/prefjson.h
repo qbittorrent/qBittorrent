@@ -39,7 +39,7 @@ private:
   prefjson();
 
 public:
-  static QString getPreferences();
+  static QByteArray getPreferences();
   static void setPreferences(const QString& json);
 
 };

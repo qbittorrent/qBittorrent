@@ -85,7 +85,11 @@ options_imp::options_imp(QWidget *parent):
     }
   }
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
   scanFoldersView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#else
+  scanFoldersView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#endif
   scanFoldersView->setModel(ScanFoldersModel::instance());
   connect(ScanFoldersModel::instance(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(enableApplyButton()));
   connect(scanFoldersView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(handleScanFolderViewSelectionChanged()));
@@ -102,15 +106,11 @@ options_imp::options_imp(QWidget *parent):
   // Load options
   loadOptions();
   // Disable systray integration if it is not supported by the system
-#ifndef Q_WS_MAC
   if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-#endif
     checkShowSystray->setChecked(false);
     checkShowSystray->setEnabled(false);
-#ifndef Q_WS_MAC
   }
-#endif
-#if !defined(Q_WS_X11)
+#if (!defined(Q_OS_UNIX) || defined(Q_OS_MAC))
   label_trayIconStyle->setVisible(false);
   comboTrayIcon->setVisible(false);
 #endif
@@ -118,7 +118,7 @@ options_imp::options_imp(QWidget *parent):
   checkWebUiHttps->setVisible(false);
 #endif
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
   checkStartup->setVisible(false);
   groupFileAssociation->setVisible(false);
 #endif
@@ -136,17 +136,17 @@ options_imp::options_imp(QWidget *parent):
   connect(checkCloseToSystray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkMinimizeToSysTray, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkStartMinimized, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   connect(checkStartup, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
   connect(checkShowSplash, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkProgramExitConfirm, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPreventFromSuspend, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(comboTrayIcon, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
-#if defined(Q_WS_X11) && !defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
   checkPreventFromSuspend->setDisabled(true);
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   connect(checkAssociateTorrents, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAssociateMagnetLinks, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
 #endif
@@ -257,7 +257,7 @@ options_imp::options_imp(QWidget *parent):
 
   // Adapt size
   show();
-  loadWindowState();
+  loadWindowState();  
 }
 
 void options_imp::initializeLanguageCombo()
@@ -294,7 +294,8 @@ void options_imp::loadWindowState() {
   QIniSettings settings;
   resize(settings.value(QString::fromUtf8("Preferences/State/size"), sizeFittingScreen()).toSize());
   QPoint p = settings.value(QString::fromUtf8("Preferences/State/pos"), QPoint()).toPoint();
-  if (!p.isNull())
+  QRect scr_rect = qApp->desktop()->screenGeometry();
+  if (!p.isNull() && scr_rect.contains(p))
     move(p);
   // Load slider size
   const QStringList sizes_str = settings.value("Preferences/State/hSplitterSizes", QStringList()).toStringList();
@@ -366,7 +367,7 @@ void options_imp::saveOptions() {
   pref.setSplashScreenDisabled(isSlashScreenDisabled());
   pref.setConfirmOnExit(checkProgramExitConfirm->isChecked());
   pref.setPreventFromSuspend(preventFromSuspend());
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   pref.setStartup(Startup());
   // Windows: file association settings
   Preferences::setTorrentFileAssoc(checkAssociateTorrents->isChecked());
@@ -375,17 +376,9 @@ void options_imp::saveOptions() {
   // End General preferences
 
   // Downloads preferences
-  QString save_path = getSavePath();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path.replace("\\", "/");
-#endif
-  pref.setSavePath(save_path);
+  pref.setSavePath(getSavePath());
   pref.setTempPathEnabled(isTempPathEnabled());
-  QString temp_path = getTempPath();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  temp_path.replace("\\", "/");
-#endif
-  pref.setTempPath(temp_path);
+  pref.setTempPath(getTempPath());
   pref.setAppendTorrentLabel(checkAppendLabel->isChecked());
   pref.useIncompleteFilesExtension(checkAppendqB->isChecked());
   pref.preAllocateAllFiles(preAllocateAllFiles());
@@ -394,14 +387,8 @@ void options_imp::saveOptions() {
   pref.addTorrentsInPause(addTorrentsInPause());
   ScanFoldersModel::instance()->makePersistent();
   addedScanDirs.clear();
-  QString export_dir = getTorrentExportDir();
-  QString export_dir_fin = getFinishedTorrentExportDir();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  export_dir_fin.replace("\\", "/");
-  export_dir.replace("\\", "/");
-#endif
-  pref.setTorrentExportDir(export_dir);
-  pref.setFinishedTorrentExportDir(export_dir_fin);
+  pref.setTorrentExportDir(getTorrentExportDir());
+  pref.setFinishedTorrentExportDir(getFinishedTorrentExportDir());
   pref.setMailNotificationEnabled(groupMailNotification->isChecked());
   pref.setMailNotificationEmail(dest_email_txt->text());
   pref.setMailNotificationSMTP(smtp_server_txt->text());
@@ -456,13 +443,8 @@ void options_imp::saveOptions() {
   // Misc preferences
   // * IPFilter
   pref.setFilteringEnabled(isFilteringEnabled());
-  if (isFilteringEnabled()) {
-    QString filter_path = textFilterPath->text();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    filter_path.replace("\\", "/");
-#endif
-    pref.setFilter(filter_path);
-  }
+  if (isFilteringEnabled())
+    pref.setFilter(textFilterPath->text());
   // End IPFilter preferences
   // Queueing system
   pref.setQueueingSystemEnabled(isQueueingSystemEnabled());
@@ -542,7 +524,7 @@ void options_imp::loadOptions() {
   comboTrayIcon->setCurrentIndex(pref.trayIconStyle());
   checkProgramExitConfirm->setChecked(pref.confirmOnExit());
   checkPreventFromSuspend->setChecked(pref.preventFromSuspend());
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   checkStartup->setChecked(pref.Startup());
   // Windows: file association settings
   checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -550,22 +532,14 @@ void options_imp::loadOptions() {
 #endif
   // End General preferences
   // Downloads preferences
-  QString save_path = pref.getSavePath();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  save_path.replace("/", "\\");
-#endif
-  textSavePath->setText(save_path);
+  textSavePath->setText(fsutils::toNativePath(pref.getSavePath()));
   if (pref.isTempPathEnabled()) {
     // enable
     checkTempFolder->setChecked(true);
   } else {
     checkTempFolder->setChecked(false);
   }
-  QString temp_path = pref.getTempPath();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-  temp_path.replace("/", "\\");
-#endif
-  textTempPath->setText(temp_path);
+  textTempPath->setText(fsutils::toNativePath(pref.getTempPath()));
   checkAppendLabel->setChecked(pref.appendTorrentLabel());
   checkAppendqB->setChecked(pref.useIncompleteFilesExtension());
   checkPreallocateAll->setChecked(pref.preAllocateAllFiles());
@@ -573,29 +547,22 @@ void options_imp::loadOptions() {
   checkAdditionDialogFront->setChecked(pref.AdditionDialogFront());
   checkStartPaused->setChecked(pref.addTorrentsInPause());
 
-  strValue = pref.getTorrentExportDir();
+  strValue = fsutils::toNativePath(pref.getTorrentExportDir());
   if (strValue.isEmpty()) {
     // Disable
     checkExportDir->setChecked(false);
   } else {
     // enable
-    checkExportDir->setChecked(true);
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    strValue.replace("/", "\\");
-#endif
     textExportDir->setText(strValue);
   }
 
-  strValue = pref.getFinishedTorrentExportDir();
+  strValue = fsutils::toNativePath(pref.getFinishedTorrentExportDir());
   if (strValue.isEmpty()) {
     // Disable
     checkExportDirFin->setChecked(false);
   } else {
     // enable
     checkExportDirFin->setChecked(true);
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    strValue.replace("/", "\\");
-#endif
     textExportDirFin->setText(strValue);
   }
   groupMailNotification->setChecked(pref.isMailNotificationEnabled());
@@ -755,7 +722,7 @@ void options_imp::loadOptions() {
   // Misc preferences
   // * IP Filter
   checkIPFilter->setChecked(pref.isFilteringEnabled());
-  textFilterPath->setText(pref.getFilter());
+  textFilterPath->setText(fsutils::toNativePath(pref.getFilter()));
   // End IP Filter
   // Queueing system preferences
   checkEnableQueueing->setChecked(pref.isQueueingSystemEnabled());
@@ -874,16 +841,13 @@ qreal options_imp::getMaxRatio() const {
 QString options_imp::getSavePath() const {
   if (textSavePath->text().trimmed().isEmpty()) {
     QString save_path = Preferences().getSavePath();
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    save_path.replace("/", "\\");
-#endif
-    textSavePath->setText(save_path);
+    textSavePath->setText(fsutils::toNativePath(save_path));
   }
-  return fsutils::expandPath(textSavePath->text());
+  return fsutils::expandPathAbs(textSavePath->text());
 }
 
 QString options_imp::getTempPath() const {
-  return fsutils::expandPath(textTempPath->text());
+  return fsutils::expandPathAbs(textTempPath->text());
 }
 
 bool options_imp::isTempPathEnabled() const {
@@ -997,7 +961,7 @@ bool options_imp::isSlashScreenDisabled() const {
   return !checkShowSplash->isChecked();
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 bool options_imp::Startup() const {
   return checkStartup->isChecked();
 }
@@ -1067,13 +1031,13 @@ void options_imp::setLocale(const QString &localeStr) {
 
 QString options_imp::getTorrentExportDir() const {
   if (checkExportDir->isChecked())
-    return fsutils::expandPath(textExportDir->text());
+    return fsutils::expandPathAbs(textExportDir->text());
   return QString();
 }
 
 QString options_imp::getFinishedTorrentExportDir() const {
   if (checkExportDirFin->isChecked())
-    return fsutils::expandPath(textExportDirFin->text());
+    return fsutils::expandPathAbs(textExportDirFin->text());
   return QString();
 }
 
@@ -1132,7 +1096,7 @@ void options_imp::handleScanFolderViewSelectionChanged() {
 
 QString options_imp::askForExportDir(const QString& currentExportPath)
 {
-  QDir currentExportDir(fsutils::expandPath(currentExportPath));
+  QDir currentExportDir(fsutils::expandPathAbs(currentExportPath));
   QString dir;
   if (!currentExportPath.isEmpty() && currentExportDir.exists()) {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), currentExportDir.absolutePath());
@@ -1145,17 +1109,17 @@ QString options_imp::askForExportDir(const QString& currentExportPath)
 void options_imp::on_browseExportDirButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDir->text());
   if (!newExportDir.isNull())
-    textExportDir->setText(fsutils::toDisplayPath(newExportDir));
+    textExportDir->setText(fsutils::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseExportDirFinButton_clicked() {
   const QString newExportDir = askForExportDir(textExportDirFin->text());
   if (!newExportDir.isNull())
-    textExportDirFin->setText(fsutils::toDisplayPath(newExportDir));
+    textExportDirFin->setText(fsutils::toNativePath(newExportDir));
 }
 
 void options_imp::on_browseFilterButton_clicked() {
-  const QString filter_path = fsutils::expandPath(textFilterPath->text());
+  const QString filter_path = fsutils::expandPathAbs(textFilterPath->text());
   QDir filterDir(filter_path);
   QString ipfilter;
   if (!filter_path.isEmpty() && filterDir.exists()) {
@@ -1163,17 +1127,13 @@ void options_imp::on_browseFilterButton_clicked() {
   } else {
     ipfilter = QFileDialog::getOpenFileName(this, tr("Choose an ip filter file"), QDir::homePath(), tr("Filters")+QString(" (*.dat *.p2p *.p2b)"));
   }
-  if (!ipfilter.isNull()) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    ipfilter.replace("/", "\\");
-#endif
-    textFilterPath->setText(ipfilter);
-  }
+  if (!ipfilter.isNull())
+    textFilterPath->setText(fsutils::toNativePath(ipfilter));
 }
 
 // Display dialog to choose save dir
 void options_imp::on_browseSaveDirButton_clicked() {
-  const QString save_path = fsutils::expandPath(textSavePath->text());
+  const QString save_path = fsutils::expandPathAbs(textSavePath->text());
   QDir saveDir(save_path);
   QString dir;
   if (!save_path.isEmpty() && saveDir.exists()) {
@@ -1181,16 +1141,12 @@ void options_imp::on_browseSaveDirButton_clicked() {
   } else {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
-  if (!dir.isNull()) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir.replace("/", "\\");
-#endif
-    textSavePath->setText(dir);
-  }
+  if (!dir.isNull())
+    textSavePath->setText(fsutils::toNativePath(dir));
 }
 
 void options_imp::on_browseTempDirButton_clicked() {
-  const QString temp_path = fsutils::expandPath(textTempPath->text());
+  const QString temp_path = fsutils::expandPathAbs(textTempPath->text());
   QDir tempDir(temp_path);
   QString dir;
   if (!temp_path.isEmpty() && tempDir.exists()) {
@@ -1198,17 +1154,13 @@ void options_imp::on_browseTempDirButton_clicked() {
   } else {
     dir = QFileDialog::getExistingDirectory(this, tr("Choose a save directory"), QDir::homePath());
   }
-  if (!dir.isNull()) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
-    dir.replace("/", "\\");
-#endif
-    textTempPath->setText(dir);
-  }
+  if (!dir.isNull())
+    textTempPath->setText(fsutils::toNativePath(dir));
 }
 
 // Return Filter object to apply to BT session
 QString options_imp::getFilter() const {
-  return textFilterPath->text();
+  return fsutils::fromNativePath(textFilterPath->text());
 }
 
 // Web UI

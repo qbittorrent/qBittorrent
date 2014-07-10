@@ -48,6 +48,7 @@
 #endif
 
 const qlonglong MAX_ETA = 8640000;
+enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER, HIBERNATE_COMPUTER };
 
 /*  Miscellaneaous functions that can be useful */
 namespace misc
@@ -70,12 +71,12 @@ namespace misc
 
   inline QString toQString(const libtorrent::sha1_hash &hash) {
     char out[41];
-    to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
+	 libtorrent::to_hex((char const*)&hash[0], libtorrent::sha1_hash::size, out);
     return QString(out);
   }
 
 #ifndef DISABLE_GUI
-  void shutdownComputer(bool sleep=false);
+  void shutdownComputer(shutDownAction action=SHUTDOWN_COMPUTER);
 #endif
 
   QString parseHtmlLinks(const QString &raw_text);
@@ -108,6 +109,7 @@ namespace misc
   QList<bool> boolListfromStringList(const QStringList &l);
 
   QString toQString(time_t t);
+  QString accurateDoubleToString(const double &n, const int &precision);
 
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);

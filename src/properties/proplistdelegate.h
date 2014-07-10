@@ -43,8 +43,12 @@
 #include "misc.h"
 #include "propertieswidget.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QPlastiqueStyle>
+#else
+#include <QProxyStyle>
+#endif
 #endif
 
 // Defines for properties list columns
@@ -78,20 +82,22 @@ public:
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;
         newopt.rect = opt.rect;
-        /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f' ,1) == 99.9
-        ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 */
-        newopt.text = QString::number((int)(progress*10)/10.0, 'f', 1)+"%";
+        newopt.text = misc::accurateDoubleToString(progress, 1) + "%";
         newopt.progress = (int)progress;
         newopt.maximum = 100;
         newopt.minimum = 0;
         newopt.state |= QStyle::State_Enabled;
         newopt.textVisible = true;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #else
-        // XXX: To avoid having the progress text on the right of the bar
-        QPlastiqueStyle st;
-        st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+          // XXX: To avoid having the progress text on the right of the bar
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+          QPlastiqueStyle st;
+#else
+          QProxyStyle st("fusion");
+#endif
+          st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
 #endif
       } else {
           // Do not display anything if the file is disabled (progress  == -1)
@@ -127,16 +133,6 @@ public:
       break;
     }
     painter->restore();
-  }
-
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
-    QVariant value = index.data(Qt::FontRole);
-    QFont fnt = value.isValid() ? qvariant_cast<QFont>(value) : option.font;
-    QFontMetrics fontMetrics(fnt);
-    const QString text = index.data(Qt::DisplayRole).toString();
-    QRect textRect = QRect(0, 0, 0, fontMetrics.lineSpacing() * (text.count(QLatin1Char('\n')) + 1));
-    textRect.setHeight(textRect.height()+4);
-    return textRect.size();
   }
 
   void setEditorData(QWidget *editor, const QModelIndex &index) const {

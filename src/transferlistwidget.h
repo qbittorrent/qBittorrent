@@ -106,6 +106,9 @@ protected slots:
   void toggleSelectedFirstLastPiecePrio() const;
   void askNewLabelForSelection();
 
+private:
+  bool openUrl(const QString& _path) const;
+
 signals:
   void currentTorrentChanged(const QTorrentHandle &h);
 

@@ -32,18 +32,12 @@
 #include "sessionapplication.h"
 
 SessionApplication::SessionApplication(const QString &id, int &argc, char **argv) :
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 QMacApplication(id, argc, argv)
 #else
 QtSingleApplication(id, argc, argv)
 #endif
 {}
-
-void SessionApplication::commitData(QSessionManager & manager) {
-  Q_UNUSED(manager);
-  emit sessionIsShuttingDown();
-  manager.release();
-}
 
 bool SessionApplication::notify(QObject* receiver, QEvent* event) {
   try {

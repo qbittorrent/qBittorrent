@@ -30,6 +30,7 @@
 
 #include "rssparser.h"
 #include "downloadthread.h"
+#include "fs_utils.h"
 #include <QDebug>
 #include <QFile>
 #include <QRegExp>
@@ -213,7 +214,7 @@ void RssParser::parseRssFile(const QString& feedUrl, const QString& filePath)
 {
   qDebug() << Q_FUNC_INFO << feedUrl << filePath;
   m_mutex.lock();
-  ParsingJob job = {feedUrl, filePath};
+  ParsingJob job = { feedUrl, fsutils::fromNativePath(filePath) };
   m_queue.enqueue(job);
   // Wake up thread.
   if (m_queue.count() == 1) {
@@ -496,12 +497,13 @@ void RssParser::parseFeed(const ParsingJob& job)
   }
 
   // Clean up
-  QFile::remove(job.filePath);
+  fileRss.close();
   emit feedParsingFinished(job.feedUrl, QString());
+  fsutils::forceRemove(job.filePath);
 }
 
 void RssParser::reportFailure(const ParsingJob& job, const QString& error)
 {
-  QFile::remove(job.filePath);
   emit feedParsingFinished(job.feedUrl, error);
+  fsutils::forceRemove(job.filePath);
 }

@@ -34,6 +34,7 @@
 #include <QShortcut>
 #include <QDialog>
 #include <QUrl>
+
 #include <libtorrent/torrent_info.hpp>
 #include "qtorrenthandle.h"
 
@@ -84,6 +85,7 @@ private:
   void loadState();
   void saveState();
   void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = QString());
+  void setupTreeview();
 
 private:
   Ui::AddNewTorrentDialog *ui;
@@ -98,6 +100,7 @@ private:
   QStringList m_filesPath;
   bool m_hasRenamedFile;
   QShortcut *editHotkey;
+  QByteArray m_headerState;
 };
 
 #endif // ADDNEWTORRENTDIALOG_H

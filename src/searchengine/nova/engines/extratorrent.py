@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Christophe Dumez (chris@qbittorrent.org)
 
 # Redistribution and use in source and binary forms, with or without
@@ -32,7 +32,7 @@ import sgmllib
 import re
 
 class extratorrent(object):
-  url = 'http://extratorrent.com'
+  url = 'http://extratorrent.cc'
   name = 'extratorrent'
   supported_categories = {'all': '', 'movies': '4', 'tv': '8', 'music': '5', 'games': '3', 'anime': '1', 'software': '7', 'books': '2', 'pictures': '6'}
 

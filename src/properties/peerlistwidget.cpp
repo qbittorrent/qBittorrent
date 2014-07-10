@@ -160,16 +160,20 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     empty_menu = false;
   }
   // Per Peer Speed limiting actions
+#if LIBTORRENT_VERSION_NUM < 10000
   QAction *upLimitAct = 0;
   QAction *dlLimitAct = 0;
+#endif
   QAction *banAct = 0;
   QAction *copyIPAct = 0;
   if (!selectedPeerIPs.isEmpty()) {
     copyIPAct = menu.addAction(IconProvider::instance()->getIcon("edit-copy"), tr("Copy IP"));
     menu.addSeparator();
+#if LIBTORRENT_VERSION_NUM < 10000
     dlLimitAct = menu.addAction(QIcon(":/Icons/skin/download.png"), tr("Limit download rate..."));
     upLimitAct = menu.addAction(QIcon(":/Icons/skin/seeding.png"), tr("Limit upload rate..."));
     menu.addSeparator();
+#endif
     banAct = menu.addAction(IconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
     empty_menu = false;
   }
@@ -190,6 +194,7 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     }
     return;
   }
+#if LIBTORRENT_VERSION_NUM < 10000
   if (act == upLimitAct) {
     limitUpRateSelectedPeers(selectedPeerIPs);
     return;
@@ -198,12 +203,13 @@ void PeerListWidget::showPeerListMenu(const QPoint&)
     limitDlRateSelectedPeers(selectedPeerIPs);
     return;
   }
+#endif
   if (act == banAct) {
     banSelectedPeers(selectedPeerIPs);
     return;
   }
   if (act == copyIPAct) {
-#if defined(Q_WS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
     QApplication::clipboard()->setText(selectedPeerIPs.join("\r\n"));
 #else
     QApplication::clipboard()->setText(selectedPeerIPs.join("\n"));
@@ -229,6 +235,7 @@ void PeerListWidget::banSelectedPeers(const QStringList& peer_ips)
   loadPeers(m_properties->getCurrentTorrent());
 }
 
+#if LIBTORRENT_VERSION_NUM < 10000
 void PeerListWidget::limitUpRateSelectedPeers(const QStringList& peer_ips)
 {
   if (peer_ips.empty())
@@ -294,7 +301,7 @@ void PeerListWidget::limitDlRateSelectedPeers(const QStringList& peer_ips)
     }
   }
 }
-
+#endif
 
 void PeerListWidget::clear() {
   qDebug("clearing peer list");
@@ -378,7 +385,7 @@ QStandardItem* PeerListWidget::addPeer(const QString& ip, const peer_info& peer)
       m_missingFlags.insert(ip);
     }
   }
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer));
   QString flags, tooltip;
   getFlags(peer, flags, tooltip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
@@ -404,7 +411,7 @@ void PeerListWidget::updatePeer(const QString& ip, const peer_info& peer) {
       m_missingFlags.remove(ip);
     }
   }
-  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer.connection_type));
+  m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), getConnectionString(peer));
   QString flags, tooltip;
   getFlags(peer, flags, tooltip);
   m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), flags);
@@ -435,13 +442,18 @@ void PeerListWidget::handleSortColumnChanged(int col)
   }
 }
 
-QString PeerListWidget::getConnectionString(int connection_type)
+QString PeerListWidget::getConnectionString(const peer_info& peer)
 {
+#if LIBTORRENT_VERSION_NUM < 10000
+  if (peer.connection_type & peer_info::bittorrent_utp) {
+#else
+  if (peer.flags & peer_info::utp_socket) {
+#endif
+    return QString::fromUtf8("μTP");
+  }
+
   QString connection;
-  switch(connection_type) {
-  case peer_info::bittorrent_utp:
-    connection = "uTP";
-    break;
+  switch(peer.connection_type) {
   case peer_info::http_seed:
   case peer_info::web_seed:
     connection = "Web";
@@ -549,7 +561,11 @@ void PeerListWidget::getFlags(const peer_info& peer, QString& flags, QString& to
   }
 
   //P = Peer is using uTorrent uTP
+#if LIBTORRENT_VERSION_NUM < 10000
   if (peer.connection_type & peer_info::bittorrent_utp) {
+#else
+  if (peer.flags & peer_info::utp_socket) {
+#endif
     flags += "P ";
     tooltip += QString::fromUtf8("μTP");
     tooltip += ", ";

@@ -36,7 +36,7 @@
 
 class IconProvider
 {
-  Q_DISABLE_COPY(IconProvider);
+  Q_DISABLE_COPY(IconProvider)
 
 private:
   explicit IconProvider();
@@ -48,7 +48,7 @@ public:
   QIcon getIcon(const QString& iconId);
   QString getIconPath(const QString& iconId);
 
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
 public:
   void useSystemIconTheme(bool enable);
 

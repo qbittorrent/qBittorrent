@@ -41,7 +41,7 @@ class ProgramUpdater : public QObject
 {
     Q_OBJECT
 public:
-    explicit ProgramUpdater(QObject *parent = 0);
+    explicit ProgramUpdater(QObject *parent = 0, bool invokedByUser = false);
     ~ProgramUpdater();
     void checkForUpdates();
     void updateProgram();
@@ -52,17 +52,15 @@ protected:
 
 protected slots:
     void rssDownloadFinished(QNetworkReply* reply);
-    //void installUpdate(QString update_path);
-    //void saveUpdate(QNetworkReply* reply);
     void setUpdateUrl(QString title);
 
 signals:
-    void updateCheckFinished(bool update_available, QString version);
-    void updateInstallFinished(QString error);
+    void updateCheckFinished(bool update_available, QString version, bool invokedByUser);
 
 private:
     QString m_updateUrl;
     QNetworkAccessManager *mp_manager;
+    bool m_invokedByUser;
 };
 
 #endif // PROGRAMUPDATER_H

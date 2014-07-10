@@ -52,6 +52,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
   previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
   previewList->setModel(previewListModel);
+  previewList->hideColumn(FILE_INDEX);
   listDelegate = new PreviewListDelegate(this);
   previewList->setItemDelegate(listDelegate);
   previewList->header()->resizeSection(0, 200);
@@ -71,13 +72,10 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
       previewListModel->setData(previewListModel->index(row, NAME), QVariant(fileName));
       previewListModel->setData(previewListModel->index(row, SIZE), QVariant((qlonglong)h.filesize_at(i)));
       previewListModel->setData(previewListModel->index(row, PROGRESS), QVariant((double)fp[i]/h.filesize_at(i)));
-      indexes << i;
+      previewListModel->setData(previewListModel->index(row, FILE_INDEX), QVariant(i));
     }
   }
 
-  previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select);
-  previewList->selectionModel()->select(previewListModel->index(0, SIZE), QItemSelectionModel::Select);
-  previewList->selectionModel()->select(previewListModel->index(0, PROGRESS), QItemSelectionModel::Select);
   if (!previewListModel->rowCount()) {
     QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
     close();
@@ -85,6 +83,7 @@ PreviewSelect::PreviewSelect(QWidget* parent, QTorrentHandle h): QDialog(parent)
   connect(this, SIGNAL(readyToPreviewFile(QString)), parent, SLOT(previewFile(QString)));
   previewListModel->sort(NAME);
   previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
+  previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
 
   if (previewListModel->rowCount() == 1) {
     qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
@@ -103,27 +102,19 @@ PreviewSelect::~PreviewSelect() {
 
 
 void PreviewSelect::on_previewButton_clicked() {
-  QModelIndex index;
-  QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(NAME);
+  QModelIndexList selectedIndexes = previewList->selectionModel()->selectedRows(FILE_INDEX);
   if (selectedIndexes.size() == 0) return;
   // Flush data
   h.flush_cache();
 
   QStringList absolute_paths(h.absolute_files_path());
-  QString path;
-  foreach (index, selectedIndexes) {
-    path = absolute_paths.at(indexes.at(index.row()));
-    // File
-    if (QFile::exists(path)) {
-      emit readyToPreviewFile(path);
-    } else {
-      QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
-    }
-    close();
-    return;
-  }
-  qDebug("Cannot find file: %s", path.toLocal8Bit().data());
-  QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+  //only one file should be selected
+  QString path = absolute_paths.at(selectedIndexes.at(0).data().toInt());
+  // File
+  if (QFile::exists(path))
+    emit readyToPreviewFile(path);
+  else
+    QMessageBox::critical(0, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
   close();
 }
 

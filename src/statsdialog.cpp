@@ -67,13 +67,13 @@ void StatsDialog::updateUI() {
   // Global ratio
   ui->labelGlobalRatio->setText(
         ( atd > 0 && atu > 0 ) ?
-          QString::number( (qreal)atu / (qreal)atd, 'f', 2) :
+          misc::accurateDoubleToString((qreal)atu / (qreal)atd, 2) :
           "-"
           );
   // Cache hits
   ui->labelCacheHits->setText(
         ( cache.blocks_read > 0 && cache.blocks_read_hit > 0 ) ?
-          QString("%L1\%").arg(100. * (qreal)cache.blocks_read_hit / (qreal)cache.blocks_read, 0, 'f', 2) :
+          misc::accurateDoubleToString(100. * (qreal)cache.blocks_read_hit / (qreal)cache.blocks_read, 2) :
           "-"
           );
   // Buffers size
@@ -85,18 +85,18 @@ void StatsDialog::updateUI() {
   // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
   const std::vector<libtorrent::torrent_handle> torrents = session->getTorrents();
   std::vector<libtorrent::torrent_handle>::const_iterator iBegin = torrents.begin();
-  std::vector<libtorrent::torrent_handle>::const_iterator iEnd = torrents.begin();
+  std::vector<libtorrent::torrent_handle>::const_iterator iEnd = torrents.end();
   quint32 peers = 0;
   for ( ; iBegin < iEnd ; ++iBegin)
     peers += (*iBegin).status().num_peers;
   ui->labelWriteStarve->setText(
         ( ss.disk_write_queue > 0 && peers > 0 ) ?
-          QString("%L1\%").arg(100. * (qreal)ss.disk_write_queue / (qreal)peers, 0, 'f', 2) :
+          misc::accurateDoubleToString(100. * (qreal)ss.disk_write_queue / (qreal)peers, 2) + "%" :
           QString("0\%")
         );
   ui->labelReadStarve->setText(
         ( ss.disk_read_queue > 0 && peers > 0 ) ?
-          QString("%L1\%").arg(100. * (qreal)ss.disk_read_queue / (qreal)peers, 0, 'f', 2) :
+          misc::accurateDoubleToString(100. * (qreal)ss.disk_read_queue / (qreal)peers, 2) + "%" :
           QString("0\%")
       );
   // Disk queues

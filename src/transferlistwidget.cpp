@@ -108,7 +108,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
   setItemsExpandable(false);
   setAutoScroll(true);
   setDragDropMode(QAbstractItemView::DragOnly);
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
   setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
 
@@ -126,6 +126,17 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *main_window,
     setColumnHidden(TorrentModelItem::TR_TIME_ELAPSED, true);
     setColumnHidden(TorrentModelItem::TR_SAVE_PATH, true);
   }
+
+  //Ensure that at least one column is visible at all times
+  bool atLeastOne = false;
+  for (unsigned int i=0; i<TorrentModelItem::NB_COLUMNS; i++) {
+    if (!isColumnHidden(i)) {
+      atLeastOne = true;
+      break;
+    }
+  }
+  if (!atLeastOne)
+    setColumnHidden(TorrentModelItem::TR_NAME, false);
 
   //When adding/removing columns between versions some may
   //end up being size 0 when the new version is launched with
@@ -166,7 +177,7 @@ TorrentModel* TransferListWidget::getSourceModel() const {
 }
 
 void TransferListWidget::previewFile(QString filePath) {
-  QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
+  openUrl(filePath);
 }
 
 void TransferListWidget::setRefreshInterval(int t) {
@@ -224,8 +235,8 @@ void TransferListWidget::torrentDoubleClicked(const QModelIndex& index) {
     }
     break;
   case OPEN_DEST:
-    QDesktopServices::openUrl(QUrl::fromLocalFile(h.root_path()));
-    break;
+    const QString path = h.root_path();
+    openUrl(path);
   }
 }
 
@@ -249,7 +260,7 @@ void TransferListWidget::setSelectedTorrentsLocation() {
   if (!dir.isNull()) {
     qDebug("New path is %s", qPrintable(dir));
     // Check if savePath exists
-    QDir savePath(fsutils::expandPath(dir));
+    QDir savePath(fsutils::expandPathAbs(dir));
     qDebug("New path after clean up is %s", qPrintable(savePath.absolutePath()));
     foreach (const QString & hash, hashes) {
       // Actually move storage
@@ -428,7 +439,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const {
       qDebug("Opening path at %s", qPrintable(rootFolder));
       if (!pathsList.contains(rootFolder)) {
         pathsList.insert(rootFolder);
-        QDesktopServices::openUrl(QUrl::fromLocalFile(rootFolder));
+        openUrl(rootFolder);
       }
     }
   }
@@ -558,11 +569,23 @@ void TransferListWidget::displayDLHoSMenu(const QPoint&) {
     myAct->setChecked(!isColumnHidden(i));
     actions.append(myAct);
   }
+  int visibleCols = 0;
+  for (unsigned int i=0; i<TorrentModelItem::NB_COLUMNS; i++) {
+    if (!isColumnHidden(i))
+      visibleCols++;
+
+    if (visibleCols > 1)
+      break;
+  }
+
   // Call menu
   QAction *act = hideshowColumn.exec(QCursor::pos());
   if (act) {
     int col = actions.indexOf(act);
     Q_ASSERT(col >= 0);
+    Q_ASSERT(visibleCols > 0);
+    if (!isColumnHidden(col) && visibleCols == 1)
+      return;
     qDebug("Toggling column %d visibility", col);
     setColumnHidden(col, !isColumnHidden(col));
     if (!isColumnHidden(col) && columnWidth(col) <= 5)
@@ -575,7 +598,7 @@ void TransferListWidget::toggleSelectedTorrentsSuperSeeding() const {
   foreach (const QString &hash, hashes) {
     QTorrentHandle h = BTSession->getTorrentHandle(hash);
     if (h.is_valid() && h.has_metadata()) {
-      h.super_seeding(!h.super_seeding());
+      h.super_seeding(!h.status(0).super_seeding);
     }
   }
 }
@@ -619,6 +642,13 @@ void TransferListWidget::askNewLabelForSelection() {
       }
     }
   }while(invalid);
+}
+
+bool TransferListWidget::openUrl(const QString &_path) const {
+  const QString path = fsutils::fromNativePath(_path);
+  // Hack to access samba shares with QDesktopServices::openUrl
+  const QString p = path.startsWith("//") ? QString("file:") + path : path;
+  return QDesktopServices::openUrl(QUrl::fromLocalFile(p));
 }
 
 void TransferListWidget::renameSelectedTorrent() {
@@ -665,6 +695,9 @@ void TransferListWidget::removeLabelFromRows(QString label) {
 }
 
 void TransferListWidget::displayListMenu(const QPoint&) {
+  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+  if (selectedIndexes.size() == 0)
+    return;
   // Create actions
   QAction actionStart(IconProvider::instance()->getIcon("media-playback-start"), tr("Resume", "Resume/start the torrent"), 0);
   connect(&actionStart, SIGNAL(triggered()), this, SLOT(startSelectedTorrents()));
@@ -710,7 +743,6 @@ void TransferListWidget::displayListMenu(const QPoint&) {
   // End of actions
   QMenu listMenu(this);
   // Enable/disable pause/start action given the DL state
-  QModelIndexList selectedIndexes = selectionModel()->selectedRows();
   bool has_pause = false, has_start = false, has_preview = false;
   bool all_same_super_seeding = true;
   bool super_seeding_mode = false;
@@ -747,9 +779,9 @@ void TransferListWidget::displayListMenu(const QPoint&) {
     else {
       if (!one_not_seed && all_same_super_seeding && h.has_metadata()) {
         if (first) {
-          super_seeding_mode = h.super_seeding();
+          super_seeding_mode = h.status(0).super_seeding;
         } else {
-          if (super_seeding_mode != h.super_seeding()) {
+          if (super_seeding_mode != h.status(0).super_seeding) {
             all_same_super_seeding = false;
           }
         }
@@ -889,7 +921,7 @@ void TransferListWidget::applyStatusFilter(int f) {
   case FILTER_DOWNLOADING:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_DOWNLOADING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_DL)+"|"+
                                                QString::number(TorrentModelItem::STATE_PAUSED_DL)+"|"+QString::number(TorrentModelItem::STATE_CHECKING_DL)+"|"+
-                                               QString::number(TorrentModelItem::STATE_QUEUED_DL), Qt::CaseSensitive));
+                                               QString::number(TorrentModelItem::STATE_QUEUED_DL)+"|"+QString::number(TorrentModelItem::STATE_DOWNLOADING_META), Qt::CaseSensitive));
     break;
   case FILTER_COMPLETED:
     statusFilterModel->setFilterRegExp(QRegExp(QString::number(TorrentModelItem::STATE_SEEDING)+"|"+QString::number(TorrentModelItem::STATE_STALLED_UP)+"|"+

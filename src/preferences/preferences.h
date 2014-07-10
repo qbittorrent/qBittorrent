@@ -135,11 +135,7 @@ public:
   }
 
   bool systrayIntegration() const {
-#ifdef Q_WS_MAC
-    return false;
-#else
     return value(QString::fromUtf8("Preferences/General/SystrayEnabled"), true).toBool();
-#endif
   }
 
   void setSystrayIntegration(bool enabled) {
@@ -195,7 +191,7 @@ public:
     setValue("Preferences/General/PreventFromSuspend", b);
   }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   bool Startup() const {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     return settings.contains("qBittorrent");
@@ -204,7 +200,7 @@ public:
   void setStartup(bool b) {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (b) {
-        const QString bin_path = "\""+qApp->applicationFilePath().replace("/", "\\")+"\"";
+        const QString bin_path = "\"" + fsutils::toNativePath(qApp->applicationFilePath()) + "\"";
         settings.setValue("qBittorrent", bin_path);
     }
     else {
@@ -217,12 +213,12 @@ public:
   QString getSavePath() const {
     QString save_path = value(QString::fromUtf8("Preferences/Downloads/SavePath")).toString();
     if (!save_path.isEmpty())
-      return save_path;
+      return fsutils::fromNativePath(save_path);
     return fsutils::QDesktopServicesDownloadLocation();
   }
 
   void setSavePath(const QString &save_path) {
-    setValue(QString::fromUtf8("Preferences/Downloads/SavePath"), save_path);
+    setValue(QString::fromUtf8("Preferences/Downloads/SavePath"), fsutils::fromNativePath(save_path));
   }
 
   bool isTempPathEnabled() const {
@@ -235,11 +231,11 @@ public:
 
   QString getTempPath() const {
     const QString temp = QDir(getSavePath()).absoluteFilePath("temp");
-    return value(QString::fromUtf8("Preferences/Downloads/TempPath"), temp).toString();
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/TempPath"), temp).toString());
   }
 
   void setTempPath(const QString &path) {
-    setValue(QString::fromUtf8("Preferences/Downloads/TempPath"), path);
+    setValue(QString::fromUtf8("Preferences/Downloads/TempPath"), fsutils::fromNativePath(path));
   }
 
   bool useIncompleteFilesExtension() const {
@@ -259,11 +255,11 @@ public:
   }
 
   QString lastLocationPath() const {
-    return value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString();
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString());
 }
 
   void setLastLocationPath(const QString &path) {
-    setValue(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), path);
+    setValue(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), fsutils::fromNativePath(path));
   }
 
   bool preAllocateAllFiles() const {
@@ -299,12 +295,26 @@ public:
   }
 
   QStringList getScanDirs() const {
-    return value(QString::fromUtf8("Preferences/Downloads/ScanDirs"), QStringList()).toStringList();
+    QStringList originalList = value(QString::fromUtf8("Preferences/Downloads/ScanDirs"), QStringList()).toStringList();
+    if (originalList.isEmpty())
+      return originalList;
+
+    QStringList newList;
+    foreach (const QString& s, originalList) {
+      newList << fsutils::fromNativePath(s);
+    }
+    return newList;
   }
 
   // This must be called somewhere with data from the model
   void setScanDirs(const QStringList &dirs) {
-    setValue(QString::fromUtf8("Preferences/Downloads/ScanDirs"), dirs);
+    QStringList newList;
+    if (!dirs.isEmpty()) {
+      foreach (const QString& s, dirs) {
+        newList << fsutils::fromNativePath(s);
+      }
+    }
+    setValue(QString::fromUtf8("Preferences/Downloads/ScanDirs"), newList);
   }
 
   QList<bool> getDownloadInScanDirs() const {
@@ -320,14 +330,11 @@ public:
   }
 
   QString getTorrentExportDir() const {
-    return value(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), QString()).toString();
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), QString()).toString());
   }
 
   void setTorrentExportDir(QString path) {
-    path = path.trimmed();
-    if (path.isEmpty())
-      path = QString();
-    setValue(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), path);
+    setValue(QString::fromUtf8("Preferences/Downloads/TorrentExportDir"), fsutils::fromNativePath(path.trimmed()));
   }
 
   bool isFinishedTorrentExportEnabled() const {
@@ -335,14 +342,11 @@ public:
   }
 
   QString getFinishedTorrentExportDir() const {
-    return value(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), QString()).toString();
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), QString()).toString());
   }
 
   void setFinishedTorrentExportDir(QString path) {
-    path = path.trimmed();
-    if (path.isEmpty())
-      path = QString();
-    setValue(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), path);
+    setValue(QString::fromUtf8("Preferences/Downloads/FinishedTorrentExportDir"), fsutils::fromNativePath(path.trimmed()));
   }
 
   bool isMailNotificationEnabled() const {
@@ -704,11 +708,11 @@ public:
   }
 
   QString getFilter() const {
-    return value(QString::fromUtf8("Preferences/IPFilter/File"), QString()).toString();
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/IPFilter/File"), QString()).toString());
   }
 
   void setFilter(const QString &path) {
-    setValue(QString::fromUtf8("Preferences/IPFilter/File"), path);
+    setValue(QString::fromUtf8("Preferences/IPFilter/File"), fsutils::fromNativePath(path));
   }
 
   void banIP(const QString &ip) {
@@ -894,7 +898,7 @@ public:
     return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
   }
 
-  void setDynDomainName(const QString name) {
+  void setDynDomainName(const QString &name) {
     setValue("Preferences/DynDNS/DomainName", name);
   }
 
@@ -902,7 +906,7 @@ public:
     return value("Preferences/DynDNS/Username").toString();
   }
 
-  void setDynDNSUsername(const QString username) {
+  void setDynDNSUsername(const QString &username) {
     setValue("Preferences/DynDNS/Username", username);
   }
 
@@ -910,7 +914,7 @@ public:
     return value("Preferences/DynDNS/Password").toString();
   }
 
-  void setDynDNSPassword(const QString password) {
+  void setDynDNSPassword(const QString &password) {
     setValue("Preferences/DynDNS/Password", password);
   }
 
@@ -948,11 +952,11 @@ public:
   }
 
   void setAutoRunProgram(const QString &program) {
-    setValue("AutoRun/program", program);
+    setValue("AutoRun/program", fsutils::fromNativePath(program));
   }
 
   QString getAutoRunProgram() const {
-    return value("AutoRun/program", QString()).toString();
+    return fsutils::fromNativePath(value("AutoRun/program", QString()).toString());
   }
 
   bool shutdownWhenDownloadsComplete() const {
@@ -969,6 +973,14 @@ public:
 
   void setSuspendWhenDownloadsComplete(bool suspend) {
     setValue(QString::fromUtf8("Preferences/Downloads/AutoSuspendOnCompletion"), suspend);
+  }
+  
+  bool hibernateWhenDownloadsComplete() const {
+    return value(QString::fromUtf8("Preferences/Downloads/AutoHibernateOnCompletion"), false).toBool();
+  }
+
+  void setHibernateWhenDownloadsComplete(bool hibernate) {
+    setValue(QString::fromUtf8("Preferences/Downloads/AutoHibernateOnCompletion"), hibernate);
   }
 
   bool shutdownqBTWhenDownloadsComplete() const {
@@ -1133,7 +1145,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/AnnounceToAllTrackers"), enabled);
   }
 
-#if defined(Q_WS_X11)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
   bool useSystemIconTheme() const {
     return value(QString::fromUtf8("Preferences/Advanced/useSystemIconTheme"), true).toBool();
   }
@@ -1169,7 +1181,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/DisableRecursiveDownload"), disable);
   }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   static QString getPythonPath() {
     QSettings reg_python("HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore", QIniSettings::NativeFormat);
     QStringList versions = reg_python.childGroups();
@@ -1179,7 +1191,7 @@ public:
     while(!versions.empty()) {
       const QString version = versions.takeLast();
       qDebug("Detected possible Python v%s location", qPrintable(version));
-      QString path = reg_python.value(version+"/InstallPath/Default", "").toString().replace("/", "\\");
+      QString path = reg_python.value(version+"/InstallPath/Default", "").toString();
       if (!path.isEmpty() && QDir(path).exists("python.exe")) {
         qDebug("Found python.exe at %s", qPrintable(path));
         return path;
@@ -1190,8 +1202,8 @@ public:
     supported_versions << "32" << "31" << "30" << "27" << "26" << "25";
     foreach (const QString &v, supported_versions) {
       if (QFile::exists("C:/Python"+v+"/python.exe")) {
-        reg_python.setValue(v[0]+"."+v[1]+"/InstallPath/Default", QString("C:\\Python"+v));
-        return "C:\\Python"+v;
+        reg_python.setValue(v[0]+"."+v[1]+"/InstallPath/Default", QString("C:/Python"+v));
+        return "C:/Python"+v;
       }
     }
     return QString::null;
@@ -1212,17 +1224,17 @@ public:
       return false;
     }
     qDebug("Checking shell command");
-    QString shell_command = settings.value("qBittorrent/shell/open/command/Default", "").toString();
+    QString shell_command = fsutils::toNativePath(settings.value("qBittorrent/shell/open/command/Default", "").toString());
     qDebug("Shell command is: %s", qPrintable(shell_command));
     QRegExp exe_reg("\"([^\"]+)\".*");
     if (exe_reg.indexIn(shell_command) < 0)
       return false;
     QString assoc_exe = exe_reg.cap(1);
     qDebug("exe: %s", qPrintable(assoc_exe));
-    if (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
       return false;
     // Icon
-    const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",1";
+    const QString icon_str = "\""+fsutils::toNativePath(qApp->applicationFilePath())+"\",1";
     if (settings.value("qBittorrent/DefaultIcon/Default", icon_str).toString().compare(icon_str, Qt::CaseInsensitive) != 0)
       return false;
 
@@ -1234,12 +1246,12 @@ public:
 
     // Check magnet link assoc
     QRegExp exe_reg("\"([^\"]+)\".*");
-    QString shell_command = settings.value("Magnet/shell/open/command/Default", "").toString();
+    QString shell_command = fsutils::toNativePath(settings.value("Magnet/shell/open/command/Default", "").toString());
     if (exe_reg.indexIn(shell_command) < 0)
       return false;
     QString assoc_exe = exe_reg.cap(1);
     qDebug("exe: %s", qPrintable(assoc_exe));
-    if (assoc_exe.compare(qApp->applicationFilePath().replace("/", "\\"), Qt::CaseInsensitive) != 0)
+    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
       return false;
     return true;
   }
@@ -1249,15 +1261,15 @@ public:
 
     // .Torrent association
     if (set) {
-      const QString command_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\" \"%1\"";
-      const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",1";
+      const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
+      const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
 
       settings.setValue(".torrent/Default", "qBittorrent");
       settings.setValue(".torrent/Content Type", "application/x-bittorrent");
       settings.setValue("qBittorrent/shell/Default", "open");
-      settings.setValue("qBittorrent/shell/open/command/Default", command_str);
+      settings.setValue("qBittorrent/shell/open/command/Default", fsutils::toNativePath(command_str));
       settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
-      settings.setValue("qBittorrent/DefaultIcon/Default", icon_str);
+      settings.setValue("qBittorrent/DefaultIcon/Default", fsutils::toNativePath(icon_str));
     } else if (isTorrentFileAssocSet()) {
       settings.remove(".torrent/Default");
       settings.remove(".torrent/Content Type");
@@ -1273,15 +1285,15 @@ public:
 
     // Magnet association
     if (set) {
-      const QString command_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\" \"%1\"";
-      const QString icon_str = "\""+qApp->applicationFilePath().replace("/", "\\")+"\",1";
+      const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
+      const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
 
       settings.setValue("Magnet/Default", "Magnet URI");
       settings.setValue("Magnet/Content Type", "application/x-magnet");
       settings.setValue("Magnet/URL Protocol", "");
-      settings.setValue("Magnet/DefaultIcon/Default", icon_str);
+      settings.setValue("Magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
       settings.setValue("Magnet/shell/Default", "open");
-      settings.setValue("Magnet/shell/open/command/Default", command_str);
+      settings.setValue("Magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
     } else if (isMagnetLinkAssocSet()) {
       settings.remove("Magnet/Default");
       settings.remove("Magnet/Content Type");
@@ -1309,7 +1321,7 @@ public:
     setValue(QString::fromUtf8("Preferences/Advanced/trackerPort"), port);
   }
 
-#if defined(Q_WS_WIN) || defined(Q_WS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
   bool isUpdateCheckEnabled() const {
     return value(QString::fromUtf8("Preferences/Advanced/updateCheck"), true).toBool();
   }

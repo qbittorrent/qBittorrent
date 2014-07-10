@@ -41,11 +41,11 @@ private:
   btjson() {}
 
 public:
-  static QString getTorrents();
-  static QString getTrackersForTorrent(const QString& hash);
-  static QString getPropertiesForTorrent(const QString& hash);
-  static QString getFilesForTorrent(const QString& hash);
-  static QString getTransferInfo();
+  static QByteArray getTorrents();
+  static QByteArray getTrackersForTorrent(const QString& hash);
+  static QByteArray getPropertiesForTorrent(const QString& hash);
+  static QByteArray getFilesForTorrent(const QString& hash);
+  static QByteArray getTransferInfo();
 }; // class btjson
 
 #endif // BTJSON_H

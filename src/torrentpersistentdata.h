@@ -43,6 +43,7 @@
 #include <QHash>
 
 class TorrentTempData {
+  // This class stores strings w/o modifying separators
 public:
   static bool hasTempData(const QString &hash) {
     return data.contains(hash);
@@ -100,6 +101,65 @@ public:
     fp = data.value(hash).files_priority;
   }
 
+  static bool isMoveInProgress(const QString &hash) {
+    return torrentMoveStates.find(hash) != torrentMoveStates.end();
+  }
+
+  static void enqueueMove(const QString &hash, const QString &queuedPath) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i == torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return;
+    }
+    i->queuedPath = queuedPath;
+  }
+
+  static void startMove(const QString &hash, const QString &oldPath, const QString& newPath) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i != torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return;
+    }
+
+    torrentMoveStates.insert(hash, TorrentMoveState(oldPath, newPath));
+  }
+
+  static void finishMove(const QString &hash) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i == torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return;
+    }
+    torrentMoveStates.erase(i);
+  }
+
+  static QString getOldPath(const QString &hash) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i == torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return QString();
+    }
+    return i->oldPath;
+  }
+
+  static QString getNewPath(const QString &hash) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i == torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return QString();
+    }
+    return i->newPath;
+  }
+
+  static QString getQueuedPath(const QString &hash) {
+    QHash<QString, TorrentMoveState>::iterator i = torrentMoveStates.find(hash);
+    if (i == torrentMoveStates.end()) {
+      Q_ASSERT(false);
+      return QString();
+    }
+    return i->queuedPath;
+  }
+
 private:
   struct TorrentData {
     TorrentData(): sequential(false), seed(false) {}
@@ -111,7 +171,21 @@ private:
     bool seed;
   };
 
+  struct TorrentMoveState {
+    TorrentMoveState(QString oldPath, QString newPath)
+      : oldPath(oldPath)
+      , newPath(newPath)
+    {}
+
+    // the moving occurs from oldPath to newPath
+    // queuedPath is where files should be moved to, when current moving is completed
+    QString oldPath;
+    QString newPath;
+    QString queuedPath;
+  };
+
   static QHash<QString, TorrentData> data;
+  static QHash<QString, TorrentMoveState> torrentMoveStates;
 };
 
 class HiddenData {
@@ -151,6 +225,7 @@ private:
 };
 
 class TorrentPersistentData {
+  // This class stores strings w/o modifying separators
 public:
   enum RatioLimit {
     USE_GLOBAL_RATIO = -2,
@@ -236,46 +311,6 @@ public:
     const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
     const QHash<QString, QVariant> data = all_data.value(hash).toHash();
     return data.value("has_error", false).toBool();
-  }
-
-  static void setPreviousSavePath(const QString &hash, const QString &previous_path) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    data["previous_path"] = previous_path;
-    all_data[hash] = data;
-    settings.setValue("torrents", all_data);
-  }
-
-  static QString getPreviousPath(const QString &hash) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    const QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    const QHash<QString, QVariant> data = all_data.value(hash).toHash();
-    return data.value("previous_path").toString();
-  }
-  
-  static void saveSeedDate(const QTorrentHandle &h) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data[h.hash()].toHash();
-    if (h.is_seed())
-      data["seed_date"] = QDateTime::currentDateTime();
-    else
-      data.remove("seed_date");
-    all_data[h.hash()] = data;
-    settings.setValue("torrents", all_data);
-  }
-
-  static void saveSeedDate(const QString &hash, const QDateTime &time) {
-    QIniSettings settings(QString::fromUtf8("qBittorrent"), QString::fromUtf8("qBittorrent-resume"));
-    QHash<QString, QVariant> all_data = settings.value("torrents").toHash();
-    QHash<QString, QVariant> data = all_data[hash].toHash();
-    if (time.isValid())
-      data["seed_date"] = time;
-    else
-      data.remove("seed_date");
-    all_data[hash] = data;
-    settings.setValue("torrents", all_data);
   }
 
   static QDateTime getSeedDate(const QString &hash) {
@@ -387,10 +422,6 @@ public:
       data["seed"] = !was_seed;
       all_data[h.hash()] = data;
       settings.setValue("torrents", all_data);
-      if (!was_seed) {
-        // Save completion date
-        saveSeedDate(h);
-      }
     }
   }
 

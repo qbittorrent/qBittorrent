@@ -77,13 +77,17 @@ protected slots:
   void loadSettings();
   void saveSettings() const;
   void showPeerListMenu(const QPoint&);
+
+#if LIBTORRENT_VERSION_NUM < 10000
   void limitUpRateSelectedPeers(const QStringList& peer_ips);
   void limitDlRateSelectedPeers(const QStringList& peer_ips);
+#endif
+
   void banSelectedPeers(const QStringList& peer_ips);
   void handleSortColumnChanged(int col);
 
 private:
-  static QString getConnectionString(int connection_type);
+  static QString getConnectionString(const libtorrent::peer_info &peer);
   static void getFlags(const libtorrent::peer_info& peer, QString& flags, QString& tooltip);
 
 private:

@@ -28,13 +28,17 @@
  * Contact : chris@qbittorrent.org
  */
 
-#include <QHttpRequestHeader>
 #include <QTcpSocket>
 #include <QUrl>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QUrlQuery>
+#endif
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
+#include "httprequestheader.h"
+#include "httpresponseheader.h"
 #include "qtracker.h"
 #include "preferences.h"
 
@@ -87,7 +91,7 @@ void QTracker::readRequest()
   QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
   QByteArray input = socket->readAll();
   //qDebug("QTracker: Raw request:\n%s", input.data());
-  QHttpRequestHeader http_request(input);
+  HttpRequestHeader http_request(input);
   if (!http_request.isValid()) {
     qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(http_request.toString()));
     respondInvalidRequest(socket, 100, "Invalid request type");
@@ -109,8 +113,13 @@ void QTracker::readRequest()
   // OK, this is a GET request
   // Parse GET parameters
   QHash<QString, QString> get_parameters;
-  QUrl url = QUrl::fromEncoded(http_request.path().toAscii());
+  QUrl url = QUrl::fromEncoded(http_request.path().toLatin1());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+  QUrlQuery query(url);
+  QListIterator<QPair<QString, QString> > i(query.queryItems());
+#else
   QListIterator<QPair<QString, QString> > i(url.queryItems());
+#endif
   while (i.hasNext()) {
     QPair<QString, QString> pair = i.next();
     get_parameters[pair.first] = pair.second;
@@ -121,7 +130,7 @@ void QTracker::readRequest()
 
 void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
 {
-  QHttpResponseHeader response;
+  HttpResponseHeader response;
   response.setStatusLine(code, msg);
   socket->write(response.toString().toLocal8Bit());
   socket->disconnectFromHost();
@@ -141,8 +150,8 @@ void QTracker::respondToAnnounceRequest(QTcpSocket *socket,
   }
   annonce_req.info_hash = get_parameters.value("info_hash");
   // info_hash cannot be longer than 20 bytes
-  /*if (annonce_req.info_hash.toAscii().length() > 20) {
-    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toAscii().length());
+  /*if (annonce_req.info_hash.toLatin1().length() > 20) {
+    qDebug("QTracker: Info_hash is not 20 byte long: %s (%d)", qPrintable(annonce_req.info_hash), annonce_req.info_hash.toLatin1().length());
     respondInvalidRequest(socket, 150, "Invalid infohash");
     return;
   }*/
@@ -238,7 +247,7 @@ void QTracker::ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceReques
   QByteArray reply(&buf[0], buf.size());
   qDebug("QTracker: reply with the following bencoded data:\n %s", reply.constData());
   // HTTP reply
-  QHttpResponseHeader response;
+  HttpResponseHeader response;
   response.setStatusLine(200, "OK");
   socket->write(response.toString().toLocal8Bit() + reply);
   socket->disconnectFromHost();
