@@ -5,7 +5,7 @@
 #Copyleft
 
 from novaprinter import prettyPrinter
-import urllib2, tempfile, sgmllib, os
+import urllib2, tempfile, sgmllib, os, re
 
 class cpasbien(object):
   url = "http://www.cpasbien.pe"
@@ -66,8 +66,12 @@ class cpasbien(object):
         dat += urllib2.urlopen(urllib2.Request(self.url+"/recherche/jeux-consoles/%s/page-%d,trie-seeds-d"%(what, i), headers={"User-Agent" : "Mozilla/5.0"} )).read().replace(" & ", " et ")
       else:
       	dat = urllib2.urlopen(urllib2.Request(self.url+"/recherche/%s%s/page-%d,trie-seeds-d"%(self.supported_categories[cat], what, i), headers={"User-Agent" : "Mozilla/5.0"} )).read().replace(" & ", " et ")
-      parser.feed(dat)
-      parser.close()
+      results_re = re.compile('(?s)<tbody>.*')
+      for match in results_re.finditer(dat):
+        res_tab = match.group(0)
+        parser.feed(res_tab)
+        parser.close()
+        break
       if len(results) <= 0:
         break
-      i += 1
+      i += 1 
