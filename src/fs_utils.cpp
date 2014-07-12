@@ -52,6 +52,8 @@
 #if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
+#elif defined(Q_WS_HAIKU)
+#include <kernel/fs_info.h>
 #else
 #include <sys/vfs.h>
 #endif
@@ -289,6 +291,18 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
 
 #ifndef Q_OS_WIN
   unsigned long long available;
+#ifdef Q_WS_HAIKU
+  const QString statfs_path = dir_path.path()+"/.";
+  dev_t device = dev_for_path (qPrintable(statfs_path));
+  if (device >= 0) {
+	fs_info info;
+  if(fs_stat_dev(device, &info)==B_OK){
+  	available = ((unsigned long long)(info.free_blocks*info.block_size));
+  return available;
+  }
+ }
+  return -1;
+#else
   struct statfs stats;
   const QString statfs_path = dir_path.path()+"/.";
   const int ret = statfs (qPrintable(statfs_path), &stats) ;
@@ -299,6 +313,7 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
   } else {
     return -1;
   }
+#endif
 #else
   typedef BOOL (WINAPI *GetDiskFreeSpaceEx_t)(LPCTSTR,
                                               PULARGE_INTEGER,
