@@ -1056,7 +1056,9 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
 }
 
 void options_imp::on_addScanFolderButton_clicked() {
-  const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"));
+  Preferences pref;
+  const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
+                                                        fsutils::toNativePath(fsutils::folderName(pref.getScanDirsLastPath())));
   if (!dir.isEmpty()) {
     const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, false);
     QString error;
@@ -1071,6 +1073,7 @@ void options_imp::on_addScanFolderButton_clicked() {
       error = tr("Folder is not readable.");
       break;
     default:
+      pref.setScanDirsLastPath(dir);
       addedScanDirs << dir;
       scanFoldersView->resizeColumnsToContents();
       enableApplyButton();
