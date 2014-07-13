@@ -1072,6 +1072,7 @@ void options_imp::on_addScanFolderButton_clicked() {
       break;
     default:
       addedScanDirs << dir;
+      scanFoldersView->resizeColumnsToContents();
       enableApplyButton();
     }
 
