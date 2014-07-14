@@ -256,7 +256,7 @@ public:
 
   QString lastLocationPath() const {
     return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString());
-}
+  }
 
   void setLastLocationPath(const QString &path) {
     setValue(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), fsutils::fromNativePath(path));
@@ -323,6 +323,14 @@ public:
 
   void setDownloadInScanDirs(const QList<bool> &list) {
     setValue(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), misc::toStringList(list));
+  }
+
+  QString getScanDirsLastPath() const {
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/ScanDirsLastPath"), QString()).toString());
+  }
+
+  void setScanDirsLastPath(const QString &path) {
+    setValue(QString::fromUtf8("Preferences/Downloads/ScanDirsLastPath"), fsutils::fromNativePath(path));
   }
 
   bool isTorrentExportEnabled() const {
