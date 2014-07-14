@@ -46,7 +46,6 @@
 #include <QFile>
 #include <QUrl>
 #include <QMenu>
-#include <QTimer>
 #include <QFileDialog>
 #include <libtorrent/version.hpp>
 
@@ -379,6 +378,8 @@ void AddNewTorrentDialog::renameSelectedFile()
   if (selectedIndexes.size() != 1)
     return;
   const QModelIndex &index = selectedIndexes.first();
+  if (!index.isValid())
+    return;
   // Ask for new name
   bool ok;
   const QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),
