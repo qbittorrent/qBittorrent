@@ -658,22 +658,6 @@ public:
     setValue(QString::fromUtf8("Preferences/Bittorrent/PeX"), enabled);
   }
 
-  bool isDHTPortSameAsBT() const {
-    return value(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), true).toBool();
-  }
-
-  void setDHTPortSameAsBT(bool same) {
-    setValue(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), same);
-  }
-
-  int getDHTPort() const {
-    return value(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), 6881).toInt();
-  }
-
-  void setDHTPort(int port) {
-    setValue(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), port);
-  }
-
   bool isLSDEnabled() const {
     return value(QString::fromUtf8("Preferences/Bittorrent/LSD"), true).toBool();
   }

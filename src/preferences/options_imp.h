@@ -126,8 +126,6 @@ private:
   int getMaxUploads() const;
   int getMaxUploadsPerTorrent() const;
   bool isDHTEnabled() const;
-  bool isDHTPortSameAsBT() const;
-  int getDHTPort() const;
   bool isLSDEnabled() const;
   int getEncryptionSetting() const;
   qreal getMaxRatio() const;
