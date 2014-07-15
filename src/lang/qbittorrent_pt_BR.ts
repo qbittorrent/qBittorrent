@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -190,12 +188,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Already in download list</source>
-        <translation>Já na lista de download</translation>
+        <translation>Já está na lista de download</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation>Torrent já na lista de download. Juntando trackers.</translation>
+        <translation>Torrent já está na lista de download. Juntando trackers.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="637"/>
@@ -215,7 +213,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation>Link magnético já na lista de download. Juntando trackers.</translation>
+        <translation>Link magnético já está na lista de download. Juntando trackers.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="231"/>
@@ -284,12 +282,12 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="611"/>
         <source>Parsing metadata...</source>
-        <translation>Parseando informações...</translation>
+        <translation>Analisando metadados...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="615"/>
         <source>Metadata retrieval complete</source>
-        <translation>Captura de informações completa</translation>
+        <translation>Captura de metadados completa</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="618"/>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Chaves comuns para cookies são: &apos;%1&apos;, &apos;%2&apos;.
 Você deve buscar essa informação nas preferências do seu navegador.</translation>
@@ -1573,7 +1571,7 @@ Gostaria de atualizar o qBittorrent para a versão %1?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1460"/>
         <source>Already checking for program updates in the background</source>
-        <translation>Busca por atualizações de programa já está em execução no plano de fundo</translation>
+        <translation>Busca por atualizações do programa já está em execução em segundo plano</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="402"/>
@@ -3031,13 +3029,13 @@ Quer mesmo sair do qBittorrent?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="816"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; foi removido(a) da lista de transferência e do HD.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="818"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&apos;%1&apos; foi removido(a) da lista de transferência.</translation>
     </message>
     <message>
@@ -3055,14 +3053,14 @@ Quer mesmo sair do qBittorrent?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1085"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; já está na lista de download.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1202"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; continuando. (continue rápido)</translation>
     </message>
     <message>
@@ -3114,7 +3112,7 @@ Quer mesmo sair do qBittorrent?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1204"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1209"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; adicionado a lista de download.</translation>
     </message>
     <message>
@@ -3136,7 +3134,7 @@ Quer mesmo sair do qBittorrent?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1059"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1064"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Incapaz de decodificar arquivo torrent: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3270,7 +3268,7 @@ Quer mesmo sair do qBittorrent?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2767"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>baixando &apos;%1&apos;, por favor espere...</translation>
     </message>
 </context>
@@ -3313,7 +3311,7 @@ Quer mesmo sair do qBittorrent?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -4784,7 +4782,7 @@ Por favor instale manualmente.</translation>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um cliente BitTorrent avançado escrito em C++, baseado no toolkit Qt e libtorrent-rasterbar.</translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
@@ -5142,7 +5140,7 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="339"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation>Esse link não parece estar apontando para um plugin de mecanismo de busca.</translation>
+        <translation>Esse link não parece estar apontando para um plugin de motor de busca.</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="354"/>
