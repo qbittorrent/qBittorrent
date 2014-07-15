@@ -228,7 +228,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="304"/>
         <source>Disk space: %1</source>
-        <translation type="unfinished"/>
+        <translation>Diskutrymme: %1</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="322"/>
@@ -262,12 +262,12 @@
         <location filename="../addnewtorrentdialog.cpp" line="416"/>
         <location filename="../addnewtorrentdialog.cpp" line="451"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"/>
+        <translation>Detta namn används redan i denna mapp. Använd ett annat namn.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="450"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished"/>
+        <translation>Det gick inte att byta namn på mappen</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="509"/>
@@ -1074,7 +1074,7 @@ Du kan få denna information från inställningarna i din webbläsare.</translat
     <message>
         <location filename="../webui/httpserver.cpp" line="138"/>
         <source>qBittorrent has been shutdown.</source>
-        <translation type="unfinished"/>
+        <translation>qBittorrent har stängts av.</translation>
     </message>
 </context>
 <context>
@@ -1324,13 +1324,13 @@ Detta meddelande kommer inte att visas igen.</translation>
     <message>
         <location filename="../mainwindow.ui" line="382"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Statistik</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="387"/>
         <location filename="../mainwindow.cpp" line="1375"/>
         <source>Check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Leta efter uppdateringar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
@@ -1544,7 +1544,7 @@ Vill du associera qBittorrent med torrentfiler och Magnet-länkar?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="1360"/>
         <source>A new version is available</source>
-        <translation type="unfinished"/>
+        <translation>En ny version är tillgänglig.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1361"/>
@@ -1565,7 +1565,7 @@ Would you like to update qBittorrent to version %1?</source>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Letar efter uppdateringar...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1468"/>
@@ -2218,7 +2218,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../preferences/options.ui" line="356"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"/>
+        <translation>Starta qBittorrent när Windows startar.</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="390"/>
@@ -2952,7 +2952,7 @@ Are you sure you want to quit qBittorrent?</source>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="426"/>
         <source>Anonymous mode [OFF]</source>
-        <translation type="unfinished"/>
+        <translation>Anonymt läge [AV]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="466"/>
@@ -3495,7 +3495,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rss/rssparser.cpp" line="458"/>
         <source>Failed to open downloaded RSS file.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte öppna den nedladdade RSS-filen.</translation>
     </message>
     <message>
         <location filename="../rss/rssparser.cpp" line="495"/>
@@ -3740,12 +3740,12 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Statistik</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"/>
+        <translation>Användarstatistik</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
@@ -4155,19 +4155,19 @@ Installera den manuellt.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Hämtat</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Skickat</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Återstår</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
@@ -4356,7 +4356,7 @@ Installera den manuellt.</translation>
         <location filename="../transferlistdelegate.h" line="96"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="unfinished"/>
+        <translation>Allokerar</translation>
     </message>
     <message>
         <location filename="../transferlistdelegate.h" line="100"/>

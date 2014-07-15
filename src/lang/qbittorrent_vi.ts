@@ -240,7 +240,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="384"/>
         <source>Rename the file</source>
-        <translation>Đổi tên tập ti</translation>
+        <translation>Đổi tên tập tin</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="385"/>
@@ -738,7 +738,7 @@ Bạn có lấy các thông tin này từ phần tùy biến trong trình duyệ
         <location filename="../deletionconfirmationdlg.h" line="46"/>
         <source>Are you sure you want to delete &quot;%1&quot; from the transfer list?</source>
         <comment>Are you sure you want to delete &quot;ubuntu-linux-iso&quot; from the transfer list?</comment>
-        <translation type="unfinished"/>
+        <translation>Bạn có chắc muốn xóa &quot;%1&quot; khỏi danh sách tải?</translation>
     </message>
     <message>
         <location filename="../deletionconfirmationdlg.h" line="48"/>
@@ -1330,13 +1330,13 @@ Không có phần ghi chú nào về tính pháp lý về vấn đề nội dung
         <location filename="../mainwindow.ui" line="387"/>
         <location filename="../mainwindow.cpp" line="1375"/>
         <source>Check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Kiểm tra cập nhật</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <location filename="../mainwindow.cpp" line="1376"/>
         <source>Check for program updates</source>
-        <translation type="unfinished"/>
+        <translation>Kiểm tra cập nhật chương trình</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="292"/>
@@ -1543,33 +1543,34 @@ Bạn có muốn qBittorrent đảm nhiệm mặc định cho thao tác mở cá
     <message>
         <location filename="../mainwindow.cpp" line="1360"/>
         <source>A new version is available</source>
-        <translation type="unfinished"/>
+        <translation>Phiên bản mới sẵn sàng</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1361"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"/>
+        <translation>Một phiên bản qBittorrent mới đã sẵn sàng trên Sourceforge
+Bạn có muốn cập nhật qBittorrent lên phiên bản %1?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1370"/>
         <source>There isn&apos;t a new version available</source>
-        <translation type="unfinished"/>
+        <translation>Không có phiên bản mới nào sẵn sàng</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1371"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
-        <translation type="unfinished"/>
+        <translation>Không có phiên bản qBittorrent mới nào sẵn sàng trên Sourceforge</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1467"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Đang kiểm tra cập nhật...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1468"/>
         <source>Already checking for program updates in the background</source>
-        <translation type="unfinished"/>
+        <translation>Đang kiểm tra cập nhật chương trình trên nền</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="401"/>
@@ -3066,13 +3067,13 @@ Bạn Có Chắc Rằng Bạn Vẫn Muốn Thoát Chứ?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1763"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; đã bị khóa</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1765"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; đã bị cấm</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
@@ -3739,17 +3740,17 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Thống kê</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"/>
+        <translation>Thống kê người dùng</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation type="unfinished"/>
+        <translation>Tổng số kết nối ngang hàng:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
@@ -3759,12 +3760,12 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="50"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"/>
+        <translation>Tổng thời gian tải về:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="77"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"/>
+        <translation>Tổng thời gian tải lên:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="94"/>
@@ -3774,12 +3775,12 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="114"/>
         <source>Cache statistics</source>
-        <translation type="unfinished"/>
+        <translation>Thống kê bộ nhớ đệm</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="120"/>
         <source>Read cache Hits:</source>
-        <translation type="unfinished"/>
+        <translation>Số lần đọc bộ nhớ đệm:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="147"/>
@@ -3789,7 +3790,7 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="157"/>
         <source>Performance statistics</source>
-        <translation type="unfinished"/>
+        <translation>Thống kê hiệu suất</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="203"/>
@@ -3804,7 +3805,7 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="217"/>
         <source>Average time in queue (ms):</source>
-        <translation type="unfinished"/>
+        <translation>Thời gian chờ trung bình (ms):</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="224"/>
@@ -3814,12 +3815,12 @@ Xin hãy vui lòng tự cài đặt.</translation>
     <message>
         <location filename="../statsdialog.ui" line="231"/>
         <source>Total queued size:</source>
-        <translation type="unfinished"/>
+        <translation>Tổng kích cỡ chờ:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="279"/>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -4154,19 +4155,19 @@ Xin hãy vui lòng tự cài đặt.</translation>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Đã được tải về</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Đã được tải lên</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"/>
+        <translation>Còn lại</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>

@@ -1549,7 +1549,7 @@ Möchten Sie Torrent Dateien und Magnet Links immer mit qBittorent öffnen?</tra
         <location filename="../mainwindow.cpp" line="1361"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
-        <translation type="unfinished"/>
+        <translation>Eine neue Version von qBittorrent ist auf Sourceforge erhältlich. Möchten Sie qBittorent auf die Version %1 aktualisieren?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1370"/>
@@ -3752,7 +3752,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
         <source>Global ratio:</source>
-        <translation type="unfinished"/>
+        <translation>Globales Verhältnis:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="50"/>
@@ -3782,7 +3782,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statsdialog.ui" line="147"/>
         <source>Total buffers size:</source>
-        <translation type="unfinished"/>
+        <translation>Gesamte Buffergröße:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="157"/>
@@ -4629,7 +4629,7 @@ Please install it manually.</source>
     <message>
         <location filename="../transferlistwidget.cpp" line="709"/>
         <source>Open destination folder</source>
-        <translation>Zielverzeichniss öffnen</translation>
+        <translation>Zielverzeichnis öffnen</translation>
     </message>
     <message>
         <location filename="../transferlistwidget.cpp" line="711"/>
@@ -4786,12 +4786,12 @@ Please install it manually.</source>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
         <source>Copyright ©2006-2013 The qBittorrent project</source>
-        <translation type="unfinished"/>
+        <translation>Copyright ©2006-2013 Das qBittorrent Projekt</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="58"/>
         <source>Home Page: </source>
-        <translation type="unfinished"/>
+        <translation>Webseite:</translation>
     </message>
     <message>
         <location filename="../about_imp.h" line="60"/>

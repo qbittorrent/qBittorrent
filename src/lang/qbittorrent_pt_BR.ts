@@ -42,12 +42,12 @@
     <message>
         <location filename="../about.ui" line="341"/>
         <source>Current maintainer</source>
-        <translation>Atual mantenedor </translation>
+        <translation>Mantenedor atual</translation>
     </message>
     <message>
         <location filename="../about.ui" line="354"/>
         <source>Original author</source>
-        <translation>Original autor</translation>
+        <translation>Autor original</translation>
     </message>
     <message>
         <location filename="../about.ui" line="408"/>
@@ -57,7 +57,7 @@
     <message>
         <location filename="../about.ui" line="420"/>
         <source>This version of qBittorrent was built against the following libraries:</source>
-        <translation>Esta versão fo qBittorrent foi construida sobre as seguintes bibliotecas:</translation>
+        <translation>Esta versão do qBittorrent foi construída sobre as seguintes bibliotecas:</translation>
     </message>
     <message>
         <location filename="../about.ui" line="184"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <source>Torrent is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation>Torrent já na lista de download. Juntando trackers.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="636"/>
@@ -213,7 +213,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
-        <translation type="unfinished"/>
+        <translation>Link magnético já na lista de download. Juntando trackers.</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="231"/>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="243"/>
         <source>Retrieving metadata...</source>
-        <translation type="unfinished"/>
+        <translation>Obtendo metadados...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="304"/>
@@ -282,17 +282,17 @@
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="610"/>
         <source>Parsing metadata...</source>
-        <translation type="unfinished"/>
+        <translation>Analisando metadados...</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="614"/>
         <source>Metadata retrieval complete</source>
-        <translation type="unfinished"/>
+        <translation>Obtenção de metadados concluída</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="617"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Erro desconhecido</translation>
     </message>
 </context>
 <context>
@@ -1324,7 +1324,7 @@ Nenhum outro aviso será dado.</translation>
     <message>
         <location filename="../mainwindow.ui" line="382"/>
         <source>Statistics</source>
-        <translation type="unfinished"/>
+        <translation>Estatísticas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="387"/>
@@ -1394,7 +1394,7 @@ Nenhum outro aviso será dado.</translation>
         <location filename="../mainwindow.cpp" line="152"/>
         <location filename="../mainwindow.cpp" line="412"/>
         <source>Clear the password</source>
-        <translation type="unfinished"/>
+        <translation>Limpe a senha</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="187"/>
@@ -1819,7 +1819,7 @@ Quer mesmo sair do qBittorrent?</translation>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="511"/>
         <source>incoming connection</source>
-        <translation type="unfinished"/>
+        <translation>conexão de entrada</translation>
     </message>
     <message>
         <location filename="../properties/peerlistwidget.cpp" line="518"/>
@@ -2259,7 +2259,7 @@ Quer mesmo sair do qBittorrent?</translation>
     <message>
         <location filename="../preferences/options.ui" line="558"/>
         <source>Bring torrent dialog to the front</source>
-        <translation type="unfinished"/>
+        <translation>Trazer a janela torrent para frente</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="580"/>
@@ -3079,13 +3079,13 @@ Quer mesmo sair do qBittorrent?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1953"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent está tentando escutar em qualquer porta de interface: TCP/%1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1979"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent está tentando se comunicar na interface %1 porta: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2301"/>
@@ -3106,7 +3106,7 @@ Quer mesmo sair do qBittorrent?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2592"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="unfinished"/>
+        <translation>qBittorrent está comunicando com sucesso na interface %1 porta: TCP/%2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2605"/>
@@ -3633,7 +3633,7 @@ Gostaria de instalar agora?</translation>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="358"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Parar</translation>
     </message>
     <message>
         <location filename="../searchengine/searchengine.cpp" line="492"/>
@@ -5247,7 +5247,7 @@ Portanto os plugins foram desabilitados.</translation>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="338"/>
         <source>Invalid link</source>
-        <translation type="unfinished"/>
+        <translation>Link invalido</translation>
     </message>
     <message>
         <location filename="../searchengine/engineselectdlg.cpp" line="467"/>

@@ -37,7 +37,7 @@
     <message>
         <location filename="../about.ui" line="262"/>
         <source>Greece</source>
-        <translation type="unfinished"/>
+        <translation>Yunanistan</translation>
     </message>
     <message>
         <location filename="../about.ui" line="341"/>
@@ -47,7 +47,7 @@
     <message>
         <location filename="../about.ui" line="354"/>
         <source>Original author</source>
-        <translation type="unfinished"/>
+        <translation>Orijinal yazar</translation>
     </message>
     <message>
         <location filename="../about.ui" line="408"/>
@@ -188,7 +188,7 @@
         <location filename="../addnewtorrentdialog.cpp" line="202"/>
         <location filename="../addnewtorrentdialog.cpp" line="224"/>
         <source>Already in download list</source>
-        <translation type="unfinished"/>
+        <translation>Zaten indirme listesinde</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="202"/>

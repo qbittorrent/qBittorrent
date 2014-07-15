@@ -3761,12 +3761,12 @@ Please install it manually.</source>
     <message>
         <location filename="../statsdialog.ui" line="50"/>
         <source>Alltime download:</source>
-        <translation type="unfinished"/>
+        <translation>إجمالي ما تم تنزيله كل الوقت:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="77"/>
         <source>Alltime upload:</source>
-        <translation type="unfinished"/>
+        <translation>إجمالي ما تم رفعه كل الوقت:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="94"/>
@@ -3796,7 +3796,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statsdialog.ui" line="203"/>
         <source>Queued I/O jobs:</source>
-        <translation type="unfinished"/>
+        <translation>وظائف الإدخال والإخراج المُصطفّة:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="210"/>
