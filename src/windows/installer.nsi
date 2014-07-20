@@ -60,21 +60,28 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File /oname=translations\qt_zh_TW.qm "translations\qt_zh_TW.qm" 
   
   ; Write the installation path into the registry  
-  WriteRegStr HKLM "Software\qbittorrent" "InstallLocation" "$INSTDIR"
+  WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayName" "qBittorrent ${PROG_VERSION}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "UninstallString" '"$INSTDIR\uninst.exe"'
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayIcon" '"$INSTDIR\qbittorrent.exe",0'
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "Publisher" "The qBittorrent project"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "URLInfoAbout" "http://www.qbittorrent.org"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "DisplayVersion" "${PROG_VERSION}"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayName" "qBittorrent ${PROG_VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "UninstallString" '"$INSTDIR\uninst.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayIcon" '"$INSTDIR\qbittorrent.exe",0'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "Publisher" "The qBittorrent project"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "URLInfoAbout" "http://www.qbittorrent.org"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayVersion" "${PROG_VERSION}"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "NoRepair" 1
   WriteUninstaller "uninst.exe"  
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qbittorrent" "EstimatedSize" "$0"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "EstimatedSize" "$0"
+  
+  ; qBittorrent ProgID
+  WriteRegStr HKLM "Software\Classes\qBittorrent" "" "qBittorrent Torrent File"
+  WriteRegStr HKLM "Software\Classes\qBittorrent" "FriendlyTypeName" "qBittorrent Torrent File"
+  WriteRegStr HKLM "Software\Classes\qBittorrent\shell" "" "open"
+  WriteRegStr HKLM "Software\Classes\qBittorrent\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
+  WriteRegStr HKLM "Software\Classes\qBittorrent\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
   
 SectionEnd
 
@@ -90,32 +97,6 @@ Section $(inst_startmenu) ;"Create Start Menu Shortcut"
   CreateDirectory "$SMPROGRAMS\qBittorrent"  
   CreateShortCut "$SMPROGRAMS\qBittorrent\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
   CreateShortCut "$SMPROGRAMS\qBittorrent\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  
-SectionEnd
-
-Section $(inst_torrent) ;"Open .torrent files with qBittorrent"
-
-  WriteRegStr HKEY_CLASSES_ROOT ".torrent" "" "qBittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT ".torrent" "Content Type" "application/x-bittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\shell" "" "open"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\Content Type" "" "application/x-bittorrent"
-  WriteRegStr HKEY_CLASSES_ROOT "qBittorrent\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
-  
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
-  
-SectionEnd
-
-Section $(inst_magnet) ;"Open magnet links with qBittorrent"
-
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "" "Magnet URI"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "Content Type" "application/x-magnet"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet" "URL Protocol" ""
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\shell" "" "open"
-  WriteRegStr HKEY_CLASSES_ROOT "Magnet\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
-  
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
   
 SectionEnd
 
