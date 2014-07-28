@@ -119,6 +119,72 @@ Section $(inst_magnet) ;"Open magnet links with qBittorrent"
   
 SectionEnd
 
+Section $(inst_torrent) ;"Open .torrent files with qBittorrent"
+
+  ReadRegStr $0 HKLM "Software\Classes\.torrent" ""
+  
+  StrCmp $0 "qBittorrent" clear_errors 0
+  ;Check if empty string
+  StrCmp $0 "" clear_errors 0
+  ;Write old value to OpenWithProgIds
+  WriteRegStr HKLM "Software\Classes\.torrent\OpenWithProgIds" $0 ""
+  
+  clear_errors:
+  ClearErrors
+
+  WriteRegStr HKLM "Software\Classes\.torrent" "" "qBittorrent"
+  WriteRegStr HKLM "Software\Classes\.torrent" "Content Type" "application/x-bittorrent"
+  
+  !insertmacro UAC_AsUser_Call Function inst_torrent_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
+  
+  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
+
+SectionEnd
+
+Function inst_torrent_user
+
+  ReadRegStr $0 HKCU "Software\Classes\.torrent" ""
+  
+  StrCmp $0 "qBittorrent" clear_errors 0
+  ;Check if empty string
+  StrCmp $0 "" clear_errors 0
+  ;Write old value to OpenWithProgIds
+  WriteRegStr HKCU "Software\Classes\.torrent\OpenWithProgIds" $0 ""
+  
+  clear_errors:
+  ClearErrors
+
+  WriteRegStr HKCU "Software\Classes\.torrent" "" "qBittorrent"
+  WriteRegStr HKCU "Software\Classes\.torrent" "Content Type" "application/x-bittorrent"
+
+FunctionEnd
+
+Section $(inst_magnet) ;"Open magnet links with qBittorrent"
+
+  WriteRegStr HKLM "Software\Classes\magnet" "" "URL:Magnet link"
+  WriteRegStr HKLM "Software\Classes\magnet" "Content Type" "application/x-magnet"
+  WriteRegStr HKLM "Software\Classes\magnet" "URL Protocol" ""
+  WriteRegStr HKLM "Software\Classes\magnet\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
+  WriteRegStr HKLM "Software\Classes\magnet\shell" "" "open"
+  WriteRegStr HKLM "Software\Classes\magnet\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
+  
+  !insertmacro UAC_AsUser_Call Function inst_magnet_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
+
+  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, i 0, i 0)'
+
+SectionEnd
+
+Function inst_magnet_user
+
+  WriteRegStr HKCU "Software\Classes\magnet" "" "URL:Magnet link"
+  WriteRegStr HKCU "Software\Classes\magnet" "Content Type" "application/x-magnet"
+  WriteRegStr HKCU "Software\Classes\magnet" "URL Protocol" ""
+  WriteRegStr HKCU "Software\Classes\magnet\DefaultIcon" "" '"$INSTDIR\qbittorrent.exe",1'
+  WriteRegStr HKCU "Software\Classes\magnet\shell" "" "open"
+  WriteRegStr HKCU "Software\Classes\magnet\shell\open\command" "" '"$INSTDIR\qbittorrent.exe" "%1"'
+
+FunctionEnd
+
 Section $(inst_firewall)
 
   DetailPrint $(inst_firewallinfo)
@@ -128,22 +194,29 @@ SectionEnd
 
 ;--------------------------------
 
-Function .onInit    
-    
-    !insertmacro MUI_LANGDLL_DISPLAY
+Function .onInit
+
+  !insertmacro Init "installer"
+  !insertmacro MUI_LANGDLL_DISPLAY
 	
 FunctionEnd
 
 Function check_instance
 
-    check:
-    FindProcDLL::FindProc "qbittorrent.exe"
-    StrCmp $R0 "1" 0 notfound
-    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) IDRETRY check IDCANCEL done
+  check:
+  FindProcDLL::FindProc "qbittorrent.exe"
+  StrCmp $R0 "1" 0 notfound
+  MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) IDRETRY check IDCANCEL done
 
-    done:
-    Abort
-    
-    notfound:
-    
+  done:
+  Abort
+
+  notfound:
+
+FunctionEnd
+
+Function PageFinishRun
+
+  !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\qbittorrent.exe" "" "" ""
+
 FunctionEnd
