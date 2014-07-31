@@ -44,6 +44,7 @@ namespace fsutils
   QString fromNativePath(const QString& path);
   QString fileExtension(const QString& filename);
   QString fileName(const QString& file_path);
+  QString folderName(const QString& file_path);
   qint64 computePathSize(const QString& path);
   bool sameFiles(const QString& path1, const QString& path2);
   QString updateLabelInSavePath(const QString &defaultSavePath, const QString &save_path, const QString& old_label, const QString& new_label);

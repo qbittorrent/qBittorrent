@@ -106,8 +106,6 @@ QByteArray prefjson::getPreferences()
   data["scheduler_days"] = pref.getSchedulerDays();
   // Bittorrent
   data["dht"] = pref.isDHTEnabled();
-  data["dhtSameAsBT"] = pref.isDHTPortSameAsBT();
-  data["dht_port"] = pref.getDHTPort();
   data["pex"] = pref.isPeXEnabled();
   data["lsd"] = pref.isLSDEnabled();
   data["encryption"] = pref.getEncryptionSetting();
@@ -270,10 +268,6 @@ void prefjson::setPreferences(const QString& json)
   // Bittorrent
   if (m.contains("dht"))
     pref.setDHTEnabled(m["dht"].toBool());
-  if (m.contains("dhtSameAsBT"))
-    pref.setDHTPortSameAsBT(m["dhtSameAsBT"].toBool());
-  if (m.contains("dht_port"))
-    pref.setDHTPort(m["dht_port"].toInt());
   if (m.contains("pex"))
     pref.setPeXEnabled(m["pex"].toBool());
   qDebug("Pex support: %d", (int)m["pex"].toBool());

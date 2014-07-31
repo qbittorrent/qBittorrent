@@ -53,6 +53,7 @@
 #include "qtorrenthandle.h"
 #include "trackerinfos.h"
 #include "alertdispatcher.h"
+#include "misc.h"
 
 #define MAX_SAMPLES 20
 
@@ -82,7 +83,6 @@ public:
 private:
   explicit QBtSession();
   static QBtSession* m_instance;
-  enum shutDownAction { NO_SHUTDOWN, SHUTDOWN_COMPUTER, SUSPEND_COMPUTER };
 
 public:
   static QBtSession* instance();
@@ -150,9 +150,6 @@ public slots:
   void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
-#if LIBTORRENT_VERSION_NUM < 10000
-  void setDHTPort(int dht_port);
-#endif
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void setDefaultSavePath(const QString &savepath);
@@ -167,7 +164,7 @@ public slots:
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
   void enableLSD(bool b);
-  bool enableDHT(bool b);
+  void enableDHT(bool b);
 #ifdef DISABLE_GUI
   void addConsoleMessage(QString msg, QString color=QString::null);
 #else
@@ -200,6 +197,7 @@ private:
   void handleFileRenamedAlert(libtorrent::file_renamed_alert* p);
   void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert* p);
   void handleStorageMovedAlert(libtorrent::storage_moved_alert* p);
+  void handleStorageMovedFailedAlert(libtorrent::storage_moved_failed_alert* p);
   void handleMetadataReceivedAlert(libtorrent::metadata_received_alert* p);
   void handleFileErrorAlert(libtorrent::file_error_alert* p);
   void handleFileCompletedAlert(libtorrent::file_completed_alert* p);
@@ -286,7 +284,6 @@ private:
   int high_ratio_action;
   bool LSDEnabled;
   bool DHTEnabled;
-  int current_dht_port;
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;

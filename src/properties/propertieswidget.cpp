@@ -536,6 +536,8 @@ void PropertiesWidget::renameSelectedFile() {
   if (selectedIndexes.size() != 1)
     return;
   const QModelIndex index = selectedIndexes.first();
+  if (!index.isValid())
+    return;
   // Ask for new name
   bool ok;
   QString new_name_last = AutoExpandableDialog::getText(this, tr("Rename the file"),

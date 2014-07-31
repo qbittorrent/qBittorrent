@@ -1948,73 +1948,13 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
-                <widget class="QGroupBox" name="checkDHT">
-                 <property name="title">
+                <widget class="QCheckBox" name="checkDHT">
+                 <property name="text">
                   <string>Enable DHT (decentralized network) to find more peers</string>
                  </property>
-                 <property name="checkable">
+                 <property name="checked">
                   <bool>true</bool>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_18">
-                  <item>
-                   <widget class="QGroupBox" name="checkDifferentDHTPort">
-                    <property name="title">
-                     <string>Use a different port for DHT and BitTorrent</string>
-                    </property>
-                    <property name="checkable">
-                     <bool>true</bool>
-                    </property>
-                    <property name="checked">
-                     <bool>false</bool>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_17">
-                     <property name="bottomMargin">
-                      <number>9</number>
-                     </property>
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_8">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <item>
-                        <widget class="QLabel" name="dh_port_lbl">
-                         <property name="text">
-                          <string>DHT port:</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QSpinBox" name="spinDHTPort">
-                         <property name="minimum">
-                          <number>1</number>
-                         </property>
-                         <property name="maximum">
-                          <number>65525</number>
-                         </property>
-                         <property name="value">
-                          <number>6881</number>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="horizontalSpacer_5">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                      </layout>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                 </layout>
                 </widget>
                </item>
                <item>

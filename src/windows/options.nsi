@@ -7,7 +7,8 @@ SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
 XPStyle on
 
-!include "MUI.nsh" 
+!include "MUI.nsh"
+!include "UAC.nsh"
 !include "FileFunc.nsh"
 
 ;For the file association
@@ -19,7 +20,8 @@ XPStyle on
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
 !define PROG_VERSION "3.2.0"
-!define MUI_FINISHPAGE_RUN "$INSTDIR\qbittorrent.exe"
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
 
 ; The name of the installer
@@ -31,7 +33,7 @@ OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2013 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2014 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
@@ -45,7 +47,7 @@ InstallDir $PROGRAMFILES\qBittorrent
 InstallDirRegKey HKLM Software\qbittorrent InstallLocation
 
 ; Request application privileges for Windows Vista
-RequestExecutionLevel admin
+RequestExecutionLevel user
 
 ;--------------------------------
 ;General Settings
@@ -81,3 +83,29 @@ RequestExecutionLevel admin
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
 ReserveFile "${NSISDIR}\Plugins\x86-unicode\FindProcDLL.dll"
+ReserveFile "${NSISDIR}\Plugins\x86-unicode\UAC.dll"
+
+!macro Init thing
+uac_tryagain:
+!insertmacro UAC_RunElevated
+${Switch} $0
+${Case} 0
+	${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
+	${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
+	${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
+		MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
+	${EndIf}
+	;fall-through and die
+${Case} 1223
+	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
+	Quit
+${Case} 1062
+	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
+	Quit
+${Default}
+	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
+	Quit
+${EndSwitch}
+
+SetShellVarContext all
+!macroend

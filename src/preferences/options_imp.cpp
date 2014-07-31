@@ -206,8 +206,6 @@ options_imp::options_imp(QWidget *parent):
   connect(checkDHT, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkAnonymousMode, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(checkPeX, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(checkDifferentDHTPort, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
-  connect(spinDHTPort, SIGNAL(valueChanged(QString)), this, SLOT(enableApplyButton()));
   connect(checkLSD, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
   connect(comboEncryption, SIGNAL(currentIndexChanged(int)), this, SLOT(enableApplyButton()));
   connect(checkMaxRatio, SIGNAL(toggled(bool)), this, SLOT(enableApplyButton()));
@@ -432,8 +430,6 @@ void options_imp::saveOptions() {
   pref.setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
   pref.setDHTEnabled(isDHTEnabled());
   pref.setPeXEnabled(checkPeX->isChecked());
-  pref.setDHTPortSameAsBT(isDHTPortSameAsBT());
-  pref.setDHTPort(getDHTPort());
   pref.setLSDEnabled(isLSDEnabled());
   pref.setEncryptionSetting(getEncryptionSetting());
   pref.enableAnonymousMode(checkAnonymousMode->isChecked());
@@ -695,8 +691,6 @@ void options_imp::loadOptions() {
     spinMaxUploadsPerTorrent->setEnabled(false);
   }
   checkDHT->setChecked(pref.isDHTEnabled());
-  checkDifferentDHTPort->setChecked(!pref.isDHTPortSameAsBT());
-  spinDHTPort->setValue(pref.getDHTPort());
   checkPeX->setChecked(pref.isPeXEnabled());
   checkLSD->setChecked(pref.isLSDEnabled());
   comboEncryption->setCurrentIndex(pref.getEncryptionSetting());
@@ -823,10 +817,6 @@ bool options_imp::startMinimized() const {
 bool options_imp::systrayIntegration() const {
   if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
   return checkShowSystray->isChecked();
-}
-
-int options_imp::getDHTPort() const {
-  return spinDHTPort->value();
 }
 
 // Return Share ratio
@@ -979,10 +969,6 @@ bool options_imp::addTorrentsInPause() const {
   return checkStartPaused->isChecked();
 }
 
-bool options_imp::isDHTPortSameAsBT() const {
-  return !checkDifferentDHTPort->isChecked();
-}
-
 // Proxy settings
 bool options_imp::isProxyEnabled() const {
   return comboProxyType->currentIndex();
@@ -1056,7 +1042,9 @@ int options_imp::getActionOnDblClOnTorrentFn() const {
 }
 
 void options_imp::on_addScanFolderButton_clicked() {
-  const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"));
+  Preferences pref;
+  const QString dir = QFileDialog::getExistingDirectory(this, tr("Add directory to scan"),
+                                                        fsutils::toNativePath(fsutils::folderName(pref.getScanDirsLastPath())));
   if (!dir.isEmpty()) {
     const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, false);
     QString error;
@@ -1071,7 +1059,9 @@ void options_imp::on_addScanFolderButton_clicked() {
       error = tr("Folder is not readable.");
       break;
     default:
+      pref.setScanDirsLastPath(dir);
       addedScanDirs << dir;
+      scanFoldersView->resizeColumnsToContents();
       enableApplyButton();
     }
 
@@ -1338,7 +1328,6 @@ void options_imp::toggleAnonymousMode(bool enabled)
   if (enabled) {
     // Disable DHT, LSD, UPnP / NAT-PMP
     checkDHT->setEnabled(false);
-    checkDifferentDHTPort->setEnabled(false);
     checkDHT->setChecked(false);
     checkLSD->setEnabled(false);
     checkLSD->setChecked(false);
@@ -1346,7 +1335,6 @@ void options_imp::toggleAnonymousMode(bool enabled)
     checkUPnP->setChecked(false);
   } else {
     checkDHT->setEnabled(true);
-    checkDifferentDHTPort->setEnabled(true);
     checkLSD->setEnabled(true);
     checkUPnP->setEnabled(true);
   }

@@ -160,139 +160,139 @@
         <translation>Non descargar</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="74"/>
+        <location filename="../addnewtorrentdialog.cpp" line="73"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Outra...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="186"/>
-        <location filename="../addnewtorrentdialog.cpp" line="617"/>
+        <location filename="../addnewtorrentdialog.cpp" line="185"/>
+        <location filename="../addnewtorrentdialog.cpp" line="618"/>
         <source>I/O Error</source>
         <translation>Erro de E/S</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="186"/>
+        <location filename="../addnewtorrentdialog.cpp" line="185"/>
         <source>The torrent file does not exist.</source>
         <translation>O ficheiro torrent non existe.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="196"/>
+        <location filename="../addnewtorrentdialog.cpp" line="195"/>
         <source>Invalid torrent</source>
         <translation>Torrent incorrecto</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="196"/>
+        <location filename="../addnewtorrentdialog.cpp" line="195"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Produciuse un fallo ao cargar o torrent: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="202"/>
-        <location filename="../addnewtorrentdialog.cpp" line="224"/>
+        <location filename="../addnewtorrentdialog.cpp" line="201"/>
+        <location filename="../addnewtorrentdialog.cpp" line="223"/>
         <source>Already in download list</source>
         <translation>Xa está na lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="202"/>
+        <location filename="../addnewtorrentdialog.cpp" line="201"/>
         <source>Torrent is already in download list. Merging trackers.</source>
         <translation>O torrent xa está na lista de descargas. Combinando localizadores.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="637"/>
+        <location filename="../addnewtorrentdialog.cpp" line="638"/>
         <source>Not available</source>
         <translation>Non dispoñíbel</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="218"/>
+        <location filename="../addnewtorrentdialog.cpp" line="217"/>
         <source>Invalid magnet link</source>
         <translation>Ligazón magnet incorrecta</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="218"/>
+        <location filename="../addnewtorrentdialog.cpp" line="217"/>
         <source>This magnet link was not recognized</source>
         <translation>Non se recoñeceu esta ligazón magnet</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="224"/>
+        <location filename="../addnewtorrentdialog.cpp" line="223"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
         <translation>A ligazón magnet xa está na lista de descargas. Combinando localizadores.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="231"/>
+        <location filename="../addnewtorrentdialog.cpp" line="230"/>
         <source>Magnet link</source>
         <translation>Ligazón magnet</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="242"/>
+        <location filename="../addnewtorrentdialog.cpp" line="241"/>
         <source>Retrieving metadata...</source>
         <translation>Recuperando os metadatos...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="303"/>
+        <location filename="../addnewtorrentdialog.cpp" line="302"/>
         <source>Disk space: %1</source>
         <translation>Espazo no disco: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="321"/>
-        <location filename="../addnewtorrentdialog.cpp" line="328"/>
-        <location filename="../addnewtorrentdialog.cpp" line="330"/>
+        <location filename="../addnewtorrentdialog.cpp" line="320"/>
+        <location filename="../addnewtorrentdialog.cpp" line="327"/>
+        <location filename="../addnewtorrentdialog.cpp" line="329"/>
         <source>Choose save path</source>
         <translation>Seleccionar a ruta onde gardar</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="383"/>
+        <location filename="../addnewtorrentdialog.cpp" line="384"/>
         <source>Rename the file</source>
         <translation>Cambiar o nome do ficheiro</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="384"/>
+        <location filename="../addnewtorrentdialog.cpp" line="385"/>
         <source>New name:</source>
         <translation>Nome novo:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="388"/>
-        <location filename="../addnewtorrentdialog.cpp" line="413"/>
+        <location filename="../addnewtorrentdialog.cpp" line="389"/>
+        <location filename="../addnewtorrentdialog.cpp" line="414"/>
         <source>The file could not be renamed</source>
         <translation>Non foi posíbel cambiar o nome do ficheiro</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="389"/>
+        <location filename="../addnewtorrentdialog.cpp" line="390"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Este nome de ficheiro contén caracteres prohibidos, escolla un nome diferente.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="414"/>
-        <location filename="../addnewtorrentdialog.cpp" line="448"/>
+        <location filename="../addnewtorrentdialog.cpp" line="415"/>
+        <location filename="../addnewtorrentdialog.cpp" line="449"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Este nome de ficheiro xa existe neste cartafol. Use un nome diferente.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="447"/>
+        <location filename="../addnewtorrentdialog.cpp" line="448"/>
         <source>The folder could not be renamed</source>
         <translation>Non foi posíbel cambiar o nome do cartafol</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="506"/>
+        <location filename="../addnewtorrentdialog.cpp" line="507"/>
         <source>Rename...</source>
         <translation>Cambiar o nome...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="510"/>
+        <location filename="../addnewtorrentdialog.cpp" line="511"/>
         <source>Priority</source>
         <translation>Prioridade</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../addnewtorrentdialog.cpp" line="612"/>
         <source>Parsing metadata...</source>
         <translation>Analizando os metadatos...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="615"/>
+        <location filename="../addnewtorrentdialog.cpp" line="616"/>
         <source>Metadata retrieval complete</source>
         <translation>Completouse a recuperación dos metadatos</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="618"/>
+        <location filename="../addnewtorrentdialog.cpp" line="619"/>
         <source>Unknown error</source>
         <translation>Erro descoñecido</translation>
     </message>
@@ -1151,7 +1151,7 @@ Non se mostrarán máis avisos.</translation>
         <translation>Ferramen&amp;tas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="81"/>
+        <location filename="../mainwindow.ui" line="82"/>
         <source>&amp;File</source>
         <translation>&amp;Ficheiro</translation>
     </message>
@@ -1161,89 +1161,89 @@ Non se mostrarán máis avisos.</translation>
         <translation>&amp;Axuda</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="90"/>
+        <location filename="../mainwindow.ui" line="91"/>
         <source>&amp;View</source>
         <translation>&amp;Ver</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="154"/>
+        <location filename="../mainwindow.ui" line="155"/>
         <source>&amp;Options...</source>
         <translation>&amp;Opcións...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="164"/>
+        <location filename="../mainwindow.ui" line="165"/>
         <source>&amp;Resume</source>
         <translation>Continua&amp;r</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="320"/>
+        <location filename="../mainwindow.ui" line="321"/>
         <source>R&amp;esume All</source>
         <translation>Co&amp;ntinuar todo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="193"/>
+        <location filename="../mainwindow.ui" line="194"/>
         <source>Torrent &amp;creator</source>
         <translation>&amp;Crear torrents</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="247"/>
-        <location filename="../mainwindow.ui" line="250"/>
+        <location filename="../mainwindow.ui" line="248"/>
+        <location filename="../mainwindow.ui" line="251"/>
         <source>Alternative speed limits</source>
         <translation>Límites alternativos de velocidade</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="258"/>
+        <location filename="../mainwindow.ui" line="259"/>
         <source>Top &amp;tool bar</source>
         <translation>Barra &amp;superior</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="261"/>
+        <location filename="../mainwindow.ui" line="262"/>
         <source>Display top tool bar</source>
         <translation>Mostrar a barra superior</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="269"/>
+        <location filename="../mainwindow.ui" line="270"/>
         <source>&amp;Speed in title bar</source>
         <translation>&amp;Velocidade na barra do título</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="272"/>
+        <location filename="../mainwindow.ui" line="273"/>
         <source>Show transfer speed in title bar</source>
         <translation>Mostrar a velocidade de transferencia na barra do título</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="159"/>
+        <location filename="../mainwindow.ui" line="160"/>
         <source>&amp;About</source>
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="141"/>
+        <location filename="../mainwindow.ui" line="142"/>
         <source>&amp;Add torrent file...</source>
         <translation>Eng&amp;adir un ficheiro torrent...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="146"/>
-        <location filename="../mainwindow.ui" line="149"/>
+        <location filename="../mainwindow.ui" line="147"/>
+        <location filename="../mainwindow.ui" line="150"/>
         <source>Exit</source>
         <translation>Saír</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="169"/>
+        <location filename="../mainwindow.ui" line="170"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
+        <location filename="../mainwindow.ui" line="175"/>
         <source>&amp;Delete</source>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="325"/>
+        <location filename="../mainwindow.ui" line="326"/>
         <source>P&amp;ause All</source>
         <translation>P&amp;ausar todo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="183"/>
+        <location filename="../mainwindow.ui" line="184"/>
         <source>Visit &amp;Website</source>
         <translation>Visitar o sitio &amp;web</translation>
     </message>
@@ -1253,137 +1253,142 @@ Non se mostrarán máis avisos.</translation>
         <translation>Apagar ao completar as descargas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="188"/>
+        <location filename="../mainwindow.ui" line="189"/>
         <source>Add &amp;link to torrent...</source>
         <translation>Engadir unha &amp;ligazón ao torrent...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="198"/>
+        <location filename="../mainwindow.ui" line="199"/>
         <source>Report a &amp;bug</source>
         <translation>Informar dun &amp;fallo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="203"/>
+        <location filename="../mainwindow.ui" line="204"/>
         <source>Set upload limit...</source>
         <translation>Estabelecer o límite de envío...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="208"/>
+        <location filename="../mainwindow.ui" line="209"/>
         <source>Set download limit...</source>
         <translation>Estabelecer o límite de descarga...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="213"/>
+        <location filename="../mainwindow.ui" line="214"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Documentación</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="218"/>
+        <location filename="../mainwindow.ui" line="219"/>
         <source>Set global download limit...</source>
         <translation>Estabelecer o límite global de descarga...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="223"/>
+        <location filename="../mainwindow.ui" line="224"/>
         <source>Set global upload limit...</source>
         <translation>Estabelecer o límite global de envío...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="280"/>
+        <location filename="../mainwindow.ui" line="281"/>
         <source>&amp;RSS reader</source>
         <translation>Lector &amp;RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
+        <location filename="../mainwindow.ui" line="289"/>
         <source>Search &amp;engine</source>
         <translation>M&amp;otor de busca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="344"/>
+        <location filename="../mainwindow.ui" line="345"/>
         <source>Exit qBittorrent</source>
         <translation>Saír do qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="352"/>
+        <location filename="../mainwindow.ui" line="353"/>
         <source>Suspend system</source>
         <translation>Suspender o sistema</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="360"/>
+        <location filename="../mainwindow.ui" line="361"/>
+        <source>Hibernate system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="369"/>
         <source>Shutdown system</source>
         <translation>Pechar o sistema</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="368"/>
+        <location filename="../mainwindow.ui" line="377"/>
         <source>Disabled</source>
         <translation>Desactivado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="373"/>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.ui" line="382"/>
+        <location filename="../mainwindow.cpp" line="1252"/>
         <source>Show</source>
         <translation>Mostrar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="383"/>
+        <location filename="../mainwindow.ui" line="392"/>
         <source>Statistics</source>
         <translation>Estadísticas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="388"/>
-        <location filename="../mainwindow.cpp" line="1367"/>
+        <location filename="../mainwindow.ui" line="397"/>
+        <location filename="../mainwindow.cpp" line="1370"/>
         <source>Check for updates</source>
         <translation>Buscar actualizacións</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="391"/>
-        <location filename="../mainwindow.cpp" line="1368"/>
+        <location filename="../mainwindow.ui" line="400"/>
+        <location filename="../mainwindow.cpp" line="1371"/>
         <source>Check for program updates</source>
         <translation>Buscar actualizacións do programa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="293"/>
-        <location filename="../mainwindow.ui" line="296"/>
+        <location filename="../mainwindow.ui" line="294"/>
+        <location filename="../mainwindow.ui" line="297"/>
         <source>Lock qBittorrent</source>
         <translation>Bloquear o qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="304"/>
+        <location filename="../mainwindow.ui" line="305"/>
         <source>Import existing torrent...</source>
         <translation>Importar un torrent existente...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="307"/>
+        <location filename="../mainwindow.ui" line="308"/>
         <source>Import torrent...</source>
         <translation>Importar un torrent...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="312"/>
+        <location filename="../mainwindow.ui" line="313"/>
         <source>Donate money</source>
         <translation>Facer unha doazón</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="315"/>
+        <location filename="../mainwindow.ui" line="316"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Se lle gusta o qBittorrent, por favor faga unha doazón!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="333"/>
+        <location filename="../mainwindow.ui" line="334"/>
         <source>Execution &amp;Log</source>
         <translation>&amp;Rexistro de execución</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="336"/>
-        <location filename="../mainwindow.cpp" line="1396"/>
+        <location filename="../mainwindow.ui" line="337"/>
+        <location filename="../mainwindow.cpp" line="1399"/>
         <source>Execution Log</source>
         <translation>Rexistro de execución</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="228"/>
+        <location filename="../mainwindow.ui" line="229"/>
         <source>Decrease priority</source>
         <translation>Disminuír a prioridade</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="236"/>
+        <location filename="../mainwindow.ui" line="237"/>
         <source>Increase priority</source>
         <translation>Aumentar a prioridade</translation>
     </message>
@@ -1394,7 +1399,7 @@ Non se mostrarán máis avisos.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="153"/>
-        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.cpp" line="416"/>
         <source>Clear the password</source>
         <translation>Limpar o contrasinal</translation>
     </message>
@@ -1404,85 +1409,85 @@ Non se mostrarán máis avisos.</translation>
         <translation>Transferencias</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="313"/>
         <source>Torrent file association</source>
         <translation>Asociación cos ficheiros torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="311"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent non é o aplicativo predefinido para abrir os ficheiros torrent nin as ligazóns Magnet
 Desexa asociar o qBittorrent aos ficheiros torrent e ás ligazóns Magnet?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="398"/>
-        <location filename="../mainwindow.cpp" line="424"/>
-        <location filename="../mainwindow.cpp" line="682"/>
+        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="427"/>
+        <location filename="../mainwindow.cpp" line="685"/>
         <source>UI lock password</source>
         <translation>Contrasinal de bloqueo da interface</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="398"/>
-        <location filename="../mainwindow.cpp" line="424"/>
-        <location filename="../mainwindow.cpp" line="682"/>
+        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="427"/>
+        <location filename="../mainwindow.cpp" line="685"/>
         <source>Please type the UI lock password:</source>
         <translation>Escriba un contrasinal para bloquear a interface:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>The password should contain at least 3 characters</source>
         <translation>O contrasinal debe conter cando menos 3 caracteres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="408"/>
+        <location filename="../mainwindow.cpp" line="411"/>
         <source>Password update</source>
         <translation>Actualizar o contrasinal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="408"/>
+        <location filename="../mainwindow.cpp" line="411"/>
         <source>The UI lock password has been successfully updated</source>
         <translation>O contrasinal de bloqueo da interface actualizouse correctamente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="413"/>
+        <location filename="../mainwindow.cpp" line="416"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Está seguro de limpar o contrasinal?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="440"/>
+        <location filename="../mainwindow.cpp" line="443"/>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="455"/>
+        <location filename="../mainwindow.cpp" line="458"/>
         <source>Search</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="465"/>
+        <location filename="../mainwindow.cpp" line="468"/>
         <source>Transfers (%1)</source>
         <translation>Transferencias (%1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="544"/>
         <source>Download completion</source>
         <translation>FInalización da descarga</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="544"/>
         <source>%1 has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>Finalizou a descarga de %1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="550"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Erro de E/S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="547"/>
+        <location filename="../mainwindow.cpp" line="550"/>
         <source>An I/O error occurred for torrent %1.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent xxx.avi.
@@ -1491,148 +1496,148 @@ Desexa asociar o qBittorrent aos ficheiros torrent e ás ligazóns Magnet?</tran
 Razón: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="607"/>
         <source>Recursive download confirmation</source>
         <translation>Confirmación de descarga recursiva</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="607"/>
         <source>The torrent %1 contains torrent files, do you want to proceed with their download?</source>
         <translation>O torrent %1 contén ficheiros torrent, desexa continuar coa descarga?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="605"/>
-        <location filename="../mainwindow.cpp" line="778"/>
+        <location filename="../mainwindow.cpp" line="608"/>
+        <location filename="../mainwindow.cpp" line="781"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
-        <location filename="../mainwindow.cpp" line="777"/>
+        <location filename="../mainwindow.cpp" line="609"/>
+        <location filename="../mainwindow.cpp" line="780"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="607"/>
+        <location filename="../mainwindow.cpp" line="610"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="621"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Url download error</source>
         <translation>Erro na descarga desde o Url</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="621"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Couldn&apos;t download file at url: %1, reason: %2.</source>
         <translation>Non foi posíbel descargar o ficheiro desde o Url: %1, razón: %2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="628"/>
+        <location filename="../mainwindow.cpp" line="631"/>
         <source>Global Upload Speed Limit</source>
         <translation>Límite global de velocidade de envío</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="643"/>
+        <location filename="../mainwindow.cpp" line="646"/>
         <source>Global Download Speed Limit</source>
         <translation>Límite global de velocidade de descarga</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1152"/>
+        <location filename="../mainwindow.cpp" line="1155"/>
         <source>[D: %1/s, U: %2/s] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[D: %1/s, E: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1352"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>A new version is available</source>
         <translation>Hai dispoñíbel unha nova versión</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1353"/>
+        <location filename="../mainwindow.cpp" line="1356"/>
         <source>A new version of qBittorrent is available on Sourceforge.
 Would you like to update qBittorrent to version %1?</source>
         <translation>Hai dispoñíbel unha nova versión de qBittorrent en Sourceforge.
 Desexa actualizar o qBittorrent á versión %1?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1362"/>
+        <location filename="../mainwindow.cpp" line="1365"/>
         <source>There isn&apos;t a new version available</source>
         <translation>Non hai dispoñíbel ningunha nova versión</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1363"/>
+        <location filename="../mainwindow.cpp" line="1366"/>
         <source>There isn&apos;t a new version of qBittorrent available on Sourceforge</source>
         <translation>Non hai ningunha nova versión de qBittorrent dispoñíbel en Sourceforge</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1459"/>
+        <location filename="../mainwindow.cpp" line="1467"/>
         <source>Checking for updates...</source>
         <translation>Buscando actualizacións...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1460"/>
+        <location filename="../mainwindow.cpp" line="1468"/>
         <source>Already checking for program updates in the background</source>
         <translation>Xa se están buscando actualizacións do programa en segundo plano</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="405"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Invalid password</source>
         <translation>Contrasinal incorrecto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="695"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>The password is invalid</source>
         <translation>O contrasinal é incorrecto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1249"/>
+        <location filename="../mainwindow.cpp" line="1252"/>
         <source>Hide</source>
         <translation>Ocultar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="774"/>
+        <location filename="../mainwindow.cpp" line="777"/>
         <source>Exiting qBittorrent</source>
         <translation>Saíndo do qBittorrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="775"/>
+        <location filename="../mainwindow.cpp" line="778"/>
         <source>Some files are currently transferring.
 Are you sure you want to quit qBittorrent?</source>
         <translation>Estanse transferindo algúns ficheiros.
 Está seguro que desexa saír do qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="779"/>
+        <location filename="../mainwindow.cpp" line="782"/>
         <source>Always</source>
         <translation>Sempre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="931"/>
+        <location filename="../mainwindow.cpp" line="934"/>
         <source>Open Torrent Files</source>
         <translation>Abrir os ficheiros torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="932"/>
+        <location filename="../mainwindow.cpp" line="935"/>
         <source>Torrent Files</source>
         <translation>Ficheiros torrent</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1019"/>
+        <location filename="../mainwindow.cpp" line="1022"/>
         <source>Options were saved successfully.</source>
         <translation>Os axustes gardáronse correctamente.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1138"/>
-        <location filename="../mainwindow.cpp" line="1145"/>
+        <location filename="../mainwindow.cpp" line="1141"/>
+        <location filename="../mainwindow.cpp" line="1148"/>
         <source>DL speed: %1 KiB/s</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Vel. de descarga: %1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1141"/>
-        <location filename="../mainwindow.cpp" line="1147"/>
+        <location filename="../mainwindow.cpp" line="1144"/>
+        <location filename="../mainwindow.cpp" line="1150"/>
         <source>UP speed: %1 KiB/s</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Vel. de envío: %1 KiB/s</translation>
@@ -1969,47 +1974,47 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <translation>Programar o uso de límites alternativos de velocidade</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2039"/>
+        <location filename="../preferences/options.ui" line="1979"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Activar a busca de pares locais (LPD) para encontrar máis pares</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2051"/>
+        <location filename="../preferences/options.ui" line="1991"/>
         <source>Encryption mode:</source>
         <translation>Modo cifrado:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2059"/>
+        <location filename="../preferences/options.ui" line="1999"/>
         <source>Prefer encryption</source>
         <translation>Preferir cifrado</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2064"/>
+        <location filename="../preferences/options.ui" line="2004"/>
         <source>Require encryption</source>
         <translation>Precisa cifrado</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2069"/>
+        <location filename="../preferences/options.ui" line="2009"/>
         <source>Disable encryption</source>
         <translation>Desactivar o cifrado</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2101"/>
+        <location filename="../preferences/options.ui" line="2041"/>
         <source> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation> (&lt;a href=&quot;http://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Máis información&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2144"/>
+        <location filename="../preferences/options.ui" line="2084"/>
         <source>Maximum active downloads:</source>
         <translation>Descargas activas máximas:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2164"/>
+        <location filename="../preferences/options.ui" line="2104"/>
         <source>Maximum active uploads:</source>
         <translation>Envíos activos máximos:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2184"/>
+        <location filename="../preferences/options.ui" line="2124"/>
         <source>Maximum active torrents:</source>
         <translation>Torrents activos máximos:</translation>
     </message>
@@ -2105,13 +2110,8 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <source>Week ends</source>
         <translation>Fins de semana</translation>
     </message>
-    <message>
-        <location filename="../preferences/options.ui" line="1982"/>
-        <source>DHT port:</source>
-        <translation>Porto DHT:</translation>
-    </message>
     <message utf8="true">
-        <location filename="../preferences/options.ui" line="2023"/>
+        <location filename="../preferences/options.ui" line="1963"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Clientes de bittorrent compatíbeis co intercambio de pares (µTorrent, Vuze, ...)</translation>
     </message>
@@ -2396,107 +2396,102 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <translation>Activar o DHT (rede descentralizada) para encontrar máis pares</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="1962"/>
-        <source>Use a different port for DHT and BitTorrent</source>
-        <translation>Usar un porto diferente para DHT e BitTorrent</translation>
-    </message>
-    <message>
-        <location filename="../preferences/options.ui" line="2026"/>
+        <location filename="../preferences/options.ui" line="1966"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Activar o intercambio de pares (PeX) para buscar máis pares</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2036"/>
+        <location filename="../preferences/options.ui" line="1976"/>
         <source>Look for peers on your local network</source>
         <translation>Buscar pares na súa rede local</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2094"/>
+        <location filename="../preferences/options.ui" line="2034"/>
         <source>Enable anonymous mode</source>
         <translation>Activar o modo anónimo</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2243"/>
+        <location filename="../preferences/options.ui" line="2183"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Non ter en conta os torrents lentos nestes límites</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2264"/>
+        <location filename="../preferences/options.ui" line="2204"/>
         <source>Seed torrents until their ratio reaches</source>
         <translation>Sementar os torrents até alcanzar a taxa</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2293"/>
+        <location filename="../preferences/options.ui" line="2233"/>
         <source>then</source>
         <translation>despois</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2304"/>
+        <location filename="../preferences/options.ui" line="2244"/>
         <source>Pause them</source>
         <translation>Pausalos</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2309"/>
+        <location filename="../preferences/options.ui" line="2249"/>
         <source>Remove them</source>
         <translation>Eliminalos</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2407"/>
+        <location filename="../preferences/options.ui" line="2347"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Usar un porto UPnP / NAT-PMP para reencamiñar desde o router</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2417"/>
+        <location filename="../preferences/options.ui" line="2357"/>
         <source>Use HTTPS instead of HTTP</source>
         <translation>Usar HTTPS no canto de HTTP</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2460"/>
+        <location filename="../preferences/options.ui" line="2400"/>
         <source>Import SSL Certificate</source>
         <translation>Importar o certificado SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2513"/>
+        <location filename="../preferences/options.ui" line="2453"/>
         <source>Import SSL Key</source>
         <translation>Importar a chave SSL</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2448"/>
+        <location filename="../preferences/options.ui" line="2388"/>
         <source>Certificate:</source>
         <translation>Certificado:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2501"/>
+        <location filename="../preferences/options.ui" line="2441"/>
         <source>Key:</source>
         <translation>Chave:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2535"/>
+        <location filename="../preferences/options.ui" line="2475"/>
         <source>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=http://httpd.apache.org/docs/2.2/ssl/ssl_faq.html#aboutcerts&gt;Información sobre certificados&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2580"/>
+        <location filename="../preferences/options.ui" line="2520"/>
         <source>Bypass authentication for localhost</source>
         <translation>Omitir a autenticación no localhost</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2604"/>
+        <location filename="../preferences/options.ui" line="2544"/>
         <source>Update my dynamic domain name</source>
         <translation>Actualizar o nome do dominio dinámico</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2616"/>
+        <location filename="../preferences/options.ui" line="2556"/>
         <source>Service:</source>
         <translation>Servizo:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2639"/>
+        <location filename="../preferences/options.ui" line="2579"/>
         <source>Register</source>
         <translation>Rexistro</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2648"/>
+        <location filename="../preferences/options.ui" line="2588"/>
         <source>Domain name:</source>
         <translation>Nome do dominio:</translation>
     </message>
@@ -2517,45 +2512,45 @@ Está seguro que desexa saír do qBittorrent?</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="1340"/>
-        <location filename="../preferences/options.ui" line="2372"/>
+        <location filename="../preferences/options.ui" line="2312"/>
         <source>Port:</source>
         <translation>Porto:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="939"/>
         <location filename="../preferences/options.ui" line="1381"/>
-        <location filename="../preferences/options.ui" line="2548"/>
+        <location filename="../preferences/options.ui" line="2488"/>
         <source>Authentication</source>
         <translation>Autenticación</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="951"/>
         <location filename="../preferences/options.ui" line="1395"/>
-        <location filename="../preferences/options.ui" line="2587"/>
-        <location filename="../preferences/options.ui" line="2662"/>
+        <location filename="../preferences/options.ui" line="2527"/>
+        <location filename="../preferences/options.ui" line="2602"/>
         <source>Username:</source>
         <translation>Nome do usuario:</translation>
     </message>
     <message>
         <location filename="../preferences/options.ui" line="961"/>
         <location filename="../preferences/options.ui" line="1415"/>
-        <location filename="../preferences/options.ui" line="2594"/>
-        <location filename="../preferences/options.ui" line="2676"/>
+        <location filename="../preferences/options.ui" line="2534"/>
+        <location filename="../preferences/options.ui" line="2616"/>
         <source>Password:</source>
         <translation>Contrasinal:</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2129"/>
+        <location filename="../preferences/options.ui" line="2069"/>
         <source>Torrent Queueing</source>
         <translation>Colocar na cola</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2253"/>
+        <location filename="../preferences/options.ui" line="2193"/>
         <source>Share Ratio Limiting</source>
         <translation>Limites da taxa de compartición</translation>
     </message>
     <message>
-        <location filename="../preferences/options.ui" line="2358"/>
+        <location filename="../preferences/options.ui" line="2298"/>
         <source>Enable Web User Interface (Remote control)</source>
         <translation>Activar a interface de usuario web (control remoto)</translation>
     </message>
@@ -2860,66 +2855,66 @@ Está seguro que desexa saír do qBittorrent?</translation>
         <translation>Editar URL da semente web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="541"/>
+        <location filename="../properties/propertieswidget.cpp" line="543"/>
         <source>Rename the file</source>
         <translation>Cambiar o nome do ficheiro</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="542"/>
+        <location filename="../properties/propertieswidget.cpp" line="544"/>
         <source>New name:</source>
         <translation>Nome novo:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="546"/>
-        <location filename="../properties/propertieswidget.cpp" line="577"/>
+        <location filename="../properties/propertieswidget.cpp" line="548"/>
+        <location filename="../properties/propertieswidget.cpp" line="579"/>
         <source>The file could not be renamed</source>
         <translation>Non foi posíbel cambiar o nome do ficheiro</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="547"/>
+        <location filename="../properties/propertieswidget.cpp" line="549"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Este nome de ficheiro contén caracteres prohibidos, escolla un nome diferente.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="578"/>
-        <location filename="../properties/propertieswidget.cpp" line="616"/>
+        <location filename="../properties/propertieswidget.cpp" line="580"/>
+        <location filename="../properties/propertieswidget.cpp" line="618"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Este nome de ficheiro xa existe neste cartafol. Use un nome diferente.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="615"/>
+        <location filename="../properties/propertieswidget.cpp" line="617"/>
         <source>The folder could not be renamed</source>
         <translation>Non foi posíbel cambiar o nome do cartafol</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="654"/>
+        <location filename="../properties/propertieswidget.cpp" line="656"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Nova semente desde un url</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="655"/>
+        <location filename="../properties/propertieswidget.cpp" line="657"/>
         <source>New url seed:</source>
         <translation>Nova semente desde un url:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="716"/>
+        <location filename="../properties/propertieswidget.cpp" line="718"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="661"/>
-        <location filename="../properties/propertieswidget.cpp" line="717"/>
+        <location filename="../properties/propertieswidget.cpp" line="663"/>
+        <location filename="../properties/propertieswidget.cpp" line="719"/>
         <source>This url seed is already in the list.</source>
         <translation>Esta semente desde un url xa está na lista.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="709"/>
+        <location filename="../properties/propertieswidget.cpp" line="711"/>
         <source>Web seed editing</source>
         <translation>Edición da semente web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="710"/>
+        <location filename="../properties/propertieswidget.cpp" line="712"/>
         <source>Web seed URL:</source>
         <translation>URL da semente web:</translation>
     </message>
@@ -2927,348 +2922,367 @@ Está seguro que desexa saír do qBittorrent?</translation>
 <context>
     <name>QBtSession</name>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="235"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="241"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="242"/>
         <source>%1 reached the maximum ratio you set.</source>
         <translation>%1 alcanzou a taxa máxima estabelecida.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="236"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="237"/>
         <source>Removing torrent %1...</source>
         <translation>Eliminando o torrent %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="242"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="243"/>
         <source>Pausing torrent %1...</source>
         <translation>Pausando o torrent %1...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="394"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="395"/>
         <source>HTTP user agent is %1</source>
         <translation>O axente do usuario HTTP é %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="416"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Anonymous mode [ON]</source>
         <translation>Modo anómino [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="418"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="419"/>
         <source>Anonymous mode [OFF]</source>
         <translation>Modo anómino [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="500"/>
-        <source>DHT support [ON], port: UDP/%1</source>
-        <translation>Soporte DHT [ACTIVADO], porto: UDP/%1</translation>
-    </message>
-    <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="502"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="506"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1541"/>
         <source>DHT support [OFF]</source>
         <translation>Soporte DHT  [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="511"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="494"/>
         <source>PeX support [ON]</source>
         <translation>Soporte PeX [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="513"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="496"/>
         <source>PeX support [OFF]</source>
         <translation>Soporte PeX [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="516"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="499"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>É necesario reiniciar para cambiar o soporte PeX</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="524"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Soporte para busca de pares locais (LPD) [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="536"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="519"/>
         <source>Encryption support [ON]</source>
         <translation>Soporte de cifrado [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="541"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="524"/>
         <source>Encryption support [FORCED]</source>
         <translation>Soporte de cifrado [FORZADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="546"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="529"/>
         <source>Encryption support [OFF]</source>
         <translation>Soporte de cifrado [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="608"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="591"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Localizador integrado [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="610"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="593"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Produciuse un fallo ao iniciar o localizador integrado!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="613"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="596"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Localizador integrado [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="667"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="650"/>
         <source>The Web UI is listening on port %1</source>
         <translation>A interface web está escoitando no porto %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="669"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="652"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Erro na interface de usuario web - Non é posíbel conectar a interface web ao porto %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="816"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="799"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eliminouse da lista de transferencias e do disco duro.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="818"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="801"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; eliminouse da lista de transferencias.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="916"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="899"/>
         <source>Couldn&apos;t parse this Magnet URI: &apos;%1&apos;</source>
         <translation>Non foi posíbel analizar a URI Magnet: «%1»</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="921"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="904"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos;non é un URI magnet correcto.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="940"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1085"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="923"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1068"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;xa está na lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1202"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1207"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1190"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>Retomouse &apos;%1&apos; (continuación rápida)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1719"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1528"/>
+        <source>DHT support [ON]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1533"/>
+        <source>DHT support [OFF]. Reason: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1705"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; foi bloqueado</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1721"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; foi bloqueado</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2307"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2284"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>O computador suspenderase se non o cancela nos próximos 15 segundos...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2309"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2288"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>O computador apagarase se non o cancela nos próximos 15 segundos...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2311"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent pechará se non o cancela nos próximos 15 segundos...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2684"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2446"/>
+        <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2451"/>
+        <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2720"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>IP externa: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2947"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2983"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analizouse correctamente o filtro IP indicado: aplicáronse %1 regras.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2953"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2989"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Erro: produciuse un fallo ao analizar o filtro IP indicado.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1020"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1204"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1209"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1003"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>Engadiuse %1 á lista de descargas.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="385"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="386"/>
         <source>UPnP / NAT-PMP support [ON]</source>
         <translation>Soporte UPnP / NAT-PMP [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="388"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="389"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
         <translation>Soporte UPnP / NAT-PMP [APAGADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="521"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Soporte para busca de pares locais (LPD) [ACTIVADO]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1059"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1064"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1042"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1047"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Non foi posíbel decodificar o ficheiro torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1067"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1050"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Este ficheiro está corrupto ou non é un torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1102"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1085"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Erro: o torrent %1 non contén ningún ficheiro.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1328"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1356"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1311"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1339"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Aviso: engadíronse novos localizadores ao torrent existente.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1372"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1355"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Aviso: engadíronse novas sementes URL ao torrent existente.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1914"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>A interface indicada para a rede non é válida: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2088"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2060"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Descarga recursiva do ficheiro %1 integrado no torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2257"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2232"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Non foi posíbel decodificar o ficheiro torrent %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2122"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2094"/>
         <source>Torrent name: %1</source>
         <translation>Nome do torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1906"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1892"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent está tentando escoitar en todos os portos da interface: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1924"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1910"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent está tentando escoitar na interface %1 porto: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2123"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2095"/>
         <source>Torrent size: %1</source>
         <translation>Tamaño do torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2096"/>
         <source>Save path: %1</source>
         <translation>Ruta onde gardar: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2125"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>O torrent descargouse en %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2126"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2098"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Grazas por usar o qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2129"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2101"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 rematou a descarga</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2477"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2513"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Produciuse un erro de E/S, &apos;%1&apos; pausado.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2478"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2602"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2514"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2638"/>
         <source>Reason: %1</source>
         <translation>Razón: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2562"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2598"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: produciuse un fallo no mapeado, mensaxe: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2568"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2604"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: o mapeado do porto foi correcto, mensaxe: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2597"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2633"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Os tamaños dos ficheiros non coinciden co torrent %1 , pausándoo.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2601"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2637"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Os datos para a continuación rápida do torrent %1 foron rexeitados, comprobando de novo...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2608"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2644"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Fallou a semente url encontrada no url: %1, mensaxe: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2624"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2660"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent escoita correctamente no porto da interface %1 porto: %2/%3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2651"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2687"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent fallou ao escoitar na interface %1 porto: %2/%3. Razón: %4</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2767"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2803"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Descargando &apos;%1&apos;, espere...</translation>
@@ -4784,7 +4798,7 @@ Instálea manualmente.</translation>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Un cliente BitTorrent avanzado programado en C++, baseado en QT toolkit e libtorrent-rasterbar.</translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
@@ -5320,42 +5334,42 @@ Con todo, eses plugins desactiváronse.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="263"/>
+        <location filename="../misc.cpp" line="274"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="408"/>
+        <location filename="../misc.cpp" line="419"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1h %2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="413"/>
+        <location filename="../misc.cpp" line="424"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1d %2h</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="253"/>
+        <location filename="../misc.cpp" line="264"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Descoñecido</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="195"/>
+        <location filename="../misc.cpp" line="206"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>O qBittorrent vai apagar o computador porque remataron todas as descargas.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="399"/>
+        <location filename="../misc.cpp" line="410"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="403"/>
+        <location filename="../misc.cpp" line="414"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 m</translation>
@@ -5414,119 +5428,119 @@ Con todo, eses plugins desactiváronse.</translation>
 <context>
     <name>options_imp</name>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1102"/>
-        <location filename="../preferences/options_imp.cpp" line="1104"/>
+        <location filename="../preferences/options_imp.cpp" line="1092"/>
+        <location filename="../preferences/options_imp.cpp" line="1094"/>
         <source>Choose export directory</source>
         <translation>Seleccionar un cartafol de exportación</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1140"/>
-        <location filename="../preferences/options_imp.cpp" line="1142"/>
-        <location filename="../preferences/options_imp.cpp" line="1153"/>
-        <location filename="../preferences/options_imp.cpp" line="1155"/>
+        <location filename="../preferences/options_imp.cpp" line="1130"/>
+        <location filename="../preferences/options_imp.cpp" line="1132"/>
+        <location filename="../preferences/options_imp.cpp" line="1143"/>
+        <location filename="../preferences/options_imp.cpp" line="1145"/>
         <source>Choose a save directory</source>
         <translation>Seleccionar un cartafol onde gardar</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1128"/>
+        <location filename="../preferences/options_imp.cpp" line="1116"/>
+        <location filename="../preferences/options_imp.cpp" line="1118"/>
         <source>Choose an ip filter file</source>
         <translation>Seleccionar un ficheiro para os filtros de ip</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1059"/>
+        <location filename="../preferences/options_imp.cpp" line="1046"/>
         <source>Add directory to scan</source>
         <translation>Engadir un cartafol para explorar</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1065"/>
+        <location filename="../preferences/options_imp.cpp" line="1053"/>
         <source>Folder is already being watched.</source>
         <translation>O cartafol xa está sendo explorado.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1068"/>
+        <location filename="../preferences/options_imp.cpp" line="1056"/>
         <source>Folder does not exist.</source>
         <translation>O cartafol non existe.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1071"/>
+        <location filename="../preferences/options_imp.cpp" line="1059"/>
         <source>Folder is not readable.</source>
         <translation>O cartafol non se pode ler.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1079"/>
+        <location filename="../preferences/options_imp.cpp" line="1069"/>
         <source>Failure</source>
         <translation>Fallo</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1079"/>
+        <location filename="../preferences/options_imp.cpp" line="1069"/>
         <source>Failed to add Scan Folder &apos;%1&apos;: %2</source>
         <translation>Produciuse un fallo ao explorar o cartafol &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1126"/>
-        <location filename="../preferences/options_imp.cpp" line="1128"/>
+        <location filename="../preferences/options_imp.cpp" line="1116"/>
+        <location filename="../preferences/options_imp.cpp" line="1118"/>
         <source>Filters</source>
         <translation>Filtros</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1194"/>
+        <location filename="../preferences/options_imp.cpp" line="1184"/>
         <source>SSL Certificate (*.crt *.pem)</source>
         <translation>Certificado SSL (*.crt *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1205"/>
+        <location filename="../preferences/options_imp.cpp" line="1195"/>
         <source>SSL Key (*.key *.pem)</source>
         <translation>Chave SSL (*.key *.pem)</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1236"/>
+        <location filename="../preferences/options_imp.cpp" line="1226"/>
         <source>Parsing error</source>
         <translation>Erro de análise</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1236"/>
+        <location filename="../preferences/options_imp.cpp" line="1226"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Produciuse un fallo ao analizar o filtro Ip indicado</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1238"/>
+        <location filename="../preferences/options_imp.cpp" line="1228"/>
         <source>Successfully refreshed</source>
         <translation>Actualizado correctamente</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1238"/>
+        <location filename="../preferences/options_imp.cpp" line="1228"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analizouse correctamente o filtro IP indicado: aplicáronse %1 regras.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1316"/>
+        <location filename="../preferences/options_imp.cpp" line="1306"/>
         <source>Invalid key</source>
         <translation>Chave incorrecta</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1316"/>
+        <location filename="../preferences/options_imp.cpp" line="1306"/>
         <source>This is not a valid SSL key.</source>
         <translation>Esta non é unha chave SSL correcta.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1331"/>
+        <location filename="../preferences/options_imp.cpp" line="1321"/>
         <source>Invalid certificate</source>
         <translation>Certificado incorrecto</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1331"/>
+        <location filename="../preferences/options_imp.cpp" line="1321"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Este non é un certificado SSL correcto.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1359"/>
+        <location filename="../preferences/options_imp.cpp" line="1347"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>A hora de inicio e de remate teñen que ser distintas.</translation>
     </message>
     <message>
-        <location filename="../preferences/options_imp.cpp" line="1362"/>
+        <location filename="../preferences/options_imp.cpp" line="1350"/>
         <source>Time Error</source>
         <translation>Erro de hora</translation>
     </message>
