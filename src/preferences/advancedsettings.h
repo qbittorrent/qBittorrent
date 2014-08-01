@@ -72,6 +72,8 @@ public slots:
     // Disk write cache
     pref.setDiskCacheSize(spin_cache.value());
     pref.setDiskCacheTTL(spin_cache_ttl.value());
+    // End block size
+    pref.setEndBlockSize(spin_end_block_size.value());
     // Outgoing ports
     pref.setOutgoingPortsMin(outgoing_ports_min.value());
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
@@ -175,6 +177,11 @@ private slots:
     spin_cache.setValue(pref.diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
+    // End block size
+    spin_end_block_size.setMinimum(1);
+    spin_end_block_size.setMaximum(16);
+    spin_end_block_size.setValue(pref.endBlockSize());
+    setRow(END_BLOCK_SIZE, tr("End block size (1-16 MB)"), &spin_end_block_size);
     // Disk cache expiry
     spin_cache_ttl.setMinimum(15);
     spin_cache_ttl.setMaximum(600);

@@ -999,16 +999,20 @@ public:
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheSize"), size);
   }
 
-  uint endBlockSize() const {
-    return value(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), 2).toUInt();
   uint diskCacheTTL() const {
     return value(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), 60).toUInt();
   }
 
-  void setEndBlockSize(uint val) {
-    setValue(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), val);
   void setDiskCacheTTL(uint ttl) {
     setValue(QString::fromUtf8("Preferences/Downloads/DiskWriteCacheTTL"), ttl);
+  }
+
+  uint endBlockSize() const {
+    return value(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), 2).toUInt();
+  }
+
+  void setEndBlockSize(uint val) {
+    setValue(QString::fromUtf8("Preferences/Advanced/EndBlockSize"), val);
   }
 
   uint outgoingPortsMin() const {
