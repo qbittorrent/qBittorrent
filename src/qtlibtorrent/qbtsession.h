@@ -150,9 +150,6 @@ public slots:
   void setMaxRatioPerTorrent(const QString &hash, qreal ratio);
   qreal getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRatio) const;
   void removeRatioPerTorrent(const QString &hash);
-#if LIBTORRENT_VERSION_NUM < 10000
-  void setDHTPort(int dht_port);
-#endif
   void setProxySettings(libtorrent::proxy_settings proxySettings);
   void setSessionSettings(const libtorrent::session_settings &sessionSettings);
   void setDefaultSavePath(const QString &savepath);
@@ -167,7 +164,7 @@ public slots:
   void setUploadLimit(QString hash, long val);
   void enableUPnP(bool b);
   void enableLSD(bool b);
-  bool enableDHT(bool b);
+  void enableDHT(bool b);
 #ifdef DISABLE_GUI
   void addConsoleMessage(QString msg, QString color=QString::null);
 #else
@@ -287,7 +284,6 @@ private:
   int high_ratio_action;
   bool LSDEnabled;
   bool DHTEnabled;
-  int current_dht_port;
   bool PeXEnabled;
   bool queueingEnabled;
   bool appendLabelToSavePath;

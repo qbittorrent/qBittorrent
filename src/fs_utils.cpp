@@ -86,19 +86,25 @@ QString fsutils::fromNativePath(const QString &path) {
 /**
  * Returns the file extension part of a file name.
  */
-QString fsutils::fileExtension(const QString &filename)
-{
+QString fsutils::fileExtension(const QString &filename) {
   const int point_index = filename.lastIndexOf(".");
   return (point_index >= 0) ? filename.mid(point_index + 1) : QString();
 }
 
-QString fsutils::fileName(const QString& file_path)
-{
+QString fsutils::fileName(const QString& file_path) {
   QString path = fsutils::fromNativePath(file_path);
   const int slash_index = path.lastIndexOf("/");
   if (slash_index == -1)
     return path;
   return path.mid(slash_index + 1);
+}
+
+QString fsutils::folderName(const QString& file_path) {
+  QString path = fsutils::fromNativePath(file_path);
+  const int slash_index = path.lastIndexOf("/");
+  if (slash_index == -1)
+    return path;
+  return path.left(slash_index);
 }
 
 bool fsutils::isValidTorrentFile(const QString& torrent_path) {
@@ -118,8 +124,7 @@ bool fsutils::isValidTorrentFile(const QString& torrent_path) {
  * This function will also remove .DS_Store files on Mac OS and
  * Thumbs.db on Windows.
  */
-bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
-{
+bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path) {
   qDebug() << Q_FUNC_INFO << dir_path;
   if (dir_path.isEmpty())
     return false;
@@ -169,8 +174,7 @@ bool fsutils::smartRemoveEmptyFolderTree(const QString& dir_path)
  *
  * This function will try to fix the file permissions before removing it.
  */
-bool fsutils::forceRemove(const QString& file_path)
-{
+bool fsutils::forceRemove(const QString& file_path) {
   QFile f(file_path);
   if (!f.exists())
     return true;
@@ -186,8 +190,7 @@ bool fsutils::forceRemove(const QString& file_path)
  *
  * Returns -1 in case of error.
  */
-qint64 fsutils::computePathSize(const QString& path)
-{
+qint64 fsutils::computePathSize(const QString& path) {
   // Check if it is a file
   QFileInfo fi(path);
   if (!fi.exists()) return -1;
@@ -207,8 +210,7 @@ qint64 fsutils::computePathSize(const QString& path)
 /**
  * Makes deep comparison of two files to make sure they are identical.
  */
-bool fsutils::sameFiles(const QString& path1, const QString& path2)
-{
+bool fsutils::sameFiles(const QString& path1, const QString& path2) {
   QFile f1(path1), f2(path2);
   if (!f1.exists() || !f2.exists()) return false;
   if (f1.size() != f2.size()) return false;
@@ -326,8 +328,7 @@ long long fsutils::freeDiskSpaceOnPath(QString path) {
 #endif
 }
 
-QString fsutils::branchPath(const QString& file_path, QString* removed)
-{
+QString fsutils::branchPath(const QString& file_path, QString* removed) {
   QString ret = fsutils::fromNativePath(file_path);
   if (ret.endsWith("/"))
     ret.chop(1);
@@ -340,8 +341,7 @@ QString fsutils::branchPath(const QString& file_path, QString* removed)
   return ret;
 }
 
-bool fsutils::sameFileNames(const QString &first, const QString &second)
-{
+bool fsutils::sameFileNames(const QString &first, const QString &second) {
 #if defined(Q_OS_UNIX) || defined(Q_WS_QWS)
   return QString::compare(first, second, Qt::CaseSensitive) == 0;
 #else

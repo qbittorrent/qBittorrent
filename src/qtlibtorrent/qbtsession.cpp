@@ -105,7 +105,7 @@ QBtSession::QBtSession()
   : m_scanFolders(ScanFoldersModel::instance(this)),
     preAllocateAll(false), global_ratio_limit(-1),
     LSDEnabled(false),
-    DHTEnabled(false), current_dht_port(0), queueingEnabled(false),
+    DHTEnabled(false), queueingEnabled(false),
     m_torrentExportEnabled(false),
     m_finishedTorrentExportEnabled(false)
   #ifndef DISABLE_GUI
@@ -488,25 +488,7 @@ void QBtSession::configureSession() {
   // * Max uploads per torrent limit
   setMaxUploadsPerTorrent(pref.getMaxUploadsPerTorrent());
   // * DHT
-  if (pref.isDHTEnabled()) {
-    // Set DHT Port
-    if (enableDHT(true)) {
-      int dht_port = 0;
-#if LIBTORRENT_VERSION_NUM < 10000
-      if (!pref.isDHTPortSameAsBT())
-        dht_port = pref.getDHTPort();
-      setDHTPort(dht_port);
-#endif
-      if (dht_port == 0) dht_port = new_listenPort;
-      addConsoleMessage(tr("DHT support [ON], port: UDP/%1").arg(dht_port), QString::fromUtf8("blue"));
-    } else {
-      addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("red"));
-    }
-  } else {
-    enableDHT(false);
-    addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
-  }
-
+  enableDHT(pref.isDHTEnabled());
   // * PeX
   if (PeXEnabled) {
     addConsoleMessage(tr("PeX support [ON]"), QString::fromUtf8("blue"));
@@ -1531,7 +1513,7 @@ void QBtSession::saveSessionState() {
 }
 
 // Enable DHT
-bool QBtSession::enableDHT(bool b) {
+void QBtSession::enableDHT(bool b) {
   if (b) {
     if (!DHTEnabled) {
       try {
@@ -1543,20 +1525,23 @@ bool QBtSession::enableDHT(bool b) {
         s->add_dht_router(std::make_pair(std::string("dht.transmissionbt.com"), 6881));
         s->add_dht_router(std::make_pair(std::string("dht.aelitis.com"), 6881)); // Vuze
         DHTEnabled = true;
+        addConsoleMessage(tr("DHT support [ON]"), QString::fromUtf8("blue"));
         qDebug("DHT enabled");
-      }catch(std::exception &e) {
+      }
+      catch(std::exception &e) {
         qDebug("Could not enable DHT, reason: %s", e.what());
-        return false;
+        addConsoleMessage(tr("DHT support [OFF]. Reason: %1").arg(misc::toQString(e.what())), QString::fromUtf8("red"));
       }
     }
-  } else {
+  }
+  else {
     if (DHTEnabled) {
       DHTEnabled = false;
       s->stop_dht();
+      addConsoleMessage(tr("DHT support [OFF]"), QString::fromUtf8("blue"));
       qDebug("DHT disabled");
     }
   }
-  return true;
 }
 
 qreal QBtSession::getRealRatio(const libtorrent::torrent_status &status) const {
@@ -1999,20 +1984,6 @@ void QBtSession::updateRatioTimer()
     BigRatioTimer->start();
   }
 }
-
-#if LIBTORRENT_VERSION_NUM < 10000
-// Set DHT port (>= 1 or 0 if same as BT)
-void QBtSession::setDHTPort(int dht_port) {
-  if (dht_port >= 0) {
-    if (dht_port == current_dht_port) return;
-    struct dht_settings DHTSettings;
-    DHTSettings.service_port = dht_port;
-    s->set_dht_settings(DHTSettings);
-    current_dht_port = dht_port;
-    qDebug("Set DHT Port to %d", dht_port);
-  }
-}
-#endif
 
 // Enable IP Filtering
 void QBtSession::enableIPFilter(const QString &filter_path, bool force) {

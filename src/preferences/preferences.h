@@ -45,6 +45,10 @@
 #include <QCoreApplication>
 #endif
 
+#ifdef Q_OS_WIN
+#include <ShlObj.h>
+#endif
+
 #include "misc.h"
 #include "fs_utils.h"
 #include "qinisettings.h"
@@ -256,7 +260,7 @@ public:
 
   QString lastLocationPath() const {
     return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), QString()).toString());
-}
+  }
 
   void setLastLocationPath(const QString &path) {
     setValue(QString::fromUtf8("Preferences/Downloads/LastLocationPath"), fsutils::fromNativePath(path));
@@ -323,6 +327,14 @@ public:
 
   void setDownloadInScanDirs(const QList<bool> &list) {
     setValue(QString::fromUtf8("Preferences/Downloads/DownloadInScanDirs"), misc::toStringList(list));
+  }
+
+  QString getScanDirsLastPath() const {
+    return fsutils::fromNativePath(value(QString::fromUtf8("Preferences/Downloads/ScanDirsLastPath"), QString()).toString());
+  }
+
+  void setScanDirsLastPath(const QString &path) {
+    setValue(QString::fromUtf8("Preferences/Downloads/ScanDirsLastPath"), fsutils::fromNativePath(path));
   }
 
   bool isTorrentExportEnabled() const {
@@ -648,22 +660,6 @@ public:
 
   void setPeXEnabled(bool enabled) {
     setValue(QString::fromUtf8("Preferences/Bittorrent/PeX"), enabled);
-  }
-
-  bool isDHTPortSameAsBT() const {
-    return value(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), true).toBool();
-  }
-
-  void setDHTPortSameAsBT(bool same) {
-    setValue(QString::fromUtf8("Preferences/Bittorrent/sameDHTPortAsBT"), same);
-  }
-
-  int getDHTPort() const {
-    return value(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), 6881).toInt();
-  }
-
-  void setDHTPort(int port) {
-    setValue(QString::fromUtf8("Preferences/Bittorrent/DHTPort"), port);
   }
 
   bool isLSDEnabled() const {
@@ -1222,91 +1218,66 @@ public:
   }
 
   static bool isTorrentFileAssocSet() {
-    QSettings settings("HKEY_CLASSES_ROOT", QIniSettings::NativeFormat);
-    if (settings.value(".torrent/Default").toString() != "qBittorrent") {
-      qDebug(".torrent != qBittorrent");
-      return false;
+      QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+      if (settings.value(".torrent/Default").toString() != "qBittorrent") {
+        qDebug(".torrent != qBittorrent");
+        return false;
+      }
+
+      return true;
     }
-    qDebug("Checking shell command");
-    QString shell_command = fsutils::toNativePath(settings.value("qBittorrent/shell/open/command/Default", "").toString());
-    qDebug("Shell command is: %s", qPrintable(shell_command));
-    QRegExp exe_reg("\"([^\"]+)\".*");
-    if (exe_reg.indexIn(shell_command) < 0)
-      return false;
-    QString assoc_exe = exe_reg.cap(1);
-    qDebug("exe: %s", qPrintable(assoc_exe));
-    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
-      return false;
-    // Icon
-    const QString icon_str = "\""+fsutils::toNativePath(qApp->applicationFilePath())+"\",1";
-    if (settings.value("qBittorrent/DefaultIcon/Default", icon_str).toString().compare(icon_str, Qt::CaseInsensitive) != 0)
-      return false;
 
-    return true;
-  }
+    static bool isMagnetLinkAssocSet() {
+      QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
-  static bool isMagnetLinkAssocSet() {
-    QSettings settings("HKEY_CLASSES_ROOT", QIniSettings::NativeFormat);
-
-    // Check magnet link assoc
-    QRegExp exe_reg("\"([^\"]+)\".*");
-    QString shell_command = fsutils::toNativePath(settings.value("Magnet/shell/open/command/Default", "").toString());
-    if (exe_reg.indexIn(shell_command) < 0)
-      return false;
-    QString assoc_exe = exe_reg.cap(1);
-    qDebug("exe: %s", qPrintable(assoc_exe));
-    if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
-      return false;
-    return true;
-  }
-
-  static void setTorrentFileAssoc(bool set) {
-    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
-
-    // .Torrent association
-    if (set) {
-      const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
-      const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
-
-      settings.setValue(".torrent/Default", "qBittorrent");
-      settings.setValue(".torrent/Content Type", "application/x-bittorrent");
-      settings.setValue("qBittorrent/shell/Default", "open");
-      settings.setValue("qBittorrent/shell/open/command/Default", fsutils::toNativePath(command_str));
-      settings.setValue("qBittorrent/Content Type/Default", "application/x-bittorrent");
-      settings.setValue("qBittorrent/DefaultIcon/Default", fsutils::toNativePath(icon_str));
-    } else if (isTorrentFileAssocSet()) {
-      settings.remove(".torrent/Default");
-      settings.remove(".torrent/Content Type");
-      settings.remove("qBittorrent/shell/Default");
-      settings.remove("qBittorrent/shell/open/command/Default");
-      settings.remove("qBittorrent/Content Type/Default");
-      settings.remove("qBittorrent/DefaultIcon/Default");
+      // Check magnet link assoc
+      QRegExp exe_reg("\"([^\"]+)\".*");
+      QString shell_command = fsutils::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
+      if (exe_reg.indexIn(shell_command) < 0)
+        return false;
+      QString assoc_exe = exe_reg.cap(1);
+      qDebug("exe: %s", qPrintable(assoc_exe));
+      if (assoc_exe.compare(fsutils::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
+        return false;
+      return true;
     }
-  }
 
-  static void setMagnetLinkAssoc(bool set) {
-    QSettings settings("HKEY_CLASSES_ROOT", QSettings::NativeFormat);
+    static void setTorrentFileAssoc(bool set) {
+      QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
-    // Magnet association
-    if (set) {
-      const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
-      const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
+      // .Torrent association
+      if (set) {
+        QString old_progid = settings.value(".torrent/Default").toString();
+        if (!old_progid.isEmpty() && (old_progid != "qBittorrent"))
+          settings.setValue(".torrent/OpenWithProgids/" + old_progid, "");
+        settings.setValue(".torrent/Default", "qBittorrent");
+      } else if (isTorrentFileAssocSet()) {
+        settings.setValue(".torrent/Default", "");
+      }
 
-      settings.setValue("Magnet/Default", "Magnet URI");
-      settings.setValue("Magnet/Content Type", "application/x-magnet");
-      settings.setValue("Magnet/URL Protocol", "");
-      settings.setValue("Magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
-      settings.setValue("Magnet/shell/Default", "open");
-      settings.setValue("Magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
-    } else if (isMagnetLinkAssocSet()) {
-      settings.remove("Magnet/Default");
-      settings.remove("Magnet/Content Type");
-      settings.remove("Magnet/URL Protocol");
-      settings.remove("Magnet/DefaultIcon/Default");
-      settings.remove("Magnet/shell/Default");
-      settings.remove("Magnet/shell/open/command/Default");
+      SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
     }
-  }
+
+    static void setMagnetLinkAssoc(bool set) {
+      QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
+
+      // Magnet association
+      if (set) {
+        const QString command_str = "\""+qApp->applicationFilePath()+"\" \"%1\"";
+        const QString icon_str = "\""+qApp->applicationFilePath()+"\",1";
+
+        settings.setValue("magnet/Default", "URL:Magnet link");
+        settings.setValue("magnet/Content Type", "application/x-magnet");
+        settings.setValue("magnet/URL Protocol", "");
+        settings.setValue("magnet/DefaultIcon/Default", fsutils::toNativePath(icon_str));
+        settings.setValue("magnet/shell/Default", "open");
+        settings.setValue("magnet/shell/open/command/Default", fsutils::toNativePath(command_str));
+      } else if (isMagnetLinkAssocSet()) {
+        settings.remove("magnet");
+      }
+
+      SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0);
+    }
 #endif
 
   bool isTrackerEnabled() const {
