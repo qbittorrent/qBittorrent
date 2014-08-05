@@ -552,6 +552,7 @@ void options_imp::loadOptions() {
     checkExportDir->setChecked(false);
   } else {
     // enable
+    checkExportDir->setChecked(true);
     textExportDir->setText(strValue);
   }
 
