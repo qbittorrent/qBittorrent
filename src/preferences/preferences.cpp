@@ -76,7 +76,7 @@ Preferences::Preferences() : dirty(false), lock(QReadWriteLock::Recursive) {
     keys = settings->allKeys();
   }
 #else
-  QStringList keys = settings.allKeys();
+  QStringList keys = settings->allKeys();
 #endif
 
   // Copy everything into memory. This means even keys inserted in the file manually
