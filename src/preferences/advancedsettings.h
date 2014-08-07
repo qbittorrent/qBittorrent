@@ -170,7 +170,15 @@ private slots:
     const Preferences* const pref = Preferences::instance();
     // Disk write cache
     spin_cache.setMinimum(0);
-    spin_cache.setMaximum(2048);
+    // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
+    // These macros may not be available on compilers other than MSVC and GCC
+#if !defined(_M_X64) || !defined(__amd64__)
+    //1800MiB to leave 248MiB room to the rest of program data in RAM
+    spin_cache.setMaximum(1800);
+#else
+    // 4GiB
+    spin_cache.setMaximum(4*1024);
+#endif
     spin_cache.setValue(pref->diskCacheSize());
     updateCacheSpinSuffix(spin_cache.value());
     setRow(DISK_CACHE, tr("Disk write cache size"), &spin_cache);
