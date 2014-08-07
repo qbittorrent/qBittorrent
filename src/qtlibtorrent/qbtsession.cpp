@@ -419,6 +419,9 @@ void QBtSession::configureSession() {
   sessionSettings.cache_expiry = pref.diskCacheTTL();
 #endif
   qDebug() << "Using a disk cache size of" << cache_size << "MiB";
+  session_settings::io_buffer_mode_t mode = pref.osCache() ? session_settings::enable_os_cache : session_settings::disable_os_cache;
+  sessionSettings.disk_io_read_mode = mode;
+  sessionSettings.disk_io_write_mode = mode;
 #if LIBTORRENT_VERSION_NUM >= 1600
   sessionSettings.anonymous_mode = pref.isAnonymousModeEnabled();
   if (sessionSettings.anonymous_mode) {

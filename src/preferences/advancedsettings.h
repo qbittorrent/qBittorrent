@@ -17,7 +17,7 @@ enum AdvSettingsRows {DISK_CACHE,
                     #if LIBTORRENT_VERSION_NUM >= 1610
                       DISK_CACHE_TTL,
                     #endif
-                      OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
+                      OS_CACHE, OUTGOING_PORT_MIN, OUTGOING_PORT_MAX, IGNORE_LIMIT_LAN, RECHECK_COMPLETED, LIST_REFRESH, RESOLVE_COUNTRIES, RESOLVE_HOSTS, MAX_HALF_OPEN, SUPER_SEEDING, NETWORK_IFACE, NETWORK_ADDRESS, PROGRAM_NOTIFICATIONS, TRACKER_STATUS, TRACKER_PORT,
                     #if defined(Q_WS_WIN) || defined(Q_WS_MAC)
                       UPDATE_CHECK,
                     #endif
@@ -33,7 +33,7 @@ class AdvancedSettings: public QTableWidget {
 
 private:
   QSpinBox spin_cache, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port;
-  QCheckBox cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
+  QCheckBox cb_os_cache, cb_ignore_limits_lan, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts,
   cb_super_seeding, cb_program_notifications, cb_tracker_status, cb_confirm_torrent_deletion,
   cb_enable_tracker_ext;
   QComboBox combo_iface;
@@ -79,6 +79,8 @@ public slots:
 #if LIBTORRENT_VERSION_NUM >= 1610
     pref.setDiskCacheTTL(spin_cache_ttl.value());
 #endif
+    // Enable OS cache
+    pref.setOsCache(cb_os_cache.isChecked());
     // Outgoing ports
     pref.setOutgoingPortsMin(outgoing_ports_min.value());
     pref.setOutgoingPortsMax(outgoing_ports_max.value());
@@ -198,6 +200,9 @@ private slots:
     spin_cache_ttl.setSuffix(tr(" s", " seconds"));
     setRow(DISK_CACHE_TTL, tr("Disk cache expiry interval"), &spin_cache_ttl);
 #endif
+    // Enable OS cache
+    cb_os_cache.setChecked(pref.osCache());
+    setRow(OS_CACHE, tr("Enable OS cache"), &cb_os_cache);
     // Outgoing port Min
     outgoing_ports_min.setMinimum(0);
     outgoing_ports_min.setMaximum(65535);

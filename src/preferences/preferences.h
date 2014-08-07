@@ -1031,6 +1031,14 @@ public:
   }
 #endif
 
+  bool osCache() const {
+    return value("Preferences/Advanced/osCache", true).toBool();
+  }
+
+  void setOsCache(bool enable) {
+    setValue("Preferences/Advanced/osCache", enable);
+  }
+
   uint outgoingPortsMin() const {
     return value(QString::fromUtf8("Preferences/Advanced/OutgoingPortsMin"), 0).toUInt();
   }
