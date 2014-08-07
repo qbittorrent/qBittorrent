@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nb" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="nb">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -298,37 +300,37 @@
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="184"/>
+        <location filename="../preferences/advancedsettings.h" line="194"/>
         <source>Disk write cache size</source>
         <translation>Disk-skrivnings hurtiglagerstørrelse</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="173"/>
+        <location filename="../preferences/advancedsettings.h" line="175"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="197"/>
+        <location filename="../preferences/advancedsettings.h" line="210"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Utgående porter (Min) [0: Deaktivert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="202"/>
+        <location filename="../preferences/advancedsettings.h" line="215"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Utgående porter (Maks) [0: Deaktivert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="208"/>
+        <location filename="../preferences/advancedsettings.h" line="221"/>
         <source>Recheck torrents on completion</source>
         <translation>Sjekk torrenter på nytt ved fullførelse</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="214"/>
+        <location filename="../preferences/advancedsettings.h" line="227"/>
         <source>Transfer list refresh interval</source>
         <translation>Overføringsliste oppdateringsintervall</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="213"/>
+        <location filename="../preferences/advancedsettings.h" line="226"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>ms</translation>
@@ -345,99 +347,104 @@
         <translation>Verdi</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="171"/>
+        <location filename="../preferences/advancedsettings.h" line="173"/>
         <source> (auto)</source>
         <translation> (auto)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="190"/>
+        <location filename="../preferences/advancedsettings.h" line="200"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="191"/>
+        <location filename="../preferences/advancedsettings.h" line="201"/>
         <source>Disk cache expiry interval</source>
         <translation>Disk hurtiglager utløpsintervall</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="217"/>
+        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <source>Enable OS cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences/advancedsettings.h" line="230"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Løs deltakerland (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="220"/>
+        <location filename="../preferences/advancedsettings.h" line="233"/>
         <source>Resolve peer host names</source>
         <translation>Løs deltaker-vertsnavn</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="225"/>
+        <location filename="../preferences/advancedsettings.h" line="238"/>
         <source>Maximum number of half-open connections [0: Disabled]</source>
         <translation>Maksimalt antall halvåpne tilkoblinger [0: Deaktivert]</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="228"/>
+        <location filename="../preferences/advancedsettings.h" line="241"/>
         <source>Strict super seeding</source>
         <translation>Streng supergivning</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="248"/>
+        <location filename="../preferences/advancedsettings.h" line="261"/>
         <source>Network Interface (requires restart)</source>
         <translation>Nettverksgrensesnitt (krever omstart)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="276"/>
+        <location filename="../preferences/advancedsettings.h" line="289"/>
         <source>Exchange trackers with other peers</source>
         <translation>Utveksle sporere med andre deltakere</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="279"/>
+        <location filename="../preferences/advancedsettings.h" line="292"/>
         <source>Always announce to all trackers</source>
         <translation>Annonsér alltid til alle sporere</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="230"/>
+        <location filename="../preferences/advancedsettings.h" line="243"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Hvilket som helst grensesnitt</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="251"/>
+        <location filename="../preferences/advancedsettings.h" line="264"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP Adresse som skal rapporteres til sporere (krever omstart)</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="254"/>
+        <location filename="../preferences/advancedsettings.h" line="267"/>
         <source>Display program on-screen notifications</source>
         <translation>Vis programvarslinger på skjermen</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="257"/>
+        <location filename="../preferences/advancedsettings.h" line="270"/>
         <source>Enable embedded tracker</source>
         <translation>Aktiver innebygd sporer</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="262"/>
+        <location filename="../preferences/advancedsettings.h" line="275"/>
         <source>Embedded tracker port</source>
         <translation>Innebygd sporerport</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="265"/>
+        <location filename="../preferences/advancedsettings.h" line="278"/>
         <source>Check for software updates</source>
         <translation>Sjekk for programvareoppdateringer</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="269"/>
+        <location filename="../preferences/advancedsettings.h" line="282"/>
         <source>Use system icon theme</source>
         <translation>Bruk systemikon tema</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="273"/>
+        <location filename="../preferences/advancedsettings.h" line="286"/>
         <source>Confirm torrent deletion</source>
         <translation>Bekreft sletting av torrenter</translation>
     </message>
     <message>
-        <location filename="../preferences/advancedsettings.h" line="205"/>
+        <location filename="../preferences/advancedsettings.h" line="218"/>
         <source>Ignore transfer limits on local network</source>
         <translation>Ignorer overføringsgrenser på lokale nettverk</translation>
     </message>
@@ -673,7 +680,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : '%1', '%2'.
+        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
 You should get this information from your Web browser preferences.</source>
         <translation>Vanlige nøkler for cookies er : &apos;%1&apos;, &apos;%2&apos;.
 Du bør hente denne informasjonen fra  nettleseren din sine innstillinger.</translation>
@@ -2951,213 +2958,213 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <translation>HTTP brukeragent er %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="425"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="428"/>
         <source>Anonymous mode [ON]</source>
         <translation>Anonymitetsmodus [PÅ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="427"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="430"/>
         <source>Anonymous mode [OFF]</source>
         <translation>Anonymitetsmodus [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="485"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="488"/>
         <source>Reporting IP address %1 to trackers...</source>
         <translation>Rapporterer IP adresse %1 til sporere...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="537"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="540"/>
         <source>DHT support [ON], port: UDP/%1</source>
         <translation>DHT støtte [PÅ], port: UDP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="539"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="542"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="546"/>
         <source>DHT support [OFF]</source>
         <translation>DHT støtte [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="547"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="550"/>
         <source>PeX support [ON]</source>
         <translation>PeX støtte [PÅ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="549"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
         <source>PeX support [OFF]</source>
         <translation>PeX støtte [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="552"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="555"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Omstart kreves for å omkoble PeX støtte</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="560"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="563"/>
         <source>Local Peer Discovery support [OFF]</source>
         <translation>Lokal deltaker-oppdagelsesstøtte [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="572"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="575"/>
         <source>Encryption support [ON]</source>
         <translation>Krypteringsstøtte [PÅ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="577"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="580"/>
         <source>Encryption support [FORCED]</source>
         <translation>Krypteringsstøtte [TVUNGET]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="582"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="585"/>
         <source>Encryption support [OFF]</source>
         <translation>Krypteringsstøtte [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="644"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="647"/>
         <source>Embedded Tracker [ON]</source>
         <translation>Innebygd Sporer [PÅ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="646"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="649"/>
         <source>Failed to start the embedded tracker!</source>
         <translation>Start av den innebygde sporeren mislyktes!</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="649"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="652"/>
         <source>Embedded Tracker [OFF]</source>
         <translation>Innebygd Sporer [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="703"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="706"/>
         <source>The Web UI is listening on port %1</source>
         <translation>Nettbrukergrensesnittet lytter på port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="705"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="708"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
         <translation>Nettbrukergrenesnitt feil. Ikke i stand til å binde nettbrukergrensesnitt til port %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="852"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="855"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>'xxx.avi' was removed...</comment>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; ble fjernet fra overføringslisten og harddisk.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="854"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="857"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>'xxx.avi' was removed...</comment>
+        <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; ble fjernet fra overføringslisten.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="949"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="952"/>
         <source>&apos;%1&apos; is not a valid magnet URI.</source>
         <translation>&apos;%1&apos; er ikke en gyldig magnet-oppsettsadresse.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="965"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1116"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1121"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1123"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="968"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1119"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1124"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1126"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: 'xxx.avi' is already in download list.</comment>
+        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; finnes allerede i nedlastingslisten.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1249"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1254"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1252"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1257"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; ble gjenopptatt (hurtig gjenopptaking)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1788"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1791"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; ble blokkert</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1790"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1793"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; ble bannlyst</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1978"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1981"/>
         <source>qBittorrent is trying to listen on any interface port: TCP/%1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent forsøker å lytte på hvilken som helst grensesnittsport: TCP/%1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2004"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2007"/>
         <source>qBittorrent is trying to listen on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent forsøker å lytte på grensesnitt %1 port: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2328"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2331"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Maskinen vil nå gå i hvilemodus dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2330"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2333"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
         <translation>Maskinen vil nå gå i dvalemodus dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2332"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2335"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Maskinen vil nå bli slått av dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2334"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2337"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent vil nå avsluttes dersom du ikke avbryter innen de neste 15 sekundene...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2484"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2487"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Kunne ikke flytte torrent: &apos;%1&apos;. Grunn: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2489"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2492"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation>Prøver å flytte torrent: &apos;%1&apos; til sti: &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2676"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2679"/>
         <source>qBittorrent is successfully listening on interface %1 port: TCP/%2</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent lytter vellykket på grensesnitt %1 port: TCP/%2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2692"/>
         <source>qBittorrent failed listening on interface %1 port: TCP/%2. Reason: %3</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent mislyktes i å lytte på grensesnitt %1 port: TCP/%2. Grunn: %3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2719"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2722"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Ekstern IP: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2977"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2980"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Det oppgitte IP filteret ble vellykket analysert: %1 regler ble lagt til.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2983"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2986"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Feil: Mislyktes i å analysere det oppgitte IP filteret.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1046"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1251"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1256"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1254"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1259"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
+        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; lagt til i nedlastingslisten.</translation>
     </message>
     <message>
@@ -3171,128 +3178,128 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <translation>UPnP / NAT-PMP støtte [AV]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="557"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="560"/>
         <source>Local Peer Discovery support [ON]</source>
         <translation>Lokal deltaker-oppdagelsesstøtte [PÅ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1084"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1092"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1094"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1095"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1097"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
+        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Ikke i stand til å dekode torrentfilen: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1098"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1101"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Denne filen er enten ødelagt, eller så er ikke dette en torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1139"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1142"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Feil: Torrenten %1 inneholder ingen filer.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1381"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1409"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1384"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1412"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Notat: nye sporere ble lagt til den eksisterende torrenten.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1439"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1442"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Notat: nye nettadressegivninger ble lagt til den eksisterende torrenten.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1990"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1993"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Det definerte nettverksgrensesnittet er ugyldig: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2187"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2189"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2190"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2192"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Rekursiv nedlasting av fil %1 innebygd i torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2273"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2275"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2276"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2278"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Ikke i stand til å dekode %1 torrentfil.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2223"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
         <source>Torrent name: %1</source>
         <translation>Torrentnavn: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2224"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2227"/>
         <source>Torrent size: %1</source>
         <translation>Torrentstørrelse: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2225"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2228"/>
         <source>Save path: %1</source>
         <translation>Lagringssti: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2226"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2229"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrenten ble lastet ned på %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2227"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2230"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Takk for at du bruker qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2230"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2233"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 har gjordt seg ferdig med å laste ned</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2550"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2553"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>En inn/ut-operasjonsfeil oppstod, &apos;%1&apos; satt på pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2551"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2665"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2554"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2668"/>
         <source>Reason: %1</source>
         <translation>Grunn: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2629"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2632"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Port-viderekoblingssvikt, melding: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2634"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2637"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Port-viderekobling vellykket, melding: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2660"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2663"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Filstørrelser feilmatching for torrent %1, setter den på pause.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2664"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2667"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Hurtig gjenopptakelsesdata ble avslått for torrent %1, sjekker igjen...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2670"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2673"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Nettadressegivningsoppsøking mislyktes for nettadresse: %1, melding: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2802"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
+        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Laster ned &apos;%1&apos;, vennligst vent...</translation>
     </message>
 </context>
@@ -3335,7 +3342,7 @@ Er du sikker på at du vil avslutte qBittorrent?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
