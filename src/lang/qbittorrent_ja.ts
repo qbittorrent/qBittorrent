@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.0">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -675,7 +673,7 @@
     </message>
     <message>
         <location filename="../rss/cookiesdlg.cpp" line="48"/>
-        <source>Common keys for cookies are : &apos;%1&apos;, &apos;%2&apos;.
+        <source>Common keys for cookies are : '%1', '%2'.
 You should get this information from your Web browser preferences.</source>
         <translation>Cookie の共通キー: &apos;%1&apos;, &apos;%2&apos;.
 この情報はウェブブラウザーの初期設定から確認できるはずです。</translation>
@@ -1310,7 +1308,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
         <source>Hibernate system</source>
-        <translation type="unfinished"></translation>
+        <translation>システムをハイバネート</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="369"/>
@@ -2945,27 +2943,27 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="417"/>
         <source>Anonymous mode [ON]</source>
-        <translation>匿名モード [オン]</translation>
+        <translation>匿名モード [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="419"/>
         <source>Anonymous mode [OFF]</source>
-        <translation>匿名モード [オフ]</translation>
+        <translation>匿名モード [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1541"/>
         <source>DHT support [OFF]</source>
-        <translation>DHT サポート [オフ]</translation>
+        <translation>DHT サポート [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="494"/>
         <source>PeX support [ON]</source>
-        <translation>PeX サポート [オン]</translation>
+        <translation>PeX サポート [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="496"/>
         <source>PeX support [OFF]</source>
-        <translation>PeX サポート [オフ]</translation>
+        <translation>PeX サポート [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="499"/>
@@ -2975,12 +2973,12 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="507"/>
         <source>Local Peer Discovery support [OFF]</source>
-        <translation>ローカルピア検出 [オフ]</translation>
+        <translation>ローカルピア検出 [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="519"/>
         <source>Encryption support [ON]</source>
-        <translation>暗号化サポート [オン]</translation>
+        <translation>暗号化サポート [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="524"/>
@@ -2990,12 +2988,12 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="529"/>
         <source>Encryption support [OFF]</source>
-        <translation>暗号化サポート [オフ]</translation>
+        <translation>暗号化サポート [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="591"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>埋め込みトラッカー[オン]</translation>
+        <translation>埋め込みトラッカー[ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="593"/>
@@ -3005,7 +3003,7 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="596"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>埋め込みトラッカー [オフ]</translation>
+        <translation>埋め込みトラッカー [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="650"/>
@@ -3015,18 +3013,18 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="652"/>
         <source>Web User Interface Error - Unable to bind Web UI to port %1</source>
-        <translation>Web UI エラー ― Web UI をポート %1 へバインド出来ません</translation>
+        <translation>Web UI エラー ― Web UI をポート %1 へバインドできません</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="799"/>
         <source>&apos;%1&apos; was removed from transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>%1 は転送リストおよびハードディスクから削除されました。</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="801"/>
         <source>&apos;%1&apos; was removed from transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>%1 は転送リストから削除されました。</translation>
     </message>
     <message>
@@ -3044,25 +3042,25 @@ qBittorrent を終了しますか?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1068"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
         <source>&apos;%1&apos; is already in download list.</source>
-        <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
+        <comment>e.g: 'xxx.avi' is already in download list.</comment>
         <translation>&apos;%1&apos; はすでにダウンロードリストにあります。</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1185"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1190"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
+        <comment>'/home/y/xxx.torrent' was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; が再開されました。 (高速再開)</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1528"/>
         <source>DHT support [ON]</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT サポート [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1533"/>
         <source>DHT support [OFF]. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>DHT サポート [OFF]. 理由: %1</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1705"/>
@@ -3084,7 +3082,7 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
-        <translation type="unfinished"></translation>
+        <translation>15 秒以内にキャンセルされなければコンピューターをハイバネート状態にします...</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2288"/>
@@ -3099,12 +3097,12 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2446"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent を削除できませんでした: &apos;%1&apos;. 理由: %2</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2451"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent を移動しようとしています: &apos;%1&apos; から &apos;%2&apos; へ。</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2720"/>
@@ -3128,29 +3126,29 @@ qBittorrent を終了しますか?</translation>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
+        <comment>'/home/y/xxx.torrent' was added to download list.</comment>
         <translation>&apos;%1&apos; がダウンロードリストに追加されました。</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="386"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP サポート [オン]</translation>
+        <translation>UPnP / NAT-PMP サポート [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="389"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP サポート [オフ]</translation>
+        <translation>UPnP / NAT-PMP サポート [OFF]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="504"/>
         <source>Local Peer Discovery support [ON]</source>
-        <translation>ローカルピア検出 [オン]</translation>
+        <translation>ローカルピア検出 [ON]</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1042"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1047"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
-        <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
+        <comment>e.g: Unable to decode torrent file: '/home/y/xxx.torrent'</comment>
         <translation>Torrent ファイルをデコードすることができません: &apos;%1&apos;</translation>
     </message>
     <message>
@@ -3284,7 +3282,7 @@ qBittorrent を終了しますか?</translation>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="2803"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>&apos;%1&apos; をダウンロードしています、お待ちください...</translation>
     </message>
 </context>
@@ -3327,7 +3325,7 @@ qBittorrent を終了しますか?</translation>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrents:&lt;/span&gt; &lt;span style=&quot; font-style:italic;&quot;&gt;(double-click to download)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3763,7 +3761,7 @@ Please install it manually.</source>
     <message>
         <location filename="../statsdialog.ui" line="26"/>
         <source>Total peer connections:</source>
-        <translation>全ピア接続数:</translation>
+        <translation>全接続ピア数:</translation>
     </message>
     <message>
         <location filename="../statsdialog.ui" line="33"/>
@@ -4798,7 +4796,7 @@ Please install it manually.</source>
     <message>
         <location filename="../about_imp.h" line="54"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt ツールキットおよび libtorrent-rasterbar ベースで C++ で作成された高度な BitTorrent クライアント。</translation>
     </message>
     <message utf8="true">
         <location filename="../about_imp.h" line="56"/>
@@ -5537,7 +5535,7 @@ However, those plugins were disabled.</source>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1347"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation>開始時刻と終了時刻は同じに出来ません。</translation>
+        <translation>開始時刻と終了時刻は同じにできません。</translation>
     </message>
     <message>
         <location filename="../preferences/options_imp.cpp" line="1350"/>
