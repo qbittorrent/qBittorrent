@@ -308,6 +308,8 @@ public:
   void setDiskCacheSize(uint size);
   uint diskCacheTTL() const;
   void setDiskCacheTTL(uint ttl);
+  bool osCache() const;
+  void setOsCache(bool enable);
   uint outgoingPortsMin() const;
   void setOutgoingPortsMin(uint val);
   uint outgoingPortsMax() const;

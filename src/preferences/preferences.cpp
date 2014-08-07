@@ -1139,6 +1139,14 @@ void Preferences::setDiskCacheTTL(uint ttl) {
   setValue("Preferences/Downloads/DiskWriteCacheTTL", ttl);
 }
 
+bool Preferences::osCache() const {
+  return value("Preferences/Advanced/osCache", true).toBool();
+}
+
+void Preferences::setOsCache(bool enable) {
+  setValue("Preferences/Advanced/osCache", enable);
+}
+
 uint Preferences::outgoingPortsMin() const {
   return value("Preferences/Advanced/OutgoingPortsMin", 0).toUInt();
 }
