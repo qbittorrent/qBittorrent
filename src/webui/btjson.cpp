@@ -131,10 +131,10 @@ static QVariantMap toMap(const QTorrentHandle& h)
   QVariantMap ret;
   ret[KEY_TORRENT_HASH] =  h.hash();
   ret[KEY_TORRENT_NAME] =  h.name();
-  ret[KEY_TORRENT_SIZE] =  misc::friendlyUnit(status.total_wanted); // FIXME: Should pass as Number, not formatted String (for sorting).
+  ret[KEY_TORRENT_SIZE] =  misc::friendlyUnit(status.total_wanted, false, true); // FIXME: Should pass as Number, not formatted String (for sorting).
   ret[KEY_TORRENT_PROGRESS] =  (double)h.progress();
-  ret[KEY_TORRENT_DLSPEED] = misc::friendlyUnit(status.download_payload_rate, true); // FIXME: Should be passed as a Number
-  ret[KEY_TORRENT_UPSPEED] = misc::friendlyUnit(status.upload_payload_rate, true); // FIXME: Should be passed as a Number
+  ret[KEY_TORRENT_DLSPEED] = misc::friendlyUnit(status.download_payload_rate, true, true); // FIXME: Should be passed as a Number
+  ret[KEY_TORRENT_UPSPEED] = misc::friendlyUnit(status.upload_payload_rate, true, true); // FIXME: Should be passed as a Number
   if (QBtSession::instance()->isQueueingEnabled() && h.queue_position() >= 0)
     ret[KEY_TORRENT_PRIORITY] =  QString::number(h.queue_position());
   else
@@ -148,7 +148,7 @@ static QVariantMap toMap(const QTorrentHandle& h)
     leechs += " ("+QString::number(status.num_incomplete)+")";
   ret[KEY_TORRENT_LEECHS] =  leechs;
   const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-  ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1);
+  ret[KEY_TORRENT_RATIO] = (ratio > 100.) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1, false);
   QString eta;
   QString state;
   if (h.is_paused()) {
@@ -303,20 +303,20 @@ QByteArray btjson::getPropertiesForTorrent(const QString& hash)
       save_path = h.save_path();
     data[KEY_PROP_SAVE_PATH] = save_path;
     data[KEY_PROP_CREATION_DATE] = h.creation_date();
-    data[KEY_PROP_PIECE_SIZE] = misc::friendlyUnit(h.piece_length());
+    data[KEY_PROP_PIECE_SIZE] = misc::friendlyUnit(h.piece_length(), false, true);
     data[KEY_PROP_COMMENT] = h.comment();
-    data[KEY_PROP_WASTED] = misc::friendlyUnit(status.total_failed_bytes + status.total_redundant_bytes);
-    data[KEY_PROP_UPLOADED] = QString(misc::friendlyUnit(status.all_time_upload) + " (" + misc::friendlyUnit(status.total_payload_upload) + " " + tr("this session") + ")");
-    data[KEY_PROP_DOWNLOADED] = QString(misc::friendlyUnit(status.all_time_download) + " (" + misc::friendlyUnit(status.total_payload_download) + " " + tr("this session") + ")");
-    data[KEY_PROP_UP_LIMIT] = h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit(), true);
-    data[KEY_PROP_DL_LIMIT] = h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit(), true);
+    data[KEY_PROP_WASTED] = misc::friendlyUnit(status.total_failed_bytes + status.total_redundant_bytes, false, true);
+    data[KEY_PROP_UPLOADED] = QString(misc::friendlyUnit(status.all_time_upload, false, true) + " (" + misc::friendlyUnit(status.total_payload_upload, false, true) + " " + tr("this session") + ")");
+    data[KEY_PROP_DOWNLOADED] = QString(misc::friendlyUnit(status.all_time_download, false, true) + " (" + misc::friendlyUnit(status.total_payload_download, false, true) + " " + tr("this session") + ")");
+    data[KEY_PROP_UP_LIMIT] = h.upload_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.upload_limit(), true, true);
+    data[KEY_PROP_DL_LIMIT] = h.download_limit() <= 0 ? QString::fromUtf8("∞") : misc::friendlyUnit(h.download_limit(), true, true);
     QString elapsed_txt = misc::userFriendlyDuration(h.active_time());
     if (h.is_seed())
       elapsed_txt += " ("+tr("Seeded for %1", "e.g. Seeded for 3m10s").arg(misc::userFriendlyDuration(h.seeding_time()))+")";
     data[KEY_PROP_TIME_ELAPSED] = elapsed_txt;
     data[KEY_PROP_CONNECT_COUNT] = QString(QString::number(status.num_connections) + " (" + tr("%1 max", "e.g. 10 max").arg(QString::number(status.connections_limit)) + ")");
     const qreal ratio = QBtSession::instance()->getRealRatio(h.hash());
-    data[KEY_PROP_RATIO] = ratio > 100. ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1);
+    data[KEY_PROP_RATIO] = ratio > 100. ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 1, false);
   } catch(const std::exception& e) {
     qWarning() << Q_FUNC_INFO << "Invalid torrent: " << e.what();
     return QByteArray();
@@ -354,7 +354,7 @@ QByteArray btjson::getFilesForTorrent(const QString& hash)
         fileName.chop(4);
       file_dict[KEY_FILE_NAME] = fileName;
       const size_type size = h.filesize_at(i);
-      file_dict[KEY_FILE_SIZE] = misc::friendlyUnit(size);
+      file_dict[KEY_FILE_SIZE] = misc::friendlyUnit(size, false, true);
       file_dict[KEY_FILE_PROGRESS] = (size > 0) ? (fp[i] / (double) size) : 1.;
       file_dict[KEY_FILE_PRIORITY] = priorities[i];
       if (i == 0)
@@ -382,7 +382,7 @@ QByteArray btjson::getTransferInfo()
 {
   CACHED_VARIABLE(QVariantMap, info, CACHE_DURATION_MS);
   session_status sessionStatus = QBtSession::instance()->getSessionStatus();
-  info[KEY_TRANSFER_DLSPEED] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_download));
-  info[KEY_TRANSFER_UPSPEED] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload));
+  info[KEY_TRANSFER_DLSPEED] = tr("D: %1/s - T: %2", "Download speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_download_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_download, false, true));
+  info[KEY_TRANSFER_UPSPEED] = tr("U: %1/s - T: %2", "Upload speed: x KiB/s - Transferred: x MiB").arg(misc::friendlyUnit(sessionStatus.payload_upload_rate, true, true)).arg(misc::friendlyUnit(sessionStatus.total_payload_upload, false, true));
   return json::toJson(info);
 }
