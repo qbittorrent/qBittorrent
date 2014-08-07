@@ -92,7 +92,7 @@ namespace misc
   // use Binary prefix standards from IEC 60027-2
   // see http://en.wikipedia.org/wiki/Kilobyte
   // value must be given in bytes
-  QString friendlyUnit(qreal val, bool is_speed = false);
+  QString friendlyUnit(qreal val, bool is_speed = false, bool webui=false);
   bool isPreviewable(const QString& extension);
   QString magnetUriToName(const QString& magnet_uri);
   QString magnetUriToHash(const QString& magnet_uri);
@@ -109,7 +109,7 @@ namespace misc
   QList<bool> boolListfromStringList(const QStringList &l);
 
   QString toQString(time_t t);
-  QString accurateDoubleToString(const double &n, const int &precision);
+  QString accurateDoubleToString(const double &n, const int &precision, bool localized=true);
 
 #ifndef DISABLE_GUI
   bool naturalSort(QString left, QString right, bool& result);
