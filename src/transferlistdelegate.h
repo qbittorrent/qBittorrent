@@ -210,6 +210,26 @@ public:
     return 0;
   }
 
+  // Reimplementing sizeHint() because the 'name' column contains text+icon.
+  // When that WHOLE column goes out of view(eg user scrolls horizontally)
+  // the rows shrink if the text's height is smaller than the icon's height.
+  // This happens because icon from the 'name' column is no longer drawn.
+  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const {
+    QSize size = QItemDelegate::sizeHint(option, index);
+
+    static int icon_height = -1;
+    if (icon_height == -1) {
+      QIcon icon(":/Icons/skin/downloading.png");
+      QList<QSize> ic_sizes(icon.availableSizes());
+      icon_height = ic_sizes[0].height();
+    }
+
+    if (size.height() < icon_height)
+      size.setHeight(icon_height);
+
+    return size;
+  }
+
 };
 
 #endif // TRANSFERLISTDELEGATE_H
