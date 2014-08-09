@@ -61,6 +61,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(QWidget *parent) :
   m_hasRenamedFile(false)
 {
   ui->setupUi(this);
+  setAttribute(Qt::WA_DeleteOnClose);
   ui->lblMetaLoading->setVisible(false);
   ui->progMetaLoading->setVisible(false);
 
@@ -124,18 +125,22 @@ void AddNewTorrentDialog::saveState()
   settings.setValue("expanded", ui->adv_button->isChecked());
 }
 
-void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url)
+void AddNewTorrentDialog::showTorrent(const QString &torrent_path, const QString& from_url, QWidget *parent)
 {
-  AddNewTorrentDialog dlg;
-  if (dlg.loadTorrent(torrent_path, from_url))
-    dlg.exec();
+  AddNewTorrentDialog *dlg = new AddNewTorrentDialog(parent);
+  if (dlg->loadTorrent(torrent_path, from_url))
+    dlg->open();
+  else
+    delete dlg;
 }
 
-void AddNewTorrentDialog::showMagnet(const QString& link)
+void AddNewTorrentDialog::showMagnet(const QString& link, QWidget *parent)
 {
-  AddNewTorrentDialog dlg;
-  if (dlg.loadMagnet(link))
-    dlg.exec();
+  AddNewTorrentDialog *dlg = new AddNewTorrentDialog(parent);
+  if (dlg->loadMagnet(link))
+    dlg->open();
+  else
+    delete dlg;
 }
 
 void AddNewTorrentDialog::showEvent(QShowEvent *event) {

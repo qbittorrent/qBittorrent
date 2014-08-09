@@ -901,13 +901,13 @@ void MainWindow::dropEvent(QDropEvent *event) {
     }
     if (file.startsWith("magnet:", Qt::CaseInsensitive)) {
       if (useTorrentAdditionDialog)
-        AddNewTorrentDialog::showMagnet(file);
+        AddNewTorrentDialog::showMagnet(file, this);
       else
         QBtSession::instance()->addMagnetUri(file);
     } else {
       // Local file
       if (useTorrentAdditionDialog)
-        AddNewTorrentDialog::showTorrent(file);
+        AddNewTorrentDialog::showTorrent(file, QString(), this);
       else
         QBtSession::instance()->addTorrent(file);
     }
@@ -944,7 +944,7 @@ void MainWindow::on_actionOpen_triggered() {
     const uint listSize = pathsList.size();
     for (uint i=0; i<listSize; ++i) {
       if (pref.useAdditionDialog())
-        AddNewTorrentDialog::showTorrent(pathsList.at(i));
+        AddNewTorrentDialog::showTorrent(pathsList.at(i), QString(), this);
       else
         QBtSession::instance()->addTorrent(pathsList.at(i));
     }
@@ -987,12 +987,12 @@ void MainWindow::processParams(const QStringList& params) {
       }
       if (param.startsWith("magnet:", Qt::CaseInsensitive)) {
         if (useTorrentAdditionDialog)
-          AddNewTorrentDialog::showMagnet(param);
+          AddNewTorrentDialog::showMagnet(param, this);
         else
           QBtSession::instance()->addMagnetUri(param);
       } else {
         if (useTorrentAdditionDialog)
-          AddNewTorrentDialog::showTorrent(param);
+          AddNewTorrentDialog::showTorrent(param, QString(), this);
         else
           QBtSession::instance()->addTorrent(param);
       }
@@ -1007,7 +1007,7 @@ void MainWindow::addTorrent(QString path) {
 void MainWindow::processDownloadedFiles(QString path, QString url) {
   Preferences pref;
   if (pref.useAdditionDialog())
-    AddNewTorrentDialog::showTorrent(path, url);
+    AddNewTorrentDialog::showTorrent(path, url, this);
   else
     QBtSession::instance()->addTorrent(path, false, url);
 }
@@ -1015,7 +1015,7 @@ void MainWindow::processDownloadedFiles(QString path, QString url) {
 void MainWindow::processNewMagnetLink(const QString& link) {
   Preferences pref;
   if (pref.useAdditionDialog())
-    AddNewTorrentDialog::showMagnet(link);
+    AddNewTorrentDialog::showMagnet(link, this);
   else
     QBtSession::instance()->addMagnetUri(link);
 }
@@ -1210,7 +1210,7 @@ void MainWindow::downloadFromURLList(const QStringList& url_list) {
     }
     if (url.startsWith("magnet:", Qt::CaseInsensitive)) {
       if (useTorrentAdditionDialog)
-        AddNewTorrentDialog::showMagnet(url);
+        AddNewTorrentDialog::showMagnet(url, this);
       else
         QBtSession::instance()->addMagnetUri(url);
     }
