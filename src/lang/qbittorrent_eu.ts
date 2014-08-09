@@ -160,139 +160,157 @@
         <translation>Ez jeitsi</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="73"/>
+        <location filename="../addnewtorrentdialog.cpp" line="74"/>
         <source>Other...</source>
         <comment>Other save path...</comment>
         <translation>Besterik...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="185"/>
-        <location filename="../addnewtorrentdialog.cpp" line="617"/>
+        <location filename="../addnewtorrentdialog.cpp" line="190"/>
+        <location filename="../addnewtorrentdialog.cpp" line="623"/>
         <source>I/O Error</source>
         <translation>S/I Akatsa</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="185"/>
+        <location filename="../addnewtorrentdialog.cpp" line="190"/>
         <source>The torrent file does not exist.</source>
         <translation>Torrent agiria ez dago.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="195"/>
+        <location filename="../addnewtorrentdialog.cpp" line="200"/>
         <source>Invalid torrent</source>
         <translation>Torrent baliogabea</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="195"/>
+        <location filename="../addnewtorrentdialog.cpp" line="200"/>
         <source>Failed to load the torrent: %1</source>
         <translation>Hutsegitea torrenta gertatzerakoan: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="201"/>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="206"/>
+        <location filename="../addnewtorrentdialog.cpp" line="228"/>
         <source>Already in download list</source>
         <translation>Jadanik jeisketa zerrendan</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="201"/>
+        <location filename="../addnewtorrentdialog.cpp" line="206"/>
         <source>Torrent is already in download list. Merging trackers.</source>
         <translation>Torrenta jadanik jeisketa zerrendan dago. Aztarnariak batzen.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="637"/>
+        <location filename="../addnewtorrentdialog.cpp" line="638"/>
+        <source>Not Available</source>
+        <comment>This comment is unavailable</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="639"/>
+        <source>Not Available</source>
+        <comment>This date is unavailable</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="648"/>
         <source>Not available</source>
         <translation>Eskuraezina</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="222"/>
         <source>Invalid magnet link</source>
         <translation>Magnet lotura baliogabea</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="217"/>
+        <location filename="../addnewtorrentdialog.cpp" line="222"/>
         <source>This magnet link was not recognized</source>
         <translation>Magnet lotura hau ez da ezagutu</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="223"/>
+        <location filename="../addnewtorrentdialog.cpp" line="228"/>
         <source>Magnet link is already in download list. Merging trackers.</source>
         <translation>Magnet lotura jadanik jeisketa zerrendan dago. Aztarnariak batzen.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="230"/>
+        <location filename="../addnewtorrentdialog.cpp" line="235"/>
         <source>Magnet link</source>
         <translation>Magnet lotura</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="242"/>
+        <location filename="../addnewtorrentdialog.cpp" line="247"/>
         <source>Retrieving metadata...</source>
         <translation>Metadatuak eskuratzen...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="303"/>
+        <location filename="../addnewtorrentdialog.cpp" line="308"/>
+        <source>Not Available</source>
+        <comment>This size is unavailable.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../addnewtorrentdialog.cpp" line="310"/>
         <source>Disk space: %1</source>
         <translation>Diskako tokia: %1</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="321"/>
         <location filename="../addnewtorrentdialog.cpp" line="328"/>
-        <location filename="../addnewtorrentdialog.cpp" line="330"/>
+        <location filename="../addnewtorrentdialog.cpp" line="335"/>
+        <location filename="../addnewtorrentdialog.cpp" line="337"/>
         <source>Choose save path</source>
         <translation>Hautatu gordetze helburua</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="385"/>
+        <location filename="../addnewtorrentdialog.cpp" line="391"/>
         <source>Rename the file</source>
         <translation>Berrizendatu agiria</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="386"/>
+        <location filename="../addnewtorrentdialog.cpp" line="392"/>
         <source>New name:</source>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="390"/>
-        <location filename="../addnewtorrentdialog.cpp" line="416"/>
+        <location filename="../addnewtorrentdialog.cpp" line="396"/>
+        <location filename="../addnewtorrentdialog.cpp" line="422"/>
         <source>The file could not be renamed</source>
         <translation>Agiria ezin da berrizendatu</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="391"/>
+        <location filename="../addnewtorrentdialog.cpp" line="397"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Agiri honek hizki galaraziak ditu, mesedez hautatu beste bat.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="417"/>
-        <location filename="../addnewtorrentdialog.cpp" line="452"/>
+        <location filename="../addnewtorrentdialog.cpp" line="423"/>
+        <location filename="../addnewtorrentdialog.cpp" line="458"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Izen hau jadanik erabilia da agiritegi honetan. Mesedez erabili beste bat.</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="451"/>
+        <location filename="../addnewtorrentdialog.cpp" line="457"/>
         <source>The folder could not be renamed</source>
         <translation>Agiritegia ezin da berrizendatu</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="510"/>
+        <location filename="../addnewtorrentdialog.cpp" line="516"/>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="514"/>
+        <location filename="../addnewtorrentdialog.cpp" line="520"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="611"/>
+        <location filename="../addnewtorrentdialog.cpp" line="617"/>
         <source>Parsing metadata...</source>
         <translation>Metadatuak aztertzen...</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="615"/>
+        <location filename="../addnewtorrentdialog.cpp" line="621"/>
         <source>Metadata retrieval complete</source>
         <translation>Metadatu eskurapena osatuta</translation>
     </message>
     <message>
-        <location filename="../addnewtorrentdialog.cpp" line="618"/>
+        <location filename="../addnewtorrentdialog.cpp" line="624"/>
         <source>Unknown error</source>
         <translation>Akats ezezaguna</translation>
     </message>
@@ -365,7 +383,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="205"/>
         <source>Enable OS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaitu SE katxea</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="230"/>
@@ -4075,125 +4093,125 @@ Mesedez ezarri eskuz.</translation>
 <context>
     <name>TorrentModel</name>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="267"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="270"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Izena</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="269"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="272"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Neurria</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="270"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="273"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Eginda</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="271"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="274"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Egoera</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="272"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="275"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>Emaritzak</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="273"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="276"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Hartzaileak</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="274"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="277"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Jeisketa Abiadura</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="275"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="278"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Igoera Abiadura</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="276"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="279"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Maila</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="277"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="280"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>UED</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="278"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="281"/>
         <source>Label</source>
         <translation>Etiketa</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="279"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="282"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>Gehituta</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="280"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="283"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>Osatuta</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="281"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
         <source>Tracker</source>
         <translation>Aztarnaria</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="282"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation>Jeisketa Muga</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="283"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>Igoera Muga</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="284"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>Jeitsita</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="285"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="288"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>Igota</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="286"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="289"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Gelditzen da</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="287"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="290"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>Denbora Ekinean</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="288"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="291"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
         <translation>Gordetze helburua</translation>
@@ -5332,25 +5350,25 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="274"/>
+        <location filename="../misc.cpp" line="276"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="419"/>
+        <location filename="../misc.cpp" line="421"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1o %2m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="424"/>
+        <location filename="../misc.cpp" line="426"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1e %2o</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="264"/>
+        <location filename="../misc.cpp" line="266"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Ezezaguna</translation>
@@ -5361,13 +5379,13 @@ Edonola, plugin hauek ezgaituta daude.</translation>
         <translation>qBittorrent-ek orain ordenagailua itzaliko du jeisketa guztiak osatu direlako.</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="410"/>
+        <location filename="../misc.cpp" line="412"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../misc.cpp" line="414"/>
+        <location filename="../misc.cpp" line="416"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
