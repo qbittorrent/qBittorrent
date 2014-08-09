@@ -235,7 +235,10 @@ void TorrentModel::populate() {
   std::vector<torrent_handle>::const_iterator it = torrents.begin();
   std::vector<torrent_handle>::const_iterator itend = torrents.end();
   for ( ; it != itend; ++it) {
-    addTorrent(QTorrentHandle(*it));
+    const QTorrentHandle h(*it);
+    if (HiddenData::hasData(h.hash()))
+      continue;
+    addTorrent(h);
   }
   // Refresh timer
   connect(&m_refreshTimer, SIGNAL(timeout()), SLOT(forceModelRefresh()));
