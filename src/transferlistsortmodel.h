@@ -70,14 +70,27 @@ protected:
       return vL < vR;
     } 
     else if (column == TorrentModelItem::TR_PRIORITY) {
-      int vL = left.data().toInt();
-      int vR = right.data().toInt();
+      const int vL = left.data().toInt();
+      const int vR = right.data().toInt();
       
-      //finished torrents should be last
+      // Seeding torrents should be sorted by their completed date instead.
+      if (vL == -1 && vR == -1) {
+        QAbstractItemModel *model = sourceModel();
+        const QDateTime dateL = model->data(model->index(left.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+        const QDateTime dateR = model->data(model->index(right.row(), TorrentModelItem::TR_SEED_DATE)).toDateTime();
+
+        //not valid dates should be sorted at the bottom.
+        if (!dateL.isValid()) return false;
+        if (!dateR.isValid()) return true;
+
+        return dateL < dateR;
+      }
+
+      // Seeding torrents should be at the bottom
       if (vL == -1) return false;
       if (vR == -1) return true;
       return vL < vR;
-    } 
+    }
     else if (column == TorrentModelItem::TR_PEERS || column == TorrentModelItem::TR_SEEDS) {
       int left_active = left.data().toInt();
       int left_total = left.data(Qt::UserRole).toInt();
