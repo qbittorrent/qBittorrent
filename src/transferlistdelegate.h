@@ -62,12 +62,12 @@ public:
     case TorrentModelItem::TR_AMOUNT_UPLOADED:
     case TorrentModelItem::TR_AMOUNT_LEFT:
     case TorrentModelItem::TR_COMPLETED:
-    case TorrentModelItem::TR_SIZE:{
+    case TorrentModelItem::TR_SIZE: {
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
         break;
       }
-    case TorrentModelItem::TR_ETA:{
+    case TorrentModelItem::TR_ETA: {
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::userFriendlyDuration(index.data().toLongLong()));
         break;
@@ -129,14 +129,14 @@ public:
         break;
       }
     case TorrentModelItem::TR_UPSPEED:
-    case TorrentModelItem::TR_DLSPEED:{
+    case TorrentModelItem::TR_DLSPEED: {
         QItemDelegate::drawBackground(painter, opt, index);
         const qulonglong speed = index.data().toULongLong();
         QItemDelegate::drawDisplay(painter, opt, opt.rect, misc::friendlyUnit(speed)+tr("/s", "/second (.i.e per second)"));
         break;
       }
     case TorrentModelItem::TR_UPLIMIT:
-    case TorrentModelItem::TR_DLLIMIT:{
+    case TorrentModelItem::TR_DLLIMIT: {
       QItemDelegate::drawBackground(painter, opt, index);
       const qlonglong limit = index.data().toLongLong();
       QItemDelegate::drawDisplay(painter, opt, opt.rect, limit > 0 ? misc::accurateDoubleToString(limit/1024., 1) + " " + tr("KiB/s", "KiB/second (.i.e per second)") : QString::fromUtf8("∞"));
@@ -156,10 +156,12 @@ public:
       QItemDelegate::drawBackground(painter, opt, index);
       QItemDelegate::drawDisplay(painter, opt, opt.rect, index.data().toDateTime().toLocalTime().toString(Qt::DefaultLocaleShortDate));
       break;
-    case TorrentModelItem::TR_RATIO:{
+    case TorrentModelItem::TR_RATIO_LIMIT:
+    case TorrentModelItem::TR_RATIO: {
         QItemDelegate::drawBackground(painter, opt, index);
         const qreal ratio = index.data().toDouble();
-        QItemDelegate::drawDisplay(painter, opt, opt.rect, ratio > QBtSession::MAX_RATIO ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
+        QItemDelegate::drawDisplay(painter, opt, opt.rect,
+                                   (ratio == -1 || ratio > QBtSession::MAX_RATIO) ? QString::fromUtf8("∞") : misc::accurateDoubleToString(ratio, 2));
         break;
       }
     case TorrentModelItem::TR_PRIORITY: {
@@ -172,7 +174,7 @@ public:
         }
         break;
       }
-    case TorrentModelItem::TR_PROGRESS:{
+    case TorrentModelItem::TR_PROGRESS: {
         QStyleOptionProgressBarV2 newopt;
         qreal progress = index.data().toDouble()*100.;        
         newopt.rect = opt.rect;

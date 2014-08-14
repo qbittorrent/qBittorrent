@@ -218,6 +218,8 @@ QVariant TorrentModelItem::data(int column, int role) const
     return m_torrent.save_path_parsed();
   case TR_COMPLETED:
     return static_cast<qlonglong>(m_torrent.total_wanted_done());
+  case TR_RATIO_LIMIT:
+    return QBtSession::instance()->getMaxRatioPerTorrent(m_hash, NULL);
   default:
     return QVariant();
   }
@@ -292,6 +294,7 @@ QVariant TorrentModel::headerData(int section, Qt::Orientation orientation,
       case TorrentModelItem::TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
       case TorrentModelItem::TR_SAVE_PATH: return tr("Save path", "Torrent save path");
       case TorrentModelItem::TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
+      case TorrentModelItem::TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
       default:
         return QVariant();
       }
