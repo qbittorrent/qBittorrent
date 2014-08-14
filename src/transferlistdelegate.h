@@ -61,6 +61,7 @@ public:
     case TorrentModelItem::TR_AMOUNT_DOWNLOADED:
     case TorrentModelItem::TR_AMOUNT_UPLOADED:
     case TorrentModelItem::TR_AMOUNT_LEFT:
+    case TorrentModelItem::TR_COMPLETED:
     case TorrentModelItem::TR_SIZE:{
         QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, misc::friendlyUnit(index.data().toLongLong()));
