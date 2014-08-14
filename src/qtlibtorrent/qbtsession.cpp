@@ -1970,9 +1970,11 @@ qreal QBtSession::getMaxRatioPerTorrent(const QString &hash, bool *usesGlobalRat
   qreal ratio_limit = TorrentPersistentData::getRatioLimit(hash);
   if (ratio_limit == TorrentPersistentData::USE_GLOBAL_RATIO) {
     ratio_limit = global_ratio_limit;
-    *usesGlobalRatio = true;
+    if (usesGlobalRatio)
+      *usesGlobalRatio = true;
   } else {
-    *usesGlobalRatio = false;
+    if (usesGlobalRatio)
+      *usesGlobalRatio = false;
   }
   return ratio_limit;
 }
