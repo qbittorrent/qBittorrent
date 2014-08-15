@@ -87,7 +87,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent, MainWindow* main_window, Tra
   connect(selectAllButton, SIGNAL(clicked()), PropListModel, SLOT(selectAll()));
   connect(selectNoneButton, SIGNAL(clicked()), PropListModel, SLOT(selectNone()));
   connect(filesList, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayFilesListMenu(const QPoint&)));
-  connect(filesList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(openDoubleClickedFile(QModelIndex)));
+  connect(filesList, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openDoubleClickedFile(const QModelIndex &)));
   connect(PropListModel, SIGNAL(filteredFilesChanged()), this, SLOT(filteredFilesChanged()));
   connect(listWebSeeds, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(displayWebSeedListMenu(const QPoint&)));
   connect(transferList, SIGNAL(currentTorrentChanged(QTorrentHandle)), this, SLOT(loadTorrentInfos(QTorrentHandle)));
@@ -399,50 +399,66 @@ void PropertiesWidget::loadUrlSeeds() {
   }
 }
 
-void PropertiesWidget::openDoubleClickedFile(QModelIndex index) {
+void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) {
   if (!index.isValid()) return;
   if (!h.is_valid() || !h.has_metadata()) return;
-  if (PropListModel->itemType(index) == TorrentContentModelItem::FileType) {
-    int i = PropListModel->getFileIndex(index);
-    const QDir saveDir(h.save_path());
-    const QString filename = h.filepath_at(i);
-    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open file at %s", qPrintable(file_path));
-    // Flush data
-    h.flush_cache();
-    if (QFile::exists(file_path)) {
-      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
-    } else {
-      QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
-    }
+  if (PropListModel->itemType(index) == TorrentContentModelItem::FileType)
+    openFile(index);
+  else
+    openFolder(index, false);
+}
+
+void PropertiesWidget::openFile(const QModelIndex &index) {
+  int i = PropListModel->getFileIndex(index);
+  const QDir saveDir(h.save_path());
+  const QString filename = h.filepath_at(i);
+  const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+  qDebug("Trying to open file at %s", qPrintable(file_path));
+  // Flush data
+  h.flush_cache();
+  if (QFile::exists(file_path)) {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+  }
+  else {
+    QMessageBox::warning(this, tr("I/O Error"), tr("This file does not exist yet."));
+  }
+}
+
+void PropertiesWidget::openFolder(const QModelIndex &index, bool containing_folder) {
+  // FOLDER
+  QStringList path_items;
+  path_items << index.data().toString();
+  QModelIndex parent = PropListModel->parent(index);
+  while(parent.isValid()) {
+    path_items.prepend(parent.data().toString());
+    parent = PropListModel->parent(parent);
+  }
+  if (path_items.isEmpty())
+    return;
+  if (containing_folder)
+    path_items.removeLast();
+  const QDir saveDir(h.save_path());
+  const QString filename = path_items.join(QDir::separator());
+  const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
+  qDebug("Trying to open folder at %s", qPrintable(file_path));
+  // Flush data
+  h.flush_cache();
+  if (QFile::exists(file_path)) {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
   } else {
-    // FOLDER
-    QStringList path_items;
-    path_items << index.data().toString();
-    QModelIndex parent = PropListModel->parent(index);
-    while(parent.isValid()) {
-      path_items.prepend(parent.data().toString());
-      parent = PropListModel->parent(parent);
-    }
-    const QDir saveDir(h.save_path());
-    const QString filename = path_items.join(QDir::separator());
-    const QString file_path = QDir::cleanPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open folder at %s", qPrintable(file_path));
-    // Flush data
-    h.flush_cache();
-    if (QFile::exists(file_path)) {
-      QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
-    } else {
-      QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
-    }
+    QMessageBox::warning(this, tr("I/O Error"), tr("This folder does not exist yet."));
   }
 }
 
 void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   QMenu myFilesLlistMenu;
   QModelIndexList selectedRows = filesList->selectionModel()->selectedRows(0);
+  QAction *actOpen = 0;
+  QAction *actOpenContainingFolder = 0;
   QAction *actRename = 0;
   if (selectedRows.size() == 1) {
+    actOpen = myFilesLlistMenu.addAction(tr("Open"));
+    actOpenContainingFolder = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
     actRename = myFilesLlistMenu.addAction(IconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
     myFilesLlistMenu.addSeparator();
   }
@@ -463,24 +479,25 @@ void PropertiesWidget::displayFilesListMenu(const QPoint&) {
   const QAction *act = myFilesLlistMenu.exec(QCursor::pos());
   // The selected torrent might have dissapeared during exec()
   // from the current view thus leaving invalid indices.
-  if (!(selectedRows.begin()->isValid()))
+  const QModelIndex index = *(selectedRows.begin());
+  if (!index.isValid())
     return;
   if (act) {
-    if (act == actRename) {
+    if (act == actOpen)
+      openDoubleClickedFile(index);
+    else if (act == actOpenContainingFolder)
+      openFolder(index, true);
+    else if (act == actRename)
       renameSelectedFile();
-    } else {
-      int prio = 1;
-      if (act == actionHigh) {
+    else {
+      int prio = prio::NORMAL;
+      if (act == actionHigh)
         prio = prio::HIGH;
-      } else {
-        if (act == actionMaximum) {
-          prio = prio::MAXIMUM;
-        } else {
-          if (act == actionNot_downloaded) {
-            prio = prio::IGNORED;
-          }
-        }
-      }
+      else if (act == actionMaximum)
+        prio = prio::MAXIMUM;
+      else if (act == actionNot_downloaded)
+        prio = prio::IGNORED;
+
       qDebug("Setting files priority");
       foreach (QModelIndex index, selectedRows) {
         qDebug("Setting priority(%d) for file at row %d", prio, index.row());
