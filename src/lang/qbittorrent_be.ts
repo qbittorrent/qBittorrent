@@ -201,13 +201,13 @@
         <location filename="../addnewtorrentdialog.cpp" line="632"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не даступны</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="633"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не даступна</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="642"/>
@@ -243,7 +243,7 @@
         <location filename="../addnewtorrentdialog.cpp" line="302"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не даступны</translation>
     </message>
     <message>
         <location filename="../addnewtorrentdialog.cpp" line="304"/>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../preferences/advancedsettings.h" line="195"/>
         <source>Enable OS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Уключыць кэш OS</translation>
     </message>
     <message>
         <location filename="../preferences/advancedsettings.h" line="220"/>
@@ -2832,112 +2832,122 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>%1 макс</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>I/O Error</source>
         <translation>Памылка ўводу/вываду</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
         <source>This file does not exist yet.</source>
         <translation>Гэты файл пакуль не існуе.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>This folder does not exist yet.</source>
         <translation>Гэт каталог пакуль не існуе.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="461"/>
+        <location filename="../properties/propertieswidget.cpp" line="475"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="476"/>
+        <source>Open Containing Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="477"/>
         <source>Rename...</source>
         <translation>Пераназваць...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="482"/>
         <source>Priority</source>
         <translation>Прыярытэт</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="526"/>
         <source>New Web seed</source>
         <translation>Новы Web-сід</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="532"/>
         <source>Remove Web seed</source>
         <translation>Выдаліць Web-сід</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="517"/>
+        <location filename="../properties/propertieswidget.cpp" line="534"/>
         <source>Copy Web seed URL</source>
         <translation>Капіяваць URL Web-раздачы</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="518"/>
+        <location filename="../properties/propertieswidget.cpp" line="535"/>
         <source>Edit Web seed URL</source>
         <translation>Змяніць URL Web-раздачы</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="560"/>
         <source>Rename the file</source>
         <translation>Пераназваць файл</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="561"/>
         <source>New name:</source>
         <translation>Новая назва:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="548"/>
-        <location filename="../properties/propertieswidget.cpp" line="579"/>
+        <location filename="../properties/propertieswidget.cpp" line="565"/>
+        <location filename="../properties/propertieswidget.cpp" line="596"/>
         <source>The file could not be renamed</source>
         <translation>Немагчыма пераназваць файл</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="549"/>
+        <location filename="../properties/propertieswidget.cpp" line="566"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Назва файла змяшчае недазволеныя сімвалы. Калі ласка, дайце іншую назву.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="580"/>
-        <location filename="../properties/propertieswidget.cpp" line="618"/>
+        <location filename="../properties/propertieswidget.cpp" line="597"/>
+        <location filename="../properties/propertieswidget.cpp" line="635"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Гэтая назва ўжо ёсць ў каталогу. Калі ласка, дайце іншую назву.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="617"/>
+        <location filename="../properties/propertieswidget.cpp" line="634"/>
         <source>The folder could not be renamed</source>
         <translation>Немагчыма пераназваць каталог</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="656"/>
+        <location filename="../properties/propertieswidget.cpp" line="673"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Новы URL раздачы</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
+        <location filename="../properties/propertieswidget.cpp" line="674"/>
         <source>New url seed:</source>
         <translation>URL новага сіда:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="718"/>
+        <location filename="../properties/propertieswidget.cpp" line="735"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="663"/>
-        <location filename="../properties/propertieswidget.cpp" line="719"/>
+        <location filename="../properties/propertieswidget.cpp" line="680"/>
+        <location filename="../properties/propertieswidget.cpp" line="736"/>
         <source>This url seed is already in the list.</source>
         <translation>URL гэтага сіда ўжо ў спісе.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="711"/>
+        <location filename="../properties/propertieswidget.cpp" line="728"/>
         <source>Web seed editing</source>
         <translation>Рэдагаванне Web-раздачы</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="729"/>
         <source>Web seed URL:</source>
         <translation>URL Web-раздачы:</translation>
     </message>
@@ -2976,7 +2986,7 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Ананімны рэжым [Адкл]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1549"/>
         <source>DHT support [OFF]</source>
         <translation>Падтрымка DHT [Адкл]</translation>
     </message>
@@ -3064,92 +3074,92 @@ Are you sure you want to quit qBittorrent?</source>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="925"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1072"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1077"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; ужо ў спісе сцягванняў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1198"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; узноўлены (хуткае ўзнаўленне)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1536"/>
         <source>DHT support [ON]</source>
         <translation>Падтрымка DHT [Укл]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1541"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Падтрымка DHT [Адкл]. Прычына: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1713"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; заблакаваны</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1715"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; забанены</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Зараз кампутар прыпыніцца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2288"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2296"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
         <translation>Зараз кампутар увойдзе ў рэжым сну, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Зараз кампутар адключыцца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2292"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>Зараз qBittorrent закрыецца, калі вы не скасуеце гэта ў наступныя 15 секунд...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2448"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2456"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Не выйшла перанесці торэнт &apos;%1&apos; з прычыны: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2453"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation>Спроба перанесці торэнт &apos;%1&apos; у месца: &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2722"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>Знешні IP: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2983"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2990"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP фільтр паспяхова прачытаны: ужыта %1 правілаў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2996"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Памылка: не выйшла прачытаць гэты IP-фільтр.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1189"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1194"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1200"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; дададзены да спісу сцягванняў.</translation>
@@ -3170,142 +3180,142 @@ Are you sure you want to quit qBittorrent?</source>
         <translation>Выяўленне лакальных піраў [Укл]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1044"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1054"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Не выйшла дэкадаваць Torrent-файл: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1052"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1057"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Альбо файл пашкоджаны, альбо гэта не Torrent-файл.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1092"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Памылка: торэнт %1 не змяшчае ніводнага файла.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1313"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1341"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1319"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1347"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Заўвага: да існуючага торэнта дададзены новыя трэкеры.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1363"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Заўвага: да існуючага торэнта дададзены новыя адрасы сідаў.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1902"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Вызначаны сеткавы інтэрфэйс недапушчальны: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2062"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2070"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>У торэнт %2 убудавана рэкурсіўнае сцягванне файла %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Не выйшла дэкадаваць Torrent-файл %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2096"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2104"/>
         <source>Torrent name: %1</source>
         <translation>Назва торэнта: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent спрабуе слухаць любы інтэрфэйс, порт: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1912"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent спрабуе слухаць інтэрфэйс %1 порт: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
         <source>Torrent size: %1</source>
         <translation>Памер торэнта: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2098"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2106"/>
         <source>Save path: %1</source>
         <translation>Шлях захавання: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2099"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2107"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Торэнт быў сцягнуты за %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2100"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2108"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Дзякуй, што карыстаецеся qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2111"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] Сцягванне %1 скончана</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Памылка ўводу/вываду. &apos;%1&apos; спынены.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2516"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>Reason: %1</source>
         <translation>Прычына: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2600"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2608"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: не выйшла перанакіраваць порты, паведамленне: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2614"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: перанакіраванне портаў паспяхова адбылося, паведамленне: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2635"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2643"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Разыходжанне памераў файлаў торэнта %1, торэнт спынены.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2639"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2647"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Хуткае аднаўленне змесціва торэнта %1 не выйшла, новая праверка...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2646"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2654"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Не знайшлося сіда па адрасе: %1, паведамленне: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2662"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2670"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent паспяхова праслухоўваецца на інтэрфэйсе %1 порт: %2/%3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2697"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent не здолеў праслухоўвацца на інтэрфэйсе %1 порт: %2/%3. Прычына: %4</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Сцягванне &apos;%1&apos;, калі ласка, пачакайце...</translation>
@@ -4094,128 +4104,140 @@ Please install it manually.</source>
 <context>
     <name>TorrentModel</name>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="313"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Назва</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="315"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Памер</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="316"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Рух</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="317"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Стан</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="318"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>Сіды</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Піры</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="320"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Хуткасць сцягв.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Хуткасць разд.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Стасунак</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>Часу засталося</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
         <source>Label</source>
         <translation>Цэтлік</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>Дададзены</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>Скончаны</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
         <source>Tracker</source>
         <translation>Трэкер</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation>Абмеж. сцягв.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="335"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>Абмеж. разд.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="336"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>Сцягнута</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="337"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>Раздадзена</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="338"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Засталося</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="339"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>Час актыўнасці</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="340"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
         <translation>Шлях захавання</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="341"/>
+        <source>Completed</source>
+        <comment>Amount of data completed (e.g. in MB)</comment>
+        <translation type="unfinished">Скончаныя</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="342"/>
+        <source>Ratio Limit</source>
+        <comment>Upload share ratio limit</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4379,77 +4401,77 @@ Please install it manually.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="95"/>
+        <location filename="../transferlistdelegate.h" line="96"/>
         <source>Downloading</source>
         <translation>Сцягваецца</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="98"/>
+        <location filename="../transferlistdelegate.h" line="99"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>Сцягванне метазвестак</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="101"/>
+        <location filename="../transferlistdelegate.h" line="102"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>Размяшчэнне</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="105"/>
+        <location filename="../transferlistdelegate.h" line="106"/>
         <source>Paused</source>
         <translation>Спынены</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="109"/>
+        <location filename="../transferlistdelegate.h" line="110"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>У чарзе</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="113"/>
+        <location filename="../transferlistdelegate.h" line="114"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Раздаецца</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="116"/>
+        <location filename="../transferlistdelegate.h" line="117"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Чакае</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="120"/>
+        <location filename="../transferlistdelegate.h" line="121"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Правяраецца</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="123"/>
+        <location filename="../transferlistdelegate.h" line="124"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation>У чарзе на праверку</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="126"/>
+        <location filename="../transferlistdelegate.h" line="127"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation>Праверка resume-звестак</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="139"/>
+        <location filename="../transferlistdelegate.h" line="140"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/с</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="146"/>
+        <location filename="../transferlistdelegate.h" line="147"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>КіБ/с</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="154"/>
+        <location filename="../transferlistdelegate.h" line="155"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Раздаецца ўжо %1</translation>
@@ -4564,185 +4586,185 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="553"/>
+        <location filename="../transferlistwidget.cpp" line="555"/>
         <source>Column visibility</source>
         <translation>Адлюстраванне калонак</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Label</source>
         <translation>Цэтлік</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="251"/>
+        <location filename="../transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>Пазначце шлях захавання</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="475"/>
+        <location filename="../transferlistwidget.cpp" line="477"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Абмежаванне хуткасці сцягвання торэнта</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="508"/>
+        <location filename="../transferlistwidget.cpp" line="510"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Абмежаванне хуткасці раздачы торэнта</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Recheck confirmation</source>
         <translation>Пацверджанне пераправеркі</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Сапраўды жадаеце пераправерыць вылучаныя торэнты?</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>New Label</source>
         <translation>Новы цэтлік</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>Label:</source>
         <translation>Цэтлік:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Invalid label name</source>
         <translation>Недапушчальная назва цэтліку</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Не выкарыстоўвайце спецыяльных сімвалаў у назве цэтліку.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Rename</source>
         <translation>Пераназваць</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>New name:</source>
         <translation>Новая назва:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="695"/>
+        <location filename="../transferlistwidget.cpp" line="697"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Узнавіць</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="697"/>
+        <location filename="../transferlistwidget.cpp" line="699"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Спыніць</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="699"/>
+        <location filename="../transferlistwidget.cpp" line="701"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Выдаліць</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="701"/>
+        <location filename="../transferlistwidget.cpp" line="703"/>
         <source>Preview file...</source>
         <translation>Перадпрагляд файла...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="703"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Limit share ratio...</source>
         <translation>Абмежаваць стасунак раздачы...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="705"/>
+        <location filename="../transferlistwidget.cpp" line="707"/>
         <source>Limit upload rate...</source>
         <translation>Абмежаваць хуткасць раздачы...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="707"/>
+        <location filename="../transferlistwidget.cpp" line="709"/>
         <source>Limit download rate...</source>
         <translation>Абмежаваць хуткасць сцягвання...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="709"/>
+        <location filename="../transferlistwidget.cpp" line="711"/>
         <source>Open destination folder</source>
         <translation>Адкрыць каталог прызначэння</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="711"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Угору</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="713"/>
+        <location filename="../transferlistwidget.cpp" line="715"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Долу</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="715"/>
+        <location filename="../transferlistwidget.cpp" line="717"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>У самы верх</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="717"/>
+        <location filename="../transferlistwidget.cpp" line="719"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>У самы ніз</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="719"/>
+        <location filename="../transferlistwidget.cpp" line="721"/>
         <source>Set location...</source>
         <translation>Перанесці змесціва...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="855"/>
         <source>Priority</source>
         <translation>Прыярытэт</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="721"/>
+        <location filename="../transferlistwidget.cpp" line="723"/>
         <source>Force recheck</source>
         <translation>Праверыць прымусова</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="723"/>
+        <location filename="../transferlistwidget.cpp" line="725"/>
         <source>Copy magnet link</source>
         <translation>Капіяваць Magnet-спасылку</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="727"/>
         <source>Super seeding mode</source>
         <translation>Рэжым супер-раздачы</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="728"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Rename...</source>
         <translation>Пераназваць...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="730"/>
+        <location filename="../transferlistwidget.cpp" line="732"/>
         <source>Download in sequential order</source>
         <translation>Сцягваць паслядоўна</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="735"/>
         <source>Download first and last piece first</source>
         <translation>Спачатку сцягнуць першы і апошні кавалкі</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="813"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Новы...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Скінуць</translation>

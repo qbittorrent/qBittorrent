@@ -2833,112 +2833,122 @@ qBittorrent를 종료하겠습니까?</translation>
         <translation>최고 %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>I/O Error</source>
         <translation>I/O 에러</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
         <source>This file does not exist yet.</source>
         <translation>이 파일은 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>This folder does not exist yet.</source>
         <translation>이 폴더는 아직 생성되지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="461"/>
+        <location filename="../properties/propertieswidget.cpp" line="475"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="476"/>
+        <source>Open Containing Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="477"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="482"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="526"/>
         <source>New Web seed</source>
         <translation>새 웹 배포</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="532"/>
         <source>Remove Web seed</source>
         <translation>웹 배포 제거</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="517"/>
+        <location filename="../properties/propertieswidget.cpp" line="534"/>
         <source>Copy Web seed URL</source>
         <translation>웹 배포 URL 복사</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="518"/>
+        <location filename="../properties/propertieswidget.cpp" line="535"/>
         <source>Edit Web seed URL</source>
         <translation>웹 배포 URL 편집</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="560"/>
         <source>Rename the file</source>
         <translation>파일명 바꾸기</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="561"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="548"/>
-        <location filename="../properties/propertieswidget.cpp" line="579"/>
+        <location filename="../properties/propertieswidget.cpp" line="565"/>
+        <location filename="../properties/propertieswidget.cpp" line="596"/>
         <source>The file could not be renamed</source>
         <translation>이 파일의 이름을 변경할 수 없음</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="549"/>
+        <location filename="../properties/propertieswidget.cpp" line="566"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>파일명에 특수문자가 들어가 있습니다. 다른 이름을 입력해주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="580"/>
-        <location filename="../properties/propertieswidget.cpp" line="618"/>
+        <location filename="../properties/propertieswidget.cpp" line="597"/>
+        <location filename="../properties/propertieswidget.cpp" line="635"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>이 이름은 이 폴더에서 이미 사용중에 있습니다. 다른 이름을 입력해 주십시오.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="617"/>
+        <location filename="../properties/propertieswidget.cpp" line="634"/>
         <source>The folder could not be renamed</source>
         <translation>이 폴더의 이름을 변경할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="656"/>
+        <location filename="../properties/propertieswidget.cpp" line="673"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>새 웹 완전체(Url seed)</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
+        <location filename="../properties/propertieswidget.cpp" line="674"/>
         <source>New url seed:</source>
         <translation>새 웹 완전체(Url seed):</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="718"/>
+        <location filename="../properties/propertieswidget.cpp" line="735"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="663"/>
-        <location filename="../properties/propertieswidget.cpp" line="719"/>
+        <location filename="../properties/propertieswidget.cpp" line="680"/>
+        <location filename="../properties/propertieswidget.cpp" line="736"/>
         <source>This url seed is already in the list.</source>
         <translation>이 URL 완전체는 이미 목록에 포함되어 있습니다.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="711"/>
+        <location filename="../properties/propertieswidget.cpp" line="728"/>
         <source>Web seed editing</source>
         <translation>웹 배포 편집</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="729"/>
         <source>Web seed URL:</source>
         <translation>웹 시드 URL:</translation>
     </message>
@@ -2977,7 +2987,7 @@ qBittorrent를 종료하겠습니까?</translation>
         <translation>익명 모드 [꺼짐]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1549"/>
         <source>DHT support [OFF]</source>
         <translation>DHT 지원 [꺼짐]</translation>
     </message>
@@ -3065,92 +3075,92 @@ qBittorrent를 종료하겠습니까?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="925"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1072"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1077"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos;은(는) 이미 받기 목록에 있습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1198"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos;을(를) 받습니다. (빠른 받기)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1536"/>
         <source>DHT support [ON]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1541"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1713"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;은(는) 차단되었습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1715"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt;은(는) 추방되었습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>15초 내에 취소를 하지 않으면 컴퓨터가 절전 모드로 들어갈 것입니다...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2288"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2296"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>15초 내에 취소를 하지 않으면 컴퓨터가 전원이 종료될 것입니다...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2292"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>15초 내에 취소를 하지 않으면 qBittorrent가 종료될 것입니다...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2448"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2456"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2453"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2722"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>외부 IP: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2983"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2990"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>제공된 IP 필터 분석 성공: %1 규칙이 적용되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2996"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>오류: 제공된 IP 필터 분석이 실패했습니다.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1189"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1194"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1200"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos;이(가) 내려받기 목록에 추가되었습니다.</translation>
@@ -3171,142 +3181,142 @@ qBittorrent를 종료하겠습니까?</translation>
         <translation>로컬 공유자 찾기 지원 [켜짐]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1044"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1054"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>토렌트 파일 해독 불가: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1052"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1057"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>이 파일은 손상되었거나 토렌트 파일이 아닙니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1092"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>오류: 토렌트 %1 은(는) 아무런 파일도 담고 있지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1313"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1341"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1319"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1347"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>알림: 새 트랙커가 기존 토렌트에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1363"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>알림: 새 URL 시드가 기존 토렌트에 추가되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1902"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>정의된 네트워크 인터페이스가 올바르지 않습니다: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2062"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2070"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>토렌트 %2 에는 또 다른 토렌트 파일 %1 이(가) 포함되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>%1 토렌트 파일을 해독할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2096"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2104"/>
         <source>Torrent name: %1</source>
         <translation>토렌트 이름: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent가 모든 인터페이스 포트에서 수신을 시도합니다: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1912"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent가 %1 인터페이스 포트에서 수신을 시도합니다: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
         <source>Torrent size: %1</source>
         <translation>토렌트 크기: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2098"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2106"/>
         <source>Save path: %1</source>
         <translation>저장 경로: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2099"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2107"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>토렌트가 %1에 받아졌습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2100"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2108"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>qBittorrent를 사용해 주셔서 감사합니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2111"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1의 받기가 완료되었습니다</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>입출력 오류가 발생해서 &apos;%1&apos;이 정지되었습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2516"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>Reason: %1</source>
         <translation>이유: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2600"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2608"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 맵핑 실패, 메시지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2614"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: 포트 맵핑 성공, 메시지: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2635"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2643"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>토렌트 %1의 파일 크기가 불일치해서 정지시켰습니다.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2639"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2647"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>%1 의 빠른 받기가 실패했습니다, 재검사 하는중...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2646"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2654"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>URL 시드를 찾을 수 없습니다: %1, 메시지: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2662"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2670"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent가 인터페이스 %1 포트에서 수신이 성공했습니다: %2/%3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2697"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent가 인터페이스 %1 포트에서 수신이 실패했습니다: %2/%3, 이유: %4</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos;을(를) 받는중입니다. 기다려주세요...</translation>
@@ -4095,128 +4105,140 @@ Please install it manually.</source>
 <context>
     <name>TorrentModel</name>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="313"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="315"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>크기</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="316"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>완료</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="317"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>상태</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="318"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>배포자</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>공유자</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="320"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>받기 속도</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>올리기 속도</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>비율</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>남은 시간</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>추가일자</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>완료일자</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
         <source>Tracker</source>
         <translation>트랙커</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation>받기 제한</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="335"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>올리기 제한</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="336"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>받음</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="337"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>올림</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="338"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>남음</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="339"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>작동 시간</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="340"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
         <translation>저장 경로</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="341"/>
+        <source>Completed</source>
+        <comment>Amount of data completed (e.g. in MB)</comment>
+        <translation type="unfinished">완료됨</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="342"/>
+        <source>Ratio Limit</source>
+        <comment>Upload share ratio limit</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4380,77 +4402,77 @@ Please install it manually.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="95"/>
+        <location filename="../transferlistdelegate.h" line="96"/>
         <source>Downloading</source>
         <translation>받는중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="98"/>
+        <location filename="../transferlistdelegate.h" line="99"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>메타 정보 받는중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="101"/>
+        <location filename="../transferlistdelegate.h" line="102"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>할당중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="105"/>
+        <location filename="../transferlistdelegate.h" line="106"/>
         <source>Paused</source>
         <translation>정지됨</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="109"/>
+        <location filename="../transferlistdelegate.h" line="110"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>대기중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="113"/>
+        <location filename="../transferlistdelegate.h" line="114"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>공유중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="116"/>
+        <location filename="../transferlistdelegate.h" line="117"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>대기중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="120"/>
+        <location filename="../transferlistdelegate.h" line="121"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>검사중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="123"/>
+        <location filename="../transferlistdelegate.h" line="124"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation>검사 대기중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="126"/>
+        <location filename="../transferlistdelegate.h" line="127"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation>받은 데이터 검사중</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="139"/>
+        <location filename="../transferlistdelegate.h" line="140"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/초</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="146"/>
+        <location filename="../transferlistdelegate.h" line="147"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KB/초</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="154"/>
+        <location filename="../transferlistdelegate.h" line="155"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>%1 동안 배포함</translation>
@@ -4565,185 +4587,185 @@ Please install it manually.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="553"/>
+        <location filename="../transferlistwidget.cpp" line="555"/>
         <source>Column visibility</source>
         <translation>열 숨기기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="251"/>
+        <location filename="../transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>저장 경로 선택</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="475"/>
+        <location filename="../transferlistwidget.cpp" line="477"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>토렌트 받기 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="508"/>
+        <location filename="../transferlistwidget.cpp" line="510"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>토렌트 올리기 속도 제한</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Recheck confirmation</source>
         <translation>재검사 확인</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>선택한 토렌트를 재검사하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>New Label</source>
         <translation>새 라벨</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>Label:</source>
         <translation>라벨:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Invalid label name</source>
         <translation>잘못된 라벨 이름</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>라벨 이름에 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>New name:</source>
         <translation>새 이름:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="695"/>
+        <location filename="../transferlistwidget.cpp" line="697"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>시작</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="697"/>
+        <location filename="../transferlistwidget.cpp" line="699"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="699"/>
+        <location filename="../transferlistwidget.cpp" line="701"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="701"/>
+        <location filename="../transferlistwidget.cpp" line="703"/>
         <source>Preview file...</source>
         <translation>파일 미리보기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="703"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Limit share ratio...</source>
         <translation>공유 비율 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="705"/>
+        <location filename="../transferlistwidget.cpp" line="707"/>
         <source>Limit upload rate...</source>
         <translation>올리기 속도 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="707"/>
+        <location filename="../transferlistwidget.cpp" line="709"/>
         <source>Limit download rate...</source>
         <translation>받기 속도 제한...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="709"/>
+        <location filename="../transferlistwidget.cpp" line="711"/>
         <source>Open destination folder</source>
         <translation>저장 폴더 열기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="711"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>위로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="713"/>
+        <location filename="../transferlistwidget.cpp" line="715"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>아래로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="715"/>
+        <location filename="../transferlistwidget.cpp" line="717"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>최상단으로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="717"/>
+        <location filename="../transferlistwidget.cpp" line="719"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>최하단으로 이동</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="719"/>
+        <location filename="../transferlistwidget.cpp" line="721"/>
         <source>Set location...</source>
         <translation>위치 지정...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="855"/>
         <source>Priority</source>
         <translation>우선순위</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="721"/>
+        <location filename="../transferlistwidget.cpp" line="723"/>
         <source>Force recheck</source>
         <translation>강제 재검사</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="723"/>
+        <location filename="../transferlistwidget.cpp" line="725"/>
         <source>Copy magnet link</source>
         <translation>마그넷 링크 복사</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="727"/>
         <source>Super seeding mode</source>
         <translation>수퍼 배포 모드</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="728"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Rename...</source>
         <translation>이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="730"/>
+        <location filename="../transferlistwidget.cpp" line="732"/>
         <source>Download in sequential order</source>
         <translation>차례대로 받기</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="735"/>
         <source>Download first and last piece first</source>
         <translation>첫 번째와 마지막 조각을 먼저 받음</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="813"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>신규...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>초기화</translation>

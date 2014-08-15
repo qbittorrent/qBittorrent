@@ -2831,112 +2831,122 @@ Bạn Có Chắc Rằng Bạn Vẫn Muốn Thoát Chứ?</translation>
         <translation>tối đa %1</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>I/O Error</source>
         <translation>Lỗi Về Nhập/Xuất Dữ Liệu</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="429"/>
+        <location filename="../properties/propertieswidget.cpp" line="436"/>
         <source>This file does not exist yet.</source>
         <translation>Tập tin này không tồn tại.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="451"/>
+        <location filename="../properties/propertieswidget.cpp" line="464"/>
         <source>This folder does not exist yet.</source>
         <translation>Thư mục này không tồn tại.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="461"/>
+        <location filename="../properties/propertieswidget.cpp" line="475"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="476"/>
+        <source>Open Containing Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../properties/propertieswidget.cpp" line="477"/>
         <source>Rename...</source>
         <translation>Đổi tên...</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="466"/>
+        <location filename="../properties/propertieswidget.cpp" line="482"/>
         <source>Priority</source>
         <translation>Độ ưu tiên</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="509"/>
+        <location filename="../properties/propertieswidget.cpp" line="526"/>
         <source>New Web seed</source>
         <translation>Seed Web mới</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="515"/>
+        <location filename="../properties/propertieswidget.cpp" line="532"/>
         <source>Remove Web seed</source>
         <translation>Loại bỏ seed Web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="517"/>
+        <location filename="../properties/propertieswidget.cpp" line="534"/>
         <source>Copy Web seed URL</source>
         <translation>Sao chép đường dẫn seed Web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="518"/>
+        <location filename="../properties/propertieswidget.cpp" line="535"/>
         <source>Edit Web seed URL</source>
         <translation>Chỉnh sửa đường dẫn seed Web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="543"/>
+        <location filename="../properties/propertieswidget.cpp" line="560"/>
         <source>Rename the file</source>
         <translation>Đổi tên tập tin</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="544"/>
+        <location filename="../properties/propertieswidget.cpp" line="561"/>
         <source>New name:</source>
         <translation>Tên mới:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="548"/>
-        <location filename="../properties/propertieswidget.cpp" line="579"/>
+        <location filename="../properties/propertieswidget.cpp" line="565"/>
+        <location filename="../properties/propertieswidget.cpp" line="596"/>
         <source>The file could not be renamed</source>
         <translation>Không thể đổi tên tập tin này</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="549"/>
+        <location filename="../properties/propertieswidget.cpp" line="566"/>
         <source>This file name contains forbidden characters, please choose a different one.</source>
         <translation>Tên tập tin chứa một số ký tự bị cấm, vui lòng chọn một tên khác.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="580"/>
-        <location filename="../properties/propertieswidget.cpp" line="618"/>
+        <location filename="../properties/propertieswidget.cpp" line="597"/>
+        <location filename="../properties/propertieswidget.cpp" line="635"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
         <translation>Tên này hiện đã được dùng cho một thư mục khác. Vui lòng sử dụng một tên khác.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="617"/>
+        <location filename="../properties/propertieswidget.cpp" line="634"/>
         <source>The folder could not be renamed</source>
         <translation>Không thể đổi tên thư mục</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="656"/>
+        <location filename="../properties/propertieswidget.cpp" line="673"/>
         <source>New url seed</source>
         <comment>New HTTP source</comment>
         <translation>Đường liên kết seed mới</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="657"/>
+        <location filename="../properties/propertieswidget.cpp" line="674"/>
         <source>New url seed:</source>
         <translation>Đường liên kết seed mới:</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="718"/>
+        <location filename="../properties/propertieswidget.cpp" line="735"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="663"/>
-        <location filename="../properties/propertieswidget.cpp" line="719"/>
+        <location filename="../properties/propertieswidget.cpp" line="680"/>
+        <location filename="../properties/propertieswidget.cpp" line="736"/>
         <source>This url seed is already in the list.</source>
         <translation>Đường liên kết seed này đã tồn tại trong danh sách.</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="711"/>
+        <location filename="../properties/propertieswidget.cpp" line="728"/>
         <source>Web seed editing</source>
         <translation>Đang chỉnh sửa seed Web</translation>
     </message>
     <message>
-        <location filename="../properties/propertieswidget.cpp" line="712"/>
+        <location filename="../properties/propertieswidget.cpp" line="729"/>
         <source>Web seed URL:</source>
         <translation>Đường liên kết seed Web:</translation>
     </message>
@@ -2975,7 +2985,7 @@ Bạn Có Chắc Rằng Bạn Vẫn Muốn Thoát Chứ?</translation>
         <translation>Chế độ ẩn danh [OFF]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1543"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1549"/>
         <source>DHT support [OFF]</source>
         <translation>Hỗ trợ DHT [OFF]</translation>
     </message>
@@ -3063,92 +3073,92 @@ Bạn Có Chắc Rằng Bạn Vẫn Muốn Thoát Chứ?</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="925"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1070"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1072"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1075"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1077"/>
         <source>&apos;%1&apos; is already in download list.</source>
         <comment>e.g: &apos;xxx.avi&apos; is already in download list.</comment>
         <translation>&apos;%1&apos; hiện đã có trong danh sách tải.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1187"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1192"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1193"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1198"/>
         <source>&apos;%1&apos; resumed. (fast resume)</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was resumed. (fast resume)</comment>
         <translation>&apos;%1&apos; đã được khôi phục lại. (khôi phục nhanh)</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1530"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1536"/>
         <source>DHT support [ON]</source>
         <translation>Hỗ trợ DHT[MỞ]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1535"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1541"/>
         <source>DHT support [OFF]. Reason: %1</source>
         <translation>Hỗ trợ DHT[TẮT]. Lý do: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1707"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1713"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked</source>
         <comment>x.y.z.w was blocked</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; đã bị chặn</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1709"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1715"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
         <comment>x.y.z.w was banned</comment>
         <translation>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; đã bị cấm</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2286"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2294"/>
         <source>The computer will now go to sleep mode unless you cancel within the next 15 seconds...</source>
         <translation>Máy tính sẽ chuyển sang trạng thái sleep trừ khi bạn hủy bỏ trong vòng 15 giây tiếp theo...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2288"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2296"/>
         <source>The computer will now go to hibernation mode unless you cancel within the next 15 seconds...</source>
         <translation>Máy tính sẽ bật chế độ nghỉ tạm thời trừ khi bạn hủy bỏ thao tác này trong vòng 15 giây nữa...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2290"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2298"/>
         <source>The computer will now be switched off unless you cancel within the next 15 seconds...</source>
         <translation>Máy tính sẽ chuyển sang trạng thái tắt hoàn toàn trừ khi bạn hủy bỏ trong vòng 15 giây tiếp theo...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2292"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2300"/>
         <source>qBittorrent will now exit unless you cancel within the next 15 seconds...</source>
         <translation>qBittorrent sẽ thoát ngay bây giờ trừ khi bạn huỷ bỏ điều này trong vòng 15 giây tiếp theo...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2448"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2456"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>Không thể di chuyển torrent: &apos;%1&apos;. Lý do: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2453"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2461"/>
         <source>Attempting to move torrent: &apos;%1&apos; to path: &apos;%2&apos;.</source>
         <translation>Đang thực hiện thao tác di chuyển torrent: &apos;%1&apos; đến đường dẫn: &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2722"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2730"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
         <translation>IP bổ sung: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2983"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2990"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Phân tích cú pháp từ bộ lọc dữ liệu IP thành công: %1 các quy luật đã được áp dụng.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2989"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2996"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Lỗi: Không thể phân tích cú pháp từ bộ lọc dữ liệu IP cung cấp.</translation>
     </message>
     <message>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1005"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1189"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1194"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1195"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1200"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;/home/y/xxx.torrent&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; hiện đã được thêm vào trong danh sách tải.</translation>
@@ -3169,142 +3179,142 @@ Bạn Có Chắc Rằng Bạn Vẫn Muốn Thoát Chứ?</translation>
         <translation>Hỗ trợ Tìm Mạng Ngang Hàng Cục Bộ [ON]</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1044"/>
         <location filename="../qtlibtorrent/qbtsession.cpp" line="1049"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1054"/>
         <source>Unable to decode torrent file: &apos;%1&apos;</source>
         <comment>e.g: Unable to decode torrent file: &apos;/home/y/xxx.torrent&apos;</comment>
         <translation>Không thể giải mã tập tin torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1052"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1057"/>
         <source>This file is either corrupted or this isn&apos;t a torrent.</source>
         <translation>Tập tin này có thể đã bị lỗi hoặc không phải là một torrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1087"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1092"/>
         <source>Error: The torrent %1 does not contain any file.</source>
         <translation>Lỗi: Torrent %1 không chứa bất kỳ tập tin nào.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1313"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1341"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1319"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1347"/>
         <source>Note: new trackers were added to the existing torrent.</source>
         <translation>Lưu ý: các tracker mới đã được thêm vào torrent sẵn có.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1357"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1363"/>
         <source>Note: new URL seeds were added to the existing torrent.</source>
         <translation>Lưu ý: các liên kết seed mới đã được thêm vào torrent sẵn có.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1902"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1908"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Giao diện mạng được xác định là không hợp lệ: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2062"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2070"/>
         <source>Recursive download of file %1 embedded in torrent %2</source>
         <comment>Recursive download of test.torrent embedded in torrent test2</comment>
         <translation>Tải đệ quy tập tin %1 được nhúng trong torrent %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2234"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2242"/>
         <source>Unable to decode %1 torrent file.</source>
         <translation>Không thể giải mã tập tin torrent: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2096"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2104"/>
         <source>Torrent name: %1</source>
         <translation>Tên torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1894"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1900"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
         <translation>qBittorrent đang thực hiện việc đón nhận dữ liệu trên bất kỳ giao thức mạng ở cổng: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="1912"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="1918"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent hiện đang thực hiện thao tác nhận tín hiệu tại giao diện mạng %1 ở cổng kết nối: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2097"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2105"/>
         <source>Torrent size: %1</source>
         <translation>Kích thước torrent: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2098"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2106"/>
         <source>Save path: %1</source>
         <translation>Đường dẫn lưu: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2099"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2107"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent đã được tải xuống trong %1.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2100"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2108"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Cảm ơn bạn đã sử dụng qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2103"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2111"/>
         <source>[qBittorrent] %1 has finished downloading</source>
         <translation>[qBittorrent] %1 đã được tải về hoàn tất</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2515"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2523"/>
         <source>An I/O error occurred, &apos;%1&apos; paused.</source>
         <translation>Lỗi Nhập/Xuất dữ liệu, &apos;%1&apos; bị tạm dừng.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2516"/>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2640"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2524"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2648"/>
         <source>Reason: %1</source>
         <translation>Nguyên nhân: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2600"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2608"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Lỗi phân cổng dữ liệu, nội dung: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2606"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2614"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Phân cổng dữ liệu thành công, nội dung: %1</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2635"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2643"/>
         <source>File sizes mismatch for torrent %1, pausing it.</source>
         <translation>Kích thước tập tin không phù hợp cho torrent %1, tạm dừng tập tin này.</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2639"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2647"/>
         <source>Fast resume data was rejected for torrent %1, checking again...</source>
         <translation>Nhanh chóng khôi phục dữ liệu đã bị từ chối từ torrent %1, đang kiểm tra lại...</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2646"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2654"/>
         <source>Url seed lookup failed for url: %1, message: %2</source>
         <translation>Xảy ra lổi đối với đường dẫn khi tìm phần seed: %1, nội dung: %2</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2662"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2670"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
         <translation>qBittorrent đã đón nhận tín hiệu thành công tại giao diện mạng %1 ở cổng kết nối: %2/%3</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2689"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2697"/>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use</comment>
         <translation>qBittorrent đã đón nhận tín hiệu không thành công tại giao diện mạng %1 ở cổng kết nối: %2/%3. Nguyên nhân: %4</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/qbtsession.cpp" line="2805"/>
+        <location filename="../qtlibtorrent/qbtsession.cpp" line="2813"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Đang tải về &apos;%1&apos;, xin đợi trong giây lát...</translation>
@@ -4093,128 +4103,140 @@ Xin hãy vui lòng tự cài đặt.</translation>
 <context>
     <name>TorrentModel</name>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="313"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="315"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Kích thước</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="316"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
         <source>Done</source>
         <comment>% Done</comment>
         <translation>Đã hoàn tất</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="317"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Trạng thái</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="318"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
         <translation>Seed</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="319"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
         <translation>Mạng ngang hàng</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="320"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Tốc độ tải về</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="321"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Tốc độ tải lên</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="322"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
         <translation>Tỉ lệ</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="323"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="324"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
         <source>Label</source>
         <translation>Nhãn</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="325"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
         <translation>Được thêm vào</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="326"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>Hoàn tất vào</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="327"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
         <source>Tracker</source>
         <translation>Tracker</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="328"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation>Giới hạn tải</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="329"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="335"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
         <translation>Giới hạn tải lên</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="330"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="336"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
         <translation>Đã tải về</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="331"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="337"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>Đã tải lên</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="332"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="338"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Còn lại</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="333"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="339"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
         <translation>Thời gian thực thi:</translation>
     </message>
     <message>
-        <location filename="../qtlibtorrent/torrentmodel.cpp" line="334"/>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="340"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
         <translation>Lưu đường dẫn</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="341"/>
+        <source>Completed</source>
+        <comment>Amount of data completed (e.g. in MB)</comment>
+        <translation type="unfinished">Đã hoàn tất</translation>
+    </message>
+    <message>
+        <location filename="../qtlibtorrent/torrentmodel.cpp" line="342"/>
+        <source>Ratio Limit</source>
+        <comment>Upload share ratio limit</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4378,77 +4400,77 @@ Xin hãy vui lòng tự cài đặt.</translation>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../transferlistdelegate.h" line="95"/>
+        <location filename="../transferlistdelegate.h" line="96"/>
         <source>Downloading</source>
         <translation>Đang tải về</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="98"/>
+        <location filename="../transferlistdelegate.h" line="99"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
         <translation>Đang tải về phần thông tin chi tiết</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="101"/>
+        <location filename="../transferlistdelegate.h" line="102"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>Phân bổ</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="105"/>
+        <location filename="../transferlistdelegate.h" line="106"/>
         <source>Paused</source>
         <translation>Tạm dừng</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="109"/>
+        <location filename="../transferlistdelegate.h" line="110"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
         <translation>Đang đợi</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="113"/>
+        <location filename="../transferlistdelegate.h" line="114"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Đang seed</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="116"/>
+        <location filename="../transferlistdelegate.h" line="117"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Đang bị ngừng</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="120"/>
+        <location filename="../transferlistdelegate.h" line="121"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Đang kiểm tra</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="123"/>
+        <location filename="../transferlistdelegate.h" line="124"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
         <translation>Đã đưa vào hàng đợi để kiểm tra</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="126"/>
+        <location filename="../transferlistdelegate.h" line="127"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
         <translation>Đang kiểm tra dữ liệu hồi đáp</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="139"/>
+        <location filename="../transferlistdelegate.h" line="140"/>
         <source>/s</source>
         <comment>/second (.i.e per second)</comment>
         <translation>/giây</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="146"/>
+        <location filename="../transferlistdelegate.h" line="147"/>
         <source>KiB/s</source>
         <comment>KiB/second (.i.e per second)</comment>
         <translation>KiB/giây</translation>
     </message>
     <message>
-        <location filename="../transferlistdelegate.h" line="154"/>
+        <location filename="../transferlistdelegate.h" line="155"/>
         <source>Seeded for %1</source>
         <comment>e.g. Seeded for 3m10s</comment>
         <translation>Đã seed cho %1</translation>
@@ -4563,185 +4585,185 @@ Xin hãy vui lòng tự cài đặt.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../transferlistwidget.cpp" line="553"/>
+        <location filename="../transferlistwidget.cpp" line="555"/>
         <source>Column visibility</source>
         <translation>Chế độ hiển thị cột</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="810"/>
+        <location filename="../transferlistwidget.cpp" line="812"/>
         <source>Label</source>
         <translation>Nhãn</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="251"/>
+        <location filename="../transferlistwidget.cpp" line="253"/>
         <source>Choose save path</source>
         <translation>Chọn đường dẫn để lưu</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="475"/>
+        <location filename="../transferlistwidget.cpp" line="477"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Đang giới hạn tốc độ tải về của torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="508"/>
+        <location filename="../transferlistwidget.cpp" line="510"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Đang giới hạn tốc độ tải lên của torrent</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Recheck confirmation</source>
         <translation>Kiểm tra lại phần xác nhận</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="541"/>
+        <location filename="../transferlistwidget.cpp" line="543"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Bạn có chắc bạn muốn kiểm tra lại (các)torrent đã chọn hay không?</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>New Label</source>
         <translation>Tạo nhãn mới</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="628"/>
+        <location filename="../transferlistwidget.cpp" line="630"/>
         <source>Label:</source>
         <translation>Nhãn:</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Invalid label name</source>
         <translation>Tên nhãn không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="633"/>
+        <location filename="../transferlistwidget.cpp" line="635"/>
         <source>Please don&apos;t use any special characters in the label name.</source>
         <translation>Xin vui lòng không sử dụng bất kỳ ký tự đặc biệt trong tên nhãn.</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>Rename</source>
         <translation>Đổi tên</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="657"/>
+        <location filename="../transferlistwidget.cpp" line="659"/>
         <source>New name:</source>
         <translation>Tên mới :</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="695"/>
+        <location filename="../transferlistwidget.cpp" line="697"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Khôi phục lại</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="697"/>
+        <location filename="../transferlistwidget.cpp" line="699"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Tạm dừng</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="699"/>
+        <location filename="../transferlistwidget.cpp" line="701"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Xóa</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="701"/>
+        <location filename="../transferlistwidget.cpp" line="703"/>
         <source>Preview file...</source>
         <translation>Xem sơ lược tập tin...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="703"/>
+        <location filename="../transferlistwidget.cpp" line="705"/>
         <source>Limit share ratio...</source>
         <translation>Giới hạn tỉ lệ chia sẻ...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="705"/>
+        <location filename="../transferlistwidget.cpp" line="707"/>
         <source>Limit upload rate...</source>
         <translation>Giới hạn tỉ lệ tải lên...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="707"/>
+        <location filename="../transferlistwidget.cpp" line="709"/>
         <source>Limit download rate...</source>
         <translation>Giới hạn tỉ lệ tải về...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="709"/>
+        <location filename="../transferlistwidget.cpp" line="711"/>
         <source>Open destination folder</source>
         <translation>Mở thư mục đích</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="711"/>
+        <location filename="../transferlistwidget.cpp" line="713"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Di chuyển lên trên</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="713"/>
+        <location filename="../transferlistwidget.cpp" line="715"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Di chuyển xuống dưới</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="715"/>
+        <location filename="../transferlistwidget.cpp" line="717"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Di chuyển lên trên cùng</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="717"/>
+        <location filename="../transferlistwidget.cpp" line="719"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Di chuyển xuống dưới cùng</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="719"/>
+        <location filename="../transferlistwidget.cpp" line="721"/>
         <source>Set location...</source>
         <translation>Đặt vị trí...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="853"/>
+        <location filename="../transferlistwidget.cpp" line="855"/>
         <source>Priority</source>
         <translation>Độ ưu tiên</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="721"/>
+        <location filename="../transferlistwidget.cpp" line="723"/>
         <source>Force recheck</source>
         <translation>Buộc kiểm tra lại</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="723"/>
+        <location filename="../transferlistwidget.cpp" line="725"/>
         <source>Copy magnet link</source>
         <translation>Sao chép đường dẫn magnet</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="725"/>
+        <location filename="../transferlistwidget.cpp" line="727"/>
         <source>Super seeding mode</source>
         <translation>Chế độ seed cao cấp</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="728"/>
+        <location filename="../transferlistwidget.cpp" line="730"/>
         <source>Rename...</source>
         <translation>Đổi tên...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="730"/>
+        <location filename="../transferlistwidget.cpp" line="732"/>
         <source>Download in sequential order</source>
         <translation>Tải về theo thứ tự tuần tự</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="733"/>
+        <location filename="../transferlistwidget.cpp" line="735"/>
         <source>Download first and last piece first</source>
         <translation>Trước tiên tải về phần mảnh dữ liệu ban đầu và cuối cùng</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="811"/>
+        <location filename="../transferlistwidget.cpp" line="813"/>
         <source>New...</source>
         <comment>New label...</comment>
         <translation>Tạo mới...</translation>
     </message>
     <message>
-        <location filename="../transferlistwidget.cpp" line="812"/>
+        <location filename="../transferlistwidget.cpp" line="814"/>
         <source>Reset</source>
         <comment>Reset label</comment>
         <translation>Cài đặt lại</translation>
