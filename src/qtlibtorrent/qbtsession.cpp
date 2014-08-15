@@ -1016,7 +1016,12 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
   // Check if BT_backup directory exists
   const QDir torrentBackup(fsutils::BTBackupLocation());
-  if (!torrentBackup.exists()) return h;
+  if (!torrentBackup.exists()) {
+    // If temporary file, remove it
+    if (!from_url.isNull() || fromScanDir)
+      fsutils::forceRemove(path);
+    return h;
+  }
 
   // Fix the input path if necessary
   path = fsutils::fromNativePath(path);
@@ -1078,7 +1083,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
 
     // Delete file if temporary
     if (!from_url.isNull() || fromScanDir)
-        fsutils::forceRemove(path);
+      fsutils::forceRemove(path);
     return h;
   }
 
@@ -1087,7 +1092,7 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
     addConsoleMessage(tr("Error: The torrent %1 does not contain any file.").arg(misc::toQStringU(t->name())));
     // Delete file if temporary
     if (!from_url.isNull() || fromScanDir)
-        fsutils::forceRemove(path);
+      fsutils::forceRemove(path);
     return h;
   }
 
@@ -1148,8 +1153,9 @@ QTorrentHandle QBtSession::addTorrent(QString path, bool fromScanDir, QString fr
   // Check if it worked
   if (!h.is_valid()) {
     qDebug("/!\\ Error: Invalid handle");
-    if (!from_url.isNull())
-        fsutils::forceRemove(path);
+    // If temporary file, remove it
+    if (!from_url.isNull() || fromScanDir)
+      fsutils::forceRemove(path);
     return h;
   }
 
@@ -2871,7 +2877,6 @@ void QBtSession::processDownloadedFile(QString url, QString file_path) {
         h.pause();
     emit newDownloadedTorrentFromRss(url);
   }
-  fsutils::forceRemove(file_path);
 }
 
 // Return current download rate for the BT
