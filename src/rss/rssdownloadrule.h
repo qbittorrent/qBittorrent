@@ -46,6 +46,12 @@ class RssDownloadRule
 {
 
 public:
+  enum AddPausedState {
+    USE_GLOBAL = 0,
+    ALWAYS_PAUSED,
+    NEVER_PAUSED
+  };
+
   explicit RssDownloadRule();
   static RssDownloadRulePtr fromVariantHash(const QVariantHash &rule_hash);
   QVariantHash toVariantHash() const;
@@ -58,6 +64,8 @@ public:
   inline void setName(const QString &name) { m_name = name; }
   inline QString savePath() const { return m_savePath; }
   void setSavePath(const QString &save_path);
+  inline AddPausedState addPaused() const { return m_apstate; }
+  inline void setAddPaused(const AddPausedState &aps) { m_apstate = aps; }
   inline QString label() const { return m_label; }
   inline void setLabel(const QString &_label) { m_label = _label; }
   inline bool isEnabled() const { return m_enabled; }
@@ -86,6 +94,7 @@ private:
   bool m_enabled;
   QStringList m_rssFeeds;
   bool m_useRegex;
+  AddPausedState m_apstate;
   QDateTime m_lastMatch;
   int m_ignoreDays;
 };
