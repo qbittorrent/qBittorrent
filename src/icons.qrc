@@ -1,5 +1,5 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
+<RCC>
+<qresource prefix="/">
   <file>Icons/3-state-checkbox.gif</file>
   <file>Icons/L.gif</file>
   <file>Icons/loading.png</file>
@@ -349,5 +349,6 @@
   <file>Icons/skin/tabs.gif</file>
   <file>Icons/skin/toolbox-divider.gif</file>
   <file>Icons/skin/uploading.png</file>
+  <file>Icons/oxygen/system-log-out.png</file>
 </qresource>
 </RCC>
