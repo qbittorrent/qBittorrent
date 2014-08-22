@@ -61,7 +61,7 @@ protected slots:
   void readRequest();
   void handlePeerConnection();
   void respondInvalidRequest(QTcpSocket *socket, int code, QString msg);
-  void respondToAnnounceRequest(QTcpSocket *socket, const QHash<QString, QString>& get_parameters);
+  void respondToAnnounceRequest(QTcpSocket *socket, const QMap<QString, QString>& get_parameters);
   void ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceRequest &annonce_req);
 
 private:

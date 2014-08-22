@@ -29,18 +29,14 @@
  */
 
 #include <QTcpSocket>
-#include <QUrl>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#include <QUrlQuery>
-#endif
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
-#include "httprequestheader.h"
-#include "httpresponseheader.h"
 #include "qtracker.h"
 #include "preferences.h"
+#include "httpresponsegenerator.h"
+#include "httprequestparser.h"
 
 #include <vector>
 
@@ -93,53 +89,38 @@ void QTracker::readRequest()
   QTcpSocket *socket = static_cast<QTcpSocket*>(sender());
   QByteArray input = socket->readAll();
   //qDebug("QTracker: Raw request:\n%s", input.data());
-  HttpRequestHeader http_request(input);
-  if (!http_request.isValid()) {
-    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(http_request.toString()));
+  HttpRequest request;
+  if (HttpRequestParser::parse(input, request) != HttpRequestParser::NoError) {
+    qDebug("QTracker: Invalid HTTP Request:\n %s", qPrintable(input));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
   //qDebug("QTracker received the following request:\n%s", qPrintable(parser.toString()));
   // Request is correct, is it a GET request?
-  if (http_request.method() != "GET") {
-    qDebug("QTracker: Unsupported HTTP request: %s", qPrintable(http_request.method()));
+  if (request.method != "GET") {
+    qDebug("QTracker: Unsupported HTTP request: %s", qPrintable(request.method));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
-  if (!http_request.path().startsWith("/announce", Qt::CaseInsensitive)) {
-    qDebug("QTracker: Unrecognized path: %s", qPrintable(http_request.path()));
+  if (!request.path.startsWith("/announce", Qt::CaseInsensitive)) {
+    qDebug("QTracker: Unrecognized path: %s", qPrintable(request.path));
     respondInvalidRequest(socket, 100, "Invalid request type");
     return;
   }
 
   // OK, this is a GET request
-  // Parse GET parameters
-  QHash<QString, QString> get_parameters;
-  QUrl url = QUrl::fromEncoded(http_request.path().toLatin1());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-  QUrlQuery query(url);
-  QListIterator<QPair<QString, QString> > i(query.queryItems());
-#else
-  QListIterator<QPair<QString, QString> > i(url.queryItems());
-#endif
-  while (i.hasNext()) {
-    QPair<QString, QString> pair = i.next();
-    get_parameters[pair.first] = pair.second;
-  }
-
-  respondToAnnounceRequest(socket, get_parameters);
+  respondToAnnounceRequest(socket, request.gets);
 }
 
 void QTracker::respondInvalidRequest(QTcpSocket *socket, int code, QString msg)
 {
-  HttpResponseHeader response;
-  response.setStatusLine(code, msg);
-  socket->write(response.toString().toLocal8Bit());
+  HttpResponse response(code, msg);
+  socket->write(HttpResponseGenerator::generate(response));
   socket->disconnectFromHost();
 }
 
 void QTracker::respondToAnnounceRequest(QTcpSocket *socket,
-                                        const QHash<QString, QString>& get_parameters)
+                                        const QMap<QString, QString>& get_parameters)
 {
   TrackerAnnounceRequest annonce_req;
   // IP
@@ -246,12 +227,12 @@ void QTracker::ReplyWithPeerList(QTcpSocket *socket, const TrackerAnnounceReques
   // bencode
   std::vector<char> buf;
   bencode(std::back_inserter(buf), reply_entry);
-  QByteArray reply(&buf[0], buf.size());
+  QByteArray reply(&buf[0], static_cast<int>(buf.size()));
   qDebug("QTracker: reply with the following bencoded data:\n %s", reply.constData());
   // HTTP reply
-  HttpResponseHeader response;
-  response.setStatusLine(200, "OK");
-  socket->write(response.toString().toLocal8Bit() + reply);
+  HttpResponse response(200, "OK");
+  response.content = reply;
+  socket->write(HttpResponseGenerator::generate(response));
   socket->disconnectFromHost();
 }
 

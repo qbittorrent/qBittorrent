@@ -1,5 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -24,17 +25,14 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 
 #ifndef HTTPCONNECTION_H
 #define HTTPCONNECTION_H
 
-#include "httprequestparser.h"
-#include "httpresponsegenerator.h"
 #include <QObject>
+#include "httptypes.h"
 
 class HttpServer;
 
@@ -48,46 +46,18 @@ class HttpConnection : public QObject
   Q_DISABLE_COPY(HttpConnection)
 
 public:
-  HttpConnection(QTcpSocket *m_socket, HttpServer *m_httpserver);
+  HttpConnection(QTcpSocket* socket, HttpServer* httpserver);
   ~HttpConnection();
-  void translateDocument(QString& data);
-
-protected slots:
-  void write();
-  void respond();
-  void respondTorrentsJson();
-  void respondGenPropertiesJson(const QString& hash);
-  void respondTrackersPropertiesJson(const QString& hash);
-  void respondFilesPropertiesJson(const QString& hash);
-  void respondPreferencesJson();
-  void respondGlobalTransferInfoJson();
-  void respondCommand(const QString& command);
-  void respondNotFound();
-  void processDownloadedFile(const QString& url, const QString& file_path);
-  void handleDownloadFailure(const QString& url, const QString& reason);
-  void decreaseTorrentsPriority(const QStringList& hashes);
-  void increaseTorrentsPriority(const QStringList& hashes);
 
 private slots:
   void read();
 
-signals:
-  void UrlReadyToBeDownloaded(const QString& url);
-  void MagnetReadyToBeDownloaded(const QString& uri);
-  void torrentReadyToBeDownloaded(const QString&, bool, const QString&, bool);
-  void deleteTorrent(const QString& hash, bool permanently);
-  void resumeTorrent(const QString& hash);
-  void pauseTorrent(const QString& hash);
-  void increasePrioTorrent(const QString& hash);
-  void decreasePrioTorrent(const QString& hash);
-  void resumeAllTorrents();
-  void pauseAllTorrents();
-
 private:
+  void write(const HttpResponse& response);
+
+  static bool acceptsGzipEncoding(const QString& encoding);
+
   QTcpSocket *m_socket;
-  HttpServer *m_httpserver;
-  HttpRequestParser m_parser;
-  HttpResponseGenerator m_generator;
   QByteArray m_receivedData;
 };
 

@@ -10,6 +10,7 @@ HEADERS += $$PWD/httpserver.h \
            $$PWD/httptypes.h \
            $$PWD/extra_translations.h \
            $$PWD/webapplication.h \
+           $$PWD/abstractrequesthandler.h \
            $$PWD/requesthandler.h
 
 SOURCES += $$PWD/httpserver.cpp \
@@ -19,6 +20,7 @@ SOURCES += $$PWD/httpserver.cpp \
            $$PWD/btjson.cpp \
            $$PWD/prefjson.cpp \
            $$PWD/webapplication.cpp \
+           $$PWD/abstractrequesthandler.cpp \
            $$PWD/requesthandler.cpp
 
 # QJson JSON parser/serializer for using with Qt4

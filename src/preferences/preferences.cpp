@@ -951,7 +951,6 @@ QString Preferences::getWebUiPassword() const {
   QString pass_ha1 = value("Preferences/WebUI/Password_ha1").toString();
   if (pass_ha1.isEmpty()) {
     QCryptographicHash md5(QCryptographicHash::Md5);
-    md5.addData(getWebUiUsername().toLocal8Bit()+":"+QBT_REALM+":");
     md5.addData("adminadmin");
     pass_ha1 = md5.result().toHex();
   }
@@ -959,13 +958,8 @@ QString Preferences::getWebUiPassword() const {
 }
 
 void Preferences::setWebUiPassword(const QString &new_password) {
-  // Get current password md5
-  QString current_pass_md5 = getWebUiPassword();
-  // Check if password did not change
-  if (current_pass_md5 == new_password) return;
   // Encode to md5 and save
   QCryptographicHash md5(QCryptographicHash::Md5);
-  md5.addData(getWebUiUsername().toLocal8Bit()+":"+QBT_REALM+":");
   md5.addData(new_password.toLocal8Bit());
 
   setValue("Preferences/WebUI/Password_ha1", md5.result().toHex());
